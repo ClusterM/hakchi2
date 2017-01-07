@@ -22,6 +22,7 @@ namespace com.clusterrr.hakchi_gui
         public string Args;
         public string Name;
         public byte Players;
+        public bool Simultaneous;
         public string ReleaseDate;
         public string Publisher;
 
@@ -56,6 +57,9 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case "players":
                         Players = byte.Parse(value);
+                        break;
+                    case "simultaneous":
+                        Simultaneous = value != "0";
                         break;
                     case "releasedate":
                         ReleaseDate = value;
@@ -119,13 +123,13 @@ namespace com.clusterrr.hakchi_gui
                 "TestID=777\n" +
                 "ID=0\n" +
                 "Players={3}\n" +
-                "Simultaneous=0\n" +
+                "Simultaneous={7}\n" +
                 "ReleaseDate={4}\n" +
                 "SaveCount=0\n" +
                 "SortRawTitle={5}\n" +
                 "SortRawPublisher={6}\n" +
                 "Copyright=Copyleft\n",
-                Code, Args, Name, Players, ReleaseDate, Name.ToLower(), Publisher.ToUpper()));
+                Code, Args, Name, Players, ReleaseDate, Name.ToLower(), Publisher.ToUpper(), Simultaneous ? 1 : 0));
         }
 
         public NesGame(string gamesDirectory, string nesFileName)

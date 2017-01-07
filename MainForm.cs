@@ -69,6 +69,7 @@ namespace com.clusterrr.hakchi_gui
                 textBoxName.Text = "";
                 radioButtonOne.Checked = true;
                 radioButtonTwo.Checked = false;
+                radioButtonTwoSim.Checked = false;
                 maskedTextBoxReleaseDate.Text = "";
                 textBoxPublisher.Text = "";
                 textBoxArguments.Text = "";
@@ -79,10 +80,12 @@ namespace com.clusterrr.hakchi_gui
                 var game = selected as NesGame;
                 labelID.Text = "ID: " + game.Code;
                 textBoxName.Text = game.Name;
-                if (game.Players != 2)
-                    radioButtonOne.Checked = true;
-                else
+                if (game.Simultaneous && game.Players == 2)
+                    radioButtonTwoSim.Checked = true;
+                else if (game.Players == 2)
                     radioButtonTwo.Checked = true;
+                else 
+                    radioButtonOne.Checked = true;
                 maskedTextBoxReleaseDate.Text = game.ReleaseDate;
                 textBoxPublisher.Text = game.Publisher;
                 textBoxArguments.Text = game.Args;
@@ -151,7 +154,8 @@ namespace com.clusterrr.hakchi_gui
             var selected = checkedListBoxGames.SelectedItem;
             if (selected == null || !(selected is NesGame)) return;
             var game = (selected as NesGame);
-            game.Players = (byte)(radioButtonTwo.Checked ? 2 : 1);
+            game.Players = (byte)(radioButtonOne.Checked ? 1 : 2);
+            game.Simultaneous = radioButtonTwoSim.Checked;
         }
 
         private void textBoxPublisher_TextChanged(object sender, EventArgs e)

@@ -166,6 +166,21 @@
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;О программе...</value>
   </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 13</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Кол-во игроков:</value>
+  </data>
+  <data name="radioButtonTwoSim.Location" type="System.Drawing.Point, System.Drawing">
+    <value>110, 126</value>
+  </data>
+  <data name="radioButtonTwoSim.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 17</value>
+  </data>
+  <data name="radioButtonTwoSim.Text" xml:space="preserve">
+    <value>Два игрока, одновременно</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="buttonGoogle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -195,7 +210,7 @@
     <value>264, 13</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Параметры комендной строки (для продвинутых!):</value>
+    <value>Параметры командной строки (для продвинутых!):</value>
   </data>
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -218,14 +233,20 @@
   <data name="radioButtonTwo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="radioButtonTwo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>110, 103</value>
+  </data>
   <data name="radioButtonTwo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 17</value>
+    <value>146, 17</value>
   </data>
   <data name="radioButtonTwo.Text" xml:space="preserve">
-    <value>Два игрока</value>
+    <value>Два игрока, по очереди</value>
   </data>
   <data name="radioButtonOne.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="radioButtonOne.Location" type="System.Drawing.Point, System.Drawing">
+    <value>110, 80</value>
   </data>
   <data name="radioButtonOne.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 17</value>
@@ -270,13 +291,13 @@
     <value>Добавить игр</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>146, 22</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text" xml:space="preserve">
     <value>Удалить игру</value>
   </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 48</value>
+    <value>147, 26</value>
   </data>
   <data name="buttonStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
