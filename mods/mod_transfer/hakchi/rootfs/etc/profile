@@ -1,0 +1,35 @@
+# /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
+# and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+
+PATH="/usr/local/bin:/usr/bin:/bin"
+EDITOR="vi"			# needed for packages like cron, git-commit
+test -z "$TERM" && TERM="vt100"	# Basic terminal capab. For screen etc.
+
+if [ "$HOME" = "/root" ]; then
+   PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
+fi
+if [ "$PS1" ]; then
+# works for bash and ash (no other shells known to be in use here)
+   PS1='\u@\h:\w\$ '
+fi
+
+if [ -d /etc/profile.d ]; then
+  for i in /etc/profile.d/*.sh ; do
+    if [ -f $i -a -r $i ]; then
+      . $i
+    fi
+  done
+  unset i
+fi
+
+if [ -x /usr/bin/resize ] && termpath="`tty`"; then
+  # Make sure we are on a serial console (i.e. the device used starts with /dev/tty),
+  # otherwise we confuse e.g. the eclipse launcher which tries do use ssh
+  case "$termpath" in
+  /dev/tty*) resize >/dev/null
+  esac
+fi
+
+export PATH PS1 OPIEDIR QPEDIR QTDIR EDITOR TERM
+
+umask 022

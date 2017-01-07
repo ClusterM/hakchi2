@@ -1,0 +1,16 @@
+null::sysinit:/bin/mount -t proc proc /proc
+null::sysinit:/bin/mkdir -p /dev/pts /dev/shm
+null::sysinit:/bin/mount -a
+null::sysinit:/bin/mkdir -p /var/cache /var/lock /var/log /var/spool
+null::sysinit:/bin/ln -s /tmp /var/tmp
+null::sysinit:/bin/ln -s /run /var/run
+
+null::sysinit:/bin/mkdir -p /var/cache/clover/reed-libs/tmp /var/lib/clover/profiles/0/home-menu /var/lib/clover/config/reed-libs
+
+null::sysinit:/etc/init.d/rcS
+
+null::respawn:/sbin/getty 115200 ttyS0
+
+null::ctrlaltdel:/sbin/reboot
+null::shutdown:/etc/init.d/rcK
+null::shutdown:/bin/umount -a -r

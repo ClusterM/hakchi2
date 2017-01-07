@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BuildingCustom" xml:space="preserve">
+    <value>Building custom kernel image...</value>
+  </data>
+  <data name="Congratulations" xml:space="preserve">
+    <value>Congratulations!</value>
+  </data>
+  <data name="CustomKernel" xml:space="preserve">
+    <value>Custom kernel</value>
+  </data>
+  <data name="CustomKernelQ" xml:space="preserve">
+    <value>Do you want to flash custom kernel?</value>
+  </data>
+  <data name="CustomWarning" xml:space="preserve">
+    <value>Now you need to flash custom kernel to your NES Mini. This is also required only once. Do you want to continue?</value>
+  </data>
+  <data name="Default30games" xml:space="preserve">
+    <value>Original 30 games</value>
+  </data>
+  <data name="DeleteQ" xml:space="preserve">
+    <value>Delete {0}?</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Done!</value>
+  </data>
+  <data name="DoneUploaded" xml:space="preserve">
+    <value>Done! Wait until the power led goes out and restart NES Mini.</value>
+  </data>
+  <data name="DoneYouCanUpload" xml:space="preserve">
+    <value>Done! Your can upload games to NES mini now.</value>
+  </data>
+  <data name="DoYouWantCancel" xml:space="preserve">
+    <value>Do you want to cancel current operation?</value>
+  </data>
+  <data name="DoYouWantToContinue" xml:space="preserve">
+    <value>Do you want to continue?</value>
+  </data>
+  <data name="DumpingKernel" xml:space="preserve">
+    <value>Dumping kernel...</value>
+  </data>
+  <data name="DumpKernelQ" xml:space="preserve">
+    <value>Do you want to dump kernel?</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ExecutingCommand" xml:space="preserve">
+    <value>Executing command:</value>
+  </data>
+  <data name="ExecutingFel1" xml:space="preserve">
+    <value>Executing fel1...</value>
+  </data>
+  <data name="fes1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\data\fes1.bin;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FlasingCustom" xml:space="preserve">
+    <value>Flashing custom kernel...</value>
+  </data>
+  <data name="FlasingOriginal" xml:space="preserve">
+    <value>Flashing original kernel...</value>
+  </data>
+  <data name="GamesSelected" xml:space="preserve">
+    <value>games(s) selected</value>
+  </data>
+  <data name="InvalidKernelHeader" xml:space="preserve">
+    <value>Invalid kernel header.</value>
+  </data>
+  <data name="InvalidKernelSize" xml:space="preserve">
+    <value>Invalid kernel size:</value>
+  </data>
+  <data name="MapperNotSupported" xml:space="preserve">
+    <value>Sorry, {0} uses mapper #{1}, it's is not supported.</value>
+  </data>
+  <data name="MD5Failed" xml:space="preserve">
+    <value>Kernel dumped but MD5 checksum is unknown: {0}</value>
+  </data>
+  <data name="MD5Failed2" xml:space="preserve">
+    <value>Maybe kernel already patched or it's unknown revision. Please send this message to me (press Ctrl+C). Continue on your own risk.</value>
+  </data>
+  <data name="NoKernel" xml:space="preserve">
+    <value>No kernel dump found</value>
+  </data>
+  <data name="NoKernelWarning" xml:space="preserve">
+    <value>First of all you need to dump kernel image of your NES Mini. You need to do it only once. Do you want to continue?</value>
+  </data>
+  <data name="NoKernelYouNeed" xml:space="preserve">
+    <value>No kernel dump found. You need to dump kernel first.</value>
+  </data>
+  <data name="OriginalKernelQ" xml:space="preserve">
+    <value>Do you want to flash original kernel?</value>
+  </data>
+  <data name="PleaseTryAgain" xml:space="preserve">
+    <value>Please try again.</value>
+  </data>
+  <data name="PressOkToContinue" xml:space="preserve">
+    <value>Press OK to continue.</value>
+  </data>
+  <data name="ReplaceKernelQ" xml:space="preserve">
+    <value>You already have kernel dump. Do you want to replace it?</value>
+  </data>
+  <data name="SelectAtLeast" xml:space="preserve">
+    <value>You need to select at least one game.</value>
+  </data>
+  <data name="uboot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\data\uboot.bin;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UploadingFel1" xml:space="preserve">
+    <value>Uploading fel1...</value>
+  </data>
+  <data name="UploadingGames" xml:space="preserve">
+    <value>Uploading games...</value>
+  </data>
+  <data name="UploadingKernel" xml:space="preserve">
+    <value>Uploading kernel...</value>
+  </data>
+  <data name="UploadingUboot" xml:space="preserve">
+    <value>Uploading uboot...</value>
+  </data>
+  <data name="VerifyFailed" xml:space="preserve">
+    <value>Verify failed :O This is no good.</value>
+  </data>
+  <data name="Verifying" xml:space="preserve">
+    <value>Verifying...</value>
+  </data>
+  <data name="WaitingForDevice" xml:space="preserve">
+    <value>Waiting for device...</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning!</value>
+  </data>
+  <data name="Wow" xml:space="preserve">
+    <value>Wow</value>
+  </data>
+</root>

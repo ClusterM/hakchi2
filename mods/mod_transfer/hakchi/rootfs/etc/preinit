@@ -1,0 +1,8 @@
+preinit(){
+
+mount -o bind $rootfs/bin $mountpoint/bin
+mount -o bind $rootfs/etc $mountpoint/etc
+mount -o bind $rootfs/usr/share/games/nes/kachikachi $mountpoint/usr/share/games/nes/kachikachi
+
+return 0
+}

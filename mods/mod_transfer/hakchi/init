@@ -1,0 +1,79 @@
+init(){
+echo
+
+modname=hakchi
+mountpoint=/newroot
+installdir=$mountpoint/var/lib/$modname
+rootfs=$installdir/rootfs
+config=$installdir/config
+
+echo Starting $modname...
+
+mount -t tmpfs -o mode=0755,nosuid,nodev tmpfs $mountpoint/var
+mkdir $mountpoint/var/lib
+mount -o defaults,nosuid,nodev,noatime /dev/nandc $mountpoint/var/lib
+
+if [ ! -f $installdir/installed ]; then
+  echo Installing $modname...
+
+  rm -rf $installdir
+  mkdir -p $rootfs/usr/share/games/nes
+
+  echo 1>$installdir/installed
+  cp -a $mountpoint/bin $rootfs/
+  cp -a $mountpoint/etc $rootfs/
+
+  cp -a /$modname/rootfs/* $rootfs/
+  cp -a /bin/busybox $rootfs/bin/
+  cp -a /sbin/cryptsetup $rootfs/bin/
+  
+  mkdir -p $rootfs/usr/share/games/nes/
+  cp -a $mountpoint/usr/share/games/nes/kachikachi $rootfs/usr/share/games/nes/
+
+  chroot $rootfs /bin/busybox --install -s /bin/
+else
+  echo $modname already installed
+fi
+
+if [ -f $modname/config ]; then
+  echo Updating config...
+  mkdir -p $installdir
+  cp -f /$modname/config $config
+  echo New config:
+  cat $config
+fi
+if [ -f $config ]; then
+  echo $modname config found  
+  . $config
+else
+  echo $modname config not found  
+fi
+
+if [ -d /transfer ]; then
+  echo Transferring data...
+  cp -a /transfer/* $installdir/
+fi
+
+if [ "$hakchi_remove_games" == "y" ]; then
+  echo Removing all games...
+  rm -rf $rootfs/usr/share/games/nes/kachikachi/CLV-*
+fi
+
+if [ "$hakchi_original_games" == "y" ]; then
+  echo Transfering original games...
+  cp -a $mountpoint/usr/share/games/nes/kachikachi $rootfs/usr/share/games/nes/
+fi
+
+if [ -d /games ]; then
+  echo Transferring new games...
+  cp -a /games/* $rootfs/usr/share/games/nes/kachikachi
+fi
+
+echo Shutting down...
+umount $mountpoint/var/lib
+umount $mountpoint/var
+poweroff -f
+return 0
+}
+
+init
