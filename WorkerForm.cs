@@ -1,5 +1,6 @@
 ﻿using com.clusterrr.FelLib;
 using com.clusterrr.hakchi_gui.Properties;
+using MadWizard.WinUSBNet;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -56,6 +57,7 @@ namespace com.clusterrr.hakchi_gui
         readonly string gamesDirectory;
 
         string[] correctKernels;
+        bool? waitDeviceResult = null;
 
         public WorkerForm()
         {
@@ -285,22 +287,52 @@ namespace com.clusterrr.hakchi_gui
                 kernel = newK;
             }
 
-            fel.WriteFlash(kernel_base_f, kernel,
-                delegate(Fel.CurrentAction action, string command)
-                {
-                    switch (action)
+            bool flashCommandExecuted = false;
+            try
+            {
+                fel.WriteFlash(kernel_base_f, kernel,
+                    delegate(Fel.CurrentAction action, string command)
                     {
-                        case Fel.CurrentAction.RunningCommand:
-                            SetStatus(Resources.ExecutingCommand + " " + command);
-                            break;
-                        case Fel.CurrentAction.WritingMemory:
-                            SetStatus(Resources.UploadingKernel);
-                            break;
+                        switch (action)
+                        {
+                            case Fel.CurrentAction.RunningCommand:
+                                SetStatus(Resources.ExecutingCommand + " " + command);
+                                flashCommandExecuted = true;
+                                break;
+                            case Fel.CurrentAction.WritingMemory:
+                                SetStatus(Resources.UploadingKernel);
+                                break;
+                        }
+                        progress++;
+                        SetProgress(progress, maxProgress);
                     }
-                    progress++;
-                    SetProgress(progress, maxProgress);
+                );
+            }
+            catch (USBException ex)
+            {
+                fel.Close();
+                if (flashCommandExecuted)
+                {
+                    SetStatus(Resources.WaitingForDevice);
+                    waitDeviceResult = null;
+                    WaitForDeviceInvoke(vid, pid);
+                    while (waitDeviceResult == null)
+                        Thread.Sleep(100);
+                    if (!(waitDeviceResult ?? false))
+                    {
+                        DialogResult = DialogResult.Abort;
+                        return;
+                    }
+                    Thread.Sleep(500);
+                    fel = new Fel();
+                    fel.Fes1Bin = Resources.fes1;
+                    fel.UBootBin = Resources.uboot;
+                    fel.Open(vid, pid);
+                    SetStatus(Resources.UploadingFes1);
+                    fel.InitDram(true);
                 }
-            );
+                else throw ex;
+            }
             var r = fel.ReadFlash((UInt32)kernel_base_f, (UInt32)kernel.Length,
                 delegate(Fel.CurrentAction action, string command)
                 {
@@ -457,6 +489,17 @@ namespace com.clusterrr.hakchi_gui
             process.Start();
             process.WaitForExit();
             return process.ExitCode == 0;
+        }
+
+        private void WaitForDeviceInvoke(UInt16 vid, UInt16 pid)
+        {
+            waitDeviceResult = null;
+            if (InvokeRequired)
+            {
+                Invoke(new Action<UInt16, UInt16>(WaitForDeviceInvoke), new object[] { vid, pid});
+                return;
+            }
+            waitDeviceResult = WaitingForm.WaitForDevice(vid, pid);
         }
 
         static UInt32 CalKernelSize(byte[] header)
