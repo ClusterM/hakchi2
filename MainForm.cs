@@ -218,7 +218,7 @@ namespace com.clusterrr.hakchi_gui
             SaveConfig();
         }
 
-        void RecalculateSelectedGames(int i = -1, bool v = false)
+        int RecalculateSelectedGames(int i = -1, bool v = false)
         {
             int c = 0;
             foreach (var game in checkedListBoxGames.CheckedItems)
@@ -239,6 +239,7 @@ namespace com.clusterrr.hakchi_gui
                 else c -= 1;
             }
             toolStripStatusLabelSelected.Text = c + " " + Resources.GamesSelected;
+            return c;
         }
 
         private void checkedListBoxGames_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -256,7 +257,17 @@ namespace com.clusterrr.hakchi_gui
                 {
                     try
                     {
-                        nesGame = new NesGame(GamesDir, file);
+                        try
+                        {
+                            nesGame = new NesGame(GamesDir, file);
+                        }
+                        catch (UnsupportedMapperException ex)
+                        {
+                            if (MessageBox.Show(this, string.Format(Resources.MapperNotSupported, Path.GetFileName(file), ex.ROM.Mapper), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                                == System.Windows.Forms.DialogResult.Yes)
+                                nesGame = new NesGame(GamesDir, file, true);
+                            else continue;
+                        }
                         Settings.Default.SelectedGames += ";" + nesGame.Code;
                     }
                     catch (Exception ex)
@@ -308,11 +319,18 @@ namespace com.clusterrr.hakchi_gui
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
-        {
+        {            
             SaveConfig();
-            if (checkedListBoxGames.CheckedItems.Count == 0)
+            var gamesCount = RecalculateSelectedGames();
+            if (gamesCount == 0)
             {
                 MessageBox.Show(Resources.SelectAtLeast, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (gamesCount > 97)
+            {
+                if (MessageBox.Show(Resources.ManyGames, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                    == System.Windows.Forms.DialogResult.No)
                 return;
             }
             if (/*!File.Exists(UBootDump) ||*/ !File.Exists(KernelDump))

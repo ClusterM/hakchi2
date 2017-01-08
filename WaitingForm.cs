@@ -8,7 +8,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
@@ -27,21 +29,33 @@ namespace com.clusterrr.hakchi_gui
 
         public static bool WaitForDevice(UInt16 vid, UInt16 pid)
         {
-           if (!Fel.DeviceExists(vid, pid))
-           {
-               var form = new WaitingForm(vid, pid);
-               form.ShowDialog();
-               return form.DialogResult == DialogResult.OK;
-           }
-           return true;
+            if (/*DeviceExists(vid, pid) &&*/ Fel.DeviceExists(vid, pid)) return true;
+            var form = new WaitingForm(vid, pid);
+            form.ShowDialog();
+            return form.DialogResult == DialogResult.OK;
+        }
+
+        static bool DeviceExists(UInt16 vid, UInt16 pid)
+        {
+            var devices = GetUSBDevices();
+            var id = string.Format("VID_{0:X4}&PID_{1:X4}", vid, pid);
+            foreach (var device in devices)
+            {
+                if (device.DeviceID.Contains(id))
+                    return true;
+            }
+            return false;
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (Fel.DeviceExists(vid, pid))
+            //if (DeviceExists(vid, pid))
             {
-                DialogResult = DialogResult.OK;
-                timer.Enabled = false;
+                if (Fel.DeviceExists(vid, pid))
+                {
+                    DialogResult = DialogResult.OK;
+                    timer.Enabled = false;
+                }
             }
         }
 
@@ -77,7 +91,43 @@ namespace com.clusterrr.hakchi_gui
         private void WaitingForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             timer.Enabled = false;
-        }        
+        }
+
+
+        static List<USBDeviceInfo> GetUSBDevices()
+        {
+            List<USBDeviceInfo> devices = new List<USBDeviceInfo>();
+
+            ManagementObjectCollection collection;
+            using (var searcher = new ManagementObjectSearcher(@"SELECT * FROM Win32_PnPEntity where DeviceID Like ""USB%"""))
+                collection = searcher.Get();
+
+            foreach (var device in collection)
+            {
+                devices.Add(new USBDeviceInfo(
+                (string)device.GetPropertyValue("DeviceID"),
+                (string)device.GetPropertyValue("PNPDeviceID"),
+                (string)device.GetPropertyValue("Description")
+                ));
+            }
+
+            collection.Dispose();
+            return devices;
+        }
     }
 
+    class USBDeviceInfo
+    {
+        public USBDeviceInfo(string deviceID, string pnpDeviceID, string description)
+        {
+            this.DeviceID = deviceID;
+            this.PnpDeviceID = pnpDeviceID;
+            this.Description = description;
+        }
+        public string DeviceID { get; private set; }
+        public string PnpDeviceID { get; private set; }
+        public string Description { get; private set; }
+    }
 }
+
+

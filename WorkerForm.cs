@@ -72,7 +72,7 @@ namespace com.clusterrr.hakchi_gui
             kernelPatched = Path.Combine(kernelDirectory, "patched_kernel.img");
             ramdiskPatched = Path.Combine(kernelDirectory, "kernel.img-ramdisk_mod.gz");
             configPath = Path.Combine(hakchiDirectory, "config");
-            correctKernels = new string[] { "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158" };
+            correctKernels = new string[] { "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158", };
             gamesDirectory = Path.Combine(ramfsDirectory, "games");
         }
 
@@ -92,9 +92,14 @@ namespace com.clusterrr.hakchi_gui
         public void StartThread()
         {
             fel = new Fel();
+            fel.Fes1Bin = Resources.fes1;
+            fel.UBootBin = Resources.uboot;
+            SetProgress(0, 100);
             try
             {
                 fel.Open(vid, pid);
+                SetStatus(Resources.UploadingFes1);
+                fel.InitDram(true);
                 switch (Task)
                 {
                     case Tasks.DumpKernel:
@@ -113,11 +118,13 @@ namespace com.clusterrr.hakchi_gui
                         Memboot();
                         break;
                 }
+                Thread.Sleep(1000);
+                DialogResult = DialogResult.OK;
             }
             catch (ThreadAbortException) { }
             catch (Exception ex)
             {
-                ShowError(ex.Message);
+                ShowError(ex);
             }
             finally
             {
@@ -144,6 +151,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch { }
         }
+
         void SetStatus(string status)
         {
             if (Disposing) return;
@@ -158,6 +166,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch { }
         }
+
         void SetProgress(int value, int max)
         {
             if (Disposing) return;
@@ -175,104 +184,62 @@ namespace com.clusterrr.hakchi_gui
             catch { }
         }
 
-        void ShowError(string text)
+        void ShowError(Exception ex)
         {
             if (Disposing) return;
             try
             {
                 if (InvokeRequired)
                 {
-                    Invoke(new Action<string>(ShowError), new object[] { text });
+                    Invoke(new Action<Exception>(ShowError), new object[] { ex });
                     return;
                 }
-                MessageBox.Show(this, text + "\r\n" + Resources.PleaseTryAgain, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ex is MadWizard.WinUSBNet.USBException)
+                    MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgain + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgain, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 thread = null;
                 Close();
             }
             catch { }
         }
 
-        void ExecCommand(string command, bool nopause = false)
-        {
-            SetStatus(Resources.ExecutingCommand + " " + command);
-            fel.WriteMemory((uint)(uboot_base_m + cmdOffset), Encoding.ASCII.GetBytes(command + "\0"));
-            fel.Exec((uint)uboot_base_m, nopause ? 0 : 10);
-        }
-
-        byte[] WaitRead(UInt32 address, UInt32 size)
-        {
-            SetStatus(Resources.WaitingForDevice);
-            int errorCount = 0;
-            while (true)
-            {
-                try
-                {
-                    if ((errorCount > 0) && (errorCount % 5) == 0)
-                    {
-                        fel.Close();
-                        Thread.Sleep(1000);
-                        fel.Open(vid, pid);
-                    }
-                    fel.ClearInputBuffer();
-                    fel.VerifyDevice();
-                    var data = fel.ReadMemory(address, size);
-                    return data;
-                }
-                catch (Exception ex)
-                {
-                    errorCount++;
-                    if (errorCount >= 15) throw ex;
-                    Thread.Sleep(1000);
-                }
-            }
-        }
-
         public void DoKernelDump()
         {
-            const int maxProgress = 100;
-            SetProgress(1, maxProgress);
-            SetStatus(Resources.UploadingFel1);
-            fel.WriteMemory((uint)fes1_base_m, Resources.fes1);
-            SetProgress(10, maxProgress);
-            //Console.WriteLine("OK");
-            //var r = fel.ReadMemory(0x2000, (UInt32)fel1.Length);
-            SetStatus(Resources.ExecutingFel1);
-            fel.Exec((uint)fes1_base_m, 3);
-            SetProgress(20, maxProgress);
-            SetStatus(Resources.UploadingUboot);
-            fel.WriteMemory(uboot_base_m, Resources.uboot);
-            SetProgress(30, maxProgress);
-            /*
-            var addr = 0x100000;
-            UInt32 size = sector_size * 6;
-            var command = string.Format("sunxi_flash phy_read {0:x} {1:x} {2:x};fastboot_test", flash_mem_base, addr / sector_size, (size + addr % sector_size + sector_size - 1) / sector_size);
-            ExecCommand(command);
-            SetProgress(50, maxDumpProgress);
-            var header = WaitRead(flash_mem_base, 32);
-            SetProgress(70, maxDumpProgress);
-            size = (UInt32)(header[0x14] | (header[0x15] * 0x100) | (header[0x16] * 0x10000) | (header[0x17] * 0x1000000));
-            if (size == 0 || size > kernel_max_size)
-                throw new Exception("Invalid uboot size: " + size);
-            SetStatus("Dumping uboot...");
-            var uboot = fel.ReadMemory(flash_mem_base, size);
-            Directory.CreateDirectory(Path.GetDirectoryName(UBootDump));
-            File.WriteAllBytes(UBootDump, uboot);
-            SetProgress(90, maxDumpProgress);
-             */
+            int progress = 5;
+            const int maxProgress = 80;
+            SetProgress(progress, maxProgress);
+            SetStatus(Resources.DumpingKernel);
 
-            var addr = 0x600000;
-            var size = sector_size * 0x20;
-            var command = string.Format("sunxi_flash phy_read {0:x} {1:x} {2:x};fastboot_test", flash_mem_base, addr / sector_size, (size + addr % sector_size + sector_size - 1) / sector_size);
-            ExecCommand(command);
-            SetProgress(50, maxProgress);
-            var header = WaitRead(flash_mem_base, 64);
-            SetProgress(70, maxProgress);
+            var kernel = fel.ReadFlash(kernel_base_f, sector_size * 0x20,
+                delegate(Fel.CurrentAction action, string command)
+                {
+                    switch (action)
+                    {
+                        case Fel.CurrentAction.RunningCommand:
+                            SetStatus(Resources.ExecutingCommand + " " + command);
+                            break;
+                        case Fel.CurrentAction.ReadingMemory:
+                            SetStatus(Resources.DumpingKernel);
+                            break;
+                    }
+                    progress++;
+                    SetProgress(progress, maxProgress);
+                }
+            );
 
-            size = CalKernelSize(header);
+            var size = CalKernelSize(kernel);
             if (size == 0 || size > kernel_max_size)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
-            SetStatus(Resources.DumpingKernel);
-            var kernel = fel.ReadMemory(flash_mem_base, size);
+            if (kernel.Length > size)
+            {
+                var sm_kernel = new byte[size];
+                Array.Copy(kernel, 0, sm_kernel, 0, size);
+                kernel = sm_kernel;
+            }
+
+            SetProgress(maxProgress, maxProgress);
+            SetStatus(Resources.Done);
 
             var md5 = System.Security.Cryptography.MD5.Create();
             var hash = BitConverter.ToString(md5.ComputeHash(kernel)).Replace("-", "").ToLower();
@@ -288,25 +255,27 @@ namespace com.clusterrr.hakchi_gui
 
             Directory.CreateDirectory(Path.GetDirectoryName(KernelDump));
             File.WriteAllBytes(KernelDump, kernel);
-            SetProgress(maxProgress, maxProgress);
-            SetStatus(Resources.Done);
-            Thread.Sleep(1000);
-            DialogResult = DialogResult.OK;
         }
 
         public void FlashKernel()
         {
-            const int maxProgress = 180;
-            SetProgress(0, maxProgress);
+            int progress = 5;
+            int maxProgress = 120 + (string.IsNullOrEmpty(Mod) ? 0 : 5);
+            SetProgress(progress, maxProgress);
 
             byte[] kernel;
             if (!string.IsNullOrEmpty(Mod))
+            {
                 kernel = CreatePatchedKernel(Mod);
+                progress += 5;
+                SetProgress(progress, maxProgress);
+            }
             else
                 kernel = File.ReadAllBytes(KernelDump);
             var size = CalKernelSize(kernel);
             if (size > kernel.Length || size > kernel_max_size)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
+
             size = (size + sector_size - 1) / sector_size;
             size = size * sector_size;
             if (kernel.Length != size)
@@ -315,56 +284,56 @@ namespace com.clusterrr.hakchi_gui
                 Array.Copy(kernel, newK, kernel.Length);
                 kernel = newK;
             }
-            SetProgress(20, maxProgress);
 
-            fel.Open(vid, pid);
-            SetStatus(Resources.UploadingFel1);
-            fel.WriteMemory((uint)fes1_base_m, Resources.fes1);
-            SetProgress(30, maxProgress);
-            //Console.WriteLine("OK");
-            //var r = fel.ReadMemory(0x2000, (UInt32)fel1.Length);
-            SetStatus(Resources.ExecutingFel1);
-            fel.Exec((uint)fes1_base_m, 3);
-            Thread.Sleep(3000);
-            SetProgress(40, maxProgress);
-            SetStatus(Resources.UploadingUboot);
-            fel.WriteMemory(uboot_base_m, Resources.uboot);
-            SetProgress(50, maxProgress);
-            SetStatus(Resources.UploadingKernel);
-            fel.WriteMemory(flash_mem_base, kernel);
-            SetProgress(80, maxProgress);
-            var addr = 0x600000;
-            var command = string.Format("sunxi_flash phy_write {0:x} {1:x} {2:x};fastboot_test", flash_mem_base, addr / sector_size, size / sector_size);
-            ExecCommand(command);
-            SetProgress(100, maxProgress);
-            WaitRead(flash_mem_base, 64);
-            SetProgress(120, maxProgress);
-
-            command = string.Format("sunxi_flash phy_read {0:x} {1:x} {2:x};fastboot_test", flash_mem_base, addr / sector_size, size / sector_size);
-            ExecCommand(command);
-            SetProgress(140, maxProgress);
-            var header = WaitRead(flash_mem_base, 64);
-            SetProgress(160, maxProgress);
-            SetStatus(Resources.Verifying);
-            var r = fel.ReadMemory((uint)flash_mem_base, size);
-            for (int i = 0; i < size; i++)
+            fel.WriteFlash(kernel_base_f, kernel,
+                delegate(Fel.CurrentAction action, string command)
+                {
+                    switch (action)
+                    {
+                        case Fel.CurrentAction.RunningCommand:
+                            SetStatus(Resources.ExecutingCommand + " " + command);
+                            break;
+                        case Fel.CurrentAction.WritingMemory:
+                            SetStatus(Resources.UploadingKernel);
+                            break;
+                    }
+                    progress++;
+                    SetProgress(progress, maxProgress);
+                }
+            );
+            var r = fel.ReadFlash((UInt32)kernel_base_f, (UInt32)kernel.Length,
+                delegate(Fel.CurrentAction action, string command)
+                {
+                    switch (action)
+                    {
+                        case Fel.CurrentAction.RunningCommand:
+                            SetStatus(Resources.ExecutingCommand + " " + command);
+                            break;
+                        case Fel.CurrentAction.ReadingMemory:
+                            SetStatus(Resources.Verifying);
+                            break;
+                    }
+                    progress++;
+                    SetProgress(progress, maxProgress);
+                }
+            );
+            for (int i = 0; i < kernel.Length; i++)
                 if (kernel[i] != r[i])
                 {
                     throw new Exception(Resources.VerifyFailed);
                 }
-            if (string.IsNullOrEmpty(Mod))
-                ExecCommand(string.Format("boota {0:x}", kernel_base_m), true);
+            var bootCommand = string.Format("boota {0:x}", kernel_base_m);
+            SetStatus(Resources.ExecutingCommand + " " + bootCommand);
+            fel.RunUbootCmd(bootCommand, true);
             SetStatus(Resources.Done);
-            SetProgress(180, maxProgress);
-            Thread.Sleep(1000);
-            DialogResult = DialogResult.OK;
-
+            SetProgress(maxProgress, maxProgress);
         }
 
         public void Memboot()
         {
-            const int maxProgress = 75;
-            SetProgress(0, maxProgress);
+            int progress = 5;
+            int maxProgress = 300;
+            SetProgress(progress, maxProgress);
 
             byte[] kernel;
             if (!string.IsNullOrEmpty(Mod))
@@ -382,29 +351,31 @@ namespace com.clusterrr.hakchi_gui
                 Array.Copy(kernel, newK, kernel.Length);
                 kernel = newK;
             }
-            SetProgress(20, maxProgress);
 
-            fel.Open(vid, pid);
-            SetStatus(Resources.UploadingFel1);
-            fel.WriteMemory((uint)fes1_base_m, Resources.fes1);
-            SetProgress(30, maxProgress);
-            //Console.WriteLine("OK");
-            //var r = fel.ReadMemory(0x2000, (UInt32)fel1.Length);
-            SetStatus(Resources.ExecutingFel1);
-            fel.Exec((uint)fes1_base_m, 3);
-            Thread.Sleep(3000);
-            SetProgress(40, maxProgress);
-            SetStatus(Resources.UploadingUboot);
-            fel.WriteMemory(uboot_base_m, Resources.uboot);
-            SetProgress(50, maxProgress);
+            progress += 5;
+            maxProgress = kernel.Length / 67000 + 15;
+            SetProgress(progress, maxProgress);
+
             SetStatus(Resources.UploadingKernel);
-            fel.WriteMemory(flash_mem_base, kernel);
-            SetProgress(70, maxProgress);
-            ExecCommand(string.Format("boota {0:x}", kernel_base_m), true);
+            fel.WriteMemory(flash_mem_base, kernel,
+                delegate(Fel.CurrentAction action, string command)
+                {
+                    switch (action)
+                    {
+                        case Fel.CurrentAction.WritingMemory:
+                            SetStatus(Resources.UploadingKernel);
+                            break;
+                    }
+                    progress++;
+                    SetProgress(progress, maxProgress);
+                }
+            );
+
+            var bootCommand = string.Format("boota {0:x}", kernel_base_m);
+            SetStatus(Resources.ExecutingCommand + " " + bootCommand);
+            fel.RunUbootCmd(bootCommand, true);
             SetStatus(Resources.Done);
-            SetProgress(75, maxProgress);
-            Thread.Sleep(1000);
-            DialogResult = DialogResult.OK;
+            SetProgress(maxProgress, maxProgress);
         }
 
         private byte[] CreatePatchedKernel(string mod, bool createConfig = false, bool originalGames = false, NesGame[] games = null)

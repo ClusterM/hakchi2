@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -132,12 +133,12 @@ namespace com.clusterrr.hakchi_gui
                 Code, Args, Name, Players, ReleaseDate, Name.ToLower(), Publisher.ToUpper(), Simultaneous ? 1 : 0));
         }
 
-        public NesGame(string gamesDirectory, string nesFileName)
+        public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper = false)
         {
             var nesFile = new NesFile(nesFileName);
             nesFile.CorrectRom();
-            if (!supportedMappers.Contains(nesFile.Mapper))
-                throw new Exception(string.Format(Resources.MapperNotSupported, Path.GetFileName(nesFileName), nesFile.Mapper));
+            if (!supportedMappers.Contains(nesFile.Mapper) && !ignoreMapper)
+                throw new UnsupportedMapperException(nesFile);
             Code = string.Format("CLV-H-{0}{1}{2}{3}{4}", 
                 (char)('A' + (nesFile.CRC32 % 26)), 
                 (char)('A' + (nesFile.CRC32 >> 5) % 26), 

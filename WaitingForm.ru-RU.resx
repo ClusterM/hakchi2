@@ -125,10 +125,10 @@
     <value>Пожалуйста, выполните следующие шаги:</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 13</value>
+    <value>239, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>1. Убедитесь, что кнопка "power" выключена</value>
+    <value>1. Убедитесь, что кнопка POWER выключена</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 13</value>
@@ -137,16 +137,16 @@
     <value>2. (Пере)подключите NES Mini к компьютеру по USB</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 13</value>
+    <value>281, 13</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>3. Зажмите кнопку "reset" и нажмите кнопку "power"</value>
+    <value>3. Зажмите кнопку RESET и нажмите кнопку POWER</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>356, 13</value>
+    <value>359, 13</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>4. Через папу секунд отпустите "reset", светодиод не должен гореть</value>
+    <value>4. Через папу секунд отпустите RESET, светодиод не должен гореть</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>275, 13</value>

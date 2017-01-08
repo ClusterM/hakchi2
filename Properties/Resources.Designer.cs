@@ -224,7 +224,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Executing fel1....
+        ///   Looks up a localized string similar to Executing fes1....
         /// </summary>
         internal static string ExecutingFel1 {
             get {
@@ -288,7 +288,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, {0} uses mapper #{1}, it&apos;s is not supported..
+        ///   Looks up a localized string similar to NES Mini can handle only 97 games but you selected {0} games.  Do you want to continue?.
+        /// </summary>
+        internal static string ManyGames {
+            get {
+                return ResourceManager.GetString("ManyGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, {0} uses mapper #{1} but this mapper not supported by NES Mini and game probably will not start. Do you want to add this game anyway?.
         /// </summary>
         internal static string MapperNotSupported {
             get {
@@ -360,6 +369,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If problem repeats try to use another USB port or another USB cable..
+        /// </summary>
+        internal static string PleaseTryAgainUSB {
+            get {
+                return ResourceManager.GetString("PleaseTryAgainUSB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Press OK to continue..
         /// </summary>
         internal static string PressOkToContinue {
@@ -397,11 +415,11 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uploading fel1....
+        ///   Looks up a localized string similar to Uploading and running fes1....
         /// </summary>
-        internal static string UploadingFel1 {
+        internal static string UploadingFes1 {
             get {
-                return ResourceManager.GetString("UploadingFel1", resourceCulture);
+                return ResourceManager.GetString("UploadingFes1", resourceCulture);
             }
         }
         

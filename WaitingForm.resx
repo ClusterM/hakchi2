@@ -140,7 +140,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 150</value>
+    <value>16, 150</value>
   </data>
   <data name="buttonDriver.Size" type="System.Drawing.Size, System.Drawing">
     <value>169, 23</value>
@@ -153,10 +153,7 @@
     <value>3</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 180</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>16, 180</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>261, 13</value>
@@ -184,13 +181,13 @@
     <value>$this</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 90</value>
+    <value>16, 90</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
   <data name="buttonDriver.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 175</value>
+    <value>199, 175</value>
   </data>
   <data name="&gt;&gt;label4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -261,7 +258,10 @@
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
@@ -271,10 +271,10 @@
     <value>label2</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>4. After few seconds release the reset button, power led should not be on</value>
+    <value>4. After few seconds release the RESET button, POWER led should not be on</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 22</value>
+    <value>16, 22</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Waiting for NES Mini...</value>
@@ -292,16 +292,16 @@
     <value>Install driver</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 60</value>
+    <value>16, 60</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 120</value>
+    <value>16, 120</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>258, 13</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>352, 13</value>
+    <value>377, 13</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 13</value>
@@ -318,8 +318,8 @@
   <data name="&gt;&gt;buttonDriver.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
@@ -332,9 +332,6 @@
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>ru-RU</value>
   </metadata>
   <metadata name="timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

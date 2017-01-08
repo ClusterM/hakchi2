@@ -173,7 +173,7 @@
     <value>Executing command:</value>
   </data>
   <data name="ExecutingFel1" xml:space="preserve">
-    <value>Executing fel1...</value>
+    <value>Executing fes1...</value>
   </data>
   <data name="fes1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\fes1.bin;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -194,7 +194,7 @@
     <value>Invalid kernel size:</value>
   </data>
   <data name="MapperNotSupported" xml:space="preserve">
-    <value>Sorry, {0} uses mapper #{1}, it's is not supported.</value>
+    <value>Sorry, {0} uses mapper #{1} but this mapper not supported by NES Mini and game probably will not start. Do you want to add this game anyway?</value>
   </data>
   <data name="MD5Failed" xml:space="preserve">
     <value>Kernel dumped but MD5 checksum is unknown: {0}</value>
@@ -229,8 +229,8 @@
   <data name="uboot" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\uboot.bin;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="UploadingFel1" xml:space="preserve">
-    <value>Uploading fel1...</value>
+  <data name="UploadingFes1" xml:space="preserve">
+    <value>Uploading and running fes1...</value>
   </data>
   <data name="UploadingGames" xml:space="preserve">
     <value>Uploading games...</value>
@@ -255,5 +255,11 @@
   </data>
   <data name="Wow" xml:space="preserve">
     <value>Wow</value>
+  </data>
+  <data name="ManyGames" xml:space="preserve">
+    <value>NES Mini can handle only 97 games but you selected {0} games.  Do you want to continue?</value>
+  </data>
+  <data name="PleaseTryAgainUSB" xml:space="preserve">
+    <value>If problem repeats try to use another USB port or another USB cable.</value>
   </data>
 </root>
