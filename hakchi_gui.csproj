@@ -160,6 +160,9 @@
     <None Include="app.config" />
     <None Include="data\fes1.bin" />
     <None Include="data\uboot.bin" />
+    <None Include="LICENSE">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="mods\mod_kernel\bin\busybox">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
