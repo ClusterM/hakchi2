@@ -157,9 +157,11 @@
     <EmbeddedResource Include="WorkerForm.resx">
       <DependentUpon>WorkerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.config" />
     <None Include="data\fes1.bin" />
     <None Include="data\uboot.bin" />
+    <None Include="driver\nesmini.cat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -252,7 +254,19 @@
     <None Include="images\blank.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="driver\nesmini_driver.exe">
+    <Content Include="driver\amd64\WdfCoInstaller01011.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="driver\amd64\winusbcoinstaller2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="driver\nesmini.inf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="driver\x86\WdfCoInstaller01011.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="driver\x86\winusbcoinstaller2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icon.ico" />

@@ -1982,7 +1982,7 @@
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>hakchi2 - NES Mini pimp tool, v2.05</value>
+    <value>hakchi2 - NES Mini pimp tool, v2.05b</value>
   </data>
   <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
     <value>fileToolStripMenuItem</value>

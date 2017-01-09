@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("hakchi2")]
 [assembly: AssemblyDescription("Based on hakchi by madmonkey\r\n\r\nSpecial thanks:\r\nPete Batard/Akeo for Zadig\r\npbatard for libwdi\r\nThomas Bleeker for WinUSBNet library\r\nNintendo for my childhood\r\n\r\nMy site: http://clusterrr.com\r\nE-mail: clusterrr@clusterrr.com\r\nPayPal for donations: clusterrr@clusterrr.com")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Alexey 'Cluster' Avrdyukhin")]
+[assembly: AssemblyCompany("Alexey 'Cluster' Avdyukhin")]
 [assembly: AssemblyProduct("hakchi2")]
 [assembly: AssemblyCopyright("Copyright © 2017")]
 [assembly: AssemblyTrademark("")]
