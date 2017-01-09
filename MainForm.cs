@@ -21,6 +21,7 @@ namespace com.clusterrr.hakchi_gui
         public MainForm()
         {
             InitializeComponent();
+            ConfigIni.Load();
             BaseDir = Path.GetDirectoryName(Application.ExecutablePath);
             GamesDir = Path.Combine(BaseDir, "games");
             //UBootDump = Path.Combine(Path.Combine(BaseDir, "dump"), "uboot.bin");
@@ -30,7 +31,7 @@ namespace com.clusterrr.hakchi_gui
 
         public void LoadGames()
         {
-            var selected = Settings.Default.SelectedGames.Split(';');
+            var selected = ConfigIni.SelectedGames.Split(';');
             Directory.CreateDirectory(GamesDir);
             var gameDirs = Directory.GetDirectories(GamesDir);
             var games = new List<NesGame>();
@@ -192,8 +193,8 @@ namespace com.clusterrr.hakchi_gui
                 else
                     selected.Add("default");
             }
-            Settings.Default.SelectedGames = string.Join(";", selected.ToArray());
-            Settings.Default.Save();
+            ConfigIni.SelectedGames = string.Join(";", selected.ToArray());
+            ConfigIni.Save();
         }
 
         private void SaveConfig()
@@ -268,7 +269,7 @@ namespace com.clusterrr.hakchi_gui
                                 nesGame = new NesGame(GamesDir, file, true);
                             else continue;
                         }
-                        Settings.Default.SelectedGames += ";" + nesGame.Code;
+                        ConfigIni.SelectedGames += ";" + nesGame.Code;
                     }
                     catch (Exception ex)
                     {
@@ -344,7 +345,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else return;
             }
-            if (!Settings.Default.CustomFlashed)
+            if (!ConfigIni.CustomFlashed)
             {
                 if (MessageBox.Show(Resources.CustomWarning, Resources.CustomKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                     == System.Windows.Forms.DialogResult.Yes)
@@ -380,8 +381,8 @@ namespace com.clusterrr.hakchi_gui
             var result = workerForm.DialogResult == DialogResult.OK;
             if (result)
             {
-                Settings.Default.CustomFlashed = true;
-                Settings.Default.Save();
+                ConfigIni.CustomFlashed = true;
+                ConfigIni.Save();
             }
             return result;
         }
@@ -416,8 +417,8 @@ namespace com.clusterrr.hakchi_gui
             var result = workerForm.DialogResult == DialogResult.OK;
             if (result)
             {
-                Settings.Default.CustomFlashed = false;
-                Settings.Default.Save();
+                ConfigIni.CustomFlashed = false;
+                ConfigIni.Save();
             }
             return result;
         }

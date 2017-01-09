@@ -83,6 +83,21 @@ namespace com.clusterrr.hakchi_gui
 
         public DialogResult Start()
         {
+            switch (Task)
+            {
+                case Tasks.DumpKernel:
+                    Text = Resources.DumpingKernel;
+                    break;
+                case Tasks.FlashKernel:
+                    if (!string.IsNullOrEmpty(Mod))
+                        Text =  Resources.FlasingCustom;
+                    else
+                        Text =  Resources.FlasingOriginal;
+                    break;
+                case Tasks.Memboot:
+                    Text = Resources.UploadingGames;
+                    break;
+            }
             SetProgress(0, 1);
             if (!WaitingForm.WaitForDevice(vid, pid))
             {
@@ -108,18 +123,12 @@ namespace com.clusterrr.hakchi_gui
                 switch (Task)
                 {
                     case Tasks.DumpKernel:
-                        SetText(Resources.DumpingKernel);
                         DoKernelDump();
                         break;
                     case Tasks.FlashKernel:
-                        if (!string.IsNullOrEmpty(Mod))
-                            SetText(Resources.FlasingCustom);
-                        else
-                            SetText(Resources.FlasingOriginal);
                         FlashKernel();
                         break;
                     case Tasks.Memboot:
-                        SetText(Resources.UploadingGames);
                         Memboot();
                         break;
                 }
@@ -140,21 +149,6 @@ namespace com.clusterrr.hakchi_gui
                     fel = null;
                 }
             }
-        }
-
-        void SetText(string text)
-        {
-            if (Disposing) return;
-            try
-            {
-                if (InvokeRequired)
-                {
-                    Invoke(new Action<string>(SetText), new object[] { text });
-                    return;
-                }
-                Text = text;
-            }
-            catch { }
         }
 
         void SetStatus(string status)
