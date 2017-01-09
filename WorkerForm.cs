@@ -74,7 +74,10 @@ namespace com.clusterrr.hakchi_gui
             kernelPatched = Path.Combine(kernelDirectory, "patched_kernel.img");
             ramdiskPatched = Path.Combine(kernelDirectory, "kernel.img-ramdisk_mod.gz");
             configPath = Path.Combine(hakchiDirectory, "config");
-            correctKernels = new string[] { "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158", };
+            correctKernels = new string[] { 
+                "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158", // NES Mini
+                "ac8144c3ea4ab32e017648ee80bdc230" // Famicom Mini
+            };
             gamesDirectory = Path.Combine(ramfsDirectory, "games");
         }
 
