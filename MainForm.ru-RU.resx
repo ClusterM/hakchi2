@@ -290,6 +290,12 @@
   <data name="buttonAddGames.Text" xml:space="preserve">
     <value>Добавить игр</value>
   </data>
+  <data name="openFileDialogNes.Filter" xml:space="preserve">
+    <value>NES файлы|*.nes;*.fds|Все файлы|*.*</value>
+  </data>
+  <data name="openFileDialogNes.Title" xml:space="preserve">
+    <value>Выберите NES файл(ы)</value>
+  </data>
   <data name="deleteGameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>146, 22</value>
   </data>
@@ -1436,8 +1442,5 @@
         ////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////8=
 </value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>hakchi2 - NES Mini pimp tool, v2.04</value>
   </data>
 </root>

@@ -135,26 +135,46 @@ namespace com.clusterrr.hakchi_gui
 
         public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper = false)
         {
-            var nesFile = new NesFile(nesFileName);
-            nesFile.CorrectRom();
-            if (!supportedMappers.Contains(nesFile.Mapper) && !ignoreMapper)
-                throw new UnsupportedMapperException(nesFile);
-            Code = string.Format("CLV-H-{0}{1}{2}{3}{4}", 
-                (char)('A' + (nesFile.CRC32 % 26)), 
-                (char)('A' + (nesFile.CRC32 >> 5) % 26), 
-                (char)('A' + ((nesFile.CRC32 >> 10) % 26)), 
-                (char)('A' + ((nesFile.CRC32 >> 15) % 26)),
-                (char)('A' + ((nesFile.CRC32 >> 20) % 26)));
-            GamePath = Path.Combine(gamesDirectory, Code);
-            ConfigPath = Path.Combine(GamePath, Code + ".desktop");
-            Directory.CreateDirectory(GamePath);
-            NesPath = Path.Combine(GamePath, Code + ".nes");
-            nesFile.Save(NesPath);
+            if (!Path.GetExtension(nesFileName).ToLower().Equals(".fds"))
+            {
+                var nesFile = new NesFile(nesFileName);
+                nesFile.CorrectRom();
+                if (!supportedMappers.Contains(nesFile.Mapper) && !ignoreMapper)
+                    throw new UnsupportedMapperException(nesFile);
+                var crc32 = nesFile.CRC32;
+                Code = string.Format("CLV-H-{0}{1}{2}{3}{4}",
+                    (char)('A' + (crc32 % 26)),
+                    (char)('A' + (crc32 >> 5) % 26),
+                    (char)('A' + ((crc32 >> 10) % 26)),
+                    (char)('A' + ((crc32 >> 15) % 26)),
+                    (char)('A' + ((crc32 >> 20) % 26)));
+                GamePath = Path.Combine(gamesDirectory, Code);
+                ConfigPath = Path.Combine(GamePath, Code + ".desktop");
+                Directory.CreateDirectory(GamePath);
+                NesPath = Path.Combine(GamePath, Code + ".nes");
+                nesFile.Save(NesPath);
+            }
+            else
+            {
+                var fdsData = File.ReadAllBytes(nesFileName);
+                var crc32 = CRC32(fdsData);
+                Code = string.Format("CLV-H-{0}{1}{2}{3}{4}",
+                    (char)('A' + (crc32 % 26)),
+                    (char)('A' + (crc32 >> 5) % 26),
+                    (char)('A' + ((crc32 >> 10) % 26)),
+                    (char)('A' + ((crc32 >> 15) % 26)),
+                    (char)('A' + ((crc32 >> 20) % 26)));
+                GamePath = Path.Combine(gamesDirectory, Code);
+                ConfigPath = Path.Combine(GamePath, Code + ".desktop");
+                Directory.CreateDirectory(GamePath);
+                NesPath = Path.Combine(GamePath, Code + ".nes");
+                File.WriteAllBytes(NesPath, fdsData);
+            }
+
             Name = Path.GetFileNameWithoutExtension(nesFileName);
             Name = Regex.Replace(Name, @" ?\(.*?\)", string.Empty).Trim();
             Name = Regex.Replace(Name, @" ?\[.*?\]", string.Empty).Trim();
             Name = Name.Replace(", The", "").Replace("_", " ").Replace("  ", " ").Trim();
-            
             Players = 1;
             ReleaseDate = "1983-07-15";
             Publisher = "Nintendo";
@@ -164,5 +184,35 @@ namespace com.clusterrr.hakchi_gui
             SetImage(Resources.blank);
             Save();
         }
+
+        private static uint CRC32(byte []data)
+        {
+                uint poly = 0xedb88320;
+                uint[] table = new uint[256];
+                uint temp = 0;
+                for (uint i = 0; i < table.Length; ++i)
+                {
+                    temp = i;
+                    for (int j = 8; j > 0; --j)
+                    {
+                        if ((temp & 1) == 1)
+                        {
+                            temp = (uint)((temp >> 1) ^ poly);
+                        }
+                        else
+                        {
+                            temp >>= 1;
+                        }
+                    }
+                    table[i] = temp;
+                }
+                uint crc = 0xffffffff;
+                for (int i = 0; i < data.Length; ++i)
+                {
+                    byte index = (byte)(((crc) & 0xff) ^ data[i]);
+                    crc = (uint)((crc >> 8) ^ table[index]);
+                }
+                return ~crc;
+            }
     }
 }
