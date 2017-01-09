@@ -76,63 +76,63 @@
             // 
             // menuStrip
             // 
+            resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.kernelToolStripMenuItem,
             this.aboutToolStripMenuItem});
-            resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Name = "menuStrip";
             // 
             // fileToolStripMenuItem
             // 
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addMoreGamesToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
             // addMoreGamesToolStripMenuItem
             // 
-            this.addMoreGamesToolStripMenuItem.Name = "addMoreGamesToolStripMenuItem";
             resources.ApplyResources(this.addMoreGamesToolStripMenuItem, "addMoreGamesToolStripMenuItem");
+            this.addMoreGamesToolStripMenuItem.Name = "addMoreGamesToolStripMenuItem";
             this.addMoreGamesToolStripMenuItem.Click += new System.EventHandler(this.buttonAddGames_Click);
             // 
             // exitToolStripMenuItem
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             // 
             // kernelToolStripMenuItem
             // 
+            resources.ApplyResources(this.kernelToolStripMenuItem, "kernelToolStripMenuItem");
             this.kernelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dumpKernelToolStripMenuItem,
             this.flashOriginalKernelToolStripMenuItem,
             this.flashCustomKernelToolStripMenuItem});
             this.kernelToolStripMenuItem.Name = "kernelToolStripMenuItem";
-            resources.ApplyResources(this.kernelToolStripMenuItem, "kernelToolStripMenuItem");
             // 
             // dumpKernelToolStripMenuItem
             // 
-            this.dumpKernelToolStripMenuItem.Name = "dumpKernelToolStripMenuItem";
             resources.ApplyResources(this.dumpKernelToolStripMenuItem, "dumpKernelToolStripMenuItem");
+            this.dumpKernelToolStripMenuItem.Name = "dumpKernelToolStripMenuItem";
             this.dumpKernelToolStripMenuItem.Click += new System.EventHandler(this.dumpKernelToolStripMenuItem_Click);
             // 
             // flashOriginalKernelToolStripMenuItem
             // 
-            this.flashOriginalKernelToolStripMenuItem.Name = "flashOriginalKernelToolStripMenuItem";
             resources.ApplyResources(this.flashOriginalKernelToolStripMenuItem, "flashOriginalKernelToolStripMenuItem");
+            this.flashOriginalKernelToolStripMenuItem.Name = "flashOriginalKernelToolStripMenuItem";
             this.flashOriginalKernelToolStripMenuItem.Click += new System.EventHandler(this.flashOriginalKernelToolStripMenuItem_Click);
             // 
             // flashCustomKernelToolStripMenuItem
             // 
-            this.flashCustomKernelToolStripMenuItem.Name = "flashCustomKernelToolStripMenuItem";
             resources.ApplyResources(this.flashCustomKernelToolStripMenuItem, "flashCustomKernelToolStripMenuItem");
+            this.flashCustomKernelToolStripMenuItem.Name = "flashCustomKernelToolStripMenuItem";
             this.flashCustomKernelToolStripMenuItem.Click += new System.EventHandler(this.flashCustomKernelToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // checkedListBoxGames
@@ -285,16 +285,16 @@
             // 
             // statusStrip
             // 
+            resources.ApplyResources(this.statusStrip, "statusStrip");
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelSelected});
-            resources.ApplyResources(this.statusStrip, "statusStrip");
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.SizingGrip = false;
             // 
             // toolStripStatusLabelSelected
             // 
-            this.toolStripStatusLabelSelected.Name = "toolStripStatusLabelSelected";
             resources.ApplyResources(this.toolStripStatusLabelSelected, "toolStripStatusLabelSelected");
+            this.toolStripStatusLabelSelected.Name = "toolStripStatusLabelSelected";
             // 
             // openFileDialogNes
             // 
@@ -304,15 +304,15 @@
             // 
             // contextMenuStrip
             // 
+            resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteGameToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             // 
             // deleteGameToolStripMenuItem
             // 
-            this.deleteGameToolStripMenuItem.Name = "deleteGameToolStripMenuItem";
             resources.ApplyResources(this.deleteGameToolStripMenuItem, "deleteGameToolStripMenuItem");
+            this.deleteGameToolStripMenuItem.Name = "deleteGameToolStripMenuItem";
             this.deleteGameToolStripMenuItem.Click += new System.EventHandler(this.deleteGameToolStripMenuItem_Click);
             // 
             // openFileDialogImage

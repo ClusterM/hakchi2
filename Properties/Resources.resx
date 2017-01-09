@@ -238,9 +238,6 @@
   <data name="UploadingKernel" xml:space="preserve">
     <value>Uploading kernel...</value>
   </data>
-  <data name="UploadingUboot" xml:space="preserve">
-    <value>Uploading uboot...</value>
-  </data>
   <data name="VerifyFailed" xml:space="preserve">
     <value>Verify failed :O This is no good.</value>
   </data>
@@ -261,5 +258,8 @@
   </data>
   <data name="PleaseTryAgainUSB" xml:space="preserve">
     <value>If problem repeats try to use another USB port or another USB cable.</value>
+  </data>
+  <data name="XpZadig" xml:space="preserve">
+    <value>Please use Zadig util to install driver on Windows XP/2000.</value>
   </data>
 </root>

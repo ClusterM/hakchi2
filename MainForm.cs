@@ -327,12 +327,14 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(Resources.SelectAtLeast, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            /*
             if (gamesCount > 97)
             {
                 if (MessageBox.Show(Resources.ManyGames, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                     == System.Windows.Forms.DialogResult.No)
                 return;
             }
+             */
             if (/*!File.Exists(UBootDump) ||*/ !File.Exists(KernelDump))
             {
                 if (MessageBox.Show(Resources.NoKernelWarning, Resources.NoKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)

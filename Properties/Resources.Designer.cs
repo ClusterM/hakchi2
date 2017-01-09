@@ -442,15 +442,6 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uploading uboot....
-        /// </summary>
-        internal static string UploadingUboot {
-            get {
-                return ResourceManager.GetString("UploadingUboot", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Verify failed :O This is no good..
         /// </summary>
         internal static string VerifyFailed {
@@ -492,6 +483,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string Wow {
             get {
                 return ResourceManager.GetString("Wow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please use Zadig util to install driver on Windows XP/2000..
+        /// </summary>
+        internal static string XpZadig {
+            get {
+                return ResourceManager.GetString("XpZadig", resourceCulture);
             }
         }
     }

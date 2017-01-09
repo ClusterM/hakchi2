@@ -137,22 +137,22 @@
     <value>&amp;Файл</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 22</value>
+    <value>270, 22</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text" xml:space="preserve">
     <value>Сдампить ядро</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 22</value>
+    <value>270, 22</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text" xml:space="preserve">
     <value>Прошить оригинальное ядро</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 22</value>
+    <value>270, 22</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text" xml:space="preserve">
-    <value>Прошить пропатченное ядро</value>
+    <value>Прошить модифицированное ядро</value>
   </data>
   <data name="kernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 20</value>
@@ -1436,5 +1436,8 @@
         ////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////8=
 </value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>hakchi2 - NES Mini pimp tool, v2.04</value>
   </data>
 </root>

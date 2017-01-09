@@ -131,10 +131,10 @@
     <value>Поздравляем!</value>
   </data>
   <data name="CustomKernelQ" xml:space="preserve">
-    <value>Хотите прошить пропатченный образ ядра?</value>
+    <value>Хотите прошить модифицированный образ ядра?</value>
   </data>
   <data name="CustomWarning" xml:space="preserve">
-    <value>Теперь необходимо установить пропатченное ядро на NES Mini. Эту процедуру тоже нужно выполнить только один раз. Продолжить?</value>
+    <value>Теперь необходимо установить модифицированное ядро на NES Mini. Эту процедуру тоже нужно выполнить только один раз. Продолжить?</value>
   </data>
   <data name="Default30games" xml:space="preserve">
     <value>Оригинальные 30 игр</value>
@@ -176,7 +176,7 @@
     <value>..\data\fes1.bin;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="FlasingCustom" xml:space="preserve">
-    <value>Прошиваем пропатченное ядро...</value>
+    <value>Прошиваем модифицированное ядро...</value>
   </data>
   <data name="FlasingOriginal" xml:space="preserve">
     <value>Прошиваем оригинальное ядро...</value>
@@ -194,7 +194,7 @@
     <value>Образ ядра сдамплен, но MD5 некорректный:</value>
   </data>
   <data name="MD5Failed2" xml:space="preserve">
-    <value>Возможно, ядро уже пропатчено, или нам ещё неизвестна такая версия. Отправьте это сообщение автору программы (нажмите Ctrl+C). Прожолжайте на свой страх и риск.</value>
+    <value>Возможно, ядро уже модифицировано, или нам ещё неизвестна такая версия. Отправьте это сообщение автору программы (нажмите Ctrl+C). Прожолжайте на свой страх и риск.</value>
   </data>
   <data name="NoKernel" xml:space="preserve">
     <value>Не найден образ ядра</value>
@@ -232,9 +232,6 @@
   <data name="UploadingKernel" xml:space="preserve">
     <value>Загружаем образ ядра...</value>
   </data>
-  <data name="UploadingUboot" xml:space="preserve">
-    <value>Загружаем uboot...</value>
-  </data>
   <data name="VerifyFailed" xml:space="preserve">
     <value>Проверка закончилась неуспешно. Это плохо :o</value>
   </data>
@@ -251,7 +248,7 @@
     <value>Ура</value>
   </data>
   <data name="CustomKernel" xml:space="preserve">
-    <value>Пропатченное ядро</value>
+    <value>Модифицированное ядро</value>
   </data>
   <data name="MapperNotSupported" xml:space="preserve">
     <value>Увы, {0} использует маппер #{1}, а NES Mini его вроде как не поддерживает, и игра скорее всего не запустится. Всё равно добавить?</value>
@@ -261,5 +258,8 @@
   </data>
   <data name="PleaseTryAgainUSB" xml:space="preserve">
     <value>Если проблема повторяется, попробуйте другой USB порт или другой USB кабель.</value>
+  </data>
+  <data name="XpZadig" xml:space="preserve">
+    <value>Пожалуйста, используйте утилиту "Zadig", чтобы установить драйвер на Windows XP/2000.</value>
   </data>
 </root>

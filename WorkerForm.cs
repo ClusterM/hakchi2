@@ -428,8 +428,11 @@ namespace com.clusterrr.hakchi_gui
             if (!ExecuteTool("lzop.exe", string.Format("-d \"{0}\" -o \"{1}\"",
                 Path.Combine(kernelDirectory, "kernel.img-ramdisk.gz"), initramfs_cpio)))
                 throw new Exception("Can't unpack ramdisk");
-            if (!ExecuteTool("cpio.exe", string.Format("-imd --no-preserve-owner --quiet -I \"{0}\"",
-                @"..\initramfs.cpio"), ramfsDirectory))
+            //if (!ExecuteTool("cpio.exe", string.Format("-imd --no-preserve-owner --quiet -I \"{0}\"",
+            //    @"..\initramfs.cpio"), ramfsDirectory))
+            ExecuteTool("cpio.exe", string.Format("-imd --no-preserve-owner --quiet -I \"{0}\"",
+               @"..\initramfs.cpio"), ramfsDirectory);
+            if (!File.Exists(Path.Combine(ramfsDirectory, "init"))) // cpio.exe fails on Windows XP for some reason. But working!
                 throw new Exception("Can't unpack ramdisk 2");
             //SetStatus("Patching...");
             if (Directory.Exists(hakchiDirectory)) Directory.Delete(hakchiDirectory, true);
