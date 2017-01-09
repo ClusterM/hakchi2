@@ -78,7 +78,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 // XP?
-                if (System.Environment.OSVersion.Version.Major == 5 && System.Environment.OSVersion.Version.Minor < 1)
+                if (System.Environment.OSVersion.Version.Major == 5 && System.Environment.OSVersion.Version.Minor <= 1)
                 {
                     MessageBox.Show(this, Resources.XpZadig, "Windows XP/2000", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     var process = new Process();
