@@ -475,6 +475,7 @@ namespace com.clusterrr.hakchi_gui
 
             var result = File.ReadAllBytes(kernelPatched);
             Directory.Delete(tempDirectory, true);
+            if (result.Length > kernel_max_size) throw new Exception("Kernel is too big");
             return result;
         }
 
