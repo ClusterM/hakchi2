@@ -149,43 +149,19 @@
     <value>4. Через папу секунд отпустите RESET, светодиод не должен гореть</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 13</value>
+    <value>275, 13</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>5. Если ещё не установили, установите драйвер</value>
+    <value>5. Установите драйвер, если он ещё не установлен: </value>
   </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>317, 180</value>
+  <data name="buttonDriver.Location" type="System.Drawing.Point, System.Drawing">
+    <value>298, 175</value>
   </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 13</value>
+  <data name="buttonDriver.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 23</value>
   </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>или с помощью</value>
-  </data>
-  <data name="labelDriverFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 180</value>
-  </data>
-  <data name="labelDriverFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 13</value>
-  </data>
-  <data name="labelDriverFolder.Text" xml:space="preserve">
-    <value>из папки</value>
-  </data>
-  <data name="labelZadigLink.Location" type="System.Drawing.Point, System.Drawing">
-    <value>400, 180</value>
-  </data>
-  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>407, 194</value>
-  </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 13</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>   </value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>447, 220</value>
+  <data name="buttonDriver.Text" xml:space="preserve">
+    <value>Установить</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Ожидаем NES Mini...</value>

@@ -29,18 +29,33 @@ namespace com.clusterrr.hakchi_gui
 
         public static bool WaitForDevice(UInt16 vid, UInt16 pid)
         {
-            if (Fel.DeviceExists(vid, pid)) return true;
+            if (/*DeviceExists(vid, pid) &&*/ Fel.DeviceExists(vid, pid)) return true;
             var form = new WaitingForm(vid, pid);
             form.ShowDialog();
             return form.DialogResult == DialogResult.OK;
         }
 
+        static bool DeviceExists(UInt16 vid, UInt16 pid)
+        {
+            var devices = GetUSBDevices();
+            var id = string.Format("VID_{0:X4}&PID_{1:X4}", vid, pid);
+            foreach (var device in devices)
+            {
+                if (device.DeviceID.Contains(id))
+                    return true;
+            }
+            return false;
+        }
+
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (Fel.DeviceExists(vid, pid))
+            //if (DeviceExists(vid, pid))
             {
-                DialogResult = DialogResult.OK;
-                timer.Enabled = false;
+                if (Fel.DeviceExists(vid, pid))
+                {
+                    DialogResult = DialogResult.OK;
+                    timer.Enabled = false;
+                }
             }
         }
 
@@ -58,7 +73,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        /*
         private void buttonDriver_Click(object sender, EventArgs e)
         {
             try
@@ -85,36 +99,45 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-         */
 
         private void WaitingForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             timer.Enabled = false;
         }
 
-        private void labelZadigLink_Click(object sender, EventArgs e)
+        static List<USBDeviceInfo> GetUSBDevices()
         {
-            try
-            {
-                Process.Start("http://zadig.akeo.ie/");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+            List<USBDeviceInfo> devices = new List<USBDeviceInfo>();
 
-        private void labelDriverFolder_Click(object sender, EventArgs e)
-        {
-            try
+            ManagementObjectCollection collection;
+            using (var searcher = new ManagementObjectSearcher(@"SELECT * FROM Win32_PnPEntity where DeviceID Like ""USB%"""))
+                collection = searcher.Get();
+
+            foreach (var device in collection)
             {
-                Process.Start("explorer.exe", Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "driver"));
+                devices.Add(new USBDeviceInfo(
+                (string)device.GetPropertyValue("DeviceID"),
+                (string)device.GetPropertyValue("PNPDeviceID"),
+                (string)device.GetPropertyValue("Description")
+                ));
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            collection.Dispose();
+            return devices;
         }
+    }
+
+    class USBDeviceInfo
+    {
+        public USBDeviceInfo(string deviceID, string pnpDeviceID, string description)
+        {
+            this.DeviceID = deviceID;
+            this.PnpDeviceID = pnpDeviceID;
+            this.Description = description;
+        }
+        public string DeviceID { get; private set; }
+        public string PnpDeviceID { get; private set; }
+        public string Description { get; private set; }
     }
 }
 

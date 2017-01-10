@@ -36,11 +36,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.buttonDriver = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.label8 = new System.Windows.Forms.Label();
-            this.labelDriverFolder = new System.Windows.Forms.Label();
-            this.labelZadigLink = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -73,46 +70,24 @@
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
             // 
+            // buttonDriver
+            // 
+            resources.ApplyResources(this.buttonDriver, "buttonDriver");
+            this.buttonDriver.Name = "buttonDriver";
+            this.buttonDriver.UseVisualStyleBackColor = true;
+            this.buttonDriver.Click += new System.EventHandler(this.buttonDriver_Click);
+            // 
             // timer
             // 
             this.timer.Enabled = true;
             this.timer.Interval = 500;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
-            // 
-            // labelDriverFolder
-            // 
-            resources.ApplyResources(this.labelDriverFolder, "labelDriverFolder");
-            this.labelDriverFolder.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelDriverFolder.ForeColor = System.Drawing.Color.Blue;
-            this.labelDriverFolder.Name = "labelDriverFolder";
-            this.labelDriverFolder.Click += new System.EventHandler(this.labelDriverFolder_Click);
-            // 
-            // labelZadigLink
-            // 
-            resources.ApplyResources(this.labelZadigLink, "labelZadigLink");
-            this.labelZadigLink.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelZadigLink.ForeColor = System.Drawing.Color.Blue;
-            this.labelZadigLink.Name = "labelZadigLink";
-            this.labelZadigLink.Click += new System.EventHandler(this.labelZadigLink_Click);
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            // 
             // WaitingForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.labelZadigLink);
-            this.Controls.Add(this.labelDriverFolder);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.buttonDriver);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -137,10 +112,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonDriver;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label labelDriverFolder;
-        private System.Windows.Forms.Label labelZadigLink;
-        private System.Windows.Forms.Label label11;
     }
 }
