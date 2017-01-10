@@ -49,10 +49,12 @@ namespace com.clusterrr.FelLib
                 data[15] = CmdLen; // cmd_len
                 data[16] = (byte)Cmd;
                 data[17] = 0; // reserved3
+
                 data[18] = (byte)(Len & 0xFF); // len
                 data[19] = (byte)((Len >> 8) & 0xFF); // len
                 data[20] = (byte)((Len >> 16) & 0xFF); // len
                 data[21] = (byte)((Len >> 24) & 0xFF); // len
+
                 return data;
             }
         }

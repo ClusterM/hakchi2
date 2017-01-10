@@ -817,7 +817,7 @@
     <value>5</value>
   </data>
   <data name="buttonStart.Text" xml:space="preserve">
-    <value>Upload selected games to NES Mini</value>
+    <value>Synchronize selected games with NES Mini</value>
   </data>
   <data name="&gt;&gt;buttonStart.Name" xml:space="preserve">
     <value>buttonStart</value>
@@ -1982,7 +1982,7 @@
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>hakchi2 - NES Mini pimp tool, v2.05b</value>
+    <value>hakchi2 - NES Mini pimp tool, v2.06</value>
   </data>
   <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
     <value>fileToolStripMenuItem</value>

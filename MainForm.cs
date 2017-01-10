@@ -85,7 +85,7 @@ namespace com.clusterrr.hakchi_gui
                     radioButtonTwoSim.Checked = true;
                 else if (game.Players == 2)
                     radioButtonTwo.Checked = true;
-                else 
+                else
                     radioButtonOne.Checked = true;
                 maskedTextBoxReleaseDate.Text = game.ReleaseDate;
                 textBoxPublisher.Text = game.Publisher;
@@ -320,7 +320,7 @@ namespace com.clusterrr.hakchi_gui
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
-        {            
+        {
             SaveConfig();
             var gamesCount = RecalculateSelectedGames();
             if (gamesCount == 0)
@@ -407,7 +407,7 @@ namespace com.clusterrr.hakchi_gui
             return workerForm.DialogResult == DialogResult.OK;
         }
 
-        bool FlashOriginalKernel()
+        bool FlashOriginalKernel(bool boot = true)
         {
             var workerForm = new WorkerForm();
             workerForm.Task = WorkerForm.Tasks.FlashKernel;
@@ -425,14 +425,15 @@ namespace com.clusterrr.hakchi_gui
 
         private void dumpKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (File.Exists(KernelDump))
+            {
+                MessageBox.Show(Resources.ReplaceKernelQ, Resources.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (MessageBox.Show(Resources.DumpKernelQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == System.Windows.Forms.DialogResult.Yes)
             {
-                if (!File.Exists(KernelDump) || MessageBox.Show(Resources.ReplaceKernelQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                    == System.Windows.Forms.DialogResult.Yes)
-                {
-                    if (DoKernelDump()) MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                if (DoKernelDump()) MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

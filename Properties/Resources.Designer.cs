@@ -387,7 +387,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You already have kernel dump. Do you want to replace it?.
+        ///   Looks up a localized string similar to You already have kernel dump. If you REALLY want to replace buckup of you kernel and you REALLY understand what you are doing delete &quot;dump&quot; folder manually..
         /// </summary>
         internal static string ReplaceKernelQ {
             get {

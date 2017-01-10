@@ -221,7 +221,7 @@
     <value>Press OK to continue.</value>
   </data>
   <data name="ReplaceKernelQ" xml:space="preserve">
-    <value>You already have kernel dump. Do you want to replace it?</value>
+    <value>You already have kernel dump. If you REALLY want to replace buckup of you kernel and you REALLY understand what you are doing delete "dump" folder manually.</value>
   </data>
   <data name="SelectAtLeast" xml:space="preserve">
     <value>You need to select at least one game.</value>

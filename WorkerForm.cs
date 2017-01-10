@@ -90,9 +90,9 @@ namespace com.clusterrr.hakchi_gui
                     break;
                 case Tasks.FlashKernel:
                     if (!string.IsNullOrEmpty(Mod))
-                        Text =  Resources.FlasingCustom;
+                        Text = Resources.FlasingCustom;
                     else
-                        Text =  Resources.FlasingOriginal;
+                        Text = Resources.FlasingOriginal;
                     break;
                 case Tasks.Memboot:
                     Text = Resources.UploadingGames;
@@ -346,14 +346,15 @@ namespace com.clusterrr.hakchi_gui
                     SetProgress(progress, maxProgress);
                 }
             );
-            for (int i = 0; i < kernel.Length; i++)
-                if (kernel[i] != r[i])
-                {
+            if (!kernel.SequenceEqual(r))
                     throw new Exception(Resources.VerifyFailed);
-                }
-            var bootCommand = string.Format("boota {0:x}", kernel_base_m);
-            SetStatus(Resources.ExecutingCommand + " " + bootCommand);
-            fel.RunUbootCmd(bootCommand, true);
+
+            if (string.IsNullOrEmpty(Mod))
+            {
+                var shutdownCommand = string.Format("shutdown", kernel_base_m);
+                SetStatus(Resources.ExecutingCommand + " " + shutdownCommand);
+                fel.RunUbootCmd(shutdownCommand, true);
+            }
             SetStatus(Resources.Done);
             SetProgress(maxProgress, maxProgress);
         }
@@ -497,7 +498,7 @@ namespace com.clusterrr.hakchi_gui
             waitDeviceResult = null;
             if (InvokeRequired)
             {
-                Invoke(new Action<UInt16, UInt16>(WaitForDeviceInvoke), new object[] { vid, pid});
+                Invoke(new Action<UInt16, UInt16>(WaitForDeviceInvoke), new object[] { vid, pid });
                 return;
             }
             waitDeviceResult = WaitingForm.WaitForDevice(vid, pid);

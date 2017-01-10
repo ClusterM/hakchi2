@@ -19,6 +19,7 @@ namespace com.clusterrr.FelLib
         byte inEndp = 0;
         byte outEndp = 0;
         const int ReadTimeout = 1000;
+        const int WriteTimeout = 1000;
         public const int MaxBulkSize = 0x10000;
         UInt16 vid, pid;
         bool DramInitDone = false;
@@ -69,14 +70,27 @@ namespace com.clusterrr.FelLib
                 else
                     outEndp = pipe.Address;
             }
-            device.Pipes[outEndp].Policy.PipeTransferTimeout = ReadTimeout;
-            ClearInputBuffer();
+            device.Pipes[inEndp].Policy.PipeTransferTimeout = ReadTimeout;
+            device.Pipes[outEndp].Policy.PipeTransferTimeout = WriteTimeout;
+            //ClearInputBuffer();
             if (VerifyDevice().Board != 0x00166700) throw new FelException("Invalid board ID");
         }
         public void Close()
         {
             if (device != null)
             {
+                try
+                {
+                    device.Pipes[inEndp].Abort();
+                }
+                catch { }
+                try
+                {
+                    device.Pipes[outEndp].Abort();
+                }
+                catch
+                {
+                }
                 device.Dispose();
                 device = null;
             }
@@ -157,7 +171,15 @@ namespace com.clusterrr.FelLib
         public AWFELVerifyDeviceResponse VerifyDevice()
         {
             FelRequest(AWFELStandardRequest.RequestType.FEL_VERIFY_DEVICE);
-            var resp = FelRead(32);
+            byte[] resp;
+            try
+            {
+                resp = FelRead(32);
+            }
+            catch
+            {
+                resp = new byte[32];
+            }
             var status = new AWFELStatusResponse(FelRead(8));
             return new AWFELVerifyDeviceResponse(resp);
         }
@@ -317,7 +339,10 @@ namespace com.clusterrr.FelLib
                 {
                     errorCount++;
                     if (errorCount >= 10)
+                    {
+                        Close();
                         throw ex;
+                    }
                     Thread.Sleep(2000);
                 }
             }
