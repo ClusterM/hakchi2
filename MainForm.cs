@@ -470,5 +470,10 @@ namespace com.clusterrr.hakchi_gui
             var about = new AboutBox();
             about.ShowDialog();
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
