@@ -272,6 +272,6 @@
     <value>Hello</value>
   </data>
   <data name="KernelDumped" xml:space="preserve">
-    <value>Your original kernel saved in "dump" folder. It's better not to lose it. </value>
+    <value>Your original kernel saved in the "dump" folder. It's better not to lose it. </value>
   </data>
 </root>

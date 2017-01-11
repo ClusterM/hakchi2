@@ -315,7 +315,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your original kernel saved in &quot;dump&quot; folder. It&apos;s better not to lose it. .
+        ///   Looks up a localized string similar to Your original kernel saved in the &quot;dump&quot; folder. It&apos;s better not to lose it. .
         /// </summary>
         internal static string KernelDumped {
             get {

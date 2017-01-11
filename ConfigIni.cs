@@ -60,7 +60,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("HiddenGames={0}", HiddenGames));
             configLines.Add(string.Format("CustomFlashed={0}", CustomFlashed));
             configLines.Add(string.Format("UseFont={0}", CustomFlashed));
-            configLines.Add(string.Format("FirstRun={0}", CustomFlashed));
+            configLines.Add(string.Format("FirstRun={0}", FirstRun));
             File.WriteAllLines(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigFile), configLines.ToArray());
         }
     }
