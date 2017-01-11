@@ -22,8 +22,11 @@ namespace com.clusterrr.hakchi_gui
         //public string UBootDump;
         public string KernelDump;
         public string Mod = null;
+        public bool CreateConfig;
         public bool OriginalGames;
+        public string[] HiddenGames;
         public NesGame[] Games;
+        public bool UseFont;
         Thread thread = null;
         Fel fel = null;
 
@@ -54,6 +57,7 @@ namespace com.clusterrr.hakchi_gui
         readonly string kernelPatched;
         readonly string ramdiskPatched;
         readonly string configPath;
+        readonly string hiddenPath;
         readonly string gamesDirectory;
 
         string[] correctKernels;
@@ -74,7 +78,8 @@ namespace com.clusterrr.hakchi_gui
             kernelPatched = Path.Combine(kernelDirectory, "patched_kernel.img");
             ramdiskPatched = Path.Combine(kernelDirectory, "kernel.img-ramdisk_mod.gz");
             configPath = Path.Combine(hakchiDirectory, "config");
-            correctKernels = new string[] { 
+            hiddenPath = Path.Combine(hakchiDirectory, "hidden_games");
+            correctKernels = new string[] {
                 "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158", // NES Mini
                 "ac8144c3ea4ab32e017648ee80bdc230" // Famicom Mini
             };
@@ -211,7 +216,7 @@ namespace com.clusterrr.hakchi_gui
             SetStatus(Resources.DumpingKernel);
 
             var kernel = fel.ReadFlash(kernel_base_f, sector_size * 0x20,
-                delegate(Fel.CurrentAction action, string command)
+                delegate (Fel.CurrentAction action, string command)
                 {
                     switch (action)
                     {
@@ -265,7 +270,7 @@ namespace com.clusterrr.hakchi_gui
             byte[] kernel;
             if (!string.IsNullOrEmpty(Mod))
             {
-                kernel = CreatePatchedKernel(Mod);
+                kernel = CreatePatchedKernel();
                 progress += 5;
                 SetProgress(progress, maxProgress);
             }
@@ -288,7 +293,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 fel.WriteFlash(kernel_base_f, kernel,
-                    delegate(Fel.CurrentAction action, string command)
+                    delegate (Fel.CurrentAction action, string command)
                     {
                         switch (action)
                         {
@@ -331,7 +336,7 @@ namespace com.clusterrr.hakchi_gui
                 else throw ex;
             }
             var r = fel.ReadFlash((UInt32)kernel_base_f, (UInt32)kernel.Length,
-                delegate(Fel.CurrentAction action, string command)
+                delegate (Fel.CurrentAction action, string command)
                 {
                     switch (action)
                     {
@@ -347,7 +352,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             );
             if (!kernel.SequenceEqual(r))
-                    throw new Exception(Resources.VerifyFailed);
+                throw new Exception(Resources.VerifyFailed);
 
             if (string.IsNullOrEmpty(Mod))
             {
@@ -367,7 +372,7 @@ namespace com.clusterrr.hakchi_gui
 
             byte[] kernel;
             if (!string.IsNullOrEmpty(Mod))
-                kernel = CreatePatchedKernel(Mod, true, OriginalGames, Games);
+                kernel = CreatePatchedKernel();
             else
                 kernel = File.ReadAllBytes(KernelDump);
             var size = CalKernelSize(kernel);
@@ -388,7 +393,7 @@ namespace com.clusterrr.hakchi_gui
 
             SetStatus(Resources.UploadingKernel);
             fel.WriteMemory(flash_mem_base, kernel,
-                delegate(Fel.CurrentAction action, string command)
+                delegate (Fel.CurrentAction action, string command)
                 {
                     switch (action)
                     {
@@ -408,7 +413,7 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(maxProgress, maxProgress);
         }
 
-        private byte[] CreatePatchedKernel(string mod, bool createConfig = false, bool originalGames = false, NesGame[] games = null)
+        private byte[] CreatePatchedKernel()
         {
             SetStatus(Resources.BuildingCustom);
             if (Directory.Exists(tempDirectory))
@@ -416,33 +421,28 @@ namespace com.clusterrr.hakchi_gui
             Directory.CreateDirectory(tempDirectory);
             Directory.CreateDirectory(kernelDirectory);
             Directory.CreateDirectory(ramfsDirectory);
-            //SetStatus("Unpacking kernel image...");
             if (!ExecuteTool("unpackbootimg.exe", string.Format("-i \"{0}\" -o \"{1}\"", KernelDump, kernelDirectory)))
                 throw new Exception("Can't unpack kernel image");
-            //SetStatus("Unpacking ramdisk...");
             if (!ExecuteTool("lzop.exe", string.Format("-d \"{0}\" -o \"{1}\"",
                 Path.Combine(kernelDirectory, "kernel.img-ramdisk.gz"), initramfs_cpio)))
                 throw new Exception("Can't unpack ramdisk");
-            //if (!ExecuteTool("cpio.exe", string.Format("-imd --no-preserve-owner --quiet -I \"{0}\"",
-            //    @"..\initramfs.cpio"), ramfsDirectory))
             ExecuteTool("cpio.exe", string.Format("-imd --no-preserve-owner --quiet -I \"{0}\"",
                @"..\initramfs.cpio"), ramfsDirectory);
             if (!File.Exists(Path.Combine(ramfsDirectory, "init"))) // cpio.exe fails on Windows XP for some reason. But working!
                 throw new Exception("Can't unpack ramdisk 2");
-            //SetStatus("Patching...");
             if (Directory.Exists(hakchiDirectory)) Directory.Delete(hakchiDirectory, true);
             if (!ExecuteTool("xcopy", string.Format("\"{0}\" /h /y /c /r /s /q",
-                Path.Combine(modsDirectory, mod)), ramfsDirectory, true))
+                Path.Combine(modsDirectory, Mod)), ramfsDirectory, true))
                 throw new Exception("Can't copy mod directory");
-            if (createConfig)
+            if (CreateConfig)
             {
-                var config = string.Format("hakchi_enabled=y\nhakchi_remove_games=y\nhakchi_original_games={0}\n", originalGames ? "y" : "n");
+                var config = string.Format("hakchi_enabled=y\nhakchi_remove_games=y\nhakchi_original_games={0}\nhakchi_title_font={1}\n", OriginalGames ? "y" : "n", UseFont ? "y" : "n");
                 File.WriteAllText(configPath, config);
             }
-            if (games != null)
+            if (Games != null)
             {
                 Directory.CreateDirectory(gamesDirectory);
-                foreach (var game in games)
+                foreach (var game in Games)
                 {
                     var gameDir = Path.Combine(gamesDirectory, game.Code);
                     Directory.CreateDirectory(gameDir);
@@ -450,6 +450,13 @@ namespace com.clusterrr.hakchi_gui
                         gameDir, true))
                         throw new Exception("Can't copy " + game);
                 }
+            }
+            if (HiddenGames != null)
+            {
+                StringBuilder h = new StringBuilder();
+                foreach (var game in HiddenGames)
+                    h.Append(game + "\n");
+                File.WriteAllText(hiddenPath, h.ToString());
             }
             ExecuteTool("upx.exe", "--best sbin\\cryptsetup", ramfsDirectory);
             if (!ExecuteTool("mkbootfs.bat", string.Format("\"{0}\" \"{1}\"", ramfsDirectory, initramfs_cpioPatched), toolsDirectory))

@@ -159,7 +159,7 @@
     </EmbeddedResource>
     <None Include="data\fes1.bin" />
     <None Include="data\uboot.bin" />
-    <None Include="driver\nesmini.cat">
+    <None Include="driver\usb_driver\nesmini.cat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="LICENSE">
@@ -213,6 +213,12 @@
     <None Include="mods\mod_transfer\bin\dd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="mods\mod_transfer\bin\find">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_transfer\bin\grep">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="mods\mod_transfer\bin\gzip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -231,6 +237,9 @@
     <None Include="mods\mod_transfer\bin\rm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="mods\mod_transfer\bin\sed">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="mods\mod_transfer\hakchi\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -241,6 +250,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mods\mod_transfer\hakchi\rootfs\etc\profile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_transfer\hakchi\title.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mods\mod_transfer\sbin\init">
@@ -254,19 +266,28 @@
     <None Include="images\blank.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="driver\amd64\WdfCoInstaller01011.dll">
+    <Content Include="driver\nesmini_driver.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="driver\amd64\winusbcoinstaller2.dll">
+    <Content Include="driver\usb_driver\amd64\WdfCoInstaller01011.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="driver\nesmini.inf">
+    <Content Include="driver\usb_driver\amd64\winusbcoinstaller2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="driver\x86\WdfCoInstaller01011.dll">
+    <Content Include="driver\usb_driver\installer_x64.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="driver\x86\winusbcoinstaller2.dll">
+    <Content Include="driver\usb_driver\installer_x86.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="driver\usb_driver\nesmini.inf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="driver\usb_driver\x86\WdfCoInstaller01011.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="driver\usb_driver\x86\winusbcoinstaller2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icon.ico" />

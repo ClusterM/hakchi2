@@ -262,4 +262,16 @@
   <data name="XpZadig" xml:space="preserve">
     <value>Пожалуйста, используйте утилиту "Zadig", чтобы установить драйвер на Windows XP/2000.</value>
   </data>
+  <data name="Donate" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FirstRun" xml:space="preserve">
+    <value>Привет! Я очень рад, что вы пользуетесь моей программой. Её очень просто использовать: нажмите кнопку "Добавить игр", выберите ROMы, затем жмите "Синхронизировать" и следуйте инструкциям. Удачи!</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Привет!</value>
+  </data>
+  <data name="KernelDumped" xml:space="preserve">
+    <value>Оригинальный образ ядра сохранён в папке "dump". Желательно его не потерять и не стереть.</value>
+  </data>
 </root>

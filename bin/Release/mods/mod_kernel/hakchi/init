@@ -1,0 +1,36 @@
+init(){
+echo
+modname=hakchi
+mountpoint=/newroot
+installdir=$mountpoint/var/lib/$modname
+rootfs=$installdir/rootfs
+config=$installdir/config
+
+echo Starting $modname...
+
+mount -t tmpfs -o mode=0755,nosuid,nodev tmpfs $mountpoint/var
+mkdir $mountpoint/var/lib
+mount -o defaults,nosuid,nodev,noatime /dev/nandc $mountpoint/var/lib
+
+if [ -f $config ]; then
+  echo $modname config found  
+  . $config
+else
+  echo $modname config not found  
+fi
+
+if [ "$hakchi_enabled" == "y" ]; then
+  echo Loading sandbox shell
+  . $rootfs/etc/preinit
+  preinit
+  return $?
+else
+  echo Loading stock shell
+  umount $mountpoint/var/lib
+  umount $mountpoint/var
+  return 0
+fi
+
+}
+
+init

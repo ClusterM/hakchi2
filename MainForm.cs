@@ -18,15 +18,51 @@ namespace com.clusterrr.hakchi_gui
         //readonly string UBootDump;
         readonly string KernelDump;
 
+        DefaultNesGame[] defaultGames = new DefaultNesGame[] {
+            new DefaultNesGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros." },
+            new DefaultNesGame { Code = "CLV-P-NAACE",  Name = "Super Mario Bros. 3" },
+            new DefaultNesGame { Code = "CLV-P-NAADE",  Name = "Super Mario Bros. 2" },
+            new DefaultNesGame { Code = "CLV-P-NAAEE",  Name = "Donkey Kong" },
+            new DefaultNesGame { Code = "CLV-P-NAAFE",  Name = "Donkey Kong Jr." },
+            new DefaultNesGame { Code = "CLV-P-NAAHE",  Name = "Excitebike" },
+            new DefaultNesGame { Code = "CLV-P-NAANE",  Name = "The Legend of Zelda" },
+            new DefaultNesGame { Code = "CLV-P-NAAPE",  Name = "Kirby's Adventure" },
+            new DefaultNesGame { Code = "CLV-P-NAAQE",  Name = "Metroid" },
+            new DefaultNesGame { Code = "CLV-P-NAARE",  Name = "Balloon Fight" },
+            new DefaultNesGame { Code = "CLV-P-NAASE",  Name = "Zelda II - The Adventure of Link" },
+            new DefaultNesGame { Code = "CLV-P-NAATE",  Name = "Punch-Out!! Featuring Mr. Dream" },
+            new DefaultNesGame { Code = "CLV-P-NAAUE",  Name = "Ice Climber" },
+            new DefaultNesGame { Code = "CLV-P-NAAVE",  Name = "Kid Icarus" },
+            new DefaultNesGame { Code = "CLV-P-NAAWE",  Name = "Mario Bros." },
+            new DefaultNesGame { Code = "CLV-P-NAAXE",  Name = "Dr. MARIO" },
+            new DefaultNesGame { Code = "CLV-P-NAAZE",  Name = "StarTropics" },
+            new DefaultNesGame { Code = "CLV-P-NABBE",  Name = "MEGA MAN™ 2" },
+            new DefaultNesGame { Code = "CLV-P-NABCE",  Name = "GHOSTS'N GOBLINS™" },
+            new DefaultNesGame { Code = "CLV-P-NABJE",  Name = "FINAL FANTASY®" },
+            new DefaultNesGame { Code = "CLV-P-NABKE",  Name = "BUBBLE BOBBLE" },
+            new DefaultNesGame { Code = "CLV-P-NABME",  Name = "PAC-MAN" },
+            new DefaultNesGame { Code = "CLV-P-NABNE",  Name = "Galaga" },
+            new DefaultNesGame { Code = "CLV-P-NABQE",  Name = "Castlevania" },
+            new DefaultNesGame { Code = "CLV-P-NABRE",  Name = "GRADIUS" },
+            new DefaultNesGame { Code = "CLV-P-NABVE",  Name = "Super C" },
+            new DefaultNesGame { Code = "CLV-P-NABXE",  Name = "Castlevania II Simon's Quest" },
+            new DefaultNesGame { Code = "CLV-P-NACBE",  Name = "NINJA GAIDEN" },
+            new DefaultNesGame { Code = "CLV-P-NACDE",  Name = "TECMO BOWL" },
+            new DefaultNesGame { Code = "CLV-P-NACHE",  Name = "DOUBLE DRAGON II: The Revenge" }
+        };
+
+
+
         public MainForm()
         {
             InitializeComponent();
             ConfigIni.Load();
             BaseDir = Path.GetDirectoryName(Application.ExecutablePath);
             GamesDir = Path.Combine(BaseDir, "games");
-            //UBootDump = Path.Combine(Path.Combine(BaseDir, "dump"), "uboot.bin");
             KernelDump = Path.Combine(Path.Combine(BaseDir, "dump"), "kernel.img");
+            useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
             LoadGames();
+            ShowHidden();
         }
 
         public void LoadGames()
@@ -63,8 +99,10 @@ namespace com.clusterrr.hakchi_gui
         public void ShowSelected()
         {
             var selected = checkedListBoxGames.SelectedItem;
-            if (selected == null || !(selected is NesGame))
+            if (selected == null)
             {
+                groupBoxDefaultGames.Visible = false;
+                groupBoxOptions.Visible = true;
                 groupBoxOptions.Enabled = false;
                 labelID.Text = "ID: ";
                 textBoxName.Text = "";
@@ -76,9 +114,17 @@ namespace com.clusterrr.hakchi_gui
                 textBoxArguments.Text = "";
                 pictureBoxArt.Image = null;
             }
+            else if (!(selected is NesGame))
+            {
+                groupBoxDefaultGames.Visible = true;
+                groupBoxOptions.Visible = false;
+                groupBoxDefaultGames.Enabled = checkedListBoxGames.CheckedIndices.Contains(0);
+            }
             else
             {
                 var game = selected as NesGame;
+                groupBoxDefaultGames.Visible = false;
+                groupBoxOptions.Visible = true;
                 labelID.Text = "ID: " + game.Code;
                 textBoxName.Text = game.Name;
                 if (game.Simultaneous && game.Players == 2)
@@ -96,6 +142,14 @@ namespace com.clusterrr.hakchi_gui
                     pictureBoxArt.Image = null;
                 groupBoxOptions.Enabled = true;
             }
+        }
+
+        void ShowHidden()
+        {
+            checkedListBoxDefaultGames.Items.Clear();
+            var hidden = ConfigIni.HiddenGames.Split(';');
+            foreach (var game in new List<DefaultNesGame>(defaultGames).OrderBy(o => o.Name))
+                checkedListBoxDefaultGames.Items.Add(game, !hidden.Contains(game.Code));
         }
 
         private void checkedListBoxGames_SelectedIndexChanged(object sender, EventArgs e)
@@ -194,6 +248,11 @@ namespace com.clusterrr.hakchi_gui
                     selected.Add("default");
             }
             ConfigIni.SelectedGames = string.Join(";", selected.ToArray());
+            foreach (DefaultNesGame game in checkedListBoxDefaultGames.Items)
+                selected.Add(game.Code);
+            foreach (DefaultNesGame game in checkedListBoxDefaultGames.CheckedItems)
+                selected.Remove(game.Code);
+            ConfigIni.HiddenGames = string.Join(";", selected.ToArray());
             ConfigIni.Save();
         }
 
@@ -219,7 +278,7 @@ namespace com.clusterrr.hakchi_gui
             SaveConfig();
         }
 
-        int RecalculateSelectedGames(int i = -1, bool v = false)
+        int RecalculateSelectedGames()
         {
             int c = 0;
             foreach (var game in checkedListBoxGames.CheckedItems)
@@ -227,25 +286,10 @@ namespace com.clusterrr.hakchi_gui
                 if (game is NesGame)
                     c++;
                 else
-                    c += 30;
-            }
-            if (i == 0)
-            {
-                if (v) c += 30;
-                else c -= 30;
-            }
-            else if (i > 0)
-            {
-                if (v) c += 1;
-                else c -= 1;
+                    c += checkedListBoxDefaultGames.CheckedItems.Count;
             }
             toolStripStatusLabelSelected.Text = c + " " + Resources.GamesSelected;
             return c;
-        }
-
-        private void checkedListBoxGames_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            RecalculateSelectedGames(e.Index, e.NewValue == CheckState.Checked);
         }
 
         private void buttonAddGames_Click(object sender, EventArgs e)
@@ -347,7 +391,7 @@ namespace com.clusterrr.hakchi_gui
             }
             if (!ConfigIni.CustomFlashed)
             {
-                if (MessageBox.Show(Resources.CustomWarning, Resources.CustomKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                if (MessageBox.Show(Resources.KernelDumped + "\r\n" + Resources.CustomWarning, Resources.CustomKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                     == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (!FlashCustomKernel()) return;
@@ -377,6 +421,11 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Task = WorkerForm.Tasks.FlashKernel;
             workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_kernel";
+            workerForm.CreateConfig = false;
+            workerForm.OriginalGames = false;
+            workerForm.HiddenGames = null;
+            workerForm.Games = null;
+            workerForm.UseFont = false;
             workerForm.Start();
             var result = workerForm.DialogResult == DialogResult.OK;
             if (result)
@@ -393,7 +442,9 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Task = WorkerForm.Tasks.Memboot;
             workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_transfer";
+            workerForm.CreateConfig = true;
             workerForm.OriginalGames = false;
+            workerForm.UseFont = ConfigIni.UseFont;
             var games = new List<NesGame>();
             foreach (var game in checkedListBoxGames.CheckedItems)
             {
@@ -403,6 +454,13 @@ namespace com.clusterrr.hakchi_gui
                     workerForm.OriginalGames = true;
             }
             workerForm.Games = games.ToArray();
+            games.Clear();
+            var hiddenGames = new List<string>();
+            if (workerForm.OriginalGames)
+                workerForm.HiddenGames = ConfigIni.HiddenGames.Split(';');
+            else
+                workerForm.HiddenGames = null;
+            workerForm.UseFont = ConfigIni.UseFont;
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
         }
@@ -433,7 +491,7 @@ namespace com.clusterrr.hakchi_gui
             if (MessageBox.Show(Resources.DumpKernelQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == System.Windows.Forms.DialogResult.Yes)
             {
-                if (DoKernelDump()) MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (DoKernelDump()) MessageBox.Show(Resources.KernelDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -474,6 +532,43 @@ namespace com.clusterrr.hakchi_gui
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void useExtendedFontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.UseFont = useExtendedFontToolStripMenuItem.Checked;
+        }
+
+        public struct DefaultNesGame
+        {
+            public string Code;
+            public string Name;
+
+            public override string ToString()
+            {
+                return Name;
+            }
+        }
+
+        private void timerCalculateGames_Tick(object sender, EventArgs e)
+        {
+            RecalculateSelectedGames();
+        }
+
+        private void checkedListBoxGames_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (e.Index == 0)
+                groupBoxDefaultGames.Enabled = e.NewValue == CheckState.Checked;
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            if (ConfigIni.FirstRun && !File.Exists(KernelDump))
+            {
+                MessageBox.Show(this, Resources.FirstRun + "\r\n\r\n" + Resources.Donate, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ConfigIni.FirstRun = false;
+                ConfigIni.Save();
+            }
         }
     }
 }

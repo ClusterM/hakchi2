@@ -262,4 +262,16 @@
   <data name="XpZadig" xml:space="preserve">
     <value>Please use Zadig util to install driver on Windows XP/2000.</value>
   </data>
+  <data name="Donate" xml:space="preserve">
+    <value>P.S. If you like it you can donate me. You can find my PayPal into "About" box.</value>
+  </data>
+  <data name="FirstRun" xml:space="preserve">
+    <value>Hello there! I'm very glad that you are using my application. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow instructions. Good luck!</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="KernelDumped" xml:space="preserve">
+    <value>Your original kernel saved in "dump" folder. It's better not to lose it. </value>
+  </data>
 </root>

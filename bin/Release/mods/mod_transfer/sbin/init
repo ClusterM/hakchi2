@@ -1,0 +1,39 @@
+#!/bin/sh
+
+/bin/mount -t proc proc /proc
+/bin/mount -t sysfs sys /sys
+
+for i in $(cat /proc/cmdline); do
+  if [ "$i" = "ro" ] ; then
+    READONLY="y"
+  elif [ "${i#root=}" != "$i" ] ; then
+    ROOTFS="${i#root=}"
+  elif [ "$i" = "decrypt" ] ; then
+    DECRYPT="y"
+  fi
+done
+
+MOUNT_OPTS="noatime"
+if [ "${DECRYPT}" = "y" ]; then
+  if [ "${READONLY}" == "y" ]; then
+    READONLY="--readonly"
+  else
+    READONLY=""
+  fi
+
+  /sbin/cryptsetup open ${ROOTFS} root-crypt ${READONLY} --type plain --cipher aes-xts-plain --key-file /key-file
+  /bin/mount -o "${MOUNT_OPTS}" /dev/mapper/root-crypt /newroot
+else
+  if [ "${READONLY}" == "y" ]; then
+    MOUNT_OPTS="ro,${MOUNT_OPTS}"
+  fi
+
+  /bin/mount -o "${MOUNT_OPTS}" ${ROOTFS} /newroot
+fi
+
+. /hakchi/init
+
+/bin/mount --move /dev /newroot/dev
+/bin/umount /proc
+/bin/umount /sys
+exec /sbin/switch_root /newroot /sbin/init

@@ -130,6 +130,12 @@
   <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ядро</value>
   </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 20</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Настройки</value>
+  </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 20</value>
   </data>
@@ -165,6 +171,12 @@
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text" xml:space="preserve">
     <value>Прошить модифицированное ядро</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 22</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
+    <value>Использовать расширенный шрифт</value>
   </data>
   <data name="groupBoxOptions.Text" xml:space="preserve">
     <value>Параметры игры</value>
@@ -310,6 +322,9 @@
   </data>
   <data name="buttonStart.Text" xml:space="preserve">
     <value>Синхронизировать список игр с NES Mini</value>
+  </data>
+  <data name="groupBoxDefaultGames.Text" xml:space="preserve">
+    <value>Тут можно скрыть некоторые встроенные игры</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

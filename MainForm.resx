@@ -121,36 +121,6 @@
     <value>132, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="addMoreGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 22</value>
-  </data>
-  <data name="addMoreGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Add more &amp;games</value>
-  </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 22</value>
-  </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Exit</value>
-  </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;File</value>
-  </data>
-  <data name="kernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 20</value>
-  </data>
-  <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Kernel</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;About...</value>
-  </data>
   <data name="menuStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -174,7 +144,31 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
+  <data name="addMoreGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 22</value>
+  </data>
+  <data name="addMoreGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Add more &amp;games</value>
+  </data>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 22</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Exit</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 20</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Kernel</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 22</value>
@@ -194,6 +188,24 @@
   <data name="flashCustomKernelToolStripMenuItem.Text" xml:space="preserve">
     <value>Flash custom kernel</value>
   </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Settings</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 22</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
+    <value>Use extended font</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;About...</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="checkedListBoxGames.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -208,7 +220,7 @@
     <value>282, 469</value>
   </data>
   <data name="checkedListBoxGames.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;checkedListBoxGames.Name" xml:space="preserve">
     <value>checkedListBoxGames</value>
@@ -220,7 +232,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;checkedListBoxGames.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="groupBoxOptions.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Right</value>
@@ -436,7 +448,7 @@
     <value>293, 500</value>
   </data>
   <data name="groupBoxOptions.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="groupBoxOptions.Text" xml:space="preserve">
     <value>Game options</value>
@@ -451,7 +463,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBoxOptions.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -922,7 +934,7 @@
     <value>282, 38</value>
   </data>
   <data name="buttonAddGames.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="buttonAddGames.Text" xml:space="preserve">
     <value>Add more games</value>
@@ -1018,7 +1030,7 @@
     <value>293, 38</value>
   </data>
   <data name="buttonStart.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="buttonStart.Text" xml:space="preserve">
     <value>Synchronize selected games with NES Mini</value>
@@ -1035,6 +1047,162 @@
   <data name="&gt;&gt;buttonStart.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="&gt;&gt;checkedListBoxDefaultGames.Name" xml:space="preserve">
+    <value>checkedListBoxDefaultGames</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxDefaultGames.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxDefaultGames.Parent" xml:space="preserve">
+    <value>groupBoxDefaultGames</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxDefaultGames.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBoxDefaultGames.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 27</value>
+  </data>
+  <data name="groupBoxDefaultGames.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 500</value>
+  </data>
+  <data name="groupBoxDefaultGames.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="groupBoxDefaultGames.Text" xml:space="preserve">
+    <value>You can hide some default games</value>
+  </data>
+  <data name="groupBoxDefaultGames.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDefaultGames.Name" xml:space="preserve">
+    <value>groupBoxDefaultGames</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDefaultGames.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDefaultGames.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDefaultGames.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items1" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items2" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items3" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items4" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items5" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items6" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items7" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items8" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items9" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items10" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items11" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items12" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items13" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items14" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items15" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items16" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items17" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items18" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items19" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items20" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items21" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items22" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items23" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items24" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items25" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items26" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items27" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items28" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Items29" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 29</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 469</value>
+  </data>
+  <data name="checkedListBoxDefaultGames.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxDefaultGames.Name" xml:space="preserve">
+    <value>checkedListBoxDefaultGames</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxDefaultGames.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxDefaultGames.Parent" xml:space="preserve">
+    <value>groupBoxDefaultGames</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxDefaultGames.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="timerCalculateGames.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>908, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -2186,7 +2354,7 @@
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>hakchi2 - NES Mini pimp tool, v2.06</value>
+    <value>hakchi2 - NES Mini pimp tool, v2.07</value>
   </data>
   <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
     <value>fileToolStripMenuItem</value>
@@ -2230,6 +2398,18 @@
   <data name="&gt;&gt;flashCustomKernelToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;settingsToolStripMenuItem.Name" xml:space="preserve">
+    <value>settingsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;settingsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;useExtendedFontToolStripMenuItem.Name" xml:space="preserve">
+    <value>useExtendedFontToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;useExtendedFontToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;aboutToolStripMenuItem.Name" xml:space="preserve">
     <value>aboutToolStripMenuItem</value>
   </data>
@@ -2259,6 +2439,12 @@
   </data>
   <data name="&gt;&gt;openFileDialogImage.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;timerCalculateGames.Name" xml:space="preserve">
+    <value>timerCalculateGames</value>
+  </data>
+  <data name="&gt;&gt;timerCalculateGames.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

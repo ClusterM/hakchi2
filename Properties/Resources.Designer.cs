@@ -143,6 +143,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to P.S. If you like it you can donate me. You can find my PayPal into &quot;About&quot; box..
+        /// </summary>
+        internal static string Donate {
+            get {
+                return ResourceManager.GetString("Donate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Done!.
         /// </summary>
         internal static string Done {
@@ -243,6 +252,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hello there! I&apos;m very glad that you are using my application. It&apos;s very simple to use. Just click &quot;Add more games&quot;, select some ROMs, press &quot;Synchronize&quot; and follow instructions. Good luck!.
+        /// </summary>
+        internal static string FirstRun {
+            get {
+                return ResourceManager.GetString("FirstRun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Flashing custom kernel....
         /// </summary>
         internal static string FlasingCustom {
@@ -270,6 +288,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hello.
+        /// </summary>
+        internal static string Hello {
+            get {
+                return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid kernel header..
         /// </summary>
         internal static string InvalidKernelHeader {
@@ -284,6 +311,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string InvalidKernelSize {
             get {
                 return ResourceManager.GetString("InvalidKernelSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your original kernel saved in &quot;dump&quot; folder. It&apos;s better not to lose it. .
+        /// </summary>
+        internal static string KernelDumped {
+            get {
+                return ResourceManager.GetString("KernelDumped", resourceCulture);
             }
         }
         
