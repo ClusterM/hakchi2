@@ -129,7 +129,7 @@ namespace com.clusterrr.hakchi_gui
                 "SaveCount=0\n" +
                 "SortRawTitle={5}\n" +
                 "SortRawPublisher={6}\n" +
-                "Copyright=Copyleft\n",
+                "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
                 Code, Args, Name, Players, ReleaseDate, Name.ToLower(), Publisher.ToUpper(), Simultaneous ? 1 : 0));
         }
 
