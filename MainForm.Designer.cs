@@ -361,37 +361,6 @@
             // 
             resources.ApplyResources(this.checkedListBoxDefaultGames, "checkedListBoxDefaultGames");
             this.checkedListBoxDefaultGames.FormattingEnabled = true;
-            this.checkedListBoxDefaultGames.Items.AddRange(new object[] {
-            resources.GetString("checkedListBoxDefaultGames.Items"),
-            resources.GetString("checkedListBoxDefaultGames.Items1"),
-            resources.GetString("checkedListBoxDefaultGames.Items2"),
-            resources.GetString("checkedListBoxDefaultGames.Items3"),
-            resources.GetString("checkedListBoxDefaultGames.Items4"),
-            resources.GetString("checkedListBoxDefaultGames.Items5"),
-            resources.GetString("checkedListBoxDefaultGames.Items6"),
-            resources.GetString("checkedListBoxDefaultGames.Items7"),
-            resources.GetString("checkedListBoxDefaultGames.Items8"),
-            resources.GetString("checkedListBoxDefaultGames.Items9"),
-            resources.GetString("checkedListBoxDefaultGames.Items10"),
-            resources.GetString("checkedListBoxDefaultGames.Items11"),
-            resources.GetString("checkedListBoxDefaultGames.Items12"),
-            resources.GetString("checkedListBoxDefaultGames.Items13"),
-            resources.GetString("checkedListBoxDefaultGames.Items14"),
-            resources.GetString("checkedListBoxDefaultGames.Items15"),
-            resources.GetString("checkedListBoxDefaultGames.Items16"),
-            resources.GetString("checkedListBoxDefaultGames.Items17"),
-            resources.GetString("checkedListBoxDefaultGames.Items18"),
-            resources.GetString("checkedListBoxDefaultGames.Items19"),
-            resources.GetString("checkedListBoxDefaultGames.Items20"),
-            resources.GetString("checkedListBoxDefaultGames.Items21"),
-            resources.GetString("checkedListBoxDefaultGames.Items22"),
-            resources.GetString("checkedListBoxDefaultGames.Items23"),
-            resources.GetString("checkedListBoxDefaultGames.Items24"),
-            resources.GetString("checkedListBoxDefaultGames.Items25"),
-            resources.GetString("checkedListBoxDefaultGames.Items26"),
-            resources.GetString("checkedListBoxDefaultGames.Items27"),
-            resources.GetString("checkedListBoxDefaultGames.Items28"),
-            resources.GetString("checkedListBoxDefaultGames.Items29")});
             this.checkedListBoxDefaultGames.Name = "checkedListBoxDefaultGames";
             // 
             // timerCalculateGames

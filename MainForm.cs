@@ -380,18 +380,21 @@ namespace com.clusterrr.hakchi_gui
                 return;
             }
              */
+            bool dumpedKernelNow = false;
             if (/*!File.Exists(UBootDump) ||*/ !File.Exists(KernelDump))
             {
                 if (MessageBox.Show(Resources.NoKernelWarning, Resources.NoKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                     == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (!DoKernelDump()) return;
+                    dumpedKernelNow = true;
                 }
                 else return;
             }
             if (!ConfigIni.CustomFlashed)
             {
-                if (MessageBox.Show(Resources.KernelDumped + "\r\n" + Resources.CustomWarning, Resources.CustomKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                if (MessageBox.Show((dumpedKernelNow ? (Resources.KernelDumped + "\r\n") : "") +
+                    Resources.CustomWarning, Resources.CustomKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                     == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (!FlashCustomKernel()) return;
@@ -563,10 +566,10 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
+            ConfigIni.FirstRun = false;
             if (ConfigIni.FirstRun && !File.Exists(KernelDump))
             {
                 MessageBox.Show(this, Resources.FirstRun + "\r\n\r\n" + Resources.Donate, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ConfigIni.FirstRun = false;
                 ConfigIni.Save();
             }
         }
