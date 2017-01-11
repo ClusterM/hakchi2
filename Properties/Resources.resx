@@ -125,7 +125,7 @@
     <value>..\images\blank.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BuildingCustom" xml:space="preserve">
-    <value>Building custom kernel image...</value>
+    <value>Building the custom kernel image...</value>
   </data>
   <data name="Congratulations" xml:space="preserve">
     <value>Congratulations!</value>
@@ -134,10 +134,10 @@
     <value>Custom kernel</value>
   </data>
   <data name="CustomKernelQ" xml:space="preserve">
-    <value>Do you want to flash custom kernel?</value>
+    <value>Do you want to flash the custom kernel?</value>
   </data>
   <data name="CustomWarning" xml:space="preserve">
-    <value>Now you need to flash custom kernel to your NES Mini. This is also required only once. Do you want to continue?</value>
+    <value>Now you need to flash the custom kernel to your NES Mini. This is also required only once. Do you want to continue?</value>
   </data>
   <data name="Default30games" xml:space="preserve">
     <value>Original 30 games</value>
@@ -149,13 +149,13 @@
     <value>Done!</value>
   </data>
   <data name="DoneUploaded" xml:space="preserve">
-    <value>Done! Wait until the power led goes out and restart NES Mini.</value>
+    <value>Done! Wait until the power led goes out and restart your NES Mini.</value>
   </data>
   <data name="DoneYouCanUpload" xml:space="preserve">
-    <value>Done! Your can upload games to NES mini now.</value>
+    <value>Done! Your can upload games to your NES Mini now.</value>
   </data>
   <data name="DoYouWantCancel" xml:space="preserve">
-    <value>Do you want to cancel current operation?</value>
+    <value>Do you want to cancel the current operation?</value>
   </data>
   <data name="DoYouWantToContinue" xml:space="preserve">
     <value>Do you want to continue?</value>
@@ -164,7 +164,7 @@
     <value>Dumping kernel...</value>
   </data>
   <data name="DumpKernelQ" xml:space="preserve">
-    <value>Do you want to dump kernel?</value>
+    <value>Do you want to dump the kernel?</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -194,25 +194,25 @@
     <value>Invalid kernel size:</value>
   </data>
   <data name="MapperNotSupported" xml:space="preserve">
-    <value>Sorry, {0} uses mapper #{1} but this mapper not supported by NES Mini and game probably will not start. Do you want to add this game anyway?</value>
+    <value>Sorry, {0} uses mapper #{1} but this mapper is not supported by NES Mini and game probably will not start. Do you want to add this game anyway?</value>
   </data>
   <data name="MD5Failed" xml:space="preserve">
     <value>Kernel dumped but MD5 checksum is unknown: {0}</value>
   </data>
   <data name="MD5Failed2" xml:space="preserve">
-    <value>Maybe kernel already patched or it's unknown revision. Please send this message to me (press Ctrl+C). Continue on your own risk.</value>
+    <value>Maybe the kernel already patched or it's unknown revision. Please send this message to me (press Ctrl+C). Continue on your own risk.</value>
   </data>
   <data name="NoKernel" xml:space="preserve">
     <value>No kernel dump found</value>
   </data>
   <data name="NoKernelWarning" xml:space="preserve">
-    <value>First of all you need to dump kernel image of your NES Mini. You need to do it only once. Do you want to continue?</value>
+    <value>First of all you need to dump the kernel image of your NES Mini. You need to do it only once. Do you want to continue?</value>
   </data>
   <data name="NoKernelYouNeed" xml:space="preserve">
     <value>No kernel dump found. You need to dump kernel first.</value>
   </data>
   <data name="OriginalKernelQ" xml:space="preserve">
-    <value>Do you want to flash original kernel?</value>
+    <value>Do you want to flash the original kernel?</value>
   </data>
   <data name="PleaseTryAgain" xml:space="preserve">
     <value>Please try again.</value>
@@ -221,7 +221,7 @@
     <value>Press OK to continue.</value>
   </data>
   <data name="ReplaceKernelQ" xml:space="preserve">
-    <value>You already have kernel dump. If you REALLY want to replace buckup of you kernel and you REALLY understand what you are doing delete "dump" folder manually.</value>
+    <value>You already have the kernel dump. If you REALLY want to replace buckup of you kernel and you REALLY understand what you are doing delete "dump" folder manually.</value>
   </data>
   <data name="SelectAtLeast" xml:space="preserve">
     <value>You need to select at least one game.</value>
@@ -236,7 +236,7 @@
     <value>Uploading games...</value>
   </data>
   <data name="UploadingKernel" xml:space="preserve">
-    <value>Uploading kernel...</value>
+    <value>Uploading the kernel...</value>
   </data>
   <data name="VerifyFailed" xml:space="preserve">
     <value>Verify failed :O This is no good.</value>
@@ -245,7 +245,7 @@
     <value>Verifying...</value>
   </data>
   <data name="WaitingForDevice" xml:space="preserve">
-    <value>Waiting for device...</value>
+    <value>Waiting for the device...</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warning!</value>
@@ -257,16 +257,16 @@
     <value>NES Mini can handle only 97 games but you selected {0} games.  Do you want to continue?</value>
   </data>
   <data name="PleaseTryAgainUSB" xml:space="preserve">
-    <value>If problem repeats try to use another USB port or another USB cable.</value>
+    <value>If this problem repeats try to use another USB port or another USB cable.</value>
   </data>
   <data name="XpZadig" xml:space="preserve">
     <value>Please use Zadig util to install driver on Windows XP/2000.</value>
   </data>
   <data name="Donate" xml:space="preserve">
-    <value>P.S. If you like it you can donate me. You can find my PayPal into "About" box.</value>
+    <value>P.S. If you like it you can donate me. You can find my PayPal into the "About" box.</value>
   </data>
   <data name="FirstRun" xml:space="preserve">
-    <value>Hello there! I'm very glad that you are using my application. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow instructions. Good luck!</value>
+    <value>Hello there! I'm very glad that you are using my application. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>

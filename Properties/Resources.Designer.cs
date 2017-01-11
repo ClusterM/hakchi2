@@ -80,7 +80,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Building custom kernel image....
+        ///   Looks up a localized string similar to Building the custom kernel image....
         /// </summary>
         internal static string BuildingCustom {
             get {
@@ -107,7 +107,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to flash custom kernel?.
+        ///   Looks up a localized string similar to Do you want to flash the custom kernel?.
         /// </summary>
         internal static string CustomKernelQ {
             get {
@@ -116,7 +116,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Now you need to flash custom kernel to your NES Mini. This is also required only once. Do you want to continue?.
+        ///   Looks up a localized string similar to Now you need to flash the custom kernel to your NES Mini. This is also required only once. Do you want to continue?.
         /// </summary>
         internal static string CustomWarning {
             get {
@@ -143,7 +143,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to P.S. If you like it you can donate me. You can find my PayPal into &quot;About&quot; box..
+        ///   Looks up a localized string similar to P.S. If you like it you can donate me. You can find my PayPal into the &quot;About&quot; box..
         /// </summary>
         internal static string Donate {
             get {
@@ -161,7 +161,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done! Wait until the power led goes out and restart NES Mini..
+        ///   Looks up a localized string similar to Done! Wait until the power led goes out and restart your NES Mini..
         /// </summary>
         internal static string DoneUploaded {
             get {
@@ -170,7 +170,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done! Your can upload games to NES mini now..
+        ///   Looks up a localized string similar to Done! Your can upload games to your NES Mini now..
         /// </summary>
         internal static string DoneYouCanUpload {
             get {
@@ -179,7 +179,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to cancel current operation?.
+        ///   Looks up a localized string similar to Do you want to cancel the current operation?.
         /// </summary>
         internal static string DoYouWantCancel {
             get {
@@ -206,7 +206,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to dump kernel?.
+        ///   Looks up a localized string similar to Do you want to dump the kernel?.
         /// </summary>
         internal static string DumpKernelQ {
             get {
@@ -252,7 +252,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello there! I&apos;m very glad that you are using my application. It&apos;s very simple to use. Just click &quot;Add more games&quot;, select some ROMs, press &quot;Synchronize&quot; and follow instructions. Good luck!.
+        ///   Looks up a localized string similar to Hello there! I&apos;m very glad that you are using my application. It&apos;s very simple to use. Just click &quot;Add more games&quot;, select some ROMs, press &quot;Synchronize&quot; and follow the instructions. Good luck!.
         /// </summary>
         internal static string FirstRun {
             get {
@@ -333,7 +333,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, {0} uses mapper #{1} but this mapper not supported by NES Mini and game probably will not start. Do you want to add this game anyway?.
+        ///   Looks up a localized string similar to Sorry, {0} uses mapper #{1} but this mapper is not supported by NES Mini and game probably will not start. Do you want to add this game anyway?.
         /// </summary>
         internal static string MapperNotSupported {
             get {
@@ -351,7 +351,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maybe kernel already patched or it&apos;s unknown revision. Please send this message to me (press Ctrl+C). Continue on your own risk..
+        ///   Looks up a localized string similar to Maybe the kernel already patched or it&apos;s unknown revision. Please send this message to me (press Ctrl+C). Continue on your own risk..
         /// </summary>
         internal static string MD5Failed2 {
             get {
@@ -369,7 +369,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First of all you need to dump kernel image of your NES Mini. You need to do it only once. Do you want to continue?.
+        ///   Looks up a localized string similar to First of all you need to dump the kernel image of your NES Mini. You need to do it only once. Do you want to continue?.
         /// </summary>
         internal static string NoKernelWarning {
             get {
@@ -387,7 +387,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to flash original kernel?.
+        ///   Looks up a localized string similar to Do you want to flash the original kernel?.
         /// </summary>
         internal static string OriginalKernelQ {
             get {
@@ -405,7 +405,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If problem repeats try to use another USB port or another USB cable..
+        ///   Looks up a localized string similar to If this problem repeats try to use another USB port or another USB cable..
         /// </summary>
         internal static string PleaseTryAgainUSB {
             get {
@@ -423,7 +423,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You already have kernel dump. If you REALLY want to replace buckup of you kernel and you REALLY understand what you are doing delete &quot;dump&quot; folder manually..
+        ///   Looks up a localized string similar to You already have the kernel dump. If you REALLY want to replace buckup of you kernel and you REALLY understand what you are doing delete &quot;dump&quot; folder manually..
         /// </summary>
         internal static string ReplaceKernelQ {
             get {
@@ -469,7 +469,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uploading kernel....
+        ///   Looks up a localized string similar to Uploading the kernel....
         /// </summary>
         internal static string UploadingKernel {
             get {
@@ -496,7 +496,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Waiting for device....
+        ///   Looks up a localized string similar to Waiting for the device....
         /// </summary>
         internal static string WaitingForDevice {
             get {
