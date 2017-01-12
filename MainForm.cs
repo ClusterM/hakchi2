@@ -321,8 +321,9 @@ namespace com.clusterrr.hakchi_gui
                         continue;
                     }
                 }
+                if (nesGame == null) return; // Nothing happened
                 LoadGames();
-                if (nesGame != null && openFileDialogNes.FileNames.Length == 1)
+                if (openFileDialogNes.FileNames.Length == 1)
                 {
                     for (int i = 1; i < checkedListBoxGames.Items.Count; i++)
                         if ((checkedListBoxGames.Items[i] as NesGame).Code == nesGame.Code)
