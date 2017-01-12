@@ -406,6 +406,7 @@ namespace com.clusterrr.hakchi_gui
         bool DoKernelDump()
         {
             var workerForm = new WorkerForm();
+            workerForm.Text = Resources.DumpingKernel;
             workerForm.Task = WorkerForm.Tasks.DumpKernel;
             //workerForm.UBootDump = UBootDump;
             workerForm.KernelDump = KernelDump;
@@ -416,6 +417,7 @@ namespace com.clusterrr.hakchi_gui
         bool FlashCustomKernel()
         {
             var workerForm = new WorkerForm();
+            workerForm.Text = Resources.FlasingCustom;
             workerForm.Task = WorkerForm.Tasks.FlashKernel;
             workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_kernel";
@@ -437,6 +439,7 @@ namespace com.clusterrr.hakchi_gui
         bool UploadGames()
         {
             var workerForm = new WorkerForm();
+            workerForm.Text = Resources.UploadingGames;
             workerForm.Task = WorkerForm.Tasks.Memboot;
             workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_transfer";
@@ -466,6 +469,7 @@ namespace com.clusterrr.hakchi_gui
         bool FlashOriginalKernel(bool boot = true)
         {
             var workerForm = new WorkerForm();
+            workerForm.Text = Resources.FlasingOriginal;
             workerForm.Task = WorkerForm.Tasks.FlashKernel;
             workerForm.KernelDump = KernelDump;
             workerForm.Mod = null;
@@ -477,6 +481,19 @@ namespace com.clusterrr.hakchi_gui
                 ConfigIni.Save();
             }
             return result;
+        }
+
+        bool Uninstall()
+        {
+            var workerForm = new WorkerForm();
+            workerForm.Text = Resources.Uninstalling;
+            workerForm.Task = WorkerForm.Tasks.Memboot;
+            workerForm.KernelDump = KernelDump;
+            workerForm.Mod = "mod_uninstall";
+            workerForm.CreateConfig = false;
+            workerForm.Games = null;
+            workerForm.Start();
+            return workerForm.DialogResult == DialogResult.OK;
         }
 
         private void dumpKernelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -518,6 +535,27 @@ namespace com.clusterrr.hakchi_gui
                 == System.Windows.Forms.DialogResult.Yes)
             {
                 if (FlashOriginalKernel()) MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
+        private void uninstallToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists(KernelDump))
+            {
+                MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (MessageBox.Show(Resources.UninstallQ1, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (Uninstall())
+                {
+                    if (ConfigIni.CustomFlashed && MessageBox.Show(Resources.UninstallQ2, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                        == System.Windows.Forms.DialogResult.Yes)
+                        FlashOriginalKernel();
+                    MessageBox.Show(Resources.UninstallFactoryNote, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 

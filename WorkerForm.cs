@@ -88,21 +88,6 @@ namespace com.clusterrr.hakchi_gui
 
         public DialogResult Start()
         {
-            switch (Task)
-            {
-                case Tasks.DumpKernel:
-                    Text = Resources.DumpingKernel;
-                    break;
-                case Tasks.FlashKernel:
-                    if (!string.IsNullOrEmpty(Mod))
-                        Text = Resources.FlasingCustom;
-                    else
-                        Text = Resources.FlasingOriginal;
-                    break;
-                case Tasks.Memboot:
-                    Text = Resources.UploadingGames;
-                    break;
-            }
             SetProgress(0, 1);
             if (!WaitingForm.WaitForDevice(vid, pid))
             {

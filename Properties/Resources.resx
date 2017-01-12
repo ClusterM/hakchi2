@@ -274,4 +274,16 @@
   <data name="KernelDumped" xml:space="preserve">
     <value>Your original kernel saved in the "dump" folder. It's better not to lose it. </value>
   </data>
+  <data name="UninstallFactoryNote" xml:space="preserve">
+    <value>Don't forget to do reset to factory settings if you want to delete all savestates.</value>
+  </data>
+  <data name="Uninstalling" xml:space="preserve">
+    <value>Uninstalling...</value>
+  </data>
+  <data name="UninstallQ1" xml:space="preserve">
+    <value>Do you really want to clean all traces of hakchi2 and return your NES Mini to original state?</value>
+  </data>
+  <data name="UninstallQ2" xml:space="preserve">
+    <value>Done. Wait until the power led goes out. Also you need to flash original kernel. Do you want to flash original kernel now?</value>
+  </data>
 </root>

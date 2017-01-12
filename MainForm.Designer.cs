@@ -38,6 +38,7 @@
             this.dumpKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashOriginalKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashCustomKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uninstallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -118,7 +119,8 @@
             this.kernelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dumpKernelToolStripMenuItem,
             this.flashOriginalKernelToolStripMenuItem,
-            this.flashCustomKernelToolStripMenuItem});
+            this.flashCustomKernelToolStripMenuItem,
+            this.uninstallToolStripMenuItem});
             this.kernelToolStripMenuItem.Name = "kernelToolStripMenuItem";
             // 
             // dumpKernelToolStripMenuItem
@@ -138,6 +140,12 @@
             resources.ApplyResources(this.flashCustomKernelToolStripMenuItem, "flashCustomKernelToolStripMenuItem");
             this.flashCustomKernelToolStripMenuItem.Name = "flashCustomKernelToolStripMenuItem";
             this.flashCustomKernelToolStripMenuItem.Click += new System.EventHandler(this.flashCustomKernelToolStripMenuItem_Click);
+            // 
+            // uninstallToolStripMenuItem
+            // 
+            resources.ApplyResources(this.uninstallToolStripMenuItem, "uninstallToolStripMenuItem");
+            this.uninstallToolStripMenuItem.Name = "uninstallToolStripMenuItem";
+            this.uninstallToolStripMenuItem.Click += new System.EventHandler(this.uninstallToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -396,8 +404,8 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.checkedListBoxGames);
             this.Controls.Add(this.menuStrip);
-            this.Controls.Add(this.groupBoxDefaultGames);
             this.Controls.Add(this.groupBoxOptions);
+            this.Controls.Add(this.groupBoxDefaultGames);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -464,6 +472,7 @@
         private System.Windows.Forms.Timer timerCalculateGames;
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unselectAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uninstallToolStripMenuItem;
     }
 }
 

@@ -1,0 +1,23 @@
+init(){
+echo
+
+modname=hakchi
+mountpoint=/newroot
+installdir=$mountpoint/var/lib/$modname
+
+mount -t tmpfs -o mode=0755,nosuid,nodev tmpfs $mountpoint/var
+mkdir $mountpoint/var/lib
+mount -o defaults,nosuid,nodev,noatime /dev/nandc $mountpoint/var/lib
+
+echo Uninstalling $modname...
+rm -rf $installdir
+echo Done.
+
+echo Shutting down...
+umount $mountpoint/var/lib
+umount $mountpoint/var
+poweroff -f
+return 0
+}
+
+init

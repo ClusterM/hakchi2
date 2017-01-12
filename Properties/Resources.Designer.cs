@@ -451,6 +451,42 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t forget to do reset to factory settings if you want to delete all savestates..
+        /// </summary>
+        internal static string UninstallFactoryNote {
+            get {
+                return ResourceManager.GetString("UninstallFactoryNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstalling....
+        /// </summary>
+        internal static string Uninstalling {
+            get {
+                return ResourceManager.GetString("Uninstalling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to clean all traces of hakchi2 and return your NES Mini to original state?.
+        /// </summary>
+        internal static string UninstallQ1 {
+            get {
+                return ResourceManager.GetString("UninstallQ1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done. Wait until the power led goes out. Also you need to flash original kernel. Do you want to flash original kernel now?.
+        /// </summary>
+        internal static string UninstallQ2 {
+            get {
+                return ResourceManager.GetString("UninstallQ2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uploading and running fes1....
         /// </summary>
         internal static string UploadingFes1 {

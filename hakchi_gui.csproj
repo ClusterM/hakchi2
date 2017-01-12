@@ -261,6 +261,51 @@
     <None Include="mods\mod_transfer\sbin\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="mods\mod_uninstall\bin\busybox">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_uninstall\bin\chroot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_uninstall\bin\cp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_uninstall\bin\dd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_uninstall\bin\find">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_uninstall\bin\grep">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_uninstall\bin\gzip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_uninstall\bin\ls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_uninstall\bin\mkdir">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_uninstall\bin\mv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_uninstall\bin\poweroff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_uninstall\bin\rm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_uninstall\bin\sed">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_uninstall\hakchi\init">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_uninstall\sbin\init">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="tools\mkbootfs.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

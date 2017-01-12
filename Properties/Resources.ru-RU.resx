@@ -274,4 +274,16 @@
   <data name="KernelDumped" xml:space="preserve">
     <value>Оригинальный образ ядра сохранён в папке "dump". Желательно его не потерять и не стереть.</value>
   </data>
+  <data name="UninstallFactoryNote" xml:space="preserve">
+    <value>Всё. Не забудьте также сделать сброс к заводским настройкам, если хотите удалить сохранения игр.</value>
+  </data>
+  <data name="Uninstalling" xml:space="preserve">
+    <value>Удаляемся...</value>
+  </data>
+  <data name="UninstallQ1" xml:space="preserve">
+    <value>Вы действительно хотите удалить все файлы hakchi2 с вашей NES Mini и вернуть её в девственное состояние?</value>
+  </data>
+  <data name="UninstallQ2" xml:space="preserve">
+    <value>Готово. Только подождите, пока погаснет светодиод.. И ещё необходимо прошить назад оригинальное ядро. Сделать это сейчас?</value>
+  </data>
 </root>

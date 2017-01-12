@@ -154,6 +154,12 @@
   <data name="flashCustomKernelToolStripMenuItem.Text" xml:space="preserve">
     <value>Прошить модифицированное ядро</value>
   </data>
+  <data name="uninstallToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 22</value>
+  </data>
+  <data name="uninstallToolStripMenuItem.Text" xml:space="preserve">
+    <value>Полностью удалиться с NES Mini</value>
+  </data>
   <data name="kernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 20</value>
   </data>
@@ -327,7 +333,7 @@
     <value>Удалить игру</value>
   </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 92</value>
+    <value>196, 70</value>
   </data>
   <data name="buttonStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
