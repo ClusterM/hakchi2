@@ -66,6 +66,8 @@
             this.toolStripStatusLabelSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialogNes = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unselectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
             this.buttonStart = new System.Windows.Forms.Button();
@@ -82,81 +84,81 @@
             // 
             // menuStrip
             // 
+            resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.kernelToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.aboutToolStripMenuItem});
-            resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Name = "menuStrip";
             // 
             // fileToolStripMenuItem
             // 
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addMoreGamesToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
             // addMoreGamesToolStripMenuItem
             // 
-            this.addMoreGamesToolStripMenuItem.Name = "addMoreGamesToolStripMenuItem";
             resources.ApplyResources(this.addMoreGamesToolStripMenuItem, "addMoreGamesToolStripMenuItem");
+            this.addMoreGamesToolStripMenuItem.Name = "addMoreGamesToolStripMenuItem";
             this.addMoreGamesToolStripMenuItem.Click += new System.EventHandler(this.buttonAddGames_Click);
             // 
             // exitToolStripMenuItem
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // kernelToolStripMenuItem
             // 
+            resources.ApplyResources(this.kernelToolStripMenuItem, "kernelToolStripMenuItem");
             this.kernelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dumpKernelToolStripMenuItem,
             this.flashOriginalKernelToolStripMenuItem,
             this.flashCustomKernelToolStripMenuItem});
             this.kernelToolStripMenuItem.Name = "kernelToolStripMenuItem";
-            resources.ApplyResources(this.kernelToolStripMenuItem, "kernelToolStripMenuItem");
             // 
             // dumpKernelToolStripMenuItem
             // 
-            this.dumpKernelToolStripMenuItem.Name = "dumpKernelToolStripMenuItem";
             resources.ApplyResources(this.dumpKernelToolStripMenuItem, "dumpKernelToolStripMenuItem");
+            this.dumpKernelToolStripMenuItem.Name = "dumpKernelToolStripMenuItem";
             this.dumpKernelToolStripMenuItem.Click += new System.EventHandler(this.dumpKernelToolStripMenuItem_Click);
             // 
             // flashOriginalKernelToolStripMenuItem
             // 
-            this.flashOriginalKernelToolStripMenuItem.Name = "flashOriginalKernelToolStripMenuItem";
             resources.ApplyResources(this.flashOriginalKernelToolStripMenuItem, "flashOriginalKernelToolStripMenuItem");
+            this.flashOriginalKernelToolStripMenuItem.Name = "flashOriginalKernelToolStripMenuItem";
             this.flashOriginalKernelToolStripMenuItem.Click += new System.EventHandler(this.flashOriginalKernelToolStripMenuItem_Click);
             // 
             // flashCustomKernelToolStripMenuItem
             // 
-            this.flashCustomKernelToolStripMenuItem.Name = "flashCustomKernelToolStripMenuItem";
             resources.ApplyResources(this.flashCustomKernelToolStripMenuItem, "flashCustomKernelToolStripMenuItem");
+            this.flashCustomKernelToolStripMenuItem.Name = "flashCustomKernelToolStripMenuItem";
             this.flashCustomKernelToolStripMenuItem.Click += new System.EventHandler(this.flashCustomKernelToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
+            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.useExtendedFontToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             // 
             // useExtendedFontToolStripMenuItem
             // 
+            resources.ApplyResources(this.useExtendedFontToolStripMenuItem, "useExtendedFontToolStripMenuItem");
             this.useExtendedFontToolStripMenuItem.Checked = true;
             this.useExtendedFontToolStripMenuItem.CheckOnClick = true;
             this.useExtendedFontToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.useExtendedFontToolStripMenuItem.Name = "useExtendedFontToolStripMenuItem";
-            resources.ApplyResources(this.useExtendedFontToolStripMenuItem, "useExtendedFontToolStripMenuItem");
             this.useExtendedFontToolStripMenuItem.Click += new System.EventHandler(this.useExtendedFontToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // checkedListBoxGames
@@ -309,16 +311,16 @@
             // 
             // statusStrip
             // 
+            resources.ApplyResources(this.statusStrip, "statusStrip");
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelSelected});
-            resources.ApplyResources(this.statusStrip, "statusStrip");
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.SizingGrip = false;
             // 
             // toolStripStatusLabelSelected
             // 
-            this.toolStripStatusLabelSelected.Name = "toolStripStatusLabelSelected";
             resources.ApplyResources(this.toolStripStatusLabelSelected, "toolStripStatusLabelSelected");
+            this.toolStripStatusLabelSelected.Name = "toolStripStatusLabelSelected";
             // 
             // openFileDialogNes
             // 
@@ -328,15 +330,29 @@
             // 
             // contextMenuStrip
             // 
+            resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectAllToolStripMenuItem,
+            this.unselectAllToolStripMenuItem,
             this.deleteGameToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
+            // 
+            // selectAllToolStripMenuItem
+            // 
+            resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
+            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
+            this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
+            // 
+            // unselectAllToolStripMenuItem
+            // 
+            resources.ApplyResources(this.unselectAllToolStripMenuItem, "unselectAllToolStripMenuItem");
+            this.unselectAllToolStripMenuItem.Name = "unselectAllToolStripMenuItem";
+            this.unselectAllToolStripMenuItem.Click += new System.EventHandler(this.unselectAllToolStripMenuItem_Click);
             // 
             // deleteGameToolStripMenuItem
             // 
-            this.deleteGameToolStripMenuItem.Name = "deleteGameToolStripMenuItem";
             resources.ApplyResources(this.deleteGameToolStripMenuItem, "deleteGameToolStripMenuItem");
+            this.deleteGameToolStripMenuItem.Name = "deleteGameToolStripMenuItem";
             this.deleteGameToolStripMenuItem.Click += new System.EventHandler(this.deleteGameToolStripMenuItem_Click);
             // 
             // openFileDialogImage
@@ -352,8 +368,8 @@
             // 
             // groupBoxDefaultGames
             // 
-            this.groupBoxDefaultGames.Controls.Add(this.checkedListBoxDefaultGames);
             resources.ApplyResources(this.groupBoxDefaultGames, "groupBoxDefaultGames");
+            this.groupBoxDefaultGames.Controls.Add(this.checkedListBoxDefaultGames);
             this.groupBoxDefaultGames.Name = "groupBoxDefaultGames";
             this.groupBoxDefaultGames.TabStop = false;
             // 
@@ -362,6 +378,7 @@
             resources.ApplyResources(this.checkedListBoxDefaultGames, "checkedListBoxDefaultGames");
             this.checkedListBoxDefaultGames.FormattingEnabled = true;
             this.checkedListBoxDefaultGames.Name = "checkedListBoxDefaultGames";
+            this.checkedListBoxDefaultGames.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkedListBoxDefaultGames_MouseDown);
             // 
             // timerCalculateGames
             // 
@@ -445,6 +462,8 @@
         private System.Windows.Forms.GroupBox groupBoxDefaultGames;
         private System.Windows.Forms.CheckedListBox checkedListBoxDefaultGames;
         private System.Windows.Forms.Timer timerCalculateGames;
+        private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unselectAllToolStripMenuItem;
     }
 }
 

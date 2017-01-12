@@ -335,32 +335,26 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void deleteGameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var game = checkedListBoxGames.Items[(int)(sender as ToolStripMenuItem).Tag] as NesGame;
-                if (MessageBox.Show(this, string.Format(Resources.DeleteQ, game.Name), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    SaveConfig();
-                    Directory.Delete(game.GamePath, true);
-                    LoadGames();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void checkedListBoxGames_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 var i = checkedListBoxGames.IndexFromPoint(e.X, e.Y);
+                selectAllToolStripMenuItem.Tag = unselectAllToolStripMenuItem.Tag = 0;
                 deleteGameToolStripMenuItem.Tag = i;
-                if (i > 0)
-                    contextMenuStrip.Show(sender as Control, e.X, e.Y);
+                deleteGameToolStripMenuItem.Enabled = i > 0;
+                contextMenuStrip.Show(sender as Control, e.X, e.Y);
+            }
+        }
+
+        private void checkedListBoxDefaultGames_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                var i = checkedListBoxGames.IndexFromPoint(e.X, e.Y);
+                selectAllToolStripMenuItem.Tag = unselectAllToolStripMenuItem.Tag = 1;
+                deleteGameToolStripMenuItem.Enabled = false;
+                contextMenuStrip.Show(sender as Control, e.X, e.Y);
             }
         }
 
@@ -574,5 +568,43 @@ namespace com.clusterrr.hakchi_gui
                 ConfigIni.Save();
             }
         }
+
+        private void deleteGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var game = checkedListBoxGames.Items[(int)(sender as ToolStripMenuItem).Tag] as NesGame;
+                if (MessageBox.Show(this, string.Format(Resources.DeleteQ, game.Name), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    SaveConfig();
+                    Directory.Delete(game.GamePath, true);
+                    LoadGames();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((int)(sender as ToolStripMenuItem).Tag == 0)
+                for (int i = 0; i < checkedListBoxGames.Items.Count; i++)
+                    checkedListBoxGames.SetItemChecked(i, true);
+            else
+                for (int i = 0; i < checkedListBoxDefaultGames.Items.Count; i++)
+                    checkedListBoxDefaultGames.SetItemChecked(i, true);
+        }
+
+        private void unselectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((int)(sender as ToolStripMenuItem).Tag == 0)
+                for (int i = 0; i < checkedListBoxGames.Items.Count; i++)
+                    checkedListBoxGames.SetItemChecked(i, false);
+            else for (int i = 0; i < checkedListBoxDefaultGames.Items.Count; i++)
+                    checkedListBoxDefaultGames.SetItemChecked(i, false);
+        }
+
     }
 }
