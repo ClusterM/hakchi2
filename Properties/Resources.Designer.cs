@@ -342,7 +342,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kernel dumped but MD5 checksum is unknown: {0}.
+        ///   Looks up a localized string similar to Kernel dumped but MD5 checksum is unknown:.
         /// </summary>
         internal static string MD5Failed {
             get {

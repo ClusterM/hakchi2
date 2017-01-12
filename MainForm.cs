@@ -294,7 +294,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonAddGames_Click(object sender, EventArgs e)
         {
-            if (openFileDialogNes.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialogNes.ShowDialog() == DialogResult.OK)
             {
                 SaveConfig();
                 NesGame nesGame = null;
@@ -309,7 +309,7 @@ namespace com.clusterrr.hakchi_gui
                         catch (UnsupportedMapperException ex)
                         {
                             if (MessageBox.Show(this, string.Format(Resources.MapperNotSupported, Path.GetFileName(file), ex.ROM.Mapper), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                                == System.Windows.Forms.DialogResult.Yes)
+                                == DialogResult.Yes)
                                 nesGame = new NesGame(GamesDir, file, true);
                             else continue;
                         }
@@ -322,7 +322,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
                 LoadGames();
-                if (openFileDialogNes.FileNames.Length == 1)
+                if (nesGame != null && openFileDialogNes.FileNames.Length == 1)
                 {
                     for (int i = 1; i < checkedListBoxGames.Items.Count; i++)
                         if ((checkedListBoxGames.Items[i] as NesGame).Code == nesGame.Code)

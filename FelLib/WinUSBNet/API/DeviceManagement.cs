@@ -239,11 +239,16 @@ namespace MadWizard.WinUSBNet.API
                         string pathName = Marshal.PtrToStringUni(pDevicePathName);
 
                         // Get the String containing the devicePathName.
-
-                        DeviceDetails details = GetDeviceDetails(pathName, deviceInfoSet, da);
-
-                        if (details.VID == vid && details.PID == pid)
-                            deviceList.Add(details);
+                        try
+                        {
+                            DeviceDetails details = GetDeviceDetails(pathName, deviceInfoSet, da);
+                            if (details.VID == vid && details.PID == pid)
+                                deviceList.Add(details);
+                        }
+                        catch (APIException)
+                        {
+                            continue;
+                        }
                     }
                     finally
                     {

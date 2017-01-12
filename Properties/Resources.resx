@@ -197,7 +197,7 @@
     <value>Sorry, {0} uses mapper #{1} but this mapper is not supported by NES Mini and game probably will not start. Do you want to add this game anyway?</value>
   </data>
   <data name="MD5Failed" xml:space="preserve">
-    <value>Kernel dumped but MD5 checksum is unknown: {0}</value>
+    <value>Kernel dumped but MD5 checksum is unknown:</value>
   </data>
   <data name="MD5Failed2" xml:space="preserve">
     <value>Maybe the kernel already patched or it's unknown revision. Please send this message to me (press Ctrl+C). Continue on your own risk.</value>

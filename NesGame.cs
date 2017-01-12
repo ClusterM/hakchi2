@@ -27,6 +27,10 @@ namespace com.clusterrr.hakchi_gui
         public string ReleaseDate;
         public string Publisher;
 
+        const string DefaultReleaseDate = "1983-07-15";
+        const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet";
+        const string DefaultPublisher = "Nintendo";
+
         private byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10 };
 
         public NesGame(string path)
@@ -38,6 +42,14 @@ namespace com.clusterrr.hakchi_gui
             IconPath = Path.Combine(path, Code + ".png");
             SmallIconPath = Path.Combine(path, Code + "_small.png");
             if (!File.Exists(ConfigPath)) throw new Exception("Invalid game directory: " + path);
+
+            Name = Code;
+            Players = 1;
+            Simultaneous = false;
+            ReleaseDate = DefaultReleaseDate;
+            Args = DefaultArgs;
+            Publisher = DefaultPublisher;
+
             var configLines = File.ReadAllLines(ConfigPath);
             foreach (var line in configLines)
             {
@@ -130,7 +142,7 @@ namespace com.clusterrr.hakchi_gui
                 "SortRawTitle={5}\n" +
                 "SortRawPublisher={6}\n" +
                 "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
-                Code, Args, Name, Players, ReleaseDate, Name.ToLower(), Publisher.ToUpper(), Simultaneous ? 1 : 0));
+                Code, Args ?? DefaultArgs, Name ?? Code, Players, ReleaseDate ?? DefaultReleaseDate, (Name ?? Code).ToLower(), (Publisher ?? DefaultPublisher) .ToUpper(), Simultaneous ? 1 : 0));
         }
 
         public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper = false)
@@ -176,9 +188,9 @@ namespace com.clusterrr.hakchi_gui
             Name = Regex.Replace(Name, @" ?\[.*?\]", string.Empty).Trim();
             Name = Name.Replace(", The", "").Replace("_", " ").Replace("  ", " ").Trim();
             Players = 1;
-            ReleaseDate = "1983-07-15";
-            Publisher = "Nintendo";
-            Args = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet";
+            ReleaseDate = DefaultReleaseDate;
+            Publisher = DefaultPublisher;
+            Args = DefaultArgs;
             IconPath = Path.Combine(GamePath, Code + ".png");
             SmallIconPath = Path.Combine(GamePath, Code + "_small.png");
             SetImage(Resources.blank);
