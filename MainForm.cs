@@ -313,6 +313,13 @@ namespace com.clusterrr.hakchi_gui
                                 nesGame = new NesGame(GamesDir, file, true);
                             else continue;
                         }
+                        catch (UnsupportedFourScreenException)
+                        {
+                            if (MessageBox.Show(this, string.Format(Resources.FourScreenNotSupported, Path.GetFileName(file)), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                                == DialogResult.Yes)
+                                nesGame = new NesGame(GamesDir, file, true);
+                            else continue;
+                        }
                         ConfigIni.SelectedGames += ";" + nesGame.Code;
                     }
                     catch (Exception ex)

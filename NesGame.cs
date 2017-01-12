@@ -151,8 +151,11 @@ namespace com.clusterrr.hakchi_gui
             {
                 var nesFile = new NesFile(nesFileName);
                 nesFile.CorrectRom();
+                if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
                 if (!supportedMappers.Contains(nesFile.Mapper) && !ignoreMapper)
                     throw new UnsupportedMapperException(nesFile);
+                if (nesFile.Mirroring == NesFile.MirroringType.FourScreenVram && !ignoreMapper)
+                    throw new UnsupportedFourScreenException(nesFile);
                 var crc32 = nesFile.CRC32;
                 Code = string.Format("CLV-H-{0}{1}{2}{3}{4}",
                     (char)('A' + (crc32 % 26)),

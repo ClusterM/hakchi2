@@ -274,6 +274,9 @@
   <data name="KernelDumped" xml:space="preserve">
     <value>Your original kernel saved in the "dump" folder. It's better not to lose it. </value>
   </data>
+  <data name="FourScreenNotSupported" xml:space="preserve">
+    <value>Sorry, {0} uses four-screen mode (i.e.  it's rare case the game has additional VRAM memory in cartridge) and this feature is not supported by NES Mini. Game probably will not start. Do you want to add this game anyway?</value>
+  </data>
   <data name="UninstallFactoryNote" xml:space="preserve">
     <value>Don't forget to do reset to factory settings if you want to delete all savestates.</value>
   </data>
