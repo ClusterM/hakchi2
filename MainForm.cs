@@ -292,53 +292,58 @@ namespace com.clusterrr.hakchi_gui
             return c;
         }
 
+        void AddGames(string[] files)
+        {
+            SaveConfig();
+            NesGame nesGame = null;
+            foreach (var file in files)
+            {
+                try
+                {
+                    try
+                    {
+                        nesGame = new NesGame(GamesDir, file);
+                    }
+                    catch (UnsupportedMapperException ex)
+                    {
+                        if (MessageBox.Show(this, string.Format(Resources.MapperNotSupported, Path.GetFileName(file), ex.ROM.Mapper), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                            == DialogResult.Yes)
+                            nesGame = new NesGame(GamesDir, file, true);
+                        else continue;
+                    }
+                    catch (UnsupportedFourScreenException)
+                    {
+                        if (MessageBox.Show(this, string.Format(Resources.FourScreenNotSupported, Path.GetFileName(file)), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                            == DialogResult.Yes)
+                            nesGame = new NesGame(GamesDir, file, true);
+                        else continue;
+                    }
+                    ConfigIni.SelectedGames += ";" + nesGame.Code;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    continue;
+                }
+            }
+            if (nesGame == null) return; // Nothing happened
+            LoadGames();
+            if (openFileDialogNes.FileNames.Length == 1)
+            {
+                for (int i = 1; i < checkedListBoxGames.Items.Count; i++)
+                    if ((checkedListBoxGames.Items[i] as NesGame).Code == nesGame.Code)
+                    {
+                        checkedListBoxGames.SelectedIndex = i;
+                        break;
+                    }
+            }
+        }
+
         private void buttonAddGames_Click(object sender, EventArgs e)
         {
             if (openFileDialogNes.ShowDialog() == DialogResult.OK)
             {
-                SaveConfig();
-                NesGame nesGame = null;
-                foreach (var file in openFileDialogNes.FileNames)
-                {
-                    try
-                    {
-                        try
-                        {
-                            nesGame = new NesGame(GamesDir, file);
-                        }
-                        catch (UnsupportedMapperException ex)
-                        {
-                            if (MessageBox.Show(this, string.Format(Resources.MapperNotSupported, Path.GetFileName(file), ex.ROM.Mapper), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                                == DialogResult.Yes)
-                                nesGame = new NesGame(GamesDir, file, true);
-                            else continue;
-                        }
-                        catch (UnsupportedFourScreenException)
-                        {
-                            if (MessageBox.Show(this, string.Format(Resources.FourScreenNotSupported, Path.GetFileName(file)), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                                == DialogResult.Yes)
-                                nesGame = new NesGame(GamesDir, file, true);
-                            else continue;
-                        }
-                        ConfigIni.SelectedGames += ";" + nesGame.Code;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        continue;
-                    }
-                }
-                if (nesGame == null) return; // Nothing happened
-                LoadGames();
-                if (openFileDialogNes.FileNames.Length == 1)
-                {
-                    for (int i = 1; i < checkedListBoxGames.Items.Count; i++)
-                        if ((checkedListBoxGames.Items[i] as NesGame).Code == nesGame.Code)
-                        {
-                            checkedListBoxGames.SelectedIndex = i;
-                            break;
-                        }
-                }
+                AddGames(openFileDialogNes.FileNames);
             }
         }
 
@@ -651,5 +656,24 @@ namespace com.clusterrr.hakchi_gui
                     checkedListBoxDefaultGames.SetItemChecked(i, false);
         }
 
+        private void checkedListBoxGames_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (var file in files)
+                {
+                    var ext = Path.GetExtension(file).ToLower();
+                    if (ext == ".nes" || ext == ".fds")
+                        e.Effect = DragDropEffects.Copy;
+                }
+            }
+        }
+
+        private void checkedListBoxGames_DragDrop(object sender, DragEventArgs e)
+        {
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            AddGames(files);
+        }
     }
 }

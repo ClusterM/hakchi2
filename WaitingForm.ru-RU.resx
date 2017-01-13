@@ -146,7 +146,7 @@
     <value>362, 13</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>4. Через папу секунд отпустите RESET, светодиод не должен гореть.</value>
+    <value>4. Через пару секунд отпустите RESET, светодиод не должен гореть.</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>275, 13</value>

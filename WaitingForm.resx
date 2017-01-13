@@ -120,9 +120,6 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Please do the following steps:</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="&gt;&gt;buttonDriver.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
@@ -155,6 +152,9 @@
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 180</value>
   </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>264, 13</value>
   </data>
@@ -180,9 +180,6 @@
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 90</value>
   </data>
@@ -192,8 +189,8 @@
   <data name="buttonDriver.Location" type="System.Drawing.Point, System.Drawing">
     <value>199, 175</value>
   </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 13</value>
@@ -219,9 +216,6 @@
   <data name="&gt;&gt;label5.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="&gt;&gt;timer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -237,16 +231,13 @@
   <data name="label4.Text" xml:space="preserve">
     <value>3. Hold the RESET button and turn on the POWER switch.</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>2. (Re)connect the NES Mini to the PC via USB cable.</value>
   </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
@@ -261,10 +252,13 @@
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="buttonDriver.Text" xml:space="preserve">
+    <value>Install driver</value>
+  </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
@@ -282,6 +276,9 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Waiting for NES Mini...</value>
   </data>
+  <data name="&gt;&gt;buttonDriver.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="label2.Text" xml:space="preserve">
     <value>1. Make sure the POWER button on the NES Mini is switched off.</value>
   </data>
@@ -291,8 +288,8 @@
   <data name="&gt;&gt;label6.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="buttonDriver.Text" xml:space="preserve">
-    <value>Install driver</value>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 60</value>
@@ -312,14 +309,14 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>404, 218</value>
   </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label6.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;buttonDriver.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;label1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -330,11 +327,14 @@
   <data name="&gt;&gt;label3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>ru-RU</value>
-  </metadata>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>ru-RU</value>
   </metadata>
   <metadata name="timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
