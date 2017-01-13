@@ -46,9 +46,16 @@ namespace com.clusterrr.hakchi_gui
             reader.Close();
             response.Close();
             var urls = new List<string>();
-            string search = @"imgurl=(.*?)&";
-            MatchCollection matches = Regex.Matches(responseFromServer, search);
 
+            string search = @"\""ou\""\:\""(?<url>.+?)\""";
+            MatchCollection matches = Regex.Matches(responseFromServer, search);
+            foreach (Match match in matches)
+            {
+                urls.Add(match.Groups[1].Value);
+            }
+
+            search = @"imgurl=(.*?)&";
+            matches = Regex.Matches(responseFromServer, search);
             foreach (Match match in matches)
             {
                 urls.Add(match.Groups[1].Value);
