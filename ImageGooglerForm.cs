@@ -39,25 +39,21 @@ namespace com.clusterrr.hakchi_gui
             request.Credentials = CredentialCache.DefaultCredentials;
             (request as HttpWebRequest).UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36";
             request.Timeout = 10000;
-            var response = (HttpWebResponse)request.GetResponse();
+            var response = request.GetResponse();
             Stream dataStream = response.GetResponseStream();
-            var pageData = new StringBuilder();
-            int b;
-            var result = new List<byte>();
-            while ((b = dataStream.ReadByte()) >= 0)
-                result.Add((byte)b);
-            dataStream.Close();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            reader.Close();
             response.Close();
-            var page = Encoding.UTF8.GetString(result.ToArray());
-
-            var r = new Regex(@"\""ou\""\:\""(?<url>.+?)\""");
-            var mc = r.Matches(page);
             var urls = new List<string>();
-            for (int i = 0; i < mc.Count && i < 20; i++)
+            string search = @"imgurl=(.*?)&";
+            MatchCollection matches = Regex.Matches(responseFromServer, search);
+
+            foreach (Match match in matches)
             {
-                var gr = mc[i].Groups;
-                urls.Add(gr["url"].Value);
+                urls.Add(match.Groups[1].Value);
             }
+
             return urls.ToArray();
         }
 
@@ -161,6 +157,5 @@ namespace com.clusterrr.hakchi_gui
         {
             if (searchThread != null) searchThread.Abort();
         }
-
     }
 }
