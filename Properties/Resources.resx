@@ -152,7 +152,7 @@
     <value>Done! Wait until the power led goes out and restart your NES Mini.</value>
   </data>
   <data name="DoneYouCanUpload" xml:space="preserve">
-    <value>Done! Your can upload games to your NES Mini now.</value>
+    <value>Done! You can upload games to your NES Mini now.</value>
   </data>
   <data name="DoYouWantCancel" xml:space="preserve">
     <value>Do you want to cancel the current operation?</value>

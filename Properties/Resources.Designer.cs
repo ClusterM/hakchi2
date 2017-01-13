@@ -170,7 +170,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done! Your can upload games to your NES Mini now..
+        ///   Looks up a localized string similar to Done! You can upload games to your NES Mini now..
         /// </summary>
         internal static string DoneYouCanUpload {
             get {
