@@ -178,11 +178,26 @@
   <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Настройки</value>
   </data>
+  <data name="gitHubPageWithActualReleasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>263, 22</value>
+  </data>
+  <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Страница GitHub и свежие версии</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>263, 22</value>
+  </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 20</value>
+    <value>263, 22</value>
   </data>
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;О программе...</value>
+  </data>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 20</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Помощь</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 13</value>

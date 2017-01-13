@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -575,6 +576,16 @@ namespace com.clusterrr.hakchi_gui
         {
             var about = new AboutBox();
             about.ShowDialog();
+        }
+
+        private void gitHubPageWithActualReleasesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/ClusterM/hakchi2/releases");
+        }
+
+        private void fAQToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/ClusterM/hakchi2/wiki/FAQ");
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
