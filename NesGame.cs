@@ -1,5 +1,6 @@
 ﻿using com.clusterrr.Famicom;
 using com.clusterrr.hakchi_gui.Properties;
+using nQuant;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -95,13 +96,13 @@ namespace com.clusterrr.hakchi_gui
             Bitmap outImageSmall;
             if (image.Height > image.Width)
             {
-                outImage = new Bitmap(140, 204, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-                outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+                outImage = new Bitmap(140, 204, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             }
             else
             {
-                outImage = new Bitmap(204, 140, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-                outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+                outImage = new Bitmap(204, 140, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             }
             var gr = Graphics.FromImage(outImage);
             /*
@@ -115,11 +116,20 @@ namespace com.clusterrr.hakchi_gui
             gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
                                 new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
             gr.Flush();
-            outImage.Save(IconPath, ImageFormat.Png);
+            var quantizer = new WuQuantizer();
+            using (var quantized = quantizer.QuantizeImage(outImage))
+            {
+                quantized.Save(IconPath, ImageFormat.Png);
+            }
+            //outImage.Save(IconPath, ImageFormat.Png);
             gr = Graphics.FromImage(outImageSmall);
             gr.DrawImage(outImage, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height), new Rectangle(0, 0, outImage.Width, outImage.Height), GraphicsUnit.Pixel);
             gr.Flush();
-            outImageSmall.Save(SmallIconPath, ImageFormat.Png);
+            using (var quantized = quantizer.QuantizeImage(outImageSmall))
+            {
+                quantized.Save(SmallIconPath, ImageFormat.Png);
+            }
+            //outImageSmall.Save(SmallIconPath, ImageFormat.Png);
         }
 
         public void Save()
