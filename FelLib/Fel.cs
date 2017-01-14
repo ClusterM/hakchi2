@@ -370,7 +370,7 @@ namespace com.clusterrr.FelLib
         }
 
 #if DEBUG
-        private static void DebugLog(string text)
+        public static void DebugLog(string text)
         {
             Console.WriteLine(text);
             try

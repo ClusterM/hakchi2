@@ -444,8 +444,11 @@ namespace com.clusterrr.hakchi_gui
                 File.WriteAllText(hiddenPath, h.ToString());
             }
             ExecuteTool("upx.exe", "--best sbin\\cryptsetup", ramfsDirectory);
-            if (!ExecuteTool("mkbootfs.bat", string.Format("\"{0}\" \"{1}\"", ramfsDirectory, initramfs_cpioPatched), toolsDirectory))
+            
+            byte[] ramdisk;
+            if (!ExecuteTool("mkbootfs.exe", string.Format("\"{0}\"", ramfsDirectory), out ramdisk))
                 throw new Exception("Can't repack ramdisk");
+            File.WriteAllBytes(initramfs_cpioPatched, ramdisk);
             var argCmdline = File.ReadAllText(Path.Combine(kernelDirectory, "kernel.img-cmdline")).Trim();
             var argBoard = File.ReadAllText(Path.Combine(kernelDirectory, "kernel.img-board")).Trim();
             var argBase = File.ReadAllText(Path.Combine(kernelDirectory, "kernel.img-base")).Trim();
@@ -468,6 +471,12 @@ namespace com.clusterrr.hakchi_gui
 
         private bool ExecuteTool(string tool, string args, string directory = null, bool external = false)
         {
+            byte[] output;
+            return ExecuteTool(tool, args, out output, directory, external);
+        }
+
+        private bool ExecuteTool(string tool, string args, out byte[] output, string directory = null, bool external = false)
+        {
             var process = new Process();
             var appDirectory = Path.GetDirectoryName(Application.ExecutablePath);
             var fileName = !external ? Path.Combine(toolsDirectory, tool) : tool;
@@ -479,9 +488,12 @@ namespace com.clusterrr.hakchi_gui
             process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
-            //process.StartInfo.RedirectStandardOutput = true;            
+            process.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(1251);
+            process.StartInfo.RedirectStandardOutput = true;            
             process.Start();
+            string outputStr = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
+            output = Encoding.GetEncoding(1251).GetBytes(outputStr);
             return process.ExitCode == 0;
         }
 
