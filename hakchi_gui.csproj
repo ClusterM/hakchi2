@@ -307,9 +307,6 @@
     <None Include="mods\mod_uninstall\sbin\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="tools\mkbootfs.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="images\blank.jpg" />

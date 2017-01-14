@@ -243,16 +243,16 @@ namespace MadWizard.WinUSBNet.API
                         try
                         {
 #if DEBUG
-                            Fel.DebugLog("Trying to parse device: "+ pathName);
+                            Fel.DebugLog("Trying to parse device: " + pathName);
 #endif
                             DeviceDetails details = GetDeviceDetails(pathName, deviceInfoSet, da);
                             if (details.VID == vid && details.PID == pid)
                                 deviceList.Add(details);
                         }
-                        catch (APIException)
+                        catch (APIException ex)
                         {
 #if DEBUG
-                            Fel.DebugLog("Can't parse this device");
+                            Fel.DebugLog("Can't parse this device: " + ex.Message + ex.StackTrace);
 #endif
                             continue;
                         }
@@ -267,7 +267,6 @@ namespace MadWizard.WinUSBNet.API
                     }
                     memberIndex++;
                 }
-            }
             finally
             {
                 if (deviceInfoSet != IntPtr.Zero && deviceInfoSet != FileIO.INVALID_HANDLE_VALUE)

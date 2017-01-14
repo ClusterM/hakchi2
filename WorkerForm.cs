@@ -183,10 +183,15 @@ namespace com.clusterrr.hakchi_gui
                     Invoke(new Action<Exception>(ShowError), new object[] { ex });
                     return;
                 }
+#if DEBUG
+                var stackTrace = ex.StackTrace;
+#else
+                var stackTrace = "";
+#endif
                 if (ex is MadWizard.WinUSBNet.USBException)
-                    MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgain + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, ex.Message + stackTrace + "\r\n" + Resources.PleaseTryAgain + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
-                    MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgain, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, ex.Message + stackTrace + "\r\n" + Resources.PleaseTryAgain, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 thread = null;
                 Close();
             }
@@ -237,7 +242,7 @@ namespace com.clusterrr.hakchi_gui
                 if (MessageBox.Show(Resources.MD5Failed + " " + hash + "\r\n" + Resources.MD5Failed2 + "\r\n" + Resources.DoYouWantToContinue, Resources.Warning, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                     == DialogResult.No)
                 {
-                    DialogResult = System.Windows.Forms.DialogResult.Abort;
+                    DialogResult = DialogResult.Abort;
                     return;
                 }
             }
@@ -419,6 +424,14 @@ namespace com.clusterrr.hakchi_gui
             if (!ExecuteTool("xcopy", string.Format("\"{0}\" /h /y /c /r /s /q",
                 Path.Combine(modsDirectory, Mod)), ramfsDirectory, true))
                 throw new Exception("Can't copy mod directory");
+            var ramfsFiles = Directory.GetFiles(ramfsDirectory, "*.*", SearchOption.AllDirectories);
+            foreach (var file in ramfsFiles)
+            {
+                var fInfo = new FileInfo(file);
+                if (fInfo.Length < 100 && ((fInfo.Attributes & FileAttributes.System) == 0) &&
+                    (Encoding.ASCII.GetString(File.ReadAllBytes(file), 0, 10)) == "!<symlink>")
+                    fInfo.Attributes |= FileAttributes.System;
+            }
             if (CreateConfig)
             {
                 var config = string.Format("hakchi_enabled=y\nhakchi_remove_games=y\nhakchi_original_games={0}\nhakchi_title_font={1}\n", OriginalGames ? "y" : "n", UseFont ? "y" : "n");
@@ -444,7 +457,7 @@ namespace com.clusterrr.hakchi_gui
                 File.WriteAllText(hiddenPath, h.ToString());
             }
             ExecuteTool("upx.exe", "--best sbin\\cryptsetup", ramfsDirectory);
-            
+
             byte[] ramdisk;
             if (!ExecuteTool("mkbootfs.exe", string.Format("\"{0}\"", ramfsDirectory), out ramdisk))
                 throw new Exception("Can't repack ramdisk");
@@ -489,7 +502,7 @@ namespace com.clusterrr.hakchi_gui
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
             process.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(1251);
-            process.StartInfo.RedirectStandardOutput = true;            
+            process.StartInfo.RedirectStandardOutput = true;
             process.Start();
             string outputStr = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
