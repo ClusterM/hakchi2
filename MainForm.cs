@@ -63,7 +63,8 @@ namespace com.clusterrr.hakchi_gui
             KernelDump = Path.Combine(Path.Combine(BaseDir, "dump"), "kernel.img");
             useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
             LoadGames();
-            ShowHidden();
+            LoadHidden();
+            LoadPresets();
         }
 
         public void LoadGames()
@@ -145,12 +146,64 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        void ShowHidden()
+        void LoadHidden()
         {
             checkedListBoxDefaultGames.Items.Clear();
             var hidden = ConfigIni.HiddenGames.Split(';');
             foreach (var game in new List<DefaultNesGame>(defaultGames).OrderBy(o => o.Name))
                 checkedListBoxDefaultGames.Items.Add(game, !hidden.Contains(game.Code));
+        }
+
+        void LoadPresets()
+        {
+            while (presetsToolStripMenuItem.DropDownItems.Count > 3)
+                presetsToolStripMenuItem.DropDownItems.RemoveAt(0);
+            deletePresetToolStripMenuItem.Enabled = false;
+            deletePresetToolStripMenuItem.DropDownItems.Clear();
+            int i = 0;
+            foreach (var preset in ConfigIni.Presets.Keys.OrderBy(o => o))
+            {
+                presetsToolStripMenuItem.DropDownItems.Insert(i, new ToolStripMenuItem(preset, null,
+                    delegate (object sender, EventArgs e)
+                    {
+                        var cols = ConfigIni.Presets[preset].Split('|');
+                        ConfigIni.SelectedGames = cols[0];
+                        ConfigIni.HiddenGames = cols[1];
+                        var selected = ConfigIni.SelectedGames.Split(';');
+                        var hide = ConfigIni.HiddenGames.Split(';');
+                        checkedListBoxGames.SetItemChecked(0, selected.Contains("default"));
+                        for (int j = 1; j < checkedListBoxGames.Items.Count; j++)
+                            checkedListBoxGames.SetItemChecked(j,
+                                selected.Contains((checkedListBoxGames.Items[j] as NesGame).Code));
+                        for (int j = 0; j < checkedListBoxDefaultGames.Items.Count; j++)
+                            checkedListBoxDefaultGames.SetItemChecked(j,
+                                !hide.Contains(((DefaultNesGame)checkedListBoxDefaultGames.Items[j]).Code));
+                    }));
+                deletePresetToolStripMenuItem.DropDownItems.Insert(i, new ToolStripMenuItem(preset, null,
+                    delegate (object sender, EventArgs e)
+                    {
+                        if (MessageBox.Show(this, string.Format(Resources.DeletePreset, preset), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                            == DialogResult.Yes)
+                        {
+                            ConfigIni.Presets.Remove(preset);
+                            LoadPresets();
+                        }
+                    }));
+                deletePresetToolStripMenuItem.Enabled = true;
+                i++;
+            }
+        }
+
+        void AddPreset(object sender, EventArgs e)
+        {
+            var name = Microsoft.VisualBasic.Interaction.InputBox(Resources.InputPreset, Resources.NewPreset);
+            name = name.Replace("=", " ");
+            if (!string.IsNullOrEmpty(name))
+            {
+                SaveSelectedGames();
+                ConfigIni.Presets[name] = ConfigIni.SelectedGames + "|" + ConfigIni.HiddenGames;
+                LoadPresets();
+            }
         }
 
         private void checkedListBoxGames_SelectedIndexChanged(object sender, EventArgs e)
@@ -249,17 +302,18 @@ namespace com.clusterrr.hakchi_gui
                     selected.Add("default");
             }
             ConfigIni.SelectedGames = string.Join(";", selected.ToArray());
+            selected.Clear();
             foreach (DefaultNesGame game in checkedListBoxDefaultGames.Items)
                 selected.Add(game.Code);
             foreach (DefaultNesGame game in checkedListBoxDefaultGames.CheckedItems)
                 selected.Remove(game.Code);
             ConfigIni.HiddenGames = string.Join(";", selected.ToArray());
-            ConfigIni.Save();
         }
 
         private void SaveConfig()
         {
             SaveSelectedGames();
+            ConfigIni.Save();
             foreach (var game in checkedListBoxGames.Items)
             {
                 try
@@ -295,7 +349,7 @@ namespace com.clusterrr.hakchi_gui
 
         void AddGames(string[] files)
         {
-            SaveConfig();
+            SaveSelectedGames();
             NesGame nesGame = null;
             foreach (var file in files)
             {
@@ -622,10 +676,10 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            ConfigIni.FirstRun = false;
             if (ConfigIni.FirstRun && !File.Exists(KernelDump))
             {
                 MessageBox.Show(this, Resources.FirstRun + "\r\n\r\n" + Resources.Donate, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ConfigIni.FirstRun = false;
                 ConfigIni.Save();
             }
         }

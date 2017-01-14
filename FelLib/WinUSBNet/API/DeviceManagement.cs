@@ -267,6 +267,7 @@ namespace MadWizard.WinUSBNet.API
                     }
                     memberIndex++;
                 }
+            }
             finally
             {
                 if (deviceInfoSet != IntPtr.Zero && deviceInfoSet != FileIO.INVALID_HANDLE_VALUE)

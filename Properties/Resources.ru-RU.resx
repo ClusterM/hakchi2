@@ -274,8 +274,17 @@
   <data name="KernelDumped" xml:space="preserve">
     <value>Оригинальный образ ядра сохранён в папке "dump". Желательно его не потерять и не стереть.</value>
   </data>
+  <data name="DeletePreset" xml:space="preserve">
+    <value>Вы действительно хотите удалить пресет "{0}"?</value>
+  </data>
   <data name="FourScreenNotSupported" xml:space="preserve">
     <value>Увы, {0} использует four-screen режим (т.е. это редкий случай, когда у игры в картридже расширенная видеопамять), а NES Mini его не поддерживает, и игра скорее всего не запустится. Всё равно добавить?</value>
+  </data>
+  <data name="InputPreset" xml:space="preserve">
+    <value>Введите название для пресета выбранных игр.</value>
+  </data>
+  <data name="NewPreset" xml:space="preserve">
+    <value>Создание пресета</value>
   </data>
   <data name="UninstallFactoryNote" xml:space="preserve">
     <value>Всё. Не забудьте также сделать сброс к заводским настройкам, если хотите удалить сохранения игр.</value>

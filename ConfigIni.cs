@@ -14,7 +14,8 @@ namespace com.clusterrr.hakchi_gui
         public static string HiddenGames = "";
         public static bool CustomFlashed = false;
         public static bool UseFont = true;
-        const string ConfigFile = "config.ini";
+        public static Dictionary<string, string> Presets = new Dictionary<string, string>();
+        const string ConfigFile = "config.ini";        
 
         public static void Load()
         {
@@ -26,8 +27,14 @@ namespace com.clusterrr.hakchi_gui
                 {
                     int pos = line.IndexOf('=');
                     if (pos <= 0) continue;
-                    var param = line.Substring(0, pos).Trim().ToLower();
+                    var param = line.Substring(0, pos).Trim();
                     var value = line.Substring(pos + 1).Trim();
+                    if (param.StartsWith("+"))
+                    {
+                        Presets[param.Substring(1)] = value;
+                        continue;
+                    }
+                    param = param.ToLower();
                     switch (param)
                     {
                         case "selectedgames":
@@ -61,6 +68,10 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("CustomFlashed={0}", CustomFlashed));
             configLines.Add(string.Format("UseFont={0}", UseFont));
             configLines.Add(string.Format("FirstRun={0}", FirstRun));
+            foreach(var preset in Presets.Keys)
+            {
+                configLines.Add(string.Format("+{0}={1}", preset, Presets[preset]));
+            }
             File.WriteAllLines(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigFile), configLines.ToArray());
         }
     }

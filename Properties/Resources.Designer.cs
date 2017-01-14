@@ -134,6 +134,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete &quot;{0}&quot; preset?.
+        /// </summary>
+        internal static string DeletePreset {
+            get {
+                return ResourceManager.GetString("DeletePreset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete {0}?.
         /// </summary>
         internal static string DeleteQ {
@@ -306,6 +315,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please input preset name for current games selection..
+        /// </summary>
+        internal static string InputPreset {
+            get {
+                return ResourceManager.GetString("InputPreset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid kernel header..
         /// </summary>
         internal static string InvalidKernelHeader {
@@ -365,6 +383,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string MD5Failed2 {
             get {
                 return ResourceManager.GetString("MD5Failed2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New selection preset.
+        /// </summary>
+        internal static string NewPreset {
+            get {
+                return ResourceManager.GetString("NewPreset", resourceCulture);
             }
         }
         
