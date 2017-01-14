@@ -740,5 +740,13 @@ namespace com.clusterrr.hakchi_gui
             var files = (string[])e.Data.GetData(DataFormats.FileDrop);
             AddGames(files);
         }
+
+        private void поискToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var searchForm = new SearchForm(this);
+            searchForm.Left = this.Left + 200;
+            searchForm.Top = this.Top + 300;
+            searchForm.Show();
+        }
     }
 }
