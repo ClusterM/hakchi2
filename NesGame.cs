@@ -296,8 +296,8 @@ namespace com.clusterrr.hakchi_gui
                     gameInfoCache = new Dictionary<uint, CachedGameInfo>();
                     while (iterator.MoveNext())
                     {
-                        XPathNavigator current = iterator.Current;
-                        var cartridges = current.Select("cartridge");
+                        XPathNavigator game = iterator.Current;
+                        var cartridges = game.Select("cartridge");
                         while (cartridges.MoveNext())
                         {
                             var cartridge = cartridges.Current;
@@ -306,10 +306,10 @@ namespace com.clusterrr.hakchi_gui
                                 var crc = Convert.ToUInt32(cartridge.GetAttribute("crc", ""), 16);
                                 gameInfoCache[crc] = new CachedGameInfo
                                 {
-                                    Name = current.GetAttribute("name", ""),
-                                    Players = (byte)((current.GetAttribute("players", "") != "1") ? 2 : 1),
-                                    ReleaseDate = current.GetAttribute("date", ""),
-                                    Publisher = current.GetAttribute("publisher", "")
+                                    Name = game.GetAttribute("name", ""),
+                                    Players = (byte)((game.GetAttribute("players", "") != "1") ? 2 : 1),
+                                    ReleaseDate = game.GetAttribute("date", ""),
+                                    Publisher = game.GetAttribute("publisher", "")
                                 };
                             }
                             catch { }

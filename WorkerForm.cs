@@ -46,6 +46,8 @@ namespace com.clusterrr.hakchi_gui
         const UInt32 kernel_max_size = (uboot_base_m - flash_mem_base);
         const UInt32 kernel_max_flash_size = (sector_size * 0x20);
 
+        readonly string fes1Path;
+        readonly string ubootPath;
         readonly string tempDirectory;
         readonly string kernelDirectory;
         readonly string initramfs_cpio;
@@ -67,6 +69,8 @@ namespace com.clusterrr.hakchi_gui
         {
             InitializeComponent();
             DialogResult = DialogResult.None;
+            fes1Path = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "data"), "fes1.bin");
+            ubootPath = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "data"), "uboot.bin");
             tempDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "temp");
             kernelDirectory = Path.Combine(tempDirectory, "kernel");
             initramfs_cpio = Path.Combine(kernelDirectory, "initramfs.cpio");
@@ -102,11 +106,14 @@ namespace com.clusterrr.hakchi_gui
         public void StartThread()
         {
             fel = new Fel();
-            fel.Fes1Bin = Resources.fes1;
-            fel.UBootBin = Resources.uboot;
             SetProgress(0, 100);
             try
             {
+                if (!File.Exists(fes1Path)) throw new FileNotFoundException(fes1Path + " not found");
+                if (!File.Exists(ubootPath)) throw new FileNotFoundException(ubootPath + " not found");
+
+                fel.Fes1Bin = File.ReadAllBytes(fes1Path);
+                fel.UBootBin = File.ReadAllBytes(ubootPath);
                 fel.Open(vid, pid);
                 SetStatus(Resources.UploadingFes1);
                 fel.InitDram(true);
@@ -317,8 +324,8 @@ namespace com.clusterrr.hakchi_gui
                     }
                     Thread.Sleep(500);
                     fel = new Fel();
-                    fel.Fes1Bin = Resources.fes1;
-                    fel.UBootBin = Resources.uboot;
+                    fel.Fes1Bin = File.ReadAllBytes(fes1Path);
+                    fel.UBootBin = File.ReadAllBytes(ubootPath);
                     fel.Open(vid, pid);
                     SetStatus(Resources.UploadingFes1);
                     fel.InitDram(true);

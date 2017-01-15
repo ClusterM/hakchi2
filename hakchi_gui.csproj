@@ -185,8 +185,12 @@
     <EmbeddedResource Include="WorkerForm.resx">
       <DependentUpon>WorkerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="data\fes1.bin" />
-    <None Include="data\uboot.bin" />
+    <None Include="data\fes1.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="data\uboot.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="driver\usb_driver\nesmini.cat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

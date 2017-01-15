@@ -175,9 +175,6 @@
   <data name="ExecutingFel1" xml:space="preserve">
     <value>Executing fes1...</value>
   </data>
-  <data name="fes1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\data\fes1.bin;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="FlasingCustom" xml:space="preserve">
     <value>Flashing custom kernel...</value>
   </data>
@@ -225,9 +222,6 @@
   </data>
   <data name="SelectAtLeast" xml:space="preserve">
     <value>You need to select at least one game.</value>
-  </data>
-  <data name="uboot" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\data\uboot.bin;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="UploadingFes1" xml:space="preserve">
     <value>Uploading and running fes1...</value>
@@ -297,8 +291,5 @@
   </data>
   <data name="UninstallQ2" xml:space="preserve">
     <value>Done. Wait until the power led goes out. Also you need to flash original kernel. Do you want to flash original kernel now?</value>
-  </data>
-  <data name="nescarts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\data\nescarts.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-16</value>
   </data>
 </root>
