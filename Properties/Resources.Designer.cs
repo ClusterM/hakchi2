@@ -387,6 +387,20 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;
+        ///&lt;database version=&quot;1.0&quot; conformance=&quot;strict&quot; agent=&quot;NesCartDB&quot; author=&quot;BootGod&quot; timestamp=&quot;Sat Aug 20 20:34:07 2016
+        ///&quot;&gt;
+        ///	&lt;game name=&quot;&amp;apos;89 Dennou Kyuusei Uranai&quot; altname=&quot;神宮館’８９電脳九星占い&quot; class=&quot;Licensed&quot; catalog=&quot;IPC-J1-01&quot; publisher=&quot;Jingukan&quot; developer=&quot;Micronics / Khaos&quot; region=&quot;Japan&quot; players=&quot;1&quot; date=&quot;1988-12-10&quot;&gt;
+        ///		&lt;cartridge system=&quot;Famicom&quot; crc=&quot;BA58ED29&quot; sha1=&quot;56FE858D1035DCE4B68520F457A0858BAE7BB16D&quot; dump=&quot;ok&quot; dumper=&quot;bootgod&quot; datedumped=&quot;2007-11-11&quot;&gt;
+        ///			&lt;bo [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string nescarts {
+            get {
+                return ResourceManager.GetString("nescarts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New selection preset.
         /// </summary>
         internal static string NewPreset {

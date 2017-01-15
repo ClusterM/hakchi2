@@ -336,6 +336,9 @@
     <None Include="images\blank.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\nescarts.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="driver\nesmini_driver.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

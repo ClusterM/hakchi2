@@ -90,9 +90,6 @@ namespace MadWizard.WinUSBNet.API
                 throw APIException.Win32("Failed to get device registry property.");
 
             return buffer;
-
-
-
         }
 
         // todo: is the queried data always available, or should we check ERROR_INVALID_DATA?

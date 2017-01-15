@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Xml.XPath;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -27,6 +28,8 @@ namespace com.clusterrr.hakchi_gui
         public bool Simultaneous;
         public string ReleaseDate;
         public string Publisher;
+
+        private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
 
         const string DefaultReleaseDate = "1983-07-15";
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet";
@@ -94,6 +97,20 @@ namespace com.clusterrr.hakchi_gui
         {
             Bitmap outImage;
             Bitmap outImageSmall;
+            Graphics gr;
+
+            if (image == null)
+            {
+                image = Resources.blank;
+                image.Save(IconPath, ImageFormat.Png);
+                outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                gr = Graphics.FromImage(outImageSmall);
+                gr.DrawImage(image, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height), new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
+                gr.Flush();                
+                outImageSmall.Save(SmallIconPath, ImageFormat.Png);
+                return;
+            }
+
             if (image.Height > image.Width)
             {
                 outImage = new Bitmap(140, 204, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
@@ -104,7 +121,7 @@ namespace com.clusterrr.hakchi_gui
                 outImage = new Bitmap(204, 140, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
                 outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             }
-            var gr = Graphics.FromImage(outImage);
+            gr = Graphics.FromImage(outImage);
             /*
             if (image.Width / image.Height > outImage.Width / outImage.Height)
                 gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
@@ -152,11 +169,12 @@ namespace com.clusterrr.hakchi_gui
                 "SortRawTitle={5}\n" +
                 "SortRawPublisher={6}\n" +
                 "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
-                Code, Args ?? DefaultArgs, Name ?? Code, Players, ReleaseDate ?? DefaultReleaseDate, (Name ?? Code).ToLower(), (Publisher ?? DefaultPublisher) .ToUpper(), Simultaneous ? 1 : 0));
+                Code, Args ?? DefaultArgs, Name ?? Code, Players, ReleaseDate ?? DefaultReleaseDate, (Name ?? Code).ToLower(), (Publisher ?? DefaultPublisher).ToUpper(), Simultaneous ? 1 : 0));
         }
 
         public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper = false)
         {
+            uint crc32;
             if (!Path.GetExtension(nesFileName).ToLower().Equals(".fds"))
             {
                 var nesFile = new NesFile(nesFileName);
@@ -166,7 +184,7 @@ namespace com.clusterrr.hakchi_gui
                     throw new UnsupportedMapperException(nesFile);
                 if (nesFile.Mirroring == NesFile.MirroringType.FourScreenVram && !ignoreMapper)
                     throw new UnsupportedFourScreenException(nesFile);
-                var crc32 = nesFile.CRC32;
+                crc32 = nesFile.CRC32;
                 Code = string.Format("CLV-H-{0}{1}{2}{3}{4}",
                     (char)('A' + (crc32 % 26)),
                     (char)('A' + (crc32 >> 5) % 26),
@@ -182,7 +200,7 @@ namespace com.clusterrr.hakchi_gui
             else
             {
                 var fdsData = File.ReadAllBytes(nesFileName);
-                var crc32 = CRC32(fdsData);
+                crc32 = CRC32(fdsData);
                 Code = string.Format("CLV-H-{0}{1}{2}{3}{4}",
                     (char)('A' + (crc32 % 26)),
                     (char)('A' + (crc32 >> 5) % 26),
@@ -197,47 +215,110 @@ namespace com.clusterrr.hakchi_gui
             }
 
             Name = Path.GetFileNameWithoutExtension(nesFileName);
-            Name = Regex.Replace(Name, @" ?\(.*?\)", string.Empty).Trim();
-            Name = Regex.Replace(Name, @" ?\[.*?\]", string.Empty).Trim();
-            Name = Name.Replace(", The", "").Replace("_", " ").Replace("  ", " ").Trim();
             Players = 1;
             ReleaseDate = DefaultReleaseDate;
             Publisher = DefaultPublisher;
+
+            CachedGameInfo gameinfo;
+            if (gameInfoCache != null && gameInfoCache.TryGetValue(crc32, out gameinfo))
+            {
+                Name = gameinfo.Name;
+                Players = gameinfo.Players;
+                if (Players > 1) Simultaneous = true; // actually unknown...
+                ReleaseDate = gameinfo.ReleaseDate;
+                if (ReleaseDate.Length == 4) ReleaseDate += "-01";
+                if (ReleaseDate.Length == 7) ReleaseDate += "-01";
+                Publisher = gameinfo.Publisher;
+            }
+
+            int commaPos = Name.IndexOf(",");
+            if (commaPos > 0)
+                Name = Name.Substring(0, commaPos);
+            Name = Regex.Replace(Name, @" ?\(.*?\)", string.Empty).Trim();
+            Name = Regex.Replace(Name, @" ?\[.*?\]", string.Empty).Trim();
+            Name = Name.Replace("_", " ").Replace("  ", " ").Trim();
             Args = DefaultArgs;
             IconPath = Path.Combine(GamePath, Code + ".png");
             SmallIconPath = Path.Combine(GamePath, Code + "_small.png");
-            SetImage(Resources.blank);
+            SetImage(null);
             Save();
         }
 
-        private static uint CRC32(byte []data)
+        private static uint CRC32(byte[] data)
         {
-                uint poly = 0xedb88320;
-                uint[] table = new uint[256];
-                uint temp = 0;
-                for (uint i = 0; i < table.Length; ++i)
+            uint poly = 0xedb88320;
+            uint[] table = new uint[256];
+            uint temp = 0;
+            for (uint i = 0; i < table.Length; ++i)
+            {
+                temp = i;
+                for (int j = 8; j > 0; --j)
                 {
-                    temp = i;
-                    for (int j = 8; j > 0; --j)
+                    if ((temp & 1) == 1)
                     {
-                        if ((temp & 1) == 1)
-                        {
-                            temp = (uint)((temp >> 1) ^ poly);
-                        }
-                        else
-                        {
-                            temp >>= 1;
-                        }
+                        temp = (uint)((temp >> 1) ^ poly);
                     }
-                    table[i] = temp;
+                    else
+                    {
+                        temp >>= 1;
+                    }
                 }
-                uint crc = 0xffffffff;
-                for (int i = 0; i < data.Length; ++i)
-                {
-                    byte index = (byte)(((crc) & 0xff) ^ data[i]);
-                    crc = (uint)((crc >> 8) ^ table[index]);
-                }
-                return ~crc;
+                table[i] = temp;
             }
+            uint crc = 0xffffffff;
+            for (int i = 0; i < data.Length; ++i)
+            {
+                byte index = (byte)(((crc) & 0xff) ^ data[i]);
+                crc = (uint)((crc >> 8) ^ table[index]);
+            }
+            return ~crc;
+        }
+
+        private struct CachedGameInfo
+        {
+            public string Name;
+            public byte Players;
+            public string ReleaseDate;
+            public string Publisher;
+        }
+
+        public static void LoadCache()
+        {
+            try
+            {
+                var xmlDataBasePath = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "data"), "nescarts.xml");
+
+                if (File.Exists(xmlDataBasePath))
+                {
+                    var xpath = new XPathDocument(xmlDataBasePath);
+                    var navigator = xpath.CreateNavigator();
+                    var iterator = navigator.Select("/database/game");
+                    gameInfoCache = new Dictionary<uint, CachedGameInfo>();
+                    while (iterator.MoveNext())
+                    {
+                        XPathNavigator current = iterator.Current;
+                        var cartridges = current.Select("cartridge");
+                        while (cartridges.MoveNext())
+                        {
+                            var cartridge = cartridges.Current;
+                            try
+                            {
+                                var crc = Convert.ToUInt32(cartridge.GetAttribute("crc", ""), 16);
+                                gameInfoCache[crc] = new CachedGameInfo
+                                {
+                                    Name = current.GetAttribute("name", ""),
+                                    Players = (byte)((current.GetAttribute("players", "") != "1") ? 2 : 1),
+                                    ReleaseDate = current.GetAttribute("date", ""),
+                                    Publisher = current.GetAttribute("publisher", "")
+                                };
+                            }
+                            catch { }
+                        };
+                    }
+                }
+            }
+            catch { }
+        }
     }
 }
+

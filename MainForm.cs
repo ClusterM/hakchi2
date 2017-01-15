@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
@@ -51,9 +52,7 @@ namespace com.clusterrr.hakchi_gui
             new DefaultNesGame { Code = "CLV-P-NACDE",  Name = "TECMO BOWL" },
             new DefaultNesGame { Code = "CLV-P-NACHE",  Name = "DOUBLE DRAGON II: The Revenge" }
         };
-
-
-
+        
         public MainForm()
         {
             InitializeComponent();
@@ -65,6 +64,7 @@ namespace com.clusterrr.hakchi_gui
             LoadGames();
             LoadHidden();
             LoadPresets();
+            new Thread(NesGame.LoadCache).Start();
         }
 
         public void LoadGames()
