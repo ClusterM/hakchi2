@@ -357,20 +357,20 @@ namespace com.clusterrr.hakchi_gui
                 {
                     try
                     {
-                        nesGame = new NesGame(GamesDir, file);
+                        nesGame = new NesGame(GamesDir, file, false, this);
                     }
                     catch (UnsupportedMapperException ex)
                     {
                         if (MessageBox.Show(this, string.Format(Resources.MapperNotSupported, Path.GetFileName(file), ex.ROM.Mapper), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                             == DialogResult.Yes)
-                            nesGame = new NesGame(GamesDir, file, true);
+                            nesGame = new NesGame(GamesDir, file, true, this);
                         else continue;
                     }
                     catch (UnsupportedFourScreenException)
                     {
                         if (MessageBox.Show(this, string.Format(Resources.FourScreenNotSupported, Path.GetFileName(file)), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                             == DialogResult.Yes)
-                            nesGame = new NesGame(GamesDir, file, true);
+                            nesGame = new NesGame(GamesDir, file, true, this);
                         else continue;
                     }
                     ConfigIni.SelectedGames += ";" + nesGame.Code;

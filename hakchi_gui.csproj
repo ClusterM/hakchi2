@@ -96,6 +96,7 @@
     <Compile Include="ImageGooglerForm.Designer.cs">
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="IpsPatcher.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -335,6 +336,12 @@
     <None Include="mods\mod_uninstall\sbin\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="patches\1dac6208-Snow Bros. %28U%29 [!] - NES Mini patch.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="patches\279710dc-Battletoads %28U%29 [bugfix].ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="images\blank.jpg" />
@@ -402,6 +409,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

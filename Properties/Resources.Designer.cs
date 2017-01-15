@@ -422,6 +422,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Patch available.
+        /// </summary>
+        internal static string PatchAvailable {
+            get {
+                return ResourceManager.GetString("PatchAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is patch for &quot;{0}&quot;. Do you want to patch this game?.
+        /// </summary>
+        internal static string PatchQ {
+            get {
+                return ResourceManager.GetString("PatchQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please try again..
         /// </summary>
         internal static string PleaseTryAgain {

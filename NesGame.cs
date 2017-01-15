@@ -106,7 +106,7 @@ namespace com.clusterrr.hakchi_gui
                 outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
                 gr = Graphics.FromImage(outImageSmall);
                 gr.DrawImage(image, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height), new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
-                gr.Flush();                
+                gr.Flush();
                 outImageSmall.Save(SmallIconPath, ImageFormat.Png);
                 return;
             }
@@ -172,18 +172,13 @@ namespace com.clusterrr.hakchi_gui
                 Code, Args ?? DefaultArgs, Name ?? Code, Players, ReleaseDate ?? DefaultReleaseDate, (Name ?? Code).ToLower(), (Publisher ?? DefaultPublisher).ToUpper(), Simultaneous ? 1 : 0));
         }
 
-        public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper = false)
+        public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper = false, Form parentForm = null)
         {
             uint crc32;
             if (!Path.GetExtension(nesFileName).ToLower().Equals(".fds"))
             {
                 var nesFile = new NesFile(nesFileName);
                 nesFile.CorrectRom();
-                if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
-                if (!supportedMappers.Contains(nesFile.Mapper) && !ignoreMapper)
-                    throw new UnsupportedMapperException(nesFile);
-                if (nesFile.Mirroring == NesFile.MirroringType.FourScreenVram && !ignoreMapper)
-                    throw new UnsupportedFourScreenException(nesFile);
                 crc32 = nesFile.CRC32;
                 Code = string.Format("CLV-H-{0}{1}{2}{3}{4}",
                     (char)('A' + (crc32 % 26)),
@@ -192,9 +187,28 @@ namespace com.clusterrr.hakchi_gui
                     (char)('A' + ((crc32 >> 15) % 26)),
                     (char)('A' + ((crc32 >> 20) % 26)));
                 GamePath = Path.Combine(gamesDirectory, Code);
-                ConfigPath = Path.Combine(GamePath, Code + ".desktop");
                 Directory.CreateDirectory(GamePath);
                 NesPath = Path.Combine(GamePath, Code + ".nes");
+                var patchesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "patches");
+                Directory.CreateDirectory(patchesDirectory);
+                var patches = Directory.GetFiles(patchesDirectory, string.Format("{0:X8}*.ips", crc32), SearchOption.AllDirectories);
+                if (patches.Length > 0)
+                {
+                    if (MessageBox.Show(parentForm, string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)), Resources.PatchAvailable, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        var patch = patches[0];
+                        IpsPatcher.Patch(patch, nesFileName, NesPath);
+                        nesFile = new NesFile(NesPath);
+                    }
+                }
+
+                if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
+                if (!supportedMappers.Contains(nesFile.Mapper) && !ignoreMapper)
+                    throw new UnsupportedMapperException(nesFile);
+                if (nesFile.Mirroring == NesFile.MirroringType.FourScreenVram && !ignoreMapper)
+                    throw new UnsupportedFourScreenException(nesFile);
+
+                ConfigPath = Path.Combine(GamePath, Code + ".desktop");
                 nesFile.Save(NesPath);
             }
             else
@@ -208,8 +222,8 @@ namespace com.clusterrr.hakchi_gui
                     (char)('A' + ((crc32 >> 15) % 26)),
                     (char)('A' + ((crc32 >> 20) % 26)));
                 GamePath = Path.Combine(gamesDirectory, Code);
-                ConfigPath = Path.Combine(GamePath, Code + ".desktop");
                 Directory.CreateDirectory(GamePath);
+                ConfigPath = Path.Combine(GamePath, Code + ".desktop");
                 NesPath = Path.Combine(GamePath, Code + ".nes");
                 File.WriteAllBytes(NesPath, fdsData);
             }

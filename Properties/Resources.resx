@@ -292,4 +292,10 @@
   <data name="UninstallQ2" xml:space="preserve">
     <value>Done. Wait until the power led goes out. Also you need to flash original kernel. Do you want to flash original kernel now?</value>
   </data>
+  <data name="PatchAvailable" xml:space="preserve">
+    <value>Patch available</value>
+  </data>
+  <data name="PatchQ" xml:space="preserve">
+    <value>There is patch for "{0}". Do you want to patch this game?</value>
+  </data>
 </root>
