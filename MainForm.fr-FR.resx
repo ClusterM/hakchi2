@@ -139,7 +139,7 @@
     <value>&amp;Fichier</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text" xml:space="preserve">
-    <value>Dumper le Kernel</value>
+    <value>Extraire le Kernel</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text" xml:space="preserve">
     <value>Flasher le Kernel Original</value>
@@ -154,7 +154,7 @@
     <value>&amp;Kernel</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
-    <value>Utiliser la font étendue</value>
+    <value>Utiliser la police étendue</value>
   </data>
   <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Options</value>
@@ -169,7 +169,7 @@
     <value>À Propos...</value>
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Aider</value>
+    <value>&amp;Aide</value>
   </data>
   <data name="checkedListBoxGames.Items" xml:space="preserve">
     <value>30 jeux par défaut</value>
@@ -178,10 +178,10 @@
     <value>Date de sortie (AAAA-MM-JJ):</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Code Genie du Jeu (Séparé d'une virgule):</value>
+    <value>Code Game Genie (Séparé d'une virgule):</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Nombre de joueurs Max.:</value>
+    <value>Nombre joueurs:</value>
   </data>
   <data name="radioButtonTwoSim.Text" xml:space="preserve">
     <value>Deux joueurs, simultanément</value>
@@ -196,7 +196,7 @@
     <value>Jaquette:</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Arguments ligne de commande (Pour utilisateurs avancés!):</value>
+    <value>Arguments ligne de commande (Utilisateurs avancés!):</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Editeur:</value>
