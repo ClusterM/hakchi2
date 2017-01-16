@@ -2,15 +2,9 @@
 using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Management;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
@@ -29,7 +23,7 @@ namespace com.clusterrr.hakchi_gui
 
         public static bool WaitForDevice(UInt16 vid, UInt16 pid)
         {
-            if (/*DeviceExists(vid, pid) &&*/ Fel.DeviceExists(vid, pid)) return true;
+            if (Fel.DeviceExists(vid, pid)) return true;
             var form = new WaitingForm(vid, pid);
             form.ShowDialog();
             return form.DialogResult == DialogResult.OK;

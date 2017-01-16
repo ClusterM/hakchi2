@@ -1,13 +1,8 @@
 ﻿using com.clusterrr.Famicom;
 using com.clusterrr.FelLib;
 using com.clusterrr.hakchi_gui.Properties;
-using MadWizard.WinUSBNet;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -34,19 +29,6 @@ namespace com.clusterrr.hakchi_gui
         const UInt16 vid = 0x1F3A;
         const UInt16 pid = 0xEFE8;
 
-        const UInt32 cmdOffset = 0x604FF;
-        const UInt32 cmdLen = 50;
-        const UInt32 fes1_base_m = 0x2000;
-        const UInt32 flash_mem_base = 0x43800000;
-        const UInt32 flash_mem_size = 0x20;
-        const UInt32 uboot_base_m = 0x47000000u;
-        const UInt32 sector_size = 0x20000;
-        const UInt32 uboot_base_f = 0x100000;
-        const UInt32 kernel_base_f = (sector_size * 0x30);
-        const UInt32 kernel_base_m = flash_mem_base;
-        const UInt32 kernel_max_size = (uboot_base_m - flash_mem_base);
-        const UInt32 kernel_max_flash_size = (sector_size * 0x20);
-
         readonly string fes1Path;
         readonly string ubootPath;
         readonly string tempDirectory;
@@ -64,7 +46,6 @@ namespace com.clusterrr.hakchi_gui
         readonly string gamesDirectory;
 
         string[] correctKernels;
-        bool? waitDeviceResult = null;
 
         public WorkerForm()
         {
@@ -215,7 +196,7 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress);
             SetStatus(Resources.DumpingKernel);
 
-            var kernel = fel.ReadFlash(kernel_base_f, sector_size * 0x20,
+            var kernel = fel.ReadFlash(Fel.kernel_base_f, Fel.sector_size * 0x20,
                 delegate (Fel.CurrentAction action, string command)
                 {
                     switch (action)
@@ -233,7 +214,7 @@ namespace com.clusterrr.hakchi_gui
             );
 
             var size = CalKernelSize(kernel);
-            if (size == 0 || size > kernel_max_size)
+            if (size == 0 || size > Fel.kernel_max_size)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
             if (kernel.Length > size)
             {
@@ -277,11 +258,11 @@ namespace com.clusterrr.hakchi_gui
             else
                 kernel = File.ReadAllBytes(KernelDump);
             var size = CalKernelSize(kernel);
-            if (size > kernel.Length || size > kernel_max_size)
+            if (size > kernel.Length || size > Fel.kernel_max_size)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
 
-            size = (size + sector_size - 1) / sector_size;
-            size = size * sector_size;
+            size = (size + Fel.sector_size - 1) / Fel.sector_size;
+            size = size * Fel.sector_size;
             if (kernel.Length != size)
             {
                 var newK = new byte[size];
@@ -289,7 +270,7 @@ namespace com.clusterrr.hakchi_gui
                 kernel = newK;
             }
 
-            fel.WriteFlash(kernel_base_f, kernel,
+            fel.WriteFlash(Fel.kernel_base_f, kernel,
                 delegate (Fel.CurrentAction action, string command)
                 {
                     switch (action)
@@ -305,7 +286,7 @@ namespace com.clusterrr.hakchi_gui
                     SetProgress(progress, maxProgress);
                 }
             );
-            var r = fel.ReadFlash((UInt32)kernel_base_f, (UInt32)kernel.Length,
+            var r = fel.ReadFlash((UInt32)Fel.kernel_base_f, (UInt32)kernel.Length,
                 delegate (Fel.CurrentAction action, string command)
                 {
                     switch (action)
@@ -326,7 +307,7 @@ namespace com.clusterrr.hakchi_gui
 
             if (string.IsNullOrEmpty(Mod))
             {
-                var shutdownCommand = string.Format("shutdown", kernel_base_m);
+                var shutdownCommand = string.Format("shutdown", Fel.kernel_base_m);
                 SetStatus(Resources.ExecutingCommand + " " + shutdownCommand);
                 fel.RunUbootCmd(shutdownCommand, true);
             }
@@ -346,10 +327,10 @@ namespace com.clusterrr.hakchi_gui
             else
                 kernel = File.ReadAllBytes(KernelDump);
             var size = CalKernelSize(kernel);
-            if (size > kernel.Length || size > kernel_max_size)
+            if (size > kernel.Length || size > Fel.kernel_max_size)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
-            size = (size + sector_size - 1) / sector_size;
-            size = size * sector_size;
+            size = (size + Fel.sector_size - 1) / Fel.sector_size;
+            size = size * Fel.sector_size;
             if (kernel.Length != size)
             {
                 var newK = new byte[size];
@@ -362,7 +343,7 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress);
 
             SetStatus(Resources.UploadingKernel);
-            fel.WriteMemory(flash_mem_base, kernel,
+            fel.WriteMemory(Fel.flash_mem_base, kernel,
                 delegate (Fel.CurrentAction action, string command)
                 {
                     switch (action)
@@ -376,7 +357,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             );
 
-            var bootCommand = string.Format("boota {0:x}", kernel_base_m);
+            var bootCommand = string.Format("boota {0:x}", Fel.kernel_base_m);
             SetStatus(Resources.ExecutingCommand + " " + bootCommand);
             fel.RunUbootCmd(bootCommand, true);
             SetStatus(Resources.Done);
@@ -488,7 +469,7 @@ namespace com.clusterrr.hakchi_gui
 
             var result = File.ReadAllBytes(kernelPatched);
             Directory.Delete(tempDirectory, true);
-            if (result.Length > kernel_max_size) throw new Exception("Kernel is too big");
+            if (result.Length > Fel.kernel_max_size) throw new Exception("Kernel is too big");
             return result;
         }
 

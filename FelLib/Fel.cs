@@ -11,7 +11,7 @@ namespace com.clusterrr.FelLib
     public class Fel
     {
         public byte[] Fes1Bin;
-        public byte[] UBootBin;
+        byte[] uBootBin;
 
         public enum CurrentAction { RunningCommand, ReadingMemory, WritingMemory }
         public delegate void OnFelProgress(CurrentAction action, string command);
@@ -25,19 +25,39 @@ namespace com.clusterrr.FelLib
         UInt16 vid, pid;
         bool DramInitDone = false;
 
-        const UInt32 cmdOffset = 0x604FF;
-        const UInt32 fes1_base_m = 0x2000;
-        const UInt32 dram_base = 0x40000000;
-        const UInt32 flash_mem_base = 0x43800000;
-        const UInt32 flash_mem_size = 0x20;
-        const UInt32 uboot_base_m = 0x47000000u;
-        const UInt32 sector_size = 0x20000;
-        const UInt32 uboot_base_f = 0x100000;
-        const UInt32 kernel_base_f = (sector_size * 0x30);
-        const UInt32 kernel_base_m = flash_mem_base;
-        const UInt32 kernel_max_size = (uboot_base_m - flash_mem_base);
-        const UInt32 kernel_max_flash_size = (sector_size * 0x20);
+        int cmdOffset = -1;
+        public const UInt32 fes1_base_m = 0x2000;
+        public const UInt32 dram_base = 0x40000000;
+        public const UInt32 flash_mem_base = 0x43800000;
+        public const UInt32 flash_mem_size = 0x20;
+        public const UInt32 uboot_base_m = 0x47000000u;
+        public const UInt32 sector_size = 0x20000;
+        public const UInt32 uboot_base_f = 0x100000;
+        public const UInt32 kernel_base_f = (sector_size * 0x30);
+        public const UInt32 kernel_base_m = flash_mem_base;
+        public const UInt32 kernel_max_size = (uboot_base_m - flash_mem_base);
+        public const UInt32 kernel_max_flash_size = (sector_size * 0x20);
         const string fastboot = "fastboot_test";
+
+        public byte[] UBootBin
+        {
+            get
+            {
+                return uBootBin;
+            }
+
+            set
+            {
+                uBootBin = value;
+                var prefix = "bootcmd=";
+                for (int i = 0; i < uBootBin.Length - prefix.Length; i++)
+                    if (Encoding.ASCII.GetString(uBootBin, i, prefix.Length) == prefix)
+                    {
+                        cmdOffset = i + prefix.Length;
+                        break;
+                    }
+            }
+        }
 
         public static bool DeviceExists(UInt16 vid, UInt16 pid)
         {
@@ -82,14 +102,14 @@ namespace com.clusterrr.FelLib
                 {
                     inEndp = pipe.Address;
 #if DEBUG
-                    DebugLog("IN endpoint found: "+ inEndp);
+                    DebugLog("IN endpoint found: " + inEndp);
 #endif
                 }
                 else
                 {
                     outEndp = pipe.Address;
 #if DEBUG
-                    DebugLog("Out endpoint found: "+outEndp);
+                    DebugLog("Out endpoint found: " + outEndp);
 #endif
                 }
             }
@@ -329,7 +349,8 @@ namespace com.clusterrr.FelLib
 
         public void RunUbootCmd(string command, bool noreturn = false, OnFelProgress callback = null)
         {
-            if (callback != null) callback(CurrentAction.RunningCommand, command);
+            callback?.Invoke(CurrentAction.RunningCommand, command);
+            if (cmdOffset < 0) throw new Exception("Invalid Unoot binary, command variable not found");
             const UInt32 testSize = 0x20;
             if (UBootBin == null || UBootBin.Length < testSize)
                 throw new FelException("Can't init Uboot, incorrect Uboot binary");

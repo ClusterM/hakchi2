@@ -130,7 +130,6 @@
     <Compile Include="SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs" />
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
     <Compile Include="WaitingForm.cs">
