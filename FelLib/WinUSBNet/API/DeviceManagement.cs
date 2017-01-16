@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
-using com.clusterrr.FelLib;
+using System.Diagnostics;
 
 namespace MadWizard.WinUSBNet.API
 {
@@ -239,18 +239,14 @@ namespace MadWizard.WinUSBNet.API
                         // Get the String containing the devicePathName.
                         try
                         {
-#if DEBUG
-                            Fel.DebugLog("Trying to parse device: " + pathName);
-#endif
+                            Debug.WriteLine("Trying to parse device: " + pathName);
                             DeviceDetails details = GetDeviceDetails(pathName, deviceInfoSet, da);
                             if (details.VID == vid && details.PID == pid)
                                 deviceList.Add(details);
                         }
                         catch (APIException ex)
                         {
-#if DEBUG
-                            Fel.DebugLog("Can't parse this device: " + ex.Message + ex.StackTrace);
-#endif
+                            Debug.WriteLine("Can't parse this device: " + ex.Message + ex.StackTrace);
                             continue;
                         }
                     }

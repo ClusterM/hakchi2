@@ -3,6 +3,7 @@ using com.clusterrr.hakchi_gui.Properties;
 using nQuant;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -172,6 +173,7 @@ namespace com.clusterrr.hakchi_gui
 
         public void Save()
         {
+            Debug.WriteLine("Saving game " + Code);
             File.WriteAllText(ConfigPath, string.Format(
                 "[Desktop Entry]\n" +
                 "Type=Application\n" +
@@ -311,6 +313,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 var xmlDataBasePath = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "data"), "nescarts.xml");
+                Debug.WriteLine("Loading " + xmlDataBasePath);
 
                 if (File.Exists(xmlDataBasePath))
                 {
@@ -340,8 +343,12 @@ namespace com.clusterrr.hakchi_gui
                         };
                     }
                 }
+                Debug.WriteLine(string.Format("XML loading done, {0} roms total", gameInfoCache.Count));
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+            }
         }
     }
 }

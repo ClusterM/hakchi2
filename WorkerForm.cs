@@ -172,17 +172,13 @@ namespace com.clusterrr.hakchi_gui
                     Invoke(new Action<Exception>(ShowError), new object[] { ex });
                     return;
                 }
-#if DEBUG
-                var stackTrace = ex.StackTrace;
-#else
-                var stackTrace = "";
-#endif
+                Debug.WriteLine(ex.Message + ex.StackTrace);
                 if (ex is GameGenieFormatException || ex is GameGenieNotFoundException)
-                    MessageBox.Show(this, ex.Message + stackTrace, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else if (ex is MadWizard.WinUSBNet.USBException)
-                    MessageBox.Show(this, ex.Message + stackTrace + "\r\n" + Resources.PleaseTryAgain + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgain + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
-                    MessageBox.Show(this, ex.Message + stackTrace + "\r\n" + Resources.PleaseTryAgain, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgain, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 thread = null;
                 Close();
             }
@@ -468,7 +464,9 @@ namespace com.clusterrr.hakchi_gui
                 throw new Exception("Can't rebuild kernel");
 
             var result = File.ReadAllBytes(kernelPatched);
+#if !DEBUG
             Directory.Delete(tempDirectory, true);
+#endif
             if (result.Length > Fel.kernel_max_size) throw new Exception("Kernel is too big");
             return result;
         }
@@ -492,15 +490,21 @@ namespace com.clusterrr.hakchi_gui
             process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
-            process.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(1251);
+            process.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(866);
             process.StartInfo.RedirectStandardInput = true;
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.RedirectStandardError = true;
+            Debug.WriteLine("Executing: " + fileName);
+            Debug.WriteLine("Arguments: " + args);
+            Debug.WriteLine("Directory: " + directory);
             process.Start();
             string outputStr = process.StandardOutput.ReadToEnd();
             string errorStr = process.StandardError.ReadToEnd();
             process.WaitForExit();
-            output = Encoding.GetEncoding(1251).GetBytes(outputStr);
+            output = Encoding.GetEncoding(866).GetBytes(outputStr);
+            Debug.WriteLineIf(outputStr.Length > 0 && outputStr.Length < 300, "Output:\r\n" + outputStr);
+            Debug.WriteLineIf(errorStr.Length > 0, "Errors:\r\n" + errorStr);
+            Debug.WriteLine("Exit code: " + process.ExitCode);
             return process.ExitCode == 0;
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace com.clusterrr.hakchi_gui
 
         public static void Load()
         {
+            Debug.WriteLine("Loading config");
             var fileName = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigFile);
             if (File.Exists(fileName))
             {
@@ -67,6 +69,7 @@ namespace com.clusterrr.hakchi_gui
 
         public static void Save()
         {
+            Debug.WriteLine("Saving config");
             var configLines = new List<string>();
             configLines.Add("[Config]");
             configLines.Add(string.Format("SelectedGames={0}", SelectedGames));

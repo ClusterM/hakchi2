@@ -55,20 +55,29 @@ namespace com.clusterrr.hakchi_gui
         
         public MainForm()
         {
-            InitializeComponent();
-            ConfigIni.Load();
-            BaseDir = Path.GetDirectoryName(Application.ExecutablePath);
-            GamesDir = Path.Combine(BaseDir, "games");
-            KernelDump = Path.Combine(Path.Combine(BaseDir, "dump"), "kernel.img");
-            useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
-            LoadGames();
-            LoadHidden();
-            LoadPresets();
-            new Thread(NesGame.LoadCache).Start();
+            try
+            {
+                InitializeComponent();
+                ConfigIni.Load();
+                BaseDir = Path.GetDirectoryName(Application.ExecutablePath);
+                GamesDir = Path.Combine(BaseDir, "games");
+                KernelDump = Path.Combine(Path.Combine(BaseDir, "dump"), "kernel.img");
+                useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
+                LoadGames();
+                LoadHidden();
+                LoadPresets();
+                new Thread(NesGame.LoadCache).Start();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, "Critical error: "+ex.Message+ex.StackTrace, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void LoadGames()
         {
+            Debug.WriteLine("Loading games");
             var selected = ConfigIni.SelectedGames.Split(';');
             Directory.CreateDirectory(GamesDir);
             var gameDirs = Directory.GetDirectories(GamesDir);
@@ -82,6 +91,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 catch (Exception ex)
                 {
+                    Debug.WriteLine(ex.Message + ex.StackTrace);
                     MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     continue;
                 }
@@ -332,6 +342,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 catch (Exception ex)
                 {
+                    Debug.WriteLine(ex.Message + ex.StackTrace);
                     MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -339,6 +350,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Debug.WriteLine("Closing main form");
             SaveConfig();
         }
 
@@ -386,6 +398,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 catch (Exception ex)
                 {
+                    Debug.WriteLine(ex.Message + ex.StackTrace);
                     MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     continue;
                 }
@@ -711,6 +724,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
                 MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

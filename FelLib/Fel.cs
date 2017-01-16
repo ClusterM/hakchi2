@@ -1,7 +1,7 @@
 ﻿using MadWizard.WinUSBNet;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -65,16 +65,12 @@ namespace com.clusterrr.FelLib
             try
             {
                 fel.Open(vid, pid);
-#if DEBUG
-                DebugLog("Device detection successful");
-#endif
+                Debug.WriteLine("Device detection successful");
                 return true;
             }
             catch (Exception ex)
             {
-#if DEBUG
-                DebugLog("Device detection error: " + ex.Message + ex.StackTrace);
-#endif
+                Debug.WriteLine("Device detection error: " + ex.Message + ex.StackTrace);
                 return false;
             }
             finally
@@ -88,36 +84,26 @@ namespace com.clusterrr.FelLib
             this.vid = vid;
             this.pid = pid;
             Close();
-#if DEBUG
-            DebugLog("Trying to open device...");
-#endif
+            Debug.WriteLine("Trying to open device...");
             device = USBDevice.GetSingleDevice(vid, pid);
             if (device == null) throw new FelException("Device with such VID and PID not found");
-#if DEBUG
-            DebugLog("Checking USB endpoints...");
-#endif
+            Debug.WriteLine("Checking USB endpoints...");
             foreach (var pipe in device.Pipes)
             {
                 if (pipe.IsIn)
                 {
                     inEndp = pipe.Address;
-#if DEBUG
-                    DebugLog("IN endpoint found: " + inEndp);
-#endif
+                    Debug.WriteLine("IN endpoint found: " + inEndp);
                 }
                 else
                 {
                     outEndp = pipe.Address;
-#if DEBUG
-                    DebugLog("Out endpoint found: " + outEndp);
-#endif
+                    Debug.WriteLine("Out endpoint found: " + outEndp);
                 }
             }
             device.Pipes[inEndp].Policy.PipeTransferTimeout = ReadTimeout;
             device.Pipes[outEndp].Policy.PipeTransferTimeout = WriteTimeout;
-#if DEBUG
-            DebugLog("Trying to verify device");
-#endif
+            Debug.WriteLine("Trying to verify device");
             if (VerifyDevice().Board != 0x00166700) throw new FelException("Invalid board ID: " + VerifyDevice().Board);
         }
         public void Close()
@@ -143,19 +129,14 @@ namespace com.clusterrr.FelLib
 
         private void WriteToUSB(byte[] buffer)
         {
-#if DEBUG
-            DebugLog("-> " + BitConverter.ToString(buffer));
-#endif
-
+            Debug.WriteLine("-> " + BitConverter.ToString(buffer));
             device.Pipes[outEndp].Write(buffer);
         }
 
         private int ReadFromUSB(byte[] buffer, int offset, int length)
         {
             var data = device.Pipes[inEndp].Read(buffer, offset, length);
-#if DEBUG
-            DebugLog("<- " + BitConverter.ToString(buffer));
-#endif
+            Debug.WriteLine("<- " + BitConverter.ToString(buffer));
             return data;
         }
         private byte[] ReadFromUSB(UInt32 length)
@@ -389,17 +370,5 @@ namespace com.clusterrr.FelLib
                 }
             }
         }
-
-#if DEBUG
-        public static void DebugLog(string text)
-        {
-            Console.WriteLine(text);
-            try
-            {
-                File.AppendAllText("debug.txt", DateTime.Now + ": " + text + "\r\n");
-            }
-            catch { }
-        }
-#endif
     }
 }
