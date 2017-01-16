@@ -247,7 +247,6 @@ namespace MadWizard.WinUSBNet.API
                         catch (APIException ex)
                         {
                             Debug.WriteLine("Can't parse this device: " + ex.Message + ex.StackTrace);
-                            continue;
                         }
                     }
                     finally
