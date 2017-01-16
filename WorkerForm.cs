@@ -94,11 +94,11 @@ namespace com.clusterrr.hakchi_gui
         public DialogResult Start()
         {
             SetProgress(0, 1);
-            //if (!WaitingForm.WaitForDevice(vid, pid))
-            //{
-            //    DialogResult = DialogResult.Abort;
-            //    return DialogResult;
-            //}
+            if (!WaitingForm.WaitForDevice(vid, pid))
+            {
+                DialogResult = DialogResult.Abort;
+                return DialogResult;
+            }
             thread = new Thread(StartThread);
             thread.Start();
             return ShowDialog();
@@ -115,9 +115,9 @@ namespace com.clusterrr.hakchi_gui
 
                 fel.Fes1Bin = File.ReadAllBytes(fes1Path);
                 fel.UBootBin = File.ReadAllBytes(ubootPath);
-                //fel.Open(vid, pid);
+                fel.Open(vid, pid);
                 SetStatus(Resources.UploadingFes1);
-                //fel.InitDram(true);
+                fel.InitDram(true);
                 switch (Task)
                 {
                     case Tasks.DumpKernel:
