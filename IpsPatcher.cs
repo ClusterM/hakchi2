@@ -6,7 +6,7 @@ using System.Text;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public class IpsPatcher
+    public static class IpsPatcher
     {
         public static void Patch(string patchFile, string inFile, string outFile)
         {

@@ -298,4 +298,16 @@
   <data name="UninstallQ2" xml:space="preserve">
     <value>Готово. Только подождите, пока погаснет светодиод.. И ещё необходимо прошить назад оригинальное ядро. Сделать это сейчас?</value>
   </data>
+  <data name="GameGenieFormatError" xml:space="preserve">
+    <value>Некорректный Game Genie код "{0}" для игры "{1}".</value>
+  </data>
+  <data name="GameGenieNotFound" xml:space="preserve">
+    <value>Не удалось применить Game Genie код "{0}" к игре "{1}", т.к. значение не было найдено. Быть может, это код не для этой игры?</value>
+  </data>
+  <data name="PatchAvailable" xml:space="preserve">
+    <value>Доступен патч</value>
+  </data>
+  <data name="PatchQ" xml:space="preserve">
+    <value>Для файла "{0}" доступен патч. Хотите его применить?</value>
+  </data>
 </root>

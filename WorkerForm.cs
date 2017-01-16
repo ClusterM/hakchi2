@@ -1,4 +1,5 @@
-﻿using com.clusterrr.FelLib;
+﻿using com.clusterrr.Famicom;
+using com.clusterrr.FelLib;
 using com.clusterrr.hakchi_gui.Properties;
 using MadWizard.WinUSBNet;
 using System;
@@ -93,11 +94,11 @@ namespace com.clusterrr.hakchi_gui
         public DialogResult Start()
         {
             SetProgress(0, 1);
-            if (!WaitingForm.WaitForDevice(vid, pid))
-            {
-                DialogResult = DialogResult.Abort;
-                return DialogResult;
-            }
+            //if (!WaitingForm.WaitForDevice(vid, pid))
+            //{
+            //    DialogResult = DialogResult.Abort;
+            //    return DialogResult;
+            //}
             thread = new Thread(StartThread);
             thread.Start();
             return ShowDialog();
@@ -114,9 +115,9 @@ namespace com.clusterrr.hakchi_gui
 
                 fel.Fes1Bin = File.ReadAllBytes(fes1Path);
                 fel.UBootBin = File.ReadAllBytes(ubootPath);
-                fel.Open(vid, pid);
+                //fel.Open(vid, pid);
                 SetStatus(Resources.UploadingFes1);
-                fel.InitDram(true);
+                //fel.InitDram(true);
                 switch (Task)
                 {
                     case Tasks.DumpKernel:
@@ -195,7 +196,9 @@ namespace com.clusterrr.hakchi_gui
 #else
                 var stackTrace = "";
 #endif
-                if (ex is MadWizard.WinUSBNet.USBException)
+                if (ex is GameGenieFormatException || ex is GameGenieNotFoundException)
+                    MessageBox.Show(this, ex.Message + stackTrace, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if (ex is MadWizard.WinUSBNet.USBException)
                     MessageBox.Show(this, ex.Message + stackTrace + "\r\n" + Resources.PleaseTryAgain + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                     MessageBox.Show(this, ex.Message + stackTrace + "\r\n" + Resources.PleaseTryAgain, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -286,52 +289,22 @@ namespace com.clusterrr.hakchi_gui
                 kernel = newK;
             }
 
-            bool flashCommandExecuted = false;
-            try
-            {
-                fel.WriteFlash(kernel_base_f, kernel,
-                    delegate (Fel.CurrentAction action, string command)
-                    {
-                        switch (action)
-                        {
-                            case Fel.CurrentAction.RunningCommand:
-                                SetStatus(Resources.ExecutingCommand + " " + command);
-                                flashCommandExecuted = true;
-                                break;
-                            case Fel.CurrentAction.WritingMemory:
-                                SetStatus(Resources.UploadingKernel);
-                                break;
-                        }
-                        progress++;
-                        SetProgress(progress, maxProgress);
-                    }
-                );
-            }
-            catch (USBException ex)
-            {
-                fel.Close();
-                if (flashCommandExecuted)
+            fel.WriteFlash(kernel_base_f, kernel,
+                delegate (Fel.CurrentAction action, string command)
                 {
-                    SetStatus(Resources.WaitingForDevice);
-                    waitDeviceResult = null;
-                    WaitForDeviceInvoke(vid, pid);
-                    while (waitDeviceResult == null)
-                        Thread.Sleep(100);
-                    if (!(waitDeviceResult ?? false))
+                    switch (action)
                     {
-                        DialogResult = DialogResult.Abort;
-                        return;
+                        case Fel.CurrentAction.RunningCommand:
+                            SetStatus(Resources.ExecutingCommand + " " + command);
+                            break;
+                        case Fel.CurrentAction.WritingMemory:
+                            SetStatus(Resources.UploadingKernel);
+                            break;
                     }
-                    Thread.Sleep(500);
-                    fel = new Fel();
-                    fel.Fes1Bin = File.ReadAllBytes(fes1Path);
-                    fel.UBootBin = File.ReadAllBytes(ubootPath);
-                    fel.Open(vid, pid);
-                    SetStatus(Resources.UploadingFes1);
-                    fel.InitDram(true);
+                    progress++;
+                    SetProgress(progress, maxProgress);
                 }
-                else throw ex;
-            }
+            );
             var r = fel.ReadFlash((UInt32)kernel_base_f, (UInt32)kernel.Length,
                 delegate (Fel.CurrentAction action, string command)
                 {
@@ -454,6 +427,36 @@ namespace com.clusterrr.hakchi_gui
                     if (!ExecuteTool("xcopy", string.Format("\"{0}\" /h /y /c /r /e /q", game.GamePath),
                         gameDir, true))
                         throw new Exception("Can't copy " + game);
+                    if (!string.IsNullOrEmpty(game.GameGenie))
+                    {
+                        var codes = game.GameGenie.Replace(" ", ",").Replace(";", ",").Split(',');
+                        var newNesFilePath = Path.Combine(gameDir, game.Code + ".nes");
+                        try
+                        {
+                            var nesFile = new NesFile(newNesFilePath);
+                            foreach (var code in codes)
+                            {
+                                try
+                                {
+                                    nesFile.PRG = GameGenie.Patch(nesFile.PRG, code.Trim());
+                                }
+                                catch (GameGenieFormatException)
+                                {
+                                    ShowError(new GameGenieFormatException(string.Format(Resources.GameGenieFormatError, code, game)));
+                                }
+                                catch (GameGenieNotFoundException)
+                                {
+                                    ShowError(new GameGenieNotFoundException(string.Format(Resources.GameGenieNotFound, code, game.Name)));
+                                }
+                            }
+                            nesFile.Save(newNesFilePath);
+                            var ggFilePath = Path.Combine(gameDir, NesGame.GameGenieFileName);
+                            if (File.Exists(ggFilePath)) File.Delete(ggFilePath);
+                        }
+                        catch // in case of FDS game... just ignore
+                        {
+                        }
+                    }
                 }
             }
             if (HiddenGames != null)
@@ -509,23 +512,15 @@ namespace com.clusterrr.hakchi_gui
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
             process.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(1251);
+            process.StartInfo.RedirectStandardInput = true;
             process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardError = true;
             process.Start();
             string outputStr = process.StandardOutput.ReadToEnd();
+            string errorStr = process.StandardError.ReadToEnd();
             process.WaitForExit();
             output = Encoding.GetEncoding(1251).GetBytes(outputStr);
             return process.ExitCode == 0;
-        }
-
-        private void WaitForDeviceInvoke(UInt16 vid, UInt16 pid)
-        {
-            waitDeviceResult = null;
-            if (InvokeRequired)
-            {
-                Invoke(new Action<UInt16, UInt16>(WaitForDeviceInvoke), new object[] { vid, pid });
-                return;
-            }
-            waitDeviceResult = WaitingForm.WaitForDevice(vid, pid);
         }
 
         static UInt32 CalKernelSize(byte[] header)

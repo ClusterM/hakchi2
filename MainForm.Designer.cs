@@ -37,6 +37,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.addPresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +53,10 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkedListBoxGames = new System.Windows.Forms.CheckedListBox();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.maskedTextBoxReleaseDate = new System.Windows.Forms.MaskedTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxGameGenie = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.radioButtonTwoSim = new System.Windows.Forms.RadioButton();
             this.buttonGoogle = new System.Windows.Forms.Button();
@@ -62,8 +67,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxPublisher = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.maskedTextBoxReleaseDate = new System.Windows.Forms.MaskedTextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.radioButtonTwo = new System.Windows.Forms.RadioButton();
             this.radioButtonOne = new System.Windows.Forms.RadioButton();
             this.textBoxName = new System.Windows.Forms.TextBox();
@@ -83,7 +86,6 @@
             this.groupBoxDefaultGames = new System.Windows.Forms.GroupBox();
             this.checkedListBoxDefaultGames = new System.Windows.Forms.CheckedListBox();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
-            this.поискToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -94,148 +96,154 @@
             // 
             // menuStrip
             // 
-            resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.kernelToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.helpToolStripMenuItem});
+            resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Name = "menuStrip";
             // 
             // fileToolStripMenuItem
             // 
-            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addMoreGamesToolStripMenuItem,
             this.presetsToolStripMenuItem,
-            this.поискToolStripMenuItem,
+            this.searchToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
             // addMoreGamesToolStripMenuItem
             // 
-            resources.ApplyResources(this.addMoreGamesToolStripMenuItem, "addMoreGamesToolStripMenuItem");
             this.addMoreGamesToolStripMenuItem.Name = "addMoreGamesToolStripMenuItem";
+            resources.ApplyResources(this.addMoreGamesToolStripMenuItem, "addMoreGamesToolStripMenuItem");
             this.addMoreGamesToolStripMenuItem.Click += new System.EventHandler(this.buttonAddGames_Click);
             // 
             // presetsToolStripMenuItem
             // 
-            resources.ApplyResources(this.presetsToolStripMenuItem, "presetsToolStripMenuItem");
             this.presetsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
             this.addPresetToolStripMenuItem,
             this.deletePresetToolStripMenuItem});
             this.presetsToolStripMenuItem.Name = "presetsToolStripMenuItem";
+            resources.ApplyResources(this.presetsToolStripMenuItem, "presetsToolStripMenuItem");
             // 
             // toolStripMenuItem2
             // 
-            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             // 
             // addPresetToolStripMenuItem
             // 
-            resources.ApplyResources(this.addPresetToolStripMenuItem, "addPresetToolStripMenuItem");
             this.addPresetToolStripMenuItem.Name = "addPresetToolStripMenuItem";
+            resources.ApplyResources(this.addPresetToolStripMenuItem, "addPresetToolStripMenuItem");
             this.addPresetToolStripMenuItem.Click += new System.EventHandler(this.AddPreset);
             // 
             // deletePresetToolStripMenuItem
             // 
-            resources.ApplyResources(this.deletePresetToolStripMenuItem, "deletePresetToolStripMenuItem");
             this.deletePresetToolStripMenuItem.Name = "deletePresetToolStripMenuItem";
+            resources.ApplyResources(this.deletePresetToolStripMenuItem, "deletePresetToolStripMenuItem");
+            // 
+            // searchToolStripMenuItem
+            // 
+            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
+            resources.ApplyResources(this.searchToolStripMenuItem, "searchToolStripMenuItem");
+            this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
-            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             // 
             // exitToolStripMenuItem
             // 
-            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // kernelToolStripMenuItem
             // 
-            resources.ApplyResources(this.kernelToolStripMenuItem, "kernelToolStripMenuItem");
             this.kernelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dumpKernelToolStripMenuItem,
             this.flashOriginalKernelToolStripMenuItem,
             this.flashCustomKernelToolStripMenuItem,
             this.uninstallToolStripMenuItem});
             this.kernelToolStripMenuItem.Name = "kernelToolStripMenuItem";
+            resources.ApplyResources(this.kernelToolStripMenuItem, "kernelToolStripMenuItem");
             // 
             // dumpKernelToolStripMenuItem
             // 
-            resources.ApplyResources(this.dumpKernelToolStripMenuItem, "dumpKernelToolStripMenuItem");
             this.dumpKernelToolStripMenuItem.Name = "dumpKernelToolStripMenuItem";
+            resources.ApplyResources(this.dumpKernelToolStripMenuItem, "dumpKernelToolStripMenuItem");
             this.dumpKernelToolStripMenuItem.Click += new System.EventHandler(this.dumpKernelToolStripMenuItem_Click);
             // 
             // flashOriginalKernelToolStripMenuItem
             // 
-            resources.ApplyResources(this.flashOriginalKernelToolStripMenuItem, "flashOriginalKernelToolStripMenuItem");
             this.flashOriginalKernelToolStripMenuItem.Name = "flashOriginalKernelToolStripMenuItem";
+            resources.ApplyResources(this.flashOriginalKernelToolStripMenuItem, "flashOriginalKernelToolStripMenuItem");
             this.flashOriginalKernelToolStripMenuItem.Click += new System.EventHandler(this.flashOriginalKernelToolStripMenuItem_Click);
             // 
             // flashCustomKernelToolStripMenuItem
             // 
-            resources.ApplyResources(this.flashCustomKernelToolStripMenuItem, "flashCustomKernelToolStripMenuItem");
             this.flashCustomKernelToolStripMenuItem.Name = "flashCustomKernelToolStripMenuItem";
+            resources.ApplyResources(this.flashCustomKernelToolStripMenuItem, "flashCustomKernelToolStripMenuItem");
             this.flashCustomKernelToolStripMenuItem.Click += new System.EventHandler(this.flashCustomKernelToolStripMenuItem_Click);
             // 
             // uninstallToolStripMenuItem
             // 
-            resources.ApplyResources(this.uninstallToolStripMenuItem, "uninstallToolStripMenuItem");
             this.uninstallToolStripMenuItem.Name = "uninstallToolStripMenuItem";
+            resources.ApplyResources(this.uninstallToolStripMenuItem, "uninstallToolStripMenuItem");
             this.uninstallToolStripMenuItem.Click += new System.EventHandler(this.uninstallToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
-            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.useExtendedFontToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             // 
             // useExtendedFontToolStripMenuItem
             // 
-            resources.ApplyResources(this.useExtendedFontToolStripMenuItem, "useExtendedFontToolStripMenuItem");
             this.useExtendedFontToolStripMenuItem.Checked = true;
             this.useExtendedFontToolStripMenuItem.CheckOnClick = true;
             this.useExtendedFontToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.useExtendedFontToolStripMenuItem.Name = "useExtendedFontToolStripMenuItem";
+            resources.ApplyResources(this.useExtendedFontToolStripMenuItem, "useExtendedFontToolStripMenuItem");
             this.useExtendedFontToolStripMenuItem.Click += new System.EventHandler(this.useExtendedFontToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
-            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gitHubPageWithActualReleasesToolStripMenuItem,
             this.fAQToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
             // 
             // gitHubPageWithActualReleasesToolStripMenuItem
             // 
-            resources.ApplyResources(this.gitHubPageWithActualReleasesToolStripMenuItem, "gitHubPageWithActualReleasesToolStripMenuItem");
             this.gitHubPageWithActualReleasesToolStripMenuItem.Name = "gitHubPageWithActualReleasesToolStripMenuItem";
+            resources.ApplyResources(this.gitHubPageWithActualReleasesToolStripMenuItem, "gitHubPageWithActualReleasesToolStripMenuItem");
             this.gitHubPageWithActualReleasesToolStripMenuItem.Click += new System.EventHandler(this.gitHubPageWithActualReleasesToolStripMenuItem_Click);
             // 
             // fAQToolStripMenuItem
             // 
-            resources.ApplyResources(this.fAQToolStripMenuItem, "fAQToolStripMenuItem");
             this.fAQToolStripMenuItem.Name = "fAQToolStripMenuItem";
+            resources.ApplyResources(this.fAQToolStripMenuItem, "fAQToolStripMenuItem");
             this.fAQToolStripMenuItem.Click += new System.EventHandler(this.fAQToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
-            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // checkedListBoxGames
             // 
-            resources.ApplyResources(this.checkedListBoxGames, "checkedListBoxGames");
             this.checkedListBoxGames.AllowDrop = true;
+            resources.ApplyResources(this.checkedListBoxGames, "checkedListBoxGames");
             this.checkedListBoxGames.FormattingEnabled = true;
             this.checkedListBoxGames.Items.AddRange(new object[] {
             resources.GetString("checkedListBoxGames.Items")});
@@ -244,11 +252,16 @@
             this.checkedListBoxGames.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxGames_SelectedIndexChanged);
             this.checkedListBoxGames.DragDrop += new System.Windows.Forms.DragEventHandler(this.checkedListBoxGames_DragDrop);
             this.checkedListBoxGames.DragEnter += new System.Windows.Forms.DragEventHandler(this.checkedListBoxGames_DragEnter);
+            this.checkedListBoxGames.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkedListBoxGames_KeyDown);
             this.checkedListBoxGames.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkedListBoxGames_MouseDown);
             // 
             // groupBoxOptions
             // 
             resources.ApplyResources(this.groupBoxOptions, "groupBoxOptions");
+            this.groupBoxOptions.Controls.Add(this.maskedTextBoxReleaseDate);
+            this.groupBoxOptions.Controls.Add(this.label1);
+            this.groupBoxOptions.Controls.Add(this.textBoxGameGenie);
+            this.groupBoxOptions.Controls.Add(this.label7);
             this.groupBoxOptions.Controls.Add(this.label6);
             this.groupBoxOptions.Controls.Add(this.radioButtonTwoSim);
             this.groupBoxOptions.Controls.Add(this.buttonGoogle);
@@ -259,8 +272,6 @@
             this.groupBoxOptions.Controls.Add(this.label3);
             this.groupBoxOptions.Controls.Add(this.textBoxPublisher);
             this.groupBoxOptions.Controls.Add(this.label2);
-            this.groupBoxOptions.Controls.Add(this.maskedTextBoxReleaseDate);
-            this.groupBoxOptions.Controls.Add(this.label1);
             this.groupBoxOptions.Controls.Add(this.radioButtonTwo);
             this.groupBoxOptions.Controls.Add(this.radioButtonOne);
             this.groupBoxOptions.Controls.Add(this.textBoxName);
@@ -268,6 +279,28 @@
             this.groupBoxOptions.Controls.Add(this.labelID);
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
+            // 
+            // maskedTextBoxReleaseDate
+            // 
+            resources.ApplyResources(this.maskedTextBoxReleaseDate, "maskedTextBoxReleaseDate");
+            this.maskedTextBoxReleaseDate.Name = "maskedTextBoxReleaseDate";
+            this.maskedTextBoxReleaseDate.TextChanged += new System.EventHandler(this.maskedTextBoxReleaseDate_TextChanged);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // textBoxGameGenie
+            // 
+            resources.ApplyResources(this.textBoxGameGenie, "textBoxGameGenie");
+            this.textBoxGameGenie.Name = "textBoxGameGenie";
+            this.textBoxGameGenie.TextChanged += new System.EventHandler(this.textBoxGameGenie_TextChanged);
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
             // 
             // label6
             // 
@@ -328,17 +361,6 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
-            // maskedTextBoxReleaseDate
-            // 
-            resources.ApplyResources(this.maskedTextBoxReleaseDate, "maskedTextBoxReleaseDate");
-            this.maskedTextBoxReleaseDate.Name = "maskedTextBoxReleaseDate";
-            this.maskedTextBoxReleaseDate.TextChanged += new System.EventHandler(this.maskedTextBoxReleaseDate_TextChanged);
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
             // radioButtonTwo
             // 
             resources.ApplyResources(this.radioButtonTwo, "radioButtonTwo");
@@ -385,16 +407,16 @@
             // 
             // statusStrip
             // 
-            resources.ApplyResources(this.statusStrip, "statusStrip");
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelSelected});
+            resources.ApplyResources(this.statusStrip, "statusStrip");
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.SizingGrip = false;
             // 
             // toolStripStatusLabelSelected
             // 
-            resources.ApplyResources(this.toolStripStatusLabelSelected, "toolStripStatusLabelSelected");
             this.toolStripStatusLabelSelected.Name = "toolStripStatusLabelSelected";
+            resources.ApplyResources(this.toolStripStatusLabelSelected, "toolStripStatusLabelSelected");
             // 
             // openFileDialogNes
             // 
@@ -404,29 +426,29 @@
             // 
             // contextMenuStrip
             // 
-            resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.selectAllToolStripMenuItem,
             this.unselectAllToolStripMenuItem,
             this.deleteGameToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
+            resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             // 
             // selectAllToolStripMenuItem
             // 
-            resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
+            resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
             this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
             // 
             // unselectAllToolStripMenuItem
             // 
-            resources.ApplyResources(this.unselectAllToolStripMenuItem, "unselectAllToolStripMenuItem");
             this.unselectAllToolStripMenuItem.Name = "unselectAllToolStripMenuItem";
+            resources.ApplyResources(this.unselectAllToolStripMenuItem, "unselectAllToolStripMenuItem");
             this.unselectAllToolStripMenuItem.Click += new System.EventHandler(this.unselectAllToolStripMenuItem_Click);
             // 
             // deleteGameToolStripMenuItem
             // 
-            resources.ApplyResources(this.deleteGameToolStripMenuItem, "deleteGameToolStripMenuItem");
             this.deleteGameToolStripMenuItem.Name = "deleteGameToolStripMenuItem";
+            resources.ApplyResources(this.deleteGameToolStripMenuItem, "deleteGameToolStripMenuItem");
             this.deleteGameToolStripMenuItem.Click += new System.EventHandler(this.deleteGameToolStripMenuItem_Click);
             // 
             // openFileDialogImage
@@ -442,8 +464,8 @@
             // 
             // groupBoxDefaultGames
             // 
-            resources.ApplyResources(this.groupBoxDefaultGames, "groupBoxDefaultGames");
             this.groupBoxDefaultGames.Controls.Add(this.checkedListBoxDefaultGames);
+            resources.ApplyResources(this.groupBoxDefaultGames, "groupBoxDefaultGames");
             this.groupBoxDefaultGames.Name = "groupBoxDefaultGames";
             this.groupBoxDefaultGames.TabStop = false;
             // 
@@ -459,12 +481,6 @@
             this.timerCalculateGames.Enabled = true;
             this.timerCalculateGames.Interval = 500;
             this.timerCalculateGames.Tick += new System.EventHandler(this.timerCalculateGames_Tick);
-            // 
-            // поискToolStripMenuItem
-            // 
-            resources.ApplyResources(this.поискToolStripMenuItem, "поискToolStripMenuItem");
-            this.поискToolStripMenuItem.Name = "поискToolStripMenuItem";
-            this.поискToolStripMenuItem.Click += new System.EventHandler(this.поискToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -553,7 +569,9 @@
         private System.Windows.Forms.ToolStripMenuItem deletePresetToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         protected internal System.Windows.Forms.CheckedListBox checkedListBoxGames;
-        private System.Windows.Forms.ToolStripMenuItem поискToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBoxGameGenie;
+        private System.Windows.Forms.Label label7;
     }
 }
 

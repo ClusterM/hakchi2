@@ -22,18 +22,21 @@ namespace com.clusterrr.hakchi_gui
         public readonly string IconPath;
         public readonly string SmallIconPath;
         public readonly string Code;
+        public readonly string GameGeniePath;
         public string Args;
         public string Name;
         public byte Players;
         public bool Simultaneous;
         public string ReleaseDate;
         public string Publisher;
+        public string GameGenie = "";
 
         private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
 
         const string DefaultReleaseDate = "1983-07-15";
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet";
         const string DefaultPublisher = "Nintendo";
+        public const string GameGenieFileName = "gamegenie.txt";
 
         private byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10 };
 
@@ -45,6 +48,7 @@ namespace com.clusterrr.hakchi_gui
             NesPath = Path.Combine(path, Code + ".nes");
             IconPath = Path.Combine(path, Code + ".png");
             SmallIconPath = Path.Combine(path, Code + "_small.png");
+            GameGeniePath = Path.Combine(path, GameGenieFileName);
             if (!File.Exists(ConfigPath)) throw new Exception("Invalid game directory: " + path);
 
             Name = Code;
@@ -86,6 +90,112 @@ namespace com.clusterrr.hakchi_gui
                         break;
                 }
             }
+            if (File.Exists(GameGeniePath))
+                GameGenie = File.ReadAllText(GameGeniePath);
+        }
+
+        public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper = false, Form parentForm = null)
+        {
+            uint crc32;
+            if (!Path.GetExtension(nesFileName).ToLower().Equals(".fds"))
+            {
+                var nesFile = new NesFile(nesFileName);
+                nesFile.CorrectRom();
+                crc32 = nesFile.CRC32;
+                Code = GenerateCode(crc32);
+                GamePath = Path.Combine(gamesDirectory, Code);
+                Directory.CreateDirectory(GamePath);
+                NesPath = Path.Combine(GamePath, Code + ".nes");
+                var patchesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "patches");
+                Directory.CreateDirectory(patchesDirectory);
+                var patches = Directory.GetFiles(patchesDirectory, string.Format("{0:X8}*.ips", crc32), SearchOption.AllDirectories);
+                if (patches.Length > 0)
+                {
+                    if (MessageBox.Show(parentForm, string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)), Resources.PatchAvailable, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        var patch = patches[0];
+                        IpsPatcher.Patch(patch, nesFileName, NesPath);
+                        nesFile = new NesFile(NesPath);
+                    }
+                }
+
+                if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
+                if (!supportedMappers.Contains(nesFile.Mapper) && !ignoreMapper)
+                    throw new UnsupportedMapperException(nesFile);
+                if (nesFile.Mirroring == NesFile.MirroringType.FourScreenVram && !ignoreMapper)
+                    throw new UnsupportedFourScreenException(nesFile);
+
+                ConfigPath = Path.Combine(GamePath, Code + ".desktop");
+                nesFile.Save(NesPath);
+            }
+            else
+            {
+                var fdsData = File.ReadAllBytes(nesFileName);
+                crc32 = CRC32(fdsData);
+                Code = GenerateCode(crc32);
+                GamePath = Path.Combine(gamesDirectory, Code);
+                Directory.CreateDirectory(GamePath);
+                ConfigPath = Path.Combine(GamePath, Code + ".desktop");
+                NesPath = Path.Combine(GamePath, Code + ".nes");
+                File.WriteAllBytes(NesPath, fdsData);
+            }
+
+            Name = Path.GetFileNameWithoutExtension(nesFileName);
+            Players = 1;
+            ReleaseDate = DefaultReleaseDate;
+            Publisher = DefaultPublisher;
+
+            CachedGameInfo gameinfo;
+            if (gameInfoCache != null && gameInfoCache.TryGetValue(crc32, out gameinfo))
+            {
+                Name = gameinfo.Name;
+                Players = gameinfo.Players;
+                if (Players > 1) Simultaneous = true; // actually unknown...
+                ReleaseDate = gameinfo.ReleaseDate;
+                if (ReleaseDate.Length == 4) ReleaseDate += "-01";
+                if (ReleaseDate.Length == 7) ReleaseDate += "-01";
+                Publisher = gameinfo.Publisher;
+            }
+
+            int commaPos = Name.IndexOf(",");
+            if (commaPos > 0)
+                Name = Name.Substring(0, commaPos);
+            Name = Regex.Replace(Name, @" ?\(.*?\)", string.Empty).Trim();
+            Name = Regex.Replace(Name, @" ?\[.*?\]", string.Empty).Trim();
+            Name = Name.Replace("_", " ").Replace("  ", " ").Trim();
+            Args = DefaultArgs;
+            IconPath = Path.Combine(GamePath, Code + ".png");
+            SmallIconPath = Path.Combine(GamePath, Code + "_small.png");
+            GameGeniePath = Path.Combine(GamePath, GameGenieFileName);
+            SetImage(null);
+            Save();
+        }
+
+        public void Save()
+        {
+            File.WriteAllText(ConfigPath, string.Format(
+                "[Desktop Entry]\n" +
+                "Type=Application\n" +
+                "Exec=/usr/bin/clover-kachikachi /usr/share/games/nes/kachikachi/{0}/{0}.nes {1}\n" +
+                "Path=/var/lib/clover/profiles/0/{0}\n" +
+                "Name={2}\n" +
+                "Icon=/usr/share/games/nes/kachikachi/{0}/{0}.png\n\n" +
+                "[X-CLOVER Game]\n" +
+                "Code={0}\n" +
+                "TestID=777\n" +
+                "ID=0\n" +
+                "Players={3}\n" +
+                "Simultaneous={7}\n" +
+                "ReleaseDate={4}\n" +
+                "SaveCount=0\n" +
+                "SortRawTitle={5}\n" +
+                "SortRawPublisher={6}\n" +
+                "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
+                Code, Args ?? DefaultArgs, Name ?? Code, Players, ReleaseDate ?? DefaultReleaseDate, (Name ?? Code).ToLower(), (Publisher ?? DefaultPublisher).ToUpper(), Simultaneous ? 1 : 0));
+            if (!string.IsNullOrEmpty(GameGenie.Trim()))
+                File.WriteAllText(GameGeniePath, GameGenie.Trim());
+            else if (File.Exists(GameGeniePath))
+                File.Delete(GameGeniePath);
         }
 
         public override string ToString()
@@ -149,115 +259,6 @@ namespace com.clusterrr.hakchi_gui
             //outImageSmall.Save(SmallIconPath, ImageFormat.Png);
         }
 
-        public void Save()
-        {
-            File.WriteAllText(ConfigPath, string.Format(
-                "[Desktop Entry]\n" +
-                "Type=Application\n" +
-                "Exec=/usr/bin/clover-kachikachi /usr/share/games/nes/kachikachi/{0}/{0}.nes {1}\n" +
-                "Path=/var/lib/clover/profiles/0/{0}\n" +
-                "Name={2}\n" +
-                "Icon=/usr/share/games/nes/kachikachi/{0}/{0}.png\n\n" +
-                "[X-CLOVER Game]\n" +
-                "Code={0}\n" +
-                "TestID=777\n" +
-                "ID=0\n" +
-                "Players={3}\n" +
-                "Simultaneous={7}\n" +
-                "ReleaseDate={4}\n" +
-                "SaveCount=0\n" +
-                "SortRawTitle={5}\n" +
-                "SortRawPublisher={6}\n" +
-                "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
-                Code, Args ?? DefaultArgs, Name ?? Code, Players, ReleaseDate ?? DefaultReleaseDate, (Name ?? Code).ToLower(), (Publisher ?? DefaultPublisher).ToUpper(), Simultaneous ? 1 : 0));
-        }
-
-        public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper = false, Form parentForm = null)
-        {
-            uint crc32;
-            if (!Path.GetExtension(nesFileName).ToLower().Equals(".fds"))
-            {
-                var nesFile = new NesFile(nesFileName);
-                nesFile.CorrectRom();
-                crc32 = nesFile.CRC32;
-                Code = string.Format("CLV-H-{0}{1}{2}{3}{4}",
-                    (char)('A' + (crc32 % 26)),
-                    (char)('A' + (crc32 >> 5) % 26),
-                    (char)('A' + ((crc32 >> 10) % 26)),
-                    (char)('A' + ((crc32 >> 15) % 26)),
-                    (char)('A' + ((crc32 >> 20) % 26)));
-                GamePath = Path.Combine(gamesDirectory, Code);
-                Directory.CreateDirectory(GamePath);
-                NesPath = Path.Combine(GamePath, Code + ".nes");
-                var patchesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "patches");
-                Directory.CreateDirectory(patchesDirectory);
-                var patches = Directory.GetFiles(patchesDirectory, string.Format("{0:X8}*.ips", crc32), SearchOption.AllDirectories);
-                if (patches.Length > 0)
-                {
-                    if (MessageBox.Show(parentForm, string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)), Resources.PatchAvailable, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        var patch = patches[0];
-                        IpsPatcher.Patch(patch, nesFileName, NesPath);
-                        nesFile = new NesFile(NesPath);
-                    }
-                }
-
-                if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
-                if (!supportedMappers.Contains(nesFile.Mapper) && !ignoreMapper)
-                    throw new UnsupportedMapperException(nesFile);
-                if (nesFile.Mirroring == NesFile.MirroringType.FourScreenVram && !ignoreMapper)
-                    throw new UnsupportedFourScreenException(nesFile);
-
-                ConfigPath = Path.Combine(GamePath, Code + ".desktop");
-                nesFile.Save(NesPath);
-            }
-            else
-            {
-                var fdsData = File.ReadAllBytes(nesFileName);
-                crc32 = CRC32(fdsData);
-                Code = string.Format("CLV-H-{0}{1}{2}{3}{4}",
-                    (char)('A' + (crc32 % 26)),
-                    (char)('A' + (crc32 >> 5) % 26),
-                    (char)('A' + ((crc32 >> 10) % 26)),
-                    (char)('A' + ((crc32 >> 15) % 26)),
-                    (char)('A' + ((crc32 >> 20) % 26)));
-                GamePath = Path.Combine(gamesDirectory, Code);
-                Directory.CreateDirectory(GamePath);
-                ConfigPath = Path.Combine(GamePath, Code + ".desktop");
-                NesPath = Path.Combine(GamePath, Code + ".nes");
-                File.WriteAllBytes(NesPath, fdsData);
-            }
-
-            Name = Path.GetFileNameWithoutExtension(nesFileName);
-            Players = 1;
-            ReleaseDate = DefaultReleaseDate;
-            Publisher = DefaultPublisher;
-
-            CachedGameInfo gameinfo;
-            if (gameInfoCache != null && gameInfoCache.TryGetValue(crc32, out gameinfo))
-            {
-                Name = gameinfo.Name;
-                Players = gameinfo.Players;
-                if (Players > 1) Simultaneous = true; // actually unknown...
-                ReleaseDate = gameinfo.ReleaseDate;
-                if (ReleaseDate.Length == 4) ReleaseDate += "-01";
-                if (ReleaseDate.Length == 7) ReleaseDate += "-01";
-                Publisher = gameinfo.Publisher;
-            }
-
-            int commaPos = Name.IndexOf(",");
-            if (commaPos > 0)
-                Name = Name.Substring(0, commaPos);
-            Name = Regex.Replace(Name, @" ?\(.*?\)", string.Empty).Trim();
-            Name = Regex.Replace(Name, @" ?\[.*?\]", string.Empty).Trim();
-            Name = Name.Replace("_", " ").Replace("  ", " ").Trim();
-            Args = DefaultArgs;
-            IconPath = Path.Combine(GamePath, Code + ".png");
-            SmallIconPath = Path.Combine(GamePath, Code + "_small.png");
-            SetImage(null);
-            Save();
-        }
-
         private static uint CRC32(byte[] data)
         {
             uint poly = 0xedb88320;
@@ -286,6 +287,16 @@ namespace com.clusterrr.hakchi_gui
                 crc = (uint)((crc >> 8) ^ table[index]);
             }
             return ~crc;
+        }
+
+        private static string GenerateCode(uint crc32)
+        {
+            return string.Format("CLV-H-{0}{1}{2}{3}{4}",
+                (char)('A' + (crc32 % 26)),
+                (char)('A' + (crc32 >> 5) % 26),
+                (char)('A' + ((crc32 >> 10) % 26)),
+                (char)('A' + ((crc32 >> 15) % 26)),
+                (char)('A' + ((crc32 >> 20) % 26)));
         }
 
         private struct CachedGameInfo

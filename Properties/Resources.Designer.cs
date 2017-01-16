@@ -287,6 +287,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Game Ganie code &quot;{0}&quot; for game &quot;{1}&quot;..
+        /// </summary>
+        internal static string GameGenieFormatError {
+            get {
+                return ResourceManager.GetString("GameGenieFormatError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t apply Game Genie code &quot;{0}&quot; to game &quot;{1}&quot; -  value not found. Maybe this code for other game?.
+        /// </summary>
+        internal static string GameGenieNotFound {
+            get {
+                return ResourceManager.GetString("GameGenieNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to games(s) selected.
         /// </summary>
         internal static string GamesSelected {

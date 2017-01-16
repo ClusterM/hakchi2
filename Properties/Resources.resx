@@ -292,6 +292,12 @@
   <data name="UninstallQ2" xml:space="preserve">
     <value>Done. Wait until the power led goes out. Also you need to flash original kernel. Do you want to flash original kernel now?</value>
   </data>
+  <data name="GameGenieFormatError" xml:space="preserve">
+    <value>Invalid Game Ganie code "{0}" for game "{1}".</value>
+  </data>
+  <data name="GameGenieNotFound" xml:space="preserve">
+    <value>Can't apply Game Genie code "{0}" to game "{1}" -  value not found. Maybe this code for other game?</value>
+  </data>
   <data name="PatchAvailable" xml:space="preserve">
     <value>Patch available</value>
   </data>

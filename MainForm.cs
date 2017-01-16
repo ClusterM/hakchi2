@@ -142,6 +142,7 @@ namespace com.clusterrr.hakchi_gui
                     pictureBoxArt.Image = LoadBitmap(game.IconPath);
                 else
                     pictureBoxArt.Image = null;
+                textBoxGameGenie.Text = game.GameGenie;
                 groupBoxOptions.Enabled = true;
             }
         }
@@ -289,6 +290,14 @@ namespace com.clusterrr.hakchi_gui
             if (selected == null || !(selected is NesGame)) return;
             var game = (selected as NesGame);
             game.ReleaseDate = maskedTextBoxReleaseDate.Text;
+        }
+
+        private void textBoxGameGenie_TextChanged(object sender, EventArgs e)
+        {
+            var selected = checkedListBoxGames.SelectedItem;
+            if (selected == null || !(selected is NesGame)) return;
+            var game = (selected as NesGame);
+            game.GameGenie = textBoxGameGenie.Text;
         }
 
         private void SaveSelectedGames()
@@ -686,14 +695,18 @@ namespace com.clusterrr.hakchi_gui
 
         private void deleteGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            deleteGame((int)(sender as ToolStripMenuItem).Tag);
+        }
+
+        private void deleteGame(int pos)
+        {
             try
             {
-                var game = checkedListBoxGames.Items[(int)(sender as ToolStripMenuItem).Tag] as NesGame;
+                var game = checkedListBoxGames.Items[pos] as NesGame;
                 if (MessageBox.Show(this, string.Format(Resources.DeleteQ, game.Name), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    SaveConfig();
                     Directory.Delete(game.GamePath, true);
-                    LoadGames();
+                    checkedListBoxGames.Items.RemoveAt(pos);
                 }
             }
             catch (Exception ex)
@@ -741,12 +754,18 @@ namespace com.clusterrr.hakchi_gui
             AddGames(files);
         }
 
-        private void поискToolStripMenuItem_Click(object sender, EventArgs e)
+        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var searchForm = new SearchForm(this);
             searchForm.Left = this.Left + 200;
             searchForm.Top = this.Top + 300;
             searchForm.Show();
+        }
+
+        private void checkedListBoxGames_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete && checkedListBoxGames.SelectedIndex > 0)
+                deleteGame(checkedListBoxGames.SelectedIndex);
         }
     }
 }

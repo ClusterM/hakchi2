@@ -49,13 +49,10 @@ namespace com.clusterrr.hakchi_gui
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            //if (DeviceExists(vid, pid))
+            if (Fel.DeviceExists(vid, pid))
             {
-                if (Fel.DeviceExists(vid, pid))
-                {
-                    DialogResult = DialogResult.OK;
-                    timer.Enabled = false;
-                }
+                DialogResult = DialogResult.OK;
+                timer.Enabled = false;
             }
         }
 

@@ -90,6 +90,7 @@
     <Compile Include="FelLib\WinUSBNet\USBPipe.cs" />
     <Compile Include="FelLib\WinUSBNet\USBPipeCollection.cs" />
     <Compile Include="FelLib\WinUSBNet\USBPipePolicy.cs" />
+    <Compile Include="GameGenie.cs" />
     <Compile Include="ImageGooglerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -340,6 +341,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="patches\279710dc-Battletoads %28U%29 [bugfix].ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="patches\96087988-RoboCop 3 %28U%29 [!] - NES Mini patch.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="patches\c4b6ed3c-Bill &amp; Ted%27s Excellent Video Game Adventure %28U%29 - NES Mini patch.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="patches\d054ffb0-Startropics II - Zoda%27s Revenge %28U%29 [!] - MMC3 patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
