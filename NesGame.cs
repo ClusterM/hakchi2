@@ -38,7 +38,7 @@ namespace com.clusterrr.hakchi_gui
         const string DefaultPublisher = "Nintendo";
         public const string GameGenieFileName = "gamegenie.txt";
 
-        private byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10 };
+        private byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10, 87 };
 
         public NesGame(string path)
         {
