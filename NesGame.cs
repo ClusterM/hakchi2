@@ -46,6 +46,14 @@ namespace com.clusterrr.hakchi_gui
             Code = Path.GetFileNameWithoutExtension(path);
             ConfigPath = Path.Combine(path, Code + ".desktop");
             NesPath = Path.Combine(path, Code + ".nes");
+            if (!File.Exists(NesPath))
+            {
+                var fdsPath = Path.Combine(path, Code + ".fds");
+                if (File.Exists(fdsPath))
+                    NesPath = fdsPath;
+                else
+                    throw new Exception("ROM not found: " + path);
+            }
             IconPath = Path.Combine(path, Code + ".png");
             SmallIconPath = Path.Combine(path, Code + "_small.png");
             GameGeniePath = Path.Combine(path, GameGenieFileName);
@@ -71,6 +79,8 @@ namespace com.clusterrr.hakchi_gui
                         Args = line;
                         if (Args.Contains(".nes"))
                             Args = Args.Substring(Args.IndexOf(".nes") + 4).Trim();
+                        else if (Args.Contains(".fds"))
+                            Args = Args.Substring(Args.IndexOf(".fds") + 4).Trim();
                         else Args = "";
                         break;
                     case "name":
@@ -136,7 +146,7 @@ namespace com.clusterrr.hakchi_gui
                 GamePath = Path.Combine(gamesDirectory, Code);
                 Directory.CreateDirectory(GamePath);
                 ConfigPath = Path.Combine(GamePath, Code + ".desktop");
-                NesPath = Path.Combine(GamePath, Code + ".nes");
+                NesPath = Path.Combine(GamePath, Code + ".fds");
                 File.WriteAllBytes(NesPath, fdsData);
             }
 
@@ -177,7 +187,7 @@ namespace com.clusterrr.hakchi_gui
             File.WriteAllText(ConfigPath, string.Format(
                 "[Desktop Entry]\n" +
                 "Type=Application\n" +
-                "Exec=/usr/bin/clover-kachikachi /usr/share/games/nes/kachikachi/{0}/{0}.nes {1}\n" +
+                "Exec=/usr/bin/clover-kachikachi /usr/share/games/nes/kachikachi/{0}/{8} {1}\n" +
                 "Path=/var/lib/clover/profiles/0/{0}\n" +
                 "Name={2}\n" +
                 "Icon=/usr/share/games/nes/kachikachi/{0}/{0}.png\n\n" +
@@ -192,7 +202,9 @@ namespace com.clusterrr.hakchi_gui
                 "SortRawTitle={5}\n" +
                 "SortRawPublisher={6}\n" +
                 "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
-                Code, Args ?? DefaultArgs, Name ?? Code, Players, ReleaseDate ?? DefaultReleaseDate, (Name ?? Code).ToLower(), (Publisher ?? DefaultPublisher).ToUpper(), Simultaneous ? 1 : 0));
+                Code, Args ?? DefaultArgs, Name ?? Code, Players, ReleaseDate ?? DefaultReleaseDate,
+                (Name ?? Code).ToLower(), (Publisher ?? DefaultPublisher).ToUpper(),
+                Simultaneous ? 1 : 0, Path.GetFileName(NesPath)));
             if (!string.IsNullOrEmpty(GameGenie.Trim()))
                 File.WriteAllText(GameGeniePath, GameGenie.Trim());
             else if (File.Exists(GameGeniePath))

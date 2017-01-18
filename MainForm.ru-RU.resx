@@ -270,10 +270,10 @@
     <value>Дата выхода (YYYY-MM-DD):</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 13</value>
+    <value>181, 13</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Game Genie коды (через запятую)</value>
+    <value>Game Genie коды (через запятую):</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 13</value>

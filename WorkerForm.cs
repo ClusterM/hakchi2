@@ -161,14 +161,14 @@ namespace com.clusterrr.hakchi_gui
             catch { }
         }
 
-        void ShowError(Exception ex)
+        void ShowError(Exception ex, bool dontStop = false)
         {
             if (Disposing) return;
             try
             {
                 if (InvokeRequired)
                 {
-                    Invoke(new Action<Exception>(ShowError), new object[] { ex });
+                    Invoke(new Action<Exception,bool>(ShowError), new object[] { ex, dontStop });
                     return;
                 }
                 Debug.WriteLine(ex.Message + ex.StackTrace);
@@ -178,8 +178,11 @@ namespace com.clusterrr.hakchi_gui
                     MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgain + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                     MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgain, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                thread = null;
-                Close();
+                if (!dontStop)
+                {
+                    thread = null;
+                    Close();
+                }
             }
             catch { }
         }
@@ -407,7 +410,7 @@ namespace com.clusterrr.hakchi_gui
                         throw new Exception("Can't copy " + game);
                     if (!string.IsNullOrEmpty(game.GameGenie))
                     {
-                        var codes = game.GameGenie.Replace(" ", ",").Replace(";", ",").Split(',');
+                        var codes = game.GameGenie.Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
                         var newNesFilePath = Path.Combine(gameDir, game.Code + ".nes");
                         try
                         {
@@ -420,11 +423,11 @@ namespace com.clusterrr.hakchi_gui
                                 }
                                 catch (GameGenieFormatException)
                                 {
-                                    ShowError(new GameGenieFormatException(string.Format(Resources.GameGenieFormatError, code, game)));
+                                    ShowError(new GameGenieFormatException(string.Format(Resources.GameGenieFormatError, code, game)), dontStop:true);
                                 }
                                 catch (GameGenieNotFoundException)
                                 {
-                                    ShowError(new GameGenieNotFoundException(string.Format(Resources.GameGenieNotFound, code, game.Name)));
+                                    ShowError(new GameGenieNotFoundException(string.Format(Resources.GameGenieNotFound, code, game.Name)), dontStop: true);
                                 }
                             }
                             nesFile.Save(newNesFilePath);

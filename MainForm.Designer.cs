@@ -290,8 +290,6 @@
             resources.ApplyResources(this.checkedListBoxGames, "checkedListBoxGames");
             this.checkedListBoxGames.AllowDrop = true;
             this.checkedListBoxGames.FormattingEnabled = true;
-            this.checkedListBoxGames.Items.AddRange(new object[] {
-            resources.GetString("checkedListBoxGames.Items")});
             this.checkedListBoxGames.Name = "checkedListBoxGames";
             this.checkedListBoxGames.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxGames_ItemCheck);
             this.checkedListBoxGames.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxGames_SelectedIndexChanged);

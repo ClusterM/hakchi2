@@ -375,6 +375,7 @@ namespace com.clusterrr.hakchi_gui
         void AddGames(string[] files)
         {
             SaveSelectedGames();
+            SaveConfig();
             NesGame nesGame = null;
             foreach (var file in files)
             {
