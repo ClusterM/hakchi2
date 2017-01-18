@@ -6,6 +6,10 @@ mountpoint=/newroot
 installdir=$mountpoint/var/lib/$modname
 rootfs=$installdir/rootfs
 config=$installdir/config
+installed_flag=$installdir/installed
+version_file=$installdir/version
+hakchi_version=2
+kernel_version=3.4.112
 
 echo Starting $modname...
 
@@ -18,27 +22,35 @@ region=`cat $mountpoint/etc/clover/REGION`
 echo Board type: $boardtype
 echo Region: $region
 
-if [ ! -f $installdir/installed ]; then
-  echo Installing $modname...
+if [ -f $version_file ]; then
+	version=`cat $version_file`
+	echo Installed $modname version: $version
+else
+	version=0
+	echo $modname not installed
+fi
 
+if [ "$version" -lt "$hakchi_version" ]; then
+  echo Installing $modname...
+	
   rm -rf $installdir
   mkdir -p $rootfs/usr/share/games/nes
+	mkdir -p $rootfs/lib/modules/$kernel_version/extra
+  mkdir -p $rootfs/usr/share/games/nes/
 
   cp -a $mountpoint/bin $rootfs/
   cp -a $mountpoint/etc $rootfs/
-
+	cp -a $mountpoint/lib/modules/$kernel_version/extra/* $rootfs/lib/modules/$kernel_version/extra/
   cp -a /$modname/rootfs/* $rootfs/
   cp -a /bin/busybox $rootfs/bin/
   cp -a /sbin/cryptsetup $rootfs/bin/
-  
-  mkdir -p $rootfs/usr/share/games/nes/
   cp -a $mountpoint/usr/share/games/nes/kachikachi $rootfs/usr/share/games/nes/
 
-  echo 1>$installdir/installed
-
   chroot $rootfs /bin/busybox --install -s /bin/
+	echo "1">$installed_flag
+  echo "$hakchi_version">$version_file
 else
-  echo $modname already installed
+  echo $modname already installed and update is not required
 fi
 
 if [ -f $modname/config ]; then
@@ -98,6 +110,14 @@ if [ "$hakchi_title_font" == "y" ]; then
 else
 	echo Restoring original font...
   cp $mountpoint/usr/share/games/nes/kachikachi/title.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
+fi
+
+if [ "$hakchi_clovercon_hack" == "y" ]; then
+  echo Transfering hacked clovercon driver...
+  cp /$modname/clovercon.ko $rootfs/lib/modules/$kernel_version/extra/clovercon.ko
+else
+  echo Restoring original clovercon driver...
+  cp $mountpoint/lib/modules/$kernel_version/extra/clovercon.ko $rootfs/lib/modules/$kernel_version/extra/clovercon.ko
 fi
 
 if [ -d /games ]; then

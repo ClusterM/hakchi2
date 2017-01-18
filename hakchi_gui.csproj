@@ -273,6 +273,9 @@
     <None Include="mods\mod_transfer\bin\sed">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="mods\mod_transfer\hakchi\clovercon.ko">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="mods\mod_transfer\hakchi\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

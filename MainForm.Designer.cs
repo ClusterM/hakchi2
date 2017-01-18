@@ -51,6 +51,7 @@
             this.ToolStripMenuItemArmetLevel0 = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemArmetLevel1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemArmetLevel2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cloverconHackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -206,7 +207,8 @@
             resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.useExtendedFontToolStripMenuItem,
-            this.epilepsyProtectionToolStripMenuItem});
+            this.epilepsyProtectionToolStripMenuItem,
+            this.cloverconHackToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             // 
             // useExtendedFontToolStripMenuItem
@@ -230,6 +232,8 @@
             // ToolStripMenuItemArmetLevel0
             // 
             resources.ApplyResources(this.ToolStripMenuItemArmetLevel0, "ToolStripMenuItemArmetLevel0");
+            this.ToolStripMenuItemArmetLevel0.Checked = true;
+            this.ToolStripMenuItemArmetLevel0.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ToolStripMenuItemArmetLevel0.Name = "ToolStripMenuItemArmetLevel0";
             this.ToolStripMenuItemArmetLevel0.Click += new System.EventHandler(this.ToolStripMenuItemArmet_Click);
             // 
@@ -244,6 +248,15 @@
             resources.ApplyResources(this.ToolStripMenuItemArmetLevel2, "ToolStripMenuItemArmetLevel2");
             this.ToolStripMenuItemArmetLevel2.Name = "ToolStripMenuItemArmetLevel2";
             this.ToolStripMenuItemArmetLevel2.Click += new System.EventHandler(this.ToolStripMenuItemArmet_Click);
+            // 
+            // cloverconHackToolStripMenuItem
+            // 
+            resources.ApplyResources(this.cloverconHackToolStripMenuItem, "cloverconHackToolStripMenuItem");
+            this.cloverconHackToolStripMenuItem.Checked = true;
+            this.cloverconHackToolStripMenuItem.CheckOnClick = true;
+            this.cloverconHackToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cloverconHackToolStripMenuItem.Name = "cloverconHackToolStripMenuItem";
+            this.cloverconHackToolStripMenuItem.Click += new System.EventHandler(this.cloverconHackToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -608,6 +621,7 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemArmetLevel0;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemArmetLevel1;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemArmetLevel2;
+        private System.Windows.Forms.ToolStripMenuItem cloverconHackToolStripMenuItem;
     }
 }
 

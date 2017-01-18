@@ -69,6 +69,7 @@ namespace com.clusterrr.hakchi_gui
                 ToolStripMenuItemArmetLevel0.Checked = ConfigIni.AntiArmetLevel == 0;
                 ToolStripMenuItemArmetLevel1.Checked = ConfigIni.AntiArmetLevel == 1;
                 ToolStripMenuItemArmetLevel2.Checked = ConfigIni.AntiArmetLevel == 2;
+                cloverconHackToolStripMenuItem.Checked = ConfigIni.CloverconHack;
                 new Thread(NesGame.LoadCache).Start();
             }
             catch (Exception ex)
@@ -538,6 +539,7 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Config["hakchi_remove_games"] = true;
             workerForm.Config["hakchi_original_games"] = false;
             workerForm.Config["hakchi_title_font"] = ConfigIni.UseFont;
+            workerForm.Config["hakchi_clovercon_hack"] = ConfigIni.CloverconHack;
             var games = new List<NesGame>();
             bool needOriginal = false;
             foreach (var game in checkedListBoxGames.CheckedItems)
@@ -683,6 +685,21 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.UseFont = useExtendedFontToolStripMenuItem.Checked;
         }
 
+
+        private void ToolStripMenuItemArmet_Click(object sender, EventArgs e)
+        {
+            var name = (sender as ToolStripMenuItem).Name;
+            ConfigIni.AntiArmetLevel = byte.Parse(name.Substring(name.Length - 1));
+            ToolStripMenuItemArmetLevel0.Checked = ConfigIni.AntiArmetLevel == 0;
+            ToolStripMenuItemArmetLevel1.Checked = ConfigIni.AntiArmetLevel == 1;
+            ToolStripMenuItemArmetLevel2.Checked = ConfigIni.AntiArmetLevel == 2;
+        }
+
+        private void cloverconHackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.CloverconHack = cloverconHackToolStripMenuItem.Checked;
+        }
+
         public struct DefaultNesGame
         {
             public string Code;
@@ -789,15 +806,6 @@ namespace com.clusterrr.hakchi_gui
         {
             if (e.KeyCode == Keys.Delete && checkedListBoxGames.SelectedIndex > 0)
                 deleteGame(checkedListBoxGames.SelectedIndex);
-        }
-
-        private void ToolStripMenuItemArmet_Click(object sender, EventArgs e)
-        {
-            var name = (sender as ToolStripMenuItem).Name;
-            ConfigIni.AntiArmetLevel = byte.Parse(name.Substring(name.Length - 1));
-            ToolStripMenuItemArmetLevel0.Checked = ConfigIni.AntiArmetLevel == 0;
-            ToolStripMenuItemArmetLevel1.Checked = ConfigIni.AntiArmetLevel == 1;
-            ToolStripMenuItemArmetLevel2.Checked = ConfigIni.AntiArmetLevel == 2;
         }
     }
 }

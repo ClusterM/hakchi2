@@ -1,8 +1,11 @@
 preinit(){
 
+kernel_version=3.4.112
+
 mount -o bind $rootfs/bin $mountpoint/bin
 mount -o bind $rootfs/etc $mountpoint/etc
 mount -o bind $rootfs/usr/share/games/nes/kachikachi $mountpoint/usr/share/games/nes/kachikachi
+mount -o bind $rootfs/lib/modules/$kernel_version/extra $mountpoint/lib/modules/$kernel_version/extra
 
 return 0
 }
