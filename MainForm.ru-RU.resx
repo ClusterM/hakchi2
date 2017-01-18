@@ -118,11 +118,41 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Файл</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 20</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Ядро</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 20</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Настройки</value>
+  </data>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 20</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Помощь</value>
+  </data>
   <data name="addMoreGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>191, 22</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Добавить &amp;игр</value>
+  </data>
+  <data name="presetsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 22</value>
+  </data>
+  <data name="presetsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Пресеты</value>
   </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 6</value>
@@ -139,12 +169,6 @@
   <data name="deletePresetToolStripMenuItem.Text" xml:space="preserve">
     <value>Удалить пресет</value>
   </data>
-  <data name="presetsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 22</value>
-  </data>
-  <data name="presetsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Пресеты</value>
-  </data>
   <data name="searchToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>191, 22</value>
   </data>
@@ -159,12 +183,6 @@
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Выйти</value>
-  </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Файл</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>270, 22</value>
@@ -190,23 +208,35 @@
   <data name="uninstallToolStripMenuItem.Text" xml:space="preserve">
     <value>Полностью удалиться с NES Mini</value>
   </data>
-  <data name="kernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 20</value>
-  </data>
-  <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Ядро</value>
-  </data>
   <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
     <value>Использовать расширенный шрифт</value>
   </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 20</value>
+  <data name="epilepsyProtectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 22</value>
   </data>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Настройки</value>
+  <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Защита от приступов эпилепсии</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>263, 22</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel0.Text" xml:space="preserve">
+    <value>Оставить как есть</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>263, 22</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel1.Text" xml:space="preserve">
+    <value>Отключить для оригинальных игр</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>263, 22</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel2.Text" xml:space="preserve">
+    <value>Отключить для всех игр</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>263, 22</value>
@@ -223,11 +253,8 @@
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;О программе...</value>
   </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Помощь</value>
+  <data name="groupBoxOptions.Text" xml:space="preserve">
+    <value>Параметры игры</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -341,9 +368,6 @@
   <data name="labelID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="groupBoxOptions.Text" xml:space="preserve">
-    <value>Параметры игры</value>
-  </data>
   <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -365,6 +389,9 @@
   <data name="openFileDialogNes.Title" xml:space="preserve">
     <value>Выберите NES файл(ы)</value>
   </data>
+  <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 70</value>
+  </data>
   <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 22</value>
   </data>
@@ -382,9 +409,6 @@
   </data>
   <data name="deleteGameToolStripMenuItem.Text" xml:space="preserve">
     <value>Удалить игру</value>
-  </data>
-  <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 70</value>
   </data>
   <data name="buttonStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>

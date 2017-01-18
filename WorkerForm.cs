@@ -2,6 +2,7 @@
 using com.clusterrr.FelLib;
 using com.clusterrr.hakchi_gui.Properties;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -18,11 +19,9 @@ namespace com.clusterrr.hakchi_gui
         //public string UBootDump;
         public string KernelDump;
         public string Mod = null;
-        public bool CreateConfig;
-        public bool OriginalGames;
+        public Dictionary<string, bool> Config = null;
         public string[] HiddenGames;
         public NesGame[] Games;
-        public bool UseFont;
         Thread thread = null;
         Fel fel = null;
 
@@ -389,10 +388,12 @@ namespace com.clusterrr.hakchi_gui
                     (Encoding.ASCII.GetString(File.ReadAllBytes(file), 0, 10)) == "!<symlink>")
                     fInfo.Attributes |= FileAttributes.System;
             }
-            if (CreateConfig)
+            if (Config != null)
             {
-                var config = string.Format("hakchi_enabled=y\nhakchi_remove_games=y\nhakchi_original_games={0}\nhakchi_title_font={1}\n", OriginalGames ? "y" : "n", UseFont ? "y" : "n");
-                File.WriteAllText(configPath, config);
+                var config = new StringBuilder();
+                foreach (var key in Config.Keys)
+                    config.AppendFormat("{0}={1}\n", key, Config[key] ? 'y' : 'n');
+                File.WriteAllText(configPath, config.ToString());
             }
             if (Games != null)
             {
@@ -436,7 +437,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
             }
-            if (HiddenGames != null)
+            if (HiddenGames != null && HiddenGames.Length > 0)
             {
                 StringBuilder h = new StringBuilder();
                 foreach (var game in HiddenGames)

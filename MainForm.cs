@@ -52,7 +52,7 @@ namespace com.clusterrr.hakchi_gui
             new DefaultNesGame { Code = "CLV-P-NACDE",  Name = "TECMO BOWL" },
             new DefaultNesGame { Code = "CLV-P-NACHE",  Name = "DOUBLE DRAGON II: The Revenge" }
         };
-        
+
         public MainForm()
         {
             try
@@ -62,23 +62,26 @@ namespace com.clusterrr.hakchi_gui
                 BaseDir = Path.GetDirectoryName(Application.ExecutablePath);
                 GamesDir = Path.Combine(BaseDir, "games");
                 KernelDump = Path.Combine(Path.Combine(BaseDir, "dump"), "kernel.img");
-                useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
                 LoadGames();
                 LoadHidden();
                 LoadPresets();
+                useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
+                ToolStripMenuItemArmetLevel0.Checked = ConfigIni.AntiArmetLevel == 0;
+                ToolStripMenuItemArmetLevel1.Checked = ConfigIni.AntiArmetLevel == 1;
+                ToolStripMenuItemArmetLevel2.Checked = ConfigIni.AntiArmetLevel == 2;
                 new Thread(NesGame.LoadCache).Start();
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
-                MessageBox.Show(this, "Critical error: "+ex.Message+ex.StackTrace, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "Critical error: " + ex.Message + ex.StackTrace, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         public void LoadGames()
         {
             Debug.WriteLine("Loading games");
-            var selected = ConfigIni.SelectedGames.Split(';');
+            var selected = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             Directory.CreateDirectory(GamesDir);
             var gameDirs = Directory.GetDirectories(GamesDir);
             var games = new List<NesGame>();
@@ -160,7 +163,7 @@ namespace com.clusterrr.hakchi_gui
         void LoadHidden()
         {
             checkedListBoxDefaultGames.Items.Clear();
-            var hidden = ConfigIni.HiddenGames.Split(';');
+            var hidden = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var game in new List<DefaultNesGame>(defaultGames).OrderBy(o => o.Name))
                 checkedListBoxDefaultGames.Items.Add(game, !hidden.Contains(game.Code));
         }
@@ -180,8 +183,8 @@ namespace com.clusterrr.hakchi_gui
                         var cols = ConfigIni.Presets[preset].Split('|');
                         ConfigIni.SelectedGames = cols[0];
                         ConfigIni.HiddenGames = cols[1];
-                        var selected = ConfigIni.SelectedGames.Split(';');
-                        var hide = ConfigIni.HiddenGames.Split(';');
+                        var selected = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                        var hide = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                         checkedListBoxGames.SetItemChecked(0, selected.Contains("default"));
                         for (int j = 1; j < checkedListBoxGames.Items.Count; j++)
                             checkedListBoxGames.SetItemChecked(j,
@@ -510,11 +513,9 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Task = WorkerForm.Tasks.FlashKernel;
             workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_kernel";
-            workerForm.CreateConfig = false;
-            workerForm.OriginalGames = false;
-            workerForm.HiddenGames = null;
+            workerForm.Config = null;
             workerForm.Games = null;
-            workerForm.UseFont = false;
+            workerForm.HiddenGames = null;
             workerForm.Start();
             var result = workerForm.DialogResult == DialogResult.OK;
             if (result)
@@ -532,25 +533,32 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Task = WorkerForm.Tasks.Memboot;
             workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_transfer";
-            workerForm.CreateConfig = true;
-            workerForm.OriginalGames = false;
-            workerForm.UseFont = ConfigIni.UseFont;
+            workerForm.Config = new Dictionary<string, bool>();
+            workerForm.Config["hakchi_enabled"] = true;
+            workerForm.Config["hakchi_remove_games"] = true;
+            workerForm.Config["hakchi_original_games"] = false;
+            workerForm.Config["hakchi_title_font"] = ConfigIni.UseFont;
             var games = new List<NesGame>();
+            bool needOriginal = false;
             foreach (var game in checkedListBoxGames.CheckedItems)
             {
                 if (game is NesGame)
                     games.Add(game as NesGame);
                 else
-                    workerForm.OriginalGames = true;
+                    needOriginal = true;
             }
             workerForm.Games = games.ToArray();
+            workerForm.Config["hakchi_original_games"] = needOriginal;
+            if (ConfigIni.AntiArmetLevel == 1)
+                workerForm.Config["hakchi_remove_armet_original"] = true;
+            else if (ConfigIni.AntiArmetLevel == 2)
+                workerForm.Config["hakchi_remove_armet_all"] = true;
             games.Clear();
             var hiddenGames = new List<string>();
-            if (workerForm.OriginalGames)
-                workerForm.HiddenGames = ConfigIni.HiddenGames.Split(';');
+            if (needOriginal)
+                workerForm.HiddenGames = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             else
                 workerForm.HiddenGames = null;
-            workerForm.UseFont = ConfigIni.UseFont;
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
         }
@@ -579,8 +587,9 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Task = WorkerForm.Tasks.Memboot;
             workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_uninstall";
-            workerForm.CreateConfig = false;
+            workerForm.Config = null;
             workerForm.Games = null;
+            workerForm.HiddenGames = null;
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
         }
@@ -780,6 +789,15 @@ namespace com.clusterrr.hakchi_gui
         {
             if (e.KeyCode == Keys.Delete && checkedListBoxGames.SelectedIndex > 0)
                 deleteGame(checkedListBoxGames.SelectedIndex);
+        }
+
+        private void ToolStripMenuItemArmet_Click(object sender, EventArgs e)
+        {
+            var name = (sender as ToolStripMenuItem).Name;
+            ConfigIni.AntiArmetLevel = byte.Parse(name.Substring(name.Length - 1));
+            ToolStripMenuItemArmetLevel0.Checked = ConfigIni.AntiArmetLevel == 0;
+            ToolStripMenuItemArmetLevel1.Checked = ConfigIni.AntiArmetLevel == 1;
+            ToolStripMenuItemArmetLevel2.Checked = ConfigIni.AntiArmetLevel == 2;
         }
     }
 }

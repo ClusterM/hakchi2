@@ -13,6 +13,11 @@ mount -t tmpfs -o mode=0755,nosuid,nodev tmpfs $mountpoint/var
 mkdir $mountpoint/var/lib
 mount -o defaults,nosuid,nodev,noatime /dev/nandc $mountpoint/var/lib
 
+boardtype=`cat $mountpoint/etc/clover/boardtype`
+region=`cat $mountpoint/etc/clover/REGION`
+echo Board type: $boardtype
+echo Region: $region
+
 if [ ! -f $installdir/installed ]; then
   echo Installing $modname...
 
@@ -62,20 +67,34 @@ fi
 
 if [ "$hakchi_original_games" == "y" ]; then
   echo Transfering original games...
-  find $mountpoint/usr/share/games/nes/kachikachi/ -type d -maxdepth 1 -mindepth 1 | while read dir; do
-    code=`echo $dir | sed "s/.*\///"`
-    if [ -f /$modname/hidden_games ] && grep -q $code /$modname/hidden_games; then
-      echo $code is hidden
-    else     
-      echo Transfering $code
-      cp -a $mountpoint/usr/share/games/nes/kachikachi/$code $rootfs/usr/share/games/nes/kachikachi
-    fi
-  done
+	if [ -f /$modname/hidden_games ]; then
+	  find $mountpoint/usr/share/games/nes/kachikachi/ -type d -maxdepth 1 -mindepth 1 | while read dir; do		
+	    code=`echo $dir | sed "s/.*\///"`
+	    if grep -q $code /$modname/hidden_games; then
+	      echo $code is hidden
+	    else     
+	      echo Transfering $code
+	      cp -a $mountpoint/usr/share/games/nes/kachikachi/$code $rootfs/usr/share/games/nes/kachikachi
+	    fi
+	  done
+	else
+		echo There are no hidden original games
+		cp -a $mountpoint/usr/share/games/nes/kachikachi $rootfs/usr/share/games/nes/
+	fi
+fi
+
+if [ "$hakchi_remove_armet_original" == "y" ]; then
+	echo "Removing armet filter..."
+	find $rootfs/usr/share/games/nes/kachikachi -name *.desktop -exec sed -i -e 's/--enable-armet//g' {} +
 fi
 
 if [ "$hakchi_title_font" == "y" ]; then
-  echo Transfering font...
-  cp /$modname/title.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
+	if [ "$region" == "EUR_USA" ]; then
+	  echo Transfering font...
+	  cp /$modname/title.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
+	else
+		echo Somobody need to create font for Famicom Mini...
+	fi
 else
 	echo Restoring original font...
   cp $mountpoint/usr/share/games/nes/kachikachi/title.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
@@ -84,6 +103,11 @@ fi
 if [ -d /games ]; then
   echo Transferring new games...
   cp -a /games/* $rootfs/usr/share/games/nes/kachikachi
+fi
+
+if [ "$hakchi_remove_armet_all" == "y" ]; then
+	echo "Removing armet filter..."
+	find $rootfs/usr/share/games/nes/kachikachi -name *.desktop -exec sed -i -e 's/--enable-armet//g' {} +
 fi
 
 echo Shutting down...

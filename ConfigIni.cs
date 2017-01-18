@@ -15,6 +15,7 @@ namespace com.clusterrr.hakchi_gui
         public static string HiddenGames = "";
         public static bool CustomFlashed = false;
         public static bool UseFont = true;
+        public static byte AntiArmetLevel = 0;
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         const string ConfigFile = "config.ini";
 
@@ -57,6 +58,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "firstrun":
                                     FirstRun = !value.ToLower().Equals("false");
                                     break;
+                                case "antiarmetlevel":
+                                    AntiArmetLevel = byte.Parse(value);
+                                    break;
                             }
                             break;
                         case "presets":
@@ -77,6 +81,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("CustomFlashed={0}", CustomFlashed));
             configLines.Add(string.Format("UseFont={0}", UseFont));
             configLines.Add(string.Format("FirstRun={0}", FirstRun));
+            configLines.Add(string.Format("AntiArmetLevel={0}", AntiArmetLevel));            
             configLines.Add("[Presets]");
             configLines.Add("");
             foreach (var preset in Presets.Keys)
