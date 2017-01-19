@@ -116,6 +116,12 @@ namespace com.clusterrr.hakchi_gui
             {
                 try
                 {
+                    // Removing empty directories without errors
+                    if (Directory.GetFiles(gameDir, "*.*", SearchOption.AllDirectories).Length == 0)
+                    {
+                        Directory.Delete(gameDir, true);
+                        continue;
+                    }
                     var game = new NesGame(gameDir);
                     games.Add(game);
                 }

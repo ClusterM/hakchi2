@@ -38,7 +38,7 @@ namespace com.clusterrr.hakchi_gui
         private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
 
         const string DefaultReleaseDate = "1983-07-15";
-        const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet";
+        const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet";
         const string DefaultPublisher = "Nintendo";
         public const string GameGenieFileName = "gamegenie.txt";
 
@@ -124,7 +124,6 @@ namespace com.clusterrr.hakchi_gui
                 GamePath = Path.Combine(gamesDirectory, Code);
                 Args = DefaultArgs;
                 Type = GameType.Cartridge;
-                Directory.CreateDirectory(GamePath);
                 NesPath = Path.Combine(GamePath, Code + ".nes");
                 var patchesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "patches");
                 Directory.CreateDirectory(patchesDirectory);
@@ -145,6 +144,7 @@ namespace com.clusterrr.hakchi_gui
                 if (nesFile.Mirroring == NesFile.MirroringType.FourScreenVram && !ignoreMapper)
                     throw new UnsupportedFourScreenException(nesFile);
 
+                Directory.CreateDirectory(GamePath);
                 ConfigPath = Path.Combine(GamePath, Code + ".desktop");
                 nesFile.Save(NesPath);
             }
