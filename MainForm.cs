@@ -851,15 +851,7 @@ namespace com.clusterrr.hakchi_gui
                             try
                             {
                                 if (game.TryAutofill(new NesFile(game.NesPath).CRC32))
-                                {
-                                    int commaPos = game.Name.IndexOf(",");
-                                    if (commaPos > 0)
-                                        game.Name = game.Name.Substring(0, commaPos);
-                                    game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
-                                    game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
-                                    game.Name = game.Name.Replace("_", " ").Replace("  ", " ").Trim();
                                     counter++;
-                                }
                             }
                             catch { }
                         }

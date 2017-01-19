@@ -200,6 +200,12 @@ namespace com.clusterrr.hakchi_gui
             if (gameInfoCache != null && gameInfoCache.TryGetValue(crc32, out gameinfo))
             {
                 Name = gameinfo.Name;
+                int commaPos = Name.IndexOf(",");
+                if (commaPos > 0)
+                    Name = Name.Substring(0, commaPos);
+                Name = Regex.Replace(Name, @" ?\(.*?\)", string.Empty).Trim();
+                Name = Regex.Replace(Name, @" ?\[.*?\]", string.Empty).Trim();
+                Name = Name.Replace("_", " ").Replace("  ", " ").Trim();
                 Players = gameinfo.Players;
                 if (Players > 1) Simultaneous = true; // actually unknown...
                 ReleaseDate = gameinfo.ReleaseDate;
@@ -214,6 +220,7 @@ namespace com.clusterrr.hakchi_gui
         public void Save()
         {
             Debug.WriteLine("Saving game " + Code);
+            Name = Regex.Replace(Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
             File.WriteAllText(ConfigPath, string.Format(
                 "[Desktop Entry]\n" +
                 "Type=Application\n" +
