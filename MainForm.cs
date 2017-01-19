@@ -899,6 +899,8 @@ namespace com.clusterrr.hakchi_gui
         private void nESMiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.ConsoleType = 0;
+            nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
+            famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
             ConfigIni.HiddenGames = "";
             LoadHidden();
         }
@@ -906,6 +908,8 @@ namespace com.clusterrr.hakchi_gui
         private void famicomMiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.ConsoleType = 1;
+            nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
+            famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
             ConfigIni.HiddenGames = "";
             LoadHidden();
         }
