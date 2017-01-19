@@ -127,6 +127,7 @@ namespace com.clusterrr.hakchi_gui
                 NesPath = Path.Combine(GamePath, Code + ".nes");
                 var patchesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "patches");
                 Directory.CreateDirectory(patchesDirectory);
+                Directory.CreateDirectory(GamePath);
                 var patches = Directory.GetFiles(patchesDirectory, string.Format("{0:X8}*.ips", crc32), SearchOption.AllDirectories);
                 if (patches.Length > 0)
                 {
@@ -140,11 +141,16 @@ namespace com.clusterrr.hakchi_gui
 
                 if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
                 if (!supportedMappers.Contains(nesFile.Mapper) && !ignoreMapper)
+                {
+                    Directory.Delete(GamePath, true);
                     throw new UnsupportedMapperException(nesFile);
+                }
                 if (nesFile.Mirroring == NesFile.MirroringType.FourScreenVram && !ignoreMapper)
+                {
+                    Directory.Delete(GamePath, true);
                     throw new UnsupportedFourScreenException(nesFile);
+                }
 
-                Directory.CreateDirectory(GamePath);
                 ConfigPath = Path.Combine(GamePath, Code + ".desktop");
                 nesFile.Save(NesPath);
             }
