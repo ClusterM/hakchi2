@@ -226,11 +226,23 @@
   <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
     <value>Защита от приступов эпилепсии</value>
   </data>
+  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>378, 22</value>
+  </data>
+  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Использовать комбинацию кнопок для выхода в меню</value>
+  </data>
+  <data name="selectButtonCombinationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>378, 22</value>
+  </data>
+  <data name="selectButtonCombinationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Выбрать комбинацию кнопок</value>
+  </data>
   <data name="cloverconHackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>375, 22</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text" xml:space="preserve">
-    <value>Хак - "Вниз + Select" для выхода в меню</value>
+    <value>Комбинация кнопок для выхода в меню</value>
   </data>
   <data name="removeThumbnailsAtTheBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>375, 22</value>

@@ -21,6 +21,30 @@ namespace com.clusterrr.hakchi_gui
         //readonly string UBootDump;
         readonly string KernelDump;
 
+        [Flags]
+        public enum NesButtons
+        {
+            A = 0x01,
+            B = 0x02,
+            Select = 0x04,
+            Start = 0x08,
+            Up = 0x10,
+            Down = 0x20,
+            Left = 0x40,
+            Right = 0x080
+        }
+
+        public struct DefaultNesGame
+        {
+            public string Code;
+            public string Name;
+
+            public override string ToString()
+            {
+                return Name;
+            }
+        }
+
         DefaultNesGame[] defaultGames = new DefaultNesGame[] {
             new DefaultNesGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros." },
             new DefaultNesGame { Code = "CLV-P-NAACE",  Name = "Super Mario Bros. 3" },
@@ -70,7 +94,7 @@ namespace com.clusterrr.hakchi_gui
                 ToolStripMenuItemArmetLevel0.Checked = ConfigIni.AntiArmetLevel == 0;
                 ToolStripMenuItemArmetLevel1.Checked = ConfigIni.AntiArmetLevel == 1;
                 ToolStripMenuItemArmetLevel2.Checked = ConfigIni.AntiArmetLevel == 2;
-                cloverconHackToolStripMenuItem.Checked = ConfigIni.CloverconHack;
+                resetUsingCombinationOfButtonsToolStripMenuItem.Checked = ConfigIni.CloverconHack;
                 removeThumbnailsAtTheBottomToolStripMenuItem.Checked = ConfigIni.RemoveThumbnails;
                 betterPNGCompressionlowerQualityToolStripMenuItem.Checked = ConfigIni.EightBitPngCompression;
                 new Thread(NesGame.LoadCache).Start();
@@ -567,6 +591,7 @@ namespace com.clusterrr.hakchi_gui
                 workerForm.HiddenGames = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             else
                 workerForm.HiddenGames = null;
+            workerForm.ResetCombination = ConfigIni.ResetCombination;
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
         }
@@ -702,7 +727,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void cloverconHackToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigIni.CloverconHack = cloverconHackToolStripMenuItem.Checked;
+            ConfigIni.CloverconHack = resetUsingCombinationOfButtonsToolStripMenuItem.Checked;
         }
 
         private void removeThumbnailsAtTheBottomToolStripMenuItem_Click(object sender, EventArgs e)
@@ -715,15 +740,11 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.EightBitPngCompression = betterPNGCompressionlowerQualityToolStripMenuItem.Checked;
         }
 
-        public struct DefaultNesGame
+        private void selectButtonCombinationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            public string Code;
-            public string Name;
-
-            public override string ToString()
-            {
-                return Name;
-            }
+            var form = new SelectButtonsForm(ConfigIni.ResetCombination);
+            if (form.ShowDialog() == DialogResult.OK)
+                ConfigIni.ResetCombination = form.SelectedButtons;
         }
 
         private void timerCalculateGames_Tick(object sender, EventArgs e)

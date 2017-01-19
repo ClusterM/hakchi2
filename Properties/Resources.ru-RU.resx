@@ -313,4 +313,7 @@
   <data name="AutofillResult" xml:space="preserve">
     <value>Данные автоматически заполнены для {0} игр.</value>
   </data>
+  <data name="SelectAtLeastTwo" xml:space="preserve">
+    <value>Нужно выбрать хотя бы две кнопки.</value>
+  </data>
 </root>

@@ -512,6 +512,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You need to select at least two buttons..
+        /// </summary>
+        internal static string SelectAtLeastTwo {
+            get {
+                return ResourceManager.GetString("SelectAtLeastTwo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t forget to do reset to factory settings if you want to delete all savestates..
         /// </summary>
         internal static string UninstallFactoryNote {

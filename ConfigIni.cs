@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using static com.clusterrr.hakchi_gui.MainForm;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -19,6 +20,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool RemoveThumbnails = false;
         public static bool EightBitPngCompression = true;
         public static byte AntiArmetLevel = 0;
+        public static NesButtons ResetCombination = NesButtons.Down | NesButtons.Select;
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         const string ConfigFile = "config.ini";
 
@@ -73,6 +75,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "eightbitpngcompression":
                                     EightBitPngCompression = !value.ToLower().Equals("false");
                                     break;
+                                case "resetcombination":
+                                    ResetCombination = (NesButtons) byte.Parse(value);
+                                    break;
                             }
                             break;
                         case "presets":
@@ -97,7 +102,8 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("AntiArmetLevel={0}", AntiArmetLevel));
             configLines.Add(string.Format("RemoveThumbnails={0}", RemoveThumbnails));
             configLines.Add(string.Format("EightBitPngCompression={0}", EightBitPngCompression));
-            
+            configLines.Add(string.Format("ResetCombination={0}", (byte)ResetCombination));
+
             configLines.Add("[Presets]");
             configLines.Add("");
             foreach (var preset in Presets.Keys)

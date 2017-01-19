@@ -52,6 +52,8 @@
             this.ToolStripMenuItemArmetLevel1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemArmetLevel2 = new System.Windows.Forms.ToolStripMenuItem();
             this.cloverconHackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetUsingCombinationOfButtonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectButtonCombinationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeThumbnailsAtTheBottomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.betterPNGCompressionlowerQualityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -256,11 +258,25 @@
             // cloverconHackToolStripMenuItem
             // 
             resources.ApplyResources(this.cloverconHackToolStripMenuItem, "cloverconHackToolStripMenuItem");
-            this.cloverconHackToolStripMenuItem.Checked = true;
-            this.cloverconHackToolStripMenuItem.CheckOnClick = true;
-            this.cloverconHackToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cloverconHackToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.resetUsingCombinationOfButtonsToolStripMenuItem,
+            this.selectButtonCombinationToolStripMenuItem});
             this.cloverconHackToolStripMenuItem.Name = "cloverconHackToolStripMenuItem";
-            this.cloverconHackToolStripMenuItem.Click += new System.EventHandler(this.cloverconHackToolStripMenuItem_Click);
+            // 
+            // resetUsingCombinationOfButtonsToolStripMenuItem
+            // 
+            resources.ApplyResources(this.resetUsingCombinationOfButtonsToolStripMenuItem, "resetUsingCombinationOfButtonsToolStripMenuItem");
+            this.resetUsingCombinationOfButtonsToolStripMenuItem.Checked = true;
+            this.resetUsingCombinationOfButtonsToolStripMenuItem.CheckOnClick = true;
+            this.resetUsingCombinationOfButtonsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.resetUsingCombinationOfButtonsToolStripMenuItem.Name = "resetUsingCombinationOfButtonsToolStripMenuItem";
+            this.resetUsingCombinationOfButtonsToolStripMenuItem.Click += new System.EventHandler(this.cloverconHackToolStripMenuItem_Click);
+            // 
+            // selectButtonCombinationToolStripMenuItem
+            // 
+            resources.ApplyResources(this.selectButtonCombinationToolStripMenuItem, "selectButtonCombinationToolStripMenuItem");
+            this.selectButtonCombinationToolStripMenuItem.Name = "selectButtonCombinationToolStripMenuItem";
+            this.selectButtonCombinationToolStripMenuItem.Click += new System.EventHandler(this.selectButtonCombinationToolStripMenuItem_Click);
             // 
             // removeThumbnailsAtTheBottomToolStripMenuItem
             // 
@@ -644,6 +660,8 @@
         private System.Windows.Forms.ToolStripMenuItem cloverconHackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeThumbnailsAtTheBottomToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem betterPNGCompressionlowerQualityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetUsingCombinationOfButtonsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectButtonCombinationToolStripMenuItem;
     }
 }
 

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using static com.clusterrr.hakchi_gui.MainForm;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -22,6 +23,7 @@ namespace com.clusterrr.hakchi_gui
         public Dictionary<string, bool> Config = null;
         public string[] HiddenGames;
         public NesGame[] Games;
+        public NesButtons ResetCombination;
         Thread thread = null;
         Fel fel = null;
 
@@ -43,6 +45,7 @@ namespace com.clusterrr.hakchi_gui
         readonly string configPath;
         readonly string hiddenPath;
         readonly string gamesDirectory;
+        readonly string cloverconDriverPath;
 
         string[] correctKernels;
 
@@ -64,6 +67,7 @@ namespace com.clusterrr.hakchi_gui
             ramdiskPatched = Path.Combine(kernelDirectory, "kernel.img-ramdisk_mod.gz");
             configPath = Path.Combine(hakchiDirectory, "config");
             hiddenPath = Path.Combine(hakchiDirectory, "hidden_games");
+            cloverconDriverPath = Path.Combine(hakchiDirectory, "clovercon.ko");
             correctKernels = new string[] {
                 "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158", // NES Mini
                 "ac8144c3ea4ab32e017648ee80bdc230" // Famicom Mini
@@ -168,7 +172,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (InvokeRequired)
                 {
-                    Invoke(new Action<Exception,bool>(ShowError), new object[] { ex, dontStop });
+                    Invoke(new Action<Exception, bool>(ShowError), new object[] { ex, dontStop });
                     return;
                 }
                 Debug.WriteLine(ex.Message + ex.StackTrace);
@@ -423,7 +427,7 @@ namespace com.clusterrr.hakchi_gui
                                 }
                                 catch (GameGenieFormatException)
                                 {
-                                    ShowError(new GameGenieFormatException(string.Format(Resources.GameGenieFormatError, code, game)), dontStop:true);
+                                    ShowError(new GameGenieFormatException(string.Format(Resources.GameGenieFormatError, code, game)), dontStop: true);
                                 }
                                 catch (GameGenieNotFoundException)
                                 {
@@ -452,6 +456,22 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var game in HiddenGames)
                     h.Append(game + "\n");
                 File.WriteAllText(hiddenPath, h.ToString());
+            }
+            if (Config != null && Config.ContainsKey("hakchi_clovercon_hack") && Config["hakchi_clovercon_hack"] && File.Exists(cloverconDriverPath))
+            {
+                byte[] drv = File.ReadAllBytes(cloverconDriverPath);
+                const string magic = "MAGIC_BUTTONS:";
+                for (int i = 0; i < drv.Length - magic.Length; i++)
+                {
+                    if (Encoding.ASCII.GetString(drv, i, magic.Length) == magic)
+                    {
+                        int pos = i + magic.Length;
+                        for (int b = 0; b < 8; b++)
+                            drv[pos + b] = (byte)((((byte)ResetCombination & (1 << b)) != 0) ? '1' : '0');
+                        File.WriteAllBytes(cloverconDriverPath, drv);
+                        break;
+                    }
+                }
             }
             ExecuteTool("upx.exe", "--best sbin\\cryptsetup", ramfsDirectory);
 

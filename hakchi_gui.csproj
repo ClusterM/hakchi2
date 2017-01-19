@@ -133,6 +133,12 @@
     <Compile Include="SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectButtonsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectButtonsForm.Designer.cs">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
     <Compile Include="WaitingForm.cs">
@@ -179,6 +185,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SearchForm.ru-RU.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.ru.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingForm.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>
