@@ -31,7 +31,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        DefaultNesGame[] defaultGames = new DefaultNesGame[] {
+        DefaultNesGame[] defaultNesGames = new DefaultNesGame[] {
             new DefaultNesGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros." },
             new DefaultNesGame { Code = "CLV-P-NAACE",  Name = "Super Mario Bros. 3" },
             new DefaultNesGame { Code = "CLV-P-NAADE",  Name = "Super Mario Bros. 2" },
@@ -63,6 +63,38 @@ namespace com.clusterrr.hakchi_gui
             new DefaultNesGame { Code = "CLV-P-NACDE",  Name = "TECMO BOWL" },
             new DefaultNesGame { Code = "CLV-P-NACHE",  Name = "DOUBLE DRAGON II: The Revenge" }
         };
+        DefaultNesGame[] defaultFamicomGames = new DefaultNesGame[] {
+            new DefaultNesGame { Code = "CLV-P-HAAAJ",  Name = "スーパーマリオブラザーズ" },
+            new DefaultNesGame { Code = "CLV-P-HAACJ",  Name = "スーパーマリオブラザーズ３" },
+            new DefaultNesGame { Code = "CLV-P-HAADJ",  Name = "スーパーマリオＵＳＡ" },
+            new DefaultNesGame { Code = "CLV-P-HAAEJ",  Name = "ドンキーコング" },
+            new DefaultNesGame { Code = "CLV-P-HAAHJ",  Name = "エキサイトバイク" },
+            new DefaultNesGame { Code = "CLV-P-HAAMJ",  Name = "マリオオープンゴルフ" },
+            new DefaultNesGame { Code = "CLV-P-HAANJ",  Name = "ゼルダの伝説" },
+            new DefaultNesGame { Code = "CLV-P-HAAPJ",  Name = "星のカービィ　夢の泉の物語" },
+            new DefaultNesGame { Code = "CLV-P-HAAQJ",  Name = "メトロイド" },
+            new DefaultNesGame { Code = "CLV-P-HAARJ",  Name = "バルーンファイト" },
+            new DefaultNesGame { Code = "CLV-P-HAASJ",  Name = "リンクの冒険" },
+            new DefaultNesGame { Code = "CLV-P-HAAUJ",  Name = "アイスクライマー" },
+            new DefaultNesGame { Code = "CLV-P-HAAWJ",  Name = "マリオブラザーズ" },
+            new DefaultNesGame { Code = "CLV-P-HAAXJ",  Name = "ドクターマリオ" },
+            new DefaultNesGame { Code = "CLV-P-HABBJ",  Name = "ロックマン®2 Dr.ワイリーの謎" },
+            new DefaultNesGame { Code = "CLV-P-HABCJ",  Name = "魔界村®" },
+            new DefaultNesGame { Code = "CLV-P-HABJJ",  Name = "ファイナルファンタジー®III" },
+            new DefaultNesGame { Code = "CLV-P-HABMJ",  Name = "パックマン" },
+            new DefaultNesGame { Code = "CLV-P-HABNJ",  Name = "ギャラガ" },
+            new DefaultNesGame { Code = "CLV-P-HABQJ",  Name = "悪魔城ドラキュラ" },
+            new DefaultNesGame { Code = "CLV-P-HABRJ",  Name = "グラディウス" },
+            new DefaultNesGame { Code = "CLV-P-HABVJ",  Name = "スーパー魂斗羅" },
+            new DefaultNesGame { Code = "CLV-P-HACAJ",  Name = "イー・アル・カンフー" },
+            new DefaultNesGame { Code = "CLV-P-HACBJ",  Name = "忍者龍剣伝" },
+            new DefaultNesGame { Code = "CLV-P-HACCJ",  Name = "ソロモンの鍵" },
+            new DefaultNesGame { Code = "CLV-P-HACEJ",  Name = "つっぱり大相撲" },
+            new DefaultNesGame { Code = "CLV-P-HACHJ",  Name = "ダブルドラゴンⅡ The Revenge" },
+            new DefaultNesGame { Code = "CLV-P-HACJJ",  Name = "ダウンタウン熱血物語" },
+            new DefaultNesGame { Code = "CLV-P-HACLJ",  Name = "ダウンタウン熱血行進曲 それゆけ大運動会" },
+            new DefaultNesGame { Code = "CLV-P-HACPJ",  Name = "アトランチスの謎" }
+        };
 
         public MainForm()
         {
@@ -83,6 +115,8 @@ namespace com.clusterrr.hakchi_gui
                 resetUsingCombinationOfButtonsToolStripMenuItem.Checked = ConfigIni.CloverconHack;
                 removeThumbnailsAtTheBottomToolStripMenuItem.Checked = ConfigIni.RemoveThumbnails;
                 betterPNGCompressionlowerQualityToolStripMenuItem.Checked = ConfigIni.EightBitPngCompression;
+                nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
+                famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
                 new Thread(NesGame.LoadCache).Start();
             }
             catch (Exception ex)
@@ -185,7 +219,7 @@ namespace com.clusterrr.hakchi_gui
         {
             checkedListBoxDefaultGames.Items.Clear();
             var hidden = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (var game in new List<DefaultNesGame>(defaultGames).OrderBy(o => o.Name))
+            foreach (var game in new List<DefaultNesGame>(ConfigIni.ConsoleType == 0 ? defaultNesGames : defaultFamicomGames).OrderBy(o => o.Name))
                 checkedListBoxDefaultGames.Items.Add(game, !hidden.Contains(game.Code));
         }
 
@@ -860,6 +894,20 @@ namespace com.clusterrr.hakchi_gui
                 ShowSelected();
                 MessageBox.Show(this, string.Format(Resources.AutofillResult, counter), Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void nESMiniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.ConsoleType = 0;
+            ConfigIni.HiddenGames = "";
+            LoadHidden();
+        }
+
+        private void famicomMiniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.ConsoleType = 1;
+            ConfigIni.HiddenGames = "";
+            LoadHidden();
         }
     }
 }

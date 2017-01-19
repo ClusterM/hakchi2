@@ -196,6 +196,12 @@
   <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ядро</value>
   </data>
+  <data name="consoleTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>375, 22</value>
+  </data>
+  <data name="consoleTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Тип консоли</value>
+  </data>
   <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>375, 22</value>
   </data>

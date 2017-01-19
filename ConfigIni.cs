@@ -19,6 +19,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool RemoveThumbnails = false;
         public static bool EightBitPngCompression = true;
         public static byte AntiArmetLevel = 0;
+        public static byte ConsoleType = 0;
         public static SelectButtonsForm.NesButtons ResetCombination = SelectButtonsForm.NesButtons.Down | SelectButtonsForm.NesButtons.Select;
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         const string ConfigFile = "config.ini";
@@ -77,6 +78,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "resetcombination":
                                     ResetCombination = (SelectButtonsForm.NesButtons) byte.Parse(value);
                                     break;
+                                case "consoletype":
+                                    ConsoleType = byte.Parse(value);
+                                    break;
                             }
                             break;
                         case "presets":
@@ -102,6 +106,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("RemoveThumbnails={0}", RemoveThumbnails));
             configLines.Add(string.Format("EightBitPngCompression={0}", EightBitPngCompression));
             configLines.Add(string.Format("ResetCombination={0}", (byte)ResetCombination));
+            configLines.Add(string.Format("ConsoleType={0}", ConsoleType));            
 
             configLines.Add("[Presets]");
             configLines.Add("");
