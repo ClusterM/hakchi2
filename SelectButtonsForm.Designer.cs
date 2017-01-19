@@ -35,8 +35,8 @@
             this.checkBoxRight = new System.Windows.Forms.CheckBox();
             this.checkBoxSelect = new System.Windows.Forms.CheckBox();
             this.checkBoxStart = new System.Windows.Forms.CheckBox();
-            this.checkBoxA = new System.Windows.Forms.CheckBox();
             this.checkBoxB = new System.Windows.Forms.CheckBox();
+            this.checkBoxA = new System.Windows.Forms.CheckBox();
             this.buttonOk = new System.Windows.Forms.Button();
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.groupBox.SuspendLayout();
@@ -84,19 +84,19 @@
             this.checkBoxStart.UseVisualStyleBackColor = true;
             this.checkBoxStart.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
-            // checkBoxA
-            // 
-            resources.ApplyResources(this.checkBoxA, "checkBoxA");
-            this.checkBoxA.Name = "checkBoxA";
-            this.checkBoxA.UseVisualStyleBackColor = true;
-            this.checkBoxA.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
-            // 
             // checkBoxB
             // 
             resources.ApplyResources(this.checkBoxB, "checkBoxB");
             this.checkBoxB.Name = "checkBoxB";
             this.checkBoxB.UseVisualStyleBackColor = true;
             this.checkBoxB.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // checkBoxA
+            // 
+            resources.ApplyResources(this.checkBoxA, "checkBoxA");
+            this.checkBoxA.Name = "checkBoxA";
+            this.checkBoxA.UseVisualStyleBackColor = true;
+            this.checkBoxA.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // buttonOk
             // 
@@ -107,15 +107,15 @@
             // 
             // groupBox
             // 
-            resources.ApplyResources(this.groupBox, "groupBox");
             this.groupBox.Controls.Add(this.checkBoxUp);
             this.groupBox.Controls.Add(this.checkBoxDown);
-            this.groupBox.Controls.Add(this.checkBoxB);
-            this.groupBox.Controls.Add(this.checkBoxLeft);
             this.groupBox.Controls.Add(this.checkBoxA);
+            this.groupBox.Controls.Add(this.checkBoxLeft);
+            this.groupBox.Controls.Add(this.checkBoxB);
             this.groupBox.Controls.Add(this.checkBoxRight);
             this.groupBox.Controls.Add(this.checkBoxStart);
             this.groupBox.Controls.Add(this.checkBoxSelect);
+            resources.ApplyResources(this.groupBox, "groupBox");
             this.groupBox.Name = "groupBox";
             this.groupBox.TabStop = false;
             // 
@@ -143,8 +143,8 @@
         private System.Windows.Forms.CheckBox checkBoxRight;
         private System.Windows.Forms.CheckBox checkBoxSelect;
         private System.Windows.Forms.CheckBox checkBoxStart;
-        private System.Windows.Forms.CheckBox checkBoxA;
         private System.Windows.Forms.CheckBox checkBoxB;
+        private System.Windows.Forms.CheckBox checkBoxA;
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.GroupBox groupBox;
     }
