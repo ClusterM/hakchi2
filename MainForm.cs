@@ -1,4 +1,5 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
+﻿using com.clusterrr.Famicom;
+using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -688,7 +689,7 @@ namespace com.clusterrr.hakchi_gui
         {
             ConfigIni.UseFont = useExtendedFontToolStripMenuItem.Checked;
         }
-        
+
         private void ToolStripMenuItemArmet_Click(object sender, EventArgs e)
         {
             var name = (sender as ToolStripMenuItem).Name;
@@ -814,6 +815,31 @@ namespace com.clusterrr.hakchi_gui
         {
             if (e.KeyCode == Keys.Delete && checkedListBoxGames.SelectedIndex > 0)
                 deleteGame(checkedListBoxGames.SelectedIndex);
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F5 && e.Modifiers == Keys.Shift)
+            {
+                int counter = 0;
+                foreach (var g in checkedListBoxGames.Items)
+                {
+                    if (g is NesGame)
+                    {
+                        var game = g as NesGame;
+                        if (game.Type == NesGame.GameType.Cartridge)
+                        {
+                            try
+                            {
+                                if (game.TryAutofill(new NesFile(game.NesPath).CRC32))
+                                    counter++;
+                            }
+                            catch { }
+                        }
+                    }
+                }
+                MessageBox.Show(this, string.Format(Resources.AutofillResult, counter), Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

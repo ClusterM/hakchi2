@@ -304,4 +304,7 @@
   <data name="PatchQ" xml:space="preserve">
     <value>There is patch for "{0}". Do you want to patch this game?</value>
   </data>
+  <data name="AutofillResult" xml:space="preserve">
+    <value>Data automatically filled for {0} games.</value>
+  </data>
 </root>

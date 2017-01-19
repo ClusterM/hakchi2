@@ -70,6 +70,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data automatically filled for {0} games..
+        /// </summary>
+        internal static string AutofillResult {
+            get {
+                return ResourceManager.GetString("AutofillResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap blank {

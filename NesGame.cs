@@ -173,17 +173,7 @@ namespace com.clusterrr.hakchi_gui
             ReleaseDate = DefaultReleaseDate;
             Publisher = DefaultPublisher;
 
-            CachedGameInfo gameinfo;
-            if (gameInfoCache != null && gameInfoCache.TryGetValue(crc32, out gameinfo))
-            {
-                Name = gameinfo.Name;
-                Players = gameinfo.Players;
-                if (Players > 1) Simultaneous = true; // actually unknown...
-                ReleaseDate = gameinfo.ReleaseDate;
-                if (ReleaseDate.Length == 4) ReleaseDate += "-01";
-                if (ReleaseDate.Length == 7) ReleaseDate += "-01";
-                Publisher = gameinfo.Publisher;
-            }
+            TryAutofill(crc32);
 
             int commaPos = Name.IndexOf(",");
             if (commaPos > 0)
@@ -196,6 +186,23 @@ namespace com.clusterrr.hakchi_gui
             GameGeniePath = Path.Combine(GamePath, GameGenieFileName);
             SetImage(null);
             Save();
+        }
+
+        public bool TryAutofill(uint crc32)
+        {
+            CachedGameInfo gameinfo;
+            if (gameInfoCache != null && gameInfoCache.TryGetValue(crc32, out gameinfo))
+            {
+                Name = gameinfo.Name;
+                Players = gameinfo.Players;
+                if (Players > 1) Simultaneous = true; // actually unknown...
+                ReleaseDate = gameinfo.ReleaseDate;
+                if (ReleaseDate.Length == 4) ReleaseDate += "-01";
+                if (ReleaseDate.Length == 7) ReleaseDate += "-01";
+                Publisher = gameinfo.Publisher;
+                return true;
+            }
+            return false;
         }
 
         public void Save()

@@ -310,4 +310,7 @@
   <data name="PatchQ" xml:space="preserve">
     <value>Для файла "{0}" доступен патч. Хотите его применить?</value>
   </data>
+  <data name="AutofillResult" xml:space="preserve">
+    <value>Данные автоматически заполнены для {0} игр.</value>
+  </data>
 </root>
