@@ -20,19 +20,6 @@ namespace com.clusterrr.hakchi_gui
         //readonly string UBootDump;
         readonly string KernelDump;
 
-        [Flags]
-        public enum NesButtons
-        {
-            A = 0x01,
-            B = 0x02,
-            Select = 0x04,
-            Start = 0x08,
-            Up = 0x10,
-            Down = 0x20,
-            Left = 0x40,
-            Right = 0x080
-        }
-
         public struct DefaultNesGame
         {
             public string Code;

@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using static com.clusterrr.hakchi_gui.MainForm;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -23,7 +22,7 @@ namespace com.clusterrr.hakchi_gui
         public Dictionary<string, bool> Config = null;
         public string[] HiddenGames;
         public NesGame[] Games;
-        public NesButtons ResetCombination;
+        public SelectButtonsForm.NesButtons ResetCombination;
         Thread thread = null;
         Fel fel = null;
 

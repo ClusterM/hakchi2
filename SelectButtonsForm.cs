@@ -1,12 +1,24 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Windows.Forms;
-using static com.clusterrr.hakchi_gui.MainForm;
 
 namespace com.clusterrr.hakchi_gui
 {
     public partial class SelectButtonsForm : Form
     {
+        [Flags]
+        public enum NesButtons
+        {
+            A = 0x01,
+            B = 0x02,
+            Select = 0x04,
+            Start = 0x08,
+            Up = 0x10,
+            Down = 0x20,
+            Left = 0x40,
+            Right = 0x080
+        }
+
         public NesButtons SelectedButtons;
 
         public SelectButtonsForm(NesButtons buttons)

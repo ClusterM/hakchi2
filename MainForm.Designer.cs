@@ -543,8 +543,8 @@
             // 
             // groupBoxDefaultGames
             // 
-            this.groupBoxDefaultGames.Controls.Add(this.checkedListBoxDefaultGames);
             resources.ApplyResources(this.groupBoxDefaultGames, "groupBoxDefaultGames");
+            this.groupBoxDefaultGames.Controls.Add(this.checkedListBoxDefaultGames);
             this.groupBoxDefaultGames.Name = "groupBoxDefaultGames";
             this.groupBoxDefaultGames.TabStop = false;
             // 
@@ -571,8 +571,8 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.checkedListBoxGames);
             this.Controls.Add(this.menuStrip);
-            this.Controls.Add(this.groupBoxDefaultGames);
             this.Controls.Add(this.groupBoxOptions);
+            this.Controls.Add(this.groupBoxDefaultGames);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
