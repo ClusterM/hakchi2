@@ -306,6 +306,9 @@
     <None Include="mods\mod_transfer\hakchi\title.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="mods\mod_transfer\hakchi\title_j.fnt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="mods\mod_transfer\sbin\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
