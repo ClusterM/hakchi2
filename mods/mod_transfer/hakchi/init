@@ -103,8 +103,8 @@ if [ "$hakchi_remove_armet_original" == "y" ]; then
 fi
 
 if [ "$hakchi_title_font" == "y" ]; then
-	if [ "$region" == "JAP" ]; then
-	  echo Transfering JAP font...
+	if [ "$region" == "JPN" ]; then
+	  echo Transfering JPN font...
 	  cp /$modname/title_j.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
 	else
 	  echo Transfering USA_EUR font...
