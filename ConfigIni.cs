@@ -17,6 +17,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool UseFont = true;
         public static bool CloverconHack = true;
         public static bool RemoveThumbnails = false;
+        public static bool EightBitPngCompression = true;
         public static byte AntiArmetLevel = 0;
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         const string ConfigFile = "config.ini";
@@ -69,6 +70,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "removethumbnails":
                                     RemoveThumbnails = !value.ToLower().Equals("false");
                                     break;
+                                case "eightbitpngcompression":
+                                    EightBitPngCompression = !value.ToLower().Equals("false");
+                                    break;
                             }
                             break;
                         case "presets":
@@ -92,6 +96,8 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("FirstRun={0}", FirstRun));
             configLines.Add(string.Format("AntiArmetLevel={0}", AntiArmetLevel));
             configLines.Add(string.Format("RemoveThumbnails={0}", RemoveThumbnails));
+            configLines.Add(string.Format("EightBitPngCompression={0}", EightBitPngCompression));
+            
             configLines.Add("[Presets]");
             configLines.Add("");
             foreach (var preset in Presets.Keys)

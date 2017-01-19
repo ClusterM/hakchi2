@@ -184,7 +184,7 @@ namespace com.clusterrr.hakchi_gui
             IconPath = Path.Combine(GamePath, Code + ".png");
             SmallIconPath = Path.Combine(GamePath, Code + "_small.png");
             GameGeniePath = Path.Combine(GamePath, GameGenieFileName);
-            SetImage(null);
+            SetImage(null, false);
             Save();
         }
 
@@ -240,7 +240,7 @@ namespace com.clusterrr.hakchi_gui
             return Name;
         }
 
-        public void SetImage(Image image)
+        public void SetImage(Image image, bool EightBitCompression)
         {
             Bitmap outImage;
             Bitmap outImageSmall;
@@ -270,7 +270,8 @@ namespace com.clusterrr.hakchi_gui
                     outImage = new Bitmap(204, 140, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
                     outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
                 }
-            } else // if (Type == GameType.FDS)
+            }
+            else // if (Type == GameType.FDS)
             {
                 outImage = new Bitmap(140, 158, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
                 outImageSmall = new Bitmap(28, 32, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
@@ -279,20 +280,27 @@ namespace com.clusterrr.hakchi_gui
             gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
                                 new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
             gr.Flush();
-            var quantizer = new WuQuantizer();
-            using (var quantized = quantizer.QuantizeImage(outImage))
+            if (EightBitCompression)
             {
-                quantized.Save(IconPath, ImageFormat.Png);
+                var quantizer = new WuQuantizer();
+                using (var quantized = quantizer.QuantizeImage(outImage))
+                {
+                    quantized.Save(IconPath, ImageFormat.Png);
+                }
             }
-            //outImage.Save(IconPath, ImageFormat.Png);
+            else outImage.Save(IconPath, ImageFormat.Png);
             gr = Graphics.FromImage(outImageSmall);
             gr.DrawImage(outImage, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height), new Rectangle(0, 0, outImage.Width, outImage.Height), GraphicsUnit.Pixel);
             gr.Flush();
-            using (var quantized = quantizer.QuantizeImage(outImageSmall))
+            if (EightBitCompression)
             {
-                quantized.Save(SmallIconPath, ImageFormat.Png);
+                var quantizer = new WuQuantizer();
+                using (var quantized = quantizer.QuantizeImage(outImageSmall))
+                {
+                    quantized.Save(SmallIconPath, ImageFormat.Png);
+                }
             }
-            //outImageSmall.Save(SmallIconPath, ImageFormat.Png);
+            else outImageSmall.Save(SmallIconPath, ImageFormat.Png);
         }
 
         private static uint CRC32(byte[] data)

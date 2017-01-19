@@ -72,6 +72,7 @@ namespace com.clusterrr.hakchi_gui
                 ToolStripMenuItemArmetLevel2.Checked = ConfigIni.AntiArmetLevel == 2;
                 cloverconHackToolStripMenuItem.Checked = ConfigIni.CloverconHack;
                 removeThumbnailsAtTheBottomToolStripMenuItem.Checked = ConfigIni.RemoveThumbnails;
+                betterPNGCompressionlowerQualityToolStripMenuItem.Checked = ConfigIni.EightBitPngCompression;
                 new Thread(NesGame.LoadCache).Start();
             }
             catch (Exception ex)
@@ -236,7 +237,7 @@ namespace com.clusterrr.hakchi_gui
                 var selected = checkedListBoxGames.SelectedItem;
                 if (selected == null || !(selected is NesGame)) return;
                 var game = (selected as NesGame);
-                game.SetImage(Image.FromFile(openFileDialogImage.FileName));
+                game.SetImage(Image.FromFile(openFileDialogImage.FileName), ConfigIni.EightBitPngCompression);
                 ShowSelected();
             }
         }
@@ -249,7 +250,7 @@ namespace com.clusterrr.hakchi_gui
             var googler = new ImageGooglerForm(game.Name + " nes box art");
             if (googler.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                game.SetImage(googler.Result);
+                game.SetImage(googler.Result, ConfigIni.EightBitPngCompression);
                 ShowSelected();
             }
         }
@@ -709,6 +710,11 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.RemoveThumbnails = removeThumbnailsAtTheBottomToolStripMenuItem.Checked;
         }
 
+        private void betterPNGCompressionlowerQualityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.EightBitPngCompression = betterPNGCompressionlowerQualityToolStripMenuItem.Checked;
+        }
+
         public struct DefaultNesGame
         {
             public string Code;
@@ -838,6 +844,7 @@ namespace com.clusterrr.hakchi_gui
                         }
                     }
                 }
+                ShowSelected();
                 MessageBox.Show(this, string.Format(Resources.AutofillResult, counter), Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
