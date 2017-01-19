@@ -384,9 +384,7 @@ namespace com.clusterrr.hakchi_gui
             if (!File.Exists(Path.Combine(ramfsDirectory, "init"))) // cpio.exe fails on Windows XP for some reason. But working!
                 throw new Exception("Can't unpack ramdisk 2");
             if (Directory.Exists(hakchiDirectory)) Directory.Delete(hakchiDirectory, true);
-            if (!ExecuteTool("xcopy", string.Format("\"{0}\" /h /y /c /r /s /q",
-                Path.Combine(modsDirectory, Mod)), ramfsDirectory, true))
-                throw new Exception("Can't copy mod directory");
+            DirectoryCopy(Path.Combine(modsDirectory, Mod), ramfsDirectory, true);
             var ramfsFiles = Directory.GetFiles(ramfsDirectory, "*.*", SearchOption.AllDirectories);
             foreach (var file in ramfsFiles)
             {
@@ -408,10 +406,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var game in Games)
                 {
                     var gameDir = Path.Combine(gamesDirectory, game.Code);
-                    Directory.CreateDirectory(gameDir);
-                    if (!ExecuteTool("xcopy", string.Format("\"{0}\" /h /y /c /r /e /q", game.GamePath),
-                        gameDir, true))
-                        throw new Exception("Can't copy " + game);
+                    DirectoryCopy(game.GamePath, gameDir, true);
                     if (!string.IsNullOrEmpty(game.GameGenie))
                     {
                         var codes = game.GameGenie.Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
@@ -556,6 +551,44 @@ namespace com.clusterrr.hakchi_gui
             pages += (second_size + page_size - 1) / page_size;
             pages += (dt_size + page_size - 1) / page_size;
             return pages * page_size;
+        }
+
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        {
+            // Get the subdirectories for the specified directory.
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+
+            if (!dir.Exists)
+            {
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
+            }
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            // If the destination directory doesn't exist, create it.
+            if (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+            }
+
+            // Get the files in the directory and copy them to the new location.
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string temppath = Path.Combine(destDirName, file.Name);
+                file.CopyTo(temppath, true);
+            }
+
+            // If copying subdirectories, copy them and their contents to new location.
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                }
+            }
         }
 
         private void WorkerForm_FormClosing(object sender, FormClosingEventArgs e)

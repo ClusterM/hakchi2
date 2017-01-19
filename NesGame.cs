@@ -199,7 +199,7 @@ namespace com.clusterrr.hakchi_gui
                 ReleaseDate = gameinfo.ReleaseDate;
                 if (ReleaseDate.Length == 4) ReleaseDate += "-01";
                 if (ReleaseDate.Length == 7) ReleaseDate += "-01";
-                Publisher = gameinfo.Publisher;
+                Publisher = gameinfo.Publisher.ToUpper();
                 return true;
             }
             return false;
