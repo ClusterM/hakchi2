@@ -189,7 +189,7 @@
     <EmbeddedResource Include="SelectButtonsForm.resx">
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.ru.resx">
+    <EmbeddedResource Include="SelectButtonsForm.ru-RU.resx">
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingForm.resx">
@@ -402,6 +402,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icon.ico" />
+    <Content Include="mods\mod_transfer\hakchi\blank_pixel.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="tools\cpio.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
