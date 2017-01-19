@@ -52,6 +52,7 @@
             this.ToolStripMenuItemArmetLevel1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemArmetLevel2 = new System.Windows.Forms.ToolStripMenuItem();
             this.cloverconHackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeThumbnailsAtTheBottomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -208,7 +209,8 @@
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.useExtendedFontToolStripMenuItem,
             this.epilepsyProtectionToolStripMenuItem,
-            this.cloverconHackToolStripMenuItem});
+            this.cloverconHackToolStripMenuItem,
+            this.removeThumbnailsAtTheBottomToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             // 
             // useExtendedFontToolStripMenuItem
@@ -257,6 +259,13 @@
             this.cloverconHackToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cloverconHackToolStripMenuItem.Name = "cloverconHackToolStripMenuItem";
             this.cloverconHackToolStripMenuItem.Click += new System.EventHandler(this.cloverconHackToolStripMenuItem_Click);
+            // 
+            // removeThumbnailsAtTheBottomToolStripMenuItem
+            // 
+            resources.ApplyResources(this.removeThumbnailsAtTheBottomToolStripMenuItem, "removeThumbnailsAtTheBottomToolStripMenuItem");
+            this.removeThumbnailsAtTheBottomToolStripMenuItem.CheckOnClick = true;
+            this.removeThumbnailsAtTheBottomToolStripMenuItem.Name = "removeThumbnailsAtTheBottomToolStripMenuItem";
+            this.removeThumbnailsAtTheBottomToolStripMenuItem.Click += new System.EventHandler(this.removeThumbnailsAtTheBottomToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -620,6 +629,7 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemArmetLevel1;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemArmetLevel2;
         private System.Windows.Forms.ToolStripMenuItem cloverconHackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeThumbnailsAtTheBottomToolStripMenuItem;
     }
 }
 

@@ -8,7 +8,7 @@ rootfs=$installdir/rootfs
 config=$installdir/config
 installed_flag=$installdir/installed
 version_file=$installdir/version
-hakchi_version=2
+hakchi_version=3
 kernel_version=3.4.112
 
 echo Starting $modname...
@@ -37,6 +37,7 @@ if [ "$version" -lt "$hakchi_version" ]; then
   mkdir -p $rootfs/usr/share/games/nes
 	mkdir -p $rootfs/lib/modules/$kernel_version/extra
   mkdir -p $rootfs/usr/share/games/nes/
+	mkdir -p $rootfs/usr/share/clover-ui/resources/sprites/
 
   cp -a $mountpoint/bin $rootfs/
   cp -a $mountpoint/etc $rootfs/
@@ -45,6 +46,7 @@ if [ "$version" -lt "$hakchi_version" ]; then
   cp -a /bin/busybox $rootfs/bin/
   cp -a /sbin/cryptsetup $rootfs/bin/
   cp -a $mountpoint/usr/share/games/nes/kachikachi $rootfs/usr/share/games/nes/
+	cp -a $mountpoint/usr/share/clover-ui/resources/sprites $rootfs/usr/share/clover-ui/resources/
 
   chroot $rootfs /bin/busybox --install -s /bin/
 	echo "1">$installed_flag
@@ -128,6 +130,15 @@ fi
 if [ "$hakchi_remove_armet_all" == "y" ]; then
 	echo "Removing armet filter..."
 	find $rootfs/usr/share/games/nes/kachikachi -name *.desktop -exec sed -i -e 's/--enable-armet//g' {} +
+fi
+
+cp $mountpoint/usr/share/clover-ui/resources/sprites/nes.json $rootfs/usr/share/clover-ui/resources/sprites/nes.json
+if [ "$hakchi_remove_thumbnails" == "y" ]; then
+	echo Removing thumbnails...
+	sed -i -e 's/\[93,861,12,8\]/\[0,0,0,0\]/g' $rootfs/usr/share/clover-ui/resources/sprites/nes.json
+	sed -i -e 's/\[93,871,12,8\]/\[0,0,0,0\]/g' $rootfs/usr/share/clover-ui/resources/sprites/nes.json
+	sed -i -e 's/\[107,861,12,8\]/\[0,0,0,0\]/g' $rootfs/usr/share/clover-ui/resources/sprites/nes.json
+	find $rootfs/usr/share/games/nes/kachikachi -name *_small.png -exec cp -p /$modname/blank_pixel.png {} +
 fi
 
 echo Shutting down...

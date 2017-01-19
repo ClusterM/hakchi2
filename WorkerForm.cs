@@ -387,7 +387,7 @@ namespace com.clusterrr.hakchi_gui
             foreach (var file in ramfsFiles)
             {
                 var fInfo = new FileInfo(file);
-                if (fInfo.Length < 100 && ((fInfo.Attributes & FileAttributes.System) == 0) &&
+                if (fInfo.Length > 10 && fInfo.Length < 100 && ((fInfo.Attributes & FileAttributes.System) == 0) &&
                     (Encoding.ASCII.GetString(File.ReadAllBytes(file), 0, 10)) == "!<symlink>")
                     fInfo.Attributes |= FileAttributes.System;
             }
@@ -439,6 +439,12 @@ namespace com.clusterrr.hakchi_gui
                         }
                     }
                 }
+            }
+            if (Config != null && Config.ContainsKey("hakchi_remove_thumbnails") && Config["hakchi_remove_thumbnails"])
+            {
+                var thumbnails = Directory.GetFiles(gamesDirectory, "*_small.png", SearchOption.AllDirectories);
+                foreach (var t in thumbnails)
+                    File.WriteAllBytes(t, new byte[0]);
             }
             if (HiddenGames != null && HiddenGames.Length > 0)
             {

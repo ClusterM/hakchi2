@@ -16,6 +16,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool CustomFlashed = false;
         public static bool UseFont = true;
         public static bool CloverconHack = true;
+        public static bool RemoveThumbnails = false;
         public static byte AntiArmetLevel = 0;
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         const string ConfigFile = "config.ini";
@@ -65,6 +66,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "cloverconhack":
                                     CloverconHack = !value.ToLower().Equals("false");
                                     break;
+                                case "removethumbnails":
+                                    RemoveThumbnails = !value.ToLower().Equals("false");
+                                    break;
                             }
                             break;
                         case "presets":
@@ -86,7 +90,8 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("UseFont={0}", UseFont));
             configLines.Add(string.Format("CloverconHack={0}", CloverconHack));
             configLines.Add(string.Format("FirstRun={0}", FirstRun));
-            configLines.Add(string.Format("AntiArmetLevel={0}", AntiArmetLevel));            
+            configLines.Add(string.Format("AntiArmetLevel={0}", AntiArmetLevel));
+            configLines.Add(string.Format("RemoveThumbnails={0}", RemoveThumbnails));
             configLines.Add("[Presets]");
             configLines.Add("");
             foreach (var preset in Presets.Keys)

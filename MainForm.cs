@@ -70,6 +70,7 @@ namespace com.clusterrr.hakchi_gui
                 ToolStripMenuItemArmetLevel1.Checked = ConfigIni.AntiArmetLevel == 1;
                 ToolStripMenuItemArmetLevel2.Checked = ConfigIni.AntiArmetLevel == 2;
                 cloverconHackToolStripMenuItem.Checked = ConfigIni.CloverconHack;
+                removeThumbnailsAtTheBottomToolStripMenuItem.Checked = ConfigIni.RemoveThumbnails;
                 new Thread(NesGame.LoadCache).Start();
             }
             catch (Exception ex)
@@ -542,6 +543,7 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Config["hakchi_original_games"] = false;
             workerForm.Config["hakchi_title_font"] = ConfigIni.UseFont;
             workerForm.Config["hakchi_clovercon_hack"] = ConfigIni.CloverconHack;
+            workerForm.Config["hakchi_remove_thumbnails"] = ConfigIni.RemoveThumbnails;
             var games = new List<NesGame>();
             bool needOriginal = false;
             foreach (var game in checkedListBoxGames.CheckedItems)
@@ -686,8 +688,7 @@ namespace com.clusterrr.hakchi_gui
         {
             ConfigIni.UseFont = useExtendedFontToolStripMenuItem.Checked;
         }
-
-
+        
         private void ToolStripMenuItemArmet_Click(object sender, EventArgs e)
         {
             var name = (sender as ToolStripMenuItem).Name;
@@ -700,6 +701,11 @@ namespace com.clusterrr.hakchi_gui
         private void cloverconHackToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.CloverconHack = cloverconHackToolStripMenuItem.Checked;
+        }
+
+        private void removeThumbnailsAtTheBottomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.RemoveThumbnails = removeThumbnailsAtTheBottomToolStripMenuItem.Checked;
         }
 
         public struct DefaultNesGame
