@@ -156,6 +156,7 @@ namespace com.clusterrr.hakchi_gui
                     pictureBoxArt.Image = LoadBitmap(game.IconPath);
                 else
                     pictureBoxArt.Image = null;
+                textBoxGameGenie.Enabled = game.Type == NesGame.GameType.Cartridge;
                 textBoxGameGenie.Text = game.GameGenie;
                 groupBoxOptions.Enabled = true;
             }

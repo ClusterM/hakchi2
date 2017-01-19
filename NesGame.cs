@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.XPath;
@@ -16,6 +17,8 @@ namespace com.clusterrr.hakchi_gui
 {
     public class NesGame
     {
+        public enum GameType { Cartridge, FDS }
+
         public readonly string GamePath;
         public readonly string ConfigPath;
         public readonly string NesPath;
@@ -23,6 +26,7 @@ namespace com.clusterrr.hakchi_gui
         public readonly string SmallIconPath;
         public readonly string Code;
         public readonly string GameGeniePath;
+        public readonly GameType Type;
         public string Args;
         public string Name;
         public byte Players;
@@ -46,13 +50,17 @@ namespace com.clusterrr.hakchi_gui
             Code = Path.GetFileNameWithoutExtension(path);
             ConfigPath = Path.Combine(path, Code + ".desktop");
             NesPath = Path.Combine(path, Code + ".nes");
-            if (!File.Exists(NesPath))
+            if (File.Exists(NesPath))
+                Type = GameType.Cartridge;
+            else
             {
                 var fdsPath = Path.Combine(path, Code + ".fds");
                 if (File.Exists(fdsPath))
+                {
                     NesPath = fdsPath;
-                else
-                    throw new Exception("ROM not found: " + path);
+                    Type = GameType.FDS;
+                }
+                else throw new Exception("ROM not found: " + path);
             }
             IconPath = Path.Combine(path, Code + ".png");
             SmallIconPath = Path.Combine(path, Code + "_small.png");
@@ -114,6 +122,8 @@ namespace com.clusterrr.hakchi_gui
                 crc32 = nesFile.CRC32;
                 Code = GenerateCode(crc32);
                 GamePath = Path.Combine(gamesDirectory, Code);
+                Args = DefaultArgs;
+                Type = GameType.Cartridge;
                 Directory.CreateDirectory(GamePath);
                 NesPath = Path.Combine(GamePath, Code + ".nes");
                 var patchesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "patches");
@@ -141,9 +151,17 @@ namespace com.clusterrr.hakchi_gui
             else
             {
                 var fdsData = File.ReadAllBytes(nesFileName);
+                if (Encoding.ASCII.GetString(fdsData, 0, 3) == "FDS") // header? cut it!
+                {
+                    var fdsDataNoHeader = new byte[fdsData.Length - 0x10];
+                    Array.Copy(fdsData, 0x10, fdsDataNoHeader, 0, fdsDataNoHeader.Length);
+                    fdsData = fdsDataNoHeader;
+                }
                 crc32 = CRC32(fdsData);
                 Code = GenerateCode(crc32);
                 GamePath = Path.Combine(gamesDirectory, Code);
+                Args = DefaultArgs + " --fds-auto-disk-side-switch-on-keypress"; // seems like need to make it default
+                Type = GameType.FDS;
                 Directory.CreateDirectory(GamePath);
                 ConfigPath = Path.Combine(GamePath, Code + ".desktop");
                 NesPath = Path.Combine(GamePath, Code + ".fds");
@@ -173,7 +191,6 @@ namespace com.clusterrr.hakchi_gui
             Name = Regex.Replace(Name, @" ?\(.*?\)", string.Empty).Trim();
             Name = Regex.Replace(Name, @" ?\[.*?\]", string.Empty).Trim();
             Name = Name.Replace("_", " ").Replace("  ", " ").Trim();
-            Args = DefaultArgs;
             IconPath = Path.Combine(GamePath, Code + ".png");
             SmallIconPath = Path.Combine(GamePath, Code + "_small.png");
             GameGeniePath = Path.Combine(GamePath, GameGenieFileName);
@@ -234,25 +251,24 @@ namespace com.clusterrr.hakchi_gui
                 return;
             }
 
-            if (image.Height > image.Width)
+            if (Type == GameType.Cartridge)
             {
-                outImage = new Bitmap(140, 204, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-                outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-            }
-            else
+                if (image.Height > image.Width)
+                {
+                    outImage = new Bitmap(140, 204, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                    outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                }
+                else
+                {
+                    outImage = new Bitmap(204, 140, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                    outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                }
+            } else // if (Type == GameType.FDS)
             {
-                outImage = new Bitmap(204, 140, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-                outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                outImage = new Bitmap(140, 158, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                outImageSmall = new Bitmap(28, 32, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             }
             gr = Graphics.FromImage(outImage);
-            /*
-            if (image.Width / image.Height > outImage.Width / outImage.Height)
-                gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
-                    -(image.Width - (image.Height * outImage.Width / outImage.Height)) / 2, 0, image.Width * 2 - (image.Height * outImage.Width / outImage.Height), image.Height, GraphicsUnit.Pixel);
-            else
-                gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
-                    0, -(image.Height - (image.Width * outImage.Height / outImage.Width)) / 2, image.Width, image.Height * 2 - (image.Width * outImage.Height / outImage.Width), GraphicsUnit.Pixel);
-            */
             gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
                                 new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
             gr.Flush();
