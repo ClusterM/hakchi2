@@ -571,8 +571,8 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.checkedListBoxGames);
             this.Controls.Add(this.menuStrip);
-            this.Controls.Add(this.groupBoxOptions);
             this.Controls.Add(this.groupBoxDefaultGames);
+            this.Controls.Add(this.groupBoxOptions);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
