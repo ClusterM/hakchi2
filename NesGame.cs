@@ -37,11 +37,12 @@ namespace com.clusterrr.hakchi_gui
 
         private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
 
-        const string DefaultReleaseDate = "1983-07-15";
+        const string DefaultReleaseDate = "1983-07-15"; // Famicom release day
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet";
         const string DefaultPublisher = "Nintendo";
         public const string GameGenieFileName = "gamegenie.txt";
-
+        
+        // TODO: Need more mapper tests.
         private byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10, 87 };
 
         public NesGame(string path)
@@ -150,6 +151,7 @@ namespace com.clusterrr.hakchi_gui
                     Directory.Delete(GamePath, true);
                     throw new UnsupportedFourScreenException(nesFile);
                 }
+                // TODO: Make trainer check. I think that NES Mini doesn't support it.
 
                 ConfigPath = Path.Combine(GamePath, Code + ".desktop");
                 nesFile.Save(NesPath);

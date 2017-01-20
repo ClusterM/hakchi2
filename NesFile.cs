@@ -77,11 +77,11 @@ namespace com.clusterrr.Famicom
             }
 
             PRG = new byte[prgSize];
-            Array.Copy(data, offset, PRG, 0, prgSize);
+            Array.Copy(data, offset, PRG, 0, Math.Max(0, Math.Min(prgSize, data.Length - offset))); // Ignore end of for some bad ROMs
             offset += prgSize;
 
             CHR = new byte[chrSize];
-            Array.Copy(data, offset, CHR, 0, chrSize);
+            Array.Copy(data, offset, CHR, 0, Math.Max(0, Math.Min(chrSize, data.Length - offset)));
         }
 
         public NesFile(string fileName)
