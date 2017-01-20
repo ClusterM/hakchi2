@@ -62,5 +62,10 @@ namespace com.clusterrr.hakchi_gui
             DialogResult = DialogResult.OK;
             Close();
         }
+
+        private void SelectButtonsForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
