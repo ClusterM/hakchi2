@@ -1,5 +1,6 @@
 ﻿using com.clusterrr.Famicom;
 using com.clusterrr.hakchi_gui.Properties;
+using SevenZip;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -436,22 +437,54 @@ namespace com.clusterrr.hakchi_gui
             {
                 try
                 {
+                    var nesFileName = file;
+                    var ext = Path.GetExtension(file).ToLower();
+                    byte[] rawData = null;
+                    if (ext == ".7z" || ext == ".zip" || ext == ".rar")
+                    {
+                        SevenZipExtractor.SetLibraryPath(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+                        var szExtractor = new SevenZipExtractor(file);
+                        var filesInArchive = new List<string>();
+                        foreach (var f in szExtractor.ArchiveFileNames)
+                        {
+                            var e = Path.GetExtension(f).ToLower();
+                            if (e == ".nes" || e == ".fds")
+                                filesInArchive.Add(f);
+                        }
+                        if (filesInArchive.Count == 1)
+                        {
+                            nesFileName = filesInArchive[0];
+                        }
+                        else
+                        {
+                            var fsForm = new SelectFileForm(filesInArchive.ToArray());
+                            if (fsForm.ShowDialog() == DialogResult.OK)
+                                nesFileName = (string)fsForm.listBoxFiles.SelectedItem;
+                            else
+                                continue;
+                        }
+                        var o = new MemoryStream();
+                        szExtractor.ExtractFile(nesFileName, o);
+                        rawData = new byte[szExtractor.ArchiveFileData[0].Size];
+                        o.Seek(0, SeekOrigin.Begin);
+                        o.Read(rawData, 0, rawData.Length);
+                    }
                     try
                     {
-                        nesGame = new NesGame(GamesDir, file, false, this);
+                        nesGame = new NesGame(GamesDir, nesFileName, false, this, rawData);
                     }
                     catch (UnsupportedMapperException ex)
                     {
                         if (MessageBox.Show(this, string.Format(Resources.MapperNotSupported, Path.GetFileName(file), ex.ROM.Mapper), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                             == DialogResult.Yes)
-                            nesGame = new NesGame(GamesDir, file, true, this);
+                            nesGame = new NesGame(GamesDir, nesFileName, true, this, rawData);
                         else continue;
                     }
                     catch (UnsupportedFourScreenException)
                     {
                         if (MessageBox.Show(this, string.Format(Resources.FourScreenNotSupported, Path.GetFileName(file)), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                             == DialogResult.Yes)
-                            nesGame = new NesGame(GamesDir, file, true, this);
+                            nesGame = new NesGame(GamesDir, nesFileName, true, this, rawData);
                         else continue;
                     }
                     ConfigIni.SelectedGames += ";" + nesGame.Code;
@@ -776,6 +809,32 @@ namespace com.clusterrr.hakchi_gui
                 ConfigIni.ResetCombination = form.SelectedButtons;
         }
 
+        private void nESMiniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.ConsoleType = 0;
+            nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
+            famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
+            ConfigIni.HiddenGames = "";
+            LoadHidden();
+        }
+
+        private void famicomMiniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.ConsoleType = 1;
+            nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
+            famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
+            ConfigIni.HiddenGames = "";
+            LoadHidden();
+        }
+
+        private void enableAutofireToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.AutofireHack = enableAutofireToolStripMenuItem.Checked;
+            if (ConfigIni.AutofireHack)
+                MessageBox.Show(this, Resources.AutofireHelp1 + "\r\n" + Resources.AutofireHelp2, enableAutofireToolStripMenuItem.Text,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         private void timerCalculateGames_Tick(object sender, EventArgs e)
         {
             RecalculateSelectedGames();
@@ -897,32 +956,6 @@ namespace com.clusterrr.hakchi_gui
                 ShowSelected();
                 MessageBox.Show(this, string.Format(Resources.AutofillResult, counter), Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-        private void nESMiniToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigIni.ConsoleType = 0;
-            nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
-            famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
-            ConfigIni.HiddenGames = "";
-            LoadHidden();
-        }
-
-        private void famicomMiniToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigIni.ConsoleType = 1;
-            nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
-            famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
-            ConfigIni.HiddenGames = "";
-            LoadHidden();
-        }
-
-        private void enableAutofireToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigIni.AutofireHack = enableAutofireToolStripMenuItem.Checked;
-            if (ConfigIni.AutofireHack)
-                MessageBox.Show(this, Resources.AutofireHelp1 + "\r\n" + Resources.AutofireHelp2, enableAutofireToolStripMenuItem.Text,
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

@@ -8,10 +8,8 @@ namespace com.clusterrr.hakchi_gui
 {
     public static class IpsPatcher
     {
-        public static void Patch(string patchFile, string inFile, string outFile)
+        public static void Patch(byte[] patch, ref byte[] data)
         {
-            var patch = File.ReadAllBytes(patchFile);
-            var data = File.ReadAllBytes(inFile);
             if (Encoding.ASCII.GetString(patch, 0, 5) != "PATCH") throw new Exception("Invalid IPS file");
             int pos = 5;
             while (pos < data.Length)
@@ -26,7 +24,7 @@ namespace com.clusterrr.hakchi_gui
                     while (length > 0)
                     {
                         if (address >= data.Length)
-                            Array.Resize(ref data, data.Length*2);
+                            Array.Resize(ref data, data.Length * 2);
                         data[address] = patch[pos];
                         address++;
                         pos++;
@@ -40,7 +38,7 @@ namespace com.clusterrr.hakchi_gui
                     while (length > 0)
                     {
                         if (address >= data.Length)
-                            Array.Resize(ref data, data.Length*2);
+                            Array.Resize(ref data, data.Length * 2);
                         data[address] = b;
                         address++;
                         length--;
@@ -48,6 +46,18 @@ namespace com.clusterrr.hakchi_gui
                     pos += 3;
                 }
             }
+        }
+
+        public static void Patch(string patchFile, ref byte[] data)
+        {
+            Patch(File.ReadAllBytes(patchFile), ref data);
+        }
+
+        public static void Patch(string patchFile, string inFile, string outFile)
+        {
+            var patch = File.ReadAllBytes(patchFile);
+            var data = File.ReadAllBytes(inFile);
+            Patch(patchFile, ref data);
             File.WriteAllBytes(outFile, data);
         }
     }

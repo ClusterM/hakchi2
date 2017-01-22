@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;UNMANAGED DOTNET20</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -139,6 +139,44 @@
     <Compile Include="SelectButtonsForm.Designer.cs">
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectFileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectFileForm.Designer.cs">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SevenZip\ArchiveEmulationStreamProxy.cs" />
+    <Compile Include="SevenZip\ArchiveExtractCallback.cs" />
+    <Compile Include="SevenZip\ArchiveOpenCallback.cs" />
+    <Compile Include="SevenZip\ArchiveUpdateCallback.cs" />
+    <Compile Include="SevenZip\COM.cs" />
+    <Compile Include="SevenZip\Common.cs" />
+    <Compile Include="SevenZip\EventArgs.cs" />
+    <Compile Include="SevenZip\Exceptions.cs" />
+    <Compile Include="SevenZip\FileSignatureChecker.cs" />
+    <Compile Include="SevenZip\Formats.cs" />
+    <Compile Include="SevenZip\LibraryFeature.cs" />
+    <Compile Include="SevenZip\LibraryManager.cs" />
+    <Compile Include="SevenZip\LzmaDecodeStream.cs" />
+    <Compile Include="SevenZip\LzmaProgressCallback.cs" />
+    <Compile Include="SevenZip\NativeMethods.cs" />
+    <Compile Include="SevenZip\sdk\Common\CRC.cs" />
+    <Compile Include="SevenZip\sdk\Common\InBuffer.cs" />
+    <Compile Include="SevenZip\sdk\Common\OutBuffer.cs" />
+    <Compile Include="SevenZip\sdk\Compress\LZMA\LzmaBase.cs" />
+    <Compile Include="SevenZip\sdk\Compress\LZMA\LzmaDecoder.cs" />
+    <Compile Include="SevenZip\sdk\Compress\LZMA\LzmaEncoder.cs" />
+    <Compile Include="SevenZip\sdk\Compress\LZ\IMatchFinder.cs" />
+    <Compile Include="SevenZip\sdk\Compress\LZ\LzBinTree.cs" />
+    <Compile Include="SevenZip\sdk\Compress\LZ\LzInWindow.cs" />
+    <Compile Include="SevenZip\sdk\Compress\LZ\LzOutWindow.cs" />
+    <Compile Include="SevenZip\sdk\Compress\RangeCoder\RangeCoder.cs" />
+    <Compile Include="SevenZip\sdk\Compress\RangeCoder\RangeCoderBit.cs" />
+    <Compile Include="SevenZip\sdk\Compress\RangeCoder\RangeCoderBitTree.cs" />
+    <Compile Include="SevenZip\sdk\ICoder.cs" />
+    <Compile Include="SevenZip\SevenZipExtractor.cs" />
+    <Compile Include="SevenZip\SevenZipExtractorAsynchronous.cs" />
+    <Compile Include="SevenZip\StreamWrappers.cs" />
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
     <Compile Include="WaitingForm.cs">
@@ -191,6 +229,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectButtonsForm.ru-RU.resx">
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.ru-RU.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingForm.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>
@@ -411,6 +455,14 @@
     <Content Include="mods\mod_transfer\hakchi\blank_pixel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="tools\7z.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\7z64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SevenZip\gpl.txt" />
+    <Content Include="SevenZip\lgpl.txt" />
     <Content Include="tools\cpio.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

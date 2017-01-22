@@ -41,7 +41,7 @@ namespace com.clusterrr.hakchi_gui
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet";
         const string DefaultPublisher = "Nintendo";
         public const string GameGenieFileName = "gamegenie.txt";
-        
+
         // TODO: Need more mapper tests.
         private byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10, 87 };
 
@@ -113,12 +113,16 @@ namespace com.clusterrr.hakchi_gui
                 GameGenie = File.ReadAllText(GameGeniePath);
         }
 
-        public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper = false, Form parentForm = null)
+        public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper = false, Form parentForm = null, byte[] rawRomData = null)
         {
             uint crc32;
             if (!Path.GetExtension(nesFileName).ToLower().Equals(".fds"))
             {
-                var nesFile = new NesFile(nesFileName);
+                NesFile nesFile;
+                if (rawRomData != null)
+                    nesFile = new NesFile(rawRomData);
+                else
+                    nesFile = new NesFile(nesFileName);
                 nesFile.CorrectRom();
                 crc32 = nesFile.CRC32;
                 Code = GenerateCode(crc32);
@@ -135,8 +139,10 @@ namespace com.clusterrr.hakchi_gui
                     if (MessageBox.Show(parentForm, string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)), Resources.PatchAvailable, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         var patch = patches[0];
-                        IpsPatcher.Patch(patch, nesFileName, NesPath);
-                        nesFile = new NesFile(NesPath);
+                        if (rawRomData == null)
+                            rawRomData = File.ReadAllBytes(nesFileName);
+                        IpsPatcher.Patch(patch, ref rawRomData);
+                        nesFile = new NesFile(rawRomData);
                     }
                 }
 
@@ -158,7 +164,11 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                var fdsData = File.ReadAllBytes(nesFileName);
+                byte[] fdsData;
+                if (rawRomData != null)
+                    fdsData = rawRomData;
+                else
+                    fdsData = File.ReadAllBytes(nesFileName);
                 if (Encoding.ASCII.GetString(fdsData, 0, 3) == "FDS") // header? cut it!
                 {
                     var fdsDataNoHeader = new byte[fdsData.Length - 0x10];

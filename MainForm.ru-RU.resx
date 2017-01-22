@@ -196,12 +196,6 @@
   <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ядро</value>
   </data>
-  <data name="nESMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 22</value>
-  </data>
-  <data name="famicomMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 22</value>
-  </data>
   <data name="consoleTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>375, 22</value>
   </data>
@@ -432,7 +426,7 @@
     <value>Добавить игр</value>
   </data>
   <data name="openFileDialogNes.Filter" xml:space="preserve">
-    <value>NES файлы|*.nes;*.fds|Все файлы|*.*</value>
+    <value>NES файлы|*.nes;*.fds;*.zip;*.7z;*.rar|Все файлы|*.*</value>
   </data>
   <data name="openFileDialogNes.Title" xml:space="preserve">
     <value>Выберите NES файл(ы)</value>
