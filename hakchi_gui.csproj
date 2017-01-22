@@ -363,6 +363,9 @@
     <None Include="patches\279710dc-Battletoads %28U%29 [bugfix].ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="patches\46fd7843-Splatter House - Wanpaku Graffiti %28J%29 [!] - MMC3 patch.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="patches\96087988-RoboCop 3 %28U%29 [!] - NES Mini patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -25,6 +25,8 @@ namespace com.clusterrr.hakchi_gui
                 {
                     while (length > 0)
                     {
+                        if (address >= data.Length)
+                            Array.Resize(ref data, data.Length*2);
                         data[address] = patch[pos];
                         address++;
                         pos++;
@@ -37,6 +39,8 @@ namespace com.clusterrr.hakchi_gui
                     var b = patch[pos + 2];
                     while (length > 0)
                     {
+                        if (address >= data.Length)
+                            Array.Resize(ref data, data.Length*2);
                         data[address] = b;
                         address++;
                         length--;
