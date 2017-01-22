@@ -79,6 +79,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hold Select+A/B for a second to enable/disable autofire for A/B..
+        /// </summary>
+        internal static string AutofireHelp1 {
+            get {
+                return ResourceManager.GetString("AutofireHelp1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also X/Y buttons on Classic Controller will act as autofire A/B..
+        /// </summary>
+        internal static string AutofireHelp2 {
+            get {
+                return ResourceManager.GetString("AutofireHelp2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap blank {

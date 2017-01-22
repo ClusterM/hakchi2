@@ -112,7 +112,8 @@ namespace com.clusterrr.hakchi_gui
                 ToolStripMenuItemArmetLevel0.Checked = ConfigIni.AntiArmetLevel == 0;
                 ToolStripMenuItemArmetLevel1.Checked = ConfigIni.AntiArmetLevel == 1;
                 ToolStripMenuItemArmetLevel2.Checked = ConfigIni.AntiArmetLevel == 2;
-                resetUsingCombinationOfButtonsToolStripMenuItem.Checked = ConfigIni.CloverconHack;
+                selectButtonCombinationToolStripMenuItem.Enabled = resetUsingCombinationOfButtonsToolStripMenuItem.Checked = ConfigIni.ResetHack;
+                enableAutofireToolStripMenuItem.Checked = ConfigIni.AutofireHack;
                 removeThumbnailsAtTheBottomToolStripMenuItem.Checked = ConfigIni.RemoveThumbnails;
                 betterPNGCompressionlowerQualityToolStripMenuItem.Checked = ConfigIni.EightBitPngCompression;
                 nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
@@ -233,7 +234,7 @@ namespace com.clusterrr.hakchi_gui
             foreach (var preset in ConfigIni.Presets.Keys.OrderBy(o => o))
             {
                 presetsToolStripMenuItem.DropDownItems.Insert(i, new ToolStripMenuItem(preset, null,
-                    delegate (object sender, EventArgs e)
+                    delegate(object sender, EventArgs e)
                     {
                         var cols = ConfigIni.Presets[preset].Split('|');
                         ConfigIni.SelectedGames = cols[0];
@@ -249,7 +250,7 @@ namespace com.clusterrr.hakchi_gui
                                 !hide.Contains(((DefaultNesGame)checkedListBoxDefaultGames.Items[j]).Code));
                     }));
                 deletePresetToolStripMenuItem.DropDownItems.Insert(i, new ToolStripMenuItem(preset, null,
-                    delegate (object sender, EventArgs e)
+                    delegate(object sender, EventArgs e)
                     {
                         if (MessageBox.Show(this, string.Format(Resources.DeletePreset, preset), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                             == DialogResult.Yes)
@@ -594,7 +595,7 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Config["hakchi_remove_games"] = true;
             workerForm.Config["hakchi_original_games"] = false;
             workerForm.Config["hakchi_title_font"] = ConfigIni.UseFont;
-            workerForm.Config["hakchi_clovercon_hack"] = ConfigIni.CloverconHack;
+            workerForm.Config["hakchi_clovercon_hack"] = ConfigIni.ResetHack || ConfigIni.AutofireHack;
             workerForm.Config["hakchi_remove_thumbnails"] = ConfigIni.RemoveThumbnails;
             var games = new List<NesGame>();
             bool needOriginal = false;
@@ -617,7 +618,8 @@ namespace com.clusterrr.hakchi_gui
                 workerForm.HiddenGames = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             else
                 workerForm.HiddenGames = null;
-            workerForm.ResetCombination = ConfigIni.ResetCombination;
+            workerForm.ResetCombination = ConfigIni.ResetHack ? ConfigIni.ResetCombination : (SelectButtonsForm.NesButtons)0xFF;
+            workerForm.AutofireHack = ConfigIni.AutofireHack;
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
         }
@@ -753,7 +755,8 @@ namespace com.clusterrr.hakchi_gui
 
         private void cloverconHackToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigIni.CloverconHack = resetUsingCombinationOfButtonsToolStripMenuItem.Checked;
+            selectButtonCombinationToolStripMenuItem.Enabled =
+                ConfigIni.ResetHack = resetUsingCombinationOfButtonsToolStripMenuItem.Checked;
         }
 
         private void removeThumbnailsAtTheBottomToolStripMenuItem_Click(object sender, EventArgs e)
@@ -912,6 +915,14 @@ namespace com.clusterrr.hakchi_gui
             famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
             ConfigIni.HiddenGames = "";
             LoadHidden();
+        }
+
+        private void enableAutofireToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.AutofireHack = enableAutofireToolStripMenuItem.Checked;
+            if (ConfigIni.AutofireHack)
+                MessageBox.Show(this, Resources.AutofireHelp1 + "\r\n" + Resources.AutofireHelp2, enableAutofireToolStripMenuItem.Text,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

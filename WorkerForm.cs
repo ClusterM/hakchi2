@@ -23,6 +23,7 @@ namespace com.clusterrr.hakchi_gui
         public string[] HiddenGames;
         public NesGame[] Games;
         public SelectButtonsForm.NesButtons ResetCombination;
+        public bool AutofireHack;
         Thread thread = null;
         Fel fel = null;
 
@@ -454,15 +455,25 @@ namespace com.clusterrr.hakchi_gui
             if (Config != null && Config.ContainsKey("hakchi_clovercon_hack") && Config["hakchi_clovercon_hack"] && File.Exists(cloverconDriverPath))
             {
                 byte[] drv = File.ReadAllBytes(cloverconDriverPath);
-                const string magic = "MAGIC_BUTTONS:";
-                for (int i = 0; i < drv.Length - magic.Length; i++)
+                const string magicReset = "MAGIC_BUTTONS:";
+                for (int i = 0; i < drv.Length - magicReset.Length; i++)
                 {
-                    if (Encoding.ASCII.GetString(drv, i, magic.Length) == magic)
+                    if (Encoding.ASCII.GetString(drv, i, magicReset.Length) == magicReset)
                     {
-                        int pos = i + magic.Length;
+                        int pos = i + magicReset.Length;
                         for (int b = 0; b < 8; b++)
                             drv[pos + b] = (byte)((((byte)ResetCombination & (1 << b)) != 0) ? '1' : '0');
                         File.WriteAllBytes(cloverconDriverPath, drv);
+                        break;
+                    }
+                }
+                const string magicAutofire = "MAGIC_AUTOFIRE:";
+                for (int i = 0; i < drv.Length - magicAutofire.Length; i++)
+                {
+                    if (Encoding.ASCII.GetString(drv, i, magicAutofire.Length) == magicAutofire)
+                    {
+                        int pos = i + magicAutofire.Length;
+                        drv[pos] = (byte)(AutofireHack ? '1' : '0');
                         break;
                     }
                 }

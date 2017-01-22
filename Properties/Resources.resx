@@ -310,4 +310,10 @@
   <data name="SelectAtLeastTwo" xml:space="preserve">
     <value>You need to select at least two buttons.</value>
   </data>
+  <data name="AutofireHelp1" xml:space="preserve">
+    <value>Hold Select+A/B for a second to enable/disable autofire for A/B.</value>
+  </data>
+  <data name="AutofireHelp2" xml:space="preserve">
+    <value>Also X/Y buttons on Classic Controller will act as autofire A/B.</value>
+  </data>
 </root>

@@ -15,7 +15,8 @@ namespace com.clusterrr.hakchi_gui
         public static string HiddenGames = "";
         public static bool CustomFlashed = false;
         public static bool UseFont = true;
-        public static bool CloverconHack = true;
+        public static bool ResetHack = true;
+        public static bool AutofireHack = false;
         public static bool RemoveThumbnails = false;
         public static bool EightBitPngCompression = true;
         public static byte AntiArmetLevel = 0;
@@ -66,8 +67,12 @@ namespace com.clusterrr.hakchi_gui
                                 case "antiarmetlevel":
                                     AntiArmetLevel = byte.Parse(value);
                                     break;
+                                case "resethack":
                                 case "cloverconhack":
-                                    CloverconHack = !value.ToLower().Equals("false");
+                                    ResetHack = !value.ToLower().Equals("false");
+                                    break;
+                                case "autofirehack":
+                                    AutofireHack = !value.ToLower().Equals("false");
                                     break;
                                 case "removethumbnails":
                                     RemoveThumbnails = !value.ToLower().Equals("false");
@@ -100,7 +105,8 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("HiddenGames={0}", HiddenGames));
             configLines.Add(string.Format("CustomFlashed={0}", CustomFlashed));
             configLines.Add(string.Format("UseFont={0}", UseFont));
-            configLines.Add(string.Format("CloverconHack={0}", CloverconHack));
+            configLines.Add(string.Format("ResetHack={0}", ResetHack));
+            configLines.Add(string.Format("AutofireHack={0}", AutofireHack));
             configLines.Add(string.Format("FirstRun={0}", FirstRun));
             configLines.Add(string.Format("AntiArmetLevel={0}", AntiArmetLevel));
             configLines.Add(string.Format("RemoveThumbnails={0}", RemoveThumbnails));

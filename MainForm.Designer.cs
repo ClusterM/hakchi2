@@ -57,6 +57,7 @@
             this.cloverconHackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetUsingCombinationOfButtonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectButtonCombinationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enableAutofireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeThumbnailsAtTheBottomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.betterPNGCompressionlowerQualityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -286,7 +287,8 @@
             resources.ApplyResources(this.cloverconHackToolStripMenuItem, "cloverconHackToolStripMenuItem");
             this.cloverconHackToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.resetUsingCombinationOfButtonsToolStripMenuItem,
-            this.selectButtonCombinationToolStripMenuItem});
+            this.selectButtonCombinationToolStripMenuItem,
+            this.enableAutofireToolStripMenuItem});
             this.cloverconHackToolStripMenuItem.Name = "cloverconHackToolStripMenuItem";
             // 
             // resetUsingCombinationOfButtonsToolStripMenuItem
@@ -303,6 +305,13 @@
             resources.ApplyResources(this.selectButtonCombinationToolStripMenuItem, "selectButtonCombinationToolStripMenuItem");
             this.selectButtonCombinationToolStripMenuItem.Name = "selectButtonCombinationToolStripMenuItem";
             this.selectButtonCombinationToolStripMenuItem.Click += new System.EventHandler(this.selectButtonCombinationToolStripMenuItem_Click);
+            // 
+            // enableAutofireToolStripMenuItem
+            // 
+            resources.ApplyResources(this.enableAutofireToolStripMenuItem, "enableAutofireToolStripMenuItem");
+            this.enableAutofireToolStripMenuItem.CheckOnClick = true;
+            this.enableAutofireToolStripMenuItem.Name = "enableAutofireToolStripMenuItem";
+            this.enableAutofireToolStripMenuItem.Click += new System.EventHandler(this.enableAutofireToolStripMenuItem_Click);
             // 
             // removeThumbnailsAtTheBottomToolStripMenuItem
             // 
@@ -691,6 +700,7 @@
         private System.Windows.Forms.ToolStripMenuItem consoleTypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nESMiniToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem famicomMiniToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem enableAutofireToolStripMenuItem;
     }
 }
 

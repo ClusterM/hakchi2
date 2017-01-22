@@ -196,6 +196,12 @@
   <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ядро</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 22</value>
+  </data>
+  <data name="famicomMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 22</value>
+  </data>
   <data name="consoleTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>375, 22</value>
   </data>
@@ -242,13 +248,19 @@
     <value>378, 22</value>
   </data>
   <data name="selectButtonCombinationToolStripMenuItem.Text" xml:space="preserve">
-    <value>Выбрать комбинацию кнопок</value>
+    <value>Выбрать комбинацию кнопок для выхода в меню</value>
+  </data>
+  <data name="enableAutofireToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>378, 22</value>
+  </data>
+  <data name="enableAutofireToolStripMenuItem.Text" xml:space="preserve">
+    <value>Включить турбо кнопки</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>375, 22</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text" xml:space="preserve">
-    <value>Комбинация кнопок для выхода в меню</value>
+    <value>Хаки контроллера</value>
   </data>
   <data name="removeThumbnailsAtTheBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>375, 22</value>
