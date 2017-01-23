@@ -59,6 +59,7 @@
             this.selectButtonCombinationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableAutofireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeThumbnailsAtTheBottomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.betterPNGCompressionlowerQualityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -214,10 +215,11 @@
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.consoleTypeToolStripMenuItem,
-            this.useExtendedFontToolStripMenuItem,
-            this.epilepsyProtectionToolStripMenuItem,
             this.cloverconHackToolStripMenuItem,
+            this.useExtendedFontToolStripMenuItem,
             this.removeThumbnailsAtTheBottomToolStripMenuItem,
+            this.epilepsyProtectionToolStripMenuItem,
+            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem,
             this.betterPNGCompressionlowerQualityToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
@@ -319,6 +321,12 @@
             this.removeThumbnailsAtTheBottomToolStripMenuItem.Name = "removeThumbnailsAtTheBottomToolStripMenuItem";
             resources.ApplyResources(this.removeThumbnailsAtTheBottomToolStripMenuItem, "removeThumbnailsAtTheBottomToolStripMenuItem");
             this.removeThumbnailsAtTheBottomToolStripMenuItem.Click += new System.EventHandler(this.removeThumbnailsAtTheBottomToolStripMenuItem_Click);
+            // 
+            // globalCommandLineArgumentsexpertsOnluToolStripMenuItem
+            // 
+            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Name = "globalCommandLineArgumentsexpertsOnluToolStripMenuItem";
+            resources.ApplyResources(this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem, "globalCommandLineArgumentsexpertsOnluToolStripMenuItem");
+            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Click += new System.EventHandler(this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem_Click);
             // 
             // betterPNGCompressionlowerQualityToolStripMenuItem
             // 
@@ -701,6 +709,7 @@
         private System.Windows.Forms.ToolStripMenuItem nESMiniToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem famicomMiniToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enableAutofireToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem globalCommandLineArgumentsexpertsOnluToolStripMenuItem;
     }
 }
 

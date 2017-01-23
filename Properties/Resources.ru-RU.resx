@@ -322,4 +322,10 @@
   <data name="AutofireHelp2" xml:space="preserve">
     <value>Помимо этого, кнопки X и Y на Classic Controller'е будут работать как турбо.</value>
   </data>
+  <data name="ExtraArgsInfo" xml:space="preserve">
+    <value>Вы можете задать глобальные параметры командной строки, которые будут добавлены ко всем играм, включая оригинальные. Только для экспертов!</value>
+  </data>
+  <data name="ExtraArgsTitle" xml:space="preserve">
+    <value>Глобальные параметры командной строки</value>
+  </data>
 </root>

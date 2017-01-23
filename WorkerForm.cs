@@ -24,6 +24,7 @@ namespace com.clusterrr.hakchi_gui
         public NesGame[] Games;
         public SelectButtonsForm.NesButtons ResetCombination;
         public bool AutofireHack;
+        public string ExtraCommandLineArguments = null;
         Thread thread = null;
         Fel fel = null;
 
@@ -46,6 +47,7 @@ namespace com.clusterrr.hakchi_gui
         readonly string hiddenPath;
         readonly string gamesDirectory;
         readonly string cloverconDriverPath;
+        readonly string argumentsFilePath;
 
         string[] correctKernels;
 
@@ -68,6 +70,7 @@ namespace com.clusterrr.hakchi_gui
             configPath = Path.Combine(hakchiDirectory, "config");
             hiddenPath = Path.Combine(hakchiDirectory, "hidden_games");
             cloverconDriverPath = Path.Combine(hakchiDirectory, "clovercon.ko");
+            argumentsFilePath = Path.Combine(hakchiDirectory, "extra_args");
             correctKernels = new string[] {
                 "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158", // NES Mini
                 "ac8144c3ea4ab32e017648ee80bdc230" // Famicom Mini
@@ -478,6 +481,11 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
             }
+            if (!string.IsNullOrEmpty(ExtraCommandLineArguments))
+            {
+                File.WriteAllText(argumentsFilePath, ExtraCommandLineArguments);
+            }
+
             ExecuteTool("upx.exe", "--best sbin\\cryptsetup", ramfsDirectory);
 
             byte[] ramdisk;

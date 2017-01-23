@@ -316,4 +316,10 @@
   <data name="AutofireHelp2" xml:space="preserve">
     <value>Also X/Y buttons on Classic Controller will act as autofire A/B.</value>
   </data>
+  <data name="ExtraArgsInfo" xml:space="preserve">
+    <value>You can add some global command line arguments which will be appended to all games including original ones. It's only for experts!</value>
+  </data>
+  <data name="ExtraArgsTitle" xml:space="preserve">
+    <value>Extra command line arguments</value>
+  </data>
 </root>

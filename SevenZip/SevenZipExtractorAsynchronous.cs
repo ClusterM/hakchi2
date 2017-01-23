@@ -13,6 +13,8 @@
     You should have received a copy of the GNU Lesser General Public License
     along with SevenZipSharp.  If not, see <http://www.gnu.org/licenses/>.
 */
+#define DOTNET20
+#define UNMANAGED
 
 namespace SevenZip
 {

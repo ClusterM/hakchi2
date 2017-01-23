@@ -278,6 +278,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can add some global command line arguments which will be appended to all games including original ones. It&apos;s only for experts!.
+        /// </summary>
+        internal static string ExtraArgsInfo {
+            get {
+                return ResourceManager.GetString("ExtraArgsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extra command line arguments.
+        /// </summary>
+        internal static string ExtraArgsTitle {
+            get {
+                return ResourceManager.GetString("ExtraArgsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello there! I&apos;m very glad that you are using my application. It&apos;s very simple to use. Just click &quot;Add more games&quot;, select some ROMs, press &quot;Synchronize&quot; and follow the instructions. Good luck!.
         /// </summary>
         internal static string FirstRun {

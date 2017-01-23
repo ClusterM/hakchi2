@@ -56,6 +56,7 @@
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.listBoxFiles);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.MinimizeBox = false;
             this.Name = "SelectFileForm";
             this.ResumeLayout(false);
 

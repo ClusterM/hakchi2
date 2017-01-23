@@ -14,6 +14,9 @@
     along with SevenZipSharp.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#define DOTNET20
+#define UNMANAGED
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -439,10 +442,12 @@ Dispatcher == null
             {
                 type = "SevenZipExtractor";
             }
-            //if (this is SevenZipCompressor)
-            //{
-            //    type = "SevenZipCompressor";
-            //}
+            /*
+            if (this is SevenZipCompressor)
+            {
+                type = "SevenZipCompressor";
+            }
+             */
             return string.Format("{0} [{1}]", type, _uniqueID);
         }
     }

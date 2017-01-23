@@ -267,13 +267,18 @@ namespace com.clusterrr.hakchi_gui
 
         void AddPreset(object sender, EventArgs e)
         {
-            var name = Microsoft.VisualBasic.Interaction.InputBox(Resources.InputPreset, Resources.NewPreset);
-            name = name.Replace("=", " ");
-            if (!string.IsNullOrEmpty(name))
+            var form = new StringInputForm();
+            form.Text = Resources.NewPreset;
+            form.labelComments.Text = Resources.InputPreset;
+            if (form.ShowDialog() == DialogResult.OK)
             {
-                SaveSelectedGames();
-                ConfigIni.Presets[name] = ConfigIni.SelectedGames + "|" + ConfigIni.HiddenGames;
-                LoadPresets();
+                var name = form.textBox.Text.Replace("=", " ");
+                if (!string.IsNullOrEmpty(name))
+                {
+                    SaveSelectedGames();
+                    ConfigIni.Presets[name] = ConfigIni.SelectedGames + "|" + ConfigIni.HiddenGames;
+                    LoadPresets();
+                }
             }
         }
 
@@ -653,6 +658,7 @@ namespace com.clusterrr.hakchi_gui
                 workerForm.HiddenGames = null;
             workerForm.ResetCombination = ConfigIni.ResetHack ? ConfigIni.ResetCombination : (SelectButtonsForm.NesButtons)0xFF;
             workerForm.AutofireHack = ConfigIni.AutofireHack;
+            workerForm.ExtraCommandLineArguments = ConfigIni.ExtraCommandLineArguments;
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
         }
@@ -833,6 +839,16 @@ namespace com.clusterrr.hakchi_gui
             if (ConfigIni.AutofireHack)
                 MessageBox.Show(this, Resources.AutofireHelp1 + "\r\n" + Resources.AutofireHelp2, enableAutofireToolStripMenuItem.Text,
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void globalCommandLineArgumentsexpertsOnluToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new StringInputForm();
+            form.Text = Resources.ExtraArgsTitle;
+            form.labelComments.Text = Resources.ExtraArgsInfo;
+            form.textBox.Text = ConfigIni.ExtraCommandLineArguments;
+            if (form.ShowDialog() == DialogResult.OK)
+                ConfigIni.ExtraCommandLineArguments = form.textBox.Text;
         }
 
         private void timerCalculateGames_Tick(object sender, EventArgs e)

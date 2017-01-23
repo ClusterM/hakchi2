@@ -219,40 +219,10 @@
     <value>Famicom Mini</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>307, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text" xml:space="preserve">
     <value>Console type</value>
-  </data>
-  <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>307, 22</value>
-  </data>
-  <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
-    <value>Use extended font</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel0.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 22</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel0.Text" xml:space="preserve">
-    <value>Default</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 22</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel1.Text" xml:space="preserve">
-    <value>Disable for original games</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 22</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel2.Text" xml:space="preserve">
-    <value>Disable for all games</value>
-  </data>
-  <data name="epilepsyProtectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>307, 22</value>
-  </data>
-  <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Epilepsy protection</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
@@ -273,19 +243,55 @@
     <value>Enable autofire</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>307, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text" xml:space="preserve">
     <value>Controller hacks</value>
   </data>
+  <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>325, 22</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
+    <value>Use extended font</value>
+  </data>
   <data name="removeThumbnailsAtTheBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>307, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="removeThumbnailsAtTheBottomToolStripMenuItem.Text" xml:space="preserve">
     <value>Remove thumbnails at the bottom</value>
   </data>
+  <data name="ToolStripMenuItemArmetLevel0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel0.Text" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel1.Text" xml:space="preserve">
+    <value>Disable for original games</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel2.Text" xml:space="preserve">
+    <value>Disable for all games</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>325, 22</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Epilepsy protection</value>
+  </data>
+  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>325, 22</value>
+  </data>
+  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text" xml:space="preserve">
+    <value>Global command line arguments (experts only!)</value>
+  </data>
   <data name="betterPNGCompressionlowerQualityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>307, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="betterPNGCompressionlowerQualityToolStripMenuItem.Text" xml:space="preserve">
     <value>8bit PNG compression (less size/low quality)</value>
@@ -2420,6 +2426,12 @@
     <value>removeThumbnailsAtTheBottomToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;removeThumbnailsAtTheBottomToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Name" xml:space="preserve">
+    <value>globalCommandLineArgumentsexpertsOnluToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;betterPNGCompressionlowerQualityToolStripMenuItem.Name" xml:space="preserve">

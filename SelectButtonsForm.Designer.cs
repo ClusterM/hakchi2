@@ -127,6 +127,7 @@
             this.Controls.Add(this.pictureBoxController);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SelectButtonsForm";
             this.Load += new System.EventHandler(this.SelectButtonsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxController)).EndInit();
