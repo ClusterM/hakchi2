@@ -193,12 +193,9 @@ namespace com.clusterrr.hakchi_gui
 
             TryAutofill(crc32);
 
-            int commaPos = Name.IndexOf(",");
-            if (commaPos > 0)
-                Name = Name.Substring(0, commaPos);
             Name = Regex.Replace(Name, @" ?\(.*?\)", string.Empty).Trim();
             Name = Regex.Replace(Name, @" ?\[.*?\]", string.Empty).Trim();
-            Name = Name.Replace("_", " ").Replace("  ", " ").Trim();
+            Name = Name.Replace("_", " ").Replace("  ", " ").Replace(", The", "").Trim();
             IconPath = Path.Combine(GamePath, Code + ".png");
             SmallIconPath = Path.Combine(GamePath, Code + "_small.png");
             GameGeniePath = Path.Combine(GamePath, GameGenieFileName);
@@ -212,12 +209,7 @@ namespace com.clusterrr.hakchi_gui
             if (gameInfoCache != null && gameInfoCache.TryGetValue(crc32, out gameinfo))
             {
                 Name = gameinfo.Name;
-                int commaPos = Name.IndexOf(",");
-                if (commaPos > 0)
-                    Name = Name.Substring(0, commaPos);
-                Name = Regex.Replace(Name, @" ?\(.*?\)", string.Empty).Trim();
-                Name = Regex.Replace(Name, @" ?\[.*?\]", string.Empty).Trim();
-                Name = Name.Replace("_", " ").Replace("  ", " ").Trim();
+                Name = Name.Replace("_", " ").Replace("  ", " ").Replace(", The", "").Trim();
                 Players = gameinfo.Players;
                 if (Players > 1) Simultaneous = true; // actually unknown...
                 ReleaseDate = gameinfo.ReleaseDate;
