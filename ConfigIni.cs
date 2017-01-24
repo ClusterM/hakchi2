@@ -20,6 +20,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool RemoveThumbnails = false;
         public static bool EightBitPngCompression = true;
         public static bool FcStart = false;
+        public static bool DisableMusic = false;
         public static byte AntiArmetLevel = 0;
         public static byte ConsoleType = 0;
         public static SelectButtonsForm.NesButtons ResetCombination = SelectButtonsForm.NesButtons.Down | SelectButtonsForm.NesButtons.Select;
@@ -94,6 +95,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "fcstart":
                                     FcStart = !value.ToLower().Equals("false");
                                     break;
+                                case "disablemusic":
+                                    DisableMusic = !value.ToLower().Equals("false");
+                                    break;
                             }
                             break;
                         case "presets":
@@ -123,6 +127,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("ConsoleType={0}", ConsoleType));
             configLines.Add(string.Format("ExtraCommandLineArguments={0}", ExtraCommandLineArguments));
             configLines.Add(string.Format("FcStart={0}", FcStart));
+            configLines.Add(string.Format("DisableMusic={0}", DisableMusic));            
 
             configLines.Add("[Presets]");
             configLines.Add("");

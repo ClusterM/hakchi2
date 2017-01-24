@@ -49,19 +49,21 @@
             this.consoleTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nESMiniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.famicomMiniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.epilepsyProtectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemArmetLevel0 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemArmetLevel1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemArmetLevel2 = new System.Windows.Forms.ToolStripMenuItem();
             this.cloverconHackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetUsingCombinationOfButtonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectButtonCombinationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableAutofireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.upABStartOnSecondControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.epilepsyProtectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemArmetLevel0 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemArmetLevel1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemArmetLevel2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.guiHacksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeThumbnailsAtTheBottomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disableMenuMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.betterPNGCompressionlowerQualityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeThumbnailsAtTheBottomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -217,12 +219,11 @@
             resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.consoleTypeToolStripMenuItem,
-            this.cloverconHackToolStripMenuItem,
             this.epilepsyProtectionToolStripMenuItem,
-            this.useExtendedFontToolStripMenuItem,
+            this.cloverconHackToolStripMenuItem,
+            this.guiHacksToolStripMenuItem,
             this.betterPNGCompressionlowerQualityToolStripMenuItem,
-            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem,
-            this.removeThumbnailsAtTheBottomToolStripMenuItem});
+            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             // 
             // consoleTypeToolStripMenuItem
@@ -246,6 +247,35 @@
             resources.ApplyResources(this.famicomMiniToolStripMenuItem, "famicomMiniToolStripMenuItem");
             this.famicomMiniToolStripMenuItem.Name = "famicomMiniToolStripMenuItem";
             this.famicomMiniToolStripMenuItem.Click += new System.EventHandler(this.famicomMiniToolStripMenuItem_Click);
+            // 
+            // epilepsyProtectionToolStripMenuItem
+            // 
+            resources.ApplyResources(this.epilepsyProtectionToolStripMenuItem, "epilepsyProtectionToolStripMenuItem");
+            this.epilepsyProtectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemArmetLevel0,
+            this.ToolStripMenuItemArmetLevel1,
+            this.ToolStripMenuItemArmetLevel2});
+            this.epilepsyProtectionToolStripMenuItem.Name = "epilepsyProtectionToolStripMenuItem";
+            // 
+            // ToolStripMenuItemArmetLevel0
+            // 
+            resources.ApplyResources(this.ToolStripMenuItemArmetLevel0, "ToolStripMenuItemArmetLevel0");
+            this.ToolStripMenuItemArmetLevel0.Checked = true;
+            this.ToolStripMenuItemArmetLevel0.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ToolStripMenuItemArmetLevel0.Name = "ToolStripMenuItemArmetLevel0";
+            this.ToolStripMenuItemArmetLevel0.Click += new System.EventHandler(this.ToolStripMenuItemArmet_Click);
+            // 
+            // ToolStripMenuItemArmetLevel1
+            // 
+            resources.ApplyResources(this.ToolStripMenuItemArmetLevel1, "ToolStripMenuItemArmetLevel1");
+            this.ToolStripMenuItemArmetLevel1.Name = "ToolStripMenuItemArmetLevel1";
+            this.ToolStripMenuItemArmetLevel1.Click += new System.EventHandler(this.ToolStripMenuItemArmet_Click);
+            // 
+            // ToolStripMenuItemArmetLevel2
+            // 
+            resources.ApplyResources(this.ToolStripMenuItemArmetLevel2, "ToolStripMenuItemArmetLevel2");
+            this.ToolStripMenuItemArmetLevel2.Name = "ToolStripMenuItemArmetLevel2";
+            this.ToolStripMenuItemArmetLevel2.Click += new System.EventHandler(this.ToolStripMenuItemArmet_Click);
             // 
             // cloverconHackToolStripMenuItem
             // 
@@ -286,34 +316,14 @@
             this.upABStartOnSecondControllerToolStripMenuItem.Name = "upABStartOnSecondControllerToolStripMenuItem";
             this.upABStartOnSecondControllerToolStripMenuItem.Click += new System.EventHandler(this.upABStartOnSecondControllerToolStripMenuItem_Click);
             // 
-            // epilepsyProtectionToolStripMenuItem
+            // guiHacksToolStripMenuItem
             // 
-            resources.ApplyResources(this.epilepsyProtectionToolStripMenuItem, "epilepsyProtectionToolStripMenuItem");
-            this.epilepsyProtectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemArmetLevel0,
-            this.ToolStripMenuItemArmetLevel1,
-            this.ToolStripMenuItemArmetLevel2});
-            this.epilepsyProtectionToolStripMenuItem.Name = "epilepsyProtectionToolStripMenuItem";
-            // 
-            // ToolStripMenuItemArmetLevel0
-            // 
-            resources.ApplyResources(this.ToolStripMenuItemArmetLevel0, "ToolStripMenuItemArmetLevel0");
-            this.ToolStripMenuItemArmetLevel0.Checked = true;
-            this.ToolStripMenuItemArmetLevel0.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ToolStripMenuItemArmetLevel0.Name = "ToolStripMenuItemArmetLevel0";
-            this.ToolStripMenuItemArmetLevel0.Click += new System.EventHandler(this.ToolStripMenuItemArmet_Click);
-            // 
-            // ToolStripMenuItemArmetLevel1
-            // 
-            resources.ApplyResources(this.ToolStripMenuItemArmetLevel1, "ToolStripMenuItemArmetLevel1");
-            this.ToolStripMenuItemArmetLevel1.Name = "ToolStripMenuItemArmetLevel1";
-            this.ToolStripMenuItemArmetLevel1.Click += new System.EventHandler(this.ToolStripMenuItemArmet_Click);
-            // 
-            // ToolStripMenuItemArmetLevel2
-            // 
-            resources.ApplyResources(this.ToolStripMenuItemArmetLevel2, "ToolStripMenuItemArmetLevel2");
-            this.ToolStripMenuItemArmetLevel2.Name = "ToolStripMenuItemArmetLevel2";
-            this.ToolStripMenuItemArmetLevel2.Click += new System.EventHandler(this.ToolStripMenuItemArmet_Click);
+            resources.ApplyResources(this.guiHacksToolStripMenuItem, "guiHacksToolStripMenuItem");
+            this.guiHacksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.useExtendedFontToolStripMenuItem,
+            this.removeThumbnailsAtTheBottomToolStripMenuItem,
+            this.disableMenuMusicToolStripMenuItem});
+            this.guiHacksToolStripMenuItem.Name = "guiHacksToolStripMenuItem";
             // 
             // useExtendedFontToolStripMenuItem
             // 
@@ -323,6 +333,20 @@
             this.useExtendedFontToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.useExtendedFontToolStripMenuItem.Name = "useExtendedFontToolStripMenuItem";
             this.useExtendedFontToolStripMenuItem.Click += new System.EventHandler(this.useExtendedFontToolStripMenuItem_Click);
+            // 
+            // removeThumbnailsAtTheBottomToolStripMenuItem
+            // 
+            resources.ApplyResources(this.removeThumbnailsAtTheBottomToolStripMenuItem, "removeThumbnailsAtTheBottomToolStripMenuItem");
+            this.removeThumbnailsAtTheBottomToolStripMenuItem.CheckOnClick = true;
+            this.removeThumbnailsAtTheBottomToolStripMenuItem.Name = "removeThumbnailsAtTheBottomToolStripMenuItem";
+            this.removeThumbnailsAtTheBottomToolStripMenuItem.Click += new System.EventHandler(this.removeThumbnailsAtTheBottomToolStripMenuItem_Click);
+            // 
+            // disableMenuMusicToolStripMenuItem
+            // 
+            resources.ApplyResources(this.disableMenuMusicToolStripMenuItem, "disableMenuMusicToolStripMenuItem");
+            this.disableMenuMusicToolStripMenuItem.CheckOnClick = true;
+            this.disableMenuMusicToolStripMenuItem.Name = "disableMenuMusicToolStripMenuItem";
+            this.disableMenuMusicToolStripMenuItem.Click += new System.EventHandler(this.disableMenuMusicToolStripMenuItem_Click);
             // 
             // betterPNGCompressionlowerQualityToolStripMenuItem
             // 
@@ -338,13 +362,6 @@
             resources.ApplyResources(this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem, "globalCommandLineArgumentsexpertsOnluToolStripMenuItem");
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Name = "globalCommandLineArgumentsexpertsOnluToolStripMenuItem";
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Click += new System.EventHandler(this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem_Click);
-            // 
-            // removeThumbnailsAtTheBottomToolStripMenuItem
-            // 
-            resources.ApplyResources(this.removeThumbnailsAtTheBottomToolStripMenuItem, "removeThumbnailsAtTheBottomToolStripMenuItem");
-            this.removeThumbnailsAtTheBottomToolStripMenuItem.CheckOnClick = true;
-            this.removeThumbnailsAtTheBottomToolStripMenuItem.Name = "removeThumbnailsAtTheBottomToolStripMenuItem";
-            this.removeThumbnailsAtTheBottomToolStripMenuItem.Click += new System.EventHandler(this.removeThumbnailsAtTheBottomToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -720,6 +737,8 @@
         private System.Windows.Forms.ToolStripMenuItem enableAutofireToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem globalCommandLineArgumentsexpertsOnluToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem upABStartOnSecondControllerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem guiHacksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem disableMenuMusicToolStripMenuItem;
     }
 }
 

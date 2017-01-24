@@ -120,6 +120,7 @@ namespace com.clusterrr.hakchi_gui
                 nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
                 famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
                 upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart;
+                disableMenuMusicToolStripMenuItem.Checked = ConfigIni.DisableMusic;
                 new Thread(NesGame.LoadCache).Start();
             }
             catch (Exception ex)
@@ -636,6 +637,7 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Config["hakchi_title_font"] = ConfigIni.UseFont;
             workerForm.Config["hakchi_clovercon_hack"] = ConfigIni.ResetHack || ConfigIni.AutofireHack || ConfigIni.FcStart;
             workerForm.Config["hakchi_remove_thumbnails"] = ConfigIni.RemoveThumbnails;
+            workerForm.Config["hakchi_remove_music"] = ConfigIni.DisableMusic;
             var games = new List<NesGame>();
             bool needOriginal = false;
             foreach (var game in checkedListBoxGames.CheckedItems)
@@ -856,6 +858,11 @@ namespace com.clusterrr.hakchi_gui
             form.textBox.Text = ConfigIni.ExtraCommandLineArguments;
             if (form.ShowDialog() == DialogResult.OK)
                 ConfigIni.ExtraCommandLineArguments = form.textBox.Text;
+        }
+        
+        private void disableMenuMusicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.DisableMusic = disableMenuMusicToolStripMenuItem.Checked;
         }
 
         private void timerCalculateGames_Tick(object sender, EventArgs e)

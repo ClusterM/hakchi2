@@ -8,7 +8,7 @@ rootfs=$installdir/rootfs
 config=$installdir/config
 installed_flag=$installdir/installed
 version_file=$installdir/version
-hakchi_version=3
+hakchi_version=4
 kernel_version=3.4.112
 hakchi_extra_args_file=/$modname/extra_args
 
@@ -38,7 +38,7 @@ if [ "$version" -lt "$hakchi_version" ]; then
   mkdir -p $rootfs/usr/share/games/nes
 	mkdir -p $rootfs/lib/modules/$kernel_version/extra
   mkdir -p $rootfs/usr/share/games/nes/
-	mkdir -p $rootfs/usr/share/clover-ui/resources/sprites/
+	mkdir -p $rootfs/usr/share/clover-ui/resources/
 
   cp -a $mountpoint/bin $rootfs/
   cp -a $mountpoint/etc $rootfs/
@@ -47,7 +47,7 @@ if [ "$version" -lt "$hakchi_version" ]; then
   cp -a /bin/busybox $rootfs/bin/
   cp -a /sbin/cryptsetup $rootfs/bin/
   cp -a $mountpoint/usr/share/games/nes/kachikachi $rootfs/usr/share/games/nes/
-	cp -a $mountpoint/usr/share/clover-ui/resources/sprites $rootfs/usr/share/clover-ui/resources/
+	cp -a $mountpoint/usr/share/clover-ui/resources $rootfs/usr/share/clover-ui/
 
   chroot $rootfs /bin/busybox --install -s /bin/
 	echo "1">$installed_flag
@@ -139,13 +139,24 @@ if [ -f $hakchi_extra_args_file ]; then
 	find $rootfs/usr/share/games/nes/kachikachi -name *.desktop -exec awk -v cfile="$hakchi_extra_args_file" 'BEGIN{getline c < cfile} /Exec=/{$0=$0 " " c} {l[ln++]=$0} END{for(i=0;i<ln;i++) print l[i]>ARGV[1]}' {} +
 fi
 
-cp $mountpoint/usr/share/clover-ui/resources/sprites/nes.json $rootfs/usr/share/clover-ui/resources/sprites/nes.json
 if [ "$hakchi_remove_thumbnails" == "y" ]; then
 	echo Removing thumbnails...
 	sed -i -e 's/\[93,861,12,8\]/\[0,0,0,0\]/g' $rootfs/usr/share/clover-ui/resources/sprites/nes.json
 	sed -i -e 's/\[93,871,12,8\]/\[0,0,0,0\]/g' $rootfs/usr/share/clover-ui/resources/sprites/nes.json
 	sed -i -e 's/\[107,861,12,8\]/\[0,0,0,0\]/g' $rootfs/usr/share/clover-ui/resources/sprites/nes.json
 	find $rootfs/usr/share/games/nes/kachikachi -name *_small.png -exec cp -p /$modname/blank_pixel.png {} +
+else
+	echo Restoring thumbnails...
+	cp $mountpoint/usr/share/clover-ui/resources/sprites/nes.json $rootfs/usr/share/clover-ui/resources/sprites/nes.json
+fi
+
+if [ "$hakchi_remove_music" == "y" ]; then
+	echo Removing menu music...
+	cp /$modname/silence.wav $rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav
+	cp /$modname/silence.wav $rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav
+else
+	echo Restoring menu music...
+	cp $mountpoint/usr/share/clover-ui/resources/sounds/hvc/bgm_* $rootfs/usr/share/clover-ui/resources/sounds/hvc/
 fi
 
 echo Shutting down...

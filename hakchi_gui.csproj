@@ -467,6 +467,9 @@
     <Content Include="mods\mod_transfer\hakchi\blank_pixel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="mods\mod_transfer\hakchi\silence.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="tools\7z.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

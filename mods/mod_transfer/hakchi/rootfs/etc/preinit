@@ -6,7 +6,7 @@ mount -o bind $rootfs/bin $mountpoint/bin
 mount -o bind $rootfs/etc $mountpoint/etc
 mount -o bind $rootfs/usr/share/games/nes/kachikachi $mountpoint/usr/share/games/nes/kachikachi
 mount -o bind $rootfs/lib/modules/$kernel_version/extra $mountpoint/lib/modules/$kernel_version/extra
-mount -o bind $rootfs/usr/share/clover-ui/resources/sprites $mountpoint/usr/share/clover-ui/resources/sprites
+mount -o bind $rootfs/usr/share/clover-ui/resources $mountpoint/usr/share/clover-ui/resources
 
 return 0
 }

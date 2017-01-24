@@ -202,6 +202,30 @@
   <data name="consoleTypeToolStripMenuItem.Text" xml:space="preserve">
     <value>Тип консоли</value>
   </data>
+  <data name="ToolStripMenuItemArmetLevel0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>263, 22</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel0.Text" xml:space="preserve">
+    <value>Оставить как есть</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>263, 22</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel1.Text" xml:space="preserve">
+    <value>Отключить для оригинальных игр</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>263, 22</value>
+  </data>
+  <data name="ToolStripMenuItemArmetLevel2.Text" xml:space="preserve">
+    <value>Отключить для всех игр</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>375, 22</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Защита от приступов эпилепсии</value>
+  </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>378, 22</value>
   </data>
@@ -232,35 +256,29 @@
   <data name="cloverconHackToolStripMenuItem.Text" xml:space="preserve">
     <value>Хаки контроллера</value>
   </data>
-  <data name="ToolStripMenuItemArmetLevel0.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel0.Text" xml:space="preserve">
-    <value>Оставить как есть</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel1.Text" xml:space="preserve">
-    <value>Отключить для оригинальных игр</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel2.Text" xml:space="preserve">
-    <value>Отключить для всех игр</value>
-  </data>
-  <data name="epilepsyProtectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>375, 22</value>
-  </data>
-  <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Защита от приступов эпилепсии</value>
-  </data>
   <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>375, 22</value>
+    <value>276, 22</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
     <value>Использовать расширенный шрифт</value>
+  </data>
+  <data name="removeThumbnailsAtTheBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 22</value>
+  </data>
+  <data name="removeThumbnailsAtTheBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>Убрать маленькие обложки снизу</value>
+  </data>
+  <data name="disableMenuMusicToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 22</value>
+  </data>
+  <data name="disableMenuMusicToolStripMenuItem.Text" xml:space="preserve">
+    <value>Выключить фоновую музыку</value>
+  </data>
+  <data name="guiHacksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>375, 22</value>
+  </data>
+  <data name="guiHacksToolStripMenuItem.Text" xml:space="preserve">
+    <value>Хаки интерфейса</value>
   </data>
   <data name="betterPNGCompressionlowerQualityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>375, 22</value>
@@ -273,12 +291,6 @@
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text" xml:space="preserve">
     <value>Глобальные параметры командной строки</value>
-  </data>
-  <data name="removeThumbnailsAtTheBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>375, 22</value>
-  </data>
-  <data name="removeThumbnailsAtTheBottomToolStripMenuItem.Text" xml:space="preserve">
-    <value>Убрать маленькие обложки снизу</value>
   </data>
   <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
