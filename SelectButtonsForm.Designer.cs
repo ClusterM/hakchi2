@@ -55,6 +55,7 @@
             resources.ApplyResources(this.checkBoxUp, "checkBoxUp");
             this.checkBoxUp.Name = "checkBoxUp";
             this.checkBoxUp.UseVisualStyleBackColor = false;
+            this.checkBoxUp.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // checkBoxDown
             // 
@@ -62,6 +63,7 @@
             resources.ApplyResources(this.checkBoxDown, "checkBoxDown");
             this.checkBoxDown.Name = "checkBoxDown";
             this.checkBoxDown.UseVisualStyleBackColor = false;
+            this.checkBoxDown.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // checkBoxA
             // 
@@ -69,6 +71,7 @@
             resources.ApplyResources(this.checkBoxA, "checkBoxA");
             this.checkBoxA.Name = "checkBoxA";
             this.checkBoxA.UseVisualStyleBackColor = false;
+            this.checkBoxA.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // checkBoxLeft
             // 
@@ -76,6 +79,7 @@
             resources.ApplyResources(this.checkBoxLeft, "checkBoxLeft");
             this.checkBoxLeft.Name = "checkBoxLeft";
             this.checkBoxLeft.UseVisualStyleBackColor = false;
+            this.checkBoxLeft.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // checkBoxB
             // 
@@ -83,12 +87,14 @@
             resources.ApplyResources(this.checkBoxB, "checkBoxB");
             this.checkBoxB.Name = "checkBoxB";
             this.checkBoxB.UseVisualStyleBackColor = false;
+            this.checkBoxB.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // checkBoxRight
             // 
             resources.ApplyResources(this.checkBoxRight, "checkBoxRight");
             this.checkBoxRight.Name = "checkBoxRight";
             this.checkBoxRight.UseVisualStyleBackColor = true;
+            this.checkBoxRight.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // checkBoxStart
             // 
@@ -96,6 +102,7 @@
             resources.ApplyResources(this.checkBoxStart, "checkBoxStart");
             this.checkBoxStart.Name = "checkBoxStart";
             this.checkBoxStart.UseVisualStyleBackColor = false;
+            this.checkBoxStart.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // checkBoxSelect
             // 
@@ -103,6 +110,7 @@
             resources.ApplyResources(this.checkBoxSelect, "checkBoxSelect");
             this.checkBoxSelect.Name = "checkBoxSelect";
             this.checkBoxSelect.UseVisualStyleBackColor = false;
+            this.checkBoxSelect.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // pictureBoxController
             // 

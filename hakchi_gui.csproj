@@ -302,6 +302,9 @@
     <None Include="mods\mod_kernel\sbin\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="mods\mod_transfer\bin\awk">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="mods\mod_transfer\bin\busybox">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

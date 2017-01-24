@@ -119,6 +119,7 @@ namespace com.clusterrr.hakchi_gui
                 betterPNGCompressionlowerQualityToolStripMenuItem.Checked = ConfigIni.EightBitPngCompression;
                 nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
                 famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
+                upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart;
                 new Thread(NesGame.LoadCache).Start();
             }
             catch (Exception ex)
@@ -633,7 +634,7 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Config["hakchi_remove_games"] = true;
             workerForm.Config["hakchi_original_games"] = false;
             workerForm.Config["hakchi_title_font"] = ConfigIni.UseFont;
-            workerForm.Config["hakchi_clovercon_hack"] = ConfigIni.ResetHack || ConfigIni.AutofireHack;
+            workerForm.Config["hakchi_clovercon_hack"] = ConfigIni.ResetHack || ConfigIni.AutofireHack || ConfigIni.FcStart;
             workerForm.Config["hakchi_remove_thumbnails"] = ConfigIni.RemoveThumbnails;
             var games = new List<NesGame>();
             bool needOriginal = false;
@@ -658,6 +659,7 @@ namespace com.clusterrr.hakchi_gui
                 workerForm.HiddenGames = null;
             workerForm.ResetCombination = ConfigIni.ResetHack ? ConfigIni.ResetCombination : (SelectButtonsForm.NesButtons)0xFF;
             workerForm.AutofireHack = ConfigIni.AutofireHack;
+            workerForm.FcStart = ConfigIni.FcStart;
             workerForm.ExtraCommandLineArguments = ConfigIni.ExtraCommandLineArguments;
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
@@ -806,6 +808,11 @@ namespace com.clusterrr.hakchi_gui
         private void betterPNGCompressionlowerQualityToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.EightBitPngCompression = betterPNGCompressionlowerQualityToolStripMenuItem.Checked;
+        }
+        
+        private void upABStartOnSecondControllerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.FcStart = upABStartOnSecondControllerToolStripMenuItem.Checked;
         }
 
         private void selectButtonCombinationToolStripMenuItem_Click(object sender, EventArgs e)

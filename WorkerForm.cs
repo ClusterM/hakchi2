@@ -24,6 +24,7 @@ namespace com.clusterrr.hakchi_gui
         public NesGame[] Games;
         public SelectButtonsForm.NesButtons ResetCombination;
         public bool AutofireHack;
+        public bool FcStart = true;
         public string ExtraCommandLineArguments = null;
         Thread thread = null;
         Fel fel = null;
@@ -466,7 +467,6 @@ namespace com.clusterrr.hakchi_gui
                         int pos = i + magicReset.Length;
                         for (int b = 0; b < 8; b++)
                             drv[pos + b] = (byte)((((byte)ResetCombination & (1 << b)) != 0) ? '1' : '0');
-                        File.WriteAllBytes(cloverconDriverPath, drv);
                         break;
                     }
                 }
@@ -480,6 +480,17 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     }
                 }
+                const string magicFcStart = "MAGIC_FC_START:";
+                for (int i = 0; i < drv.Length - magicFcStart.Length; i++)
+                {
+                    if (Encoding.ASCII.GetString(drv, i, magicFcStart.Length) == magicFcStart)
+                    {
+                        int pos = i + magicFcStart.Length;
+                        drv[pos] = (byte)(FcStart ? '1' : '0');
+                        break;
+                    }
+                }
+                File.WriteAllBytes(cloverconDriverPath, drv);
             }
             if (!string.IsNullOrEmpty(ExtraCommandLineArguments))
             {

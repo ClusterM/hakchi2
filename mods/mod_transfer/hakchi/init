@@ -136,7 +136,7 @@ fi
 
 if [ -f $hakchi_extra_args_file ]; then
 	echo Appending extra command line arguments...
-	find $rootfs/usr/share/games/nes/kachikachi -name *.desktop -exec awk -v cfile="$hakchi_extra_args_file" 'BEGIN{getline c < cfile} /Exec=/{$0=$0 c} {l[ln++]=$0} END{for(i=0;i<ln;i++) print l[i]>ARGV[1]}'
+	find $rootfs/usr/share/games/nes/kachikachi -name *.desktop -exec awk -v cfile="$hakchi_extra_args_file" 'BEGIN{getline c < cfile} /Exec=/{$0=$0 " " c} {l[ln++]=$0} END{for(i=0;i<ln;i++) print l[i]>ARGV[1]}' {} +
 fi
 
 cp $mountpoint/usr/share/clover-ui/resources/sprites/nes.json $rootfs/usr/share/clover-ui/resources/sprites/nes.json
