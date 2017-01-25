@@ -461,6 +461,12 @@
   <data name="buttonAddGames.Text" xml:space="preserve">
     <value>Добавить игр</value>
   </data>
+  <data name="toolStripStatusLabelSelected.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
+  <data name="toolStripStatusLabelSelected.Text" xml:space="preserve">
+    <value />
+  </data>
   <data name="openFileDialogNes.Filter" xml:space="preserve">
     <value>NES файлы|*.nes;*.fds;*.zip;*.7z;*.rar|Все файлы|*.*</value>
   </data>

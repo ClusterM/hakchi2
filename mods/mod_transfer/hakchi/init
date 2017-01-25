@@ -75,17 +75,12 @@ else
 	echo $modname config not found	
 fi
 
-if [ -d /transfer ]; then
-	echo Transferring data...
-	cp -a /transfer/* $installdir/
-fi
-
-if [ "$hakchi_remove_games" == "y" ]; then
+if [ "$hakchi_remove_games" == "y" ] && [ "$hakchi_partial_first" == "y" ]; then
 	echo Removing all games...
 	rm -rf $rootfs/usr/share/games/nes/kachikachi/*
 fi
 
-if [ "$hakchi_original_games" == "y" ]; then
+if [ "$hakchi_original_games" == "y" ] && [ "$hakchi_partial_first" == "y" ]; then
 	echo Transfering original games...
 	for dir in $mountpoint/usr/share/games/nes/kachikachi/*; do		
 		if [ -d $dir ]; then		
@@ -114,36 +109,14 @@ if [ "$hakchi_original_games" == "y" ]; then
 	done
 fi
 
-if [ -f $hakchi_extra_script ]; then
+if [ -f $hakchi_extra_script ] && [ "$hakchi_partial_first" == "y" ]; then
 	echo Executing extra script...
 	. $hakchi_extra_script
 fi
 
-if [ "$hakchi_remove_armet_original" == "y" ]; then
+if [ "$hakchi_remove_armet_original" == "y" ] && [ "$hakchi_partial_first" == "y" ]; then
 	echo "Removing armet filter..."
 	find $rootfs/usr/share/games/nes/kachikachi -name *.desktop -exec sed -i -e 's/--enable-armet//g' {} +
-fi
-
-if [ "$hakchi_title_font" == "y" ]; then
-	if [ "$region" == "JPN" ]; then
-		echo Transfering JPN font...
-		cp /$modname/title_j.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
-	else
-		echo Transfering USA_EUR font...
-		cp /$modname/title.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
-	fi
-else
-	echo Restoring original font...
-	cp $mountpoint/usr/share/games/nes/kachikachi/title.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
-fi
-cp $mountpoint/usr/share/games/nes/kachikachi/copyright.fnt $rootfs/usr/share/games/nes/kachikachi/copyright.fnt
-
-if [ "$hakchi_clovercon_hack" == "y" ]; then
-	echo Transfering hacked clovercon driver...
-	cp /$modname/clovercon.ko $rootfs/lib/modules/$kernel_version/extra/clovercon.ko
-else
-	echo Restoring original clovercon driver...
-	cp $mountpoint/lib/modules/$kernel_version/extra/clovercon.ko $rootfs/lib/modules/$kernel_version/extra/clovercon.ko
 fi
 
 if [ -d /games ]; then
@@ -151,34 +124,69 @@ if [ -d /games ]; then
 	cp -a /games/* $rootfs/usr/share/games/nes/kachikachi
 fi
 
-if [ "$hakchi_remove_armet_all" == "y" ]; then
+if [ "$hakchi_remove_armet_all" == "y" ] && [ "$hakchi_partial_last" == "y" ]; then
 	echo Removing armet filter...
 	find $rootfs/usr/share/games/nes/kachikachi -name *.desktop -exec sed -i -e 's/--enable-armet//g' {} +
 fi
 
-if [ -f $hakchi_extra_args_file ]; then
+if [ -f $hakchi_extra_args_file ] && [ "$hakchi_partial_last" == "y" ]; then
 	echo Appending extra command line arguments...
 	find $rootfs/usr/share/games/nes/kachikachi -name *.desktop -exec awk -v cfile="$hakchi_extra_args_file" 'BEGIN{getline c < cfile} /Exec=\/usr\//{$0=$0 " " c} {l[ln++]=$0} END{for(i=0;i<ln;i++) print l[i]>ARGV[1]}' {} +
 fi
 
-if [ "$hakchi_remove_thumbnails" == "y" ]; then
-	echo Removing thumbnails...
-	sed -i -e 's/\[93,861,12,8\]/\[0,0,0,0\]/g' $rootfs/usr/share/clover-ui/resources/sprites/nes.json
-	sed -i -e 's/\[93,871,12,8\]/\[0,0,0,0\]/g' $rootfs/usr/share/clover-ui/resources/sprites/nes.json
-	sed -i -e 's/\[107,861,12,8\]/\[0,0,0,0\]/g' $rootfs/usr/share/clover-ui/resources/sprites/nes.json
-	find $rootfs/usr/share/games/nes/kachikachi -name *_small.png -exec cp -p /$modname/blank_pixel.png {} +
-else
-	echo Restoring thumbnails...
-	cp $mountpoint/usr/share/clover-ui/resources/sprites/nes.json $rootfs/usr/share/clover-ui/resources/sprites/nes.json
+if [ "$hakchi_partial_last" == "y" ]; then
+	if [ "$hakchi_remove_thumbnails" == "y" ]; then
+		echo Removing thumbnails...
+		sed -i -e 's/\[93,861,12,8\]/\[0,0,0,0\]/g' $rootfs/usr/share/clover-ui/resources/sprites/nes.json
+		sed -i -e 's/\[93,871,12,8\]/\[0,0,0,0\]/g' $rootfs/usr/share/clover-ui/resources/sprites/nes.json
+		sed -i -e 's/\[107,861,12,8\]/\[0,0,0,0\]/g' $rootfs/usr/share/clover-ui/resources/sprites/nes.json
+		find $rootfs/usr/share/games/nes/kachikachi -name *_small.png -exec cp -p /$modname/blank_pixel.png {} +
+	else
+		echo Restoring thumbnails...
+		cp $mountpoint/usr/share/clover-ui/resources/sprites/nes.json $rootfs/usr/share/clover-ui/resources/sprites/nes.json
+	fi
 fi
 
-if [ "$hakchi_remove_music" == "y" ]; then
-	echo Removing menu music...
-	cp /$modname/silence.wav $rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav
-	cp /$modname/silence.wav $rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav
-else
-	echo Restoring menu music...
-	cp $mountpoint/usr/share/clover-ui/resources/sounds/hvc/bgm_* $rootfs/usr/share/clover-ui/resources/sounds/hvc/
+if [ "$hakchi_partial_first" == "y" ]; then
+	if [ "$hakchi_title_font" == "y" ]; then
+		if [ "$region" == "JPN" ]; then
+			echo Transfering JPN font...
+			cp /$modname/title_j.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
+		else
+			echo Transfering USA_EUR font...
+			cp /$modname/title.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
+		fi
+	else
+		echo Restoring original font...
+		cp $mountpoint/usr/share/games/nes/kachikachi/title.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
+	fi	
+	cp $mountpoint/usr/share/games/nes/kachikachi/copyright.fnt $rootfs/usr/share/games/nes/kachikachi/copyright.fnt
+fi
+
+if [ "$hakchi_partial_first" == "y" ]; then
+	if [ "$hakchi_clovercon_hack" == "y" ]; then
+		echo Transfering hacked clovercon driver...
+		cp /$modname/clovercon.ko $rootfs/lib/modules/$kernel_version/extra/clovercon.ko
+	else
+		echo Restoring original clovercon driver...
+		cp $mountpoint/lib/modules/$kernel_version/extra/clovercon.ko $rootfs/lib/modules/$kernel_version/extra/clovercon.ko
+	fi
+fi
+
+if [ "$hakchi_partial_first" == "y" ]; then
+	if [ "$hakchi_remove_music" == "y" ]; then
+		echo Removing menu music...
+		cp /$modname/silence.wav $rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav
+		cp /$modname/silence.wav $rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav
+	else
+		echo Restoring menu music...
+		cp $mountpoint/usr/share/clover-ui/resources/sounds/hvc/bgm_* $rootfs/usr/share/clover-ui/resources/sounds/hvc/
+	fi
+fi
+
+if [ -d /transfer ]; then
+	echo Transferring data...
+	cp -a /transfer/* $installdir/
 fi
 
 echo Shutting down...

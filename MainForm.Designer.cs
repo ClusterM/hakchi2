@@ -116,6 +116,7 @@
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
+            this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             this.groupBoxDefaultGames.SuspendLayout();
             this.SuspendLayout();
@@ -635,6 +636,8 @@
             // statusStrip
             // 
             resources.ApplyResources(this.statusStrip, "statusStrip");
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabelSelected});
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.SizingGrip = false;
             // 
@@ -732,6 +735,8 @@
             this.groupBoxOptions.ResumeLayout(false);
             this.groupBoxOptions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).EndInit();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.contextMenuStrip.ResumeLayout(false);
             this.groupBoxDefaultGames.ResumeLayout(false);
             this.ResumeLayout(false);

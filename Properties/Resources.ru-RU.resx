@@ -331,4 +331,10 @@
   <data name="NotFound" xml:space="preserve">
     <value>Не найдено:</value>
   </data>
+  <data name="ParticallyBody" xml:space="preserve">
+    <value>Вы выбрали слишком много игр, чтобы закачать их за один раз. Будем закачивать в несколько заходов. Пожалуйста, подождите, пока погаснет светодиод, нажмите OK и следуйте инструкциям.</value>
+  </data>
+  <data name="ParticallyTitle" xml:space="preserve">
+    <value>Слишком много игр</value>
+  </data>
 </root>

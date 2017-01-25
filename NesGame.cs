@@ -126,7 +126,7 @@ namespace com.clusterrr.hakchi_gui
                 GameGenie = File.ReadAllText(GameGeniePath);
         }
 
-        public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper = false, Form parentForm = null, byte[] rawRomData = null)
+        public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper, ref bool? needPatch, Form parentForm = null, byte[] rawRomData = null)
         {
             uint crc32;
             if (!Path.GetExtension(nesFileName).ToLower().Equals(".fds"))
@@ -147,19 +147,24 @@ namespace com.clusterrr.hakchi_gui
                 Directory.CreateDirectory(patchesDirectory);
                 Directory.CreateDirectory(GamePath);
                 var patches = Directory.GetFiles(patchesDirectory, string.Format("{0:X8}*.ips", crc32), SearchOption.AllDirectories);
-                if (patches.Length > 0)
+                if (patches.Length > 0 && needPatch != false)
                 {
-                    if (MessageBox.Show(parentForm, string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)), Resources.PatchAvailable, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (needPatch == true || MessageBox.Show(parentForm, string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)), Resources.PatchAvailable, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
+                        needPatch = true;
                         var patch = patches[0];
                         if (rawRomData == null)
                             rawRomData = File.ReadAllBytes(nesFileName);
                         IpsPatcher.Patch(patch, ref rawRomData);
                         nesFile = new NesFile(rawRomData);
                     }
+                    else needPatch = false;
                 }
 
                 if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
+                if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
+                if (nesFile.Mapper == 88) nesFile.Mapper = 4; // Compatible with MMC3
+                if (nesFile.Mapper == 95) nesFile.Mapper = 4; // Compatible with MMC3
                 if (!supportedMappers.Contains(nesFile.Mapper) && !ignoreMapper)
                 {
                     Directory.Delete(GamePath, true);

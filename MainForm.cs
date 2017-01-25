@@ -443,6 +443,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     var nesFileName = file;
                     var ext = Path.GetExtension(file).ToLower();
+                    bool? needPatch = null;
                     byte[] rawData = null;
                     if (ext == ".7z" || ext == ".zip" || ext == ".rar")
                     {
@@ -475,20 +476,20 @@ namespace com.clusterrr.hakchi_gui
                     }
                     try
                     {
-                        nesGame = new NesGame(GamesDir, nesFileName, false, this, rawData);
+                        nesGame = new NesGame(GamesDir, nesFileName, false, ref needPatch, this, rawData);
                     }
                     catch (UnsupportedMapperException ex)
                     {
                         if (MessageBox.Show(this, string.Format(Resources.MapperNotSupported, Path.GetFileName(file), ex.ROM.Mapper), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                             == DialogResult.Yes)
-                            nesGame = new NesGame(GamesDir, nesFileName, true, this, rawData);
+                            nesGame = new NesGame(GamesDir, nesFileName, true, ref needPatch, this, rawData);
                         else continue;
                     }
                     catch (UnsupportedFourScreenException)
                     {
                         if (MessageBox.Show(this, string.Format(Resources.FourScreenNotSupported, Path.GetFileName(file)), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                             == DialogResult.Yes)
-                            nesGame = new NesGame(GamesDir, nesFileName, true, this, rawData);
+                            nesGame = new NesGame(GamesDir, nesFileName, true, ref needPatch, this, rawData);
                         else continue;
                     }
                     ConfigIni.SelectedGames += ";" + nesGame.Code;

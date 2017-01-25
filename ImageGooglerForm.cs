@@ -17,7 +17,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class ImageGooglerForm : Form
     {
-        public const string Suffix = " nes box art";
+        public const string Suffix = " nes|famicom box art";
         Thread searchThread;
         Image result;
         public Image Result

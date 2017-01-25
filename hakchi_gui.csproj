@@ -429,16 +429,49 @@
     <None Include="patches\279710dc-Battletoads %28U%29 [bugfix].ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="patches\2caae01c-Felix the cat noDim hack %28for U [!] version%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="patches\46fd7843-Splatter House - Wanpaku Graffiti %28J%29 [!] - MMC3 patch.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="patches\4ec0fecc-Ufouria - The Saga %28E%29 [NTSC hack].ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="patches\61179bfa-Jungle Book %28no dim%29 .ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="patches\6dc28b5a-Bio Miracle Bokutte Upa - MMC5 patch.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="patches\75b3eb37-Saiyuuki World 2 - MMC3 patch.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="patches\8889c564-Immortal, The %28U%29 [!] %28bright hack%29.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="patches\96087988-RoboCop 3 %28U%29 [!] - NES Mini patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="patches\9ab274ae-Cheetahmen II - MMC1 patch.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="patches\ac8dcdea-Cybernoid - The Fighting Machine %28U%29 [!] %28fix%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="patches\ba51ac6f-Holy Diver %28J%29 - MMC1 patch.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="patches\c4b6ed3c-Bill &amp; Ted%27s Excellent Video Game Adventure %28U%29 - NES Mini patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="patches\ca033b3a-Dragon%27s Lair %28U%29 [!] %28no dim%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="patches\d054ffb0-Startropics II - Zoda%27s Revenge %28U%29 [!] - MMC3 patch.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="patches\f6898a59-James Bond Jr %28no dim%29.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

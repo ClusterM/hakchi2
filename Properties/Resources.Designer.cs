@@ -523,6 +523,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are too many ROMs to tranfer them at once. Please wait until power led goes out, press OK and follow instructions to continue..
+        /// </summary>
+        internal static string ParticallyBody {
+            get {
+                return ResourceManager.GetString("ParticallyBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Too many ROMs.
+        /// </summary>
+        internal static string ParticallyTitle {
+            get {
+                return ResourceManager.GetString("ParticallyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Patch available.
         /// </summary>
         internal static string PatchAvailable {
