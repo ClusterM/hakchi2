@@ -22,6 +22,8 @@ pkill -KILL clover-mcp
 pkill -KILL ReedPlayer-Clover
 
 # How to start shell with cursor on specific game?
+#sed -i -e 's/"current_game_code":".........../"current_game_code":"'$2'/g' /var/lib/clover/profiles/0/home-menu/save/system-save.json
+#rm -r /var/cache/clover
 #awk -v gameid=$2 '{l[ln++]=((ln!=2)?$0:gameid)} END{for(i=0;i<ln;i++) print l[i]>ARGV[1]}' /var/cache/clover/command
 #awk -v gameid=$2 -v q=\' '/FOCUS_TITLE/{$0="FOCUS_TITLE = " q gameid q} {l[ln++]=$0} END{for(i=0;i<ln;i++) print l[i]>ARGV[1]}' /var/cache/clover/menu.lua
 #echo $2>/var/lib/clover/profiles/0/mcp-state

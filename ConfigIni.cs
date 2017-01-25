@@ -23,7 +23,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool DisableMusic = false;
         public static byte AntiArmetLevel = 0;
         public static byte ConsoleType = 0;
-        public static byte MaxGamesPerFolder = 35;
+        public static byte MaxGamesPerFolder = 30;
         public static SelectButtonsForm.NesButtons ResetCombination = SelectButtonsForm.NesButtons.Down | SelectButtonsForm.NesButtons.Select;
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         public static string ExtraCommandLineArguments = "";

@@ -56,7 +56,7 @@ namespace com.clusterrr.hakchi_gui
         public const string GameGenieFileName = "gamegenie.txt";
 
         // TODO: Need more mapper tests.
-        private byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10, 87 };
+        private byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10, 86, 87, 184 };
 
         public NesGame(string path)
         {
@@ -162,9 +162,9 @@ namespace com.clusterrr.hakchi_gui
                 }
 
                 if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
-                if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
-                if (nesFile.Mapper == 88) nesFile.Mapper = 4; // Compatible with MMC3
+                if (nesFile.Mapper == 88) nesFile.Mapper = 4; // Compatible with MMC3... sometimes
                 if (nesFile.Mapper == 95) nesFile.Mapper = 4; // Compatible with MMC3
+                if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
                 if (!supportedMappers.Contains(nesFile.Mapper) && !ignoreMapper)
                 {
                     Directory.Delete(GamePath, true);

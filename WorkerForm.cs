@@ -51,7 +51,7 @@ namespace com.clusterrr.hakchi_gui
         readonly string argumentsFilePath;
         readonly string extraScriptPath;
         string[] correctKernels;
-        const int maxRamfsSize = 40 * 1024 * 1024;
+        const int maxRamfsSize = 35 * 1024 * 1024;
         DialogResult DeviceWaitResult = DialogResult.None;
 
         public WorkerForm()
@@ -408,7 +408,7 @@ namespace com.clusterrr.hakchi_gui
 
                 progress += 5;
                 if (maxProgress < 0)
-                    maxProgress = (kernel.Length / 67000 + 15) * totalFiles / pos + 20 * ((int)Math.Ceiling((float)totalFiles / (float)pos) - 1);
+                    maxProgress = (kernel.Length / 67000 + 15) * totalFiles / pos + 40 * ((int)Math.Ceiling((float)totalFiles / (float)pos) - 1);
                 SetProgress(progress, maxProgress);
 
                 SetStatus(Resources.UploadingKernel);
@@ -585,23 +585,39 @@ namespace com.clusterrr.hakchi_gui
             foreach (NesGame game in Games)
             {
                 SetStatus(Resources.GooglingFor + " " + game.Name + ImageGooglerForm.Suffix);
-                for (int tries = 0; tries < 3; tries++)
+                string[] urls = null;
+                for (int tries = 0; tries < 5; tries++)
+                {
+                    if (urls == null)
+                    {
+                        try
+                        {
+                            urls = ImageGooglerForm.GetImageUrls(game.Name + ImageGooglerForm.Suffix);
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            SetStatus(Resources.Error + ": " + ex.Message);
+                            Thread.Sleep(1500);
+                            continue;
+                        }
+                    }
+                }
+                if (urls != null && urls.Length == 0)
+                    SetStatus(Resources.NotFound + " " + game.Name);
+                for (int tries = 0; urls != null && tries < 5 && tries < urls.Length; tries++)
                 {
                     try
                     {
-                        var urls = ImageGooglerForm.GetImageUrls(game.Name + ImageGooglerForm.Suffix);
-                        if (urls.Length > 0)
-                        {
-                            var cover = ImageGooglerForm.DownloadImage(urls[0]);
-                            game.SetImage(cover, ConfigIni.EightBitPngCompression);
-                        }
-                        else SetStatus(Resources.NotFound + " " + game.Name);
+                        var cover = ImageGooglerForm.DownloadImage(urls[tries]);
+                        game.SetImage(cover, ConfigIni.EightBitPngCompression);
                         break;
                     }
                     catch (Exception ex)
                     {
                         SetStatus(Resources.Error + ": " + ex.Message);
                         Thread.Sleep(1500);
+                        continue;
                     }
                 }
                 SetProgress(++i, Games.Count);

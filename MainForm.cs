@@ -110,9 +110,12 @@ namespace com.clusterrr.hakchi_gui
                 famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
                 upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart;
                 disableMenuMusicToolStripMenuItem.Checked = ConfigIni.DisableMusic;
+                max20toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 20;
+                max25toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 25;
                 max30toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 30;
                 max35toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 35;
                 max40toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 40;
+                max45toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 45;
                 max50toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 50;
                 max60toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 60;
                 max70toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 70;
@@ -1009,9 +1012,12 @@ namespace com.clusterrr.hakchi_gui
         private void toolStripMenuMaxGamesPerFolder_Click(object sender, EventArgs e)
         {
             ConfigIni.MaxGamesPerFolder = byte.Parse((sender as ToolStripMenuItem).Text);
+            max20toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 20;
+            max25toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 25;
             max30toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 30;
             max35toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 35;
             max40toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 40;
+            max45toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 45;
             max50toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 50;
             max60toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 60;
             max70toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 70;

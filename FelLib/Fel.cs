@@ -129,14 +129,18 @@ namespace com.clusterrr.FelLib
 
         private void WriteToUSB(byte[] buffer)
         {
+#if DEBUG
             Debug.WriteLine("-> " + BitConverter.ToString(buffer));
+#endif
             device.Pipes[outEndp].Write(buffer);
         }
 
         private int ReadFromUSB(byte[] buffer, int offset, int length)
         {
             var data = device.Pipes[inEndp].Read(buffer, offset, length);
+#if DEBUG
             Debug.WriteLine("<- " + BitConverter.ToString(buffer));
+#endif
             return data;
         }
         private byte[] ReadFromUSB(UInt32 length)

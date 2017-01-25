@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.clusterrr.hakchi_gui.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public class NesMenuCollection : List<INesMenuElement>
     {
-        const int Letters = 10;
+        const int Letters = 25;
 
         public void Split(int maxElements)
         {
@@ -31,33 +32,54 @@ namespace com.clusterrr.hakchi_gui
                     collection = new NesMenuCollection();
                 }
             }
-            for (i = 0; i < collections.Count; i++)
+
+            // Method A
+            if (collections.Count >= 12) // minimum amount of games/folders on screen without glitches
             {
-                for (int j = i - 1; j >= 0; j--)
+                var root = this;
+                root.Clear();
+                foreach (var coll in collections)
                 {
+                    var fname = coll.Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Name;
+                    var lname = coll.Where(o => (o is NesGame) || (o is NesDefaultGame)).Last().Name;
                     var folder = new NesMenuFolder();
-                    var fname = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Name/*.ToUpper().Replace(" ", "")*/;
-                    var lname = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).Last().Name/*.ToUpper().Replace(" ", "")*/;
-                    folder.Child = collections[j];
-                    folder.Name = fname.Substring(0, Math.Min(Letters, fname.Length)) + "... - " + lname.Substring(0, Math.Min(Letters, lname.Length)) + "...";
-                    folder.Initial = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Code;
-                    folder.First = true;
-                    collections[i].Insert(0, folder);
-                }
-                for (int j = i + 1; j < collections.Count; j++)
-                {
-                    var folder = new NesMenuFolder();
-                    var fname = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Name/*.ToUpper().Replace(" ", "")*/;
-                    var lname = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).Last().Name/*.ToUpper().Replace(" ", "")*/;
-                    folder.Child = collections[j];
-                    folder.Name = fname.Substring(0, Math.Min(Letters, fname.Length)) + "... - " + lname.Substring(0, Math.Min(Letters, lname.Length)) + "...";
-                    folder.Initial = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Code;
-                    folder.First = false;
-                    collections[i].Insert(collections[i].Count, folder);
+                    folder.Child = coll;
+                    folder.Name = fname.Substring(0, Math.Min(Letters, fname.Length)) + (fname.Length > Letters ? "..." : "") + " - " + lname.Substring(0, Math.Min(Letters, lname.Length)) + (lname.Length > Letters ? "..." : "");
+                    root.Add(folder);
+                    coll.Add(new NesMenuFolder() { Name = "<- Back", Image = Resources.back, Child = root });
                 }
             }
-            Clear();
-            AddRange(collections[0]);
+            else
+            // Method B
+            {
+                for (i = 0; i < collections.Count; i++)
+                {
+                    for (int j = i - 1; j >= 0; j--)
+                    {
+                        var folder = new NesMenuFolder();
+                        var fname = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Name/*.ToUpper().Replace(" ", "")*/;
+                        var lname = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).Last().Name/*.ToUpper().Replace(" ", "")*/;
+                        folder.Child = collections[j];
+                        folder.Name = fname.Substring(0, Math.Min(Letters, fname.Length)) + (fname.Length > Letters ? "..." : "") + " - " + lname.Substring(0, Math.Min(Letters, lname.Length)) + (lname.Length > Letters ? "..." : "");
+                        folder.Initial = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Code;
+                        folder.First = true;
+                        collections[i].Insert(0, folder);
+                    }
+                    for (int j = i + 1; j < collections.Count; j++)
+                    {
+                        var folder = new NesMenuFolder();
+                        var fname = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Name/*.ToUpper().Replace(" ", "")*/;
+                        var lname = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).Last().Name/*.ToUpper().Replace(" ", "")*/;
+                        folder.Child = collections[j];
+                        folder.Name = fname.Substring(0, Math.Min(Letters, fname.Length)) + (fname.Length > Letters ? "..." : "") + " - " + lname.Substring(0, Math.Min(Letters, lname.Length)) + (lname.Length > Letters ? "..." : "");
+                        folder.Initial = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Code;
+                        folder.First = false;
+                        collections[i].Insert(collections[i].Count, folder);
+                    }
+                }
+                Clear();
+                AddRange(collections[0]);
+            }
         }
     }
 }

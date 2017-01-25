@@ -36,14 +36,14 @@ if [ "$version" -lt "$hakchi_version" ]; then
 	echo Installing $modname...
 	
 	rm -rf $installdir
-	mkdir -p $rootfs/usr/share/games/nes
+	mkdir -p $rootfs/usr/share/games/nes/kachikachi
 	mkdir -p $rootfs/usr/share/clover-ui/resources/
 	mkdir -p $rootfs/lib/modules/$kernel_version/extra
 
 	cp -a $mountpoint/bin $rootfs/
 	cp -a $mountpoint/etc $rootfs/
-	cp -a $mountpoint/lib/modules/$kernel_version/extra/* $rootfs/lib/modules/$kernel_version/extra/
 	cp -a $mountpoint/usr/share/clover-ui/resources $rootfs/usr/share/clover-ui/
+	cp -a $mountpoint/lib/modules/$kernel_version/extra/* $rootfs/lib/modules/$kernel_version/extra/
 	cp -a /bin/busybox $rootfs/bin/
 	
 	chmod +x /$modname/rootfs/bin/*
@@ -54,11 +54,6 @@ if [ "$version" -lt "$hakchi_version" ]; then
 	echo "$hakchi_version">$version_file
 else
 	echo $modname already installed and update is not required
-fi
-
-if [ -f $installdir/menu ]; then
-	echo Erasing last menu state...
-	rm $installdir/menu
 fi
 
 if [ -f /$modname/config ]; then
@@ -73,6 +68,11 @@ if [ -f $config ]; then
 	. $config
 else
 	echo $modname config not found	
+fi
+
+if [ -f $installdir/menu ]; then
+	echo Erasing last menu state...
+	rm $installdir/menu
 fi
 
 if [ "$hakchi_remove_games" == "y" ] && [ "$hakchi_partial_first" == "y" ]; then
