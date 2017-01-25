@@ -322,4 +322,13 @@
   <data name="ExtraArgsTitle" xml:space="preserve">
     <value>Глобальные параметры командной строки</value>
   </data>
+  <data name="DownloadAllCoversTitle" xml:space="preserve">
+    <value>Качаем обложки для всех игр (Мне повезёт!)</value>
+  </data>
+  <data name="GooglingFor" xml:space="preserve">
+    <value>Гуглим</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Не найдено:</value>
+  </data>
 </root>

@@ -38,6 +38,7 @@
             this.addPresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downloadCoversForAllGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -136,6 +137,7 @@
             this.addMoreGamesToolStripMenuItem,
             this.presetsToolStripMenuItem,
             this.searchToolStripMenuItem,
+            this.downloadCoversForAllGamesToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -176,6 +178,12 @@
             resources.ApplyResources(this.searchToolStripMenuItem, "searchToolStripMenuItem");
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
+            // 
+            // downloadCoversForAllGamesToolStripMenuItem
+            // 
+            resources.ApplyResources(this.downloadCoversForAllGamesToolStripMenuItem, "downloadCoversForAllGamesToolStripMenuItem");
+            this.downloadCoversForAllGamesToolStripMenuItem.Name = "downloadCoversForAllGamesToolStripMenuItem";
+            this.downloadCoversForAllGamesToolStripMenuItem.Click += new System.EventHandler(this.downloadCoversForAllGamesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -815,6 +823,7 @@
         private System.Windows.Forms.ToolStripMenuItem max70toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem max80toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem max90toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem downloadCoversForAllGamesToolStripMenuItem;
     }
 }
 

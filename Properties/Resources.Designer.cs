@@ -225,6 +225,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downloading covers for all games (I&apos;m feeling lucky!).
+        /// </summary>
+        internal static string DownloadAllCoversTitle {
+            get {
+                return ResourceManager.GetString("DownloadAllCoversTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to cancel the current operation?.
         /// </summary>
         internal static string DoYouWantCancel {
@@ -379,6 +388,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Googling for .
+        /// </summary>
+        internal static string GooglingFor {
+            get {
+                return ResourceManager.GetString("GooglingFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello.
         /// </summary>
         internal static string Hello {
@@ -483,6 +501,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string NoKernelYouNeed {
             get {
                 return ResourceManager.GetString("NoKernelYouNeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not found:.
+        /// </summary>
+        internal static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
             }
         }
         

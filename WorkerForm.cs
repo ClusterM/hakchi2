@@ -14,7 +14,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class WorkerForm : Form
     {
-        public enum Tasks { DumpKernel, FlashKernel, Memboot };
+        public enum Tasks { DumpKernel, FlashKernel, Memboot, DownloadAllCovers };
         public Tasks Task;
         //public string UBootDump;
         public string KernelDump;
@@ -84,10 +84,13 @@ namespace com.clusterrr.hakchi_gui
         public DialogResult Start()
         {
             SetProgress(0, 1);
-            if (!WaitingForm.WaitForDevice(vid, pid))
+            if (Task != Tasks.DownloadAllCovers)
             {
-                DialogResult = DialogResult.Abort;
-                return DialogResult;
+                if (!WaitingForm.WaitForDevice(vid, pid))
+                {
+                    DialogResult = DialogResult.Abort;
+                    return DialogResult;
+                }
             }
             thread = new Thread(StartThread);
             thread.Start();
@@ -97,17 +100,19 @@ namespace com.clusterrr.hakchi_gui
         public void StartThread()
         {
             fel = new Fel();
-            SetProgress(0, 100);
+            SetProgress(0, 1);
             try
             {
-                if (!File.Exists(fes1Path)) throw new FileNotFoundException(fes1Path + " not found");
-                if (!File.Exists(ubootPath)) throw new FileNotFoundException(ubootPath + " not found");
-
-                fel.Fes1Bin = File.ReadAllBytes(fes1Path);
-                fel.UBootBin = File.ReadAllBytes(ubootPath);
-                fel.Open(vid, pid);
-                SetStatus(Resources.UploadingFes1);
-                fel.InitDram(true);
+                if (Task != Tasks.DownloadAllCovers)
+                {
+                    if (!File.Exists(fes1Path)) throw new FileNotFoundException(fes1Path + " not found");
+                    if (!File.Exists(ubootPath)) throw new FileNotFoundException(ubootPath + " not found");
+                    fel.Fes1Bin = File.ReadAllBytes(fes1Path);
+                    fel.UBootBin = File.ReadAllBytes(ubootPath);
+                    fel.Open(vid, pid);
+                    SetStatus(Resources.UploadingFes1);
+                    fel.InitDram(true);
+                }
                 switch (Task)
                 {
                     case Tasks.DumpKernel:
@@ -118,6 +123,9 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case Tasks.Memboot:
                         Memboot();
+                        break;
+                    case Tasks.DownloadAllCovers:
+                        DownloadAllCovers();
                         break;
                 }
                 Thread.Sleep(1000);
@@ -490,6 +498,37 @@ namespace com.clusterrr.hakchi_gui
             return result;
         }
 
+        void DownloadAllCovers()
+        {
+            if (Games == null) return;
+            int i = 0;
+            foreach (NesGame game in Games)
+            {
+                SetStatus(Resources.GooglingFor + " " + game.Name + ImageGooglerForm.Suffix);
+                for (int tries = 0; tries < 3; tries++)
+                {
+                    try
+                    {
+                        var urls = ImageGooglerForm.GetImageUrls(game.Name + ImageGooglerForm.Suffix);
+                        if (urls.Length > 0)
+                        {
+                            var cover = ImageGooglerForm.DownloadImage(urls[0]);
+                            game.SetImage(cover, ConfigIni.EightBitPngCompression);
+                        }
+                        else SetStatus(Resources.NotFound + " " + game.Name);
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        SetStatus(Resources.Error + ": " + ex.Message);
+                        Thread.Sleep(1500);
+                    }
+                }
+                SetProgress(++i, Games.Count);
+                Thread.Sleep(500); // not so fast, Google don't like it
+            }
+        }
+
         private void AddMenu(NesMenuCollection menuCollection, List<NesMenuCollection> allMenus = null)
         {
             if (allMenus == null)
@@ -557,7 +596,7 @@ namespace com.clusterrr.hakchi_gui
                     var game = element as NesDefaultGame;
                     var gfilePath = Path.Combine(gamesDirectory, string.Format("gpath-{0}-{1}", game.Code, menuIndex));
                     Directory.CreateDirectory(Path.GetDirectoryName(gfilePath));
-                    File.WriteAllText(gfilePath, menuIndex == 0 ? "." : string.Format("sub{0:D3}", menuIndex));                    
+                    File.WriteAllText(gfilePath, menuIndex == 0 ? "." : string.Format("sub{0:D3}", menuIndex));
                 }
             }
         }

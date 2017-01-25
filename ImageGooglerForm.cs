@@ -17,6 +17,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class ImageGooglerForm : Form
     {
+        public const string Suffix = " nes box art";
         Thread searchThread;
         Image result;
         public Image Result
@@ -32,7 +33,7 @@ namespace com.clusterrr.hakchi_gui
             searchThread.Start(query);
         }
 
-        string[] GetImageUrls(string query)
+        public static string[] GetImageUrls(string query)
         {
             var url = string.Format("https://www.google.com/search?q={0}&source=lnms&tbm=isch", HttpUtility.UrlEncode(query));
             var request = WebRequest.Create(url);
@@ -134,9 +135,8 @@ namespace com.clusterrr.hakchi_gui
             }
             catch { }
         }
-
-
-        Image DownloadImage(string url)
+        
+        public static Image DownloadImage(string url)
         {
             var request = HttpWebRequest.Create(url);
             request.Credentials = CredentialCache.DefaultCredentials;

@@ -303,7 +303,7 @@ namespace com.clusterrr.hakchi_gui
             var selected = checkedListBoxGames.SelectedItem;
             if (selected == null || !(selected is NesGame)) return;
             var game = (selected as NesGame);
-            var googler = new ImageGooglerForm(game.Name + " nes box art");
+            var googler = new ImageGooglerForm(game.Name + ImageGooglerForm.Suffix);
             if (googler.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 game.SetImage(googler.Result, ConfigIni.EightBitPngCompression);
@@ -694,6 +694,20 @@ namespace com.clusterrr.hakchi_gui
             return workerForm.DialogResult == DialogResult.OK;
         }
 
+        bool DownloadAllCovers()
+        {
+            var workerForm = new WorkerForm();
+            workerForm.Text = Resources.DownloadAllCoversTitle;
+            workerForm.Task = WorkerForm.Tasks.DownloadAllCovers;
+            workerForm.Games = new NesMenuCollection();
+            foreach (var game in checkedListBoxGames.Items)
+            {
+                if (game is NesGame)
+                    workerForm.Games.Add(game as NesGame);
+            }
+            return workerForm.Start() == DialogResult.OK;
+        }
+
         private void dumpKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (File.Exists(KernelDump))
@@ -950,6 +964,13 @@ namespace com.clusterrr.hakchi_gui
             searchForm.Left = this.Left + 200;
             searchForm.Top = this.Top + 300;
             searchForm.Show();
+        }
+
+        private void downloadCoversForAllGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DownloadAllCovers())
+                MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ShowSelected();
         }
 
         private void checkedListBoxGames_KeyDown(object sender, KeyEventArgs e)
