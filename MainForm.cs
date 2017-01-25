@@ -21,80 +21,69 @@ namespace com.clusterrr.hakchi_gui
         //readonly string UBootDump;
         readonly string KernelDump;
 
-        public struct DefaultNesGame
-        {
-            public string Code;
-            public string Name;
-
-            public override string ToString()
-            {
-                return Name;
-            }
-        }
-
-        DefaultNesGame[] defaultNesGames = new DefaultNesGame[] {
-            new DefaultNesGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros." },
-            new DefaultNesGame { Code = "CLV-P-NAACE",  Name = "Super Mario Bros. 3" },
-            new DefaultNesGame { Code = "CLV-P-NAADE",  Name = "Super Mario Bros. 2" },
-            new DefaultNesGame { Code = "CLV-P-NAAEE",  Name = "Donkey Kong" },
-            new DefaultNesGame { Code = "CLV-P-NAAFE",  Name = "Donkey Kong Jr." },
-            new DefaultNesGame { Code = "CLV-P-NAAHE",  Name = "Excitebike" },
-            new DefaultNesGame { Code = "CLV-P-NAANE",  Name = "The Legend of Zelda" },
-            new DefaultNesGame { Code = "CLV-P-NAAPE",  Name = "Kirby's Adventure" },
-            new DefaultNesGame { Code = "CLV-P-NAAQE",  Name = "Metroid" },
-            new DefaultNesGame { Code = "CLV-P-NAARE",  Name = "Balloon Fight" },
-            new DefaultNesGame { Code = "CLV-P-NAASE",  Name = "Zelda II - The Adventure of Link" },
-            new DefaultNesGame { Code = "CLV-P-NAATE",  Name = "Punch-Out!! Featuring Mr. Dream" },
-            new DefaultNesGame { Code = "CLV-P-NAAUE",  Name = "Ice Climber" },
-            new DefaultNesGame { Code = "CLV-P-NAAVE",  Name = "Kid Icarus" },
-            new DefaultNesGame { Code = "CLV-P-NAAWE",  Name = "Mario Bros." },
-            new DefaultNesGame { Code = "CLV-P-NAAXE",  Name = "Dr. MARIO" },
-            new DefaultNesGame { Code = "CLV-P-NAAZE",  Name = "StarTropics" },
-            new DefaultNesGame { Code = "CLV-P-NABBE",  Name = "MEGA MAN™ 2" },
-            new DefaultNesGame { Code = "CLV-P-NABCE",  Name = "GHOSTS'N GOBLINS™" },
-            new DefaultNesGame { Code = "CLV-P-NABJE",  Name = "FINAL FANTASY®" },
-            new DefaultNesGame { Code = "CLV-P-NABKE",  Name = "BUBBLE BOBBLE" },
-            new DefaultNesGame { Code = "CLV-P-NABME",  Name = "PAC-MAN" },
-            new DefaultNesGame { Code = "CLV-P-NABNE",  Name = "Galaga" },
-            new DefaultNesGame { Code = "CLV-P-NABQE",  Name = "Castlevania" },
-            new DefaultNesGame { Code = "CLV-P-NABRE",  Name = "GRADIUS" },
-            new DefaultNesGame { Code = "CLV-P-NABVE",  Name = "Super C" },
-            new DefaultNesGame { Code = "CLV-P-NABXE",  Name = "Castlevania II Simon's Quest" },
-            new DefaultNesGame { Code = "CLV-P-NACBE",  Name = "NINJA GAIDEN" },
-            new DefaultNesGame { Code = "CLV-P-NACDE",  Name = "TECMO BOWL" },
-            new DefaultNesGame { Code = "CLV-P-NACHE",  Name = "DOUBLE DRAGON II: The Revenge" }
+        NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
+            new NesDefaultGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros." },
+            new NesDefaultGame { Code = "CLV-P-NAACE",  Name = "Super Mario Bros. 3" },
+            new NesDefaultGame { Code = "CLV-P-NAADE",  Name = "Super Mario Bros. 2" },
+            new NesDefaultGame { Code = "CLV-P-NAAEE",  Name = "Donkey Kong" },
+            new NesDefaultGame { Code = "CLV-P-NAAFE",  Name = "Donkey Kong Jr." },
+            new NesDefaultGame { Code = "CLV-P-NAAHE",  Name = "Excitebike" },
+            new NesDefaultGame { Code = "CLV-P-NAANE",  Name = "The Legend of Zelda" },
+            new NesDefaultGame { Code = "CLV-P-NAAPE",  Name = "Kirby's Adventure" },
+            new NesDefaultGame { Code = "CLV-P-NAAQE",  Name = "Metroid" },
+            new NesDefaultGame { Code = "CLV-P-NAARE",  Name = "Balloon Fight" },
+            new NesDefaultGame { Code = "CLV-P-NAASE",  Name = "Zelda II - The Adventure of Link" },
+            new NesDefaultGame { Code = "CLV-P-NAATE",  Name = "Punch-Out!! Featuring Mr. Dream" },
+            new NesDefaultGame { Code = "CLV-P-NAAUE",  Name = "Ice Climber" },
+            new NesDefaultGame { Code = "CLV-P-NAAVE",  Name = "Kid Icarus" },
+            new NesDefaultGame { Code = "CLV-P-NAAWE",  Name = "Mario Bros." },
+            new NesDefaultGame { Code = "CLV-P-NAAXE",  Name = "Dr. MARIO" },
+            new NesDefaultGame { Code = "CLV-P-NAAZE",  Name = "StarTropics" },
+            new NesDefaultGame { Code = "CLV-P-NABBE",  Name = "MEGA MAN™ 2" },
+            new NesDefaultGame { Code = "CLV-P-NABCE",  Name = "GHOSTS'N GOBLINS™" },
+            new NesDefaultGame { Code = "CLV-P-NABJE",  Name = "FINAL FANTASY®" },
+            new NesDefaultGame { Code = "CLV-P-NABKE",  Name = "BUBBLE BOBBLE" },
+            new NesDefaultGame { Code = "CLV-P-NABME",  Name = "PAC-MAN" },
+            new NesDefaultGame { Code = "CLV-P-NABNE",  Name = "Galaga" },
+            new NesDefaultGame { Code = "CLV-P-NABQE",  Name = "Castlevania" },
+            new NesDefaultGame { Code = "CLV-P-NABRE",  Name = "GRADIUS" },
+            new NesDefaultGame { Code = "CLV-P-NABVE",  Name = "Super C" },
+            new NesDefaultGame { Code = "CLV-P-NABXE",  Name = "Castlevania II Simon's Quest" },
+            new NesDefaultGame { Code = "CLV-P-NACBE",  Name = "NINJA GAIDEN" },
+            new NesDefaultGame { Code = "CLV-P-NACDE",  Name = "TECMO BOWL" },
+            new NesDefaultGame { Code = "CLV-P-NACHE",  Name = "DOUBLE DRAGON II: The Revenge" }
         };
-        DefaultNesGame[] defaultFamicomGames = new DefaultNesGame[] {
-            new DefaultNesGame { Code = "CLV-P-HAAAJ",  Name = "スーパーマリオブラザーズ" },
-            new DefaultNesGame { Code = "CLV-P-HAACJ",  Name = "スーパーマリオブラザーズ３" },
-            new DefaultNesGame { Code = "CLV-P-HAADJ",  Name = "スーパーマリオＵＳＡ" },
-            new DefaultNesGame { Code = "CLV-P-HAAEJ",  Name = "ドンキーコング" },
-            new DefaultNesGame { Code = "CLV-P-HAAHJ",  Name = "エキサイトバイク" },
-            new DefaultNesGame { Code = "CLV-P-HAAMJ",  Name = "マリオオープンゴルフ" },
-            new DefaultNesGame { Code = "CLV-P-HAANJ",  Name = "ゼルダの伝説" },
-            new DefaultNesGame { Code = "CLV-P-HAAPJ",  Name = "星のカービィ　夢の泉の物語" },
-            new DefaultNesGame { Code = "CLV-P-HAAQJ",  Name = "メトロイド" },
-            new DefaultNesGame { Code = "CLV-P-HAARJ",  Name = "バルーンファイト" },
-            new DefaultNesGame { Code = "CLV-P-HAASJ",  Name = "リンクの冒険" },
-            new DefaultNesGame { Code = "CLV-P-HAAUJ",  Name = "アイスクライマー" },
-            new DefaultNesGame { Code = "CLV-P-HAAWJ",  Name = "マリオブラザーズ" },
-            new DefaultNesGame { Code = "CLV-P-HAAXJ",  Name = "ドクターマリオ" },
-            new DefaultNesGame { Code = "CLV-P-HABBJ",  Name = "ロックマン®2 Dr.ワイリーの謎" },
-            new DefaultNesGame { Code = "CLV-P-HABCJ",  Name = "魔界村®" },
-            new DefaultNesGame { Code = "CLV-P-HABJJ",  Name = "ファイナルファンタジー®III" },
-            new DefaultNesGame { Code = "CLV-P-HABMJ",  Name = "パックマン" },
-            new DefaultNesGame { Code = "CLV-P-HABNJ",  Name = "ギャラガ" },
-            new DefaultNesGame { Code = "CLV-P-HABQJ",  Name = "悪魔城ドラキュラ" },
-            new DefaultNesGame { Code = "CLV-P-HABRJ",  Name = "グラディウス" },
-            new DefaultNesGame { Code = "CLV-P-HABVJ",  Name = "スーパー魂斗羅" },
-            new DefaultNesGame { Code = "CLV-P-HACAJ",  Name = "イー・アル・カンフー" },
-            new DefaultNesGame { Code = "CLV-P-HACBJ",  Name = "忍者龍剣伝" },
-            new DefaultNesGame { Code = "CLV-P-HACCJ",  Name = "ソロモンの鍵" },
-            new DefaultNesGame { Code = "CLV-P-HACEJ",  Name = "つっぱり大相撲" },
-            new DefaultNesGame { Code = "CLV-P-HACHJ",  Name = "ダブルドラゴンⅡ The Revenge" },
-            new DefaultNesGame { Code = "CLV-P-HACJJ",  Name = "ダウンタウン熱血物語" },
-            new DefaultNesGame { Code = "CLV-P-HACLJ",  Name = "ダウンタウン熱血行進曲 それゆけ大運動会" },
-            new DefaultNesGame { Code = "CLV-P-HACPJ",  Name = "アトランチスの謎" }
+        NesDefaultGame[] defaultFamicomGames = new NesDefaultGame[] {
+            new NesDefaultGame { Code = "CLV-P-HAAAJ",  Name = "スーパーマリオブラザーズ" },
+            new NesDefaultGame { Code = "CLV-P-HAACJ",  Name = "スーパーマリオブラザーズ３" },
+            new NesDefaultGame { Code = "CLV-P-HAADJ",  Name = "スーパーマリオＵＳＡ" },
+            new NesDefaultGame { Code = "CLV-P-HAAEJ",  Name = "ドンキーコング" },
+            new NesDefaultGame { Code = "CLV-P-HAAHJ",  Name = "エキサイトバイク" },
+            new NesDefaultGame { Code = "CLV-P-HAAMJ",  Name = "マリオオープンゴルフ" },
+            new NesDefaultGame { Code = "CLV-P-HAANJ",  Name = "ゼルダの伝説" },
+            new NesDefaultGame { Code = "CLV-P-HAAPJ",  Name = "星のカービィ　夢の泉の物語" },
+            new NesDefaultGame { Code = "CLV-P-HAAQJ",  Name = "メトロイド" },
+            new NesDefaultGame { Code = "CLV-P-HAARJ",  Name = "バルーンファイト" },
+            new NesDefaultGame { Code = "CLV-P-HAASJ",  Name = "リンクの冒険" },
+            new NesDefaultGame { Code = "CLV-P-HAAUJ",  Name = "アイスクライマー" },
+            new NesDefaultGame { Code = "CLV-P-HAAWJ",  Name = "マリオブラザーズ" },
+            new NesDefaultGame { Code = "CLV-P-HAAXJ",  Name = "ドクターマリオ" },
+            new NesDefaultGame { Code = "CLV-P-HABBJ",  Name = "ロックマン®2 Dr.ワイリーの謎" },
+            new NesDefaultGame { Code = "CLV-P-HABCJ",  Name = "魔界村®" },
+            new NesDefaultGame { Code = "CLV-P-HABJJ",  Name = "ファイナルファンタジー®III" },
+            new NesDefaultGame { Code = "CLV-P-HABMJ",  Name = "パックマン" },
+            new NesDefaultGame { Code = "CLV-P-HABNJ",  Name = "ギャラガ" },
+            new NesDefaultGame { Code = "CLV-P-HABQJ",  Name = "悪魔城ドラキュラ" },
+            new NesDefaultGame { Code = "CLV-P-HABRJ",  Name = "グラディウス" },
+            new NesDefaultGame { Code = "CLV-P-HABVJ",  Name = "スーパー魂斗羅" },
+            new NesDefaultGame { Code = "CLV-P-HACAJ",  Name = "イー・アル・カンフー" },
+            new NesDefaultGame { Code = "CLV-P-HACBJ",  Name = "忍者龍剣伝" },
+            new NesDefaultGame { Code = "CLV-P-HACCJ",  Name = "ソロモンの鍵" },
+            new NesDefaultGame { Code = "CLV-P-HACEJ",  Name = "つっぱり大相撲" },
+            new NesDefaultGame { Code = "CLV-P-HACHJ",  Name = "ダブルドラゴンⅡ The Revenge" },
+            new NesDefaultGame { Code = "CLV-P-HACJJ",  Name = "ダウンタウン熱血物語" },
+            new NesDefaultGame { Code = "CLV-P-HACLJ",  Name = "ダウンタウン熱血行進曲 それゆけ大運動会" },
+            new NesDefaultGame { Code = "CLV-P-HACPJ",  Name = "アトランチスの謎" }
         };
 
         public MainForm()
@@ -121,6 +110,14 @@ namespace com.clusterrr.hakchi_gui
                 famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
                 upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart;
                 disableMenuMusicToolStripMenuItem.Checked = ConfigIni.DisableMusic;
+                max30toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 30;
+                max35toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 35;
+                max40toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 40;
+                max50toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 50;
+                max60toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 60;
+                max70toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 70;
+                max80toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 80;
+                max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
                 new Thread(NesGame.LoadCache).Start();
             }
             catch (Exception ex)
@@ -223,7 +220,7 @@ namespace com.clusterrr.hakchi_gui
         {
             checkedListBoxDefaultGames.Items.Clear();
             var hidden = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (var game in new List<DefaultNesGame>(ConfigIni.ConsoleType == 0 ? defaultNesGames : defaultFamicomGames).OrderBy(o => o.Name))
+            foreach (var game in new List<NesDefaultGame>(ConfigIni.ConsoleType == 0 ? defaultNesGames : defaultFamicomGames).OrderBy(o => o.Name))
                 checkedListBoxDefaultGames.Items.Add(game, !hidden.Contains(game.Code));
         }
 
@@ -250,7 +247,7 @@ namespace com.clusterrr.hakchi_gui
                                 selected.Contains((checkedListBoxGames.Items[j] as NesGame).Code));
                         for (int j = 0; j < checkedListBoxDefaultGames.Items.Count; j++)
                             checkedListBoxDefaultGames.SetItemChecked(j,
-                                !hide.Contains(((DefaultNesGame)checkedListBoxDefaultGames.Items[j]).Code));
+                                !hide.Contains(((NesDefaultGame)checkedListBoxDefaultGames.Items[j]).Code));
                     }));
                 deletePresetToolStripMenuItem.DropDownItems.Insert(i, new ToolStripMenuItem(preset, null,
                     delegate(object sender, EventArgs e)
@@ -389,9 +386,9 @@ namespace com.clusterrr.hakchi_gui
             }
             ConfigIni.SelectedGames = string.Join(";", selected.ToArray());
             selected.Clear();
-            foreach (DefaultNesGame game in checkedListBoxDefaultGames.Items)
+            foreach (NesDefaultGame game in checkedListBoxDefaultGames.Items)
                 selected.Add(game.Code);
-            foreach (DefaultNesGame game in checkedListBoxDefaultGames.CheckedItems)
+            foreach (NesDefaultGame game in checkedListBoxDefaultGames.CheckedItems)
                 selected.Remove(game.Code);
             ConfigIni.HiddenGames = string.Join(";", selected.ToArray());
         }
@@ -556,16 +553,8 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(Resources.SelectAtLeast, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            /*
-            if (gamesCount > 97)
-            {
-                if (MessageBox.Show(Resources.ManyGames, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                    == System.Windows.Forms.DialogResult.No)
-                return;
-            }
-             */
             bool dumpedKernelNow = false;
-            if (/*!File.Exists(UBootDump) ||*/ !File.Exists(KernelDump))
+            if (!File.Exists(KernelDump))
             {
                 if (MessageBox.Show(Resources.NoKernelWarning, Resources.NoKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                     == System.Windows.Forms.DialogResult.Yes)
@@ -638,25 +627,32 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Config["hakchi_clovercon_hack"] = ConfigIni.ResetHack || ConfigIni.AutofireHack || ConfigIni.FcStart;
             workerForm.Config["hakchi_remove_thumbnails"] = ConfigIni.RemoveThumbnails;
             workerForm.Config["hakchi_remove_music"] = ConfigIni.DisableMusic;
-            var games = new List<NesGame>();
+            workerForm.Games = new NesMenuCollection();
+            var hiddenGames = new List<string>();
             bool needOriginal = false;
             foreach (var game in checkedListBoxGames.CheckedItems)
             {
                 if (game is NesGame)
-                    games.Add(game as NesGame);
+                    workerForm.Games.Add(game as NesGame);
                 else
                     needOriginal = true;
             }
-            workerForm.Games = games.ToArray();
+            if (needOriginal)
+                for (int i = 0; i < checkedListBoxDefaultGames.Items.Count; i++)
+                {
+                    if (checkedListBoxDefaultGames.CheckedIndices.Contains(i))
+                        workerForm.Games.Add((NesDefaultGame)checkedListBoxDefaultGames.Items[i]);
+                    else
+                        hiddenGames.Add(((NesDefaultGame)checkedListBoxDefaultGames.Items[i]).Code);
+                }
+            workerForm.Games.Split(ConfigIni.MaxGamesPerFolder);
             workerForm.Config["hakchi_original_games"] = needOriginal;
             if (ConfigIni.AntiArmetLevel == 1)
                 workerForm.Config["hakchi_remove_armet_original"] = true;
             else if (ConfigIni.AntiArmetLevel == 2)
                 workerForm.Config["hakchi_remove_armet_all"] = true;
-            games.Clear();
-            var hiddenGames = new List<string>();
             if (needOriginal)
-                workerForm.HiddenGames = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                workerForm.HiddenGames = hiddenGames.ToArray();
             else
                 workerForm.HiddenGames = null;
             workerForm.ResetCombination = ConfigIni.ResetHack ? ConfigIni.ResetCombination : (SelectButtonsForm.NesButtons)0xFF;
@@ -811,7 +807,7 @@ namespace com.clusterrr.hakchi_gui
         {
             ConfigIni.EightBitPngCompression = betterPNGCompressionlowerQualityToolStripMenuItem.Checked;
         }
-        
+
         private void upABStartOnSecondControllerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.FcStart = upABStartOnSecondControllerToolStripMenuItem.Checked;
@@ -859,7 +855,7 @@ namespace com.clusterrr.hakchi_gui
             if (form.ShowDialog() == DialogResult.OK)
                 ConfigIni.ExtraCommandLineArguments = form.textBox.Text;
         }
-        
+
         private void disableMenuMusicToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.DisableMusic = disableMenuMusicToolStripMenuItem.Checked;
@@ -986,6 +982,19 @@ namespace com.clusterrr.hakchi_gui
                 ShowSelected();
                 MessageBox.Show(this, string.Format(Resources.AutofillResult, counter), Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void toolStripMenuMaxGamesPerFolder_Click(object sender, EventArgs e)
+        {
+            ConfigIni.MaxGamesPerFolder = byte.Parse((sender as ToolStripMenuItem).Text);
+            max30toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 30;
+            max35toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 35;
+            max40toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 40;
+            max50toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 50;
+            max60toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 60;
+            max70toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 70;
+            max80toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 80;
+            max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
         }
     }
 }

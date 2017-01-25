@@ -62,6 +62,15 @@
             this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeThumbnailsAtTheBottomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disableMenuMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.maximumGamesPerFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.max30toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.max35toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.max40toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.max50toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.max60toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.max70toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.max80toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.max90toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.betterPNGCompressionlowerQualityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -106,7 +115,6 @@
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
-            this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             this.groupBoxDefaultGames.SuspendLayout();
             this.SuspendLayout();
@@ -222,6 +230,7 @@
             this.epilepsyProtectionToolStripMenuItem,
             this.cloverconHackToolStripMenuItem,
             this.guiHacksToolStripMenuItem,
+            this.maximumGamesPerFolderToolStripMenuItem,
             this.betterPNGCompressionlowerQualityToolStripMenuItem,
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
@@ -347,6 +356,68 @@
             this.disableMenuMusicToolStripMenuItem.CheckOnClick = true;
             this.disableMenuMusicToolStripMenuItem.Name = "disableMenuMusicToolStripMenuItem";
             this.disableMenuMusicToolStripMenuItem.Click += new System.EventHandler(this.disableMenuMusicToolStripMenuItem_Click);
+            // 
+            // maximumGamesPerFolderToolStripMenuItem
+            // 
+            resources.ApplyResources(this.maximumGamesPerFolderToolStripMenuItem, "maximumGamesPerFolderToolStripMenuItem");
+            this.maximumGamesPerFolderToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.max30toolStripMenuItem,
+            this.max35toolStripMenuItem,
+            this.max40toolStripMenuItem,
+            this.max50toolStripMenuItem,
+            this.max60toolStripMenuItem,
+            this.max70toolStripMenuItem,
+            this.max80toolStripMenuItem,
+            this.max90toolStripMenuItem});
+            this.maximumGamesPerFolderToolStripMenuItem.Name = "maximumGamesPerFolderToolStripMenuItem";
+            // 
+            // max30toolStripMenuItem
+            // 
+            resources.ApplyResources(this.max30toolStripMenuItem, "max30toolStripMenuItem");
+            this.max30toolStripMenuItem.Name = "max30toolStripMenuItem";
+            this.max30toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuMaxGamesPerFolder_Click);
+            // 
+            // max35toolStripMenuItem
+            // 
+            resources.ApplyResources(this.max35toolStripMenuItem, "max35toolStripMenuItem");
+            this.max35toolStripMenuItem.Name = "max35toolStripMenuItem";
+            this.max35toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuMaxGamesPerFolder_Click);
+            // 
+            // max40toolStripMenuItem
+            // 
+            resources.ApplyResources(this.max40toolStripMenuItem, "max40toolStripMenuItem");
+            this.max40toolStripMenuItem.Name = "max40toolStripMenuItem";
+            this.max40toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuMaxGamesPerFolder_Click);
+            // 
+            // max50toolStripMenuItem
+            // 
+            resources.ApplyResources(this.max50toolStripMenuItem, "max50toolStripMenuItem");
+            this.max50toolStripMenuItem.Name = "max50toolStripMenuItem";
+            this.max50toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuMaxGamesPerFolder_Click);
+            // 
+            // max60toolStripMenuItem
+            // 
+            resources.ApplyResources(this.max60toolStripMenuItem, "max60toolStripMenuItem");
+            this.max60toolStripMenuItem.Name = "max60toolStripMenuItem";
+            this.max60toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuMaxGamesPerFolder_Click);
+            // 
+            // max70toolStripMenuItem
+            // 
+            resources.ApplyResources(this.max70toolStripMenuItem, "max70toolStripMenuItem");
+            this.max70toolStripMenuItem.Name = "max70toolStripMenuItem";
+            this.max70toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuMaxGamesPerFolder_Click);
+            // 
+            // max80toolStripMenuItem
+            // 
+            resources.ApplyResources(this.max80toolStripMenuItem, "max80toolStripMenuItem");
+            this.max80toolStripMenuItem.Name = "max80toolStripMenuItem";
+            this.max80toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuMaxGamesPerFolder_Click);
+            // 
+            // max90toolStripMenuItem
+            // 
+            resources.ApplyResources(this.max90toolStripMenuItem, "max90toolStripMenuItem");
+            this.max90toolStripMenuItem.Name = "max90toolStripMenuItem";
+            this.max90toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuMaxGamesPerFolder_Click);
             // 
             // betterPNGCompressionlowerQualityToolStripMenuItem
             // 
@@ -556,8 +627,6 @@
             // statusStrip
             // 
             resources.ApplyResources(this.statusStrip, "statusStrip");
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabelSelected});
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.SizingGrip = false;
             // 
@@ -655,8 +724,6 @@
             this.groupBoxOptions.ResumeLayout(false);
             this.groupBoxOptions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).EndInit();
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
             this.contextMenuStrip.ResumeLayout(false);
             this.groupBoxDefaultGames.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -739,6 +806,15 @@
         private System.Windows.Forms.ToolStripMenuItem upABStartOnSecondControllerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem guiHacksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem disableMenuMusicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem maximumGamesPerFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem max30toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem max35toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem max40toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem max50toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem max60toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem max70toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem max80toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem max90toolStripMenuItem;
     }
 }
 

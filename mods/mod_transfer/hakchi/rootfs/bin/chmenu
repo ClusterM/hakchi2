@@ -1,0 +1,32 @@
+#!/bin/sh
+installdir=/var/lib/hakchi
+rootfs=$installdir/rootfs
+gamesdir=$rootfs/usr/share/games/nes/kachikachi
+state_file=$installdir/menu
+echo Switching to menu $1
+echo $1>$state_file
+if [ "$1" == "000" ]; then
+	targetdir=$gamesdir
+else
+	targetdir=$gamesdir/sub$1
+fi
+echo New directory: $targetdir
+if [ ! -f $targetdir/title.fnt ]; then
+	ln -s $gamesdir/title.fnt $targetdir/title.fnt
+fi
+if [ ! -f $targetdir/copyright.fnt ]; then
+	ln -s $gamesdir/copyright.fnt $targetdir/copyright.fnt
+fi
+
+pkill -KILL clover-mcp
+pkill -KILL ReedPlayer-Clover
+
+# How to start shell with cursor on specific game?
+#awk -v gameid=$2 '{l[ln++]=((ln!=2)?$0:gameid)} END{for(i=0;i<ln;i++) print l[i]>ARGV[1]}' /var/cache/clover/command
+#awk -v gameid=$2 -v q=\' '/FOCUS_TITLE/{$0="FOCUS_TITLE = " q gameid q} {l[ln++]=$0} END{for(i=0;i<ln;i++) print l[i]>ARGV[1]}' /var/cache/clover/menu.lua
+#echo $2>/var/lib/clover/profiles/0/mcp-state
+#echo unknown>>/var/lib/clover/profiles/0/mcp-state
+
+umount -f /usr/share/games/nes/kachikachi
+mount -o bind $targetdir /usr/share/games/nes/kachikachi
+clover-mcp

@@ -280,6 +280,12 @@
   <data name="guiHacksToolStripMenuItem.Text" xml:space="preserve">
     <value>Хаки интерфейса</value>
   </data>
+  <data name="maximumGamesPerFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>375, 22</value>
+  </data>
+  <data name="maximumGamesPerFolderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Максимум игр на страницу</value>
+  </data>
   <data name="betterPNGCompressionlowerQualityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>375, 22</value>
   </data>

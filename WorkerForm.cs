@@ -21,7 +21,7 @@ namespace com.clusterrr.hakchi_gui
         public string Mod = null;
         public Dictionary<string, bool> Config = null;
         public string[] HiddenGames;
-        public NesGame[] Games;
+        public NesMenuCollection Games;
         public SelectButtonsForm.NesButtons ResetCombination;
         public bool AutofireHack;
         public bool FcStart = true;
@@ -49,6 +49,7 @@ namespace com.clusterrr.hakchi_gui
         readonly string gamesDirectory;
         readonly string cloverconDriverPath;
         readonly string argumentsFilePath;
+        readonly string extraScriptPath;
 
         string[] correctKernels;
 
@@ -72,6 +73,7 @@ namespace com.clusterrr.hakchi_gui
             hiddenPath = Path.Combine(hakchiDirectory, "hidden_games");
             cloverconDriverPath = Path.Combine(hakchiDirectory, "clovercon.ko");
             argumentsFilePath = Path.Combine(hakchiDirectory, "extra_args");
+            extraScriptPath = Path.Combine(hakchiDirectory, "extra_script");
             correctKernels = new string[] {
                 "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158", // NES Mini
                 "ac8144c3ea4ab32e017648ee80bdc230" // Famicom Mini
@@ -203,7 +205,7 @@ namespace com.clusterrr.hakchi_gui
             SetStatus(Resources.DumpingKernel);
 
             var kernel = fel.ReadFlash(Fel.kernel_base_f, Fel.sector_size * 0x20,
-                delegate (Fel.CurrentAction action, string command)
+                delegate(Fel.CurrentAction action, string command)
                 {
                     switch (action)
                     {
@@ -277,7 +279,7 @@ namespace com.clusterrr.hakchi_gui
             }
 
             fel.WriteFlash(Fel.kernel_base_f, kernel,
-                delegate (Fel.CurrentAction action, string command)
+                delegate(Fel.CurrentAction action, string command)
                 {
                     switch (action)
                     {
@@ -293,7 +295,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             );
             var r = fel.ReadFlash((UInt32)Fel.kernel_base_f, (UInt32)kernel.Length,
-                delegate (Fel.CurrentAction action, string command)
+                delegate(Fel.CurrentAction action, string command)
                 {
                     switch (action)
                     {
@@ -350,7 +352,7 @@ namespace com.clusterrr.hakchi_gui
 
             SetStatus(Resources.UploadingKernel);
             fel.WriteMemory(Fel.flash_mem_base, kernel,
-                delegate (Fel.CurrentAction action, string command)
+                delegate(Fel.CurrentAction action, string command)
                 {
                     switch (action)
                     {
@@ -405,44 +407,7 @@ namespace com.clusterrr.hakchi_gui
                 File.WriteAllText(configPath, config.ToString());
             }
             if (Games != null)
-            {
-                Directory.CreateDirectory(gamesDirectory);
-                foreach (var game in Games)
-                {
-                    var gameDir = Path.Combine(gamesDirectory, game.Code);
-                    DirectoryCopy(game.GamePath, gameDir, true);
-                    if (!string.IsNullOrEmpty(game.GameGenie))
-                    {
-                        var codes = game.GameGenie.Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
-                        var newNesFilePath = Path.Combine(gameDir, game.Code + ".nes");
-                        try
-                        {
-                            var nesFile = new NesFile(newNesFilePath);
-                            foreach (var code in codes)
-                            {
-                                try
-                                {
-                                    nesFile.PRG = GameGenie.Patch(nesFile.PRG, code.Trim());
-                                }
-                                catch (GameGenieFormatException)
-                                {
-                                    ShowError(new GameGenieFormatException(string.Format(Resources.GameGenieFormatError, code, game)), dontStop: true);
-                                }
-                                catch (GameGenieNotFoundException)
-                                {
-                                    ShowError(new GameGenieNotFoundException(string.Format(Resources.GameGenieNotFound, code, game.Name)), dontStop: true);
-                                }
-                            }
-                            nesFile.Save(newNesFilePath);
-                            var ggFilePath = Path.Combine(gameDir, NesGame.GameGenieFileName);
-                            if (File.Exists(ggFilePath)) File.Delete(ggFilePath);
-                        }
-                        catch // in case of FDS game... just ignore
-                        {
-                        }
-                    }
-                }
-            }
+                AddMenu(Games);
             if (Config != null && Config.ContainsKey("hakchi_remove_thumbnails") && Config["hakchi_remove_thumbnails"])
             {
                 var thumbnails = Directory.GetFiles(gamesDirectory, "*_small.png", SearchOption.AllDirectories);
@@ -523,6 +488,78 @@ namespace com.clusterrr.hakchi_gui
 #endif
             if (result.Length > Fel.kernel_max_size) throw new Exception("Kernel is too big");
             return result;
+        }
+
+        private void AddMenu(NesMenuCollection menuCollection, List<NesMenuCollection> allMenus = null)
+        {
+            if (allMenus == null)
+                allMenus = new List<NesMenuCollection>();
+            if (!allMenus.Contains(menuCollection))
+                allMenus.Add(menuCollection);
+            int menuIndex = allMenus.IndexOf(menuCollection);
+            string targetDirectory;
+            if (menuIndex == 0)
+                targetDirectory = gamesDirectory;
+            else
+                targetDirectory = Path.Combine(gamesDirectory, string.Format("sub{0:D3}", menuIndex));
+            if (Directory.Exists(targetDirectory))
+                return;
+            foreach (var element in menuCollection)
+            {
+                if (element is NesGame)
+                {
+                    var game = element as NesGame;
+                    var gameDir = Path.Combine(targetDirectory, game.Code);
+                    DirectoryCopy(game.GamePath, gameDir, true);
+                    if (!string.IsNullOrEmpty(game.GameGenie))
+                    {
+                        var codes = game.GameGenie.Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                        var newNesFilePath = Path.Combine(gameDir, game.Code + ".nes");
+                        try
+                        {
+                            var nesFile = new NesFile(newNesFilePath);
+                            foreach (var code in codes)
+                            {
+                                try
+                                {
+                                    nesFile.PRG = GameGenie.Patch(nesFile.PRG, code.Trim());
+                                }
+                                catch (GameGenieFormatException)
+                                {
+                                    ShowError(new GameGenieFormatException(string.Format(Resources.GameGenieFormatError, code, game)), dontStop: true);
+                                }
+                                catch (GameGenieNotFoundException)
+                                {
+                                    ShowError(new GameGenieNotFoundException(string.Format(Resources.GameGenieNotFound, code, game.Name)), dontStop: true);
+                                }
+                            }
+                            nesFile.Save(newNesFilePath);
+                            var ggFilePath = Path.Combine(gameDir, NesGame.GameGenieFileName);
+                            if (File.Exists(ggFilePath)) File.Delete(ggFilePath);
+                        }
+                        catch // in case of FDS game... just ignore
+                        {
+                        }
+                    }
+                }
+                if (element is NesMenuFolder)
+                {
+                    var folder = element as NesMenuFolder;
+                    if (!allMenus.Contains(folder.Child))
+                        allMenus.Add(folder.Child);
+                    int childIndex = allMenus.IndexOf(folder.Child);
+                    var folderDir = Path.Combine(targetDirectory, folder.Code);
+                    folder.Save(folderDir, childIndex);
+                    AddMenu(folder.Child, allMenus);
+                }
+                if (element is NesDefaultGame)
+                {
+                    var game = element as NesDefaultGame;
+                    var gfilePath = Path.Combine(gamesDirectory, string.Format("gpath-{0}-{1}", game.Code, menuIndex));
+                    Directory.CreateDirectory(Path.GetDirectoryName(gfilePath));
+                    File.WriteAllText(gfilePath, menuIndex == 0 ? "." : string.Format("sub{0:D3}", menuIndex));                    
+                }
+            }
         }
 
         private bool ExecuteTool(string tool, string args, string directory = null, bool external = false)

@@ -64,6 +64,7 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigIni.cs" />
+    <Compile Include="NesDefaultGame.cs" />
     <Compile Include="FelLib\AWFELMessage.cs" />
     <Compile Include="FelLib\AWFELStandardRequest.cs" />
     <Compile Include="FelLib\AWFELStatusResponse.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="ImageGooglerForm.Designer.cs">
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="INesMenuElement.cs" />
     <Compile Include="IpsPatcher.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -107,6 +109,8 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NesMenuCollection.cs" />
+    <Compile Include="NesMenuFolder.cs" />
     <Compile Include="NesFile.cs" />
     <Compile Include="NesGame.cs" />
     <Compile Include="nQuant.Core\Box.cs" />
@@ -308,6 +312,9 @@
     <None Include="mods\mod_transfer\bin\busybox">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="mods\mod_transfer\bin\chmod">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="mods\mod_transfer\bin\chroot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -348,6 +355,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mods\mod_transfer\hakchi\init">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_transfer\hakchi\rootfs\bin\chmenu">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mods\mod_transfer\hakchi\rootfs\etc\inittab">
@@ -433,9 +443,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\blank.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="data\nescarts.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -464,6 +471,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icon.ico" />
+    <None Include="images\blank.png" />
+    <Content Include="images\back.png" />
+    <Content Include="images\folder.png" />
     <Content Include="mods\mod_transfer\hakchi\blank_pixel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

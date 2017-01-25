@@ -8,9 +8,10 @@ rootfs=$installdir/rootfs
 config=$installdir/config
 installed_flag=$installdir/installed
 version_file=$installdir/version
-hakchi_version=4
+hakchi_version=8
 kernel_version=3.4.112
 hakchi_extra_args_file=/$modname/extra_args
+hakchi_extra_script=/$modname/extra_script
 
 echo Starting $modname...
 
@@ -32,70 +33,90 @@ else
 fi
 
 if [ "$version" -lt "$hakchi_version" ]; then
-  echo Installing $modname...
+	echo Installing $modname...
 	
-  rm -rf $installdir
-  mkdir -p $rootfs/usr/share/games/nes
-	mkdir -p $rootfs/lib/modules/$kernel_version/extra
-  mkdir -p $rootfs/usr/share/games/nes/
+	rm -rf $installdir
+	mkdir -p $rootfs/usr/share/games/nes
 	mkdir -p $rootfs/usr/share/clover-ui/resources/
+	mkdir -p $rootfs/lib/modules/$kernel_version/extra
 
-  cp -a $mountpoint/bin $rootfs/
-  cp -a $mountpoint/etc $rootfs/
+	cp -a $mountpoint/bin $rootfs/
+	cp -a $mountpoint/etc $rootfs/
 	cp -a $mountpoint/lib/modules/$kernel_version/extra/* $rootfs/lib/modules/$kernel_version/extra/
-  cp -a /$modname/rootfs/* $rootfs/
-  cp -a /bin/busybox $rootfs/bin/
-  cp -a /sbin/cryptsetup $rootfs/bin/
-  cp -a $mountpoint/usr/share/games/nes/kachikachi $rootfs/usr/share/games/nes/
 	cp -a $mountpoint/usr/share/clover-ui/resources $rootfs/usr/share/clover-ui/
+	cp -a /bin/busybox $rootfs/bin/
+	
+	chmod +x /$modname/rootfs/bin/*
+	cp -a /$modname/rootfs/* $rootfs/
 
-  chroot $rootfs /bin/busybox --install -s /bin/
+	chroot $rootfs /bin/busybox --install -s /bin/
 	echo "1">$installed_flag
-  echo "$hakchi_version">$version_file
+	echo "$hakchi_version">$version_file
 else
-  echo $modname already installed and update is not required
+	echo $modname already installed and update is not required
 fi
 
-if [ -f $modname/config ]; then
-  echo Updating config...
-  mkdir -p $installdir
-  cp -f /$modname/config $config
-  echo New config:
-  cat $config
+if [ -f $installdir/menu ]; then
+	echo Erasing last menu state...
+	rm $installdir/menu
+fi
+
+if [ -f /$modname/config ]; then
+	echo Updating config...
+	mkdir -p $installdir
+	cp -f /$modname/config $config
+	echo New config:
+	cat $config
 fi
 if [ -f $config ]; then
-  echo $modname config found  
-  . $config
+	echo $modname config found	
+	. $config
 else
-  echo $modname config not found  
+	echo $modname config not found	
 fi
 
 if [ -d /transfer ]; then
-  echo Transferring data...
-  cp -a /transfer/* $installdir/
+	echo Transferring data...
+	cp -a /transfer/* $installdir/
 fi
 
 if [ "$hakchi_remove_games" == "y" ]; then
-  echo Removing all games...
-  rm -rf $rootfs/usr/share/games/nes/kachikachi/CLV-*
+	echo Removing all games...
+	rm -rf $rootfs/usr/share/games/nes/kachikachi/*
 fi
 
 if [ "$hakchi_original_games" == "y" ]; then
-  echo Transfering original games...
-	if [ -f /$modname/hidden_games ]; then
-	  find $mountpoint/usr/share/games/nes/kachikachi/ -type d -maxdepth 1 -mindepth 1 | while read dir; do		
-	    code=`echo $dir | sed "s/.*\///"`
-	    if grep -q $code /$modname/hidden_games; then
-	      echo $code is hidden
-	    else     
-	      echo Transfering $code
-	      cp -a $mountpoint/usr/share/games/nes/kachikachi/$code $rootfs/usr/share/games/nes/kachikachi
-	    fi
-	  done
-	else
-		echo There are no hidden original games
-		cp -a $mountpoint/usr/share/games/nes/kachikachi $rootfs/usr/share/games/nes/
-	fi
+	echo Transfering original games...
+	for dir in $mountpoint/usr/share/games/nes/kachikachi/*; do		
+		if [ -d $dir ]; then		
+			code=`echo $dir | sed "s/.*\///"`
+			if [ -f /$modname/hidden_games ] && grep -q $code /$modname/hidden_games; then
+				echo $code is hidden
+			else	 
+				echo Transfering $code
+				found=false
+				for p in /games/gpath-$code-*; do
+					if [ -f "$p" ]; then
+						dist=`cat $p`
+						mkdir -p $rootfs/usr/share/games/nes/kachikachi/$dist
+						echo ...to $rootfs/usr/share/games/nes/kachikachi/$dist
+						cp -a $mountpoint/usr/share/games/nes/kachikachi/$code $rootfs/usr/share/games/nes/kachikachi/$dist
+						rm $p
+						found=true
+					fi
+				done
+				if [ "$found" == "false" ]; then
+					echo There is no path file for $code
+					cp -a $mountpoint/usr/share/games/nes/kachikachi/$code $rootfs/usr/share/games/nes/kachikachi/
+				fi
+			fi
+		fi
+	done
+fi
+
+if [ -f $hakchi_extra_script ]; then
+	echo Executing extra script...
+	. $hakchi_extra_script
 fi
 
 if [ "$hakchi_remove_armet_original" == "y" ]; then
@@ -105,28 +126,29 @@ fi
 
 if [ "$hakchi_title_font" == "y" ]; then
 	if [ "$region" == "JPN" ]; then
-	  echo Transfering JPN font...
-	  cp /$modname/title_j.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
+		echo Transfering JPN font...
+		cp /$modname/title_j.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
 	else
-	  echo Transfering USA_EUR font...
-	  cp /$modname/title.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
+		echo Transfering USA_EUR font...
+		cp /$modname/title.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
 	fi
 else
 	echo Restoring original font...
-  cp $mountpoint/usr/share/games/nes/kachikachi/title.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
+	cp $mountpoint/usr/share/games/nes/kachikachi/title.fnt $rootfs/usr/share/games/nes/kachikachi/title.fnt
 fi
+cp $mountpoint/usr/share/games/nes/kachikachi/copyright.fnt $rootfs/usr/share/games/nes/kachikachi/copyright.fnt
 
 if [ "$hakchi_clovercon_hack" == "y" ]; then
-  echo Transfering hacked clovercon driver...
-  cp /$modname/clovercon.ko $rootfs/lib/modules/$kernel_version/extra/clovercon.ko
+	echo Transfering hacked clovercon driver...
+	cp /$modname/clovercon.ko $rootfs/lib/modules/$kernel_version/extra/clovercon.ko
 else
-  echo Restoring original clovercon driver...
-  cp $mountpoint/lib/modules/$kernel_version/extra/clovercon.ko $rootfs/lib/modules/$kernel_version/extra/clovercon.ko
+	echo Restoring original clovercon driver...
+	cp $mountpoint/lib/modules/$kernel_version/extra/clovercon.ko $rootfs/lib/modules/$kernel_version/extra/clovercon.ko
 fi
 
 if [ -d /games ]; then
-  echo Transferring new games...
-  cp -a /games/* $rootfs/usr/share/games/nes/kachikachi
+	echo Transferring new games...
+	cp -a /games/* $rootfs/usr/share/games/nes/kachikachi
 fi
 
 if [ "$hakchi_remove_armet_all" == "y" ]; then
@@ -136,7 +158,7 @@ fi
 
 if [ -f $hakchi_extra_args_file ]; then
 	echo Appending extra command line arguments...
-	find $rootfs/usr/share/games/nes/kachikachi -name *.desktop -exec awk -v cfile="$hakchi_extra_args_file" 'BEGIN{getline c < cfile} /Exec=/{$0=$0 " " c} {l[ln++]=$0} END{for(i=0;i<ln;i++) print l[i]>ARGV[1]}' {} +
+	find $rootfs/usr/share/games/nes/kachikachi -name *.desktop -exec awk -v cfile="$hakchi_extra_args_file" 'BEGIN{getline c < cfile} /Exec=\/usr\//{$0=$0 " " c} {l[ln++]=$0} END{for(i=0;i<ln;i++) print l[i]>ARGV[1]}' {} +
 fi
 
 if [ "$hakchi_remove_thumbnails" == "y" ]; then

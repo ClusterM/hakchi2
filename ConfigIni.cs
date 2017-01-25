@@ -18,11 +18,12 @@ namespace com.clusterrr.hakchi_gui
         public static bool ResetHack = true;
         public static bool AutofireHack = false;
         public static bool RemoveThumbnails = false;
-        public static bool EightBitPngCompression = true;
+        public static bool EightBitPngCompression = false;
         public static bool FcStart = false;
         public static bool DisableMusic = false;
         public static byte AntiArmetLevel = 0;
         public static byte ConsoleType = 0;
+        public static byte MaxGamesPerFolder = 35;
         public static SelectButtonsForm.NesButtons ResetCombination = SelectButtonsForm.NesButtons.Down | SelectButtonsForm.NesButtons.Select;
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         public static string ExtraCommandLineArguments = "";
@@ -98,6 +99,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "disablemusic":
                                     DisableMusic = !value.ToLower().Equals("false");
                                     break;
+                                case "maxgamesperfolder":
+                                    MaxGamesPerFolder = byte.Parse(value);
+                                    break;
                             }
                             break;
                         case "presets":
@@ -127,10 +131,11 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("ConsoleType={0}", ConsoleType));
             configLines.Add(string.Format("ExtraCommandLineArguments={0}", ExtraCommandLineArguments));
             configLines.Add(string.Format("FcStart={0}", FcStart));
-            configLines.Add(string.Format("DisableMusic={0}", DisableMusic));            
+            configLines.Add(string.Format("DisableMusic={0}", DisableMusic));
+            configLines.Add(string.Format("MaxGamesPerFolder={0}", MaxGamesPerFolder));
 
-            configLines.Add("[Presets]");
             configLines.Add("");
+            configLines.Add("[Presets]");
             foreach (var preset in Presets.Keys)
             {
                 configLines.Add(string.Format("{0}={1}", preset, Presets[preset]));

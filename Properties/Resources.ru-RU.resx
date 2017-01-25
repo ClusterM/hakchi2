@@ -120,10 +120,6 @@
   <data name="AreYouSure" xml:space="preserve">
     <value>Вы уверены?</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\blank.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="BuildingCustom" xml:space="preserve">
     <value>Патчим ядро...</value>
   </data>
@@ -172,6 +168,7 @@
   <data name="ExecutingFel1" xml:space="preserve">
     <value>Запускаем fes1...</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="fes1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\fes1.bin;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -252,9 +249,6 @@
   </data>
   <data name="MapperNotSupported" xml:space="preserve">
     <value>Увы, {0} использует маппер #{1}, а NES Mini его вроде как не поддерживает, и игра скорее всего не запустится. Всё равно добавить?</value>
-  </data>
-  <data name="ManyGames" xml:space="preserve">
-    <value>Говорят, что NES Mini может выдержать только 97 игр, а у вас их {0}. Продолжить?</value>
   </data>
   <data name="PleaseTryAgainUSB" xml:space="preserve">
     <value>Если проблема повторяется, попробуйте другой USB порт или другой USB кабель.</value>

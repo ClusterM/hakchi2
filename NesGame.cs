@@ -15,20 +15,33 @@ using System.Xml.XPath;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public class NesGame
+    public class NesGame : INesMenuElement
     {
         public enum GameType { Cartridge, FDS }
 
+        private string code;
+
+        public string Code
+        {
+            get { return code; }
+            set { code = value; }
+        }
+
+        private string name;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
         public readonly string GamePath;
         public readonly string ConfigPath;
         public readonly string NesPath;
         public readonly string IconPath;
         public readonly string SmallIconPath;
-        public readonly string Code;
         public readonly string GameGeniePath;
         public readonly GameType Type;
         public string Args;
-        public string Name;
         public byte Players;
         public bool Simultaneous;
         public string ReleaseDate;

@@ -120,10 +120,6 @@
   <data name="AreYouSure" xml:space="preserve">
     <value>Are you sure?</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\blank.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="BuildingCustom" xml:space="preserve">
     <value>Building the custom kernel image...</value>
   </data>
@@ -247,9 +243,6 @@
   <data name="Wow" xml:space="preserve">
     <value>Wow</value>
   </data>
-  <data name="ManyGames" xml:space="preserve">
-    <value>NES Mini can handle only 97 games but you selected {0} games.  Do you want to continue?</value>
-  </data>
   <data name="PleaseTryAgainUSB" xml:space="preserve">
     <value>If this problem repeats try to use another USB port or another USB cable.</value>
   </data>
@@ -321,5 +314,15 @@
   </data>
   <data name="ExtraArgsTitle" xml:space="preserve">
     <value>Extra command line arguments</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="back" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\back.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\folder.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
