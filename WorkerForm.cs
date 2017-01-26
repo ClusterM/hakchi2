@@ -408,7 +408,12 @@ namespace com.clusterrr.hakchi_gui
 
                 progress += 5;
                 if (maxProgress < 0)
-                    maxProgress = (kernel.Length / 67000 + 15) * totalFiles / pos + 40 * ((int)Math.Ceiling((float)totalFiles / (float)pos) - 1);
+                {
+                    if (totalFiles > 0 && pos > 0)
+                        maxProgress = (kernel.Length / 67000 + 15) * totalFiles / pos + 50 * ((int)Math.Ceiling((float)totalFiles / (float)pos) - 1);
+                    else
+                        maxProgress = (kernel.Length / 67000 + 15);
+                }
                 SetProgress(progress, maxProgress);
 
                 SetStatus(Resources.UploadingKernel);
