@@ -121,6 +121,7 @@ namespace com.clusterrr.hakchi_gui
                 max70toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 70;
                 max80toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 80;
                 max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
+                max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
                 new Thread(NesGame.LoadCache).Start();
             }
             catch (Exception ex)
@@ -1033,6 +1034,7 @@ namespace com.clusterrr.hakchi_gui
             max70toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 70;
             max80toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 80;
             max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
+            max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
         }
     }
 }

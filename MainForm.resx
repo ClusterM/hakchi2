@@ -374,6 +374,12 @@
   <data name="max90toolStripMenuItem.Text" xml:space="preserve">
     <value>90</value>
   </data>
+  <data name="max100toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="max100toolStripMenuItem.Text" xml:space="preserve">
+    <value>100</value>
+  </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>325, 22</value>
   </data>
@@ -2697,6 +2703,12 @@
   </data>
   <data name="&gt;&gt;timerCalculateGames.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;max100toolStripMenuItem.Name" xml:space="preserve">
+    <value>max100toolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;max100toolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

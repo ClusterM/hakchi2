@@ -116,6 +116,7 @@
             this.groupBoxDefaultGames = new System.Windows.Forms.GroupBox();
             this.checkedListBoxDefaultGames = new System.Windows.Forms.CheckedListBox();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
+            this.max100toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -382,7 +383,8 @@
             this.max60toolStripMenuItem,
             this.max70toolStripMenuItem,
             this.max80toolStripMenuItem,
-            this.max90toolStripMenuItem});
+            this.max90toolStripMenuItem,
+            this.max100toolStripMenuItem});
             this.maximumGamesPerFolderToolStripMenuItem.Name = "maximumGamesPerFolderToolStripMenuItem";
             resources.ApplyResources(this.maximumGamesPerFolderToolStripMenuItem, "maximumGamesPerFolderToolStripMenuItem");
             // 
@@ -734,6 +736,12 @@
             this.timerCalculateGames.Interval = 500;
             this.timerCalculateGames.Tick += new System.EventHandler(this.timerCalculateGames_Tick);
             // 
+            // max100toolStripMenuItem
+            // 
+            this.max100toolStripMenuItem.Name = "max100toolStripMenuItem";
+            resources.ApplyResources(this.max100toolStripMenuItem, "max100toolStripMenuItem");
+            this.max100toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuMaxGamesPerFolder_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -856,6 +864,7 @@
         private System.Windows.Forms.ToolStripMenuItem max20toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem max25toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem max45toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem max100toolStripMenuItem;
     }
 }
 

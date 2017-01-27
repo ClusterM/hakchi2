@@ -109,11 +109,6 @@ if [ "$hakchi_original_games" == "y" ] && [ "$hakchi_partial_first" == "y" ]; th
 	done
 fi
 
-if [ -f $hakchi_extra_script ] && [ "$hakchi_partial_first" == "y" ]; then
-	echo Executing extra script...
-	. $hakchi_extra_script
-fi
-
 if [ "$hakchi_remove_armet_original" == "y" ] && [ "$hakchi_partial_first" == "y" ]; then
 	echo "Removing armet filter..."
 	find $rootfs/usr/share/games/nes/kachikachi -name *.desktop -exec sed -i -e 's/--enable-armet//g' {} +
@@ -184,8 +179,13 @@ if [ "$hakchi_partial_first" == "y" ]; then
 	fi
 fi
 
+if [ -f $hakchi_extra_script ]; then
+	echo Executing extra script...
+	. $hakchi_extra_script
+fi
+
 if [ -d /transfer ]; then
-	echo Transferring data...
+	echo Transferring extra data...
 	cp -a /transfer/* $installdir/
 fi
 

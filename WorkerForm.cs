@@ -49,7 +49,6 @@ namespace com.clusterrr.hakchi_gui
         readonly string gamesDirectory;
         readonly string cloverconDriverPath;
         readonly string argumentsFilePath;
-        readonly string extraScriptPath;
         string[] correctKernels;
         const int maxRamfsSize = 35 * 1024 * 1024;
         DialogResult DeviceWaitResult = DialogResult.None;
@@ -74,7 +73,6 @@ namespace com.clusterrr.hakchi_gui
             hiddenPath = Path.Combine(hakchiDirectory, "hidden_games");
             cloverconDriverPath = Path.Combine(hakchiDirectory, "clovercon.ko");
             argumentsFilePath = Path.Combine(hakchiDirectory, "extra_args");
-            extraScriptPath = Path.Combine(hakchiDirectory, "extra_script");
             correctKernels = new string[] {
                 "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158", // NES Mini
                 "ac8144c3ea4ab32e017648ee80bdc230" // Famicom Mini
@@ -556,7 +554,8 @@ namespace com.clusterrr.hakchi_gui
                 File.WriteAllText(configPath, config.ToString());
             }
 
-            ExecuteTool("upx.exe", "--best sbin\\cryptsetup", ramfsDirectory);
+            if (Games != null && Games.Count > 0) // There is no reason to compress cryptsetup when we do not uploading games
+                ExecuteTool("upx.exe", "--best sbin\\cryptsetup", ramfsDirectory);
             byte[] ramdisk;
             if (!ExecuteTool("mkbootfs.exe", string.Format("\"{0}\"", ramfsDirectory), out ramdisk))
                 throw new Exception("Can't repack ramdisk");
