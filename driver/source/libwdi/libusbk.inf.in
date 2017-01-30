@@ -1,0 +1,153 @@
+﻿; Copyright (c) 2011-2012 libusbK (GNU LGPL)
+;
+; Module Name: #INF_FILENAME#
+; Description: Installation inf for #DEVICE_DESCRIPTION# device.
+;
+; THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+; KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+; IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+; PURPOSE.
+
+[Strings]
+DeviceName = "#DEVICE_DESCRIPTION#"
+VendorName = "#DEVICE_MANUFACTURER#"
+SourceName = "#DEVICE_DESCRIPTION# Install Disk"
+DeviceID   = "#DEVICE_HARDWARE_ID#"
+DeviceGUID = "#DEVICE_INTERFACE_GUID#"
+
+[Version]
+Signature   = "$Windows NT$"
+Class       = "libusbk devices"
+ClassGuid   = {ECFB0CFD-74C4-4f52-BBF7-343461CD72AC}
+Provider    = "libusbK"
+CatalogFile = #CAT_FILENAME#
+DriverVer   = #DRIVER_DATE#, #DRIVER_VERSION#
+
+; ============== Class section ==================
+[ClassInstall32]
+Addreg = LUsbK_Class_AddReg 
+
+[LUsbK_Class_AddReg]
+HKR,,,0,"libusbK USB Devices"
+HKR,,Icon,,-20
+
+; ============== Device section =================
+[Manufacturer]
+%VendorName% = LUsbK_DeviceGroup,NTX86,NTAMD64
+
+; For Win2K
+[LUsbK_DeviceGroup]
+%DeviceName%=LUsbK_Device, USB\%DeviceID%
+
+; For XP and later
+[LUsbK_DeviceGroup.NTX86]
+%DeviceName%=LUsbK_Device, USB\%DeviceID%
+
+[LUsbK_DeviceGroup.NTAMD64]
+%DeviceName%=LUsbK_Device, USB\%DeviceID%
+
+[LUsbK_Device.NT.HW]
+AddReg=#USE_DEVICE_INTERFACE_GUID#
+
+[LUsbK_Device.NTAMD64.HW]
+AddReg=#USE_DEVICE_INTERFACE_GUID#
+
+[NoDeviceInterfaceGUID]
+; Avoids adding a DeviceInterfaceGUID for generic driver
+
+[AddDeviceInterfaceGUID]
+HKR,,DeviceInterfaceGUIDs, 0x10000,%DeviceGUID%
+
+; ========== Driver/Servce section ==============
+[LUsbK_Device.NT.Services]
+Addservice=libusbK,2,LUsbK_AddService
+
+[LUsbK_Device.NTAMD64.Services]
+Addservice=libusbK,2,LUsbK_AddService
+
+[LUsbK_AddService]
+DisplayName="libusbK USB Driver #DRIVER_DATE# - #DRIVER_VERSION#"
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%12%\libusbK.sys
+AddReg=LUsbK_Driver_AddReg
+
+; This optional entry identifies the load order group of which this driver is a member.
+; LoadOrderGroup=Base
+
+[LUsbK_Driver_AddReg]
+HKR,"Parameters","DebugLevel",0x10001,4
+
+; =========== Sources/Destinations ==============
+[SourceDisksNames]
+1 = %SourceName%
+
+[SourceDisksFiles.x86]
+libusbK.sys		= 1,x86
+libusbK.dll		= 1,x86
+libusb0.dll		= 1,x86
+;libusb-1.0.dll	= 1,x86
+WdfCoInstaller#WDF_VERSION#.dll = 1,x86
+
+[SourceDisksFiles.amd64]
+libusbK.sys			= 1,amd64
+libusbK.dll			= 1,amd64
+libusbK_x86.dll		= 1,amd64
+libusb0.dll			= 1,amd64
+libusb0_x86.dll		= 1,amd64
+;libusb-1.0.dll		= 1,amd64
+;libusb-1.0_x86.dll	= 1,amd64
+WdfCoInstaller#WDF_VERSION#.dll	= 1,amd64
+
+[DestinationDirs]
+DefaultDestDir				= 12
+CoInstaller_CopyFiles		= 11
+libusb_files_sys			= 10,system32\drivers
+libusb_files_dll			= 10,system32
+libusb_files_dll_syswow64	= 10,syswow64
+
+;
+; 0x00000040 = COPYFLG_OVERWRITE_OLDER_ONLY
+; Copy the source file to the destination directory only if the file on
+; the destination will be superseded by a newer version.
+;
+
+[libusb_files_sys]
+libusbK.sys
+
+[libusb_files_dll]
+libusbK.dll
+;libusb-1.0.dll,,,0x00000040
+libusb0.dll,,,0x00000040
+
+[libusb_files_dll_syswow64]
+libusbK.dll, libusbK_x86.dll
+libusb0.dll, libusb0_x86.dll,,0x00000040
+;libusb-1.0.dll, libusb-1.0_x86.dll,,0x00000040
+
+[LUsbK_Device.NT]
+CopyFiles = libusb_files_sys, libusb_files_dll
+
+[LUsbK_Device.NTAMD64]
+CopyFiles = libusb_files_sys, libusb_files_dll, libusb_files_dll_syswow64
+
+; ========= WDF/CoInstaller section =============
+[LUsbK_Device.NT.CoInstallers]
+AddReg=CoInstaller_AddReg
+CopyFiles=CoInstaller_CopyFiles
+
+[CoInstaller_CopyFiles]
+WdfCoInstaller#WDF_VERSION#.dll
+
+[CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller#WDF_VERSION#.dll,WdfCoInstaller"
+
+[LUsbK_Device.NT.Wdf]
+KmdfService = libusbK, LUsbK_wdfsect
+
+[LUsbK_Device.NTAMD64.Wdf]
+KmdfService = libusbK, LUsbK_wdfsect
+
+[LUsbK_wdfsect]
+KmdfLibraryVersion=#KMDF_VERSION#
