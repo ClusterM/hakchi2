@@ -75,6 +75,7 @@
             this.max70toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.max80toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.max90toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.max100toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.betterPNGCompressionlowerQualityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,7 +117,6 @@
             this.groupBoxDefaultGames = new System.Windows.Forms.GroupBox();
             this.checkedListBoxDefaultGames = new System.Windows.Forms.CheckedListBox();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
-            this.max100toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -454,6 +454,12 @@
             resources.ApplyResources(this.max90toolStripMenuItem, "max90toolStripMenuItem");
             this.max90toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuMaxGamesPerFolder_Click);
             // 
+            // max100toolStripMenuItem
+            // 
+            this.max100toolStripMenuItem.Name = "max100toolStripMenuItem";
+            resources.ApplyResources(this.max100toolStripMenuItem, "max100toolStripMenuItem");
+            this.max100toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuMaxGamesPerFolder_Click);
+            // 
             // betterPNGCompressionlowerQualityToolStripMenuItem
             // 
             this.betterPNGCompressionlowerQualityToolStripMenuItem.Checked = true;
@@ -735,12 +741,6 @@
             this.timerCalculateGames.Enabled = true;
             this.timerCalculateGames.Interval = 500;
             this.timerCalculateGames.Tick += new System.EventHandler(this.timerCalculateGames_Tick);
-            // 
-            // max100toolStripMenuItem
-            // 
-            this.max100toolStripMenuItem.Name = "max100toolStripMenuItem";
-            resources.ApplyResources(this.max100toolStripMenuItem, "max100toolStripMenuItem");
-            this.max100toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuMaxGamesPerFolder_Click);
             // 
             // MainForm
             // 

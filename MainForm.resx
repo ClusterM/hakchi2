@@ -309,73 +309,73 @@
     <value>GUI hacks</value>
   </data>
   <data name="max20toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>92, 22</value>
   </data>
   <data name="max20toolStripMenuItem.Text" xml:space="preserve">
     <value>20</value>
   </data>
   <data name="max25toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>92, 22</value>
   </data>
   <data name="max25toolStripMenuItem.Text" xml:space="preserve">
     <value>25</value>
   </data>
   <data name="max30toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>92, 22</value>
   </data>
   <data name="max30toolStripMenuItem.Text" xml:space="preserve">
     <value>30</value>
   </data>
   <data name="max35toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>92, 22</value>
   </data>
   <data name="max35toolStripMenuItem.Text" xml:space="preserve">
     <value>35</value>
   </data>
   <data name="max40toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>92, 22</value>
   </data>
   <data name="max40toolStripMenuItem.Text" xml:space="preserve">
     <value>40</value>
   </data>
   <data name="max45toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>92, 22</value>
   </data>
   <data name="max45toolStripMenuItem.Text" xml:space="preserve">
     <value>45</value>
   </data>
   <data name="max50toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>92, 22</value>
   </data>
   <data name="max50toolStripMenuItem.Text" xml:space="preserve">
     <value>50</value>
   </data>
   <data name="max60toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>92, 22</value>
   </data>
   <data name="max60toolStripMenuItem.Text" xml:space="preserve">
     <value>60</value>
   </data>
   <data name="max70toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>92, 22</value>
   </data>
   <data name="max70toolStripMenuItem.Text" xml:space="preserve">
     <value>70</value>
   </data>
   <data name="max80toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>92, 22</value>
   </data>
   <data name="max80toolStripMenuItem.Text" xml:space="preserve">
     <value>80</value>
   </data>
   <data name="max90toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>92, 22</value>
   </data>
   <data name="max90toolStripMenuItem.Text" xml:space="preserve">
     <value>90</value>
   </data>
   <data name="max100toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>92, 22</value>
   </data>
   <data name="max100toolStripMenuItem.Text" xml:space="preserve">
     <value>100</value>
@@ -2626,6 +2626,12 @@
   <data name="&gt;&gt;max90toolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;max100toolStripMenuItem.Name" xml:space="preserve">
+    <value>max100toolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;max100toolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;betterPNGCompressionlowerQualityToolStripMenuItem.Name" xml:space="preserve">
     <value>betterPNGCompressionlowerQualityToolStripMenuItem</value>
   </data>
@@ -2703,12 +2709,6 @@
   </data>
   <data name="&gt;&gt;timerCalculateGames.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;max100toolStripMenuItem.Name" xml:space="preserve">
-    <value>max100toolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;max100toolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

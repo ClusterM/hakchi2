@@ -533,7 +533,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are too many ROMs to tranfer them at once. Please wait until power led goes out, press OK and follow instructions to continue..
+        ///   Looks up a localized string similar to Don&apos;t worry! Everything is fine. Just there are too many ROMs to tranfer them at once. Please wait until power led goes out, press OK and follow instructions to continue..
         /// </summary>
         internal static string ParticallyBody {
             get {

@@ -50,7 +50,7 @@ namespace com.clusterrr.hakchi_gui
         readonly string cloverconDriverPath;
         readonly string argumentsFilePath;
         string[] correctKernels;
-        const int maxRamfsSize = 35 * 1024 * 1024;
+        const int maxRamfsSize = 40 * 1024 * 1024;
         DialogResult DeviceWaitResult = DialogResult.None;
 
         public WorkerForm()
@@ -476,7 +476,8 @@ namespace com.clusterrr.hakchi_gui
                     h.Append(game + "\n");
                 File.WriteAllText(hiddenPath, h.ToString());
             }
-            if (Config != null && Config.ContainsKey("hakchi_clovercon_hack") && Config["hakchi_clovercon_hack"] && File.Exists(cloverconDriverPath))
+            if (Config != null && Config.ContainsKey("hakchi_clovercon_hack")
+                && Config["hakchi_clovercon_hack"] && File.Exists(cloverconDriverPath))
             {
                 byte[] drv = File.ReadAllBytes(cloverconDriverPath);
                 const string magicReset = "MAGIC_BUTTONS:";
