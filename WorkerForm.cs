@@ -204,9 +204,9 @@ namespace com.clusterrr.hakchi_gui
                 if (ex is GameGenieFormatException || ex is GameGenieNotFoundException)
                     MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else if (ex is MadWizard.WinUSBNet.USBException)
-                    MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgain + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
-                    MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgain, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (!dontStop)
                 {
                     thread = null;
