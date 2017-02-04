@@ -489,6 +489,16 @@ namespace com.clusterrr.hakchi_gui
                         if (File.Exists(imagePath))
                             cover = Image.FromFile(imagePath);
                         nesGame = new NesGame(GamesDir, nesFileName, false, ref needPatch, this, rawData);
+
+                        // Trying to import Game Genie codes
+                        var lGameGeniePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".xml");
+                        if (File.Exists(lGameGeniePath))
+                        {
+                            string lGameGenieDataBaseName = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "data"), "GameGenieDB.xml");
+                            GameGenieDataBase lGameGenieDataBase = new GameGenieDataBase(lGameGenieDataBaseName, nesGame);
+                            lGameGenieDataBase.ImportCodes(lGameGeniePath, true);
+                            lGameGenieDataBase.Save();
+                        }
                     }
                     catch (UnsupportedMapperException ex)
                     {
@@ -544,6 +554,8 @@ namespace com.clusterrr.hakchi_gui
                 selectAllToolStripMenuItem.Tag = unselectAllToolStripMenuItem.Tag = 0;
                 deleteGameToolStripMenuItem.Tag = i;
                 deleteGameToolStripMenuItem.Enabled = i > 0;
+                gameGenieCodeToolStripMenuItem.Tag = i;
+                gameGenieCodeToolStripMenuItem.Enabled = i > 0;
                 contextMenuStrip.Show(sender as Control, e.X, e.Y);
             }
         }
@@ -1035,6 +1047,15 @@ namespace com.clusterrr.hakchi_gui
             max80toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 80;
             max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
             max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
+        }
+
+        private void gameGenieCodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int lIdx = (int)(sender as ToolStripMenuItem).Tag;
+            NesGame lGame = (NesGame)checkedListBoxGames.Items[lIdx];
+            GameGenieCodeForm lFrm = new GameGenieCodeForm(lGame);
+            if ((lFrm.ShowDialog() == System.Windows.Forms.DialogResult.OK) && (checkedListBoxGames.SelectedIndex == lIdx))
+                textBoxGameGenie.Text = lGame.GameGenie;                
         }
     }
 }
