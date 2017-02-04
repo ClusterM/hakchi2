@@ -1,0 +1,67 @@
+; #INF_FILENAME#
+; Copyright (c) 2016 Pete Batard <pete@akeo.ie> (GNU LGPL)
+; Based on the USB CDC .inf sample file provided by James Stephanick
+; at https://community.freescale.com/message/493287#493287
+; With acknowledgement to Sensics, Inc. <http://sensics.com/osvr>,
+; for providing an original (yet no longer used) inf file.
+
+[Strings]
+DeviceName = "#DEVICE_DESCRIPTION#"
+VendorName = "#DEVICE_MANUFACTURER#"
+SourceName = "#DEVICE_DESCRIPTION# Install Disk"
+DeviceID   = "#DEVICE_HARDWARE_ID#"
+DeviceGUID = "#DEVICE_INTERFACE_GUID#"
+Service    = "USB COM Port"
+
+[Version]
+Signature   = "$Windows NT$"
+Class       = Ports
+ClassGuid   = {4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider    = "libwdi"
+CatalogFile = #CAT_FILENAME#
+DriverVer   = #DRIVER_DATE#, 1.0.0.0
+
+[Manufacturer]
+%VendorName% = DeviceList,NTx86,NTamd64,NTarm
+
+[DeviceList.NTx86]
+%DeviceName% = UsbSer_Install, USB\%DeviceID%
+
+[DeviceList.NTamd64]
+%DeviceName% = UsbSer_Install, USB\%DeviceID%
+
+[DeviceList.NTarm]
+%DeviceName% = UsbSer_Install, USB\%DeviceID%
+
+[UsbSer_Install]
+; See https://support.microsoft.com/en-us/kb/837637
+include     = mdmcpq.inf
+CopyFiles   = FakeModemCopyFileSection ; defined in mdmcpq.inf
+AddReg      = UsbSer_Install.AddReg
+AddProperty = UsbSer_AddProperty
+
+[UsbSer_Install.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,usbser.sys
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[UsbSer_Install.Services]
+AddService = usbser,0x00000002,UsbSer_Service
+
+[UsbSer_Service]
+DisplayName   = %Service%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\usbser.sys
+
+[UsbSer_AddProperty]
+GenericDriverInstalled,,,,1
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %SourceName%
+
+[SourceDisksFiles]

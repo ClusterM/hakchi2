@@ -1,0 +1,24 @@
+TARGETNAME=installer_x86
+TARGETTYPE=PROGRAM
+
+_NT_TARGET_VERSION= $(_NT_TARGET_VERSION_WINXP)
+
+!IFNDEF MSC_WARNING_LEVEL
+MSC_WARNING_LEVEL=/W3
+!ENDIF
+
+USE_MSVCRT=1
+
+UMTYPE=console
+UMBASE=0x01000000
+
+INCLUDES=..\msvc;$(DDK_INC_PATH)
+C_DEFINES = $(C_DEFINES) /DDDKBUILD
+
+TARGETLIBS=$(SDK_LIB_PATH)\kernel32.lib \
+           $(SDK_LIB_PATH)\user32.lib \
+           $(SDK_LIB_PATH)\newdev.lib \
+           $(SDK_LIB_PATH)\ole32.lib \
+           $(SDK_LIB_PATH)\setupapi.lib
+
+SOURCES=installer.c

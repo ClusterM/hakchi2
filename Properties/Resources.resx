@@ -335,9 +335,12 @@
     <value>Not found:</value>
   </data>
   <data name="ParticallyBody" xml:space="preserve">
-    <value>There are too many ROMs to tranfer them at once. Please wait until power led goes out, press OK and follow instructions to continue.</value>
+    <value>Don't worry! Everything is fine. Just there are too many ROMs to tranfer them at once. Please wait until power led goes out, press OK and follow instructions to continue.</value>
   </data>
   <data name="ParticallyTitle" xml:space="preserve">
     <value>Too many ROMs</value>
+  </data>
+  <data name="gamepad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\gamepad.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -75,6 +75,7 @@
             this.max70toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.max80toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.max90toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.max100toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.betterPNGCompressionlowerQualityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -382,7 +383,8 @@
             this.max60toolStripMenuItem,
             this.max70toolStripMenuItem,
             this.max80toolStripMenuItem,
-            this.max90toolStripMenuItem});
+            this.max90toolStripMenuItem,
+            this.max100toolStripMenuItem});
             this.maximumGamesPerFolderToolStripMenuItem.Name = "maximumGamesPerFolderToolStripMenuItem";
             resources.ApplyResources(this.maximumGamesPerFolderToolStripMenuItem, "maximumGamesPerFolderToolStripMenuItem");
             // 
@@ -451,6 +453,12 @@
             this.max90toolStripMenuItem.Name = "max90toolStripMenuItem";
             resources.ApplyResources(this.max90toolStripMenuItem, "max90toolStripMenuItem");
             this.max90toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuMaxGamesPerFolder_Click);
+            // 
+            // max100toolStripMenuItem
+            // 
+            this.max100toolStripMenuItem.Name = "max100toolStripMenuItem";
+            resources.ApplyResources(this.max100toolStripMenuItem, "max100toolStripMenuItem");
+            this.max100toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuMaxGamesPerFolder_Click);
             // 
             // betterPNGCompressionlowerQualityToolStripMenuItem
             // 
@@ -856,6 +864,7 @@
         private System.Windows.Forms.ToolStripMenuItem max20toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem max25toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem max45toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem max100toolStripMenuItem;
     }
 }
 

@@ -121,6 +121,7 @@ namespace com.clusterrr.hakchi_gui
                 max70toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 70;
                 max80toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 80;
                 max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
+                max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
                 new Thread(NesGame.LoadCache).Start();
             }
             catch (Exception ex)
@@ -442,6 +443,7 @@ namespace com.clusterrr.hakchi_gui
             NesGame nesGame = null;
             foreach (var file in files)
             {
+                Image cover = null;
                 try
                 {
                     var nesFileName = file;
@@ -479,6 +481,13 @@ namespace com.clusterrr.hakchi_gui
                     }
                     try
                     {
+                        // Trying to find cover file
+                        var imagePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".png");
+                        if (File.Exists(imagePath))
+                            cover = Image.FromFile(imagePath);
+                        imagePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".jpg");
+                        if (File.Exists(imagePath))
+                            cover = Image.FromFile(imagePath);
                         nesGame = new NesGame(GamesDir, nesFileName, false, ref needPatch, this, rawData);
                     }
                     catch (UnsupportedMapperException ex)
@@ -495,6 +504,8 @@ namespace com.clusterrr.hakchi_gui
                             nesGame = new NesGame(GamesDir, nesFileName, true, ref needPatch, this, rawData);
                         else continue;
                     }
+                    if (cover != null)
+                        nesGame.SetImage(cover, ConfigIni.EightBitPngCompression);
                     ConfigIni.SelectedGames += ";" + nesGame.Code;
                 }
                 catch (Exception ex)
@@ -1023,6 +1034,7 @@ namespace com.clusterrr.hakchi_gui
             max70toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 70;
             max80toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 80;
             max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
+            max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
         }
     }
 }

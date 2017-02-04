@@ -49,9 +49,8 @@ namespace com.clusterrr.hakchi_gui
         readonly string gamesDirectory;
         readonly string cloverconDriverPath;
         readonly string argumentsFilePath;
-        readonly string extraScriptPath;
         string[] correctKernels;
-        const int maxRamfsSize = 35 * 1024 * 1024;
+        const int maxRamfsSize = 40 * 1024 * 1024;
         DialogResult DeviceWaitResult = DialogResult.None;
 
         public WorkerForm()
@@ -74,7 +73,6 @@ namespace com.clusterrr.hakchi_gui
             hiddenPath = Path.Combine(hakchiDirectory, "hidden_games");
             cloverconDriverPath = Path.Combine(hakchiDirectory, "clovercon.ko");
             argumentsFilePath = Path.Combine(hakchiDirectory, "extra_args");
-            extraScriptPath = Path.Combine(hakchiDirectory, "extra_script");
             correctKernels = new string[] {
                 "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158", // NES Mini
                 "ac8144c3ea4ab32e017648ee80bdc230" // Famicom Mini
@@ -206,9 +204,9 @@ namespace com.clusterrr.hakchi_gui
                 if (ex is GameGenieFormatException || ex is GameGenieNotFoundException)
                     MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else if (ex is MadWizard.WinUSBNet.USBException)
-                    MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgain + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
-                    MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgain, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (!dontStop)
                 {
                     thread = null;
@@ -409,8 +407,8 @@ namespace com.clusterrr.hakchi_gui
                 progress += 5;
                 if (maxProgress < 0)
                 {
-                    if (totalFiles > 0 && pos > 0)
-                        maxProgress = (kernel.Length / 67000 + 15) * totalFiles / pos + 50 * ((int)Math.Ceiling((float)totalFiles / (float)pos) - 1);
+                    if (pos > 0)
+                        maxProgress = (kernel.Length / 67000 + 15) * totalFiles / pos + 75 * ((int)Math.Ceiling((float)totalFiles / (float)pos) - 1);
                     else
                         maxProgress = (kernel.Length / 67000 + 15);
                 }
@@ -478,7 +476,8 @@ namespace com.clusterrr.hakchi_gui
                     h.Append(game + "\n");
                 File.WriteAllText(hiddenPath, h.ToString());
             }
-            if (Config != null && Config.ContainsKey("hakchi_clovercon_hack") && Config["hakchi_clovercon_hack"] && File.Exists(cloverconDriverPath))
+            if (Config != null && Config.ContainsKey("hakchi_clovercon_hack")
+                && Config["hakchi_clovercon_hack"] && File.Exists(cloverconDriverPath))
             {
                 byte[] drv = File.ReadAllBytes(cloverconDriverPath);
                 const string magicReset = "MAGIC_BUTTONS:";
@@ -556,7 +555,8 @@ namespace com.clusterrr.hakchi_gui
                 File.WriteAllText(configPath, config.ToString());
             }
 
-            ExecuteTool("upx.exe", "--best sbin\\cryptsetup", ramfsDirectory);
+            if (Games != null && Games.Count > 0) // There is no reason to compress cryptsetup when we do not uploading games
+                ExecuteTool("upx.exe", "--best sbin\\cryptsetup", ramfsDirectory);
             byte[] ramdisk;
             if (!ExecuteTool("mkbootfs.exe", string.Format("\"{0}\"", ramfsDirectory), out ramdisk))
                 throw new Exception("Can't repack ramdisk");

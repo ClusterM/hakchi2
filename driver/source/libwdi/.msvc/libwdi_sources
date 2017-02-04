@@ -1,0 +1,32 @@
+#TARGETTYPE is not defined, to allow selection between static lib or DLL with ddk_build
+TARGETNAME=libwdi
+DLLDEF=libwdi.def
+
+!IFNDEF MSC_WARNING_LEVEL
+MSC_WARNING_LEVEL=/W3
+!ENDIF
+
+USE_MSVCRT=1
+
+INCLUDES=..\msvc;$(DDK_INC_PATH)
+C_DEFINES = $(C_DEFINES) /DDDKBUILD $(DLL_DEFINES)
+LINKER_FLAGS=/ignore:4006
+
+# naked calls to 'build' ignores SOURCELIBS => we can't create a static lib
+# that includes dependencies without calling the linker externally :(
+
+TARGETLIBS=$(SDK_LIB_PATH)\kernel32.lib \
+           $(SDK_LIB_PATH)\advapi32.lib \
+           $(SDK_LIB_PATH)\user32.lib \
+           $(SDK_LIB_PATH)\shell32.lib \
+           $(SDK_LIB_PATH)\setupapi.lib \
+           $(SDK_LIB_PATH)\ole32.lib
+
+SOURCES= \
+	logging.c \
+	libwdi.c \
+	libwdi_dlg.c \
+	pki.c \
+	tokenizer.c \
+	vid_data.c \
+	libwdi.rc
