@@ -200,9 +200,12 @@ namespace com.clusterrr.hakchi_gui
 
                 FModified = true;
 
-
-                foreach (XmlNode lCurCode in GameNode.ChildNodes)
-                    lCurCode.ParentNode.RemoveChild(lCurCode);
+                XmlNode lDeleteNode = GameNode.FirstChild;
+                while (lDeleteNode != null)
+                {
+                    GameNode.RemoveChild(GameNode.FirstChild);
+                    lDeleteNode = GameNode.FirstChild;
+                }
                 GameCodes.Clear();
 
                 string lGameFileName = Path.Combine(Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "games"), FGame.Code), FGame.Code + ".nes");
