@@ -41,12 +41,75 @@ namespace com.clusterrr.hakchi_gui
         public readonly string SmallIconPath;
         public readonly string GameGeniePath;
         public readonly GameType Type;
-        public string Args;
-        public byte Players;
-        public bool Simultaneous;
-        public string ReleaseDate;
-        public string Publisher;
-        public string GameGenie = "";
+        private string args;
+        private string region = null;
+
+        private bool hasUnsavedChanges = true;
+
+        public string Args
+        {
+            get { return args; }
+            set
+            {
+                args = value;
+                hasUnsavedChanges = true;
+            }
+        }
+        private byte players;
+        public byte Players
+        {
+            get { return players; }
+            set
+            {
+                players = value;
+                hasUnsavedChanges = true;
+            }
+        }
+        private bool simultaneous;
+        public bool Simultaneous
+        {
+            get { return simultaneous; }
+            set
+            {
+                simultaneous = value;
+                hasUnsavedChanges = true;
+            }
+        }
+        private string releaseDate;
+        public string ReleaseDate
+        {
+            get { return releaseDate; }
+            set
+            {
+                releaseDate = value;
+                hasUnsavedChanges = true;
+            }
+        }
+        private string publisher;
+        public string Publisher
+        {
+            get { return publisher; }
+            set
+            {
+                publisher = value;
+                hasUnsavedChanges = true;
+            }
+        }
+        private string gameGenie = "";
+        public string GameGenie
+        {
+            get { return gameGenie; }
+            set
+            {
+                gameGenie = value;
+                hasUnsavedChanges = true;
+            }
+        }
+        public string Region
+        {
+            get { return region; }
+            private set { region = value; }
+        }
 
         private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
 
@@ -124,6 +187,7 @@ namespace com.clusterrr.hakchi_gui
             }
             if (File.Exists(GameGeniePath))
                 GameGenie = File.ReadAllText(GameGeniePath);
+            hasUnsavedChanges = false;
         }
 
         public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper, ref bool? needPatch, Form parentForm = null, byte[] rawRomData = null)
@@ -208,6 +272,8 @@ namespace com.clusterrr.hakchi_gui
             Players = 1;
             ReleaseDate = DefaultReleaseDate;
             Publisher = DefaultPublisher;
+            if (nesFileName.Contains("(J)"))
+                Region = "Japan";
 
             TryAutofill(crc32);
 
@@ -217,7 +283,22 @@ namespace com.clusterrr.hakchi_gui
             IconPath = Path.Combine(GamePath, Code + ".png");
             SmallIconPath = Path.Combine(GamePath, Code + "_small.png");
             GameGeniePath = Path.Combine(GamePath, GameGenieFileName);
-            SetImage(null, false);
+
+            // Trying to find cover file
+            Image cover = null;
+            if (!string.IsNullOrEmpty(nesFileName))
+            {
+                var imagePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".png");
+                if (File.Exists(imagePath))
+                    cover = Image.FromFile(imagePath);
+                imagePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".jpg");
+                if (File.Exists(imagePath))
+                    cover = Image.FromFile(imagePath);
+            }
+            if (cover != null)
+                SetImage(cover, ConfigIni.EightBitPngCompression);
+            else
+                SetImage(null, ConfigIni.EightBitPngCompression);
             Save();
         }
 
@@ -234,6 +315,7 @@ namespace com.clusterrr.hakchi_gui
                 if (ReleaseDate.Length == 4) ReleaseDate += "-01";
                 if (ReleaseDate.Length == 7) ReleaseDate += "-01";
                 Publisher = gameinfo.Publisher.ToUpper();
+                Region = gameinfo.Region;
                 return true;
             }
             return false;
@@ -241,6 +323,7 @@ namespace com.clusterrr.hakchi_gui
 
         public void Save()
         {
+            if (!hasUnsavedChanges) return;
             Debug.WriteLine("Saving game " + Code);
             Name = Regex.Replace(Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
             File.WriteAllText(ConfigPath, string.Format(
@@ -268,6 +351,7 @@ namespace com.clusterrr.hakchi_gui
                 File.WriteAllText(GameGeniePath, GameGenie.Trim());
             else if (File.Exists(GameGeniePath))
                 File.Delete(GameGeniePath);
+            hasUnsavedChanges = false;
         }
 
         public override string ToString()
@@ -283,7 +367,17 @@ namespace com.clusterrr.hakchi_gui
 
             if (image == null)
             {
-                image = Resources.blank;
+                if (Type == GameType.Cartridge)
+                {
+                    if (Region == "Japan")
+                        image = Resources.blank_jp;
+                    else
+                        image = Resources.blank;
+                }
+                else if (Type == GameType.FDS)
+                {
+                    image = Resources.blank_fds;
+                }
                 image.Save(IconPath, ImageFormat.Png);
                 outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
                 gr = Graphics.FromImage(outImageSmall);
@@ -384,6 +478,7 @@ namespace com.clusterrr.hakchi_gui
             public byte Players;
             public string ReleaseDate;
             public string Publisher;
+            public string Region;
         }
 
         public static void LoadCache()
@@ -414,7 +509,8 @@ namespace com.clusterrr.hakchi_gui
                                     Name = game.GetAttribute("name", ""),
                                     Players = (byte)((game.GetAttribute("players", "") != "1") ? 2 : 1),
                                     ReleaseDate = game.GetAttribute("date", ""),
-                                    Publisher = game.GetAttribute("publisher", "")
+                                    Publisher = game.GetAttribute("publisher", ""),
+                                    Region = game.GetAttribute("region", "")
                                 };
                             }
                             catch { }

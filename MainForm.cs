@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -98,6 +99,8 @@ namespace com.clusterrr.hakchi_gui
                 LoadGames();
                 LoadHidden();
                 LoadPresets();
+                var version = Assembly.GetExecutingAssembly().GetName().Version;
+                Text = string.Format("hakchi2 - v{0}.{1:D2}", version.Major, version.Build);
                 useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
                 ToolStripMenuItemArmetLevel0.Checked = ConfigIni.AntiArmetLevel == 0;
                 ToolStripMenuItemArmetLevel1.Checked = ConfigIni.AntiArmetLevel == 1;
@@ -443,7 +446,6 @@ namespace com.clusterrr.hakchi_gui
             NesGame nesGame = null;
             foreach (var file in files)
             {
-                Image cover = null;
                 try
                 {
                     var nesFileName = file;
@@ -481,13 +483,6 @@ namespace com.clusterrr.hakchi_gui
                     }
                     try
                     {
-                        // Trying to find cover file
-                        var imagePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".png");
-                        if (File.Exists(imagePath))
-                            cover = Image.FromFile(imagePath);
-                        imagePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".jpg");
-                        if (File.Exists(imagePath))
-                            cover = Image.FromFile(imagePath);
                         nesGame = new NesGame(GamesDir, nesFileName, false, ref needPatch, this, rawData);
                     }
                     catch (UnsupportedMapperException ex)
@@ -504,8 +499,6 @@ namespace com.clusterrr.hakchi_gui
                             nesGame = new NesGame(GamesDir, nesFileName, true, ref needPatch, this, rawData);
                         else continue;
                     }
-                    if (cover != null)
-                        nesGame.SetImage(cover, ConfigIni.EightBitPngCompression);
                     ConfigIni.SelectedGames += ";" + nesGame.Code;
                 }
                 catch (Exception ex)

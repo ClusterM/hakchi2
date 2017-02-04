@@ -207,9 +207,6 @@
   <data name="OriginalKernelQ" xml:space="preserve">
     <value>Do you want to flash the original kernel?</value>
   </data>
-  <data name="PleaseTryAgain" xml:space="preserve">
-    <value>Please try again.</value>
-  </data>
   <data name="PressOkToContinue" xml:space="preserve">
     <value>Press OK to continue.</value>
   </data>
@@ -342,5 +339,11 @@
   </data>
   <data name="gamepad" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\gamepad.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_fds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_fds.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_jp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_jp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

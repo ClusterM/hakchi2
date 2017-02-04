@@ -529,10 +529,24 @@ namespace com.clusterrr.hakchi_gui
             romFiles.AddRange(Directory.GetFiles(ramfsDirectory, "*.nes", SearchOption.AllDirectories));
             romFiles.AddRange(Directory.GetFiles(ramfsDirectory, "*.desktop", SearchOption.AllDirectories));
             romFiles.AddRange(Directory.GetFiles(ramfsDirectory, "*.png", SearchOption.AllDirectories));
+            romFiles.AddRange(Directory.GetFiles(ramfsDirectory, NesGame.GameGenieFileName, SearchOption.AllDirectories));            
             ramfsFiles = romFiles.OrderBy(o => o).ToArray();
             totalFiles = ramfsFiles.Length;
             for (int i = 0; i < filesPos; i++)
                 File.Delete(ramfsFiles[i]);
+            if (filesPos > 0) // No first transfer? Remove all files
+            {
+                foreach (var file in
+                    Directory.GetFiles(ramfsDirectory, "*.ko", SearchOption.AllDirectories))
+                    File.Delete(file);
+                foreach (var file in
+                    Directory.GetFiles(ramfsDirectory, "*.fnt", SearchOption.AllDirectories))
+                    File.Delete(file);
+                foreach (var file in
+                    Directory.GetFiles(ramfsDirectory, "*.wav", SearchOption.AllDirectories))
+                    File.Delete(file);
+            }
+
             long size = 0;
             while (filesPos < totalFiles)
             {

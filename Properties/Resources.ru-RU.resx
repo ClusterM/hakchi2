@@ -205,9 +205,6 @@
   <data name="OriginalKernelQ" xml:space="preserve">
     <value>Прошить оригинальный образ ядра?</value>
   </data>
-  <data name="PleaseTryAgain" xml:space="preserve">
-    <value>Пожалуйста, попробуйте снова.</value>
-  </data>
   <data name="PressOkToContinue" xml:space="preserve">
     <value>Нажмите OK для продолжения.</value>
   </data>
