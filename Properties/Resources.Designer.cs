@@ -472,6 +472,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading games....
+        /// </summary>
+        internal static string LoadingGames {
+            get {
+                return ResourceManager.GetString("LoadingGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, {0} uses mapper #{1} but this mapper is not supported by NES Mini and game probably will not start. Do you want to add this game anyway?.
         /// </summary>
         internal static string MapperNotSupported {
@@ -504,6 +513,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string NewPreset {
             get {
                 return ResourceManager.GetString("NewPreset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No for all.
+        /// </summary>
+        internal static string NoForAll {
+            get {
+                return ResourceManager.GetString("NoForAll", resourceCulture);
             }
         }
         
@@ -747,6 +774,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string XpZadig {
             get {
                 return ResourceManager.GetString("XpZadig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes for all.
+        /// </summary>
+        internal static string YesForAll {
+            get {
+                return ResourceManager.GetString("YesForAll", resourceCulture);
             }
         }
     }

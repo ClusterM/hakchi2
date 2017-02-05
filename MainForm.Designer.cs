@@ -125,6 +125,7 @@
             this.checkedListBoxDefaultGames = new System.Windows.Forms.CheckedListBox();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
             this.foldersSplitByFirstLetterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -388,12 +389,14 @@
             this.automaticToolStripMenuItem,
             this.pagesToolStripMenuItem,
             this.foldersToolStripMenuItem,
-            this.foldersSplitByFirstLetterToolStripMenuItem});
+            this.foldersSplitByFirstLetterToolStripMenuItem,
+            this.customToolStripMenuItem});
             this.pagesfoldersTypeToolStripMenuItem.Name = "pagesfoldersTypeToolStripMenuItem";
             resources.ApplyResources(this.pagesfoldersTypeToolStripMenuItem, "pagesfoldersTypeToolStripMenuItem");
             // 
             // moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem
             // 
+            this.moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem.CheckOnClick = true;
             resources.ApplyResources(this.moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem, "moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem");
             this.moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem.Name = "moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem";
             // 
@@ -799,6 +802,11 @@
             resources.ApplyResources(this.foldersSplitByFirstLetterToolStripMenuItem, "foldersSplitByFirstLetterToolStripMenuItem");
             this.foldersSplitByFirstLetterToolStripMenuItem.Name = "foldersSplitByFirstLetterToolStripMenuItem";
             // 
+            // customToolStripMenuItem
+            // 
+            resources.ApplyResources(this.customToolStripMenuItem, "customToolStripMenuItem");
+            this.customToolStripMenuItem.Name = "customToolStripMenuItem";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -930,6 +938,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem automaticToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foldersSplitByFirstLetterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customToolStripMenuItem;
     }
 }
 

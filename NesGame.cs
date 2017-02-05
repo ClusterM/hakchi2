@@ -18,6 +18,7 @@ namespace com.clusterrr.hakchi_gui
     public class NesGame : INesMenuElement
     {
         public enum GameType { Cartridge, FDS }
+        public delegate bool NeedPatchDelegate(Form parentForm, string nesFileName);
 
         private string code;
 
@@ -51,8 +52,8 @@ namespace com.clusterrr.hakchi_gui
             get { return args; }
             set
             {
+                if (args != value) hasUnsavedChanges = true;
                 args = value;
-                hasUnsavedChanges = true;
             }
         }
         private byte players;
@@ -61,8 +62,8 @@ namespace com.clusterrr.hakchi_gui
             get { return players; }
             set
             {
+                if (players != value) hasUnsavedChanges = true;
                 players = value;
-                hasUnsavedChanges = true;
             }
         }
         private bool simultaneous;
@@ -71,8 +72,8 @@ namespace com.clusterrr.hakchi_gui
             get { return simultaneous; }
             set
             {
+                if (simultaneous != value) hasUnsavedChanges = true;
                 simultaneous = value;
-                hasUnsavedChanges = true;
             }
         }
         private string releaseDate;
@@ -81,8 +82,8 @@ namespace com.clusterrr.hakchi_gui
             get { return releaseDate; }
             set
             {
+                if (releaseDate != value) hasUnsavedChanges = true;
                 releaseDate = value;
-                hasUnsavedChanges = true;
             }
         }
         private string publisher;
@@ -91,8 +92,8 @@ namespace com.clusterrr.hakchi_gui
             get { return publisher; }
             set
             {
+                if (publisher != value) hasUnsavedChanges = true;
                 publisher = value;
-                hasUnsavedChanges = true;
             }
         }
         private string gameGenie = "";
@@ -101,8 +102,8 @@ namespace com.clusterrr.hakchi_gui
             get { return gameGenie; }
             set
             {
+                if (gameGenie != value) hasUnsavedChanges = true;
                 gameGenie = value;
-                hasUnsavedChanges = true;
             }
         }
         public string Region
@@ -142,7 +143,7 @@ namespace com.clusterrr.hakchi_gui
             IconPath = Path.Combine(path, Code + ".png");
             SmallIconPath = Path.Combine(path, Code + "_small.png");
             GameGeniePath = Path.Combine(path, GameGenieFileName);
-            if (!File.Exists(ConfigPath)) throw new Exception("Invalid game directory: " + path);
+            if (!File.Exists(ConfigPath)) throw new FileNotFoundException("Invalid game directory: " + path);
 
             Name = Code;
             Players = 1;
@@ -190,7 +191,7 @@ namespace com.clusterrr.hakchi_gui
             hasUnsavedChanges = false;
         }
 
-        public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper, ref bool? needPatch, Form parentForm = null, byte[] rawRomData = null)
+        public NesGame(string gamesDirectory, string nesFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback, Form parentForm = null, byte[] rawRomData = null)
         {
             uint crc32;
             if (!Path.GetExtension(nesFileName).ToLower().Equals(".fds"))
@@ -213,12 +214,13 @@ namespace com.clusterrr.hakchi_gui
                 var patches = Directory.GetFiles(patchesDirectory, string.Format("{0:X8}*.ips", crc32), SearchOption.AllDirectories);
                 if (patches.Length > 0 && needPatch != false)
                 {
-                    if (needPatch == true || MessageBox.Show(parentForm, string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)), Resources.PatchAvailable, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (needPatch == true || ((needPatchCallback != null) && needPatchCallback(parentForm, Path.GetFileName(nesFileName)))) /*MessageBox.Show(parentForm, string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)), Resources.PatchAvailable, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes*/
                     {
                         needPatch = true;
                         var patch = patches[0];
                         if (rawRomData == null)
                             rawRomData = File.ReadAllBytes(nesFileName);
+                        Debug.WriteLine(string.Format("Patching {0}", nesFileName));
                         IpsPatcher.Patch(patch, ref rawRomData);
                         nesFile = new NesFile(rawRomData);
                     }
@@ -229,15 +231,27 @@ namespace com.clusterrr.hakchi_gui
                 if (nesFile.Mapper == 88) nesFile.Mapper = 4; // Compatible with MMC3... sometimes
                 if (nesFile.Mapper == 95) nesFile.Mapper = 4; // Compatible with MMC3
                 if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
-                if (!supportedMappers.Contains(nesFile.Mapper) && !ignoreMapper)
+                if (!supportedMappers.Contains(nesFile.Mapper) && (ignoreMapper != true))
                 {
                     Directory.Delete(GamePath, true);
-                    throw new UnsupportedMapperException(nesFile);
+                    if (ignoreMapper != false)
+                        throw new UnsupportedMapperException(nesFile);
+                    else
+                    {
+                        Debug.WriteLine(string.Format("Game {0} has mapper #{1}, skipped", nesFileName, nesFile.Mapper));
+                        return;
+                    }
                 }
-                if (nesFile.Mirroring == NesFile.MirroringType.FourScreenVram && !ignoreMapper)
+                if ((nesFile.Mirroring == NesFile.MirroringType.FourScreenVram) && (ignoreMapper != true))
                 {
                     Directory.Delete(GamePath, true);
-                    throw new UnsupportedFourScreenException(nesFile);
+                    if (ignoreMapper != false)
+                        throw new UnsupportedFourScreenException(nesFile);
+                    else
+                    {
+                        Debug.WriteLine(string.Format("Game {0} has four-screen mirroring, skipped", nesFileName, nesFile.Mapper));
+                        return;
+                    }
                 }
                 // TODO: Make trainer check. I think that NES Mini doesn't support it.
 
@@ -324,7 +338,7 @@ namespace com.clusterrr.hakchi_gui
         public void Save()
         {
             if (!hasUnsavedChanges) return;
-            Debug.WriteLine("Saving game " + Code);
+            Debug.WriteLine(string.Format("Saving game '{0}' as {1}", Name, Code));
             Name = Regex.Replace(Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
             File.WriteAllText(ConfigPath, string.Format(
                 "[Desktop Entry]\n" +

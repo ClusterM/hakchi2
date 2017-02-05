@@ -184,9 +184,11 @@ if [ -f $hakchi_extra_script ]; then
 	. $hakchi_extra_script
 fi
 
-if [ -d /transfer ]; then
-	echo Transferring extra data...
-	cp -a /transfer/* $installdir/
+if [ "$hakchi_partial_first" == "y" ]; then
+	if [ -d /transfer ]; then
+		echo Transferring extra data...
+		cp -a /transfer/* $installdir/
+	fi
 fi
 
 echo Shutting down...

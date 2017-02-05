@@ -64,6 +64,7 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigIni.cs" />
+    <Compile Include="MessageBoxManager.cs" />
     <Compile Include="NesDefaultGame.cs" />
     <Compile Include="FelLib\AWFELMessage.cs" />
     <Compile Include="FelLib\AWFELStandardRequest.cs" />
