@@ -688,7 +688,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     var game = element as NesGame;
                     var gameDir = Path.Combine(targetDirectory, game.Code);
-                    Debug.WriteLine(string.Format("Processing {0}/{1}", game.Code, game.Name));
+                    Debug.WriteLine(string.Format("Processing {0} ('{1}')", game.Code, game.Name));
                     DirectoryCopy(game.GamePath, gameDir, true);
                     if (!string.IsNullOrEmpty(game.GameGenie))
                     {

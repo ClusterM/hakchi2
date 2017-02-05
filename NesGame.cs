@@ -28,13 +28,6 @@ namespace com.clusterrr.hakchi_gui
             set { code = value; }
         }
 
-        private string name;
-
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
         public readonly string GamePath;
         public readonly string ConfigPath;
         public readonly string NesPath;
@@ -47,6 +40,16 @@ namespace com.clusterrr.hakchi_gui
 
         private bool hasUnsavedChanges = true;
 
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                if (name != value) hasUnsavedChanges = true;
+                name = value;
+            }
+        }
         public string Args
         {
             get { return args; }
