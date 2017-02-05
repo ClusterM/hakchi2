@@ -1,6 +1,7 @@
 ﻿using com.clusterrr.Famicom;
 using com.clusterrr.FelLib;
 using com.clusterrr.hakchi_gui.Properties;
+using SevenZip;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,7 +15,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class WorkerForm : Form
     {
-        public enum Tasks { DumpKernel, FlashKernel, Memboot, DownloadAllCovers };
+        public enum Tasks { DumpKernel, FlashKernel, Memboot, DownloadAllCovers, AddGames };
         public Tasks Task;
         //public string UBootDump;
         public string KernelDump;
@@ -26,12 +27,14 @@ namespace com.clusterrr.hakchi_gui
         public bool AutofireHack;
         public bool FcStart = true;
         public string ExtraCommandLineArguments = null;
+        public string[] GamesToAdd;
         Thread thread = null;
         Fel fel = null;
 
         const UInt16 vid = 0x1F3A;
         const UInt16 pid = 0xEFE8;
 
+        readonly string baseDirectory;
         readonly string fes1Path;
         readonly string ubootPath;
         readonly string tempDirectory;
@@ -46,27 +49,31 @@ namespace com.clusterrr.hakchi_gui
         readonly string ramdiskPatched;
         readonly string configPath;
         readonly string hiddenPath;
-        readonly string gamesDirectory;
+        readonly string tempGamesDirectory;
         readonly string cloverconDriverPath;
         readonly string argumentsFilePath;
+        readonly string gamesDirectory;
         string[] correctKernels;
         const int maxRamfsSize = 40 * 1024 * 1024;
         DialogResult DeviceWaitResult = DialogResult.None;
+        DialogResult MessageBoxResult = DialogResult.None;
 
         public WorkerForm()
         {
             InitializeComponent();
             DialogResult = DialogResult.None;
-            fes1Path = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "data"), "fes1.bin");
-            ubootPath = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "data"), "uboot.bin");
-            tempDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "temp");
+            baseDirectory = MainForm.BaseDirectory;
+            fes1Path = Path.Combine(Path.Combine(baseDirectory, "data"), "fes1.bin");
+            ubootPath = Path.Combine(Path.Combine(baseDirectory, "data"), "uboot.bin");
+            gamesDirectory = MainForm.GamesDirectory;
+            tempDirectory = Path.Combine(baseDirectory, "temp");
             kernelDirectory = Path.Combine(tempDirectory, "kernel");
             initramfs_cpio = Path.Combine(kernelDirectory, "initramfs.cpio");
             initramfs_cpioPatched = Path.Combine(kernelDirectory, "initramfs_mod.cpio");
             ramfsDirectory = Path.Combine(kernelDirectory, "initramfs");
             hakchiDirectory = Path.Combine(ramfsDirectory, "hakchi");
-            modsDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "mods");
-            toolsDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "tools");
+            modsDirectory = Path.Combine(baseDirectory, "mods");
+            toolsDirectory = Path.Combine(baseDirectory, "tools");
             kernelPatched = Path.Combine(kernelDirectory, "patched_kernel.img");
             ramdiskPatched = Path.Combine(kernelDirectory, "kernel.img-ramdisk_mod.gz");
             configPath = Path.Combine(hakchiDirectory, "config");
@@ -77,13 +84,13 @@ namespace com.clusterrr.hakchi_gui
                 "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158", // NES Mini
                 "ac8144c3ea4ab32e017648ee80bdc230" // Famicom Mini
             };
-            gamesDirectory = Path.Combine(ramfsDirectory, "games");
+            tempGamesDirectory = Path.Combine(ramfsDirectory, "games");
         }
 
         public DialogResult Start()
         {
             SetProgress(0, 1);
-            if (Task != Tasks.DownloadAllCovers)
+            if (Task == Tasks.DumpKernel || Task == Tasks.FlashKernel || Task == Tasks.Memboot)
             {
                 if (!WaitingForm.WaitForDevice(vid, pid))
                 {
@@ -108,13 +115,27 @@ namespace com.clusterrr.hakchi_gui
             DeviceWaitResult = WaitingForm.WaitForDevice(vid, pid) ? DialogResult.OK : DialogResult.Abort;
         }
 
+        private delegate void MessageBoxFromThreadDelegate(IWin32Window owner, string text, string caption, MessageBoxButtons buttons,
+            MessageBoxIcon icon, MessageBoxDefaultButton defaultButton);
+        void MessageBoxFromThread(IWin32Window owner, string text, string caption, MessageBoxButtons buttons,
+            MessageBoxIcon icon, MessageBoxDefaultButton defaultButton)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new MessageBoxFromThreadDelegate(MessageBoxFromThread),
+                    new object[] { owner, text, caption, buttons, icon, defaultButton });
+                return;
+            }
+            MessageBoxResult = MessageBox.Show(owner, text, caption, buttons, icon, defaultButton);
+        }
+
         public void StartThread()
         {
             fel = new Fel();
             SetProgress(0, 1);
             try
             {
-                if (Task != Tasks.DownloadAllCovers)
+                if (Task == Tasks.DumpKernel || Task == Tasks.FlashKernel || Task == Tasks.Memboot)
                 {
                     if (!File.Exists(fes1Path)) throw new FileNotFoundException(fes1Path + " not found");
                     if (!File.Exists(ubootPath)) throw new FileNotFoundException(ubootPath + " not found");
@@ -137,6 +158,9 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case Tasks.DownloadAllCovers:
                         DownloadAllCovers();
+                        break;
+                    case Tasks.AddGames:
+                        AddGames(gamesDirectory, GamesToAdd);
                         break;
                 }
                 Thread.Sleep(1000);
@@ -520,7 +544,7 @@ namespace com.clusterrr.hakchi_gui
 
             if (Config != null && Config.ContainsKey("hakchi_remove_thumbnails") && Config["hakchi_remove_thumbnails"])
             {
-                var thumbnails = Directory.GetFiles(gamesDirectory, "*_small.png", SearchOption.AllDirectories);
+                var thumbnails = Directory.GetFiles(tempGamesDirectory, "*_small.png", SearchOption.AllDirectories);
                 foreach (var t in thumbnails)
                     File.WriteAllBytes(t, new byte[0]);
             }
@@ -529,10 +553,24 @@ namespace com.clusterrr.hakchi_gui
             romFiles.AddRange(Directory.GetFiles(ramfsDirectory, "*.nes", SearchOption.AllDirectories));
             romFiles.AddRange(Directory.GetFiles(ramfsDirectory, "*.desktop", SearchOption.AllDirectories));
             romFiles.AddRange(Directory.GetFiles(ramfsDirectory, "*.png", SearchOption.AllDirectories));
+            romFiles.AddRange(Directory.GetFiles(ramfsDirectory, NesGame.GameGenieFileName, SearchOption.AllDirectories));
             ramfsFiles = romFiles.OrderBy(o => o).ToArray();
             totalFiles = ramfsFiles.Length;
             for (int i = 0; i < filesPos; i++)
                 File.Delete(ramfsFiles[i]);
+            if (filesPos > 0) // No first transfer? Remove all files
+            {
+                foreach (var file in
+                    Directory.GetFiles(ramfsDirectory, "*.ko", SearchOption.AllDirectories))
+                    File.Delete(file);
+                foreach (var file in
+                    Directory.GetFiles(ramfsDirectory, "*.fnt", SearchOption.AllDirectories))
+                    File.Delete(file);
+                foreach (var file in
+                    Directory.GetFiles(ramfsDirectory, "*.wav", SearchOption.AllDirectories))
+                    File.Delete(file);
+            }
+
             long size = 0;
             while (filesPos < totalFiles)
             {
@@ -639,9 +677,9 @@ namespace com.clusterrr.hakchi_gui
             int menuIndex = allMenus.IndexOf(menuCollection);
             string targetDirectory;
             if (menuIndex == 0)
-                targetDirectory = gamesDirectory;
+                targetDirectory = tempGamesDirectory;
             else
-                targetDirectory = Path.Combine(gamesDirectory, string.Format("sub{0:D3}", menuIndex));
+                targetDirectory = Path.Combine(tempGamesDirectory, string.Format("sub{0:D3}", menuIndex));
             if (Directory.Exists(targetDirectory))
                 return;
             foreach (var element in menuCollection)
@@ -696,7 +734,7 @@ namespace com.clusterrr.hakchi_gui
                 if (element is NesDefaultGame)
                 {
                     var game = element as NesDefaultGame;
-                    var gfilePath = Path.Combine(gamesDirectory, string.Format("gpath-{0}-{1}", game.Code, menuIndex));
+                    var gfilePath = Path.Combine(tempGamesDirectory, string.Format("gpath-{0}-{1}", game.Code, menuIndex));
                     Directory.CreateDirectory(Path.GetDirectoryName(gfilePath));
                     File.WriteAllText(gfilePath, menuIndex == 0 ? "." : string.Format("sub{0:D3}", menuIndex));
                 }
@@ -712,7 +750,7 @@ namespace com.clusterrr.hakchi_gui
         private bool ExecuteTool(string tool, string args, out byte[] output, string directory = null, bool external = false)
         {
             var process = new Process();
-            var appDirectory = Path.GetDirectoryName(Application.ExecutablePath);
+            var appDirectory = baseDirectory;
             var fileName = !external ? Path.Combine(toolsDirectory, tool) : tool;
             process.StartInfo.FileName = fileName;
             process.StartInfo.Arguments = args;
@@ -795,6 +833,119 @@ namespace com.clusterrr.hakchi_gui
                     string temppath = Path.Combine(destDirName, subdir.Name);
                     DirectoryCopy(subdir.FullName, temppath, copySubDirs);
                 }
+            }
+        }
+
+        bool YesForAllPatches = false;
+        public NesGame AddGames(string gamesDirectory, string[] files, Form parentForm = null)
+        {
+            NesGame nesGame = null;
+            bool NoForAllUnsupportedMappers = false;
+            YesForAllPatches = false;
+            if (parentForm == null) parentForm = this;
+            int count = 0;
+            foreach (var file in files)
+            {
+                try
+                {
+                    var nesFileName = file;
+                    var ext = Path.GetExtension(file).ToLower();
+                    bool? needPatch = YesForAllPatches ? (bool?)true : null;
+                    byte[] rawData = null;
+                    if (ext == ".7z" || ext == ".zip" || ext == ".rar")
+                    {
+                        SevenZipExtractor.SetLibraryPath(Path.Combine(baseDirectory, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+                        var szExtractor = new SevenZipExtractor(file);
+                        var filesInArchive = new List<string>();
+                        foreach (var f in szExtractor.ArchiveFileNames)
+                        {
+                            var e = Path.GetExtension(f).ToLower();
+                            if (e == ".nes" || e == ".fds")
+                                filesInArchive.Add(f);
+                        }
+                        if (filesInArchive.Count == 1)
+                        {
+                            nesFileName = filesInArchive[0];
+                        }
+                        else
+                        {
+                            var fsForm = new SelectFileForm(filesInArchive.ToArray());
+                            if (fsForm.ShowDialog() == DialogResult.OK)
+                                nesFileName = (string)fsForm.listBoxFiles.SelectedItem;
+                            else
+                                continue;
+                        }
+                        var o = new MemoryStream();
+                        szExtractor.ExtractFile(nesFileName, o);
+                        rawData = new byte[szExtractor.ArchiveFileData[0].Size];
+                        o.Seek(0, SeekOrigin.Begin);
+                        o.Read(rawData, 0, rawData.Length);
+                    }
+                    try
+                    {
+                        nesGame = new NesGame(gamesDirectory, nesFileName, NoForAllUnsupportedMappers ? (bool?)false : null, ref needPatch, needPatchCallback, this, rawData);
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex is UnsupportedMapperException || ex is UnsupportedFourScreenException)
+                        {
+                            MessageBoxResult = DialogResult.None;
+                            MessageBoxFromThread(this,
+                                (ex is UnsupportedMapperException)
+                                   ? string.Format(Resources.MapperNotSupported, Path.GetFileName(file), (ex as UnsupportedMapperException).ROM.Mapper)
+                                   : string.Format(Resources.FourScreenNotSupported, Path.GetFileName(file)),
+                                Resources.AreYouSure,
+                                files.Length <= 1 ? MessageBoxButtons.YesNo : MessageBoxButtons.YesNoCancel,
+                                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                            while (MessageBoxResult == DialogResult.None) Thread.Sleep(100);
+                            if (MessageBoxResult == DialogResult.Yes)
+                                nesGame = new NesGame(gamesDirectory, nesFileName, true, ref needPatch, needPatchCallback, this, rawData);
+                            else if (MessageBoxResult == System.Windows.Forms.DialogResult.Cancel)
+                            {
+                                NoForAllUnsupportedMappers = true;
+                            }
+                        }
+                        else throw ex;
+                    }
+                    ConfigIni.SelectedGames += ";" + nesGame.Code;
+                }
+                catch (Exception ex)
+                {
+                    if (ex is ThreadAbortException) return null;
+                    Debug.WriteLine(ex.Message + ex.StackTrace);
+                    MessageBoxFromThread(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+                SetProgress(++count, files.Length);
+            }
+            return nesGame; // Last added game if any
+        }
+
+        private bool needPatchCallback(Form parentForm, string nesFileName)
+        {
+            MessageBoxResult = DialogResult.None;
+            if (GamesToAdd == null || GamesToAdd.Length <= 1)
+            {
+                MessageBoxFromThread(parentForm,
+                    string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)),
+                    Resources.PatchAvailable,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button1);
+                while (MessageBoxResult == DialogResult.None) Thread.Sleep(100);
+                return MessageBoxResult == DialogResult.Yes;
+            }
+            else
+            {
+                MessageBoxFromThread(parentForm,
+                    string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)),
+                    Resources.PatchAvailable,
+                    MessageBoxButtons.AbortRetryIgnore,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
+                while (MessageBoxResult == DialogResult.None) Thread.Sleep(100);
+                if (MessageBoxResult == DialogResult.Abort)
+                    YesForAllPatches = true;
+                return MessageBoxResult != DialogResult.Ignore;
             }
         }
 

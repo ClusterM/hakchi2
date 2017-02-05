@@ -64,6 +64,7 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigIni.cs" />
+    <Compile Include="MessageBoxManager.cs" />
     <Compile Include="NesDefaultGame.cs" />
     <Compile Include="FelLib\AWFELMessage.cs" />
     <Compile Include="FelLib\AWFELStandardRequest.cs" />
@@ -461,8 +462,10 @@
     <Content Include="icon.ico" />
     <None Include="images\blank.png" />
     <Content Include="images\back.png" />
+    <Content Include="images\blank_fds.png" />
+    <Content Include="images\blank_jp.png" />
     <Content Include="images\folder.png" />
-    <Content Include="images\gamepad.jpg" />
+    <Content Include="images\gamepad.png" />
     <Content Include="images\icon.ico" />
     <Content Include="mods\mod_transfer\hakchi\blank_pixel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -512,9 +515,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="driver\usb_driver\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

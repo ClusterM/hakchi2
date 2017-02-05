@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -16,8 +17,8 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class MainForm : Form
     {
-        readonly string BaseDir;
-        readonly string GamesDir;
+        public static string BaseDirectory;
+        public static string GamesDirectory;
         //readonly string UBootDump;
         readonly string KernelDump;
 
@@ -92,12 +93,16 @@ namespace com.clusterrr.hakchi_gui
             {
                 InitializeComponent();
                 ConfigIni.Load();
-                BaseDir = Path.GetDirectoryName(Application.ExecutablePath);
-                GamesDir = Path.Combine(BaseDir, "games");
-                KernelDump = Path.Combine(Path.Combine(BaseDir, "dump"), "kernel.img");
+                BaseDirectory = Path.GetDirectoryName(Application.ExecutablePath);
+                GamesDirectory = Path.Combine(BaseDirectory, "games");
+                KernelDump = Path.Combine(Path.Combine(BaseDirectory, "dump"), "kernel.img");
                 LoadGames();
                 LoadHidden();
                 LoadPresets();
+                var version = Assembly.GetExecutingAssembly().GetName().Version;
+                Text = string.Format("hakchi2 - v{0}.{1:D2}", version.Major, version.Build);
+
+                // Some settnigs
                 useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
                 ToolStripMenuItemArmetLevel0.Checked = ConfigIni.AntiArmetLevel == 0;
                 ToolStripMenuItemArmetLevel1.Checked = ConfigIni.AntiArmetLevel == 1;
@@ -122,6 +127,15 @@ namespace com.clusterrr.hakchi_gui
                 max80toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 80;
                 max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
                 max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
+
+                // Tweeks for message boxes
+                MessageBoxManager.Yes =MessageBoxManager.Retry = Resources.Yes;
+                MessageBoxManager.No = MessageBoxManager.Ignore = Resources.No;
+                MessageBoxManager.Cancel = Resources.NoForAll;
+                MessageBoxManager.Abort = Resources.YesForAll;
+                MessageBoxManager.Register();
+
+                // Loading games database in background
                 new Thread(NesGame.LoadCache).Start();
             }
             catch (Exception ex)
@@ -135,21 +149,24 @@ namespace com.clusterrr.hakchi_gui
         {
             Debug.WriteLine("Loading games");
             var selected = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            Directory.CreateDirectory(GamesDir);
-            var gameDirs = Directory.GetDirectories(GamesDir);
+            Directory.CreateDirectory(GamesDirectory);
+            var gameDirs = Directory.GetDirectories(GamesDirectory);
             var games = new List<NesGame>();
             foreach (var gameDir in gameDirs)
             {
                 try
                 {
                     // Removing empty directories without errors
-                    if (Directory.GetFiles(gameDir, "*.*", SearchOption.AllDirectories).Length == 0)
+                    try
                     {
-                        Directory.Delete(gameDir, true);
-                        continue;
+                        var game = new NesGame(gameDir);
+                        games.Add(game);
                     }
-                    var game = new NesGame(gameDir);
-                    games.Add(game);
+                    catch (FileNotFoundException ex) // Remove bad directories if any
+                    {
+                        Debug.WriteLine(ex.Message + ex.StackTrace);
+                        Directory.Delete(gameDir, true);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -436,108 +453,6 @@ namespace com.clusterrr.hakchi_gui
             return c;
         }
 
-        void AddGames(string[] files)
-        {
-            SaveSelectedGames();
-            SaveConfig();
-            NesGame nesGame = null;
-            foreach (var file in files)
-            {
-                Image cover = null;
-                try
-                {
-                    var nesFileName = file;
-                    var ext = Path.GetExtension(file).ToLower();
-                    bool? needPatch = null;
-                    byte[] rawData = null;
-                    if (ext == ".7z" || ext == ".zip" || ext == ".rar")
-                    {
-                        SevenZipExtractor.SetLibraryPath(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
-                        var szExtractor = new SevenZipExtractor(file);
-                        var filesInArchive = new List<string>();
-                        foreach (var f in szExtractor.ArchiveFileNames)
-                        {
-                            var e = Path.GetExtension(f).ToLower();
-                            if (e == ".nes" || e == ".fds")
-                                filesInArchive.Add(f);
-                        }
-                        if (filesInArchive.Count == 1)
-                        {
-                            nesFileName = filesInArchive[0];
-                        }
-                        else
-                        {
-                            var fsForm = new SelectFileForm(filesInArchive.ToArray());
-                            if (fsForm.ShowDialog() == DialogResult.OK)
-                                nesFileName = (string)fsForm.listBoxFiles.SelectedItem;
-                            else
-                                continue;
-                        }
-                        var o = new MemoryStream();
-                        szExtractor.ExtractFile(nesFileName, o);
-                        rawData = new byte[szExtractor.ArchiveFileData[0].Size];
-                        o.Seek(0, SeekOrigin.Begin);
-                        o.Read(rawData, 0, rawData.Length);
-                    }
-                    try
-                    {
-                        // Trying to find cover file
-                        var imagePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".png");
-                        if (File.Exists(imagePath))
-                            cover = Image.FromFile(imagePath);
-                        imagePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".jpg");
-                        if (File.Exists(imagePath))
-                            cover = Image.FromFile(imagePath);
-                        nesGame = new NesGame(GamesDir, nesFileName, false, ref needPatch, this, rawData);
-
-                        // Trying to import Game Genie codes
-                        var lGameGeniePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".xml");
-                        if (File.Exists(lGameGeniePath))
-                        {
-                            string lGameGenieDataBaseName = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "data"), "GameGenieDB.xml");
-                            GameGenieDataBase lGameGenieDataBase = new GameGenieDataBase(lGameGenieDataBaseName, nesGame);
-                            lGameGenieDataBase.ImportCodes(lGameGeniePath, true);
-                            lGameGenieDataBase.Save();
-                        }
-                    }
-                    catch (UnsupportedMapperException ex)
-                    {
-                        if (MessageBox.Show(this, string.Format(Resources.MapperNotSupported, Path.GetFileName(file), ex.ROM.Mapper), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                            == DialogResult.Yes)
-                            nesGame = new NesGame(GamesDir, nesFileName, true, ref needPatch, this, rawData);
-                        else continue;
-                    }
-                    catch (UnsupportedFourScreenException)
-                    {
-                        if (MessageBox.Show(this, string.Format(Resources.FourScreenNotSupported, Path.GetFileName(file)), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                            == DialogResult.Yes)
-                            nesGame = new NesGame(GamesDir, nesFileName, true, ref needPatch, this, rawData);
-                        else continue;
-                    }
-                    if (cover != null)
-                        nesGame.SetImage(cover, ConfigIni.EightBitPngCompression);
-                    ConfigIni.SelectedGames += ";" + nesGame.Code;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message + ex.StackTrace);
-                    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    continue;
-                }
-            }
-            if (nesGame == null) return; // Nothing happened
-            LoadGames();
-            if (openFileDialogNes.FileNames.Length == 1)
-            {
-                for (int i = 1; i < checkedListBoxGames.Items.Count; i++)
-                    if ((checkedListBoxGames.Items[i] as NesGame).Code == nesGame.Code)
-                    {
-                        checkedListBoxGames.SelectedIndex = i;
-                        break;
-                    }
-            }
-        }
-
         private void buttonAddGames_Click(object sender, EventArgs e)
         {
             if (openFileDialogNes.ShowDialog() == DialogResult.OK)
@@ -688,6 +603,34 @@ namespace com.clusterrr.hakchi_gui
             workerForm.ExtraCommandLineArguments = ConfigIni.ExtraCommandLineArguments;
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
+        }
+
+        void AddGames(string[] files)
+        {
+            SaveConfig();
+
+            NesGame nesGame = null;
+            var workerForm = new WorkerForm();
+            workerForm.Text = Resources.LoadingGames;
+            workerForm.Task = WorkerForm.Tasks.AddGames;
+            if (files.Length <= 1)
+                nesGame = workerForm.AddGames(GamesDirectory, files, this);
+            else
+            {
+                workerForm.GamesToAdd = files;
+                workerForm.Start();
+            }
+
+            LoadGames();
+            if (files.Length == 1 && nesGame != null) // if added only one game select it
+            {
+                for (int i = 1; i < checkedListBoxGames.Items.Count; i++)
+                    if ((checkedListBoxGames.Items[i] as NesGame).Code == nesGame.Code)
+                    {
+                        checkedListBoxGames.SelectedIndex = i;
+                        break;
+                    }
+            }
         }
 
         bool FlashOriginalKernel(bool boot = true)

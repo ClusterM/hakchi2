@@ -205,9 +205,6 @@
   <data name="OriginalKernelQ" xml:space="preserve">
     <value>Прошить оригинальный образ ядра?</value>
   </data>
-  <data name="PleaseTryAgain" xml:space="preserve">
-    <value>Пожалуйста, попробуйте снова.</value>
-  </data>
   <data name="PressOkToContinue" xml:space="preserve">
     <value>Нажмите OK для продолжения.</value>
   </data>
@@ -336,5 +333,20 @@
   </data>
   <data name="ParticallyTitle" xml:space="preserve">
     <value>Слишком много игр</value>
+  </data>
+  <data name="LoadingGames" xml:space="preserve">
+    <value>Загружаем игры...</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="NoForAll" xml:space="preserve">
+    <value>Нет для всех</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="YesForAll" xml:space="preserve">
+    <value>Да для всех</value>
   </data>
 </root>
