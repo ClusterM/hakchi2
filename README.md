@@ -1,7 +1,5 @@
 # hakchi2
 
-NES Mini pimp tool
-
 This application can add more games to your Nintendo Classic Mini or Famicom Mini. All you need is to connect it to PC via microUSB cable. No soldering, no disassembling.
 
 Features:
