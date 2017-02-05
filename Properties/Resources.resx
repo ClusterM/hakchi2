@@ -207,9 +207,6 @@
   <data name="OriginalKernelQ" xml:space="preserve">
     <value>Do you want to flash the original kernel?</value>
   </data>
-  <data name="PleaseTryAgain" xml:space="preserve">
-    <value>Please try again.</value>
-  </data>
   <data name="PressOkToContinue" xml:space="preserve">
     <value>Press OK to continue.</value>
   </data>
@@ -342,5 +339,26 @@
   </data>
   <data name="gamepad" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\gamepad.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_fds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_fds.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_jp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_jp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LoadingGames" xml:space="preserve">
+    <value>Loading games...</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoForAll" xml:space="preserve">
+    <value>No for all</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="YesForAll" xml:space="preserve">
+    <value>Yes for all</value>
   </data>
 </root>

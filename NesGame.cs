@@ -18,6 +18,7 @@ namespace com.clusterrr.hakchi_gui
     public class NesGame : INesMenuElement
     {
         public enum GameType { Cartridge, FDS }
+        public delegate bool NeedPatchDelegate(Form parentForm, string nesFileName);
 
         private string code;
 
@@ -41,12 +42,75 @@ namespace com.clusterrr.hakchi_gui
         public readonly string SmallIconPath;
         public readonly string GameGeniePath;
         public readonly GameType Type;
-        public string Args;
-        public byte Players;
-        public bool Simultaneous;
-        public string ReleaseDate;
-        public string Publisher;
-        public string GameGenie = "";
+        private string args;
+        private string region = null;
+
+        private bool hasUnsavedChanges = true;
+
+        public string Args
+        {
+            get { return args; }
+            set
+            {
+                if (args != value) hasUnsavedChanges = true;
+                args = value;
+            }
+        }
+        private byte players;
+        public byte Players
+        {
+            get { return players; }
+            set
+            {
+                if (players != value) hasUnsavedChanges = true;
+                players = value;
+            }
+        }
+        private bool simultaneous;
+        public bool Simultaneous
+        {
+            get { return simultaneous; }
+            set
+            {
+                if (simultaneous != value) hasUnsavedChanges = true;
+                simultaneous = value;
+            }
+        }
+        private string releaseDate;
+        public string ReleaseDate
+        {
+            get { return releaseDate; }
+            set
+            {
+                if (releaseDate != value) hasUnsavedChanges = true;
+                releaseDate = value;
+            }
+        }
+        private string publisher;
+        public string Publisher
+        {
+            get { return publisher; }
+            set
+            {
+                if (publisher != value) hasUnsavedChanges = true;
+                publisher = value;
+            }
+        }
+        private string gameGenie = "";
+        public string GameGenie
+        {
+            get { return gameGenie; }
+            set
+            {
+                if (gameGenie != value) hasUnsavedChanges = true;
+                gameGenie = value;
+            }
+        }
+        public string Region
+        {
+            get { return region; }
+            private set { region = value; }
+        }
 
         private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
 
@@ -79,7 +143,7 @@ namespace com.clusterrr.hakchi_gui
             IconPath = Path.Combine(path, Code + ".png");
             SmallIconPath = Path.Combine(path, Code + "_small.png");
             GameGeniePath = Path.Combine(path, GameGenieFileName);
-            if (!File.Exists(ConfigPath)) throw new Exception("Invalid game directory: " + path);
+            if (!File.Exists(ConfigPath)) throw new FileNotFoundException("Invalid game directory: " + path);
 
             Name = Code;
             Players = 1;
@@ -124,9 +188,10 @@ namespace com.clusterrr.hakchi_gui
             }
             if (File.Exists(GameGeniePath))
                 GameGenie = File.ReadAllText(GameGeniePath);
+            hasUnsavedChanges = false;
         }
 
-        public NesGame(string gamesDirectory, string nesFileName, bool ignoreMapper, ref bool? needPatch, Form parentForm = null, byte[] rawRomData = null)
+        public NesGame(string gamesDirectory, string nesFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback, Form parentForm = null, byte[] rawRomData = null)
         {
             uint crc32;
             if (!Path.GetExtension(nesFileName).ToLower().Equals(".fds"))
@@ -149,12 +214,13 @@ namespace com.clusterrr.hakchi_gui
                 var patches = Directory.GetFiles(patchesDirectory, string.Format("{0:X8}*.ips", crc32), SearchOption.AllDirectories);
                 if (patches.Length > 0 && needPatch != false)
                 {
-                    if (needPatch == true || MessageBox.Show(parentForm, string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)), Resources.PatchAvailable, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (needPatch == true || ((needPatchCallback != null) && needPatchCallback(parentForm, Path.GetFileName(nesFileName)))) /*MessageBox.Show(parentForm, string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)), Resources.PatchAvailable, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes*/
                     {
                         needPatch = true;
                         var patch = patches[0];
                         if (rawRomData == null)
                             rawRomData = File.ReadAllBytes(nesFileName);
+                        Debug.WriteLine(string.Format("Patching {0}", nesFileName));
                         IpsPatcher.Patch(patch, ref rawRomData);
                         nesFile = new NesFile(rawRomData);
                     }
@@ -165,15 +231,27 @@ namespace com.clusterrr.hakchi_gui
                 if (nesFile.Mapper == 88) nesFile.Mapper = 4; // Compatible with MMC3... sometimes
                 if (nesFile.Mapper == 95) nesFile.Mapper = 4; // Compatible with MMC3
                 if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
-                if (!supportedMappers.Contains(nesFile.Mapper) && !ignoreMapper)
+                if (!supportedMappers.Contains(nesFile.Mapper) && (ignoreMapper != true))
                 {
                     Directory.Delete(GamePath, true);
-                    throw new UnsupportedMapperException(nesFile);
+                    if (ignoreMapper != false)
+                        throw new UnsupportedMapperException(nesFile);
+                    else
+                    {
+                        Debug.WriteLine(string.Format("Game {0} has mapper #{1}, skipped", nesFileName, nesFile.Mapper));
+                        return;
+                    }
                 }
-                if (nesFile.Mirroring == NesFile.MirroringType.FourScreenVram && !ignoreMapper)
+                if ((nesFile.Mirroring == NesFile.MirroringType.FourScreenVram) && (ignoreMapper != true))
                 {
                     Directory.Delete(GamePath, true);
-                    throw new UnsupportedFourScreenException(nesFile);
+                    if (ignoreMapper != false)
+                        throw new UnsupportedFourScreenException(nesFile);
+                    else
+                    {
+                        Debug.WriteLine(string.Format("Game {0} has four-screen mirroring, skipped", nesFileName, nesFile.Mapper));
+                        return;
+                    }
                 }
                 // TODO: Make trainer check. I think that NES Mini doesn't support it.
 
@@ -208,6 +286,8 @@ namespace com.clusterrr.hakchi_gui
             Players = 1;
             ReleaseDate = DefaultReleaseDate;
             Publisher = DefaultPublisher;
+            if (nesFileName.Contains("(J)"))
+                Region = "Japan";
 
             TryAutofill(crc32);
 
@@ -217,7 +297,22 @@ namespace com.clusterrr.hakchi_gui
             IconPath = Path.Combine(GamePath, Code + ".png");
             SmallIconPath = Path.Combine(GamePath, Code + "_small.png");
             GameGeniePath = Path.Combine(GamePath, GameGenieFileName);
-            SetImage(null, false);
+
+            // Trying to find cover file
+            Image cover = null;
+            if (!string.IsNullOrEmpty(nesFileName))
+            {
+                var imagePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".png");
+                if (File.Exists(imagePath))
+                    cover = Image.FromFile(imagePath);
+                imagePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".jpg");
+                if (File.Exists(imagePath))
+                    cover = Image.FromFile(imagePath);
+            }
+            if (cover != null)
+                SetImage(cover, ConfigIni.EightBitPngCompression);
+            else
+                SetImage(null, ConfigIni.EightBitPngCompression);
             Save();
         }
 
@@ -234,6 +329,7 @@ namespace com.clusterrr.hakchi_gui
                 if (ReleaseDate.Length == 4) ReleaseDate += "-01";
                 if (ReleaseDate.Length == 7) ReleaseDate += "-01";
                 Publisher = gameinfo.Publisher.ToUpper();
+                Region = gameinfo.Region;
                 return true;
             }
             return false;
@@ -241,7 +337,8 @@ namespace com.clusterrr.hakchi_gui
 
         public void Save()
         {
-            Debug.WriteLine("Saving game " + Code);
+            if (!hasUnsavedChanges) return;
+            Debug.WriteLine(string.Format("Saving game '{0}' as {1}", Name, Code));
             Name = Regex.Replace(Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
             File.WriteAllText(ConfigPath, string.Format(
                 "[Desktop Entry]\n" +
@@ -268,6 +365,7 @@ namespace com.clusterrr.hakchi_gui
                 File.WriteAllText(GameGeniePath, GameGenie.Trim());
             else if (File.Exists(GameGeniePath))
                 File.Delete(GameGeniePath);
+            hasUnsavedChanges = false;
         }
 
         public override string ToString()
@@ -283,7 +381,17 @@ namespace com.clusterrr.hakchi_gui
 
             if (image == null)
             {
-                image = Resources.blank;
+                if (Type == GameType.Cartridge)
+                {
+                    if (Region == "Japan")
+                        image = Resources.blank_jp;
+                    else
+                        image = Resources.blank;
+                }
+                else if (Type == GameType.FDS)
+                {
+                    image = Resources.blank_fds;
+                }
                 image.Save(IconPath, ImageFormat.Png);
                 outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
                 gr = Graphics.FromImage(outImageSmall);
@@ -384,6 +492,7 @@ namespace com.clusterrr.hakchi_gui
             public byte Players;
             public string ReleaseDate;
             public string Publisher;
+            public string Region;
         }
 
         public static void LoadCache()
@@ -414,7 +523,8 @@ namespace com.clusterrr.hakchi_gui
                                     Name = game.GetAttribute("name", ""),
                                     Players = (byte)((game.GetAttribute("players", "") != "1") ? 2 : 1),
                                     ReleaseDate = game.GetAttribute("date", ""),
-                                    Publisher = game.GetAttribute("publisher", "")
+                                    Publisher = game.GetAttribute("publisher", ""),
+                                    Region = game.GetAttribute("region", "")
                                 };
                             }
                             catch { }

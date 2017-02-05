@@ -169,24 +169,31 @@ if [ "$hakchi_partial_first" == "y" ]; then
 fi
 
 if [ "$hakchi_partial_first" == "y" ]; then
-	if [ "$hakchi_remove_music" == "y" ]; then
-		echo Removing menu music...
-		cp /$modname/silence.wav $rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav
-		cp /$modname/silence.wav $rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav
+	if [ -f /$modname/music.wav ]; then
+		cp /$modname/music.wav $rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav
+		cp /$modname/music.wav $rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav
 	else
-		echo Restoring menu music...
-		cp $mountpoint/usr/share/clover-ui/resources/sounds/hvc/bgm_* $rootfs/usr/share/clover-ui/resources/sounds/hvc/
+		if [ "$hakchi_remove_music" == "y" ]; then
+			echo Removing menu music...
+			cp /$modname/silence.wav $rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav
+			cp /$modname/silence.wav $rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav
+		else
+			echo Restoring menu music...
+			cp $mountpoint/usr/share/clover-ui/resources/sounds/hvc/bgm_* $rootfs/usr/share/clover-ui/resources/sounds/hvc/
+		fi
+	fi
+fi
+
+if [ "$hakchi_partial_first" == "y" ]; then
+	if [ -d /transfer ]; then
+		echo Transferring extra data...
+		cp -a /transfer/* $installdir/
 	fi
 fi
 
 if [ -f $hakchi_extra_script ]; then
 	echo Executing extra script...
 	. $hakchi_extra_script
-fi
-
-if [ -d /transfer ]; then
-	echo Transferring extra data...
-	cp -a /transfer/* $installdir/
 fi
 
 echo Shutting down...

@@ -63,6 +63,13 @@
             this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeThumbnailsAtTheBottomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disableMenuMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pagesfoldersTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.disablePagefoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.automaticToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.foldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maximumGamesPerFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.max20toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.max25toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -117,6 +124,8 @@
             this.groupBoxDefaultGames = new System.Windows.Forms.GroupBox();
             this.checkedListBoxDefaultGames = new System.Windows.Forms.CheckedListBox();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
+            this.foldersSplitByFirstLetterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -242,6 +251,7 @@
             this.epilepsyProtectionToolStripMenuItem,
             this.cloverconHackToolStripMenuItem,
             this.guiHacksToolStripMenuItem,
+            this.pagesfoldersTypeToolStripMenuItem,
             this.maximumGamesPerFolderToolStripMenuItem,
             this.betterPNGCompressionlowerQualityToolStripMenuItem,
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem});
@@ -370,6 +380,53 @@
             resources.ApplyResources(this.disableMenuMusicToolStripMenuItem, "disableMenuMusicToolStripMenuItem");
             this.disableMenuMusicToolStripMenuItem.Click += new System.EventHandler(this.disableMenuMusicToolStripMenuItem_Click);
             // 
+            // pagesfoldersTypeToolStripMenuItem
+            // 
+            this.pagesfoldersTypeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem,
+            this.toolStripMenuItem3,
+            this.disablePagefoldersToolStripMenuItem,
+            this.automaticToolStripMenuItem,
+            this.pagesToolStripMenuItem,
+            this.foldersToolStripMenuItem,
+            this.foldersSplitByFirstLetterToolStripMenuItem,
+            this.customToolStripMenuItem});
+            this.pagesfoldersTypeToolStripMenuItem.Name = "pagesfoldersTypeToolStripMenuItem";
+            resources.ApplyResources(this.pagesfoldersTypeToolStripMenuItem, "pagesfoldersTypeToolStripMenuItem");
+            // 
+            // moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem
+            // 
+            this.moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem.CheckOnClick = true;
+            resources.ApplyResources(this.moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem, "moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem");
+            this.moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem.Name = "moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
+            // 
+            // disablePagefoldersToolStripMenuItem
+            // 
+            resources.ApplyResources(this.disablePagefoldersToolStripMenuItem, "disablePagefoldersToolStripMenuItem");
+            this.disablePagefoldersToolStripMenuItem.Name = "disablePagefoldersToolStripMenuItem";
+            // 
+            // automaticToolStripMenuItem
+            // 
+            this.automaticToolStripMenuItem.Checked = true;
+            this.automaticToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            resources.ApplyResources(this.automaticToolStripMenuItem, "automaticToolStripMenuItem");
+            this.automaticToolStripMenuItem.Name = "automaticToolStripMenuItem";
+            // 
+            // pagesToolStripMenuItem
+            // 
+            resources.ApplyResources(this.pagesToolStripMenuItem, "pagesToolStripMenuItem");
+            this.pagesToolStripMenuItem.Name = "pagesToolStripMenuItem";
+            // 
+            // foldersToolStripMenuItem
+            // 
+            resources.ApplyResources(this.foldersToolStripMenuItem, "foldersToolStripMenuItem");
+            this.foldersToolStripMenuItem.Name = "foldersToolStripMenuItem";
+            // 
             // maximumGamesPerFolderToolStripMenuItem
             // 
             this.maximumGamesPerFolderToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -462,9 +519,7 @@
             // 
             // betterPNGCompressionlowerQualityToolStripMenuItem
             // 
-            this.betterPNGCompressionlowerQualityToolStripMenuItem.Checked = true;
             this.betterPNGCompressionlowerQualityToolStripMenuItem.CheckOnClick = true;
-            this.betterPNGCompressionlowerQualityToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.betterPNGCompressionlowerQualityToolStripMenuItem.Name = "betterPNGCompressionlowerQualityToolStripMenuItem";
             resources.ApplyResources(this.betterPNGCompressionlowerQualityToolStripMenuItem, "betterPNGCompressionlowerQualityToolStripMenuItem");
             this.betterPNGCompressionlowerQualityToolStripMenuItem.Click += new System.EventHandler(this.betterPNGCompressionlowerQualityToolStripMenuItem_Click);
@@ -742,6 +797,16 @@
             this.timerCalculateGames.Interval = 500;
             this.timerCalculateGames.Tick += new System.EventHandler(this.timerCalculateGames_Tick);
             // 
+            // foldersSplitByFirstLetterToolStripMenuItem
+            // 
+            resources.ApplyResources(this.foldersSplitByFirstLetterToolStripMenuItem, "foldersSplitByFirstLetterToolStripMenuItem");
+            this.foldersSplitByFirstLetterToolStripMenuItem.Name = "foldersSplitByFirstLetterToolStripMenuItem";
+            // 
+            // customToolStripMenuItem
+            // 
+            resources.ApplyResources(this.customToolStripMenuItem, "customToolStripMenuItem");
+            this.customToolStripMenuItem.Name = "customToolStripMenuItem";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -865,6 +930,15 @@
         private System.Windows.Forms.ToolStripMenuItem max25toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem max45toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem max100toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pagesfoldersTypeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pagesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem disablePagefoldersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem foldersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem automaticToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem foldersSplitByFirstLetterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customToolStripMenuItem;
     }
 }
 
