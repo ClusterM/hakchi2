@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -36,6 +37,7 @@ namespace com.clusterrr.hakchi_gui
         public static string[] GetImageUrls(string query)
         {
             var url = string.Format("https://www.google.com/search?q={0}&source=lnms&tbm=isch", HttpUtility.UrlEncode(query));
+            Debug.WriteLine("Web request: " + url);
             var request = WebRequest.Create(url);
             request.Credentials = CredentialCache.DefaultCredentials;
             (request as HttpWebRequest).UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36";
@@ -46,8 +48,9 @@ namespace com.clusterrr.hakchi_gui
             string responseFromServer = reader.ReadToEnd();
             reader.Close();
             response.Close();
-            var urls = new List<string>();
+            Debug.WriteLine("Web response: " + url);
 
+            var urls = new List<string>();
             string search = @"\""ou\""\:\""(?<url>.+?)\""";
             MatchCollection matches = Regex.Matches(responseFromServer, search);
             foreach (Match match in matches)
@@ -75,6 +78,7 @@ namespace com.clusterrr.hakchi_gui
                     //new Thread(DownloadImageThread).Start(url);
                     try
                     {
+                        Debug.WriteLine("Downloading image: " + url);
                         var image = DownloadImage(url);
                         ShowImage(image);
                     }
@@ -87,6 +91,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
                 MessageBox.Show(ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
@@ -135,7 +140,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch { }
         }
-        
+
         public static Image DownloadImage(string url)
         {
             var request = HttpWebRequest.Create(url);
