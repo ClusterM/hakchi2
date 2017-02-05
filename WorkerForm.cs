@@ -884,6 +884,16 @@ namespace com.clusterrr.hakchi_gui
                     try
                     {
                         nesGame = new NesGame(gamesDirectory, nesFileName, NoForAllUnsupportedMappers ? (bool?)false : null, ref needPatch, needPatchCallback, this, rawData);
+
+                        // Trying to import Game Genie codes
+                        var lGameGeniePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".xml");
+                        if (File.Exists(lGameGeniePath))
+                        {
+                            GameGenieDataBase lGameGenieDataBase = new GameGenieDataBase(nesGame);
+                            lGameGenieDataBase.ImportCodes(lGameGeniePath, true);
+                            lGameGenieDataBase.Save();
+                        }
+
                     }
                     catch (Exception ex)
                     {

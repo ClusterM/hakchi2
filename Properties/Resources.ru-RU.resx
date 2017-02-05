@@ -349,4 +349,16 @@
   <data name="YesForAll" xml:space="preserve">
     <value>Да для всех</value>
   </data>
+  <data name="GGCodeDelete" xml:space="preserve">
+    <value>Вы действительно хотите удалить код "{0}"?</value>
+  </data>
+  <data name="GGCodeEmpty" xml:space="preserve">
+    <value>Вы должны ввести код!</value>
+  </data>
+  <data name="GGCodeExists" xml:space="preserve">
+    <value>Этот код уже есть в базе. Отредактировать его?</value>
+  </data>
+  <data name="GGDescriptionEmpty" xml:space="preserve">
+    <value>Вы должны ввести описание!</value>
+  </data>
 </root>

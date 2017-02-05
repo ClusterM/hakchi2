@@ -70,6 +70,8 @@
             this.automaticToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.foldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.foldersSplitByFirstLetterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maximumGamesPerFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.max20toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.max25toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,14 +121,12 @@
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unselectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gameGenieCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
             this.buttonStart = new System.Windows.Forms.Button();
             this.groupBoxDefaultGames = new System.Windows.Forms.GroupBox();
             this.checkedListBoxDefaultGames = new System.Windows.Forms.CheckedListBox();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
-            this.foldersSplitByFirstLetterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.customToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonShowGameGenieDatabase = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -428,6 +428,16 @@
             resources.ApplyResources(this.foldersToolStripMenuItem, "foldersToolStripMenuItem");
             this.foldersToolStripMenuItem.Name = "foldersToolStripMenuItem";
             // 
+            // foldersSplitByFirstLetterToolStripMenuItem
+            // 
+            resources.ApplyResources(this.foldersSplitByFirstLetterToolStripMenuItem, "foldersSplitByFirstLetterToolStripMenuItem");
+            this.foldersSplitByFirstLetterToolStripMenuItem.Name = "foldersSplitByFirstLetterToolStripMenuItem";
+            // 
+            // customToolStripMenuItem
+            // 
+            resources.ApplyResources(this.customToolStripMenuItem, "customToolStripMenuItem");
+            this.customToolStripMenuItem.Name = "customToolStripMenuItem";
+            // 
             // maximumGamesPerFolderToolStripMenuItem
             // 
             this.maximumGamesPerFolderToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -574,6 +584,7 @@
             // groupBoxOptions
             // 
             resources.ApplyResources(this.groupBoxOptions, "groupBoxOptions");
+            this.groupBoxOptions.Controls.Add(this.buttonShowGameGenieDatabase);
             this.groupBoxOptions.Controls.Add(this.maskedTextBoxReleaseDate);
             this.groupBoxOptions.Controls.Add(this.label1);
             this.groupBoxOptions.Controls.Add(this.textBoxGameGenie);
@@ -745,8 +756,7 @@
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.selectAllToolStripMenuItem,
             this.unselectAllToolStripMenuItem,
-            this.deleteGameToolStripMenuItem,
-            this.gameGenieCodeToolStripMenuItem});
+            this.deleteGameToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
             resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             // 
@@ -767,12 +777,6 @@
             this.deleteGameToolStripMenuItem.Name = "deleteGameToolStripMenuItem";
             resources.ApplyResources(this.deleteGameToolStripMenuItem, "deleteGameToolStripMenuItem");
             this.deleteGameToolStripMenuItem.Click += new System.EventHandler(this.deleteGameToolStripMenuItem_Click);
-            // 
-            // gameGenieCodeToolStripMenuItem
-            // 
-            this.gameGenieCodeToolStripMenuItem.Name = "gameGenieCodeToolStripMenuItem";
-            resources.ApplyResources(this.gameGenieCodeToolStripMenuItem, "gameGenieCodeToolStripMenuItem");
-            this.gameGenieCodeToolStripMenuItem.Click += new System.EventHandler(this.gameGenieCodeToolStripMenuItem_Click);
             // 
             // openFileDialogImage
             // 
@@ -805,15 +809,12 @@
             this.timerCalculateGames.Interval = 500;
             this.timerCalculateGames.Tick += new System.EventHandler(this.timerCalculateGames_Tick);
             // 
-            // foldersSplitByFirstLetterToolStripMenuItem
+            // buttonShowGameGenieDatabase
             // 
-            resources.ApplyResources(this.foldersSplitByFirstLetterToolStripMenuItem, "foldersSplitByFirstLetterToolStripMenuItem");
-            this.foldersSplitByFirstLetterToolStripMenuItem.Name = "foldersSplitByFirstLetterToolStripMenuItem";
-            // 
-            // customToolStripMenuItem
-            // 
-            resources.ApplyResources(this.customToolStripMenuItem, "customToolStripMenuItem");
-            this.customToolStripMenuItem.Name = "customToolStripMenuItem";
+            resources.ApplyResources(this.buttonShowGameGenieDatabase, "buttonShowGameGenieDatabase");
+            this.buttonShowGameGenieDatabase.Name = "buttonShowGameGenieDatabase";
+            this.buttonShowGameGenieDatabase.UseVisualStyleBackColor = true;
+            this.buttonShowGameGenieDatabase.Click += new System.EventHandler(this.buttonShowGameGenieDatabase_Click);
             // 
             // MainForm
             // 
@@ -947,6 +948,7 @@
         private System.Windows.Forms.ToolStripMenuItem automaticToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foldersSplitByFirstLetterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customToolStripMenuItem;
+        private System.Windows.Forms.Button buttonShowGameGenieDatabase;
     }
 }
 

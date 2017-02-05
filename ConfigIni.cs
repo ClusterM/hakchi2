@@ -27,7 +27,7 @@ namespace com.clusterrr.hakchi_gui
         public static SelectButtonsForm.NesButtons ResetCombination = SelectButtonsForm.NesButtons.Down | SelectButtonsForm.NesButtons.Select;
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         public static string ExtraCommandLineArguments = "";
-        const string ConfigFile = "config.ini";
+        public const string ConfigFile = "config.ini";
 
         public static void Load()
         {

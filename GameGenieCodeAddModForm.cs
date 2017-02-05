@@ -14,11 +14,12 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class GameGenieCodeAddModForm : Form
     {
-        NesGame FGame = null;
+        readonly NesGame FGame = null;
 
-        public GameGenieCodeAddModForm()
+        public GameGenieCodeAddModForm(NesGame game)
         {
             InitializeComponent();
+            FGame = game;
         }
 
         public string Code
@@ -43,33 +44,20 @@ namespace com.clusterrr.hakchi_gui
                 textBoxDescription.Text = value;
             }
         }
-        public NesGame Game 
-        {
-            get
-            {
-                return FGame;
-            }
-            set
-            {
-                FGame = value;
-            }
-        }
-
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            if (textBoxCode.Text == "")
+            if (string.IsNullOrEmpty(textBoxCode.Text.Trim()))
             {
-                MessageBox.Show(this, "You must enter a code!", Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, Resources.GGCodeEmpty, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (FGame != null)
             {
-                string lGamesDir = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "games");
-                NesFile lGame = new NesFile(Path.Combine(Path.Combine(lGamesDir, FGame.Code), FGame.Code + ".nes"));
+                NesFile lGame = new NesFile(FGame.NesPath);
                 try
                 {
-                    lGame.PRG = GameGenie.Patch(lGame.PRG, textBoxCode.Text.Trim());
+                    lGame.PRG = GameGenie.Patch(lGame.PRG, textBoxCode.Text);
                 }
                 catch (GameGenieFormatException)
                 {
@@ -83,11 +71,12 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
-            if (textBoxDescription.Text == "")
+            if (string.IsNullOrEmpty(textBoxDescription.Text.Trim()))
             {
-                MessageBox.Show(this, "You must enter a description!", Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, Resources.GGDescriptionEmpty, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            textBoxCode.Text = textBoxCode.Text.ToUpper().Trim();
             DialogResult = System.Windows.Forms.DialogResult.OK;
         }
     }

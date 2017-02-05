@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameGenieCodeForm));
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.checkedListBoxGameCode = new System.Windows.Forms.CheckedListBox();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,122 +39,99 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonImport = new System.Windows.Forms.Button();
             this.ofdXmlFile = new System.Windows.Forms.OpenFileDialog();
+            this.buttonAdd = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 495);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(392, 22);
-            this.statusStrip1.TabIndex = 0;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
             // checkedListBoxGameCode
             // 
+            resources.ApplyResources(this.checkedListBoxGameCode, "checkedListBoxGameCode");
             this.checkedListBoxGameCode.AllowDrop = true;
-            this.checkedListBoxGameCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkedListBoxGameCode.ContextMenuStrip = this.contextMenuStrip;
             this.checkedListBoxGameCode.FormattingEnabled = true;
-            this.checkedListBoxGameCode.Location = new System.Drawing.Point(5, 5);
             this.checkedListBoxGameCode.Name = "checkedListBoxGameCode";
-            this.checkedListBoxGameCode.Size = new System.Drawing.Size(380, 454);
-            this.checkedListBoxGameCode.TabIndex = 2;
+            this.checkedListBoxGameCode.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkedListBoxGameCode_MouseDown);
             // 
             // contextMenuStrip
             // 
+            resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addToolStripMenuItem,
             this.editToolStripMenuItem,
             this.removeToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(108, 70);
             // 
             // addToolStripMenuItem
             // 
+            resources.ApplyResources(this.addToolStripMenuItem, "addToolStripMenuItem");
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // editToolStripMenuItem
             // 
+            resources.ApplyResources(this.editToolStripMenuItem, "editToolStripMenuItem");
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // removeToolStripMenuItem
             // 
+            resources.ApplyResources(this.removeToolStripMenuItem, "removeToolStripMenuItem");
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.removeToolStripMenuItem.Text = "Delete";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
             // buttonOk
             // 
-            this.buttonOk.Location = new System.Drawing.Point(5, 465);
+            resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(75, 23);
-            this.buttonOk.TabIndex = 3;
-            this.buttonOk.Text = "Ok";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
             // buttonCancel
             // 
+            resources.ApplyResources(this.buttonCancel, "buttonCancel");
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(86, 465);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 4;
-            this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // buttonImport
             // 
-            this.buttonImport.Location = new System.Drawing.Point(167, 465);
+            resources.ApplyResources(this.buttonImport, "buttonImport");
             this.buttonImport.Name = "buttonImport";
-            this.buttonImport.Size = new System.Drawing.Size(75, 23);
-            this.buttonImport.TabIndex = 5;
-            this.buttonImport.Text = "Import";
             this.buttonImport.UseVisualStyleBackColor = true;
             this.buttonImport.Click += new System.EventHandler(this.buttonImport_Click);
             // 
             // ofdXmlFile
             // 
             this.ofdXmlFile.DefaultExt = "xml";
-            this.ofdXmlFile.Filter = "XML files|*.xml";
-            this.ofdXmlFile.Title = "Select XML file";
+            resources.ApplyResources(this.ofdXmlFile, "ofdXmlFile");
+            // 
+            // buttonAdd
+            // 
+            resources.ApplyResources(this.buttonAdd, "buttonAdd");
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // GameGenieCodeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 517);
+            this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.buttonImport);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.checkedListBoxGameCode);
-            this.Controls.Add(this.statusStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "GameGenieCodeForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Game Genie Code List";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GameGenieForm_FormClosed);
             this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.StatusStrip statusStrip1;
         protected internal System.Windows.Forms.CheckedListBox checkedListBoxGameCode;
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.Button buttonCancel;
@@ -165,5 +141,6 @@
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.Button buttonImport;
         private System.Windows.Forms.OpenFileDialog ofdXmlFile;
+        private System.Windows.Forms.Button buttonAdd;
     }
 }

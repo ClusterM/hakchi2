@@ -418,6 +418,42 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to delete &quot;{0}&quot; code?.
+        /// </summary>
+        internal static string GGCodeDelete {
+            get {
+                return ResourceManager.GetString("GGCodeDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a code!.
+        /// </summary>
+        internal static string GGCodeEmpty {
+            get {
+                return ResourceManager.GetString("GGCodeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This code already exist. Do you want to edit it?.
+        /// </summary>
+        internal static string GGCodeExists {
+            get {
+                return ResourceManager.GetString("GGCodeExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a description!.
+        /// </summary>
+        internal static string GGDescriptionEmpty {
+            get {
+                return ResourceManager.GetString("GGDescriptionEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Googling for .
         /// </summary>
         internal static string GooglingFor {

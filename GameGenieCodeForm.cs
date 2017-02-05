@@ -16,17 +16,16 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class GameGenieCodeForm : Form
     {
-        private NesGame FGame;
-        private string FDBName;
+        private readonly NesGame FGame;
         private GameGenieDataBase FGameGenieDataBase;
+        private List<string> OtherCodes;
 
         public GameGenieCodeForm(NesGame AGame)
         {
             InitializeComponent();
             FGame = AGame;
-            FDBName = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "data"), "GameGenieDB.xml");
-            FGameGenieDataBase = new GameGenieDataBase(FDBName, FGame);
-            this.Text = string.Format("Game Genie Code List : {0}", FGame.Name);
+            FGameGenieDataBase = new GameGenieDataBase(FGame);
+            this.Text += string.Format(": {0}", FGame.Name);
             LoadGameGenieCodes();
         }
 
@@ -34,13 +33,18 @@ namespace com.clusterrr.hakchi_gui
         {
             checkedListBoxGameCode.Items.Clear();
 
-            if (File.Exists(FDBName))
-            {
-                var lCodeSorted = FGameGenieDataBase.GameCodes.OrderBy(o => o.Description);
-                var lSelectedCode = FGame.GameGenie.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var lCodeSorted = FGameGenieDataBase.GameCodes.OrderBy(o => o.Description);
+            var lSelectedCode = FGame.GameGenie.ToUpper().Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
 
-                foreach (var code in lCodeSorted)
-                    checkedListBoxGameCode.Items.Add(code, lSelectedCode.Contains(code.Code));
+            foreach (var code in lCodeSorted)
+                checkedListBoxGameCode.Items.Add(code, lSelectedCode.Contains(code.Code.ToUpper().Trim()));
+
+            OtherCodes = new List<string>();
+            var knownCodes = from o in lCodeSorted select o.Code.ToUpper().Trim();
+            foreach (var code in lSelectedCode)
+            {
+                if (!knownCodes.Contains(code.ToUpper().Trim()))
+                    OtherCodes.Add(code);
             }
         }
 
@@ -49,6 +53,7 @@ namespace com.clusterrr.hakchi_gui
             var selected = new List<string>();
             foreach (GameGenieCode code in checkedListBoxGameCode.CheckedItems)
                 selected.Add(code.Code);
+            selected.AddRange(OtherCodes);
             FGame.GameGenie = string.Join(",", selected.ToArray());
         }
 
@@ -64,18 +69,18 @@ namespace com.clusterrr.hakchi_gui
                 FGameGenieDataBase.Save();
         }
 
-        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonAdd_Click(object sender, EventArgs e)
         {
-            GameGenieCodeAddModForm lForm = new GameGenieCodeAddModForm();
-            lForm.Game = FGame;
+            GameGenieCodeAddModForm lForm = new GameGenieCodeAddModForm(FGame);
 
             if (lForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                var newCode = lForm.Code.ToUpper().Trim();
                 GameGenieCode lCode = null;
 
-                foreach(GameGenieCode Code in checkedListBoxGameCode.Items)
+                foreach (GameGenieCode Code in checkedListBoxGameCode.Items)
                 {
-                    if (Code.Code == lForm.Code)
+                    if (Code.Code.ToUpper().Trim() == newCode)
                     {
                         lCode = Code;
                         break;
@@ -84,7 +89,7 @@ namespace com.clusterrr.hakchi_gui
 
                 if (lCode != null)
                 {
-                    if (MessageBox.Show(this, "This code already exist do you want to edit it?", Resources.Warning, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    if (MessageBox.Show(this, Resources.GGCodeExists, Resources.Warning, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                     {
                         lCode.Description = lForm.Description;
                         FGameGenieDataBase.ModifyCode(lCode);
@@ -92,39 +97,36 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else
                 {
-                    GameGenieCode lNewCode = new GameGenieCode(lForm.Code, lForm.Description);
+                    GameGenieCode lNewCode = new GameGenieCode(newCode, lForm.Description);
                     FGameGenieDataBase.AddCode(lNewCode);
                     LoadGameGenieCodes();
-//                    checkedListBoxGameCode.Items.Add(lNewCode, false);
                 }
             }
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxGameCode.SelectedItem != null)
-            {
-                GameGenieCode lCode = (GameGenieCode)checkedListBoxGameCode.SelectedItem;
-                GameGenieCodeAddModForm lForm = new GameGenieCodeAddModForm();
-                lForm.Code = lCode.Code;
-                lForm.Description = lCode.Description;
-                lForm.Game = FGame;
+            var i = (int)(sender as ToolStripMenuItem).Tag;
+            GameGenieCode lCode = (GameGenieCode)checkedListBoxGameCode.Items[i];
+            GameGenieCodeAddModForm lForm = new GameGenieCodeAddModForm(FGame);
+            lForm.Code = lCode.Code;
+            lForm.Description = lCode.Description;
 
-                if (lForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    lCode.Code = lForm.Code;
-                    lCode.Description = lForm.Description;
-                    FGameGenieDataBase.ModifyCode(lCode);
-                }
+            if (lForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                lCode.Code = lForm.Code;
+                lCode.Description = lForm.Description;
+                FGameGenieDataBase.ModifyCode(lCode);
             }
         }
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((checkedListBoxGameCode.SelectedItem != null) &&
-                (MessageBox.Show(this, "Do you want to delete this code?", Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes))
+            var i = (int)(sender as ToolStripMenuItem).Tag;
+            GameGenieCode lCode = (GameGenieCode)checkedListBoxGameCode.Items[i];
+            if (MessageBox.Show(this, string.Format(Resources.GGCodeDelete, lCode.Description),
+                Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
-                GameGenieCode lCode = (GameGenieCode)checkedListBoxGameCode.SelectedItem;
                 FGameGenieDataBase.DeleteCode(lCode);
                 checkedListBoxGameCode.Items.Remove(lCode);
             }
@@ -136,6 +138,17 @@ namespace com.clusterrr.hakchi_gui
             {
                 FGameGenieDataBase.ImportCodes(ofdXmlFile.FileName);
                 LoadGameGenieCodes();
+            }
+        }
+
+        private void checkedListBoxGameCode_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                var i = checkedListBoxGameCode.IndexFromPoint(e.X, e.Y);
+                removeToolStripMenuItem.Tag = editToolStripMenuItem.Tag = i;
+                removeToolStripMenuItem.Enabled = editToolStripMenuItem.Enabled = i >= 0;
+                contextMenuStrip.Show(sender as Control, e.X, e.Y);
             }
         }
     }

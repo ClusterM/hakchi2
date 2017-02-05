@@ -65,6 +65,7 @@ namespace com.clusterrr.hakchi_gui
 
     class GameGenieDataBase
     {
+        private readonly string DataBasePath;
         private XmlDocument FXml = new XmlDocument();
         private XmlNode FGameNode = null;
         private List<GameGenieCode> FGameCodes = null;
@@ -133,10 +134,11 @@ namespace com.clusterrr.hakchi_gui
 
         }
 
-        public GameGenieDataBase(string ADataBaseName, NesGame AGame)
+        public GameGenieDataBase(NesGame AGame)
         {
+            DataBasePath = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "data"), "GameGenieDB.xml");
             FGame = AGame;
-            FDBName = ADataBaseName;
+            FDBName = DataBasePath;
             if (File.Exists(FDBName))
                 FXml.Load(FDBName);
             else
@@ -153,7 +155,7 @@ namespace com.clusterrr.hakchi_gui
             XmlAttribute lAttribute;
 
             lAttribute = FXml.CreateAttribute("code");
-            lAttribute.Value = ACode.Code;
+            lAttribute.Value = ACode.Code.ToUpper().Trim();
             lCodeNode.Attributes.Append(lAttribute);
 
             lAttribute = FXml.CreateAttribute("description");
@@ -168,10 +170,10 @@ namespace com.clusterrr.hakchi_gui
 
         public void ModifyCode(GameGenieCode ACode)
         {
-            XmlNode lCurCode = GameNode.SelectSingleNode(string.Format("gamegenie[@code='{0}']", ACode.OldCode));
+            XmlNode lCurCode = GameNode.SelectSingleNode(string.Format("gamegenie[@code='{0}']", ACode.OldCode.ToUpper().Trim()));
             if (lCurCode != null)
             {
-                lCurCode.Attributes.GetNamedItem("code").Value = ACode.Code;
+                lCurCode.Attributes.GetNamedItem("code").Value = ACode.Code.ToUpper().Trim();
                 lCurCode.Attributes.GetNamedItem("description").Value = ACode.Description;
                 FModified = true;
             }
@@ -179,7 +181,7 @@ namespace com.clusterrr.hakchi_gui
 
         public void DeleteCode(GameGenieCode ACode)
         {
-            XmlNode lCurCode = GameNode.SelectSingleNode(string.Format("gamegenie[@code='{0}']", ACode.Code));
+            XmlNode lCurCode = GameNode.SelectSingleNode(string.Format("gamegenie[@code='{0}']", ACode.Code.ToUpper().Trim()));
             if (lCurCode != null)
                 lCurCode.ParentNode.RemoveChild(lCurCode);
             FGameCodes.Remove(ACode);
@@ -214,20 +216,20 @@ namespace com.clusterrr.hakchi_gui
                     NesFile lGame = new NesFile(lGameFileName);
                     try
                     {
-                        lGame.PRG = GameGenie.Patch(lGame.PRG, lCurCode["genie"].InnerText.ToUpper().Trim());
+                        lGame.PRG = GameGenie.Patch(lGame.PRG, lCurCode["genie"].InnerText);
 
                         lCodeNode = FXml.CreateElement("gamegenie");
                         GameNode.AppendChild(lCodeNode);
 
                         lAttribute = FXml.CreateAttribute("code");
-                        lAttribute.Value = lCurCode["genie"].InnerText;
+                        lAttribute.Value = lCurCode["genie"].InnerText.ToUpper().Trim();
                         lCodeNode.Attributes.Append(lAttribute);
 
                         lAttribute = FXml.CreateAttribute("description");
                         lAttribute.Value = lCurCode["description"].InnerText;
                         lCodeNode.Attributes.Append(lAttribute);
 
-                        GameCodes.Add(new GameGenieCode(lCurCode["genie"].InnerText, lCurCode["description"].InnerText));
+                        GameCodes.Add(new GameGenieCode(lCurCode["genie"].InnerText.ToUpper().Trim(), lCurCode["description"].InnerText));
                     }
                     catch (GameGenieFormatException)
                     {
