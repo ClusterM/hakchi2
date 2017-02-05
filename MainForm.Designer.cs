@@ -119,6 +119,7 @@
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unselectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameGenieCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
             this.buttonStart = new System.Windows.Forms.Button();
             this.groupBoxDefaultGames = new System.Windows.Forms.GroupBox();
@@ -744,7 +745,8 @@
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.selectAllToolStripMenuItem,
             this.unselectAllToolStripMenuItem,
-            this.deleteGameToolStripMenuItem});
+            this.deleteGameToolStripMenuItem,
+            this.gameGenieCodeToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
             resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             // 
@@ -765,6 +767,12 @@
             this.deleteGameToolStripMenuItem.Name = "deleteGameToolStripMenuItem";
             resources.ApplyResources(this.deleteGameToolStripMenuItem, "deleteGameToolStripMenuItem");
             this.deleteGameToolStripMenuItem.Click += new System.EventHandler(this.deleteGameToolStripMenuItem_Click);
+            // 
+            // gameGenieCodeToolStripMenuItem
+            // 
+            this.gameGenieCodeToolStripMenuItem.Name = "gameGenieCodeToolStripMenuItem";
+            resources.ApplyResources(this.gameGenieCodeToolStripMenuItem, "gameGenieCodeToolStripMenuItem");
+            this.gameGenieCodeToolStripMenuItem.Click += new System.EventHandler(this.gameGenieCodeToolStripMenuItem_Click);
             // 
             // openFileDialogImage
             // 
