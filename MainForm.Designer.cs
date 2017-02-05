@@ -67,6 +67,7 @@
             this.moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.disablePagefoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.foldersAZInsteadOfFullGameNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.automaticToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.foldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,6 +94,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkedListBoxGames = new System.Windows.Forms.CheckedListBox();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.buttonShowGameGenieDatabase = new System.Windows.Forms.Button();
             this.maskedTextBoxReleaseDate = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxGameGenie = new System.Windows.Forms.TextBox();
@@ -126,7 +128,6 @@
             this.groupBoxDefaultGames = new System.Windows.Forms.GroupBox();
             this.checkedListBoxDefaultGames = new System.Windows.Forms.CheckedListBox();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
-            this.buttonShowGameGenieDatabase = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -137,6 +138,7 @@
             // 
             // menuStrip
             // 
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.kernelToolStripMenuItem,
@@ -384,6 +386,7 @@
             // pagesfoldersTypeToolStripMenuItem
             // 
             this.pagesfoldersTypeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.foldersAZInsteadOfFullGameNameToolStripMenuItem,
             this.moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem,
             this.toolStripMenuItem3,
             this.disablePagefoldersToolStripMenuItem,
@@ -410,6 +413,13 @@
             // 
             resources.ApplyResources(this.disablePagefoldersToolStripMenuItem, "disablePagefoldersToolStripMenuItem");
             this.disablePagefoldersToolStripMenuItem.Name = "disablePagefoldersToolStripMenuItem";
+            // 
+            // foldersAZInsteadOfFullGameNameToolStripMenuItem
+            // 
+            this.foldersAZInsteadOfFullGameNameToolStripMenuItem.CheckOnClick = true;
+            this.foldersAZInsteadOfFullGameNameToolStripMenuItem.Name = "foldersAZInsteadOfFullGameNameToolStripMenuItem";
+            resources.ApplyResources(this.foldersAZInsteadOfFullGameNameToolStripMenuItem, "foldersAZInsteadOfFullGameNameToolStripMenuItem");
+            this.foldersAZInsteadOfFullGameNameToolStripMenuItem.Click += new System.EventHandler(this.foldersAZInsteadOfFullGameNameToolStripMenuItem_Click);
             // 
             // automaticToolStripMenuItem
             // 
@@ -607,6 +617,13 @@
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
             // 
+            // buttonShowGameGenieDatabase
+            // 
+            resources.ApplyResources(this.buttonShowGameGenieDatabase, "buttonShowGameGenieDatabase");
+            this.buttonShowGameGenieDatabase.Name = "buttonShowGameGenieDatabase";
+            this.buttonShowGameGenieDatabase.UseVisualStyleBackColor = true;
+            this.buttonShowGameGenieDatabase.Click += new System.EventHandler(this.buttonShowGameGenieDatabase_Click);
+            // 
             // maskedTextBoxReleaseDate
             // 
             resources.ApplyResources(this.maskedTextBoxReleaseDate, "maskedTextBoxReleaseDate");
@@ -734,6 +751,7 @@
             // 
             // statusStrip
             // 
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelSelected});
             resources.ApplyResources(this.statusStrip, "statusStrip");
@@ -753,6 +771,7 @@
             // 
             // contextMenuStrip
             // 
+            this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.selectAllToolStripMenuItem,
             this.unselectAllToolStripMenuItem,
@@ -808,13 +827,6 @@
             this.timerCalculateGames.Enabled = true;
             this.timerCalculateGames.Interval = 500;
             this.timerCalculateGames.Tick += new System.EventHandler(this.timerCalculateGames_Tick);
-            // 
-            // buttonShowGameGenieDatabase
-            // 
-            resources.ApplyResources(this.buttonShowGameGenieDatabase, "buttonShowGameGenieDatabase");
-            this.buttonShowGameGenieDatabase.Name = "buttonShowGameGenieDatabase";
-            this.buttonShowGameGenieDatabase.UseVisualStyleBackColor = true;
-            this.buttonShowGameGenieDatabase.Click += new System.EventHandler(this.buttonShowGameGenieDatabase_Click);
             // 
             // MainForm
             // 
@@ -949,6 +961,7 @@
         private System.Windows.Forms.ToolStripMenuItem foldersSplitByFirstLetterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customToolStripMenuItem;
         private System.Windows.Forms.Button buttonShowGameGenieDatabase;
+        private System.Windows.Forms.ToolStripMenuItem foldersAZInsteadOfFullGameNameToolStripMenuItem;
     }
 }
 
