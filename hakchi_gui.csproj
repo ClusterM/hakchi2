@@ -465,7 +465,8 @@
     <Content Include="images\blank_fds.png" />
     <Content Include="images\blank_jp.png" />
     <Content Include="images\folder.png" />
-    <Content Include="images\gamepad.jpg" />
+    <Content Include="images\gamepad.png" />
+    <Content Include="images\icon.ico" />
     <Content Include="mods\mod_transfer\hakchi\blank_pixel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
