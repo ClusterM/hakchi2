@@ -115,6 +115,7 @@ namespace com.clusterrr.hakchi_gui
                 famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
                 upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart;
                 disableMenuMusicToolStripMenuItem.Checked = ConfigIni.DisableMusic;
+                foldersAZInsteadOfFullGameNameToolStripMenuItem.Checked = ConfigIni.FoldersAZ;
                 max20toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 20;
                 max25toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 25;
                 max30toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 30;
@@ -997,6 +998,11 @@ namespace com.clusterrr.hakchi_gui
             GameGenieCodeForm lFrm = new GameGenieCodeForm(nesGame);
             if (lFrm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 textBoxGameGenie.Text = nesGame.GameGenie;
+        }
+
+        private void foldersAZInsteadOfFullGameNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.FoldersAZ = foldersAZInsteadOfFullGameNameToolStripMenuItem.Checked;
         }
     }
 }

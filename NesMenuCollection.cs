@@ -44,7 +44,16 @@ namespace com.clusterrr.hakchi_gui
                     var lname = coll.Where(o => (o is NesGame) || (o is NesDefaultGame)).Last().Name;
                     var folder = new NesMenuFolder();
                     folder.Child = coll;
-                    folder.Name = fname.Substring(0, Math.Min(Letters, fname.Length)) + (fname.Length > Letters ? "..." : "") + " - " + lname.Substring(0, Math.Min(Letters, lname.Length)) + (lname.Length > Letters ? "..." : "");
+
+                    if (ConfigIni.FoldersAZ == true)
+                    {
+                        folder.Name = fname.Substring(0, 2).ToUpper() + " - " + lname.Substring(0, 2).ToUpper();
+                    }
+                    else
+                    {
+                        folder.Name = fname.Substring(0, Math.Min(Letters, fname.Length)) + (fname.Length > Letters ? "..." : "") + " - " + lname.Substring(0, Math.Min(Letters, lname.Length)) + (lname.Length > Letters ? "..." : "");
+                    }
+
                     root.Add(folder);
                     coll.Add(new NesMenuFolder() { Name = "<- Back", Image = Resources.back, Child = root });
                 }
@@ -60,7 +69,16 @@ namespace com.clusterrr.hakchi_gui
                         var fname = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Name/*.ToUpper().Replace(" ", "")*/;
                         var lname = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).Last().Name/*.ToUpper().Replace(" ", "")*/;
                         folder.Child = collections[j];
-                        folder.Name = fname.Substring(0, Math.Min(Letters, fname.Length)) + (fname.Length > Letters ? "..." : "") + " - " + lname.Substring(0, Math.Min(Letters, lname.Length)) + (lname.Length > Letters ? "..." : "");
+
+                        if (ConfigIni.FoldersAZ == true)
+                        {
+                            folder.Name = fname.Substring(0, 2).ToUpper() + " - " + lname.Substring(0, 2).ToUpper();
+                        }
+                        else
+                        {
+                            folder.Name = fname.Substring(0, Math.Min(Letters, fname.Length)) + (fname.Length > Letters ? "..." : "") + " - " + lname.Substring(0, Math.Min(Letters, lname.Length)) + (lname.Length > Letters ? "..." : "");
+                        }
+
                         folder.Initial = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Code;
                         folder.First = true;
                         collections[i].Insert(0, folder);
@@ -71,7 +89,16 @@ namespace com.clusterrr.hakchi_gui
                         var fname = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Name/*.ToUpper().Replace(" ", "")*/;
                         var lname = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).Last().Name/*.ToUpper().Replace(" ", "")*/;
                         folder.Child = collections[j];
-                        folder.Name = fname.Substring(0, Math.Min(Letters, fname.Length)) + (fname.Length > Letters ? "..." : "") + " - " + lname.Substring(0, Math.Min(Letters, lname.Length)) + (lname.Length > Letters ? "..." : "");
+
+                        if (ConfigIni.FoldersAZ == true)
+                        {
+                            folder.Name = fname.Substring(0, 2).ToUpper() + " - " + lname.Substring(0, 2).ToUpper();
+                        }
+                        else
+                        {
+                            folder.Name = fname.Substring(0, Math.Min(Letters, fname.Length)) + (fname.Length > Letters ? "..." : "") + " - " + lname.Substring(0, Math.Min(Letters, lname.Length)) + (lname.Length > Letters ? "..." : "");
+                        }
+
                         folder.Initial = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Code;
                         folder.First = false;
                         collections[i].Insert(collections[i].Count, folder);

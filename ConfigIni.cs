@@ -21,6 +21,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool EightBitPngCompression = false;
         public static bool FcStart = false;
         public static bool DisableMusic = false;
+        public static bool FoldersAZ = false;
         public static byte AntiArmetLevel = 0;
         public static byte ConsoleType = 0;
         public static byte MaxGamesPerFolder = 30;
@@ -99,6 +100,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "disablemusic":
                                     DisableMusic = !value.ToLower().Equals("false");
                                     break;
+                                case "foldersaz":
+                                    FoldersAZ = !value.ToLower().Equals("false");
+                                    break;
                                 case "maxgamesperfolder":
                                     MaxGamesPerFolder = byte.Parse(value);
                                     break;
@@ -132,6 +136,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("ExtraCommandLineArguments={0}", ExtraCommandLineArguments));
             configLines.Add(string.Format("FcStart={0}", FcStart));
             configLines.Add(string.Format("DisableMusic={0}", DisableMusic));
+            configLines.Add(string.Format("FoldersAZ={0}", FoldersAZ));
             configLines.Add(string.Format("MaxGamesPerFolder={0}", MaxGamesPerFolder));
 
             configLines.Add("");
