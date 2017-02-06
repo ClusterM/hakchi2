@@ -14,7 +14,15 @@ namespace com.clusterrr.hakchi_gui
     {
         static Random rnd = new Random();
         private string code = null;
-        private bool first = true;
+        public enum Priority
+        {
+            Back = 0,
+            Left = 1,
+            Right = 2,
+            End = 3
+        }
+        private Priority position;
+        //private bool first = true;
 
         public string Code
         {
@@ -27,7 +35,24 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                return (first ? ' ' : 'Я') + name;
+                char prefix;
+                switch (position)
+                {
+                    case Priority.Back:
+                        prefix = (char)1;
+                        break;
+                    default:
+                    case Priority.Left:
+                        prefix = (char)2;
+                        break;
+                    case Priority.Right:
+                        prefix = 'Ю';
+                        break;
+                    case Priority.End:
+                        prefix = 'Я';
+                        break;
+                }
+                return prefix + name;
             }
             set
             {
@@ -62,30 +87,43 @@ namespace com.clusterrr.hakchi_gui
         string Publisher = new String('!', 10);
 
         // It's workaround for sorting
-        public bool First
+        public Priority Position
         {
             set
             {
                 // Sort to left
-                if (value)
+                position = value;
+                switch (position)
                 {
-                    Players = 2;
-                    Simultaneous = 1;
-                    ReleaseDate = "0000-00-00";
-                    Publisher = new String('!', 10);
+                    case Priority.Back:
+                        Players = 2;
+                        Simultaneous = 1;
+                        ReleaseDate = "0000-00-00";
+                        Publisher = new String((char)1, 10);
+                        break;
+                    case Priority.Left:
+                        Players = 2;
+                        Simultaneous = 1;
+                        ReleaseDate = "1111-11-11";
+                        Publisher = new String((char)2, 10);
+                        break;
+                    case Priority.Right:
+                        Players = 1;
+                        Simultaneous = 0;
+                        ReleaseDate = "8888-88-88";
+                        Publisher = new String('Y', 10);
+                        break;
+                    case Priority.End:
+                        Players = 1;
+                        Simultaneous = 0;
+                        ReleaseDate = "9999-99-99";
+                        Publisher = new String('Z', 10);
+                        break;
                 }
-                else // Sort to right
-                {
-                    Players = 1;
-                    Simultaneous = 0;
-                    ReleaseDate = "9999-99-99";
-                    Publisher = new String('Z', 10);
-                }
-                first = value;
             }
             get
             {
-                return first;
+                return position;
             }
         }
 
@@ -93,7 +131,7 @@ namespace com.clusterrr.hakchi_gui
         {
             Code = GenerateCode((uint)rnd.Next());
             Name = "Folder";
-            First = true;
+            Position = Priority.Left;
         }
 
         public Image Image

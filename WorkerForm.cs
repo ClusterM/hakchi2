@@ -54,7 +54,7 @@ namespace com.clusterrr.hakchi_gui
         readonly string argumentsFilePath;
         readonly string gamesDirectory;
         string[] correctKernels;
-        const int maxRamfsSize = 40 * 1024 * 1024;
+        const long maxRamfsSize = 40 * 1024 * 1024;
         DialogResult DeviceWaitResult = DialogResult.None;
         DialogResult MessageBoxResult = DialogResult.None;
 
@@ -315,10 +315,9 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress);
 
             byte[] kernel;
-            int pos = 0, totalFiles;
             if (!string.IsNullOrEmpty(Mod))
             {
-                kernel = CreatePatchedKernel(ref pos, out totalFiles);
+                kernel = CreatePatchedKernel();
                 progress += 5;
                 SetProgress(progress, maxProgress);
             }
@@ -384,14 +383,14 @@ namespace com.clusterrr.hakchi_gui
 
         public void Memboot()
         {
-            int pos = 0, totalFiles = 0;
             int progress = 5;
             SetProgress(progress, 300);
             int maxProgress = -1;
+            var stats = new GamesTreeStats();
 
             do
             {
-                if (pos > 0)
+                if (stats.GamesProceed > 0)
                 {
                     ShowMessage(Resources.ParticallyBody, Resources.ParticallyTitle);
                     DeviceWaitResult = DialogResult.None;
@@ -413,7 +412,7 @@ namespace com.clusterrr.hakchi_gui
 
                 byte[] kernel;
                 if (!string.IsNullOrEmpty(Mod))
-                    kernel = CreatePatchedKernel(ref pos, out totalFiles);
+                    kernel = CreatePatchedKernel(stats);
                 else
                     kernel = File.ReadAllBytes(KernelDump);
                 var size = CalKernelSize(kernel);
@@ -431,8 +430,8 @@ namespace com.clusterrr.hakchi_gui
                 progress += 5;
                 if (maxProgress < 0)
                 {
-                    if (pos > 0)
-                        maxProgress = (kernel.Length / 67000 + 15) * totalFiles / pos + 75 * ((int)Math.Ceiling((float)totalFiles / (float)pos) - 1);
+                    if (stats.GamesProceed > 0)
+                        maxProgress = (kernel.Length / 67000 + 15) * stats.GamesTotal / stats.GamesProceed + 75 * ((int)Math.Ceiling((float)stats.GamesTotal / (float)stats.GamesProceed) - 1);
                     else
                         maxProgress = (kernel.Length / 67000 + 15);
                 }
@@ -456,92 +455,119 @@ namespace com.clusterrr.hakchi_gui
                 var bootCommand = string.Format("boota {0:x}", Fel.kernel_base_m);
                 SetStatus(Resources.ExecutingCommand + " " + bootCommand);
                 fel.RunUbootCmd(bootCommand, true);
-            } while (pos < totalFiles);
+            } while (stats.GamesProceed < stats.GamesTotal);
             SetStatus(Resources.Done);
             SetProgress(maxProgress, maxProgress);
         }
 
-        private byte[] CreatePatchedKernel(ref int filesPos, out int totalFiles)
+        private byte[] CreatePatchedKernel(GamesTreeStats stats = null)
         {
-            bool first = filesPos == 0;
-            bool partial = filesPos > 0;
+            if (stats == null) stats = new GamesTreeStats();
+            bool first = stats.GamesProceed == 0;
+            bool partial = stats.GamesProceed > 0;
             SetStatus(Resources.BuildingCustom);
-            if (Directory.Exists(tempDirectory))
-                Directory.Delete(tempDirectory, true);
-            Directory.CreateDirectory(tempDirectory);
-            Directory.CreateDirectory(kernelDirectory);
-            Directory.CreateDirectory(ramfsDirectory);
-            if (!ExecuteTool("unpackbootimg.exe", string.Format("-i \"{0}\" -o \"{1}\"", KernelDump, kernelDirectory)))
-                throw new Exception("Can't unpack kernel image");
-            if (!ExecuteTool("lzop.exe", string.Format("-d \"{0}\" -o \"{1}\"",
-                Path.Combine(kernelDirectory, "kernel.img-ramdisk.gz"), initramfs_cpio)))
-                throw new Exception("Can't unpack ramdisk");
-            ExecuteTool("cpio.exe", string.Format("-imd --no-preserve-owner --quiet -I \"{0}\"",
-               @"..\initramfs.cpio"), ramfsDirectory);
-            if (!File.Exists(Path.Combine(ramfsDirectory, "init"))) // cpio.exe fails on Windows XP for some reason. But working!
-                throw new Exception("Can't unpack ramdisk 2");
-            if (Directory.Exists(hakchiDirectory)) Directory.Delete(hakchiDirectory, true);
-            DirectoryCopy(Path.Combine(modsDirectory, Mod), ramfsDirectory, true);
-            var ramfsFiles = Directory.GetFiles(ramfsDirectory, "*.*", SearchOption.AllDirectories);
-            foreach (var file in ramfsFiles)
+            if (first)
             {
-                var fInfo = new FileInfo(file);
-                if (fInfo.Length > 10 && fInfo.Length < 100 && ((fInfo.Attributes & FileAttributes.System) == 0) &&
-                    (Encoding.ASCII.GetString(File.ReadAllBytes(file), 0, 10)) == "!<symlink>")
-                    fInfo.Attributes |= FileAttributes.System;
-            }
+                if (Directory.Exists(tempDirectory))
+                    Directory.Delete(tempDirectory, true);
+                Directory.CreateDirectory(tempDirectory);
+                Directory.CreateDirectory(kernelDirectory);
+                Directory.CreateDirectory(ramfsDirectory);
+                if (!ExecuteTool("unpackbootimg.exe", string.Format("-i \"{0}\" -o \"{1}\"", KernelDump, kernelDirectory)))
+                    throw new Exception("Can't unpack kernel image");
+                if (!ExecuteTool("lzop.exe", string.Format("-d \"{0}\" -o \"{1}\"",
+                    Path.Combine(kernelDirectory, "kernel.img-ramdisk.gz"), initramfs_cpio)))
+                    throw new Exception("Can't unpack ramdisk");
+                ExecuteTool("cpio.exe", string.Format("-imd --no-preserve-owner --quiet -I \"{0}\"",
+                   @"..\initramfs.cpio"), ramfsDirectory);
+                if (!File.Exists(Path.Combine(ramfsDirectory, "init"))) // cpio.exe fails on Windows XP for some reason. But working!
+                    throw new Exception("Can't unpack ramdisk 2");
+                if (Directory.Exists(hakchiDirectory)) Directory.Delete(hakchiDirectory, true);
+                DirectoryCopy(Path.Combine(modsDirectory, Mod), ramfsDirectory, true);
+                var ramfsFiles = Directory.GetFiles(ramfsDirectory, "*.*", SearchOption.AllDirectories);
+                foreach (var file in ramfsFiles)
+                {
+                    var fInfo = new FileInfo(file);
+                    if (fInfo.Length > 10 && fInfo.Length < 100 && ((fInfo.Attributes & FileAttributes.System) == 0) &&
+                        (Encoding.ASCII.GetString(File.ReadAllBytes(file), 0, 10)) == "!<symlink>")
+                        fInfo.Attributes |= FileAttributes.System;
+                }
 
-            if (Games != null)
-                AddMenu(Games);
-            if (HiddenGames != null && HiddenGames.Length > 0)
-            {
-                StringBuilder h = new StringBuilder();
-                foreach (var game in HiddenGames)
-                    h.Append(game + "\n");
-                File.WriteAllText(hiddenPath, h.ToString());
-            }
-            if (Config != null && Config.ContainsKey("hakchi_clovercon_hack")
+                if (HiddenGames != null && HiddenGames.Length > 0)
+                {
+                    StringBuilder h = new StringBuilder();
+                    foreach (var game in HiddenGames)
+                        h.Append(game + "\n");
+                    File.WriteAllText(hiddenPath, h.ToString());
+                }
+
+                if (Config != null && Config.ContainsKey("hakchi_clovercon_hack")
                 && Config["hakchi_clovercon_hack"] && File.Exists(cloverconDriverPath))
+                {
+                    byte[] drv = File.ReadAllBytes(cloverconDriverPath);
+                    const string magicReset = "MAGIC_BUTTONS:";
+                    for (int i = 0; i < drv.Length - magicReset.Length; i++)
+                    {
+                        if (Encoding.ASCII.GetString(drv, i, magicReset.Length) == magicReset)
+                        {
+                            int pos = i + magicReset.Length;
+                            for (int b = 0; b < 8; b++)
+                                drv[pos + b] = (byte)((((byte)ResetCombination & (1 << b)) != 0) ? '1' : '0');
+                            break;
+                        }
+                    }
+                    const string magicAutofire = "MAGIC_AUTOFIRE:";
+                    for (int i = 0; i < drv.Length - magicAutofire.Length; i++)
+                    {
+                        if (Encoding.ASCII.GetString(drv, i, magicAutofire.Length) == magicAutofire)
+                        {
+                            int pos = i + magicAutofire.Length;
+                            drv[pos] = (byte)(AutofireHack ? '1' : '0');
+                            break;
+                        }
+                    }
+                    const string magicFcStart = "MAGIC_FC_START:";
+                    for (int i = 0; i < drv.Length - magicFcStart.Length; i++)
+                    {
+                        if (Encoding.ASCII.GetString(drv, i, magicFcStart.Length) == magicFcStart)
+                        {
+                            int pos = i + magicFcStart.Length;
+                            drv[pos] = (byte)(FcStart ? '1' : '0');
+                            break;
+                        }
+                    }
+                    File.WriteAllBytes(cloverconDriverPath, drv);
+                }
+                if (!string.IsNullOrEmpty(ExtraCommandLineArguments))
+                {
+                    File.WriteAllText(argumentsFilePath, ExtraCommandLineArguments);
+                }
+            } // if first transfer
+            else // else clean games directory and extra files
             {
-                byte[] drv = File.ReadAllBytes(cloverconDriverPath);
-                const string magicReset = "MAGIC_BUTTONS:";
-                for (int i = 0; i < drv.Length - magicReset.Length; i++)
+                if (Directory.Exists(tempGamesDirectory))
                 {
-                    if (Encoding.ASCII.GetString(drv, i, magicReset.Length) == magicReset)
-                    {
-                        int pos = i + magicReset.Length;
-                        for (int b = 0; b < 8; b++)
-                            drv[pos + b] = (byte)((((byte)ResetCombination & (1 << b)) != 0) ? '1' : '0');
-                        break;
-                    }
+                    Debug.WriteLine("Clearing games directory");
+                    Directory.Delete(tempGamesDirectory, true);
+                    Directory.CreateDirectory(tempGamesDirectory);
                 }
-                const string magicAutofire = "MAGIC_AUTOFIRE:";
-                for (int i = 0; i < drv.Length - magicAutofire.Length; i++)
-                {
-                    if (Encoding.ASCII.GetString(drv, i, magicAutofire.Length) == magicAutofire)
-                    {
-                        int pos = i + magicAutofire.Length;
-                        drv[pos] = (byte)(AutofireHack ? '1' : '0');
-                        break;
-                    }
-                }
-                const string magicFcStart = "MAGIC_FC_START:";
-                for (int i = 0; i < drv.Length - magicFcStart.Length; i++)
-                {
-                    if (Encoding.ASCII.GetString(drv, i, magicFcStart.Length) == magicFcStart)
-                    {
-                        int pos = i + magicFcStart.Length;
-                        drv[pos] = (byte)(FcStart ? '1' : '0');
-                        break;
-                    }
-                }
-                File.WriteAllBytes(cloverconDriverPath, drv);
-            }
-            if (!string.IsNullOrEmpty(ExtraCommandLineArguments))
-            {
-                File.WriteAllText(argumentsFilePath, ExtraCommandLineArguments);
+                var dirs = Directory.GetDirectories(hakchiDirectory);
+                foreach (var dir in dirs)
+                    Directory.Delete(dir, true);
+                var files = from f in Directory.GetFiles(hakchiDirectory) where (Path.GetFileName(f) != "init" && Path.GetFileName(f) != "config") select f;
+                foreach (var file in files)
+                    File.Delete(file);
             }
 
+            // Games!
+            if (Games != null)
+            {
+                stats.Next();
+                AddMenu(Games, stats);
+                Debug.WriteLine(string.Format("Games copied: {0}/{1}, part size: {2}", stats.GamesProceed, stats.GamesTotal, stats.Size));
+            }
+
+            // Remove thumbnails
             if (Config != null && Config.ContainsKey("hakchi_remove_thumbnails") && Config["hakchi_remove_thumbnails"])
             {
                 var thumbnails = Directory.GetFiles(tempGamesDirectory, "*_small.png", SearchOption.AllDirectories);
@@ -549,43 +575,11 @@ namespace com.clusterrr.hakchi_gui
                     File.WriteAllBytes(t, new byte[0]);
             }
 
-            var romFiles = new List<string>();
-            romFiles.AddRange(Directory.GetFiles(ramfsDirectory, "*.nes", SearchOption.AllDirectories));
-            romFiles.AddRange(Directory.GetFiles(ramfsDirectory, "*.desktop", SearchOption.AllDirectories));
-            romFiles.AddRange(Directory.GetFiles(ramfsDirectory, "*.png", SearchOption.AllDirectories));
-            romFiles.AddRange(Directory.GetFiles(ramfsDirectory, NesGame.GameGenieFileName, SearchOption.AllDirectories));
-            ramfsFiles = romFiles.OrderBy(o => o).ToArray();
-            totalFiles = ramfsFiles.Length;
-            for (int i = 0; i < filesPos; i++)
-                File.Delete(ramfsFiles[i]);
-            if (filesPos > 0) // No first transfer? Remove all files
-            {
-                foreach (var file in
-                    Directory.GetFiles(ramfsDirectory, "*.ko", SearchOption.AllDirectories))
-                    File.Delete(file);
-                foreach (var file in
-                    Directory.GetFiles(ramfsDirectory, "*.fnt", SearchOption.AllDirectories))
-                    File.Delete(file);
-                foreach (var file in
-                    Directory.GetFiles(ramfsDirectory, "*.wav", SearchOption.AllDirectories))
-                    File.Delete(file);
-            }
-
-            long size = 0;
-            while (filesPos < totalFiles)
-            {
-                var fsize = new FileInfo(ramfsFiles[filesPos]).Length;
-                if (size >= maxRamfsSize) break;
-                size += fsize;
-                filesPos++;
-            }
-            for (int i = filesPos; i < totalFiles; i++)
-                File.Delete(ramfsFiles[i]);
-
+            // Writing config files
             if (Config != null)
             {
                 Config["hakchi_partial_first"] = first;
-                Config["hakchi_partial_last"] = filesPos >= totalFiles;
+                Config["hakchi_partial_last"] = stats.GamesProceed >= stats.GamesTotal;
                 var config = new StringBuilder();
 
                 foreach (var key in Config.Keys)
@@ -593,7 +587,8 @@ namespace com.clusterrr.hakchi_gui
                 File.WriteAllText(configPath, config.ToString());
             }
 
-            if (Games != null && Games.Count > 0) // There is no reason to compress cryptsetup when we do not uploading games
+            // Building image
+            if (first && Games != null && Games.Count > 0) // There is no reason to compress cryptsetup when we do not uploading games
                 ExecuteTool("upx.exe", "--best sbin\\cryptsetup", ramfsDirectory);
             byte[] ramdisk;
             if (!ExecuteTool("mkbootfs.exe", string.Format("\"{0}\"", ramfsDirectory), out ramdisk))
@@ -668,28 +663,49 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void AddMenu(NesMenuCollection menuCollection, List<NesMenuCollection> allMenus = null)
+        private class GamesTreeStats
         {
-            if (allMenus == null)
-                allMenus = new List<NesMenuCollection>();
-            if (!allMenus.Contains(menuCollection))
-                allMenus.Add(menuCollection);
-            int menuIndex = allMenus.IndexOf(menuCollection);
+            public List<NesMenuCollection> allMenus = new List<NesMenuCollection>();
+            public int GamesTotal = 0;
+            public int GamesStart = 0;
+            public int GamesProceed = 0;
+            public long Size = 0;
+
+            public void Next()
+            {
+                allMenus.Clear();
+                GamesStart = GamesProceed;
+                GamesTotal = 0;
+                GamesProceed = 0;
+                Size = 0;
+            }
+        }
+
+        private void AddMenu(NesMenuCollection menuCollection, GamesTreeStats stats = null)
+        {
+            if (stats == null)
+                stats = new GamesTreeStats();
+            if (!stats.allMenus.Contains(menuCollection))
+                stats.allMenus.Add(menuCollection);
+            int menuIndex = stats.allMenus.IndexOf(menuCollection);
             string targetDirectory;
             if (menuIndex == 0)
                 targetDirectory = tempGamesDirectory;
             else
                 targetDirectory = Path.Combine(tempGamesDirectory, string.Format("sub{0:D3}", menuIndex));
-            if (Directory.Exists(targetDirectory))
-                return;
             foreach (var element in menuCollection)
             {
                 if (element is NesGame)
                 {
+                    stats.GamesTotal++;
+                    if (stats.Size >= maxRamfsSize) continue;
+                    stats.GamesProceed++;
+                    if (stats.GamesStart >= stats.GamesProceed) continue;
                     var game = element as NesGame;
                     var gameDir = Path.Combine(targetDirectory, game.Code);
-                    Debug.WriteLine(string.Format("Processing {0} ('{1}')", game.Code, game.Name));
-                    DirectoryCopy(game.GamePath, gameDir, true);
+                    Debug.Write(string.Format("Processing {0} ('{1}'), #{2}", game.Code, game.Name, stats.GamesProceed));
+                    stats.Size += DirectoryCopy(game.GamePath, gameDir, true);
+                    Debug.WriteLine(string.Format(", total size: {0}", stats.Size));
                     if (!string.IsNullOrEmpty(game.GameGenie))
                     {
                         var codes = game.GameGenie.Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
@@ -724,19 +740,27 @@ namespace com.clusterrr.hakchi_gui
                 if (element is NesMenuFolder)
                 {
                     var folder = element as NesMenuFolder;
-                    if (!allMenus.Contains(folder.Child))
-                        allMenus.Add(folder.Child);
-                    int childIndex = allMenus.IndexOf(folder.Child);
-                    var folderDir = Path.Combine(targetDirectory, folder.Code);
-                    folder.Save(folderDir, childIndex);
-                    AddMenu(folder.Child, allMenus);
+                    if (!stats.allMenus.Contains(folder.Child))
+                    {
+                        stats.allMenus.Add(folder.Child);
+                        AddMenu(folder.Child, stats);
+                    }
+                    if (stats.GamesStart == 0)
+                    {
+                        int childIndex = stats.allMenus.IndexOf(folder.Child);
+                        var folderDir = Path.Combine(targetDirectory, folder.Code);
+                        folder.Save(folderDir, childIndex);
+                    }
                 }
                 if (element is NesDefaultGame)
                 {
-                    var game = element as NesDefaultGame;
-                    var gfilePath = Path.Combine(tempGamesDirectory, string.Format("gpath-{0}-{1}", game.Code, menuIndex));
-                    Directory.CreateDirectory(Path.GetDirectoryName(gfilePath));
-                    File.WriteAllText(gfilePath, menuIndex == 0 ? "." : string.Format("sub{0:D3}", menuIndex));
+                    if (stats.GamesStart == 0)
+                    {
+                        var game = element as NesDefaultGame;
+                        var gfilePath = Path.Combine(tempGamesDirectory, string.Format("gpath-{0}-{1}", game.Code, menuIndex));
+                        Directory.CreateDirectory(Path.GetDirectoryName(gfilePath));
+                        File.WriteAllText(gfilePath, menuIndex == 0 ? "." : string.Format("sub{0:D3}", menuIndex));
+                    }
                 }
             }
         }
@@ -798,8 +822,9 @@ namespace com.clusterrr.hakchi_gui
             return pages * page_size;
         }
 
-        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        private static long DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
+            long size = 0;
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
 
@@ -822,7 +847,7 @@ namespace com.clusterrr.hakchi_gui
             foreach (FileInfo file in files)
             {
                 string temppath = Path.Combine(destDirName, file.Name);
-                file.CopyTo(temppath, true);
+                size += file.CopyTo(temppath, true).Length;
             }
 
             // If copying subdirectories, copy them and their contents to new location.
@@ -831,9 +856,10 @@ namespace com.clusterrr.hakchi_gui
                 foreach (DirectoryInfo subdir in dirs)
                 {
                     string temppath = Path.Combine(destDirName, subdir.Name);
-                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                    size += DirectoryCopy(subdir.FullName, temppath, copySubDirs);
                 }
             }
+            return size;
         }
 
         bool YesForAllPatches = false;

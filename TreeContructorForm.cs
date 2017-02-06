@@ -15,13 +15,15 @@ namespace com.clusterrr.hakchi_gui
         {
             InitializeComponent();
             treeView.Nodes.Clear();
-            var allFolders = new List<NesMenuCollection>();
-            AddNodes(treeView.Nodes, nesMenuCollection, allFolders);
+            AddNodes(treeView.Nodes, nesMenuCollection);
         }
 
-        void AddNodes(TreeNodeCollection treeNodeCollection, NesMenuCollection nesMenuCollection, List<NesMenuCollection> usedFolders)
+        void AddNodes(TreeNodeCollection treeNodeCollection, NesMenuCollection nesMenuCollection, List<NesMenuCollection> usedFolders = null)
         {
-            if (usedFolders.Contains(nesMenuCollection)) return;
+            if (usedFolders == null)
+                usedFolders = new List<NesMenuCollection>();
+            if (usedFolders.Contains(nesMenuCollection))
+                return;
             usedFolders.Add(nesMenuCollection);
             var sorted = nesMenuCollection.OrderBy(o => o.Name);
             foreach (var nesElement in sorted)

@@ -40,7 +40,7 @@ namespace com.clusterrr.hakchi_gui
                 root = new NesMenuCollection();
                 root.AddRange(this.Where(o => !(o is NesDefaultGame)));
                 this.RemoveAll(o => !(o is NesDefaultGame));
-                this.Add(new NesMenuFolder() { Name =  Resources.FolderNameMoreGames, First = false, Child = root });
+                this.Add(new NesMenuFolder() { Name =  Resources.FolderNameMoreGames, Position = NesMenuFolder.Priority.End, Child = root });
             }
 
             var sorted = root.OrderBy(o => o.Name);
@@ -78,11 +78,9 @@ namespace com.clusterrr.hakchi_gui
                     var fname = alphaNum.Replace(coll.Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Name.ToUpper(), "");
                     var lname = alphaNum.Replace(coll.Where(o => (o is NesGame) || (o is NesDefaultGame)).Last().Name.ToUpper(), "");
 
-                    var folder = new NesMenuFolder();
-                    folder.Child = coll;
-                    folder.NameParts = new string[] { fname, lname };
+                    var folder = new NesMenuFolder() { Child = coll, NameParts = new string[] { fname, lname }, Position = NesMenuFolder.Priority.Left };
+                    coll.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, Image = Resources.back, Position = NesMenuFolder.Priority.Back, Child = root });
                     root.Add(folder);
-                    coll.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, Image = Resources.back, Child = root });
                 }
                 TrimFolderNames(root);
             }
@@ -93,24 +91,26 @@ namespace com.clusterrr.hakchi_gui
                 {
                     for (int j = i - 1; j >= 0; j--)
                     {
-                        var folder = new NesMenuFolder();
                         var fname = alphaNum.Replace(collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Name.ToUpper(), "");
                         var lname = alphaNum.Replace(collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).Last().Name.ToUpper(), "");
-                        folder.Child = collections[j];
-                        folder.NameParts = new string[] { fname, lname };
-                        //folder.Initial = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Code;
-                        folder.First = true;
+                        var folder = new NesMenuFolder()
+                        {
+                            Child = j > 0 ? collections[j] : root,
+                            NameParts = new string[] { fname, lname },
+                            Position = NesMenuFolder.Priority.Left
+                        };
                         collections[i].Insert(0, folder);
                     }
                     for (int j = i + 1; j < collections.Count; j++)
                     {
-                        var folder = new NesMenuFolder();
                         var fname = alphaNum.Replace(collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Name.ToUpper(), "");
                         var lname = alphaNum.Replace(collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).Last().Name.ToUpper(), "");
-                        folder.Child = collections[j];
-                        folder.NameParts = new string[] { fname, lname };
-                        //folder.Initial = collections[j].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Code;
-                        folder.First = false;
+                        var folder = new NesMenuFolder()
+                        {
+                            Child = j > 0 ? collections[j] : root,
+                            NameParts = new string[] { fname, lname },
+                            Position = NesMenuFolder.Priority.Right
+                        };
                         collections[i].Insert(collections[i].Count, folder);
                     }
                     TrimFolderNames(collections[i]);
@@ -137,19 +137,19 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var letter in letters.Keys)
                     if (letters[letter].Count > 0)
                     {
-                        var folder = new NesMenuFolder() { Child = letters[letter], Name = letter.ToString() };
+                        var folder = new NesMenuFolder() { Child = letters[letter], Name = letter.ToString(), Position = NesMenuFolder.Priority.Left };
                         if (style == SplitStyle.FoldersAlphabetic_PagesEqual)
                         {
                             folder.Child.Split(SplitStyle.PagesEqual, false, maxElements);
-                            folder.Child.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, Image = Resources.back, Child = root });
+                            folder.Child.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, Image = Resources.back, Position = NesMenuFolder.Priority.Back, Child = root });
                             foreach (NesMenuFolder f in folder.Child.Where(o => o is NesMenuFolder))
                                 if (f.Child != root)
-                                    f.Child.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, Image = Resources.back, Child = root });
+                                    f.Child.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, Image = Resources.back, Position = NesMenuFolder.Priority.Back, Child = root });
                         }
                         else if (style == SplitStyle.FoldersAlphabetic_FoldersEqual)
                         {
                             folder.Child.Split(SplitStyle.FoldersEqual, false, maxElements);
-                            folder.Child.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, Image = Resources.back, Child = root });
+                            folder.Child.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, Image = Resources.back, Position = NesMenuFolder.Priority.Back, Child = root });
                         }
                         //folder.Initial = letters[letter].Where(o => (o is NesGame) || (o is NesDefaultGame)).First().Code;
                         root.Add(folder);
@@ -157,14 +157,12 @@ namespace com.clusterrr.hakchi_gui
             }
             if (originalToRoot)
             {
-                if (style != SplitStyle.FoldersEqual)
-                    root.Add(new NesMenuFolder() { Name = Resources.FolderNameOriginalGames, Image = Resources.back, Child = this });
+                if (style != SplitStyle.PagesEqual)
+                    root.Add(new NesMenuFolder() { Name = Resources.FolderNameOriginalGames, Image = Resources.back, Position = NesMenuFolder.Priority.Back, Child = this });
                 else
                 {
-                    root.Add(new NesMenuFolder() { Name = Resources.FolderNameOriginalGames, Image = Resources.back, Child = this });
-                    foreach (NesMenuFolder f in root.Where(o => o is NesMenuFolder))
-                        if (f.Child != root)
-                            f.Child.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, Image = Resources.back, Child = root });
+                    foreach(var collection in collections)
+                        collection.Add(new NesMenuFolder() { Name = Resources.FolderNameOriginalGames, Image = Resources.back, Position = NesMenuFolder.Priority.Back, Child = this });
                 }
             }
         }
