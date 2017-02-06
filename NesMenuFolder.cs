@@ -25,8 +25,31 @@ namespace com.clusterrr.hakchi_gui
 
         public string Name
         {
-            get { return name; }
-            set { name = value; }
+            get
+            {
+                return (first ? ' ' : 'Я') + name;
+            }
+            set
+            {
+                name = value;
+                if (!string.IsNullOrEmpty(name))
+                    nameParts = new string[] { name };
+                else
+                    nameParts = new string[0];
+            }
+        }
+        private string[] nameParts;
+        public string[] NameParts
+        {
+            get { return nameParts; }
+            set
+            {
+                nameParts = value;
+                if (value != null)
+                    name = string.Join(" - ", nameParts);
+                else
+                    name = null;
+            }
         }
         public NesMenuCollection Child = new NesMenuCollection();
         public string Initial = "";
@@ -60,8 +83,9 @@ namespace com.clusterrr.hakchi_gui
                 }
                 first = value;
             }
-            get { 
-                return first;  
+            get
+            {
+                return first;
             }
         }
 

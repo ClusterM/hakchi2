@@ -373,4 +373,13 @@
   <data name="GGDescriptionEmpty" xml:space="preserve">
     <value>You must enter a description!</value>
   </data>
+  <data name="FolderNameBack" xml:space="preserve">
+    <value>&lt;- Back</value>
+  </data>
+  <data name="FolderNameMoreGames" xml:space="preserve">
+    <value>More games...</value>
+  </data>
+  <data name="FolderNameOriginalGames" xml:space="preserve">
+    <value>&lt;- Original games</value>
+  </data>
 </root>

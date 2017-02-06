@@ -372,6 +372,33 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;- Back.
+        /// </summary>
+        internal static string FolderNameBack {
+            get {
+                return ResourceManager.GetString("FolderNameBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More games....
+        /// </summary>
+        internal static string FolderNameMoreGames {
+            get {
+                return ResourceManager.GetString("FolderNameMoreGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;- Original games.
+        /// </summary>
+        internal static string FolderNameOriginalGames {
+            get {
+                return ResourceManager.GetString("FolderNameOriginalGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, {0} uses four-screen mode (i.e.  it&apos;s rare case the game has additional VRAM memory in cartridge) and this feature is not supported by NES Mini. Game probably will not start. Do you want to add this game anyway?.
         /// </summary>
         internal static string FourScreenNotSupported {

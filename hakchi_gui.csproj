@@ -201,6 +201,12 @@
     <Compile Include="StringInputForm.Designer.cs">
       <DependentUpon>StringInputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TreeContructorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreeContructorForm.Designer.cs">
+      <DependentUpon>TreeContructorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
     <Compile Include="WaitingForm.cs">
@@ -274,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StringInputForm.resx">
       <DependentUpon>StringInputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeContructorForm.resx">
+      <DependentUpon>TreeContructorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingForm.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>
@@ -492,9 +501,11 @@
     <Content Include="images\back.png" />
     <Content Include="images\blank_fds.png" />
     <Content Include="images\blank_jp.png" />
+    <Content Include="images\blank_sm.png" />
     <Content Include="images\folder.png" />
+    <Content Include="images\folder_sm.png" />
     <Content Include="images\gamepad.png" />
-    <Content Include="images\icon.ico" />
+    <Content Include="images\original_sm.png" />
     <Content Include="mods\mod_transfer\hakchi\blank_pixel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
