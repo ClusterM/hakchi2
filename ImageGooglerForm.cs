@@ -55,14 +55,17 @@ namespace com.clusterrr.hakchi_gui
             MatchCollection matches = Regex.Matches(responseFromServer, search);
             foreach (Match match in matches)
             {
-                urls.Add(match.Groups[1].Value);
+                urls.Add(HttpUtility.UrlDecode(match.Groups[1].Value.Replace("\\u00", "%")));
             }
 
+            // For some reason Google returns different data for dirrefent users (IPs?)
+            // There is alternative method
             search = @"imgurl=(.*?)&";
             matches = Regex.Matches(responseFromServer, search);
             foreach (Match match in matches)
             {
-                urls.Add(match.Groups[1].Value);
+                // Not sure about it.
+                urls.Add(HttpUtility.UrlDecode(match.Groups[1].Value.Replace("\\u00", "%")));
             }
 
             return urls.ToArray();

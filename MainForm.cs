@@ -227,7 +227,7 @@ namespace com.clusterrr.hakchi_gui
                 textBoxPublisher.Text = game.Publisher;
                 textBoxArguments.Text = game.Args;
                 if (File.Exists(game.IconPath))
-                    pictureBoxArt.Image = LoadBitmap(game.IconPath);
+                    pictureBoxArt.Image = NesGame.LoadBitmap(game.IconPath);
                 else
                     pictureBoxArt.Image = null;
                 textBoxGameGenie.Enabled = game.Type == NesGame.GameType.Cartridge;
@@ -313,7 +313,7 @@ namespace com.clusterrr.hakchi_gui
                 var selected = checkedListBoxGames.SelectedItem;
                 if (selected == null || !(selected is NesGame)) return;
                 var game = (selected as NesGame);
-                game.SetImage(Image.FromFile(openFileDialogImage.FileName), ConfigIni.EightBitPngCompression);
+                game.SetImage(NesGame.LoadBitmap(openFileDialogImage.FileName), ConfigIni.EightBitPngCompression);
                 ShowSelected();
             }
         }
@@ -328,20 +328,6 @@ namespace com.clusterrr.hakchi_gui
             {
                 game.SetImage(googler.Result, ConfigIni.EightBitPngCompression);
                 ShowSelected();
-            }
-        }
-
-        public static Bitmap LoadBitmap(string path)
-        {
-            //Open file in read only mode
-            using (FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read))
-            //Get a binary reader for the file stream
-            using (BinaryReader reader = new BinaryReader(stream))
-            {
-                //copy the content of the file into a memory stream
-                var memoryStream = new MemoryStream(reader.ReadBytes((int)stream.Length));
-                //make a new Bitmap object the owner of the MemoryStream
-                return new Bitmap(memoryStream);
             }
         }
 

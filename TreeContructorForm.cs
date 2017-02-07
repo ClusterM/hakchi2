@@ -133,7 +133,7 @@ namespace com.clusterrr.hakchi_gui
                 if (node != null && node.Tag is NesGame)
                 {
                     var game = node.Tag as NesGame;
-                    pictureBoxArt.Image = MainForm.LoadBitmap(game.IconPath);
+                    pictureBoxArt.Image = NesGame.LoadBitmap(game.IconPath);
                     pictureBoxArt.Enabled = true;
                     listViewContent.Enabled = false;
                 }

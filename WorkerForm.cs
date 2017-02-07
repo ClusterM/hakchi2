@@ -919,7 +919,6 @@ namespace com.clusterrr.hakchi_gui
                             lGameGenieDataBase.ImportCodes(lGameGeniePath, true);
                             lGameGenieDataBase.Save();
                         }
-
                     }
                     catch (Exception ex)
                     {
