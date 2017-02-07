@@ -64,6 +64,19 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigIni.cs" />
+    <Compile Include="GameGenieCodeAddModForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameGenieCodeAddModForm.designer.cs">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameGenieCodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameGenieCodeForm.designer.cs">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameGenieDataBase.cs" />
     <Compile Include="MessageBoxManager.cs" />
     <Compile Include="NesDefaultGame.cs" />
     <Compile Include="FelLib\AWFELMessage.cs" />
@@ -188,6 +201,12 @@
     <Compile Include="StringInputForm.Designer.cs">
       <DependentUpon>StringInputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TreeContructorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreeContructorForm.Designer.cs">
+      <DependentUpon>TreeContructorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
     <Compile Include="WaitingForm.cs">
@@ -204,6 +223,18 @@
     </Compile>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.ru-RU.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.ru-RU.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageGooglerForm.resx">
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
@@ -249,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StringInputForm.resx">
       <DependentUpon>StringInputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeContructorForm.resx">
+      <DependentUpon>TreeContructorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingForm.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>
@@ -453,6 +487,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\GameGenieDB.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\nescarts.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -464,9 +501,11 @@
     <Content Include="images\back.png" />
     <Content Include="images\blank_fds.png" />
     <Content Include="images\blank_jp.png" />
+    <Content Include="images\blank_sm.png" />
     <Content Include="images\folder.png" />
+    <Content Include="images\folder_sm.png" />
     <Content Include="images\gamepad.png" />
-    <Content Include="images\icon.ico" />
+    <Content Include="images\original_sm.png" />
     <Content Include="mods\mod_transfer\hakchi\blank_pixel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

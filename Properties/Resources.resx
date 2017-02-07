@@ -361,4 +361,25 @@
   <data name="YesForAll" xml:space="preserve">
     <value>Yes for all</value>
   </data>
+  <data name="GGCodeDelete" xml:space="preserve">
+    <value>Do you want to delete "{0}" code?</value>
+  </data>
+  <data name="GGCodeEmpty" xml:space="preserve">
+    <value>You must enter a code!</value>
+  </data>
+  <data name="GGCodeExists" xml:space="preserve">
+    <value>This code already exist. Do you want to edit it?</value>
+  </data>
+  <data name="GGDescriptionEmpty" xml:space="preserve">
+    <value>You must enter a description!</value>
+  </data>
+  <data name="FolderNameBack" xml:space="preserve">
+    <value>&lt;- Back</value>
+  </data>
+  <data name="FolderNameMoreGames" xml:space="preserve">
+    <value>More games...</value>
+  </data>
+  <data name="FolderNameOriginalGames" xml:space="preserve">
+    <value>&lt;- Original games</value>
+  </data>
 </root>

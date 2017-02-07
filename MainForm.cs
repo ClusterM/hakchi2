@@ -129,11 +129,10 @@ namespace com.clusterrr.hakchi_gui
                 max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
 
                 // Tweeks for message boxes
-                MessageBoxManager.Yes =MessageBoxManager.Retry = Resources.Yes;
+                MessageBoxManager.Yes = MessageBoxManager.Retry = Resources.Yes;
                 MessageBoxManager.No = MessageBoxManager.Ignore = Resources.No;
                 MessageBoxManager.Cancel = Resources.NoForAll;
                 MessageBoxManager.Abort = Resources.YesForAll;
-                MessageBoxManager.Register();
 
                 // Loading games database in background
                 new Thread(NesGame.LoadCache).Start();
@@ -585,7 +584,7 @@ namespace com.clusterrr.hakchi_gui
                     else
                         hiddenGames.Add(((NesDefaultGame)checkedListBoxDefaultGames.Items[i]).Code);
                 }
-            workerForm.Games.Split(ConfigIni.MaxGamesPerFolder);
+            workerForm.Games.Split(NesMenuCollection.SplitStyle.Auto, true, ConfigIni.MaxGamesPerFolder);            
             workerForm.Config["hakchi_original_games"] = needOriginal;
             if (ConfigIni.AntiArmetLevel == 1)
                 workerForm.Config["hakchi_remove_armet_original"] = true;
@@ -599,6 +598,10 @@ namespace com.clusterrr.hakchi_gui
             workerForm.AutofireHack = ConfigIni.AutofireHack;
             workerForm.FcStart = ConfigIni.FcStart;
             workerForm.ExtraCommandLineArguments = ConfigIni.ExtraCommandLineArguments;
+            
+            //var browser = new TreeContructorForm(workerForm.Games);
+            //browser.ShowDialog(); return false;
+
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
         }
@@ -606,7 +609,7 @@ namespace com.clusterrr.hakchi_gui
         void AddGames(string[] files)
         {
             SaveConfig();
-
+            MessageBoxManager.Register(); // Tweak button names
             NesGame nesGame = null;
             var workerForm = new WorkerForm();
             workerForm.Text = Resources.LoadingGames;
@@ -629,6 +632,7 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     }
             }
+            MessageBoxManager.Unregister();
         }
 
         bool FlashOriginalKernel(bool boot = true)
@@ -988,6 +992,15 @@ namespace com.clusterrr.hakchi_gui
             max80toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 80;
             max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
             max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
+        }
+
+        private void buttonShowGameGenieDatabase_Click(object sender, EventArgs e)
+        {
+            if (!(checkedListBoxGames.SelectedItem is NesGame)) return;
+            NesGame nesGame = (NesGame)checkedListBoxGames.SelectedItem;
+            GameGenieCodeForm lFrm = new GameGenieCodeForm(nesGame);
+            if (lFrm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                textBoxGameGenie.Text = nesGame.GameGenie;
         }
     }
 }

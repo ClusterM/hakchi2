@@ -14,7 +14,15 @@ namespace com.clusterrr.hakchi_gui
     {
         static Random rnd = new Random();
         private string code = null;
-        private bool first = true;
+        public enum Priority
+        {
+            First = 0,
+            Left = 1,
+            Right = 3,
+            Last = 4
+        }
+        private Priority position;
+        //private bool first = true;
 
         public string Code
         {
@@ -25,8 +33,31 @@ namespace com.clusterrr.hakchi_gui
 
         public string Name
         {
-            get { return name; }
-            set { name = value; }
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+                if (!string.IsNullOrEmpty(name))
+                    nameParts = new string[] { name };
+                else
+                    nameParts = new string[0];
+            }
+        }
+        private string[] nameParts;
+        public string[] NameParts
+        {
+            get { return nameParts; }
+            set
+            {
+                nameParts = value;
+                if (value != null)
+                    name = string.Join(" - ", nameParts);
+                else
+                    name = null;
+            }
         }
         public NesMenuCollection Child = new NesMenuCollection();
         public string Initial = "";
@@ -39,29 +70,43 @@ namespace com.clusterrr.hakchi_gui
         string Publisher = new String('!', 10);
 
         // It's workaround for sorting
-        public bool First
+        public Priority Position
         {
             set
             {
                 // Sort to left
-                if (value)
+                position = value;
+                switch (position)
                 {
-                    Players = 2;
-                    Simultaneous = 1;
-                    ReleaseDate = "0000-00-00";
-                    Publisher = new String('!', 10);
+                    case Priority.First:
+                        Players = 2;
+                        Simultaneous = 1;
+                        ReleaseDate = "0000-00-00";
+                        Publisher = new String((char)1, 10);
+                        break;
+                    case Priority.Left:
+                        Players = 2;
+                        Simultaneous = 1;
+                        ReleaseDate = "1111-11-11";
+                        Publisher = new String((char)2, 10);
+                        break;
+                    case Priority.Right:
+                        Players = 1;
+                        Simultaneous = 0;
+                        ReleaseDate = "7777-77-77";
+                        Publisher = new String('Z', 9) + "X";
+                        break;
+                    case Priority.Last:
+                        Players = 1;
+                        Simultaneous = 0;
+                        ReleaseDate = "9999-99-99";
+                        Publisher = new String('Z', 10);
+                        break;
                 }
-                else // Sort to right
-                {
-                    Players = 1;
-                    Simultaneous = 0;
-                    ReleaseDate = "9999-99-99";
-                    Publisher = new String('Z', 10);
-                }
-                first = value;
             }
-            get { 
-                return first;  
+            get
+            {
+                return position;
             }
         }
 
@@ -69,7 +114,8 @@ namespace com.clusterrr.hakchi_gui
         {
             Code = GenerateCode((uint)rnd.Next());
             Name = "Folder";
-            First = true;
+            Position = Priority.Left;
+            Image = null;
         }
 
         public Image Image
@@ -113,6 +159,23 @@ namespace com.clusterrr.hakchi_gui
             var ConfigPath = Path.Combine(path, Code + ".desktop");
             var IconPath = Path.Combine(path, Code + ".png");
             var ThumnnailIconPath = Path.Combine(path, Code + "_small.png");
+            char prefix;
+            switch (position)
+            {
+                case Priority.First:
+                    prefix = (char)1;
+                    break;
+                default:
+                case Priority.Left:
+                    prefix = (char)2;
+                    break;
+                case Priority.Right:
+                    prefix = 'Ю';
+                    break;
+                case Priority.Last:
+                    prefix = 'Я';
+                    break;
+            }
             File.WriteAllText(ConfigPath, string.Format(
                  "[Desktop Entry]\n" +
                  "Type=Application\n" +
@@ -132,7 +195,7 @@ namespace com.clusterrr.hakchi_gui
                  "SortRawPublisher={6}\n" +
                  "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
                  Code, index, Name ?? Code, Players, ReleaseDate,
-                 (Name ?? Code).ToLower(), (Publisher ?? "").ToUpper(),
+                 prefix + (Name ?? Code).ToLower(), (Publisher ?? "").ToUpper(),
                  Simultaneous, Initial)
                  );
             if (Icon == null)
