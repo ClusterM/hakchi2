@@ -584,7 +584,7 @@ namespace com.clusterrr.hakchi_gui
                     else
                         hiddenGames.Add(((NesDefaultGame)checkedListBoxDefaultGames.Items[i]).Code);
                 }
-            workerForm.Games.Split(NesMenuCollection.SplitStyle.Auto, false, ConfigIni.MaxGamesPerFolder);            
+            workerForm.Games.Split(NesMenuCollection.SplitStyle.Auto, true, ConfigIni.MaxGamesPerFolder);            
             workerForm.Config["hakchi_original_games"] = needOriginal;
             if (ConfigIni.AntiArmetLevel == 1)
                 workerForm.Config["hakchi_remove_armet_original"] = true;
@@ -600,7 +600,7 @@ namespace com.clusterrr.hakchi_gui
             workerForm.ExtraCommandLineArguments = ConfigIni.ExtraCommandLineArguments;
             
             //var browser = new TreeContructorForm(workerForm.Games);
-            //browser.ShowDialog();
+            //browser.ShowDialog(); return false;
 
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;

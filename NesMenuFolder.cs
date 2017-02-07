@@ -16,10 +16,10 @@ namespace com.clusterrr.hakchi_gui
         private string code = null;
         public enum Priority
         {
-            Back = 0,
+            First = 0,
             Left = 1,
-            Right = 2,
-            End = 3
+            Right = 3,
+            Last = 4
         }
         private Priority position;
         //private bool first = true;
@@ -35,24 +35,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                char prefix;
-                switch (position)
-                {
-                    case Priority.Back:
-                        prefix = (char)1;
-                        break;
-                    default:
-                    case Priority.Left:
-                        prefix = (char)2;
-                        break;
-                    case Priority.Right:
-                        prefix = 'Ю';
-                        break;
-                    case Priority.End:
-                        prefix = 'Я';
-                        break;
-                }
-                return prefix + name;
+                return name;
             }
             set
             {
@@ -95,7 +78,7 @@ namespace com.clusterrr.hakchi_gui
                 position = value;
                 switch (position)
                 {
-                    case Priority.Back:
+                    case Priority.First:
                         Players = 2;
                         Simultaneous = 1;
                         ReleaseDate = "0000-00-00";
@@ -110,10 +93,10 @@ namespace com.clusterrr.hakchi_gui
                     case Priority.Right:
                         Players = 1;
                         Simultaneous = 0;
-                        ReleaseDate = "8888-88-88";
-                        Publisher = new String('Y', 10);
+                        ReleaseDate = "7777-77-77";
+                        Publisher = new String('Z', 9) + "X";
                         break;
-                    case Priority.End:
+                    case Priority.Last:
                         Players = 1;
                         Simultaneous = 0;
                         ReleaseDate = "9999-99-99";
@@ -132,6 +115,7 @@ namespace com.clusterrr.hakchi_gui
             Code = GenerateCode((uint)rnd.Next());
             Name = "Folder";
             Position = Priority.Left;
+            Image = null;
         }
 
         public Image Image
@@ -175,6 +159,23 @@ namespace com.clusterrr.hakchi_gui
             var ConfigPath = Path.Combine(path, Code + ".desktop");
             var IconPath = Path.Combine(path, Code + ".png");
             var ThumnnailIconPath = Path.Combine(path, Code + "_small.png");
+            char prefix;
+            switch (position)
+            {
+                case Priority.First:
+                    prefix = (char)1;
+                    break;
+                default:
+                case Priority.Left:
+                    prefix = (char)2;
+                    break;
+                case Priority.Right:
+                    prefix = 'Ю';
+                    break;
+                case Priority.Last:
+                    prefix = 'Я';
+                    break;
+            }
             File.WriteAllText(ConfigPath, string.Format(
                  "[Desktop Entry]\n" +
                  "Type=Application\n" +
@@ -194,7 +195,7 @@ namespace com.clusterrr.hakchi_gui
                  "SortRawPublisher={6}\n" +
                  "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
                  Code, index, Name ?? Code, Players, ReleaseDate,
-                 (Name ?? Code).ToLower(), (Publisher ?? "").ToUpper(),
+                 prefix + (Name ?? Code).ToLower(), (Publisher ?? "").ToUpper(),
                  Simultaneous, Initial)
                  );
             if (Icon == null)
