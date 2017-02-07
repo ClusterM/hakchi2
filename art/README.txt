@@ -1,0 +1,1 @@
+Copy your cover art set here in .png or .jpg format, and hakchi2 will look here when adding games. If it finds a cover art filename that matches the ROM filename, hakchi2 will automatically use that cover art for that game.
