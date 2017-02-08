@@ -567,6 +567,8 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine(string.Format("Games copied: {0}/{1}, part size: {2}", stats.GamesProceed, stats.GamesTotal, stats.Size));
             }
 
+            bool last = stats.GamesProceed >= stats.GamesTotal;
+
             // Remove thumbnails
             if (Config != null && Config.ContainsKey("hakchi_remove_thumbnails") && Config["hakchi_remove_thumbnails"])
             {
@@ -579,7 +581,7 @@ namespace com.clusterrr.hakchi_gui
             if (Config != null)
             {
                 Config["hakchi_partial_first"] = first;
-                Config["hakchi_partial_last"] = stats.GamesProceed >= stats.GamesTotal;
+                Config["hakchi_partial_last"] = last;
                 var config = new StringBuilder();
 
                 foreach (var key in Config.Keys)
@@ -610,6 +612,7 @@ namespace com.clusterrr.hakchi_gui
 
             var result = File.ReadAllBytes(kernelPatched);
 #if !DEBUG
+            if (last)
             Directory.Delete(tempDirectory, true);
 #endif
             if (result.Length > Fel.kernel_max_size) throw new Exception("Kernel is too big");
