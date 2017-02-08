@@ -538,10 +538,6 @@ namespace com.clusterrr.hakchi_gui
                     }
                     File.WriteAllBytes(cloverconDriverPath, drv);
                 }
-                if (!string.IsNullOrEmpty(ExtraCommandLineArguments))
-                {
-                    File.WriteAllText(argumentsFilePath, ExtraCommandLineArguments);
-                }
             } // if first transfer
             else // else clean games directory and extra files
             {
@@ -568,6 +564,14 @@ namespace com.clusterrr.hakchi_gui
             }
 
             bool last = stats.GamesProceed >= stats.GamesTotal;
+
+						if (last)
+						{
+                if (!string.IsNullOrEmpty(ExtraCommandLineArguments))
+                {
+                    File.WriteAllText(argumentsFilePath, ExtraCommandLineArguments);
+                }
+						}
 
             // Remove thumbnails
             if (Config != null && Config.ContainsKey("hakchi_remove_thumbnails") && Config["hakchi_remove_thumbnails"])
