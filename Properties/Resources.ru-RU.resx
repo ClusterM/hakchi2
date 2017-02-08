@@ -361,4 +361,13 @@
   <data name="GGDescriptionEmpty" xml:space="preserve">
     <value>Вы должны ввести описание!</value>
   </data>
+  <data name="DeleteFolder" xml:space="preserve">
+    <value>Удалить папку "{0}"?</value>
+  </data>
+  <data name="FolderContent" xml:space="preserve">
+    <value>Содержимое папки будет перемещено в папку "Unsorted".</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Главное меню</value>
+  </data>
 </root>

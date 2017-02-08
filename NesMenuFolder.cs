@@ -6,20 +6,25 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text;
+using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
 {
     public class NesMenuFolder : INesMenuElement
     {
         static Random rnd = new Random();
+        static ResourceManager rm = Resources.ResourceManager;
+
         private string code = null;
         public enum Priority
         {
-            First = 0,
+            Leftmost = 0,
             Left = 1,
             Right = 3,
-            Last = 4
+            Rightmost = 4,
+            Back = 5
         }
         private Priority position;
         //private bool first = true;
@@ -59,10 +64,11 @@ namespace com.clusterrr.hakchi_gui
                     name = null;
             }
         }
-        public NesMenuCollection Child = new NesMenuCollection();
+        public NesMenuCollection ChildMenuCollection = new NesMenuCollection();
         public string Initial = "";
         private Image Icon;
         private Image ThumbnailIcon;
+        private string imageId;
 
         byte Players = 2;
         byte Simultaneous = 1;
@@ -78,7 +84,7 @@ namespace com.clusterrr.hakchi_gui
                 position = value;
                 switch (position)
                 {
-                    case Priority.First:
+                    case Priority.Leftmost:
                         Players = 2;
                         Simultaneous = 1;
                         ReleaseDate = "0000-00-00";
@@ -96,7 +102,13 @@ namespace com.clusterrr.hakchi_gui
                         ReleaseDate = "7777-77-77";
                         Publisher = new String('Z', 9) + "X";
                         break;
-                    case Priority.Last:
+                    case Priority.Rightmost:
+                        Players = 1;
+                        Simultaneous = 0;
+                        ReleaseDate = "8888-88-88";
+                        Publisher = new String('Z', 9) + "Y";
+                        break;
+                    case Priority.Back:
                         Players = 1;
                         Simultaneous = 0;
                         ReleaseDate = "9999-99-99";
@@ -110,12 +122,12 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public NesMenuFolder()
+        public NesMenuFolder(string name = "Folder", string imageId = "folder")
         {
             Code = GenerateCode((uint)rnd.Next());
-            Name = "Folder";
-            Position = Priority.Left;
-            Image = null;
+            Name = name;
+            Position = Priority.Right;
+            ImageId = imageId;
         }
 
         public Image Image
@@ -150,9 +162,26 @@ namespace com.clusterrr.hakchi_gui
                 gr = Graphics.FromImage(ThumbnailIcon);
                 gr.DrawImage(Icon, new Rectangle(0, 0, ThumbnailIcon.Width, ThumbnailIcon.Height), new Rectangle(0, 0, Icon.Width, Icon.Height), GraphicsUnit.Pixel);
                 gr.Flush();
+                imageId = null;
             }
             get { return Icon; }
         }
+
+        public string ImageId
+        {
+            get { return imageId; }
+            set
+            {
+                var folderImagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "folder_images");
+                var filePath = Path.Combine(folderImagesDirectory, value + ".png");
+                if (File.Exists(filePath))
+                    Image = NesGame.LoadBitmap(filePath);
+                else
+                    Image = (Image)rm.GetObject(value);
+                imageId = value;
+            }
+        }
+
         public void Save(string path, int index)
         {
             Directory.CreateDirectory(path);
@@ -162,7 +191,7 @@ namespace com.clusterrr.hakchi_gui
             char prefix;
             switch (position)
             {
-                case Priority.First:
+                case Priority.Leftmost:
                     prefix = (char)1;
                     break;
                 default:
@@ -170,9 +199,12 @@ namespace com.clusterrr.hakchi_gui
                     prefix = (char)2;
                     break;
                 case Priority.Right:
+                    prefix = 'Э';
+                    break;
+                case Priority.Rightmost:
                     prefix = 'Ю';
                     break;
-                case Priority.Last:
+                case Priority.Back:
                     prefix = 'Я';
                     break;
             }

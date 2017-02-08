@@ -567,6 +567,8 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine(string.Format("Games copied: {0}/{1}, part size: {2}", stats.GamesProceed, stats.GamesTotal, stats.Size));
             }
 
+            bool last = stats.GamesProceed >= stats.GamesTotal;
+
             // Remove thumbnails
             if (Config != null && Config.ContainsKey("hakchi_remove_thumbnails") && Config["hakchi_remove_thumbnails"])
             {
@@ -579,7 +581,7 @@ namespace com.clusterrr.hakchi_gui
             if (Config != null)
             {
                 Config["hakchi_partial_first"] = first;
-                Config["hakchi_partial_last"] = stats.GamesProceed >= stats.GamesTotal;
+                Config["hakchi_partial_last"] = last;
                 var config = new StringBuilder();
 
                 foreach (var key in Config.Keys)
@@ -610,7 +612,8 @@ namespace com.clusterrr.hakchi_gui
 
             var result = File.ReadAllBytes(kernelPatched);
 #if !DEBUG
-            Directory.Delete(tempDirectory, true);
+            if (last)
+                Directory.Delete(tempDirectory, true);
 #endif
             if (result.Length > Fel.kernel_max_size) throw new Exception("Kernel is too big");
             return result;
@@ -740,14 +743,14 @@ namespace com.clusterrr.hakchi_gui
                 if (element is NesMenuFolder)
                 {
                     var folder = element as NesMenuFolder;
-                    if (!stats.allMenus.Contains(folder.Child))
+                    if (!stats.allMenus.Contains(folder.ChildMenuCollection))
                     {
-                        stats.allMenus.Add(folder.Child);
-                        AddMenu(folder.Child, stats);
+                        stats.allMenus.Add(folder.ChildMenuCollection);
+                        AddMenu(folder.ChildMenuCollection, stats);
                     }
                     if (stats.GamesStart == 0)
                     {
-                        int childIndex = stats.allMenus.IndexOf(folder.Child);
+                        int childIndex = stats.allMenus.IndexOf(folder.ChildMenuCollection);
                         var folderDir = Path.Combine(targetDirectory, folder.Code);
                         folder.Save(folderDir, childIndex);
                     }
@@ -919,7 +922,6 @@ namespace com.clusterrr.hakchi_gui
                             lGameGenieDataBase.ImportCodes(lGameGeniePath, true);
                             lGameGenieDataBase.Save();
                         }
-
                     }
                     catch (Exception ex)
                     {
