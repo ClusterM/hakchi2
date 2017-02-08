@@ -313,14 +313,8 @@
     <value>Extra command line arguments</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="back" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\back.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\blank.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\folder.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DownloadAllCoversTitle" xml:space="preserve">
     <value>Downloading covers for all games (I'm feeling lucky!)</value>
@@ -381,5 +375,101 @@
   </data>
   <data name="FolderNameOriginalGames" xml:space="preserve">
     <value>&lt;- Original games</value>
+  </data>
+  <data name="folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_a" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_a.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_b.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_back.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_c" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_c.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_d" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_d.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_e" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_e.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_f" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_f.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_g.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_h" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_h.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_i" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_i.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_j" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_j.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_k" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_k.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_l.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_m.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_n" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_n.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_number" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_number.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_o" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_o.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_p.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_q" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_q.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_r" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_r.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_s.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_t.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_u" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_u.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_v" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_v.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_w.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_x.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_y" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_y.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_z" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_z.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeleteFolder" xml:space="preserve">
+    <value>Delete "{0}" folder?</value>
+  </data>
+  <data name="FolderContent" xml:space="preserve">
+    <value>Folder content will be moved to "Unsorted" folder.</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Main Menu</value>
   </data>
 </root>

@@ -613,7 +613,7 @@ namespace com.clusterrr.hakchi_gui
             var result = File.ReadAllBytes(kernelPatched);
 #if !DEBUG
             if (last)
-            Directory.Delete(tempDirectory, true);
+                Directory.Delete(tempDirectory, true);
 #endif
             if (result.Length > Fel.kernel_max_size) throw new Exception("Kernel is too big");
             return result;
@@ -743,14 +743,14 @@ namespace com.clusterrr.hakchi_gui
                 if (element is NesMenuFolder)
                 {
                     var folder = element as NesMenuFolder;
-                    if (!stats.allMenus.Contains(folder.Child))
+                    if (!stats.allMenus.Contains(folder.ChildMenuCollection))
                     {
-                        stats.allMenus.Add(folder.Child);
-                        AddMenu(folder.Child, stats);
+                        stats.allMenus.Add(folder.ChildMenuCollection);
+                        AddMenu(folder.ChildMenuCollection, stats);
                     }
                     if (stats.GamesStart == 0)
                     {
-                        int childIndex = stats.allMenus.IndexOf(folder.Child);
+                        int childIndex = stats.allMenus.IndexOf(folder.ChildMenuCollection);
                         var folderDir = Path.Combine(targetDirectory, folder.Code);
                         folder.Save(folderDir, childIndex);
                     }

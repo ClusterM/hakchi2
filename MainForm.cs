@@ -585,8 +585,8 @@ namespace com.clusterrr.hakchi_gui
             workerForm.FcStart = ConfigIni.FcStart;
             workerForm.ExtraCommandLineArguments = ConfigIni.ExtraCommandLineArguments;
             
-            //var browser = new TreeContructorForm(workerForm.Games);
-            //browser.ShowDialog(); return false;
+           // var browser = new TreeContructorForm(workerForm.Games);
+           //browser.ShowDialog(); return false;
 
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
@@ -707,7 +707,6 @@ namespace com.clusterrr.hakchi_gui
                 if (FlashOriginalKernel()) MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
 
         private void uninstallToolStripMenuItem_Click(object sender, EventArgs e)
         {
