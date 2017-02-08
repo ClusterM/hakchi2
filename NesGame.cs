@@ -311,6 +311,14 @@ namespace com.clusterrr.hakchi_gui
                 imagePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".jpg");
                 if (File.Exists(imagePath))
                     cover = LoadBitmap(imagePath);
+								var artDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "art");
+								Directory.CreateDirectory(artDirectory);
+								imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(nesFileName) + ".png");
+								if (File.Exists(imagePath))
+									cover = LoadBitmap(imagePath);
+								imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(nesFileName) + ".jpg");
+								if (File.Exists(imagePath))
+									cover = LoadBitmap(imagePath);
             }
             if (cover != null)
                 SetImage(cover, ConfigIni.EightBitPngCompression);
