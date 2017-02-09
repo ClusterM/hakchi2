@@ -472,4 +472,7 @@
   <data name="MainMenu" xml:space="preserve">
     <value>Main Menu</value>
   </data>
+  <data name="BuildingFolders" xml:space="preserve">
+    <value>Building folder structure...</value>
+  </data>
 </root>

@@ -370,4 +370,7 @@
   <data name="MainMenu" xml:space="preserve">
     <value>Главное меню</value>
   </data>
+  <data name="BuildingFolders" xml:space="preserve">
+    <value>Строим дерево папок...</value>
+  </data>
 </root>

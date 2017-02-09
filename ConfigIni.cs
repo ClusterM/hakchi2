@@ -24,6 +24,7 @@ namespace com.clusterrr.hakchi_gui
         public static byte AntiArmetLevel = 0;
         public static byte ConsoleType = 0;
         public static byte MaxGamesPerFolder = 30;
+        public static NesMenuCollection.SplitStyle FoldersMode = NesMenuCollection.SplitStyle.Auto;
         public static SelectButtonsForm.NesButtons ResetCombination = SelectButtonsForm.NesButtons.Down | SelectButtonsForm.NesButtons.Select;
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         public static string ExtraCommandLineArguments = "";
@@ -85,7 +86,7 @@ namespace com.clusterrr.hakchi_gui
                                     EightBitPngCompression = !value.ToLower().Equals("false");
                                     break;
                                 case "resetcombination":
-                                    ResetCombination = (SelectButtonsForm.NesButtons) byte.Parse(value);
+                                    ResetCombination = (SelectButtonsForm.NesButtons)byte.Parse(value);
                                     break;
                                 case "consoletype":
                                     ConsoleType = byte.Parse(value);
@@ -101,6 +102,9 @@ namespace com.clusterrr.hakchi_gui
                                     break;
                                 case "maxgamesperfolder":
                                     MaxGamesPerFolder = byte.Parse(value);
+                                    break;
+                                case "foldersmode":
+                                    FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse(value);
                                     break;
                             }
                             break;
@@ -132,6 +136,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("ExtraCommandLineArguments={0}", ExtraCommandLineArguments));
             configLines.Add(string.Format("FcStart={0}", FcStart));
             configLines.Add(string.Format("DisableMusic={0}", DisableMusic));
+            configLines.Add(string.Format("FoldersMode={0}", (byte)FoldersMode));
             configLines.Add(string.Format("MaxGamesPerFolder={0}", MaxGamesPerFolder));
 
             configLines.Add("");

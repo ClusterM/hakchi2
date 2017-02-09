@@ -49,12 +49,12 @@ namespace com.clusterrr.hakchi_gui
             listViewContent.ListViewItemSorter = new NodeSorter();
         }
 
-        void DrawTree(NesMenuCollection.SplitStyle splitStyle = NesMenuCollection.SplitStyle.NoSplit, bool originalToRoot = false)
+        void DrawTree(NesMenuCollection.SplitStyle splitStyle = NesMenuCollection.SplitStyle.NoSplit)
         {
             treeView.Nodes.Clear();
             var rootNode = new TreeNode(Resources.MainMenu);
             treeView.Nodes.Add(rootNode);
-            GamesCollection.Split(splitStyle, originalToRoot, ConfigIni.MaxGamesPerFolder);
+            GamesCollection.Split(splitStyle, ConfigIni.MaxGamesPerFolder);
             rootNode.Tag = GamesCollection;
             AddNodes(rootNode.Nodes, GamesCollection);
             rootNode.Expand();
@@ -97,32 +97,32 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonNoFolders_Click(object sender, EventArgs e)
         {
-            DrawTree(NesMenuCollection.SplitStyle.NoSplit, false);
+            DrawTree(NesMenuCollection.SplitStyle.NoSplit);
         }
 
         private void buttonNoFoldersOriginal_Click(object sender, EventArgs e)
         {
-            DrawTree(NesMenuCollection.SplitStyle.NoSplit, true);
+            DrawTree(NesMenuCollection.SplitStyle.Original_NoSplit);
         }
 
         private void buttonFoldersEqually_Click(object sender, EventArgs e)
         {
-            DrawTree(NesMenuCollection.SplitStyle.FoldersEqual, false);
+            DrawTree(NesMenuCollection.SplitStyle.FoldersEqual);
         }
 
         private void buttonFoldersEquallyOriginal_Click(object sender, EventArgs e)
         {
-            DrawTree(NesMenuCollection.SplitStyle.FoldersEqual, true);
+            DrawTree(NesMenuCollection.SplitStyle.Original_FoldersEqual);
         }
 
         private void buttonFoldersLetters_Click(object sender, EventArgs e)
         {
-            DrawTree(NesMenuCollection.SplitStyle.FoldersAlphabetic_FoldersEqual, false);
+            DrawTree(NesMenuCollection.SplitStyle.FoldersAlphabetic_FoldersEqual);
         }
 
         private void buttonFoldersLettersOriginal_Click(object sender, EventArgs e)
         {
-            DrawTree(NesMenuCollection.SplitStyle.FoldersAlphabetic_FoldersEqual, true);
+            DrawTree(NesMenuCollection.SplitStyle.Original_FoldersAlphabetic_FoldersEqual);
         }
 
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
@@ -620,6 +620,16 @@ namespace com.clusterrr.hakchi_gui
                     treeView.SelectedNode = treeView.SelectedNode.Parent;
                 }
             }
+        }
+
+        private void buttonOk_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

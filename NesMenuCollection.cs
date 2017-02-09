@@ -16,16 +16,35 @@ namespace com.clusterrr.hakchi_gui
         public enum SplitStyle
         {
             NoSplit = 0,
-            Auto = 1,
-            PagesEqual = 2,
-            FoldersEqual = 3,
-            FoldersAlphabetic_PagesEqual = 4,
-            FoldersAlphabetic_FoldersEqual = 5,
-            Custom = 6
+            Original_NoSplit = 1,
+            Auto = 2,
+            Original_Auto = 3,
+            PagesEqual = 4,
+            Original_PagesEqual = 5,
+            FoldersEqual = 6,
+            Original_FoldersEqual = 7,
+            FoldersAlphabetic_FoldersEqual = 8,
+            Original_FoldersAlphabetic_FoldersEqual = 9,
+            FoldersAlphabetic_PagesEqual = 10,
+            Original_FoldersAlphabetic_PagesEqual = 11,
+            Custom = 99
         }
 
-        public void Split(SplitStyle style, bool originalToRoot, int maxElements)
+        public void Split(SplitStyle style, int maxElements = 35)
         {
+            bool originalToRoot = false;
+            switch (style)
+            {
+                case SplitStyle.Original_NoSplit:
+                case SplitStyle.Original_Auto:
+                case SplitStyle.Original_FoldersAlphabetic_FoldersEqual:
+                case SplitStyle.Original_FoldersAlphabetic_PagesEqual:
+                case SplitStyle.Original_FoldersEqual:
+                case SplitStyle.Original_PagesEqual:
+                    style--;
+                    originalToRoot = true;
+                    break;
+            }
             if (style == SplitStyle.NoSplit && !originalToRoot) return;
             if (((style == SplitStyle.Auto && !originalToRoot) || style == SplitStyle.FoldersEqual || style == SplitStyle.PagesEqual) &&
                 (Count <= maxElements)) return;
@@ -145,7 +164,7 @@ namespace com.clusterrr.hakchi_gui
                         var folder = new NesMenuFolder() { ChildMenuCollection = letters[letter], Name = letter.ToString(), Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
                         if (style == SplitStyle.FoldersAlphabetic_PagesEqual)
                         {
-                            folder.ChildMenuCollection.Split(SplitStyle.PagesEqual, false, maxElements);
+                            folder.ChildMenuCollection.Split(SplitStyle.PagesEqual, maxElements);
                             folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
                             foreach (NesMenuFolder f in folder.ChildMenuCollection.Where(o => o is NesMenuFolder))
                                 if (f.ChildMenuCollection != root)
@@ -153,7 +172,7 @@ namespace com.clusterrr.hakchi_gui
                         }
                         else if (style == SplitStyle.FoldersAlphabetic_FoldersEqual)
                         {
-                            folder.ChildMenuCollection.Split(SplitStyle.FoldersEqual, false, maxElements);
+                            folder.ChildMenuCollection.Split(SplitStyle.FoldersEqual, maxElements);
                             folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
                         }
                         root.Add(folder);

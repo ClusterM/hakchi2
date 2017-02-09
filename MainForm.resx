@@ -308,159 +308,161 @@
   <data name="guiHacksToolStripMenuItem.Text" xml:space="preserve">
     <value>GUI hacks</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>385, 22</value>
-  </data>
-  <data name="moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem.Text" xml:space="preserve">
-    <value>Move original games to root, new games to separate folder</value>
-  </data>
-  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>382, 6</value>
-  </data>
-  <data name="disablePagefoldersToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="disablePagefoldersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>385, 22</value>
+    <value>356, 22</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text" xml:space="preserve">
     <value>Disable page/folders</value>
   </data>
-  <data name="automaticToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>353, 6</value>
   </data>
   <data name="automaticToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>385, 22</value>
+    <value>356, 22</value>
   </data>
   <data name="automaticToolStripMenuItem.Text" xml:space="preserve">
     <value>Automatic</value>
   </data>
-  <data name="pagesToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="automaticOriginalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>356, 22</value>
+  </data>
+  <data name="automaticOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Original games in root -&gt; Automatic in subfolder</value>
   </data>
   <data name="pagesToolStripMenuItem.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
     <value>None</value>
   </data>
   <data name="pagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>385, 22</value>
+    <value>356, 22</value>
   </data>
   <data name="pagesToolStripMenuItem.Text" xml:space="preserve">
     <value>Pages, split games equally</value>
   </data>
-  <data name="foldersToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="pagesOriginalToolStripMenuItem.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="pagesOriginalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>356, 22</value>
+  </data>
+  <data name="pagesOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Original games in root -&gt; Pages, split games equally</value>
   </data>
   <data name="foldersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>385, 22</value>
+    <value>356, 22</value>
   </data>
   <data name="foldersToolStripMenuItem.Text" xml:space="preserve">
     <value>Folders, split games equally</value>
   </data>
-  <data name="foldersSplitByFirstLetterToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="foldersOriginalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>356, 22</value>
+  </data>
+  <data name="foldersOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Original games in root -&gt; Folders, split games equally</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>385, 22</value>
+    <value>356, 22</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text" xml:space="preserve">
     <value>Folders, split by first letter</value>
   </data>
-  <data name="customToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>356, 22</value>
+  </data>
+  <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Original games in root -&gt; Folders, split by first letter</value>
+  </data>
+  <data name="max20toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="max20toolStripMenuItem.Text" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="max25toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="max25toolStripMenuItem.Text" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="max30toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="max30toolStripMenuItem.Text" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="max35toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="max35toolStripMenuItem.Text" xml:space="preserve">
+    <value>35</value>
+  </data>
+  <data name="max40toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="max40toolStripMenuItem.Text" xml:space="preserve">
+    <value>40</value>
+  </data>
+  <data name="max45toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="max45toolStripMenuItem.Text" xml:space="preserve">
+    <value>45</value>
+  </data>
+  <data name="max50toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="max50toolStripMenuItem.Text" xml:space="preserve">
+    <value>50</value>
+  </data>
+  <data name="max60toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="max60toolStripMenuItem.Text" xml:space="preserve">
+    <value>60</value>
+  </data>
+  <data name="max70toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="max70toolStripMenuItem.Text" xml:space="preserve">
+    <value>70</value>
+  </data>
+  <data name="max80toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="max80toolStripMenuItem.Text" xml:space="preserve">
+    <value>80</value>
+  </data>
+  <data name="max90toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="max90toolStripMenuItem.Text" xml:space="preserve">
+    <value>90</value>
+  </data>
+  <data name="max100toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="max100toolStripMenuItem.Text" xml:space="preserve">
+    <value>100</value>
+  </data>
+  <data name="maximumGamesPerFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>356, 22</value>
+  </data>
+  <data name="maximumGamesPerFolderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Maximum games per page/folder</value>
+  </data>
+  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>353, 6</value>
   </data>
   <data name="customToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>385, 22</value>
+    <value>356, 22</value>
   </data>
   <data name="customToolStripMenuItem.Text" xml:space="preserve">
-    <value>Custom</value>
+    <value>Custom - show Folders Manager every time</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>325, 22</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text" xml:space="preserve">
     <value>Pages/folders structure</value>
-  </data>
-  <data name="max20toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 22</value>
-  </data>
-  <data name="max20toolStripMenuItem.Text" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="max25toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 22</value>
-  </data>
-  <data name="max25toolStripMenuItem.Text" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="max30toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 22</value>
-  </data>
-  <data name="max30toolStripMenuItem.Text" xml:space="preserve">
-    <value>30</value>
-  </data>
-  <data name="max35toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 22</value>
-  </data>
-  <data name="max35toolStripMenuItem.Text" xml:space="preserve">
-    <value>35</value>
-  </data>
-  <data name="max40toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 22</value>
-  </data>
-  <data name="max40toolStripMenuItem.Text" xml:space="preserve">
-    <value>40</value>
-  </data>
-  <data name="max45toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 22</value>
-  </data>
-  <data name="max45toolStripMenuItem.Text" xml:space="preserve">
-    <value>45</value>
-  </data>
-  <data name="max50toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 22</value>
-  </data>
-  <data name="max50toolStripMenuItem.Text" xml:space="preserve">
-    <value>50</value>
-  </data>
-  <data name="max60toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 22</value>
-  </data>
-  <data name="max60toolStripMenuItem.Text" xml:space="preserve">
-    <value>60</value>
-  </data>
-  <data name="max70toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 22</value>
-  </data>
-  <data name="max70toolStripMenuItem.Text" xml:space="preserve">
-    <value>70</value>
-  </data>
-  <data name="max80toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 22</value>
-  </data>
-  <data name="max80toolStripMenuItem.Text" xml:space="preserve">
-    <value>80</value>
-  </data>
-  <data name="max90toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 22</value>
-  </data>
-  <data name="max90toolStripMenuItem.Text" xml:space="preserve">
-    <value>90</value>
-  </data>
-  <data name="max100toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 22</value>
-  </data>
-  <data name="max100toolStripMenuItem.Text" xml:space="preserve">
-    <value>100</value>
-  </data>
-  <data name="maximumGamesPerFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 22</value>
-  </data>
-  <data name="maximumGamesPerFolderToolStripMenuItem.Text" xml:space="preserve">
-    <value>Maximum games per page/folder</value>
   </data>
   <data name="betterPNGCompressionlowerQualityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>325, 22</value>
@@ -510,6 +512,7 @@
   <data name="menuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>609, 24</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="menuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -2659,10 +2662,10 @@
   <data name="&gt;&gt;pagesfoldersTypeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem.Name" xml:space="preserve">
-    <value>moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem</value>
+  <data name="&gt;&gt;disablePagefoldersToolStripMenuItem.Name" xml:space="preserve">
+    <value>disablePagefoldersToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;moveOriginalGamesToRootNewGamesToSpecialFolderToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;disablePagefoldersToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem3.Name" xml:space="preserve">
@@ -2671,16 +2674,16 @@
   <data name="&gt;&gt;toolStripMenuItem3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;disablePagefoldersToolStripMenuItem.Name" xml:space="preserve">
-    <value>disablePagefoldersToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;disablePagefoldersToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;automaticToolStripMenuItem.Name" xml:space="preserve">
     <value>automaticToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;automaticToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;automaticOriginalToolStripMenuItem.Name" xml:space="preserve">
+    <value>automaticOriginalToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;automaticOriginalToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pagesToolStripMenuItem.Name" xml:space="preserve">
@@ -2689,10 +2692,22 @@
   <data name="&gt;&gt;pagesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;pagesOriginalToolStripMenuItem.Name" xml:space="preserve">
+    <value>pagesOriginalToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;pagesOriginalToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;foldersToolStripMenuItem.Name" xml:space="preserve">
     <value>foldersToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;foldersToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;foldersOriginalToolStripMenuItem.Name" xml:space="preserve">
+    <value>foldersOriginalToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;foldersOriginalToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;foldersSplitByFirstLetterToolStripMenuItem.Name" xml:space="preserve">
@@ -2701,10 +2716,10 @@
   <data name="&gt;&gt;foldersSplitByFirstLetterToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;customToolStripMenuItem.Name" xml:space="preserve">
-    <value>customToolStripMenuItem</value>
+  <data name="&gt;&gt;foldersSplitByFirstLetterOriginalToolStripMenuItem.Name" xml:space="preserve">
+    <value>foldersSplitByFirstLetterOriginalToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;customToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;foldersSplitByFirstLetterOriginalToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;maximumGamesPerFolderToolStripMenuItem.Name" xml:space="preserve">
@@ -2783,6 +2798,18 @@
     <value>max100toolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;max100toolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem4.Name" xml:space="preserve">
+    <value>toolStripMenuItem4</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;customToolStripMenuItem.Name" xml:space="preserve">
+    <value>customToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;customToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;betterPNGCompressionlowerQualityToolStripMenuItem.Name" xml:space="preserve">
