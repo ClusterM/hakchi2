@@ -66,8 +66,7 @@ namespace com.clusterrr.hakchi_gui
         }
         public NesMenuCollection ChildMenuCollection = new NesMenuCollection();
         public string Initial = "";
-        private Image Icon;
-        private Image ThumbnailIcon;
+        private Image image;
         private string imageId;
 
         byte Players = 2;
@@ -134,37 +133,60 @@ namespace com.clusterrr.hakchi_gui
         {
             set
             {
-                Graphics gr;
                 if (value == null)
-                {
-                    Icon = Resources.folder;
-                    ThumbnailIcon = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-                    gr = Graphics.FromImage(ThumbnailIcon);
-                    gr.DrawImage(Icon, new Rectangle(0, 0, ThumbnailIcon.Width, ThumbnailIcon.Height), new Rectangle(0, 0, Icon.Width, Icon.Height), GraphicsUnit.Pixel);
-                    gr.Flush();
-                    return;
-                }
-                if (value.Height > value.Width)
-                {
-                    Icon = new Bitmap(140, 204, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-                    ThumbnailIcon = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-                }
+                    ImageId = "folder";
                 else
                 {
-                    Icon = new Bitmap(204, 140, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-                    ThumbnailIcon = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                    image = Image;
+                    imageId = null;
                 }
-                gr = Graphics.FromImage(Icon);
-                gr.DrawImage(value, new Rectangle(0, 0, Icon.Width, Icon.Height),
-                                    new Rectangle(0, 0, value.Width, value.Height), GraphicsUnit.Pixel);
-                gr.Flush();
-
-                gr = Graphics.FromImage(ThumbnailIcon);
-                gr.DrawImage(Icon, new Rectangle(0, 0, ThumbnailIcon.Width, ThumbnailIcon.Height), new Rectangle(0, 0, Icon.Width, Icon.Height), GraphicsUnit.Pixel);
-                gr.Flush();
-                imageId = null;
             }
-            get { return Icon; }
+            get
+            {
+                Bitmap outImage;
+                Graphics gr;
+                if (image == null)
+                    ImageId = "folder";
+                // Just keep aspect ratio
+                const int maxX = 204;
+                const int maxY = 204;
+                if (image.Width <= maxX && image.Height <= maxY) // Do not upscale
+                    return image;
+                if (image.Width / image.Height > maxX / maxY)
+                    outImage = new Bitmap(maxX, maxY * image.Height / image.Width);
+                else
+                    outImage = new Bitmap(maxX * image.Width / image.Height, maxY);
+                gr = Graphics.FromImage(outImage);
+                gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
+                                    new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
+                gr.Flush();
+                return outImage;
+            }
+        }
+
+        public Image ImageThumbnail
+        {
+            get
+            {
+                Bitmap outImage;
+                Graphics gr;
+                if (image == null)
+                    ImageId = "folder";
+                // Just keep aspect ratio
+                const int maxX = 40;
+                const int maxY = 40;
+                if (image.Width <= maxX && image.Height <= maxY) // Do not upscale
+                    return image;
+                if (image.Width / image.Height > maxX / maxY)
+                    outImage = new Bitmap(maxX, maxY * image.Height / image.Width);
+                else
+                    outImage = new Bitmap(maxX * image.Width / image.Height, maxY);
+                gr = Graphics.FromImage(outImage);
+                gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
+                                    new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
+                gr.Flush();
+                return outImage;
+            }
         }
 
         public string ImageId
@@ -175,9 +197,9 @@ namespace com.clusterrr.hakchi_gui
                 var folderImagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "folder_images");
                 var filePath = Path.Combine(folderImagesDirectory, value + ".png");
                 if (File.Exists(filePath))
-                    Image = NesGame.LoadBitmap(filePath);
+                    image = NesGame.LoadBitmap(filePath);
                 else
-                    Image = (Image)rm.GetObject(value);
+                    image = (Image)rm.GetObject(value);
                 imageId = value;
             }
         }
@@ -230,10 +252,8 @@ namespace com.clusterrr.hakchi_gui
                  prefix + (Name ?? Code).ToLower(), (Publisher ?? "").ToUpper(),
                  Simultaneous, Initial)
                  );
-            if (Icon == null)
-                Image = null;
-            Icon.Save(IconPath, ImageFormat.Png);
-            ThumbnailIcon.Save(ThumnnailIconPath, ImageFormat.Png);
+            Image.Save(IconPath, ImageFormat.Png);
+            ImageThumbnail.Save(ThumnnailIconPath, ImageFormat.Png);
         }
 
         private static string GenerateCode(uint crc32)

@@ -311,14 +311,17 @@ namespace com.clusterrr.hakchi_gui
                 imagePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".jpg");
                 if (File.Exists(imagePath))
                     cover = LoadBitmap(imagePath);
-								var artDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "art");
-								Directory.CreateDirectory(artDirectory);
-								imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(nesFileName) + ".png");
-								if (File.Exists(imagePath))
-									cover = LoadBitmap(imagePath);
-								imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(nesFileName) + ".jpg");
-								if (File.Exists(imagePath))
-									cover = LoadBitmap(imagePath);
+                var artDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "art");
+                Directory.CreateDirectory(artDirectory);
+                imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(nesFileName) + ".png");
+                if (File.Exists(imagePath))
+                    cover = LoadBitmap(imagePath);
+                imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(nesFileName) + ".jpg");
+                if (File.Exists(imagePath))
+                    cover = LoadBitmap(imagePath);
+                var covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
+                if (covers.Length > 0)
+                    cover = LoadBitmap(covers[0]);
             }
             if (cover != null)
                 SetImage(cover, ConfigIni.EightBitPngCompression);
@@ -384,7 +387,7 @@ namespace com.clusterrr.hakchi_gui
             return Name;
         }
 
-        public void SetImage(Image image, bool EightBitCompression)
+        public void SetImage(Image image, bool EightBitCompression = false)
         {
             Bitmap outImage;
             Bitmap outImageSmall;
@@ -403,38 +406,27 @@ namespace com.clusterrr.hakchi_gui
                 {
                     image = Resources.blank_fds;
                 }
-                image.Save(IconPath, ImageFormat.Png);
-                outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-                gr = Graphics.FromImage(outImageSmall);
-                gr.DrawImage(image, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height), new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
-                gr.Flush();
-                outImageSmall.Save(SmallIconPath, ImageFormat.Png);
-                return;
             }
 
-            if (Type == GameType.Cartridge)
-            {
-                if (image.Height > image.Width)
-                {
-                    outImage = new Bitmap(140, 204, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-                    outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-                }
-                else
-                {
-                    outImage = new Bitmap(204, 140, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-                    outImageSmall = new Bitmap(28, 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-                }
-            }
-            else // if (Type == GameType.FDS)
-            {
-                outImage = new Bitmap(140, 158, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-                outImageSmall = new Bitmap(28, 32, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-            }
+            // Just keep aspect ratio
+            const int maxX = 204;
+            const int maxY = 204;
+            if (image.Width / image.Height > maxX / maxY)
+                outImage = new Bitmap(maxX, maxY * image.Height / image.Width);
+            else
+                outImage = new Bitmap(maxX * image.Width / image.Height, maxY);
+            const int maxXsmall = 40;
+            const int maxYsmall = 40;
+            if (image.Width / image.Height > maxXsmall / maxYsmall)
+                outImageSmall = new Bitmap(maxXsmall, maxYsmall * image.Height / image.Width);
+            else
+                outImageSmall = new Bitmap(maxXsmall * image.Width / image.Height, maxYsmall);
+
             gr = Graphics.FromImage(outImage);
             gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
                                 new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
             gr.Flush();
-            if (EightBitCompression)
+            if (EightBitCompression) // Deprecated
             {
                 var quantizer = new WuQuantizer();
                 using (var quantized = quantizer.QuantizeImage(outImage))
@@ -444,9 +436,10 @@ namespace com.clusterrr.hakchi_gui
             }
             else outImage.Save(IconPath, ImageFormat.Png);
             gr = Graphics.FromImage(outImageSmall);
-            gr.DrawImage(outImage, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height), new Rectangle(0, 0, outImage.Width, outImage.Height), GraphicsUnit.Pixel);
+            gr.DrawImage(outImage, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height),
+                new Rectangle(0, 0, outImage.Width, outImage.Height), GraphicsUnit.Pixel);
             gr.Flush();
-            if (EightBitCompression)
+            if (EightBitCompression) // Deprecated
             {
                 var quantizer = new WuQuantizer();
                 using (var quantized = quantizer.QuantizeImage(outImageSmall))
