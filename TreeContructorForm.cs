@@ -138,6 +138,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 pictureBoxArt.Image = (node.Tag is NesMenuFolder) ? (node.Tag as NesMenuFolder).Image : null;
                 groupBoxArt.Enabled = (node.Tag is NesMenuFolder);
+                groupBoxArt.Cursor = Cursors.Hand;
                 listViewContent.Enabled = true;
                 foreach (TreeNode n in node.Nodes)
                 {
@@ -170,6 +171,7 @@ namespace com.clusterrr.hakchi_gui
                     groupBoxArt.Enabled = false;
                 }
                 listViewContent.Enabled = false;
+                groupBoxArt.Cursor = Cursors.Default;
             }
             ShowFolderStats();
         }
@@ -303,7 +305,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void TreeContructorForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ConfigIni.Save(); // Need to save changed names
+            //ConfigIni.Save(); // Need to save changed names
         }
 
         private void treeView_DragEnter(object sender, DragEventArgs e)
@@ -331,8 +333,6 @@ namespace com.clusterrr.hakchi_gui
                     else
                         destinationNode = (TreeNode)item.Tag;
                 }
-                if (destinationNode != null && (destinationNode.Tag is NesGame || destinationNode.Tag is NesDefaultGame))
-                    destinationNode = destinationNode.Parent;
                 var newNodes = (TreeNode[])e.Data.GetData("System.Windows.Forms.TreeNode[]");
                 MoveToFolder(newNodes, destinationNode);
                 if (sender is TreeView)
@@ -401,10 +401,13 @@ namespace com.clusterrr.hakchi_gui
         }
         bool MoveToFolder(IEnumerable<TreeNode> newNodes, TreeNode destinationNode, bool showDest = true)
         {
+            if (destinationNode == null)
+                destinationNode = treeView.Nodes[0]; // Root
+            if (destinationNode.Tag is NesGame || destinationNode.Tag is NesDefaultGame)
+                destinationNode = destinationNode.Parent;
             foreach (var newNode in newNodes)
             {
-                if ((destinationNode != null) && (destinationNode.Tag is NesMenuCollection || destinationNode.Tag is NesMenuFolder) &&
-                    !destinationNode.FullPath.StartsWith(newNode.FullPath) && (destinationNode != newNode.Parent))
+                if (!destinationNode.FullPath.StartsWith(newNode.FullPath) && (destinationNode != newNode.Parent))
                 {
                     Debug.WriteLine(string.Format("Drag: {0}->{1}", newNode, destinationNode));
                     if (newNode.Parent.Tag is NesMenuFolder)
@@ -499,6 +502,8 @@ namespace com.clusterrr.hakchi_gui
                 MoveToFolder(node.Nodes.Cast<TreeNode>().ToArray(), unsortedFolder, false);
                 (node.Tag as NesMenuFolder).ChildMenuCollection.Clear();
             }
+            foreach (var i in from i in listViewContent.Items.Cast<ListViewItem>().ToArray() where i.Tag == node select i)
+                listViewContent.Items.Remove(i);
             var parent = node.Parent;
             if (parent.Tag is NesMenuFolder)
                 (parent.Tag as NesMenuFolder).ChildMenuCollection.Remove(node.Tag as INesMenuElement);
@@ -630,6 +635,20 @@ namespace com.clusterrr.hakchi_gui
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+        }
+
+        private void pictureBoxArt_Click(object sender, EventArgs e)
+        {
+            if (treeView.SelectedNode != null && treeView.SelectedNode.Tag is NesMenuFolder)
+            {
+                var folder = treeView.SelectedNode.Tag as NesMenuFolder;
+                var form = new SelectIconForm(folder.ImageId);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    folder.ImageId = form.listBox.SelectedItem.ToString();
+                    pictureBoxArt.Image = folder.Image;
+                }
+            }
         }
     }
 }

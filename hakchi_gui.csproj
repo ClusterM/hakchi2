@@ -166,6 +166,12 @@
     <Compile Include="SelectButtonsForm.Designer.cs">
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectIconForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectIconForm.Designer.cs">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectFileForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,11 +287,17 @@
     <EmbeddedResource Include="SelectButtonsForm.ru-RU.resx">
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectFileForm.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectFileForm.ru-RU.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.ru-RU.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StringInputForm.resx">
       <DependentUpon>StringInputForm.cs</DependentUpon>
@@ -592,6 +604,9 @@
     <Content Include="folder_images\folder_z.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="folder_images\README.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="icon.ico" />
     <None Include="images\blank.png" />
     <Content Include="folder_images\folder_back.png" />

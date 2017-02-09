@@ -16,6 +16,7 @@ namespace com.clusterrr.hakchi_gui
     {
         static Random rnd = new Random();
         static ResourceManager rm = Resources.ResourceManager;
+        public static readonly string FolderImagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "folder_images");
 
         private string code = null;
         public enum Priority

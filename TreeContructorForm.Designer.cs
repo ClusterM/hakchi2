@@ -76,7 +76,6 @@
             this.treeView.Location = new System.Drawing.Point(0, 0);
             this.treeView.Name = "treeView";
             this.treeView.SelectedImageIndex = 0;
-            this.treeView.ShowRootLines = false;
             this.treeView.Size = new System.Drawing.Size(280, 475);
             this.treeView.TabIndex = 0;
             this.treeView.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView_BeforeLabelEdit);
@@ -166,7 +165,7 @@
             this.comboBoxPosition.Location = new System.Drawing.Point(127, 242);
             this.comboBoxPosition.Name = "comboBoxPosition";
             this.comboBoxPosition.Size = new System.Drawing.Size(126, 21);
-            this.comboBoxPosition.TabIndex = 22;
+            this.comboBoxPosition.TabIndex = 2;
             this.comboBoxPosition.SelectionChangeCommitted += new System.EventHandler(this.comboBoxPosition_SelectionChangeCommitted);
             // 
             // labelPosition
@@ -184,7 +183,7 @@
             this.buttonNewFolder.Location = new System.Drawing.Point(394, 243);
             this.buttonNewFolder.Name = "buttonNewFolder";
             this.buttonNewFolder.Size = new System.Drawing.Size(100, 21);
-            this.buttonNewFolder.TabIndex = 20;
+            this.buttonNewFolder.TabIndex = 3;
             this.buttonNewFolder.Text = "New folder";
             this.buttonNewFolder.UseVisualStyleBackColor = true;
             this.buttonNewFolder.Click += new System.EventHandler(this.buttonNewFolder_Click);
@@ -201,7 +200,7 @@
             this.listViewContent.Name = "listViewContent";
             this.listViewContent.Size = new System.Drawing.Size(492, 206);
             this.listViewContent.SmallImageList = this.imageList;
-            this.listViewContent.TabIndex = 18;
+            this.listViewContent.TabIndex = 1;
             this.listViewContent.UseCompatibleStateImageBehavior = false;
             this.listViewContent.View = System.Windows.Forms.View.List;
             this.listViewContent.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.listViewContent_AfterLabelEdit);
@@ -236,7 +235,7 @@
             this.buttonNoFoldersOriginal.Location = new System.Drawing.Point(122, 22);
             this.buttonNoFoldersOriginal.Name = "buttonNoFoldersOriginal";
             this.buttonNoFoldersOriginal.Size = new System.Drawing.Size(100, 60);
-            this.buttonNoFoldersOriginal.TabIndex = 21;
+            this.buttonNoFoldersOriginal.TabIndex = 5;
             this.buttonNoFoldersOriginal.Text = "Original games -> Other games";
             this.buttonNoFoldersOriginal.UseVisualStyleBackColor = true;
             this.buttonNoFoldersOriginal.Click += new System.EventHandler(this.buttonNoFoldersOriginal_Click);
@@ -246,7 +245,7 @@
             this.buttonNoFolders.Location = new System.Drawing.Point(13, 22);
             this.buttonNoFolders.Name = "buttonNoFolders";
             this.buttonNoFolders.Size = new System.Drawing.Size(100, 60);
-            this.buttonNoFolders.TabIndex = 20;
+            this.buttonNoFolders.TabIndex = 4;
             this.buttonNoFolders.Text = "No folders";
             this.buttonNoFolders.UseVisualStyleBackColor = true;
             this.buttonNoFolders.Click += new System.EventHandler(this.buttonNoFolders_Click);
@@ -256,7 +255,7 @@
             this.buttonFoldersLetters.Location = new System.Drawing.Point(13, 154);
             this.buttonFoldersLetters.Name = "buttonFoldersLetters";
             this.buttonFoldersLetters.Size = new System.Drawing.Size(100, 60);
-            this.buttonFoldersLetters.TabIndex = 24;
+            this.buttonFoldersLetters.TabIndex = 8;
             this.buttonFoldersLetters.Text = "Split by first letter";
             this.buttonFoldersLetters.UseVisualStyleBackColor = true;
             this.buttonFoldersLetters.Click += new System.EventHandler(this.buttonFoldersLetters_Click);
@@ -267,7 +266,7 @@
             this.buttonFoldersEquallyOriginal.Location = new System.Drawing.Point(122, 88);
             this.buttonFoldersEquallyOriginal.Name = "buttonFoldersEquallyOriginal";
             this.buttonFoldersEquallyOriginal.Size = new System.Drawing.Size(100, 60);
-            this.buttonFoldersEquallyOriginal.TabIndex = 23;
+            this.buttonFoldersEquallyOriginal.TabIndex = 7;
             this.buttonFoldersEquallyOriginal.Text = "Original games -> Split equally";
             this.buttonFoldersEquallyOriginal.UseVisualStyleBackColor = true;
             this.buttonFoldersEquallyOriginal.Click += new System.EventHandler(this.buttonFoldersEquallyOriginal_Click);
@@ -278,7 +277,7 @@
             this.buttonFoldersLettersOriginal.Location = new System.Drawing.Point(122, 154);
             this.buttonFoldersLettersOriginal.Name = "buttonFoldersLettersOriginal";
             this.buttonFoldersLettersOriginal.Size = new System.Drawing.Size(100, 60);
-            this.buttonFoldersLettersOriginal.TabIndex = 25;
+            this.buttonFoldersLettersOriginal.TabIndex = 9;
             this.buttonFoldersLettersOriginal.Text = "Original games -> Split by first letter";
             this.buttonFoldersLettersOriginal.UseVisualStyleBackColor = true;
             this.buttonFoldersLettersOriginal.Click += new System.EventHandler(this.buttonFoldersLettersOriginal_Click);
@@ -288,7 +287,7 @@
             this.buttonFoldersEqually.Location = new System.Drawing.Point(13, 88);
             this.buttonFoldersEqually.Name = "buttonFoldersEqually";
             this.buttonFoldersEqually.Size = new System.Drawing.Size(100, 60);
-            this.buttonFoldersEqually.TabIndex = 22;
+            this.buttonFoldersEqually.TabIndex = 6;
             this.buttonFoldersEqually.Text = "Split equally";
             this.buttonFoldersEqually.UseVisualStyleBackColor = true;
             this.buttonFoldersEqually.Click += new System.EventHandler(this.buttonFoldersEqually_Click);
@@ -306,6 +305,7 @@
             // pictureBoxArt
             // 
             this.pictureBoxArt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxArt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxArt.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBoxArt.Location = new System.Drawing.Point(9, 15);
             this.pictureBoxArt.Name = "pictureBoxArt";
@@ -313,6 +313,7 @@
             this.pictureBoxArt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxArt.TabIndex = 14;
             this.pictureBoxArt.TabStop = false;
+            this.pictureBoxArt.Click += new System.EventHandler(this.pictureBoxArt_Click);
             // 
             // labelElementCount
             // 
@@ -341,7 +342,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(678, 7);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(100, 25);
-            this.buttonCancel.TabIndex = 1;
+            this.buttonCancel.TabIndex = 11;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
@@ -352,7 +353,7 @@
             this.buttonOk.Location = new System.Drawing.Point(572, 7);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(100, 25);
-            this.buttonOk.TabIndex = 0;
+            this.buttonOk.TabIndex = 10;
             this.buttonOk.Text = "OK";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
