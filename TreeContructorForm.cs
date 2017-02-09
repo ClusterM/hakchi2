@@ -44,24 +44,37 @@ namespace com.clusterrr.hakchi_gui
 
         public TreeContructorForm(NesMenuCollection nesMenuCollection)
         {
-            InitializeComponent();
-            GamesCollection = nesMenuCollection;
-            if (File.Exists(FoldersXmlPath))
+            try
             {
-                try
+                InitializeComponent();
+                GamesCollection = nesMenuCollection;
+                if (File.Exists(FoldersXmlPath))
                 {
-                    XmlToTree(File.ReadAllText(FoldersXmlPath));
+                    try
+                    {
+                        XmlToTree(File.ReadAllText(FoldersXmlPath));
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message + ex.StackTrace);
+                        File.Delete(FoldersXmlPath);
+                        throw ex;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    File.Delete(FoldersXmlPath);
-                    throw ex;
-                }
-            } 
-            else DrawTree();
-            splitContainer.Panel2MinSize = 485;
-            treeView.TreeViewNodeSorter = new NodeSorter();
-            listViewContent.ListViewItemSorter = new NodeSorter();
+                else DrawTree();
+                splitContainer.Panel2MinSize = 485;
+                treeView.TreeViewNodeSorter = new NodeSorter();
+                listViewContent.ListViewItemSorter = new NodeSorter();
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message;
+#if DEBUG
+                message += ex.StackTrace;
+#endif
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         void DrawTree()

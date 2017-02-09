@@ -94,6 +94,8 @@ namespace com.clusterrr.hakchi_gui
         {
             SetProgress(0, 1);
             thread = new Thread(StartThread);
+            thread.IsBackground = true;
+            thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
             return ShowDialog();
         }
@@ -458,7 +460,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 progress += 5;
                 SetProgress(progress, maxProgress);
-                
+
                 byte[] kernel;
                 if (!string.IsNullOrEmpty(Mod))
                     kernel = CreatePatchedKernel(stats);
