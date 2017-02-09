@@ -71,10 +71,12 @@
             // 
             // splitContainer.Panel1
             // 
+            resources.ApplyResources(this.splitContainer.Panel1, "splitContainer.Panel1");
             this.splitContainer.Panel1.Controls.Add(this.treeView);
             // 
             // splitContainer.Panel2
             // 
+            resources.ApplyResources(this.splitContainer.Panel2, "splitContainer.Panel2");
             this.splitContainer.Panel2.Controls.Add(this.comboBoxPosition);
             this.splitContainer.Panel2.Controls.Add(this.labelPosition);
             this.splitContainer.Panel2.Controls.Add(this.buttonNewFolder);
@@ -84,8 +86,8 @@
             // 
             // treeView
             // 
-            this.treeView.AllowDrop = true;
             resources.ApplyResources(this.treeView, "treeView");
+            this.treeView.AllowDrop = true;
             this.treeView.FullRowSelect = true;
             this.treeView.HideSelection = false;
             this.treeView.ImageList = this.imageList;
@@ -113,6 +115,7 @@
             // 
             // comboBoxPosition
             // 
+            resources.ApplyResources(this.comboBoxPosition, "comboBoxPosition");
             this.comboBoxPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPosition.FormattingEnabled = true;
             this.comboBoxPosition.Items.AddRange(new object[] {
@@ -120,7 +123,6 @@
             resources.GetString("comboBoxPosition.Items1"),
             resources.GetString("comboBoxPosition.Items2"),
             resources.GetString("comboBoxPosition.Items3")});
-            resources.ApplyResources(this.comboBoxPosition, "comboBoxPosition");
             this.comboBoxPosition.Name = "comboBoxPosition";
             this.comboBoxPosition.SelectionChangeCommitted += new System.EventHandler(this.comboBoxPosition_SelectionChangeCommitted);
             // 
@@ -138,8 +140,8 @@
             // 
             // listViewContent
             // 
-            this.listViewContent.AllowDrop = true;
             resources.ApplyResources(this.listViewContent, "listViewContent");
+            this.listViewContent.AllowDrop = true;
             this.listViewContent.LabelEdit = true;
             this.listViewContent.LargeImageList = this.imageList;
             this.listViewContent.Name = "listViewContent";
@@ -212,45 +214,45 @@
             // 
             // groupBoxArt
             // 
-            this.groupBoxArt.Controls.Add(this.pictureBoxArt);
             resources.ApplyResources(this.groupBoxArt, "groupBoxArt");
+            this.groupBoxArt.Controls.Add(this.pictureBoxArt);
             this.groupBoxArt.Name = "groupBoxArt";
             this.groupBoxArt.TabStop = false;
             // 
             // pictureBoxArt
             // 
+            resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
             this.pictureBoxArt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxArt.Cursor = System.Windows.Forms.Cursors.Hand;
-            resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
             this.pictureBoxArt.Click += new System.EventHandler(this.pictureBoxArt_Click);
             // 
             // contextMenuStrip
             // 
+            resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newFolderToolStripMenuItem,
             this.deleteToolStripMenuItem,
             this.renameToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             // 
             // newFolderToolStripMenuItem
             // 
-            this.newFolderToolStripMenuItem.Name = "newFolderToolStripMenuItem";
             resources.ApplyResources(this.newFolderToolStripMenuItem, "newFolderToolStripMenuItem");
+            this.newFolderToolStripMenuItem.Name = "newFolderToolStripMenuItem";
             this.newFolderToolStripMenuItem.Click += new System.EventHandler(this.newFolderToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             resources.ApplyResources(this.deleteToolStripMenuItem, "deleteToolStripMenuItem");
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // renameToolStripMenuItem
             // 
-            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
             resources.ApplyResources(this.renameToolStripMenuItem, "renameToolStripMenuItem");
+            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
             // 
             // labelElementCount
@@ -260,10 +262,10 @@
             // 
             // panel2
             // 
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Controls.Add(this.buttonCancel);
             this.panel2.Controls.Add(this.buttonOk);
             this.panel2.Controls.Add(this.labelElementCount);
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
             // buttonCancel
@@ -287,7 +289,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.splitContainer);
-            this.KeyPreview = true;
             this.Name = "TreeContructorForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TreeContructorForm_FormClosing);
             this.splitContainer.Panel1.ResumeLayout(false);

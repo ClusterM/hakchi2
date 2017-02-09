@@ -1014,7 +1014,6 @@ namespace com.clusterrr.hakchi_gui
             foldersSplitByFirstLetterToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 8;
             foldersSplitByFirstLetterOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 9;
             customToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 99; 
-            ConfigIni.Save();
         }
     }
 }
