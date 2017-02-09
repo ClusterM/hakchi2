@@ -490,4 +490,7 @@
   <data name="NewGamesUnsorted" xml:space="preserve">
     <value>New games are moved to "Unsorted" folder.</value>
   </data>
+  <data name="AddingGames" xml:space="preserve">
+    <value>Processing games, please wait...</value>
+  </data>
 </root>

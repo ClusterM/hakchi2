@@ -305,7 +305,7 @@
     <value>445, 22</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text" xml:space="preserve">
-    <value>Оригинальные игры в корпе -&gt; Автоматически в подпапке</value>
+    <value>Оригинальные игры в корне -&gt; Автоматически в подпапке</value>
   </data>
   <data name="pagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>445, 22</value>
@@ -342,42 +342,6 @@
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text" xml:space="preserve">
     <value>Оригинальные в корне -&gt; Папки, по буквам</value>
-  </data>
-  <data name="max20toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="max25toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="max30toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="max35toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="max40toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="max45toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="max50toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="max60toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="max70toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="max80toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="max90toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="max100toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>445, 22</value>

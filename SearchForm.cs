@@ -34,7 +34,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void SearchForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Enter)
                 Close();
         }
     }

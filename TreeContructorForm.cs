@@ -775,9 +775,10 @@ namespace com.clusterrr.hakchi_gui
                     case "Game":
                     case "OriginalGame":
                         var code = element.Attributes["code"].Value;
-                        var game = rootMenuCollection.First(n => (n is NesGame || n is NesDefaultGame) && n.Code == code);
-                        if (game != null)
+                        var games = from n in rootMenuCollection where ((n is NesGame || n is NesDefaultGame) && (n.Code == code)) select n;
+                        if (games.Count() > 0)
                         {
+                            var game = games.First();
                             nesMenuCollection.Add(game);
                             rootMenuCollection.Remove(game);
                         }

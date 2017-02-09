@@ -388,4 +388,7 @@
   <data name="NewGamesUnsorted" xml:space="preserve">
     <value>Новые игры помещены в папку "Unsorted".</value>
   </data>
+  <data name="AddingGames" xml:space="preserve">
+    <value>Обрабатываем и добавляем в базу игры. Пожалуйста, подождите...</value>
+  </data>
 </root>

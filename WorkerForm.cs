@@ -147,7 +147,6 @@ namespace com.clusterrr.hakchi_gui
                 Invoke(new Action<NesMenuCollection>(FolderManagerFromThread), new object[] { collection });
                 return;
             }
-            SetStatus(Resources.BuildingFolders);
             var constructor = new TreeContructorForm(collection);
             FolderManagerResult = constructor.ShowDialog();
         }
@@ -423,6 +422,7 @@ namespace com.clusterrr.hakchi_gui
 
             if (Games != null)
             {
+                SetStatus(Resources.BuildingFolders);
                 if (FoldersMode == NesMenuCollection.SplitStyle.Custom)
                 {
                     FolderManagerFromThread(Games);
@@ -446,6 +446,19 @@ namespace com.clusterrr.hakchi_gui
                 {
                     ShowMessage(Resources.ParticallyBody, Resources.ParticallyTitle);
                 }
+
+                // Connecting to NES Mini
+                WaitForDeviceFromThread();
+                while (DeviceWaitResult == DialogResult.None)
+                    Thread.Sleep(500);
+                if (DeviceWaitResult != DialogResult.OK)
+                {
+                    DialogResult = DialogResult.Abort;
+                    return;
+                }
+                progress += 5;
+                SetProgress(progress, maxProgress);
+                
                 byte[] kernel;
                 if (!string.IsNullOrEmpty(Mod))
                     kernel = CreatePatchedKernel(stats);
@@ -470,18 +483,6 @@ namespace com.clusterrr.hakchi_gui
                     else
                         maxProgress = (kernel.Length / 67000 + 20);
                 }
-                SetProgress(progress, maxProgress);
-
-                // Connecting to NES Mini
-                WaitForDeviceFromThread();
-                while (DeviceWaitResult == DialogResult.None)
-                    Thread.Sleep(500);
-                if (DeviceWaitResult != DialogResult.OK)
-                {
-                    DialogResult = DialogResult.Abort;
-                    return;
-                }
-                progress += 5;
                 SetProgress(progress, maxProgress);
 
                 SetStatus(Resources.UploadingKernel);
@@ -924,6 +925,7 @@ namespace com.clusterrr.hakchi_gui
             YesForAllPatches = false;
             if (parentForm == null) parentForm = this;
             int count = 0;
+            SetStatus(Resources.AddingGames);
             foreach (var file in files)
             {
                 try
