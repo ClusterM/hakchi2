@@ -472,4 +472,22 @@
   <data name="MainMenu" xml:space="preserve">
     <value>Main Menu</value>
   </data>
+  <data name="BuildingFolders" xml:space="preserve">
+    <value>Building the folder structure...</value>
+  </data>
+  <data name="FolderNameNewFolder" xml:space="preserve">
+    <value>New folder</value>
+  </data>
+  <data name="FolderNameUnsorted" xml:space="preserve">
+    <value>Unsorted</value>
+  </data>
+  <data name="FoldersSaveQ" xml:space="preserve">
+    <value>Do you want to save this folder structure?</value>
+  </data>
+  <data name="FolderStatistics" xml:space="preserve">
+    <value>Folder "{0}" contains {1} elements.</value>
+  </data>
+  <data name="NewGamesUnsorted" xml:space="preserve">
+    <value>New games are moved to "Unsorted" folder.</value>
+  </data>
 </root>

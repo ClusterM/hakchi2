@@ -115,6 +115,18 @@ namespace com.clusterrr.hakchi_gui
                 famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
                 upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart;
                 disableMenuMusicToolStripMenuItem.Checked = ConfigIni.DisableMusic;
+
+                disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
+                automaticToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 2;
+                automaticOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 3;
+                pagesToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 4;
+                pagesOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 5;
+                foldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 6;
+                foldersOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 7;
+                foldersSplitByFirstLetterToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 8;
+                foldersSplitByFirstLetterOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 9;
+                customToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 99;
+
                 max20toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 20;
                 max25toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 25;
                 max30toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 30;
@@ -570,7 +582,6 @@ namespace com.clusterrr.hakchi_gui
                     else
                         hiddenGames.Add(((NesDefaultGame)checkedListBoxDefaultGames.Items[i]).Code);
                 }
-            workerForm.Games.Split(NesMenuCollection.SplitStyle.Auto, true, ConfigIni.MaxGamesPerFolder);            
             workerForm.Config["hakchi_original_games"] = needOriginal;
             if (ConfigIni.AntiArmetLevel == 1)
                 workerForm.Config["hakchi_remove_armet_original"] = true;
@@ -584,9 +595,11 @@ namespace com.clusterrr.hakchi_gui
             workerForm.AutofireHack = ConfigIni.AutofireHack;
             workerForm.FcStart = ConfigIni.FcStart;
             workerForm.ExtraCommandLineArguments = ConfigIni.ExtraCommandLineArguments;
-            
-           // var browser = new TreeContructorForm(workerForm.Games);
-           //browser.ShowDialog(); return false;
+            workerForm.FoldersMode = ConfigIni.FoldersMode;
+            workerForm.MaxGamesPerFolder = ConfigIni.MaxGamesPerFolder;
+
+            // var browser = new TreeContructorForm(workerForm.Games);
+            //browser.ShowDialog(); return false;
 
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
@@ -986,6 +999,21 @@ namespace com.clusterrr.hakchi_gui
             GameGenieCodeForm lFrm = new GameGenieCodeForm(nesGame);
             if (lFrm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 textBoxGameGenie.Text = nesGame.GameGenie;
+        }
+
+        private void pagesModefoldersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse((sender as ToolStripMenuItem).Tag.ToString());
+            disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
+            automaticToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 2;
+            automaticOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 3;
+            pagesToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 4;
+            pagesOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 5;
+            foldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 6;
+            foldersOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 7;
+            foldersSplitByFirstLetterToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 8;
+            foldersSplitByFirstLetterOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 9;
+            customToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 99; 
         }
     }
 }

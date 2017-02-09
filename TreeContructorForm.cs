@@ -6,15 +6,18 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace com.clusterrr.hakchi_gui
 {
     public partial class TreeContructorForm : Form
     {
+        public static string FoldersXmlPath = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "folders.xml");
         List<TreeNode> cuttedNodes = new List<TreeNode>();
         NesMenuCollection GamesCollection;
         private class NodeSorter : IComparer
@@ -43,22 +46,40 @@ namespace com.clusterrr.hakchi_gui
         {
             InitializeComponent();
             GamesCollection = nesMenuCollection;
-            DrawTree();
+            if (File.Exists(FoldersXmlPath))
+            {
+                try
+                {
+                    XmlToTree(File.ReadAllText(FoldersXmlPath));
+                }
+                catch (Exception ex)
+                {
+                    File.Delete(FoldersXmlPath);
+                    throw ex;
+                }
+            } 
+            else DrawTree();
             splitContainer.Panel2MinSize = 485;
             treeView.TreeViewNodeSorter = new NodeSorter();
             listViewContent.ListViewItemSorter = new NodeSorter();
         }
 
-        void DrawTree(NesMenuCollection.SplitStyle splitStyle = NesMenuCollection.SplitStyle.NoSplit, bool originalToRoot = false)
+        void DrawTree()
         {
             treeView.Nodes.Clear();
             var rootNode = new TreeNode(Resources.MainMenu);
             treeView.Nodes.Add(rootNode);
-            GamesCollection.Split(splitStyle, originalToRoot, ConfigIni.MaxGamesPerFolder);
             rootNode.Tag = GamesCollection;
             AddNodes(rootNode.Nodes, GamesCollection);
             rootNode.Expand();
             treeView.SelectedNode = rootNode;
+        }
+
+        void DrawSplitTree(NesMenuCollection.SplitStyle splitStyle = NesMenuCollection.SplitStyle.NoSplit)
+        {
+            GamesCollection.Unsplit();
+            GamesCollection.Split(splitStyle, ConfigIni.MaxGamesPerFolder);
+            DrawTree();
         }
 
         void AddNodes(TreeNodeCollection treeNodeCollection, NesMenuCollection nesMenuCollection, List<NesMenuCollection> usedFolders = null)
@@ -97,32 +118,32 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonNoFolders_Click(object sender, EventArgs e)
         {
-            DrawTree(NesMenuCollection.SplitStyle.NoSplit, false);
+            DrawSplitTree(NesMenuCollection.SplitStyle.NoSplit);
         }
 
         private void buttonNoFoldersOriginal_Click(object sender, EventArgs e)
         {
-            DrawTree(NesMenuCollection.SplitStyle.NoSplit, true);
+            DrawSplitTree(NesMenuCollection.SplitStyle.Original_NoSplit);
         }
 
         private void buttonFoldersEqually_Click(object sender, EventArgs e)
         {
-            DrawTree(NesMenuCollection.SplitStyle.FoldersEqual, false);
+            DrawSplitTree(NesMenuCollection.SplitStyle.FoldersEqual);
         }
 
         private void buttonFoldersEquallyOriginal_Click(object sender, EventArgs e)
         {
-            DrawTree(NesMenuCollection.SplitStyle.FoldersEqual, true);
+            DrawSplitTree(NesMenuCollection.SplitStyle.Original_FoldersEqual);
         }
 
         private void buttonFoldersLetters_Click(object sender, EventArgs e)
         {
-            DrawTree(NesMenuCollection.SplitStyle.FoldersAlphabetic_FoldersEqual, false);
+            DrawSplitTree(NesMenuCollection.SplitStyle.FoldersAlphabetic_FoldersEqual);
         }
 
         private void buttonFoldersLettersOriginal_Click(object sender, EventArgs e)
         {
-            DrawTree(NesMenuCollection.SplitStyle.FoldersAlphabetic_FoldersEqual, true);
+            DrawSplitTree(NesMenuCollection.SplitStyle.Original_FoldersAlphabetic_FoldersEqual);
         }
 
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
@@ -138,6 +159,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 pictureBoxArt.Image = (node.Tag is NesMenuFolder) ? (node.Tag as NesMenuFolder).Image : null;
                 groupBoxArt.Enabled = (node.Tag is NesMenuFolder);
+                groupBoxArt.Cursor = Cursors.Hand;
                 listViewContent.Enabled = true;
                 foreach (TreeNode n in node.Nodes)
                 {
@@ -170,6 +192,7 @@ namespace com.clusterrr.hakchi_gui
                     groupBoxArt.Enabled = false;
                 }
                 listViewContent.Enabled = false;
+                groupBoxArt.Cursor = Cursors.Default;
             }
             ShowFolderStats();
         }
@@ -179,7 +202,7 @@ namespace com.clusterrr.hakchi_gui
             var node = treeView.SelectedNode;
             if (node != null && (node.Tag is NesMenuCollection || node.Tag is NesMenuFolder)) // Folder or root
             {
-                labelElementCount.Text = string.Format("Folder \"{0}\" contains {1} elements.", node.Text, node.Nodes.Count);
+                labelElementCount.Text = string.Format(Resources.FolderStatistics, node.Text, node.Nodes.Count);
                 buttonNewFolder.Enabled = true;
             }
             else
@@ -301,11 +324,6 @@ namespace com.clusterrr.hakchi_gui
             DoDragDrop(nodes.ToArray(), DragDropEffects.Move);
         }
 
-        private void TreeContructorForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            ConfigIni.Save(); // Need to save changed names
-        }
-
         private void treeView_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent("System.Windows.Forms.TreeNode[]", false))
@@ -331,8 +349,6 @@ namespace com.clusterrr.hakchi_gui
                     else
                         destinationNode = (TreeNode)item.Tag;
                 }
-                if (destinationNode != null && (destinationNode.Tag is NesGame || destinationNode.Tag is NesDefaultGame))
-                    destinationNode = destinationNode.Parent;
                 var newNodes = (TreeNode[])e.Data.GetData("System.Windows.Forms.TreeNode[]");
                 MoveToFolder(newNodes, destinationNode);
                 if (sender is TreeView)
@@ -401,10 +417,13 @@ namespace com.clusterrr.hakchi_gui
         }
         bool MoveToFolder(IEnumerable<TreeNode> newNodes, TreeNode destinationNode, bool showDest = true)
         {
+            if (destinationNode == null)
+                destinationNode = treeView.Nodes[0]; // Root
+            if (destinationNode.Tag is NesGame || destinationNode.Tag is NesDefaultGame)
+                destinationNode = destinationNode.Parent;
             foreach (var newNode in newNodes)
             {
-                if ((destinationNode != null) && (destinationNode.Tag is NesMenuCollection || destinationNode.Tag is NesMenuFolder) &&
-                    !destinationNode.FullPath.StartsWith(newNode.FullPath) && (destinationNode != newNode.Parent))
+                if (!destinationNode.FullPath.StartsWith(newNode.FullPath) && (destinationNode != newNode.Parent))
                 {
                     Debug.WriteLine(string.Format("Drag: {0}->{1}", newNode, destinationNode));
                     if (newNode.Parent.Tag is NesMenuFolder)
@@ -441,7 +460,7 @@ namespace com.clusterrr.hakchi_gui
 
         void newFolder(TreeNode node = null)
         {
-            var newnode = new TreeNode("New folder", 0, 0);
+            var newnode = new TreeNode(Resources.FolderNameNewFolder, 0, 0);
             newnode.Tag = new NesMenuFolder(newnode.Text);
             if (node != null)
             {
@@ -465,14 +484,13 @@ namespace com.clusterrr.hakchi_gui
 
         TreeNode getUnsortedFolder()
         {
-            const string unsortedName = "Unsorted";
             var root = treeView.Nodes[0];
             foreach (TreeNode el in root.Nodes)
             {
-                if (el.Text == unsortedName && el.Tag is NesMenuFolder)
+                if (el.Text == Resources.FolderNameUnsorted && el.Tag is NesMenuFolder)
                     return el;
             }
-            var newNode = new TreeNode(unsortedName, 0, 0);
+            var newNode = new TreeNode(Resources.FolderNameUnsorted, 0, 0);
             var newFolder = new NesMenuFolder(newNode.Text);
             newFolder.Position = NesMenuFolder.Priority.Leftmost;
             newNode.Tag = newFolder;
@@ -499,6 +517,8 @@ namespace com.clusterrr.hakchi_gui
                 MoveToFolder(node.Nodes.Cast<TreeNode>().ToArray(), unsortedFolder, false);
                 (node.Tag as NesMenuFolder).ChildMenuCollection.Clear();
             }
+            foreach (var i in from i in listViewContent.Items.Cast<ListViewItem>().ToArray() where i.Tag == node select i)
+                listViewContent.Items.Remove(i);
             var parent = node.Parent;
             if (parent.Tag is NesMenuFolder)
                 (parent.Tag as NesMenuFolder).ChildMenuCollection.Remove(node.Tag as INesMenuElement);
@@ -618,6 +638,150 @@ namespace com.clusterrr.hakchi_gui
                 if (treeView.SelectedNode != null && treeView.SelectedNode.Parent != null)
                 {
                     treeView.SelectedNode = treeView.SelectedNode.Parent;
+                }
+            }
+        }
+
+        private void buttonOk_Click(object sender, EventArgs e)
+        {
+            SaveTree();
+            DialogResult = DialogResult.OK;
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void pictureBoxArt_Click(object sender, EventArgs e)
+        {
+            if (treeView.SelectedNode != null && treeView.SelectedNode.Tag is NesMenuFolder)
+            {
+                var folder = treeView.SelectedNode.Tag as NesMenuFolder;
+                var form = new SelectIconForm(folder.ImageId);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    folder.ImageId = form.listBox.SelectedItem.ToString();
+                    pictureBoxArt.Image = folder.Image;
+                }
+            }
+        }
+
+        private void TreeContructorForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason != CloseReason.UserClosing) return;
+            var a = MessageBox.Show(this, Resources.FoldersSaveQ, this.Text, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if (a == System.Windows.Forms.DialogResult.Cancel)
+            {
+                e.Cancel = true;
+                return;
+            }
+            if (a == System.Windows.Forms.DialogResult.Yes)
+                SaveTree();
+            DialogResult = DialogResult.Cancel;
+        }
+
+        void SaveTree()
+        {
+            File.WriteAllText(FoldersXmlPath, TreeToXml());
+        }
+
+        private string TreeToXml()
+        {
+            var root = treeView.Nodes[0];
+            var xml = new XmlDocument();
+            var treeNode = xml.CreateElement("Tree");
+            xml.AppendChild(treeNode);
+            NodeToXml(xml, treeNode, root);
+            using (var stringWriter = new StringWriter())
+            using (var xmlTextWriter = new XmlTextWriter(stringWriter))
+            {
+                xmlTextWriter.Formatting = Formatting.Indented;
+                xmlTextWriter.WriteStartDocument();
+                xml.WriteTo(xmlTextWriter);
+                xmlTextWriter.WriteEndDocument();
+                xmlTextWriter.Flush();
+                return stringWriter.GetStringBuilder().ToString();
+            }
+        }
+        private void NodeToXml(XmlDocument xml, XmlElement element, TreeNode node)
+        {
+            foreach (TreeNode child in node.Nodes)
+            {
+                if (child.Tag is NesMenuFolder)
+                {
+                    var subElement = xml.CreateElement("Folder");
+                    var folder = child.Tag as NesMenuFolder;
+                    subElement.SetAttribute("name", folder.Name);
+                    subElement.SetAttribute("icon", folder.ImageId);
+                    subElement.SetAttribute("position", ((byte)folder.Position).ToString());
+                    element.AppendChild(subElement);
+                    NodeToXml(xml, subElement, child);
+                }
+                else if (child.Tag is NesGame)
+                {
+                    var subElement = xml.CreateElement("Game");
+                    var game = child.Tag as NesGame;
+                    subElement.SetAttribute("code", game.Code);
+                    subElement.SetAttribute("name", game.Name);
+                    element.AppendChild(subElement);
+                }
+                else if (child.Tag is NesDefaultGame)
+                {
+                    var subElement = xml.CreateElement("OriginalGame");
+                    var game = child.Tag as NesDefaultGame;
+                    subElement.SetAttribute("code", game.Code);
+                    subElement.SetAttribute("name", game.Name);
+                    element.AppendChild(subElement);
+                }
+            }
+        }
+        void XmlToTree(string xmlString)
+        {
+            GamesCollection.Unsplit();
+            var oldCollection = new NesMenuCollection();
+            oldCollection.AddRange(GamesCollection);
+            var xml = new XmlDocument();
+            xml.LoadXml(xmlString);
+            GamesCollection.Clear();
+            XmlToNode(xml, xml.SelectSingleNode("/Tree").ChildNodes, oldCollection, GamesCollection);
+            // oldCollection has only unsorted (new) games
+            if (oldCollection.Count > 0)
+            {
+                var unsorted = new NesMenuFolder(Resources.FolderNameUnsorted);
+                unsorted.Position = NesMenuFolder.Priority.Leftmost;
+                foreach (var game in oldCollection)
+                    unsorted.ChildMenuCollection.Add(game);
+                GamesCollection.Add(unsorted);
+                MessageBox.Show(this, Resources.NewGamesUnsorted, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            DrawTree();
+        }
+
+        void XmlToNode(XmlDocument xml, XmlNodeList elements, NesMenuCollection rootMenuCollection, NesMenuCollection nesMenuCollection = null)
+        {
+            if (nesMenuCollection == null)
+                nesMenuCollection = rootMenuCollection;
+            foreach (XmlNode element in elements)
+            {
+                switch (element.Name)
+                {
+                    case "Folder":
+                        var folder = new NesMenuFolder(element.Attributes["name"].Value, element.Attributes["icon"].Value);
+                        folder.Position = (NesMenuFolder.Priority)byte.Parse(element.Attributes["position"].Value);
+                        nesMenuCollection.Add(folder);
+                        XmlToNode(xml, element.ChildNodes, rootMenuCollection, folder.ChildMenuCollection);
+                        break;
+                    case "Game":
+                    case "OriginalGame":
+                        var code = element.Attributes["code"].Value;
+                        var game = rootMenuCollection.First(n => (n is NesGame || n is NesDefaultGame) && n.Code == code);
+                        if (game != null)
+                        {
+                            nesMenuCollection.Add(game);
+                            rootMenuCollection.Remove(game);
+                        }
+                        break;
                 }
             }
         }
