@@ -28,7 +28,6 @@ namespace com.clusterrr.hakchi_gui
             Back = 5
         }
         private Priority position;
-        //private bool first = true;
 
         public string Code
         {

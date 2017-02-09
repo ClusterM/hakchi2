@@ -54,6 +54,7 @@ namespace com.clusterrr.hakchi_gui
             treeView.Nodes.Clear();
             var rootNode = new TreeNode(Resources.MainMenu);
             treeView.Nodes.Add(rootNode);
+            GamesCollection.Unsplit();
             GamesCollection.Split(splitStyle, ConfigIni.MaxGamesPerFolder);
             rootNode.Tag = GamesCollection;
             AddNodes(rootNode.Nodes, GamesCollection);

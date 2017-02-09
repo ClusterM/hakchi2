@@ -61,8 +61,12 @@ namespace com.clusterrr.hakchi_gui
                 root = new NesMenuCollection();
                 root.AddRange(this.Where(o => !(o is NesDefaultGame)));
                 this.RemoveAll(o => !(o is NesDefaultGame));
-                this.Add(new NesMenuFolder() { Name = Resources.FolderNameMoreGames,
-                    Position = NesMenuFolder.Priority.Rightmost, ChildMenuCollection = root });
+                this.Add(new NesMenuFolder()
+                {
+                    Name = Resources.FolderNameMoreGames,
+                    Position = NesMenuFolder.Priority.Rightmost,
+                    ChildMenuCollection = root
+                });
             }
 
             var sorted = root.OrderBy(o => o.Name);
@@ -159,7 +163,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var letter in letters.Keys)
                     if (letters[letter].Count > 0)
                     {
-                        string folderImageId = "folder_"+letter.ToString().ToLower();
+                        string folderImageId = "folder_" + letter.ToString().ToLower();
                         if (letter < 'A' || letter > 'Z') folderImageId = "folder_number";
                         var folder = new NesMenuFolder() { ChildMenuCollection = letters[letter], Name = letter.ToString(), Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
                         if (style == SplitStyle.FoldersAlphabetic_PagesEqual)
@@ -188,6 +192,26 @@ namespace com.clusterrr.hakchi_gui
                         collection.Add(new NesMenuFolder() { Name = Resources.FolderNameOriginalGames, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = this });
                 }
             }
+        }
+
+        public void Unsplit(List<NesMenuCollection> ignore = null)
+        {
+            if (ignore == null)
+                ignore = new List<NesMenuCollection>();
+            ignore.Add(this);
+            var newElements = new List<INesMenuElement>();
+            var oldElements = new List<INesMenuElement>();
+            foreach (NesMenuFolder item in from i in this where i is NesMenuFolder select i)
+            {
+                if (ignore.Contains(item.ChildMenuCollection))
+                    continue;
+                item.ChildMenuCollection.Unsplit(ignore);
+                newElements.AddRange(item.ChildMenuCollection);
+                item.ChildMenuCollection.Clear();
+                oldElements.Add(item);
+            }
+            this.AddRange(newElements);
+            this.RemoveAll(o => oldElements.Contains(o));
         }
 
         void TrimFolderNames(NesMenuCollection nesMenuCollection)
