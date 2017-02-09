@@ -214,6 +214,23 @@ namespace com.clusterrr.hakchi_gui
             this.RemoveAll(o => oldElements.Contains(o));
         }
 
+        public void AddBack(List<NesMenuCollection> ignore = null)
+        {
+            if (ignore == null)
+                ignore = new List<NesMenuCollection>();
+            ignore.Add(this);
+            foreach (NesMenuFolder item in from i in this where i is NesMenuFolder select i)
+            {
+                if (ignore.Contains(item.ChildMenuCollection))
+                    continue;
+                var back = new NesMenuFolder(Resources.FolderNameBack, "folder_back");
+                back.Position = NesMenuFolder.Priority.Back;
+                back.ChildMenuCollection = this;
+                item.ChildMenuCollection.AddBack(ignore);
+                item.ChildMenuCollection.Add(back);
+            }
+        }
+
         void TrimFolderNames(NesMenuCollection nesMenuCollection)
         {
             const int minChars = 3;

@@ -117,24 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="splitContainer.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="splitContainer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="treeView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="treeView.ImageIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <metadata name="imageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="imageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
@@ -193,563 +175,54 @@
         Cw==
 </value>
   </data>
-  <data name="treeView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="treeView.SelectedImageIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="treeView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>280, 475</value>
-  </data>
-  <data name="treeView.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;treeView.Name" xml:space="preserve">
-    <value>treeView</value>
-  </data>
-  <data name="&gt;&gt;treeView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;treeView.Parent" xml:space="preserve">
-    <value>splitContainer.Panel1</value>
-  </data>
-  <data name="&gt;&gt;treeView.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;splitContainer.Panel1.Name" xml:space="preserve">
-    <value>splitContainer.Panel1</value>
-  </data>
-  <data name="&gt;&gt;splitContainer.Panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;splitContainer.Panel1.Parent" xml:space="preserve">
-    <value>splitContainer</value>
-  </data>
-  <data name="&gt;&gt;splitContainer.Panel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="comboBoxPosition.Items" xml:space="preserve">
-    <value>Leftmost</value>
+    <value>Самая левая</value>
   </data>
   <data name="comboBoxPosition.Items1" xml:space="preserve">
-    <value>Left to the games</value>
+    <value>Слева от игр</value>
   </data>
   <data name="comboBoxPosition.Items2" xml:space="preserve">
-    <value>Right to the games</value>
+    <value>Справа от игр</value>
   </data>
   <data name="comboBoxPosition.Items3" xml:space="preserve">
-    <value>Rightmost</value>
+    <value>Самая правая</value>
   </data>
-  <data name="comboBoxPosition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>127, 242</value>
-  </data>
-  <data name="comboBoxPosition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 21</value>
-  </data>
-  <data name="comboBoxPosition.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;comboBoxPosition.Name" xml:space="preserve">
-    <value>comboBoxPosition</value>
-  </data>
-  <data name="&gt;&gt;comboBoxPosition.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comboBoxPosition.Parent" xml:space="preserve">
-    <value>splitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;comboBoxPosition.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="labelPosition.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelPosition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 245</value>
-  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="labelPosition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 13</value>
-  </data>
-  <data name="labelPosition.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>101, 13</value>
   </data>
   <data name="labelPosition.Text" xml:space="preserve">
-    <value>Folder position priority:</value>
-  </data>
-  <data name="&gt;&gt;labelPosition.Name" xml:space="preserve">
-    <value>labelPosition</value>
-  </data>
-  <data name="&gt;&gt;labelPosition.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelPosition.Parent" xml:space="preserve">
-    <value>splitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;labelPosition.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="buttonNewFolder.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="buttonNewFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>394, 243</value>
-  </data>
-  <data name="buttonNewFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 21</value>
-  </data>
-  <data name="buttonNewFolder.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>Положение папки:</value>
   </data>
   <data name="buttonNewFolder.Text" xml:space="preserve">
-    <value>New folder</value>
-  </data>
-  <data name="&gt;&gt;buttonNewFolder.Name" xml:space="preserve">
-    <value>buttonNewFolder</value>
-  </data>
-  <data name="&gt;&gt;buttonNewFolder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonNewFolder.Parent" xml:space="preserve">
-    <value>splitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;buttonNewFolder.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="listViewContent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="listViewContent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 269</value>
-  </data>
-  <data name="listViewContent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 206</value>
-  </data>
-  <data name="listViewContent.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;listViewContent.Name" xml:space="preserve">
-    <value>listViewContent</value>
-  </data>
-  <data name="&gt;&gt;listViewContent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listViewContent.Parent" xml:space="preserve">
-    <value>splitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;listViewContent.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="groupBoxSplitModes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 22</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>Новая папка</value>
   </data>
   <data name="buttonNoFoldersOriginal.Text" xml:space="preserve">
-    <value>Original games -&gt; Other games</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFoldersOriginal.Name" xml:space="preserve">
-    <value>buttonNoFoldersOriginal</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFoldersOriginal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFoldersOriginal.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFoldersOriginal.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="buttonNoFolders.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 22</value>
-  </data>
-  <data name="buttonNoFolders.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
-  </data>
-  <data name="buttonNoFolders.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>Оригинальные игры -&gt; Другие игры</value>
   </data>
   <data name="buttonNoFolders.Text" xml:space="preserve">
-    <value>No folders</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFolders.Name" xml:space="preserve">
-    <value>buttonNoFolders</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFolders.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFolders.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFolders.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="buttonFoldersLetters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 154</value>
-  </data>
-  <data name="buttonFoldersLetters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
-  </data>
-  <data name="buttonFoldersLetters.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>Без папок</value>
   </data>
   <data name="buttonFoldersLetters.Text" xml:space="preserve">
-    <value>Split by first letter</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLetters.Name" xml:space="preserve">
-    <value>buttonFoldersLetters</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLetters.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLetters.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLetters.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="buttonFoldersEquallyOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="buttonFoldersEquallyOriginal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 88</value>
-  </data>
-  <data name="buttonFoldersEquallyOriginal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
-  </data>
-  <data name="buttonFoldersEquallyOriginal.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>Разделить по первым буквам</value>
   </data>
   <data name="buttonFoldersEquallyOriginal.Text" xml:space="preserve">
-    <value>Original games -&gt; Split equally</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEquallyOriginal.Name" xml:space="preserve">
-    <value>buttonFoldersEquallyOriginal</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEquallyOriginal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEquallyOriginal.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEquallyOriginal.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="buttonFoldersLettersOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="buttonFoldersLettersOriginal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 154</value>
-  </data>
-  <data name="buttonFoldersLettersOriginal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
-  </data>
-  <data name="buttonFoldersLettersOriginal.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>Оригинальные игры -&gt; Разделить поровну</value>
   </data>
   <data name="buttonFoldersLettersOriginal.Text" xml:space="preserve">
-    <value>Original games -&gt; Split by first letter</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLettersOriginal.Name" xml:space="preserve">
-    <value>buttonFoldersLettersOriginal</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLettersOriginal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLettersOriginal.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLettersOriginal.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="buttonFoldersEqually.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 88</value>
-  </data>
-  <data name="buttonFoldersEqually.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
-  </data>
-  <data name="buttonFoldersEqually.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>Оригинальные игры -&gt; разделить по первым буквам</value>
   </data>
   <data name="buttonFoldersEqually.Text" xml:space="preserve">
-    <value>Split equally</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEqually.Name" xml:space="preserve">
-    <value>buttonFoldersEqually</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEqually.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEqually.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEqually.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="groupBoxSplitModes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>240, 12</value>
-  </data>
-  <data name="groupBoxSplitModes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 227</value>
-  </data>
-  <data name="groupBoxSplitModes.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>Разделить поровну</value>
   </data>
   <data name="groupBoxSplitModes.Text" xml:space="preserve">
-    <value>Create folders structure automatically</value>
-  </data>
-  <data name="&gt;&gt;groupBoxSplitModes.Name" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;groupBoxSplitModes.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBoxSplitModes.Parent" xml:space="preserve">
-    <value>splitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;groupBoxSplitModes.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="pictureBoxArt.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="pictureBoxArt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 15</value>
-  </data>
-  <data name="pictureBoxArt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 203</value>
-  </data>
-  <data name="pictureBoxArt.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="pictureBoxArt.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxArt.Name" xml:space="preserve">
-    <value>pictureBoxArt</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxArt.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxArt.Parent" xml:space="preserve">
-    <value>groupBoxArt</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxArt.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="groupBoxArt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 12</value>
-  </data>
-  <data name="groupBoxArt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 227</value>
-  </data>
-  <data name="groupBoxArt.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>Создать дерево автоматически</value>
   </data>
   <data name="groupBoxArt.Text" xml:space="preserve">
-    <value>Menu icon</value>
-  </data>
-  <data name="&gt;&gt;groupBoxArt.Name" xml:space="preserve">
-    <value>groupBoxArt</value>
-  </data>
-  <data name="&gt;&gt;groupBoxArt.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBoxArt.Parent" xml:space="preserve">
-    <value>splitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;groupBoxArt.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;splitContainer.Panel2.Name" xml:space="preserve">
-    <value>splitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;splitContainer.Panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;splitContainer.Panel2.Parent" xml:space="preserve">
-    <value>splitContainer</value>
-  </data>
-  <data name="&gt;&gt;splitContainer.Panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="splitContainer.Panel2MinSize" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="splitContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>784, 475</value>
-  </data>
-  <data name="splitContainer.SplitterDistance" type="System.Int32, mscorlib">
-    <value>280</value>
-  </data>
-  <data name="splitContainer.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;splitContainer.Name" xml:space="preserve">
-    <value>splitContainer</value>
-  </data>
-  <data name="&gt;&gt;splitContainer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;splitContainer.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;splitContainer.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>120, 17</value>
-  </metadata>
-  <data name="newFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
-  </data>
-  <data name="newFolderToolStripMenuItem.Text" xml:space="preserve">
-    <value>Create new folder</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Delete folder</value>
-  </data>
-  <data name="renameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
-  </data>
-  <data name="renameToolStripMenuItem.Text" xml:space="preserve">
-    <value>Rename folder</value>
-  </data>
-  <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 70</value>
-  </data>
-  <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
-    <value>contextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;contextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="labelElementCount.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelElementCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 13</value>
-  </data>
-  <data name="labelElementCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 13</value>
-  </data>
-  <data name="labelElementCount.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="labelElementCount.Text" xml:space="preserve">
-    <value>Folder statistics</value>
-  </data>
-  <data name="&gt;&gt;labelElementCount.Name" xml:space="preserve">
-    <value>labelElementCount</value>
-  </data>
-  <data name="&gt;&gt;labelElementCount.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelElementCount.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;labelElementCount.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>678, 7</value>
-  </data>
-  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 25</value>
-  </data>
-  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>Иконка в меню</value>
   </data>
   <data name="buttonCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
-    <value>buttonCancel</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="buttonOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>572, 7</value>
-  </data>
-  <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 25</value>
-  </data>
-  <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="buttonOk.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="&gt;&gt;buttonOk.Name" xml:space="preserve">
-    <value>buttonOk</value>
-  </data>
-  <data name="&gt;&gt;buttonOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonOk.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;buttonOk.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 474</value>
-  </data>
-  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>784, 38</value>
-  </data>
-  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>784, 512</value>
+    <value>Отмена</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1883,43 +1356,7 @@
         //////////////////////////////////8=
 </value>
   </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>700, 550</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Folders Manager</value>
-  </data>
-  <data name="&gt;&gt;imageList.Name" xml:space="preserve">
-    <value>imageList</value>
-  </data>
-  <data name="&gt;&gt;imageList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;newFolderToolStripMenuItem.Name" xml:space="preserve">
-    <value>newFolderToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;newFolderToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;deleteToolStripMenuItem.Name" xml:space="preserve">
-    <value>deleteToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;deleteToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;renameToolStripMenuItem.Name" xml:space="preserve">
-    <value>renameToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;renameToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>TreeContructorForm</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Менеджер папок</value>
   </data>
 </root>

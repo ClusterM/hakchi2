@@ -136,7 +136,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Building folder structure....
+        ///   Looks up a localized string similar to Building the folder structure....
         /// </summary>
         internal static string BuildingFolders {
             get {
@@ -687,11 +687,47 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New folder.
+        /// </summary>
+        internal static string FolderNameNewFolder {
+            get {
+                return ResourceManager.GetString("FolderNameNewFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;- Original games.
         /// </summary>
         internal static string FolderNameOriginalGames {
             get {
                 return ResourceManager.GetString("FolderNameOriginalGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsorted.
+        /// </summary>
+        internal static string FolderNameUnsorted {
+            get {
+                return ResourceManager.GetString("FolderNameUnsorted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to save this folder structure?.
+        /// </summary>
+        internal static string FoldersSaveQ {
+            get {
+                return ResourceManager.GetString("FoldersSaveQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder &quot;{0}&quot; contains {1} elements..
+        /// </summary>
+        internal static string FolderStatistics {
+            get {
+                return ResourceManager.GetString("FolderStatistics", resourceCulture);
             }
         }
         
@@ -873,6 +909,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string MD5Failed2 {
             get {
                 return ResourceManager.GetString("MD5Failed2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New games are moved to &quot;Unsorted&quot; folder..
+        /// </summary>
+        internal static string NewGamesUnsorted {
+            get {
+                return ResourceManager.GetString("NewGamesUnsorted", resourceCulture);
             }
         }
         

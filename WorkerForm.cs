@@ -236,13 +236,17 @@ namespace com.clusterrr.hakchi_gui
                     Invoke(new Action<Exception, bool>(ShowError), new object[] { ex, dontStop });
                     return;
                 }
+                var message = ex.Message;
+#if DEBUG
+                message += ex.StackTrace;
+#endif
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 if (ex is GameGenieFormatException || ex is GameGenieNotFoundException)
-                    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else if (ex is MadWizard.WinUSBNet.USBException)
-                    MessageBox.Show(this, ex.Message + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, message + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
-                    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (!dontStop)
                 {
                     thread = null;
@@ -429,6 +433,7 @@ namespace com.clusterrr.hakchi_gui
                         DialogResult = DialogResult.Abort;
                         return;
                     }
+                    Games.AddBack();
                 }
                 else Games.Split(FoldersMode, MaxGamesPerFolder);
             }

@@ -373,4 +373,19 @@
   <data name="BuildingFolders" xml:space="preserve">
     <value>Строим дерево папок...</value>
   </data>
+  <data name="FolderNameUnsorted" xml:space="preserve">
+    <value>Unsorted</value>
+  </data>
+  <data name="FoldersSaveQ" xml:space="preserve">
+    <value>Сохранить это дерево папок?</value>
+  </data>
+  <data name="FolderStatistics" xml:space="preserve">
+    <value>Папка "{0}" содержит {1} элементов.</value>
+  </data>
+  <data name="NewFolder" xml:space="preserve">
+    <value>New folder</value>
+  </data>
+  <data name="NewGamesUnsorted" xml:space="preserve">
+    <value>Новые игры помещены в папку "Unsorted".</value>
+  </data>
 </root>

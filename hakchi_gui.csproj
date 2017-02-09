@@ -305,6 +305,9 @@
     <EmbeddedResource Include="TreeContructorForm.resx">
       <DependentUpon>TreeContructorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TreeContructorForm.ru-RU.resx">
+      <DependentUpon>TreeContructorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitingForm.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -609,7 +612,9 @@
     </None>
     <Content Include="icon.ico" />
     <None Include="images\blank.png" />
-    <Content Include="folder_images\folder_back.png" />
+    <Content Include="folder_images\folder_back.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\blank_fds.png" />
     <Content Include="images\blank_jp.png" />
     <Content Include="images\blank_sm.png" />
