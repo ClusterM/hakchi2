@@ -683,7 +683,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void TreeContructorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason != CloseReason.UserClosing) return;
+            if (e.CloseReason != CloseReason.UserClosing || DialogResult == System.Windows.Forms.DialogResult.OK) return;
             var a = MessageBox.Show(this, Resources.FoldersSaveQ, this.Text, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (a == System.Windows.Forms.DialogResult.Cancel)
             {

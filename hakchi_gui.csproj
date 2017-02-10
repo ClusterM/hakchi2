@@ -216,6 +216,7 @@
     <Compile Include="StringInputForm.Designer.cs">
       <DependentUpon>StringInputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TaskbarProgress.cs" />
     <Compile Include="TreeContructorForm.cs">
       <SubType>Form</SubType>
     </Compile>
