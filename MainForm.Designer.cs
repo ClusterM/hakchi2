@@ -937,7 +937,6 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useExtendedFontToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBoxDefaultGames;
-        private System.Windows.Forms.CheckedListBox checkedListBoxDefaultGames;
         private System.Windows.Forms.Timer timerCalculateGames;
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unselectAllToolStripMenuItem;
@@ -1000,6 +999,7 @@
         private System.Windows.Forms.ToolStripMenuItem max100toolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem automaticToolStripMenuItem;
+        protected internal System.Windows.Forms.CheckedListBox checkedListBoxDefaultGames;
     }
 }
 
