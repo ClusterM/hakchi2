@@ -79,6 +79,7 @@ namespace com.clusterrr.hakchi_gui
 
         void DrawTree()
         {
+            cuttedNodes.Clear();
             treeView.Nodes.Clear();
             var rootNode = new TreeNode(Resources.MainMenu);
             treeView.Nodes.Add(rootNode);
@@ -90,9 +91,22 @@ namespace com.clusterrr.hakchi_gui
 
         void DrawSplitTree(NesMenuCollection.SplitStyle splitStyle = NesMenuCollection.SplitStyle.NoSplit)
         {
-            GamesCollection.Unsplit();
-            GamesCollection.Split(splitStyle, ConfigIni.MaxGamesPerFolder);
-            DrawTree();
+            var node = treeView.SelectedNode;
+            NesMenuCollection collection;
+            if (node.Tag is NesMenuFolder)
+                collection = (node.Tag as NesMenuFolder).ChildMenuCollection;
+            else if (node.Tag is NesMenuCollection)
+                collection = node.Tag as NesMenuCollection;
+            else return;
+            // Collide and resplit collection
+            collection.Unsplit();
+            collection.Split(splitStyle, ConfigIni.MaxGamesPerFolder);
+            // Refill nodes with new collection
+            node.Nodes.Clear();
+            AddNodes(node.Nodes, collection);
+            node.Expand();
+            treeView.SelectedNode = node;
+            ShowSelected();
         }
 
         void AddNodes(TreeNodeCollection treeNodeCollection, NesMenuCollection nesMenuCollection, List<NesMenuCollection> usedFolders = null)
@@ -172,7 +186,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 pictureBoxArt.Image = (node.Tag is NesMenuFolder) ? (node.Tag as NesMenuFolder).Image : null;
                 groupBoxArt.Enabled = (node.Tag is NesMenuFolder);
-                groupBoxArt.Cursor = Cursors.Hand;
+                groupBoxSplitModes.Enabled = true;
+                pictureBoxArt.Cursor = Cursors.Hand;
                 listViewContent.Enabled = true;
                 foreach (TreeNode n in node.Nodes)
                 {
@@ -205,7 +220,8 @@ namespace com.clusterrr.hakchi_gui
                     groupBoxArt.Enabled = false;
                 }
                 listViewContent.Enabled = false;
-                groupBoxArt.Cursor = Cursors.Default;
+                groupBoxSplitModes.Enabled = false;
+                pictureBoxArt.Cursor = Cursors.Default;
             }
             ShowFolderStats();
         }
@@ -682,7 +698,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void TreeContructorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason != CloseReason.UserClosing) return;
+            if (e.CloseReason != CloseReason.UserClosing || DialogResult == System.Windows.Forms.DialogResult.OK) return;
             var a = MessageBox.Show(this, Resources.FoldersSaveQ, this.Text, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (a == System.Windows.Forms.DialogResult.Cancel)
             {
