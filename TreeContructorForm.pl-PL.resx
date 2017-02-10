@@ -117,12 +117,48 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="treeView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="labelElementCount.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="labelElementCount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 13</value>
+  </data>
+  <data name="comboBoxPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>127, 242</value>
+  </data>
+  <data name="labelPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 245</value>
+  </data>
+  <data name="groupBoxSplitModes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 227</value>
+  </data>
+  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="labelElementCount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 13</value>
+  </data>
+  <data name="comboBoxPosition.Items" xml:space="preserve">
+    <value>Od samej lewej</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="groupBoxSplitModes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="buttonNewFolder.Text" xml:space="preserve">
+    <value>Nowy folder</value>
+  </data>
   <data name="imageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC0
-        CwAAAk1TRnQBSQFMAgEBBgEAAZgBAAGYAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CwAAAk1TRnQBSQFMAgEBBgEAAZwBAAGoAQABEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -171,79 +207,48 @@
         BQcJAAESArwCEgG8B20CvAESAfcC8gL3AfIH7wLyAfcgAAMSAg8BEgcPAxID9wLsAfcH7AP3AUIBTQE+
         BwABPgMAASgDAAFAAwABIAMAAQEBAAEBBgABARYAA/8BAAGAAQEBgAEBBAABgAEBAYABAQQAAYABAQGA
         AQEEAAGAAQEBgAEBZAAE/wGAAQEBgAEBAYABAQL/AYABAQGAAQEBgAEBAYABAQGAAQEBgAEBAYABAQGA
-        AQEBgAEBAYABAQGAAQEBgAEBBgABgAEBLAABgAcAAYABAQGABQABwQH/AYABAQQAAv8BwQH/BAAE/wQA
+        AQEBgAEBAYABAQGAAQEBgAEBBgABgAEBLAABgAcAAYABAQGABQABwQH/AYABAQQAAv8BwQH/BAAE/xoA
         Cw==
 </value>
   </data>
-  <data name="comboBoxPosition.Items" xml:space="preserve">
-    <value>Самая левая</value>
+  <data name="treeView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="comboBoxPosition.Items1" xml:space="preserve">
-    <value>Слева от игр</value>
-  </data>
-  <data name="comboBoxPosition.Items2" xml:space="preserve">
-    <value>Справа от игр</value>
-  </data>
-  <data name="comboBoxPosition.Items3" xml:space="preserve">
-    <value>Самая правая</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="labelPosition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 13</value>
-  </data>
-  <data name="labelPosition.Text" xml:space="preserve">
-    <value>Положение папки:</value>
-  </data>
-  <data name="buttonNewFolder.Text" xml:space="preserve">
-    <value>Новая папка</value>
-  </data>
-  <data name="groupBoxSplitModes.Text" xml:space="preserve">
-    <value>Создать дерево автоматически</value>
-  </data>
-  <data name="groupBoxArt.Text" xml:space="preserve">
-    <value>Иконка в меню</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.Text" xml:space="preserve">
-    <value>Оригинальные игры -&gt; Другие игры</value>
-  </data>
-  <data name="buttonNoFolders.Text" xml:space="preserve">
-    <value>Без папок</value>
-  </data>
-  <data name="buttonFoldersLetters.Text" xml:space="preserve">
-    <value>Разделить по первым буквам</value>
-  </data>
-  <data name="buttonFoldersEquallyOriginal.Text" xml:space="preserve">
-    <value>Оригинальные игры -&gt; Разделить поровну</value>
-  </data>
-  <data name="buttonFoldersLettersOriginal.Text" xml:space="preserve">
-    <value>Оригинальные игры -&gt; разделить по первым буквам</value>
-  </data>
-  <data name="buttonFoldersEqually.Text" xml:space="preserve">
-    <value>Разделить поровну</value>
-  </data>
-  <data name="newFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
-  </data>
-  <data name="newFolderToolStripMenuItem.Text" xml:space="preserve">
-    <value>Создать новую папку</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Удалить папку</value>
-  </data>
-  <data name="renameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
-  </data>
-  <data name="renameToolStripMenuItem.Text" xml:space="preserve">
-    <value>Переименовать папку</value>
-  </data>
-  <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 70</value>
+  <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
   </data>
   <data name="buttonCancel.Text" xml:space="preserve">
-    <value>Отмена</value>
+    <value>Anuluj</value>
+  </data>
+  <data name="splitContainer.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Menadżer Folderów</value>
+  </data>
+  <data name="buttonFoldersEqually.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="renameToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zmień nazwę folderu</value>
+  </data>
+  <data name="buttonNewFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="comboBoxPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>572, 7</value>
+  </data>
+  <data name="splitContainer.Panel2MinSize" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="buttonNoFolders.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 22</value>
+  </data>
+  <data name="groupBoxSplitModes.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1377,7 +1382,253 @@
         //////////////////////////////////8=
 </value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Менеджер папок</value>
+  <data name="buttonFoldersEquallyOriginal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 60</value>
+  </data>
+  <data name="newFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="listViewContent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>784, 38</value>
+  </data>
+  <data name="buttonFoldersEqually.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 60</value>
+  </data>
+  <data name="comboBoxPosition.Items1" xml:space="preserve">
+    <value>Od lewej do gier</value>
+  </data>
+  <data name="buttonNoFolders.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 60</value>
+  </data>
+  <data name="pictureBoxArt.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="pictureBoxArt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 203</value>
+  </data>
+  <data name="groupBoxSplitModes.Text" xml:space="preserve">
+    <value>Utwórz strukturę katalogów automatycznie</value>
+  </data>
+  <data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="groupBoxArt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 227</value>
+  </data>
+  <data name="buttonFoldersLetters.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="buttonNewFolder.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 92</value>
+  </data>
+  <data name="listViewContent.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="buttonFoldersEquallyOriginal.Text" xml:space="preserve">
+    <value>Oryginalne gry -&gt; Podziel po równo</value>
+  </data>
+  <data name="buttonNewFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>394, 243</value>
+  </data>
+  <data name="labelElementCount.Text" xml:space="preserve">
+    <value>Statystyki folderów</value>
+  </data>
+  <data name="buttonFoldersLettersOriginal.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="treeView.SelectedImageIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="treeView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 475</value>
+  </data>
+  <data name="buttonFoldersLettersOriginal.Text" xml:space="preserve">
+    <value>Oryginalne gry -&gt; Podziel alfabetycznie</value>
+  </data>
+  <data name="buttonFoldersEqually.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 88</value>
+  </data>
+  <data name="treeView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>700, 550</value>
+  </data>
+  <data name="groupBoxArt.Text" xml:space="preserve">
+    <value>Ikona menu</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>678, 7</value>
+  </data>
+  <data name="splitContainer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="treeView.ImageIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="groupBoxArt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 12</value>
+  </data>
+  <data name="groupBoxSplitModes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>240, 12</value>
+  </data>
+  <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="buttonFoldersEquallyOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="listViewContent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 269</value>
+  </data>
+  <data name="buttonFoldersEquallyOriginal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 88</value>
+  </data>
+  <data name="splitContainer.SplitterDistance" type="System.Int32, mscorlib">
+    <value>280</value>
+  </data>
+  <data name="buttonFoldersLettersOriginal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 154</value>
+  </data>
+  <data name="splitContainer.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="pictureBoxArt.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="listViewContent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>492, 206</value>
+  </data>
+  <data name="pictureBoxArt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 15</value>
+  </data>
+  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 60</value>
+  </data>
+  <data name="labelPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="splitContainer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>784, 475</value>
+  </data>
+  <data name="buttonFoldersLettersOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="pictureBoxArt.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Text" xml:space="preserve">
+    <value>Oryginalne gry -&gt; Inne gry</value>
+  </data>
+  <data name="labelElementCount.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="buttonFoldersLettersOriginal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 60</value>
+  </data>
+  <data name="comboBoxPosition.Items3" xml:space="preserve">
+    <value>Od samej prawej</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 474</value>
+  </data>
+  <data name="buttonFoldersLetters.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 154</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="buttonFoldersEqually.Text" xml:space="preserve">
+    <value>Podziel po równo</value>
+  </data>
+  <data name="buttonFoldersLetters.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 60</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="labelPosition.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 22</value>
+  </data>
+  <data name="panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="newFolderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Utwórz nowy folder</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Usuń folder</value>
+  </data>
+  <data name="buttonNewFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 21</value>
+  </data>
+  <data name="labelPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 13</value>
+  </data>
+  <data name="buttonFoldersEquallyOriginal.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>784, 512</value>
+  </data>
+  <data name="buttonNoFolders.Text" xml:space="preserve">
+    <value>Bez folderów</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="renameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="buttonOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="groupBoxArt.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="comboBoxPosition.Items2" xml:space="preserve">
+    <value>Od prawej do gier</value>
+  </data>
+  <data name="buttonFoldersLetters.Text" xml:space="preserve">
+    <value>Podziel alfabetycznie</value>
+  </data>
+  <data name="labelPosition.Text" xml:space="preserve">
+    <value>Pozycja folderów - kolejność:</value>
+  </data>
+  <data name="buttonNoFolders.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="comboBoxPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 21</value>
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="imageList.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>17, 17</value>
+  </data>
+  <data name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>120, 17</value>
   </data>
 </root>

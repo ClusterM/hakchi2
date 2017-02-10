@@ -117,133 +117,161 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="imageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC0
-        CwAAAk1TRnQBSQFMAgEBBgEAAZgBAAGYAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
-        AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
-        AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
-        AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
-        AWYDAAGZAwABzAIAATMDAAIzAgABMwFmAgABMwGZAgABMwHMAgABMwH/AgABZgMAAWYBMwIAAmYCAAFm
-        AZkCAAFmAcwCAAFmAf8CAAGZAwABmQEzAgABmQFmAgACmQIAAZkBzAIAAZkB/wIAAcwDAAHMATMCAAHM
-        AWYCAAHMAZkCAALMAgABzAH/AgAB/wFmAgAB/wGZAgAB/wHMAQABMwH/AgAB/wEAATMBAAEzAQABZgEA
-        ATMBAAGZAQABMwEAAcwBAAEzAQAB/wEAAf8BMwIAAzMBAAIzAWYBAAIzAZkBAAIzAcwBAAIzAf8BAAEz
-        AWYCAAEzAWYBMwEAATMCZgEAATMBZgGZAQABMwFmAcwBAAEzAWYB/wEAATMBmQIAATMBmQEzAQABMwGZ
-        AWYBAAEzApkBAAEzAZkBzAEAATMBmQH/AQABMwHMAgABMwHMATMBAAEzAcwBZgEAATMBzAGZAQABMwLM
-        AQABMwHMAf8BAAEzAf8BMwEAATMB/wFmAQABMwH/AZkBAAEzAf8BzAEAATMC/wEAAWYDAAFmAQABMwEA
-        AWYBAAFmAQABZgEAAZkBAAFmAQABzAEAAWYBAAH/AQABZgEzAgABZgIzAQABZgEzAWYBAAFmATMBmQEA
-        AWYBMwHMAQABZgEzAf8BAAJmAgACZgEzAQADZgEAAmYBmQEAAmYBzAEAAWYBmQIAAWYBmQEzAQABZgGZ
-        AWYBAAFmApkBAAFmAZkBzAEAAWYBmQH/AQABZgHMAgABZgHMATMBAAFmAcwBmQEAAWYCzAEAAWYBzAH/
-        AQABZgH/AgABZgH/ATMBAAFmAf8BmQEAAWYB/wHMAQABzAEAAf8BAAH/AQABzAEAApkCAAGZATMBmQEA
-        AZkBAAGZAQABmQEAAcwBAAGZAwABmQIzAQABmQEAAWYBAAGZATMBzAEAAZkBAAH/AQABmQFmAgABmQFm
-        ATMBAAGZATMBZgEAAZkBZgGZAQABmQFmAcwBAAGZATMB/wEAApkBMwEAApkBZgEAA5kBAAKZAcwBAAKZ
-        Af8BAAGZAcwCAAGZAcwBMwEAAWYBzAFmAQABmQHMAZkBAAGZAswBAAGZAcwB/wEAAZkB/wIAAZkB/wEz
-        AQABmQHMAWYBAAGZAf8BmQEAAZkB/wHMAQABmQL/AQABzAMAAZkBAAEzAQABzAEAAWYBAAHMAQABmQEA
-        AcwBAAHMAQABmQEzAgABzAIzAQABzAEzAWYBAAHMATMBmQEAAcwBMwHMAQABzAEzAf8BAAHMAWYCAAHM
-        AWYBMwEAAZkCZgEAAcwBZgGZAQABzAFmAcwBAAGZAWYB/wEAAcwBmQIAAcwBmQEzAQABzAGZAWYBAAHM
-        ApkBAAHMAZkBzAEAAcwBmQH/AQACzAIAAswBMwEAAswBZgEAAswBmQEAA8wBAALMAf8BAAHMAf8CAAHM
-        Af8BMwEAAZkB/wFmAQABzAH/AZkBAAHMAf8BzAEAAcwC/wEAAcwBAAEzAQAB/wEAAWYBAAH/AQABmQEA
-        AcwBMwIAAf8CMwEAAf8BMwFmAQAB/wEzAZkBAAH/ATMBzAEAAf8BMwH/AQAB/wFmAgAB/wFmATMBAAHM
-        AmYBAAH/AWYBmQEAAf8BZgHMAQABzAFmAf8BAAH/AZkCAAH/AZkBMwEAAf8BmQFmAQAB/wKZAQAB/wGZ
-        AcwBAAH/AZkB/wEAAf8BzAIAAf8BzAEzAQAB/wHMAWYBAAH/AcwBmQEAAf8CzAEAAf8BzAH/AQAC/wEz
-        AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
-        AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
-        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD/wIADhICAA73IgABEgHt
-        AhIJ7QESAgAB9wG8AvcJvAH3IgABEgHtArwJ7QESAgAB9wG8AvIJvAH3IgABEgHtAhIJ7QESAgAB9wG8
-        AvcJvAH3IQABEgLtArwC7QESB+0BEgH3ArwC8gK8AfcHvAH3IAABEgLtAhIK7QESAfcCvAL3CrwB9yAA
-        ARIC7QK8Ae0HMgLtARIB9wK8AvIBvAd6ArwB9yAAARIC7QISAe0CMgKGAYsCMgLtARIB9wK8AvcBvAJ6
-        A7UCegK8AfcgAAESAu0CvAHtAjgBiwESARoBEwE4Au0BEgH3ArwC8gG8AnoBuwH3ARsB9wF6ArwB9yAA
-        ARIC7QISAe0COAFuAZMBGgEcATgC7QESAfcCvAL3AbwCegEHAbwB8wHwAXoCvAH3IAABEgLtArwB7QQ4
-        AhcBOALtARIB9wK8AvIBvATlApQB5QK8AfcgAAESAu0CEgHtBTgBlAE4Au0BEgH3ArwC9wG8BeUBvQHl
-        ArwB9yAAARIC7QK8Ae0B+wHTAfsB0wP7Au0BEgH3ArwC8gG8AeUB2wHlAdsD5QK8AfcgAAESAu0CDwHt
-        AfsB0wH7A9MB+wLtARIB9wK8AuwBvAHlAdsB5QPbAeUCvAH3IAABEgK8AhIBvAf7ArwBEgH3AvIC9wHy
-        B+UC8gH3IAADEgIPARIHMAMSA/cC7AH3B3kD90EADhICAA73AgAOtBIAARIB7QISCe0BEgIAAfcBvAL3
-        CbwB9wIAAbQMCQG0AgAOvAIAARIB7QK8Ce0BEgIAAfcBvALyCbwB9wIAAbQMCQG0AgABvAzyAbwCAAES
-        Ae0CEgntARICAAH3AbwC9wm8AfcCAAG0DAkBtAIAAbwM8gG8AQABEgLtArwC7QESB+0BEgH3ArwC8gK8
-        AfcHvAH3AbQOCQG0AQABvAzyAbwBAAESAu0CEgrtARIB9wK8AvcKvAH3AbQOCQG0AbwO8gG8ARIC7QK8
-        Ae0HbQLtARIB9wK8AvIBvAfvArwB9wG0DgkBtAG8DvIBvAESAu0CEgHtB20C7QESAfcCvAL3AbwH7wK8
-        AfcBtA4JAbQBvA7yAbwBEgLtArwB7QdtAu0BEgH3ArwC8gG8B+8CvAH3AbQOCQG0AbwO8gG8ARIC7QIS
-        Ae0HbQLtARIB9wK8AvcBvAfvArwB9we0CAkBtAG8DvIBvAESAu0CvAHtB20C7QESAfcCvALyAbwH7wK8
-        AfcBAAWuCrQHvAjyAbwBEgLtAhIB7QdtAu0BEgH3ArwC9wG8B+8CvAH3AQAOrgIABQcKvAESAu0CvAHt
-        B20C7QESAfcCvALyAbwH7wK8AfcCAAWuCgAOBwEAARIC7QIPAe0HbQLtARIB9wK8AuwBvAfvArwB9xIA
-        BQcJAAESArwCEgG8B20CvAESAfcC8gL3AfIH7wLyAfcgAAMSAg8BEgcPAxID9wLsAfcH7AP3AUIBTQE+
-        BwABPgMAASgDAAFAAwABIAMAAQEBAAEBBgABARYAA/8BAAGAAQEBgAEBBAABgAEBAYABAQQAAYABAQGA
-        AQEEAAGAAQEBgAEBZAAE/wGAAQEBgAEBAYABAQL/AYABAQGAAQEBgAEBAYABAQGAAQEBgAEBAYABAQGA
-        AQEBgAEBAYABAQGAAQEBgAEBBgABgAEBLAABgAcAAYABAQGABQABwQH/AYABAQQAAv8BwQH/BAAE/wQA
-        Cw==
-</value>
-  </data>
-  <data name="comboBoxPosition.Items" xml:space="preserve">
-    <value>Самая левая</value>
-  </data>
-  <data name="comboBoxPosition.Items1" xml:space="preserve">
-    <value>Слева от игр</value>
-  </data>
-  <data name="comboBoxPosition.Items2" xml:space="preserve">
-    <value>Справа от игр</value>
-  </data>
-  <data name="comboBoxPosition.Items3" xml:space="preserve">
-    <value>Самая правая</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="labelPosition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 13</value>
+  <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>265, 49</value>
   </data>
-  <data name="labelPosition.Text" xml:space="preserve">
-    <value>Положение папки:</value>
+  <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 37</value>
   </data>
-  <data name="buttonNewFolder.Text" xml:space="preserve">
-    <value>Новая папка</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
-  <data name="groupBoxSplitModes.Text" xml:space="preserve">
-    <value>Создать дерево автоматически</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="checkBoxUp.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
-  <data name="groupBoxArt.Text" xml:space="preserve">
-    <value>Иконка в меню</value>
+  <data name="checkBoxUp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="buttonNoFoldersOriginal.Text" xml:space="preserve">
-    <value>Оригинальные игры -&gt; Другие игры</value>
+  <data name="checkBoxUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>67, 79</value>
   </data>
-  <data name="buttonNoFolders.Text" xml:space="preserve">
-    <value>Без папок</value>
+  <data name="checkBoxUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>11, 11</value>
   </data>
-  <data name="buttonFoldersLetters.Text" xml:space="preserve">
-    <value>Разделить по первым буквам</value>
+  <data name="checkBoxUp.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
   </data>
-  <data name="buttonFoldersEquallyOriginal.Text" xml:space="preserve">
-    <value>Оригинальные игры -&gt; Разделить поровну</value>
+  <data name="checkBoxDown.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
-  <data name="buttonFoldersLettersOriginal.Text" xml:space="preserve">
-    <value>Оригинальные игры -&gt; разделить по первым буквам</value>
+  <data name="checkBoxDown.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="buttonFoldersEqually.Text" xml:space="preserve">
-    <value>Разделить поровну</value>
+  <data name="checkBoxDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>67, 125</value>
   </data>
-  <data name="newFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+  <data name="checkBoxDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>11, 11</value>
   </data>
-  <data name="newFolderToolStripMenuItem.Text" xml:space="preserve">
-    <value>Создать новую папку</value>
+  <data name="checkBoxDown.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
   </data>
-  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+  <data name="checkBoxA.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
-  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Удалить папку</value>
+  <data name="checkBoxA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="renameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+  <data name="checkBoxA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>322, 116</value>
   </data>
-  <data name="renameToolStripMenuItem.Text" xml:space="preserve">
-    <value>Переименовать папку</value>
+  <data name="checkBoxA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>11, 11</value>
   </data>
-  <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 70</value>
+  <data name="checkBoxA.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
   </data>
-  <data name="buttonCancel.Text" xml:space="preserve">
-    <value>Отмена</value>
+  <data name="checkBoxLeft.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="checkBoxLeft.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBoxLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>43, 102</value>
+  </data>
+  <data name="checkBoxLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>11, 11</value>
+  </data>
+  <data name="checkBoxLeft.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="checkBoxB.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="checkBoxB.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBoxB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 116</value>
+  </data>
+  <data name="checkBoxB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>11, 11</value>
+  </data>
+  <data name="checkBoxB.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="checkBoxRight.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="checkBoxRight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBoxRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 102</value>
+  </data>
+  <data name="checkBoxRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>10, 10</value>
+  </data>
+  <data name="checkBoxRight.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="checkBoxStart.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="checkBoxStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBoxStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>198, 119</value>
+  </data>
+  <data name="checkBoxStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>11, 11</value>
+  </data>
+  <data name="checkBoxStart.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="checkBoxSelect.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="checkBoxSelect.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBoxSelect.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 119</value>
+  </data>
+  <data name="checkBoxSelect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>11, 11</value>
+  </data>
+  <data name="checkBoxSelect.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="pictureBoxController.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pictureBoxController.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-6, 0</value>
+  </data>
+  <data name="pictureBoxController.Size" type="System.Drawing.Size, System.Drawing">
+    <value>399, 181</value>
+  </data>
+  <data name="pictureBoxController.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>CenterImage</value>
+  </data>
+  <data name="pictureBoxController.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>390, 180</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1377,7 +1405,13 @@
         //////////////////////////////////8=
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Менеджер папок</value>
+    <value>Wybierz komibnację klawiszy resetu</value>
   </data>
 </root>

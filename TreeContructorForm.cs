@@ -44,28 +44,42 @@ namespace com.clusterrr.hakchi_gui
 
         public TreeContructorForm(NesMenuCollection nesMenuCollection)
         {
-            InitializeComponent();
-            GamesCollection = nesMenuCollection;
-            if (File.Exists(FoldersXmlPath))
+            try
             {
-                try
+                InitializeComponent();
+                GamesCollection = nesMenuCollection;
+                if (File.Exists(FoldersXmlPath))
                 {
-                    XmlToTree(File.ReadAllText(FoldersXmlPath));
+                    try
+                    {
+                        XmlToTree(File.ReadAllText(FoldersXmlPath));
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message + ex.StackTrace);
+                        File.Delete(FoldersXmlPath);
+                        throw ex;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    File.Delete(FoldersXmlPath);
-                    throw ex;
-                }
-            } 
-            else DrawTree();
-            splitContainer.Panel2MinSize = 485;
-            treeView.TreeViewNodeSorter = new NodeSorter();
-            listViewContent.ListViewItemSorter = new NodeSorter();
+                else DrawTree();
+                splitContainer.Panel2MinSize = 485;
+                treeView.TreeViewNodeSorter = new NodeSorter();
+                listViewContent.ListViewItemSorter = new NodeSorter();
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message;
+#if DEBUG
+                message += ex.StackTrace;
+#endif
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         void DrawTree()
         {
+            cuttedNodes.Clear();
             treeView.Nodes.Clear();
             var rootNode = new TreeNode(Resources.MainMenu);
             treeView.Nodes.Add(rootNode);
@@ -77,9 +91,22 @@ namespace com.clusterrr.hakchi_gui
 
         void DrawSplitTree(NesMenuCollection.SplitStyle splitStyle = NesMenuCollection.SplitStyle.NoSplit)
         {
-            GamesCollection.Unsplit();
-            GamesCollection.Split(splitStyle, ConfigIni.MaxGamesPerFolder);
-            DrawTree();
+            var node = treeView.SelectedNode;
+            NesMenuCollection collection;
+            if (node.Tag is NesMenuFolder)
+                collection = (node.Tag as NesMenuFolder).ChildMenuCollection;
+            else if (node.Tag is NesMenuCollection)
+                collection = node.Tag as NesMenuCollection;
+            else return;
+            // Collide and resplit collection
+            collection.Unsplit();
+            collection.Split(splitStyle, ConfigIni.MaxGamesPerFolder);
+            // Refill nodes with new collection
+            node.Nodes.Clear();
+            AddNodes(node.Nodes, collection);
+            node.Expand();
+            treeView.SelectedNode = node;
+            ShowSelected();
         }
 
         void AddNodes(TreeNodeCollection treeNodeCollection, NesMenuCollection nesMenuCollection, List<NesMenuCollection> usedFolders = null)
@@ -159,7 +186,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 pictureBoxArt.Image = (node.Tag is NesMenuFolder) ? (node.Tag as NesMenuFolder).Image : null;
                 groupBoxArt.Enabled = (node.Tag is NesMenuFolder);
-                groupBoxArt.Cursor = Cursors.Hand;
+                groupBoxSplitModes.Enabled = true;
+                pictureBoxArt.Cursor = Cursors.Hand;
                 listViewContent.Enabled = true;
                 foreach (TreeNode n in node.Nodes)
                 {
@@ -192,7 +220,8 @@ namespace com.clusterrr.hakchi_gui
                     groupBoxArt.Enabled = false;
                 }
                 listViewContent.Enabled = false;
-                groupBoxArt.Cursor = Cursors.Default;
+                groupBoxSplitModes.Enabled = false;
+                pictureBoxArt.Cursor = Cursors.Default;
             }
             ShowFolderStats();
         }
@@ -669,7 +698,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void TreeContructorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason != CloseReason.UserClosing) return;
+            if (e.CloseReason != CloseReason.UserClosing || DialogResult == System.Windows.Forms.DialogResult.OK) return;
             var a = MessageBox.Show(this, Resources.FoldersSaveQ, this.Text, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (a == System.Windows.Forms.DialogResult.Cancel)
             {
@@ -775,9 +804,10 @@ namespace com.clusterrr.hakchi_gui
                     case "Game":
                     case "OriginalGame":
                         var code = element.Attributes["code"].Value;
-                        var game = rootMenuCollection.First(n => (n is NesGame || n is NesDefaultGame) && n.Code == code);
-                        if (game != null)
+                        var games = from n in rootMenuCollection where ((n is NesGame || n is NesDefaultGame) && (n.Code == code)) select n;
+                        if (games.Count() > 0)
                         {
+                            var game = games.First();
                             nesMenuCollection.Add(game);
                             rootMenuCollection.Remove(game);
                         }

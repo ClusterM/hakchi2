@@ -117,133 +117,86 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="imageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC0
-        CwAAAk1TRnQBSQFMAgEBBgEAAZgBAAGYAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
-        AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
-        AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
-        AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
-        AWYDAAGZAwABzAIAATMDAAIzAgABMwFmAgABMwGZAgABMwHMAgABMwH/AgABZgMAAWYBMwIAAmYCAAFm
-        AZkCAAFmAcwCAAFmAf8CAAGZAwABmQEzAgABmQFmAgACmQIAAZkBzAIAAZkB/wIAAcwDAAHMATMCAAHM
-        AWYCAAHMAZkCAALMAgABzAH/AgAB/wFmAgAB/wGZAgAB/wHMAQABMwH/AgAB/wEAATMBAAEzAQABZgEA
-        ATMBAAGZAQABMwEAAcwBAAEzAQAB/wEAAf8BMwIAAzMBAAIzAWYBAAIzAZkBAAIzAcwBAAIzAf8BAAEz
-        AWYCAAEzAWYBMwEAATMCZgEAATMBZgGZAQABMwFmAcwBAAEzAWYB/wEAATMBmQIAATMBmQEzAQABMwGZ
-        AWYBAAEzApkBAAEzAZkBzAEAATMBmQH/AQABMwHMAgABMwHMATMBAAEzAcwBZgEAATMBzAGZAQABMwLM
-        AQABMwHMAf8BAAEzAf8BMwEAATMB/wFmAQABMwH/AZkBAAEzAf8BzAEAATMC/wEAAWYDAAFmAQABMwEA
-        AWYBAAFmAQABZgEAAZkBAAFmAQABzAEAAWYBAAH/AQABZgEzAgABZgIzAQABZgEzAWYBAAFmATMBmQEA
-        AWYBMwHMAQABZgEzAf8BAAJmAgACZgEzAQADZgEAAmYBmQEAAmYBzAEAAWYBmQIAAWYBmQEzAQABZgGZ
-        AWYBAAFmApkBAAFmAZkBzAEAAWYBmQH/AQABZgHMAgABZgHMATMBAAFmAcwBmQEAAWYCzAEAAWYBzAH/
-        AQABZgH/AgABZgH/ATMBAAFmAf8BmQEAAWYB/wHMAQABzAEAAf8BAAH/AQABzAEAApkCAAGZATMBmQEA
-        AZkBAAGZAQABmQEAAcwBAAGZAwABmQIzAQABmQEAAWYBAAGZATMBzAEAAZkBAAH/AQABmQFmAgABmQFm
-        ATMBAAGZATMBZgEAAZkBZgGZAQABmQFmAcwBAAGZATMB/wEAApkBMwEAApkBZgEAA5kBAAKZAcwBAAKZ
-        Af8BAAGZAcwCAAGZAcwBMwEAAWYBzAFmAQABmQHMAZkBAAGZAswBAAGZAcwB/wEAAZkB/wIAAZkB/wEz
-        AQABmQHMAWYBAAGZAf8BmQEAAZkB/wHMAQABmQL/AQABzAMAAZkBAAEzAQABzAEAAWYBAAHMAQABmQEA
-        AcwBAAHMAQABmQEzAgABzAIzAQABzAEzAWYBAAHMATMBmQEAAcwBMwHMAQABzAEzAf8BAAHMAWYCAAHM
-        AWYBMwEAAZkCZgEAAcwBZgGZAQABzAFmAcwBAAGZAWYB/wEAAcwBmQIAAcwBmQEzAQABzAGZAWYBAAHM
-        ApkBAAHMAZkBzAEAAcwBmQH/AQACzAIAAswBMwEAAswBZgEAAswBmQEAA8wBAALMAf8BAAHMAf8CAAHM
-        Af8BMwEAAZkB/wFmAQABzAH/AZkBAAHMAf8BzAEAAcwC/wEAAcwBAAEzAQAB/wEAAWYBAAH/AQABmQEA
-        AcwBMwIAAf8CMwEAAf8BMwFmAQAB/wEzAZkBAAH/ATMBzAEAAf8BMwH/AQAB/wFmAgAB/wFmATMBAAHM
-        AmYBAAH/AWYBmQEAAf8BZgHMAQABzAFmAf8BAAH/AZkCAAH/AZkBMwEAAf8BmQFmAQAB/wKZAQAB/wGZ
-        AcwBAAH/AZkB/wEAAf8BzAIAAf8BzAEzAQAB/wHMAWYBAAH/AcwBmQEAAf8CzAEAAf8BzAH/AQAC/wEz
-        AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
-        AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
-        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD/wIADhICAA73IgABEgHt
-        AhIJ7QESAgAB9wG8AvcJvAH3IgABEgHtArwJ7QESAgAB9wG8AvIJvAH3IgABEgHtAhIJ7QESAgAB9wG8
-        AvcJvAH3IQABEgLtArwC7QESB+0BEgH3ArwC8gK8AfcHvAH3IAABEgLtAhIK7QESAfcCvAL3CrwB9yAA
-        ARIC7QK8Ae0HMgLtARIB9wK8AvIBvAd6ArwB9yAAARIC7QISAe0CMgKGAYsCMgLtARIB9wK8AvcBvAJ6
-        A7UCegK8AfcgAAESAu0CvAHtAjgBiwESARoBEwE4Au0BEgH3ArwC8gG8AnoBuwH3ARsB9wF6ArwB9yAA
-        ARIC7QISAe0COAFuAZMBGgEcATgC7QESAfcCvAL3AbwCegEHAbwB8wHwAXoCvAH3IAABEgLtArwB7QQ4
-        AhcBOALtARIB9wK8AvIBvATlApQB5QK8AfcgAAESAu0CEgHtBTgBlAE4Au0BEgH3ArwC9wG8BeUBvQHl
-        ArwB9yAAARIC7QK8Ae0B+wHTAfsB0wP7Au0BEgH3ArwC8gG8AeUB2wHlAdsD5QK8AfcgAAESAu0CDwHt
-        AfsB0wH7A9MB+wLtARIB9wK8AuwBvAHlAdsB5QPbAeUCvAH3IAABEgK8AhIBvAf7ArwBEgH3AvIC9wHy
-        B+UC8gH3IAADEgIPARIHMAMSA/cC7AH3B3kD90EADhICAA73AgAOtBIAARIB7QISCe0BEgIAAfcBvAL3
-        CbwB9wIAAbQMCQG0AgAOvAIAARIB7QK8Ce0BEgIAAfcBvALyCbwB9wIAAbQMCQG0AgABvAzyAbwCAAES
-        Ae0CEgntARICAAH3AbwC9wm8AfcCAAG0DAkBtAIAAbwM8gG8AQABEgLtArwC7QESB+0BEgH3ArwC8gK8
-        AfcHvAH3AbQOCQG0AQABvAzyAbwBAAESAu0CEgrtARIB9wK8AvcKvAH3AbQOCQG0AbwO8gG8ARIC7QK8
-        Ae0HbQLtARIB9wK8AvIBvAfvArwB9wG0DgkBtAG8DvIBvAESAu0CEgHtB20C7QESAfcCvAL3AbwH7wK8
-        AfcBtA4JAbQBvA7yAbwBEgLtArwB7QdtAu0BEgH3ArwC8gG8B+8CvAH3AbQOCQG0AbwO8gG8ARIC7QIS
-        Ae0HbQLtARIB9wK8AvcBvAfvArwB9we0CAkBtAG8DvIBvAESAu0CvAHtB20C7QESAfcCvALyAbwH7wK8
-        AfcBAAWuCrQHvAjyAbwBEgLtAhIB7QdtAu0BEgH3ArwC9wG8B+8CvAH3AQAOrgIABQcKvAESAu0CvAHt
-        B20C7QESAfcCvALyAbwH7wK8AfcCAAWuCgAOBwEAARIC7QIPAe0HbQLtARIB9wK8AuwBvAfvArwB9xIA
-        BQcJAAESArwCEgG8B20CvAESAfcC8gL3AfIH7wLyAfcgAAMSAg8BEgcPAxID9wLsAfcH7AP3AUIBTQE+
-        BwABPgMAASgDAAFAAwABIAMAAQEBAAEBBgABARYAA/8BAAGAAQEBgAEBBAABgAEBAYABAQQAAYABAQGA
-        AQEEAAGAAQEBgAEBZAAE/wGAAQEBgAEBAYABAQL/AYABAQGAAQEBgAEBAYABAQGAAQEBgAEBAYABAQGA
-        AQEBgAEBAYABAQGAAQEBgAEBBgABgAEBLAABgAcAAYABAQGABQABwQH/AYABAQQAAv8BwQH/BAAE/wQA
-        Cw==
-</value>
-  </data>
-  <data name="comboBoxPosition.Items" xml:space="preserve">
-    <value>Самая левая</value>
-  </data>
-  <data name="comboBoxPosition.Items1" xml:space="preserve">
-    <value>Слева от игр</value>
-  </data>
-  <data name="comboBoxPosition.Items2" xml:space="preserve">
-    <value>Справа от игр</value>
-  </data>
-  <data name="comboBoxPosition.Items3" xml:space="preserve">
-    <value>Самая правая</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Game Genie lista kodów</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="labelPosition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 13</value>
+  <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 23</value>
   </data>
-  <data name="labelPosition.Text" xml:space="preserve">
-    <value>Положение папки:</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="checkedListBoxGameCode.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="buttonNewFolder.Text" xml:space="preserve">
-    <value>Новая папка</value>
+  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>295, 425</value>
   </data>
-  <data name="groupBoxSplitModes.Text" xml:space="preserve">
-    <value>Создать дерево автоматически</value>
+  <data name="addToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 22</value>
   </data>
-  <data name="groupBoxArt.Text" xml:space="preserve">
-    <value>Иконка в меню</value>
+  <data name="buttonImport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>101, 425</value>
   </data>
-  <data name="buttonNoFoldersOriginal.Text" xml:space="preserve">
-    <value>Оригинальные игры -&gt; Другие игры</value>
+  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
-  <data name="buttonNoFolders.Text" xml:space="preserve">
-    <value>Без папок</value>
+  <data name="buttonAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="buttonFoldersLetters.Text" xml:space="preserve">
-    <value>Разделить по первым буквам</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
-  <data name="buttonFoldersEquallyOriginal.Text" xml:space="preserve">
-    <value>Оригинальные игры -&gt; Разделить поровну</value>
+  <data name="buttonAdd.Text" xml:space="preserve">
+    <value>Dodaj</value>
   </data>
-  <data name="buttonFoldersLettersOriginal.Text" xml:space="preserve">
-    <value>Оригинальные игры -&gt; разделить по первым буквам</value>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
   </data>
-  <data name="buttonFoldersEqually.Text" xml:space="preserve">
-    <value>Разделить поровну</value>
+  <data name="checkedListBoxGameCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>380, 409</value>
   </data>
-  <data name="newFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+  <data name="addToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dodaj</value>
   </data>
-  <data name="newFolderToolStripMenuItem.Text" xml:space="preserve">
-    <value>Создать новую папку</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Удалить папку</value>
-  </data>
-  <data name="renameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
-  </data>
-  <data name="renameToolStripMenuItem.Text" xml:space="preserve">
-    <value>Переименовать папку</value>
-  </data>
-  <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 70</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
   </data>
   <data name="buttonCancel.Text" xml:space="preserve">
-    <value>Отмена</value>
+    <value>Anuluj</value>
+  </data>
+  <data name="buttonImport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="removeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="checkedListBoxGameCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 4</value>
+  </data>
+  <data name="buttonAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 23</value>
+  </data>
+  <data name="buttonOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="buttonImport.Text" xml:space="preserve">
+    <value>Importuj</value>
+  </data>
+  <data name="buttonAdd.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="checkedListBoxGameCode.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 70</value>
+  </data>
+  <data name="removeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 22</value>
+  </data>
+  <data name="buttonAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 425</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1377,7 +1330,46 @@
         //////////////////////////////////8=
 </value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Менеджер папок</value>
+  <data name="buttonImport.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 23</value>
+  </data>
+  <data name="ofdXmlFile.Filter" xml:space="preserve">
+    <value>Pliki XML|*.xml</value>
+  </data>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>Edytuj</value>
+  </data>
+  <data name="ofdXmlFile.Title" xml:space="preserve">
+    <value>Wybierz plik XML Nestopia Game Genie</value>
+  </data>
+  <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>199, 425</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>392, 458</value>
+  </data>
+  <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 22</value>
+  </data>
+  <data name="buttonImport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 23</value>
+  </data>
+  <data name="ofdXmlFile.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>279, 20</value>
+  </data>
+  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib">
+    <value>ru-RU</value>
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>133, 17</value>
   </data>
 </root>

@@ -100,7 +100,7 @@ namespace com.clusterrr.hakchi_gui
                 LoadHidden();
                 LoadPresets();
                 var version = Assembly.GetExecutingAssembly().GetName().Version;
-                Text = string.Format("hakchi2 - v{0}.{1:D2}", version.Major, version.Build);
+                Text = string.Format("hakchi2 - v{0}.{1:D2}{2}", version.Major, version.Build, (version.Revision < 10) ? ("rc" + version.Revision.ToString()) : "");
 
                 // Some settnigs
                 useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
@@ -1013,7 +1013,7 @@ namespace com.clusterrr.hakchi_gui
             foldersOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 7;
             foldersSplitByFirstLetterToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 8;
             foldersSplitByFirstLetterOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 9;
-            customToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 99; 
+            customToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 99;
         }
     }
 }
