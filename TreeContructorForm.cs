@@ -79,6 +79,7 @@ namespace com.clusterrr.hakchi_gui
 
         void DrawTree()
         {
+            cuttedNodes.Clear();
             treeView.Nodes.Clear();
             var rootNode = new TreeNode(Resources.MainMenu);
             treeView.Nodes.Add(rootNode);

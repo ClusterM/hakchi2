@@ -762,6 +762,15 @@ namespace com.clusterrr.hakchi_gui
                     var gameDir = Path.Combine(targetDirectory, game.Code);
                     Debug.Write(string.Format("Processing {0} ('{1}'), #{2}", game.Code, game.Name, stats.GamesProceed));
                     stats.Size += DirectoryCopy(game.GamePath, gameDir, true);
+                    /*
+                    if (stats.Size >= maxRamfsSize)
+                    {
+                        // Rollback. Just in case of huge last game
+                        stats.GamesProceed--;
+                        Directory.Delete(gameDir, true);
+                        continue;
+                    }
+                     */
                     Debug.WriteLine(string.Format(", total size: {0}", stats.Size));
                     if (!string.IsNullOrEmpty(game.GameGenie))
                     {
