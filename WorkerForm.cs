@@ -30,6 +30,7 @@ namespace com.clusterrr.hakchi_gui
         public string[] GamesToAdd;
         public NesMenuCollection.SplitStyle FoldersMode = NesMenuCollection.SplitStyle.Auto;
         public int MaxGamesPerFolder = 35;
+        public MainForm MainForm;
         Thread thread = null;
         Fel fel = null;
 
@@ -153,7 +154,7 @@ namespace com.clusterrr.hakchi_gui
                 Invoke(new Action<NesMenuCollection>(FolderManagerFromThread), new object[] { collection });
                 return;
             }
-            var constructor = new TreeContructorForm(collection);
+            var constructor = new TreeContructorForm(collection, MainForm);
             TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
             FolderManagerResult = constructor.ShowDialog();
             TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);

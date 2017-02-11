@@ -598,8 +598,7 @@ namespace com.clusterrr.hakchi_gui
             workerForm.FoldersMode = ConfigIni.FoldersMode;
             workerForm.MaxGamesPerFolder = ConfigIni.MaxGamesPerFolder;
 
-            // var browser = new TreeContructorForm(workerForm.Games);
-            //browser.ShowDialog(); return false;
+            workerForm.MainForm = this;
 
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
@@ -876,7 +875,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 var game = checkedListBoxGames.Items[pos] as NesGame;
-                if (MessageBox.Show(this, string.Format(Resources.DeleteQ, game.Name), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(this, string.Format(Resources.DeleteGame, game.Name), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
                 {
                     Directory.Delete(game.GamePath, true);
                     checkedListBoxGames.Items.RemoveAt(pos);

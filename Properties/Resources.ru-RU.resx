@@ -135,8 +135,8 @@
   <data name="Default30games" xml:space="preserve">
     <value>Оригинальные 30 игр</value>
   </data>
-  <data name="DeleteQ" xml:space="preserve">
-    <value>Удалить {0}?</value>
+  <data name="DeleteGame" xml:space="preserve">
+    <value>Вы действительно хотите удалить игру "{0}"?</value>
   </data>
   <data name="Done" xml:space="preserve">
     <value>Готово!</value>
@@ -361,11 +361,11 @@
   <data name="GGDescriptionEmpty" xml:space="preserve">
     <value>Вы должны ввести описание!</value>
   </data>
-  <data name="DeleteFolder" xml:space="preserve">
-    <value>Удалить папку "{0}"?</value>
+  <data name="DeleteElement" xml:space="preserve">
+    <value>Вы действительно хотите удалить "{0}"?</value>
   </data>
   <data name="FolderContent" xml:space="preserve">
-    <value>Содержимое папки будет перемещено в папку "Unsorted".</value>
+    <value>Контент будет перемещён в папку "Recycle Bin". Вы можете удалить её насовсем или переместить игры в другие директории.</value>
   </data>
   <data name="MainMenu" xml:space="preserve">
     <value>Главное меню</value>
@@ -390,5 +390,20 @@
   </data>
   <data name="AddingGames" xml:space="preserve">
     <value>Обрабатываем и добавляем в базу игры. Пожалуйста, подождите...</value>
+  </data>
+  <data name="DeleteElements" xml:space="preserve">
+    <value>Вы действительно хотите удалить {0} элементов?</value>
+  </data>
+  <data name="FolderNameBack" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="FolderNameNewFolder" xml:space="preserve">
+    <value>New folder</value>
+  </data>
+  <data name="FolderNameOriginalGames" xml:space="preserve">
+    <value>Original games</value>
+  </data>
+  <data name="FolderNameTrashBin" xml:space="preserve">
+    <value>Recycle Bin</value>
   </data>
 </root>
