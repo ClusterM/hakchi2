@@ -4,7 +4,7 @@ using System.Text;
 
 namespace com.clusterrr.Famicom
 {
-    public static class GameGenie
+    public static class GameGeniePatcher
     {
         public static byte[] Patch(byte[] data, string code)
         {
@@ -21,7 +21,7 @@ namespace com.clusterrr.Famicom
 
             if (binaryCode.Length == 24)
             {
-                if (binaryCode[8] != '0') throw new GameGenieFormatException();
+                if (binaryCode[8] != '0') throw new GameGenieFormatException(code);
 
                 try
                 {
@@ -30,7 +30,7 @@ namespace com.clusterrr.Famicom
                 }
                 catch
                 {
-                    throw new GameGenieFormatException();
+                    throw new GameGenieFormatException(code);
                 }
 
                 if (result.Length <= 0x8000)
@@ -49,7 +49,7 @@ namespace com.clusterrr.Famicom
             }
             else if (binaryCode.Length == 32)
             {
-                if (binaryCode[8] != '1') throw new GameGenieFormatException();
+                if (binaryCode[8] != '1') throw new GameGenieFormatException(code);
 
                 try
                 {
@@ -59,7 +59,7 @@ namespace com.clusterrr.Famicom
                 }
                 catch
                 {
-                    throw new GameGenieFormatException();
+                    throw new GameGenieFormatException(code);
                 }
 
                 bool replaced = false;
@@ -75,7 +75,7 @@ namespace com.clusterrr.Famicom
                 }
                 if (!replaced) throw new GameGenieNotFoundException("Can't apply code: " + code);
             }
-            else throw new GameGenieFormatException();
+            else throw new GameGenieFormatException(code);
 
             return result;
         }
@@ -103,19 +103,20 @@ namespace com.clusterrr.Famicom
 
     public class GameGenieFormatException : Exception
     {
-        public GameGenieFormatException()
-            : base("Неправильный формат Game Genie кода")
+        public readonly string Code;
+        public GameGenieFormatException(string code) : base()
         {
-        }
-        public GameGenieFormatException(string message) : base(message)
-        {
+            Code = code;
         }
     }
 
     public class GameGenieNotFoundException : Exception
     {
-        public GameGenieNotFoundException(string message) : base(message)
+        public readonly string Code;
+        public GameGenieNotFoundException(string code)
+            : base()
         {
+            Code = code;
         }
     }
 }

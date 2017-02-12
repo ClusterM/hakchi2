@@ -132,7 +132,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     newNode.SelectedImageIndex = newNode.ImageIndex = 0;
                 }
-                else if (nesElement is NesGame)
+                else if (nesElement is NesMiniApplication)
                     newNode.SelectedImageIndex = newNode.ImageIndex = 2;
                 else if (nesElement is NesDefaultGame)
                     newNode.SelectedImageIndex = newNode.ImageIndex = 4;
@@ -200,7 +200,7 @@ namespace com.clusterrr.hakchi_gui
                     var transparency = cuttedNodes.Contains(n) ? 1 : 0;
                     if (element is NesMenuFolder)
                         item.ImageIndex = 0 + transparency;
-                    else if (element is NesGame)
+                    else if (element is NesMiniApplication)
                         item.ImageIndex = 2 + transparency;
                     else if (element is NesDefaultGame)
                         item.ImageIndex = 4 + transparency;
@@ -210,10 +210,10 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                if (node != null && node.Tag is NesGame)
+                if (node != null && node.Tag is NesMiniApplication)
                 {
-                    var game = node.Tag as NesGame;
-                    pictureBoxArt.Image = NesGame.LoadBitmap(game.IconPath);
+                    var game = node.Tag as NesMiniApplication;
+                    pictureBoxArt.Image = NesMiniApplication.LoadBitmap(game.IconPath);
                     groupBoxArt.Enabled = true;
                     listViewContent.Enabled = false;
                 }
@@ -473,7 +473,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (destinationNode == null)
                 destinationNode = treeView.Nodes[0]; // Root
-            if (destinationNode.Tag is NesGame || destinationNode.Tag is NesDefaultGame)
+            if (destinationNode.Tag is NesMiniApplication || destinationNode.Tag is NesDefaultGame)
                 destinationNode = destinationNode.Parent;
             foreach (var newNode in newNodes)
             {
@@ -803,7 +803,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 for (int i = 0; i < mainForm.checkedListBoxGames.Items.Count; i++)
                 {
-                    if (deletedGames.Contains(mainForm.checkedListBoxGames.Items[i] as NesGame))
+                    if (deletedGames.Contains(mainForm.checkedListBoxGames.Items[i] as NesMiniApplication))
                         mainForm.checkedListBoxGames.SetItemChecked(i, false);
                 }
                 for (int i = 0; i < mainForm.checkedListBoxDefaultGames.Items.Count; i++)
@@ -847,10 +847,10 @@ namespace com.clusterrr.hakchi_gui
                     element.AppendChild(subElement);
                     NodeToXml(xml, subElement, child);
                 }
-                else if (child.Tag is NesGame)
+                else if (child.Tag is NesMiniApplication)
                 {
                     var subElement = xml.CreateElement("Game");
-                    var game = child.Tag as NesGame;
+                    var game = child.Tag as NesMiniApplication;
                     subElement.SetAttribute("code", game.Code);
                     subElement.SetAttribute("name", game.Name);
                     element.AppendChild(subElement);
@@ -911,7 +911,7 @@ namespace com.clusterrr.hakchi_gui
                     case "Game":
                     case "OriginalGame":
                         var code = element.Attributes["code"].Value;
-                        var games = from n in rootMenuCollection where ((n is NesGame || n is NesDefaultGame) && (n.Code == code)) select n;
+                        var games = from n in rootMenuCollection where ((n is NesMiniApplication || n is NesDefaultGame) && (n.Code == code)) select n;
                         if (games.Count() > 0)
                         {
                             var game = games.First();

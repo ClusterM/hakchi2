@@ -1,5 +1,4 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
-using nQuant;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -197,7 +196,7 @@ namespace com.clusterrr.hakchi_gui
                 var folderImagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "folder_images");
                 var filePath = Path.Combine(folderImagesDirectory, value + ".png");
                 if (File.Exists(filePath))
-                    image = NesGame.LoadBitmap(filePath);
+                    image = NesMiniApplication.LoadBitmap(filePath);
                 else
                     image = (Image)rm.GetObject(value);
                 imageId = value;

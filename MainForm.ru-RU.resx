@@ -540,7 +540,7 @@
     <value />
   </data>
   <data name="openFileDialogNes.Filter" xml:space="preserve">
-    <value>NES файлы|*.nes;*.fds;*.zip;*.7z;*.rar|Все файлы|*.*</value>
+    <value>NES файлы и приложения|*.nes;*.fds;*.desktop;*.zip;*.7z;*.rar|Все файлы|*.*</value>
   </data>
   <data name="openFileDialogNes.Title" xml:space="preserve">
     <value>Выберите NES файл(ы)</value>

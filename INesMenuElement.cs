@@ -7,7 +7,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public interface INesMenuElement
     {
-        string Code { get; set; }
+        string Code { get; }
         string Name { get; set; }
     }
 }
