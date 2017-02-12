@@ -889,7 +889,8 @@ namespace com.clusterrr.hakchi_gui
         public NesMiniApplication AddGames(string[] files, Form parentForm = null)
         {
             NesMiniApplication app = null;
-            bool NoForAllUnsupportedMappers = false;
+            //bool NoForAllUnsupportedMappers = false;
+            bool YesForAllUnsupportedMappers = false;
             YesForAllPatches = false;
             if (parentForm == null) parentForm = this;
             int count = 0;
@@ -935,7 +936,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         try
                         {
-                            app = NesGame.Import(fileName, NoForAllUnsupportedMappers ? (bool?)false : null, ref needPatch, needPatchCallback, this, rawData);
+                            app = NesGame.Import(fileName, YesForAllUnsupportedMappers ? (bool?)true : null, ref needPatch, needPatchCallback, this, rawData);
 
                             // Trying to import Game Genie codes
                             var lGameGeniePath = Path.Combine(Path.GetDirectoryName(fileName), Path.GetFileNameWithoutExtension(fileName) + ".xml");
@@ -955,15 +956,28 @@ namespace com.clusterrr.hakchi_gui
                                        ? string.Format(Resources.MapperNotSupported, Path.GetFileName(file), (ex as UnsupportedMapperException).ROM.Mapper)
                                        : string.Format(Resources.FourScreenNotSupported, Path.GetFileName(file)),
                                     Resources.AreYouSure,
+                                    files.Length <= 1 ? MessageBoxButtons.YesNo : MessageBoxButtons.AbortRetryIgnore,
+                                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                                /*
+                                MessageBoxFromThread(this,
+                                    (ex is UnsupportedMapperException)
+                                       ? string.Format(Resources.MapperNotSupported, Path.GetFileName(file), (ex as UnsupportedMapperException).ROM.Mapper)
+                                       : string.Format(Resources.FourScreenNotSupported, Path.GetFileName(file)),
+                                    Resources.AreYouSure,
                                     files.Length <= 1 ? MessageBoxButtons.YesNo : MessageBoxButtons.YesNoCancel,
                                     MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                                 * */
                                 while (MessageBoxResult == DialogResult.None) Thread.Sleep(100);
-                                if (MessageBoxResult == DialogResult.Yes)
+                                if (MessageBoxResult == DialogResult.Yes || MessageBoxResult == DialogResult.Abort || MessageBoxResult == DialogResult.Retry)
                                     app = NesGame.Import(fileName, true, ref needPatch, needPatchCallback, this, rawData);
-                                else if (MessageBoxResult == System.Windows.Forms.DialogResult.Cancel)
+                                /*
+                                if (MessageBoxResult == System.Windows.Forms.DialogResult.Cancel)
                                 {
                                     NoForAllUnsupportedMappers = true;
                                 }
+                                 */
+                                if (MessageBoxResult == DialogResult.Abort)
+                                    YesForAllUnsupportedMappers = true;
                             }
                             else throw ex;
                         }
@@ -991,7 +1005,6 @@ namespace com.clusterrr.hakchi_gui
 
         private bool needPatchCallback(Form parentForm, string nesFileName)
         {
-            TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
             if (GamesToAdd == null || GamesToAdd.Length <= 1)
             {
                 MessageBoxFromThread(parentForm,
@@ -1001,7 +1014,6 @@ namespace com.clusterrr.hakchi_gui
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button1);
                 while (MessageBoxResult == DialogResult.None) Thread.Sleep(100);
-                TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
                 return MessageBoxResult == DialogResult.Yes;
             }
             else
@@ -1015,7 +1027,6 @@ namespace com.clusterrr.hakchi_gui
                 while (MessageBoxResult == DialogResult.None) Thread.Sleep(100);
                 if (MessageBoxResult == DialogResult.Abort)
                     YesForAllPatches = true;
-                TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
                 return MessageBoxResult != DialogResult.Ignore;
             }
         }

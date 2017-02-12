@@ -187,7 +187,7 @@
     <value>Invalid kernel size:</value>
   </data>
   <data name="MapperNotSupported" xml:space="preserve">
-    <value>Sorry, {0} uses mapper #{1} but this mapper is not supported by NES Mini and game probably will not start. Do you want to add this game anyway?</value>
+    <value>Sorry, "{0}" uses mapper #{1} but this mapper is not supported by NES Mini and game probably will not start with default emulator. But it should work if "RetroArch" mod installed. Do you want to add this game?</value>
   </data>
   <data name="MD5Failed" xml:space="preserve">
     <value>Kernel dumped but MD5 checksum is unknown:</value>

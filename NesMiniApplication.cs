@@ -96,7 +96,7 @@ namespace com.clusterrr.hakchi_gui
         {
             var files = Directory.GetFiles(path, "*.desktop", SearchOption.TopDirectoryOnly);
             if (files.Length == 0)
-                throw new Exception("Invalid app folder");
+                throw new FileNotFoundException("Invalid app folder");
             var config = File.ReadAllLines(files[0]);
             foreach (var line in config)
                 if (line.Contains("Exec=/usr/bin/clover-kachikachi"))
@@ -111,7 +111,8 @@ namespace com.clusterrr.hakchi_gui
 
         public static NesMiniApplication Import(string fileName)
         {
-            if (Path.GetExtension(fileName).ToLower() != ".desktop") throw new Exception("Invalid app folder");
+            if (Path.GetExtension(fileName).ToLower() != ".desktop") 
+                throw new FileNotFoundException("Invalid app folder");
             var code = Path.GetFileNameWithoutExtension(fileName).ToUpper();
             var targetDir = Path.Combine(GamesDirectory, code);
             DirectoryCopy(Path.GetDirectoryName(fileName), targetDir, true);
