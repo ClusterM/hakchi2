@@ -199,6 +199,7 @@ namespace com.clusterrr.hakchi_gui
                     fel = null;
                 }
             }
+            GC.Collect();
         }
 
         void SetStatus(string status)
@@ -460,6 +461,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     ShowMessage(Resources.ParticallyBody, Resources.ParticallyTitle);
                 }
+                GC.Collect();
 
                 // Connecting to NES Mini
                 WaitForDeviceFromThread();
@@ -682,6 +684,7 @@ namespace com.clusterrr.hakchi_gui
                 Directory.Delete(tempDirectory, true);
 #endif
             if (result.Length > Fel.kernel_max_size) throw new Exception("Kernel is too big");
+            GC.Collect();
             return result;
         }
 

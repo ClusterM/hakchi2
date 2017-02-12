@@ -506,7 +506,6 @@ namespace com.clusterrr.hakchi_gui
                 ShowFolderStats();
                 foreach (ListViewItem item in listViewContent.Items)
                     item.Selected = newNodes.Contains(item.Tag as TreeNode);
-
             }
             return true;
         }
@@ -646,7 +645,7 @@ namespace com.clusterrr.hakchi_gui
 
         void pasteElements(TreeNode node)
         {
-            if ((cuttedNodes.Count > 0) && MoveToFolder(cuttedNodes, node, false))
+            if ((cuttedNodes.Count > 0) && MoveToFolder(cuttedNodes, node))
             {
                 cutElements(new TreeNode[0]);
             }
