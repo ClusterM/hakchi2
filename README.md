@@ -10,10 +10,10 @@ Features:
 * [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) support
 * Can automatically patch problem games, patches for some popular games included in the package
 * Allows to upload hundreds of games at once
-* Allows to exit to menu using button combination instead if reset button
 * Allows to enable autofire
 * Allows to simulate start button on second controller for Famicom Mini
 * Allows to disable epilepsy protection
+* Return to the HOME menu using button combination instead of the Reset button
 * Allows to disable menu music
 
 ## So are you hacked NES Mini?
