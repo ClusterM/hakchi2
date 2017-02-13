@@ -5,12 +5,12 @@ This application can add more games to [the Nintendo Classic Mini: NES](https://
 ### Features
 * Fills all game data automatically using included database
 * Automatically checks for supported games
-* Enables [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) codes
 * Can automatically patch problem games, patches for some popular games included in the package
 
 ### Additionally, Hakchi2 allows you to
 * Change any game settings, including command-line arguments
 * Automatically search for box art using Google Images
+* Use [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) codes
 * Upload hundreds of games at once
 * Return to the HOME menu using button combination instead of the Reset button
 * Enable turbo buttons
