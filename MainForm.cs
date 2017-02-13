@@ -70,7 +70,7 @@ namespace com.clusterrr.hakchi_gui
             new NesDefaultGame { Code = "CLV-P-HAAXJ",  Name = "ドクターマリオ" },
             new NesDefaultGame { Code = "CLV-P-HABBJ",  Name = "ロックマン®2 Dr.ワイリーの謎" },
             new NesDefaultGame { Code = "CLV-P-HABCJ",  Name = "魔界村®" },
-            new NesDefaultGame { Code = "CLV-P-HABJJ",  Name = "ファイナルファンタジー®III" },
+            new NesDefaultGame { Code = "CLV-P-HABLJ",  Name = "ファイナルファンタジー®III" },
             new NesDefaultGame { Code = "CLV-P-HABMJ",  Name = "パックマン" },
             new NesDefaultGame { Code = "CLV-P-HABNJ",  Name = "ギャラガ" },
             new NesDefaultGame { Code = "CLV-P-HABQJ",  Name = "悪魔城ドラキュラ" },
