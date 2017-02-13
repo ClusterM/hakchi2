@@ -6,14 +6,14 @@ Features:
 * Fills all game data automatically using included database
 * Change any game settings, including command-line arguments
 * Automatically checks for supported games
-* Allows to automatically search for box art using Google Images
+* Automatically search for box art using Google Images
 * [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) support
 * Can automatically patch problem games, patches for some popular games included in the package
-* Allows to upload hundreds of games at once
-* Allows to enable autofire
-* Allows to simulate start button on second controller for Famicom Mini
-* Allows to disable epilepsy protection
+* Upload hundreds of games at once
 * Return to the HOME menu using button combination instead of the Reset button
+* Enable turbo buttons
+* Simulate start button on second controller for Famicom Mini
+* Disable epilepsy protection
 * Allows to disable menu music
 
 ## So are you hacked NES Mini?
