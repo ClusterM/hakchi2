@@ -3,8 +3,8 @@
 This application can add more games to [the Nintendo Classic Mini: NES](https://www.nintendo.co.uk/Misc-/Nintendo-Classic-Mini-Nintendo-Entertainment-System/Nintendo-Classic-Mini-Nintendo-Entertainment-System-1124287.html) or [the Nintendo Classic Mini: Famicom](https://www.nintendo.co.jp/clv). All you need to do is connect it to a Windows PC via Micro-USB cable. No soldering, no disassembling.
 
 Features:
-* Fills all game data automatically using included database
 * Change any game settings, including command-line arguments
+* Fill all game data automatically using included database
 * Automatically checks for supported games
 * Automatically search for box art using Google Images
 * [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) support
