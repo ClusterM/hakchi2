@@ -4,7 +4,7 @@ This application can add more games to [the Nintendo Classic Mini: NES](https://
 
 Features:
 * Fills all game data automatically using included database
-* Change any game settings including command-line arguments
+* Change any game settings, including command-line arguments
 * Automatically checks for supported games
 * Allows to automatically search for box art using Google Images
 * [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) support
