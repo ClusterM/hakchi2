@@ -2,19 +2,21 @@
 
 This application can add more games to [the Nintendo Classic Mini: NES](https://www.nintendo.co.uk/Misc-/Nintendo-Classic-Mini-Nintendo-Entertainment-System/Nintendo-Classic-Mini-Nintendo-Entertainment-System-1124287.html) or [the Nintendo Classic Mini: Famicom](https://www.nintendo.co.jp/clv). All you need to do is connect it to a Windows PC via Micro-USB cable. No soldering, no disassembling.
 
-Features:
-* Change any game settings, including command-line arguments
-* Fill all game data automatically using included database
+### Features
+* Fills all game data automatically using included database
 * Automatically checks for supported games
-* Automatically search for box art using Google Images
-* [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) support
+* Enables [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) codes
 * Can automatically patch problem games, patches for some popular games included in the package
+
+### Additionally, Hakchi2 allows you to
+* Change any game settings, including command-line arguments
+* Automatically search for box art using Google Images
 * Upload hundreds of games at once
 * Return to the HOME menu using button combination instead of the Reset button
 * Enable turbo buttons
 * Simulate start button on second controller for Famicom Mini
 * Disable epilepsy protection
-* Allows to disable menu music
+* Disable menu music
 
 ## So are you hacked NES Mini?
 No! It was my russian сomrade madmonkey. He created original “hakchi” tool. It was not very user friendly so I decided to create tool which is simple for everyone, not only Linux users. I named it “hakchi2” because I don’t like to coming up with names. So first version was 2.0 :)
