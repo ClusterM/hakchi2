@@ -18,8 +18,8 @@ This application can add more games to [the Nintendo Classic Mini: NES](https://
 * Disable epilepsy protection
 * Disable menu music
 
-## So are you hacked NES Mini?
 No! It was my russian сomrade madmonkey. He created original “hakchi” tool. It was not very user friendly so I decided to create tool which is simple for everyone, not only Linux users. I named it “hakchi2” because I don’t like to coming up with names. So first version was 2.0 :)
+## So did you hack the NES Mini?
 
 ## How to use it?
 Basically you need just to unpack it somewhere (installation not required), run it, press “Add more games”, select some ROMs and press “Synchronize”. Application will guide you.
