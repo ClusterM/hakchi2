@@ -1,6 +1,6 @@
 # hakchi2
 
-This application can add more games to the NES Classic Edition or Famicom Mini. All you need is to connect it to PC via microUSB cable. No soldering, no disassembling.
+This application can add more games to the NES Classic Edition or the Nintendo Classic Mini: Famicom. All you need is to connect it to PC via microUSB cable. No soldering, no disassembling.
 
 Features:
 * Allows to change any game settings including command line arguments
