@@ -19,7 +19,7 @@ This application can add more games to [the Nintendo Classic Mini: NES](https://
 * Disable menu music
 
 ## So did you hack the NES Mini?
-No! It was my Russian сomrade [madmonkey](https://github.com/madmonkey1907). He created original [hakchi](https://github.com/madmonkey1907/hakchi) tool. It was not very user-friendly so I decided to create tool which is simple for everyone, not only Linux users. I named it “hakchi2” because I don’t like to coming up with names. So first version was 2.0 :)
+No! It was my Russian сomrade [madmonkey](https://github.com/madmonkey1907). He created original [hakchi](https://github.com/madmonkey1907/hakchi) tool. It was not very user-friendly, so I decided to create a tool that would be simple for everyone, not only Linux users. I named it “hakchi2” because I don’t like coming up with names. So the first version was 2.0 :)
 
 ## How to use it?
 Basically you need just to unpack it somewhere (installation not required), run it, press “Add more games”, select some ROMs and press “Synchronize”. Application will guide you.
