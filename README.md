@@ -7,7 +7,7 @@ Features:
 * Fills all game data automatically using included database
 * Automatically checks for supported games
 * Allows to automatically search for box art using Google Images
-* Game Genie support
+* [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) support
 * Can automatically patch problem games, patches for some popular games included in the package
 * Allows to upload hundreds of games at once
 * Allows to exit to menu using button combination instead if reset button
