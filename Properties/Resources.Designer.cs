@@ -79,7 +79,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data automatically filled for {0} games..
+        ///   Looks up a localized string similar to Data automatically filled for {0} game(s)..
         /// </summary>
         internal static string AutofillResult {
             get {
@@ -235,7 +235,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to P.S. If you like it you can donate to me. You can find my PayPal in the &quot;About&quot; box..
+        ///   Looks up a localized string similar to P.S. If you like it, you can donate to me. You can find my PayPal in the &quot;About&quot; box..
         /// </summary>
         internal static string Donate {
             get {
@@ -361,7 +361,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello there! I&apos;m very glad that you are using my application. It&apos;s very simple to use. Just click &quot;Add more games&quot;, select some ROMs, press &quot;Synchronize&quot; and follow the instructions. Good luck!.
+        ///   Looks up a localized string similar to Hello there! I&apos;m very glad that you are using hakchi2. It&apos;s very simple to use. Just click &quot;Add more games&quot;, select some ROMs, press &quot;Synchronize&quot; and follow the instructions. Good luck!.
         /// </summary>
         internal static string FirstRun {
             get {
@@ -777,7 +777,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Can&apos;t apply Game Genie code &quot;{0}&quot; to game &quot;{1}&quot; -  value not found. Maybe this code is for another game?.
+        ///   Looks up a localized string similar to Can&apos;t apply Game Genie code &quot;{0}&quot; to game &quot;{1}&quot; - value not found. Maybe this code is for another game?.
         /// </summary>
         internal static string GameGenieNotFound {
             get {
@@ -859,7 +859,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please input preset name for current games selection..
+        ///   Looks up a localized string similar to Please input a preset name for current games selection..
         /// </summary>
         internal static string InputPreset {
             get {
@@ -922,7 +922,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, &quot;{0}&quot; uses mapper #{1} but this mapper is not supported by the NES Mini and the game probably will not start with default emulator. But it should work if other emulator&apos;s module installed. Do you want to add this game?.
+        ///   Looks up a localized string similar to Sorry, &quot;{0}&quot; uses mapper #{1} but this mapper is not supported by the NES Mini and the game probably will not start with the default emulator. But it should work if other emulator&apos;s module installed. Do you want to add this game?.
         /// </summary>
         internal static string MapperNotSupported {
             get {
@@ -940,7 +940,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maybe the kernel is already patched or it&apos;s an unknown revision. Please send this message to me (press Ctrl+C). Continue at on your own risk..
+        ///   Looks up a localized string similar to The kernel is already patched or it&apos;s an unknown revision. Please send this message to me (press Ctrl+C). Continue at on your own risk..
         /// </summary>
         internal static string MD5Failed2 {
             get {
@@ -1030,7 +1030,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Don&apos;t worry! Everything is fine. There are just too many ROMs to tranfer them at once. Please wait until the power LED goes out, press OK and follow the instructions to continue..
+        ///   Looks up a localized string similar to Don&apos;t worry! Everything is fine. There are just too many ROMs to transfer them at once. Please wait until the power LED goes out, press OK and follow the instructions to continue..
         /// </summary>
         internal static string ParticallyBody {
             get {
@@ -1066,7 +1066,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If this problem repeats try to use another USB port or cable..
+        ///   Looks up a localized string similar to If this problem persists, try to use another USB port or cable..
         /// </summary>
         internal static string PleaseTryAgainUSB {
             get {
@@ -1093,7 +1093,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You need to select at least one game..
+        ///   Looks up a localized string similar to Select at least one game..
         /// </summary>
         internal static string SelectAtLeast {
             get {
@@ -1102,7 +1102,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You need to select at least two buttons..
+        ///   Looks up a localized string similar to Select at least two buttons..
         /// </summary>
         internal static string SelectAtLeastTwo {
             get {
@@ -1156,7 +1156,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to clean all traces of hakchi2 and return your NES Mini to it&apos;s original state?.
+        ///   Looks up a localized string similar to Do you really want to clean all traces of hakchi2 and return your NES Mini to its original state?.
         /// </summary>
         internal static string UninstallQ1 {
             get {
@@ -1246,7 +1246,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please use Zadig util to install the driver on Windows XP/2000..
+        ///   Looks up a localized string similar to Please use the Zadig utility to install the driver on Windows XP/2000..
         /// </summary>
         internal static string XpZadig {
             get {

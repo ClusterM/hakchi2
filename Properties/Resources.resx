@@ -187,13 +187,13 @@
     <value>Invalid kernel size:</value>
   </data>
   <data name="MapperNotSupported" xml:space="preserve">
-    <value>Sorry, "{0}" uses mapper #{1} but this mapper is not supported by the NES Mini and the game will probably not start with default emulator. But it should work if other emulator's module installed. Do you want to add this game?</value>
+    <value>Sorry, "{0}" uses mapper #{1} but this mapper is not supported by the NES Mini and the game will probably not start with the default emulator. But it should work if other emulator's module installed. Do you want to add this game?</value>
   </data>
   <data name="MD5Failed" xml:space="preserve">
     <value>Kernel dumped but the MD5 checksum is unknown:</value>
   </data>
   <data name="MD5Failed2" xml:space="preserve">
-    <value>Maybe the kernel is already patched or it's an unknown revision. Please send this message to me (press Ctrl+C). Continue at your own risk.</value>
+    <value>The kernel is already patched or it's an unknown revision. Please send this message to me (press Ctrl+C). Continue at your own risk.</value>
   </data>
   <data name="NoKernel" xml:space="preserve">
     <value>No kernel dump found</value>
@@ -211,10 +211,10 @@
     <value>Press OK to continue.</value>
   </data>
   <data name="ReplaceKernelQ" xml:space="preserve">
-    <value>You already have the kernel dump. If you REALLY want to replace the backup of you kernel and you REALLY understand what you are doing, delete "dump" folder manually.</value>
+    <value>You already have the kernel dump. If you REALLY want to replace the backup of you kernel and you REALLY understand what you are doing, delete the "dump" folder manually.</value>
   </data>
   <data name="SelectAtLeast" xml:space="preserve">
-    <value>You need to select at least one game.</value>
+    <value>Select at least one game.</value>
   </data>
   <data name="UploadingFes1" xml:space="preserve">
     <value>Uploading and running FES-1...</value>
@@ -241,16 +241,16 @@
     <value>Wow</value>
   </data>
   <data name="PleaseTryAgainUSB" xml:space="preserve">
-    <value>If this problem repeats try to use another USB port or cable.</value>
+    <value>If this problem persists, try to use another USB port or cable.</value>
   </data>
   <data name="XpZadig" xml:space="preserve">
-    <value>Please use Zadig util to install the driver on Windows XP/2000.</value>
+    <value>Please use the Zadig utility to install the driver on Windows XP/2000.</value>
   </data>
   <data name="Donate" xml:space="preserve">
-    <value>P.S. If you like it you can donate to me. You can find my PayPal in the "About" box.</value>
+    <value>P.S. If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
   </data>
   <data name="FirstRun" xml:space="preserve">
-    <value>Hello there! I'm very glad that you are using my application. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>
+    <value>Hello there! I'm very glad that you are using hakchi2. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>
@@ -265,7 +265,7 @@
     <value>Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
   </data>
   <data name="InputPreset" xml:space="preserve">
-    <value>Please input preset name for current games selection.</value>
+    <value>Please input a preset name for current games selection.</value>
   </data>
   <data name="NewPreset" xml:space="preserve">
     <value>New selection preset</value>
@@ -277,7 +277,7 @@
     <value>Uninstalling...</value>
   </data>
   <data name="UninstallQ1" xml:space="preserve">
-    <value>Do you really want to clean all traces of hakchi2 and return your NES Mini to it's original state?</value>
+    <value>Do you really want to clean all traces of hakchi2 and return your NES Mini to its original state?</value>
   </data>
   <data name="UninstallQ2" xml:space="preserve">
     <value>Done. Wait until the power LED goes out. You also need to flash the original kernel. Do you want to flash the original kernel now?</value>
@@ -286,7 +286,7 @@
     <value>Invalid Game Genie code "{0}" for game "{1}".</value>
   </data>
   <data name="GameGenieNotFound" xml:space="preserve">
-    <value>Can't apply Game Genie code "{0}" to game "{1}" -  value not found. Maybe this code is for another game?</value>
+    <value>Can't apply Game Genie code "{0}" to game "{1}" - value not found. Maybe this code is for another game?</value>
   </data>
   <data name="PatchAvailable" xml:space="preserve">
     <value>Patch available</value>
@@ -295,10 +295,10 @@
     <value>There is patch for "{0}". Do you want to patch this game?</value>
   </data>
   <data name="AutofillResult" xml:space="preserve">
-    <value>Data automatically filled for {0} games.</value>
+    <value>Data automatically filled for {0} game(s).</value>
   </data>
   <data name="SelectAtLeastTwo" xml:space="preserve">
-    <value>You need to select at least two buttons.</value>
+    <value>Select at least two buttons.</value>
   </data>
   <data name="AutofireHelp1" xml:space="preserve">
     <value>Hold Select+A/B for a second to enable/disable autofire for A/B.</value>
@@ -326,7 +326,7 @@
     <value>Not found:</value>
   </data>
   <data name="ParticallyBody" xml:space="preserve">
-    <value>Don't worry! Everything is fine. There are just too many ROMs to tranfer at once. Please wait until power LED goes out, press OK and follow the instructions to continue.</value>
+    <value>Don't worry! Everything is fine. There are just too many ROMs to transfer at once. Please wait until power LED goes out, press OK and follow the instructions to continue.</value>
   </data>
   <data name="ParticallyTitle" xml:space="preserve">
     <value>Too many ROMs</value>
