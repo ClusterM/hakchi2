@@ -3,14 +3,12 @@
 This application can add more games to [the Nintendo Classic Mini: NES](https://www.nintendo.co.uk/Misc-/Nintendo-Classic-Mini-Nintendo-Entertainment-System/Nintendo-Classic-Mini-Nintendo-Entertainment-System-1124287.html) or [the Nintendo Classic Mini: Famicom](https://www.nintendo.co.jp/clv). All you need to do is connect it to a Windows PC via Micro-USB cable. No soldering, no disassembling.
 
 ### Features
-* Fills all game data automatically using included database
-* Automatically checks for supported games
-* Can automatically patch problem games, patches for some popular games included in the package
-
-### Additionally, hakchi2 allows you to
 * Change any game settings (including command-line arguments)
-* Automatically search for box art using Google Images
+* Fill all game data automatically using included database
+* Automatically check for supported games
+* Search for box art using Google Images
 * Use [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) codes
+* Automatically patch problem games, patches for some popular games included in the package
 * Upload hundreds of games at once
 * Return to the HOME menu using button combination instead of the Reset button
 * Enable autofire
