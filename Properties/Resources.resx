@@ -187,7 +187,7 @@
     <value>Invalid kernel size:</value>
   </data>
   <data name="MapperNotSupported" xml:space="preserve">
-    <value>Sorry, "{0}" uses mapper #{1} but this mapper is not supported by NES Mini and game will probably not start with default emulator. But it should work if other emulator's module installed. Do you want to add this game?</value>
+    <value>Sorry, "{0}" uses mapper #{1} but this mapper is not supported by the NES Mini and the game will probably not start with default emulator. But it should work if other emulator's module installed. Do you want to add this game?</value>
   </data>
   <data name="MD5Failed" xml:space="preserve">
     <value>Kernel dumped but the MD5 checksum is unknown:</value>
@@ -241,7 +241,7 @@
     <value>Wow</value>
   </data>
   <data name="PleaseTryAgainUSB" xml:space="preserve">
-    <value>If this problem repeats try to use another USB port cable.</value>
+    <value>If this problem repeats try to use another USB port or cable.</value>
   </data>
   <data name="XpZadig" xml:space="preserve">
     <value>Please use Zadig util to install the driver on Windows XP/2000.</value>
@@ -262,7 +262,7 @@
     <value>Do you really want to delete the "{0}" preset?</value>
   </data>
   <data name="FourScreenNotSupported" xml:space="preserve">
-    <value>Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge) and this feature is not supported by NES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
+    <value>Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
   </data>
   <data name="InputPreset" xml:space="preserve">
     <value>Please input preset name for current games selection.</value>
@@ -283,10 +283,10 @@
     <value>Done. Wait until the power LED goes out. You also need to flash the original kernel. Do you want to flash the original kernel now?</value>
   </data>
   <data name="GameGenieFormatError" xml:space="preserve">
-    <value>Invalid Game Ganie code "{0}" for game "{1}".</value>
+    <value>Invalid Game Genie code "{0}" for game "{1}".</value>
   </data>
   <data name="GameGenieNotFound" xml:space="preserve">
-    <value>Can't apply Game Genie code "{0}" to game "{1}" -  value not found. Maybe this code is for other game?</value>
+    <value>Can't apply Game Genie code "{0}" to game "{1}" -  value not found. Maybe this code is for another game?</value>
   </data>
   <data name="PatchAvailable" xml:space="preserve">
     <value>Patch available</value>
