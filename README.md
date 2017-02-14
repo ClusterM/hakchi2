@@ -13,7 +13,7 @@ This application can add more games to [the Nintendo Classic Mini: NES](https://
 * Use [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) codes
 * Upload hundreds of games at once
 * Return to the HOME menu using button combination instead of the Reset button
-* Enable turbo buttons
+* Enable autofire
 * Simulate start button on second controller for Famicom Mini
 * Disable seizure protection
 * Disable menu music
