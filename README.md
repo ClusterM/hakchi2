@@ -14,7 +14,7 @@ This application can add more games to [the Nintendo Classic Mini: NES](https://
 * Upload hundreds of games at once
 * Return to the HOME menu using button combination instead of the Reset button
 * Enable autofire
-* Simulate start button on second controller for Famicom Mini
+* Simulate start button on the second controller for Famicom Mini
 * Disable seizure protection
 * Disable menu music
 
