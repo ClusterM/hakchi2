@@ -15,7 +15,7 @@ This application can add more games to [the Nintendo Classic Mini: NES](https://
 * Return to the HOME menu using button combination instead of the Reset button
 * Enable turbo buttons
 * Simulate start button on second controller for Famicom Mini
-* Disable epilepsy protection
+* Disable seizure protection
 * Disable menu music
 
 ## So did you hack the NES Mini?
