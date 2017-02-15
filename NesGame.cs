@@ -136,7 +136,7 @@ namespace com.clusterrr.hakchi_gui
                     return null;
                 }
             }
-            // TODO: Make trainer check. I think that NES Mini doesn't support it.
+            // TODO: Make trainer check. I think that the NES Mini doesn't support it.
 
             nesFile.Save(nesPath);
             var game = new NesGame(gamePath, true);

@@ -265,7 +265,7 @@
     <value>Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
   </data>
   <data name="InputPreset" xml:space="preserve">
-    <value>Please input a preset name for current games selection.</value>
+    <value>Please input a preset name for the current games selection.</value>
   </data>
   <data name="NewPreset" xml:space="preserve">
     <value>New selection preset</value>

@@ -859,7 +859,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please input a preset name for current games selection..
+        ///   Looks up a localized string similar to Please input a preset name for the current games selection..
         /// </summary>
         internal static string InputPreset {
             get {
