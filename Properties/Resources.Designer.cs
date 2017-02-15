@@ -97,7 +97,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Also, X/Y buttons on the Classic Controller will act as autofire A/B..
+        ///   Looks up a localized string similar to Also, the X/Y buttons on the Classic Controller will act as autofire A/B..
         /// </summary>
         internal static string AutofireHelp2 {
             get {
@@ -253,7 +253,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done! Wait until the power LED goes out and restart your NES Mini..
+        ///   Looks up a localized string similar to Done! Wait until the power LED turns off and restart your NES Mini..
         /// </summary>
         internal static string DoneUploaded {
             get {

@@ -145,7 +145,7 @@
     <value>Done!</value>
   </data>
   <data name="DoneUploaded" xml:space="preserve">
-    <value>Done! Wait until the power LED goes out and restart your NES Mini.</value>
+    <value>Done! Wait until the power LED turns off and restart your NES Mini.</value>
   </data>
   <data name="DoneYouCanUpload" xml:space="preserve">
     <value>Done! You can upload games to your NES Mini now.</value>
@@ -304,7 +304,7 @@
     <value>Hold Select+A/B for a second to enable/disable autofire for A/B.</value>
   </data>
   <data name="AutofireHelp2" xml:space="preserve">
-    <value>Also, X/Y buttons on the Classic Controller will act as autofire A/B.</value>
+    <value>Also, the X/Y buttons on the Classic Controller will act as autofire A/B.</value>
   </data>
   <data name="ExtraArgsInfo" xml:space="preserve">
     <value>You can add global command-line arguments which will be appended to all games including the original ones. This is only for experts!</value>
