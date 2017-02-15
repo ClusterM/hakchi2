@@ -334,7 +334,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Executing FEL-1....
+        ///   Looks up a localized string similar to Executing FES-1....
         /// </summary>
         internal static string ExecutingFel1 {
             get {
@@ -913,7 +913,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Main Menu.
+        ///   Looks up a localized string similar to HOME Menu.
         /// </summary>
         internal static string MainMenu {
             get {

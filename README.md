@@ -14,7 +14,7 @@ This application can add more games to [the Nintendo Classic Mini: NES](https://
 * Enable autofire A/B
 * Simulate the start button on the second controller (for Famicom Mini)
 * Disable seizure protection
-* Disable menu music
+* Disable HOME menu music
 
 ## So did you hack the NES Mini?
 No! It was my Russian сomrade [madmonkey](https://github.com/madmonkey1907). He created the original [hakchi](https://github.com/madmonkey1907/hakchi) tool. It was not very user-friendly, so I created a tool that would be simple for everyone, not only Linux users. I named it “hakchi2” because I don’t like coming up with names. This resulted in the first version being 2.0 :)

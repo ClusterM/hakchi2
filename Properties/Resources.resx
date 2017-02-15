@@ -169,7 +169,7 @@
     <value>Executing command:</value>
   </data>
   <data name="ExecutingFel1" xml:space="preserve">
-    <value>Executing FEL-1...</value>
+    <value>Executing FES-1...</value>
   </data>
   <data name="FlasingCustom" xml:space="preserve">
     <value>Flashing custom kernel...</value>
@@ -470,7 +470,7 @@
     <value>Deleted content will be moved to the Recycle Bin. You can delete this folder permanently or move the games to other folders.</value>
   </data>
   <data name="MainMenu" xml:space="preserve">
-    <value>Main Menu</value>
+    <value>HOME Menu</value>
   </data>
   <data name="BuildingFolders" xml:space="preserve">
     <value>Building the folder structure...</value>
