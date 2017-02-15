@@ -88,7 +88,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hold Select+A/B for a second to enable/disable autofire for A/B..
+        ///   Looks up a localized string similar to Hold Select+A/B for a second to enable/disable autofire A/B..
         /// </summary>
         internal static string AutofireHelp1 {
             get {
@@ -253,7 +253,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done! Wait until the power LED turns off and restart your NES Mini..
+        ///   Looks up a localized string similar to Done! Wait until the power LED goes out and restart your NES Mini..
         /// </summary>
         internal static string DoneUploaded {
             get {
@@ -343,7 +343,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can add global command-line arguments which will be appended to all games including the original ones. This is only for experts!.
+        ///   Looks up a localized string similar to You can add global command-line arguments which will be appended to all games including the original 30. This is only for experts!.
         /// </summary>
         internal static string ExtraArgsInfo {
             get {
@@ -994,7 +994,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First, dump the kernel image of your NES Mini. You need to do it only once. Do you want to continue?.
+        ///   Looks up a localized string similar to First, dump the kernel image of your NES Mini. You only need to do this once. Do you want to continue?.
         /// </summary>
         internal static string NoKernelWarning {
             get {
@@ -1066,7 +1066,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If this problem persists, try to use another USB port or cable..
+        ///   Looks up a localized string similar to If this problem persists, try using another USB port or cable..
         /// </summary>
         internal static string PleaseTryAgainUSB {
             get {
@@ -1084,7 +1084,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You already have the kernel dump. If you REALLY want to replace the backup of you kernel and you REALLY understand what you are doing, delete the &quot;dump&quot; folder manually..
+        ///   Looks up a localized string similar to You already have the kernel dump. If you REALLY want to replace the backup of your kernel and you REALLY understand what you are doing, delete the &quot;dump&quot; folder manually..
         /// </summary>
         internal static string ReplaceKernelQ {
             get {
@@ -1129,7 +1129,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Don&apos;t forget to reset to factory settings if you want to delete all Suspend Points..
+        ///   Looks up a localized string similar to Don&apos;t forget to perform a factory reset if you want to delete all Suspend Points..
         /// </summary>
         internal static string UninstallFactoryNote {
             get {
@@ -1156,7 +1156,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to clean all traces of hakchi2 and return your NES Mini to its original state?.
+        ///   Looks up a localized string similar to Do you really want to remove all traces of hakchi2 and return your NES Mini to its original state?.
         /// </summary>
         internal static string UninstallQ1 {
             get {
@@ -1201,7 +1201,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verify failed :O This is no good..
+        ///   Looks up a localized string similar to Verify failed :O This is not good..
         /// </summary>
         internal static string VerifyFailed {
             get {

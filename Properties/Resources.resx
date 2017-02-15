@@ -145,7 +145,7 @@
     <value>Done!</value>
   </data>
   <data name="DoneUploaded" xml:space="preserve">
-    <value>Done! Wait until the power LED turns off and restart your NES Mini.</value>
+    <value>Done! Wait until the power LED goes out and restart your NES Mini.</value>
   </data>
   <data name="DoneYouCanUpload" xml:space="preserve">
     <value>Done! You can upload games to your NES Mini now.</value>
@@ -199,7 +199,7 @@
     <value>No kernel dump found</value>
   </data>
   <data name="NoKernelWarning" xml:space="preserve">
-    <value>First, dump the kernel image of your NES Mini. You only need to do it once. Do you want to continue?</value>
+    <value>First, dump the kernel image of your NES Mini. You only need to do this once. Do you want to continue?</value>
   </data>
   <data name="NoKernelYouNeed" xml:space="preserve">
     <value>No kernel dump found. You need to dump the kernel first.</value>
@@ -211,7 +211,7 @@
     <value>Press OK to continue.</value>
   </data>
   <data name="ReplaceKernelQ" xml:space="preserve">
-    <value>You already have the kernel dump. If you REALLY want to replace the backup of you kernel and you REALLY understand what you are doing, delete the "dump" folder manually.</value>
+    <value>You already have the kernel dump. If you REALLY want to replace the backup of your kernel and you REALLY understand what you are doing, delete the "dump" folder manually.</value>
   </data>
   <data name="SelectAtLeast" xml:space="preserve">
     <value>Select at least one game.</value>
@@ -226,7 +226,7 @@
     <value>Uploading the kernel...</value>
   </data>
   <data name="VerifyFailed" xml:space="preserve">
-    <value>Verify failed :O This is no good.</value>
+    <value>Verify failed :O This is not good.</value>
   </data>
   <data name="Verifying" xml:space="preserve">
     <value>Verifying...</value>
@@ -241,7 +241,7 @@
     <value>Wow</value>
   </data>
   <data name="PleaseTryAgainUSB" xml:space="preserve">
-    <value>If this problem persists, try to use another USB port or cable.</value>
+    <value>If this problem persists, try using another USB port or cable.</value>
   </data>
   <data name="XpZadig" xml:space="preserve">
     <value>Please use the Zadig utility to install the driver on Windows XP/2000.</value>
@@ -271,13 +271,13 @@
     <value>New selection preset</value>
   </data>
   <data name="UninstallFactoryNote" xml:space="preserve">
-    <value>Don't forget to reset to factory settings if you want to delete all Suspend Points.</value>
+    <value>Don't forget to perform a factory reset if you want to delete all Suspend Points.</value>
   </data>
   <data name="Uninstalling" xml:space="preserve">
     <value>Uninstalling...</value>
   </data>
   <data name="UninstallQ1" xml:space="preserve">
-    <value>Do you really want to clean all traces of hakchi2 and return your NES Mini to its original state?</value>
+    <value>Do you really want to remove all traces of hakchi2 and return your NES Mini to its original state?</value>
   </data>
   <data name="UninstallQ2" xml:space="preserve">
     <value>Done. Wait until the power LED goes out. You also need to flash the original kernel. Do you want to flash the original kernel now?</value>
@@ -301,13 +301,13 @@
     <value>Select at least two buttons.</value>
   </data>
   <data name="AutofireHelp1" xml:space="preserve">
-    <value>Hold Select+A/B for a second to enable/disable autofire for A/B.</value>
+    <value>Hold Select+A/B for a second to enable/disable autofire A/B.</value>
   </data>
   <data name="AutofireHelp2" xml:space="preserve">
     <value>Also, the X/Y buttons on the Classic Controller will act as autofire A/B.</value>
   </data>
   <data name="ExtraArgsInfo" xml:space="preserve">
-    <value>You can add global command-line arguments which will be appended to all games including the original ones. This is only for experts!</value>
+    <value>You can add global command-line arguments which will be appended to all games including the original 30. This is only for experts!</value>
   </data>
   <data name="ExtraArgsTitle" xml:space="preserve">
     <value>Extra command-line arguments</value>
