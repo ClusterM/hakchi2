@@ -37,7 +37,7 @@ namespace com.clusterrr.hakchi_gui
             }
             set
             {
-                Command = string.Format("/usr/bin/clover-kachikachi /usr/share/games/nes/kachikachi/{0}/{0}.nes {1}", code, value);
+                Command = string.Format("/bin/clover-kachikachi-wr /usr/share/games/nes/kachikachi/{0}/{0}.nes {1}", code, value);
             }
         }
         private string gameGenie = "";
@@ -67,10 +67,10 @@ namespace com.clusterrr.hakchi_gui
             GameGeniePath = Path.Combine(path, GameGenieFileName);
             if (!File.Exists(NesPath)) throw new FileNotFoundException("Invalid game directory: " + path);
 
-            Args = DefaultArgs;
             if (File.Exists(GameGeniePath))
                 gameGenie = File.ReadAllText(GameGeniePath);
             hasUnsavedChanges = false;
+            Args = Args; // To update exec path if need
         }
 
         public static NesGame Import(string nesFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback, Form parentForm = null, byte[] rawRomData = null)
@@ -172,6 +172,7 @@ namespace com.clusterrr.hakchi_gui
                     cover = Resources.blank;
             }
             game.Image = cover;
+            game.Args = DefaultArgs;
             game.Save();
             return game;
         }

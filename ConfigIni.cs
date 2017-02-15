@@ -17,10 +17,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool UseFont = true;
         public static bool ResetHack = true;
         public static bool AutofireHack = false;
-        public static bool RemoveThumbnails = false;
-        public static bool EightBitPngCompression = false;
         public static bool FcStart = false;
-        public static bool DisableMusic = false;
         public static byte AntiArmetLevel = 0;
         public static byte ConsoleType = 0;
         public static byte MaxGamesPerFolder = 30;
@@ -79,12 +76,6 @@ namespace com.clusterrr.hakchi_gui
                                 case "autofirehack":
                                     AutofireHack = !value.ToLower().Equals("false");
                                     break;
-                                case "removethumbnails":
-                                    RemoveThumbnails = !value.ToLower().Equals("false");
-                                    break;
-                                case "eightbitpngcompression":
-                                    EightBitPngCompression = !value.ToLower().Equals("false");
-                                    break;
                                 case "resetcombination":
                                     ResetCombination = (SelectButtonsForm.NesButtons)byte.Parse(value);
                                     break;
@@ -96,9 +87,6 @@ namespace com.clusterrr.hakchi_gui
                                     break;
                                 case "fcstart":
                                     FcStart = !value.ToLower().Equals("false");
-                                    break;
-                                case "disablemusic":
-                                    DisableMusic = !value.ToLower().Equals("false");
                                     break;
                                 case "maxgamesperfolder":
                                     MaxGamesPerFolder = byte.Parse(value);
@@ -129,13 +117,10 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("AutofireHack={0}", AutofireHack));
             configLines.Add(string.Format("FirstRun={0}", FirstRun));
             configLines.Add(string.Format("AntiArmetLevel={0}", AntiArmetLevel));
-            configLines.Add(string.Format("RemoveThumbnails={0}", RemoveThumbnails));
-            configLines.Add(string.Format("EightBitPngCompression={0}", EightBitPngCompression));
             configLines.Add(string.Format("ResetCombination={0}", (byte)ResetCombination));
             configLines.Add(string.Format("ConsoleType={0}", ConsoleType));
             configLines.Add(string.Format("ExtraCommandLineArguments={0}", ExtraCommandLineArguments));
             configLines.Add(string.Format("FcStart={0}", FcStart));
-            configLines.Add(string.Format("DisableMusic={0}", DisableMusic));
             configLines.Add(string.Format("FoldersMode={0}", (byte)FoldersMode));
             configLines.Add(string.Format("MaxGamesPerFolder={0}", MaxGamesPerFolder));
 

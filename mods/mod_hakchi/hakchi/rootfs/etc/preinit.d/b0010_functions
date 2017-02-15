@@ -1,0 +1,89 @@
+mount_base(){
+  mount -t tmpfs -o mode=0755,nosuid,nodev tmpfs "$mountpoint/var"
+  mkdir -p "$mountpoint/var/lib"
+  mount -o defaults,nosuid,nodev,noatime /dev/nandc "$mountpoint/var/lib"
+}
+
+umount_base(){
+  umount "$mountpoint/var/lib"
+  umount "$mountpoint/var"
+}
+
+remount_root(){
+  local tmpmount=$modpath/var.tmp
+  mkdir -p "$tmpmount"
+  mount --move "$mountpoint/var" "$tmpmount"
+
+  umount "$mountpoint"
+
+  local loopfile=$tmpmount${1##$mountpoint/var}
+  mount -o loop,ro "$loopfile" "$mountpoint" || shutdown
+
+  mount --move "$tmpmount" "$mountpoint/var"
+}
+
+load_firmware(){
+  [ -d "$firmwarepath" ] || return 0
+  local firmware=$(find "$firmwarepath" -type f -name "*.hsqs" | sort | head -n 1)
+  [ -f "$firmware" ] || return 0
+  remount_root "$firmware" && cryptsetup close root-crypt
+}
+
+shutdown(){
+  echo shutting down...
+  umount -a
+  poweroff -f
+  while :;do :;done
+}
+
+early_getty(){
+  getty -ni 115200 ttyS0 -l /bin/sh
+}
+
+copy(){
+  # we must create target directory if source is directory
+  [ -d "$1" ] && mkdir -p "$2"
+  rsync -ac "$1" "$2"
+}
+
+copy_mask(){
+  # this function is unsafe, avoid spaces in filenames!
+  rsync -ac $1 "$2"
+}
+
+restore(){
+  copy "$mountpoint$1" "$rootfs$1"
+}
+
+mount_bind(){
+  if mountpoint -q "$2"; then
+    umount "$2" || umount -f "$2"
+  fi
+  mount -o bind "$1" "$2"
+}
+
+overmount(){
+  l_boot_stock=n
+  if [ "$#" == "1" ]; then
+    echo overmounting $1
+    mount_bind "$rootfs$1" "$mountpoint$1"
+  fi
+  if [ "$#" == "2" ]; then
+    echo overmounting $1 on $2
+    mount_bind "$1" "$mountpoint$2"
+  fi
+}
+
+overmount_games(){
+  local menu_code=000
+  [ -f "$installpath/menu" ] && menu_code=$(cat "$installpath/menu")
+  [ -z "$menu_code" ] && menu_code=000
+  echo menu code: $menu_code
+  if [ "$menu_code" != "000" ]; then
+    if [ -d "$rootfs$gamepath/$menu_code" ]; then
+      overmount "$rootfs$gamepath/$menu_code" "$gamepath"
+      return $?
+    fi
+  fi
+  overmount "$gamepath"
+}

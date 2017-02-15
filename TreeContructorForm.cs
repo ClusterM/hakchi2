@@ -382,7 +382,7 @@ namespace com.clusterrr.hakchi_gui
                         destinationNode = (TreeNode)item.Tag;
                 }
                 var newNodes = (TreeNode[])e.Data.GetData("System.Windows.Forms.TreeNode[]");
-                MoveToFolder(newNodes, destinationNode);
+                MoveToFolder(newNodes, destinationNode, false);
                 if (sender is TreeView)
                     treeView.Select();
                 else
@@ -439,11 +439,15 @@ namespace com.clusterrr.hakchi_gui
             if (sender is TreeView)
             {
                 var destinationNode = ((TreeView)sender).GetNodeAt(e.X, e.Y);
-                if (destinationNode == null) return;
-                treeView.SelectedNode = destinationNode;
+                if (destinationNode == null) destinationNode = treeView.Nodes[0]; // Root
+
                 newFolderToolStripMenuItem.Tag = deleteToolStripMenuItem.Tag = renameToolStripMenuItem.Tag =
                     cutToolStripMenuItem.Tag = pasteToolStripMenuItem.Tag = destinationNode;
-                newFolderToolStripMenuItem.Enabled = destinationNode.Tag is NesMenuFolder || destinationNode.Tag is NesMenuCollection; // Folder
+                newFolderToolStripMenuItem.Enabled = true;
+                if ((destinationNode.Tag is NesMenuFolder || destinationNode.Tag is NesMenuCollection)) // Folder
+                    treeView.SelectedNode = destinationNode;
+                else
+                    newFolderToolStripMenuItem.Tag = destinationNode.Parent;
                 renameToolStripMenuItem.Enabled = destinationNode.Tag is NesMenuFolder; // Folder
                 cutToolStripMenuItem.Enabled = deleteToolStripMenuItem.Enabled = !(destinationNode.Tag is NesMenuCollection); // Not root
                 pasteToolStripMenuItem.Enabled = cuttedNodes.Count > 0;
@@ -498,15 +502,16 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
             if (showDest)
-            {
-                if (treeView.SelectedNode == destinationNode)
-                    ShowSelected();
-                else
-                    treeView.SelectedNode = destinationNode;
-                ShowFolderStats();
-                foreach (ListViewItem item in listViewContent.Items)
-                    item.Selected = newNodes.Contains(item.Tag as TreeNode);
-            }
+                treeView.SelectedNode = destinationNode;
+
+            if (treeView.SelectedNode == destinationNode)
+                ShowSelected();
+            else
+                foreach (var i in (from n in listViewContent.Items.Cast<ListViewItem>().ToArray() where newNodes.Contains(n.Tag as TreeNode) select n))
+                    listViewContent.Items.Remove(i);
+            foreach (ListViewItem item in listViewContent.Items)
+                item.Selected = newNodes.Contains(item.Tag as TreeNode) || item.Tag == destinationNode;
+            ShowFolderStats();
             return true;
         }
 

@@ -1,0 +1,10 @@
+rm "$preinitpath/pb223_music_hack"
+rm "$rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav"
+rm "$rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav"
+rmdir --ignore-fail-on-non-empty "$rootfs/usr/share/clover-ui/resources/sounds/hvc"
+rmdir --ignore-fail-on-non-empty "$rootfs/usr/share/clover-ui/resources/sounds"
+rmdir --ignore-fail-on-non-empty "$rootfs/usr/share/clover-ui/resources"
+rmdir --ignore-fail-on-non-empty "$rootfs/usr/share/clover-ui"
+rmdir --ignore-fail-on-non-empty "$rootfs/usr/share"
+rmdir --ignore-fail-on-non-empty "$rootfs/usr"
+unset cfg_music_hack_enabled

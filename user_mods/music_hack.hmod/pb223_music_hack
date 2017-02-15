@@ -1,0 +1,4 @@
+if [ $cfg_music_hack_enabled == "y" ]; then
+overmount /usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav
+overmount /usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav
+fi

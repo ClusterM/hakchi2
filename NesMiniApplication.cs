@@ -99,7 +99,7 @@ namespace com.clusterrr.hakchi_gui
                 throw new FileNotFoundException("Invalid app folder");
             var config = File.ReadAllLines(files[0]);
             foreach (var line in config)
-                if (line.Contains("Exec=/usr/bin/clover-kachikachi"))
+                if (line.StartsWith("Exec=/usr/bin/clover-kachikachi") || line.StartsWith("Exec=/bin/clover-kachikachi-wr"))
                 {
                     if (line.Contains(".nes"))
                         return new NesGame(path, ignoreEmptyConfig);

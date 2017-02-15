@@ -406,4 +406,16 @@
   <data name="FolderNameTrashBin" xml:space="preserve">
     <value>Recycle Bin</value>
   </data>
+  <data name="InstallingMods" xml:space="preserve">
+    <value>Устанавливаем модули...</value>
+  </data>
+  <data name="SelectModsInstall" xml:space="preserve">
+    <value>Выберите модули для установки на NES Mini</value>
+  </data>
+  <data name="SelectModsUninstall" xml:space="preserve">
+    <value>Выберите модули, которые нужно удалить с NES Mini</value>
+  </data>
+  <data name="UninstallingMods" xml:space="preserve">
+    <value>Удаляем модули...</value>
+  </data>
 </root>

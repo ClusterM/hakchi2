@@ -32,7 +32,7 @@ namespace com.clusterrr.hakchi_gui
             }
             set
             {
-                Command = string.Format("/usr/bin/clover-kachikachi /usr/share/games/nes/kachikachi/{0}/{0}.fds {1}", code, value);
+                Command = string.Format("/bin/clover-kachikachi-wr /usr/share/games/nes/kachikachi/{0}/{0}.fds {1}", code, value);
             }
         }  
 
@@ -40,8 +40,8 @@ namespace com.clusterrr.hakchi_gui
             : base(path, ignoreEmptyConfig)
         {
             FdsPath = Path.Combine(GamePath, Code + ".fds");
-            Args = DefaultArgs;
             hasUnsavedChanges = false;
+            Args = Args; // To update exec path if need
         }
 
         public static FdsGame Import(string fdsFileName, byte[] rawRomData = null)
@@ -86,6 +86,7 @@ namespace com.clusterrr.hakchi_gui
             if (cover == null)
                 cover = Resources.blank_fds;
             game.Image = cover;
+            game.Args = DefaultArgs;
             game.Save();
             return game;
         }

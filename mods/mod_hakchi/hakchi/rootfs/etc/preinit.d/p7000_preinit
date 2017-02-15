@@ -1,0 +1,2 @@
+echo loading $modname
+local l_boot_stock=y
