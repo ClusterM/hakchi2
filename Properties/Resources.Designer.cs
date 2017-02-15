@@ -1111,7 +1111,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select modules to install on NES Mini.
+        ///   Looks up a localized string similar to Select modules to install on your NES Mini.
         /// </summary>
         internal static string SelectModsInstall {
             get {
@@ -1120,7 +1120,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select modules to remove from NES Mini.
+        ///   Looks up a localized string similar to Select modules to remove from your NES Mini.
         /// </summary>
         internal static string SelectModsUninstall {
             get {

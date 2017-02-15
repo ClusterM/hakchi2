@@ -503,10 +503,10 @@
     <value>Installing mods...</value>
   </data>
   <data name="SelectModsInstall" xml:space="preserve">
-    <value>Select modules to install on NES Mini</value>
+    <value>Select modules to install on your NES Mini</value>
   </data>
   <data name="SelectModsUninstall" xml:space="preserve">
-    <value>Select modules to remove from NES Mini</value>
+    <value>Select modules to remove from your NES Mini</value>
   </data>
   <data name="UninstallingMods" xml:space="preserve">
     <value>Uninstalling mods...</value>
