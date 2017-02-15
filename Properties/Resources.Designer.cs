@@ -994,7 +994,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First of all you need to dump the kernel image of your NES Mini. You need to do it only once. Do you want to continue?.
+        ///   Looks up a localized string similar to First, dump the kernel image of your NES Mini. You need to do it only once. Do you want to continue?.
         /// </summary>
         internal static string NoKernelWarning {
             get {

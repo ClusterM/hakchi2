@@ -199,7 +199,7 @@
     <value>No kernel dump found</value>
   </data>
   <data name="NoKernelWarning" xml:space="preserve">
-    <value>First you need to dump the kernel image of your NES Mini. You only need to do it once. Do you want to continue?</value>
+    <value>First, dump the kernel image of your NES Mini. You only need to do it once. Do you want to continue?</value>
   </data>
   <data name="NoKernelYouNeed" xml:space="preserve">
     <value>No kernel dump found. You need to dump the kernel first.</value>
