@@ -2827,7 +2827,6 @@
   <data name="buttonAddGames.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 568</value>
   </data>
-<<<<<<< 9a5c3655f634cdace46766f80439cd6f91c7daec
   <metadata name="openFileDialogImage.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>469, 18</value>
   </metadata>
