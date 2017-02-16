@@ -18,7 +18,6 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class ImageGooglerForm : Form
     {
-        public const string Suffix = " nes|famicom box art";
         Thread searchThread;
         Image result;
         public Image Result
@@ -26,9 +25,15 @@ namespace com.clusterrr.hakchi_gui
             get { return result; }
         }
 
-        public ImageGooglerForm(string query)
+        public ImageGooglerForm(string query, NesMiniApplication app)
         {
             InitializeComponent();
+            if (app is NesGame)
+                query += " nes|famicom box art";
+            else if (app is FdsGame)
+                query += " fds box art";
+            else
+                query += " box art";
             Text = "Google Images - " + query;
             searchThread = new Thread(SearchThread);
             searchThread.Start(query);

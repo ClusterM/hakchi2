@@ -56,13 +56,11 @@ namespace com.clusterrr.hakchi_gui
         readonly string cloverconDriverPath;
         readonly string argumentsFilePath;
         readonly string transferDirectory;
-        readonly string gamesDirectory;
         readonly string originalGamesConfigDirectory;
         string[] correctKernels;
         const long maxRamfsSize = 40 * 1024 * 1024;
-        DialogResult DeviceWaitResult = DialogResult.None;
-        DialogResult MessageBoxResult = DialogResult.None;
-        DialogResult FolderManagerResult = DialogResult.None;
+        string selectedFile = null;
+        public NesMiniApplication[] addedApplications;
 
         public WorkerForm()
         {
@@ -109,13 +107,11 @@ namespace com.clusterrr.hakchi_gui
             return ShowDialog();
         }
 
-        void WaitForDeviceFromThread()
+        DialogResult WaitForDeviceFromThread()
         {
-            DeviceWaitResult = DialogResult.None;
             if (InvokeRequired)
             {
-                Invoke(new Action(WaitForDeviceFromThread));
-                return;
+                return (DialogResult)Invoke(new Func<DialogResult>(WaitForDeviceFromThread));
             }
             SetStatus(Resources.WaitingForDevice);
             if (fel != null)
@@ -131,41 +127,55 @@ namespace com.clusterrr.hakchi_gui
                 fel.Open(vid, pid);
                 SetStatus(Resources.UploadingFes1);
                 fel.InitDram(true);
-                DeviceWaitResult = DialogResult.OK;
                 TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
+                return DialogResult.OK;
             }
-            else DeviceWaitResult = DialogResult.Abort;
+            else return DialogResult.Abort;
         }
 
-        private delegate void MessageBoxFromThreadDelegate(IWin32Window owner, string text, string caption, MessageBoxButtons buttons,
-            MessageBoxIcon icon, MessageBoxDefaultButton defaultButton);
-        void MessageBoxFromThread(IWin32Window owner, string text, string caption, MessageBoxButtons buttons,
-            MessageBoxIcon icon, MessageBoxDefaultButton defaultButton)
+        private delegate DialogResult MessageBoxFromThreadDelegate(IWin32Window owner, string text, string caption, MessageBoxButtons buttons,
+            MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, bool tweak);
+        DialogResult MessageBoxFromThread(IWin32Window owner, string text, string caption, MessageBoxButtons buttons,
+            MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, bool tweak)
         {
-            MessageBoxResult = System.Windows.Forms.DialogResult.None;
             if (InvokeRequired)
             {
-                Invoke(new MessageBoxFromThreadDelegate(MessageBoxFromThread),
-                    new object[] { owner, text, caption, buttons, icon, defaultButton });
-                return;
+                return (DialogResult)Invoke(new MessageBoxFromThreadDelegate(MessageBoxFromThread),
+                    new object[] { owner, text, caption, buttons, icon, defaultButton, tweak });
             }
             TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
-            MessageBoxResult = MessageBox.Show(owner, text, caption, buttons, icon, defaultButton);
+            if (tweak) MessageBoxManager.Register(); // Tweak button names
+            var result = MessageBox.Show(owner, text, caption, buttons, icon, defaultButton);
+            if (tweak) MessageBoxManager.Unregister();
             TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
+            return result;
         }
 
-        void FolderManagerFromThread(NesMenuCollection collection)
+        DialogResult FolderManagerFromThread(NesMenuCollection collection)
         {
-            FolderManagerResult = DialogResult.None;
             if (InvokeRequired)
             {
-                Invoke(new Action<NesMenuCollection>(FolderManagerFromThread), new object[] { collection });
-                return;
+                return (DialogResult)Invoke(new Func<NesMenuCollection, DialogResult>(FolderManagerFromThread), new object[] { collection });
             }
             var constructor = new TreeContructorForm(collection, MainForm);
             TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
-            FolderManagerResult = constructor.ShowDialog();
+            var result = constructor.ShowDialog();
             TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
+            return result;
+        }
+
+        DialogResult SelectFileFromThread(string[] files)
+        {
+            if (InvokeRequired)
+            {
+                return (DialogResult)Invoke(new Func<string[], DialogResult>(SelectFileFromThread), new object[] { files });
+            }
+            var form = new SelectFileForm(files);
+            TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
+            var result = form.ShowDialog();
+            selectedFile = form.listBoxFiles.SelectedItem.ToString();
+            TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
+            return result;
         }
 
         public void StartThread()
@@ -298,10 +308,7 @@ namespace com.clusterrr.hakchi_gui
         {
             int progress = 5;
             const int maxProgress = 80;
-            WaitForDeviceFromThread();
-            while (DeviceWaitResult == DialogResult.None)
-                Thread.Sleep(100);
-            if (DeviceWaitResult != DialogResult.OK)
+            if (WaitForDeviceFromThread() != DialogResult.OK)
             {
                 DialogResult = DialogResult.Abort;
                 return;
@@ -344,7 +351,9 @@ namespace com.clusterrr.hakchi_gui
             var hash = BitConverter.ToString(md5.ComputeHash(kernel)).Replace("-", "").ToLower();
             if (!correctKernels.Contains(hash))
             {
-                if (MessageBox.Show(Resources.MD5Failed + " " + hash + "\r\n" + Resources.MD5Failed2 + "\r\n" + Resources.DoYouWantToContinue, Resources.Warning, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                if (MessageBoxFromThread(this, Resources.MD5Failed + " " + hash + "\r\n" + Resources.MD5Failed2 +
+                    "\r\n" + Resources.DoYouWantToContinue, Resources.Warning, MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, false)
                     == DialogResult.No)
                 {
                     DialogResult = DialogResult.Abort;
@@ -360,10 +369,7 @@ namespace com.clusterrr.hakchi_gui
         {
             int progress = 0;
             int maxProgress = 120 + (string.IsNullOrEmpty(Mod) ? 0 : 5);
-            WaitForDeviceFromThread();
-            while (DeviceWaitResult == DialogResult.None)
-                Thread.Sleep(100);
-            if (DeviceWaitResult != DialogResult.OK)
+            if (WaitForDeviceFromThread() != DialogResult.OK)
             {
                 DialogResult = DialogResult.Abort;
                 return;
@@ -449,10 +455,7 @@ namespace com.clusterrr.hakchi_gui
                 SetStatus(Resources.BuildingFolders);
                 if (FoldersMode == NesMenuCollection.SplitStyle.Custom)
                 {
-                    FolderManagerFromThread(Games);
-                    while (FolderManagerResult == DialogResult.None)
-                        Thread.Sleep(100);
-                    if (FolderManagerResult != System.Windows.Forms.DialogResult.OK)
+                    if (FolderManagerFromThread(Games) != System.Windows.Forms.DialogResult.OK)
                     {
                         DialogResult = DialogResult.Abort;
                         return;
@@ -473,10 +476,7 @@ namespace com.clusterrr.hakchi_gui
                 GC.Collect();
 
                 // Connecting to NES Mini
-                WaitForDeviceFromThread();
-                while (DeviceWaitResult == DialogResult.None)
-                    Thread.Sleep(500);
-                if (DeviceWaitResult != DialogResult.OK)
+                if (WaitForDeviceFromThread() != DialogResult.OK)
                 {
                     DialogResult = DialogResult.Abort;
                     return;
@@ -597,7 +597,7 @@ namespace com.clusterrr.hakchi_gui
 
             bool last = stats.GamesProceed >= stats.GamesTotal;
 
-            if (last && hmodsInstall != null && hmodsInstall.Count >0 )
+            if (last && hmodsInstall != null && hmodsInstall.Count > 0)
             {
                 Directory.CreateDirectory(tempHmodsDirectory);
                 foreach (var hmod in hmodsInstall)
@@ -623,7 +623,7 @@ namespace com.clusterrr.hakchi_gui
                 Directory.CreateDirectory(tempHmodsDirectory);
                 var mods = new StringBuilder();
                 foreach (var hmod in hmodsUninstall)
-                mods.AppendFormat("{0}.hmod\n", hmod);
+                    mods.AppendFormat("{0}.hmod\n", hmod);
                 File.WriteAllText(Path.Combine(tempHmodsDirectory, "uninstall"), mods.ToString());
             }
 
@@ -674,7 +674,7 @@ namespace com.clusterrr.hakchi_gui
             int i = 0;
             foreach (NesMiniApplication game in Games)
             {
-                SetStatus(Resources.GooglingFor + " " + game.Name + ImageGooglerForm.Suffix);
+                SetStatus(Resources.GooglingFor + " " + game.Name);
                 string[] urls = null;
                 for (int tries = 0; tries < 5; tries++)
                 {
@@ -682,7 +682,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         try
                         {
-                            urls = ImageGooglerForm.GetImageUrls(game.Name + ImageGooglerForm.Suffix);
+                            urls = ImageGooglerForm.GetImageUrls(game.Name);
                             break;
                         }
                         catch (Exception ex)
@@ -792,7 +792,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     if (stats.GamesStart == 0)
                     {
-                        folder.ChildIndex = stats.allMenus.IndexOf(folder.ChildMenuCollection);                        
+                        folder.ChildIndex = stats.allMenus.IndexOf(folder.ChildMenuCollection);
                         var folderDir = Path.Combine(targetDirectory, folder.Code);
                         folder.Save(folderDir);
                     }
@@ -868,17 +868,18 @@ namespace com.clusterrr.hakchi_gui
 
 
         bool YesForAllPatches = false;
-        public NesMiniApplication AddGames(string[] files, Form parentForm = null)
+        public ICollection<NesMiniApplication> AddGames(string[] files, Form parentForm = null)
         {
-            NesMiniApplication app = null;
+            var apps = new List<NesMiniApplication>();
+            addedApplications = null;
             //bool NoForAllUnsupportedMappers = false;
             bool YesForAllUnsupportedMappers = false;
             YesForAllPatches = false;
-            if (parentForm == null) parentForm = this;
             int count = 0;
             SetStatus(Resources.AddingGames);
             foreach (var file in files)
             {
+                NesMiniApplication app = null;
                 try
                 {
                     var fileName = file;
@@ -891,23 +892,33 @@ namespace com.clusterrr.hakchi_gui
                         using (var szExtractor = new SevenZipExtractor(file))
                         {
                             var filesInArchive = new List<string>();
+                            var nesFilesInArchive = new List<string>();
                             foreach (var f in szExtractor.ArchiveFileNames)
                             {
                                 var e = Path.GetExtension(f).ToLower();
-                                if (e == ".nes" || e == ".fds")
-                                    filesInArchive.Add(f);
+                                if (e == ".nes" || e == ".fds" || e == ".unf" || e == ".unif")
+                                    nesFilesInArchive.Add(f);
+                                filesInArchive.Add(f);
                             }
-                            if (filesInArchive.Count == 1)
+                            if (nesFilesInArchive.Count == 1) // Only one NES file
+                            {
+                                fileName = nesFilesInArchive[0];
+                            }
+                            else if (nesFilesInArchive.Count > 1) // Many NES files, need to select
+                            {
+                                if (SelectFileFromThread(nesFilesInArchive.ToArray()) == DialogResult.OK)
+                                    fileName = selectedFile;
+                                else continue;
+                            }
+                            else if (filesInArchive.Count == 1) // No NES files but only one another file
                             {
                                 fileName = filesInArchive[0];
                             }
-                            else
+                            else // Need to select
                             {
-                                var fsForm = new SelectFileForm(filesInArchive.ToArray());
-                                if (fsForm.ShowDialog() == DialogResult.OK)
-                                    fileName = (string)fsForm.listBoxFiles.SelectedItem;
-                                else
-                                    continue;
+                                if (SelectFileFromThread(filesInArchive.ToArray()) == DialogResult.OK)
+                                    fileName = selectedFile;
+                                else continue;
                             }
                             var o = new MemoryStream();
                             szExtractor.ExtractFile(fileName, o);
@@ -935,44 +946,25 @@ namespace com.clusterrr.hakchi_gui
                         {
                             if (ex is UnsupportedMapperException || ex is UnsupportedFourScreenException)
                             {
-                                MessageBoxFromThread(this,
+                                var r = MessageBoxFromThread(this,
                                     (ex is UnsupportedMapperException)
-                                       ? string.Format(Resources.MapperNotSupported, Path.GetFileName(file), (ex as UnsupportedMapperException).ROM.Mapper)
-                                       : string.Format(Resources.FourScreenNotSupported, Path.GetFileName(file)),
+                                       ? string.Format(Resources.MapperNotSupported, Path.GetFileName(fileName), (ex as UnsupportedMapperException).ROM.Mapper)
+                                       : string.Format(Resources.FourScreenNotSupported, Path.GetFileName(fileName)),
                                     Resources.AreYouSure,
                                     files.Length <= 1 ? MessageBoxButtons.YesNo : MessageBoxButtons.AbortRetryIgnore,
-                                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                                /*
-                                MessageBoxFromThread(this,
-                                    (ex is UnsupportedMapperException)
-                                       ? string.Format(Resources.MapperNotSupported, Path.GetFileName(file), (ex as UnsupportedMapperException).ROM.Mapper)
-                                       : string.Format(Resources.FourScreenNotSupported, Path.GetFileName(file)),
-                                    Resources.AreYouSure,
-                                    files.Length <= 1 ? MessageBoxButtons.YesNo : MessageBoxButtons.YesNoCancel,
-                                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                                 * */
-                                while (MessageBoxResult == DialogResult.None) Thread.Sleep(100);
-                                if (MessageBoxResult == DialogResult.Yes || MessageBoxResult == DialogResult.Abort || MessageBoxResult == DialogResult.Retry)
+                                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
+                                while (r == DialogResult.None) Thread.Sleep(100);
+                                if (r == DialogResult.Yes || r == DialogResult.Abort || r == DialogResult.Retry)
                                     app = NesGame.Import(fileName, true, ref needPatch, needPatchCallback, this, rawData);
-                                /*
-                                if (MessageBoxResult == System.Windows.Forms.DialogResult.Cancel)
-                                {
-                                    NoForAllUnsupportedMappers = true;
-                                }
-                                 */
-                                if (MessageBoxResult == DialogResult.Abort)
+                                if (r == DialogResult.Abort)
                                     YesForAllUnsupportedMappers = true;
                             }
                             else throw ex;
                         }
                     }
-                    else if (Path.GetExtension(fileName).ToLower() == ".fds")
+                    else
                     {
-                        app = FdsGame.Import(fileName, rawData);
-                    }
-                    else if (Path.GetExtension(fileName).ToLower() == ".desktop")
-                    {
-                        app = NesMiniApplication.Import(fileName);
+                        app = NesMiniApplication.Import(fileName, rawData);
                     }
                     ConfigIni.SelectedGames += ";" + app.Code;
                 }
@@ -980,38 +972,37 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (ex is ThreadAbortException) return null;
                     Debug.WriteLine(ex.Message + ex.StackTrace);
-                    MessageBoxFromThread(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    ShowError(ex, true);
                 }
+                if (app != null)
+                    apps.Add(app);
                 SetProgress(++count, files.Length);
             }
-            return app; // Last added game if any
+            return apps; // Added games/apps
         }
 
         private bool needPatchCallback(Form parentForm, string nesFileName)
         {
             if (GamesToAdd == null || GamesToAdd.Length <= 1)
             {
-                MessageBoxFromThread(parentForm,
+                return MessageBoxFromThread(parentForm,
                     string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)),
                     Resources.PatchAvailable,
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button1);
-                while (MessageBoxResult == DialogResult.None) Thread.Sleep(100);
-                return MessageBoxResult == DialogResult.Yes;
+                    MessageBoxDefaultButton.Button1, false) == DialogResult.Yes;
             }
             else
             {
-                MessageBoxFromThread(parentForm,
+                var r = MessageBoxFromThread(parentForm,
                     string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)),
                     Resources.PatchAvailable,
                     MessageBoxButtons.AbortRetryIgnore,
                     MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button2);
-                while (MessageBoxResult == DialogResult.None) Thread.Sleep(100);
-                if (MessageBoxResult == DialogResult.Abort)
+                    MessageBoxDefaultButton.Button2, true);
+                if (r == DialogResult.Abort)
                     YesForAllPatches = true;
-                return MessageBoxResult != DialogResult.Ignore;
+                return r != DialogResult.Ignore;
             }
         }
 

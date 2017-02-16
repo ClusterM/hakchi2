@@ -109,9 +109,78 @@ namespace com.clusterrr.hakchi_gui
             return new NesMiniApplication(path, ignoreEmptyConfig);
         }
 
-        public static NesMiniApplication Import(string fileName)
+        public static NesMiniApplication Import(string fileName, byte[] rawRomData = null)
         {
-            if (Path.GetExtension(fileName).ToLower() != ".desktop") 
+            var extension = Path.GetExtension(fileName).ToLower();
+            char prefixCode;
+            string application;
+            switch (extension)
+            {
+                // For some unusual NES ROM formats
+                case ".fds":
+                    return FdsGame.Import(fileName, rawRomData);
+                case ".nes":
+                case ".unf":
+                case ".unif":
+                    prefixCode = 'U';
+                    application = "/bin/nes";
+                    break;
+                case ".desktop":
+                    return ImportApp(fileName);
+                case ".gb":
+                case ".gbc":
+                    prefixCode = 'C';
+                    application = "/bin/gb";
+                    break;
+                case ".gba":
+                    prefixCode = 'G';
+                    application = "/bin/gba";
+                    break;
+                case ".z64":
+                case ".n64":
+                    prefixCode = 'F';
+                    application = "/bin/n64";
+                    break;
+                case ".smc":
+                    prefixCode = 'E';
+                    application = "/bin/snes";
+                    break;
+                case ".smd":
+                    prefixCode = 'G';
+                    application = "/bin/md";
+                    break;
+                case ".sms":
+                    prefixCode = 'M';
+                    application = "/bin/sms";
+                    break;
+                default:
+                    prefixCode = '0';
+                    application = "/bin/path-to-your-app";
+                    break;
+            }
+            if (rawRomData == null)
+                rawRomData = File.ReadAllBytes(fileName);
+            var crc32 = CRC32(rawRomData);
+            var code = GenerateCode(crc32, prefixCode);
+            var gamePath = Path.Combine(GamesDirectory, code);
+            var romName = Path.GetFileNameWithoutExtension(fileName).Replace(" ", "_");
+            var romPath = Path.Combine(gamePath, romName);
+            Directory.CreateDirectory(gamePath);
+            File.WriteAllBytes(romPath, rawRomData);
+            var game = new NesMiniApplication(gamePath, true);
+            game.Name = Path.GetFileNameWithoutExtension(fileName);
+            game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
+            game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
+            game.Name = game.Name.Replace("_", " ").Replace("  ", " ").Trim();
+            game.FindCover(fileName, Resources.blank, crc32);
+            game.Command = string.Format("{0} /usr/share/games/nes/kachikachi/{1}/{2}", application, code, romName);
+            game.Save();
+            return game;
+        }
+
+        private static NesMiniApplication ImportApp(string fileName)
+        {
+            if (!File.Exists(fileName)) // Archives are not allowed
                 throw new FileNotFoundException("Invalid app folder");
             var code = Path.GetFileNameWithoutExtension(fileName).ToUpper();
             var targetDir = Path.Combine(GamesDirectory, code);
@@ -260,6 +329,42 @@ namespace com.clusterrr.hakchi_gui
                 new Rectangle(0, 0, outImage.Width, outImage.Height), GraphicsUnit.Pixel);
             gr.Flush();
             outImageSmall.Save(SmallIconPath, ImageFormat.Png);
+        }
+
+        internal bool FindCover(string romFileName, Image defaultCover, uint crc32 = 0)
+        {
+            // Trying to find cover file
+            Image cover = null;
+            if (!string.IsNullOrEmpty(romFileName))
+            {
+                var imagePath = Path.Combine(Path.GetDirectoryName(romFileName), Path.GetFileNameWithoutExtension(romFileName) + ".png");
+                if (File.Exists(imagePath))
+                    cover = LoadBitmap(imagePath);
+                imagePath = Path.Combine(Path.GetDirectoryName(romFileName), Path.GetFileNameWithoutExtension(romFileName) + ".jpg");
+                if (File.Exists(imagePath))
+                    cover = LoadBitmap(imagePath);
+                var artDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "art");
+                Directory.CreateDirectory(artDirectory);
+                imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(romFileName) + ".png");
+                if (File.Exists(imagePath))
+                    cover = LoadBitmap(imagePath);
+                imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(romFileName) + ".jpg");
+                if (File.Exists(imagePath))
+                    cover = LoadBitmap(imagePath);
+                if (crc32 != 0)
+                {
+                    var covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
+                    if (covers.Length > 0)
+                        cover = LoadBitmap(covers[0]);
+                }
+            }
+            if (cover == null)
+            {
+                Image = defaultCover;
+                return false;
+            }
+            Image = cover;
+            return true;
         }
 
         protected static string GenerateCode(uint crc32, char prefixCode)

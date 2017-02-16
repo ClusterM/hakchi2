@@ -16,7 +16,6 @@ namespace com.clusterrr.hakchi_gui
 {
     public class NesGame : NesMiniApplication
     {
-        //public enum GameType { Cartridge, FDS }
         public delegate bool NeedPatchDelegate(Form parentForm, string nesFileName);
         protected const char prefixCode = 'H';
 
@@ -73,13 +72,20 @@ namespace com.clusterrr.hakchi_gui
             Args = Args; // To update exec path if need
         }
 
-        public static NesGame Import(string nesFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback, Form parentForm = null, byte[] rawRomData = null)
+        public static NesMiniApplication Import(string nesFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback = null, Form parentForm = null, byte[] rawRomData = null)
         {
             NesFile nesFile;
-            if (rawRomData != null)
-                nesFile = new NesFile(rawRomData);
-            else
-                nesFile = new NesFile(nesFileName);
+            try
+            {
+                if (rawRomData != null)
+                    nesFile = new NesFile(rawRomData);
+                else
+                    nesFile = new NesFile(nesFileName);
+            }
+            catch
+            {
+                return NesMiniApplication.Import(nesFileName, rawRomData);
+            }
             nesFile.CorrectRom();
             var crc32 = nesFile.CRC32;
             var code = GenerateCode(crc32, prefixCode);
@@ -91,7 +97,7 @@ namespace com.clusterrr.hakchi_gui
             var patches = Directory.GetFiles(patchesDirectory, string.Format("{0:X8}*.ips", crc32), SearchOption.AllDirectories);
             if (patches.Length > 0 && needPatch != false)
             {
-                if (needPatch == true || ((needPatchCallback != null) && needPatchCallback(parentForm, Path.GetFileName(nesFileName)))) /*MessageBox.Show(parentForm, string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)), Resources.PatchAvailable, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes*/
+                if (needPatch == true || ((needPatchCallback != null) && needPatchCallback(parentForm, Path.GetFileName(nesFileName))))
                 {
                     needPatch = true;
                     var patch = patches[0];
@@ -140,38 +146,8 @@ namespace com.clusterrr.hakchi_gui
             game.TryAutofill(crc32);
             game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
             game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
-            game.Name = game.Name.Replace("_", " ").Replace("  ", " ")/*.Replace(", The", "")*/.Trim();
-
-            // Trying to find cover file
-            Image cover = null;
-            if (!string.IsNullOrEmpty(nesFileName))
-            {
-                var imagePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".png");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
-                imagePath = Path.Combine(Path.GetDirectoryName(nesFileName), Path.GetFileNameWithoutExtension(nesFileName) + ".jpg");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
-                var artDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "art");
-                Directory.CreateDirectory(artDirectory);
-                imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(nesFileName) + ".png");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
-                imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(nesFileName) + ".jpg");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
-                var covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
-                if (covers.Length > 0)
-                    cover = LoadBitmap(covers[0]);
-            }
-            if (cover == null)
-            {
-                if (game.region == "Japan")
-                    cover = Resources.blank_jp;
-                else
-                    cover = Resources.blank;
-            }
-            game.Image = cover;
+            game.Name = game.Name.Replace("_", " ").Replace("  ", " ");
+            game.FindCover(nesFileName, (game.region == "Japan") ? Resources.blank_jp : Resources.blank, crc32);
             game.Args = DefaultArgs;
             game.Save();
             return game;
@@ -183,7 +159,7 @@ namespace com.clusterrr.hakchi_gui
             if (gameInfoCache != null && gameInfoCache.TryGetValue(crc32, out gameinfo))
             {
                 Name = gameinfo.Name;
-                Name = Name.Replace("_", " ").Replace("  ", " ")/*.Replace(", The", "")*/.Trim();
+                Name = Name.Replace("_", " ").Replace("  ", " ").Trim();
                 Players = gameinfo.Players;
                 if (Players > 1) Simultaneous = true; // actually unknown...
                 ReleaseDate = gameinfo.ReleaseDate;

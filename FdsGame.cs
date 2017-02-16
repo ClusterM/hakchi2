@@ -59,33 +59,8 @@ namespace com.clusterrr.hakchi_gui
             game.Name = Path.GetFileNameWithoutExtension(fdsFileName);
             game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
             game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
-            game.Name = game.Name.Replace("_", " ").Replace("  ", " ")/*.Replace(", The", "")*/.Trim();
-
-            // Trying to find cover file
-            Image cover = null;
-            if (!string.IsNullOrEmpty(fdsFileName))
-            {
-                var imagePath = Path.Combine(Path.GetDirectoryName(fdsFileName), Path.GetFileNameWithoutExtension(fdsFileName) + ".png");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
-                imagePath = Path.Combine(Path.GetDirectoryName(fdsFileName), Path.GetFileNameWithoutExtension(fdsFileName) + ".jpg");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
-                var artDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "art");
-                Directory.CreateDirectory(artDirectory);
-                imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(fdsFileName) + ".png");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
-                imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(fdsFileName) + ".jpg");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
-                var covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
-                if (covers.Length > 0)
-                    cover = LoadBitmap(covers[0]);
-            }
-            if (cover == null)
-                cover = Resources.blank_fds;
-            game.Image = cover;
+            game.Name = game.Name.Replace("_", " ").Replace("  ", " ").Trim();
+            game.FindCover(fdsFileName, Resources.blank_fds, crc32);
             game.Args = DefaultArgs;
             game.Save();
             return game;

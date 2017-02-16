@@ -333,7 +333,7 @@ namespace com.clusterrr.hakchi_gui
             var selected = checkedListBoxGames.SelectedItem;
             if (selected == null || !(selected is NesMiniApplication)) return;
             var game = (selected as NesMiniApplication);
-            var googler = new ImageGooglerForm(game.Name + ImageGooglerForm.Suffix);
+            var googler = new ImageGooglerForm(game.Name, game);
             if (googler.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 game.Image = googler.Result;
@@ -612,30 +612,42 @@ namespace com.clusterrr.hakchi_gui
         void AddGames(string[] files)
         {
             SaveConfig();
-            MessageBoxManager.Register(); // Tweak button names
-            NesMiniApplication nesGame = null;
+            ICollection<NesMiniApplication> addedApps;
             var workerForm = new WorkerForm();
             workerForm.Text = Resources.LoadingGames;
             workerForm.Task = WorkerForm.Tasks.AddGames;
             if (files.Length <= 1)
-                nesGame = workerForm.AddGames(files, this);
+                addedApps = workerForm.AddGames(files, this);
             else
             {
                 workerForm.GamesToAdd = files;
                 workerForm.Start();
+                addedApps = workerForm.addedApplications;
             }
 
-            LoadGames();
-            if (files.Length == 1 && nesGame != null) // if added only one game select it
+            if (addedApps != null)
+            {
+                // Add games, only new ones
+                var oldApps = from app in checkedListBoxGames.Items.Cast<object>().ToArray() 
+                              where app is NesMiniApplication select (app as NesMiniApplication).Code;
+                var newApps = from app in addedApps where !oldApps.Contains(app.Code) select app;
+                checkedListBoxGames.Items.AddRange(newApps.ToArray());
+                checkedListBoxGames.Sorted = true;
+            }
+            else
+            {
+                // Reload all games (maybe process was terminated?)
+                LoadGames();
+            }
+            if (addedApps != null && addedApps.Count == 1) // if added only one game select it
             {
                 for (int i = 1; i < checkedListBoxGames.Items.Count; i++)
-                    if ((checkedListBoxGames.Items[i] as NesMiniApplication).Code == nesGame.Code)
+                    if ((checkedListBoxGames.Items[i] as NesMiniApplication).Code == addedApps.First().Code)
                     {
                         checkedListBoxGames.SelectedIndex = i;
                         break;
                     }
             }
-            MessageBoxManager.Unregister();
         }
 
         bool FlashOriginalKernel(bool boot = true)
@@ -1035,7 +1047,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (InstallMods(((from m
                                    in form.checkedListBoxMods.CheckedItems.OfType<object>().ToArray()
-                                    select m.ToString())).ToArray()))
+                                  select m.ToString())).ToArray()))
                 {
                     MessageBox.Show(Resources.DoneUploaded, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -1053,7 +1065,7 @@ namespace com.clusterrr.hakchi_gui
             form.Text = Resources.SelectModsUninstall;
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (UninstallMods(((from m 
+                if (UninstallMods(((from m
                                    in form.checkedListBoxMods.CheckedItems.OfType<object>().ToArray()
                                     select m.ToString())).ToArray()))
                 {
