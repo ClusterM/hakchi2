@@ -1,10 +1,10 @@
 === RetroArch ===
 
-This module adds RetroArch emulator to your NES Mini.
+This module adds the RetroArch emulator to your NES Mini.
 
-It will automatically detect unsupported NES games and run them instead of default emulator. Save states will work as usual but CRT filter will not work.
+It will automatically detect unsupported NES games and run them instead of the default emulator. Save states will work as usual but the CRT filter will not.
 
-Also it can run games for other consoles. This pack already contains cores:
+It can also run games for other consoles. This pack already contains the following cores:
 - emux_sms
 - fceumm
 - gambatte_libretro
@@ -16,7 +16,7 @@ Available executables and arguments:
 - retroarch-clover <core> <rom> <clover_args>
   runs retroarch with specified core,
   designed for executing from clover shell, 
-	so it parses all clover arguments (saves, aspect ration, etc.)
+	so it parses all clover arguments (saves, aspect ratio, etc.)
 - /bin/gb <rom> <clover_args>
   runs "gambatte" core
 - /bin/md <rom> <clover_args>
