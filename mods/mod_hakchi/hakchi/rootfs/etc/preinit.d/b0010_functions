@@ -5,11 +5,14 @@ mount_base(){
 }
 
 umount_base(){
-  umount "$mountpoint/var/lib"
+  sync
+  umount -r "$mountpoint/var/lib"
   umount "$mountpoint/var"
 }
 
 remount_root(){
+  [ -z "$(mount | grep -F loop)" ] || return 1
+
   local tmpmount=$modpath/var.tmp
   mkdir -p "$tmpmount"
   mount --move "$mountpoint/var" "$tmpmount"
@@ -31,7 +34,9 @@ load_firmware(){
 
 shutdown(){
   echo shutting down...
-  umount -a
+  echo
+  sync
+  umount -a -r 2>/dev/null
   poweroff -f
   while :;do :;done
 }
@@ -41,13 +46,16 @@ early_getty(){
 }
 
 copy(){
-  # we must create target directory if source is directory
-  [ -d "$1" ] && mkdir -p "$2"
+  # we must create target directory
+  local dirname=$(dirname "$2")
+  mkdir -p "$dirname"
   rsync -ac "$1" "$2"
 }
 
 copy_mask(){
   # this function is unsafe, avoid spaces in filenames!
+  local dirname=$(dirname "$2")
+  mkdir -p "$dirname"
   rsync -ac $1 "$2"
 }
 

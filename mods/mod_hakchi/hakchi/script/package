@@ -1,12 +1,8 @@
 transfer_file(){
-  [ -f "$1" ] || return 0
+  [ -f "$1" ] || return 1
   dos2unix -u "$1"
-  guard_ud(){
-    source "$1"
-    return 0
-  }
-  guard_ud "$1"
-  res=$?
+  source "$1"
+  local res=$?
   rm -f "$1"
   return $res
 }
@@ -27,7 +23,9 @@ transfer_path(){
   find "$transferpath/" -maxdepth 1 -type f -iname "*.txt" -delete
   find "$transferpath/" -maxdepth 1 -type f -iname "*.md" -delete
   local docopy=y
+  cd "$transferpath"
   transfer_file "$transferpath/install" || docopy=n
+  cd "$transferpath"
   transfer_file "$transferpath/transfer" || docopy=n
   [ "$docopy" == "y" ] && transfer_default
 }
@@ -47,20 +45,20 @@ pack_install(){
     local transferpath=$1
   fi
   transfer_path "$transferpath"
-  mkdir -p "$installpath/hmod"
-  if [ ! -f "$transferpath/uninstall" ]; then
-    echo creating uninstall for $(basename "$1" .hmod)...
-    cd "$transferpath"
-    find . -type l -exec echo rm -f \"\$rootfs/{}\" + >> "$transferpath/uninstall"
-    find . -type f -exec echo rm -f \"\$rootfs/{}\" + >> "$transferpath/uninstall"
-    find . -depth -mindepth 1 -type d -exec echo rmdir \"\$rootfs/{}\" + >> "$transferpath/uninstall"
-    [ $(stat -c%s "$transferpath/uninstall") -gt 8 ] || rm -f "$transferpath/uninstall"
-  fi
+  echo creating uninstall for $(basename "$1" .hmod)...
+  echo >> "$transferpath/uninstall"
+  echo "\# auto-generated" >> "$transferpath/uninstall"
+  cd "$transferpath"
+  find . -type l -exec echo rm -f \"\$rootfs/{}\" + >> "$transferpath/uninstall"
+  find . -type f -exec echo rm -f \"\$rootfs/{}\" + >> "$transferpath/uninstall"
+  find . -depth -mindepth 1 -type d -exec echo rmdir \"\$rootfs/{}\" + >> "$transferpath/uninstall"
+  [ $(stat -c%s "$transferpath/uninstall") -gt 8 ] || rm -f "$transferpath/uninstall"
   cd /
   local unfile=$(pack_upath "$1")
   if [ -f "$transferpath/uninstall" ]; then
     dos2unix -u "$transferpath/uninstall"
     sed -i "s#rmdir #rmdir --ignore-fail-on-non-empty #" "$transferpath/uninstall"
+    mkdir -p "$installpath/hmod"
     copy "$transferpath/uninstall" "$unfile"
   else
     rm -f "$unfile"
@@ -79,10 +77,12 @@ pack_uninstall(){
     local unfile=$(pack_upath "$1")
     if [ -f "$unfile" ]; then
       echo uninstalling $(basename "$1" .hmod)...
+      cd "$rootfs"
       transfer_file "$unfile"
       echo package $(basename "$1" .hmod) uninstalled
     fi
   fi
+  cd /
   rmdir --ignore-fail-on-non-empty "$installpath/hmod"
 }
 

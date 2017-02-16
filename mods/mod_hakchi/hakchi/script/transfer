@@ -11,6 +11,29 @@ source "$modpath/rootfs/etc/preinit"
 source_base "$modpath/rootfs/etc/preinit.d"
 source_config
 
+local transferpath=$modpath/transfer
+
+[ -f "$transferpath/earlybird" ] && source "$transferpath/earlybird"
+rm -f "$transferpath/earlybird"
+
+# transfer firmware, if any
+if [ -d "$transferpath/firmware" ]; then
+  local firmware=$(find "$transferpath/firmware" -type f -name "*.hsqs" | sort | head -n 1)
+  if [ -f "$firmware" ]; then
+    mkdir -p "$firmwarepath"
+    local firmware_name=$(basename "$firmware")
+    find "$firmwarepath" -type f -not -name "$firmware_name" -delete
+    echo transferring firmware...
+    copy "$firmware" "$firmwarepath/"
+  fi
+  rm -rf "$transferpath/firmware"
+fi
+
+# if we're running modified firmware, mount it now
+source_parts "$preinitpath/p????_*firmware*"
+source_parts "$modpath/rootfs/etc/preinit.d/p????_*firmware*"
+
+# now we can do install/repair
 if [ -f "$preinit" ]; then
   echo $modname already installed
   mod_repair
@@ -18,13 +41,10 @@ else
   mod_install
 fi
 
-# if we're running modified firmware
-source "$preinitpath/p7070_firmware"
-
-local transferpath=$modpath/transfer
-
-[ -f "$transferpath/uninstall" ] && packs_uninstall $(cat "$transferpath/uninstall") && rm -f $transferpath/uninstall
-[ -f "$transferpath/hmod/uninstall" ] && packs_uninstall $(cat "$transferpath/hmod/uninstall") && rm -f $transferpath/hmod/uninstall
+[ -f "$transferpath/uninstall" ] && packs_uninstall $(cat "$transferpath/uninstall")
+rm -f "$transferpath/uninstall"
+[ -f "$transferpath/hmod/uninstall" ] && packs_uninstall $(cat "$transferpath/hmod/uninstall")
+rm -f "$transferpath/hmod/uninstall"
 
 packs_install "$transferpath"
 if [ -d "$transferpath/hmod" ]; then
@@ -40,7 +60,10 @@ fi
 echo transferring data...
 transfer_path "$transferpath"
 
-chmod +x $rootfs/bin/*
+[ -d "$rootfs/bin" ] && chmod +x $rootfs/bin/*
+[ -d "$rootfs/sbin" ] && chmod +x $rootfs/sbin/*
+[ -d "$rootfs/usr/bin" ] && chmod +x $rootfs/usr/bin/*
+[ -d "$rootfs/usr/sbin" ] && chmod +x $rootfs/usr/sbin/*
 
 save_config
 [ "$cf_shutdown" != "y" ] || shutdown
