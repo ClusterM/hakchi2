@@ -759,7 +759,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, {0} uses four-screen mode (i.e.  it&apos;s rare case the game has additional VRAM memory in cartridge) and this feature is not supported by NES Mini. Game probably will not start. Do you want to add this game anyway?.
+        ///   Looks up a localized string similar to Sorry, {0} uses four-screen mode (i.e.  it&apos;s rare case the game has additional VRAM memory in cartridge) and this feature is not supported by NES Mini. Game probably will not start. But it should work if other emulator&apos;s module installed. Do you want to add this game anyway?.
         /// </summary>
         internal static string FourScreenNotSupported {
             get {
@@ -922,7 +922,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, &quot;{0}&quot; uses mapper #{1} but this mapper is not supported by NES Mini and game probably will not start with default emulator. But it should work if &quot;RetroArch&quot; mod installed. Do you want to add this game?.
+        ///   Looks up a localized string similar to Sorry, &quot;{0}&quot; uses mapper #{1} but this mapper is not supported by NES Mini and game probably will not start with default emulator. But it should work if other emulator&apos;s module installed. Do you want to add this game?.
         /// </summary>
         internal static string MapperNotSupported {
             get {
