@@ -567,7 +567,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
-            if (Directory.Exists(transferDirectory))
+            if (!first && Directory.Exists(transferDirectory))
             {
                 Debug.WriteLine("Clearing transfer directory");
                 Directory.Delete(transferDirectory, true);

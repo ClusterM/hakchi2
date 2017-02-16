@@ -1,5 +1,5 @@
 transfer_file(){
-  [ -f "$1" ] || return 1
+  [ -f "$1" ] || return 0
   dos2unix -u "$1"
   source "$1"
   local res=$?
