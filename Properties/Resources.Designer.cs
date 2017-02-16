@@ -714,7 +714,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Original games.
+        ///   Looks up a localized string similar to Original 30 games.
         /// </summary>
         internal static string FolderNameOriginalGames {
             get {
@@ -1111,7 +1111,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select modules to install on your NES Mini.
+        ///   Looks up a localized string similar to Select the modules to install on your NES Mini..
         /// </summary>
         internal static string SelectModsInstall {
             get {
@@ -1120,7 +1120,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select modules to remove from your NES Mini.
+        ///   Looks up a localized string similar to Select the modules to remove from your NES Mini..
         /// </summary>
         internal static string SelectModsUninstall {
             get {
