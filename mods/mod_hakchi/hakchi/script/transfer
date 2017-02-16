@@ -34,7 +34,7 @@ source_parts "$preinitpath/p????_*firmware*"
 source_parts "$modpath/rootfs/etc/preinit.d/p????_*firmware*"
 
 # now we can do install/repair
-if [ -d "preinitpath" ]; then
+if [ -d "$preinitpath" ]; then
   echo $modname already installed
   mod_repair
 else
