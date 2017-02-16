@@ -1,8 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-# SharpDevelop 5.1
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hakchi_gui", "hakchi_gui.csproj", "{F1F983FD-A54F-4881-8394-5A4BA65EFD6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexDump", "..\HexDump\HexDump.csproj", "{D342CE4C-3F74-4DCE-9564-C8A821DAD9FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,5 +17,12 @@ Global
 		{F1F983FD-A54F-4881-8394-5A4BA65EFD6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1F983FD-A54F-4881-8394-5A4BA65EFD6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1F983FD-A54F-4881-8394-5A4BA65EFD6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D342CE4C-3F74-4DCE-9564-C8A821DAD9FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D342CE4C-3F74-4DCE-9564-C8A821DAD9FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D342CE4C-3F74-4DCE-9564-C8A821DAD9FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D342CE4C-3F74-4DCE-9564-C8A821DAD9FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

@@ -577,16 +577,19 @@ namespace com.clusterrr.hakchi_gui
             if (Games != null)
             {
                 Directory.CreateDirectory(tempGamesDirectory);
-                if (first) File.WriteAllBytes(Path.Combine(tempGamesDirectory, "clear"), new byte[0]);
-                Directory.CreateDirectory(originalGamesConfigDirectory);
-                if (HiddenGames != null && HiddenGames.Length > 0)
+                if (first)
                 {
-                    StringBuilder h = new StringBuilder();
-                    foreach (var game in HiddenGames)
-                        h.Append(game + "\n");
-                    File.WriteAllText(hiddenPath, h.ToString());
-                }            
-            
+                    File.WriteAllBytes(Path.Combine(tempGamesDirectory, "clear"), new byte[0]);
+                    Directory.CreateDirectory(originalGamesConfigDirectory);
+                    if (HiddenGames != null && HiddenGames.Length > 0)
+                    {
+                        StringBuilder h = new StringBuilder();
+                        foreach (var game in HiddenGames)
+                            h.Append(game + "\n");
+                        File.WriteAllText(hiddenPath, h.ToString());
+                    }
+                }
+
                 stats.Next();
                 AddMenu(Games, stats);
                 Debug.WriteLine(string.Format("Games copied: {0}/{1}, part size: {2}", stats.GamesProceed, stats.GamesTotal, stats.Size));
@@ -789,9 +792,9 @@ namespace com.clusterrr.hakchi_gui
                     }
                     if (stats.GamesStart == 0)
                     {
-                        int childIndex = stats.allMenus.IndexOf(folder.ChildMenuCollection);
+                        folder.ChildIndex = stats.allMenus.IndexOf(folder.ChildMenuCollection);                        
                         var folderDir = Path.Combine(targetDirectory, folder.Code);
-                        folder.Save(folderDir, childIndex);
+                        folder.Save(folderDir);
                     }
                 }
                 if (element is NesDefaultGame)

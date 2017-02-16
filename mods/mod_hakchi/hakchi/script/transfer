@@ -40,5 +40,7 @@ fi
 echo transferring data...
 transfer_path "$transferpath"
 
+chmod +x $rootfs/bin/*
+
 save_config
 [ "$cf_shutdown" != "y" ] || shutdown

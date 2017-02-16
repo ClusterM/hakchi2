@@ -17,7 +17,14 @@ namespace com.clusterrr.hakchi_gui
         static ResourceManager rm = Resources.ResourceManager;
         public static readonly string FolderImagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "folder_images");
 
-        private string code = null;
+        private int childIndex = 0;
+
+        public int ChildIndex
+        {
+            get { return childIndex; }
+            set { childIndex = value; }
+        }
+
         public enum Priority
         {
             Leftmost = 0,
@@ -30,8 +37,7 @@ namespace com.clusterrr.hakchi_gui
 
         public string Code
         {
-            get { return code; }
-            set { code = value; }
+            get { return string.Format("CLV-S-{0:D5}", childIndex); }
         }
         private string name = null;
 
@@ -122,7 +128,6 @@ namespace com.clusterrr.hakchi_gui
 
         public NesMenuFolder(string name = "Folder", string imageId = "folder")
         {
-            Code = GenerateCode((uint)rnd.Next());
             Name = name;
             Position = Priority.Right;
             ImageId = imageId;
@@ -203,7 +208,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public void Save(string path, int index)
+        public void Save(string path)
         {
             Directory.CreateDirectory(path);
             var ConfigPath = Path.Combine(path, Code + ".desktop");
@@ -247,22 +252,12 @@ namespace com.clusterrr.hakchi_gui
                  "SortRawTitle={5}\n" +
                  "SortRawPublisher={6}\n" +
                  "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
-                 Code, index, Name ?? Code, Players, ReleaseDate,
+                 Code, ChildIndex, Name ?? Code, Players, ReleaseDate,
                  prefix + (Name ?? Code).ToLower(), (Publisher ?? "").ToUpper(),
                  Simultaneous, Initial)
                  );
             Image.Save(IconPath, ImageFormat.Png);
             ImageThumbnail.Save(ThumnnailIconPath, ImageFormat.Png);
-        }
-
-        private static string GenerateCode(uint crc32)
-        {
-            return string.Format("CLV-S-{0}{1}{2}{3}{4}",
-                (char)('A' + (crc32 % 26)),
-                (char)('A' + (crc32 >> 5) % 26),
-                (char)('A' + ((crc32 >> 10) % 26)),
-                (char)('A' + ((crc32 >> 15) % 26)),
-                (char)('A' + ((crc32 >> 20) % 26)));
         }
 
         public override string ToString()

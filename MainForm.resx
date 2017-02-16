@@ -703,7 +703,7 @@
     <value>92, 22</value>
   </data>
   <data name="modulesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Modules</value>
+    <value>&amp;Modules</value>
   </data>
   <data name="&gt;&gt;max60toolStripMenuItem.Name" xml:space="preserve">
     <value>max60toolStripMenuItem</value>

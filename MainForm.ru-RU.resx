@@ -218,7 +218,7 @@
     <value>63, 20</value>
   </data>
   <data name="modulesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Модули</value>
+    <value>&amp;Модули</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>320, 22</value>
