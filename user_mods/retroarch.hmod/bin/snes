@@ -1,0 +1,2 @@
+#!/bin/sh
+exec retroarch-clover snes9x2010 "$@"

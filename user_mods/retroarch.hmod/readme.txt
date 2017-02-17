@@ -2,7 +2,7 @@
 
 This module adds the RetroArch emulator to your NES Mini.
 
-It will automatically detect unsupported NES games and run them instead of the default emulator. Save states will work as usual but the CRT filter will not.
+It will automatically detect unsupported NES games and run them instead of the default emulator. Save states will work as usual.
 
 It can also run games for other consoles. This pack already contains the following cores:
 - emux_sms
@@ -27,6 +27,10 @@ Available executables and arguments:
   runs "emux_sms" core
 - /bin/snes <rom> <clover_args>
   runs "snes9x2010" core
+- /bin/n64 <rom> <clover_args>
+  runs "mupen64plus" core
+
+Sometimes default emulator of NES mini is not working with some games when it should. So you can just add "--retroarch" command line argument to use RetroArch.
 
 NES Mini port by madmonkey
 NES Mini shell integration by Cluster

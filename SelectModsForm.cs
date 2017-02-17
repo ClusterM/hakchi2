@@ -9,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
@@ -50,15 +51,20 @@ namespace com.clusterrr.hakchi_gui
 
         private void checkedListBoxMods_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (checkedListBoxMods.SelectedItem != null)
+                new Thread(loadReadMe).Start(checkedListBoxMods.SelectedItem.ToString());
+            else
+            {
+                textBoxReadme.Text = "";
+                textBoxReadme.Enabled = false;
+            }
+        }
+
+        void loadReadMe(object obj)
+        {
             try
             {
-                if (checkedListBoxMods.SelectedItem == null)
-                {
-                    textBoxReadme.Text = "";
-                    textBoxReadme.Enabled = false;
-                    return;
-                }
-                var selected = checkedListBoxMods.SelectedItem.ToString();
+                var selected = obj as string;
                 var text = "";
                 var dir = Path.Combine(usermodsDirectory, selected + ".hmod");
                 if (Directory.Exists(dir))
@@ -99,14 +105,20 @@ namespace com.clusterrr.hakchi_gui
                         }
                     }
                 }
-
-                textBoxReadme.Text = text;
-                textBoxReadme.Enabled = text.Length > 0;
+                Invoke(new Action<string, string>(showReadMe), new object[] { selected, text });
             }
-            catch (Exception ex)
+            catch
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        void showReadMe(string mod, string readme)
+        {
+            if (checkedListBoxMods.SelectedItem != null &&
+                checkedListBoxMods.SelectedItem.ToString() == mod)
+            {
+                textBoxReadme.Text = readme;
+                textBoxReadme.Enabled = readme.Length > 0;
             }
         }
     }

@@ -1,0 +1,83 @@
+#!/bin/sh
+HOME=/etc/libretro
+pid=$1
+corename=$2
+core=$HOME/core/$2_libretro.so
+rom=$3
+id=$(echo $(basename "$rom") | cut -f 1 -d '.')
+autosave="/var/cache/$id.state.auto"
+rsram="/var/cache/$id.srm"
+shift 3
+
+scanlines=0
+[ "$corename" == "fceumm" ] && scanlines_allowed=1
+[ "$corename" == "nestopia" ] && scanlines_allowed=1
+[ "$corename" == "emux_sms" ] && scanlines_allowed=1
+
+while [ $# -gt 0 ]; do
+  [ "$1" == "--load-state-file" ] && load="$2"
+  [ "$1" == "--save-on-quit" ] && save="$2"
+  [ "$1" == "--save-screenshot-on-quit" ] && screenshot="$2"
+  [ "$1" == "--save-data-backing-file" ] && sram="$2"
+  [ "$1" == "--graphic-filter" ] && filter="$2"
+  [ "$scanlines_allowed" == "1" ] && [ "$1" == "--enable-crt-scanlines" ] && scanlines=1
+  [ "$1" == "--ra-scanlines" ] && scanlines=1
+  shift
+done
+
+# saves if any
+rm -f /var/cache/*.state /var/cache/*.auto /var/cache/*.srm
+[ ! -z "$load" ] && [ -f "$load" ] && cp -f "$load" "$autosave" && echo cp -f "$load" "$autosave"
+[ ! -z "$sram" ] && [ -f "$sram" ] && cp -f "$sram" "$rsram" && echo cp -f "$sram" "$rsram"
+
+# core provided ratio for CRT mode
+[ "$filter" == "crt720" ] && ratio=21 && smooth=true && [ "$scanlines_allowed" == "1" ] && scanlines=1
+# core provided ratio for 4:3 mode
+[ "$filter" == "gpu720" ] && ratio=21 && smooth=true
+# pixel perfect - 1:1 for pixel perfect mode
+[ "$filter" == "ppu" ] && ratio=20 && smooth=false
+
+# set aspect ratio in config
+[ -z "$ratio" ] || sed -i -e 's/aspect_ratio_index = "[^"]*"/aspect_ratio_index = "'$ratio'"/g' /etc/libretro/retroarch.cfg
+[ -z "$smooth" ] || sed -i -e 's/video_smooth = "[^"]*"/video_smooth = "'$smooth'"/g' /etc/libretro/retroarch.cfg
+
+# enable shader scanlines if need
+if [ "$scanlines" == "1" ]; then
+  sed -i -e 's/video_shader = "[^"]*"/video_shader = "~\/shaders\/retroarch\.glslp"/g' /etc/libretro/retroarch.cfg
+  cp -f /etc/libretro/shaders/scanlines.glslp /etc/libretro/shaders/retroarch.glslp
+else
+  sed -i -e 's/video_shader = "[^"]*"/video_shader = ""/g' /etc/libretro/retroarch.cfg
+fi
+
+retroarch -c "$HOME/retroarch.cfg" -vfL "$core" "$rom" &
+rpid=$!
+sleep 1
+rm -f /var/cache/*.state /var/cache/*.auto /var/cache/*.srm
+
+while true; do
+  if [ "$(ps -o pid | grep -c $pid)" == "0" ]; then
+    kill $rpid
+    break
+  fi
+  if [ "$(ps -o pid | grep -c $rpid)" == "0" ]; then
+    kill $pid
+    break
+  fi
+  usleep 100000
+done
+
+# We can't let clover shell load so fast, so killing it
+pkill -KILL clover-mcp
+pkill -KILL ReedPlayer-Clover
+
+# Saves! It's primary task
+mkdir -p $(dirname "$save")
+mkdir -p $(dirname "$sram")
+mkdir -p $(dirname "$screenshot")
+[ ! -z "$save" ] && [ -f "$autosave" ] && mv -f "$autosave" "$save"
+[ ! -z "$sram" ] && [ -f "$rsram" ] && mv -f "$rsram" "$sram"
+
+[ -z "$screenshot" ] || fbgrab -z 0 "$screenshot"
+
+# Back to shell
+clover-mcp

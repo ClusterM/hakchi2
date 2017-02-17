@@ -1,0 +1,34 @@
+#!/bin/sh
+source /etc/preinit
+script_init
+
+state_file=$installpath/menu
+
+[ -z "$1" ] && exit 1
+prev_code=$(cat "$state_file")
+[ "$1" == "$prev_code" ] && exit 0
+
+echo Switching to menu $1
+if [ "$1" == "000" ]; then
+  targetpath=$rootfs$gamepath
+else
+  targetpath=$rootfs$gamepath/$1
+fi
+
+[ -d "$targetpath" ] || exit 1
+echo $1 > "$state_file"
+
+echo New directory: $targetpath
+if [ ! -f "$targetpath/title.fnt" ]; then
+  ln -s "$rootfs$gamepath/title.fnt" "$targetpath/title.fnt"
+fi
+if [ ! -f "$targetpath/copyright.fnt" ]; then
+  ln -s "$rootfs$gamepath/copyright.fnt" "$targetpath/copyright.fnt"
+fi
+
+pkill -KILL clover-mcp
+pkill -KILL ReedPlayer-Clover
+
+overmount_games
+
+clover-mcp

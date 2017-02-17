@@ -682,7 +682,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         try
                         {
-                            urls = ImageGooglerForm.GetImageUrls(game.Name);
+                            urls = ImageGooglerForm.GetImageUrls(game);
                             break;
                         }
                         catch (Exception ex)

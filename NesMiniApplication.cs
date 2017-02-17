@@ -133,11 +133,12 @@ namespace com.clusterrr.hakchi_gui
                     application = "/bin/gb";
                     break;
                 case ".gba":
-                    prefixCode = 'G';
+                    prefixCode = 'A';
                     application = "/bin/gba";
-                    break;
-                case ".z64":
+                    break;                
                 case ".n64":
+                case ".z64":
+                case ".v64":
                     prefixCode = 'F';
                     application = "/bin/n64";
                     break;
@@ -145,6 +146,7 @@ namespace com.clusterrr.hakchi_gui
                     prefixCode = 'E';
                     application = "/bin/snes";
                     break;
+                case ".gen":
                 case ".smd":
                     prefixCode = 'G';
                     application = "/bin/md";
@@ -154,7 +156,7 @@ namespace com.clusterrr.hakchi_gui
                     application = "/bin/sms";
                     break;
                 default:
-                    prefixCode = '0';
+                    prefixCode = 'Z';
                     application = "/bin/path-to-your-app";
                     break;
             }
@@ -163,7 +165,7 @@ namespace com.clusterrr.hakchi_gui
             var crc32 = CRC32(rawRomData);
             var code = GenerateCode(crc32, prefixCode);
             var gamePath = Path.Combine(GamesDirectory, code);
-            var romName = Path.GetFileNameWithoutExtension(fileName).Replace(" ", "_");
+            var romName = Path.GetFileName(fileName).Replace(" ", "_");
             var romPath = Path.Combine(gamePath, romName);
             Directory.CreateDirectory(gamePath);
             File.WriteAllBytes(romPath, rawRomData);
@@ -308,23 +310,26 @@ namespace com.clusterrr.hakchi_gui
             // Just keep aspect ratio
             const int maxX = 204;
             const int maxY = 204;
-            if (image.Width / image.Height > maxX / maxY)
-                outImage = new Bitmap(maxX, maxY * image.Height / image.Width);
+            if ((double)image.Width / (double)image.Height > (double)maxX / (double)maxY)
+                outImage = new Bitmap(maxX, (int)((double)maxY * (double)image.Height / (double)image.Width));
             else
-                outImage = new Bitmap(maxX * image.Width / image.Height, maxY);
-            const int maxXsmall = 40;
-            const int maxYsmall = 40;
-            if (image.Width / image.Height > maxXsmall / maxYsmall)
-                outImageSmall = new Bitmap(maxXsmall, maxYsmall * image.Height / image.Width);
+                outImage = new Bitmap((int)(maxX * (double)image.Width / (double)image.Height), maxY);
+
+            int maxXsmall = 40;
+            int maxYsmall = 40;
+            if ((double)image.Width / (double)image.Height > (double)maxXsmall / (double)maxYsmall)
+                outImageSmall = new Bitmap(maxXsmall, (int)((double)maxYsmall * (double)image.Height / (double)image.Width));
             else
-                outImageSmall = new Bitmap(maxXsmall * image.Width / image.Height, maxYsmall);
+                outImageSmall = new Bitmap((int)(maxXsmall * (double)image.Width / (double)image.Height), maxYsmall);
 
             gr = Graphics.FromImage(outImage);
+            gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
             gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
                                 new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
             gr.Flush();
             outImage.Save(IconPath, ImageFormat.Png);
             gr = Graphics.FromImage(outImageSmall);
+            gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
             gr.DrawImage(outImage, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height),
                 new Rectangle(0, 0, outImage.Width, outImage.Height), GraphicsUnit.Pixel);
             gr.Flush();

@@ -33,6 +33,7 @@
             this.textBoxReadme.Location = new System.Drawing.Point(276, 12);
             this.textBoxReadme.Multiline = true;
             this.textBoxReadme.Name = "textBoxReadme";
+            this.textBoxReadme.ReadOnly = true;
             this.textBoxReadme.Size = new System.Drawing.Size(271, 334);
             this.textBoxReadme.TabIndex = 1;
             // 

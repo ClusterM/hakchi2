@@ -1,0 +1,10 @@
+#!/bin/sh
+core=fceumm
+filename="$1"
+extension="${filename##*.}"
+if [ "$extension" == "fds" ]; then
+  core=nestopia
+  cp -f /usr/share/kachikachi/fds_bios.bin /tmp/disksys.rom
+fi
+
+exec retroarch-clover "$core" "$@"
