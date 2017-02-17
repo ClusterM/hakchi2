@@ -30,10 +30,8 @@ if [ -d "$transferpath/firmware" ]; then
 fi
 
 # if we're running modified firmware, mount it now
-if [ -d "$preinitpath" ]; then
-  source_parts "$preinitpath/p????_*firmware*"
-  source_parts "$modpath/rootfs/etc/preinit.d/p????_*firmware*"
-fi
+source_parts "$preinitpath/p????_*firmware*"
+source_parts "$modpath/rootfs/etc/preinit.d/p????_*firmware*"
 
 # now we can do install/repair
 if [ -d "$preinitpath" ]; then

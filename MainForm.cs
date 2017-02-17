@@ -333,7 +333,7 @@ namespace com.clusterrr.hakchi_gui
             var selected = checkedListBoxGames.SelectedItem;
             if (selected == null || !(selected is NesMiniApplication)) return;
             var game = (selected as NesMiniApplication);
-            var googler = new ImageGooglerForm(game.Name, game);
+            var googler = new ImageGooglerForm(game);
             if (googler.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 game.Image = googler.Result;
@@ -586,25 +586,19 @@ namespace com.clusterrr.hakchi_gui
                 else
                     needOriginal = true;
             }
-            if (needOriginal)
-                for (int i = 0; i < checkedListBoxDefaultGames.Items.Count; i++)
-                {
-                    if (checkedListBoxDefaultGames.CheckedIndices.Contains(i))
-                        workerForm.Games.Add((NesDefaultGame)checkedListBoxDefaultGames.Items[i]);
-                    else
-                        hiddenGames.Add(((NesDefaultGame)checkedListBoxDefaultGames.Items[i]).Code);
-                }
+            for (int i = 0; i < checkedListBoxDefaultGames.Items.Count; i++)
+            {
+                if (needOriginal && checkedListBoxDefaultGames.CheckedIndices.Contains(i))
+                    workerForm.Games.Add((NesDefaultGame)checkedListBoxDefaultGames.Items[i]);
+                else
+                    hiddenGames.Add(((NesDefaultGame)checkedListBoxDefaultGames.Items[i]).Code);
+            }
             workerForm.Config["disable_armet"] = (ConfigIni.AntiArmetLevel > 0) ? "y" : "n";
             workerForm.Config["nes_extra_args"] = ConfigIni.ExtraCommandLineArguments;
-            if (needOriginal)
-                workerForm.HiddenGames = hiddenGames.ToArray();
-            else
-                workerForm.HiddenGames = null;
+            workerForm.HiddenGames = hiddenGames.ToArray();
             workerForm.FoldersMode = ConfigIni.FoldersMode;
             workerForm.MaxGamesPerFolder = ConfigIni.MaxGamesPerFolder;
-
             workerForm.MainForm = this;
-
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
         }
@@ -944,15 +938,7 @@ namespace com.clusterrr.hakchi_gui
         private void checkedListBoxGames_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                var files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                foreach (var file in files)
-                {
-                    var ext = Path.GetExtension(file).ToLower();
-                    if (ext == ".nes" || ext == ".fds")
-                        e.Effect = DragDropEffects.Copy;
-                }
-            }
+                e.Effect = DragDropEffects.Copy;
         }
 
         private void checkedListBoxGames_DragDrop(object sender, DragEventArgs e)

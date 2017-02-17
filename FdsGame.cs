@@ -48,6 +48,12 @@ namespace com.clusterrr.hakchi_gui
         {
             if (rawRomData == null)
                 rawRomData = File.ReadAllBytes(fdsFileName);
+            if (Encoding.ASCII.GetString(rawRomData, 0, 3) == "FDS") // header? cut it!
+            {
+                var fdsDataNoHeader = new byte[rawRomData.Length - 0x10];
+                Array.Copy(rawRomData, 0x10, fdsDataNoHeader, 0, fdsDataNoHeader.Length);
+                rawRomData = fdsDataNoHeader;
+            }
             var crc32 = CRC32(rawRomData);
             var code = GenerateCode(crc32, prefixCode);
             var gamePath = Path.Combine(GamesDirectory, code);

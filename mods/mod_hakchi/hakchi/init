@@ -24,7 +24,7 @@ else
   mount_base
 fi
 
-if [ -d "$preinit" ]; then
+if [ -f "$preinit" ]; then
   source "$preinit"
   preinit
 else

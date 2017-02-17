@@ -25,22 +25,23 @@ namespace com.clusterrr.hakchi_gui
             get { return result; }
         }
 
-        public ImageGooglerForm(string query, NesMiniApplication app)
+        public ImageGooglerForm(NesMiniApplication app)
         {
             InitializeComponent();
+            Text = "Google Images - " + app.Name ?? "";
+            searchThread = new Thread(SearchThread);
+            searchThread.Start(app);
+        }
+
+        public static string[] GetImageUrls(NesMiniApplication app)
+        {
+            string query = app.Name ?? "";
             if (app is NesGame)
                 query += " nes|famicom box art";
             else if (app is FdsGame)
                 query += " fds box art";
             else
-                query += " box art";
-            Text = "Google Images - " + query;
-            searchThread = new Thread(SearchThread);
-            searchThread.Start(query);
-        }
-
-        public static string[] GetImageUrls(string query)
-        {
+                query += " game (box|vover) art";
             var url = string.Format("https://www.google.com/search?q={0}&source=lnms&tbm=isch", HttpUtility.UrlEncode(query));
             Debug.WriteLine("Web request: " + url);
             var request = WebRequest.Create(url);
@@ -80,7 +81,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                var urls = GetImageUrls(o as string);
+                var urls = GetImageUrls(o as NesMiniApplication);
                 foreach (var url in urls)
                 {
                     //new Thread(DownloadImageThread).Start(url);
