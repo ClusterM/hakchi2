@@ -41,7 +41,7 @@ namespace com.clusterrr.hakchi_gui
             else if (app is FdsGame)
                 query += " fds box art";
             else
-                query += " game (box|vover) art";
+                query += " game (box|cover) art";
             var url = string.Format("https://www.google.com/search?q={0}&source=lnms&tbm=isch", HttpUtility.UrlEncode(query));
             Debug.WriteLine("Web request: " + url);
             var request = WebRequest.Create(url);

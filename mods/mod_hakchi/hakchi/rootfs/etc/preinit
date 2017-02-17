@@ -7,8 +7,8 @@ source_parts(){
   mkdir -p "$temppath"
   local script=$temppath/script_$(rand)
   rm -f "$script"
-	local searchpath=$(dirname "$1")
-	[ -d "$searchpath" ] || return 1
+  local searchpath=$(dirname "$1")
+  [ -d "$searchpath" ] || return 1
   for i in $(find "$searchpath" -maxdepth 1 -path "$1" | sort); do
     cat "$i" >> "$script"
   done

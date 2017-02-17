@@ -165,7 +165,7 @@
   <data name="ExecutingCommand" xml:space="preserve">
     <value>Выполняем команду:</value>
   </data>
-  <data name="ExecutingFel1" xml:space="preserve">
+  <data name="ExecutingFes1" xml:space="preserve">
     <value>Запускаем fes1...</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
