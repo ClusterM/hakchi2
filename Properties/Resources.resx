@@ -133,7 +133,7 @@
     <value>Do you want to flash the custom kernel?</value>
   </data>
   <data name="CustomWarning" xml:space="preserve">
-    <value>Now you need to flash the custom kernel to your NES Mini. This is also required only once. Do you want to continue?</value>
+    <value>Now you need to flash the custom kernel to your NES Mini. This is only required once. Do you want to continue?</value>
   </data>
   <data name="Default30games" xml:space="preserve">
     <value>Original 30 games</value>
@@ -145,7 +145,7 @@
     <value>Done!</value>
   </data>
   <data name="DoneUploaded" xml:space="preserve">
-    <value>Done! Wait until the power led goes out and restart your NES Mini.</value>
+    <value>Done! Wait until the power LED goes out and restart your NES Mini.</value>
   </data>
   <data name="DoneYouCanUpload" xml:space="preserve">
     <value>Done! You can upload games to your NES Mini now.</value>
@@ -169,7 +169,7 @@
     <value>Executing command:</value>
   </data>
   <data name="ExecutingFel1" xml:space="preserve">
-    <value>Executing fes1...</value>
+    <value>Executing FES-1...</value>
   </data>
   <data name="FlasingCustom" xml:space="preserve">
     <value>Flashing custom kernel...</value>
@@ -187,22 +187,22 @@
     <value>Invalid kernel size:</value>
   </data>
   <data name="MapperNotSupported" xml:space="preserve">
-    <value>Sorry, "{0}" uses mapper #{1} but this mapper is not supported by NES Mini and game probably will not start with default emulator. But it should work if other emulator's module installed. Do you want to add this game?</value>
+    <value>Sorry, "{0}" uses mapper #{1} but this mapper is not supported by the NES Mini and the game will probably not start with the default emulator. But it should work if other emulator's module installed. Do you want to add this game?</value>
   </data>
   <data name="MD5Failed" xml:space="preserve">
-    <value>Kernel dumped but MD5 checksum is unknown:</value>
+    <value>Kernel dumped but the MD5 checksum is unknown:</value>
   </data>
   <data name="MD5Failed2" xml:space="preserve">
-    <value>Maybe the kernel already patched or it's unknown revision. Please send this message to me (press Ctrl+C). Continue on your own risk.</value>
+    <value>The kernel is already patched or it's an unknown revision. Please send this message to me (press Ctrl+C). Continue at your own risk.</value>
   </data>
   <data name="NoKernel" xml:space="preserve">
     <value>No kernel dump found</value>
   </data>
   <data name="NoKernelWarning" xml:space="preserve">
-    <value>First of all you need to dump the kernel image of your NES Mini. You need to do it only once. Do you want to continue?</value>
+    <value>First, dump the kernel image of your NES Mini. You only need to do this once. Do you want to continue?</value>
   </data>
   <data name="NoKernelYouNeed" xml:space="preserve">
-    <value>No kernel dump found. You need to dump kernel first.</value>
+    <value>No kernel dump found. You need to dump the kernel first.</value>
   </data>
   <data name="OriginalKernelQ" xml:space="preserve">
     <value>Do you want to flash the original kernel?</value>
@@ -211,13 +211,13 @@
     <value>Press OK to continue.</value>
   </data>
   <data name="ReplaceKernelQ" xml:space="preserve">
-    <value>You already have the kernel dump. If you REALLY want to replace buckup of you kernel and you REALLY understand what you are doing delete "dump" folder manually.</value>
+    <value>You already have the kernel dump. If you REALLY want to replace the backup of your kernel and you REALLY understand what you are doing, delete the "dump" folder manually.</value>
   </data>
   <data name="SelectAtLeast" xml:space="preserve">
-    <value>You need to select at least one game.</value>
+    <value>Select at least one game.</value>
   </data>
   <data name="UploadingFes1" xml:space="preserve">
-    <value>Uploading and running fes1...</value>
+    <value>Uploading and running FES-1...</value>
   </data>
   <data name="UploadingGames" xml:space="preserve">
     <value>Uploading games...</value>
@@ -226,7 +226,7 @@
     <value>Uploading the kernel...</value>
   </data>
   <data name="VerifyFailed" xml:space="preserve">
-    <value>Verify failed :O This is no good.</value>
+    <value>Verify failed :O This is not good.</value>
   </data>
   <data name="Verifying" xml:space="preserve">
     <value>Verifying...</value>
@@ -241,52 +241,52 @@
     <value>Wow</value>
   </data>
   <data name="PleaseTryAgainUSB" xml:space="preserve">
-    <value>If this problem repeats try to use another USB port or another USB cable.</value>
+    <value>If this problem persists, try using another USB port or cable.</value>
   </data>
   <data name="XpZadig" xml:space="preserve">
-    <value>Please use Zadig util to install driver on Windows XP/2000.</value>
+    <value>Please use the Zadig utility to install the driver on Windows XP/2000.</value>
   </data>
   <data name="Donate" xml:space="preserve">
-    <value>P.S. If you like it you can donate me. You can find my PayPal into the "About" box.</value>
+    <value>P.S. If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
   </data>
   <data name="FirstRun" xml:space="preserve">
-    <value>Hello there! I'm very glad that you are using my application. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>
+    <value>Hello there! I'm very glad that you are using hakchi2. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>
   </data>
   <data name="KernelDumped" xml:space="preserve">
-    <value>Your original kernel saved in the "dump" folder. It's better not to lose it. </value>
+    <value>Your original kernel is saved in the "dump" folder. Do not lose it. </value>
   </data>
   <data name="DeletePreset" xml:space="preserve">
-    <value>Do you really want to delete "{0}" preset?</value>
+    <value>Do you really want to delete the "{0}" preset?</value>
   </data>
   <data name="FourScreenNotSupported" xml:space="preserve">
-    <value>Sorry, {0} uses four-screen mode (i.e.  it's rare case the game has additional VRAM memory in cartridge) and this feature is not supported by NES Mini. Game probably will not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
+    <value>Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
   </data>
   <data name="InputPreset" xml:space="preserve">
-    <value>Please input preset name for current games selection.</value>
+    <value>Please input a preset name for the current games selection.</value>
   </data>
   <data name="NewPreset" xml:space="preserve">
     <value>New selection preset</value>
   </data>
   <data name="UninstallFactoryNote" xml:space="preserve">
-    <value>Don't forget to do reset to factory settings if you want to delete all savestates.</value>
+    <value>Don't forget to perform a factory reset if you want to delete all Suspend Points.</value>
   </data>
   <data name="Uninstalling" xml:space="preserve">
     <value>Uninstalling...</value>
   </data>
   <data name="UninstallQ1" xml:space="preserve">
-    <value>Do you really want to clean all traces of hakchi2 and return your NES Mini to original state?</value>
+    <value>Do you really want to remove all traces of hakchi2 and return your NES Mini to its original state?</value>
   </data>
   <data name="UninstallQ2" xml:space="preserve">
-    <value>Done. Wait until the power led goes out. Also you need to flash original kernel. Do you want to flash original kernel now?</value>
+    <value>Done. Wait until the power LED goes out. You also need to flash the original kernel. Do you want to flash the original kernel now?</value>
   </data>
   <data name="GameGenieFormatError" xml:space="preserve">
-    <value>Invalid Game Ganie code "{0}" for game "{1}".</value>
+    <value>Invalid Game Genie code "{0}" for game "{1}".</value>
   </data>
   <data name="GameGenieNotFound" xml:space="preserve">
-    <value>Can't apply Game Genie code "{0}" to game "{1}" -  value not found. Maybe this code for other game?</value>
+    <value>Can't apply Game Genie code "{0}" to game "{1}" - value not found. Maybe this code is for another game?</value>
   </data>
   <data name="PatchAvailable" xml:space="preserve">
     <value>Patch available</value>
@@ -295,29 +295,29 @@
     <value>There is patch for "{0}". Do you want to patch this game?</value>
   </data>
   <data name="AutofillResult" xml:space="preserve">
-    <value>Data automatically filled for {0} games.</value>
+    <value>Data automatically filled for {0} game(s).</value>
   </data>
   <data name="SelectAtLeastTwo" xml:space="preserve">
-    <value>You need to select at least two buttons.</value>
+    <value>Select at least two buttons.</value>
   </data>
   <data name="AutofireHelp1" xml:space="preserve">
-    <value>Hold Select+A/B for a second to enable/disable autofire for A/B.</value>
+    <value>Hold Select+A/B for a second to enable/disable autofire A/B.</value>
   </data>
   <data name="AutofireHelp2" xml:space="preserve">
-    <value>Also X/Y buttons on Classic Controller will act as autofire A/B.</value>
+    <value>Also, the X/Y buttons on the Classic Controller will act as autofire A/B.</value>
   </data>
   <data name="ExtraArgsInfo" xml:space="preserve">
-    <value>You can add some global command line arguments which will be appended to all games including original ones. It's only for experts!</value>
+    <value>You can add global command-line arguments which will be appended to all games including the original 30. This is only for experts!</value>
   </data>
   <data name="ExtraArgsTitle" xml:space="preserve">
-    <value>Extra command line arguments</value>
+    <value>Extra command-line arguments</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\blank.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DownloadAllCoversTitle" xml:space="preserve">
-    <value>Downloading covers for all games (I'm feeling lucky!)</value>
+    <value>Downloading box art for all games (I'm feeling lucky!)</value>
   </data>
   <data name="GooglingFor" xml:space="preserve">
     <value>Googling for </value>
@@ -326,7 +326,7 @@
     <value>Not found:</value>
   </data>
   <data name="ParticallyBody" xml:space="preserve">
-    <value>Don't worry! Everything is fine. Just there are too many ROMs to tranfer them at once. Please wait until power led goes out, press OK and follow instructions to continue.</value>
+    <value>Don't worry! Everything is fine. There are just too many ROMs to transfer at once. Please wait until power LED goes out, press OK and follow the instructions to continue.</value>
   </data>
   <data name="ParticallyTitle" xml:space="preserve">
     <value>Too many ROMs</value>
@@ -362,7 +362,7 @@
     <value>You must enter a code!</value>
   </data>
   <data name="GGCodeExists" xml:space="preserve">
-    <value>This code already exist. Do you want to edit it?</value>
+    <value>This code already exists. Do you want to edit it?</value>
   </data>
   <data name="GGDescriptionEmpty" xml:space="preserve">
     <value>You must enter a description!</value>
@@ -374,7 +374,7 @@
     <value>More games...</value>
   </data>
   <data name="FolderNameOriginalGames" xml:space="preserve">
-    <value>Original games</value>
+    <value>Original 30 games</value>
   </data>
   <data name="folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\folder_images\folder.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -467,10 +467,10 @@
     <value>Do you really want to delete "{0}"?</value>
   </data>
   <data name="FolderContent" xml:space="preserve">
-    <value>Deleted content will be moved to "Recycle Bin" folder. You can delete this folder permanently or move games to other folders.</value>
+    <value>Deleted content will be moved to the Recycle Bin. You can delete this folder permanently or move the games to other folders.</value>
   </data>
   <data name="MainMenu" xml:space="preserve">
-    <value>Main Menu</value>
+    <value>HOME Menu</value>
   </data>
   <data name="BuildingFolders" xml:space="preserve">
     <value>Building the folder structure...</value>
@@ -488,7 +488,7 @@
     <value>Folder "{0}" contains {1} elements.</value>
   </data>
   <data name="NewGamesUnsorted" xml:space="preserve">
-    <value>New games are moved to "Unsorted" folder.</value>
+    <value>New games are moved to the "Unsorted" folder.</value>
   </data>
   <data name="AddingGames" xml:space="preserve">
     <value>Processing games, please wait...</value>
@@ -503,10 +503,10 @@
     <value>Installing mods...</value>
   </data>
   <data name="SelectModsInstall" xml:space="preserve">
-    <value>Select modules to install on NES Mini</value>
+    <value>Select the modules to install on your NES Mini.</value>
   </data>
   <data name="SelectModsUninstall" xml:space="preserve">
-    <value>Select modules to remove from NES Mini</value>
+    <value>Select the modules to remove from your NES Mini.</value>
   </data>
   <data name="UninstallingMods" xml:space="preserve">
     <value>Uninstalling mods...</value>
