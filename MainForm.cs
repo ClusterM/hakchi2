@@ -240,7 +240,7 @@ namespace com.clusterrr.hakchi_gui
                     pictureBoxArt.Image = NesMiniApplication.LoadBitmap(app.IconPath);
                 else
                     pictureBoxArt.Image = null;
-                textBoxGameGenie.Enabled = app is NesGame;
+                buttonShowGameGenieDatabase.Enabled = textBoxGameGenie.Enabled = app is NesGame;
                 textBoxGameGenie.Text = (app is NesGame) ? (app as NesGame).GameGenie : "";
                 groupBoxOptions.Enabled = true;
             }
@@ -628,25 +628,40 @@ namespace com.clusterrr.hakchi_gui
             if (addedApps != null)
             {
                 // Add games, only new ones
-                var oldApps = from app in checkedListBoxGames.Items.Cast<object>().ToArray() 
-                              where app is NesMiniApplication select (app as NesMiniApplication).Code;
+                var oldApps = from app in checkedListBoxGames.Items.Cast<object>().ToArray()
+                              where app is NesMiniApplication
+                              select (app as NesMiniApplication).Code;
                 var newApps = from app in addedApps where !oldApps.Contains(app.Code) select app;
                 checkedListBoxGames.Items.AddRange(newApps.ToArray());
+                var first = checkedListBoxGames.Items[0];
+                bool originalChecked = (checkedListBoxGames.CheckedItems.Contains(first));
+                checkedListBoxGames.Items.Remove(first);
                 checkedListBoxGames.Sorted = true;
+                checkedListBoxGames.Sorted = false;
+                checkedListBoxGames.Items.Insert(0, first);
+                checkedListBoxGames.SetItemChecked(0, originalChecked);
             }
             else
             {
                 // Reload all games (maybe process was terminated?)
                 LoadGames();
             }
-            if (addedApps != null && addedApps.Count == 1) // if added only one game select it
+            if (addedApps != null) // if added only one game select it
             {
-                for (int i = 1; i < checkedListBoxGames.Items.Count; i++)
-                    if ((checkedListBoxGames.Items[i] as NesMiniApplication).Code == addedApps.First().Code)
-                    {
-                        checkedListBoxGames.SelectedIndex = i;
-                        break;
-                    }
+                bool first = true;
+                foreach (var addedApp in addedApps)
+                {
+                    for (int i = 0; i < checkedListBoxGames.Items.Count; i++)
+                        if ((checkedListBoxGames.Items[i] is NesMiniApplication) &&
+                            (checkedListBoxGames.Items[i] as NesMiniApplication).Code == addedApp.Code)
+                        {
+                            if (first)
+                                checkedListBoxGames.SelectedIndex = i;
+                            first = false;
+                            checkedListBoxGames.SetItemChecked(i, true);
+                            break;
+                        }
+                }
             }
         }
 

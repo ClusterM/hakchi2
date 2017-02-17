@@ -145,6 +145,7 @@ namespace com.clusterrr.hakchi_gui
                     prefixCode = 'E';
                     application = "/bin/snes";
                     break;
+                case ".gen":
                 case ".smd":
                     prefixCode = 'G';
                     application = "/bin/md";
@@ -163,7 +164,7 @@ namespace com.clusterrr.hakchi_gui
             var crc32 = CRC32(rawRomData);
             var code = GenerateCode(crc32, prefixCode);
             var gamePath = Path.Combine(GamesDirectory, code);
-            var romName = Path.GetFileNameWithoutExtension(fileName).Replace(" ", "_");
+            var romName = Path.GetFileName(fileName).Replace(" ", "_");
             var romPath = Path.Combine(gamePath, romName);
             Directory.CreateDirectory(gamePath);
             File.WriteAllBytes(romPath, rawRomData);
