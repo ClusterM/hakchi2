@@ -1,0 +1,8 @@
+#!/bin/sh
+core=$1
+shift
+retroarch-watchdog $$ $core ${1+"$@"} &
+while true; do
+# Zzz... I'll sleep untill my death
+sleep 42
+done
