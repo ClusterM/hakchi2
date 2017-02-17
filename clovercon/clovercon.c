@@ -35,9 +35,10 @@
 #include <linux/mutex.h>
 #include <linux/bug.h>
 
-volatile char MAGIC_BUTTONS[] = "MAGIC_BUTTONS:00100100";
-volatile char MAGIC_AUTOFIRE[] = "MAGIC_AUTOFIRE:0";
-volatile char MAGIC_FC_START[] = "MAGIC_FC_START:0";
+static unsigned short home_combination = 0xffff;
+static char autofire = 0;
+static unsigned char autofire_interval = 8;
+static char fc_start = 0;
 
 MODULE_AUTHOR("Christophe Aguettaz <christophe.aguettaz@nerd.nintendo.com>");
 MODULE_DESCRIPTION("Nintendo Clover/Wii Classic/Wii Pro controllers on I2C");
@@ -58,9 +59,6 @@ MODULE_LICENSE("GPL");
 #define RESET_COMBINATION_THRESHOLD 50
 #define AUTOFIRE_COMBINATION_THRESHOLD 150
 #define START_COMBINATION_THRESHOLD 150
-
-// Need to do some tests to calculate minimal interval
-#define AUTOFIRE_INTERVAL 8
 
 //Delay expressed in polling intervals
 #define RETRY_BASE_DELAY 512
@@ -190,6 +188,15 @@ const char *controller_names[] = {CON_NAME_PREFIX"1", CON_NAME_PREFIX"2",
 module_param_array(module_params, int, &arr_argc, 0000);
 MODULE_PARM_DESC(module_params, "Input info in the form con0_i2c_bus, con0_detect_gpio, "
 	                            "form con1_i2c_bus, con1_detect_gpio, ... gpio < 0 means no detection");
+module_param(home_combination, short, 0000);
+MODULE_PARM_DESC(home_combination, "Button combination to open menu "
+				"(0x001=A,0x002=B,0x004=Select,0x008=Start,0x010=Up,0x020=Down,0x040=Left,0x080=Right,0x100=X,0x200=Y,0x400=L,0x800=R");
+module_param(autofire, byte, 0000);
+MODULE_PARM_DESC(autofire, "Enable autofire (hold select+a / select+b for a second)");
+module_param(autofire_interval, byte, 0000);
+MODULE_PARM_DESC(autofire_interval, "Autofire interval (default is 8)");
+module_param(fc_start, byte, 0000);
+MODULE_PARM_DESC(fc_start, "Enable start button emulation for second controller");
 
 #if CLOVERCON_DETECT_USE_IRQ
 struct clovercon_info * clovercon_info_from_irq(int irq) {
@@ -445,17 +452,21 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 
 		// Reset combination
 		reset =
-		    ((MAGIC_BUTTONS[14] == '1') ^ !a) &&
-		    ((MAGIC_BUTTONS[15] == '1') ^ !b) &&
-		    ((MAGIC_BUTTONS[16] == '1') ^ !select) &&
-		    ((MAGIC_BUTTONS[17] == '1') ^ !start) &&
-		    ((MAGIC_BUTTONS[18] == '1') ^ !up) &&
-		    ((MAGIC_BUTTONS[19] == '1') ^ !down) &&
-		    ((MAGIC_BUTTONS[20] == '1') ^ !left) &&
-		    ((MAGIC_BUTTONS[21] == '1') ^ !right);
+		    (((home_combination >> 0) & 1) ^ !a) &&
+		    (((home_combination >> 1) & 1) ^ !b) &&
+		    (((home_combination >> 2) & 1) ^ !select) &&
+		    (((home_combination >> 3) & 1) ^ !start) &&
+		    (((home_combination >> 4) & 1) ^ !up) &&
+		    (((home_combination >> 5) & 1) ^ !down) &&
+		    (((home_combination >> 6) & 1) ^ !left) &&
+		    (((home_combination >> 7) & 1) ^ !right) &&
+		    (((home_combination >> 8) & 1) ^ !x) &&
+		    (((home_combination >> 9) & 1) ^ !y) &&
+		    (((home_combination >> 10) & 1) ^ !l) &&
+		    (((home_combination >> 11) & 1) ^ !r);
 
 		// Start button workaroud for second controller on Famicom
-		if (MAGIC_FC_START[15] == '1' && info->id == 2)
+		if (fc_start && info->id == 2)
 		{
 		    if (a && !select && b && !start && up && !down && !left && !right)
 			info->start_counter++;
@@ -466,12 +477,12 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 		}
 
 		// Autofire
-		if (MAGIC_AUTOFIRE[15] == '1')
+		if (autofire)
 		{
 		    info->autofire_timer++;
-		    if (info->autofire_timer >= AUTOFIRE_INTERVAL*2)
+		    if (info->autofire_timer >= autofire_interval*2)
 			info->autofire_timer = 0;
-		    turbo = info->autofire_timer / AUTOFIRE_INTERVAL;
+		    turbo = info->autofire_timer / autofire_interval;
 
 		    if (a && select && !b && !start && !up && !down && !left && !right)
 			info->autofire_counter_a++;

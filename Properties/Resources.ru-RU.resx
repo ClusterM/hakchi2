@@ -245,7 +245,7 @@
     <value>Модифицированное ядро</value>
   </data>
   <data name="MapperNotSupported" xml:space="preserve">
-    <value>Увы, {0} использует маппер #{1}, а NES Mini его вроде как не поддерживает, и игра скорее всего не запустится. Всё равно добавить?</value>
+    <value>Увы, "{0}" использует маппер #{1}, а NES Mini его вроде как не поддерживает, и игра скорее всего не запустится на стандартном эмуляторе. Но она должна заработать, если установлен модуль с другим эмулятором. Добавить эту игру?</value>
   </data>
   <data name="PleaseTryAgainUSB" xml:space="preserve">
     <value>Если проблема повторяется, попробуйте другой USB порт или другой USB кабель.</value>
@@ -269,7 +269,7 @@
     <value>Вы действительно хотите удалить пресет "{0}"?</value>
   </data>
   <data name="FourScreenNotSupported" xml:space="preserve">
-    <value>Увы, {0} использует four-screen режим (т.е. это редкий случай, когда у игры в картридже расширенная видеопамять), а NES Mini его не поддерживает, и игра скорее всего не запустится. Всё равно добавить?</value>
+    <value>Увы, {0} использует four-screen режим (т.е. это редкий случай, когда у игры в картридже расширенная видеопамять), а NES Mini его не поддерживает, и игра скорее всего не запустится на стандартном эмуляторе. Но она должна заработать, если установлен модуль с другим эмулятором. Добавить эту игру?</value>
   </data>
   <data name="InputPreset" xml:space="preserve">
     <value>Введите название для пресета выбранных игр.</value>
@@ -405,5 +405,17 @@
   </data>
   <data name="FolderNameTrashBin" xml:space="preserve">
     <value>Recycle Bin</value>
+  </data>
+  <data name="InstallingMods" xml:space="preserve">
+    <value>Устанавливаем модули...</value>
+  </data>
+  <data name="SelectModsInstall" xml:space="preserve">
+    <value>Выберите модули для установки на NES Mini</value>
+  </data>
+  <data name="SelectModsUninstall" xml:space="preserve">
+    <value>Выберите модули, которые нужно удалить с NES Mini</value>
+  </data>
+  <data name="UninstallingMods" xml:space="preserve">
+    <value>Удаляем модули...</value>
   </data>
 </root>

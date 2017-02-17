@@ -57,7 +57,7 @@ namespace com.clusterrr.hakchi_gui
                 NesFile lGame = new NesFile(FGame.NesPath);
                 try
                 {
-                    lGame.PRG = GameGenie.Patch(lGame.PRG, textBoxCode.Text);
+                    lGame.PRG = GameGeniePatcher.Patch(lGame.PRG, textBoxCode.Text);
                 }
                 catch (GameGenieFormatException)
                 {

@@ -202,35 +202,29 @@
   <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ядро</value>
   </data>
+  <data name="installModulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="installModulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Установить модули</value>
+  </data>
+  <data name="uninstallModulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="uninstallModulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Удалить модули</value>
+  </data>
+  <data name="modulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 20</value>
+  </data>
+  <data name="modulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Модули</value>
+  </data>
   <data name="consoleTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>375, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text" xml:space="preserve">
     <value>Тип консоли</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel0.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel0.Text" xml:space="preserve">
-    <value>Оставить как есть</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel1.Text" xml:space="preserve">
-    <value>Отключить для оригинальных игр</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel2.Text" xml:space="preserve">
-    <value>Отключить для всех игр</value>
-  </data>
-  <data name="epilepsyProtectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>375, 22</value>
-  </data>
-  <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Защита от приступов эпилепсии</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>378, 22</value>
@@ -257,34 +251,22 @@
     <value>"Up+A+B = Start" на втором контроллере</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>375, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text" xml:space="preserve">
     <value>Хаки контроллера</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
     <value>Использовать расширенный шрифт</value>
   </data>
-  <data name="removeThumbnailsAtTheBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 22</value>
+  <data name="epilepsyProtectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 22</value>
   </data>
-  <data name="removeThumbnailsAtTheBottomToolStripMenuItem.Text" xml:space="preserve">
-    <value>Убрать маленькие обложки снизу</value>
-  </data>
-  <data name="disableMenuMusicToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 22</value>
-  </data>
-  <data name="disableMenuMusicToolStripMenuItem.Text" xml:space="preserve">
-    <value>Выключить фоновую музыку</value>
-  </data>
-  <data name="guiHacksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>375, 22</value>
-  </data>
-  <data name="guiHacksToolStripMenuItem.Text" xml:space="preserve">
-    <value>Хаки интерфейса</value>
+  <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Выключить защиту от приступов эпилепсии</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>445, 22</value>
@@ -359,19 +341,13 @@
     <value>Настроить вручную - показывать менеджер папок перед загрузкой</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>375, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text" xml:space="preserve">
     <value>Структура папок</value>
   </data>
-  <data name="betterPNGCompressionlowerQualityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>375, 22</value>
-  </data>
-  <data name="betterPNGCompressionlowerQualityToolStripMenuItem.Text" xml:space="preserve">
-    <value>8-битное PNG сжатие (меньше размер/хуже качество)</value>
-  </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>375, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text" xml:space="preserve">
     <value>Глобальные параметры командной строки</value>
@@ -540,7 +516,7 @@
     <value />
   </data>
   <data name="openFileDialogNes.Filter" xml:space="preserve">
-    <value>NES файлы|*.nes;*.fds;*.zip;*.7z;*.rar|Все файлы|*.*</value>
+    <value>NES файлы и приложения|*.nes;*.fds;*.desktop;*.zip;*.7z;*.rar|Все файлы|*.*</value>
   </data>
   <data name="openFileDialogNes.Title" xml:space="preserve">
     <value>Выберите NES файл(ы)</value>

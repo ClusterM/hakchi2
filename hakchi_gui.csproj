@@ -87,6 +87,12 @@
     </Compile>
     <Compile Include="GameGenieDataBase.cs" />
     <Compile Include="MessageBoxManager.cs" />
+    <Compile Include="SelectModsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectModsForm.Designer.cs">
+      <DependentUpon>SelectModsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="NesDefaultGame.cs" />
     <Compile Include="FelLib\AWFELMessage.cs" />
     <Compile Include="FelLib\AWFELStandardRequest.cs" />
@@ -117,7 +123,7 @@
     <Compile Include="FelLib\WinUSBNet\USBPipe.cs" />
     <Compile Include="FelLib\WinUSBNet\USBPipeCollection.cs" />
     <Compile Include="FelLib\WinUSBNet\USBPipePolicy.cs" />
-    <Compile Include="GameGenie.cs" />
+    <Compile Include="GameGeniePatcher.cs" />
     <Compile Include="ImageGooglerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,21 +138,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FdsGame.cs" />
     <Compile Include="NesMenuCollection.cs" />
     <Compile Include="NesMenuFolder.cs" />
     <Compile Include="NesFile.cs" />
     <Compile Include="NesGame.cs" />
-    <Compile Include="nQuant.Core\Box.cs" />
-    <Compile Include="nQuant.Core\ColorData.cs" />
-    <Compile Include="nQuant.Core\CubeCut.cs" />
-    <Compile Include="nQuant.Core\IWuQuantizer.cs" />
-    <Compile Include="nQuant.Core\Lookup.cs" />
-    <Compile Include="nQuant.Core\LookupData.cs" />
-    <Compile Include="nQuant.Core\Pixel.cs" />
-    <Compile Include="nQuant.Core\QuantizationException.cs" />
-    <Compile Include="nQuant.Core\QuantizedPalette.cs" />
-    <Compile Include="nQuant.Core\WuQuantizer.cs" />
-    <Compile Include="nQuant.Core\WuQuantizerBase.cs" />
+    <Compile Include="NesMiniApplication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.ru-RU.Designer.cs">
@@ -270,6 +267,9 @@
     <EmbeddedResource Include="MainForm.ru-RU.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectModsForm.resx">
+      <DependentUpon>SelectModsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.pl-PL.resx" />
     <EmbeddedResource Include="Properties\Resources.ru-RU.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -358,130 +358,91 @@
     <None Include="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_kernel\bin\busybox">
+    <None Include="mods\hmods\clovercon.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_kernel\bin\chroot">
+    <None Include="mods\hmods\fontfix.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_kernel\bin\mkdir">
+    <None Include="mods\mod_hakchi\bin\busybox">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_kernel\hakchi\init">
+    <None Include="mods\mod_hakchi\bin\rsync">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_kernel\sbin\init">
+    <None Include="mods\mod_hakchi\hakchi\config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\awk">
+    <None Include="mods\mod_hakchi\hakchi\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\busybox">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\bin\chmenu">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\chmod">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\bin\clover-kachikachi-wr">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\chroot">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\inittab">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\cp">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\dd">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0000_defines">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\find">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0010_functions">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\grep">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p0000_config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\gzip">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7000_preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\ls">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7070_firmware">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\mkdir">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7070_preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\mv">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7100_preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\poweroff">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pa100_games">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\rm">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pffff_bootstock">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\sed">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pffff_config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\clovercon.ko">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\profile">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\init">
+    <None Include="mods\mod_hakchi\hakchi\script\backup">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\rootfs\bin\chmenu">
+    <None Include="mods\mod_hakchi\hakchi\script\base">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\rootfs\etc\inittab">
+    <None Include="mods\mod_hakchi\hakchi\script\games">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\rootfs\etc\preinit">
+    <None Include="mods\mod_hakchi\hakchi\script\install">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\rootfs\etc\profile">
+    <None Include="mods\mod_hakchi\hakchi\script\package">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\title.fnt">
+    <None Include="mods\mod_hakchi\hakchi\script\transfer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\title_j.fnt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_transfer\sbin\init">
+    <None Include="mods\mod_hakchi\sbin\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mods\mod_uninstall\bin\busybox">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\chroot">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\cp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\dd">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\find">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\grep">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\gzip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\ls">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\mkdir">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\mv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\poweroff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\rm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\sed">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mods\mod_uninstall\hakchi\init">
@@ -541,6 +502,53 @@
     <None Include="patches\f6898a59-James Bond Jr %28no dim%29.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="user_mods\music_hack.hmod\install">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="user_mods\music_hack.hmod\pb223_music_hack">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="user_mods\music_hack.hmod\uninstall">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="user_mods\retroarch.hmod\bin\fbgrab" />
+    <None Include="user_mods\retroarch.hmod\bin\gb" />
+    <None Include="user_mods\retroarch.hmod\bin\gba" />
+    <None Include="user_mods\retroarch.hmod\bin\md" />
+    <None Include="user_mods\retroarch.hmod\bin\n64" />
+    <None Include="user_mods\retroarch.hmod\bin\nes" />
+    <None Include="user_mods\retroarch.hmod\bin\retroarch" />
+    <None Include="user_mods\retroarch.hmod\bin\retroarch-clover" />
+    <None Include="user_mods\retroarch.hmod\bin\retroarch-mini" />
+    <None Include="user_mods\retroarch.hmod\bin\retroarch-watchdog" />
+    <None Include="user_mods\retroarch.hmod\bin\sms" />
+    <None Include="user_mods\retroarch.hmod\bin\snes" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\core\bsnes_cplusplus98_libretro.so" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\core\bsnes_mercury_accuracy_libretro.so" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\core\bsnes_mercury_performance_libretro.so" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\core\emux_sms_libretro.so" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\core\fceumm_libretro.so" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\core\gambatte_libretro.so" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\core\genesis_plus_gx_libretro.so" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\core\mednafen_gba_libretro.so" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\core\nestopia_libretro.so" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\core\snes9x2010_libretro.so" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\joypad_autoconf\clovercon1.cfg" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\joypad_autoconf\clovercon2.cfg" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\retroarch.cfg" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\5xbr-retro.glsl" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\bead.glsl" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\blinky.glsl" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\pixellate.glsl" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\quilez.glsl" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\retro-v2.glsl" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\scanline.glsl" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\scanline.glslp" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\sharp-bilinear.glsl" />
+    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\stock.glsl" />
+    <None Include="user_mods\retroarch.hmod\etc\preinit.d\pe9af_retroarch" />
+    <None Include="user_mods\retroarch.hmod\install" />
+    <None Include="user_mods\retroarch.hmod\usr\bin\clover-kachikachi" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\GameGenieDB.xml">
@@ -636,6 +644,14 @@
     <Content Include="folder_images\folder_z.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="user_mods\music_hack.hmod\music.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\music_hack.hmod\readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\retroarch.hmod\etc\libretro\bios\NstDatabase.xml" />
+    <Content Include="user_mods\retroarch.hmod\readme.txt" />
     <None Include="folder_images\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -650,12 +666,6 @@
     <Content Include="images\folder_sm.png" />
     <Content Include="images\gamepad.png" />
     <Content Include="images\original_sm.png" />
-    <Content Include="mods\mod_transfer\hakchi\blank_pixel.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_transfer\hakchi\silence.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="patches\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -703,6 +713,11 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>cd $(ProjectDir)user_mods\retroarch.hmod
+$(ProjectDir)tools\tar.exe -czvf retroarch.hmod *
+move /Y $(ProjectDir)user_mods\retroarch.hmod\retroarch.hmod $(TargetDir)user_mods\</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

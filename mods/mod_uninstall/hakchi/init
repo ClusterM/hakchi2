@@ -1,5 +1,6 @@
 init(){
 echo
+/bin/busybox --install -s /bin/
 
 modname=hakchi
 mountpoint=/newroot
@@ -9,11 +10,11 @@ mount -t tmpfs -o mode=0755,nosuid,nodev tmpfs $mountpoint/var
 mkdir $mountpoint/var/lib
 mount -o defaults,nosuid,nodev,noatime /dev/nandc $mountpoint/var/lib
 
-echo Uninstalling $modname...
+echo uninstalling $modname...
 rm -rf $installdir
 echo Done.
 
-echo Shutting down...
+echo shutting down...
 umount $mountpoint/var/lib
 umount $mountpoint/var
 poweroff -f
