@@ -168,8 +168,8 @@
   <data name="ExecutingCommand" xml:space="preserve">
     <value>Executing command:</value>
   </data>
-  <data name="ExecutingFel1" xml:space="preserve">
-    <value>Executing FES-1...</value>
+  <data name="ExecutingFes1" xml:space="preserve">
+    <value>Executing fes1...</value>
   </data>
   <data name="FlasingCustom" xml:space="preserve">
     <value>Flashing custom kernel...</value>

@@ -336,9 +336,9 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Executing FES-1....
         /// </summary>
-        internal static string ExecutingFel1 {
+        internal static string ExecutingFes1 {
             get {
-                return ResourceManager.GetString("ExecutingFel1", resourceCulture);
+                return ResourceManager.GetString("ExecutingFes1", resourceCulture);
             }
         }
         
