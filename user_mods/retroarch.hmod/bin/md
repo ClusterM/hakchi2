@@ -1,2 +1,0 @@
-#!/bin/sh
-exec retroarch-clover genesis_plus_gx "$@"

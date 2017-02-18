@@ -1,5 +1,0 @@
-#!/bin/sh
-export HOME=/etc/libretro
-core=$HOME/core/$1_libretro.so
-shift
-exec retroarch -c "$HOME/retroarch.cfg" -vfL "$core" ${1+"$@"}

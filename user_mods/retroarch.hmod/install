@@ -1,4 +1,0 @@
-transfer_default
-chmod +x $rootfs/bin/*
-chmod +x $rootfs/usr/bin/*
-return 1

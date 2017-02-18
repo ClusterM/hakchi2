@@ -511,44 +511,6 @@
     <None Include="user_mods\music_hack.hmod\uninstall">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="user_mods\retroarch.hmod\bin\fbgrab" />
-    <None Include="user_mods\retroarch.hmod\bin\gb" />
-    <None Include="user_mods\retroarch.hmod\bin\gba" />
-    <None Include="user_mods\retroarch.hmod\bin\md" />
-    <None Include="user_mods\retroarch.hmod\bin\n64" />
-    <None Include="user_mods\retroarch.hmod\bin\nes" />
-    <None Include="user_mods\retroarch.hmod\bin\retroarch" />
-    <None Include="user_mods\retroarch.hmod\bin\retroarch-clover" />
-    <None Include="user_mods\retroarch.hmod\bin\retroarch-mini" />
-    <None Include="user_mods\retroarch.hmod\bin\retroarch-watchdog" />
-    <None Include="user_mods\retroarch.hmod\bin\sms" />
-    <None Include="user_mods\retroarch.hmod\bin\snes" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\core\bsnes_cplusplus98_libretro.so" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\core\bsnes_mercury_accuracy_libretro.so" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\core\bsnes_mercury_performance_libretro.so" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\core\emux_sms_libretro.so" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\core\fceumm_libretro.so" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\core\gambatte_libretro.so" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\core\genesis_plus_gx_libretro.so" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\core\mednafen_gba_libretro.so" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\core\nestopia_libretro.so" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\core\snes9x2010_libretro.so" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\joypad_autoconf\clovercon1.cfg" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\joypad_autoconf\clovercon2.cfg" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\retroarch.cfg" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\5xbr-retro.glsl" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\bead.glsl" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\blinky.glsl" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\pixellate.glsl" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\quilez.glsl" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\retro-v2.glsl" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\scanline.glsl" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\scanline.glslp" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\sharp-bilinear.glsl" />
-    <None Include="user_mods\retroarch.hmod\etc\libretro\shaders\stock.glsl" />
-    <None Include="user_mods\retroarch.hmod\etc\preinit.d\pe9af_retroarch" />
-    <None Include="user_mods\retroarch.hmod\install" />
-    <None Include="user_mods\retroarch.hmod\usr\bin\clover-kachikachi" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\GameGenieDB.xml">
@@ -650,8 +612,6 @@
     <Content Include="user_mods\music_hack.hmod\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="user_mods\retroarch.hmod\etc\libretro\bios\NstDatabase.xml" />
-    <Content Include="user_mods\retroarch.hmod\readme.txt" />
     <None Include="folder_images\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -714,9 +674,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>cd $(ProjectDir)user_mods\retroarch.hmod
-$(ProjectDir)tools\tar.exe -czvf retroarch.hmod *
-move /Y $(ProjectDir)user_mods\retroarch.hmod\retroarch.hmod $(TargetDir)user_mods\</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
