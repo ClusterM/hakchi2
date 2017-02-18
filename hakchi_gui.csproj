@@ -714,9 +714,11 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>cd $(ProjectDir)user_mods\retroarch.hmod
-$(ProjectDir)tools\tar.exe -czvf retroarch.hmod *
-move /Y $(ProjectDir)user_mods\retroarch.hmod\retroarch.hmod $(TargetDir)user_mods\</PreBuildEvent>
+    <PreBuildEvent>set PATH="C:\Program Files\Git\usr\bin"
+cd $(ProjectDir)user_mods\retroarch.hmod
+bash -c "tar -czvf retroarch.hmod *"
+mkdir "$(TargetDir)user_mods\"
+move /Y "$(ProjectDir)user_mods\retroarch.hmod\retroarch.hmod" "$(TargetDir)user_mods\"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
