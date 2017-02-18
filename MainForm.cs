@@ -1074,5 +1074,21 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
+
+        private void btnAll_Click(object sender, EventArgs e)
+        {
+            for (int x = 0; x < checkedListBoxGames.Items.Count; x++)
+            {
+                checkedListBoxGames.SetItemChecked(x, true);
+            }
+        }
+
+        private void btnNone_Click(object sender, EventArgs e)
+        {
+            for (int x = 0; x < checkedListBoxGames.Items.Count; x++)
+            {
+                checkedListBoxGames.SetItemChecked(x, false);
+            }
+        }
     }
 }
