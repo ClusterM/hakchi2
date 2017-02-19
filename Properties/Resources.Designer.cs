@@ -97,15 +97,6 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Also, the X/Y buttons on the Classic Controller will act as autofire A/B..
-        /// </summary>
-        internal static string AutofireHelp2 {
-            get {
-                return ResourceManager.GetString("AutofireHelp2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap blank_app {
