@@ -310,9 +310,6 @@
   <data name="AutofireHelp1" xml:space="preserve">
     <value>Зажмите Select+A/B на секунду, чтобы включить турбо на кнопках A/B.</value>
   </data>
-  <data name="AutofireHelp2" xml:space="preserve">
-    <value>Помимо этого, кнопки X и Y на Classic Controller'е будут работать как турбо.</value>
-  </data>
   <data name="ExtraArgsInfo" xml:space="preserve">
     <value>Вы можете задать глобальные параметры командной строки, которые будут добавлены ко всем играм, включая оригинальные. Только для экспертов!</value>
   </data>

@@ -303,9 +303,6 @@
   <data name="AutofireHelp1" xml:space="preserve">
     <value>Przytrzymaj Select+A/B przez sekundę, aby wł/wył autofire dla A/B.</value>
   </data>
-  <data name="AutofireHelp2" xml:space="preserve">
-    <value>Również przyciski X/Y na klasycznym kontrolerze zadziałają z autofire.</value>
-  </data>
   <data name="ExtraArgsInfo" xml:space="preserve">
     <value>Możesz dodać globalne argumenty linii poleceń, które zostaną dodane do wszystkich gier, włącznie z oryginalnymi. Tylko dla ekspertów!</value>
   </data>
