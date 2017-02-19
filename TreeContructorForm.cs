@@ -17,7 +17,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class TreeContructorForm : Form
     {
-        public static string FoldersXmlPath = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "folders.xml");
+        public static string FoldersXmlPath = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigIni.ConfigDir), "folders.xml");
         List<TreeNode> cuttedNodes = new List<TreeNode>();
         List<INesMenuElement> deletedGames = new List<INesMenuElement>();
         NesMenuCollection gamesCollection = new NesMenuCollection();
@@ -112,6 +112,22 @@ namespace com.clusterrr.hakchi_gui
             ShowSelected();
         }
 
+        static int getImageIndex(INesMenuElement nesElement)
+        {
+            if (nesElement is NesMenuFolder || nesElement is NesMenuCollection)
+                return 0;
+            if (nesElement is NesDefaultGame)
+                return 2;
+            if (nesElement is NesGame)
+                return 6;
+            //if (nesElement is ) // How to determine Famicom game?
+            //    return 8;
+            if (nesElement is FdsGame)
+                return 10;
+            //if (nesElement is NesMiniApplication)
+            return 4;
+        }
+
         void AddNodes(TreeNodeCollection treeNodeCollection, NesMenuCollection nesMenuCollection, List<NesMenuCollection> usedFolders = null)
         {
             if (usedFolders == null)
@@ -130,12 +146,8 @@ namespace com.clusterrr.hakchi_gui
                         nesMenuCollection.Remove(nesElement); // We don't need any "back" folders
                         continue;
                     }
-                    newNode.SelectedImageIndex = newNode.ImageIndex = 0;
                 }
-                else if (nesElement is NesMiniApplication)
-                    newNode.SelectedImageIndex = newNode.ImageIndex = 2;
-                else if (nesElement is NesDefaultGame)
-                    newNode.SelectedImageIndex = newNode.ImageIndex = 4;
+                newNode.SelectedImageIndex = newNode.ImageIndex = getImageIndex(nesElement as INesMenuElement);
                 newNode.Text = nesElement.Name;
                 newNode.Tag = nesElement;
                 treeNodeCollection.Add(newNode);
@@ -198,12 +210,7 @@ namespace com.clusterrr.hakchi_gui
                     var item = new ListViewItem();
                     item.Text = element.Name;
                     var transparency = cuttedNodes.Contains(n) ? 1 : 0;
-                    if (element is NesMenuFolder)
-                        item.ImageIndex = 0 + transparency;
-                    else if (element is NesMiniApplication)
-                        item.ImageIndex = 2 + transparency;
-                    else if (element is NesDefaultGame)
-                        item.ImageIndex = 4 + transparency;
+                    item.ImageIndex = getImageIndex(element) + transparency;
                     item.Tag = n;
                     listViewContent.Items.Add(item);
                 }
@@ -802,6 +809,7 @@ namespace com.clusterrr.hakchi_gui
 
         void SaveTree()
         {
+            Directory.CreateDirectory(Path.GetDirectoryName(FoldersXmlPath));
             File.WriteAllText(FoldersXmlPath, TreeToXml());
             if (mainForm != null)
             {

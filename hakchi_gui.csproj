@@ -138,12 +138,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FdsGame.cs" />
+    <Compile Include="Apps\FdsGame.cs" />
     <Compile Include="NesMenuCollection.cs" />
     <Compile Include="NesMenuFolder.cs" />
     <Compile Include="NesFile.cs" />
-    <Compile Include="NesGame.cs" />
-    <Compile Include="NesMiniApplication.cs" />
+    <Compile Include="Apps\NesGame.cs" />
+    <Compile Include="Apps\NesMiniApplication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.ru-RU.Designer.cs">
@@ -606,6 +606,16 @@
     <Content Include="folder_images\folder_z.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\app_sm.png" />
+    <Content Include="images\app_sm_tr.png" />
+    <Content Include="images\blank_app.png" />
+    <Content Include="images\nes_sm_tr.png" />
+    <Content Include="images\famicom_sm.png" />
+    <Content Include="images\famicom_sm_tr.png" />
+    <Content Include="images\fds_sm.png" />
+    <Content Include="images\fds_sm_tr.png" />
+    <Content Include="images\folder_sm_tr.png" />
+    <Content Include="images\original_sm_tr.png" />
     <Content Include="user_mods\music_hack.hmod\music.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -622,7 +632,7 @@
     </Content>
     <Content Include="images\blank_fds.png" />
     <Content Include="images\blank_jp.png" />
-    <Content Include="images\blank_sm.png" />
+    <Content Include="images\nes_sm.png" />
     <Content Include="images\folder_sm.png" />
     <Content Include="images\gamepad.png" />
     <Content Include="images\original_sm.png" />

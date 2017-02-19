@@ -25,6 +25,18 @@ namespace com.clusterrr.hakchi_gui
         {
             get { return code; }
         }
+        virtual internal static char Prefix
+        {
+            get { return 'Z'; }
+        }
+        virtual internal static Image DefaultCover
+        {
+            get { return Resources.blank_app; }
+        }
+        virtual internal static string DefaultAp
+        {
+            get { return "/bin/path-to-your-app"; }
+        }
         public readonly string GamePath;
         public readonly string ConfigPath;
         public readonly string IconPath;
@@ -114,16 +126,18 @@ namespace com.clusterrr.hakchi_gui
             var extension = Path.GetExtension(fileName).ToLower();
             char prefixCode;
             string application;
+            Image defaultCover = Resources.blank_app;
             switch (extension)
             {
                 // For some unusual NES ROM formats
                 case ".fds":
-                    return FdsGame.Import(fileName, rawRomData);
+                    return FdsGame.ImportFds(fileName, rawRomData);
                 case ".nes":
                 case ".unf":
                 case ".unif":
-                    prefixCode = 'U';
+                    prefixCode = NesUGame.Prefix;
                     application = "/bin/nes";
+                    defaultCover = NesUGame.DefaultCover; // Most of UNIF roms are pirated Famicom games
                     break;
                 case ".desktop":
                     return ImportApp(fileName);
@@ -135,7 +149,7 @@ namespace com.clusterrr.hakchi_gui
                 case ".gba":
                     prefixCode = 'A';
                     application = "/bin/gba";
-                    break;                
+                    break;
                 case ".n64":
                 case ".z64":
                 case ".v64":
@@ -165,7 +179,7 @@ namespace com.clusterrr.hakchi_gui
             var crc32 = CRC32(rawRomData);
             var code = GenerateCode(crc32, prefixCode);
             var gamePath = Path.Combine(GamesDirectory, code);
-            var romName = Path.GetFileName(fileName).Replace(" ", "_");
+            var romName = Regex.Replace(Path.GetFileName(fileName), @"[^A-Za-z0-9.-]", "_").Trim();
             var romPath = Path.Combine(gamePath, romName);
             Directory.CreateDirectory(gamePath);
             File.WriteAllBytes(romPath, rawRomData);
@@ -174,7 +188,7 @@ namespace com.clusterrr.hakchi_gui
             game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
             game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
             game.Name = game.Name.Replace("_", " ").Replace("  ", " ").Trim();
-            game.FindCover(fileName, Resources.blank, crc32);
+            game.FindCover(fileName, Resources.blank_app, crc32);
             game.Command = string.Format("{0} /usr/share/games/nes/kachikachi/{1}/{2}", application, code, romName);
             game.Save();
             return game;

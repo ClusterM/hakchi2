@@ -111,10 +111,16 @@
             this.imageList.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList.Images.SetKeyName(0, "folder_sm.png");
             this.imageList.Images.SetKeyName(1, "folder_sm_tr.png");
-            this.imageList.Images.SetKeyName(2, "blank_sm.png");
-            this.imageList.Images.SetKeyName(3, "blank_sm_tr.png");
-            this.imageList.Images.SetKeyName(4, "original_sm.png");
-            this.imageList.Images.SetKeyName(5, "original_sm_tr.png");
+            this.imageList.Images.SetKeyName(2, "original_sm.png");
+            this.imageList.Images.SetKeyName(3, "original_sm_tr.png");
+            this.imageList.Images.SetKeyName(4, "app_sm.png");
+            this.imageList.Images.SetKeyName(5, "app_sm_tr.png");
+            this.imageList.Images.SetKeyName(6, "nes_sm.png");
+            this.imageList.Images.SetKeyName(7, "nes_sm_tr.png");
+            this.imageList.Images.SetKeyName(8, "famicom_sm.png");
+            this.imageList.Images.SetKeyName(9, "famicom_sm_tr.png");
+            this.imageList.Images.SetKeyName(10, "fds_sm.png");
+            this.imageList.Images.SetKeyName(11, "fds_sm_tr.png");
             // 
             // comboBoxPosition
             // 

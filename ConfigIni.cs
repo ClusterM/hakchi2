@@ -25,12 +25,21 @@ namespace com.clusterrr.hakchi_gui
         public static SelectButtonsForm.NesButtons ResetCombination = SelectButtonsForm.NesButtons.Down | SelectButtonsForm.NesButtons.Select;
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         public static string ExtraCommandLineArguments = "";
+        public const string ConfigDir = "config";
         public const string ConfigFile = "config.ini";
 
         public static void Load()
         {
             Debug.WriteLine("Loading config");
-            var fileName = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigFile);
+            var fileNameOld = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigFile);
+            var configFullDir = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigDir);
+            var fileName = Path.Combine(configFullDir, ConfigFile);
+            if (File.Exists(fileNameOld)) // Moving old config to new directory
+            {
+                Directory.CreateDirectory(configFullDir);
+                File.Copy(fileNameOld, fileName, true);
+                File.Delete(fileNameOld);
+            }
             if (File.Exists(fileName))
             {
                 var configLines = File.ReadAllLines(fileName);
@@ -130,7 +139,11 @@ namespace com.clusterrr.hakchi_gui
             {
                 configLines.Add(string.Format("{0}={1}", preset, Presets[preset]));
             }
-            File.WriteAllLines(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigFile), configLines.ToArray());
+
+            var configFullDir = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigDir);
+            var fileName = Path.Combine(configFullDir, ConfigFile);
+            Directory.CreateDirectory(configFullDir);
+            File.WriteAllLines(fileName, configLines.ToArray());
         }
     }
 }

@@ -68,11 +68,10 @@ namespace com.clusterrr.hakchi_gui
 
             if (File.Exists(GameGeniePath))
                 gameGenie = File.ReadAllText(GameGeniePath);
-            hasUnsavedChanges = false;
             Args = Args; // To update exec path if need
         }
 
-        public static NesMiniApplication Import(string nesFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback = null, Form parentForm = null, byte[] rawRomData = null)
+        public static NesMiniApplication ImportNes(string nesFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback = null, Form parentForm = null, byte[] rawRomData = null)
         {
             NesFile nesFile;
             try
@@ -147,7 +146,7 @@ namespace com.clusterrr.hakchi_gui
             game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
             game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
             game.Name = game.Name.Replace("_", " ").Replace("  ", " ");
-            game.FindCover(nesFileName, (game.region == "Japan") ? Resources.blank_jp : Resources.blank, crc32);
+            game.FindCover(nesFileName, (game.region == "Japan") ? Resources.blank_jp : Resources.blank_nes, crc32);
             game.Args = DefaultArgs;
             game.Save();
             return game;

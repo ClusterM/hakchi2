@@ -886,6 +886,7 @@ namespace com.clusterrr.hakchi_gui
                     var ext = Path.GetExtension(file).ToLower();
                     bool? needPatch = YesForAllPatches ? (bool?)true : null;
                     byte[] rawData = null;
+                    string tmp = null;
                     if (ext == ".7z" || ext == ".zip" || ext == ".rar")
                     {
                         SevenZipExtractor.SetLibraryPath(Path.Combine(baseDirectory, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
@@ -896,11 +897,11 @@ namespace com.clusterrr.hakchi_gui
                             foreach (var f in szExtractor.ArchiveFileNames)
                             {
                                 var e = Path.GetExtension(f).ToLower();
-                                if (e == ".nes" || e == ".fds" || e == ".unf" || e == ".unif")
+                                if (e == ".nes" || e == ".fds" || e == ".unf" || e == ".unif" || e == ".desktop")
                                     nesFilesInArchive.Add(f);
                                 filesInArchive.Add(f);
                             }
-                            if (nesFilesInArchive.Count == 1) // Only one NES file
+                            if (nesFilesInArchive.Count == 1) // Only one NES file (or app)
                             {
                                 fileName = nesFilesInArchive[0];
                             }
@@ -921,17 +922,29 @@ namespace com.clusterrr.hakchi_gui
                                 else continue;
                             }
                             var o = new MemoryStream();
-                            szExtractor.ExtractFile(fileName, o);
-                            rawData = new byte[o.Length];
-                            o.Seek(0, SeekOrigin.Begin);
-                            o.Read(rawData, 0, (int)o.Length);
+                            if (Path.GetExtension(fileName).ToLower() == ".desktop" // App in archive, need the whole directory
+                                || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName)+".jpg") // Or it has cover in archive
+                                || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName) + ".png"))
+                            {
+                                tmp = Path.Combine(Path.GetTempPath(), fileName);
+                                Directory.CreateDirectory(tmp);
+                                szExtractor.ExtractArchive(tmp);
+                                fileName = Path.Combine(tmp, fileName);
+                            }
+                            else
+                            {
+                                szExtractor.ExtractFile(fileName, o);
+                                rawData = new byte[o.Length];
+                                o.Seek(0, SeekOrigin.Begin);
+                                o.Read(rawData, 0, (int)o.Length);
+                            }
                         }
                     }
                     if (Path.GetExtension(fileName).ToLower() == ".nes")
                     {
                         try
                         {
-                            app = NesGame.Import(fileName, YesForAllUnsupportedMappers ? (bool?)true : null, ref needPatch, needPatchCallback, this, rawData);
+                            app = NesGame.ImportNes(fileName, YesForAllUnsupportedMappers ? (bool?)true : null, ref needPatch, needPatchCallback, this, rawData);
 
                             // Trying to import Game Genie codes
                             var lGameGeniePath = Path.Combine(Path.GetDirectoryName(fileName), Path.GetFileNameWithoutExtension(fileName) + ".xml");
@@ -955,7 +968,7 @@ namespace com.clusterrr.hakchi_gui
                                     MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
                                 while (r == DialogResult.None) Thread.Sleep(100);
                                 if (r == DialogResult.Yes || r == DialogResult.Abort || r == DialogResult.Retry)
-                                    app = NesGame.Import(fileName, true, ref needPatch, needPatchCallback, this, rawData);
+                                    app = NesGame.ImportNes(fileName, true, ref needPatch, needPatchCallback, this, rawData);
                                 if (r == DialogResult.Abort)
                                     YesForAllUnsupportedMappers = true;
                             }
@@ -966,6 +979,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         app = NesMiniApplication.Import(fileName, rawData);
                     }
+                    if (!string.IsNullOrEmpty(tmp) && Directory.Exists(tmp)) Directory.Delete(tmp, true);
                     ConfigIni.SelectedGames += ";" + app.Code;
                 }
                 catch (Exception ex)

@@ -16,9 +16,20 @@ namespace com.clusterrr.hakchi_gui
 {
     public class FdsGame : NesMiniApplication
     {
-        protected const char prefixCode = 'D';
-
-        public readonly string FdsPath;
+        internal static override char Prefix
+        {
+            get
+            {
+                return 'D';
+            }
+        }
+        internal static override Image DefaultCover
+        {
+            get
+            {
+                return Resources.blank_fds;
+            }
+        }
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet --fds-auto-disk-side-switch-on-keypress";
 
         public string Args
@@ -39,12 +50,10 @@ namespace com.clusterrr.hakchi_gui
         public FdsGame(string path, bool ignoreEmptyConfig)
             : base(path, ignoreEmptyConfig)
         {
-            FdsPath = Path.Combine(GamePath, Code + ".fds");
-            hasUnsavedChanges = false;
             Args = Args; // To update exec path if need
         }
 
-        public static FdsGame Import(string fdsFileName, byte[] rawRomData = null)
+        public static FdsGame ImportFds(string fdsFileName, byte[] rawRomData = null)
         {
             if (rawRomData == null)
                 rawRomData = File.ReadAllBytes(fdsFileName);
@@ -55,7 +64,7 @@ namespace com.clusterrr.hakchi_gui
                 rawRomData = fdsDataNoHeader;
             }
             var crc32 = CRC32(rawRomData);
-            var code = GenerateCode(crc32, prefixCode);
+            var code = GenerateCode(crc32, Prefix);
             var gamePath = Path.Combine(GamesDirectory, code);
             var fdsPath = Path.Combine(gamePath, code + ".fds");
             Directory.CreateDirectory(gamePath);
