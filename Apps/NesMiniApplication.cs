@@ -181,12 +181,14 @@ namespace com.clusterrr.hakchi_gui
                     defaultCover = N64Game.DefaultCover;
                     break;
                 case ".smc":
+                case ".sfc":
                     prefixCode = SnesGame.Prefix;
                     application = SnesGame.DefaultApp;
                     defaultCover = SnesGame.DefaultCover;
                     break;
                 case ".gen":
                 case ".smd":
+                case ".md":
                     prefixCode = GenesisGame.Prefix;
                     application = GenesisGame.DefaultApp;
                     defaultCover = GenesisGame.DefaultCover;
