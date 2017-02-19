@@ -735,6 +735,7 @@ namespace com.clusterrr.hakchi_gui
                 TotalGames = 0;
                 GamesProceed = 0;
                 Size = 0;
+                TotalSize = 0;
                 Stopped = false;
             }
         }
