@@ -59,6 +59,7 @@ namespace com.clusterrr.hakchi_gui
         readonly string originalGamesConfigDirectory;
         string[] correctKernels;
         const long maxRamfsSize = 40 * 1024 * 1024;
+        const long maxTotalSize = 320 * 1024 * 1024;
         string selectedFile = null;
         public NesMiniApplication[] addedApplications;
 
@@ -465,7 +466,7 @@ namespace com.clusterrr.hakchi_gui
                 else Games.Split(FoldersMode, MaxGamesPerFolder);
             }
             progress += 5;
-            SetProgress(progress, 300);
+            SetProgress(progress, 1000);
 
             do
             {
@@ -482,7 +483,7 @@ namespace com.clusterrr.hakchi_gui
                     return;
                 }
                 progress += 5;
-                SetProgress(progress, maxProgress > 0 ? maxProgress : 300);
+                SetProgress(progress, maxProgress > 0 ? maxProgress : 1000);
 
                 byte[] kernel;
                 if (!string.IsNullOrEmpty(Mod))
@@ -504,9 +505,10 @@ namespace com.clusterrr.hakchi_gui
                 if (maxProgress < 0)
                 {
                     if (stats.GamesProceed > 0)
-                        maxProgress = (kernel.Length / 67000 + 20) * stats.GamesTotal / stats.GamesProceed + 75 * ((int)Math.Ceiling((float)stats.GamesTotal / (float)stats.GamesProceed) - 1);
+                        maxProgress = (int)(((double)kernel.Length / (double)67000 + 20) * (double)stats.TotalSize / (double)stats.Size + 
+                            100 * ((int)Math.Ceiling((double)stats.TotalSize / (double)stats.Size) - 1));
                     else
-                        maxProgress = (kernel.Length / 67000 + 20);
+                        maxProgress = (int)((double)kernel.Length / (double)67000 + 20);
                 }
                 SetProgress(progress, maxProgress);
 
@@ -528,7 +530,7 @@ namespace com.clusterrr.hakchi_gui
                 var bootCommand = string.Format("boota {0:x}", Fel.kernel_base_m);
                 SetStatus(Resources.ExecutingCommand + " " + bootCommand);
                 fel.RunUbootCmd(bootCommand, true);
-            } while (stats.GamesProceed < stats.GamesTotal);
+            } while (stats.GamesProceed < stats.TotalGames);
             SetStatus(Resources.Done);
             SetProgress(maxProgress, maxProgress);
         }
@@ -592,10 +594,11 @@ namespace com.clusterrr.hakchi_gui
 
                 stats.Next();
                 AddMenu(Games, stats);
-                Debug.WriteLine(string.Format("Games copied: {0}/{1}, part size: {2}", stats.GamesProceed, stats.GamesTotal, stats.Size));
+                if (stats.TotalSize > maxTotalSize) throw new Exception(string.Format(Resources.MemoryFull, stats.TotalSize / 1024 / 1024));
+                Debug.WriteLine(string.Format("Games copied: {0}/{1}, part size: {2}", stats.GamesProceed, stats.TotalGames, stats.Size));
             }
 
-            bool last = stats.GamesProceed >= stats.GamesTotal;
+            bool last = stats.GamesProceed >= stats.TotalGames;
 
             if (last && hmodsInstall != null && hmodsInstall.Count > 0)
             {
@@ -718,18 +721,21 @@ namespace com.clusterrr.hakchi_gui
         private class GamesTreeStats
         {
             public List<NesMenuCollection> allMenus = new List<NesMenuCollection>();
-            public int GamesTotal = 0;
+            public int TotalGames = 0;
             public int GamesStart = 0;
             public int GamesProceed = 0;
             public long Size = 0;
+            public long TotalSize = 0;
+            public bool Stopped;
 
             public void Next()
             {
                 allMenus.Clear();
                 GamesStart = GamesProceed;
-                GamesTotal = 0;
+                TotalGames = 0;
                 GamesProceed = 0;
                 Size = 0;
+                Stopped = false;
             }
         }
 
@@ -749,21 +755,21 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (element is NesMiniApplication)
                 {
-                    stats.GamesTotal++;
-                    if (stats.Size >= maxRamfsSize) continue;
-                    stats.GamesProceed++;
-                    if (stats.GamesStart >= stats.GamesProceed) continue;
+                    stats.TotalGames++;
                     var game = element as NesMiniApplication;
-                    Debug.Write(string.Format("Processing {0} ('{1}'), #{2}", game.Code, game.Name, stats.GamesProceed));
-                    var gameCopy = game.CopyTo(targetDirectory);
-                    stats.Size += gameCopy.Size();
-                    if (stats.Size >= maxRamfsSize)
+                    var gameSize = game.Size();
+                    if (gameSize >= maxRamfsSize) throw new Exception(string.Format(Resources.GameTooBig, game.Name));
+                    stats.TotalSize += gameSize;
+                    if (stats.Stopped || stats.Size + gameSize >= maxRamfsSize)
                     {
-                        // Rollback. Just in case of huge last game
-                        stats.GamesProceed--;
-                        Directory.Delete(gameCopy.GamePath, true);
+                        stats.Stopped = true;
                         continue;
                     }
+                    stats.GamesProceed++;
+                    if (stats.GamesStart >= stats.GamesProceed) continue;
+                    Debug.Write(string.Format("Processing {0} ('{1}'), #{2}", game.Code, game.Name, stats.GamesProceed));
+                    var gameCopy = game.CopyTo(targetDirectory);
+                    stats.Size += gameSize;
                     Debug.WriteLine(string.Format(", total size: {0}", stats.Size));
                     try
                     {

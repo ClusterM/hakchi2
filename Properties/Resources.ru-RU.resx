@@ -415,4 +415,13 @@
   <data name="UninstallingMods" xml:space="preserve">
     <value>Удаляем модули...</value>
   </data>
+  <data name="GameTooBig" xml:space="preserve">
+    <value>Простите, но игра "{0}" слишком большая.</value>
+  </data>
+  <data name="MemoryFull" xml:space="preserve">
+    <value>Простите, слишком уж много игр, на {0}МБ, NES Mini такое не осилит.</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>MemoryFull</value>
+  </data>
 </root>

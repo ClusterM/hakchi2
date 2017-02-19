@@ -1,16 +1,10 @@
-﻿using com.clusterrr.Famicom;
-using com.clusterrr.hakchi_gui.Properties;
-using System;
-using System.Collections.Generic;
+﻿using com.clusterrr.hakchi_gui.Properties;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Xml.XPath;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -18,7 +12,7 @@ namespace com.clusterrr.hakchi_gui
     {
         public readonly static string GamesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "games");
         const string DefaultReleaseDate = "1983-07-15"; // Famicom release day
-        const string DefaultPublisher = "Nintendo";
+        const string DefaultPublisher = "NINTENDO";
 
         protected string code;
         public string Code
@@ -180,12 +174,14 @@ namespace com.clusterrr.hakchi_gui
                     application = N64Game.DefaultApp;
                     defaultCover = N64Game.DefaultCover;
                     break;
+                case ".sfc":
                 case ".smc":
                     prefixCode = SnesGame.Prefix;
                     application = SnesGame.DefaultApp;
                     defaultCover = SnesGame.DefaultCover;
                     break;
                 case ".gen":
+                case ".md":
                 case ".smd":
                     prefixCode = GenesisGame.Prefix;
                     application = GenesisGame.DefaultApp;
@@ -224,7 +220,7 @@ namespace com.clusterrr.hakchi_gui
             game.FindCover(fileName, defaultCover, crc32);
             game.Command = string.Format("{0} /usr/share/games/nes/kachikachi/{1}/{2}", application, code, romName);
             game.Save();
-            return game;
+            return NesMiniApplication.FromDirectory(gamePath);
         }
 
         private static NesMiniApplication ImportApp(string fileName)

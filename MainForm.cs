@@ -1,15 +1,11 @@
 ﻿using com.clusterrr.Famicom;
 using com.clusterrr.hakchi_gui.Properties;
-using SevenZip;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 

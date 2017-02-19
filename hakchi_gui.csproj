@@ -614,7 +614,13 @@
     <Content Include="folder_images\folder_system_genesis.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="folder_images\folder_system_n64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="folder_images\folder_system_nes.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_nes_org.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="folder_images\folder_system_pce.png">
@@ -657,6 +663,7 @@
     <Content Include="images\blank_gba.png" />
     <Content Include="images\blank_gbc.png" />
     <Content Include="images\blank_genesis.png" />
+    <Content Include="images\blank_n64.png" />
     <Content Include="images\blank_nes.png" />
     <Content Include="images\blank_pce.png" />
     <Content Include="images\blank_sms.png" />
@@ -670,6 +677,8 @@
     <Content Include="images\gb_sm_tr.png" />
     <Content Include="images\genesis_sm.png" />
     <Content Include="images\genesis_sm_tr.png" />
+    <Content Include="images\n64_sm.png" />
+    <Content Include="images\n64_sm_tr.png" />
     <Content Include="images\nes_sm_tr.png" />
     <Content Include="images\famicom_sm.png" />
     <Content Include="images\famicom_sm_tr.png" />

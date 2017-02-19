@@ -1,3 +1,4 @@
+#pragma warning disable 3021
 /*  This file is part of SevenZipSharp.
 
     SevenZipSharp is free software: you can redistribute it and/or modify

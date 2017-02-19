@@ -169,6 +169,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blank_n64 {
+            get {
+                object obj = ResourceManager.GetObject("blank_n64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blank_nes {
             get {
                 object obj = ResourceManager.GetObject("blank_nes", resourceCulture);
@@ -876,6 +886,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry, game &quot;{0}&quot; is too big..
+        /// </summary>
+        internal static string GameTooBig {
+            get {
+                return ResourceManager.GetString("GameTooBig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to delete &quot;{0}&quot; code?.
         /// </summary>
         internal static string GGCodeDelete {
@@ -1016,6 +1035,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string MD5Failed2 {
             get {
                 return ResourceManager.GetString("MD5Failed2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, there are {0}MBytes of games, it&apos;s too much..
+        /// </summary>
+        internal static string MemoryFull {
+            get {
+                return ResourceManager.GetString("MemoryFull", resourceCulture);
             }
         }
         
