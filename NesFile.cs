@@ -29,7 +29,6 @@ namespace com.clusterrr.Famicom
 
         public NesFile(byte[] data)
         {
-
             if (data[0] != 0x4E ||
             data[1] != 0x45 ||
             data[2] != 0x53 ||
@@ -57,8 +56,6 @@ namespace com.clusterrr.Famicom
                 Mirroring = MirroringType.FourScreenVram;
 
             Mapper = (byte)((data[6] >> 4) | (data[7] & 0xF0));
-
-            data[7] = 0;
 
             VSunisystem = (data[7] & 1) != 0;
             PlayChoice10 = (data[7] & (1 << 1)) != 0;

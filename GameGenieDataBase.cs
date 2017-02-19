@@ -1,11 +1,8 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
-using com.clusterrr.Famicom;
-using System;
+﻿using com.clusterrr.Famicom;
+using com.clusterrr.hakchi_gui.Properties;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 using System.Xml;
 
 namespace com.clusterrr.hakchi_gui
@@ -70,7 +67,7 @@ namespace com.clusterrr.hakchi_gui
         private XmlNode FGameNode = null;
         private List<GameGenieCode> FGameCodes = null;
         private string FDBName = "";
-        private NesGame FGame = null;
+        private NesMiniApplication FGame = null;
         private bool FModified = false;
 
         private XmlNode GameNode
@@ -134,7 +131,7 @@ namespace com.clusterrr.hakchi_gui
 
         }
 
-        public GameGenieDataBase(NesGame AGame)
+        public GameGenieDataBase(NesMiniApplication AGame)
         {
             DataBasePath = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "data"), "GameGenieDB.xml");
             FGame = AGame;
@@ -216,7 +213,7 @@ namespace com.clusterrr.hakchi_gui
                     NesFile lGame = new NesFile(lGameFileName);
                     try
                     {
-                        lGame.PRG = GameGenie.Patch(lGame.PRG, lCurCode["genie"].InnerText);
+                        lGame.PRG = GameGeniePatcher.Patch(lGame.PRG, lCurCode["genie"].InnerText);
 
                         lCodeNode = FXml.CreateElement("gamegenie");
                         GameNode.AppendChild(lCodeNode);

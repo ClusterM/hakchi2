@@ -1,14 +1,10 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
@@ -18,7 +14,6 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class ImageGooglerForm : Form
     {
-        public const string Suffix = " nes|famicom box art";
         Thread searchThread;
         Image result;
         public Image Result
@@ -26,16 +21,23 @@ namespace com.clusterrr.hakchi_gui
             get { return result; }
         }
 
-        public ImageGooglerForm(string query)
+        public ImageGooglerForm(NesMiniApplication app)
         {
             InitializeComponent();
-            Text = "Google Images - " + query;
+            Text = "Google Images - " + app.Name ?? "";
             searchThread = new Thread(SearchThread);
-            searchThread.Start(query);
+            searchThread.Start(app);
         }
 
-        public static string[] GetImageUrls(string query)
+        public static string[] GetImageUrls(NesMiniApplication app)
         {
+            string query = app.Name ?? "";
+            if (app is NesGame)
+                query += " nes|famicom box art";
+            else if (app is FdsGame)
+                query += " fds box art";
+            else
+                query += " game (box|cover) art";
             var url = string.Format("https://www.google.com/search?q={0}&source=lnms&tbm=isch", HttpUtility.UrlEncode(query));
             Debug.WriteLine("Web request: " + url);
             var request = WebRequest.Create(url);
@@ -75,7 +77,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                var urls = GetImageUrls(o as string);
+                var urls = GetImageUrls(o as NesMiniApplication);
                 foreach (var url in urls)
                 {
                     //new Thread(DownloadImageThread).Start(url);

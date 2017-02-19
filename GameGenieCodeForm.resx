@@ -120,12 +120,12 @@
   <data name="&gt;&gt;buttonOk.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Game Genie code list</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 23</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>392, 458</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="checkedListBoxGameCode.TabIndex" type="System.Int32, mscorlib">
@@ -189,9 +189,6 @@
   <data name="&gt;&gt;buttonAdd.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="checkedListBoxGameCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>380, 409</value>
   </data>
@@ -206,6 +203,9 @@
   </data>
   <data name="&gt;&gt;checkedListBoxGameCode.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -1405,17 +1405,17 @@
         //////////////////////////////////8=
 </value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="buttonImport.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 23</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Game Genie code list</value>
   </data>
   <data name="ofdXmlFile.Filter" xml:space="preserve">
     <value>XML files|*.xml</value>
+  </data>
+  <data name="&gt;&gt;buttonAdd.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;editToolStripMenuItem.Name" xml:space="preserve">
     <value>editToolStripMenuItem</value>
@@ -1444,14 +1444,14 @@
   <data name="&gt;&gt;ofdXmlFile.Name" xml:space="preserve">
     <value>ofdXmlFile</value>
   </data>
-  <data name="&gt;&gt;buttonAdd.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>392, 458</value>
+  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 23</value>
   </data>
-  <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>107, 22</value>
@@ -1461,9 +1461,6 @@
   </data>
   <metadata name="ofdXmlFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>279, 20</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>ru-RU</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

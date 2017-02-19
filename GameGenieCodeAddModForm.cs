@@ -1,14 +1,7 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
-using com.clusterrr.Famicom;
+﻿using com.clusterrr.Famicom;
+using com.clusterrr.hakchi_gui.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.IO;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -57,7 +50,7 @@ namespace com.clusterrr.hakchi_gui
                 NesFile lGame = new NesFile(FGame.NesPath);
                 try
                 {
-                    lGame.PRG = GameGenie.Patch(lGame.PRG, textBoxCode.Text);
+                    lGame.PRG = GameGeniePatcher.Patch(lGame.PRG, textBoxCode.Text);
                 }
                 catch (GameGenieFormatException)
                 {

@@ -1,0 +1,6 @@
+copy "$transferpath/pb223_music_hack" "$preinitpath"
+mkdir -p "$rootfs/usr/share/clover-ui/resources/sounds/hvc"
+copy "$transferpath/music.wav" "$rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav"
+copy "$transferpath/music.wav" "$rootfs/usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav"
+cfg_music_hack_enabled='y'
+return 1

@@ -1,13 +1,9 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
-using nQuant;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Resources;
-using System.Text;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
@@ -18,7 +14,14 @@ namespace com.clusterrr.hakchi_gui
         static ResourceManager rm = Resources.ResourceManager;
         public static readonly string FolderImagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "folder_images");
 
-        private string code = null;
+        private int childIndex = 0;
+
+        public int ChildIndex
+        {
+            get { return childIndex; }
+            set { childIndex = value; }
+        }
+
         public enum Priority
         {
             Leftmost = 0,
@@ -31,8 +34,7 @@ namespace com.clusterrr.hakchi_gui
 
         public string Code
         {
-            get { return code; }
-            set { code = value; }
+            get { return string.Format("CLV-S-{0:D5}", childIndex); }
         }
         private string name = null;
 
@@ -123,7 +125,6 @@ namespace com.clusterrr.hakchi_gui
 
         public NesMenuFolder(string name = "Folder", string imageId = "folder")
         {
-            Code = GenerateCode((uint)rnd.Next());
             Name = name;
             Position = Priority.Right;
             ImageId = imageId;
@@ -152,10 +153,10 @@ namespace com.clusterrr.hakchi_gui
                 const int maxY = 204;
                 if (image.Width <= maxX && image.Height <= maxY) // Do not upscale
                     return image;
-                if (image.Width / image.Height > maxX / maxY)
-                    outImage = new Bitmap(maxX, maxY * image.Height / image.Width);
+                if ((double)image.Width / (double)image.Height > (double)maxX / (double)maxY)
+                    outImage = new Bitmap(maxX, (int)((double)maxY * (double)image.Height / (double)image.Width));
                 else
-                    outImage = new Bitmap(maxX * image.Width / image.Height, maxY);
+                    outImage = new Bitmap((int)(maxX * (double)image.Width / (double)image.Height), maxY);
                 gr = Graphics.FromImage(outImage);
                 gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
                                     new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
@@ -177,10 +178,10 @@ namespace com.clusterrr.hakchi_gui
                 const int maxY = 40;
                 if (image.Width <= maxX && image.Height <= maxY) // Do not upscale
                     return image;
-                if (image.Width / image.Height > maxX / maxY)
-                    outImage = new Bitmap(maxX, maxY * image.Height / image.Width);
+                if ((double)image.Width / (double)image.Height > (double)maxX / (double)maxY)
+                    outImage = new Bitmap(maxX, (int)((double)maxY * (double)image.Height / (double)image.Width));
                 else
-                    outImage = new Bitmap(maxX * image.Width / image.Height, maxY);
+                    outImage = new Bitmap((int)(maxX * (double)image.Width / (double)image.Height), maxY);
                 gr = Graphics.FromImage(outImage);
                 gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
                                     new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
@@ -197,14 +198,14 @@ namespace com.clusterrr.hakchi_gui
                 var folderImagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "folder_images");
                 var filePath = Path.Combine(folderImagesDirectory, value + ".png");
                 if (File.Exists(filePath))
-                    image = NesGame.LoadBitmap(filePath);
+                    image = NesMiniApplication.LoadBitmap(filePath);
                 else
                     image = (Image)rm.GetObject(value);
                 imageId = value;
             }
         }
 
-        public void Save(string path, int index)
+        public void Save(string path)
         {
             Directory.CreateDirectory(path);
             var ConfigPath = Path.Combine(path, Code + ".desktop");
@@ -248,22 +249,12 @@ namespace com.clusterrr.hakchi_gui
                  "SortRawTitle={5}\n" +
                  "SortRawPublisher={6}\n" +
                  "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
-                 Code, index, Name ?? Code, Players, ReleaseDate,
+                 Code, ChildIndex, Name ?? Code, Players, ReleaseDate,
                  prefix + (Name ?? Code).ToLower(), (Publisher ?? "").ToUpper(),
                  Simultaneous, Initial)
                  );
             Image.Save(IconPath, ImageFormat.Png);
             ImageThumbnail.Save(ThumnnailIconPath, ImageFormat.Png);
-        }
-
-        private static string GenerateCode(uint crc32)
-        {
-            return string.Format("CLV-S-{0}{1}{2}{3}{4}",
-                (char)('A' + (crc32 % 26)),
-                (char)('A' + (crc32 >> 5) % 26),
-                (char)('A' + ((crc32 >> 10) % 26)),
-                (char)('A' + ((crc32 >> 15) % 26)),
-                (char)('A' + ((crc32 >> 20) % 26)));
         }
 
         public override string ToString()

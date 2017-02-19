@@ -79,7 +79,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data automatically filled for {0} games..
+        ///   Looks up a localized string similar to Data automatically filled for {0} game(s)..
         /// </summary>
         internal static string AutofillResult {
             get {
@@ -88,7 +88,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hold Select+A/B for a second to enable/disable autofire for A/B..
+        ///   Looks up a localized string similar to Hold Select+A/B for a second to enable/disable autofire A/B..
         /// </summary>
         internal static string AutofireHelp1 {
             get {
@@ -97,20 +97,11 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Also X/Y buttons on Classic Controller will act as autofire A/B..
-        /// </summary>
-        internal static string AutofireHelp2 {
-            get {
-                return ResourceManager.GetString("AutofireHelp2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap blank {
+        internal static System.Drawing.Bitmap blank_app {
             get {
-                object obj = ResourceManager.GetObject("blank", resourceCulture);
+                object obj = ResourceManager.GetObject("blank_app", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -128,9 +119,99 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blank_gb {
+            get {
+                object obj = ResourceManager.GetObject("blank_gb", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_gba {
+            get {
+                object obj = ResourceManager.GetObject("blank_gba", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_gbc {
+            get {
+                object obj = ResourceManager.GetObject("blank_gbc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_genesis {
+            get {
+                object obj = ResourceManager.GetObject("blank_genesis", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blank_jp {
             get {
                 object obj = ResourceManager.GetObject("blank_jp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_n64 {
+            get {
+                object obj = ResourceManager.GetObject("blank_n64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_nes {
+            get {
+                object obj = ResourceManager.GetObject("blank_nes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_pce {
+            get {
+                object obj = ResourceManager.GetObject("blank_pce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_sms {
+            get {
+                object obj = ResourceManager.GetObject("blank_sms", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_snes_us {
+            get {
+                object obj = ResourceManager.GetObject("blank_snes_us", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -181,7 +262,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Now you need to flash the custom kernel to your NES Mini. This is also required only once. Do you want to continue?.
+        ///   Looks up a localized string similar to Now you need to flash the custom kernel to your NES Mini. This is only required once. Do you want to continue?.
         /// </summary>
         internal static string CustomWarning {
             get {
@@ -199,16 +280,34 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete &quot;{0}&quot; folder?.
+        ///   Looks up a localized string similar to Do you really want to delete &quot;{0}&quot;?.
         /// </summary>
-        internal static string DeleteFolder {
+        internal static string DeleteElement {
             get {
-                return ResourceManager.GetString("DeleteFolder", resourceCulture);
+                return ResourceManager.GetString("DeleteElement", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to delete &quot;{0}&quot; preset?.
+        ///   Looks up a localized string similar to Do you really want to delete {0} elements?.
+        /// </summary>
+        internal static string DeleteElements {
+            get {
+                return ResourceManager.GetString("DeleteElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete &quot;{0}&quot; game?.
+        /// </summary>
+        internal static string DeleteGame {
+            get {
+                return ResourceManager.GetString("DeleteGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete the &quot;{0}&quot; preset?.
         /// </summary>
         internal static string DeletePreset {
             get {
@@ -217,16 +316,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete {0}?.
-        /// </summary>
-        internal static string DeleteQ {
-            get {
-                return ResourceManager.GetString("DeleteQ", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to P.S. If you like it you can donate me. You can find my PayPal into the &quot;About&quot; box..
+        ///   Looks up a localized string similar to P.S. If you like it, you can donate to me. You can find my PayPal in the &quot;About&quot; box..
         /// </summary>
         internal static string Donate {
             get {
@@ -244,7 +334,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done! Wait until the power led goes out and restart your NES Mini..
+        ///   Looks up a localized string similar to Done! Wait until the power LED goes out and restart your NES Mini..
         /// </summary>
         internal static string DoneUploaded {
             get {
@@ -262,7 +352,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Downloading covers for all games (I&apos;m feeling lucky!).
+        ///   Looks up a localized string similar to Downloading box art for all games (I&apos;m feeling lucky!).
         /// </summary>
         internal static string DownloadAllCoversTitle {
             get {
@@ -327,14 +417,14 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Executing fes1....
         /// </summary>
-        internal static string ExecutingFel1 {
+        internal static string ExecutingFes1 {
             get {
-                return ResourceManager.GetString("ExecutingFel1", resourceCulture);
+                return ResourceManager.GetString("ExecutingFes1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can add some global command line arguments which will be appended to all games including original ones. It&apos;s only for experts!.
+        ///   Looks up a localized string similar to You can add global command-line arguments which will be appended to all games including the original 30. This is only for experts!.
         /// </summary>
         internal static string ExtraArgsInfo {
             get {
@@ -343,7 +433,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extra command line arguments.
+        ///   Looks up a localized string similar to Extra command-line arguments.
         /// </summary>
         internal static string ExtraArgsTitle {
             get {
@@ -352,7 +442,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello there! I&apos;m very glad that you are using my application. It&apos;s very simple to use. Just click &quot;Add more games&quot;, select some ROMs, press &quot;Synchronize&quot; and follow the instructions. Good luck!.
+        ///   Looks up a localized string similar to Hello there! I&apos;m very glad that you are using hakchi2. It&apos;s very simple to use. Just click &quot;Add more games&quot;, select some ROMs, press &quot;Synchronize&quot; and follow the instructions. Good luck!.
         /// </summary>
         internal static string FirstRun {
             get {
@@ -669,7 +759,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Folder content will be moved to &quot;Unsorted&quot; folder..
+        ///   Looks up a localized string similar to Deleted content will be moved to the Recycle Bin. You can delete this folder permanently or move the games to other folders..
         /// </summary>
         internal static string FolderContent {
             get {
@@ -678,7 +768,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;- Back.
+        ///   Looks up a localized string similar to Back.
         /// </summary>
         internal static string FolderNameBack {
             get {
@@ -705,11 +795,20 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;- Original games.
+        ///   Looks up a localized string similar to Original 30 games.
         /// </summary>
         internal static string FolderNameOriginalGames {
             get {
                 return ResourceManager.GetString("FolderNameOriginalGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recycle Bin.
+        /// </summary>
+        internal static string FolderNameTrashBin {
+            get {
+                return ResourceManager.GetString("FolderNameTrashBin", resourceCulture);
             }
         }
         
@@ -741,7 +840,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, {0} uses four-screen mode (i.e.  it&apos;s rare case the game has additional VRAM memory in cartridge) and this feature is not supported by NES Mini. Game probably will not start. Do you want to add this game anyway?.
+        ///   Looks up a localized string similar to Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator&apos;s module installed. Do you want to add this game anyway?.
         /// </summary>
         internal static string FourScreenNotSupported {
             get {
@@ -750,7 +849,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Game Ganie code &quot;{0}&quot; for game &quot;{1}&quot;..
+        ///   Looks up a localized string similar to Invalid Game Genie code &quot;{0}&quot; for game &quot;{1}&quot;..
         /// </summary>
         internal static string GameGenieFormatError {
             get {
@@ -759,7 +858,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Can&apos;t apply Game Genie code &quot;{0}&quot; to game &quot;{1}&quot; -  value not found. Maybe this code for other game?.
+        ///   Looks up a localized string similar to Can&apos;t apply Game Genie code &quot;{0}&quot; to game &quot;{1}&quot; - value not found. Maybe this code is for another game?.
         /// </summary>
         internal static string GameGenieNotFound {
             get {
@@ -787,6 +886,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry, game &quot;{0}&quot; is too big..
+        /// </summary>
+        internal static string GameTooBig {
+            get {
+                return ResourceManager.GetString("GameTooBig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to delete &quot;{0}&quot; code?.
         /// </summary>
         internal static string GGCodeDelete {
@@ -805,7 +913,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This code already exist. Do you want to edit it?.
+        ///   Looks up a localized string similar to This code already exists. Do you want to edit it?.
         /// </summary>
         internal static string GGCodeExists {
             get {
@@ -841,11 +949,20 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please input preset name for current games selection..
+        ///   Looks up a localized string similar to Please input a preset name for the current games selection..
         /// </summary>
         internal static string InputPreset {
             get {
                 return ResourceManager.GetString("InputPreset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installing mods....
+        /// </summary>
+        internal static string InstallingMods {
+            get {
+                return ResourceManager.GetString("InstallingMods", resourceCulture);
             }
         }
         
@@ -868,7 +985,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your original kernel saved in the &quot;dump&quot; folder. It&apos;s better not to lose it. .
+        ///   Looks up a localized string similar to Your original kernel is saved in the &quot;dump&quot; folder. Do not lose it. .
         /// </summary>
         internal static string KernelDumped {
             get {
@@ -886,7 +1003,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Main Menu.
+        ///   Looks up a localized string similar to HOME Menu.
         /// </summary>
         internal static string MainMenu {
             get {
@@ -895,7 +1012,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, {0} uses mapper #{1} but this mapper is not supported by NES Mini and game probably will not start. Do you want to add this game anyway?.
+        ///   Looks up a localized string similar to Sorry, &quot;{0}&quot; uses mapper #{1} but this mapper is not supported by the NES Mini and the game will probably not start with the default emulator. But it should work if other emulator&apos;s module installed. Do you want to add this game?.
         /// </summary>
         internal static string MapperNotSupported {
             get {
@@ -904,7 +1021,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kernel dumped but MD5 checksum is unknown:.
+        ///   Looks up a localized string similar to Kernel dumped but the MD5 checksum is unknown:.
         /// </summary>
         internal static string MD5Failed {
             get {
@@ -913,7 +1030,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maybe the kernel already patched or it&apos;s unknown revision. Please send this message to me (press Ctrl+C). Continue on your own risk..
+        ///   Looks up a localized string similar to The kernel is already patched or it&apos;s an unknown revision. Please send this message to me (press Ctrl+C). Continue at your own risk..
         /// </summary>
         internal static string MD5Failed2 {
             get {
@@ -922,7 +1039,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New games are moved to &quot;Unsorted&quot; folder..
+        ///   Looks up a localized string similar to Sorry, there are {0}MBytes of games, it&apos;s too much..
+        /// </summary>
+        internal static string MemoryFull {
+            get {
+                return ResourceManager.GetString("MemoryFull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New games are moved to the &quot;Unsorted&quot; folder..
         /// </summary>
         internal static string NewGamesUnsorted {
             get {
@@ -967,7 +1093,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First of all you need to dump the kernel image of your NES Mini. You need to do it only once. Do you want to continue?.
+        ///   Looks up a localized string similar to First, dump the kernel image of your NES Mini. You only need to do this once. Do you want to continue?.
         /// </summary>
         internal static string NoKernelWarning {
             get {
@@ -976,7 +1102,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No kernel dump found. You need to dump kernel first..
+        ///   Looks up a localized string similar to No kernel dump found. You need to dump the kernel first..
         /// </summary>
         internal static string NoKernelYouNeed {
             get {
@@ -1003,7 +1129,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Don&apos;t worry! Everything is fine. Just there are too many ROMs to tranfer them at once. Please wait until power led goes out, press OK and follow instructions to continue..
+        ///   Looks up a localized string similar to Don&apos;t worry! Everything is fine. There are just too many ROMs to transfer at once. Please wait until power LED goes out, press OK and follow the instructions to continue..
         /// </summary>
         internal static string ParticallyBody {
             get {
@@ -1039,7 +1165,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If this problem repeats try to use another USB port or another USB cable..
+        ///   Looks up a localized string similar to If this problem persists, try using another USB port or cable..
         /// </summary>
         internal static string PleaseTryAgainUSB {
             get {
@@ -1057,7 +1183,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You already have the kernel dump. If you REALLY want to replace buckup of you kernel and you REALLY understand what you are doing delete &quot;dump&quot; folder manually..
+        ///   Looks up a localized string similar to You already have the kernel dump. If you REALLY want to replace the backup of your kernel and you REALLY understand what you are doing, delete the &quot;dump&quot; folder manually..
         /// </summary>
         internal static string ReplaceKernelQ {
             get {
@@ -1066,7 +1192,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You need to select at least one game..
+        ///   Looks up a localized string similar to Select at least one game..
         /// </summary>
         internal static string SelectAtLeast {
             get {
@@ -1075,7 +1201,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You need to select at least two buttons..
+        ///   Looks up a localized string similar to Select at least two buttons..
         /// </summary>
         internal static string SelectAtLeastTwo {
             get {
@@ -1084,7 +1210,25 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Don&apos;t forget to do reset to factory settings if you want to delete all savestates..
+        ///   Looks up a localized string similar to Select the modules to install on your NES Mini..
+        /// </summary>
+        internal static string SelectModsInstall {
+            get {
+                return ResourceManager.GetString("SelectModsInstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the modules to remove from your NES Mini..
+        /// </summary>
+        internal static string SelectModsUninstall {
+            get {
+                return ResourceManager.GetString("SelectModsUninstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t forget to perform a factory reset if you want to delete all Suspend Points..
         /// </summary>
         internal static string UninstallFactoryNote {
             get {
@@ -1102,7 +1246,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to clean all traces of hakchi2 and return your NES Mini to original state?.
+        ///   Looks up a localized string similar to Uninstalling mods....
+        /// </summary>
+        internal static string UninstallingMods {
+            get {
+                return ResourceManager.GetString("UninstallingMods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to remove all traces of hakchi2 and return your NES Mini to its original state?.
         /// </summary>
         internal static string UninstallQ1 {
             get {
@@ -1111,7 +1264,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done. Wait until the power led goes out. Also you need to flash original kernel. Do you want to flash original kernel now?.
+        ///   Looks up a localized string similar to Done. Wait until the power LED goes out. You also need to flash the original kernel. Do you want to flash the original kernel now?.
         /// </summary>
         internal static string UninstallQ2 {
             get {
@@ -1120,7 +1273,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uploading and running fes1....
+        ///   Looks up a localized string similar to Uploading and running FES-1....
         /// </summary>
         internal static string UploadingFes1 {
             get {
@@ -1147,7 +1300,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verify failed :O This is no good..
+        ///   Looks up a localized string similar to Verify failed :O This is not good..
         /// </summary>
         internal static string VerifyFailed {
             get {
@@ -1192,7 +1345,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please use Zadig util to install driver on Windows XP/2000..
+        ///   Looks up a localized string similar to Please use the Zadig utility to install the driver on Windows XP/2000..
         /// </summary>
         internal static string XpZadig {
             get {

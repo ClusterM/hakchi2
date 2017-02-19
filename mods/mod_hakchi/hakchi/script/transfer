@@ -1,0 +1,64 @@
+source "$modpath/script/backup"
+source "$modpath/script/install"
+source "$modpath/script/package"
+source "$modpath/script/games"
+
+backup_nandc
+mount_base
+backup
+
+source "$modpath/rootfs/etc/preinit"
+source_base "$modpath/rootfs/etc/preinit.d"
+source_config
+
+local transferpath=$modpath/transfer
+
+[ -f "$transferpath/earlybird" ] && source "$transferpath/earlybird"
+rm -f "$transferpath/earlybird"
+
+# transfer firmware, if any
+if [ -d "$transferpath/firmware" ]; then
+  local firmware=$(find "$transferpath/firmware" -type f -name "*.hsqs" | sort | head -n 1)
+  if [ -f "$firmware" ]; then
+    mkdir -p "$firmwarepath"
+    local firmware_name=$(basename "$firmware")
+    find "$firmwarepath" -type f -not -name "$firmware_name" -delete
+    echo transferring firmware...
+    copy "$firmware" "$firmwarepath/"
+  fi
+  rm -rf "$transferpath/firmware"
+fi
+
+# if we're running modified firmware, mount it now
+source_parts "$preinitpath/p????_*firmware*"
+source_parts "$modpath/rootfs/etc/preinit.d/p????_*firmware*"
+
+# now we can do install/repair
+if [ -d "$preinitpath" ]; then
+  echo $modname already installed
+  mod_repair
+else
+  mod_install
+fi
+
+[ -f "$transferpath/uninstall" ] && packs_uninstall $(cat "$transferpath/uninstall")
+rm -f "$transferpath/uninstall"
+[ -f "$transferpath/hmod/uninstall" ] && packs_uninstall $(cat "$transferpath/hmod/uninstall")
+rm -f "$transferpath/hmod/uninstall"
+
+packs_install "$transferpath"
+if [ -d "$transferpath/hmod" ]; then
+  packs_install "$transferpath/hmod"
+  rm -rf "$transferpath/hmod"
+fi
+
+if [ -d "$transferpath/games" ]; then
+  transfer_games "$transferpath/games"
+  rm -rf "$transferpath/games"
+fi
+
+echo transferring data...
+transfer_path "$transferpath"
+
+save_config
+[ "$cf_shutdown" != "y" ] || shutdown

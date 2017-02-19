@@ -2,13 +2,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
@@ -17,9 +14,11 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class TreeContructorForm : Form
     {
-        public static string FoldersXmlPath = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "folders.xml");
+        public static string FoldersXmlPath = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigIni.ConfigDir), "folders.xml");
         List<TreeNode> cuttedNodes = new List<TreeNode>();
-        NesMenuCollection GamesCollection;
+        List<INesMenuElement> deletedGames = new List<INesMenuElement>();
+        NesMenuCollection gamesCollection = new NesMenuCollection();
+        MainForm mainForm;
         private class NodeSorter : IComparer
         {
             public int Compare(object o1, object o2)
@@ -42,44 +41,104 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public TreeContructorForm(NesMenuCollection nesMenuCollection)
+        public TreeContructorForm(NesMenuCollection nesMenuCollection, MainForm mainForm = null)
         {
-            InitializeComponent();
-            GamesCollection = nesMenuCollection;
-            if (File.Exists(FoldersXmlPath))
+            try
             {
-                try
+                InitializeComponent();
+                gamesCollection = nesMenuCollection;
+                this.mainForm = mainForm;
+                if (File.Exists(FoldersXmlPath))
                 {
-                    XmlToTree(File.ReadAllText(FoldersXmlPath));
+                    try
+                    {
+                        XmlToTree(File.ReadAllText(FoldersXmlPath));
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message + ex.StackTrace);
+                        File.Delete(FoldersXmlPath);
+                        throw ex;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    File.Delete(FoldersXmlPath);
-                    throw ex;
-                }
-            } 
-            else DrawTree();
-            splitContainer.Panel2MinSize = 485;
-            treeView.TreeViewNodeSorter = new NodeSorter();
-            listViewContent.ListViewItemSorter = new NodeSorter();
+                else DrawTree();
+                splitContainer.Panel2MinSize = 485;
+                treeView.TreeViewNodeSorter = new NodeSorter();
+                listViewContent.ListViewItemSorter = new NodeSorter();
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message;
+#if DEBUG
+                message += ex.StackTrace;
+#endif
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         void DrawTree()
         {
+            cuttedNodes.Clear();
             treeView.Nodes.Clear();
             var rootNode = new TreeNode(Resources.MainMenu);
             treeView.Nodes.Add(rootNode);
-            rootNode.Tag = GamesCollection;
-            AddNodes(rootNode.Nodes, GamesCollection);
+            rootNode.Tag = gamesCollection;
+            AddNodes(rootNode.Nodes, gamesCollection);
             rootNode.Expand();
             treeView.SelectedNode = rootNode;
         }
 
         void DrawSplitTree(NesMenuCollection.SplitStyle splitStyle = NesMenuCollection.SplitStyle.NoSplit)
         {
-            GamesCollection.Unsplit();
-            GamesCollection.Split(splitStyle, ConfigIni.MaxGamesPerFolder);
-            DrawTree();
+            var node = treeView.SelectedNode;
+            NesMenuCollection collection;
+            if (node.Tag is NesMenuFolder)
+                collection = (node.Tag as NesMenuFolder).ChildMenuCollection;
+            else if (node.Tag is NesMenuCollection)
+                collection = node.Tag as NesMenuCollection;
+            else return;
+            // Collide and resplit collection
+            collection.Unsplit();
+            collection.Split(splitStyle, ConfigIni.MaxGamesPerFolder);
+            // Refill nodes with new collection
+            node.Nodes.Clear();
+            AddNodes(node.Nodes, collection);
+            node.Expand();
+            treeView.SelectedNode = node;
+            ShowSelected();
+        }
+
+        static int getImageIndex(INesMenuElement nesElement)
+        {
+            if (nesElement is NesMenuFolder || nesElement is NesMenuCollection)
+                return 0;
+            if (nesElement is NesDefaultGame)
+                return 2;
+            if (nesElement is NesGame)
+                return 6;
+            if (nesElement is NesUGame)
+                return 8;
+            if (nesElement is FdsGame)
+                return 10;
+            if (nesElement is SnesGame)
+                return 12;
+            if (nesElement is N64Game)
+                return 14;
+            if (nesElement is SmsGame)
+                return 16;
+            if (nesElement is GenesisGame)
+                return 18;
+            if (nesElement is PceGame)
+                return 20;
+            if (nesElement is GbGame)
+                return 22;
+            if (nesElement is GbcGame)
+                return 24;
+            if (nesElement is GbaGame)
+                return 26;            
+            
+            return 4;
         }
 
         void AddNodes(TreeNodeCollection treeNodeCollection, NesMenuCollection nesMenuCollection, List<NesMenuCollection> usedFolders = null)
@@ -100,12 +159,8 @@ namespace com.clusterrr.hakchi_gui
                         nesMenuCollection.Remove(nesElement); // We don't need any "back" folders
                         continue;
                     }
-                    newNode.SelectedImageIndex = newNode.ImageIndex = 0;
                 }
-                else if (nesElement is NesGame)
-                    newNode.SelectedImageIndex = newNode.ImageIndex = 2;
-                else if (nesElement is NesDefaultGame)
-                    newNode.SelectedImageIndex = newNode.ImageIndex = 4;
+                newNode.SelectedImageIndex = newNode.ImageIndex = getImageIndex(nesElement as INesMenuElement);
                 newNode.Text = nesElement.Name;
                 newNode.Tag = nesElement;
                 treeNodeCollection.Add(newNode);
@@ -159,7 +214,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 pictureBoxArt.Image = (node.Tag is NesMenuFolder) ? (node.Tag as NesMenuFolder).Image : null;
                 groupBoxArt.Enabled = (node.Tag is NesMenuFolder);
-                groupBoxArt.Cursor = Cursors.Hand;
+                groupBoxSplitModes.Enabled = true;
+                pictureBoxArt.Cursor = Cursors.Hand;
                 listViewContent.Enabled = true;
                 foreach (TreeNode n in node.Nodes)
                 {
@@ -167,22 +223,17 @@ namespace com.clusterrr.hakchi_gui
                     var item = new ListViewItem();
                     item.Text = element.Name;
                     var transparency = cuttedNodes.Contains(n) ? 1 : 0;
-                    if (element is NesMenuFolder)
-                        item.ImageIndex = 0 + transparency;
-                    else if (element is NesGame)
-                        item.ImageIndex = 2 + transparency;
-                    else if (element is NesDefaultGame)
-                        item.ImageIndex = 4 + transparency;
+                    item.ImageIndex = getImageIndex(element) + transparency;
                     item.Tag = n;
                     listViewContent.Items.Add(item);
                 }
             }
             else
             {
-                if (node != null && node.Tag is NesGame)
+                if (node != null && node.Tag is NesMiniApplication)
                 {
-                    var game = node.Tag as NesGame;
-                    pictureBoxArt.Image = NesGame.LoadBitmap(game.IconPath);
+                    var game = node.Tag as NesMiniApplication;
+                    pictureBoxArt.Image = NesMiniApplication.LoadBitmap(game.IconPath);
                     groupBoxArt.Enabled = true;
                     listViewContent.Enabled = false;
                 }
@@ -192,7 +243,8 @@ namespace com.clusterrr.hakchi_gui
                     groupBoxArt.Enabled = false;
                 }
                 listViewContent.Enabled = false;
-                groupBoxArt.Cursor = Cursors.Default;
+                groupBoxSplitModes.Enabled = false;
+                pictureBoxArt.Cursor = Cursors.Default;
             }
             ShowFolderStats();
         }
@@ -243,8 +295,8 @@ namespace com.clusterrr.hakchi_gui
 
         private void treeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
-            if ((e.Node.Tag is NesMenuCollection) || (e.Node.Tag is NesDefaultGame)
-                || string.IsNullOrEmpty(e.Label) || string.IsNullOrEmpty(e.Label.Trim()))
+            if (!(e.Node.Tag is NesMenuFolder) ||
+                string.IsNullOrEmpty(e.Label) || string.IsNullOrEmpty(e.Label.Trim()))
                 e.CancelEdit = true;
             else
             {
@@ -350,7 +402,7 @@ namespace com.clusterrr.hakchi_gui
                         destinationNode = (TreeNode)item.Tag;
                 }
                 var newNodes = (TreeNode[])e.Data.GetData("System.Windows.Forms.TreeNode[]");
-                MoveToFolder(newNodes, destinationNode);
+                MoveToFolder(newNodes, destinationNode, false);
                 if (sender is TreeView)
                     treeView.Select();
                 else
@@ -376,15 +428,29 @@ namespace com.clusterrr.hakchi_gui
 
         private void renameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            renameFolder(sender as ToolStripMenuItem);
+            renameFolder((sender as ToolStripMenuItem).Tag);
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if ((sender as ToolStripMenuItem).Tag is TreeNode)
-                deleteFolder((sender as ToolStripMenuItem).Tag as TreeNode);
+                deleteElements(new TreeNode[] { treeView.SelectedNode });
             else
-                deleteFolder(((sender as ToolStripMenuItem).Tag as ListViewItem).Tag as TreeNode);
+                if ((sender as ToolStripMenuItem).Tag is ListView)
+                    deleteElements(from i in listViewContent.SelectedItems.Cast<ListViewItem>().ToArray() select i.Tag as TreeNode);
+        }
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((sender as ToolStripMenuItem).Tag is TreeNode)
+                cutElements(new TreeNode[] { treeView.SelectedNode });
+            else
+                if ((sender as ToolStripMenuItem).Tag is ListView)
+                    cutElements(from i in listViewContent.SelectedItems.Cast<ListViewItem>().ToArray() select i.Tag as TreeNode);
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pasteElements(treeView.SelectedNode);
         }
 
         private void treeView_MouseDown(object sender, MouseEventArgs e)
@@ -393,17 +459,29 @@ namespace com.clusterrr.hakchi_gui
             if (sender is TreeView)
             {
                 var destinationNode = ((TreeView)sender).GetNodeAt(e.X, e.Y);
-                if (destinationNode == null) return;
-                treeView.SelectedNode = destinationNode;
-                newFolderToolStripMenuItem.Tag = deleteToolStripMenuItem.Tag = renameToolStripMenuItem.Tag = destinationNode;
-                renameToolStripMenuItem.Enabled = deleteToolStripMenuItem.Enabled = destinationNode.Tag is NesMenuFolder;
+                if (destinationNode == null) destinationNode = treeView.Nodes[0]; // Root
+
+                newFolderToolStripMenuItem.Tag = deleteToolStripMenuItem.Tag = renameToolStripMenuItem.Tag =
+                    cutToolStripMenuItem.Tag = pasteToolStripMenuItem.Tag = destinationNode;
+                newFolderToolStripMenuItem.Enabled = true;
+                if ((destinationNode.Tag is NesMenuFolder || destinationNode.Tag is NesMenuCollection)) // Folder
+                    treeView.SelectedNode = destinationNode;
+                else
+                    newFolderToolStripMenuItem.Tag = destinationNode.Parent;
+                renameToolStripMenuItem.Enabled = destinationNode.Tag is NesMenuFolder; // Folder
+                cutToolStripMenuItem.Enabled = deleteToolStripMenuItem.Enabled = !(destinationNode.Tag is NesMenuCollection); // Not root
+                pasteToolStripMenuItem.Enabled = cuttedNodes.Count > 0;
             }
             else
             {
                 var item = ((ListView)sender).GetItemAt(e.X, e.Y);
-                newFolderToolStripMenuItem.Tag = deleteToolStripMenuItem.Tag = renameToolStripMenuItem.Tag = item;
-                renameToolStripMenuItem.Enabled = deleteToolStripMenuItem.Enabled = (item != null) && (item.Tag as TreeNode).Tag is NesMenuFolder;
-                listViewContent.SelectedItems.Clear();
+                if (listViewContent.SelectedItems.Count == 0 && item != null) item.Selected = true;
+                renameToolStripMenuItem.Tag = item;
+                newFolderToolStripMenuItem.Tag = deleteToolStripMenuItem.Tag = cutToolStripMenuItem.Tag = pasteToolStripMenuItem.Tag = listViewContent;
+                newFolderToolStripMenuItem.Enabled = treeView.SelectedNode != null && (treeView.SelectedNode.Tag is NesMenuFolder || treeView.SelectedNode.Tag is NesMenuCollection); // Folder                
+                renameToolStripMenuItem.Enabled = (item != null) && (item.Tag as TreeNode).Tag is NesMenuFolder;
+                cutToolStripMenuItem.Enabled = deleteToolStripMenuItem.Enabled = listViewContent.SelectedItems.Count > 0;
+                pasteToolStripMenuItem.Enabled = cuttedNodes.Count > 0;
             }
             contextMenuStrip.Show(sender as Control, e.X, e.Y);
         }
@@ -419,7 +497,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (destinationNode == null)
                 destinationNode = treeView.Nodes[0]; // Root
-            if (destinationNode.Tag is NesGame || destinationNode.Tag is NesDefaultGame)
+            if (destinationNode.Tag is NesMiniApplication || destinationNode.Tag is NesDefaultGame)
                 destinationNode = destinationNode.Parent;
             foreach (var newNode in newNodes)
             {
@@ -444,16 +522,16 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
             if (showDest)
-            {
-                if (treeView.SelectedNode == destinationNode)
-                    ShowSelected();
-                else
-                    treeView.SelectedNode = destinationNode;
-                ShowFolderStats();
-                foreach (ListViewItem item in listViewContent.Items)
-                    item.Selected = newNodes.Contains(item.Tag as TreeNode);
+                treeView.SelectedNode = destinationNode;
 
-            }
+            if (treeView.SelectedNode == destinationNode)
+                ShowSelected();
+            else
+                foreach (var i in (from n in listViewContent.Items.Cast<ListViewItem>().ToArray() where newNodes.Contains(n.Tag as TreeNode) select n))
+                    listViewContent.Items.Remove(i);
+            foreach (ListViewItem item in listViewContent.Items)
+                item.Selected = newNodes.Contains(item.Tag as TreeNode) || item.Tag == destinationNode;
+            ShowFolderStats();
             return true;
         }
 
@@ -469,7 +547,7 @@ namespace com.clusterrr.hakchi_gui
                 ShowSelected();
                 newnode.BeginEdit();
             }
-            else
+            else if (treeView.SelectedNode != null)
             {
                 node = treeView.SelectedNode;
                 node.Nodes.Add(newnode);
@@ -482,15 +560,15 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        TreeNode getUnsortedFolder()
+        TreeNode getFolder(string name)
         {
             var root = treeView.Nodes[0];
             foreach (TreeNode el in root.Nodes)
             {
-                if (el.Text == Resources.FolderNameUnsorted && el.Tag is NesMenuFolder)
+                if (el.Text == name && el.Tag is NesMenuFolder)
                     return el;
             }
-            var newNode = new TreeNode(Resources.FolderNameUnsorted, 0, 0);
+            var newNode = new TreeNode(name, 0, 0);
             var newFolder = new NesMenuFolder(newNode.Text);
             newFolder.Position = NesMenuFolder.Priority.Leftmost;
             newNode.Tag = newFolder;
@@ -499,33 +577,77 @@ namespace com.clusterrr.hakchi_gui
             return newNode;
         }
 
-        void deleteFolder(TreeNode node)
+        void deleteElements(IEnumerable<TreeNode> nodes)
         {
-            if (MessageBox.Show(this, string.Format(Resources.DeleteFolder, node.Text),
-                Resources.AreYouSure, MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning) != DialogResult.Yes)
-                return;
-            if (node.Nodes.Count > 0)
+            if (nodes.Count() == 1)
             {
-                MessageBox.Show(this, Resources.FolderContent, Resources.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                var unsortedFolder = getUnsortedFolder();
-                if (node == unsortedFolder) // WTF? We can't delete it.
-                {
-                    System.Media.SystemSounds.Hand.Play();
+                if (MessageBox.Show(this, string.Format(Resources.DeleteElement, nodes.First().Text),
+                    Resources.AreYouSure, MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) != DialogResult.Yes)
                     return;
-                }
-                MoveToFolder(node.Nodes.Cast<TreeNode>().ToArray(), unsortedFolder, false);
-                (node.Tag as NesMenuFolder).ChildMenuCollection.Clear();
             }
-            foreach (var i in from i in listViewContent.Items.Cast<ListViewItem>().ToArray() where i.Tag == node select i)
-                listViewContent.Items.Remove(i);
-            var parent = node.Parent;
-            if (parent.Tag is NesMenuFolder)
-                (parent.Tag as NesMenuFolder).ChildMenuCollection.Remove(node.Tag as INesMenuElement);
-            else if (parent.Tag is NesMenuCollection)
-                (parent.Tag as NesMenuCollection).Remove(node.Tag as INesMenuElement);
-            parent.Nodes.Remove(node);
-            treeView.SelectedNode = parent;
+            else
+            {
+                if (MessageBox.Show(this, string.Format(Resources.DeleteElements, nodes.Count()),
+                    Resources.AreYouSure, MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) != DialogResult.Yes)
+                    return;
+            }
+            bool needWarn = false;
+            TreeNode parent = null;
+            foreach (var node in nodes)
+            {
+                parent = node.Parent;
+                if (node.Tag is NesMenuFolder) // Folder
+                {
+                    if (node.Nodes.Count > 0)
+                    {
+                        var unsortedFolder = getFolder(Resources.FolderNameTrashBin);
+                        if (node.FullPath.StartsWith(unsortedFolder.FullPath)) // It's already in trash bin
+                        {
+                            (node.Tag as NesMenuFolder).ChildMenuCollection.Unsplit();
+                            deletedGames.AddRange((node.Tag as NesMenuFolder).ChildMenuCollection);
+                            (node.Tag as NesMenuFolder).ChildMenuCollection.Clear();
+                        }
+                        else
+                        {
+                            MoveToFolder(node.Nodes.Cast<TreeNode>().ToArray(), unsortedFolder, false);
+                            needWarn = true;
+                        }
+                    }
+                    if (parent.Tag is NesMenuFolder)
+                        (parent.Tag as NesMenuFolder).ChildMenuCollection.Remove(node.Tag as INesMenuElement);
+                    else if (parent.Tag is NesMenuCollection)
+                        (parent.Tag as NesMenuCollection).Remove(node.Tag as INesMenuElement);
+                    parent.Nodes.Remove(node);
+                }
+                else
+                { // Game
+                    var unsortedFolder = getFolder(Resources.FolderNameTrashBin);
+                    if (node.FullPath.StartsWith(unsortedFolder.FullPath)) // It's already in trash bin
+                    {
+                        deletedGames.Add(node.Tag as INesMenuElement);
+                        if (parent.Tag is NesMenuFolder)
+                            (parent.Tag as NesMenuFolder).ChildMenuCollection.Remove(node.Tag as INesMenuElement);
+                        else if (parent.Tag is NesMenuCollection)
+                            (parent.Tag as NesMenuCollection).Remove(node.Tag as INesMenuElement);
+                        parent.Nodes.Remove(node);
+                    }
+                    else
+                    {
+                        MoveToFolder(new TreeNode[] { node }, unsortedFolder, false);
+                        needWarn = true;
+                    }
+                }
+                foreach (var i in from i in listViewContent.Items.Cast<ListViewItem>().ToArray() where i.Tag == node select i)
+                    listViewContent.Items.Remove(i);
+                cuttedNodes.Remove(node);
+            }
+            if (parent != null)
+                treeView.SelectedNode = parent;
+            if (needWarn)
+                MessageBox.Show(this, Resources.FolderContent, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            buttonOk.Enabled = treeView.Nodes[0].Nodes.Count > 0;
         }
 
         void cutElements(IEnumerable<TreeNode> nodes)
@@ -566,8 +688,8 @@ namespace com.clusterrr.hakchi_gui
         {
             if (e.KeyCode == Keys.Delete && e.Modifiers == Keys.None)
             {
-                if ((treeView.SelectedNode != null) && (treeView.SelectedNode.Tag is NesMenuFolder))
-                    deleteFolder(treeView.SelectedNode);
+                if ((treeView.SelectedNode != null) && !(treeView.SelectedNode.Tag is NesMenuCollection))
+                    deleteElements(new TreeNode[] { treeView.SelectedNode });
             }
             else if (e.KeyCode == Keys.F2 && e.Modifiers == Keys.None)
             {
@@ -581,9 +703,23 @@ namespace com.clusterrr.hakchi_gui
             }
             else if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)
             {
-                if (treeView.SelectedNode != null &&
-                    (treeView.SelectedNode.Tag is NesMenuFolder || treeView.SelectedNode.Tag is NesMenuCollection))
-                    pasteElements(treeView.SelectedNode);
+                if (treeView.SelectedNode != null)
+                {
+                    if ((treeView.SelectedNode.Tag is NesMenuFolder || treeView.SelectedNode.Tag is NesMenuCollection))
+                        pasteElements(treeView.SelectedNode);
+                    else
+                        pasteElements(treeView.SelectedNode.Parent);
+                }
+            }
+            else if (e.KeyCode == Keys.N && e.Modifiers == Keys.Control)
+            {
+                if (treeView.SelectedNode != null)
+                {
+                    if (treeView.SelectedNode.Tag is NesMenuFolder || treeView.SelectedNode.Tag is NesMenuCollection)
+                        newFolder(treeView.SelectedNode);
+                    else
+                        newFolder(treeView.SelectedNode.Parent);
+                }
             }
         }
 
@@ -591,15 +727,10 @@ namespace com.clusterrr.hakchi_gui
         {
             if (e.KeyCode == Keys.Delete)
             {
-                if (listViewContent.SelectedItems.Count != 1) return;
-                var item = listViewContent.SelectedItems[0];
-                if ((item.Tag as TreeNode).Tag is NesMenuFolder)
-                    deleteFolder(item.Tag as TreeNode);
+                deleteElements(from i in listViewContent.SelectedItems.Cast<ListViewItem>().ToArray() select i.Tag as TreeNode);
             }
             else if (e.KeyCode == Keys.F2 && e.Modifiers == Keys.None)
             {
-                if (treeView.SelectedNode != null && treeView.SelectedNode.Tag is NesMenuFolder)
-                    renameFolder(treeView.SelectedNode);
                 if (listViewContent.SelectedItems.Count != 1) return;
                 var item = listViewContent.SelectedItems[0];
                 renameFolder(item);
@@ -611,14 +742,22 @@ namespace com.clusterrr.hakchi_gui
             }
             else if (e.KeyCode == Keys.X && e.Modifiers == Keys.Control)
             {
-                var elements = from i in listViewContent.SelectedItems.Cast<ListViewItem>().ToArray() select i.Tag as TreeNode;
-                cutElements(elements);
+                cutElements(from i in listViewContent.SelectedItems.Cast<ListViewItem>().ToArray() select i.Tag as TreeNode);
             }
             else if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)
             {
-                if (treeView.SelectedNode != null &&
-                    (treeView.SelectedNode.Tag is NesMenuFolder || treeView.SelectedNode.Tag is NesMenuCollection))
-                    pasteElements(treeView.SelectedNode);
+                if (treeView.SelectedNode != null)
+                {
+                    if ((treeView.SelectedNode.Tag is NesMenuFolder || treeView.SelectedNode.Tag is NesMenuCollection))
+                        pasteElements(treeView.SelectedNode);
+                    else
+                        pasteElements(treeView.SelectedNode.Parent);
+                }
+            }
+            else if (e.KeyCode == Keys.N && e.Modifiers == Keys.Control)
+            {
+                if (treeView.SelectedNode != null && (treeView.SelectedNode.Tag is NesMenuFolder || treeView.SelectedNode.Tag is NesMenuCollection))
+                    newFolder();
             }
         }
 
@@ -669,7 +808,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void TreeContructorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason != CloseReason.UserClosing) return;
+            if (e.CloseReason != CloseReason.UserClosing || DialogResult == System.Windows.Forms.DialogResult.OK) return;
             var a = MessageBox.Show(this, Resources.FoldersSaveQ, this.Text, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (a == System.Windows.Forms.DialogResult.Cancel)
             {
@@ -683,7 +822,22 @@ namespace com.clusterrr.hakchi_gui
 
         void SaveTree()
         {
+            Directory.CreateDirectory(Path.GetDirectoryName(FoldersXmlPath));
             File.WriteAllText(FoldersXmlPath, TreeToXml());
+            if (mainForm != null)
+            {
+                for (int i = 0; i < mainForm.checkedListBoxGames.Items.Count; i++)
+                {
+                    if (deletedGames.Contains(mainForm.checkedListBoxGames.Items[i] as NesMiniApplication))
+                        mainForm.checkedListBoxGames.SetItemChecked(i, false);
+                }
+                for (int i = 0; i < mainForm.checkedListBoxDefaultGames.Items.Count; i++)
+                {
+                    if (deletedGames.Contains(mainForm.checkedListBoxDefaultGames.Items[i] as NesDefaultGame))
+                        mainForm.checkedListBoxDefaultGames.SetItemChecked(i, false);
+                }
+                ConfigIni.Save();
+            }
         }
 
         private string TreeToXml()
@@ -718,10 +872,10 @@ namespace com.clusterrr.hakchi_gui
                     element.AppendChild(subElement);
                     NodeToXml(xml, subElement, child);
                 }
-                else if (child.Tag is NesGame)
+                else if (child.Tag is NesMiniApplication)
                 {
                     var subElement = xml.CreateElement("Game");
-                    var game = child.Tag as NesGame;
+                    var game = child.Tag as NesMiniApplication;
                     subElement.SetAttribute("code", game.Code);
                     subElement.SetAttribute("name", game.Name);
                     element.AppendChild(subElement);
@@ -738,21 +892,28 @@ namespace com.clusterrr.hakchi_gui
         }
         void XmlToTree(string xmlString)
         {
-            GamesCollection.Unsplit();
+            gamesCollection.Unsplit();
             var oldCollection = new NesMenuCollection();
-            oldCollection.AddRange(GamesCollection);
+            oldCollection.AddRange(gamesCollection);
             var xml = new XmlDocument();
             xml.LoadXml(xmlString);
-            GamesCollection.Clear();
-            XmlToNode(xml, xml.SelectSingleNode("/Tree").ChildNodes, oldCollection, GamesCollection);
+            gamesCollection.Clear();
+            XmlToNode(xml, xml.SelectSingleNode("/Tree").ChildNodes, oldCollection, gamesCollection);
             // oldCollection has only unsorted (new) games
             if (oldCollection.Count > 0)
             {
-                var unsorted = new NesMenuFolder(Resources.FolderNameUnsorted);
-                unsorted.Position = NesMenuFolder.Priority.Leftmost;
+                NesMenuFolder unsorted;
+                var unsorteds = from f in gamesCollection where f is NesMenuFolder && f.Name == Resources.FolderNameUnsorted select f;
+                if (unsorteds.Count() > 0)
+                    unsorted = unsorteds.First() as NesMenuFolder;
+                else
+                {
+                    unsorted = new NesMenuFolder(Resources.FolderNameUnsorted);
+                    unsorted.Position = NesMenuFolder.Priority.Leftmost;
+                    gamesCollection.Add(unsorted);
+                }
                 foreach (var game in oldCollection)
                     unsorted.ChildMenuCollection.Add(game);
-                GamesCollection.Add(unsorted);
                 MessageBox.Show(this, Resources.NewGamesUnsorted, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             DrawTree();
@@ -775,7 +936,7 @@ namespace com.clusterrr.hakchi_gui
                     case "Game":
                     case "OriginalGame":
                         var code = element.Attributes["code"].Value;
-                        var games = from n in rootMenuCollection where ((n is NesGame || n is NesDefaultGame) && (n.Code == code)) select n;
+                        var games = from n in rootMenuCollection where ((n is NesMiniApplication || n is NesDefaultGame) && (n.Code == code)) select n;
                         if (games.Count() > 0)
                         {
                             var game = games.First();

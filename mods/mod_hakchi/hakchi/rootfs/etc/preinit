@@ -1,0 +1,59 @@
+rand(){
+  hexdump -e '"%x"' -n 4 /dev/urandom
+}
+
+source_parts(){
+  [ -z "$temppath" ] && local temppath=/tmp
+  mkdir -p "$temppath"
+  local script=$temppath/script_$(rand)
+  rm -f "$script"
+  local searchpath=$(dirname "$1")
+  [ -d "$searchpath" ] || return 1
+  for i in $(find "$searchpath" -maxdepth 1 -path "$1" | sort); do
+    cat "$i" >> "$script"
+  done
+  dos2unix -u "$script"
+  source "$script"
+  local ret=$?
+  rm -f "$script"
+  return $ret
+}
+
+source_base(){
+  if [ -d "$1" ]; then
+    source_parts "$1/b????_*"
+    return 0
+  fi
+  if [ -d "$preinitpath" ]; then
+    source_parts "$preinitpath/b????_*"
+    return 0
+  fi
+  if [ -d "$rootfs/etc/preinit.d" ]; then
+    source_parts "$rootfs/etc/preinit.d/b????_*"
+    return 0
+  fi
+  if [ -d "/etc/preinit.d" ]; then
+    source_parts "/etc/preinit.d/b????_*"
+    return 0
+  fi
+  return 1
+}
+
+source_config(){
+  [ -f "$preinitpath/p0000_config" ] && source "$preinitpath/p0000_config"
+}
+
+save_config(){
+  [ -f "$preinitpath/pffff_config" ] && source "$preinitpath/pffff_config"
+}
+
+script_init(){
+  source_base
+  source_config
+}
+
+preinit(){
+  [ -z "$gamepath" ] && [ -d "/newroot" ] && /bin/busybox --install -s /bin/ && cp -a $rootfs/bin/rsync /bin/
+  source_base
+  source_parts "$preinitpath/p????_*"
+}

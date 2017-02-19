@@ -72,6 +72,15 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Apps\PceGame.cs" />
+    <Compile Include="Apps\GbaGame.cs" />
+    <Compile Include="Apps\GbcGame.cs" />
+    <Compile Include="Apps\GbGame.cs" />
+    <Compile Include="Apps\N64Game.cs" />
+    <Compile Include="Apps\GenesisGame.cs" />
+    <Compile Include="Apps\SmsGame.cs" />
+    <Compile Include="Apps\SnesGame.cs" />
+    <Compile Include="Apps\NesUGame.cs" />
     <Compile Include="ConfigIni.cs" />
     <Compile Include="GameGenieCodeAddModForm.cs">
       <SubType>Form</SubType>
@@ -87,6 +96,17 @@
     </Compile>
     <Compile Include="GameGenieDataBase.cs" />
     <Compile Include="MessageBoxManager.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SelectModsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectModsForm.Designer.cs">
+      <DependentUpon>SelectModsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="NesDefaultGame.cs" />
     <Compile Include="FelLib\AWFELMessage.cs" />
     <Compile Include="FelLib\AWFELStandardRequest.cs" />
@@ -117,7 +137,7 @@
     <Compile Include="FelLib\WinUSBNet\USBPipe.cs" />
     <Compile Include="FelLib\WinUSBNet\USBPipeCollection.cs" />
     <Compile Include="FelLib\WinUSBNet\USBPipePolicy.cs" />
-    <Compile Include="GameGenie.cs" />
+    <Compile Include="GameGeniePatcher.cs" />
     <Compile Include="ImageGooglerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,21 +152,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Apps\FdsGame.cs" />
     <Compile Include="NesMenuCollection.cs" />
     <Compile Include="NesMenuFolder.cs" />
     <Compile Include="NesFile.cs" />
-    <Compile Include="NesGame.cs" />
-    <Compile Include="nQuant.Core\Box.cs" />
-    <Compile Include="nQuant.Core\ColorData.cs" />
-    <Compile Include="nQuant.Core\CubeCut.cs" />
-    <Compile Include="nQuant.Core\IWuQuantizer.cs" />
-    <Compile Include="nQuant.Core\Lookup.cs" />
-    <Compile Include="nQuant.Core\LookupData.cs" />
-    <Compile Include="nQuant.Core\Pixel.cs" />
-    <Compile Include="nQuant.Core\QuantizationException.cs" />
-    <Compile Include="nQuant.Core\QuantizedPalette.cs" />
-    <Compile Include="nQuant.Core\WuQuantizer.cs" />
-    <Compile Include="nQuant.Core\WuQuantizerBase.cs" />
+    <Compile Include="Apps\NesGame.cs" />
+    <Compile Include="Apps\NesMiniApplication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.ru-RU.Designer.cs">
@@ -216,6 +227,7 @@
     <Compile Include="StringInputForm.Designer.cs">
       <DependentUpon>StringInputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TaskbarProgress.cs" />
     <Compile Include="TreeContructorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,11 +251,17 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.pl-PL.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeAddModForm.resx">
       <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeAddModForm.ru-RU.resx">
       <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.pl-PL.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeForm.resx">
       <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
@@ -254,11 +272,20 @@
     <EmbeddedResource Include="ImageGooglerForm.resx">
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.pl-PL.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.ru-RU.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectModsForm.resx">
+      <DependentUpon>SelectModsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.pl-PL.resx">
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.ru-RU.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -267,25 +294,32 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <EmbeddedResource Include="SearchForm.pl-PL.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchForm.ru-RU.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.pl-PL.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectButtonsForm.resx">
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectButtonsForm.ru-RU.resx">
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.pl-PL.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.pl-PL.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectIconForm.resx">
       <DependentUpon>SelectIconForm.cs</DependentUpon>
@@ -302,11 +336,17 @@
     <EmbeddedResource Include="StringInputForm.resx">
       <DependentUpon>StringInputForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TreeContructorForm.pl-PL.resx">
+      <DependentUpon>TreeContructorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TreeContructorForm.resx">
       <DependentUpon>TreeContructorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TreeContructorForm.ru-RU.resx">
       <DependentUpon>TreeContructorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingForm.pl-PL.resx">
+      <DependentUpon>WaitingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingForm.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>
@@ -329,130 +369,91 @@
     <None Include="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_kernel\bin\busybox">
+    <None Include="mods\hmods\clovercon.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_kernel\bin\chroot">
+    <None Include="mods\hmods\fontfix.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_kernel\bin\mkdir">
+    <None Include="mods\mod_hakchi\bin\busybox">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_kernel\hakchi\init">
+    <None Include="mods\mod_hakchi\bin\rsync">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_kernel\sbin\init">
+    <None Include="mods\mod_hakchi\hakchi\config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\awk">
+    <None Include="mods\mod_hakchi\hakchi\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\busybox">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\bin\chmenu">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\chmod">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\bin\clover-kachikachi-wr">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\chroot">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\inittab">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\cp">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\dd">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0000_defines">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\find">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0010_functions">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\grep">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p0000_config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\gzip">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7000_preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\ls">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7070_firmware">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\mkdir">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7070_preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\mv">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7100_preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\poweroff">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pa100_games">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\rm">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pffff_bootstock">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\bin\sed">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pffff_config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\clovercon.ko">
+    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\profile">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\init">
+    <None Include="mods\mod_hakchi\hakchi\script\backup">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\rootfs\bin\chmenu">
+    <None Include="mods\mod_hakchi\hakchi\script\base">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\rootfs\etc\inittab">
+    <None Include="mods\mod_hakchi\hakchi\script\games">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\rootfs\etc\preinit">
+    <None Include="mods\mod_hakchi\hakchi\script\install">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\rootfs\etc\profile">
+    <None Include="mods\mod_hakchi\hakchi\script\package">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\title.fnt">
+    <None Include="mods\mod_hakchi\hakchi\script\transfer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="mods\mod_transfer\hakchi\title_j.fnt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_transfer\sbin\init">
+    <None Include="mods\mod_hakchi\sbin\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mods\mod_uninstall\bin\busybox">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\chroot">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\cp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\dd">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\find">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\grep">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\gzip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\ls">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\mkdir">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\mv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\poweroff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\rm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\sed">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mods\mod_uninstall\hakchi\init">
@@ -510,6 +511,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="patches\f6898a59-James Bond Jr %28no dim%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="user_mods\music_hack.hmod\install">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="user_mods\music_hack.hmod\pb223_music_hack">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="user_mods\music_hack.hmod\uninstall">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -586,6 +596,45 @@
     <Content Include="folder_images\folder_s.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="folder_images\folder_system_famicom.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_fds.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_gb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_gba.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_gbc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_genesis.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_n64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_nes.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_nes_org.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_pce.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_sms.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_snes_eu_jp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_snes_usa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="folder_images\folder_t.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -607,26 +656,66 @@
     <Content Include="folder_images\folder_z.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\app_sm.png" />
+    <Content Include="images\app_sm_tr.png" />
+    <Content Include="images\blank_app.png" />
+    <Content Include="images\blank_gb.png" />
+    <Content Include="images\blank_gba.png" />
+    <Content Include="images\blank_gbc.png" />
+    <Content Include="images\blank_genesis.png" />
+    <Content Include="images\blank_n64.png" />
+    <Content Include="images\blank_nes.png" />
+    <Content Include="images\blank_pce.png" />
+    <Content Include="images\blank_sms.png" />
+    <Content Include="images\blank_snes-eu-jp.png" />
+    <Content Include="images\blank_snes-us.png" />
+    <Content Include="images\gba_sm.png" />
+    <Content Include="images\gba_sm_tr.png" />
+    <Content Include="images\gbc_sm.png" />
+    <Content Include="images\gbc_sm_tr.png" />
+    <Content Include="images\gb_sm.png" />
+    <Content Include="images\gb_sm_tr.png" />
+    <Content Include="images\genesis_sm.png" />
+    <Content Include="images\genesis_sm_tr.png" />
+    <Content Include="images\n64_sm.png" />
+    <Content Include="images\n64_sm_tr.png" />
+    <Content Include="images\nes_sm_tr.png" />
+    <Content Include="images\famicom_sm.png" />
+    <Content Include="images\famicom_sm_tr.png" />
+    <Content Include="images\fds_sm.png" />
+    <Content Include="images\fds_sm_tr.png" />
+    <Content Include="images\folder_sm_tr.png" />
+    <Content Include="images\original_sm_tr.png" />
+    <Content Include="images\pce_sm.png" />
+    <Content Include="images\pce_sm_tr.png" />
+    <Content Include="images\sms_sm.png" />
+    <Content Include="images\sms_sm_tr.png" />
+    <Content Include="images\snes-eu-jp_sm.png" />
+    <Content Include="images\snes-eu-jp_sm_tr.png" />
+    <Content Include="images\snes-us_sm.png" />
+    <Content Include="images\snes-us_sm_tr.png" />
+    <Content Include="user_mods\music_hack.hmod\music.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\music_hack.hmod\readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\README.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="folder_images\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Content Include="icon.ico" />
-    <None Include="images\blank.png" />
     <Content Include="folder_images\folder_back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="images\blank_fds.png" />
     <Content Include="images\blank_jp.png" />
-    <Content Include="images\blank_sm.png" />
+    <Content Include="images\nes_sm.png" />
     <Content Include="images\folder_sm.png" />
     <Content Include="images\gamepad.png" />
     <Content Include="images\original_sm.png" />
-    <Content Include="mods\mod_transfer\hakchi\blank_pixel.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_transfer\hakchi\silence.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="patches\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -674,6 +763,10 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

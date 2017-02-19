@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
@@ -17,10 +14,8 @@ namespace com.clusterrr.hakchi_gui
         public static bool UseFont = true;
         public static bool ResetHack = true;
         public static bool AutofireHack = false;
-        public static bool RemoveThumbnails = false;
-        public static bool EightBitPngCompression = false;
+        public static bool AutofireXYHack = false;
         public static bool FcStart = false;
-        public static bool DisableMusic = false;
         public static byte AntiArmetLevel = 0;
         public static byte ConsoleType = 0;
         public static byte MaxGamesPerFolder = 30;
@@ -28,12 +23,21 @@ namespace com.clusterrr.hakchi_gui
         public static SelectButtonsForm.NesButtons ResetCombination = SelectButtonsForm.NesButtons.Down | SelectButtonsForm.NesButtons.Select;
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         public static string ExtraCommandLineArguments = "";
+        public const string ConfigDir = "config";
         public const string ConfigFile = "config.ini";
 
         public static void Load()
         {
             Debug.WriteLine("Loading config");
-            var fileName = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigFile);
+            var fileNameOld = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigFile);
+            var configFullDir = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigDir);
+            var fileName = Path.Combine(configFullDir, ConfigFile);
+            if (File.Exists(fileNameOld)) // Moving old config to new directory
+            {
+                Directory.CreateDirectory(configFullDir);
+                File.Copy(fileNameOld, fileName, true);
+                File.Delete(fileNameOld);
+            }
             if (File.Exists(fileName))
             {
                 var configLines = File.ReadAllLines(fileName);
@@ -79,11 +83,8 @@ namespace com.clusterrr.hakchi_gui
                                 case "autofirehack":
                                     AutofireHack = !value.ToLower().Equals("false");
                                     break;
-                                case "removethumbnails":
-                                    RemoveThumbnails = !value.ToLower().Equals("false");
-                                    break;
-                                case "eightbitpngcompression":
-                                    EightBitPngCompression = !value.ToLower().Equals("false");
+                                case "autofirexyhack":
+                                    AutofireXYHack = !value.ToLower().Equals("false");
                                     break;
                                 case "resetcombination":
                                     ResetCombination = (SelectButtonsForm.NesButtons)byte.Parse(value);
@@ -96,9 +97,6 @@ namespace com.clusterrr.hakchi_gui
                                     break;
                                 case "fcstart":
                                     FcStart = !value.ToLower().Equals("false");
-                                    break;
-                                case "disablemusic":
-                                    DisableMusic = !value.ToLower().Equals("false");
                                     break;
                                 case "maxgamesperfolder":
                                     MaxGamesPerFolder = byte.Parse(value);
@@ -127,15 +125,13 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("UseFont={0}", UseFont));
             configLines.Add(string.Format("ResetHack={0}", ResetHack));
             configLines.Add(string.Format("AutofireHack={0}", AutofireHack));
+            configLines.Add(string.Format("AutofireXYHack={0}", AutofireXYHack));
             configLines.Add(string.Format("FirstRun={0}", FirstRun));
             configLines.Add(string.Format("AntiArmetLevel={0}", AntiArmetLevel));
-            configLines.Add(string.Format("RemoveThumbnails={0}", RemoveThumbnails));
-            configLines.Add(string.Format("EightBitPngCompression={0}", EightBitPngCompression));
             configLines.Add(string.Format("ResetCombination={0}", (byte)ResetCombination));
             configLines.Add(string.Format("ConsoleType={0}", ConsoleType));
             configLines.Add(string.Format("ExtraCommandLineArguments={0}", ExtraCommandLineArguments));
             configLines.Add(string.Format("FcStart={0}", FcStart));
-            configLines.Add(string.Format("DisableMusic={0}", DisableMusic));
             configLines.Add(string.Format("FoldersMode={0}", (byte)FoldersMode));
             configLines.Add(string.Format("MaxGamesPerFolder={0}", MaxGamesPerFolder));
 
@@ -145,7 +141,11 @@ namespace com.clusterrr.hakchi_gui
             {
                 configLines.Add(string.Format("{0}={1}", preset, Presets[preset]));
             }
-            File.WriteAllLines(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigFile), configLines.ToArray());
+
+            var configFullDir = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigDir);
+            var fileName = Path.Combine(configFullDir, ConfigFile);
+            Directory.CreateDirectory(configFullDir);
+            File.WriteAllLines(fileName, configLines.ToArray());
         }
     }
 }

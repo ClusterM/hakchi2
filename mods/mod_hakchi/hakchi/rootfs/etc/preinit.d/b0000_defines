@@ -1,0 +1,9 @@
+modname=hakchi
+modpath=/$modname
+installpath=$mountpoint/var/lib/$modname
+firmwarepath=$installpath/firmware
+rootfs=$installpath/rootfs
+preinit=$rootfs/etc/preinit
+preinitpath=$preinit.d
+gamepath=/usr/share/games/nes/kachikachi
+temppath=/tmp
