@@ -292,7 +292,7 @@
     <value />
   </data>
   <data name="openFileDialogNes.Filter" xml:space="preserve">
-    <value>NES файлы и приложения|*.nes;*.fds;*.desktop;*.zip;*.7z;*.rar|Все файлы|*.*</value>
+    <value>Все поддерживаемые ROM файлы|*.nes;*.fds;*.desktop;*.zip;*.7zip;*.rar;*.snes;*.smc;*.srm;*.swc;*.fig;*.gb;*.gba;*.gbc;*.gen;*.sms;*.smd;*.n64;*.z64;*.v64;*.rom|NES файлы|*.nes;*.fds;*.desktop;*.zip;*.7zip;*.rar|SNES файлы|*.snes;*.smc;*.srm;*.swc;*.fig;*.desktop;*.zip;*.7zip;*.rar|Gameboy файлы|*.gb;*.gba;*.gbc;*.desktop;*.zip;*.7zip;*.rar|Genesis/SMS/MD файлы|*.gen;*.sms;*.smd;*.desktop;*.zip;*.7z;*.rar|Nintendo 64 файлы|*.n64;*.z64;*.v64;*.rom;*.desktop;*.zip;*.7zip;*.rar|Все файлы|*.*</value>
   </data>
   <data name="openFileDialogNes.Title" xml:space="preserve">
     <value>Выберите NES файл(ы)</value>

@@ -2021,7 +2021,7 @@
     <value>searchToolStripMenuItem</value>
   </data>
   <data name="openFileDialogNes.Title" xml:space="preserve">
-    <value>Select NES file(s)</value>
+    <value>Select file(s)</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 22</value>
@@ -2438,7 +2438,7 @@
     <value>356, 22</value>
   </data>
   <data name="openFileDialogNes.Filter" xml:space="preserve">
-    <value>NES files and applications|*.nes;*.fds;*.desktop;*.zip;*.7z;*.rar|All files|*.*</value>
+    <value>All supported ROM files|*.nes;*.fds;*.desktop;*.zip;*.7zip;*.rar;*.snes;*.smc;*.srm;*.swc;*.fig;*.gb;*.gba;*.gbc;*.gen;*.sms;*.smd;*.n64;*.z64;*.v64;*.rom|NES files|*.nes;*.fds;*.desktop;*.zip;*.7zip;*.rar|SNES files|*.snes;*.smc;*.srm;*.swc;*.fig;*.desktop;*.zip;*.7zip;*.rar|Gameboy files|*.gb;*.gba;*.gbc;*.desktop;*.zip;*.7zip;*.rar|Genesis/SMS/MD files|*.gen;*.sms;*.smd;*.desktop;*.zip;*.7z;*.rar|Nintendo 64 files|*.n64;*.z64;*.v64;*.rom;*.desktop;*.zip;*.7zip;*.rar|All files|*.*</value>
   </data>
   <data name="&gt;&gt;addPresetToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2854,28 +2854,28 @@
   <data name="buttonAddGames.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 568</value>
   </data>
-  <metadata name="openFileDialogImage.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="openFileDialogImage.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>741, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="$this.TrayLargeIcon" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <metadata name="timerCalculateGames.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </data>
+  <data name="timerCalculateGames.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>620, 18</value>
-  </metadata>
-  <metadata name="menuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </data>
+  <data name="menuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>132, 17</value>
-  </metadata>
-  <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </data>
+  <data name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>350, 17</value>
-  </metadata>
-  <metadata name="openFileDialogNes.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </data>
+  <data name="openFileDialogNes.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>459, 17</value>
-  </metadata>
-  <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </data>
+  <data name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>592, 17</value>
-  </metadata>
+  </data>
 </root>
