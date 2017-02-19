@@ -365,13 +365,13 @@
     <value>Musisz podać opis!</value>
   </data>
   <data name="FolderNameBack" xml:space="preserve">
-    <value>&lt;- Back</value>
+    <value>Back</value>
   </data>
   <data name="FolderNameMoreGames" xml:space="preserve">
     <value>More games...</value>
   </data>
   <data name="FolderNameOriginalGames" xml:space="preserve">
-    <value>&lt;- Original games</value>
+    <value>Original games</value>
   </data>
   <data name="folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\folder_images\folder.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -489,5 +489,32 @@
   </data>
   <data name="AddingGames" xml:space="preserve">
     <value>Przetwarzanie gier, proszę czekać...</value>
+  </data>
+  <data name="DeleteElement" xml:space="preserve">
+    <value>Czy chcesz usunąć "{0}"?</value>
+  </data>
+  <data name="DeleteElements" xml:space="preserve">
+    <value>Czy chcesz usunąć {0} elementów?</value>
+  </data>
+  <data name="DeleteGame" xml:space="preserve">
+    <value>Czy chcesz usunąć grę "{0}"?</value>
+  </data>
+  <data name="GameTooBig" xml:space="preserve">
+    <value>Przykro mi, gra "{0}" jest za duża.</value>
+  </data>
+  <data name="InstallingMods" xml:space="preserve">
+    <value>Instalowanie modów...</value>
+  </data>
+  <data name="MemoryFull" xml:space="preserve">
+    <value>Przykro mi, {0}MB gier to za dużo.</value>
+  </data>
+  <data name="NewFolder" xml:space="preserve">
+    <value>Nowy folder</value>
+  </data>
+  <data name="SelectModsInstall" xml:space="preserve">
+    <value>Wybierz moduły, które chcesz zainstalować w NES Mini.</value>
+  </data>
+  <data name="SelectModsUninstall" xml:space="preserve">
+    <value>Wygierz moduły, które chcesz usunąć z NES Mini.</value>
   </data>
 </root>

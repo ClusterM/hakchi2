@@ -1308,6 +1308,9 @@
     <value>Podziel alfabetycznie</value>
   </data>
   <data name="labelPosition.Text" xml:space="preserve">
-    <value>Pozycja folderów - kolejność:</value>
+    <value>Kolejność folderów:</value>
+  </data>
+  <data name="cutToolStripMenuItem.Text" xml:space="preserve">
+    <value>Wytnij</value>
   </data>
 </root>
