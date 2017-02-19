@@ -1,5 +1,7 @@
 # hakchi2
 
+This is GUI for hakchi by madmonkey.
+
 This application can add more games (game ROMs) to your Nintendo Classic Mini or Famicom Mini. All you need is to connect it to a Windows PC via Micro-USB cable. No soldering or disassembling required.
 
 https://github.com/ClusterM/hakchi2
@@ -9,14 +11,14 @@ https://github.com/ClusterM/hakchi2
 * Fill all game data automatically using included database
 * Automatically check for supported games
 * Search for box art using Google Images
-* Use [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) codes
+* Use [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) codes, includes Game Genie database
 * Automatically patch problem games (patches for many popular games included)
 * Upload hundreds of games at once
 * Return to the HOME menu with a button combination instead of the Reset button
 * Enable autofire A/B
 * Simulate the start button on the second controller (for Famicom Mini)
 * Disable seizure protection
-* Disable HOME menu music
+* Allows to install user-mods to add more features (even support for SNES/N64/Genesis/etc., music replacement, themes, etc.)
 
 ## So you was first to hack NES Classic Mini?
 No! It was my Russian сomrade, madmonkey, who first published a successful hack of the the NES Classic Mini. He created the original “hakchi” tool. It was however not very user-friendly so I decided to create a tool which is simple to use by anyone, and not only Linux users. I named it “hakchi2” because I don’t like to coming up with names. So my first version was a 2.0 release :)
