@@ -16,20 +16,8 @@ namespace com.clusterrr.hakchi_gui
 {
     public class FdsGame : NesMiniApplication
     {
-        internal static override char Prefix
-        {
-            get
-            {
-                return 'D';
-            }
-        }
-        internal static override Image DefaultCover
-        {
-            get
-            {
-                return Resources.blank_fds;
-            }
-        }
+        public const char Prefix = 'D';
+        public static Image DefaultCover { get { return Resources.blank_fds; } }
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet --fds-auto-disk-side-switch-on-keypress";
 
         public string Args

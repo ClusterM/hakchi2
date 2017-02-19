@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;splitContainer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;buttonFoldersEqually.Name" xml:space="preserve">
     <value>buttonFoldersEqually</value>
   </data>
@@ -138,9 +141,6 @@
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="labelElementCount.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
-  </data>
-  <data name="&gt;&gt;labelPosition.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="labelElementCount.Location" type="System.Drawing.Point, System.Drawing">
@@ -173,6 +173,9 @@
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="buttonNewFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 21</value>
+  </data>
   <data name="labelElementCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 13</value>
   </data>
@@ -203,7 +206,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC0
-        CwAAAk1TRnQBSQFMAgEBBgEAAbwBAAHcAQABEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CwAAAk1TRnQBSQFMAgEBBgEAAbwBAAHgAQABEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -259,11 +262,20 @@
   <data name="treeView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <data name="&gt;&gt;cutToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>784, 512</value>
+  </data>
   <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>
   </data>
   <data name="&gt;&gt;buttonFoldersLetters.Parent" xml:space="preserve">
     <value>groupBoxSplitModes</value>
+  </data>
+  <data name="&gt;&gt;buttonNoFolders.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="buttonCancel.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -294,9 +306,6 @@
   </data>
   <data name="comboBoxPosition.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
-  </data>
-  <data name="&gt;&gt;splitContainer.Panel2.Name" xml:space="preserve">
-    <value>splitContainer.Panel2</value>
   </data>
   <data name="&gt;&gt;listViewContent.Name" xml:space="preserve">
     <value>listViewContent</value>
@@ -1457,9 +1466,6 @@
         //////////////////////////////////8=
 </value>
   </data>
-  <data name="&gt;&gt;cutToolStripMenuItem.Name" xml:space="preserve">
-    <value>cutToolStripMenuItem</value>
-  </data>
   <data name="buttonFoldersEquallyOriginal.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 60</value>
   </data>
@@ -1471,6 +1477,9 @@
   </data>
   <data name="newFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 22</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 474</value>
   </data>
   <data name="&gt;&gt;buttonFoldersLettersOriginal.Name" xml:space="preserve">
     <value>buttonFoldersLettersOriginal</value>
@@ -1520,17 +1529,11 @@
   <data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="groupBoxArt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 227</value>
-  </data>
   <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
   <data name="buttonFoldersLetters.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
-  </data>
-  <data name="&gt;&gt;splitContainer.Panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="buttonNewFolder.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1553,11 +1556,8 @@
   <data name="&gt;&gt;treeView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="buttonFoldersEquallyOriginal.Text" xml:space="preserve">
-    <value>Original games -&gt; Split equally</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFoldersOriginal.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;buttonFoldersEqually.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="buttonNewFolder.Location" type="System.Drawing.Point, System.Drawing">
     <value>394, 243</value>
@@ -1598,14 +1598,14 @@
   <data name="&gt;&gt;panel2.Name" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="&gt;&gt;buttonFoldersEqually.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="buttonFoldersLettersOriginal.Text" xml:space="preserve">
     <value>Original games -&gt; Split by first letter</value>
   </data>
   <data name="buttonFoldersEqually.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 88</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="toolStripMenuItemSep.Size" type="System.Drawing.Size, System.Drawing">
     <value>164, 6</value>
@@ -1637,8 +1637,14 @@
   <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
     <value>678, 7</value>
   </data>
+  <data name="&gt;&gt;buttonOk.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="splitContainer.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
+  </data>
+  <data name="buttonFoldersEquallyOriginal.Text" xml:space="preserve">
+    <value>Original games -&gt; Split equally</value>
   </data>
   <data name="treeView.ImageIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1660,9 +1666,6 @@
   </data>
   <data name="&gt;&gt;pasteToolStripMenuItem.Name" xml:space="preserve">
     <value>pasteToolStripMenuItem</value>
-  </data>
-  <data name="newFolderToolStripMenuItem.Text" xml:space="preserve">
-    <value>Create new folder</value>
   </data>
   <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -1694,14 +1697,8 @@
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 22</value>
   </data>
-  <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
-    <value>contextMenuStrip</value>
-  </data>
   <data name="pictureBoxArt.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLetters.Name" xml:space="preserve">
-    <value>buttonFoldersLetters</value>
   </data>
   <data name="&gt;&gt;buttonFoldersEquallyOriginal.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1724,6 +1721,9 @@
   <data name="&gt;&gt;groupBoxSplitModes.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="buttonOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="&gt;&gt;splitContainer.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
@@ -1738,9 +1738,6 @@
   </data>
   <data name="buttonFoldersLettersOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
-  </data>
-  <data name="pictureBoxArt.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;groupBoxArt.Name" xml:space="preserve">
     <value>groupBoxArt</value>
@@ -1760,14 +1757,14 @@
   <data name="&gt;&gt;buttonNewFolder.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="buttonFoldersLettersOriginal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
-  </data>
   <data name="panel2.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;deleteToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;listViewContent.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1781,11 +1778,14 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;deleteToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
+    <value>contextMenuStrip</value>
   </data>
   <data name="&gt;&gt;panel2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonNoFolders.Parent" xml:space="preserve">
+    <value>groupBoxSplitModes</value>
   </data>
   <data name="comboBoxPosition.Items3" xml:space="preserve">
     <value>Rightmost</value>
@@ -1793,8 +1793,8 @@
   <data name="listViewContent.Size" type="System.Drawing.Size, System.Drawing">
     <value>492, 206</value>
   </data>
-  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 474</value>
+  <data name="&gt;&gt;labelPosition.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="buttonNoFoldersOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1829,8 +1829,8 @@
   <data name="labelPosition.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;splitContainer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cutToolStripMenuItem.Name" xml:space="preserve">
+    <value>cutToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;buttonNoFoldersOriginal.Parent" xml:space="preserve">
     <value>groupBoxSplitModes</value>
@@ -1847,14 +1847,14 @@
   <data name="panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
   </data>
-  <data name="&gt;&gt;cutToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="newFolderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Create new folder</value>
   </data>
-  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Delete</value>
+  <data name="&gt;&gt;splitContainer.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="buttonNewFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 21</value>
+  <data name="&gt;&gt;buttonFoldersLetters.Name" xml:space="preserve">
+    <value>buttonFoldersLetters</value>
   </data>
   <data name="buttonNoFolders.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1868,8 +1868,8 @@
   <data name="labelPosition.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 13</value>
   </data>
-  <data name="&gt;&gt;buttonOk.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="groupBoxArt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 227</value>
   </data>
   <data name="&gt;&gt;labelElementCount.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1877,14 +1877,11 @@
   <data name="buttonFoldersEquallyOriginal.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>784, 512</value>
+  <data name="&gt;&gt;buttonNoFoldersOriginal.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;newFolderToolStripMenuItem.Name" xml:space="preserve">
     <value>newFolderToolStripMenuItem</value>
-  </data>
-  <data name="comboBoxPosition.Items2" xml:space="preserve">
-    <value>Right to the games</value>
   </data>
   <data name="buttonNoFoldersOriginal.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1898,8 +1895,8 @@
   <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="buttonOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+  <data name="&gt;&gt;splitContainer.Panel2.Name" xml:space="preserve">
+    <value>splitContainer.Panel2</value>
   </data>
   <data name="groupBoxArt.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -1907,11 +1904,14 @@
   <data name="&gt;&gt;imageList.Name" xml:space="preserve">
     <value>imageList</value>
   </data>
+  <data name="pictureBoxArt.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="&gt;&gt;toolStripMenuItemSep.Name" xml:space="preserve">
     <value>toolStripMenuItemSep</value>
   </data>
-  <data name="&gt;&gt;buttonNoFolders.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
+  <data name="buttonFoldersLettersOriginal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 60</value>
   </data>
   <data name="buttonFoldersLetters.Text" xml:space="preserve">
     <value>Split by first letter</value>
@@ -1934,8 +1934,8 @@
   <data name="&gt;&gt;imageList.Type" xml:space="preserve">
     <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;buttonNoFolders.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="comboBoxPosition.Items2" xml:space="preserve">
+    <value>Right to the games</value>
   </data>
   <data name="comboBoxPosition.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 21</value>
@@ -1946,16 +1946,16 @@
   <data name="&gt;&gt;comboBoxPosition.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="imageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
   </metadata>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>ru-RU</value>
   </metadata>
-  <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>120, 17</value>
+  <metadata name="imageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
 </root>

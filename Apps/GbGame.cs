@@ -14,13 +14,13 @@ using System.Xml.XPath;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public class NesUGame : NesMiniApplication
+    public class GbGame : NesMiniApplication
     {
-        public const char Prefix = 'U';
-        public static Image DefaultCover { get { return Resources.blank_jp; } }
-        public const string DefaultApp = "/bin/nes";
+        public const char Prefix = 'B';
+        public static Image DefaultCover { get { return Resources.blank_gb; } }
+        public const string DefaultApp = "/bin/gb";
 
-        public NesUGame(string path, bool ignoreEmptyConfig)
+        public GbGame(string path, bool ignoreEmptyConfig)
             : base(path, ignoreEmptyConfig)
         {
         }

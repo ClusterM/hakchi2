@@ -128,6 +128,46 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blank_gb {
+            get {
+                object obj = ResourceManager.GetObject("blank_gb", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_gba {
+            get {
+                object obj = ResourceManager.GetObject("blank_gba", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_gbc {
+            get {
+                object obj = ResourceManager.GetObject("blank_gbc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_genesis {
+            get {
+                object obj = ResourceManager.GetObject("blank_genesis", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blank_jp {
             get {
                 object obj = ResourceManager.GetObject("blank_jp", resourceCulture);
@@ -141,6 +181,36 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static System.Drawing.Bitmap blank_nes {
             get {
                 object obj = ResourceManager.GetObject("blank_nes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_pce {
+            get {
+                object obj = ResourceManager.GetObject("blank_pce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_sms {
+            get {
+                object obj = ResourceManager.GetObject("blank_sms", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_snes_us {
+            get {
+                object obj = ResourceManager.GetObject("blank_snes_us", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

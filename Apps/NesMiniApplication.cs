@@ -25,18 +25,10 @@ namespace com.clusterrr.hakchi_gui
         {
             get { return code; }
         }
-        virtual internal static char Prefix
-        {
-            get { return 'Z'; }
-        }
-        virtual internal static Image DefaultCover
-        {
-            get { return Resources.blank_app; }
-        }
-        virtual internal static string DefaultAp
-        {
-            get { return "/bin/path-to-your-app"; }
-        }
+        public const char Prefix = 'U';
+        public static Image DefaultCover { get { return Resources.blank_app; } }
+        internal const string DefaultApp = "/bin/path-to-your-app";
+
         public readonly string GamePath;
         public readonly string ConfigPath;
         public readonly string IconPath;
@@ -111,13 +103,38 @@ namespace com.clusterrr.hakchi_gui
                 throw new FileNotFoundException("Invalid app folder");
             var config = File.ReadAllLines(files[0]);
             foreach (var line in config)
-                if (line.StartsWith("Exec=/usr/bin/clover-kachikachi") || line.StartsWith("Exec=/bin/clover-kachikachi-wr"))
+            {
+                if (line.StartsWith("Exec="))
                 {
-                    if (line.Contains(".nes"))
-                        return new NesGame(path, ignoreEmptyConfig);
-                    if (line.Contains(".fds"))
-                        return new FdsGame(path, ignoreEmptyConfig);
+                    string command = line.Substring(5);
+                    if (command.StartsWith("/usr/bin/clover-kachikachi") || command.StartsWith("/bin/clover-kachikachi-wr"))
+                    {
+                        if (command.Contains(".nes"))
+                            return new NesGame(path, ignoreEmptyConfig);
+                        if (command.Contains(".fds"))
+                            return new FdsGame(path, ignoreEmptyConfig);
+                    }
+                    if (command.StartsWith(NesUGame.DefaultApp + " "))
+                        return new NesUGame(path, ignoreEmptyConfig);
+                    if (command.StartsWith(SnesGame.DefaultApp + " "))
+                        return new SnesGame(path, ignoreEmptyConfig);
+                    if (command.StartsWith(N64Game.DefaultApp + " "))
+                        return new N64Game(path, ignoreEmptyConfig);
+                    if (command.StartsWith(SmsGame.DefaultApp + " "))
+                        return new SmsGame(path, ignoreEmptyConfig);
+                    if (command.StartsWith(GenesisGame.DefaultApp + " "))
+                        return new GenesisGame(path, ignoreEmptyConfig);
+                    if (command.StartsWith(GbGame.DefaultApp + " "))
+                        return new GbGame(path, ignoreEmptyConfig);
+                    if (command.StartsWith(GbcGame.DefaultApp + " "))
+                        return new GbcGame(path, ignoreEmptyConfig);
+                    if (command.StartsWith(GbaGame.DefaultApp + " "))
+                        return new GbaGame(path, ignoreEmptyConfig);
+                    if (command.StartsWith(PceGame.DefaultApp + " "))
+                        return new PceGame(path, ignoreEmptyConfig);
+                    break;
                 }
+            }
             return new NesMiniApplication(path, ignoreEmptyConfig);
         }
 
@@ -136,42 +153,58 @@ namespace com.clusterrr.hakchi_gui
                 case ".unf":
                 case ".unif":
                     prefixCode = NesUGame.Prefix;
-                    application = "/bin/nes";
+                    application = NesUGame.DefaultApp;
                     defaultCover = NesUGame.DefaultCover; // Most of UNIF roms are pirated Famicom games
                     break;
                 case ".desktop":
                     return ImportApp(fileName);
                 case ".gb":
+                    prefixCode = GbGame.Prefix;
+                    application = GbGame.DefaultApp;
+                    defaultCover = GbGame.DefaultCover;
+                    break;
                 case ".gbc":
-                    prefixCode = 'C';
-                    application = "/bin/gb";
+                    prefixCode = GbcGame.Prefix;
+                    application = GbcGame.DefaultApp;
+                    defaultCover = GbcGame.DefaultCover;
                     break;
                 case ".gba":
-                    prefixCode = 'A';
-                    application = "/bin/gba";
+                    prefixCode = GbaGame.Prefix;
+                    application = GbaGame.DefaultApp;
+                    defaultCover = GbaGame.DefaultCover;
                     break;
                 case ".n64":
                 case ".z64":
                 case ".v64":
-                    prefixCode = 'F';
-                    application = "/bin/n64";
+                    prefixCode = N64Game.Prefix;
+                    application = N64Game.DefaultApp;
+                    defaultCover = N64Game.DefaultCover;
                     break;
                 case ".smc":
-                    prefixCode = 'E';
-                    application = "/bin/snes";
+                    prefixCode = SnesGame.Prefix;
+                    application = SnesGame.DefaultApp;
+                    defaultCover = SnesGame.DefaultCover;
                     break;
                 case ".gen":
                 case ".smd":
-                    prefixCode = 'G';
-                    application = "/bin/md";
+                    prefixCode = GenesisGame.Prefix;
+                    application = GenesisGame.DefaultApp;
+                    defaultCover = GenesisGame.DefaultCover;
                     break;
                 case ".sms":
-                    prefixCode = 'M';
-                    application = "/bin/sms";
+                    prefixCode = SmsGame.Prefix;
+                    application = SmsGame.DefaultApp;
+                    defaultCover = SmsGame.DefaultCover;
+                    break;
+                case ".pce":
+                    prefixCode = PceGame.Prefix;
+                    application = PceGame.DefaultApp;
+                    defaultCover = PceGame.DefaultCover;
                     break;
                 default:
-                    prefixCode = 'Z';
-                    application = "/bin/path-to-your-app";
+                    prefixCode = Prefix;
+                    application = DefaultApp;
+                    defaultCover = DefaultCover;
                     break;
             }
             if (rawRomData == null)
@@ -188,7 +221,7 @@ namespace com.clusterrr.hakchi_gui
             game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
             game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
             game.Name = game.Name.Replace("_", " ").Replace("  ", " ").Trim();
-            game.FindCover(fileName, Resources.blank_app, crc32);
+            game.FindCover(fileName, defaultCover, crc32);
             game.Command = string.Format("{0} /usr/share/games/nes/kachikachi/{1}/{2}", application, code, romName);
             game.Save();
             return game;

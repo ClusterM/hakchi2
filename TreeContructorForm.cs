@@ -120,11 +120,27 @@ namespace com.clusterrr.hakchi_gui
                 return 2;
             if (nesElement is NesGame)
                 return 6;
-            //if (nesElement is ) // How to determine Famicom game?
-            //    return 8;
+            if (nesElement is NesUGame)
+                return 8;
             if (nesElement is FdsGame)
                 return 10;
-            //if (nesElement is NesMiniApplication)
+            if (nesElement is SnesGame)
+                return 12;
+            if (nesElement is N64Game)
+                return 14;
+            if (nesElement is SmsGame)
+                return 16;
+            if (nesElement is GenesisGame)
+                return 18;
+            if (nesElement is PceGame)
+                return 20;
+            if (nesElement is GbGame)
+                return 22;
+            if (nesElement is GbcGame)
+                return 24;
+            if (nesElement is GbaGame)
+                return 26;            
+            
             return 4;
         }
 

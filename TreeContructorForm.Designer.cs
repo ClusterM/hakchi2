@@ -121,6 +121,22 @@
             this.imageList.Images.SetKeyName(9, "famicom_sm_tr.png");
             this.imageList.Images.SetKeyName(10, "fds_sm.png");
             this.imageList.Images.SetKeyName(11, "fds_sm_tr.png");
+            this.imageList.Images.SetKeyName(12, "snes-us_sm.png");
+            this.imageList.Images.SetKeyName(13, "snes-us_sm_tr.png");
+            this.imageList.Images.SetKeyName(14, "snes-eu-jp_sm.png");
+            this.imageList.Images.SetKeyName(15, "snes-eu-jp_sm_tr.png");
+            this.imageList.Images.SetKeyName(16, "sms_sm.png");
+            this.imageList.Images.SetKeyName(17, "sms_sm_tr.png");
+            this.imageList.Images.SetKeyName(18, "genesis_sm.png");
+            this.imageList.Images.SetKeyName(19, "genesis_sm_tr.png");
+            this.imageList.Images.SetKeyName(20, "pce_sm.png");
+            this.imageList.Images.SetKeyName(21, "pce_sm_tr.png");
+            this.imageList.Images.SetKeyName(22, "gb_sm.png");
+            this.imageList.Images.SetKeyName(23, "gb_sm_tr.png");
+            this.imageList.Images.SetKeyName(24, "gbc_sm.png");
+            this.imageList.Images.SetKeyName(25, "gbc_sm_tr.png");
+            this.imageList.Images.SetKeyName(26, "gba_sm.png");
+            this.imageList.Images.SetKeyName(27, "gba_sm_tr.png");
             // 
             // comboBoxPosition
             // 

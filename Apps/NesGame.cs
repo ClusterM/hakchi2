@@ -17,8 +17,7 @@ namespace com.clusterrr.hakchi_gui
     public class NesGame : NesMiniApplication
     {
         public delegate bool NeedPatchDelegate(Form parentForm, string nesFileName);
-        protected const char prefixCode = 'H';
-
+        public const char Prefix = 'H';
         public readonly string NesPath;
         public readonly string GameGeniePath;
 
@@ -87,7 +86,7 @@ namespace com.clusterrr.hakchi_gui
             }
             nesFile.CorrectRom();
             var crc32 = nesFile.CRC32;
-            var code = GenerateCode(crc32, prefixCode);
+            var code = GenerateCode(crc32, Prefix);
             var gamePath = Path.Combine(GamesDirectory, code);
             var nesPath = Path.Combine(gamePath, code + ".nes");
             var patchesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "patches");
