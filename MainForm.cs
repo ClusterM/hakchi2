@@ -105,6 +105,7 @@ namespace com.clusterrr.hakchi_gui
                 epilepsyProtectionToolStripMenuItem.Checked = ConfigIni.AntiArmetLevel > 0;
                 selectButtonCombinationToolStripMenuItem.Enabled = resetUsingCombinationOfButtonsToolStripMenuItem.Checked = ConfigIni.ResetHack;
                 enableAutofireToolStripMenuItem.Checked = ConfigIni.AutofireHack;
+                useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack;
                 nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
                 famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
                 upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart;
@@ -563,7 +564,7 @@ namespace com.clusterrr.hakchi_gui
             workerForm.hmodsInstall = new List<string>();
             workerForm.Games = new NesMenuCollection();
             var hiddenGames = new List<string>();
-            if (ConfigIni.ResetHack || ConfigIni.AutofireHack || ConfigIni.FcStart)
+            if (ConfigIni.ResetHack || ConfigIni.AutofireHack || ConfigIni.AutofireXYHack || ConfigIni.FcStart)
             {
                 workerForm.hmodsInstall.Add("clovercon");
                 workerForm.Config["clovercon_enabled"] = "y";
@@ -571,6 +572,7 @@ namespace com.clusterrr.hakchi_gui
             else workerForm.Config["clovercon_enabled"] = "n";
             workerForm.Config["clovercon_home_combination"] = string.Format("0x{0:X2}", (byte)ConfigIni.ResetCombination);
             workerForm.Config["clovercon_autofire"] = ConfigIni.AutofireHack ? "1" : "0";
+            workerForm.Config["clovercon_autofire_xy"] = ConfigIni.AutofireXYHack ? "1" : "0";
             workerForm.Config["clovercon_fc_start"] = ConfigIni.FcStart ? "1" : "0";
             if (ConfigIni.UseFont)
             {
@@ -858,8 +860,13 @@ namespace com.clusterrr.hakchi_gui
         {
             ConfigIni.AutofireHack = enableAutofireToolStripMenuItem.Checked;
             if (ConfigIni.AutofireHack)
-                MessageBox.Show(this, Resources.AutofireHelp1 + "\r\n" + Resources.AutofireHelp2, enableAutofireToolStripMenuItem.Text,
+                MessageBox.Show(this, Resources.AutofireHelp1, enableAutofireToolStripMenuItem.Text,
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void useXYOnClassicControllerAsAutofireABToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.AutofireXYHack = useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked;
         }
 
         private void globalCommandLineArgumentsexpertsOnluToolStripMenuItem_Click(object sender, EventArgs e)

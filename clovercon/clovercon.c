@@ -37,6 +37,7 @@
 
 static unsigned short home_combination = 0xffff;
 static char autofire = 0;
+static char autofire_xy = 0;
 static unsigned char autofire_interval = 8;
 static char fc_start = 0;
 
@@ -193,6 +194,8 @@ MODULE_PARM_DESC(home_combination, "Button combination to open menu "
 				"(0x001=A,0x002=B,0x004=Select,0x008=Start,0x010=Up,0x020=Down,0x040=Left,0x080=Right,0x100=X,0x200=Y,0x400=L,0x800=R");
 module_param(autofire, byte, 0000);
 MODULE_PARM_DESC(autofire, "Enable autofire (hold select+a / select+b for a second)");
+module_param(autofire_xy, byte, 0000);
+MODULE_PARM_DESC(autofire_xy, "Use X/Y on classic controller as autofire A/B");
 module_param(autofire_interval, byte, 0000);
 MODULE_PARM_DESC(autofire_interval, "Autofire interval (default is 8)");
 module_param(fc_start, byte, 0000);
@@ -477,13 +480,12 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 		}
 
 		// Autofire
+		info->autofire_timer++;
+		if (info->autofire_timer >= autofire_interval*2)
+		info->autofire_timer = 0;
+		turbo = info->autofire_timer / autofire_interval;
 		if (autofire)
 		{
-		    info->autofire_timer++;
-		    if (info->autofire_timer >= autofire_interval*2)
-			info->autofire_timer = 0;
-		    turbo = info->autofire_timer / autofire_interval;
-
 		    if (a && select && !b && !start && !up && !down && !left && !right)
 			info->autofire_counter_a++;
 		    else
@@ -501,6 +503,9 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 		    if (info->autofire_a && !turbo) a = 0;
 		    if (info->autofire_b && !turbo) b = 0;
 
+		}
+		if (autofire_xy)
+		{
 		    // X and Y on classic controller now are autofire A and B
 		    if (x && turbo) a = 1;
 		    if (y && turbo) b = 1;

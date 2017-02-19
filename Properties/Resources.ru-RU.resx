@@ -165,7 +165,7 @@
   <data name="ExecutingCommand" xml:space="preserve">
     <value>Выполняем команду:</value>
   </data>
-  <data name="ExecutingFel1" xml:space="preserve">
+  <data name="ExecutingFes1" xml:space="preserve">
     <value>Запускаем fes1...</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
@@ -309,9 +309,6 @@
   </data>
   <data name="AutofireHelp1" xml:space="preserve">
     <value>Зажмите Select+A/B на секунду, чтобы включить турбо на кнопках A/B.</value>
-  </data>
-  <data name="AutofireHelp2" xml:space="preserve">
-    <value>Помимо этого, кнопки X и Y на Classic Controller'е будут работать как турбо.</value>
   </data>
   <data name="ExtraArgsInfo" xml:space="preserve">
     <value>Вы можете задать глобальные параметры командной строки, которые будут добавлены ко всем играм, включая оригинальные. Только для экспертов!</value>

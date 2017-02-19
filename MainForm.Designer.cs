@@ -37,6 +37,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.addPresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.syncronizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadCoversForAllGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -57,6 +58,7 @@
             this.resetUsingCombinationOfButtonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectButtonCombinationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableAutofireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useXYOnClassicControllerAsAutofireABToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.upABStartOnSecondControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.epilepsyProtectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -152,6 +154,7 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addMoreGamesToolStripMenuItem,
             this.presetsToolStripMenuItem,
+            this.syncronizeToolStripMenuItem,
             this.searchToolStripMenuItem,
             this.downloadCoversForAllGamesToolStripMenuItem,
             this.toolStripMenuItem1,
@@ -188,6 +191,12 @@
             // 
             resources.ApplyResources(this.deletePresetToolStripMenuItem, "deletePresetToolStripMenuItem");
             this.deletePresetToolStripMenuItem.Name = "deletePresetToolStripMenuItem";
+            // 
+            // syncronizeToolStripMenuItem
+            // 
+            resources.ApplyResources(this.syncronizeToolStripMenuItem, "syncronizeToolStripMenuItem");
+            this.syncronizeToolStripMenuItem.Name = "syncronizeToolStripMenuItem";
+            this.syncronizeToolStripMenuItem.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // searchToolStripMenuItem
             // 
@@ -307,6 +316,7 @@
             this.resetUsingCombinationOfButtonsToolStripMenuItem,
             this.selectButtonCombinationToolStripMenuItem,
             this.enableAutofireToolStripMenuItem,
+            this.useXYOnClassicControllerAsAutofireABToolStripMenuItem,
             this.upABStartOnSecondControllerToolStripMenuItem});
             this.cloverconHackToolStripMenuItem.Name = "cloverconHackToolStripMenuItem";
             // 
@@ -331,6 +341,13 @@
             this.enableAutofireToolStripMenuItem.CheckOnClick = true;
             this.enableAutofireToolStripMenuItem.Name = "enableAutofireToolStripMenuItem";
             this.enableAutofireToolStripMenuItem.Click += new System.EventHandler(this.enableAutofireToolStripMenuItem_Click);
+            // 
+            // useXYOnClassicControllerAsAutofireABToolStripMenuItem
+            // 
+            resources.ApplyResources(this.useXYOnClassicControllerAsAutofireABToolStripMenuItem, "useXYOnClassicControllerAsAutofireABToolStripMenuItem");
+            this.useXYOnClassicControllerAsAutofireABToolStripMenuItem.CheckOnClick = true;
+            this.useXYOnClassicControllerAsAutofireABToolStripMenuItem.Name = "useXYOnClassicControllerAsAutofireABToolStripMenuItem";
+            this.useXYOnClassicControllerAsAutofireABToolStripMenuItem.Click += new System.EventHandler(this.useXYOnClassicControllerAsAutofireABToolStripMenuItem_Click);
             // 
             // upABStartOnSecondControllerToolStripMenuItem
             // 
@@ -960,6 +977,8 @@
         private System.Windows.Forms.ToolStripMenuItem modulesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem installModulesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uninstallModulesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem syncronizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem useXYOnClassicControllerAsAutofireABToolStripMenuItem;
     }
 }
 

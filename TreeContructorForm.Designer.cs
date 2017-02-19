@@ -111,10 +111,32 @@
             this.imageList.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList.Images.SetKeyName(0, "folder_sm.png");
             this.imageList.Images.SetKeyName(1, "folder_sm_tr.png");
-            this.imageList.Images.SetKeyName(2, "blank_sm.png");
-            this.imageList.Images.SetKeyName(3, "blank_sm_tr.png");
-            this.imageList.Images.SetKeyName(4, "original_sm.png");
-            this.imageList.Images.SetKeyName(5, "original_sm_tr.png");
+            this.imageList.Images.SetKeyName(2, "original_sm.png");
+            this.imageList.Images.SetKeyName(3, "original_sm_tr.png");
+            this.imageList.Images.SetKeyName(4, "app_sm.png");
+            this.imageList.Images.SetKeyName(5, "app_sm_tr.png");
+            this.imageList.Images.SetKeyName(6, "nes_sm.png");
+            this.imageList.Images.SetKeyName(7, "nes_sm_tr.png");
+            this.imageList.Images.SetKeyName(8, "famicom_sm.png");
+            this.imageList.Images.SetKeyName(9, "famicom_sm_tr.png");
+            this.imageList.Images.SetKeyName(10, "fds_sm.png");
+            this.imageList.Images.SetKeyName(11, "fds_sm_tr.png");
+            this.imageList.Images.SetKeyName(12, "snes-us_sm.png");
+            this.imageList.Images.SetKeyName(13, "snes-us_sm_tr.png");
+            this.imageList.Images.SetKeyName(14, "snes-eu-jp_sm.png");
+            this.imageList.Images.SetKeyName(15, "snes-eu-jp_sm_tr.png");
+            this.imageList.Images.SetKeyName(16, "sms_sm.png");
+            this.imageList.Images.SetKeyName(17, "sms_sm_tr.png");
+            this.imageList.Images.SetKeyName(18, "genesis_sm.png");
+            this.imageList.Images.SetKeyName(19, "genesis_sm_tr.png");
+            this.imageList.Images.SetKeyName(20, "pce_sm.png");
+            this.imageList.Images.SetKeyName(21, "pce_sm_tr.png");
+            this.imageList.Images.SetKeyName(22, "gb_sm.png");
+            this.imageList.Images.SetKeyName(23, "gb_sm_tr.png");
+            this.imageList.Images.SetKeyName(24, "gbc_sm.png");
+            this.imageList.Images.SetKeyName(25, "gbc_sm_tr.png");
+            this.imageList.Images.SetKeyName(26, "gba_sm.png");
+            this.imageList.Images.SetKeyName(27, "gba_sm_tr.png");
             // 
             // comboBoxPosition
             // 
