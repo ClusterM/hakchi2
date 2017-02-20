@@ -129,7 +129,7 @@
   <data name="presetsToolStripMenuItem.Text" xml:space="preserve">
     <value>Пресеты</value>
   </data>
-  <data name="syncronizeToolStripMenuItem.Text" xml:space="preserve">
+  <data name="synchronizeToolStripMenuItem.Text" xml:space="preserve">
     <value>Синхронизация</value>
   </data>
   <data name="searchToolStripMenuItem.Text" xml:space="preserve">

@@ -37,7 +37,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.addPresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.syncronizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.synchronizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadCoversForAllGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -154,7 +154,7 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addMoreGamesToolStripMenuItem,
             this.presetsToolStripMenuItem,
-            this.syncronizeToolStripMenuItem,
+            this.synchronizeToolStripMenuItem,
             this.searchToolStripMenuItem,
             this.downloadCoversForAllGamesToolStripMenuItem,
             this.toolStripMenuItem1,
@@ -192,11 +192,11 @@
             resources.ApplyResources(this.deletePresetToolStripMenuItem, "deletePresetToolStripMenuItem");
             this.deletePresetToolStripMenuItem.Name = "deletePresetToolStripMenuItem";
             // 
-            // syncronizeToolStripMenuItem
+            // synchronizeToolStripMenuItem
             // 
-            resources.ApplyResources(this.syncronizeToolStripMenuItem, "syncronizeToolStripMenuItem");
-            this.syncronizeToolStripMenuItem.Name = "syncronizeToolStripMenuItem";
-            this.syncronizeToolStripMenuItem.Click += new System.EventHandler(this.buttonStart_Click);
+            resources.ApplyResources(this.synchronizeToolStripMenuItem, "synchronizeToolStripMenuItem");
+            this.synchronizeToolStripMenuItem.Name = "synchronnizeToolStripMenuItem";
+            this.synchronizeToolStripMenuItem.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // searchToolStripMenuItem
             // 
@@ -977,7 +977,7 @@
         private System.Windows.Forms.ToolStripMenuItem modulesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem installModulesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uninstallModulesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem syncronizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem synchronizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useXYOnClassicControllerAsAutofireABToolStripMenuItem;
     }
 }
