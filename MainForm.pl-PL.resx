@@ -135,9 +135,6 @@
   <data name="unselectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Odznacz wszystko</value>
   </data>
-  <data name="openFileDialogNes.Filter" xml:space="preserve">
-    <value>Pliki NES|*.nes;*.fds;*.zip;*.7z;*.rar|All files|*.*</value>
-  </data>
   <data name="deleteGameToolStripMenuItem.Text" xml:space="preserve">
     <value>Usuń grę</value>
   </data>
@@ -175,7 +172,7 @@
     <value>Oryginalne gry na wierzchu -&gt; Automatycznie w podfolderach</value>
   </data>
   <data name="buttonBrowseImage.Text" xml:space="preserve">
-    <value>Wybierz</value> 
+    <value>Wybierz</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Box art:</value>
@@ -1471,5 +1468,11 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text" xml:space="preserve">
     <value>Użyj X/Y na Classic Controllerze jako A/B</value>
+  </data>
+  <data name="openFileDialogNes.Filter" xml:space="preserve">
+    <value>Wszystkie obsługiwane ROMy|*.nes;*.fds;*.desktop;*.zip;*.7zip;*.rar;*.snes;*.smc;*.srm;*.swc;*.fig;*.gb;*.gba;*.gbc;*.gen;*.sms;*.smd;*.n64;*.z64;*.v64;*.rom|Pliki NES|*.nes;*.fds;*.desktop;*.zip;*.7zip;*.rar|Pliki SNES|*.snes;*.smc;*.srm;*.swc;*.fig;*.desktop;*.zip;*.7zip;*.rar|Pliki Gameboy|*.gb;*.gba;*.gbc;*.desktop;*.zip;*.7zip;*.rar|Pliki Genesis/SMS/MD|*.gen;*.sms;*.smd;*.desktop;*.zip;*.7z;*.rar|Pliki Nintendo 64|*.n64;*.z64;*.v64;*.rom;*.desktop;*.zip;*.7zip;*.rar|Wszystkie pliki|*.*</value>
+  </data>
+  <data name="checkBoxRetro.Text" xml:space="preserve">
+    <value>Uruchom z RetroArch, zamiast oficjalnego emulatora</value>
   </data>
 </root>
