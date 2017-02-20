@@ -2390,7 +2390,7 @@
     <value>Famicom Mini</value>
   </data>
   <data name="syncronizeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Syncronize</value>
+    <value>Synchronize</value>
   </data>
   <data name="&gt;&gt;globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
