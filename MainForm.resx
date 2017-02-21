@@ -559,7 +559,7 @@
     <value>True</value>
   </data>
   <data name="checkBoxRetro.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 257</value>
+    <value>25, 388</value>
   </data>
   <data name="checkBoxRetro.Size" type="System.Drawing.Size, System.Drawing">
     <value>348, 21</value>
@@ -583,7 +583,7 @@
     <value>0</value>
   </data>
   <data name="buttonShowGameGenieDatabase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>336, 355</value>
+    <value>336, 352</value>
   </data>
   <data name="buttonShowGameGenieDatabase.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -667,7 +667,7 @@
     <value>3</value>
   </data>
   <data name="textBoxGameGenie.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 359</value>
+    <value>25, 352</value>
   </data>
   <data name="textBoxGameGenie.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -697,7 +697,7 @@
     <value>NoControl</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 338</value>
+    <value>21, 331</value>
   </data>
   <data name="label7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -841,13 +841,13 @@
     <value>9</value>
   </data>
   <data name="pictureBoxArt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 389</value>
+    <value>95, 416</value>
   </data>
   <data name="pictureBoxArt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="pictureBoxArt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 251</value>
+    <value>187, 224</value>
   </data>
   <data name="pictureBoxArt.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
@@ -898,7 +898,7 @@
     <value>11</value>
   </data>
   <data name="textBoxArguments.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 308</value>
+    <value>24, 292</value>
   </data>
   <data name="textBoxArguments.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -925,7 +925,7 @@
     <value>True</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 287</value>
+    <value>20, 271</value>
   </data>
   <data name="label3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -952,7 +952,7 @@
     <value>13</value>
   </data>
   <data name="textBoxPublisher.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 220</value>
+    <value>103, 229</value>
   </data>
   <data name="textBoxPublisher.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -979,7 +979,7 @@
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 223</value>
+    <value>20, 233</value>
   </data>
   <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1245,20 +1245,23 @@
   <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>350, 17</value>
   </metadata>
+  <data name="toolStripProgressBar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 20</value>
+  </data>
   <data name="toolStripStatusLabelSelected.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 20</value>
+    <value>151, 21</value>
   </data>
   <data name="toolStripStatusLabelSelected.Text" xml:space="preserve">
     <value>toolStripStatusLabel1</value>
   </data>
   <data name="statusStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 748</value>
+    <value>0, 747</value>
   </data>
   <data name="statusStrip.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>1, 0, 19, 0</value>
   </data>
   <data name="statusStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>809, 25</value>
+    <value>809, 26</value>
   </data>
   <data name="statusStrip.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1282,10 +1285,10 @@
     <value>459, 17</value>
   </metadata>
   <data name="openFileDialogNes.Filter" xml:space="preserve">
-    <value>All supported ROM files|*.nes;*.fds;*.desktop;*.zip;*.7zip;*.rar;*.snes;*.smc;*.srm;*.swc;*.fig;*.gb;*.gba;*.gbc;*.gen;*.sms;*.smd;*.n64;*.z64;*.v64;*.rom|NES files|*.nes;*.fds;*.desktop;*.zip;*.7zip;*.rar|SNES files|*.snes;*.smc;*.srm;*.swc;*.fig;*.desktop;*.zip;*.7zip;*.rar|Gameboy files|*.gb;*.gba;*.gbc;*.desktop;*.zip;*.7zip;*.rar|Genesis/SMS/MD files|*.gen;*.sms;*.smd;*.desktop;*.zip;*.7z;*.rar|Nintendo 64 files|*.n64;*.z64;*.v64;*.rom;*.desktop;*.zip;*.7zip;*.rar|All files|*.*</value>
+    <value>NES files and applications|*.nes;*.fds;*.desktop;*.zip;*.7z;*.rar|All files|*.*</value>
   </data>
   <data name="openFileDialogNes.Title" xml:space="preserve">
-    <value>Select file(s)</value>
+    <value>Select NES file(s)</value>
   </data>
   <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>592, 17</value>
@@ -1419,9 +1422,6 @@
   <data name="&gt;&gt;groupBoxDefaultGames.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <metadata name="timerCalculateGames.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>620, 18</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -2953,6 +2953,12 @@
   <data name="&gt;&gt;aboutToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripProgressBar1.Name" xml:space="preserve">
+    <value>toolStripProgressBar1</value>
+  </data>
+  <data name="&gt;&gt;toolStripProgressBar1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripStatusLabelSelected.Name" xml:space="preserve">
     <value>toolStripStatusLabelSelected</value>
   </data>
@@ -2988,12 +2994,6 @@
   </data>
   <data name="&gt;&gt;openFileDialogImage.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;timerCalculateGames.Name" xml:space="preserve">
-    <value>timerCalculateGames</value>
-  </data>
-  <data name="&gt;&gt;timerCalculateGames.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
