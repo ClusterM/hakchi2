@@ -175,7 +175,7 @@
     <value>Oryginalne gry na wierzchu -&gt; Automatycznie w podfolderach</value>
   </data>
   <data name="buttonBrowseImage.Text" xml:space="preserve">
-    <value>Przeglądaj</value>
+    <value>Wybierz</value> 
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Box art:</value>
@@ -1456,5 +1456,20 @@
   </data>
   <data name="searchToolStripMenuItem.Text" xml:space="preserve">
     <value>Szukaj</value>
+  </data>
+  <data name="installModulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zainstaluj dodatkowe moduły</value>
+  </data>
+  <data name="modulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Moduły</value>
+  </data>
+  <data name="syncronizeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Synchronizuj</value>
+  </data>
+  <data name="uninstallModulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Odinstaluj dodatkowe moduły</value>
+  </data>
+  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text" xml:space="preserve">
+    <value>Użyj X/Y na Classic Controllerze jako A/B</value>
   </data>
 </root>

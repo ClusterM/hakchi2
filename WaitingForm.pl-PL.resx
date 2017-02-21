@@ -152,7 +152,7 @@
     <value>302, 13</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>5. Zainstaluj sterowniki, jeśli jeszcze nie zostały zainstalowane:</value>
+    <value>5. Jeśli jeszcze tego nie zrobiłeś to:</value>
   </data>
   <data name="buttonDriver.Text" xml:space="preserve">
     <value>Zainstaluj sterowniki</value>

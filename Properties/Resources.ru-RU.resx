@@ -421,7 +421,4 @@
   <data name="MemoryFull" xml:space="preserve">
     <value>Простите, слишком уж много игр, на {0}МБ, NES Mini такое не осилит.</value>
   </data>
-  <data name="String" xml:space="preserve">
-    <value>MemoryFull</value>
-  </data>
 </root>
