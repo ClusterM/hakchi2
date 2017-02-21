@@ -13,6 +13,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class MainForm : Form
     {
+        private bool LoadBatch = false;
         public static string BaseDirectory;
         //readonly string UBootDump;
         readonly string KernelDump;
@@ -135,7 +136,7 @@ namespace com.clusterrr.hakchi_gui
                 MessageBoxManager.No = MessageBoxManager.Ignore = Resources.No;
                 MessageBoxManager.Cancel = Resources.NoForAll;
                 MessageBoxManager.Abort = Resources.YesForAll;
-
+                RecalculateSelectedGames();
                 // Loading games database in background
                 new Thread(NesGame.LoadCache).Start();
             }
@@ -148,6 +149,7 @@ namespace com.clusterrr.hakchi_gui
 
         public void LoadGames()
         {
+            
             Debug.WriteLine("Loading games");
             var selected = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             Directory.CreateDirectory(NesMiniApplication.GamesDirectory);
@@ -178,12 +180,14 @@ namespace com.clusterrr.hakchi_gui
             }
 
             var gamesSorted = games.OrderBy(o => o.Name);
+            LoadBatch = true;
             checkedListBoxGames.Items.Clear();
             checkedListBoxGames.Items.Add(Resources.Default30games, selected.Contains("default"));
             foreach (var game in gamesSorted)
             {
                 checkedListBoxGames.Items.Add(game, selected.Contains(game.Code));
             }
+            LoadBatch = false;
             RecalculateSelectedGames();
             ShowSelected();
         }
@@ -438,6 +442,7 @@ namespace com.clusterrr.hakchi_gui
 
         int RecalculateSelectedGames()
         {
+
             int c = 0;
             foreach (var game in checkedListBoxGames.CheckedItems)
             {
@@ -446,10 +451,38 @@ namespace com.clusterrr.hakchi_gui
                 else
                     c += checkedListBoxDefaultGames.CheckedItems.Count;
             }
-            toolStripStatusLabelSelected.Text = c + " " + Resources.GamesSelected;
+            long currentMemUsage = GetMemoryUsage();
+
+
+            toolStripStatusLabelSelected.Text = ((int)(currentMemUsage / 1024 / 1024)).ToString() + "mB" + " / " + ((int)(WorkerForm.maxTotalSize / 1024 / 1024)).ToString() + "mB" +" | " + c + " " + Resources.GamesSelected;
+            int currentPct = (int)(currentMemUsage * 100 / WorkerForm.maxTotalSize);
+            if (currentPct > 100)
+            {
+                currentPct = 100;
+             
+            }
+            toolStripProgressBar1.Value = currentPct;
             return c;
         }
+        private long GetMemoryUsage()
+        {
 
+            long ret = 0;
+            if (!LoadBatch)
+            {
+                foreach (var game in checkedListBoxGames.CheckedItems)
+                {
+                    if (game is NesMiniApplication)
+                    {
+                        NesMiniApplication app = game as NesMiniApplication;
+                        ret += app.Size();
+                    }
+                }
+            }
+            return ret;
+
+
+        }
         private void buttonAddGames_Click(object sender, EventArgs e)
         {
             if (openFileDialogNes.ShowDialog() == DialogResult.OK)
@@ -875,15 +908,13 @@ namespace com.clusterrr.hakchi_gui
                 ConfigIni.ExtraCommandLineArguments = form.textBox.Text;
         }
 
-        private void timerCalculateGames_Tick(object sender, EventArgs e)
-        {
-            RecalculateSelectedGames();
-        }
-
         private void checkedListBoxGames_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (e.Index == 0)
+            {
                 groupBoxDefaultGames.Enabled = e.NewValue == CheckState.Checked;
+            }
+            RecalculateSelectedGames();
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
@@ -921,21 +952,27 @@ namespace com.clusterrr.hakchi_gui
 
         private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            LoadBatch = true;
             if ((int)(sender as ToolStripMenuItem).Tag == 0)
                 for (int i = 0; i < checkedListBoxGames.Items.Count; i++)
                     checkedListBoxGames.SetItemChecked(i, true);
             else
                 for (int i = 0; i < checkedListBoxDefaultGames.Items.Count; i++)
                     checkedListBoxDefaultGames.SetItemChecked(i, true);
+            LoadBatch = false;
+            RecalculateSelectedGames();
         }
 
         private void unselectAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            LoadBatch = true ;
             if ((int)(sender as ToolStripMenuItem).Tag == 0)
                 for (int i = 0; i < checkedListBoxGames.Items.Count; i++)
                     checkedListBoxGames.SetItemChecked(i, false);
             else for (int i = 0; i < checkedListBoxDefaultGames.Items.Count; i++)
                     checkedListBoxDefaultGames.SetItemChecked(i, false);
+            LoadBatch = false;
+            RecalculateSelectedGames();
         }
 
         private void checkedListBoxGames_DragEnter(object sender, DragEventArgs e)
@@ -1076,6 +1113,11 @@ namespace com.clusterrr.hakchi_gui
                     MessageBox.Show(Resources.DoneUploaded, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+
+        private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

@@ -326,7 +326,7 @@ namespace com.clusterrr.hakchi_gui
 
         public override string ToString()
         {
-            return Name;
+            return "(" + this.GetType().ToString().Replace("com.clusterrr.hakchi_gui.","").Replace("Game","").ToUpper() + ") "+ Name;
         }
 
         public Image Image
