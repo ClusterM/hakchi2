@@ -214,6 +214,7 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
+                checkBoxRetro.Enabled = true;
                 var app = selected as NesMiniApplication;
                 groupBoxDefaultGames.Visible = false;
                 groupBoxOptions.Visible = true;
@@ -232,6 +233,7 @@ namespace com.clusterrr.hakchi_gui
                 else if (app is FdsGame)
                     textBoxArguments.Text = (app as FdsGame).Args;
                 else
+                    checkBoxRetro.Enabled = false;
                     textBoxArguments.Text = app.Command;
                 if (File.Exists(app.IconPath))
                     pictureBoxArt.Image = NesMiniApplication.LoadBitmap(app.IconPath);
@@ -241,6 +243,14 @@ namespace com.clusterrr.hakchi_gui
                 textBoxGameGenie.Text = (app is NesGame) ? (app as NesGame).GameGenie : "";
                 groupBoxOptions.Enabled = true;
             }
+            if (textBoxArguments.Text.Contains("--retroarch") == true)
+                {
+                checkBoxRetro.Checked = true;
+                }
+            else
+                {
+                checkBoxRetro.Checked = false;
+                }
         }
 
         void LoadHidden()
@@ -1075,6 +1085,20 @@ namespace com.clusterrr.hakchi_gui
                 {
                     MessageBox.Show(Resources.DoneUploaded, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+        }
+
+        private void checkBoxRetro_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxRetro.Checked == false)
+            {
+                textBoxArguments.Text = textBoxArguments.Text.Replace(" --retroarch", "");
+            }
+            else
+            if (textBoxArguments.Text.Contains("--retroarch") == false)
+            {
+                textBoxArguments.Text += " --retroarch";
+                checkBoxRetro.Checked = true;
             }
         }
     }
