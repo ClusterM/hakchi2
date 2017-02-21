@@ -36,6 +36,14 @@ namespace com.clusterrr.hakchi_gui
                 query += " nes|famicom box art";
             else if (app is FdsGame)
                 query += " fds box art";
+            else if (app is SmsGame)
+            {
+                query += " sega master system box art";
+            }
+            else if (app is GbGame)
+            {
+                query += " gameboy box art";
+            }
             else
                 query += " game (box|cover) art";
             var url = string.Format("https://www.google.com/search?q={0}&source=lnms&tbm=isch", HttpUtility.UrlEncode(query));
