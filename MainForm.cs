@@ -3,6 +3,7 @@ using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -13,6 +14,8 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class MainForm : Form
     {
+        const long maxTotalSize = 300;
+
         public static string BaseDirectory;
         //readonly string UBootDump;
         readonly string KernelDump;
@@ -94,7 +97,8 @@ namespace com.clusterrr.hakchi_gui
                 LoadHidden();
                 LoadPresets();
                 var version = Assembly.GetExecutingAssembly().GetName().Version;
-                Text = string.Format("hakchi2 - v{0}.{1:D2}{2}", version.Major, version.Build, (version.Revision < 10) ? ("rc" + version.Revision.ToString()) : "");
+                Text = string.Format("hakchi2 - v{0}.{1:D2}{2}", version.Major, version.Build, (version.Revision < 10) ?
+                    ("rc" + version.Revision.ToString()) : (version.Revision > 10 ? ('a' + version.Revision - 10).ToString() : ""));
 
                 // Some settnigs
                 useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
@@ -138,6 +142,8 @@ namespace com.clusterrr.hakchi_gui
 
                 // Loading games database in background
                 new Thread(NesGame.LoadCache).Start();
+                // Recalculate games in background
+                new Thread(RecalculateSelectedGamesThread).Start();
             }
             catch (Exception ex)
             {
@@ -436,18 +442,60 @@ namespace com.clusterrr.hakchi_gui
             SaveConfig();
         }
 
-        int RecalculateSelectedGames()
+        struct CountResult
         {
-            int c = 0;
+            public int Count;
+            public long Size;
+        }
+        void RecalculateSelectedGamesThread()
+        {
+            try
+            {
+                var stats = RecalculateSelectedGames();
+                showStats(stats);
+            }
+            catch
+            {
+                timerCalculateGames.Enabled = false;
+                timerCalculateGames.Enabled = true;
+            }
+        }
+        CountResult RecalculateSelectedGames()
+        {
+            CountResult stats;
+            stats.Count = 0;
+            stats.Size = 0;
             foreach (var game in checkedListBoxGames.CheckedItems)
             {
                 if (game is NesMiniApplication)
-                    c++;
+                {
+                    stats.Count++;
+                    stats.Size += (game as NesMiniApplication).Size();
+                }
                 else
-                    c += checkedListBoxDefaultGames.CheckedItems.Count;
+                    stats.Count += checkedListBoxDefaultGames.CheckedItems.Count;
             }
-            toolStripStatusLabelSelected.Text = c + " " + Resources.GamesSelected;
-            return c;
+            return stats;
+        }
+        void showStats(CountResult stats)
+        {
+            try
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new Action<CountResult>(showStats), new object[] { stats });
+                    return;
+                }
+                toolStripStatusLabelSelected.Text = stats.Count + " " + Resources.GamesSelected;
+                toolStripStatusLabelSize.Text = string.Format("{0}MB / {1}MB", stats.Size / 1024 / 1024, maxTotalSize);
+                toolStripProgressBar.Maximum = (int)(maxTotalSize * 1024 * 1024);
+                toolStripProgressBar.Value = Math.Min((int)stats.Size, toolStripProgressBar.Maximum);
+                toolStripStatusLabelSize.ForeColor =
+                    (toolStripProgressBar.Value < toolStripProgressBar.Maximum) ?
+                    SystemColors.ControlText :
+                    Color.Red;
+            }
+            catch { }
         }
 
         private void buttonAddGames_Click(object sender, EventArgs e)
@@ -484,12 +532,19 @@ namespace com.clusterrr.hakchi_gui
         private void buttonStart_Click(object sender, EventArgs e)
         {
             SaveConfig();
-            var gamesCount = RecalculateSelectedGames();
-            if (gamesCount == 0)
+            var stats = RecalculateSelectedGames();
+            if (stats.Count == 0)
             {
                 MessageBox.Show(Resources.SelectAtLeast, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (stats.Size > maxTotalSize*1024*1024)
+            {
+                if (MessageBox.Show(string.Format(Resources.MemoryFull, stats.Size / 1024 / 1024) + " " + Resources.DoYouWantToContinue,
+                    Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No)
+                    return;
+            }
+
             bool dumpedKernelNow = false;
             if (!File.Exists(KernelDump))
             {
@@ -877,13 +932,24 @@ namespace com.clusterrr.hakchi_gui
 
         private void timerCalculateGames_Tick(object sender, EventArgs e)
         {
-            RecalculateSelectedGames();
+            new Thread(RecalculateSelectedGamesThread).Start(); // Calculate it in background
+            timerCalculateGames.Enabled = false; // We don't need to count games repetedly
         }
 
         private void checkedListBoxGames_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (e.Index == 0)
                 groupBoxDefaultGames.Enabled = e.NewValue == CheckState.Checked;
+            // Schedule recalculation
+            timerCalculateGames.Enabled = false;
+            timerCalculateGames.Enabled = true;
+        }
+
+        private void checkedListBoxDefaultGames_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            // Schedule recalculation
+            timerCalculateGames.Enabled = false;
+            timerCalculateGames.Enabled = true;
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
