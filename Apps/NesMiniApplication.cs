@@ -199,7 +199,10 @@ namespace com.clusterrr.hakchi_gui
                     break;
                 default:
                     prefixCode = Prefix;
-                    application = DefaultApp;
+                    if (extension.Length > 1)
+                        application = string.Format("/bin/{0}", extension.Substring(1));
+                    else
+                        application = DefaultApp;
                     defaultCover = DefaultCover;
                     break;
             }

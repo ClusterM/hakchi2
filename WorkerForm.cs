@@ -173,7 +173,10 @@ namespace com.clusterrr.hakchi_gui
             var form = new SelectFileForm(files);
             TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
             var result = form.ShowDialog();
-            selectedFile = form.listBoxFiles.SelectedItem.ToString();
+            if (form.listBoxFiles.SelectedItem != null)
+                selectedFile = form.listBoxFiles.SelectedItem.ToString();
+            else
+                selectedFile = null;
             TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
             return result;
         }

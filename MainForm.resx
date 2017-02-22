@@ -183,7 +183,7 @@
   <data name="deletePresetToolStripMenuItem.Text" xml:space="preserve">
     <value>Delete preset</value>
   </data>
-  <data name="syncronizeToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+  <data name="synchronizeToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F5</value>
   </data>
   <data name="syncronizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -347,6 +347,9 @@
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text" xml:space="preserve">
     <value>Disable page/folders</value>
+    </data>
+  <data name="&gt;&gt;synchronizeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>353, 6</value>
@@ -875,6 +878,9 @@
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Release date (YYYY-MM-DD):</value>
+    </data>
+  <data name="&gt;&gt;synchronizeToolStripMenuItem.Name" xml:space="preserve">
+    <value>synchronizeToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -1349,6 +1355,9 @@
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>4</value>
+    </data>
+  <data name="synchronizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 22</value>
   </data>
   <data name="buttonAddGames.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -1544,6 +1553,9 @@
   </data>
   <data name="checkedListBoxDefaultGames.Size" type="System.Drawing.Size, System.Drawing">
     <value>282, 454</value>
+  </data>
+  <data name="synchronizeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Synchronize</value>
   </data>
   <data name="checkedListBoxDefaultGames.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
