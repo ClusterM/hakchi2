@@ -109,6 +109,7 @@ namespace com.clusterrr.hakchi_gui
                 nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
                 famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
                 upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart;
+                compressGamesIfPossibleToolStripMenuItem.Checked = ConfigIni.Compress;
 
                 disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
                 automaticToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 2;
@@ -1091,6 +1092,11 @@ namespace com.clusterrr.hakchi_gui
             max80toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 80;
             max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
             max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
+        }
+
+        private void compressGamesIfPossibleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Compress = compressGamesIfPossibleToolStripMenuItem.Checked;
         }
 
         private void buttonShowGameGenieDatabase_Click(object sender, EventArgs e)

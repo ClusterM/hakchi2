@@ -461,6 +461,12 @@
   <data name="pagesfoldersTypeToolStripMenuItem.Text" xml:space="preserve">
     <value>Pages/folders structure</value>
   </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Compress games, if possible</value>
+  </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 22</value>
   </data>
@@ -2804,6 +2810,12 @@
     <value>customToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;customToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;compressGamesIfPossibleToolStripMenuItem.Name" xml:space="preserve">
+    <value>compressGamesIfPossibleToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;compressGamesIfPossibleToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Name" xml:space="preserve">

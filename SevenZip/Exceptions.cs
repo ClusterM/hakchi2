@@ -16,6 +16,7 @@
 
 #define DOTNET20
 #define UNMANAGED
+#define COMPRESS
 
 using System;
 #if !WINCE

@@ -1,4 +1,5 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
+using SevenZip;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -135,22 +136,38 @@ namespace com.clusterrr.hakchi_gui
             var appinfo = AppTypeCollection.GetAppByExtension(extension);
             if (appinfo != null)
             {
+                if (ConfigIni.Compress)
+                {
+                    string temp = null;
+                    temp = Path.Combine(Path.GetTempPath(), fileName);
+                    File.WriteAllBytes(temp, rawRomData);
+                    rawRomData = Compress(temp);
+                    fileName += ".7z";
+                    if (!string.IsNullOrEmpty(temp) && File.Exists(temp))
+                        File.Delete(temp);
+                }
                 var import = appinfo.Class.GetMethod("Import", new Type[] { typeof(string), typeof(byte[]) });
                 if (import != null)
                     return (NesMiniApplication)import.Invoke(null, new object[] { fileName, rawRomData });
                 else
                     return Import(fileName, rawRomData, appinfo.Prefix, appinfo.DefaultApp, appinfo.DefaultCover);
             }
-            string application = extension.Length > 2 ? ("/bin/" + extension.Substring(2)) : DefaultApp;
+            string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : DefaultApp;
             return Import(fileName, rawRomData, DefaultPrefix, application, DefaultCover);
         }
 
         private static NesMiniApplication Import(string fileName, byte[] rawRomData, char prefixCode, string application, Image defaultCover)
         {
+            bool sevenZipped = false;
+            if (fileName.EndsWith(".7z"))
+            {
+                fileName = fileName.Substring(0, fileName.Length - 3);
+                sevenZipped = true;
+            }
             var crc32 = CRC32(rawRomData);
             var code = GenerateCode(crc32, prefixCode);
             var gamePath = Path.Combine(GamesDirectory, code);
-            var romName = Regex.Replace(Path.GetFileName(fileName), @"[^A-Za-z0-9.-]", "_").Trim();
+            var romName = Regex.Replace(Path.GetFileName(fileName), @"[^A-Za-z0-9.-]", "_").Trim() + (sevenZipped ? ".7z" : "");
             var romPath = Path.Combine(gamePath, romName);
             Directory.CreateDirectory(gamePath);
             File.WriteAllBytes(romPath, rawRomData);
@@ -485,6 +502,18 @@ namespace com.clusterrr.hakchi_gui
                 //make a new Bitmap object the owner of the MemoryStream
                 return new Bitmap(memoryStream);
             }
+        }
+
+        private static byte[] Compress(string filename)
+        {
+            var arch = new MemoryStream();
+            var compressor = new SevenZipCompressor();
+            compressor.CompressionLevel = CompressionLevel.Ultra;
+            compressor.CompressFiles(arch, filename);
+            arch.Seek(0, SeekOrigin.Begin);
+            var result = new byte[arch.Length];
+            arch.Read(result, 0, result.Length);
+            return result;
         }
     }
 }

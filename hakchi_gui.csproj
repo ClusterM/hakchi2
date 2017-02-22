@@ -21,7 +21,7 @@
     <DebugType>Full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;COMPRESS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -203,6 +203,7 @@
     <Compile Include="SevenZip\LibraryFeature.cs" />
     <Compile Include="SevenZip\LibraryManager.cs" />
     <Compile Include="SevenZip\LzmaDecodeStream.cs" />
+    <Compile Include="SevenZip\LzmaEncodeStream.cs" />
     <Compile Include="SevenZip\LzmaProgressCallback.cs" />
     <Compile Include="SevenZip\NativeMethods.cs" />
     <Compile Include="SevenZip\sdk\Common\CRC.cs" />
@@ -219,8 +220,11 @@
     <Compile Include="SevenZip\sdk\Compress\RangeCoder\RangeCoderBit.cs" />
     <Compile Include="SevenZip\sdk\Compress\RangeCoder\RangeCoderBitTree.cs" />
     <Compile Include="SevenZip\sdk\ICoder.cs" />
+    <Compile Include="SevenZip\SevenZipCompressor.cs" />
+    <Compile Include="SevenZip\SevenZipCompressorAsynchronous.cs" />
     <Compile Include="SevenZip\SevenZipExtractor.cs" />
     <Compile Include="SevenZip\SevenZipExtractorAsynchronous.cs" />
+    <Compile Include="SevenZip\SevenZipSfx.cs" />
     <Compile Include="SevenZip\StreamWrappers.cs" />
     <Compile Include="StringInputForm.cs">
       <SubType>Form</SubType>
