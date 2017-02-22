@@ -952,7 +952,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         try
                         {
-                            app = NesGame.ImportNes(fileName, YesForAllUnsupportedMappers ? (bool?)true : null, ref needPatch, needPatchCallback, this, rawData);
+                            app = NesGame.Import(fileName, YesForAllUnsupportedMappers ? (bool?)true : null, ref needPatch, needPatchCallback, this, rawData);
 
                             // Trying to import Game Genie codes
                             var lGameGeniePath = Path.Combine(Path.GetDirectoryName(fileName), Path.GetFileNameWithoutExtension(fileName) + ".xml");
@@ -977,7 +977,7 @@ namespace com.clusterrr.hakchi_gui
                                 if (r == DialogResult.Abort)
                                     YesForAllUnsupportedMappers = true;
                                 if (r == DialogResult.Yes || r == DialogResult.Abort || r == DialogResult.Retry)
-                                    app = NesGame.ImportNes(fileName, true, ref needPatch, needPatchCallback, this, rawData);
+                                    app = NesGame.Import(fileName, true, ref needPatch, needPatchCallback, this, rawData);
                                 else
                                     continue;
                             }

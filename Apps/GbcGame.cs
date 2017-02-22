@@ -6,11 +6,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public class GbcGame : NesMiniApplication
     {
-        public const char Prefix = 'C';
-        public static Image DefaultCover { get { return Resources.blank_gbc; } }
-        public const string DefaultApp = "/bin/gbc";
-
-        public GbcGame(string path, bool ignoreEmptyConfig)
+        public GbcGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {
         }

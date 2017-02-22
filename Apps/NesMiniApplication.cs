@@ -1,4 +1,5 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -19,7 +20,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get { return code; }
         }
-        public const char Prefix = 'U';
+        public const char DefaultPrefix = 'U';
         public static Image DefaultCover { get { return Resources.blank_app; } }
         internal const string DefaultApp = "/bin/path-to-your-app";
 
@@ -108,24 +109,12 @@ namespace com.clusterrr.hakchi_gui
                         if (command.Contains(".fds"))
                             return new FdsGame(path, ignoreEmptyConfig);
                     }
-                    if (command.StartsWith(NesUGame.DefaultApp + " "))
-                        return new NesUGame(path, ignoreEmptyConfig);
-                    if (command.StartsWith(SnesGame.DefaultApp + " "))
-                        return new SnesGame(path, ignoreEmptyConfig);
-                    if (command.StartsWith(N64Game.DefaultApp + " "))
-                        return new N64Game(path, ignoreEmptyConfig);
-                    if (command.StartsWith(SmsGame.DefaultApp + " "))
-                        return new SmsGame(path, ignoreEmptyConfig);
-                    if (command.StartsWith(GenesisGame.DefaultApp + " "))
-                        return new GenesisGame(path, ignoreEmptyConfig);
-                    if (command.StartsWith(GbGame.DefaultApp + " "))
-                        return new GbGame(path, ignoreEmptyConfig);
-                    if (command.StartsWith(GbcGame.DefaultApp + " "))
-                        return new GbcGame(path, ignoreEmptyConfig);
-                    if (command.StartsWith(GbaGame.DefaultApp + " "))
-                        return new GbaGame(path, ignoreEmptyConfig);
-                    if (command.StartsWith(PceGame.DefaultApp + " "))
-                        return new PceGame(path, ignoreEmptyConfig);
+                    var app = AppTypeCollection.GetAppByExec(command);
+                    if (app != null)
+                    {
+                        var constructor = app.Class.GetConstructor(new Type[] { typeof(string), typeof(bool) });
+                        return (NesMiniApplication)constructor.Invoke(new object[] { path, ignoreEmptyConfig });
+                    }
                     break;
                 }
             }
@@ -135,79 +124,25 @@ namespace com.clusterrr.hakchi_gui
         public static NesMiniApplication Import(string fileName, byte[] rawRomData = null)
         {
             var extension = Path.GetExtension(fileName).ToLower();
-            char prefixCode;
-            string application;
-            Image defaultCover = Resources.blank_app;
-            switch (extension)
-            {
-                // For some unusual NES ROM formats
-                case ".fds":
-                    return FdsGame.ImportFds(fileName, rawRomData);
-                case ".nes":
-                case ".unf":
-                case ".unif":
-                    prefixCode = NesUGame.Prefix;
-                    application = NesUGame.DefaultApp;
-                    defaultCover = NesUGame.DefaultCover; // Most of UNIF roms are pirated Famicom games
-                    break;
-                case ".desktop":
-                    return ImportApp(fileName);
-                case ".gb":
-                    prefixCode = GbGame.Prefix;
-                    application = GbGame.DefaultApp;
-                    defaultCover = GbGame.DefaultCover;
-                    break;
-                case ".gbc":
-                    prefixCode = GbcGame.Prefix;
-                    application = GbcGame.DefaultApp;
-                    defaultCover = GbcGame.DefaultCover;
-                    break;
-                case ".gba":
-                    prefixCode = GbaGame.Prefix;
-                    application = GbaGame.DefaultApp;
-                    defaultCover = GbaGame.DefaultCover;
-                    break;
-                case ".n64":
-                case ".z64":
-                case ".v64":
-                    prefixCode = N64Game.Prefix;
-                    application = N64Game.DefaultApp;
-                    defaultCover = N64Game.DefaultCover;
-                    break;
-                case ".sfc":
-                case ".smc":
-                    prefixCode = SnesGame.Prefix;
-                    application = SnesGame.DefaultApp;
-                    defaultCover = SnesGame.DefaultCover;
-                    break;
-                case ".gen":
-                case ".md":
-                case ".smd":
-                    prefixCode = GenesisGame.Prefix;
-                    application = GenesisGame.DefaultApp;
-                    defaultCover = GenesisGame.DefaultCover;
-                    break;
-                case ".sms":
-                    prefixCode = SmsGame.Prefix;
-                    application = SmsGame.DefaultApp;
-                    defaultCover = SmsGame.DefaultCover;
-                    break;
-                case ".pce":
-                    prefixCode = PceGame.Prefix;
-                    application = PceGame.DefaultApp;
-                    defaultCover = PceGame.DefaultCover;
-                    break;
-                default:
-                    prefixCode = Prefix;
-                    if (extension.Length > 1)
-                        application = string.Format("/bin/{0}", extension.Substring(1));
-                    else
-                        application = DefaultApp;
-                    defaultCover = DefaultCover;
-                    break;
-            }
+            if (extension == ".desktop")
+                return ImportApp(fileName);
             if (rawRomData == null)
                 rawRomData = File.ReadAllBytes(fileName);
+            var appinfo = AppTypeCollection.GetAppByExtension(extension);
+            if (appinfo != null)
+            {
+                var import = appinfo.Class.GetMethod("Import", new Type[] { typeof(string), typeof(byte[]) });
+                if (import != null)
+                    return (NesMiniApplication)import.Invoke(null, new object[] { fileName, rawRomData });
+                else
+                    return Import(fileName, rawRomData, appinfo.Prefix, appinfo.DefaultApp, appinfo.DefaultCover);
+            }
+            string application = extension.Length > 2 ? ("/bin/" + extension.Substring(2)) : DefaultApp;
+            return Import(fileName, rawRomData, DefaultPrefix, application, Resources.blank_app);
+        }
+
+        private static NesMiniApplication Import(string fileName, byte[] rawRomData, char prefixCode, string application, Image defaultCover)
+        {
             var crc32 = CRC32(rawRomData);
             var code = GenerateCode(crc32, prefixCode);
             var gamePath = Path.Combine(GamesDirectory, code);

@@ -6,11 +6,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public class SnesGame : NesMiniApplication
     {
-        public const char Prefix = 'U';
-        public static Image DefaultCover { get { return Resources.blank_snes_us; } }
-        internal const string DefaultApp = "/bin/snes";
-
-        public SnesGame(string path, bool ignoreEmptyConfig)
+        public SnesGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {
         }

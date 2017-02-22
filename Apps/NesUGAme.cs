@@ -6,11 +6,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public class NesUGame : NesMiniApplication
     {
-        public const char Prefix = 'U';
-        public static Image DefaultCover { get { return Resources.blank_jp; } }
-        public const string DefaultApp = "/bin/nes";
-
-        public NesUGame(string path, bool ignoreEmptyConfig)
+        public NesUGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {
         }

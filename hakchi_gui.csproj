@@ -72,6 +72,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Apps\AppTypeCollection.cs" />
     <Compile Include="Apps\PceGame.cs" />
     <Compile Include="Apps\GbaGame.cs" />
     <Compile Include="Apps\GbcGame.cs" />

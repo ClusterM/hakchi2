@@ -56,7 +56,7 @@ namespace com.clusterrr.hakchi_gui
         public const string GameGenieFileName = "gamegenie.txt";
         private static byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10, 86, 87, 184 };
 
-        public NesGame(string path, bool ignoreEmptyConfig)
+        public NesGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {
             NesPath = Path.Combine(GamePath, Code + ".nes");
@@ -68,7 +68,7 @@ namespace com.clusterrr.hakchi_gui
             Args = Args; // To update exec path if need
         }
 
-        public static NesMiniApplication ImportNes(string nesFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback = null, Form parentForm = null, byte[] rawRomData = null)
+        public static NesMiniApplication Import(string nesFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback = null, Form parentForm = null, byte[] rawRomData = null)
         {
             NesFile nesFile;
             try
