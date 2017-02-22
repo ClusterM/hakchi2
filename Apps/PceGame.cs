@@ -6,6 +6,14 @@ namespace com.clusterrr.hakchi_gui
 {
     public class PceGame : NesMiniApplication
     {
+        public override string GoogleSuffix
+        {
+            get
+            {
+                return "(pce | pc engine)";
+            }
+        }
+
         public PceGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {

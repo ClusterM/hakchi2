@@ -159,9 +159,6 @@
   <data name="addMoreGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Dodaj więcej &amp;gier</value>
   </data>
-  <data name="openFileDialogImage.Filter" xml:space="preserve">
-    <value>Obrazy (*.bmp;*.png;*.jpg;*.jpeg;*.gif)|*.bmp;*.png;*.jpg;*.jpeg;*.gif|All files|*.*</value>
-  </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Wyjście</value>
   </data>

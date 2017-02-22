@@ -6,6 +6,14 @@ namespace com.clusterrr.hakchi_gui
 {
     public class GenesisGame : NesMiniApplication
     {
+        public override string GoogleSuffix
+        {
+            get
+            {
+                return "(genesis | mega drive)";
+            }
+        }
+
         public GenesisGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {

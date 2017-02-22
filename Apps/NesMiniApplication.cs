@@ -23,6 +23,10 @@ namespace com.clusterrr.hakchi_gui
         public const char DefaultPrefix = 'U';
         public static Image DefaultCover { get { return Resources.blank_app; } }
         internal const string DefaultApp = "/bin/path-to-your-app";
+        public virtual string GoogleSuffix
+        {
+            get { return "game"; }
+        }
 
         public readonly string GamePath;
         public readonly string ConfigPath;
@@ -138,7 +142,7 @@ namespace com.clusterrr.hakchi_gui
                     return Import(fileName, rawRomData, appinfo.Prefix, appinfo.DefaultApp, appinfo.DefaultCover);
             }
             string application = extension.Length > 2 ? ("/bin/" + extension.Substring(2)) : DefaultApp;
-            return Import(fileName, rawRomData, DefaultPrefix, application, Resources.blank_app);
+            return Import(fileName, rawRomData, DefaultPrefix, application, DefaultCover);
         }
 
         private static NesMiniApplication Import(string fileName, byte[] rawRomData, char prefixCode, string application, Image defaultCover)

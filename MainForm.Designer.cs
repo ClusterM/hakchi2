@@ -119,6 +119,8 @@
             this.buttonAddGames = new System.Windows.Forms.Button();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelSelected = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelSize = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.openFileDialogNes = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,8 +131,6 @@
             this.groupBoxDefaultGames = new System.Windows.Forms.GroupBox();
             this.checkedListBoxDefaultGames = new System.Windows.Forms.CheckedListBox();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
-            this.toolStripStatusLabelSize = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -196,8 +196,8 @@
             // 
             // synchronizeToolStripMenuItem
             // 
+            this.synchronizeToolStripMenuItem.Name = "synchronizeToolStripMenuItem";
             resources.ApplyResources(this.synchronizeToolStripMenuItem, "synchronizeToolStripMenuItem");
-            this.synchronizeToolStripMenuItem.Name = "synchronnizeToolStripMenuItem";
             this.synchronizeToolStripMenuItem.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // searchToolStripMenuItem
@@ -784,11 +784,23 @@
             resources.ApplyResources(this.toolStripStatusLabelSelected, "toolStripStatusLabelSelected");
             this.toolStripStatusLabelSelected.Name = "toolStripStatusLabelSelected";
             // 
+            // toolStripStatusLabelSize
+            // 
+            resources.ApplyResources(this.toolStripStatusLabelSize, "toolStripStatusLabelSize");
+            this.toolStripStatusLabelSize.Name = "toolStripStatusLabelSize";
+            // 
+            // toolStripProgressBar
+            // 
+            this.toolStripProgressBar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.toolStripProgressBar.Name = "toolStripProgressBar";
+            resources.ApplyResources(this.toolStripProgressBar, "toolStripProgressBar");
+            this.toolStripProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            // 
             // openFileDialogNes
             // 
             this.openFileDialogNes.DefaultExt = "nes";
-            resources.ApplyResources(this.openFileDialogNes, "openFileDialogNes");
             this.openFileDialogNes.Multiselect = true;
+            resources.ApplyResources(this.openFileDialogNes, "openFileDialogNes");
             // 
             // contextMenuStrip
             // 
@@ -848,18 +860,6 @@
             this.timerCalculateGames.Enabled = true;
             this.timerCalculateGames.Interval = 500;
             this.timerCalculateGames.Tick += new System.EventHandler(this.timerCalculateGames_Tick);
-            // 
-            // toolStripStatusLabelSize
-            // 
-            resources.ApplyResources(this.toolStripStatusLabelSize, "toolStripStatusLabelSize");
-            this.toolStripStatusLabelSize.Name = "toolStripStatusLabelSize";
-            // 
-            // toolStripProgressBar
-            // 
-            this.toolStripProgressBar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.toolStripProgressBar.Name = "toolStripProgressBar";
-            resources.ApplyResources(this.toolStripProgressBar, "toolStripProgressBar");
-            this.toolStripProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
             // MainForm
             // 

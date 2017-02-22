@@ -140,6 +140,13 @@ namespace com.clusterrr.hakchi_gui
                 MessageBoxManager.Cancel = Resources.NoForAll;
                 MessageBoxManager.Abort = Resources.YesForAll;
 
+                var extensions = new List<string>() { "*.new", "*.unf", "*.unif", ".*fds", "*.desktop", "*.zip", "*.7z", "*.rar" };
+                foreach (var app in AppTypeCollection.ApplicationTypes)
+                    foreach (var ext in app.Extensions)
+                        if (!extensions.Contains("*" + ext))
+                            extensions.Add("*" + ext);
+                openFileDialogNes.Filter = "Games and apps|" + string.Join(";", extensions.ToArray()) + "|All files|*.*";
+
                 // Loading games database in background
                 new Thread(NesGame.LoadCache).Start();
                 // Recalculate games in background
@@ -538,7 +545,7 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(Resources.SelectAtLeast, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (stats.Size > maxTotalSize*1024*1024)
+            if (stats.Size > maxTotalSize * 1024 * 1024)
             {
                 if (MessageBox.Show(string.Format(Resources.MemoryFull, stats.Size / 1024 / 1024) + " " + Resources.DoYouWantToContinue,
                     Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No)
@@ -710,6 +717,9 @@ namespace com.clusterrr.hakchi_gui
                         }
                 }
             }
+            // Schedule recalculation
+            timerCalculateGames.Enabled = false;
+            timerCalculateGames.Enabled = true;
         }
 
         bool FlashOriginalKernel(bool boot = true)
@@ -983,6 +993,9 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            // Schedule recalculation
+            timerCalculateGames.Enabled = false;
+            timerCalculateGames.Enabled = true;
         }
 
         private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)

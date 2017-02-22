@@ -905,7 +905,7 @@ namespace com.clusterrr.hakchi_gui
                             foreach (var f in szExtractor.ArchiveFileNames)
                             {
                                 var e = Path.GetExtension(f).ToLower();
-                                if (e == ".nes" || e == ".fds" || e == ".unf" || e == ".unif" || e == ".desktop")
+                                if (e == ".desktop" || AppTypeCollection.GetAppByExtension(e) != null)
                                     nesFilesInArchive.Add(f);
                                 filesInArchive.Add(f);
                             }
@@ -1001,6 +1001,7 @@ namespace com.clusterrr.hakchi_gui
                     apps.Add(app);
                 SetProgress(++count, files.Length);
             }
+            addedApplications = apps.ToArray();
             return apps; // Added games/apps
         }
 

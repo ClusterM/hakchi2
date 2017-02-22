@@ -22,6 +22,14 @@ namespace com.clusterrr.hakchi_gui
         private string region = null;
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet";
 
+        public override string GoogleSuffix
+        {
+            get
+            {
+                return "(nes | famicom)";
+            }
+        }
+
         public string Args
         {
             get

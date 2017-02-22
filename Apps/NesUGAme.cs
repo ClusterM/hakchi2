@@ -6,6 +6,14 @@ namespace com.clusterrr.hakchi_gui
 {
     public class NesUGame : NesMiniApplication
     {
+        public override string GoogleSuffix
+        {
+            get
+            {
+                return "(nes | famicom)";
+            }
+        }
+
         public NesUGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {

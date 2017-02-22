@@ -32,12 +32,7 @@ namespace com.clusterrr.hakchi_gui
         public static string[] GetImageUrls(NesMiniApplication app)
         {
             string query = app.Name ?? "";
-            if (app is NesGame)
-                query += " nes|famicom box art";
-            else if (app is FdsGame)
-                query += " fds box art";
-            else
-                query += " game (box|cover) art";
+            query += " " +  app.GoogleSuffix + " (box|cover) art";
             var url = string.Format("https://www.google.com/search?q={0}&source=lnms&tbm=isch", HttpUtility.UrlEncode(query));
             Debug.WriteLine("Web request: " + url);
             var request = WebRequest.Create(url);
