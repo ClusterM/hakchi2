@@ -114,10 +114,10 @@ namespace com.clusterrr.hakchi_gui
                 else needPatch = false;
             }
 
-            if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
-            if (nesFile.Mapper == 88) nesFile.Mapper = 4; // Compatible with MMC3... sometimes
-            if (nesFile.Mapper == 95) nesFile.Mapper = 4; // Compatible with MMC3
-            if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
+            //if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
+            //if (nesFile.Mapper == 88) nesFile.Mapper = 4; // Compatible with MMC3... sometimes
+            //if (nesFile.Mapper == 95) nesFile.Mapper = 4; // Compatible with MMC3
+            //if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
             if (!supportedMappers.Contains(nesFile.Mapper) && (ignoreMapper != true))
             {
                 Directory.Delete(gamePath, true);

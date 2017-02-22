@@ -10,7 +10,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                return "(pce | pc engine)";
+                return "(pce | pc engine | turbografx 16)";
             }
         }
 
