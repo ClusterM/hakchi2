@@ -73,12 +73,13 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Apps\AppTypeCollection.cs" />
+    <Compile Include="Apps\GenesisGame.cs" />
     <Compile Include="Apps\PceGame.cs" />
     <Compile Include="Apps\GbaGame.cs" />
     <Compile Include="Apps\GbcGame.cs" />
     <Compile Include="Apps\GbGame.cs" />
     <Compile Include="Apps\N64Game.cs" />
-    <Compile Include="Apps\GenesisGame.cs" />
+    <Compile Include="Apps\GameGearGame.cs" />
     <Compile Include="Apps\SmsGame.cs" />
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\NesUGame.cs" />

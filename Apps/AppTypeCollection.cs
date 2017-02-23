@@ -109,6 +109,14 @@ namespace com.clusterrr.hakchi_gui
                 DefaultApp = "/bin/pce",
                 Prefix = 'E',
                 DefaultCover = Resources.blank_pce
+            },
+            new AppInfo
+            {
+                Class = typeof(GameGearGame),
+                Extensions = new string[] {".gg"},
+                DefaultApp = "/bin/gg",
+                Prefix = 'R',
+                DefaultCover = Resources.blank_app // TODO: icon for GameGear
             }
         };
 
