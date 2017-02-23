@@ -671,14 +671,9 @@ namespace com.clusterrr.hakchi_gui
             var workerForm = new WorkerForm();
             workerForm.Text = Resources.LoadingGames;
             workerForm.Task = WorkerForm.Tasks.AddGames;
-            if (files.Length <= 1)
-                addedApps = workerForm.AddGames(files, this);
-            else
-            {
-                workerForm.GamesToAdd = files;
-                workerForm.Start();
-                addedApps = workerForm.addedApplications;
-            }
+            workerForm.GamesToAdd = files;
+            workerForm.Start();
+            addedApps = workerForm.addedApplications;
 
             if (addedApps != null)
             {

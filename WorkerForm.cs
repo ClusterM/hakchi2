@@ -204,7 +204,6 @@ namespace com.clusterrr.hakchi_gui
                         AddGames(GamesToAdd);
                         break;
                 }
-                Thread.Sleep(1000);
                 DialogResult = DialogResult.OK;
             }
             catch (ThreadAbortException) { }
