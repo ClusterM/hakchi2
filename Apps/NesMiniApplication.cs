@@ -13,8 +13,8 @@ namespace com.clusterrr.hakchi_gui
     public class NesMiniApplication : INesMenuElement
     {
         public readonly static string GamesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "games");
-        const string DefaultReleaseDate = "1983-07-15"; // Famicom release day
-        const string DefaultPublisher = "NINTENDO";
+        const string DefaultReleaseDate = "1900-01-01";
+        const string DefaultPublisher = "UNKNOWN";
 
         protected string code;
         public string Code
