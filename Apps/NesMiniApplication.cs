@@ -1,33 +1,33 @@
-﻿using com.clusterrr.Famicom;
-using com.clusterrr.hakchi_gui.Properties;
+﻿using com.clusterrr.hakchi_gui.Properties;
+using SevenZip;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Xml.XPath;
 
 namespace com.clusterrr.hakchi_gui
 {
     public class NesMiniApplication : INesMenuElement
     {
         public readonly static string GamesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "games");
-        const string DefaultReleaseDate = "1983-07-15"; // Famicom release day
-        const string DefaultPublisher = "Nintendo";
+        const string DefaultReleaseDate = "1900-01-01";
+        const string DefaultPublisher = "UNKNOWN";
 
         protected string code;
         public string Code
         {
             get { return code; }
         }
-        public const char Prefix = 'U';
+        public const char DefaultPrefix = 'Z';
         public static Image DefaultCover { get { return Resources.blank_app; } }
         internal const string DefaultApp = "/bin/path-to-your-app";
+        public virtual string GoogleSuffix
+        {
+            get { return "game"; }
+        }
 
         public readonly string GamePath;
         public readonly string ConfigPath;
@@ -114,24 +114,12 @@ namespace com.clusterrr.hakchi_gui
                         if (command.Contains(".fds"))
                             return new FdsGame(path, ignoreEmptyConfig);
                     }
-                    if (command.StartsWith(NesUGame.DefaultApp + " "))
-                        return new NesUGame(path, ignoreEmptyConfig);
-                    if (command.StartsWith(SnesGame.DefaultApp + " "))
-                        return new SnesGame(path, ignoreEmptyConfig);
-                    if (command.StartsWith(N64Game.DefaultApp + " "))
-                        return new N64Game(path, ignoreEmptyConfig);
-                    if (command.StartsWith(SmsGame.DefaultApp + " "))
-                        return new SmsGame(path, ignoreEmptyConfig);
-                    if (command.StartsWith(GenesisGame.DefaultApp + " "))
-                        return new GenesisGame(path, ignoreEmptyConfig);
-                    if (command.StartsWith(GbGame.DefaultApp + " "))
-                        return new GbGame(path, ignoreEmptyConfig);
-                    if (command.StartsWith(GbcGame.DefaultApp + " "))
-                        return new GbcGame(path, ignoreEmptyConfig);
-                    if (command.StartsWith(GbaGame.DefaultApp + " "))
-                        return new GbaGame(path, ignoreEmptyConfig);
-                    if (command.StartsWith(PceGame.DefaultApp + " "))
-                        return new PceGame(path, ignoreEmptyConfig);
+                    var app = AppTypeCollection.GetAppByExec(command);
+                    if (app != null)
+                    {
+                        var constructor = app.Class.GetConstructor(new Type[] { typeof(string), typeof(bool) });
+                        return (NesMiniApplication)constructor.Invoke(new object[] { path, ignoreEmptyConfig });
+                    }
                     break;
                 }
             }
@@ -141,79 +129,61 @@ namespace com.clusterrr.hakchi_gui
         public static NesMiniApplication Import(string fileName, byte[] rawRomData = null)
         {
             var extension = Path.GetExtension(fileName).ToLower();
-            char prefixCode;
-            string application;
-            Image defaultCover = Resources.blank_app;
-            switch (extension)
-            {
-                // For some unusual NES ROM formats
-                case ".fds":
-                    return FdsGame.ImportFds(fileName, rawRomData);
-                case ".nes":
-                case ".unf":
-                case ".unif":
-                    prefixCode = NesUGame.Prefix;
-                    application = NesUGame.DefaultApp;
-                    defaultCover = NesUGame.DefaultCover; // Most of UNIF roms are pirated Famicom games
-                    break;
-                case ".desktop":
-                    return ImportApp(fileName);
-                case ".gb":
-                    prefixCode = GbGame.Prefix;
-                    application = GbGame.DefaultApp;
-                    defaultCover = GbGame.DefaultCover;
-                    break;
-                case ".gbc":
-                    prefixCode = GbcGame.Prefix;
-                    application = GbcGame.DefaultApp;
-                    defaultCover = GbcGame.DefaultCover;
-                    break;
-                case ".gba":
-                    prefixCode = GbaGame.Prefix;
-                    application = GbaGame.DefaultApp;
-                    defaultCover = GbaGame.DefaultCover;
-                    break;
-                case ".n64":
-                case ".z64":
-                case ".v64":
-                    prefixCode = N64Game.Prefix;
-                    application = N64Game.DefaultApp;
-                    defaultCover = N64Game.DefaultCover;
-                    break;
-                case ".smc":
-                    prefixCode = SnesGame.Prefix;
-                    application = SnesGame.DefaultApp;
-                    defaultCover = SnesGame.DefaultCover;
-                    break;
-                case ".gen":
-                case ".smd":
-                    prefixCode = GenesisGame.Prefix;
-                    application = GenesisGame.DefaultApp;
-                    defaultCover = GenesisGame.DefaultCover;
-                    break;
-                case ".sms":
-                    prefixCode = SmsGame.Prefix;
-                    application = SmsGame.DefaultApp;
-                    defaultCover = SmsGame.DefaultCover;
-                    break;
-                case ".pce":
-                    prefixCode = PceGame.Prefix;
-                    application = PceGame.DefaultApp;
-                    defaultCover = PceGame.DefaultCover;
-                    break;
-                default:
-                    prefixCode = Prefix;
-                    application = DefaultApp;
-                    defaultCover = DefaultCover;
-                    break;
-            }
+            if (extension == ".desktop")
+                return ImportApp(fileName);
             if (rawRomData == null)
                 rawRomData = File.ReadAllBytes(fileName);
+            var appinfo = AppTypeCollection.GetAppByExtension(extension);
+            if (appinfo != null)
+            {
+                var import = appinfo.Class.GetMethod("Import", new Type[] { typeof(string), typeof(byte[]) });
+                if (import != null)
+                    return (NesMiniApplication)import.Invoke(null, new object[] { fileName, rawRomData });
+                else
+                    return Import(fileName, rawRomData, appinfo.Prefix, appinfo.DefaultApp, appinfo.DefaultCover, ConfigIni.Compress);
+            }
+            string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : DefaultApp;
+            return Import(fileName, rawRomData, DefaultPrefix, application, DefaultCover);
+        }
+
+        private static NesMiniApplication Import(string fileName, byte[] rawRomData, char prefixCode, string application, Image defaultCover, bool compress = false)
+        {
             var crc32 = CRC32(rawRomData);
             var code = GenerateCode(crc32, prefixCode);
             var gamePath = Path.Combine(GamesDirectory, code);
-            var romName = Regex.Replace(Path.GetFileName(fileName), @"[^A-Za-z0-9.-]", "_").Trim();
+            bool sevenZipped = false;
+            if (compress)
+            {
+                string temp = null;
+                try
+                {
+                    if (!File.Exists(fileName))
+                    {
+                        temp = Path.Combine(Path.GetTempPath(), Path.GetFileName(fileName));
+                        File.WriteAllBytes(temp, rawRomData);
+                        rawRomData = Compress(temp);
+                        sevenZipped = true;
+                    }
+                    else
+                    {
+                        rawRomData = Compress(fileName);
+                        sevenZipped = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Compression error: " + ex.Message + ex.Source);
+                }
+                finally
+                {
+                    if (!string.IsNullOrEmpty(temp) && File.Exists(temp))
+                        File.Delete(temp);
+                }
+            }
+            var romName = Regex.Replace(Path.GetFileName(fileName), @"[^A-Za-z0-9.-]", "_").Trim() + (sevenZipped ? ".7z" : "");
             var romPath = Path.Combine(gamePath, romName);
+            if (Directory.Exists(gamePath))
+                Directory.Delete(gamePath, true);
             Directory.CreateDirectory(gamePath);
             File.WriteAllBytes(romPath, rawRomData);
             var game = new NesMiniApplication(gamePath, true);
@@ -224,7 +194,7 @@ namespace com.clusterrr.hakchi_gui
             game.FindCover(fileName, defaultCover, crc32);
             game.Command = string.Format("{0} /usr/share/games/nes/kachikachi/{1}/{2}", application, code, romName);
             game.Save();
-            return game;
+            return NesMiniApplication.FromDirectory(gamePath);
         }
 
         private static NesMiniApplication ImportApp(string fileName)
@@ -547,6 +517,19 @@ namespace com.clusterrr.hakchi_gui
                 //make a new Bitmap object the owner of the MemoryStream
                 return new Bitmap(memoryStream);
             }
+        }
+
+        private static byte[] Compress(string filename)
+        {
+            SevenZipExtractor.SetLibraryPath(Path.Combine(MainForm.BaseDirectory, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+            var arch = new MemoryStream();
+            var compressor = new SevenZipCompressor();
+            compressor.CompressionLevel = CompressionLevel.High;
+            compressor.CompressFiles(arch, filename);
+            arch.Seek(0, SeekOrigin.Begin);
+            var result = new byte[arch.Length];
+            arch.Read(result, 0, result.Length);
+            return result;
         }
     }
 }

@@ -14,6 +14,10 @@
     along with SevenZipSharp.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#define DOTNET20
+#define UNMANAGED
+#define COMPRESS
+
 using System;
 using System.IO;
 using SevenZip.Sdk.Compression.Lzma;

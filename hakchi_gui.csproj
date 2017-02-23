@@ -21,7 +21,7 @@
     <DebugType>Full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;COMPRESS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -72,12 +72,14 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Apps\AppTypeCollection.cs" />
+    <Compile Include="Apps\GenesisGame.cs" />
     <Compile Include="Apps\PceGame.cs" />
     <Compile Include="Apps\GbaGame.cs" />
     <Compile Include="Apps\GbcGame.cs" />
     <Compile Include="Apps\GbGame.cs" />
     <Compile Include="Apps\N64Game.cs" />
-    <Compile Include="Apps\GenesisGame.cs" />
+    <Compile Include="Apps\GameGearGame.cs" />
     <Compile Include="Apps\SmsGame.cs" />
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\NesUGame.cs" />
@@ -202,6 +204,7 @@
     <Compile Include="SevenZip\LibraryFeature.cs" />
     <Compile Include="SevenZip\LibraryManager.cs" />
     <Compile Include="SevenZip\LzmaDecodeStream.cs" />
+    <Compile Include="SevenZip\LzmaEncodeStream.cs" />
     <Compile Include="SevenZip\LzmaProgressCallback.cs" />
     <Compile Include="SevenZip\NativeMethods.cs" />
     <Compile Include="SevenZip\sdk\Common\CRC.cs" />
@@ -218,8 +221,11 @@
     <Compile Include="SevenZip\sdk\Compress\RangeCoder\RangeCoderBit.cs" />
     <Compile Include="SevenZip\sdk\Compress\RangeCoder\RangeCoderBitTree.cs" />
     <Compile Include="SevenZip\sdk\ICoder.cs" />
+    <Compile Include="SevenZip\SevenZipCompressor.cs" />
+    <Compile Include="SevenZip\SevenZipCompressorAsynchronous.cs" />
     <Compile Include="SevenZip\SevenZipExtractor.cs" />
     <Compile Include="SevenZip\SevenZipExtractorAsynchronous.cs" />
+    <Compile Include="SevenZip\SevenZipSfx.cs" />
     <Compile Include="SevenZip\StreamWrappers.cs" />
     <Compile Include="StringInputForm.cs">
       <SubType>Form</SubType>
@@ -277,9 +283,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.ru-RU.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectModsForm.resx">
       <DependentUpon>SelectModsForm.cs</DependentUpon>
@@ -614,7 +622,13 @@
     <Content Include="folder_images\folder_system_genesis.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="folder_images\folder_system_n64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="folder_images\folder_system_nes.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_nes_org.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="folder_images\folder_system_pce.png">
@@ -657,6 +671,7 @@
     <Content Include="images\blank_gba.png" />
     <Content Include="images\blank_gbc.png" />
     <Content Include="images\blank_genesis.png" />
+    <Content Include="images\blank_n64.png" />
     <Content Include="images\blank_nes.png" />
     <Content Include="images\blank_pce.png" />
     <Content Include="images\blank_sms.png" />
@@ -670,6 +685,8 @@
     <Content Include="images\gb_sm_tr.png" />
     <Content Include="images\genesis_sm.png" />
     <Content Include="images\genesis_sm_tr.png" />
+    <Content Include="images\n64_sm.png" />
+    <Content Include="images\n64_sm_tr.png" />
     <Content Include="images\nes_sm_tr.png" />
     <Content Include="images\famicom_sm.png" />
     <Content Include="images\famicom_sm_tr.png" />

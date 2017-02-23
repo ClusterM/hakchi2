@@ -2,13 +2,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
@@ -539,27 +536,35 @@ namespace com.clusterrr.hakchi_gui
         }
 
 
-        void newFolder(TreeNode node = null)
+        void newFolder(TreeNode parent = null)
         {
             var newnode = new TreeNode(Resources.FolderNameNewFolder, 0, 0);
-            newnode.Tag = new NesMenuFolder(newnode.Text);
-            if (node != null)
+            var newfolder = new NesMenuFolder(newnode.Text);
+            newnode.Tag = newfolder;
+            if (parent != null)
             {
-                node.Nodes.Add(newnode);
+                parent.Nodes.Add(newnode);
                 treeView.SelectedNode = newnode;
                 ShowSelected();
                 newnode.BeginEdit();
             }
             else if (treeView.SelectedNode != null)
             {
-                node = treeView.SelectedNode;
-                node.Nodes.Add(newnode);
+                parent = treeView.SelectedNode;
+                parent.Nodes.Add(newnode);
                 ShowFolderStats();
                 var item = new ListViewItem(newnode.Text, 0);
                 item.Tag = newnode;
                 listViewContent.SelectedItems.Clear();
                 listViewContent.Items.Add(item);
                 item.BeginEdit();
+            }
+            if (parent != null)
+            {
+                if (parent.Tag is NesMenuFolder)
+                    (parent.Tag as NesMenuFolder).ChildMenuCollection.Add(newfolder);
+                else if (parent.Tag is NesMenuCollection)
+                    (parent.Tag as NesMenuCollection).Add(newfolder);
             }
         }
 

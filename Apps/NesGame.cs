@@ -1,13 +1,11 @@
-﻿using com.clusterrr.Famicom;
+﻿#pragma warning disable 0108
+using com.clusterrr.Famicom;
 using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.XPath;
@@ -23,6 +21,14 @@ namespace com.clusterrr.hakchi_gui
 
         private string region = null;
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet";
+
+        public override string GoogleSuffix
+        {
+            get
+            {
+                return "(nes | famicom)";
+            }
+        }
 
         public string Args
         {
@@ -58,7 +64,7 @@ namespace com.clusterrr.hakchi_gui
         public const string GameGenieFileName = "gamegenie.txt";
         private static byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10, 86, 87, 184 };
 
-        public NesGame(string path, bool ignoreEmptyConfig)
+        public NesGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {
             NesPath = Path.Combine(GamePath, Code + ".nes");
@@ -70,7 +76,7 @@ namespace com.clusterrr.hakchi_gui
             Args = Args; // To update exec path if need
         }
 
-        public static NesMiniApplication ImportNes(string nesFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback = null, Form parentForm = null, byte[] rawRomData = null)
+        public static NesMiniApplication Import(string nesFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback = null, Form parentForm = null, byte[] rawRomData = null)
         {
             NesFile nesFile;
             try
@@ -108,10 +114,10 @@ namespace com.clusterrr.hakchi_gui
                 else needPatch = false;
             }
 
-            if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
-            if (nesFile.Mapper == 88) nesFile.Mapper = 4; // Compatible with MMC3... sometimes
-            if (nesFile.Mapper == 95) nesFile.Mapper = 4; // Compatible with MMC3
-            if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
+            //if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
+            //if (nesFile.Mapper == 88) nesFile.Mapper = 4; // Compatible with MMC3... sometimes
+            //if (nesFile.Mapper == 95) nesFile.Mapper = 4; // Compatible with MMC3
+            //if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
             if (!supportedMappers.Contains(nesFile.Mapper) && (ignoreMapper != true))
             {
                 Directory.Delete(gamePath, true);

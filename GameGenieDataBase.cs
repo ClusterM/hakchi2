@@ -1,11 +1,8 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
-using com.clusterrr.Famicom;
-using System;
+﻿using com.clusterrr.Famicom;
+using com.clusterrr.hakchi_gui.Properties;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 using System.Xml;
 
 namespace com.clusterrr.hakchi_gui

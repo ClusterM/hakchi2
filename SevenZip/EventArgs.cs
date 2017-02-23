@@ -1,4 +1,5 @@
-﻿/*  This file is part of SevenZipSharp.
+﻿#pragma warning disable 3021
+/*  This file is part of SevenZipSharp.
 
     SevenZipSharp is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
@@ -16,6 +17,7 @@
 
 #define DOTNET20
 #define UNMANAGED
+#define COMPRESS
 
 using System;
 using System.IO;

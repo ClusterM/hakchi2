@@ -1,11 +1,6 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
-using SevenZip;
+﻿using SevenZip;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;

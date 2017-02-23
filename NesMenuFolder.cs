@@ -1,12 +1,9 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Resources;
-using System.Text;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui

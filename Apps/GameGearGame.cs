@@ -4,17 +4,17 @@ using System.Drawing;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public class PceGame : NesMiniApplication
+    public class GameGearGame : NesMiniApplication
     {
         public override string GoogleSuffix
         {
             get
             {
-                return "(pce | pc engine | turbografx 16)";
+                return "game gear";
             }
         }
 
-        public PceGame(string path, bool ignoreEmptyConfig = false)
+        public GameGearGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {
         }

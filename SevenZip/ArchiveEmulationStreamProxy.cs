@@ -1,4 +1,8 @@
-﻿using System.IO;
+﻿#define DOTNET20
+#define UNMANAGED
+#define COMPRESS
+
+using System.IO;
 using System;
 
 namespace SevenZip
