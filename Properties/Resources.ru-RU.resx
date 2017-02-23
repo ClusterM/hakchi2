@@ -362,7 +362,7 @@
     <value>Вы действительно хотите удалить "{0}"?</value>
   </data>
   <data name="FolderContent" xml:space="preserve">
-    <value>Контент будет перемещён в папку "Recycle Bin". Вы можете удалить её насовсем или переместить игры в другие директории.</value>
+    <value>Контент будет перемещён в папку "Корзина". Вы можете удалить её насовсем или переместить игры в другие директории.</value>
   </data>
   <data name="MainMenu" xml:space="preserve">
     <value>Главное меню</value>
@@ -371,7 +371,7 @@
     <value>Строим дерево папок...</value>
   </data>
   <data name="FolderNameUnsorted" xml:space="preserve">
-    <value>Unsorted</value>
+    <value>Неотсортированные</value>
   </data>
   <data name="FoldersSaveQ" xml:space="preserve">
     <value>Сохранить это дерево папок?</value>
@@ -380,10 +380,10 @@
     <value>Папка "{0}" содержит {1} элементов.</value>
   </data>
   <data name="NewFolder" xml:space="preserve">
-    <value>New folder</value>
+    <value>Новая папка</value>
   </data>
   <data name="NewGamesUnsorted" xml:space="preserve">
-    <value>Новые игры помещены в папку "Unsorted".</value>
+    <value>Новые игры помещены в папку "Неотсортированные".</value>
   </data>
   <data name="AddingGames" xml:space="preserve">
     <value>Обрабатываем и добавляем в базу игры. Пожалуйста, подождите...</value>
@@ -392,16 +392,16 @@
     <value>Вы действительно хотите удалить {0} элементов?</value>
   </data>
   <data name="FolderNameBack" xml:space="preserve">
-    <value>Back</value>
+    <value>Назад</value>
   </data>
   <data name="FolderNameNewFolder" xml:space="preserve">
-    <value>New folder</value>
+    <value>Новая папка</value>
   </data>
   <data name="FolderNameOriginalGames" xml:space="preserve">
-    <value>Original games</value>
+    <value>Оригинальные игры</value>
   </data>
   <data name="FolderNameTrashBin" xml:space="preserve">
-    <value>Recycle Bin</value>
+    <value>Корзина</value>
   </data>
   <data name="InstallingMods" xml:space="preserve">
     <value>Устанавливаем модули...</value>
@@ -421,7 +421,7 @@
   <data name="MemoryFull" xml:space="preserve">
     <value>Простите, слишком уж много игр, на {0}МБ, NES Mini такое не осилит.</value>
   </data>
-  <data name="String" xml:space="preserve">
-    <value>MemoryFull</value>
+  <data name="FolderNameMoreGames" xml:space="preserve">
+    <value>Больше игр...</value>
   </data>
 </root>

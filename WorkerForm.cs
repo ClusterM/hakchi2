@@ -506,7 +506,7 @@ namespace com.clusterrr.hakchi_gui
                 if (maxProgress < 0)
                 {
                     if (stats.GamesProceed > 0)
-                        maxProgress = (int)(((double)kernel.Length / (double)67000 + 20) * (double)stats.TotalSize / (double)stats.Size + 
+                        maxProgress = (int)(((double)kernel.Length / (double)67000 + 20) * (double)stats.TotalSize / (double)stats.Size +
                             100 * ((int)Math.Ceiling((double)stats.TotalSize / (double)stats.Size) - 1));
                     else
                         maxProgress = (int)((double)kernel.Length / (double)67000 + 20);
@@ -914,8 +914,11 @@ namespace com.clusterrr.hakchi_gui
                             }
                             else if (nesFilesInArchive.Count > 1) // Many NES files, need to select
                             {
-                                if (SelectFileFromThread(nesFilesInArchive.ToArray()) == DialogResult.OK)
+                                var r = SelectFileFromThread(nesFilesInArchive.ToArray());
+                                if (r == DialogResult.OK)
                                     fileName = selectedFile;
+                                else if (r == DialogResult.Ignore)
+                                    fileName = file;
                                 else continue;
                             }
                             else if (filesInArchive.Count == 1) // No NES files but only one another file
@@ -924,26 +927,32 @@ namespace com.clusterrr.hakchi_gui
                             }
                             else // Need to select
                             {
-                                if (SelectFileFromThread(filesInArchive.ToArray()) == DialogResult.OK)
+                                var r = SelectFileFromThread(filesInArchive.ToArray());
+                                if (r == DialogResult.OK)
                                     fileName = selectedFile;
+                                else if (r == DialogResult.Ignore)
+                                    fileName = file;
                                 else continue;
                             }
-                            var o = new MemoryStream();
-                            if (Path.GetExtension(fileName).ToLower() == ".desktop" // App in archive, need the whole directory
-                                || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName)+".jpg") // Or it has cover in archive
-                                || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName) + ".png"))
+                            if (fileName != file)
                             {
-                                tmp = Path.Combine(Path.GetTempPath(), fileName);
-                                Directory.CreateDirectory(tmp);
-                                szExtractor.ExtractArchive(tmp);
-                                fileName = Path.Combine(tmp, fileName);
-                            }
-                            else
-                            {
-                                szExtractor.ExtractFile(fileName, o);
-                                rawData = new byte[o.Length];
-                                o.Seek(0, SeekOrigin.Begin);
-                                o.Read(rawData, 0, (int)o.Length);
+                                var o = new MemoryStream();
+                                if (Path.GetExtension(fileName).ToLower() == ".desktop" // App in archive, need the whole directory
+                                    || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName) + ".jpg") // Or it has cover in archive
+                                    || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName) + ".png"))
+                                {
+                                    tmp = Path.Combine(Path.GetTempPath(), fileName);
+                                    Directory.CreateDirectory(tmp);
+                                    szExtractor.ExtractArchive(tmp);
+                                    fileName = Path.Combine(tmp, fileName);
+                                }
+                                else
+                                {
+                                    szExtractor.ExtractFile(fileName, o);
+                                    rawData = new byte[o.Length];
+                                    o.Seek(0, SeekOrigin.Begin);
+                                    o.Read(rawData, 0, (int)o.Length);
+                                }
                             }
                         }
                     }

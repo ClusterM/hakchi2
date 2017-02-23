@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectFileForm));
             this.listBoxFiles = new System.Windows.Forms.ListBox();
             this.buttonOk = new System.Windows.Forms.Button();
+            this.buttonArchive = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxFiles
@@ -48,11 +49,19 @@
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.listBoxFiles_DoubleClick);
             // 
+            // buttonArchive
+            // 
+            resources.ApplyResources(this.buttonArchive, "buttonArchive");
+            this.buttonArchive.DialogResult = System.Windows.Forms.DialogResult.Ignore;
+            this.buttonArchive.Name = "buttonArchive";
+            this.buttonArchive.UseVisualStyleBackColor = true;
+            // 
             // SelectFileForm
             // 
             this.AcceptButton = this.buttonOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonArchive);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.listBoxFiles);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
@@ -66,5 +75,6 @@
 
         private System.Windows.Forms.Button buttonOk;
         internal System.Windows.Forms.ListBox listBoxFiles;
+        private System.Windows.Forms.Button buttonArchive;
     }
 }
