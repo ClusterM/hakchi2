@@ -70,7 +70,7 @@ namespace com.clusterrr.hakchi_gui
                 Prefix = 'M',
                 DefaultCover = Resources.blank_sms
             },
-                        new AppInfo
+            new AppInfo
             {
                 Class = typeof(GenesisGame),
                 Extensions = new string[] { ".gen", ".md", ".smd" },
@@ -78,7 +78,7 @@ namespace com.clusterrr.hakchi_gui
                 Prefix = 'G',
                 DefaultCover = Resources.blank_genesis
             },
-                        new AppInfo
+            new AppInfo
             {
                 Class = typeof(GbGame),
                 Extensions = new string[] { ".gb" },
