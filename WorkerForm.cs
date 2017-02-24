@@ -186,6 +186,7 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(0, 1);
             try
             {
+                DialogResult = DialogResult.None;
                 switch (Task)
                 {
                     case Tasks.DumpKernel:
@@ -204,7 +205,8 @@ namespace com.clusterrr.hakchi_gui
                         AddGames(GamesToAdd);
                         break;
                 }
-                DialogResult = DialogResult.OK;
+                if (DialogResult == DialogResult.None)
+                    DialogResult = DialogResult.OK;
             }
             catch (ThreadAbortException) { }
             catch (Exception ex)
