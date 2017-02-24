@@ -80,6 +80,14 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
+                Class = typeof(Sega32XGame),
+                Extensions = new string[] { ".32x" },
+                DefaultApp = "/bin/32x",
+                Prefix = '3',
+                DefaultCover = Resources.blank_genesis // TODO: icon for 32X
+            },
+            new AppInfo
+            {
                 Class = typeof(GbGame),
                 Extensions = new string[] { ".gb" },
                 DefaultApp = "/bin/gb",
@@ -116,7 +124,7 @@ namespace com.clusterrr.hakchi_gui
                 Extensions = new string[] {".gg"},
                 DefaultApp = "/bin/gg",
                 Prefix = 'R',
-                DefaultCover = Resources.blank_app // TODO: icon for GameGear
+                DefaultCover = Resources.blank_sms // TODO: icon for GameGear
             }
         };
 
