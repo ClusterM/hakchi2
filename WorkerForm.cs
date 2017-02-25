@@ -58,7 +58,7 @@ namespace com.clusterrr.hakchi_gui
         readonly string transferDirectory;
         readonly string originalGamesConfigDirectory;
         string[] correctKernels;
-        const long maxRamfsSize = 40 * 1024 * 1024;
+        const long maxRamfsSize = 30 * 1024 * 1024;
         string selectedFile = null;
         public NesMiniApplication[] addedApplications;
 
