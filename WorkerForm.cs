@@ -58,7 +58,8 @@ namespace com.clusterrr.hakchi_gui
         readonly string transferDirectory;
         readonly string originalGamesConfigDirectory;
         string[] correctKernels;
-        const long maxRamfsSize = 30 * 1024 * 1024;
+        long maxRamfsSize = 40 * 1024 * 1024;
+        const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
         string selectedFile = null;
         public NesMiniApplication[] addedApplications;
 
@@ -541,6 +542,7 @@ namespace com.clusterrr.hakchi_gui
         private byte[] CreatePatchedKernel(GamesTreeStats stats = null)
         {
             if (stats == null) stats = new GamesTreeStats();
+            var origGamesProceed = stats.GamesProceed;
             bool first = stats.GamesProceed == 0;
             bool partial = stats.GamesProceed > 0;
             SetStatus(Resources.BuildingCustom);
@@ -664,11 +666,20 @@ namespace com.clusterrr.hakchi_gui
                 throw new Exception("Can't rebuild kernel");
 
             var result = File.ReadAllBytes(kernelPatched);
+            if (Games != null && result.Length > maxCompressedsRamfsSize)
+            {
+                var origMaxRamfsSize = maxRamfsSize;
+                maxRamfsSize -= 5 * 1024 * 1024;
+                Debug.WriteLine(string.Format("Kernel size is too big: {0}MB, reducing max unpacked size to {1}MB", result.Length / 1024 / 1024, maxRamfsSize / 1024 / 1024));
+                stats.GamesProceed = origGamesProceed;
+                result = CreatePatchedKernel(stats);
+                maxRamfsSize = origMaxRamfsSize;
+            }
 #if !DEBUG
             if (last)
                 Directory.Delete(tempDirectory, true);
 #endif
-            if (result.Length > Fel.kernel_max_size) throw new Exception("Kernel is too big");
+            if (result.Length > maxCompressedsRamfsSize) throw new Exception("Kernel is too big");
             GC.Collect();
             return result;
         }
