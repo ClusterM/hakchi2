@@ -491,7 +491,19 @@ namespace com.clusterrr.hakchi_gui
 
                 byte[] kernel;
                 if (!string.IsNullOrEmpty(Mod))
-                    kernel = CreatePatchedKernel(stats);
+                {
+                    var origMaxRamfsSize = maxRamfsSize;
+                    var origGamesProceed = stats.GamesProceed;
+                    while (true)
+                    {
+                        kernel = CreatePatchedKernel(stats);
+                        if (kernel.Length < maxCompressedsRamfsSize) break;
+                        maxRamfsSize -= 5 * 1024 * 1024;
+                        Debug.WriteLine(string.Format("Kernel size is too big: {0}MB, reducing max unpacked size to {1}MB", kernel.Length / 1024 / 1024, maxRamfsSize / 1024 / 1024));
+                        stats.GamesProceed = origGamesProceed;
+                    }
+                    maxRamfsSize = origMaxRamfsSize;
+                }
                 else
                     kernel = File.ReadAllBytes(KernelDump);
                 var size = CalKernelSize(kernel);
@@ -546,7 +558,7 @@ namespace com.clusterrr.hakchi_gui
             bool first = stats.GamesProceed == 0;
             bool partial = stats.GamesProceed > 0;
             SetStatus(Resources.BuildingCustom);
-            if (first)
+            if (first || !Directory.Exists(ramfsDirectory))
             {
                 if (Directory.Exists(tempDirectory))
                     Directory.Delete(tempDirectory, true);
@@ -666,20 +678,10 @@ namespace com.clusterrr.hakchi_gui
                 throw new Exception("Can't rebuild kernel");
 
             var result = File.ReadAllBytes(kernelPatched);
-            if (Games != null && result.Length > maxCompressedsRamfsSize)
-            {
-                var origMaxRamfsSize = maxRamfsSize;
-                maxRamfsSize -= 5 * 1024 * 1024;
-                Debug.WriteLine(string.Format("Kernel size is too big: {0}MB, reducing max unpacked size to {1}MB", result.Length / 1024 / 1024, maxRamfsSize / 1024 / 1024));
-                stats.GamesProceed = origGamesProceed;
-                result = CreatePatchedKernel(stats);
-                maxRamfsSize = origMaxRamfsSize;
-            }
 #if !DEBUG
             if (last)
                 Directory.Delete(tempDirectory, true);
 #endif
-            if (result.Length > maxCompressedsRamfsSize) throw new Exception("Kernel is too big");
             GC.Collect();
             return result;
         }
