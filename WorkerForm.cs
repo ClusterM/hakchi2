@@ -58,7 +58,8 @@ namespace com.clusterrr.hakchi_gui
         readonly string transferDirectory;
         readonly string originalGamesConfigDirectory;
         string[] correctKernels;
-        const long maxRamfsSize = 40 * 1024 * 1024;
+        long maxRamfsSize = 40 * 1024 * 1024;
+        const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
         string selectedFile = null;
         public NesMiniApplication[] addedApplications;
 
@@ -490,7 +491,19 @@ namespace com.clusterrr.hakchi_gui
 
                 byte[] kernel;
                 if (!string.IsNullOrEmpty(Mod))
-                    kernel = CreatePatchedKernel(stats);
+                {
+                    var origMaxRamfsSize = maxRamfsSize;
+                    var origGamesProceed = stats.GamesProceed;
+                    while (true)
+                    {
+                        kernel = CreatePatchedKernel(stats);
+                        if (kernel.Length < maxCompressedsRamfsSize) break;
+                        maxRamfsSize -= 5 * 1024 * 1024;
+                        Debug.WriteLine(string.Format("Kernel size is too big: {0}MB, reducing max unpacked size to {1}MB", kernel.Length / 1024 / 1024, maxRamfsSize / 1024 / 1024));
+                        stats.GamesProceed = origGamesProceed;
+                    }
+                    maxRamfsSize = origMaxRamfsSize;
+                }
                 else
                     kernel = File.ReadAllBytes(KernelDump);
                 var size = CalKernelSize(kernel);
@@ -541,10 +554,11 @@ namespace com.clusterrr.hakchi_gui
         private byte[] CreatePatchedKernel(GamesTreeStats stats = null)
         {
             if (stats == null) stats = new GamesTreeStats();
+            var origGamesProceed = stats.GamesProceed;
             bool first = stats.GamesProceed == 0;
             bool partial = stats.GamesProceed > 0;
             SetStatus(Resources.BuildingCustom);
-            if (first)
+            if (first || !Directory.Exists(ramfsDirectory))
             {
                 if (Directory.Exists(tempDirectory))
                     Directory.Delete(tempDirectory, true);
@@ -668,7 +682,6 @@ namespace com.clusterrr.hakchi_gui
             if (last)
                 Directory.Delete(tempDirectory, true);
 #endif
-            if (result.Length > Fel.kernel_max_size) throw new Exception("Kernel is too big");
             GC.Collect();
             return result;
         }
