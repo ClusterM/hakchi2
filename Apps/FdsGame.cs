@@ -41,7 +41,7 @@ namespace com.clusterrr.hakchi_gui
             Args = Args; // To update exec path if need
         }
 
-        public static FdsGame Import(string fdsFileName, byte[] rawRomData = null)
+        public static FdsGame Import(string fdsFileName, string zFileName, byte[] rawRomData = null)
         {
             if (rawRomData == null)
                 rawRomData = File.ReadAllBytes(fdsFileName);
@@ -63,7 +63,7 @@ namespace com.clusterrr.hakchi_gui
             game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
             game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
             game.Name = game.Name.Replace("_", " ").Replace("  ", " ").Trim();
-            game.FindCover(fdsFileName, Resources.blank_fds, crc32);
+            game.FindCover(fdsFileName, zFileName, Resources.blank_fds, crc32);
             game.Args = DefaultArgs;
             game.Save();
             return game;

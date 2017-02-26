@@ -905,12 +905,21 @@ namespace com.clusterrr.hakchi_gui
                 try
                 {
                     var fileName = file;
+                    var zFileName = ""; // Path and filename of the archive (.7z/.zip/.rar)
                     var ext = Path.GetExtension(file).ToLower();
                     bool? needPatch = YesForAllPatches ? (bool?)true : null;
                     byte[] rawData = null;
                     string tmp = null;
                     if (ext == ".7z" || ext == ".zip" || ext == ".rar")
                     {
+                        // Remove the file extension of the archive
+                        if (ext == ".7z")
+                            zFileName = file.Replace(".7z", "");
+                        else if (ext == ".zip")
+                            zFileName = file.Replace(".zip", "");
+                        else
+                            zFileName = file.Replace(".rar", "");
+
                         SevenZipExtractor.SetLibraryPath(Path.Combine(baseDirectory, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
                         using (var szExtractor = new SevenZipExtractor(file))
                         {
@@ -975,7 +984,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         try
                         {
-                            app = NesGame.Import(fileName, YesForAllUnsupportedMappers ? (bool?)true : null, ref needPatch, needPatchCallback, this, rawData);
+                            app = NesGame.Import(fileName, zFileName, YesForAllUnsupportedMappers ? (bool?)true : null, ref needPatch, needPatchCallback, this, rawData);
 
                             // Trying to import Game Genie codes
                             var lGameGeniePath = Path.Combine(Path.GetDirectoryName(fileName), Path.GetFileNameWithoutExtension(fileName) + ".xml");
@@ -1000,7 +1009,7 @@ namespace com.clusterrr.hakchi_gui
                                 if (r == DialogResult.Abort)
                                     YesForAllUnsupportedMappers = true;
                                 if (r == DialogResult.Yes || r == DialogResult.Abort || r == DialogResult.Retry)
-                                    app = NesGame.Import(fileName, true, ref needPatch, needPatchCallback, this, rawData);
+                                    app = NesGame.Import(fileName, zFileName, true, ref needPatch, needPatchCallback, this, rawData);
                                 else
                                     continue;
                             }
@@ -1009,7 +1018,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     else
                     {
-                        app = NesMiniApplication.Import(fileName, rawData);
+                        app = NesMiniApplication.Import(fileName, zFileName, rawData);
                     }
                     if (!string.IsNullOrEmpty(tmp) && Directory.Exists(tmp)) Directory.Delete(tmp, true);
                     ConfigIni.SelectedGames += ";" + app.Code;
