@@ -126,7 +126,7 @@ namespace com.clusterrr.hakchi_gui
             return new NesMiniApplication(path, ignoreEmptyConfig);
         }
 
-        public static NesMiniApplication Import(string fileName, byte[] rawRomData = null)
+        public static NesMiniApplication Import(string fileName, string zFileName, byte[] rawRomData = null)
         {
             var extension = Path.GetExtension(fileName).ToLower();
             if (extension == ".desktop")
@@ -140,13 +140,13 @@ namespace com.clusterrr.hakchi_gui
                 if (import != null)
                     return (NesMiniApplication)import.Invoke(null, new object[] { fileName, rawRomData });
                 else
-                    return Import(fileName, rawRomData, appinfo.Prefix, appinfo.DefaultApp, appinfo.DefaultCover, ConfigIni.Compress);
+                    return Import(fileName, zFileName, rawRomData, appinfo.Prefix, appinfo.DefaultApp, appinfo.DefaultCover, ConfigIni.Compress);
             }
             string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : DefaultApp;
-            return Import(fileName, rawRomData, DefaultPrefix, application, DefaultCover);
+            return Import(fileName, zFileName, rawRomData, DefaultPrefix, application, DefaultCover);
         }
 
-        private static NesMiniApplication Import(string fileName, byte[] rawRomData, char prefixCode, string application, Image defaultCover, bool compress = false)
+        private static NesMiniApplication Import(string fileName, string zFileName, byte[] rawRomData, char prefixCode, string application, Image defaultCover, bool compress = false)
         {
             var crc32 = CRC32(rawRomData);
             var code = GenerateCode(crc32, prefixCode);
@@ -191,7 +191,7 @@ namespace com.clusterrr.hakchi_gui
             game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
             game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
             game.Name = game.Name.Replace("_", " ").Replace("  ", " ").Trim();
-            game.FindCover(fileName, defaultCover, crc32);
+            game.FindCover(fileName, zFileName, defaultCover, crc32);
             game.Command = string.Format("{0} /usr/share/games/nes/kachikachi/{1}/{2}", application, code, romName);
             game.Save();
             return NesMiniApplication.FromDirectory(gamePath);
@@ -353,7 +353,7 @@ namespace com.clusterrr.hakchi_gui
             outImageSmall.Save(SmallIconPath, ImageFormat.Png);
         }
 
-        internal bool FindCover(string romFileName, Image defaultCover, uint crc32 = 0)
+        internal bool FindCover(string romFileName, string zFileName, Image defaultCover, uint crc32 = 0)
         {
             // Trying to find cover file
             Image cover = null;
@@ -365,6 +365,15 @@ namespace com.clusterrr.hakchi_gui
                 imagePath = Path.Combine(Path.GetDirectoryName(romFileName), Path.GetFileNameWithoutExtension(romFileName) + ".jpg");
                 if (File.Exists(imagePath))
                     cover = LoadBitmap(imagePath);
+
+                // Looks in the folder, housing the game archive (.7z/.zip/.rar), for an identically-named cover art file (.png/.jpg)
+                imagePath = zFileName + ".png";
+                if (File.Exists(imagePath))
+                    cover = LoadBitmap(imagePath);
+                imagePath = zFileName + ".jpg";
+                if (File.Exists(imagePath))
+                    cover = LoadBitmap(imagePath);
+
                 var artDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "art");
                 Directory.CreateDirectory(artDirectory);
                 imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(romFileName) + ".png");
