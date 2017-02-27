@@ -678,10 +678,13 @@ namespace com.clusterrr.hakchi_gui
             if (addedApps != null)
             {
                 // Add games, only new ones
-                var oldApps = from app in checkedListBoxGames.Items.Cast<object>().ToArray()
-                              where app is NesMiniApplication
-                              select (app as NesMiniApplication).Code;
-                var newApps = from app in addedApps where !oldApps.Contains(app.Code) select app;
+                var newApps = addedApps.Distinct(new NesMiniApplication.NesMiniAppEqualityComparer());
+                var newCodes = from app in newApps select app.Code;
+                var oldAppsReplaced = from app in checkedListBoxGames.Items.Cast<object>().ToArray()
+                              where (app is NesMiniApplication) && newCodes.Contains((app as NesMiniApplication).Code)
+                              select app;
+                foreach (var replaced in oldAppsReplaced)
+                    checkedListBoxGames.Items.Remove(replaced);
                 checkedListBoxGames.Items.AddRange(newApps.ToArray());
                 var first = checkedListBoxGames.Items[0];
                 bool originalChecked = (checkedListBoxGames.CheckedItems.Contains(first));
