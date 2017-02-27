@@ -831,21 +831,17 @@ namespace com.clusterrr.hakchi_gui
         void SaveTree()
         {
             Directory.CreateDirectory(Path.GetDirectoryName(FoldersXmlPath));
-            File.WriteAllText(FoldersXmlPath, TreeToXml());
             if (mainForm != null)
             {
-                for (int i = 0; i < mainForm.checkedListBoxGames.Items.Count; i++)
+                foreach (INesMenuElement mi in deletedGames)
                 {
-                    if (deletedGames.Contains(mainForm.checkedListBoxGames.Items[i] as NesMiniApplication))
-                        mainForm.checkedListBoxGames.SetItemChecked(i, false);
-                }
-                for (int i = 0; i < mainForm.checkedListBoxDefaultGames.Items.Count; i++)
-                {
-                    if (deletedGames.Contains(mainForm.checkedListBoxDefaultGames.Items[i] as NesDefaultGame))
-                        mainForm.checkedListBoxDefaultGames.SetItemChecked(i, false);
+                    mainForm.SetItemCheckedState(mi.Code, false);
                 }
                 ConfigIni.Save();
             }
+            File.WriteAllText(FoldersXmlPath, TreeToXml());
+           
+              
         }
 
         private string TreeToXml()

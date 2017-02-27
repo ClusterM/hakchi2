@@ -28,7 +28,13 @@ namespace com.clusterrr.hakchi_gui
         {
             get { return "game"; }
         }
-
+        public string Console
+        {
+               get
+            {
+                return this.GetType().ToString().Replace("com.clusterrr.hakchi_gui.", "").Replace("Game","");
+            }
+        }
         public readonly string GamePath;
         public readonly string ConfigPath;
         public readonly string IconPath;
