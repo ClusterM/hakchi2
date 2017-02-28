@@ -846,6 +846,7 @@ namespace com.clusterrr.hakchi_gui
 
             if (addedApps != null)
             {
+
                 List<string> oldApp = new List<string>();
                 foreach(NesMiniApplication app in GetAllGames())
                 {
@@ -860,7 +861,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
                 
-              
+
             }
             else
             {

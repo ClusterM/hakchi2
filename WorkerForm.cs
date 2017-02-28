@@ -899,20 +899,20 @@ namespace com.clusterrr.hakchi_gui
             YesForAllPatches = false;
             int count = 0;
             SetStatus(Resources.AddingGames);
-            foreach (var file in files)
+            foreach (var sourceFileName in files)
             {
                 NesMiniApplication app = null;
                 try
                 {
-                    var fileName = file;
-                    var ext = Path.GetExtension(file).ToLower();
+                    var fileName = sourceFileName;
+                    var ext = Path.GetExtension(sourceFileName).ToLower();
                     bool? needPatch = YesForAllPatches ? (bool?)true : null;
                     byte[] rawData = null;
                     string tmp = null;
                     if (ext == ".7z" || ext == ".zip" || ext == ".rar")
                     {
                         SevenZipExtractor.SetLibraryPath(Path.Combine(baseDirectory, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
-                        using (var szExtractor = new SevenZipExtractor(file))
+                        using (var szExtractor = new SevenZipExtractor(sourceFileName))
                         {
                             var filesInArchive = new List<string>();
                             var nesFilesInArchive = new List<string>();
@@ -933,7 +933,7 @@ namespace com.clusterrr.hakchi_gui
                                 if (r == DialogResult.OK)
                                     fileName = selectedFile;
                                 else if (r == DialogResult.Ignore)
-                                    fileName = file;
+                                    fileName = sourceFileName;
                                 else continue;
                             }
                             else if (filesInArchive.Count == 1) // No NES files but only one another file
@@ -946,10 +946,10 @@ namespace com.clusterrr.hakchi_gui
                                 if (r == DialogResult.OK)
                                     fileName = selectedFile;
                                 else if (r == DialogResult.Ignore)
-                                    fileName = file;
+                                    fileName = sourceFileName;
                                 else continue;
                             }
-                            if (fileName != file)
+                            if (fileName != sourceFileName)
                             {
                                 var o = new MemoryStream();
                                 if (Path.GetExtension(fileName).ToLower() == ".desktop" // App in archive, need the whole directory
@@ -975,7 +975,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         try
                         {
-                            app = NesGame.Import(fileName, YesForAllUnsupportedMappers ? (bool?)true : null, ref needPatch, needPatchCallback, this, rawData);
+                            app = NesGame.Import(fileName, sourceFileName, YesForAllUnsupportedMappers ? (bool?)true : null, ref needPatch, needPatchCallback, this, rawData);
 
                             // Trying to import Game Genie codes
                             var lGameGeniePath = Path.Combine(Path.GetDirectoryName(fileName), Path.GetFileNameWithoutExtension(fileName) + ".xml");
@@ -1000,7 +1000,7 @@ namespace com.clusterrr.hakchi_gui
                                 if (r == DialogResult.Abort)
                                     YesForAllUnsupportedMappers = true;
                                 if (r == DialogResult.Yes || r == DialogResult.Abort || r == DialogResult.Retry)
-                                    app = NesGame.Import(fileName, true, ref needPatch, needPatchCallback, this, rawData);
+                                    app = NesGame.Import(fileName, sourceFileName, true, ref needPatch, needPatchCallback, this, rawData);
                                 else
                                     continue;
                             }
@@ -1009,7 +1009,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     else
                     {
-                        app = NesMiniApplication.Import(fileName, rawData);
+                        app = NesMiniApplication.Import(fileName, sourceFileName, rawData);
                     }
                     if (!string.IsNullOrEmpty(tmp) && Directory.Exists(tmp)) Directory.Delete(tmp, true);
                     ConfigIni.SelectedGames += ";" + app.Code;
