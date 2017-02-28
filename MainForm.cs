@@ -87,7 +87,7 @@ namespace com.clusterrr.hakchi_gui
        
         public MainForm()
         {
-            try
+           // try
             {
                 InitializeComponent();
                 ConfigIni.Load();
@@ -153,13 +153,70 @@ namespace com.clusterrr.hakchi_gui
                 // Recalculate games in background
                 new Thread(RecalculateSelectedGamesThread).Start();
             }
-            catch (Exception ex)
+          /*  catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 MessageBox.Show(this, "Critical error: " + ex.Message + ex.StackTrace, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
+        }
+        private void FillSystemInformation()
+        {
+            var selected = GetSelected();
+            if(selected == null)
+            {
+                lblCompression.Text = "";
+                lblNbGames.Text = "";
+                lblSize.Text = "";
+                lblSystemName.Text = "";
+            }
+            else
+            {
+                if (selected is NesMiniApplication)
+                {
+                    lblSystemName.Text = (selected as NesMiniApplication).Console;
+                    foreach(TabPage tp in romListers.TabPages)
+                    {
+                        if(tp.Text == lblSystemName.Text)
+                        {
+                            lblNbGames.Text = ((CheckedListBox)tp.Controls[0]).CheckedItems.Count.ToString() + " / " + ((CheckedListBox)tp.Controls[0]).Items.Count.ToString() + " games selected";
+
+                            long totalSize = 0;
+                            decimal selectedSize = 0;
+                            int nbCompressed = 0;
+                            for(int x =0;x< ((CheckedListBox)tp.Controls[0]).Items.Count;x++)
+                            {
+                                object obj = ((CheckedListBox)tp.Controls[0]).Items[x];
+                                if (obj is NesMiniApplication)
+                                {
+                                    NesMiniApplication nma = (obj as NesMiniApplication);
+                                    
+                                    long currentSize = nma.Size();
+
+                                    totalSize += currentSize;
+                                    if(((CheckedListBox)tp.Controls[0]).CheckedIndices.Contains(x))
+                                    {
+                                        selectedSize += currentSize;
+                                        if (nma.isCompressed)
+                                        {
+                                            nbCompressed++;
+                                        }
+                                    }
+                          
+                                }
+                                    
+                            }
+                            lblSize.Text = ((int)(selectedSize/1024/1024)).ToString() + "mB/" + ((int)(totalSize / 1024 / 1024)).ToString() + "mB";
+                            lblCompression.Text = nbCompressed.ToString() + "/" + ((CheckedListBox)tp.Controls[0]).CheckedIndices.Count.ToString() + " roms compressed";
+                        }
+                    }
+                }
+                else
+                {
+                    lblSystemName.Text = "Unknow";
+                    
+                }
             }
         }
-
         public void LoadGames()
         {
             Debug.WriteLine("Loading games");
@@ -169,7 +226,7 @@ namespace com.clusterrr.hakchi_gui
             var games = new List<NesMiniApplication>();
             foreach (var gameDir in gameDirs)
             {
-                try
+             //   try
                 {
                     // Removing empty directories without errors
                     try
@@ -183,12 +240,12 @@ namespace com.clusterrr.hakchi_gui
                         Directory.Delete(gameDir, true);
                     }
                 }
-                catch (Exception ex)
+              /*  catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message + ex.StackTrace);
                     MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     continue;
-                }
+                }*/
             }
 
             var gamesSorted = games.OrderBy(o => o.Name);
@@ -199,7 +256,9 @@ namespace com.clusterrr.hakchi_gui
           
             TabPage tp = new TabPage("Original");
             CheckedListBox chkLst = new CheckedListBox();
+            chkLst.ContextMenuStrip = contextMenuStrip;
             chkLst.Dock = DockStyle.Fill;
+            chkLst.SelectedIndexChanged += checkedListBoxGames_SelectedIndexChanged;
             tp.Controls.Add(chkLst);
             romListers.TabPages.Add(tp);
 
@@ -218,6 +277,9 @@ namespace com.clusterrr.hakchi_gui
             RecalculateSelectedGames();
             ShowSelected();
         }
+
+     
+
         private void AddGameToView(NesMiniApplication app)
         {
 
@@ -238,6 +300,8 @@ namespace com.clusterrr.hakchi_gui
                 TabPage tp = new TabPage(app.Console);
                 CheckedListBox chkLst = new CheckedListBox();
                 chkLst.Dock = DockStyle.Fill;
+                chkLst.ContextMenuStrip = contextMenuStrip;
+                chkLst.SelectedIndexChanged += checkedListBoxGames_SelectedIndexChanged;
                 tp.Controls.Add(chkLst);
                 chkLst.Items.Add(app, true);
                 romListers.TabPages.Add(tp);
@@ -334,6 +398,7 @@ namespace com.clusterrr.hakchi_gui
                 textBoxGameGenie.Text = (app is NesGame) ? (app as NesGame).GameGenie : "";
                 groupBoxOptions.Enabled = true;
             }
+            FillSystemInformation();
         }
 
         void LoadHidden()
@@ -1086,21 +1151,19 @@ namespace com.clusterrr.hakchi_gui
 
         private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           /* if ((int)(sender as ToolStripMenuItem).Tag == 0)
-                for (int i = 0; i < checkedListBoxGames.Items.Count; i++)
-                    checkedListBoxGames.SetItemChecked(i, true);
-            else
-                for (int i = 0; i < checkedListBoxDefaultGames.Items.Count; i++)
-                    checkedListBoxDefaultGames.SetItemChecked(i, true);*/
+            for(int x =0;x < ((CheckedListBox)romListers.SelectedTab.Controls[0]).Items.Count;x++)
+            {
+                ((CheckedListBox)romListers.SelectedTab.Controls[0]).SetItemChecked(x, true);
+            }
+        
         }
 
         private void unselectAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           /* if ((int)(sender as ToolStripMenuItem).Tag == 0)
-                for (int i = 0; i < checkedListBoxGames.Items.Count; i++)
-                    checkedListBoxGames.SetItemChecked(i, false);
-            else for (int i = 0; i < checkedListBoxDefaultGames.Items.Count; i++)
-                    checkedListBoxDefaultGames.SetItemChecked(i, false);*/
+            for (int x = 0; x < ((CheckedListBox)romListers.SelectedTab.Controls[0]).Items.Count; x++)
+            {
+                ((CheckedListBox)romListers.SelectedTab.Controls[0]).SetItemChecked(x, false);
+            }
         }
 
         private void checkedListBoxGames_DragEnter(object sender, DragEventArgs e)
@@ -1239,6 +1302,41 @@ namespace com.clusterrr.hakchi_gui
                     MessageBox.Show(Resources.DoneUploaded, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+
+        private void btnCompress_Click(object sender, EventArgs e)
+        {
+            var selected = GetSelected();
+            int nbCompressed = 0;
+            if (selected is NesMiniApplication)
+            {
+             
+                foreach (TabPage tp in romListers.TabPages)
+                {
+                    if (tp.Text == (selected as NesMiniApplication).Console)
+                    {
+                        foreach (object o in ((CheckedListBox)tp.Controls[0]).CheckedItems)
+                        {
+                            if (o is NesMiniApplication)
+                            {
+                                NesMiniApplication nma = (o as NesMiniApplication);
+                                if(!nma.isCompressed)
+                                {
+
+                                    nma.Compress();
+                                    nbCompressed++;
+                                }
+                            }
+                        }
+                      
+                    }
+                }
+            }
+               
+            
+
+
+            FillSystemInformation();
         }
     }
 }

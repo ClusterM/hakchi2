@@ -104,7 +104,6 @@
             this.buttonGoogle = new System.Windows.Forms.Button();
             this.buttonBrowseImage = new System.Windows.Forms.Button();
             this.pictureBoxArt = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.textBoxArguments = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxPublisher = new System.Windows.Forms.TextBox();
@@ -114,7 +113,6 @@
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
             this.labelID = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.buttonAddGames = new System.Windows.Forms.Button();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelSelected = new System.Windows.Forms.ToolStripStatusLabel();
@@ -133,6 +131,13 @@
             this.romListers = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblSystemName = new System.Windows.Forms.Label();
+            this.lblNbGames = new System.Windows.Forms.Label();
+            this.lblSize = new System.Windows.Forms.Label();
+            this.lblCompression = new System.Windows.Forms.Label();
+            this.btnCompress = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -140,6 +145,8 @@
             this.contextMenuStrip.SuspendLayout();
             this.groupBoxDefaultGames.SuspendLayout();
             this.romListers.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -605,19 +612,16 @@
             // groupBoxOptions
             // 
             resources.ApplyResources(this.groupBoxOptions, "groupBoxOptions");
+            this.groupBoxOptions.Controls.Add(this.textBoxArguments);
+            this.groupBoxOptions.Controls.Add(this.groupBox1);
             this.groupBoxOptions.Controls.Add(this.buttonShowGameGenieDatabase);
             this.groupBoxOptions.Controls.Add(this.maskedTextBoxReleaseDate);
-            this.groupBoxOptions.Controls.Add(this.label1);
+            this.groupBoxOptions.Controls.Add(this.label3);
             this.groupBoxOptions.Controls.Add(this.textBoxGameGenie);
+            this.groupBoxOptions.Controls.Add(this.label1);
             this.groupBoxOptions.Controls.Add(this.label7);
             this.groupBoxOptions.Controls.Add(this.label6);
             this.groupBoxOptions.Controls.Add(this.radioButtonTwoSim);
-            this.groupBoxOptions.Controls.Add(this.buttonGoogle);
-            this.groupBoxOptions.Controls.Add(this.buttonBrowseImage);
-            this.groupBoxOptions.Controls.Add(this.pictureBoxArt);
-            this.groupBoxOptions.Controls.Add(this.label4);
-            this.groupBoxOptions.Controls.Add(this.textBoxArguments);
-            this.groupBoxOptions.Controls.Add(this.label3);
             this.groupBoxOptions.Controls.Add(this.textBoxPublisher);
             this.groupBoxOptions.Controls.Add(this.label2);
             this.groupBoxOptions.Controls.Add(this.radioButtonTwo);
@@ -689,11 +693,6 @@
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
             // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            // 
             // textBoxArguments
             // 
             resources.ApplyResources(this.textBoxArguments, "textBoxArguments");
@@ -747,11 +746,6 @@
             // 
             resources.ApplyResources(this.labelID, "labelID");
             this.labelID.Name = "labelID";
-            // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
             // 
             // buttonAddGames
             // 
@@ -862,6 +856,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.ContextMenuStrip = this.contextMenuStrip;
             resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -872,15 +867,63 @@
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.pictureBoxArt);
+            this.groupBox1.Controls.Add(this.buttonBrowseImage);
+            this.groupBox1.Controls.Add(this.buttonGoogle);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnCompress);
+            this.groupBox2.Controls.Add(this.lblCompression);
+            this.groupBox2.Controls.Add(this.lblSize);
+            this.groupBox2.Controls.Add(this.lblNbGames);
+            this.groupBox2.Controls.Add(this.lblSystemName);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            this.groupBox2.UseCompatibleTextRendering = true;
+            // 
+            // lblSystemName
+            // 
+            resources.ApplyResources(this.lblSystemName, "lblSystemName");
+            this.lblSystemName.Name = "lblSystemName";
+            // 
+            // lblNbGames
+            // 
+            resources.ApplyResources(this.lblNbGames, "lblNbGames");
+            this.lblNbGames.Name = "lblNbGames";
+            // 
+            // lblSize
+            // 
+            resources.ApplyResources(this.lblSize, "lblSize");
+            this.lblSize.Name = "lblSize";
+            // 
+            // lblCompression
+            // 
+            resources.ApplyResources(this.lblCompression, "lblCompression");
+            this.lblCompression.Name = "lblCompression";
+            // 
+            // btnCompress
+            // 
+            resources.ApplyResources(this.btnCompress, "btnCompress");
+            this.btnCompress.Name = "btnCompress";
+            this.btnCompress.UseVisualStyleBackColor = true;
+            this.btnCompress.Click += new System.EventHandler(this.btnCompress_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.romListers);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.buttonAddGames);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.groupBoxOptions);
             this.Controls.Add(this.groupBoxDefaultGames);
@@ -902,6 +945,9 @@
             this.contextMenuStrip.ResumeLayout(false);
             this.groupBoxDefaultGames.ResumeLayout(false);
             this.romListers.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -926,10 +972,8 @@
         private System.Windows.Forms.TextBox textBoxArguments;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBoxArt;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonGoogle;
         private System.Windows.Forms.Button buttonBrowseImage;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonAddGames;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelSelected;
@@ -1012,6 +1056,13 @@
         private System.Windows.Forms.TabControl romListers;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblCompression;
+        private System.Windows.Forms.Label lblSize;
+        private System.Windows.Forms.Label lblNbGames;
+        private System.Windows.Forms.Label lblSystemName;
+        private System.Windows.Forms.Button btnCompress;
     }
 }
 

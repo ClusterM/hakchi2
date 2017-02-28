@@ -69,7 +69,7 @@ namespace com.clusterrr.hakchi_gui
         {
             NesPath = Path.Combine(GamePath, Code + ".nes");
             GameGeniePath = Path.Combine(path, GameGenieFileName);
-            if (!File.Exists(NesPath)) throw new FileNotFoundException("Invalid game directory: " + path);
+            //if (!File.Exists(NesPath)) throw new FileNotFoundException("Invalid game directory: " + path);
 
             if (File.Exists(GameGeniePath))
                 gameGenie = File.ReadAllText(GameGeniePath);

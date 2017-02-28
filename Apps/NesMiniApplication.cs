@@ -28,6 +28,16 @@ namespace com.clusterrr.hakchi_gui
         {
             get { return "game"; }
         }
+        public bool isCompressed
+        {
+            get
+            {
+                return (System.IO.Directory.GetFiles(this.GamePath, "*.7z").Length > 0);
+                
+                
+                
+            }
+        }
         public string Console
         {
                get
@@ -104,29 +114,37 @@ namespace com.clusterrr.hakchi_gui
 
         public static NesMiniApplication FromDirectory(string path, bool ignoreEmptyConfig = false)
         {
-            var files = Directory.GetFiles(path, "*.desktop", SearchOption.TopDirectoryOnly);
-            if (files.Length == 0)
-                throw new FileNotFoundException("Invalid app folder");
-            var config = File.ReadAllLines(files[0]);
-            foreach (var line in config)
+            string tag = path.Substring(path.LastIndexOf("\\")+1);
+            tag = tag.Substring(tag.IndexOf("-") + 1);
+            tag = tag.Substring(0,tag.IndexOf( "-")) ;
+            var app = AppTypeCollection.GetAppByPrefix(tag[0]);
+            if (app != null)
             {
-                if (line.StartsWith("Exec="))
+                var constructor = app.Class.GetConstructor(new Type[] { typeof(string), typeof(bool) });
+                return (NesMiniApplication)constructor.Invoke(new object[] { path, ignoreEmptyConfig });
+            }
+
+            else
+            {
+                var files = Directory.GetFiles(path, "*.desktop", SearchOption.TopDirectoryOnly);
+                if (files.Length == 0)
+                    throw new FileNotFoundException("Invalid app folder");
+                var config = File.ReadAllLines(files[0]);
+                foreach (var line in config)
                 {
-                    string command = line.Substring(5);
-                    if (command.StartsWith("/usr/bin/clover-kachikachi") || command.StartsWith("/bin/clover-kachikachi-wr"))
+                    if (line.StartsWith("Exec="))
                     {
-                        if (command.Contains(".nes"))
-                            return new NesGame(path, ignoreEmptyConfig);
-                        if (command.Contains(".fds"))
-                            return new FdsGame(path, ignoreEmptyConfig);
+                        string command = line.Substring(5);
+                        if (command.StartsWith("/usr/bin/clover-kachikachi") || command.StartsWith("/bin/clover-kachikachi-wr"))
+                        {
+                            if (command.Contains(".nes"))
+                                return new NesGame(path, ignoreEmptyConfig);
+                            if (command.Contains(".fds"))
+                                return new FdsGame(path, ignoreEmptyConfig);
+                        }
+
+                        break;
                     }
-                    var app = AppTypeCollection.GetAppByExec(command);
-                    if (app != null)
-                    {
-                        var constructor = app.Class.GetConstructor(new Type[] { typeof(string), typeof(bool) });
-                        return (NesMiniApplication)constructor.Invoke(new object[] { path, ignoreEmptyConfig });
-                    }
-                    break;
                 }
             }
             return new NesMiniApplication(path, ignoreEmptyConfig);
@@ -151,7 +169,48 @@ namespace com.clusterrr.hakchi_gui
             string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : DefaultApp;
             return Import(fileName, rawRomData, DefaultPrefix, application, DefaultCover);
         }
+        public void Compress()
+        {
+            System.Collections.Generic.List<string> ext = new System.Collections.Generic.List<string>( AppTypeCollection.GetAppByType(this.GetType()).Extensions);
+      
+            foreach(string f in System.IO.Directory.GetFiles(this.GamePath))
+            {
+                if(ext.Contains(System.IO.Path.GetExtension(f)) )
+                {
+                    File.WriteAllBytes(f+".7z",Compress(f));
+                    System.IO.File.Delete(f);
+                }
+            }
+            /*  if (compress)
+           {
+               string temp = null;
+               try
+               {
+                   if (!File.Exists(fileName))
+                   {
+                       temp = Path.Combine(Path.GetTempPath(), Path.GetFileName(fileName));
+                       File.WriteAllBytes(temp, rawRomData);
+                       rawRomData = Compress(temp);
+                       sevenZipped = true;
+                   }
+                   else
+                   {
+                       rawRomData = Compress(fileName);
+                       sevenZipped = true;
+                   }
+               }
+               catch (Exception ex)
+               {
+                   Debug.WriteLine("Compression error: " + ex.Message + ex.Source);
+               }
+               finally
+               {
+                   if (!string.IsNullOrEmpty(temp) && File.Exists(temp))
+                       File.Delete(temp);
+               }
+           }*/
 
+        }
         private static NesMiniApplication Import(string fileName, byte[] rawRomData, char prefixCode, string application, Image defaultCover, bool compress = false)
         {
             var crc32 = CRC32(rawRomData);
