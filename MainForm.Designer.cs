@@ -94,18 +94,19 @@
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.textBoxArguments = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBoxArt = new System.Windows.Forms.PictureBox();
+            this.buttonBrowseImage = new System.Windows.Forms.Button();
+            this.buttonGoogle = new System.Windows.Forms.Button();
             this.buttonShowGameGenieDatabase = new System.Windows.Forms.Button();
             this.maskedTextBoxReleaseDate = new System.Windows.Forms.MaskedTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.textBoxGameGenie = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.radioButtonTwoSim = new System.Windows.Forms.RadioButton();
-            this.buttonGoogle = new System.Windows.Forms.Button();
-            this.buttonBrowseImage = new System.Windows.Forms.Button();
-            this.pictureBoxArt = new System.Windows.Forms.PictureBox();
-            this.textBoxArguments = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.textBoxPublisher = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.radioButtonTwo = new System.Windows.Forms.RadioButton();
@@ -131,21 +132,22 @@
             this.romListers = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblSystemName = new System.Windows.Forms.Label();
-            this.lblNbGames = new System.Windows.Forms.Label();
-            this.lblSize = new System.Windows.Forms.Label();
-            this.lblCompression = new System.Windows.Forms.Label();
             this.btnCompress = new System.Windows.Forms.Button();
+            this.lblCompression = new System.Windows.Forms.Label();
+            this.lblSize = new System.Windows.Forms.Label();
+            this.lblNbGames = new System.Windows.Forms.Label();
+            this.lblSystemName = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtDefaultCommand = new System.Windows.Forms.TextBox();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             this.groupBoxDefaultGames.SuspendLayout();
             this.romListers.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -632,6 +634,41 @@
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
             // 
+            // textBoxArguments
+            // 
+            resources.ApplyResources(this.textBoxArguments, "textBoxArguments");
+            this.textBoxArguments.Name = "textBoxArguments";
+            this.textBoxArguments.TextChanged += new System.EventHandler(this.textBoxArguments_TextChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.pictureBoxArt);
+            this.groupBox1.Controls.Add(this.buttonBrowseImage);
+            this.groupBox1.Controls.Add(this.buttonGoogle);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // pictureBoxArt
+            // 
+            resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
+            this.pictureBoxArt.Name = "pictureBoxArt";
+            this.pictureBoxArt.TabStop = false;
+            // 
+            // buttonBrowseImage
+            // 
+            resources.ApplyResources(this.buttonBrowseImage, "buttonBrowseImage");
+            this.buttonBrowseImage.Name = "buttonBrowseImage";
+            this.buttonBrowseImage.UseVisualStyleBackColor = true;
+            this.buttonBrowseImage.Click += new System.EventHandler(this.buttonBrowseImage_Click);
+            // 
+            // buttonGoogle
+            // 
+            resources.ApplyResources(this.buttonGoogle, "buttonGoogle");
+            this.buttonGoogle.Name = "buttonGoogle";
+            this.buttonGoogle.UseVisualStyleBackColor = true;
+            this.buttonGoogle.Click += new System.EventHandler(this.buttonGoogle_Click);
+            // 
             // buttonShowGameGenieDatabase
             // 
             resources.ApplyResources(this.buttonShowGameGenieDatabase, "buttonShowGameGenieDatabase");
@@ -645,16 +682,21 @@
             this.maskedTextBoxReleaseDate.Name = "maskedTextBoxReleaseDate";
             this.maskedTextBoxReleaseDate.TextChanged += new System.EventHandler(this.maskedTextBoxReleaseDate_TextChanged);
             // 
-            // label1
+            // label3
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
             // 
             // textBoxGameGenie
             // 
             resources.ApplyResources(this.textBoxGameGenie, "textBoxGameGenie");
             this.textBoxGameGenie.Name = "textBoxGameGenie";
             this.textBoxGameGenie.TextChanged += new System.EventHandler(this.textBoxGameGenie_TextChanged);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
             // 
             // label7
             // 
@@ -672,37 +714,6 @@
             this.radioButtonTwoSim.Name = "radioButtonTwoSim";
             this.radioButtonTwoSim.UseVisualStyleBackColor = true;
             this.radioButtonTwoSim.CheckedChanged += new System.EventHandler(this.radioButtonOne_CheckedChanged);
-            // 
-            // buttonGoogle
-            // 
-            resources.ApplyResources(this.buttonGoogle, "buttonGoogle");
-            this.buttonGoogle.Name = "buttonGoogle";
-            this.buttonGoogle.UseVisualStyleBackColor = true;
-            this.buttonGoogle.Click += new System.EventHandler(this.buttonGoogle_Click);
-            // 
-            // buttonBrowseImage
-            // 
-            resources.ApplyResources(this.buttonBrowseImage, "buttonBrowseImage");
-            this.buttonBrowseImage.Name = "buttonBrowseImage";
-            this.buttonBrowseImage.UseVisualStyleBackColor = true;
-            this.buttonBrowseImage.Click += new System.EventHandler(this.buttonBrowseImage_Click);
-            // 
-            // pictureBoxArt
-            // 
-            resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
-            this.pictureBoxArt.Name = "pictureBoxArt";
-            this.pictureBoxArt.TabStop = false;
-            // 
-            // textBoxArguments
-            // 
-            resources.ApplyResources(this.textBoxArguments, "textBoxArguments");
-            this.textBoxArguments.Name = "textBoxArguments";
-            this.textBoxArguments.TextChanged += new System.EventHandler(this.textBoxArguments_TextChanged);
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
             // 
             // textBoxPublisher
             // 
@@ -867,17 +878,10 @@
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.pictureBoxArt);
-            this.groupBox1.Controls.Add(this.buttonBrowseImage);
-            this.groupBox1.Controls.Add(this.buttonGoogle);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
-            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtDefaultCommand);
+            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.btnCompress);
             this.groupBox2.Controls.Add(this.lblCompression);
             this.groupBox2.Controls.Add(this.lblSize);
@@ -888,32 +892,44 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.UseCompatibleTextRendering = true;
             // 
-            // lblSystemName
-            // 
-            resources.ApplyResources(this.lblSystemName, "lblSystemName");
-            this.lblSystemName.Name = "lblSystemName";
-            // 
-            // lblNbGames
-            // 
-            resources.ApplyResources(this.lblNbGames, "lblNbGames");
-            this.lblNbGames.Name = "lblNbGames";
-            // 
-            // lblSize
-            // 
-            resources.ApplyResources(this.lblSize, "lblSize");
-            this.lblSize.Name = "lblSize";
-            // 
-            // lblCompression
-            // 
-            resources.ApplyResources(this.lblCompression, "lblCompression");
-            this.lblCompression.Name = "lblCompression";
-            // 
             // btnCompress
             // 
             resources.ApplyResources(this.btnCompress, "btnCompress");
             this.btnCompress.Name = "btnCompress";
             this.btnCompress.UseVisualStyleBackColor = true;
             this.btnCompress.Click += new System.EventHandler(this.btnCompress_Click);
+            // 
+            // lblCompression
+            // 
+            resources.ApplyResources(this.lblCompression, "lblCompression");
+            this.lblCompression.Name = "lblCompression";
+            // 
+            // lblSize
+            // 
+            resources.ApplyResources(this.lblSize, "lblSize");
+            this.lblSize.Name = "lblSize";
+            // 
+            // lblNbGames
+            // 
+            resources.ApplyResources(this.lblNbGames, "lblNbGames");
+            this.lblNbGames.Name = "lblNbGames";
+            // 
+            // lblSystemName
+            // 
+            resources.ApplyResources(this.lblSystemName, "lblSystemName");
+            this.lblSystemName.Name = "lblSystemName";
+            // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtDefaultCommand
+            // 
+            resources.ApplyResources(this.txtDefaultCommand, "txtDefaultCommand");
+            this.txtDefaultCommand.Name = "txtDefaultCommand";
             // 
             // MainForm
             // 
@@ -939,13 +955,13 @@
             this.menuStrip.PerformLayout();
             this.groupBoxOptions.ResumeLayout(false);
             this.groupBoxOptions.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.contextMenuStrip.ResumeLayout(false);
             this.groupBoxDefaultGames.ResumeLayout(false);
             this.romListers.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -1063,6 +1079,8 @@
         private System.Windows.Forms.Label lblNbGames;
         private System.Windows.Forms.Label lblSystemName;
         private System.Windows.Forms.Button btnCompress;
+        private System.Windows.Forms.TextBox txtDefaultCommand;
+        private System.Windows.Forms.Button button1;
     }
 }
 

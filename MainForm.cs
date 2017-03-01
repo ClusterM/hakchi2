@@ -168,6 +168,10 @@ namespace com.clusterrr.hakchi_gui
                 lblNbGames.Text = "";
                 lblSize.Text = "";
                 lblSystemName.Text = "";
+                btnCompress.Enabled = false;
+                button1.Enabled = false;
+                txtDefaultCommand.Enabled = false;
+                txtDefaultCommand.Text = "";
             }
             else
             {
@@ -207,6 +211,14 @@ namespace com.clusterrr.hakchi_gui
                             }
                             lblSize.Text = ((int)(selectedSize/1024/1024)).ToString() + "mB/" + ((int)(totalSize / 1024 / 1024)).ToString() + "mB";
                             lblCompression.Text = nbCompressed.ToString() + "/" + ((CheckedListBox)tp.Controls[0]).CheckedIndices.Count.ToString() + " roms compressed";
+
+
+                            ;
+
+                            btnCompress.Enabled = true;
+                            button1.Enabled = true;
+                            txtDefaultCommand.Enabled = true;
+                            txtDefaultCommand.Text = AppTypeCollection.GetAppByType(selected.GetType()).DefaultApp +" {{ROM}}";
                         }
                     }
                 }
@@ -384,11 +396,7 @@ namespace com.clusterrr.hakchi_gui
                     radioButtonOne.Checked = true;
                 maskedTextBoxReleaseDate.Text = app.ReleaseDate;
                 textBoxPublisher.Text = app.Publisher;
-                if (app is NesGame)
-                    textBoxArguments.Text = (app as NesGame).Args;
-                else if (app is FdsGame)
-                    textBoxArguments.Text = (app as FdsGame).Args;
-                else
+
                     textBoxArguments.Text = app.Command;
                 if (File.Exists(app.IconPath))
                     pictureBoxArt.Image = NesMiniApplication.LoadBitmap(app.IconPath);
@@ -1325,8 +1333,10 @@ namespace com.clusterrr.hakchi_gui
                                 {
 
                                     nma.Compress();
+                                   
                                     nbCompressed++;
                                 }
+                                nma.Clean();
                             }
                         }
                       
@@ -1338,6 +1348,32 @@ namespace com.clusterrr.hakchi_gui
 
 
             FillSystemInformation();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var selected = GetSelected();
+            if (selected is NesMiniApplication)
+            {
+
+                foreach (TabPage tp in romListers.TabPages)
+                {
+                    if (tp.Text == (selected as NesMiniApplication).Console)
+                    {
+                        foreach (object o in ((CheckedListBox)tp.Controls[0]).CheckedItems)
+                        {
+                            if (o is NesMiniApplication)
+                            {
+                                NesMiniApplication nma = (o as NesMiniApplication);
+                                string romPath = nma.GetNesMiniLocalPath();
+                                ///bin/gb /usr/share/games/nes/kachikachi/CLV-B-GJSQW/Adventures_of_Rocky_and_Bullwinkle_and_Friends__The__USA_.gb.7z
+                                nma.Command = txtDefaultCommand.Text.Replace("{{ROM}}", romPath);
+
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
