@@ -181,7 +181,7 @@ namespace com.clusterrr.hakchi_gui
             TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
             return result;
         }
-
+        
         public void StartThread()
         {
             SetProgress(0, 1);
@@ -206,6 +206,7 @@ namespace com.clusterrr.hakchi_gui
                         AddGames(GamesToAdd);
                         break;
                 }
+                
                 if (DialogResult == DialogResult.None)
                     DialogResult = DialogResult.OK;
             }
@@ -239,6 +240,47 @@ namespace com.clusterrr.hakchi_gui
                 labelStatus.Text = status;
             }
             catch { }
+        }
+        void AddToLog(string log)
+        {
+            if(Disposing)
+            {
+                return;
+            }
+            try
+            {
+                if(InvokeRequired)
+                {
+                    Invoke(new Action<string>(AddToLog), new object[] { log });
+                    return;
+                }
+                textBox1.Text = log + "\r\n" + textBox1.Text;
+       
+            }
+            catch
+            {
+
+            }
+        }
+        void EnableCloseButton()
+        {
+            if (Disposing)
+            {
+                return;
+            }
+            try
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new Action(EnableCloseButton), new object[] {  });
+                    return;
+                }
+                button1.Enabled = true;
+            }
+            catch
+            {
+
+            }
         }
 
         void SetProgress(int value, int max)
@@ -311,6 +353,7 @@ namespace com.clusterrr.hakchi_gui
 
         public void DoKernelDump()
         {
+            AddToLog("Dumping kernel");
             int progress = 5;
             const int maxProgress = 80;
             if (WaitForDeviceFromThread() != DialogResult.OK)
@@ -322,15 +365,18 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress);
 
             SetStatus(Resources.DumpingKernel);
+            AddToLog("Read flash " +Fel.kernel_base_f + " - " + (Fel.sector_size*0x20));
             var kernel = fel.ReadFlash(Fel.kernel_base_f, Fel.sector_size * 0x20,
                 delegate(Fel.CurrentAction action, string command)
                 {
                     switch (action)
                     {
                         case Fel.CurrentAction.RunningCommand:
+                            AddToLog("Read flash - running command - " + command);
                             SetStatus(Resources.ExecutingCommand + " " + command);
                             break;
                         case Fel.CurrentAction.ReadingMemory:
+                            AddToLog("Read flash - Reading memory");
                             SetStatus(Resources.DumpingKernel);
                             break;
                     }
@@ -340,6 +386,7 @@ namespace com.clusterrr.hakchi_gui
             );
 
             var size = CalKernelSize(kernel);
+            AddToLog("Kernel size is " + size);
             if (size == 0 || size > Fel.kernel_max_size)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
             if (kernel.Length > size)
@@ -351,9 +398,11 @@ namespace com.clusterrr.hakchi_gui
 
             SetProgress(maxProgress, maxProgress);
             SetStatus(Resources.Done);
-
+            AddToLog("Checking MD5");
             var md5 = System.Security.Cryptography.MD5.Create();
+          
             var hash = BitConverter.ToString(md5.ComputeHash(kernel)).Replace("-", "").ToLower();
+            AddToLog(hash);
             if (!correctKernels.Contains(hash))
             {
                 if (MessageBoxFromThread(this, Resources.MD5Failed + " " + hash + "\r\n" + Resources.MD5Failed2 +
@@ -372,6 +421,7 @@ namespace com.clusterrr.hakchi_gui
 
         public void FlashKernel()
         {
+            AddToLog("Flashing kernel");
             int progress = 0;
             int maxProgress = 120 + (string.IsNullOrEmpty(Mod) ? 0 : 5);
             if (WaitForDeviceFromThread() != DialogResult.OK)
@@ -392,8 +442,13 @@ namespace com.clusterrr.hakchi_gui
             else
                 kernel = File.ReadAllBytes(KernelDump);
             var size = CalKernelSize(kernel);
+            AddToLog("Kernel size is " + size);
             if (size > kernel.Length || size > Fel.kernel_max_size)
+
+            {
+                AddToLog("Kernel too big");
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
+            }
 
             size = (size + Fel.sector_size - 1) / Fel.sector_size;
             size = size * Fel.sector_size;
@@ -403,16 +458,18 @@ namespace com.clusterrr.hakchi_gui
                 Array.Copy(kernel, newK, kernel.Length);
                 kernel = newK;
             }
-
+            AddToLog("Writing to flash");
             fel.WriteFlash(Fel.kernel_base_f, kernel,
                 delegate(Fel.CurrentAction action, string command)
                 {
                     switch (action)
                     {
                         case Fel.CurrentAction.RunningCommand:
+                            AddToLog("Command : " + command);
                             SetStatus(Resources.ExecutingCommand + " " + command);
                             break;
                         case Fel.CurrentAction.WritingMemory:
+                           // AddToLog("Uploading ... ");
                             SetStatus(Resources.UploadingKernel);
                             break;
                     }
@@ -420,15 +477,18 @@ namespace com.clusterrr.hakchi_gui
                     SetProgress(progress, maxProgress);
                 }
             );
+            AddToLog("Verifying flash");
             var r = fel.ReadFlash((UInt32)Fel.kernel_base_f, (UInt32)kernel.Length,
                 delegate(Fel.CurrentAction action, string command)
                 {
                     switch (action)
                     {
                         case Fel.CurrentAction.RunningCommand:
+                            AddToLog("Command : " + command);
                             SetStatus(Resources.ExecutingCommand + " " + command);
                             break;
                         case Fel.CurrentAction.ReadingMemory:
+                            //AddToLog("Downloading ... ");
                             SetStatus(Resources.Verifying);
                             break;
                     }
@@ -439,18 +499,23 @@ namespace com.clusterrr.hakchi_gui
             if (!kernel.SequenceEqual(r))
                 throw new Exception(Resources.VerifyFailed);
 
+            AddToLog("Will send shutdown command if mod is null");
             if (string.IsNullOrEmpty(Mod))
             {
+
                 var shutdownCommand = string.Format("shutdown", Fel.kernel_base_m);
+                AddToLog("Send shutdown command - " + shutdownCommand);
                 SetStatus(Resources.ExecutingCommand + " " + shutdownCommand);
                 fel.RunUbootCmd(shutdownCommand, true);
             }
+            AddToLog("Flash done");
             SetStatus(Resources.Done);
             SetProgress(maxProgress, maxProgress);
         }
 
         public void Memboot()
         {
+            AddToLog("Memboot");
             int progress = 0;
             int maxProgress = -1;
             var stats = new GamesTreeStats();
@@ -474,6 +539,7 @@ namespace com.clusterrr.hakchi_gui
 
             do
             {
+                AddToLog("Start a batch process for size " + maxRamfsSize / 1024 /1024);
                 if (stats.GamesProceed > 0)
                 {
                     ShowMessage(Resources.ParticallyBody, Resources.ParticallyTitle);
@@ -497,7 +563,13 @@ namespace com.clusterrr.hakchi_gui
                     while (true)
                     {
                         kernel = CreatePatchedKernel(stats);
-                        if (kernel.Length < maxCompressedsRamfsSize) break;
+                        AddToLog("Created kernel of size " + (kernel.Length / 1024 / 1024));
+                        if (kernel.Length < maxCompressedsRamfsSize)
+                        {
+
+                            break;
+                        }
+                        AddToLog("Kernel is too large, rebuild with less games");
                         maxRamfsSize -= 5 * 1024 * 1024;
                         Debug.WriteLine(string.Format("Kernel size is too big: {0}MB, reducing max unpacked size to {1}MB", kernel.Length / 1024 / 1024, maxRamfsSize / 1024 / 1024));
                         stats.GamesProceed = origGamesProceed;
@@ -505,8 +577,12 @@ namespace com.clusterrr.hakchi_gui
                     maxRamfsSize = origMaxRamfsSize;
                 }
                 else
+                {
+                    AddToLog("Use original kernel dump");
                     kernel = File.ReadAllBytes(KernelDump);
+                }
                 var size = CalKernelSize(kernel);
+
                 if (size > kernel.Length || size > Fel.kernel_max_size)
                     throw new Exception(Resources.InvalidKernelSize + " " + size);
                 size = (size + Fel.sector_size - 1) / Fel.sector_size;
@@ -527,30 +603,85 @@ namespace com.clusterrr.hakchi_gui
                         maxProgress = (int)((double)kernel.Length / (double)67000 + 20);
                 }
                 SetProgress(progress, maxProgress);
-
+                AddToLog("Uploading");
                 SetStatus(Resources.UploadingKernel);
                 fel.WriteMemory(Fel.flash_mem_base, kernel,
                     delegate(Fel.CurrentAction action, string command)
                     {
                         switch (action)
                         {
+                           
                             case Fel.CurrentAction.WritingMemory:
+                                AddToLog("Uploading...");
                                 SetStatus(Resources.UploadingKernel);
+                                break;
+                            default:
+                                AddToLog("Unhandled : " +action.ToString());
                                 break;
                         }
                         progress++;
                         SetProgress(progress, maxProgress);
                     }
                 );
-
+                AddToLog("Done uploading");
                 var bootCommand = string.Format("boota {0:x}", Fel.kernel_base_m);
+                AddToLog("Sending boot command");
+                AddToLog("Command - " + bootCommand);
                 SetStatus(Resources.ExecutingCommand + " " + bootCommand);
                 fel.RunUbootCmd(bootCommand, true);
             } while (stats.GamesProceed < stats.TotalGames);
+            AddToLog("Done");
             SetStatus(Resources.Done);
             SetProgress(maxProgress, maxProgress);
         }
+        private void SafeDeleteDirectory(string path)
+        {
+            int maxRetry = 3;
+            bool success = false;
+            int currentTry = 0;
+            while (!success && currentTry < maxRetry)
+            {
+                try
+                {
+                    Directory.Delete(path, true);
+                    success = true;
 
+                }
+                catch (Exception exc)
+                {
+                    currentTry++;
+                    System.Threading.Thread.Sleep(100);
+                }
+            }
+            if (!success)
+            {
+                MessageBox.Show("Unable to delete folder " + path + ", please try to manually delete it before pressing ok", "Delete error");
+            }
+        }
+        private void SafeCreateDirectory(string path)
+        {
+            int maxRetry = 3;
+            bool success = false;
+            int currentTry = 0;
+            while (!success && currentTry < maxRetry && !Directory.Exists(path))
+            {
+                try
+                {
+                    Directory.CreateDirectory(path);
+                    success = true;
+
+                }
+                catch (Exception exc)
+                {
+                    currentTry++;
+                    System.Threading.Thread.Sleep(100);
+                }
+            }
+            if (!success)
+            {
+                MessageBox.Show("Unable to create folder " + path + ", please try to manually create it before pressing ok", "Create error");
+            }
+        }
         private byte[] CreatePatchedKernel(GamesTreeStats stats = null)
         {
             if (stats == null) stats = new GamesTreeStats();
@@ -561,10 +692,14 @@ namespace com.clusterrr.hakchi_gui
             if (first || !Directory.Exists(ramfsDirectory))
             {
                 if (Directory.Exists(tempDirectory))
-                    Directory.Delete(tempDirectory, true);
-                Directory.CreateDirectory(tempDirectory);
-                Directory.CreateDirectory(kernelDirectory);
-                Directory.CreateDirectory(ramfsDirectory);
+                {
+                    SafeDeleteDirectory(tempDirectory);
+                   
+                }
+                SafeCreateDirectory(tempDirectory);
+                SafeCreateDirectory(kernelDirectory);
+                SafeCreateDirectory(ramfsDirectory);
+              
                 if (!ExecuteTool("unpackbootimg.exe", string.Format("-i \"{0}\" -o \"{1}\"", KernelDump, kernelDirectory)))
                     throw new Exception("Can't unpack kernel image");
                 if (!ExecuteTool("lzop.exe", string.Format("-d \"{0}\" -o \"{1}\"",
@@ -839,6 +974,7 @@ namespace com.clusterrr.hakchi_gui
 
         private bool ExecuteTool(string tool, string args, out byte[] output, string directory = null, bool external = false)
         {
+
             var process = new Process();
             var appDirectory = baseDirectory;
             var fileName = !external ? Path.Combine(toolsDirectory, tool) : tool;
@@ -857,6 +993,7 @@ namespace com.clusterrr.hakchi_gui
             Debug.WriteLine("Executing: " + fileName);
             Debug.WriteLine("Arguments: " + args);
             Debug.WriteLine("Directory: " + directory);
+            AddToLog("Running " + fileName + " - " + args);
             process.Start();
             string outputStr = process.StandardOutput.ReadToEnd();
             string errorStr = process.StandardError.ReadToEnd();
@@ -865,6 +1002,7 @@ namespace com.clusterrr.hakchi_gui
             Debug.WriteLineIf(outputStr.Length > 0 && outputStr.Length < 300, "Output:\r\n" + outputStr);
             Debug.WriteLineIf(errorStr.Length > 0, "Errors:\r\n" + errorStr);
             Debug.WriteLine("Exit code: " + process.ExitCode);
+            AddToLog("Exit " + process.ExitCode);
             return process.ExitCode == 0;
         }
 
@@ -1057,16 +1195,24 @@ namespace com.clusterrr.hakchi_gui
         {
             if ((thread != null) && (e.CloseReason == CloseReason.UserClosing))
             {
-                if (MessageBox.Show(this, Resources.DoYouWantCancel, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                    == System.Windows.Forms.DialogResult.No)
+                if (!button1.Enabled)
                 {
-                    e.Cancel = true;
-                    return;
+                    if (MessageBox.Show(this, Resources.DoYouWantCancel, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                        == System.Windows.Forms.DialogResult.No)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                    if (thread != null) thread.Abort();
+                    TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.NoProgress);
+                    TaskbarProgress.SetValue(this.Handle, 0, 1);
                 }
-                if (thread != null) thread.Abort();
-                TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.NoProgress);
-                TaskbarProgress.SetValue(this.Handle, 0, 1);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
         }
     }
 }

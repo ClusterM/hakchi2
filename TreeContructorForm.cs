@@ -951,5 +951,10 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DrawSplitTree(NesMenuCollection.SplitStyle.ByConsole);
+        }
     }
 }

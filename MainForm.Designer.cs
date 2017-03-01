@@ -133,13 +133,13 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtDefaultCommand = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnCompress = new System.Windows.Forms.Button();
             this.lblCompression = new System.Windows.Forms.Label();
             this.lblSize = new System.Windows.Forms.Label();
             this.lblNbGames = new System.Windows.Forms.Label();
             this.lblSystemName = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.txtDefaultCommand = new System.Windows.Forms.TextBox();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -892,6 +892,18 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.UseCompatibleTextRendering = true;
             // 
+            // txtDefaultCommand
+            // 
+            resources.ApplyResources(this.txtDefaultCommand, "txtDefaultCommand");
+            this.txtDefaultCommand.Name = "txtDefaultCommand";
+            // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // btnCompress
             // 
             resources.ApplyResources(this.btnCompress, "btnCompress");
@@ -918,18 +930,6 @@
             // 
             resources.ApplyResources(this.lblSystemName, "lblSystemName");
             this.lblSystemName.Name = "lblSystemName";
-            // 
-            // button1
-            // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // txtDefaultCommand
-            // 
-            resources.ApplyResources(this.txtDefaultCommand, "txtDefaultCommand");
-            this.txtDefaultCommand.Name = "txtDefaultCommand";
             // 
             // MainForm
             // 
