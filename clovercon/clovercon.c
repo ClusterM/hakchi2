@@ -84,7 +84,7 @@ MODULE_LICENSE("GPL");
 #define DF3_BTN_ZL     7
 
 #define DEAD_ZONE      20
-#define DIAG_MAX       40
+//#define DIAG_MAX       40
 #define STICK_MAX      72
 #define STICK_FUZZ     4
 
@@ -347,7 +347,7 @@ static void clamp_stick(int *px, int *py) {
 	int y_sign = 1;
 	int x = *px;
 	int y = *py;
-	int norm;
+	//int norm;
 
 	if (x < 0) {
 		x_sign = -1;
@@ -361,6 +361,7 @@ static void clamp_stick(int *px, int *py) {
 	x = MAX(0, x - DEAD_ZONE);
 	y = MAX(0, y - DEAD_ZONE);
 
+/*
 	if (x == 0 && y == 0) {
 		goto clamp_end;
 	}
@@ -372,8 +373,8 @@ static void clamp_stick(int *px, int *py) {
 		x = DIAG_MAX * STICK_MAX * x / norm;
 		y = DIAG_MAX * STICK_MAX * y / norm;
 	}
-
 clamp_end:
+*/
 	*px = x * x_sign;
 	*py = y * y_sign;
 }
