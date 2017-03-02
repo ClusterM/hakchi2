@@ -128,7 +128,6 @@
             this.buttonStart = new System.Windows.Forms.Button();
             this.groupBoxDefaultGames = new System.Windows.Forms.GroupBox();
             this.checkedListBoxDefaultGames = new System.Windows.Forms.CheckedListBox();
-            this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
             this.romListers = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -140,6 +139,7 @@
             this.lblSize = new System.Windows.Forms.Label();
             this.lblNbGames = new System.Windows.Forms.Label();
             this.lblSystemName = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -851,12 +851,6 @@
             this.checkedListBoxDefaultGames.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxDefaultGames_ItemCheck);
             this.checkedListBoxDefaultGames.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkedListBoxDefaultGames_MouseDown);
             // 
-            // timerCalculateGames
-            // 
-            this.timerCalculateGames.Enabled = true;
-            this.timerCalculateGames.Interval = 500;
-            this.timerCalculateGames.Tick += new System.EventHandler(this.timerCalculateGames_Tick);
-            // 
             // romListers
             // 
             this.romListers.Controls.Add(this.tabPage1);
@@ -880,6 +874,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.txtDefaultCommand);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.btnCompress);
@@ -930,6 +925,13 @@
             // 
             resources.ApplyResources(this.lblSystemName, "lblSystemName");
             this.lblSystemName.Name = "lblSystemName";
+            // 
+            // button2
+            // 
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Name = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
@@ -1006,7 +1008,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBoxDefaultGames;
-        private System.Windows.Forms.Timer timerCalculateGames;
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unselectAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uninstallToolStripMenuItem;
@@ -1081,6 +1082,7 @@
         private System.Windows.Forms.Button btnCompress;
         private System.Windows.Forms.TextBox txtDefaultCommand;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

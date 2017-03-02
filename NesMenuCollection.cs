@@ -99,9 +99,18 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var game in root)
                 {
                     if (!(game is NesMiniApplication || game is NesDefaultGame)) continue;
+
                     NesMiniApplication app = game as NesMiniApplication;
 
-                    string system = app.Console;
+                    string system = "";
+                    if (game is NesMiniApplication)
+                    {
+                        system = (game as NesMiniApplication).Console;
+                    }
+                    else
+                    {
+                        system = "NES Classic";
+                    }
                     if(!romsBySystems.ContainsKey(system))
                     {
                         romsBySystems.Add(system, new NesMenuCollection());

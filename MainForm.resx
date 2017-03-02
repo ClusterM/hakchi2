@@ -1248,9 +1248,6 @@
   <data name="&gt;&gt;groupBoxDefaultGames.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <metadata name="timerCalculateGames.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>473, 17</value>
-  </metadata>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
@@ -1326,6 +1323,33 @@
   <data name="&gt;&gt;romListers.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>148, 81</value>
+  </data>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 23</value>
+  </data>
+  <data name="button2.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Download All Covers</value>
+  </data>
+  <data name="&gt;&gt;button2.Name" xml:space="preserve">
+    <value>button2</value>
+  </data>
+  <data name="&gt;&gt;button2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="txtDefaultCommand.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 112</value>
   </data>
@@ -1345,7 +1369,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;txtDefaultCommand.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1372,7 +1396,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnCompress.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 81</value>
@@ -1396,7 +1420,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;btnCompress.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="lblCompression.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1426,7 +1450,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;lblCompression.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="lblSize.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1456,7 +1480,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;lblSize.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="lblNbGames.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1486,7 +1510,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;lblNbGames.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="lblSystemName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1513,7 +1537,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;lblSystemName.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>306, 27</value>
@@ -3114,12 +3138,6 @@
   </data>
   <data name="&gt;&gt;openFileDialogImage.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;timerCalculateGames.Name" xml:space="preserve">
-    <value>timerCalculateGames</value>
-  </data>
-  <data name="&gt;&gt;timerCalculateGames.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

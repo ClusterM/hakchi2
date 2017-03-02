@@ -94,7 +94,7 @@ namespace com.clusterrr.hakchi_gui
                 BaseDirectory = Path.GetDirectoryName(Application.ExecutablePath);
                 KernelDump = Path.Combine(Path.Combine(BaseDirectory, "dump"), "kernel.img");
                 LoadGames();
-                LoadHidden();
+              
                 LoadPresets();
                 var version = Assembly.GetExecutingAssembly().GetName().Version;
                 Text = string.Format("hakchi2 - v{0}.{1:D2}{2}", version.Major, version.Build, (version.Revision < 10) ?
@@ -231,6 +231,7 @@ namespace com.clusterrr.hakchi_gui
         }
         public void LoadGames()
         {
+            isBatchLoading = true;
             Debug.WriteLine("Loading games");
             var selected = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             Directory.CreateDirectory(NesMiniApplication.GamesDirectory);
@@ -267,15 +268,15 @@ namespace com.clusterrr.hakchi_gui
            
           
             TabPage tp = new TabPage("Original");
-            CheckedListBox chkLst = new CheckedListBox();
-            chkLst.ContextMenuStrip = contextMenuStrip;
-            chkLst.Dock = DockStyle.Fill;
-            chkLst.SelectedIndexChanged += checkedListBoxGames_SelectedIndexChanged;
-            tp.Controls.Add(chkLst);
+            tp.Controls.Add(checkedListBoxDefaultGames);
+            checkedListBoxDefaultGames.Dock = DockStyle.Fill;
+            checkedListBoxDefaultGames.Items.Clear();
+            var hidden = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var game in new List<NesDefaultGame>(ConfigIni.ConsoleType == 0 ? defaultNesGames : defaultFamicomGames).OrderBy(o => o.Name))
+                checkedListBoxDefaultGames.Items.Add(game, hidden.Contains(game.Code));
+
             romListers.TabPages.Add(tp);
-
-            chkLst.Items.Add(Resources.Default30games, selected.Contains("default"));
-
+            
             
 
             
@@ -285,7 +286,7 @@ namespace com.clusterrr.hakchi_gui
 
             }
 
-
+            isBatchLoading = false;
             RecalculateSelectedGames();
             ShowSelected();
         }
@@ -314,6 +315,8 @@ namespace com.clusterrr.hakchi_gui
                 chkLst.Dock = DockStyle.Fill;
                 chkLst.ContextMenuStrip = contextMenuStrip;
                 chkLst.SelectedIndexChanged += checkedListBoxGames_SelectedIndexChanged;
+
+                chkLst.ItemCheck += checkedListBoxGames_ItemCheck;
                 tp.Controls.Add(chkLst);
                 chkLst.Items.Add(app, true);
                 romListers.TabPages.Add(tp);
@@ -336,17 +339,16 @@ namespace com.clusterrr.hakchi_gui
 
             return ret;
         }
-        private List<NesMiniApplication> GetSelectedGames()
+        private List<INesMenuElement> GetSelectedGames()
         {
-            List<NesMiniApplication> ret = new List<NesMiniApplication>();
+            List<INesMenuElement> ret = new List<INesMenuElement>();
             foreach (TabPage tp in romListers.TabPages)
             {
                 foreach (object obj in ((CheckedListBox)tp.Controls[0]).CheckedItems)
                 {
-                    if (obj is NesMiniApplication)
-                    {
-                        ret.Add(obj as NesMiniApplication);
-                    }
+                    
+                        ret.Add(obj as INesMenuElement);
+                   
                 }
             }
 
@@ -409,13 +411,6 @@ namespace com.clusterrr.hakchi_gui
             FillSystemInformation();
         }
 
-        void LoadHidden()
-        {
-            checkedListBoxDefaultGames.Items.Clear();
-            var hidden = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (var game in new List<NesDefaultGame>(ConfigIni.ConsoleType == 0 ? defaultNesGames : defaultFamicomGames).OrderBy(o => o.Name))
-                checkedListBoxDefaultGames.Items.Add(game, !hidden.Contains(game.Code));
-        }
         public void SetItemCheckedState(string code, bool checkedValue)
         {
             string prefix = code.Substring(code.IndexOf("-") + 1);
@@ -465,7 +460,7 @@ namespace com.clusterrr.hakchi_gui
                      
                         for (int j = 0; j < checkedListBoxDefaultGames.Items.Count; j++)
                             checkedListBoxDefaultGames.SetItemChecked(j,
-                                !hide.Contains(((NesDefaultGame)checkedListBoxDefaultGames.Items[j]).Code));
+                                hide.Contains(((NesDefaultGame)checkedListBoxDefaultGames.Items[j]).Code));
                     }));
                 deletePresetToolStripMenuItem.DropDownItems.Insert(i, new ToolStripMenuItem(preset, null,
                     delegate(object sender, EventArgs e)
@@ -559,11 +554,11 @@ namespace com.clusterrr.hakchi_gui
             var selected = GetSelected();
             if (selected == null || !(selected is NesMiniApplication)) return;
             var game = (selected as NesMiniApplication);
-            if (game is NesGame)
+           /* if (game is NesGame)
                 (game as NesGame).Args = textBoxArguments.Text;
             else if (game is FdsGame)
                 (game as FdsGame).Args = textBoxArguments.Text;
-            else
+            else*/
                 game.Command = textBoxArguments.Text;
         }
 
@@ -595,10 +590,15 @@ namespace com.clusterrr.hakchi_gui
             }
             ConfigIni.SelectedGames = string.Join(";", selected.ToArray());
             selected.Clear();
-            foreach (NesDefaultGame game in checkedListBoxDefaultGames.Items)
-                selected.Add(game.Code);
-            foreach (NesDefaultGame game in checkedListBoxDefaultGames.CheckedItems)
-                selected.Remove(game.Code);
+           
+            for(int x= 0;x< checkedListBoxDefaultGames.Items.Count;x++)
+            {
+                if(!checkedListBoxDefaultGames.GetItemChecked(x))
+                {
+                    selected.Add((checkedListBoxDefaultGames.Items[x] as NesDefaultGame).Code);
+                }
+            }
+        
             ConfigIni.HiddenGames = string.Join(";", selected.ToArray());
         }
 
@@ -634,16 +634,10 @@ namespace com.clusterrr.hakchi_gui
         }
         void RecalculateSelectedGamesThread()
         {
-            try
-            {
-                var stats = RecalculateSelectedGames();
-                showStats(stats);
-            }
-            catch
-            {
-                timerCalculateGames.Enabled = false;
-                timerCalculateGames.Enabled = true;
-            }
+           
+            var stats = RecalculateSelectedGames();
+            showStats(stats);
+          
         }
         CountResult RecalculateSelectedGames()
         {
@@ -652,13 +646,17 @@ namespace com.clusterrr.hakchi_gui
             stats.Size = 0;
             foreach (var game in GetSelectedGames())
             {
+                stats.Count++;
                 if (game is NesMiniApplication)
                 {
-                    stats.Count++;
+                    
                     stats.Size += (game as NesMiniApplication).Size();
                 }
                 else
-                    stats.Count += checkedListBoxDefaultGames.CheckedItems.Count;
+                {
+
+                }
+               
             }
             return stats;
         }
@@ -876,10 +874,8 @@ namespace com.clusterrr.hakchi_gui
                 // Reload all games (maybe process was terminated?)
                 LoadGames();
             }
-          
-            // Schedule recalculation
-            timerCalculateGames.Enabled = false;
-            timerCalculateGames.Enabled = true;
+            RecalculateSelectedGamesThread();
+           
         }
 
         bool FlashOriginalKernel(bool boot = true)
@@ -1065,7 +1061,7 @@ namespace com.clusterrr.hakchi_gui
             nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
             famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
             ConfigIni.HiddenGames = "";
-            LoadHidden();
+            LoadGames();
         }
 
         private void famicomMiniToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1074,7 +1070,7 @@ namespace com.clusterrr.hakchi_gui
             nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
             famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
             ConfigIni.HiddenGames = "";
-            LoadHidden();
+            LoadGames();
         }
 
         private void enableAutofireToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1099,29 +1095,27 @@ namespace com.clusterrr.hakchi_gui
             if (form.ShowDialog() == DialogResult.OK)
                 ConfigIni.ExtraCommandLineArguments = form.textBox.Text;
         }
-
-        private void timerCalculateGames_Tick(object sender, EventArgs e)
-        {
-            new Thread(RecalculateSelectedGamesThread).Start(); // Calculate it in background
-            timerCalculateGames.Enabled = false; // We don't need to count games repetedly
-        }
-
+        private bool isBatchLoading = false;
+      
         private void checkedListBoxGames_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if (e.Index == 0)
-                groupBoxDefaultGames.Enabled = e.NewValue == CheckState.Checked;
-            // Schedule recalculation
-            timerCalculateGames.Enabled = false;
-            timerCalculateGames.Enabled = true;
+            /*if (e.Index == 0)
+                groupBoxDefaultGames.Enabled = e.NewValue == CheckState.Checked;*/
+            if (!isBatchLoading)
+            {
+                RecalculateSelectedGamesThread();
+            }
         }
 
         private void checkedListBoxDefaultGames_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             // Schedule recalculation
-            timerCalculateGames.Enabled = false;
-            timerCalculateGames.Enabled = true;
+            
+            if (!isBatchLoading)
+            {
+                RecalculateSelectedGamesThread();
+            }
         }
-
         private void MainForm_Shown(object sender, EventArgs e)
         {
             if (ConfigIni.FirstRun && !File.Exists(KernelDump))
@@ -1160,19 +1154,24 @@ namespace com.clusterrr.hakchi_gui
 
         private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            isBatchLoading = true;
             for(int x =0;x < ((CheckedListBox)romListers.SelectedTab.Controls[0]).Items.Count;x++)
             {
                 ((CheckedListBox)romListers.SelectedTab.Controls[0]).SetItemChecked(x, true);
             }
-        
+            isBatchLoading = false;
+            RecalculateSelectedGames();
         }
 
         private void unselectAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            isBatchLoading = true;
             for (int x = 0; x < ((CheckedListBox)romListers.SelectedTab.Controls[0]).Items.Count; x++)
             {
                 ((CheckedListBox)romListers.SelectedTab.Controls[0]).SetItemChecked(x, false);
             }
+            isBatchLoading = false;
+            RecalculateSelectedGames();
         }
 
         private void checkedListBoxGames_DragEnter(object sender, DragEventArgs e)
@@ -1337,6 +1336,7 @@ namespace com.clusterrr.hakchi_gui
                                     nbCompressed++;
                                 }
                                 nma.Clean();
+                                nma.UniformizeFileName();
                             }
                         }
                       
@@ -1374,6 +1374,43 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            List<INesMenuElement> toDownloadCover = new List<INesMenuElement>();
+            var selected = GetSelected();
+       
+            if (selected is NesMiniApplication)
+            {
+
+                foreach (TabPage tp in romListers.TabPages)
+                {
+                    if (tp.Text == (selected as NesMiniApplication).Console)
+                    {
+                        foreach (object o in ((CheckedListBox)tp.Controls[0]).CheckedItems)
+                        {
+                            if (o is NesMiniApplication)
+                            {
+                                toDownloadCover.Add(o as NesMiniApplication);
+                               
+                            }
+                        }
+
+                    }
+                }
+            }
+
+
+
+
+            var workerForm = new WorkerForm();
+            workerForm.Text = Resources.DownloadAllCoversTitle;
+            workerForm.Task = WorkerForm.Tasks.DownloadAllCovers;
+            workerForm.Games = new NesMenuCollection();
+            workerForm.Games.AddRange(toDownloadCover);
+          
+            workerForm.Start();
         }
     }
 }

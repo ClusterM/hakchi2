@@ -351,6 +351,35 @@ namespace com.clusterrr.hakchi_gui
                 System.IO.File.Delete(f);
             }
         }
+        public void UniformizeFileName()
+        {
+
+            string romName = GetRomFile();
+
+            string noZipRomName = romName;
+            if (noZipRomName.EndsWith(".7z"))
+            {
+                noZipRomName = noZipRomName.Substring(0, noZipRomName.IndexOf(".7z"));
+            }
+
+            string ext = System.IO.Path.GetExtension(noZipRomName);
+            string fileName = System.IO.Path.GetFileNameWithoutExtension(noZipRomName);
+
+            if(fileName!= Code)
+            {
+                string properFilename = Code + ext;
+                if(isCompressed)
+                {
+                    properFilename = properFilename + ".7z";
+                }
+                string fullOldPath = System.IO.Path.Combine(this.GamePath, romName);
+                string fullNewPath = System.IO.Path.Combine(this.GamePath, properFilename);
+
+                System.IO.File.Move(fullOldPath, fullNewPath);
+                this.Command = this.Command.Replace(romName, properFilename);
+
+            }
+        }
         public void Compress()
         {
             System.Collections.Generic.List<string> ext = new System.Collections.Generic.List<string>( AppTypeCollection.GetAppByType(this.GetType()).Extensions);
