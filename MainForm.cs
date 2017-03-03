@@ -169,6 +169,7 @@ namespace com.clusterrr.hakchi_gui
                 lblSize.Text = "";
                 lblSystemName.Text = "";
                 btnCompress.Enabled = false;
+                btnCovers.Enabled = false;
                 button1.Enabled = false;
                 txtDefaultCommand.Enabled = false;
                 txtDefaultCommand.Text = "";
@@ -213,7 +214,7 @@ namespace com.clusterrr.hakchi_gui
                             lblCompression.Text = nbCompressed.ToString() + "/" + ((CheckedListBox)tp.Controls[0]).CheckedIndices.Count.ToString() + " roms compressed";
 
 
-                            ;
+                            btnCovers.Enabled = true;
 
                             btnCompress.Enabled = true;
                             button1.Enabled = true;
@@ -273,7 +274,7 @@ namespace com.clusterrr.hakchi_gui
             checkedListBoxDefaultGames.Items.Clear();
             var hidden = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var game in new List<NesDefaultGame>(ConfigIni.ConsoleType == 0 ? defaultNesGames : defaultFamicomGames).OrderBy(o => o.Name))
-                checkedListBoxDefaultGames.Items.Add(game, hidden.Contains(game.Code));
+                checkedListBoxDefaultGames.Items.Add(game, !hidden.Contains(game.Code));
 
             romListers.TabPages.Add(tp);
             

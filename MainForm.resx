@@ -1323,31 +1323,31 @@
   <data name="&gt;&gt;romListers.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="btnCovers.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btnCovers.Location" type="System.Drawing.Point, System.Drawing">
     <value>148, 81</value>
   </data>
-  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnCovers.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 23</value>
   </data>
-  <data name="button2.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnCovers.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="button2.Text" xml:space="preserve">
+  <data name="btnCovers.Text" xml:space="preserve">
     <value>Download All Covers</value>
   </data>
-  <data name="&gt;&gt;button2.Name" xml:space="preserve">
-    <value>button2</value>
+  <data name="&gt;&gt;btnCovers.Name" xml:space="preserve">
+    <value>btnCovers</value>
   </data>
-  <data name="&gt;&gt;button2.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnCovers.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnCovers.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnCovers.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="txtDefaultCommand.Location" type="System.Drawing.Point, System.Drawing">

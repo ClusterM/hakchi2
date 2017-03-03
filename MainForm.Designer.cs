@@ -132,6 +132,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnCovers = new System.Windows.Forms.Button();
             this.txtDefaultCommand = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnCompress = new System.Windows.Forms.Button();
@@ -139,7 +140,6 @@
             this.lblSize = new System.Windows.Forms.Label();
             this.lblNbGames = new System.Windows.Forms.Label();
             this.lblSystemName = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -874,7 +874,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.btnCovers);
             this.groupBox2.Controls.Add(this.txtDefaultCommand);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.btnCompress);
@@ -886,6 +886,13 @@
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             this.groupBox2.UseCompatibleTextRendering = true;
+            // 
+            // btnCovers
+            // 
+            resources.ApplyResources(this.btnCovers, "btnCovers");
+            this.btnCovers.Name = "btnCovers";
+            this.btnCovers.UseVisualStyleBackColor = true;
+            this.btnCovers.Click += new System.EventHandler(this.button2_Click);
             // 
             // txtDefaultCommand
             // 
@@ -925,13 +932,6 @@
             // 
             resources.ApplyResources(this.lblSystemName, "lblSystemName");
             this.lblSystemName.Name = "lblSystemName";
-            // 
-            // button2
-            // 
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
@@ -1082,7 +1082,7 @@
         private System.Windows.Forms.Button btnCompress;
         private System.Windows.Forms.TextBox txtDefaultCommand;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCovers;
     }
 }
 
