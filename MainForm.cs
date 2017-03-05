@@ -599,6 +599,7 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Task = WorkerForm.Tasks.FlashKernel;
             workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_hakchi";
+            workerForm.hmodsInstall = new List<string>() { "clovercon", "fontfix", "clovershell" };
             workerForm.Config = null;
             workerForm.Games = null;
             workerForm.HiddenGames = null;
@@ -681,8 +682,8 @@ namespace com.clusterrr.hakchi_gui
                 var newApps = addedApps.Distinct(new NesMiniApplication.NesMiniAppEqualityComparer());
                 var newCodes = from app in newApps select app.Code;
                 var oldAppsReplaced = from app in checkedListBoxGames.Items.Cast<object>().ToArray()
-                              where (app is NesMiniApplication) && newCodes.Contains((app as NesMiniApplication).Code)
-                              select app;
+                                      where (app is NesMiniApplication) && newCodes.Contains((app as NesMiniApplication).Code)
+                                      select app;
                 foreach (var replaced in oldAppsReplaced)
                     checkedListBoxGames.Items.Remove(replaced);
                 checkedListBoxGames.Items.AddRange(newApps.ToArray());
