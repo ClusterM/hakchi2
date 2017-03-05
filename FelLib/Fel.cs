@@ -1,4 +1,5 @@
-﻿using MadWizard.WinUSBNet;
+﻿using LibUsbDotNet;
+using LibUsbDotNet.Main;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,9 +17,9 @@ namespace com.clusterrr.FelLib
         public enum CurrentAction { RunningCommand, ReadingMemory, WritingMemory }
         public delegate void OnFelProgress(CurrentAction action, string command);
 
-        USBDevice device = null;
-        byte inEndp = 0;
-        byte outEndp = 0;
+        UsbDevice device = null;
+        UsbEndpointReader epReader = null;
+        UsbEndpointWriter epWriter = null;
         const int ReadTimeout = 1000;
         const int WriteTimeout = 1000;
         public const int MaxBulkSize = 0x10000;
@@ -85,46 +86,74 @@ namespace com.clusterrr.FelLib
             this.pid = pid;
             Close();
             Debug.WriteLine("Trying to open device...");
-            device = USBDevice.GetSingleDevice(vid, pid);
-            if (device == null) throw new FelException("Device with such VID and PID not found");
-            Debug.WriteLine("Checking USB endpoints...");
-            foreach (var pipe in device.Pipes)
+            var devices = UsbDevice.AllDevices;
+            device = null;
+            foreach (UsbRegistry regDevice in devices)
             {
-                if (pipe.IsIn)
+                if (regDevice.Vid == vid && regDevice.Pid == pid)
                 {
-                    inEndp = pipe.Address;
-                    Debug.WriteLine("IN endpoint found: " + inEndp);
-                }
-                else
-                {
-                    outEndp = pipe.Address;
-                    Debug.WriteLine("Out endpoint found: " + outEndp);
+                    regDevice.Open(out device);
+                    break;
                 }
             }
-            device.Pipes[inEndp].Policy.PipeTransferTimeout = ReadTimeout;
-            device.Pipes[outEndp].Policy.PipeTransferTimeout = WriteTimeout;
+            if (device == null) throw new FelException("Device with such VID and PID not found");
+
+            IUsbDevice wholeUsbDevice = device as IUsbDevice;
+            if (!ReferenceEquals(wholeUsbDevice, null))
+            {
+                // This is a "whole" USB device. Before it can be used, 
+                // the desired configuration and interface must be selected.
+
+                // Select config #1
+                wholeUsbDevice.SetConfiguration(1);
+
+                // Claim interface #0.
+                wholeUsbDevice.ClaimInterface(0);
+            }
+
+            int inEndp = -1;
+            int outEndp = -1;
+            int inMax = 0;
+            int outMax = 0;
+            Debug.WriteLine("Checking USB endpoints...");
+            foreach (var config in device.Configs)
+                foreach (var @interface in config.InterfaceInfoList)
+                    foreach (var endp in @interface.EndpointInfoList)
+                    {
+                        if ((endp.Descriptor.EndpointID & 0x80) != 0)
+                        {
+                            inEndp = endp.Descriptor.EndpointID;
+                            inMax = endp.Descriptor.MaxPacketSize;
+                            Debug.WriteLine("IN endpoint found: " + inEndp);
+                            Debug.WriteLine("IN endpoint maxsize: " + inMax);
+                        }
+                        else
+                        {
+                            outEndp = endp.Descriptor.EndpointID;
+                            outMax = endp.Descriptor.MaxPacketSize;
+                            Debug.WriteLine("OUT endpoint found: " + outEndp);
+                            Debug.WriteLine("OUT endpoint maxsize: " + outMax);
+                        }
+                    }
+            if (inEndp != 0x82 || inMax != 64 || outEndp != 0x01 || outMax != 64)
+                throw new Exception("Uncorrect FEL device");
+            epReader = device.OpenEndpointReader((ReadEndpointID)inEndp, 65536);
+            epWriter = device.OpenEndpointWriter((WriteEndpointID)outEndp);
+
             Debug.WriteLine("Trying to verify device");
             if (VerifyDevice().Board != 0x00166700) throw new FelException("Invalid board ID: " + VerifyDevice().Board);
         }
         public void Close()
         {
             if (device != null)
-            {
-                try
-                {
-                    device.Pipes[inEndp].Abort();
-                }
-                catch { }
-                try
-                {
-                    device.Pipes[outEndp].Abort();
-                }
-                catch
-                {
-                }
-                device.Dispose();
-                device = null;
-            }
+                device.Close();
+            device = null;
+            if (epReader != null)
+                epReader.Dispose();
+            epReader = null;
+            if (epWriter != null)
+                epWriter.Dispose();
+            epWriter = null;
         }
 
         private void WriteToUSB(byte[] buffer)
@@ -133,17 +162,29 @@ namespace com.clusterrr.FelLib
 //            Debug.WriteLine("-> " + BitConverter.ToString(buffer));
 //#endif
             Debug.WriteLine(string.Format("-> {0} bytes" , buffer.Length));
-            device.Pipes[outEndp].Write(buffer);
+            int pos = 0;
+            int l;
+            while (pos < buffer.Length)
+            {
+                epWriter.Write(buffer, pos, buffer.Length - pos, WriteTimeout, out l);
+                if (l > 0)
+                    pos += l;
+                else
+                    throw new Exception("Can't write to USB");
+            }
         }
 
         private int ReadFromUSB(byte[] buffer, int offset, int length)
         {
-            var data = device.Pipes[inEndp].Read(buffer, offset, length);
+            int l;
+            var result = epReader.Read(buffer, offset, length, ReadTimeout, out l);
+            if (result != ErrorCode.Ok)
+                throw new Exception("USB read error: " + result.ToString());
 //#if DEBUG
 //            Debug.WriteLine("<- " + BitConverter.ToString(buffer));
 //#endif
             Debug.WriteLine(string.Format("<- {0} bytes", length));
-            return data;
+            return l;
         }
         private byte[] ReadFromUSB(UInt32 length)
         {

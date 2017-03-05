@@ -276,9 +276,9 @@ namespace com.clusterrr.hakchi_gui
                 message += ex.StackTrace;
 #endif
                 Debug.WriteLine(ex.Message + ex.StackTrace);
-                if (ex is MadWizard.WinUSBNet.USBException)
-                    MessageBox.Show(this, message + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
+                //if (ex is MadWizard.WinUSBNet.USBException) // TODO
+                //    MessageBox.Show(this, message + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //else
                     MessageBox.Show(this, message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
                 if (!dontStop)
