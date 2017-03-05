@@ -5,8 +5,8 @@ script_init
 state_file=$installpath/menu
 
 [ -z "$1" ] && exit 1
-prev_code=$(cat "$state_file")
-[ "$1" == "$prev_code" ] && exit 0
+[ -f "$state_file" ] && prev_code=$(cat "$state_file") || prev_code=000
+[ "$1" == "$prev_code" ] && exit 1
 
 echo Switching to menu $1
 if [ "$1" == "000" ]; then
@@ -19,11 +19,14 @@ fi
 echo $1 > "$state_file"
 
 echo New directory: $targetpath
-if [ ! -f "$targetpath/title.fnt" ]; then
-  ln -s "$rootfs$gamepath/title.fnt" "$targetpath/title.fnt"
-fi
-if [ ! -f "$targetpath/copyright.fnt" ]; then
-  ln -s "$rootfs$gamepath/copyright.fnt" "$targetpath/copyright.fnt"
+
+if [ "$1" != "000" ]; then
+  if [ ! -f "$targetpath/title.fnt" ]; then
+    ln -s "$rootfs$gamepath/title.fnt" "$targetpath/title.fnt"
+  fi
+  if [ ! -f "$targetpath/copyright.fnt" ]; then
+    ln -s "$rootfs$gamepath/copyright.fnt" "$targetpath/copyright.fnt"
+  fi
 fi
 
 pkill -KILL clover-mcp
@@ -31,4 +34,4 @@ pkill -KILL ReedPlayer-Clover
 
 overmount_games
 
-clover-mcp
+exec clover-mcp

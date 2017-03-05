@@ -1,6 +1,4 @@
 cfg_boot_stock_firmware='n'
 cfg_boot_stock='n'
-cfg_clovercon_option=''
 cfg_disable_armet='y'
 cfg_nes_extra_args='--ppu-palette 2'
-cfg_savecheck='n'
