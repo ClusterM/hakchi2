@@ -12,6 +12,11 @@ namespace com.clusterrr.hakchi_gui
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
@@ -43,11 +48,12 @@ namespace com.clusterrr.hakchi_gui
                 else
                 {
                     Process current = Process.GetCurrentProcess();
-                    foreach (Process process in Process.GetProcessesByName(current.ProcessName))
+                    foreach (Process process in Process.GetProcessesByName("hakchi"))
                     {
                         if (process.Id != current.Id)
                         {
-                            SetForegroundWindow(process.MainWindowHandle);
+                            ShowWindow(process.MainWindowHandle, 9); // Restore
+                            SetForegroundWindow(process.MainWindowHandle); // Foreground
                             break;
                         }
                     }
