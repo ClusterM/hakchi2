@@ -24,6 +24,7 @@ namespace com.clusterrr.hakchi_gui
             Original_FoldersAlphabetic_FoldersEqual = 9,
             FoldersAlphabetic_PagesEqual = 10,
             Original_FoldersAlphabetic_PagesEqual = 11,
+            ByConsole = 98,
             Custom = 99
         }
 
@@ -91,7 +92,46 @@ namespace com.clusterrr.hakchi_gui
                 else
                     style = SplitStyle.PagesEqual;
             }
+            if(style == SplitStyle.ByConsole)
+            {
+                var romsBySystems = new Dictionary<string, NesMenuCollection>();
+               
+                foreach (var game in root)
+                {
+                    if (!(game is NesMiniApplication || game is NesDefaultGame)) continue;
 
+                    NesMiniApplication app = game as NesMiniApplication;
+
+                    string system = "";
+                    if (game is NesMiniApplication)
+                    {
+                        system = (game as NesMiniApplication).Console;
+                    }
+                    else
+                    {
+                        system = "NES Classic";
+                    }
+                    if(!romsBySystems.ContainsKey(system))
+                    {
+                        romsBySystems.Add(system, new NesMenuCollection());
+                    }
+                    romsBySystems[system].Add(game);
+                }
+
+                root.Clear();
+                foreach (var system in romsBySystems.Keys)
+                    if (romsBySystems[system].Count > 0)
+                    {
+                        string folderImageId = "folder" ;
+                   
+                        var folder = new NesMenuFolder() { ChildMenuCollection = romsBySystems[system], Name = system, Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
+                        folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
+                        root.Add(folder);
+
+                      
+                    }
+            }
+            else
             // Folders, equal
             if (style == SplitStyle.FoldersEqual) // minimum amount of games/folders on screen without glitches
             {

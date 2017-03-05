@@ -30,7 +30,23 @@ namespace com.clusterrr.hakchi_gui
         {
             get { return "game"; }
         }
-
+        public bool isCompressed
+        {
+            get
+            {
+                return (System.IO.Directory.GetFiles(this.GamePath, "*.7z").Length > 0);
+                
+                
+                
+            }
+        }
+        public string Console
+        {
+               get
+            {
+                return this.GetType().ToString().Replace("com.clusterrr.hakchi_gui.", "").Replace("Game","");
+            }
+        }
         public readonly string GamePath;
         public readonly string ConfigPath;
         public readonly string IconPath;
@@ -100,29 +116,37 @@ namespace com.clusterrr.hakchi_gui
 
         public static NesMiniApplication FromDirectory(string path, bool ignoreEmptyConfig = false)
         {
-            var files = Directory.GetFiles(path, "*.desktop", SearchOption.TopDirectoryOnly);
-            if (files.Length == 0)
-                throw new FileNotFoundException("Invalid app folder");
-            var config = File.ReadAllLines(files[0]);
-            foreach (var line in config)
+            string tag = path.Substring(path.LastIndexOf("\\")+1);
+            tag = tag.Substring(tag.IndexOf("-") + 1);
+            tag = tag.Substring(0,tag.IndexOf( "-")) ;
+            var app = AppTypeCollection.GetAppByPrefix(tag[0]);
+            if (app != null)
             {
-                if (line.StartsWith("Exec="))
+                var constructor = app.Class.GetConstructor(new Type[] { typeof(string), typeof(bool) });
+                return (NesMiniApplication)constructor.Invoke(new object[] { path, ignoreEmptyConfig });
+            }
+
+            else
+            {
+                var files = Directory.GetFiles(path, "*.desktop", SearchOption.TopDirectoryOnly);
+                if (files.Length == 0)
+                    throw new FileNotFoundException("Invalid app folder");
+                var config = File.ReadAllLines(files[0]);
+                foreach (var line in config)
                 {
-                    string command = line.Substring(5);
-                    if (command.StartsWith("/usr/bin/clover-kachikachi") || command.StartsWith("/bin/clover-kachikachi-wr"))
+                    if (line.StartsWith("Exec="))
                     {
-                        if (command.Contains(".nes"))
-                            return new NesGame(path, ignoreEmptyConfig);
-                        if (command.Contains(".fds"))
-                            return new FdsGame(path, ignoreEmptyConfig);
+                        string command = line.Substring(5);
+                        if (command.StartsWith("/usr/bin/clover-kachikachi") || command.StartsWith("/bin/clover-kachikachi-wr"))
+                        {
+                            if (command.Contains(".nes"))
+                                return new NesGame(path, ignoreEmptyConfig);
+                            if (command.Contains(".fds"))
+                                return new FdsGame(path, ignoreEmptyConfig);
+                        }
+
+                        break;
                     }
-                    var app = AppTypeCollection.GetAppByExec(command);
-                    if (app != null)
-                    {
-                        var constructor = app.Class.GetConstructor(new Type[] { typeof(string), typeof(bool) });
-                        return (NesMiniApplication)constructor.Invoke(new object[] { path, ignoreEmptyConfig });
-                    }
-                    break;
                 }
             }
             return new NesMiniApplication(path, ignoreEmptyConfig);
@@ -146,6 +170,266 @@ namespace com.clusterrr.hakchi_gui
             }
             string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : DefaultApp;
             return Import(fileName, sourceFile, rawRomData, DefaultPrefix, application, DefaultCover);
+        }
+        public string GetNesMiniLocalPath()
+        {
+            return "/usr/share/games/nes/kachikachi/" + Code + "/" + GetRomFile();
+        }
+        public string GetRomFile()
+        {
+            System.Collections.Generic.List<string> exts = new System.Collections.Generic.List<string>(AppTypeCollection.GetAppByType(this.GetType()).Extensions);
+            List<string> expectedFiles = new List<string>();
+            expectedFiles.Add(Code + ".desktop");
+            expectedFiles.Add(Code + ".png");
+            expectedFiles.Add(Code + "_small.png");
+
+            List<string> possibleRomFiles = new List<string>();
+            List<string> zFiles = new List<string>();
+
+          
+            foreach (string f in System.IO.Directory.GetFiles(this.GamePath))
+            {
+                string fileName = System.IO.Path.GetFileName(f);
+                if (!expectedFiles.Contains(fileName))
+                {
+                    string ext = System.IO.Path.GetExtension(fileName);
+                    if (ext == ".7z")
+                    {
+                        zFiles.Add(fileName);
+                    }
+                    else
+                    {
+                        if (!exts.Contains(ext))
+                        {
+                           
+                        }
+                        else
+                        {
+                            possibleRomFiles.Add(fileName);
+                        }
+                    }
+                }
+            }
+            string tempCommand = Command;
+            tempCommand = tempCommand.Replace(".nes .7z", ".nes.7z");
+          
+
+                /*Find if of the file is linked in the commande*/
+                string foundRom = "";
+                foreach (string z in zFiles)
+                {
+                    if (tempCommand.Contains(z))
+                    {
+                        foundRom = z;
+                        break;
+                    }
+                }
+                if (foundRom == "")
+                {
+                    /*Rom was not found in 7z*/
+                    foreach (string z in possibleRomFiles)
+                    {
+                        if (tempCommand.Contains(z))
+                        {
+                            foundRom = z;
+                            break;
+                        }
+                    }
+                }
+                if(foundRom == "")
+            {
+                //Cant find rom from command line, now analyse files
+                if(zFiles.Count >= 1)
+                {
+                    //Most likely this one
+                    foundRom = zFiles[0];
+                }
+                else
+                {
+                    if(possibleRomFiles.Count>=1)
+                    {
+                        foundRom = possibleRomFiles[0];
+                    }
+
+                }
+
+            }
+                if(foundRom == "")
+            {
+                string test = "abc";
+            }
+            return foundRom;
+
+            
+            
+        }
+        public void Clean()
+        {
+            System.Collections.Generic.List<string> exts = new System.Collections.Generic.List<string>(AppTypeCollection.GetAppByType(this.GetType()).Extensions);
+            List<string> expectedFiles = new List<string>();
+            expectedFiles.Add(Code + ".desktop");
+            expectedFiles.Add(Code + ".png");
+            expectedFiles.Add(Code + "_small.png");
+
+            List<string> possibleRomFiles = new List<string>();
+            List<string> zFiles = new List<string>();
+
+            List<string> toDelete = new List<string>();
+            foreach (string f in System.IO.Directory.GetFiles(this.GamePath))
+            {
+                string fileName = System.IO.Path.GetFileName(f);
+                if (!expectedFiles.Contains(fileName))
+                {
+                    string ext = System.IO.Path.GetExtension(fileName);
+                    if(ext == ".7z")
+                    {
+                        zFiles.Add(fileName);
+                    }
+                    else
+                    {
+                        if(!exts.Contains(ext))
+                        {
+                            toDelete.Add(f);
+                        }
+                        else
+                        {
+                            possibleRomFiles.Add(fileName);
+                        }
+                    }
+                }
+            }
+            if(possibleRomFiles.Count + zFiles.Count > 1)
+            {
+                int x = 0;
+
+                /*Find if of the file is linked in the commande*/
+                string foundRom = "";
+                foreach(string z in zFiles)
+                {
+                    if(Command.Contains(z))
+                    {
+                        foundRom = z;
+                        break;
+                    }
+                }
+                if(foundRom == "")
+                {
+                    /*Rom was not found in 7z*/
+                    foreach (string z in possibleRomFiles)
+                    {
+                        if (Command.Contains(z))
+                        {
+                            foundRom = z;
+                            break;
+                        }
+                    }
+                }
+                if(foundRom != "")
+                {
+                    /*Rom found, delete other files*/
+                    foreach(string z in zFiles)
+                    {
+                        if(z!=foundRom)
+                        {
+                            string fullFile = System.IO.Path.Combine(this.GamePath, z);
+                            System.IO.File.Delete(fullFile);
+                        }
+                    }
+                    foreach (string z in possibleRomFiles)
+                    {
+                        if (z != foundRom)
+                        {
+                            string fullFile = System.IO.Path.Combine(this.GamePath, z);
+                            System.IO.File.Delete(fullFile);
+                        }
+                    }
+                }
+               
+            }
+            foreach(string f in toDelete)
+            {
+                System.IO.File.Delete(f);
+            }
+        }
+        public void UniformizeFileName()
+        {
+
+            string romName = GetRomFile();
+
+            string noZipRomName = romName;
+            if (noZipRomName.EndsWith(".7z"))
+            {
+                noZipRomName = noZipRomName.Substring(0, noZipRomName.IndexOf(".7z"));
+            }
+
+            string ext = System.IO.Path.GetExtension(noZipRomName);
+            string fileName = System.IO.Path.GetFileNameWithoutExtension(noZipRomName);
+
+            if(fileName!= Code)
+            {
+                string properFilename = Code + ext;
+                if(isCompressed)
+                {
+                    properFilename = properFilename + ".7z";
+                }
+                string fullOldPath = System.IO.Path.Combine(this.GamePath, romName);
+                string fullNewPath = System.IO.Path.Combine(this.GamePath, properFilename);
+
+                System.IO.File.Move(fullOldPath, fullNewPath);
+                this.Command = this.Command.Replace(romName, properFilename);
+
+            }
+        }
+        public void Compress()
+        {
+            System.Collections.Generic.List<string> ext = new System.Collections.Generic.List<string>( AppTypeCollection.GetAppByType(this.GetType()).Extensions);
+      
+            foreach(string f in System.IO.Directory.GetFiles(this.GamePath))
+            {
+                if(ext.Contains(System.IO.Path.GetExtension(f)) )
+                {
+                    string filename = System.IO.Path.GetFileName(f);
+                    if(this.Command.Contains(filename))
+                    {
+                        if(!this.Command.Contains(filename+".7z"))
+                        {
+                            this.Command = this.Command.Replace(filename, filename + ".7z");
+                        }
+                    }
+                    File.WriteAllBytes(f+".7z",Compress(f));
+                    System.IO.File.Delete(f);
+                }
+            }
+            /*  if (compress)
+           {
+               string temp = null;
+               try
+               {
+                   if (!File.Exists(fileName))
+                   {
+                       temp = Path.Combine(Path.GetTempPath(), Path.GetFileName(fileName));
+                       File.WriteAllBytes(temp, rawRomData);
+                       rawRomData = Compress(temp);
+                       sevenZipped = true;
+                   }
+                   else
+                   {
+                       rawRomData = Compress(fileName);
+                       sevenZipped = true;
+                   }
+               }
+               catch (Exception ex)
+               {
+                   Debug.WriteLine("Compression error: " + ex.Message + ex.Source);
+               }
+               finally
+               {
+                   if (!string.IsNullOrEmpty(temp) && File.Exists(temp))
+                       File.Delete(temp);
+               }
+           }*/
+
+
         }
 
         private static NesMiniApplication Import(string fileName, string sourceFile, byte[] rawRomData, char prefixCode, string application, Image defaultCover, bool compress = false)

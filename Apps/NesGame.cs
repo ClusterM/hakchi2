@@ -21,7 +21,11 @@ namespace com.clusterrr.hakchi_gui
 
         private string region = null;
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet";
-
+        public static string GetDefaultCommand(string code, string args)
+        {
+            return string.Format("/bin/clover-kachikachi-wr /usr/share/games/nes/kachikachi/{0}/{0}.nes {1}", code, args);
+        }
+     
         public override string GoogleSuffix
         {
             get
@@ -30,7 +34,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public string Args
+      /*  public string Args
         {
             get
             {
@@ -43,7 +47,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Command = string.Format("/bin/clover-kachikachi-wr /usr/share/games/nes/kachikachi/{0}/{0}.nes {1}", code, value);
             }
-        }
+        }*/
         private string gameGenie = "";
         public string GameGenie
         {
@@ -69,11 +73,11 @@ namespace com.clusterrr.hakchi_gui
         {
             NesPath = Path.Combine(GamePath, Code + ".nes");
             GameGeniePath = Path.Combine(path, GameGenieFileName);
-            if (!File.Exists(NesPath)) throw new FileNotFoundException("Invalid game directory: " + path);
+            //if (!File.Exists(NesPath)) throw new FileNotFoundException("Invalid game directory: " + path);
 
             if (File.Exists(GameGeniePath))
                 gameGenie = File.ReadAllText(GameGeniePath);
-            Args = Args; // To update exec path if need
+          //  Args = Args; // To update exec path if need
         }
 
         public static NesMiniApplication Import(string nesFileName, string sourceFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback = null, Form parentForm = null, byte[] rawRomData = null)
@@ -152,7 +156,7 @@ namespace com.clusterrr.hakchi_gui
             game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
             game.Name = game.Name.Replace("_", " ").Replace("  ", " ");
             game.FindCover(nesFileName, sourceFileName, (game.region == "Japan") ? Resources.blank_jp : Resources.blank_nes, crc32);
-            game.Args = DefaultArgs;
+            game.Command = GetDefaultCommand(game.Code,DefaultArgs);
             game.Save();
             return game;
         }

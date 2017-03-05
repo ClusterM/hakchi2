@@ -25,14 +25,25 @@ namespace com.clusterrr.hakchi_gui
         {
             InitializeComponent();
             Text = "Google Images - " + app.Name ?? "";
-            searchThread = new Thread(SearchThread);
-            searchThread.Start(app);
-        }
-
-        public static string[] GetImageUrls(NesMiniApplication app)
-        {
             string query = app.Name ?? "";
-            query += " " +  app.GoogleSuffix + " (box|cover) art";
+            query += " " + app.GoogleSuffix + " (box|cover) art";
+            SetText(query);
+            searchThread = new Thread(SearchThread);
+            searchThread.Start(query);
+        }
+        void SetText(string query)
+        {
+            if(InvokeRequired)
+            {
+                this.Invoke(new Action<string>(SetText), new object[] { query });
+            }
+            else
+            {
+                textBox1.Text = query;
+            }
+        }
+        public static string[] GetImageUrls(string query)
+        {
             var url = string.Format("https://www.google.com/search?q={0}&source=lnms&tbm=isch", HttpUtility.UrlEncode(query));
             Debug.WriteLine("Web request: " + url);
             var request = WebRequest.Create(url);
@@ -67,12 +78,20 @@ namespace com.clusterrr.hakchi_gui
 
             return urls.ToArray();
         }
+        public static string[] GetImageUrls(NesMiniApplication app)
+        {
+            string query = app.Name ?? "";
+            query += " " + app.GoogleSuffix + " (box|cover) art";
+
+            return GetImageUrls(query);
+           
+        }
 
         void SearchThread(object o)
         {
             try
             {
-                var urls = GetImageUrls(o as NesMiniApplication);
+                var urls = GetImageUrls(o as string);
                 foreach (var url in urls)
                 {
                     //new Thread(DownloadImageThread).Start(url);
@@ -161,6 +180,11 @@ namespace com.clusterrr.hakchi_gui
         {
             if (listView.SelectedItems.Count == 0) return;
             DialogResult = System.Windows.Forms.DialogResult.OK;
+            if (searchThread != null)
+            {
+                searchThread.Abort();
+                searchThread = null;
+            }
             result = listView.SelectedItems[0].Tag as Image;
             Close();
         }
@@ -168,6 +192,20 @@ namespace com.clusterrr.hakchi_gui
         private void ImageGooglerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (searchThread != null) searchThread.Abort();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            /*Stop current thread*/
+            if (searchThread != null)
+            {
+                searchThread.Abort();
+                searchThread = null;
+            }
+            imageList.Images.Clear();
+            listView.Items.Clear();
+           searchThread = new Thread(SearchThread);
+            searchThread.Start(textBox1.Text);
         }
     }
 }

@@ -57,6 +57,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
@@ -184,6 +185,7 @@
             // groupBoxSplitModes
             // 
             resources.ApplyResources(this.groupBoxSplitModes, "groupBoxSplitModes");
+            this.groupBoxSplitModes.Controls.Add(this.button1);
             this.groupBoxSplitModes.Controls.Add(this.buttonNoFoldersOriginal);
             this.groupBoxSplitModes.Controls.Add(this.buttonNoFolders);
             this.groupBoxSplitModes.Controls.Add(this.buttonFoldersLetters);
@@ -326,6 +328,13 @@
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // TreeContructorForm
             // 
             resources.ApplyResources(this, "$this");
@@ -377,5 +386,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItemSep;
         private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }

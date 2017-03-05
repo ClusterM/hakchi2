@@ -32,6 +32,14 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
+                Class = typeof(NesGame),
+                Extensions = new string[] {".nes", ".unf", ".unif"},
+                DefaultApp = "/bin/nes",
+                Prefix = 'H',
+                DefaultCover = Resources.blank_jp
+            },
+            new AppInfo
+            {
                 Class = typeof(NesUGame),
                 Extensions = new string[] {".nes", ".unf", ".unif"},
                 DefaultApp = "/bin/nes",
@@ -127,7 +135,22 @@ namespace com.clusterrr.hakchi_gui
                 DefaultCover = Resources.blank_sms // TODO: icon for GameGear
             }
         };
+        public static AppInfo GetAppByPrefix(char prefix)
+        {
+            foreach (var app in ApplicationTypes)
+                if (app.Prefix == prefix)
+                    return app;
+                
+            return null;
+        }
+        public static AppInfo GetAppByType(Type theType)
+        {
+            foreach (var app in ApplicationTypes)
+                if (app.Class == theType)
+                    return app;
 
+            return null;
+        }
         public static AppInfo GetAppByExtension(string extension)
         {
             foreach (var app in ApplicationTypes)
