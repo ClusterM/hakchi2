@@ -276,9 +276,7 @@ namespace com.clusterrr.hakchi_gui
                 message += ex.StackTrace;
 #endif
                 Debug.WriteLine(ex.Message + ex.StackTrace);
-                if (ex is GameGenieFormatException || ex is GameGenieNotFoundException)
-                    MessageBox.Show(this, message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else if (ex is MadWizard.WinUSBNet.USBException)
+                if (ex is MadWizard.WinUSBNet.USBException)
                     MessageBox.Show(this, message + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                     MessageBox.Show(this, message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -797,11 +795,11 @@ namespace com.clusterrr.hakchi_gui
                     }
                     catch (GameGenieFormatException ex)
                     {
-                        ShowError(new GameGenieFormatException(string.Format(Resources.GameGenieFormatError, ex.Code, game)), dontStop: true);
+                        ShowError(new Exception(string.Format(Resources.GameGenieFormatError, ex.Code, game.Name)), dontStop: true);
                     }
                     catch (GameGenieNotFoundException ex)
                     {
-                        ShowError(new GameGenieNotFoundException(string.Format(Resources.GameGenieNotFound, ex.Code, game.Name)), dontStop: true);
+                        ShowError(new Exception(string.Format(Resources.GameGenieNotFound, ex.Code, game.Name)), dontStop: true);
                     }
                 }
                 if (element is NesMenuFolder)

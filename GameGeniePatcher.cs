@@ -73,7 +73,7 @@ namespace com.clusterrr.Famicom
                     }
                     pos += 0x2000;
                 }
-                if (!replaced) throw new GameGenieNotFoundException("Can't apply code: " + code);
+                if (!replaced) throw new GameGenieNotFoundException(code);
             }
             else throw new GameGenieFormatException(code);
 
@@ -104,7 +104,7 @@ namespace com.clusterrr.Famicom
     public class GameGenieFormatException : Exception
     {
         public readonly string Code;
-        public GameGenieFormatException(string code) : base()
+        public GameGenieFormatException(string code) : base(string.Format("Invalid code \"{0}\"", code))
         {
             Code = code;
         }
@@ -113,8 +113,7 @@ namespace com.clusterrr.Famicom
     public class GameGenieNotFoundException : Exception
     {
         public readonly string Code;
-        public GameGenieNotFoundException(string code)
-            : base()
+        public GameGenieNotFoundException(string code) : base(string.Format("Invalid code \"{0}\"", code))
         {
             Code = code;
         }
