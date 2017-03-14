@@ -1,4 +1,5 @@
-﻿using com.clusterrr.Famicom;
+﻿using com.clusterrr.clovershell;
+using com.clusterrr.Famicom;
 using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,8 @@ namespace com.clusterrr.hakchi_gui
     public partial class MainForm : Form
     {
         const long maxTotalSize = 300;
-
         public static string BaseDirectory;
+        public static ClovershellConnection Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true, ShellEnabled = true };
         //readonly string UBootDump;
         readonly string KernelDump;
 
@@ -336,6 +337,7 @@ namespace com.clusterrr.hakchi_gui
                 var game = (selected as NesMiniApplication);
                 game.Image = NesMiniApplication.LoadBitmap(openFileDialogImage.FileName);
                 ShowSelected();
+                timerCalculateGames.Enabled = true;
             }
         }
 
@@ -349,6 +351,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 game.Image = googler.Result;
                 ShowSelected();
+                timerCalculateGames.Enabled = true;
             }
         }
 
@@ -448,6 +451,7 @@ namespace com.clusterrr.hakchi_gui
         {
             Debug.WriteLine("Closing main form");
             SaveConfig();
+            Clovershell.Dispose();
         }
 
         struct CountResult
@@ -577,7 +581,7 @@ namespace com.clusterrr.hakchi_gui
             }
             if (UploadGames())
             {
-                MessageBox.Show(Resources.DoneUploaded, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -617,7 +621,7 @@ namespace com.clusterrr.hakchi_gui
         {
             var workerForm = new WorkerForm();
             workerForm.Text = Resources.UploadingGames;
-            workerForm.Task = WorkerForm.Tasks.Memboot;
+            workerForm.Task = WorkerForm.Tasks.UploadGames;
             workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_hakchi";
             workerForm.Config = new Dictionary<string, string>();
@@ -1042,6 +1046,7 @@ namespace com.clusterrr.hakchi_gui
             if (DownloadAllCovers())
                 MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             ShowSelected();
+            timerCalculateGames.Enabled = true;
         }
 
         private void checkedListBoxGames_KeyDown(object sender, KeyEventArgs e)
@@ -1160,6 +1165,12 @@ namespace com.clusterrr.hakchi_gui
                     MessageBox.Show(Resources.DoneUploaded, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+
+        private void timerConnectionCheck_Tick(object sender, EventArgs e)
+        {
+            toolStripStatusConnectionIcon.Image = Clovershell.IsOnline ? Resources.green : Resources.red;
+            toolStripStatusConnectionIcon.ToolTipText = Clovershell.IsOnline ? "Online" : "Offline";
         }
     }
 }

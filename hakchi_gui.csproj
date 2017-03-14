@@ -84,7 +84,10 @@
     <Compile Include="Apps\SmsGame.cs" />
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\NesUGame.cs" />
-    <Compile Include="ClovershellConnection.cs" />
+    <Compile Include="Clovershell\ClovershellConnection.cs" />
+    <Compile Include="Clovershell\ClovershellException.cs" />
+    <Compile Include="Clovershell\ExecConnection.cs" />
+    <Compile Include="Clovershell\ShellConnection.cs" />
     <Compile Include="ConfigIni.cs" />
     <Compile Include="GameGenieCodeAddModForm.cs">
       <SubType>Form</SubType>
@@ -364,6 +367,7 @@
       <DependentUpon>StringInputForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TaskbarProgress.cs" />
+    <Compile Include="TrackableMemoryStream.cs" />
     <Compile Include="TreeContructorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -372,11 +376,17 @@
     </Compile>
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
-    <Compile Include="WaitingForm.cs">
+    <Compile Include="WaitingClovershellForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WaitingForm.Designer.cs">
-      <DependentUpon>WaitingForm.cs</DependentUpon>
+    <Compile Include="WaitingClovershellForm.Designer.cs">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WaitingFelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WaitingFelForm.Designer.cs">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WorkerForm.cs">
       <SubType>Form</SubType>
@@ -483,14 +493,20 @@
     <EmbeddedResource Include="TreeContructorForm.ru-RU.resx">
       <DependentUpon>TreeContructorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WaitingForm.pl-PL.resx">
-      <DependentUpon>WaitingForm.cs</DependentUpon>
+    <EmbeddedResource Include="WaitingClovershellForm.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WaitingForm.resx">
-      <DependentUpon>WaitingForm.cs</DependentUpon>
+    <EmbeddedResource Include="WaitingClovershellForm.ru-RU.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WaitingForm.ru-RU.resx">
-      <DependentUpon>WaitingForm.cs</DependentUpon>
+    <EmbeddedResource Include="WaitingFelForm.pl-PL.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.ru-RU.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkerForm.resx">
       <DependentUpon>WorkerForm.cs</DependentUpon>
@@ -815,6 +831,7 @@
     <Content Include="images\gb_sm_tr.png" />
     <Content Include="images\genesis_sm.png" />
     <Content Include="images\genesis_sm_tr.png" />
+    <Content Include="images\green.png" />
     <Content Include="images\n64_sm.png" />
     <Content Include="images\n64_sm_tr.png" />
     <Content Include="images\nes_sm_tr.png" />
@@ -826,12 +843,16 @@
     <Content Include="images\original_sm_tr.png" />
     <Content Include="images\pce_sm.png" />
     <Content Include="images\pce_sm_tr.png" />
+    <Content Include="images\red.png" />
     <Content Include="images\sms_sm.png" />
     <Content Include="images\sms_sm_tr.png" />
     <Content Include="images\snes-eu-jp_sm.png" />
     <Content Include="images\snes-eu-jp_sm_tr.png" />
     <Content Include="images\snes-us_sm.png" />
     <Content Include="images\snes-us_sm_tr.png" />
+    <Content Include="tools\tar.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="user_mods\music_hack.hmod\music.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -893,9 +914,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="tools\unpackbootimg.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\upx.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

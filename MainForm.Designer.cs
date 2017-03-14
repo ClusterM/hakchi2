@@ -119,6 +119,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.buttonAddGames = new System.Windows.Forms.Button();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusConnectionIcon = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelSize = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
@@ -132,6 +133,7 @@
             this.groupBoxDefaultGames = new System.Windows.Forms.GroupBox();
             this.checkedListBoxDefaultGames = new System.Windows.Forms.CheckedListBox();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
+            this.timerConnectionCheck = new System.Windows.Forms.Timer(this.components);
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -781,12 +783,20 @@
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusConnectionIcon,
             this.toolStripStatusLabelSelected,
             this.toolStripStatusLabelSize,
             this.toolStripProgressBar});
             resources.ApplyResources(this.statusStrip, "statusStrip");
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.SizingGrip = false;
+            // 
+            // toolStripStatusConnectionIcon
+            // 
+            resources.ApplyResources(this.toolStripStatusConnectionIcon, "toolStripStatusConnectionIcon");
+            this.toolStripStatusConnectionIcon.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.red;
+            this.toolStripStatusConnectionIcon.Margin = new System.Windows.Forms.Padding(2, 3, 0, 2);
+            this.toolStripStatusConnectionIcon.Name = "toolStripStatusConnectionIcon";
             // 
             // toolStripStatusLabelSelected
             // 
@@ -869,6 +879,12 @@
             this.timerCalculateGames.Enabled = true;
             this.timerCalculateGames.Interval = 500;
             this.timerCalculateGames.Tick += new System.EventHandler(this.timerCalculateGames_Tick);
+            // 
+            // timerConnectionCheck
+            // 
+            this.timerConnectionCheck.Enabled = true;
+            this.timerConnectionCheck.Interval = 500;
+            this.timerConnectionCheck.Tick += new System.EventHandler(this.timerConnectionCheck_Tick);
             // 
             // MainForm
             // 
@@ -1008,6 +1024,8 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelSize;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
         private System.Windows.Forms.ToolStripMenuItem compressGamesIfPossibleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusConnectionIcon;
+        private System.Windows.Forms.Timer timerConnectionCheck;
     }
 }
 

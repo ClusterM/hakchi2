@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace com.clusterrr.FelLib
 {
-    public class Fel
+    public class Fel : IDisposable
     {
         public byte[] Fes1Bin;
         byte[] uBootBin;
@@ -416,6 +416,11 @@ namespace com.clusterrr.FelLib
                     Thread.Sleep(2000);
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            Close();
         }
     }
 }

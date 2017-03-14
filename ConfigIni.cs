@@ -64,7 +64,7 @@ namespace com.clusterrr.hakchi_gui
                                 case "hiddengames":
                                     HiddenGames = value;
                                     break;
-                                case "customflashed":
+                                case "custom2flashed":
                                     CustomFlashed = !value.ToLower().Equals("false");
                                     FirstRun = false;
                                     break;
@@ -125,7 +125,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add("[Config]");
             configLines.Add(string.Format("SelectedGames={0}", SelectedGames));
             configLines.Add(string.Format("HiddenGames={0}", HiddenGames));
-            configLines.Add(string.Format("CustomFlashed={0}", CustomFlashed));
+            configLines.Add(string.Format("Custom2Flashed={0}", CustomFlashed));
             configLines.Add(string.Format("UseFont={0}", UseFont));
             configLines.Add(string.Format("ResetHack={0}", ResetHack));
             configLines.Add(string.Format("AutofireHack={0}", AutofireHack));

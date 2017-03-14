@@ -424,4 +424,10 @@
   <data name="FolderNameMoreGames" xml:space="preserve">
     <value>Больше игр...</value>
   </data>
+  <data name="UploadingConfig" xml:space="preserve">
+    <value>Обновляем настройки...</value>
+  </data>
+  <data name="UploadingOriginalGames" xml:space="preserve">
+    <value>Распределяем оригинальные игры...</value>
+  </data>
 </root>

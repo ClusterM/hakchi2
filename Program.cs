@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -39,7 +40,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (createdNew)
                 {
-                    Debug.WriteLine("Starting...");
+                    Debug.WriteLine("Starting, version: " + Assembly.GetExecutingAssembly().GetName().Version);
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Application.Run(new MainForm());

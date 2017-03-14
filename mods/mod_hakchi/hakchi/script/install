@@ -14,10 +14,7 @@ mod_repair(){
   copy "$modpath/rootfs/" "$rootfs/"
   copy "/bin/" "$rootfs/bin/"
   copy "/sbin/cryptsetup" "$rootfs/bin/cryptsetup"
-
-  # This file required by hakchi2 kernel...
-  echo hakchi_enabled=y > "$temppath/config"
-  copy "$temppath/config" "$installpath/"
+  copy "$modpath/script/" "$installpath/script/"
 }
 
 mod_install(){

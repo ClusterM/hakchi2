@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public partial class WaitingForm : Form
+    public partial class WaitingFelForm : Form
     {
         readonly UInt16 vid, pid;
 
-        public WaitingForm(UInt16 vid, UInt16 pid)
+        public WaitingFelForm(UInt16 vid, UInt16 pid)
         {
             InitializeComponent();
             this.vid = vid;
@@ -24,21 +24,25 @@ namespace com.clusterrr.hakchi_gui
         public static bool WaitForDevice(UInt16 vid, UInt16 pid)
         {
             if (Fel.DeviceExists(vid, pid)) return true;
-            var form = new WaitingForm(vid, pid);
+            var form = new WaitingFelForm(vid, pid);
             form.ShowDialog();
             return form.DialogResult == DialogResult.OK;
         }
 
         static bool DeviceExists(UInt16 vid, UInt16 pid)
         {
-            var devices = GetUSBDevices();
-            var id = string.Format("VID_{0:X4}&PID_{1:X4}", vid, pid);
-            foreach (var device in devices)
+            try
             {
-                if (device.DeviceID.Contains(id))
+                using (var fel = new Fel())
+                {
+                    fel.Open(vid, pid);
                     return true;
+                }
             }
-            return false;
+            catch
+            {
+                return false;
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -95,40 +99,6 @@ namespace com.clusterrr.hakchi_gui
         {
             timer.Enabled = false;
         }
-
-        static List<USBDeviceInfo> GetUSBDevices()
-        {
-            List<USBDeviceInfo> devices = new List<USBDeviceInfo>();
-
-            ManagementObjectCollection collection;
-            using (var searcher = new ManagementObjectSearcher(@"SELECT * FROM Win32_PnPEntity where DeviceID Like ""USB%"""))
-                collection = searcher.Get();
-
-            foreach (var device in collection)
-            {
-                devices.Add(new USBDeviceInfo(
-                (string)device.GetPropertyValue("DeviceID"),
-                (string)device.GetPropertyValue("PNPDeviceID"),
-                (string)device.GetPropertyValue("Description")
-                ));
-            }
-
-            collection.Dispose();
-            return devices;
-        }
-    }
-
-    class USBDeviceInfo
-    {
-        public USBDeviceInfo(string deviceID, string pnpDeviceID, string description)
-        {
-            this.DeviceID = deviceID;
-            this.PnpDeviceID = pnpDeviceID;
-            this.Description = description;
-        }
-        public string DeviceID { get; private set; }
-        public string PnpDeviceID { get; private set; }
-        public string Description { get; private set; }
     }
 }
 
