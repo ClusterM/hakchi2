@@ -289,8 +289,8 @@
             this.cloverconHackToolStripMenuItem,
             this.useExtendedFontToolStripMenuItem,
             this.epilepsyProtectionToolStripMenuItem,
-            this.pagesfoldersTypeToolStripMenuItem,
             this.compressGamesIfPossibleToolStripMenuItem,
+            this.pagesfoldersTypeToolStripMenuItem,
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem,
             this.toolStripMenuItem5,
             this.saveSettingsToNESMiniNowToolStripMenuItem});
@@ -1038,11 +1038,11 @@
         private System.Windows.Forms.ToolStripMenuItem useXYOnClassicControllerAsAutofireABToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelSize;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
-        private System.Windows.Forms.ToolStripMenuItem compressGamesIfPossibleToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusConnectionIcon;
         private System.Windows.Forms.Timer timerConnectionCheck;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem saveSettingsToNESMiniNowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem compressGamesIfPossibleToolStripMenuItem;
     }
 }
 

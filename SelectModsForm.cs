@@ -15,20 +15,44 @@ namespace com.clusterrr.hakchi_gui
         private readonly string usermodsDirectory;
         private readonly string[] readmeFiles;
 
-        public SelectModsForm()
+        public SelectModsForm(bool loadInstalledMods = false)
         {
             InitializeComponent();
             baseDirectory = MainForm.BaseDirectory;
             usermodsDirectory = Path.Combine(baseDirectory, "user_mods");
             var modsList = new List<string>();
-            if (Directory.Exists(usermodsDirectory))
+            if (loadInstalledMods && MainForm.Clovershell.IsOnline)
             {
-                modsList.AddRange(from m
-                                  in Directory.GetDirectories(usermodsDirectory, "*.hmod", SearchOption.TopDirectoryOnly)
-                                  select Path.GetFileNameWithoutExtension(m));
-                modsList.AddRange(from m
-                                  in Directory.GetFiles(usermodsDirectory, "*.hmod", SearchOption.TopDirectoryOnly)
-                                  select Path.GetFileNameWithoutExtension(m));
+                var mods = new MemoryStream();
+                MainForm.Clovershell.Execute("ls /var/lib/hakchi/hmod/uninstall-*", null, mods, null, 1000, true);
+                mods.Seek(0, SeekOrigin.Begin);
+                var modsarr = new byte[mods.Length];
+                mods.Read(modsarr, 0, (int)mods.Length);
+                var modsstr = Encoding.UTF8.GetString(modsarr, 0, modsarr.Length);
+                var installedMods = modsstr.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var mod in installedMods)
+                {
+                    var modname = mod;
+                    int pos;
+                    while ((pos = modname.IndexOf("/")) >= 0)
+                        modname = modname.Substring(pos + 1);
+                    modname = modname.Substring("uninstall-".Length);
+                    if (MainForm.InternalMods.Contains(modname))
+                        continue;
+                    modsList.Add(modname);
+                }
+            }
+            else
+            {
+                if (Directory.Exists(usermodsDirectory))
+                {
+                    modsList.AddRange(from m
+                                      in Directory.GetDirectories(usermodsDirectory, "*.hmod", SearchOption.TopDirectoryOnly)
+                                      select Path.GetFileNameWithoutExtension(m));
+                    modsList.AddRange(from m
+                                      in Directory.GetFiles(usermodsDirectory, "*.hmod", SearchOption.TopDirectoryOnly)
+                                      select Path.GetFileNameWithoutExtension(m));
+                }
             }
             readmeFiles = new string[] { "readme.txt", "readme.md", "readme" };
             checkedListBoxMods.Items.Clear();

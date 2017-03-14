@@ -17,6 +17,7 @@ namespace com.clusterrr.hakchi_gui
     {
         const long maxTotalSize = 300;
         public static string BaseDirectory;
+        public static string[] InternalMods = new string[] { "clovercon", "fontfix", "clovershell" };
         public static ClovershellConnection Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true, ShellEnabled = true };
         //readonly string UBootDump;
         readonly string KernelDump;
@@ -603,7 +604,7 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Task = WorkerForm.Tasks.FlashKernel;
             workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_hakchi";
-            workerForm.hmodsInstall = new List<string>() { "clovercon", "fontfix", "clovershell" };
+            workerForm.hmodsInstall = new List<string>(InternalMods);
             workerForm.Config = null;
             workerForm.Games = null;
             workerForm.HiddenGames = null;
@@ -1124,7 +1125,7 @@ namespace com.clusterrr.hakchi_gui
                                    in form.checkedListBoxMods.CheckedItems.OfType<object>().ToArray()
                                   select m.ToString())).ToArray()))
                 {
-                    MessageBox.Show(Resources.DoneUploaded, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -1136,7 +1137,7 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var form = new SelectModsForm();
+            var form = new SelectModsForm(true);
             form.Text = Resources.SelectModsUninstall;
             if (form.ShowDialog() == DialogResult.OK)
             {
@@ -1144,7 +1145,7 @@ namespace com.clusterrr.hakchi_gui
                                    in form.checkedListBoxMods.CheckedItems.OfType<object>().ToArray()
                                     select m.ToString())).ToArray()))
                 {
-                    MessageBox.Show(Resources.DoneUploaded, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
