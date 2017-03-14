@@ -517,6 +517,9 @@
     <None Include="data\fes1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="data\splash.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="data\uboot.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

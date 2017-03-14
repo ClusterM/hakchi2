@@ -39,6 +39,7 @@ namespace com.clusterrr.hakchi_gui
         readonly string baseDirectory;
         readonly string fes1Path;
         readonly string ubootPath;
+        readonly string splashScreenPath;
         readonly string tempDirectory;
         readonly string kernelDirectory;
         readonly string initramfs_cpio;
@@ -70,6 +71,7 @@ namespace com.clusterrr.hakchi_gui
             baseDirectory = MainForm.BaseDirectory;
             fes1Path = Path.Combine(Path.Combine(baseDirectory, "data"), "fes1.bin");
             ubootPath = Path.Combine(Path.Combine(baseDirectory, "data"), "uboot.bin");
+            splashScreenPath = Path.Combine(Path.Combine(baseDirectory, "data"), "splash.gz");
             tempDirectory = Path.Combine(baseDirectory, "temp");
             kernelDirectory = Path.Combine(tempDirectory, "kernel");
             initramfs_cpio = Path.Combine(kernelDirectory, "initramfs.cpio");
@@ -482,6 +484,17 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress);
             var clovershell = MainForm.Clovershell;
 
+            clovershell.Execute("pkill -KILL clover-mcp", null, null, null, 3000);
+            clovershell.Execute("pkill -KILL ReedPlayer-Clover", null, null, null, 3000);
+            clovershell.Execute("pkill -KILL kachikachi", null, null, null, 3000);
+            if (File.Exists(splashScreenPath))
+            {
+                using (var splash = new FileStream(splashScreenPath, FileMode.Open))
+                {
+                    clovershell.Execute("gunzip -c - > /dev/fb0", splash, null, null, 3000);
+                }
+            }
+
             if (Games == null || Games.Count == 0)
                 throw new Exception("there are no games");
             SetStatus(Resources.BuildingFolders);
@@ -495,10 +508,6 @@ namespace com.clusterrr.hakchi_gui
                 Games.AddBack();
             }
             else Games.Split(FoldersMode, MaxGamesPerFolder);
-
-            clovershell.Execute("pkill -KILL clover-mcp", null, null, null, 3000);
-            clovershell.Execute("pkill -KILL ReedPlayer-Clover", null, null, null, 3000);
-            clovershell.Execute("pkill -KILL kachikachi", null, null, null, 3000);
 
             if (Directory.Exists(tempDirectory))
                 Directory.Delete(tempDirectory, true);
@@ -557,7 +566,7 @@ namespace com.clusterrr.hakchi_gui
 
             SetStatus(Resources.UploadingConfig);
             SyncConfig(Config); ;
-            
+
             try
             {
                 clovershell.Execute("reboot", null, null, null, 1000);
@@ -570,7 +579,7 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(maxProgress, maxProgress);
         }
 
-        public static bool SyncConfig(Dictionary<string,string> Config, bool reboot = false)
+        public static bool SyncConfig(Dictionary<string, string> Config, bool reboot = false)
         {
             var clovershell = MainForm.Clovershell;
 
