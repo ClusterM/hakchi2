@@ -473,110 +473,127 @@ namespace com.clusterrr.hakchi_gui
 
         public void UploadGames()
         {
-            int progress = 0;
-            int maxProgress = 335;
-            if (WaitForClovershellFromThread() != DialogResult.OK)
-            {
-                DialogResult = DialogResult.Abort;
-                return;
-            }
-            progress += 5;
-            SetProgress(progress, maxProgress);
             var clovershell = MainForm.Clovershell;
-
-            clovershell.Execute("pkill -KILL clover-mcp", null, null, null, 3000);
-            clovershell.Execute("pkill -KILL ReedPlayer-Clover", null, null, null, 3000);
-            clovershell.Execute("pkill -KILL kachikachi", null, null, null, 3000);
-            if (File.Exists(splashScreenPath))
+            try
             {
-                using (var splash = new FileStream(splashScreenPath, FileMode.Open))
+                int progress = 0;
+                int maxProgress = 335;
+                if (Games == null || Games.Count == 0)
+                    throw new Exception("there are no games");
+                SetStatus(Resources.BuildingFolders);
+                if (FoldersMode == NesMenuCollection.SplitStyle.Custom)
                 {
-                    clovershell.Execute("gunzip -c - > /dev/fb0", splash, null, null, 3000);
+                    if (FolderManagerFromThread(Games) != System.Windows.Forms.DialogResult.OK)
+                    {
+                        DialogResult = DialogResult.Abort;
+                        return;
+                    }
+                    Games.AddBack();
                 }
-            }
+                else Games.Split(FoldersMode, MaxGamesPerFolder);
+                progress += 5;
+                SetProgress(progress, maxProgress);
 
-            if (Games == null || Games.Count == 0)
-                throw new Exception("there are no games");
-            SetStatus(Resources.BuildingFolders);
-            if (FoldersMode == NesMenuCollection.SplitStyle.Custom)
-            {
-                if (FolderManagerFromThread(Games) != System.Windows.Forms.DialogResult.OK)
+                if (WaitForClovershellFromThread() != DialogResult.OK)
                 {
                     DialogResult = DialogResult.Abort;
                     return;
                 }
-                Games.AddBack();
-            }
-            else Games.Split(FoldersMode, MaxGamesPerFolder);
-
-            if (Directory.Exists(tempDirectory))
-                Directory.Delete(tempDirectory, true);
-            Directory.CreateDirectory(tempDirectory);
-            // Games!
-            tempGamesDirectory = Path.Combine(tempDirectory, "games");
-            originalGamesConfigDirectory = Path.Combine(tempDirectory, "original");
-            hiddenPath = Path.Combine(originalGamesConfigDirectory, "hidden");
-            Directory.CreateDirectory(tempDirectory);
-            Directory.CreateDirectory(tempGamesDirectory);
-            Directory.CreateDirectory(originalGamesConfigDirectory);
-            if (HiddenGames != null && HiddenGames.Length > 0)
-            {
-                StringBuilder h = new StringBuilder();
-                foreach (var game in HiddenGames)
-                    h.Append(game + "\n");
-                File.WriteAllText(hiddenPath, h.ToString());
-            }
-
-            var stats = new GamesTreeStats();
-            maxRamfsSize = -1;
-            stats.Next();
-            AddMenu(Games, stats);
-            progress += 5;
-            SetProgress(progress, maxProgress);
-
-            byte[] gamesTar, originalGamesTar;
-            if (!ExecuteTool("tar.exe", "-c *", out gamesTar, tempGamesDirectory))
-                throw new Exception("can't pack games");
-            progress += 5;
-            maxProgress = gamesTar.Length / 1024 / 1024 + 35;
-            SetProgress(progress, maxProgress);
-
-            var gamesStream = new TrackableMemoryStream(gamesTar);
-            gamesStream.OnProgress += delegate(long pos, long len)
-            {
-                progress = (int)(15 + pos / 1024 / 1024);
+                progress += 5;
                 SetProgress(progress, maxProgress);
-            };
 
-            SetStatus(Resources.UploadingGames);
-            clovershell.Execute("umount /usr/share/games/nes/kachikachi", null, null, null, 3000);
-            clovershell.Execute("rm -rf /var/lib/hakchi/rootfs/usr/share/games/nes/kachikachi/CLV-* /var/lib/hakchi/rootfs/usr/share/games/nes/kachikachi/??? /var/lib/hakchi/menu", null, null, null, 3000);
-            clovershell.Execute("tar -xvC /var/lib/hakchi/rootfs/usr/share/games/nes/kachikachi", gamesStream, null, null, 180000, true);
-            gamesStream.Dispose();
+                clovershell.Execute("pkill -KILL clover-mcp", null, null, null, 3000);
+                clovershell.Execute("pkill -KILL ReedPlayer-Clover", null, null, null, 3000);
+                clovershell.Execute("pkill -KILL kachikachi", null, null, null, 3000);
+                if (File.Exists(splashScreenPath))
+                {
+                    using (var splash = new FileStream(splashScreenPath, FileMode.Open))
+                    {
+                        clovershell.Execute("gunzip -c - > /dev/fb0", splash, null, null, 3000);
+                    }
+                }
 
-            SetStatus(Resources.UploadingOriginalGames);
-            if (!ExecuteTool("tar.exe", "-c *", out originalGamesTar, originalGamesConfigDirectory))
-                throw new Exception("can't pack original games");
-            var originalGamesStream = new MemoryStream(originalGamesTar);
-            clovershell.Execute("source /etc/preinit && script_init && mkdir -p $temppath/games && tar -xvC $temppath/games", originalGamesStream, null, null, 30000, true);
-            clovershell.Execute("source /etc/preinit && script_init && source $installpath/script/games && cd $temppath && target_dir=$rootfs$gamepath && transfer_original_games games", null, null, null, 30000, true);
-            originalGamesStream.Dispose();
-            progress += 15;
-            SetProgress(progress, maxProgress);
+                SetStatus(Resources.BuildingFolders);
+                if (Directory.Exists(tempDirectory))
+                    Directory.Delete(tempDirectory, true);
+                Directory.CreateDirectory(tempDirectory);
+                // Games!
+                tempGamesDirectory = Path.Combine(tempDirectory, "games");
+                originalGamesConfigDirectory = Path.Combine(tempDirectory, "original");
+                hiddenPath = Path.Combine(originalGamesConfigDirectory, "hidden");
+                Directory.CreateDirectory(tempDirectory);
+                Directory.CreateDirectory(tempGamesDirectory);
+                Directory.CreateDirectory(originalGamesConfigDirectory);
+                if (HiddenGames != null && HiddenGames.Length > 0)
+                {
+                    StringBuilder h = new StringBuilder();
+                    foreach (var game in HiddenGames)
+                        h.Append(game + "\n");
+                    File.WriteAllText(hiddenPath, h.ToString());
+                }
 
-            SetStatus(Resources.UploadingConfig);
-            SyncConfig(Config); ;
+                var stats = new GamesTreeStats();
+                maxRamfsSize = -1;
+                stats.Next();
+                AddMenu(Games, stats);
+                progress += 5;
+                SetProgress(progress, maxProgress);
 
-            try
-            {
-                clovershell.Execute("reboot", null, null, null, 1000);
-            }
-            catch { }
+                byte[] gamesTar, originalGamesTar;
+                if (!ExecuteTool("tar.exe", "-c *", out gamesTar, tempGamesDirectory))
+                    throw new Exception("can't pack games");
+                progress += 5;
+                maxProgress = gamesTar.Length / 1024 / 1024 + 35;
+                SetProgress(progress, maxProgress);
+
+                var gamesStream = new TrackableMemoryStream(gamesTar);
+                gamesStream.OnProgress += delegate(long pos, long len)
+                {
+                    progress = (int)(20 + pos / 1024 / 1024);
+                    SetProgress(progress, maxProgress);
+                };
+
+                SetStatus(Resources.UploadingGames);
+                clovershell.Execute("umount /usr/share/games/nes/kachikachi", null, null, null, 3000);
+                clovershell.Execute("rm -rf /var/lib/hakchi/rootfs/usr/share/games/nes/kachikachi/CLV-* /var/lib/hakchi/rootfs/usr/share/games/nes/kachikachi/??? /var/lib/hakchi/menu", null, null, null, 3000);
+                clovershell.Execute("tar -xvC /var/lib/hakchi/rootfs/usr/share/games/nes/kachikachi", gamesStream, null, null, 180000, true);
+                gamesStream.Dispose();
+
+                SetStatus(Resources.UploadingOriginalGames);
+                if (!ExecuteTool("tar.exe", "-c *", out originalGamesTar, originalGamesConfigDirectory))
+                    throw new Exception("can't pack original games");
+                var originalGamesStream = new MemoryStream(originalGamesTar);
+                clovershell.Execute("source /etc/preinit && script_init && mkdir -p $temppath/games && tar -xvC $temppath/games", originalGamesStream, null, null, 30000, true);
+                clovershell.Execute("source /etc/preinit && script_init && source $installpath/script/games && cd $temppath && target_dir=$rootfs$gamepath && transfer_original_games games", null, null, null, 30000, true);
+                originalGamesStream.Dispose();
+                progress += 15;
+                SetProgress(progress, maxProgress);
+
+                SetStatus(Resources.UploadingConfig);
+                SyncConfig(Config);
+
+                try
+                {
+                    clovershell.Execute("reboot", null, null, null, 1000);
+                }
+                catch { }
 #if !DEBUG
             Directory.Delete(tempDirectory, true);
 #endif
-            SetStatus(Resources.Done);
-            SetProgress(maxProgress, maxProgress);
+                SetStatus(Resources.Done);
+                SetProgress(maxProgress, maxProgress);
+            }
+            catch (Exception ex)            
+            {
+                // Turn off console in case of error/cancel
+                try
+                {
+                    if (clovershell.IsOnline)
+                        clovershell.Execute("poweroff", null, null, null, 100);
+                }
+                catch { }
+                throw ex;
+            }
         }
 
         public static bool SyncConfig(Dictionary<string, string> Config, bool reboot = false)

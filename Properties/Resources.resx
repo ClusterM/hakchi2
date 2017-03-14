@@ -553,4 +553,19 @@
   <data name="UploadingOriginalGames" xml:space="preserve">
     <value>Processing original games...</value>
   </data>
+  <data name="blank_2600" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_2600.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_32x.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_arcade" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_arcade.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_gg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_gg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_neogeo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_neogeo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

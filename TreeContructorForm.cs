@@ -81,7 +81,8 @@ namespace com.clusterrr.hakchi_gui
         {
             cuttedNodes.Clear();
             treeView.Nodes.Clear();
-            var rootNode = new TreeNode(Resources.MainMenu);
+            var folderImageIndex = getImageIndex(null);
+            var rootNode = new TreeNode(Resources.MainMenu, folderImageIndex, folderImageIndex);
             treeView.Nodes.Add(rootNode);
             rootNode.Tag = gamesCollection;
             AddNodes(rootNode.Nodes, gamesCollection);
@@ -111,32 +112,41 @@ namespace com.clusterrr.hakchi_gui
 
         static int getImageIndex(INesMenuElement nesElement)
         {
-            if (nesElement is NesMenuFolder || nesElement is NesMenuCollection)
+            if (nesElement == null || nesElement is NesMenuFolder || nesElement is NesMenuCollection)
+                return 12;
+            
+            if (nesElement is Sega32XGame)
                 return 0;
-            if (nesElement is NesDefaultGame)
+            if (nesElement is Atari2600Game)
                 return 2;
-            if (nesElement is NesGame)
+            if (nesElement is ArcadeGame)
                 return 6;
             if (nesElement is NesUGame)
                 return 8;
             if (nesElement is FdsGame)
                 return 10;
-            if (nesElement is SnesGame)
-                return 12;
-            if (nesElement is N64Game)
-                return 14;
-            if (nesElement is SmsGame)
-                return 16;
-            if (nesElement is GenesisGame)
-                return 18;
-            if (nesElement is PceGame)
-                return 20;
             if (nesElement is GbGame)
-                return 22;
-            if (nesElement is GbcGame)
-                return 24;
+                return 14;
             if (nesElement is GbaGame)
-                return 26;            
+                return 16;
+            if (nesElement is GbcGame)
+                return 18;
+            if (nesElement is GenesisGame)
+                return 20;
+            if (nesElement is GameGearGame)
+                return 22;
+            if (nesElement is N64Game)
+                return 24;
+            if (nesElement is NesGame)
+                return 28;
+            if (nesElement is NesDefaultGame)
+                return 30;
+            if (nesElement is PceGame)
+                return 32;
+            if (nesElement is SmsGame)
+                return 34;
+            if (nesElement is SnesGame)
+                return 36;
             
             return 4;
         }
@@ -534,13 +544,13 @@ namespace com.clusterrr.hakchi_gui
             ShowFolderStats();
             return true;
         }
-
-
+        
         void newFolder(TreeNode parent = null)
         {
-            var newnode = new TreeNode(Resources.FolderNameNewFolder, 0, 0);
-            var newfolder = new NesMenuFolder(newnode.Text);
-            newnode.Tag = newfolder;
+            var newFolder = new NesMenuFolder(Resources.FolderNameNewFolder);
+            var folderImageIndex = getImageIndex(newFolder);
+            var newnode = new TreeNode(Resources.FolderNameNewFolder, folderImageIndex, folderImageIndex);
+            newnode.Tag = newFolder;
             if (parent != null)
             {
                 parent.Nodes.Add(newnode);
@@ -553,7 +563,7 @@ namespace com.clusterrr.hakchi_gui
                 parent = treeView.SelectedNode;
                 parent.Nodes.Add(newnode);
                 ShowFolderStats();
-                var item = new ListViewItem(newnode.Text, 0);
+                var item = new ListViewItem(newnode.Text, folderImageIndex);
                 item.Tag = newnode;
                 listViewContent.SelectedItems.Clear();
                 listViewContent.Items.Add(item);
@@ -562,9 +572,9 @@ namespace com.clusterrr.hakchi_gui
             if (parent != null)
             {
                 if (parent.Tag is NesMenuFolder)
-                    (parent.Tag as NesMenuFolder).ChildMenuCollection.Add(newfolder);
+                    (parent.Tag as NesMenuFolder).ChildMenuCollection.Add(newFolder);
                 else if (parent.Tag is NesMenuCollection)
-                    (parent.Tag as NesMenuCollection).Add(newfolder);
+                    (parent.Tag as NesMenuCollection).Add(newFolder);
             }
         }
 
@@ -576,8 +586,9 @@ namespace com.clusterrr.hakchi_gui
                 if (el.Text == name && el.Tag is NesMenuFolder)
                     return el;
             }
-            var newNode = new TreeNode(name, 0, 0);
-            var newFolder = new NesMenuFolder(newNode.Text);
+            var newFolder = new NesMenuFolder(name);
+            var folderImageIndex = getImageIndex(newFolder);
+            var newNode = new TreeNode(name, folderImageIndex, folderImageIndex);
             newFolder.Position = NesMenuFolder.Priority.Leftmost;
             newNode.Tag = newFolder;
             (root.Tag as NesMenuCollection).Add(newFolder);

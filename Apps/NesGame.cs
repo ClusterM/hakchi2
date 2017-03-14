@@ -176,13 +176,16 @@ namespace com.clusterrr.hakchi_gui
             return false;
         }
 
-        public override void Save()
+        public override bool Save()
         {
-            if (!string.IsNullOrEmpty(gameGenie))
-                File.WriteAllText(GameGeniePath, gameGenie);
-            else
-                File.Delete(GameGeniePath);
-            base.Save();
+            if (this.hasUnsavedChanges)
+            {
+                if (!string.IsNullOrEmpty(gameGenie))
+                    File.WriteAllText(GameGeniePath, gameGenie);
+                else
+                    File.Delete(GameGeniePath);
+            }
+            return this.hasUnsavedChanges || base.Save();
         }
 
         public void ApplyGameGenie()

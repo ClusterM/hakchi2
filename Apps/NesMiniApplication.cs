@@ -142,7 +142,9 @@ namespace com.clusterrr.hakchi_gui
                 if (import != null)
                     return (NesMiniApplication)import.Invoke(null, new object[] { fileName, sourceFile, rawRomData });
                 else
-                    return Import(fileName, sourceFile, rawRomData, appinfo.Prefix, appinfo.DefaultApp, appinfo.DefaultCover, ConfigIni.Compress);
+                    return Import(fileName, sourceFile, rawRomData, appinfo.Prefix, 
+                        appinfo.DefaultApps.Length > 0 ? appinfo.DefaultApps[0] : DefaultApp, 
+                        appinfo.DefaultCover, ConfigIni.Compress);
             }
             string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : DefaultApp;
             return Import(fileName, sourceFile, rawRomData, DefaultPrefix, application, DefaultCover);
@@ -271,9 +273,9 @@ namespace com.clusterrr.hakchi_gui
             hasUnsavedChanges = false;
         }
 
-        public virtual void Save()
+        public virtual bool Save()
         {
-            if (!hasUnsavedChanges) return;
+            if (!hasUnsavedChanges) return false;
             Debug.WriteLine(string.Format("Saving application \"{0}\" as {1}", Name, Code));
             Name = Regex.Replace(Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
             File.WriteAllText(ConfigPath, string.Format(
@@ -298,6 +300,7 @@ namespace com.clusterrr.hakchi_gui
                 (Name ?? Code).ToLower(), (Publisher ?? DefaultPublisher).ToUpper(),
                 Simultaneous ? 1 : 0));
             hasUnsavedChanges = false;
+            return true;
         }
 
         public override string ToString()

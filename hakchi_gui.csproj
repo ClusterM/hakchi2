@@ -73,6 +73,8 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Apps\AppTypeCollection.cs" />
+    <Compile Include="Apps\ArcadeGame.cs" />
+    <Compile Include="Apps\Atari2600Game.cs" />
     <Compile Include="Apps\Sega32XGame.cs" />
     <Compile Include="Apps\GenesisGame.cs" />
     <Compile Include="Apps\PceGame.cs" />

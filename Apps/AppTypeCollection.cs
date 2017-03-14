@@ -15,7 +15,7 @@ namespace com.clusterrr.hakchi_gui
         {
             public Type Class;
             public string[] Extensions;
-            public string DefaultApp;
+            public string[] DefaultApps;
             public char Prefix;
             public Image DefaultCover;
         }
@@ -26,7 +26,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(FdsGame),
                 Extensions = new string[] {".fds"},
-                DefaultApp = null,
+                DefaultApps = new string[] {},
                 Prefix = 'D',
                 DefaultCover = Resources.blank_fds
             },
@@ -34,7 +34,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(NesUGame),
                 Extensions = new string[] {".nes", ".unf", ".unif"},
-                DefaultApp = "/bin/nes",
+                DefaultApps = new string[] {"/bin/nes"},
                 Prefix = 'I',
                 DefaultCover = Resources.blank_jp
             },
@@ -42,7 +42,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(SnesGame),
                 Extensions = new string[] { ".sfc", ".smc" },
-                DefaultApp = "/bin/snes",
+                DefaultApps = new string[] {"/bin/snes"},
                 Prefix = 'U',
                 DefaultCover = Resources.blank_snes_us
             },
@@ -50,7 +50,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(N64Game),
                 Extensions = new string[] { ".n64", ".z64", ".v64" },
-                DefaultApp = "/bin/n64",
+                DefaultApps = new string[] {"/bin/n64"},
                 Prefix = '6',
                 DefaultCover = Resources.blank_n64
             },
@@ -58,7 +58,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(SmsGame),
                 Extensions = new string[] { ".sms" },
-                DefaultApp = "/bin/sms",
+                DefaultApps = new string[] {"/bin/sms"},
                 Prefix = 'M',
                 DefaultCover = Resources.blank_sms
             },
@@ -66,7 +66,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(SmsGame),
                 Extensions = new string[] { ".sms" },
-                DefaultApp = "/bin/sms",
+                DefaultApps = new string[] {"/bin/sms"},
                 Prefix = 'M',
                 DefaultCover = Resources.blank_sms
             },
@@ -74,7 +74,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(GenesisGame),
                 Extensions = new string[] { ".gen", ".md", ".smd" },
-                DefaultApp = "/bin/md",
+                DefaultApps = new string[] {"/bin/md"},
                 Prefix = 'G',
                 DefaultCover = Resources.blank_genesis
             },
@@ -82,15 +82,15 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(Sega32XGame),
                 Extensions = new string[] { ".32x" },
-                DefaultApp = "/bin/32x",
+                DefaultApps = new string[] {"/bin/32x"},
                 Prefix = '3',
-                DefaultCover = Resources.blank_genesis // TODO: icon for 32X
+                DefaultCover = Resources.blank_32x
             },
             new AppInfo
             {
                 Class = typeof(GbGame),
                 Extensions = new string[] { ".gb" },
-                DefaultApp = "/bin/gb",
+                DefaultApps = new string[] {"/bin/gb"},
                 Prefix = 'B',
                 DefaultCover = Resources.blank_gb
             },
@@ -98,7 +98,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(GbcGame),
                 Extensions = new string[] {".gbc"},
-                DefaultApp = "/bin/gbc",
+                DefaultApps = new string[] {"/bin/gbc"},
                 Prefix = 'C',
                 DefaultCover = Resources.blank_gbc
             },
@@ -106,7 +106,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(GbaGame),
                 Extensions = new string[] {".gba"},
-                DefaultApp = "/bin/gba",
+                DefaultApps = new string[] {"/bin/gba"},
                 Prefix = 'A',
                 DefaultCover = Resources.blank_gba
             },
@@ -114,7 +114,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(PceGame),
                 Extensions = new string[] {".pce"},
-                DefaultApp = "/bin/pce",
+                DefaultApps = new string[] {"/bin/pce"},
                 Prefix = 'E',
                 DefaultCover = Resources.blank_pce
             },
@@ -122,10 +122,26 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(GameGearGame),
                 Extensions = new string[] {".gg"},
-                DefaultApp = "/bin/gg",
+                DefaultApps = new string[] {"/bin/gg"},
                 Prefix = 'R',
-                DefaultCover = Resources.blank_sms // TODO: icon for GameGear
-            }
+                DefaultCover = Resources.blank_gg
+            },
+            new AppInfo
+            {
+                Class = typeof(GameGearGame),
+                Extensions = new string[] {".a26"},
+                DefaultApps = new string[] {"/bin/a26"},
+                Prefix = 'T',
+                DefaultCover = Resources.blank_2600
+            },
+            new AppInfo
+            {
+                Class = typeof(GameGearGame),
+                Extensions = new string[] {},
+                DefaultApps = new string[] {"/bin/fba", "/bin/mame", "/bin/cps2", "/bin/neogeo" },
+                Prefix = 'X',
+                DefaultCover = Resources.blank_arcade
+            },
         };
 
         public static AppInfo GetAppByExtension(string extension)
@@ -139,8 +155,9 @@ namespace com.clusterrr.hakchi_gui
         public static AppInfo GetAppByExec(string exec)
         {
             foreach (var app in ApplicationTypes)
-                if (exec.StartsWith(app.DefaultApp + " "))
-                    return app;
+                foreach (var cmd in app.DefaultApps)
+                    if (exec.StartsWith(cmd + " "))
+                        return app;
             return null;
         }
     }

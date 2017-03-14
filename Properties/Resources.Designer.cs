@@ -99,9 +99,39 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blank_2600 {
+            get {
+                object obj = ResourceManager.GetObject("blank_2600", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_32x {
+            get {
+                object obj = ResourceManager.GetObject("blank_32x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blank_app {
             get {
                 object obj = ResourceManager.GetObject("blank_app", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_arcade {
+            get {
+                object obj = ResourceManager.GetObject("blank_arcade", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -159,6 +189,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blank_gg {
+            get {
+                object obj = ResourceManager.GetObject("blank_gg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blank_jp {
             get {
                 object obj = ResourceManager.GetObject("blank_jp", resourceCulture);
@@ -172,6 +212,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static System.Drawing.Bitmap blank_n64 {
             get {
                 object obj = ResourceManager.GetObject("blank_n64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_neogeo {
+            get {
+                object obj = ResourceManager.GetObject("blank_neogeo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

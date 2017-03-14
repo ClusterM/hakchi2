@@ -433,12 +433,17 @@ namespace com.clusterrr.hakchi_gui
         {
             SaveSelectedGames();
             ConfigIni.Save();
-            foreach (var game in checkedListBoxGames.Items)
+            for(int i = 0; i < checkedListBoxGames.Items.Count; i++)
             {
+                var game = checkedListBoxGames.Items[i];
                 try
                 {
                     if (game is NesMiniApplication)
-                        (game as NesMiniApplication).Save();
+                    {
+                        // Maybe type was changed? Need to reload gamed
+                        if ((game as NesMiniApplication).Save())
+                            checkedListBoxGames.Items[i] = NesMiniApplication.FromDirectory((game as NesMiniApplication).GamePath);
+                    }
                 }
                 catch (Exception ex)
                 {
