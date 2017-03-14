@@ -690,6 +690,27 @@
     <Content Include="driver\nesmini_driver.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="folder_images\2600.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\2600jr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\2600_darth_vader.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\32x_genesis2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\32x_megadrive2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\32x_megadrive2_jp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\arcade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="folder_images\folder.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -753,6 +774,15 @@
     <Content Include="folder_images\folder_s.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="folder_images\folder_system_2600.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_32x.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_arcade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="folder_images\folder_system_famicom.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -771,7 +801,13 @@
     <Content Include="folder_images\folder_system_genesis.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="folder_images\folder_system_gg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="folder_images\folder_system_n64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_neogeo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="folder_images\folder_system_nes.png">
@@ -813,14 +849,97 @@
     <Content Include="folder_images\folder_z.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="folder_images\gamegear.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gba.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gbc_green.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gbc_purple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gbc_red.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gbc_turquoise.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gbc_yellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gb_dmg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gb_play_it_loud_black.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gb_play_it_loud_blue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gb_play_it_loud_green.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gb_play_it_loud_red.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gb_play_it_loud_white.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gb_play_it_loud_yellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\genesis2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\megadrive2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\megadrive2_jp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\n64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\neogeo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\nes.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\pce.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\sms.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\snes_eu_jp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\snes_usa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\2600_sm.png" />
+    <Content Include="images\2600_sm_tr.png" />
+    <Content Include="images\32x_sm.png" />
+    <Content Include="images\32x_sm_tr.png" />
     <Content Include="images\app_sm.png" />
     <Content Include="images\app_sm_tr.png" />
+    <Content Include="images\arcade_sm.png" />
+    <Content Include="images\arcade_sm_tr.png" />
+    <Content Include="images\blank_2600.png" />
+    <Content Include="images\blank_32x.png" />
     <Content Include="images\blank_app.png" />
+    <Content Include="images\blank_arcade.png" />
     <Content Include="images\blank_gb.png" />
     <Content Include="images\blank_gba.png" />
     <Content Include="images\blank_gbc.png" />
     <Content Include="images\blank_genesis.png" />
+    <Content Include="images\blank_gg.png" />
     <Content Include="images\blank_n64.png" />
+    <Content Include="images\blank_neogeo.png" />
     <Content Include="images\blank_nes.png" />
     <Content Include="images\blank_pce.png" />
     <Content Include="images\blank_sms.png" />
@@ -834,9 +953,13 @@
     <Content Include="images\gb_sm_tr.png" />
     <Content Include="images\genesis_sm.png" />
     <Content Include="images\genesis_sm_tr.png" />
+    <Content Include="images\gg_sm.png" />
+    <Content Include="images\gg_sm_tr.png" />
     <Content Include="images\green.png" />
     <Content Include="images\n64_sm.png" />
     <Content Include="images\n64_sm_tr.png" />
+    <Content Include="images\neogeo_sm.png" />
+    <Content Include="images\neogeo_sm_tr.png" />
     <Content Include="images\nes_sm_tr.png" />
     <Content Include="images\famicom_sm.png" />
     <Content Include="images\famicom_sm_tr.png" />
