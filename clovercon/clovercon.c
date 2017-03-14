@@ -41,7 +41,7 @@ static char autofire_xy = 0;
 static unsigned char autofire_interval = 8;
 static char fc_start = 0;
 
-MODULE_AUTHOR("Christophe Aguettaz <christophe.aguettaz@nerd.nintendo.com>");
+MODULE_AUTHOR("Christophe Aguettaz <christophe.aguettaz@nerd.nintendo.com>, mod by Cluster <clusterrr@clusterrr.com");
 MODULE_DESCRIPTION("Nintendo Clover/Wii Classic/Wii Pro controllers on I2C");
 
 MODULE_LICENSE("GPL");
@@ -173,8 +173,12 @@ struct clovercon_info {
 	int autofire_timer;
 	int autofire_counter_a;
 	int autofire_counter_b;
+	int autofire_counter_x;
+	int autofire_counter_y;
 	bool autofire_a;
 	bool autofire_b;
+	bool autofire_x;
+	bool autofire_y;
 	int start_counter;
 };
 
@@ -487,23 +491,36 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 		turbo = info->autofire_timer / autofire_interval;
 		if (autofire)
 		{
-		    if (a && select && !b && !start && !up && !down && !left && !right)
+		    if (select && a && !b && !x && !y && !start && !up && !down && !left && !right)
 			info->autofire_counter_a++;
 		    else
 			info->autofire_counter_a = 0;
-		    if (!a && select && b && !start && !up && !down && !left && !right)
+		    if (select && !a && b && !x && !y && !start && !up && !down && !left && !right)
 			info->autofire_counter_b++;
 		    else
 			info->autofire_counter_b = 0;
+		    if (select && !a && !b && x && !y && !start && !up && !down && !left && !right)
+			info->autofire_counter_x++;
+		    else
+			info->autofire_counter_x = 0;
+		    if (select && !a && !b && !x && y && !start && !up && !down && !left && !right)
+			info->autofire_counter_y++;
+		    else
+			info->autofire_counter_y = 0;
 
 		    if (info->autofire_counter_a == AUTOFIRE_COMBINATION_THRESHOLD)
 			info->autofire_a = !info->autofire_a;
 		    if (info->autofire_counter_b == AUTOFIRE_COMBINATION_THRESHOLD)
 			info->autofire_b = !info->autofire_b;
+		    if (info->autofire_counter_a == AUTOFIRE_COMBINATION_THRESHOLD)
+			info->autofire_x = !info->autofire_x;
+		    if (info->autofire_counter_b == AUTOFIRE_COMBINATION_THRESHOLD)
+			info->autofire_y = !info->autofire_y;
 
 		    if (info->autofire_a && !turbo) a = 0;
 		    if (info->autofire_b && !turbo) b = 0;
-
+		    if (info->autofire_x && !turbo) x = 0;
+		    if (info->autofire_y && !turbo) y = 0;
 		}
 		if (autofire_xy)
 		{

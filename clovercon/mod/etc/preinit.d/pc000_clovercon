@@ -1,0 +1,29 @@
+if [ $cfg_clovercon_enabled == "y" ]; then
+CLOVER_BOARD_NAME=$(cat $mountpoint/etc/clover/boardtype)
+
+echo "clovercon_hack: starting driver"
+echo "home button combination: $cfg_clovercon_home_combination"
+echo "autofire: $cfg_clovercon_autofire"
+echo "autofire XY: $cfg_clovercon_autofire_xy"
+echo "autofire interval: $cfg_clovercon_autofire_interval"
+echo "famicom 2nd start workaround: $cfg_clovercon_fc_start"
+
+case "${CLOVER_BOARD_NAME}" in
+	fp)
+		module_params=2,195,1,194
+		;;
+	ep)
+		module_params=1,195,2,194
+		;;
+	dp-hvc)
+		module_params=1,-1,2,-1
+		;;
+	dp-nes)
+		module_params=1,195,2,194
+		;;
+esac
+
+overmount /lib/modules/$(uname -r)/extra/clovercon.ko
+insmod $mountpoint/lib/modules/$(uname -r)/extra/clovercon.ko module_params=$module_params home_combination=$cfg_clovercon_home_combination autofire=$cfg_clovercon_autofire autofire_xy=$cfg_clovercon_autofire_xy autofire_interval=$cfg_clovercon_autofire_interval fc_start=$cfg_clovercon_fc_start
+
+fi
