@@ -624,26 +624,9 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Task = WorkerForm.Tasks.UploadGames;
             workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_hakchi";
-            workerForm.Config = new Dictionary<string, string>();
-            workerForm.hmodsInstall = new List<string>();
+            workerForm.Config = ConfigIni.GetConfigDictionary();
             workerForm.Games = new NesMenuCollection();
             var hiddenGames = new List<string>();
-            if (ConfigIni.ResetHack || ConfigIni.AutofireHack || ConfigIni.AutofireXYHack || ConfigIni.FcStart)
-            {
-                workerForm.hmodsInstall.Add("clovercon");
-                workerForm.Config["clovercon_enabled"] = "y";
-            }
-            else workerForm.Config["clovercon_enabled"] = "n";
-            workerForm.Config["clovercon_home_combination"] = string.Format("0x{0:X2}", (byte)ConfigIni.ResetCombination);
-            workerForm.Config["clovercon_autofire"] = ConfigIni.AutofireHack ? "1" : "0";
-            workerForm.Config["clovercon_autofire_xy"] = ConfigIni.AutofireXYHack ? "1" : "0";
-            workerForm.Config["clovercon_fc_start"] = ConfigIni.FcStart ? "1" : "0";
-            if (ConfigIni.UseFont)
-            {
-                workerForm.hmodsInstall.Add("fontfix");
-                workerForm.Config["fontfix_enabled"] = "y";
-            }
-            else workerForm.Config["fontfix_enabled"] = "n";
             bool needOriginal = false;
             foreach (var game in checkedListBoxGames.CheckedItems)
             {
@@ -659,8 +642,7 @@ namespace com.clusterrr.hakchi_gui
                 else
                     hiddenGames.Add(((NesDefaultGame)checkedListBoxDefaultGames.Items[i]).Code);
             }
-            workerForm.Config["disable_armet"] = (ConfigIni.AntiArmetLevel > 0) ? "y" : "n";
-            workerForm.Config["nes_extra_args"] = ConfigIni.ExtraCommandLineArguments;
+
             workerForm.HiddenGames = hiddenGames.ToArray();
             workerForm.FoldersMode = ConfigIni.FoldersMode;
             workerForm.MaxGamesPerFolder = ConfigIni.MaxGamesPerFolder;
@@ -1171,6 +1153,23 @@ namespace com.clusterrr.hakchi_gui
         {
             toolStripStatusConnectionIcon.Image = Clovershell.IsOnline ? Resources.green : Resources.red;
             toolStripStatusConnectionIcon.ToolTipText = Clovershell.IsOnline ? "Online" : "Offline";
+        }
+
+        private void saveSettingsToNESMiniNowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (WaitingClovershellForm.WaitForDevice())
+                {
+                    WorkerForm.SyncConfig(ConfigIni.GetConfigDictionary(), true);
+                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

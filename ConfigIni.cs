@@ -152,5 +152,18 @@ namespace com.clusterrr.hakchi_gui
             Directory.CreateDirectory(configFullDir);
             File.WriteAllLines(fileName, configLines.ToArray());
         }
+
+        public static Dictionary<string,string> GetConfigDictionary()
+        {
+            var config = new Dictionary<string, string>();
+            config["clovercon_home_combination"] = string.Format("0x{0:X2}", (byte)ConfigIni.ResetCombination);
+            config["clovercon_autofire"] = ConfigIni.AutofireHack ? "1" : "0";
+            config["clovercon_autofire_xy"] = ConfigIni.AutofireXYHack ? "1" : "0";
+            config["clovercon_fc_start"] = ConfigIni.FcStart ? "1" : "0";
+            config["fontfix_enabled"] = ConfigIni.UseFont ? "y" : "n";
+            config["disable_armet"] = (ConfigIni.AntiArmetLevel > 0) ? "y" : "n";
+            config["nes_extra_args"] = ConfigIni.ExtraCommandLineArguments;
+            return config;
+        }
     }
 }

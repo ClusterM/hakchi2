@@ -90,6 +90,8 @@
             this.customToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressGamesIfPossibleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+            this.saveSettingsToNESMiniNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -289,7 +291,9 @@
             this.epilepsyProtectionToolStripMenuItem,
             this.pagesfoldersTypeToolStripMenuItem,
             this.compressGamesIfPossibleToolStripMenuItem,
-            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem});
+            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem,
+            this.toolStripMenuItem5,
+            this.saveSettingsToNESMiniNowToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             // 
@@ -581,6 +585,17 @@
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Name = "globalCommandLineArgumentsexpertsOnluToolStripMenuItem";
             resources.ApplyResources(this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem, "globalCommandLineArgumentsexpertsOnluToolStripMenuItem");
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Click += new System.EventHandler(this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
+            // 
+            // saveSettingsToNESMiniNowToolStripMenuItem
+            // 
+            resources.ApplyResources(this.saveSettingsToNESMiniNowToolStripMenuItem, "saveSettingsToNESMiniNowToolStripMenuItem");
+            this.saveSettingsToNESMiniNowToolStripMenuItem.Name = "saveSettingsToNESMiniNowToolStripMenuItem";
+            this.saveSettingsToNESMiniNowToolStripMenuItem.Click += new System.EventHandler(this.saveSettingsToNESMiniNowToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -1026,6 +1041,8 @@
         private System.Windows.Forms.ToolStripMenuItem compressGamesIfPossibleToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusConnectionIcon;
         private System.Windows.Forms.Timer timerConnectionCheck;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem saveSettingsToNESMiniNowToolStripMenuItem;
     }
 }
 

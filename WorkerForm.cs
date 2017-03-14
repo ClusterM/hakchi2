@@ -50,7 +50,6 @@ namespace com.clusterrr.hakchi_gui
         readonly string toolsDirectory;
         readonly string kernelPatched;
         readonly string ramdiskPatched;
-        readonly string configPath;
         readonly string tempHmodsDirectory;
         readonly string cloverconDriverPath;
         readonly string argumentsFilePath;
@@ -88,7 +87,6 @@ namespace com.clusterrr.hakchi_gui
             cloverconDriverPath = Path.Combine(hakchiDirectory, "clovercon.ko");
             argumentsFilePath = Path.Combine(hakchiDirectory, "extra_args");
             transferDirectory = Path.Combine(hakchiDirectory, "transfer");
-            configPath = Path.Combine(transferDirectory, "transfer");
             tempHmodsDirectory = Path.Combine(transferDirectory, "hmod");
             correctKernels
                 = new string[] {
@@ -562,7 +560,7 @@ namespace com.clusterrr.hakchi_gui
             
             try
             {
-                clovershell.Execute("reboot", null, null, null, 3000);
+                clovershell.Execute("reboot", null, null, null, 1000);
             }
             catch { }
 #if !DEBUG
@@ -572,7 +570,7 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(maxProgress, maxProgress);
         }
 
-        public static bool SyncConfig(Dictionary<string,string> Config)
+        public static bool SyncConfig(Dictionary<string,string> Config, bool reboot = false)
         {
             var clovershell = MainForm.Clovershell;
 
@@ -589,6 +587,11 @@ namespace com.clusterrr.hakchi_gui
             clovershell.Execute("cat > /tmp/config", config, null, null, 1000, true);
             clovershell.Execute("source /etc/preinit && script_init && source /tmp/config && source $preinit.d/pffff_config", null, null, null, 30000, true);
             config.Dispose();
+            try
+            {
+                clovershell.Execute("reboot", null, null, null, 1000);
+            }
+            catch { }
             return true;
         }
 
