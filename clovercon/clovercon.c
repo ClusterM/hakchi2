@@ -512,9 +512,9 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 			info->autofire_a = !info->autofire_a;
 		    if (info->autofire_counter_b == AUTOFIRE_COMBINATION_THRESHOLD)
 			info->autofire_b = !info->autofire_b;
-		    if (info->autofire_counter_a == AUTOFIRE_COMBINATION_THRESHOLD)
+		    if (info->autofire_counter_x == AUTOFIRE_COMBINATION_THRESHOLD)
 			info->autofire_x = !info->autofire_x;
-		    if (info->autofire_counter_b == AUTOFIRE_COMBINATION_THRESHOLD)
+		    if (info->autofire_counter_y == AUTOFIRE_COMBINATION_THRESHOLD)
 			info->autofire_y = !info->autofire_y;
 
 		    if (info->autofire_a && !turbo) a = 0;
