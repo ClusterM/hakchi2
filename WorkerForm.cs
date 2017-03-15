@@ -477,7 +477,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 int progress = 0;
-                int maxProgress = 335;
+                int maxProgress = 340;
                 if (Games == null || Games.Count == 0)
                     throw new Exception("there are no games");
                 SetStatus(Resources.BuildingFolders);
@@ -543,7 +543,7 @@ namespace com.clusterrr.hakchi_gui
                 if (!ExecuteTool("tar.exe", "-c *", out gamesTar, tempGamesDirectory))
                     throw new Exception("can't pack games");
                 progress += 5;
-                maxProgress = gamesTar.Length / 1024 / 1024 + 35;
+                maxProgress = gamesTar.Length / 1024 / 1024 + 40;
                 SetProgress(progress, maxProgress);
 
                 var gamesStream = new TrackableMemoryStream(gamesTar);
