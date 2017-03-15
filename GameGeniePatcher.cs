@@ -35,7 +35,7 @@ namespace com.clusterrr.Famicom
 
                 if (result.Length <= 0x8000)
                 {
-                    result[result.Length % address] = value;
+                    result[address % result.Length] = value;
                 }
                 else
                 {
@@ -104,7 +104,8 @@ namespace com.clusterrr.Famicom
     public class GameGenieFormatException : Exception
     {
         public readonly string Code;
-        public GameGenieFormatException(string code) : base(string.Format("Invalid code \"{0}\"", code))
+        public GameGenieFormatException(string code)
+            : base(string.Format("Invalid code \"{0}\"", code))
         {
             Code = code;
         }
@@ -113,7 +114,8 @@ namespace com.clusterrr.Famicom
     public class GameGenieNotFoundException : Exception
     {
         public readonly string Code;
-        public GameGenieNotFoundException(string code) : base(string.Format("Invalid code \"{0}\"", code))
+        public GameGenieNotFoundException(string code)
+            : base(string.Format("Invalid code \"{0}\"", code))
         {
             Code = code;
         }
