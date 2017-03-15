@@ -280,6 +280,12 @@
   <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
     <value>Выключить защиту от приступов эпилепсии</value>
   </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>390, 22</value>
+  </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сжимать не-NES игры (для дополнительного эмулятора)</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>445, 22</value>
   </data>
@@ -357,12 +363,6 @@
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text" xml:space="preserve">
     <value>Структура папок</value>
-  </data>
-  <data name="compressGamesIfPossibleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>390, 22</value>
-  </data>
-  <data name="compressGamesIfPossibleToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сжимать не-NES игры (для дополнительного эмулятора)</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>390, 22</value>
@@ -462,6 +462,12 @@
   </data>
   <data name="radioButtonOne.Text" xml:space="preserve">
     <value>Один игрок</value>
+  </data>
+  <data name="textBoxName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>81, 46</value>
+  </data>
+  <data name="textBoxName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 20</value>
   </data>
   <data name="labelName.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 13</value>

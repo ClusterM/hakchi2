@@ -477,7 +477,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 int progress = 0;
-                int maxProgress = 340;
+                int maxProgress = 355;
                 if (Games == null || Games.Count == 0)
                     throw new Exception("there are no games");
                 SetStatus(Resources.BuildingFolders);
@@ -543,7 +543,7 @@ namespace com.clusterrr.hakchi_gui
                 if (!ExecuteTool("tar.exe", "-c *", out gamesTar, tempGamesDirectory))
                     throw new Exception("can't pack games");
                 progress += 5;
-                maxProgress = gamesTar.Length / 1024 / 1024 + 40;
+                maxProgress = gamesTar.Length / 1024 / 1024 + 55;
                 SetProgress(progress, maxProgress);
 
                 var gamesStream = new TrackableMemoryStream(gamesTar);
@@ -566,7 +566,7 @@ namespace com.clusterrr.hakchi_gui
                 clovershell.Execute("source /etc/preinit && script_init && mkdir -p $temppath/games && tar -xvC $temppath/games", originalGamesStream, null, null, 30000, true);
                 clovershell.Execute("source /etc/preinit && script_init && source $installpath/script/games && cd $temppath && target_dir=$rootfs$gamepath && transfer_original_games games", null, null, null, 30000, true);
                 originalGamesStream.Dispose();
-                progress += 15;
+                progress += 30;
                 SetProgress(progress, maxProgress);
 
                 SetStatus(Resources.UploadingConfig);
