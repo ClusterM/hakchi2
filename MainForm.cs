@@ -440,7 +440,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (game is NesMiniApplication)
                     {
-                        // Maybe type was changed? Need to reload gamed
+                        // Maybe type was changed? Need to reload games
                         if ((game as NesMiniApplication).Save())
                             checkedListBoxGames.Items[i] = NesMiniApplication.FromDirectory((game as NesMiniApplication).GamePath);
                     }

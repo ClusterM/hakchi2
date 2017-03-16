@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -473,27 +474,27 @@ namespace com.clusterrr.hakchi_gui
 
         public void UploadGames()
         {
+            int progress = 0;
+            int maxProgress = 400;
+            if (Games == null || Games.Count == 0)
+                throw new Exception("there are no games");
+            SetStatus(Resources.BuildingFolders);
+            if (FoldersMode == NesMenuCollection.SplitStyle.Custom)
+            {
+                if (FolderManagerFromThread(Games) != System.Windows.Forms.DialogResult.OK)
+                {
+                    DialogResult = DialogResult.Abort;
+                    return;
+                }
+                Games.AddBack();
+            }
+            else Games.Split(FoldersMode, MaxGamesPerFolder);
+            progress += 5;
+            SetProgress(progress, maxProgress);
+
             var clovershell = MainForm.Clovershell;
             try
             {
-                int progress = 0;
-                int maxProgress = 355;
-                if (Games == null || Games.Count == 0)
-                    throw new Exception("there are no games");
-                SetStatus(Resources.BuildingFolders);
-                if (FoldersMode == NesMenuCollection.SplitStyle.Custom)
-                {
-                    if (FolderManagerFromThread(Games) != System.Windows.Forms.DialogResult.OK)
-                    {
-                        DialogResult = DialogResult.Abort;
-                        return;
-                    }
-                    Games.AddBack();
-                }
-                else Games.Split(FoldersMode, MaxGamesPerFolder);
-                progress += 5;
-                SetProgress(progress, maxProgress);
-
                 if (WaitForClovershellFromThread() != DialogResult.OK)
                 {
                     DialogResult = DialogResult.Abort;
@@ -543,13 +544,14 @@ namespace com.clusterrr.hakchi_gui
                 if (!ExecuteTool("tar.exe", "-c *", out gamesTar, tempGamesDirectory))
                     throw new Exception("can't pack games");
                 progress += 5;
-                maxProgress = gamesTar.Length / 1024 / 1024 + 55;
+                maxProgress = gamesTar.Length / 1024 / 1024 + 85;
                 SetProgress(progress, maxProgress);
 
                 var gamesStream = new TrackableMemoryStream(gamesTar);
-                gamesStream.OnProgress += delegate(long pos, long len)
+                int startProgress = progress;
+                gamesStream.OnReadProgress += delegate(long pos, long len)
                 {
-                    progress = (int)(20 + pos / 1024 / 1024);
+                    progress = (int)(startProgress + pos / 1024 / 1024);
                     SetProgress(progress, maxProgress);
                 };
 
@@ -563,36 +565,38 @@ namespace com.clusterrr.hakchi_gui
                 if (!ExecuteTool("tar.exe", "-c *", out originalGamesTar, originalGamesConfigDirectory))
                     throw new Exception("can't pack original games");
                 var originalGamesStream = new MemoryStream(originalGamesTar);
-                clovershell.Execute("source /etc/preinit && script_init && mkdir -p $temppath/games && tar -xvC $temppath/games", originalGamesStream, null, null, 30000, true);
-                clovershell.Execute("source /etc/preinit && script_init && source $installpath/script/games && cd $temppath && target_dir=$rootfs$gamepath && transfer_original_games games", null, null, null, 30000, true);
+                clovershell.Execute("source /etc/preinit && script_init && mkdir -p $temppath/games && tar -xvC $temppath/games", originalGamesStream, null, null, 1000, true);
+                var originalGamesStreamOut = new TrackableMemoryStream();
+                startProgress = progress;
+                originalGamesStreamOut.OnWriteProgress += delegate(long pos, long len)
+                {
+                    var data = new byte[originalGamesStreamOut.Length];
+                    originalGamesStreamOut.Seek(0, SeekOrigin.Begin);
+                    originalGamesStreamOut.Read(data, 0, (int)originalGamesStreamOut.Length);
+                    var str = Encoding.UTF8.GetString(data);
+                    progress = startProgress + Regex.Matches(str, "CLV-").Count*2;
+                    SetProgress(progress, maxProgress);
+                };
+                clovershell.Execute("source /etc/preinit && script_init && source $installpath/script/games && cd $temppath && target_dir=$rootfs$gamepath && transfer_original_games games", null, originalGamesStreamOut, null, 30000, true);
                 originalGamesStream.Dispose();
-                progress += 30;
-                SetProgress(progress, maxProgress);
+                originalGamesStreamOut.Dispose();
 
                 SetStatus(Resources.UploadingConfig);
                 SyncConfig(Config);
-
-                try
-                {
-                    clovershell.Execute("reboot", null, null, null, 1000);
-                }
-                catch { }
 #if !DEBUG
-            Directory.Delete(tempDirectory, true);
+                Directory.Delete(tempDirectory, true);
 #endif
                 SetStatus(Resources.Done);
                 SetProgress(maxProgress, maxProgress);
             }
-            catch (Exception ex)            
+            finally
             {
-                // Turn off console in case of error/cancel
                 try
                 {
                     if (clovershell.IsOnline)
-                        clovershell.Execute("poweroff", null, null, null, 100);
+                        clovershell.Execute("reboot", null, null, null, 100);
                 }
                 catch { }
-                throw ex;
             }
         }
 

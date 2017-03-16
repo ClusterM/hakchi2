@@ -487,7 +487,7 @@ namespace com.clusterrr.clovershell
             if (c == null) return;
             if (c.stdout != null)
                 c.stdout.Write(data, pos, len);
-            //Debug.WriteLine("stdout: " + Encoding.UTF8.GetString(data, pos, len));
+            Debug.WriteLine("stdout: " + Encoding.UTF8.GetString(data, pos, len));
             if (len == 0)
                 c.stdoutFinished = true;
         }
