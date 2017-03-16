@@ -64,29 +64,27 @@ MODULE_LICENSE("GPL");
 //Delay expressed in polling intervals
 #define RETRY_BASE_DELAY 512
 
-#define DATA_FORMAT    3
+#define DATA_FORMAT    1
+#define D_BTN_R      1
+#define D_BTN_START  2
+#define D_BTN_HOME   3
+#define D_BTN_SELECT 4
+#define D_BTN_L      5
+#define D_BTN_DOWN   6
+#define D_BTN_RIGHT  7
 
-#define DF3_BTN_R      1
-#define DF3_BTN_START  2
-#define DF3_BTN_HOME   3
-#define DF3_BTN_SELECT 4
-#define DF3_BTN_L      5
-#define DF3_BTN_DOWN   6
-#define DF3_BTN_RIGHT  7
+#define D_BTN_UP     0
+#define D_BTN_LEFT   1
+#define D_BTN_ZR     2
+#define D_BTN_X      3
+#define D_BTN_A      4
+#define D_BTN_Y      5
+#define D_BTN_B      6
+#define D_BTN_ZL     7
 
-#define DF3_BTN_UP     0
-#define DF3_BTN_LEFT   1
-#define DF3_BTN_ZR     2
-#define DF3_BTN_X      3
-#define DF3_BTN_A      4
-#define DF3_BTN_Y      5
-#define DF3_BTN_B      6
-#define DF3_BTN_ZL     7
-
-#define DEAD_ZONE      20
-//#define DIAG_MAX       40
-#define STICK_MAX      72
-#define STICK_FUZZ     4
+#define DEAD_ZONE_L      20
+#define STICK_MAX_L      72
+#define STICK_FUZZ_L     4
 
 #define TRIGGER_MIN    0
 #define TRIGGER_MAX    0xff
@@ -424,39 +422,29 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 			break;
 		}
 
-		jx = data[0] - 0x80;
-		rx = data[1] - 0x80;
-		jy = 0x7fl - data[2];
-		ry = 0x7fl - data[3];
-		tl = data[4];
-		tr = data[5];
+		jx = ((data[0] & 0x3f) - 0x20) * 4;
+		rx = (((data[2] >> 7) | ((data[1] & 0xC0) >> 4) | ((data[0] & 0xC0) >> 2)) - 0x10) * 8;
+		jy = ((data[1] & 0x3f) - 0x20) * -4;
+		ry = ((data[2] & 0x1f) - 0x10) * -8;
+		tl = (((data[3] >> 5) | ((data[2] & 0x60) >> 3)) * 8;
+		tr = (data[3] & 0x1f) * 8;
 
-		clamp_stick(&jx, &jy);
-		clamp_stick(&rx, &ry);
+		r      = !get_bit(data[4], D_BTN_R);
+		start  = !get_bit(data[4], D_BTN_START);
+		home   = !get_bit(data[4], D_BTN_HOME);
+		select = !get_bit(data[4], D_BTN_SELECT);
+		l      = !get_bit(data[4], D_BTN_L);
+		down   = !get_bit(data[4], D_BTN_DOWN);
+		right  = !get_bit(data[4], D_BTN_RIGHT);
 
-		input_report_abs(polled_dev->input, ABS_X, jx);
-		input_report_abs(polled_dev->input, ABS_Y, jy);
-		input_report_abs(polled_dev->input, ABS_RX, rx);
-		input_report_abs(polled_dev->input, ABS_RY, ry);
-		input_report_abs(polled_dev->input, ABS_Z, tl);
-		input_report_abs(polled_dev->input, ABS_RZ, tr);
-
-		r      = !get_bit(data[6], DF3_BTN_R);
-		start  = !get_bit(data[6], DF3_BTN_START);
-		home   = !get_bit(data[6], DF3_BTN_HOME);
-		select = !get_bit(data[6], DF3_BTN_SELECT);
-		l      = !get_bit(data[6], DF3_BTN_L);
-		down   = !get_bit(data[6], DF3_BTN_DOWN);
-		right  = !get_bit(data[6], DF3_BTN_RIGHT);
-
-		up   = !get_bit(data[7], DF3_BTN_UP);
-		left = !get_bit(data[7], DF3_BTN_LEFT);
-		zr   = !get_bit(data[7], DF3_BTN_ZR);
-		x    = !get_bit(data[7], DF3_BTN_X);
-		y    = !get_bit(data[7], DF3_BTN_Y);
-		a    = !get_bit(data[7], DF3_BTN_A);
-		b    = !get_bit(data[7], DF3_BTN_B);
-		zl   = !get_bit(data[7], DF3_BTN_ZL);
+		up   = !get_bit(data[5], DF1_BTN_UP);
+		left = !get_bit(data[5], DF1_BTN_LEFT);
+		zr   = !get_bit(data[5], DF1_BTN_ZR);
+		x    = !get_bit(data[5], DF1_BTN_X);
+		y    = !get_bit(data[5], DF1_BTN_Y);
+		a    = !get_bit(data[5], DF1_BTN_A);
+		b    = !get_bit(data[5], DF1_BTN_B);
+		zl   = !get_bit(data[5], DF1_BTN_ZL);
 
 		// Reset combination
 		reset =
@@ -554,6 +542,15 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 			info->reset_counter = 0;
 		}
 
+		clamp_stick(&jx, &jy);
+		clamp_stick(&rx, &ry);
+
+		input_report_abs(polled_dev->input, ABS_X, jx);
+		input_report_abs(polled_dev->input, ABS_Y, jy);
+		input_report_abs(polled_dev->input, ABS_RX, rx);
+		input_report_abs(polled_dev->input, ABS_RY, ry);
+		input_report_abs(polled_dev->input, ABS_Z, tl);
+		input_report_abs(polled_dev->input, ABS_RZ, tr);
 		input_report_key(polled_dev->input, BTN_TR,     r);
 		input_report_key(polled_dev->input, BTN_START,  start);
 		input_report_key(polled_dev->input, BTN_MODE,   (info->home_counter>=HOME_BUTTON_THRESHOLD) || (info->reset_counter>=RESET_COMBINATION_THRESHOLD));
