@@ -185,7 +185,7 @@ namespace com.clusterrr.hakchi_gui
                 else
                     File.Delete(GameGeniePath);
             }
-            return this.hasUnsavedChanges || base.Save();
+            return base.Save() || this.hasUnsavedChanges;
         }
 
         public void ApplyGameGenie()
