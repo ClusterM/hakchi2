@@ -423,10 +423,10 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 		}
 
 		jx = ((data[0] & 0x3f) - 0x20) * 4;
-		rx = (((data[2] >> 7) | ((data[1] & 0xC0) >> 4) | ((data[0] & 0xC0) >> 2)) - 0x10) * 8;
+		rx = (((data[2] >> 7) | ((data[1] & 0xC0) >> 5) | ((data[0] & 0xC0) >> 3)) - 0x10) * 8;
 		jy = ((data[1] & 0x3f) - 0x20) * -4;
 		ry = ((data[2] & 0x1f) - 0x10) * -8;
-		tl = ((data[3] >> 5) | ((data[2] & 0x60) >> 3)) * 8;
+		tl = ((data[3] >> 5) | ((data[2] & 0x60) >> 2)) * 8;
 		tr = (data[3] & 0x1f) * 8;
 
 		r      = !get_bit(data[4], D_BTN_R);
