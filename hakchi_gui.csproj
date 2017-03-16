@@ -978,9 +978,12 @@
     <Content Include="images\snes-eu-jp_sm_tr.png" />
     <Content Include="images\snes-us_sm.png" />
     <Content Include="images\snes-us_sm_tr.png" />
-    <Content Include="tools\tar.exe">
+    <None Include="tools\msys-1.0.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
+    <None Include="tools\tar.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="user_mods\music_hack.hmod\music.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1006,44 +1009,44 @@
     <None Include="patches\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Content Include="tools\7z.dll">
+    <None Include="tools\7z.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\7z64.dll">
+    </None>
+    <None Include="tools\7z64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
     <Content Include="SevenZip\gpl.txt" />
     <Content Include="SevenZip\lgpl.txt" />
-    <Content Include="tools\cpio.exe">
+    <None Include="tools\cpio.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\cyggcc_s-1.dll">
+    </None>
+    <None Include="tools\cyggcc_s-1.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\cygiconv-2.dll">
+    </None>
+    <None Include="tools\cygiconv-2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\cygintl-8.dll">
+    </None>
+    <None Include="tools\cygintl-8.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\cyglzo2-2.dll">
+    </None>
+    <None Include="tools\cyglzo2-2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\cygwin1.dll">
+    </None>
+    <None Include="tools\cygwin1.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\lzop.exe">
+    </None>
+    <None Include="tools\lzop.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\mkbootfs.exe">
+    </None>
+    <None Include="tools\mkbootfs.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\mkbootimg.exe">
+    </None>
+    <None Include="tools\mkbootimg.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\unpackbootimg.exe">
+    </None>
+    <None Include="tools\unpackbootimg.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
