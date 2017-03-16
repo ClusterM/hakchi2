@@ -437,14 +437,14 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 		down   = !get_bit(data[4], D_BTN_DOWN);
 		right  = !get_bit(data[4], D_BTN_RIGHT);
 
-		up   = !get_bit(data[5], DF1_BTN_UP);
-		left = !get_bit(data[5], DF1_BTN_LEFT);
-		zr   = !get_bit(data[5], DF1_BTN_ZR);
-		x    = !get_bit(data[5], DF1_BTN_X);
-		y    = !get_bit(data[5], DF1_BTN_Y);
-		a    = !get_bit(data[5], DF1_BTN_A);
-		b    = !get_bit(data[5], DF1_BTN_B);
-		zl   = !get_bit(data[5], DF1_BTN_ZL);
+		up   = !get_bit(data[5], D_BTN_UP);
+		left = !get_bit(data[5], D_BTN_LEFT);
+		zr   = !get_bit(data[5], D_BTN_ZR);
+		x    = !get_bit(data[5], D_BTN_X);
+		y    = !get_bit(data[5], D_BTN_Y);
+		a    = !get_bit(data[5], D_BTN_A);
+		b    = !get_bit(data[5], D_BTN_B);
+		zl   = !get_bit(data[5], D_BTN_ZL);
 
 		// Reset combination
 		reset =
