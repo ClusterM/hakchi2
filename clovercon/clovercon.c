@@ -82,9 +82,9 @@ MODULE_LICENSE("GPL");
 #define D_BTN_B      6
 #define D_BTN_ZL     7
 
-#define DEAD_ZONE_L      20
-#define STICK_MAX_L      72
-#define STICK_FUZZ_L     4
+#define DEAD_ZONE      20
+#define STICK_MAX      72
+#define STICK_FUZZ     4
 
 #define TRIGGER_MIN    0
 #define TRIGGER_MAX    0xff
