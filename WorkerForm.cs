@@ -73,7 +73,7 @@ namespace com.clusterrr.hakchi_gui
             fes1Path = Path.Combine(Path.Combine(baseDirectory, "data"), "fes1.bin");
             ubootPath = Path.Combine(Path.Combine(baseDirectory, "data"), "uboot.bin");
             splashScreenPath = Path.Combine(Path.Combine(baseDirectory, "data"), "splash.gz");
-            tempDirectory = Path.Combine(baseDirectory, "temp");
+            tempDirectory = Path.Combine(Path.GetTempPath(), "hakchi-temp");
             kernelDirectory = Path.Combine(tempDirectory, "kernel");
             initramfs_cpio = Path.Combine(kernelDirectory, "initramfs.cpio");
             initramfs_cpioPatched = Path.Combine(kernelDirectory, "initramfs_mod.cpio");
@@ -574,7 +574,7 @@ namespace com.clusterrr.hakchi_gui
                     originalGamesStreamOut.Seek(0, SeekOrigin.Begin);
                     originalGamesStreamOut.Read(data, 0, (int)originalGamesStreamOut.Length);
                     var str = Encoding.UTF8.GetString(data);
-                    progress = startProgress + Regex.Matches(str, "CLV-").Count*2;
+                    progress = startProgress + Regex.Matches(str, "CLV-").Count * 2;
                     SetProgress(progress, maxProgress);
                 };
                 clovershell.Execute("source /etc/preinit && script_init && source $installpath/script/games && cd $temppath && target_dir=$rootfs$gamepath && transfer_original_games games", null, originalGamesStreamOut, null, 30000, true);
