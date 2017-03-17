@@ -64,7 +64,6 @@ MODULE_LICENSE("GPL");
 //Delay expressed in polling intervals
 #define RETRY_BASE_DELAY 512
 
-#define DATA_FORMAT    1
 #define D_BTN_R      1
 #define D_BTN_START  2
 #define D_BTN_HOME   3
@@ -178,6 +177,7 @@ struct clovercon_info {
 	bool autofire_x;
 	bool autofire_y;
 	int start_counter;
+	u8 data_format;
 };
 
 static struct clovercon_info con_info_list[MAX_CON_COUNT];
@@ -299,8 +299,9 @@ static int clovercon_read_controller_info(struct i2c_client *client, u8 *data, s
 	// print_hex_dump(KERN_DEBUG, "Controller info data: " , DUMP_PREFIX_NONE, 16, 256, data, len, false);
 }
 
-static int clovercon_setup(struct i2c_client *client) {
-	u8 init_data[] = { 0xf0, 0x55, 0xfb, 0x00, 0xfe, DATA_FORMAT };
+static int clovercon_setup(struct clovercon_info *info) {
+	struct i2c_client *client = info->client;
+	u8 init_data[] = { 0xf0, 0x55, 0xfb, 0x00, 0xfe, 3 };
 	static const int CON_INFO_LEN = 6;
 	u8 con_info_data[CON_INFO_LEN];
 	int ret;
@@ -313,9 +314,8 @@ static int clovercon_setup(struct i2c_client *client) {
 	ret = clovercon_write(client, &init_data[2], 2);
 	if (ret)
 		goto err;
+	// trying to set data format to 3
 	ret = clovercon_write(client, &init_data[4], 2);
-	if (ret)
-		goto err;
 
 	ret = clovercon_read_controller_info(client, con_info_data, CON_INFO_LEN);
 	if (ret < 0) {
@@ -326,11 +326,12 @@ static int clovercon_setup(struct i2c_client *client) {
 		ret = -EIO;
 		goto err;
 	}
-	if (con_info_data[4] != DATA_FORMAT) {
-		ERR("failed to set data format, value is %i", (int)con_info_data[4]);
-		ret = -EIO;
-		goto err;
-	}
+
+	// autodetecting data format
+	// it should be 0x03 for original classic controllers and clovercons
+	// but seems like not every 3rd party controller supports data format selection
+	info->data_format = con_info_data[4];
+
 	if (con_info_data[5] != 1) {
 		ERR("unsupported controller id %i", (int)con_info_data[5]);
 		ret = -EIO;
@@ -415,6 +416,7 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 		 * Use that as last resort discarding criteria */
 		jy = 0;
 		for (jx=8; jx<21; jx++) {
+			if (data[jx] == 0xFF) data[jx] = 0; // for 3rd party controllers
 			jy += data[jx];
 		}
 		if (jy) {
@@ -422,29 +424,56 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 			break;
 		}
 
-		jx = ((data[0] & 0x3f) - 0x20) * 4;
-		rx = (((data[2] >> 7) | ((data[1] & 0xC0) >> 4) | ((data[0] & 0xC0) >> 2)) - 0x10) * 8;
-		jy = ((data[1] & 0x3f) - 0x20) * -4;
-		ry = ((data[2] & 0x1f) - 0x10) * -8;
-		tl = ((data[3] >> 5) | ((data[2] & 0x60) >> 3)) * 8;
-		tr = (data[3] & 0x1f) * 8;
+		if (info->data_format == 3)
+		{
+		    jx = data[0] - 0x80;
+		    rx = data[1] - 0x80;
+		    jy = 0x7fl - data[2];
+		    ry = 0x7fl - data[3];
+		    tl = data[4];
+		    tr = data[5];
 
-		r      = !get_bit(data[4], D_BTN_R);
-		start  = !get_bit(data[4], D_BTN_START);
-		home   = !get_bit(data[4], D_BTN_HOME);
-		select = !get_bit(data[4], D_BTN_SELECT);
-		l      = !get_bit(data[4], D_BTN_L);
-		down   = !get_bit(data[4], D_BTN_DOWN);
-		right  = !get_bit(data[4], D_BTN_RIGHT);
+		    r      = !get_bit(data[6], D_BTN_R);
+		    start  = !get_bit(data[6], D_BTN_START);
+		    home   = !get_bit(data[6], D_BTN_HOME);
+		    select = !get_bit(data[6], D_BTN_SELECT);
+		    l      = !get_bit(data[6], D_BTN_L);
+		    down   = !get_bit(data[6], D_BTN_DOWN);
+		    right  = !get_bit(data[6], D_BTN_RIGHT);
 
-		up   = !get_bit(data[5], D_BTN_UP);
-		left = !get_bit(data[5], D_BTN_LEFT);
-		zr   = !get_bit(data[5], D_BTN_ZR);
-		x    = !get_bit(data[5], D_BTN_X);
-		y    = !get_bit(data[5], D_BTN_Y);
-		a    = !get_bit(data[5], D_BTN_A);
-		b    = !get_bit(data[5], D_BTN_B);
-		zl   = !get_bit(data[5], D_BTN_ZL);
+		    up   = !get_bit(data[7], D_BTN_UP);
+		    left = !get_bit(data[7], D_BTN_LEFT);
+		    zr   = !get_bit(data[7], D_BTN_ZR);
+		    x    = !get_bit(data[7], D_BTN_X);
+		    y    = !get_bit(data[7], D_BTN_Y);
+		    a    = !get_bit(data[7], D_BTN_A);
+		    b    = !get_bit(data[7], D_BTN_B);
+		    zl   = !get_bit(data[7], D_BTN_ZL);
+		} else {
+		    jx = ((data[0] & 0x3f) - 0x20) * 4;
+		    rx = (((data[2] >> 7) | ((data[1] & 0xC0) >> 5) | ((data[0] & 0xC0) >> 3)) - 0x10) * 8;
+		    jy = ((data[1] & 0x3f) - 0x20) * -4;
+		    ry = ((data[2] & 0x1f) - 0x10) * -8;
+		    tl = ((data[3] >> 5) | ((data[2] & 0x60) >> 2)) * 8;
+		    tr = (data[3] & 0x1f) * 8;
+
+		    r      = !get_bit(data[4], D_BTN_R);
+		    start  = !get_bit(data[4], D_BTN_START);
+		    home   = !get_bit(data[4], D_BTN_HOME);
+		    select = !get_bit(data[4], D_BTN_SELECT);
+		    l      = !get_bit(data[4], D_BTN_L);
+		    down   = !get_bit(data[4], D_BTN_DOWN);
+		    right  = !get_bit(data[4], D_BTN_RIGHT);
+
+		    up   = !get_bit(data[5], D_BTN_UP);
+		    left = !get_bit(data[5], D_BTN_LEFT);
+		    zr   = !get_bit(data[5], D_BTN_ZR);
+		    x    = !get_bit(data[5], D_BTN_X);
+		    y    = !get_bit(data[5], D_BTN_Y);
+		    a    = !get_bit(data[5], D_BTN_A);
+		    b    = !get_bit(data[5], D_BTN_B);
+		    zl   = !get_bit(data[5], D_BTN_ZL);
+		}
 
 		// Reset combination
 		reset =
@@ -580,7 +609,7 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 		info->retry_counter++;
 		if (info->retry_counter == retry_delay) {
 			DBG("retrying controller setup");
-			ret = clovercon_setup(info->client);
+			ret = clovercon_setup(info);
 			if (ret) {
 				info->state = MIN(CS_ERR, info->state + 1);
 			} else {
@@ -597,7 +626,7 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 
 static void clovercon_open(struct input_polled_dev *polled_dev) {
 	struct clovercon_info *info = polled_dev->private;
-	if (clovercon_setup(info->client)) {
+	if (clovercon_setup(info)) {
 		info->retry_counter = 0;
 		info->state = CS_RETRY_1;
 		INF("opened controller %i, controller in error state after failed setup", info->id);
