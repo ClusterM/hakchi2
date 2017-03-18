@@ -15,7 +15,7 @@ namespace com.clusterrr.hakchi_gui
         private readonly string usermodsDirectory;
         private readonly string[] readmeFiles;
 
-        public SelectModsForm(bool loadInstalledMods = false)
+        public SelectModsForm(bool loadInstalledMods, bool allowDropMods)
         {
             InitializeComponent();
             baseDirectory = MainForm.BaseDirectory;
@@ -52,7 +52,9 @@ namespace com.clusterrr.hakchi_gui
             readmeFiles = new string[] { "readme.txt", "readme.md", "readme" };
             checkedListBoxMods.Items.Clear();
             checkedListBoxMods.Items.AddRange(modsList.ToArray());
+            this.AllowDrop = allowDropMods;
         }
+
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
@@ -103,9 +105,9 @@ namespace com.clusterrr.hakchi_gui
                         tar.Seek(0, SeekOrigin.Begin);
                         using (var szExtractorTar = new SevenZipExtractor(tar))
                         {
-                            foreach (var f in readmeFiles)
+                            foreach (var f in szExtractorTar.ArchiveFileNames)
                             {
-                                if (szExtractorTar.ArchiveFileNames.Contains(f))
+                                if (readmeFiles.Contains(f.ToLower()))
                                 {
                                     var o = new MemoryStream();
                                     szExtractorTar.ExtractFile(f, o);
@@ -113,6 +115,8 @@ namespace com.clusterrr.hakchi_gui
                                     o.Seek(0, SeekOrigin.Begin);
                                     o.Read(rawData, 0, (int)o.Length);
                                     text = Encoding.UTF8.GetString(rawData);
+                                    if (!text.Contains("\r"))
+                                        text = text.Replace("\n", "\r\n");
                                     break;
                                 }
                             }
@@ -133,6 +137,48 @@ namespace com.clusterrr.hakchi_gui
             {
                 textBoxReadme.Text = readme;
                 textBoxReadme.Enabled = readme.Length > 0;
+            }
+        }
+
+        private void SelectModsForm_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+        }
+
+        private void SelectModsForm_DragDrop(object sender, DragEventArgs e)
+        {
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            var listAddedMods = new List<string>();
+            foreach (var file in files)
+            {
+                var ext = Path.GetExtension(file).ToLower();
+                if (ext == ".hmod")
+                {
+                    File.Copy(file, Path.Combine(usermodsDirectory, Path.GetFileName(file)), true);
+                    listAddedMods.Add(Path.GetFileNameWithoutExtension(file));
+                }
+                else if (ext == ".7z" || ext == ".zip" || ext == ".rar")
+                {
+                    SevenZipExtractor.SetLibraryPath(Path.Combine(baseDirectory, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+                    using (var szExtractor = new SevenZipExtractor(file))
+                    {
+                        foreach (var f in szExtractor.ArchiveFileNames)
+                            if (Path.GetExtension(f).ToLower() == ".hmod")
+                            {
+                                using (var outFile = new FileStream(Path.Combine(usermodsDirectory, Path.GetFileName(f)), FileMode.Create))
+                                {
+                                    szExtractor.ExtractFile(f, outFile);
+                                    listAddedMods.Add(Path.GetFileNameWithoutExtension(f));
+                                }
+                            }
+                    }
+                }
+            }
+            foreach (var mod in listAddedMods)
+            {
+                checkedListBoxMods.Items.Remove(mod);
+                checkedListBoxMods.Items.Add(mod, true);
             }
         }
     }

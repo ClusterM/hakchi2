@@ -1156,7 +1156,7 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var form = new SelectModsForm();
+            var form = new SelectModsForm(false, true);
             form.Text = Resources.SelectModsInstall;
             if (form.ShowDialog() == DialogResult.OK)
             {
@@ -1176,7 +1176,7 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var form = new SelectModsForm(true);
+            var form = new SelectModsForm(true, false);
             form.Text = Resources.SelectModsUninstall;
             if (form.ShowDialog() == DialogResult.OK)
             {
