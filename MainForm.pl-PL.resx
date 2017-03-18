@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label7.Text" xml:space="preserve">
     <value>Game Genie - kody (oddzielone przecinkiem):</value>
@@ -135,9 +135,6 @@
   <data name="unselectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Odznacz wszystko</value>
   </data>
-  <data name="openFileDialogNes.Filter" xml:space="preserve">
-    <value>Pliki NES|*.nes;*.fds;*.zip;*.7z;*.rar|All files|*.*</value>
-  </data>
   <data name="deleteGameToolStripMenuItem.Text" xml:space="preserve">
     <value>Usuń grę</value>
   </data>
@@ -152,9 +149,6 @@
   </data>
   <data name="radioButtonOne.Text" xml:space="preserve">
     <value>Jeden gracz</value>
-  </data>
-  <data name="removeThumbnailsAtTheBottomToolStripMenuItem.Text" xml:space="preserve">
-    <value>Usuń miniaturki na dole</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Dodaj więcej &amp;gier</value>
@@ -1322,14 +1316,8 @@
         //////////////////////////////////8=
 </value>
   </data>
-  <data name="toolStripStatusLabelSelected.Text" xml:space="preserve">
-    <value>toolStripStatusLabel1</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Data wydania (YYYY-MM-DD):</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel0.Text" xml:space="preserve">
-    <value>Domyślnie</value>
   </data>
   <data name="radioButtonTwoSim.Text" xml:space="preserve">
     <value>Dwóch graczy, równocześnie</value>
@@ -1394,17 +1382,11 @@
   <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Kernel</value>
   </data>
-  <data name="disableMenuMusicToolStripMenuItem.Text" xml:space="preserve">
-    <value>Wyłącz muzykę w menu</value>
-  </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Max graczy:</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Publikujący:</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel2.Text" xml:space="preserve">
-    <value>Wyłącz dla wszystkich gier</value>
   </data>
   <data name="presetsToolStripMenuItem.Text" xml:space="preserve">
     <value>Wybierz preset</value>
@@ -1414,9 +1396,6 @@
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Argumenty wiersza poleceń (tylko eksperci!):</value>
-  </data>
-  <data name="guiHacksToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mody GUI</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text" xml:space="preserve">
     <value>Typ konsoli</value>
@@ -1444,12 +1423,6 @@
   </data>
   <data name="openFileDialogImage.Title" xml:space="preserve">
     <value>Wybierz okładkę dla gry</value>
-  </data>
-  <data name="ToolStripMenuItemArmetLevel1.Text" xml:space="preserve">
-    <value>Wyłącz dla oryginalnych gier</value>
-  </data>
-  <data name="betterPNGCompressionlowerQualityToolStripMenuItem.Text" xml:space="preserve">
-    <value>8bitowa kompresja PNG (mniejszy rozmiar/niska jakość)</value>
   </data>
   <data name="searchToolStripMenuItem.Text" xml:space="preserve">
     <value>Szukaj</value>

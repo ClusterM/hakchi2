@@ -1,1 +1,541 @@
-﻿<?xml version="1.0" encoding="utf-8"?><root>  <!--     Microsoft ResX Schema         Version 2.0        The primary goals of this format is to allow a simple XML format     that is mostly human readable. The generation and parsing of the     various data types are done through the TypeConverter classes     associated with the data types.        Example:        ... ado.net/XML headers & schema ...    <resheader name="resmimetype">text/microsoft-resx</resheader>    <resheader name="version">2.0</resheader>    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">        <value>[base64 mime encoded serialized .NET Framework object]</value>    </data>    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>        <comment>This is a comment</comment>    </data>                    There are any number of "resheader" rows that contain simple     name/value pairs.        Each data row contains a name, and value. The row also contains a     type or mimetype. Type corresponds to a .NET class that support     text/value conversion through the TypeConverter architecture.     Classes that don't support this are serialized and stored with the     mimetype set.        The mimetype is used for serialized objects, and tells the     ResXResourceReader how to depersist the object. This is currently not     extensible. For a given mimetype the value must be set accordingly:        Note - application/x-microsoft.net.object.binary.base64 is the format     that the ResXResourceWriter will generate, however the reader can     read any of the formats listed below.        mimetype: application/x-microsoft.net.object.binary.base64    value   : The object must be serialized with             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter            : and then encoded with base64 encoding.        mimetype: application/x-microsoft.net.object.soap.base64    value   : The object must be serialized with             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter            : and then encoded with base64 encoding.    mimetype: application/x-microsoft.net.object.bytearray.base64    value   : The object must be serialized into a byte array             : using a System.ComponentModel.TypeConverter            : and then encoded with base64 encoding.    -->  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />    <xsd:element name="root" msdata:IsDataSet="true">      <xsd:complexType>        <xsd:choice maxOccurs="unbounded">          <xsd:element name="metadata">            <xsd:complexType>              <xsd:sequence>                <xsd:element name="value" type="xsd:string" minOccurs="0" />              </xsd:sequence>              <xsd:attribute name="name" use="required" type="xsd:string" />              <xsd:attribute name="type" type="xsd:string" />              <xsd:attribute name="mimetype" type="xsd:string" />              <xsd:attribute ref="xml:space" />            </xsd:complexType>          </xsd:element>          <xsd:element name="assembly">            <xsd:complexType>              <xsd:attribute name="alias" type="xsd:string" />              <xsd:attribute name="name" type="xsd:string" />            </xsd:complexType>          </xsd:element>          <xsd:element name="data">            <xsd:complexType>              <xsd:sequence>                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />              </xsd:sequence>              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />              <xsd:attribute ref="xml:space" />            </xsd:complexType>          </xsd:element>          <xsd:element name="resheader">            <xsd:complexType>              <xsd:sequence>                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />              </xsd:sequence>              <xsd:attribute name="name" type="xsd:string" use="required" />            </xsd:complexType>          </xsd:element>        </xsd:choice>      </xsd:complexType>    </xsd:element>  </xsd:schema>  <resheader name="resmimetype">    <value>text/microsoft-resx</value>  </resheader>  <resheader name="version">    <value>2.0</value>  </resheader>  <resheader name="reader">    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>  </resheader>  <resheader name="writer">    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>  </resheader>  <data name="AreYouSure" xml:space="preserve">    <value>Bist du dir sicher?</value>  </data>  <data name="BuildingCustom" xml:space="preserve">    <value>Erstelle ein Abbild des benutzerdefinierten Kernel...</value>  </data>  <data name="Congratulations" xml:space="preserve">    <value>Gratuliere!</value>  </data>  <data name="CustomKernel" xml:space="preserve">    <value>Benutzerdefinierter Kernel</value>  </data>  <data name="CustomKernelQ" xml:space="preserve">    <value>Möchtest du den benutzerdefinierten Kernel flashen?</value>  </data>  <data name="CustomWarning" xml:space="preserve">    <value>Nun musst du dein benutzerdefinierten Kernel auf dein NES Mini flashen. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>  </data>  <data name="Default30games" xml:space="preserve">    <value>Originale 30 Spiele</value>  </data>  <data name="DeleteGame" xml:space="preserve">    <value>Möchstest du wirklich Spiel "{0}" löschen?</value>  </data>  <data name="Done" xml:space="preserve">    <value>Fertig!</value>  </data>  <data name="DoneUploaded" xml:space="preserve">    <value>Fertig! Warte bis die Power LED erlischt und starte dein NES Mini neu.</value>  </data>  <data name="DoneYouCanUpload" xml:space="preserve">    <value>Fertig! Du kannst nun Spiele auf dein NES Mini laden.</value>  </data>  <data name="DoYouWantCancel" xml:space="preserve">    <value>Möchten Sie den aktuellen Vorgang abbrechen?</value>  </data>  <data name="DoYouWantToContinue" xml:space="preserve">    <value>Möchtest du fortfahren?</value>  </data>  <data name="DumpingKernel" xml:space="preserve">    <value>Sicher Kernel...</value>  </data>  <data name="DumpKernelQ" xml:space="preserve">    <value>Möchtest du den Kernel sichern?</value>  </data>  <data name="Error" xml:space="preserve">    <value>Fehler</value>  </data>  <data name="ExecutingCommand" xml:space="preserve">    <value>Befehl ausführen:</value>  </data>  <data name="ExecutingFes1" xml:space="preserve">    <value>Ausführen fes1...</value>  </data>  <data name="FlasingCustom" xml:space="preserve">    <value>Flashe benutzerdefinierten Kernel...</value>  </data>  <data name="FlasingOriginal" xml:space="preserve">    <value>Flashe original Kernel...</value>  </data>  <data name="GamesSelected" xml:space="preserve">    <value>Spiel(e) ausgewählt</value>  </data>  <data name="InvalidKernelHeader" xml:space="preserve">    <value>Ungültiger Kernel Header.</value>  </data>  <data name="InvalidKernelSize" xml:space="preserve">    <value>Ungültige Kernel Größe:</value>  </data>  <data name="MapperNotSupported" xml:space="preserve">    <value>Entschuldige, "{0}" benutzt Mapper #{1} aber dieser Mapper wird vom NES Mini nicht unterstützt und das Spiel wird wahrscheinlich nicht starten mit dem Standard Emulator. Aber es könnte funktionieren wenn ein anderes Emulator Modul installiert ist. Möchtest du das Spiel hinzufügen?</value>  </data>  <data name="MD5Failed" xml:space="preserve">    <value>Kernel gesichert aber die MD5 Prüfsumme ist unbekannt:</value>  </data>  <data name="MD5Failed2" xml:space="preserve">    <value>Der Kernel ist schon gepatcht oder eine unbekannte Revision. Bitte sende diese Nachricht zu mir (drücke Ctrl+C). Weiter auf eigene Gefahr.</value>  </data>  <data name="NoKernel" xml:space="preserve">    <value>Kein gesicherter Kernel gefunden</value>  </data>  <data name="NoKernelWarning" xml:space="preserve">    <value>Zuerst, sichere das Kernel Abbild von deinem NES Mini. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>  </data>  <data name="NoKernelYouNeed" xml:space="preserve">    <value>Kein gesicherter Kernel gefunden. Du must den Kernerl ersteinmal sichern.</value>  </data>  <data name="OriginalKernelQ" xml:space="preserve">    <value>Möchtest du den Original Kernel flashen?</value>  </data>  <data name="PressOkToContinue" xml:space="preserve">    <value>Drücke OK, um fortzufahren.</value>  </data>  <data name="ReplaceKernelQ" xml:space="preserve">    <value>Du hast dein Kernel schon gesichert. Wenn du WIRKLICH dein Kernel Backup ersetzen möchtest und du WIRKLICH weist was du da tust, dann lösche den Ordner "dump" mit manuell.</value>  </data>  <data name="SelectAtLeast" xml:space="preserve">    <value>Wähle mindestens ein Spiel.</value>  </data>  <data name="UploadingFes1" xml:space="preserve">    <value>Lade hoch und führe FES-1 aus...</value>  </data>  <data name="UploadingGames" xml:space="preserve">    <value>Lade Spiele hoch...</value>  </data>  <data name="UploadingKernel" xml:space="preserve">    <value>Lade den Kernel hoch...</value>  </data>  <data name="VerifyFailed" xml:space="preserve">    <value>Überprüfen fehlgeschlagen :O Das ist nicht gut.</value>  </data>  <data name="Verifying" xml:space="preserve">    <value>Überprüfen...</value>  </data>  <data name="WaitingForDevice" xml:space="preserve">    <value>Warte auf das Gerät...</value>  </data>  <data name="Warning" xml:space="preserve">    <value>Warnung!</value>  </data>  <data name="Wow" xml:space="preserve">    <value>Wow</value>  </data>  <data name="PleaseTryAgainUSB" xml:space="preserve">    <value>Wenn dieses Problem weiterhin besteht, versuche es mit einem anderen USB-Port oder Kabel.</value>  </data>  <data name="XpZadig" xml:space="preserve">    <value>Bitte verwende das Zadig Dienstprogramm, um den Treiber unter Windows XP/2000 zu installieren.</value>  </data>  <data name="Donate" xml:space="preserve">    <value>P.S. Wenn du magst, kannst du mir eine Spende zukommen lassen. Du findest meine PayPal im Menü "Über".</value>  </data>  <data name="FirstRun" xml:space="preserve">    <value>Hallo! Ich bin sehr froh, dass Du hakchi2 benutzt. Es ist sehr einfach zu bedienen. Klicke einfach auf  "Mehr Spiele hinzufügen", wähle ein paar ROMs, drücke "Synchronisieren" und folge den Anweisungen. Viel Glück!</value>  </data>  <data name="Hello" xml:space="preserve">    <value>Hallo</value>  </data>  <data name="KernelDumped" xml:space="preserve">    <value>Dein Original Kernel ist gesichert im Ordner "dump". Verliere ihn nicht. </value>  </data>  <data name="DeletePreset" xml:space="preserve">    <value>Möchtest du wirklich die Voreinstellung "{0}" löschen?</value>  </data>  <data name="FourScreenNotSupported" xml:space="preserve">    <value>Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>  </data>  <data name="InputPreset" xml:space="preserve">    <value>Bitte gebe einen voreingestellten Namen für die aktuelle Spielauswahl ein.</value>  </data>  <data name="NewPreset" xml:space="preserve">    <value>Neue Auswahl Voreingestellt</value>  </data>  <data name="UninstallFactoryNote" xml:space="preserve">    <value>Vergesse nicht, auf Werkeinstellung zurückzusetzen, wenn du alle Einstellungen löschen möchten.</value>  </data>  <data name="Uninstalling" xml:space="preserve">    <value>Deinstallieren...</value>  </data>  <data name="UninstallQ1" xml:space="preserve">    <value>Möchtest du wirklich alle Spuren von hakchi2 beseitigen und dein NES Mini in sein Originalzustand zurücksetzen? </value>  </data>  <data name="UninstallQ2" xml:space="preserve">    <value>Fertig. Warte bis die Power LED erlischt. Du musst auch den originalen Kernel flashen. Möchtest du den Original Kernel jetzt flashen?</value>  </data>  <data name="GameGenieFormatError" xml:space="preserve">    <value>Ungültiger Game Genie Code "{0}" für das Spiel "{1}".</value>  </data>  <data name="GameGenieNotFound" xml:space="preserve">    <value>Kann Game Genie Code "{0}" für das Spiel "{1}" nicht anwenden - Wert nnicht gefunden. Ist der Code vielleicht für ein anderes Spiel?</value>  </data>  <data name="PatchAvailable" xml:space="preserve">    <value>Patch verfügbar</value>  </data>  <data name="PatchQ" xml:space="preserve">    <value>Es ist ein Patch für "{0}" verfügbar. Möchtest du das Spiel patchen?</value>  </data>  <data name="AutofillResult" xml:space="preserve">    <value>Daten automatisch gefüllt für {0} Spiel(e).</value>  </data>  <data name="SelectAtLeastTwo" xml:space="preserve">    <value>Wähle mindestens zwei Tasten.</value>  </data>  <data name="AutofireHelp1" xml:space="preserve">    <value>Halte eine Sekunde Select+A/B um Autofeuer A/B zu anktivieren/deaktivieren.</value>  </data>  <data name="ExtraArgsInfo" xml:space="preserve">    <value>Du kannst Globale Kommandozeilen Argumente hinzufügen welche an alle Spiele angehängt werden inklusive der 30 originalen. Das ist nur für Experten!</value>  </data>  <data name="ExtraArgsTitle" xml:space="preserve">    <value>Extra Kommandozeilen Argumente</value>  </data>  <data name="DownloadAllCoversTitle" xml:space="preserve">    <value>Downloade Box Arts für alle Spiele (Ich fühle mich glücklich!)</value>  </data>  <data name="GooglingFor" xml:space="preserve">    <value>Google nach </value>  </data>  <data name="NotFound" xml:space="preserve">    <value>Nicht gefunden:</value>  </data>  <data name="ParticallyBody" xml:space="preserve">    <value>Keine Angst! Alles ist OK. Es sind nur zu viele ROMs um sie auf einmal zu übertragen. Bitte warte bis die Power LED erlischt, drücke dann OK und folge dann den Anweisungen um fortzufahren.</value>  </data>  <data name="ParticallyTitle" xml:space="preserve">    <value>Zu viele ROMs</value>  </data>  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />  <data name="gamepad" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\images\gamepad.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="blank_fds" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\images\blank_fds.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="blank_jp" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\images\blank_jp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="LoadingGames" xml:space="preserve">    <value>Lade Spiele...</value>  </data>  <data name="No" xml:space="preserve">    <value>Nein</value>  </data>  <data name="NoForAll" xml:space="preserve">    <value>Nein für alle</value>  </data>  <data name="Yes" xml:space="preserve">    <value>Ja</value>  </data>  <data name="YesForAll" xml:space="preserve">    <value>Ja für alle</value>  </data>  <data name="GGCodeDelete" xml:space="preserve">    <value>Möchtest du "{0}" Codes löschen?</value>  </data>  <data name="GGCodeEmpty" xml:space="preserve">    <value>Du musst ein Code eingeben!</value>  </data>  <data name="GGCodeExists" xml:space="preserve">    <value>Dieser Code existiert bereits. Möchtets du ihn editieren?</value>  </data>  <data name="GGDescriptionEmpty" xml:space="preserve">    <value>Du musst eine Beschreibung hinzufügen!</value>  </data>  <data name="FolderNameBack" xml:space="preserve">    <value>Zurück</value>  </data>  <data name="FolderNameMoreGames" xml:space="preserve">    <value>Mehr Spiele...</value>  </data>  <data name="FolderNameOriginalGames" xml:space="preserve">    <value>Original 30 Spiele</value>  </data>  <data name="folder" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_a" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_a.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_b" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_b.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_back" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_back.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_c" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_c.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_d" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_d.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_e" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_e.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_f" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_f.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_g" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_g.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_h" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_h.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_i" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_i.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_j" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_j.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_k" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_k.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_l" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_l.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_m" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_m.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_n" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_n.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_number" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_number.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_o" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_o.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_p" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_p.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_q" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_q.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_r" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_r.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_s" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_s.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_t" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_t.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_u" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_u.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_v" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_v.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_w" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_w.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_x" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_x.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_y" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_y.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="folder_z" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\folder_images\folder_z.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="DeleteElement" xml:space="preserve">    <value>Möchtest die wirklich "{0}" löschen?</value>  </data>  <data name="FolderContent" xml:space="preserve">    <value>Gelöschter Inhalt wird in den Papierkorb verschoben. Du kannst diesen Ordner permanent löschen oder die Spiele in andere Ordner verschieben.</value>  </data>  <data name="MainMenu" xml:space="preserve">    <value>HOME Menü</value>  </data>  <data name="BuildingFolders" xml:space="preserve">    <value>Erstelle die Ordnerstruktur...</value>  </data>  <data name="FolderNameNewFolder" xml:space="preserve">    <value>Neuer Ordner</value>  </data>  <data name="FolderNameUnsorted" xml:space="preserve">    <value>Unsortiert</value>  </data>  <data name="FoldersSaveQ" xml:space="preserve">    <value>Möchtest du diese Ordnerstruktur speichern?</value>  </data>  <data name="FolderStatistics" xml:space="preserve">    <value>Ordner "{0}" enthält {1} Elemente.</value>  </data>  <data name="NewGamesUnsorted" xml:space="preserve">    <value>Neue Spiele sind im Ordner "Unsortiert" .</value>  </data>  <data name="AddingGames" xml:space="preserve">    <value>Verarbeite Spiele, bitte warten...</value>  </data>  <data name="DeleteElements" xml:space="preserve">    <value>Du möchtest wirklich {0} Elemente löschen?</value>  </data>  <data name="FolderNameTrashBin" xml:space="preserve">    <value>Papierkorb</value>  </data>  <data name="InstallingMods" xml:space="preserve">    <value>Installiere Mods...</value>  </data>  <data name="SelectModsInstall" xml:space="preserve">    <value>Wähle die Module zum instalieren auf das NES Mini.</value>  </data>  <data name="SelectModsUninstall" xml:space="preserve">    <value>Wähle die Module die du vom NES Mini entfernen möchtest.</value>  </data>  <data name="UninstallingMods" xml:space="preserve">    <value>Deinstalliere Mods...</value>  </data>  <data name="blank_app" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\images\blank_app.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="blank_gb" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\images\blank_gb.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="blank_gba" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\images\blank_gba.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="blank_gbc" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\images\blank_gbc.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="blank_genesis" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\images\blank_genesis.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="blank_pce" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\images\blank_pce.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="blank_sms" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\images\blank_sms.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="blank_snes_us" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\images\blank_snes-us.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="blank_nes" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\images\blank_nes.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="blank_n64" type="System.Resources.ResXFileRef, System.Windows.Forms">    <value>..\images\blank_n64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>  </data>  <data name="GameTooBig" xml:space="preserve">    <value>Sorry, Spiel "{0}" ist zu groß.</value>  </data>  <data name="MemoryFull" xml:space="preserve">    <value>Sorry, da sind {0}MBytes an Spiele, das ist zu viel.</value>  </data></root>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Bist du dir sicher?</value>
+  </data>
+  <data name="BuildingCustom" xml:space="preserve">
+    <value>Erstelle ein Abbild des benutzerdefinierten Kernel...</value>
+  </data>
+  <data name="Congratulations" xml:space="preserve">
+    <value>Gratuliere!</value>
+  </data>
+  <data name="CustomKernel" xml:space="preserve">
+    <value>Benutzerdefinierter Kernel</value>
+  </data>
+  <data name="CustomKernelQ" xml:space="preserve">
+    <value>Möchtest du den benutzerdefinierten Kernel flashen?</value>
+  </data>
+  <data name="CustomWarning" xml:space="preserve">
+    <value>Nun musst du dein benutzerdefinierten Kernel auf dein NES Mini flashen. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>
+  </data>
+  <data name="Default30games" xml:space="preserve">
+    <value>Originale 30 Spiele</value>
+  </data>
+  <data name="DeleteGame" xml:space="preserve">
+    <value>Möchstest du wirklich Spiel "{0}" löschen?</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Fertig!</value>
+  </data>
+  <data name="DoneUploaded" xml:space="preserve">
+    <value>Fertig! Warte bis die Power LED erlischt und starte dein NES Mini neu.</value>
+  </data>
+  <data name="DoneYouCanUpload" xml:space="preserve">
+    <value>Fertig! Du kannst nun Spiele auf dein NES Mini laden.</value>
+  </data>
+  <data name="DoYouWantCancel" xml:space="preserve">
+    <value>Möchten Sie den aktuellen Vorgang abbrechen?</value>
+  </data>
+  <data name="DoYouWantToContinue" xml:space="preserve">
+    <value>Möchtest du fortfahren?</value>
+  </data>
+  <data name="DumpingKernel" xml:space="preserve">
+    <value>Sicher Kernel...</value>
+  </data>
+  <data name="DumpKernelQ" xml:space="preserve">
+    <value>Möchtest du den Kernel sichern?</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="ExecutingCommand" xml:space="preserve">
+    <value>Befehl ausführen:</value>
+  </data>
+  <data name="ExecutingFes1" xml:space="preserve">
+    <value>Ausführen fes1...</value>
+  </data>
+  <data name="FlasingCustom" xml:space="preserve">
+    <value>Flashe benutzerdefinierten Kernel...</value>
+  </data>
+  <data name="FlasingOriginal" xml:space="preserve">
+    <value>Flashe original Kernel...</value>
+  </data>
+  <data name="GamesSelected" xml:space="preserve">
+    <value>Spiel(e) ausgewählt</value>
+  </data>
+  <data name="InvalidKernelHeader" xml:space="preserve">
+    <value>Ungültiger Kernel Header.</value>
+  </data>
+  <data name="InvalidKernelSize" xml:space="preserve">
+    <value>Ungültige Kernel Größe:</value>
+  </data>
+  <data name="MapperNotSupported" xml:space="preserve">
+    <value>Entschuldige, "{0}" benutzt Mapper #{1} aber dieser Mapper wird vom NES Mini nicht unterstützt und das Spiel wird wahrscheinlich nicht starten mit dem Standard Emulator. Aber es könnte funktionieren wenn ein anderes Emulator Modul installiert ist. Möchtest du das Spiel hinzufügen?</value>
+  </data>
+  <data name="MD5Failed" xml:space="preserve">
+    <value>Kernel gesichert aber die MD5 Prüfsumme ist unbekannt:</value>
+  </data>
+  <data name="MD5Failed2" xml:space="preserve">
+    <value>Der Kernel ist schon gepatcht oder eine unbekannte Revision. Bitte sende diese Nachricht zu mir (drücke Ctrl+C). Weiter auf eigene Gefahr.</value>
+  </data>
+  <data name="NoKernel" xml:space="preserve">
+    <value>Kein gesicherter Kernel gefunden</value>
+  </data>
+  <data name="NoKernelWarning" xml:space="preserve">
+    <value>Zuerst, sichere das Kernel Abbild von deinem NES Mini. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>
+  </data>
+  <data name="NoKernelYouNeed" xml:space="preserve">
+    <value>Kein gesicherter Kernel gefunden. Du must den Kernerl ersteinmal sichern.</value>
+  </data>
+  <data name="OriginalKernelQ" xml:space="preserve">
+    <value>Möchtest du den Original Kernel flashen?</value>
+  </data>
+  <data name="PressOkToContinue" xml:space="preserve">
+    <value>Drücke OK, um fortzufahren.</value>
+  </data>
+  <data name="ReplaceKernelQ" xml:space="preserve">
+    <value>Du hast dein Kernel schon gesichert. Wenn du WIRKLICH dein Kernel Backup ersetzen möchtest und du WIRKLICH weist was du da tust, dann lösche den Ordner "dump" mit manuell.</value>
+  </data>
+  <data name="SelectAtLeast" xml:space="preserve">
+    <value>Wähle mindestens ein Spiel.</value>
+  </data>
+  <data name="UploadingFes1" xml:space="preserve">
+    <value>Lade hoch und führe FES-1 aus...</value>
+  </data>
+  <data name="UploadingGames" xml:space="preserve">
+    <value>Lade Spiele hoch...</value>
+  </data>
+  <data name="UploadingKernel" xml:space="preserve">
+    <value>Lade den Kernel hoch...</value>
+  </data>
+  <data name="VerifyFailed" xml:space="preserve">
+    <value>Überprüfen fehlgeschlagen :O Das ist nicht gut.</value>
+  </data>
+  <data name="Verifying" xml:space="preserve">
+    <value>Überprüfen...</value>
+  </data>
+  <data name="WaitingForDevice" xml:space="preserve">
+    <value>Warte auf das Gerät...</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warnung!</value>
+  </data>
+  <data name="Wow" xml:space="preserve">
+    <value>Wow</value>
+  </data>
+  <data name="PleaseTryAgainUSB" xml:space="preserve">
+    <value>Wenn dieses Problem weiterhin besteht, versuche es mit einem anderen USB-Port oder Kabel.</value>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>P.S. Wenn du magst, kannst du mir eine Spende zukommen lassen. Du findest meine PayPal im Menü "Über".</value>
+  </data>
+  <data name="FirstRun" xml:space="preserve">
+    <value>Hallo! Ich bin sehr froh, dass Du hakchi2 benutzt. Es ist sehr einfach zu bedienen. Klicke einfach auf  "Mehr Spiele hinzufügen", wähle ein paar ROMs, drücke "Synchronisieren" und folge den Anweisungen. Viel Glück!</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hallo</value>
+  </data>
+  <data name="KernelDumped" xml:space="preserve">
+    <value>Dein Original Kernel ist gesichert im Ordner "dump". Verliere ihn nicht. </value>
+  </data>
+  <data name="DeletePreset" xml:space="preserve">
+    <value>Möchtest du wirklich die Voreinstellung "{0}" löschen?</value>
+  </data>
+  <data name="FourScreenNotSupported" xml:space="preserve">
+    <value>Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
+  </data>
+  <data name="InputPreset" xml:space="preserve">
+    <value>Bitte gebe einen voreingestellten Namen für die aktuelle Spielauswahl ein.</value>
+  </data>
+  <data name="NewPreset" xml:space="preserve">
+    <value>Neue Auswahl Voreingestellt</value>
+  </data>
+  <data name="UninstallFactoryNote" xml:space="preserve">
+    <value>Vergesse nicht, auf Werkeinstellung zurückzusetzen, wenn du alle Einstellungen löschen möchten.</value>
+  </data>
+  <data name="Uninstalling" xml:space="preserve">
+    <value>Deinstallieren...</value>
+  </data>
+  <data name="UninstallQ1" xml:space="preserve">
+    <value>Möchtest du wirklich alle Spuren von hakchi2 beseitigen und dein NES Mini in sein Originalzustand zurücksetzen? </value>
+  </data>
+  <data name="UninstallQ2" xml:space="preserve">
+    <value>Fertig. Warte bis die Power LED erlischt. Du musst auch den originalen Kernel flashen. Möchtest du den Original Kernel jetzt flashen?</value>
+  </data>
+  <data name="GameGenieFormatError" xml:space="preserve">
+    <value>Ungültiger Game Genie Code "{0}" für das Spiel "{1}".</value>
+  </data>
+  <data name="GameGenieNotFound" xml:space="preserve">
+    <value>Kann Game Genie Code "{0}" für das Spiel "{1}" nicht anwenden - Wert nnicht gefunden. Ist der Code vielleicht für ein anderes Spiel?</value>
+  </data>
+  <data name="PatchAvailable" xml:space="preserve">
+    <value>Patch verfügbar</value>
+  </data>
+  <data name="PatchQ" xml:space="preserve">
+    <value>Es ist ein Patch für "{0}" verfügbar. Möchtest du das Spiel patchen?</value>
+  </data>
+  <data name="AutofillResult" xml:space="preserve">
+    <value>Daten automatisch gefüllt für {0} Spiel(e).</value>
+  </data>
+  <data name="SelectAtLeastTwo" xml:space="preserve">
+    <value>Wähle mindestens zwei Tasten.</value>
+  </data>
+  <data name="AutofireHelp1" xml:space="preserve">
+    <value>Halte eine Sekunde Select+A/B um Autofeuer A/B zu anktivieren/deaktivieren.</value>
+  </data>
+  <data name="ExtraArgsInfo" xml:space="preserve">
+    <value>Du kannst Globale Kommandozeilen Argumente hinzufügen welche an alle Spiele angehängt werden inklusive der 30 originalen. Das ist nur für Experten!</value>
+  </data>
+  <data name="ExtraArgsTitle" xml:space="preserve">
+    <value>Extra Kommandozeilen Argumente</value>
+  </data>
+  <data name="DownloadAllCoversTitle" xml:space="preserve">
+    <value>Downloade Box Arts für alle Spiele (Ich fühle mich glücklich!)</value>
+  </data>
+  <data name="GooglingFor" xml:space="preserve">
+    <value>Google nach </value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Nicht gefunden:</value>
+  </data>
+  <data name="ParticallyBody" xml:space="preserve">
+    <value>Keine Angst! Alles ist OK. Es sind nur zu viele ROMs um sie auf einmal zu übertragen. Bitte warte bis die Power LED erlischt, drücke dann OK und folge dann den Anweisungen um fortzufahren.</value>
+  </data>
+  <data name="ParticallyTitle" xml:space="preserve">
+    <value>Zu viele ROMs</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="gamepad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\gamepad.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_fds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_fds.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_jp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_jp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LoadingGames" xml:space="preserve">
+    <value>Lade Spiele...</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="NoForAll" xml:space="preserve">
+    <value>Nein für alle</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="YesForAll" xml:space="preserve">
+    <value>Ja für alle</value>
+  </data>
+  <data name="GGCodeDelete" xml:space="preserve">
+    <value>Möchtest du "{0}" Codes löschen?</value>
+  </data>
+  <data name="GGCodeEmpty" xml:space="preserve">
+    <value>Du musst ein Code eingeben!</value>
+  </data>
+  <data name="GGCodeExists" xml:space="preserve">
+    <value>Dieser Code existiert bereits. Möchtets du ihn editieren?</value>
+  </data>
+  <data name="GGDescriptionEmpty" xml:space="preserve">
+    <value>Du musst eine Beschreibung hinzufügen!</value>
+  </data>
+  <data name="FolderNameBack" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="FolderNameMoreGames" xml:space="preserve">
+    <value>Mehr Spiele...</value>
+  </data>
+  <data name="FolderNameOriginalGames" xml:space="preserve">
+    <value>Original 30 Spiele</value>
+  </data>
+  <data name="folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_a" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_a.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_b.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_back.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_c" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_c.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_d" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_d.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_e" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_e.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_f" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_f.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_g.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_h" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_h.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_i" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_i.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_j" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_j.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_k" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_k.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_l.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_m.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_n" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_n.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_number" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_number.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_o" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_o.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_p.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_q" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_q.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_r" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_r.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_s.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_t.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_u" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_u.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_v" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_v.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_w.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_x.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_y" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_y.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_z" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\folder_images\folder_z.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeleteElement" xml:space="preserve">
+    <value>Möchtest die wirklich "{0}" löschen?</value>
+  </data>
+  <data name="FolderContent" xml:space="preserve">
+    <value>Gelöschter Inhalt wird in den Papierkorb verschoben. Du kannst diesen Ordner permanent löschen oder die Spiele in andere Ordner verschieben.</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>HOME Menü</value>
+  </data>
+  <data name="BuildingFolders" xml:space="preserve">
+    <value>Erstelle die Ordnerstruktur...</value>
+  </data>
+  <data name="FolderNameNewFolder" xml:space="preserve">
+    <value>Neuer Ordner</value>
+  </data>
+  <data name="FolderNameUnsorted" xml:space="preserve">
+    <value>Unsortiert</value>
+  </data>
+  <data name="FoldersSaveQ" xml:space="preserve">
+    <value>Möchtest du diese Ordnerstruktur speichern?</value>
+  </data>
+  <data name="FolderStatistics" xml:space="preserve">
+    <value>Ordner "{0}" enthält {1} Elemente.</value>
+  </data>
+  <data name="NewGamesUnsorted" xml:space="preserve">
+    <value>Neue Spiele sind im Ordner "Unsortiert" .</value>
+  </data>
+  <data name="AddingGames" xml:space="preserve">
+    <value>Verarbeite Spiele, bitte warten...</value>
+  </data>
+  <data name="DeleteElements" xml:space="preserve">
+    <value>Du möchtest wirklich {0} Elemente löschen?</value>
+  </data>
+  <data name="FolderNameTrashBin" xml:space="preserve">
+    <value>Papierkorb</value>
+  </data>
+  <data name="InstallingMods" xml:space="preserve">
+    <value>Installiere Mods...</value>
+  </data>
+  <data name="SelectModsInstall" xml:space="preserve">
+    <value>Wähle die Module zum instalieren auf das NES Mini.</value>
+  </data>
+  <data name="SelectModsUninstall" xml:space="preserve">
+    <value>Wähle die Module die du vom NES Mini entfernen möchtest.</value>
+  </data>
+  <data name="UninstallingMods" xml:space="preserve">
+    <value>Deinstalliere Mods...</value>
+  </data>
+  <data name="blank_app" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_app.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_gb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_gb.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_gba" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_gba.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_gbc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_gbc.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_genesis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_genesis.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_pce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_pce.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_sms" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_sms.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_snes_us" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_snes-us.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_nes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_nes.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_n64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_n64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GameTooBig" xml:space="preserve">
+    <value>Sorry, Spiel "{0}" ist zu groß.</value>
+  </data>
+  <data name="MemoryFull" xml:space="preserve">
+    <value>Sorry, da sind {0}MBytes an Spiele, das ist zu viel.</value>
+  </data>
+</root>
