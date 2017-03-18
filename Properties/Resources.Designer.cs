@@ -61,7 +61,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Processing files, please wait....
+        ///   Looks up a localized string similar to Processing games, please wait....
         /// </summary>
         internal static string AddingGames {
             get {
@@ -1054,7 +1054,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loading files....
+        ///   Looks up a localized string similar to Loading games....
         /// </summary>
         internal static string LoadingGames {
             get {
@@ -1429,15 +1429,6 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string Wow {
             get {
                 return ResourceManager.GetString("Wow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please use the Zadig utility to install the driver on Windows XP/2000..
-        /// </summary>
-        internal static string XpZadig {
-            get {
-                return ResourceManager.GetString("XpZadig", resourceCulture);
             }
         }
         

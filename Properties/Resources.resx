@@ -243,9 +243,6 @@
   <data name="PleaseTryAgainUSB" xml:space="preserve">
     <value>If this problem persists, try using another USB port or cable.</value>
   </data>
-  <data name="XpZadig" xml:space="preserve">
-    <value>Please use the Zadig utility to install the driver on Windows XP/2000.</value>
-  </data>
   <data name="Donate" xml:space="preserve">
     <value>P.S. If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
   </data>

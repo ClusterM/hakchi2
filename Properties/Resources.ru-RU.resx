@@ -250,9 +250,6 @@
   <data name="PleaseTryAgainUSB" xml:space="preserve">
     <value>Если проблема повторяется, попробуйте другой USB порт или другой USB кабель.</value>
   </data>
-  <data name="XpZadig" xml:space="preserve">
-    <value>Пожалуйста, используйте утилиту "Zadig", чтобы установить драйвер на Windows XP/2000.</value>
-  </data>
   <data name="Donate" xml:space="preserve">
     <value />
   </data>

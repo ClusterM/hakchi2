@@ -689,6 +689,9 @@
     <Content Include="data\nescarts.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="driver\msvcr100.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="driver\nesmini_driver.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

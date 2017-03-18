@@ -243,9 +243,6 @@
   <data name="PleaseTryAgainUSB" xml:space="preserve">
     <value>Jeżeli problem się powtórzy to zmień port USB, lub użyj innego kabla.</value>
   </data>
-  <data name="XpZadig" xml:space="preserve">
-    <value>Użyj narzędzia Zadig by zainstalować sterowniki dla Windows XP/2000.</value>
-  </data>
   <data name="Donate" xml:space="preserve">
     <value>P.S. Jeśli podoba Ci się ten projekt, możesz przesłać darowiznę. Mój PayPal ID znajdziesz w zakładce "Informacje o...".</value>
   </data>
