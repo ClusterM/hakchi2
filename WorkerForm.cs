@@ -163,13 +163,13 @@ namespace com.clusterrr.hakchi_gui
             return result;
         }
 
-        DialogResult FolderManagerFromThread(NesMenuCollection collection)
+        DialogResult FoldersManagerFromThread(NesMenuCollection collection)
         {
             if (InvokeRequired)
             {
-                return (DialogResult)Invoke(new Func<NesMenuCollection, DialogResult>(FolderManagerFromThread), new object[] { collection });
+                return (DialogResult)Invoke(new Func<NesMenuCollection, DialogResult>(FoldersManagerFromThread), new object[] { collection });
             }
-            var constructor = new TreeContructorForm(collection, MainForm);
+            var constructor = new FoldersManagerForm(collection, MainForm);
             TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
             var result = constructor.ShowDialog();
             TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
@@ -483,7 +483,7 @@ namespace com.clusterrr.hakchi_gui
             SetStatus(Resources.BuildingFolders);
             if (FoldersMode == NesMenuCollection.SplitStyle.Custom)
             {
-                if (FolderManagerFromThread(Games) != System.Windows.Forms.DialogResult.OK)
+                if (FoldersManagerFromThread(Games) != System.Windows.Forms.DialogResult.OK)
                 {
                     DialogResult = DialogResult.Abort;
                     return;

@@ -370,11 +370,11 @@
     </Compile>
     <Compile Include="TaskbarProgress.cs" />
     <Compile Include="TrackableMemoryStream.cs" />
-    <Compile Include="TreeContructorForm.cs">
+    <Compile Include="FoldersManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TreeContructorForm.Designer.cs">
-      <DependentUpon>TreeContructorForm.cs</DependentUpon>
+    <Compile Include="FoldersManagerForm.Designer.cs">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
@@ -486,14 +486,14 @@
     <EmbeddedResource Include="StringInputForm.resx">
       <DependentUpon>StringInputForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TreeContructorForm.pl-PL.resx">
-      <DependentUpon>TreeContructorForm.cs</DependentUpon>
+    <EmbeddedResource Include="FoldersManagerForm.pl-PL.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TreeContructorForm.resx">
-      <DependentUpon>TreeContructorForm.cs</DependentUpon>
+    <EmbeddedResource Include="FoldersManagerForm.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TreeContructorForm.ru-RU.resx">
-      <DependentUpon>TreeContructorForm.cs</DependentUpon>
+    <EmbeddedResource Include="FoldersManagerForm.ru-RU.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>

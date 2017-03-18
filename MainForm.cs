@@ -362,16 +362,21 @@ namespace com.clusterrr.hakchi_gui
             ShowSelected();
         }
 
+        void SetImageForSelectedGame(string fileName)
+        {
+            var selected = checkedListBoxGames.SelectedItem;
+            if (selected == null || !(selected is NesMiniApplication)) return;
+            var game = (selected as NesMiniApplication);
+            game.Image = NesMiniApplication.LoadBitmap(fileName);
+            ShowSelected();
+            timerCalculateGames.Enabled = true;
+        }
+
         private void buttonBrowseImage_Click(object sender, EventArgs e)
         {
             if (openFileDialogImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                var selected = checkedListBoxGames.SelectedItem;
-                if (selected == null || !(selected is NesMiniApplication)) return;
-                var game = (selected as NesMiniApplication);
-                game.Image = NesMiniApplication.LoadBitmap(openFileDialogImage.FileName);
-                ShowSelected();
-                timerCalculateGames.Enabled = true;
+                SetImageForSelectedGame(openFileDialogImage.FileName);
             }
         }
 
@@ -1046,6 +1051,15 @@ namespace com.clusterrr.hakchi_gui
         private void checkedListBoxGames_DragDrop(object sender, DragEventArgs e)
         {
             var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (files.Length == 1) // Maybe it's cover art drag&dropped?
+            {
+                var ext = Path.GetExtension(files[0]).ToLower();
+                if (ext == ".jpg" || ext == ".png")
+                {
+                    SetImageForSelectedGame(files[0]);
+                    return;
+                }
+            }
             var allFilesToAdd = new List<string>();
             foreach (var file in files)
                 if (Directory.Exists(file))
