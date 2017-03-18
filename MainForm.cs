@@ -1,6 +1,7 @@
 ﻿using com.clusterrr.clovershell;
 using com.clusterrr.Famicom;
 using com.clusterrr.hakchi_gui.Properties;
+using SevenZip;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -1051,7 +1052,10 @@ namespace com.clusterrr.hakchi_gui
         private void checkedListBoxGames_DragDrop(object sender, DragEventArgs e)
         {
             var files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            if (files.Length == 1) // Maybe it's cover art drag&dropped?
+
+            // Need to determine type of files
+            // Maybe it's cover art?
+            if (files.Length == 1)
             {
                 var ext = Path.GetExtension(files[0]).ToLower();
                 if (ext == ".jpg" || ext == ".png")
@@ -1060,6 +1064,34 @@ namespace com.clusterrr.hakchi_gui
                     return;
                 }
             }
+
+            // Maybe it's some mods?
+            bool mods = false;
+            foreach (var file in files)
+                if (Path.GetExtension(file).ToLower() == ".hmod")
+                    mods = true;
+            // Maybe it's some mods in single archive?
+            if (files.Length == 1)
+            {
+                var ext = Path.GetExtension(files[0]).ToLower();
+                if (ext == ".7z" || ext == ".zip" || ext == ".rar")
+                {
+                    SevenZipExtractor.SetLibraryPath(Path.Combine(BaseDirectory, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+                    using (var szExtractor = new SevenZipExtractor(files[0]))
+                    {
+                        foreach (var f in szExtractor.ArchiveFileNames)
+                            if (Path.GetExtension(f).ToLower() == ".hmod")
+                            mods = true;
+                    }
+                }
+            }
+            if (mods)
+            {
+                installModules(files);
+                return;
+            }
+
+            // All other cases - games or apps
             var allFilesToAdd = new List<string>();
             foreach (var file in files)
                 if (Directory.Exists(file))
@@ -1170,7 +1202,12 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var form = new SelectModsForm(false, true);
+            installModules();
+        }
+
+        private void installModules(string[] add = null)
+        {
+            var form = new SelectModsForm(false, true, add);
             form.Text = Resources.SelectModsInstall;
             if (form.ShowDialog() == DialogResult.OK)
             {

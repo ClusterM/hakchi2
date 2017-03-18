@@ -15,7 +15,7 @@ namespace com.clusterrr.hakchi_gui
         private readonly string usermodsDirectory;
         private readonly string[] readmeFiles;
 
-        public SelectModsForm(bool loadInstalledMods, bool allowDropMods)
+        public SelectModsForm(bool loadInstalledMods, bool allowDropMods, string[] filesToAdd = null)
         {
             InitializeComponent();
             baseDirectory = MainForm.BaseDirectory;
@@ -52,9 +52,9 @@ namespace com.clusterrr.hakchi_gui
             readmeFiles = new string[] { "readme.txt", "readme.md", "readme" };
             checkedListBoxMods.Items.Clear();
             checkedListBoxMods.Items.AddRange(modsList.ToArray());
+            if (filesToAdd != null) AddMods(filesToAdd);
             this.AllowDrop = allowDropMods;
         }
-
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
@@ -148,7 +148,12 @@ namespace com.clusterrr.hakchi_gui
 
         private void SelectModsForm_DragDrop(object sender, DragEventArgs e)
         {
-            var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                        var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            AddMods(files);
+        }
+
+        private void AddMods(string[] files)
+        {
             var listAddedMods = new List<string>();
             foreach (var file in files)
             {
