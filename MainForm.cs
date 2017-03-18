@@ -18,7 +18,7 @@ namespace com.clusterrr.hakchi_gui
         const long maxTotalSize = 300;
         public static string BaseDirectory;
         public static string[] InternalMods = new string[] { "clovercon", "fontfix", "clovershell" };
-        public static ClovershellConnection Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true, ShellEnabled = true };
+        public static ClovershellConnection Clovershell;
         //readonly string UBootDump;
         readonly string KernelDump;
 
@@ -93,6 +93,17 @@ namespace com.clusterrr.hakchi_gui
             {
                 InitializeComponent();
                 ConfigIni.Load();
+                Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
+#if DEBUG
+                try
+                {
+                    Clovershell.ShellEnabled = true;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message + ex.StackTrace);
+                }
+#endif
                 BaseDirectory = Path.GetDirectoryName(Application.ExecutablePath);
                 KernelDump = Path.Combine(Path.Combine(BaseDirectory, "dump"), "kernel.img");
                 LoadGames();
@@ -612,7 +623,6 @@ namespace com.clusterrr.hakchi_gui
             workerForm.hmodsInstall = new List<string>(InternalMods);
             workerForm.Config = null;
             workerForm.Games = null;
-            workerForm.HiddenGames = null;
             workerForm.Start();
             var result = workerForm.DialogResult == DialogResult.OK;
             if (result)
@@ -632,7 +642,6 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Mod = "mod_hakchi";
             workerForm.Config = ConfigIni.GetConfigDictionary();
             workerForm.Games = new NesMenuCollection();
-            var hiddenGames = new List<string>();
             bool needOriginal = false;
             foreach (var game in checkedListBoxGames.CheckedItems)
             {
@@ -645,11 +654,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (needOriginal && checkedListBoxDefaultGames.CheckedIndices.Contains(i))
                     workerForm.Games.Add((NesDefaultGame)checkedListBoxDefaultGames.Items[i]);
-                else
-                    hiddenGames.Add(((NesDefaultGame)checkedListBoxDefaultGames.Items[i]).Code);
             }
 
-            workerForm.HiddenGames = hiddenGames.ToArray();
             workerForm.FoldersMode = ConfigIni.FoldersMode;
             workerForm.MaxGamesPerFolder = ConfigIni.MaxGamesPerFolder;
             workerForm.MainForm = this;

@@ -487,7 +487,8 @@ namespace com.clusterrr.clovershell
             if (c == null) return;
             if (c.stdout != null)
                 c.stdout.Write(data, pos, len);
-            Debug.WriteLine("stdout: " + Encoding.UTF8.GetString(data, pos, len));
+            c.LastDataTime = DateTime.Now;
+            //Debug.WriteLine("stdout: " + Encoding.UTF8.GetString(data, pos, len));
             if (len == 0)
                 c.stdoutFinished = true;
         }
@@ -501,6 +502,7 @@ namespace com.clusterrr.clovershell
 #if DEBUG
             //Debug.WriteLine("stderr: " + Encoding.UTF8.GetString(data, pos, len));
 #endif
+            c.LastDataTime = DateTime.Now;
             if (len == 0)
                 c.stderrFinished = true;
         }
@@ -532,7 +534,7 @@ namespace com.clusterrr.clovershell
             }
             catch (ClovershellException ex)
             {
-                Debug.WriteLine("Socket write error: " + ex.Message+ex.StackTrace);
+                Debug.WriteLine("Socket write error: " + ex.Message + ex.StackTrace);
             }
         }
 
@@ -594,7 +596,7 @@ namespace com.clusterrr.clovershell
                         Thread.Sleep(50);
                         if (!IsOnline)
                             throw new ClovershellException("device goes offline");
-                        if (timeout > 0 && IdleTime.TotalMilliseconds > timeout)
+                        if (!c.finished && timeout > 0 && (DateTime.Now - c.LastDataTime).TotalMilliseconds > timeout)
                             throw new ClovershellException("clovershell read timeout");
                     }
                     if (throwOnNonZero && c.result != 0)

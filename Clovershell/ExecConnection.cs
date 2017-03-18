@@ -24,6 +24,7 @@ namespace com.clusterrr.clovershell
         internal bool stdoutFinished;
         internal bool stderrFinished;
         internal Thread stdinThread;
+        internal DateTime LastDataTime;
 
         public ExecConnection(ClovershellConnection connection, string command, Stream stdin, Stream stdout, Stream stderr)
         {
@@ -39,6 +40,7 @@ namespace com.clusterrr.clovershell
             stdinFinished = false;
             stdoutFinished = false;
             stderrFinished = false;
+            LastDataTime = DateTime.Now;
         }
 
         public void stdinLoop()

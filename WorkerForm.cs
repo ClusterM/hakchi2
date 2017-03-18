@@ -23,7 +23,6 @@ namespace com.clusterrr.hakchi_gui
         public string KernelDump;
         public string Mod = null;
         public Dictionary<string, string> Config = null;
-        public string[] HiddenGames;
         public NesMenuCollection Games;
         public List<string> hmodsInstall;
         public List<string> hmodsUninstall;
@@ -57,8 +56,8 @@ namespace com.clusterrr.hakchi_gui
         readonly string argumentsFilePath;
         readonly string transferDirectory;
         string tempGamesDirectory;
-        string originalGamesConfigDirectory;
-        string hiddenPath;
+        //string originalGamesConfigDirectory;
+        //string hiddenPath;
         string[] correctKernels;
         long maxRamfsSize = 40 * 1024 * 1024;
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
@@ -474,6 +473,9 @@ namespace com.clusterrr.hakchi_gui
 
         public void UploadGames()
         {
+            const string gamesPath = "/usr/share/games/nes/kachikachi";
+            const string rootFsPath = "/var/lib/hakchi/rootfs";
+            const string installPath = "/var/lib/hakchi";
             int progress = 0;
             int maxProgress = 400;
             if (Games == null || Games.Count == 0)
@@ -520,66 +522,52 @@ namespace com.clusterrr.hakchi_gui
                 Directory.CreateDirectory(tempDirectory);
                 // Games!
                 tempGamesDirectory = Path.Combine(tempDirectory, "games");
-                originalGamesConfigDirectory = Path.Combine(tempDirectory, "original");
-                hiddenPath = Path.Combine(originalGamesConfigDirectory, "hidden");
                 Directory.CreateDirectory(tempDirectory);
                 Directory.CreateDirectory(tempGamesDirectory);
-                Directory.CreateDirectory(originalGamesConfigDirectory);
-                if (HiddenGames != null && HiddenGames.Length > 0)
-                {
-                    StringBuilder h = new StringBuilder();
-                    foreach (var game in HiddenGames)
-                        h.Append(game + "\n");
-                    File.WriteAllText(hiddenPath, h.ToString());
-                }
-
+                Dictionary<string, string> originalGames = new Dictionary<string, string>();
                 var stats = new GamesTreeStats();
                 maxRamfsSize = -1;
                 stats.Next();
-                AddMenu(Games, stats);
+                AddMenu(Games, originalGames, stats);
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
-                byte[] gamesTar, originalGamesTar;
-                if (!ExecuteTool("tar.exe", "-c *", out gamesTar, tempGamesDirectory))
-                    throw new Exception("can't pack games");
-                progress += 5;
-                maxProgress = gamesTar.Length / 1024 / 1024 + 85;
-                SetProgress(progress, maxProgress);
-
-                var gamesStream = new TrackableMemoryStream(gamesTar);
-                int startProgress = progress;
-                gamesStream.OnReadProgress += delegate(long pos, long len)
+                byte[] gamesTar;
+                if (Directory.GetDirectories(tempGamesDirectory).Count() > 0)
                 {
-                    progress = (int)(startProgress + pos / 1024 / 1024);
-                    SetProgress(progress, maxProgress);
-                };
+                    if (!ExecuteTool("tar.exe", "-c *", out gamesTar, tempGamesDirectory))
+                        throw new Exception("can't pack games");
+                }
+                else gamesTar = new byte[0];
+                progress += 5;
+                maxProgress = gamesTar.Length / 1024 / 1024 + 25 + originalGames.Count() * 2;
+                SetProgress(progress, maxProgress);
 
-                SetStatus(Resources.UploadingGames);
-                clovershell.Execute("umount /usr/share/games/nes/kachikachi", null, null, null, 3000);
-                clovershell.Execute("rm -rf /var/lib/hakchi/rootfs/usr/share/games/nes/kachikachi/CLV-* /var/lib/hakchi/rootfs/usr/share/games/nes/kachikachi/??? /var/lib/hakchi/menu", null, null, null, 3000);
-                clovershell.Execute("tar -xvC /var/lib/hakchi/rootfs/usr/share/games/nes/kachikachi", gamesStream, null, null, 180000, true);
-                gamesStream.Dispose();
+                clovershell.Execute(string.Format("umount {0}", gamesPath), null, null, null, 3000);
+                clovershell.Execute(string.Format("rm -rf {0}{1}/CLV-* {0}{1}/??? {2}/menu", rootFsPath, gamesPath, installPath), null, null, null, 3000);
+                int startProgress = progress;
+                if (gamesTar.Length > 0)
+                {
+                    var gamesStream = new TrackableMemoryStream(gamesTar);
+                    gamesStream.OnReadProgress += delegate(long pos, long len)
+                    {
+                        progress = (int)(startProgress + pos / 1024 / 1024);
+                        SetProgress(progress, maxProgress);
+                    };
+
+                    SetStatus(Resources.UploadingGames);
+                    clovershell.Execute(string.Format("tar -xvC {0}{1}", rootFsPath, gamesPath), gamesStream, null, null, 60000, true);
+                    gamesStream.Dispose();
+                }
 
                 SetStatus(Resources.UploadingOriginalGames);
-                if (!ExecuteTool("tar.exe", "-c *", out originalGamesTar, originalGamesConfigDirectory))
-                    throw new Exception("can't pack original games");
-                var originalGamesStream = new MemoryStream(originalGamesTar);
-                clovershell.Execute("source /etc/preinit && script_init && mkdir -p $temppath/games && tar -xvC $temppath/games", originalGamesStream, null, null, 1000, true);
-                var originalGamesStreamOut = new TrackableMemoryStream();
                 startProgress = progress;
-                originalGamesStreamOut.OnWriteProgress += delegate(long pos, long len)
+                foreach (var originalCode in originalGames.Keys)
                 {
-                    var data = new byte[originalGamesStreamOut.Length];
-                    originalGamesStreamOut.Seek(0, SeekOrigin.Begin);
-                    originalGamesStreamOut.Read(data, 0, (int)originalGamesStreamOut.Length);
-                    var str = Encoding.UTF8.GetString(data);
-                    progress = startProgress + Regex.Matches(str, "CLV-").Count * 2;
+                    clovershell.Execute(string.Format(@"mkdir -p ""{2}{3}/{1}/{0}/"" && rsync -ac ""{3}/{0}/"" ""{2}{3}/{1}/{0}/"" && sed -i -e 's/\/usr\/bin\/clover-kachikachi/\/bin\/clover-kachikachi-wr/g' ""{2}{3}/{1}/{0}/{0}.desktop""", originalCode, originalGames[originalCode], rootFsPath, gamesPath), null, null, null, 5000, true);
+                    progress += 2;
                     SetProgress(progress, maxProgress);
                 };
-                clovershell.Execute("source /etc/preinit && script_init && source $installpath/script/games && cd $temppath && target_dir=$rootfs$gamepath && transfer_original_games games", null, originalGamesStreamOut, null, 30000, true);
-                originalGamesStream.Dispose();
-                originalGamesStreamOut.Dispose();
 
                 SetStatus(Resources.UploadingConfig);
                 SyncConfig(Config);
@@ -838,7 +826,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void AddMenu(NesMenuCollection menuCollection, GamesTreeStats stats = null)
+        private void AddMenu(NesMenuCollection menuCollection, Dictionary<string, string> originalGames, GamesTreeStats stats = null)
         {
             if (stats == null)
                 stats = new GamesTreeStats();
@@ -893,7 +881,7 @@ namespace com.clusterrr.hakchi_gui
                     if (!stats.allMenus.Contains(folder.ChildMenuCollection))
                     {
                         stats.allMenus.Add(folder.ChildMenuCollection);
-                        AddMenu(folder.ChildMenuCollection, stats);
+                        AddMenu(folder.ChildMenuCollection, originalGames, stats);
                     }
                     if (stats.GamesStart == 0)
                     {
@@ -907,8 +895,7 @@ namespace com.clusterrr.hakchi_gui
                     if (stats.GamesStart == 0)
                     {
                         var game = element as NesDefaultGame;
-                        var gfilePath = Path.Combine(originalGamesConfigDirectory, string.Format("gpath-{0}", game.Code));
-                        File.WriteAllText(gfilePath, menuIndex == 0 ? "." : string.Format("{0:D3}", menuIndex));
+                        originalGames[game.Code] = menuIndex == 0 ? "." : string.Format("{0:D3}", menuIndex);
                     }
                 }
             }

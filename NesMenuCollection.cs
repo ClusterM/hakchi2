@@ -57,6 +57,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 root = new NesMenuCollection();
                 root.AddRange(this.Where(o => !(o is NesDefaultGame)));
+                if (root.Count == 0)
+                    return;
                 this.RemoveAll(o => !(o is NesDefaultGame));
                 this.Add(new NesMenuFolder()
                 {
