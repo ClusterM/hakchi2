@@ -21,11 +21,11 @@ namespace com.clusterrr.hakchi_gui
             timer.Enabled = true;
         }
 
-        public static bool WaitForDevice(UInt16 vid, UInt16 pid)
+        public static bool WaitForDevice(UInt16 vid, UInt16 pid, IWin32Window owner)
         {
             if (Fel.DeviceExists(vid, pid)) return true;
             var form = new WaitingFelForm(vid, pid);
-            form.ShowDialog();
+            form.ShowDialog(owner);
             return form.DialogResult == DialogResult.OK;
         }
 

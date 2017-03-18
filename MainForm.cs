@@ -1213,7 +1213,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                if (WaitingClovershellForm.WaitForDevice())
+                if (WaitingClovershellForm.WaitForDevice(this))
                 {
                     WorkerForm.SyncConfig(ConfigIni.GetConfigDictionary(), true);
                     MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);

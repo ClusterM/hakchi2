@@ -17,11 +17,11 @@ namespace com.clusterrr.hakchi_gui
             timer.Enabled = true;
         }
 
-        public static bool WaitForDevice()
+        public static bool WaitForDevice(IWin32Window owner)
         {
             if (DeviceExists()) return true;
             var form = new WaitingClovershellForm();
-            form.ShowDialog();
+            form.ShowDialog(owner);
             return form.DialogResult == DialogResult.OK;
         }
 

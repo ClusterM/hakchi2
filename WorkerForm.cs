@@ -116,8 +116,9 @@ namespace com.clusterrr.hakchi_gui
             SetStatus(Resources.WaitingForDevice);
             if (fel != null)
                 fel.Close();
-            TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
-            if (WaitingFelForm.WaitForDevice(vid, pid))
+            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Paused);
+            var result = WaitingFelForm.WaitForDevice(vid, pid, this);
+            if (result)
             {
                 fel = new Fel();
                 if (!File.Exists(fes1Path)) throw new FileNotFoundException(fes1Path + " not found");
@@ -127,10 +128,11 @@ namespace com.clusterrr.hakchi_gui
                 fel.Open(vid, pid);
                 SetStatus(Resources.UploadingFes1);
                 fel.InitDram(true);
-                TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
+                TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
                 return DialogResult.OK;
             }
-            else return DialogResult.Abort;
+            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
+            return DialogResult.Abort;
         }
         DialogResult WaitForClovershellFromThread()
         {
@@ -139,8 +141,10 @@ namespace com.clusterrr.hakchi_gui
                 return (DialogResult)Invoke(new Func<DialogResult>(WaitForClovershellFromThread));
             }
             SetStatus(Resources.WaitingForDevice);
-            TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
-            if (WaitingClovershellForm.WaitForDevice())
+            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Paused);
+            var result = WaitingClovershellForm.WaitForDevice(this);
+            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
+            if (result)
                 return DialogResult.OK;
             else return DialogResult.Abort;
         }
@@ -155,11 +159,11 @@ namespace com.clusterrr.hakchi_gui
                 return (DialogResult)Invoke(new MessageBoxFromThreadDelegate(MessageBoxFromThread),
                     new object[] { owner, text, caption, buttons, icon, defaultButton, tweak });
             }
-            TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
+            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Paused);
             if (tweak) MessageBoxManager.Register(); // Tweak button names
             var result = MessageBox.Show(owner, text, caption, buttons, icon, defaultButton);
             if (tweak) MessageBoxManager.Unregister();
-            TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
+            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
             return result;
         }
 
@@ -170,9 +174,9 @@ namespace com.clusterrr.hakchi_gui
                 return (DialogResult)Invoke(new Func<NesMenuCollection, DialogResult>(FoldersManagerFromThread), new object[] { collection });
             }
             var constructor = new FoldersManagerForm(collection, MainForm);
-            TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
+            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Paused);
             var result = constructor.ShowDialog();
-            TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
+            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
             return result;
         }
 
@@ -183,13 +187,14 @@ namespace com.clusterrr.hakchi_gui
                 return (DialogResult)Invoke(new Func<string[], DialogResult>(SelectFileFromThread), new object[] { files });
             }
             var form = new SelectFileForm(files);
-            TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
+            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Paused);
             var result = form.ShowDialog();
+            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
             if (form.listBoxFiles.SelectedItem != null)
                 selectedFile = form.listBoxFiles.SelectedItem.ToString();
             else
                 selectedFile = null;
-            TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
+            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
             return result;
         }
 
@@ -270,8 +275,8 @@ namespace com.clusterrr.hakchi_gui
                 if (value > max) value = max;
                 progressBar.Maximum = max;
                 progressBar.Value = value;
-                TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
-                TaskbarProgress.SetValue(this.Handle, value, max);
+                TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
+                TaskbarProgress.SetValue(this, value, max);
             }
             catch { }
         }
@@ -286,7 +291,7 @@ namespace com.clusterrr.hakchi_gui
                     Invoke(new Action<Exception, bool>(ShowError), new object[] { ex, dontStop });
                     return;
                 }
-                TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Error);
+                TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Error);
                 var message = ex.Message;
 #if DEBUG
                 message += ex.StackTrace;
@@ -296,7 +301,7 @@ namespace com.clusterrr.hakchi_gui
                 //    MessageBox.Show(this, message + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //else
                 MessageBox.Show(this, message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
+                TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
                 if (!dontStop)
                 {
                     thread = null;
@@ -316,9 +321,9 @@ namespace com.clusterrr.hakchi_gui
                     Invoke(new Action<string, string>(ShowMessage), new object[] { text, title });
                     return;
                 }
-                TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
+                TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Paused);
                 MessageBox.Show(this, text, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
+                TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
             }
             catch { }
         }
@@ -1134,8 +1139,8 @@ namespace com.clusterrr.hakchi_gui
                     return;
                 }
                 if (thread != null) thread.Abort();
-                TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.NoProgress);
-                TaskbarProgress.SetValue(this.Handle, 0, 1);
+                TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.NoProgress);
+                TaskbarProgress.SetValue(this, 0, 1);
             }
         }
     }

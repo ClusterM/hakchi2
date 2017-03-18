@@ -231,7 +231,7 @@ namespace com.clusterrr.clovershell
                                             //Debug.WriteLine("OUT endpoint maxsize: " + outMax);
                                         }
                                     }
-                            if (inEndp != 0x81 || inMax != 512 || outEndp != 0x01 || outMax != 512)
+                            if (inEndp != 0x81 || outEndp != 0x01)
                                 break;
                             epReader = device.OpenEndpointReader((ReadEndpointID)inEndp, 65536);
                             epWriter = device.OpenEndpointWriter((WriteEndpointID)outEndp);
