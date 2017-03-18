@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="splitContainer.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -132,9 +132,6 @@
   <data name="treeView.ImageIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <metadata name="imageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="imageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
@@ -596,18 +593,6 @@
   <data name="buttonNoFoldersOriginal.Text" xml:space="preserve">
     <value>Originale Spiele -&gt; Andere Spiele</value>
   </data>
-  <data name="&gt;&gt;buttonNoFoldersOriginal.Name" xml:space="preserve">
-    <value>buttonNoFoldersOriginal</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFoldersOriginal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFoldersOriginal.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFoldersOriginal.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="buttonNoFolders.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 22</value>
   </data>
@@ -620,18 +605,6 @@
   <data name="buttonNoFolders.Text" xml:space="preserve">
     <value>Keine Ordner</value>
   </data>
-  <data name="&gt;&gt;buttonNoFolders.Name" xml:space="preserve">
-    <value>buttonNoFolders</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFolders.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFolders.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFolders.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="buttonFoldersLetters.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 154</value>
   </data>
@@ -643,18 +616,6 @@
   </data>
   <data name="buttonFoldersLetters.Text" xml:space="preserve">
     <value>Splitte nach dem 1. Buchstaben</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLetters.Name" xml:space="preserve">
-    <value>buttonFoldersLetters</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLetters.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLetters.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLetters.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="buttonFoldersEquallyOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -671,18 +632,6 @@
   <data name="buttonFoldersEquallyOriginal.Text" xml:space="preserve">
     <value>Originale Spiele -&gt; Splitte gleichmäßig</value>
   </data>
-  <data name="&gt;&gt;buttonFoldersEquallyOriginal.Name" xml:space="preserve">
-    <value>buttonFoldersEquallyOriginal</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEquallyOriginal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEquallyOriginal.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEquallyOriginal.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="buttonFoldersLettersOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -698,18 +647,6 @@
   <data name="buttonFoldersLettersOriginal.Text" xml:space="preserve">
     <value>Originale Spiele -&gt; Splitte nach dem 1. Buchstaben</value>
   </data>
-  <data name="&gt;&gt;buttonFoldersLettersOriginal.Name" xml:space="preserve">
-    <value>buttonFoldersLettersOriginal</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLettersOriginal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLettersOriginal.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLettersOriginal.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="buttonFoldersEqually.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 88</value>
   </data>
@@ -721,18 +658,6 @@
   </data>
   <data name="buttonFoldersEqually.Text" xml:space="preserve">
     <value>Splitte gleichmäßig</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEqually.Name" xml:space="preserve">
-    <value>buttonFoldersEqually</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEqually.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEqually.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEqually.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="pictureBoxArt.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -749,21 +674,6 @@
   <data name="pictureBoxArt.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
-  <data name="&gt;&gt;pictureBoxArt.Name" xml:space="preserve">
-    <value>pictureBoxArt</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxArt.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxArt.Parent" xml:space="preserve">
-    <value>groupBoxArt</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxArt.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>120, 17</value>
-  </metadata>
   <data name="newFolderToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+N</value>
   </data>
@@ -908,18 +818,6 @@
   <data name="buttonCancel.Text" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
-  <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
-    <value>buttonCancel</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="buttonOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -935,21 +833,6 @@
   <data name="buttonOk.Text" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="&gt;&gt;buttonOk.Name" xml:space="preserve">
-    <value>buttonOk</value>
-  </data>
-  <data name="&gt;&gt;buttonOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonOk.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;buttonOk.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -2145,4 +2028,13 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <metadata name="imageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

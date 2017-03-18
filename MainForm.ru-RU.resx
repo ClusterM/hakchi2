@@ -1649,4 +1649,7 @@
         //////////////////////////////////8=
 </value>
   </data>
+  <data name="openFileDialogImage.Title" xml:space="preserve">
+    <value>Выберите обложку для игры</value>
+  </data>
 </root>
