@@ -23,12 +23,7 @@ namespace com.clusterrr.hakchi_gui
             var modsList = new List<string>();
             if (loadInstalledMods && MainForm.Clovershell.IsOnline)
             {
-                var mods = new MemoryStream();
-                MainForm.Clovershell.Execute("ls /var/lib/hakchi/hmod/uninstall-*", null, mods, null, 1000, true);
-                mods.Seek(0, SeekOrigin.Begin);
-                var modsarr = new byte[mods.Length];
-                mods.Read(modsarr, 0, (int)mods.Length);
-                var modsstr = Encoding.UTF8.GetString(modsarr, 0, modsarr.Length);
+                var modsstr = MainForm.Clovershell.ExecuteSimple("ls /var/lib/hakchi/hmod/uninstall-*", 1000, true);
                 var installedMods = modsstr.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var mod in installedMods)
                 {
