@@ -31,6 +31,8 @@ namespace com.clusterrr.clovershell
         bool autoreconnect = false;
         byte[] lastPingResponse = null;
         DateTime lastAliveTime;
+        public delegate void OnClovershellConnected();
+        public event OnClovershellConnected OnConnected = delegate{};
 
         internal enum ClovershellCommand
         {
@@ -242,8 +244,9 @@ namespace com.clusterrr.clovershell
                             epReader.ReadBufferSize = 65536;
                             epReader.DataReceived += epReader_DataReceived;
                             epReader.DataReceivedEnabled = true;
-                            online = true;
                             lastAliveTime = DateTime.Now;
+                            online = true;
+                            OnConnected();
                             while (device.mUsbRegistry.IsAlive)
                             {
                                 Thread.Sleep(100);
@@ -571,6 +574,16 @@ namespace com.clusterrr.clovershell
             }
             if (t <= 0) return -1;
             return (int)(DateTime.Now - start).TotalMilliseconds;
+        }
+
+        public string ExecuteSimple(string command, int timeout = 1500, bool throwOnNonZero = false)
+        {
+            var stdOut = new MemoryStream();
+            Execute(command, null, stdOut, null, timeout, throwOnNonZero);
+            var buff = new byte[stdOut.Length];
+            stdOut.Seek(0, SeekOrigin.Begin);
+            stdOut.Read(buff, 0, buff.Length);
+            return Encoding.UTF8.GetString(buff).Trim();
         }
 
         public int Execute(string command, Stream stdin = null, Stream stdout = null, Stream stderr = null, int timeout = 0, bool throwOnNonZero = false)

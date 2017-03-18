@@ -93,17 +93,6 @@ namespace com.clusterrr.hakchi_gui
             {
                 InitializeComponent();
                 ConfigIni.Load();
-                Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
-#if DEBUG
-                try
-                {
-                    Clovershell.ShellEnabled = true;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message + ex.StackTrace);
-                }
-#endif
                 BaseDirectory = Path.GetDirectoryName(Application.ExecutablePath);
                 KernelDump = Path.Combine(Path.Combine(BaseDirectory, "dump"), "kernel.img");
                 LoadGames();
@@ -165,11 +154,44 @@ namespace com.clusterrr.hakchi_gui
                 new Thread(NesGame.LoadCache).Start();
                 // Recalculate games in background
                 new Thread(RecalculateSelectedGamesThread).Start();
+
+                Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
+                Clovershell.OnConnected += Clovershell_OnConnected;
+#if DEBUG
+                try
+                {
+                    Clovershell.ShellEnabled = true;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message + ex.StackTrace);
+                }
+#endif
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 MessageBox.Show(this, "Critical error: " + ex.Message + ex.StackTrace, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        void Clovershell_OnConnected()
+        {
+            try
+            {
+                var region = Clovershell.ExecuteSimple("cat /etc/clover/REGION", 500, true);
+                if (region == "JPN")
+                    Invoke(new Action(delegate { 
+                        famicomMiniToolStripMenuItem.PerformClick();
+                    }));
+                if (region == "EUR_USA")
+                    Invoke(new Action(delegate {
+                        nESMiniToolStripMenuItem.PerformClick();
+                    }));                    
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 

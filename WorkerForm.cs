@@ -505,9 +505,9 @@ namespace com.clusterrr.hakchi_gui
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
-                clovershell.Execute("pkill -KILL clover-mcp", null, null, null, 3000);
-                clovershell.Execute("pkill -KILL ReedPlayer-Clover", null, null, null, 3000);
-                clovershell.Execute("pkill -KILL kachikachi", null, null, null, 3000);
+                clovershell.ExecuteSimple("pkill -KILL clover-mcp");
+                clovershell.ExecuteSimple("pkill -KILL ReedPlayer-Clover");
+                clovershell.ExecuteSimple("pkill -KILL kachikachi");
                 if (File.Exists(splashScreenPath))
                 {
                     using (var splash = new FileStream(splashScreenPath, FileMode.Open))
@@ -543,8 +543,8 @@ namespace com.clusterrr.hakchi_gui
                 maxProgress = gamesTar.Length / 1024 / 1024 + 25 + originalGames.Count() * 2;
                 SetProgress(progress, maxProgress);
 
-                clovershell.Execute(string.Format("umount {0}", gamesPath), null, null, null, 3000);
-                clovershell.Execute(string.Format("rm -rf {0}{1}/CLV-* {0}{1}/??? {2}/menu", rootFsPath, gamesPath, installPath), null, null, null, 3000);
+                clovershell.ExecuteSimple(string.Format("umount {0}", gamesPath));
+                clovershell.ExecuteSimple(string.Format("rm -rf {0}{1}/CLV-* {0}{1}/??? {2}/menu", rootFsPath, gamesPath, installPath), 5000, true);
                 int startProgress = progress;
                 if (gamesTar.Length > 0)
                 {
@@ -556,7 +556,7 @@ namespace com.clusterrr.hakchi_gui
                     };
 
                     SetStatus(Resources.UploadingGames);
-                    clovershell.Execute(string.Format("tar -xvC {0}{1}", rootFsPath, gamesPath), gamesStream, null, null, 60000, true);
+                    clovershell.Execute(string.Format("tar -xvC {0}{1}", rootFsPath, gamesPath), gamesStream, null, null, 30000, true);
                     gamesStream.Dispose();
                 }
 
@@ -564,7 +564,7 @@ namespace com.clusterrr.hakchi_gui
                 startProgress = progress;
                 foreach (var originalCode in originalGames.Keys)
                 {
-                    clovershell.Execute(string.Format(@"mkdir -p ""{2}{3}/{1}/{0}/"" && rsync -ac ""{3}/{0}/"" ""{2}{3}/{1}/{0}/"" && sed -i -e 's/\/usr\/bin\/clover-kachikachi/\/bin\/clover-kachikachi-wr/g' ""{2}{3}/{1}/{0}/{0}.desktop""", originalCode, originalGames[originalCode], rootFsPath, gamesPath), null, null, null, 5000, true);
+                    clovershell.ExecuteSimple(string.Format(@"mkdir -p ""{2}{3}/{1}/{0}/"" && rsync -ac ""{3}/{0}/"" ""{2}{3}/{1}/{0}/"" && sed -i -e 's/\/usr\/bin\/clover-kachikachi/\/bin\/clover-kachikachi-wr/g' ""{2}{3}/{1}/{0}/{0}.desktop""", originalCode, originalGames[originalCode], rootFsPath, gamesPath), 5000, true);
                     progress += 2;
                     SetProgress(progress, maxProgress);
                 };
@@ -582,7 +582,7 @@ namespace com.clusterrr.hakchi_gui
                 try
                 {
                     if (clovershell.IsOnline)
-                        clovershell.Execute("reboot", null, null, null, 100);
+                        clovershell.ExecuteSimple("reboot", 100);
                 }
                 catch { }
             }

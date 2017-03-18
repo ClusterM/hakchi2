@@ -59,6 +59,7 @@ namespace com.clusterrr.clovershell
                         connection.writeUsb(ClovershellConnection.ClovershellCommand.CMD_EXEC_STDIN, (byte)id, buffer, l);
                     else
                         break;
+                    LastDataTime = DateTime.Now;
                     if (stdinQueue > 32 * 1024 && connection.IsOnline)
                     {
                         Debug.WriteLine(string.Format("queue: {0} / {1}, {2}MB / {3}MB ({4}%)",
