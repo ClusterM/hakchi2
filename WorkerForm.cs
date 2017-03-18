@@ -24,9 +24,9 @@ namespace com.clusterrr.hakchi_gui
         public string Mod = null;
         public Dictionary<string, string> Config = null;
         public NesMenuCollection Games;
-        public List<string> hmodsInstall;
-        public List<string> hmodsUninstall;
-        public string[] GamesToAdd;
+        public IEnumerable<string> hmodsInstall;
+        public IEnumerable<string> hmodsUninstall;
+        public IEnumerable<string> GamesToAdd;
         public NesMenuCollection.SplitStyle FoldersMode = NesMenuCollection.SplitStyle.Auto;
         public int MaxGamesPerFolder = 35;
         public MainForm MainForm;
@@ -388,7 +388,7 @@ namespace com.clusterrr.hakchi_gui
         {
             int progress = 0;
             int maxProgress = 115 + (string.IsNullOrEmpty(Mod) ? 0 : 30) +
-                ((hmodsInstall != null && hmodsInstall.Count > 0) ? 75 : 0);
+                ((hmodsInstall != null && hmodsInstall.Count() > 0) ? 75 : 0);
             var hmods = hmodsInstall;
             hmodsInstall = null;
             if (WaitForFelFromThread() != DialogResult.OK)
@@ -457,7 +457,7 @@ namespace com.clusterrr.hakchi_gui
                 throw new Exception(Resources.VerifyFailed);
 
             hmodsInstall = hmods;
-            if (hmodsInstall != null && hmodsInstall.Count > 0)
+            if (hmodsInstall != null && hmodsInstall.Count() > 0)
             {
                 Memboot(maxProgress, progress); // Lets install some mods                
             }
@@ -701,7 +701,7 @@ namespace com.clusterrr.hakchi_gui
                     fInfo.Attributes |= FileAttributes.System;
             }
 
-            if (hmodsInstall != null && hmodsInstall.Count > 0)
+            if (hmodsInstall != null && hmodsInstall.Count() > 0)
             {
                 Directory.CreateDirectory(tempHmodsDirectory);
                 foreach (var hmod in hmodsInstall)
@@ -722,7 +722,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
             }
-            if (hmodsUninstall != null && hmodsUninstall.Count > 0)
+            if (hmodsUninstall != null && hmodsUninstall.Count() > 0)
             {
                 Directory.CreateDirectory(tempHmodsDirectory);
                 var mods = new StringBuilder();
@@ -960,7 +960,7 @@ namespace com.clusterrr.hakchi_gui
 
 
         bool YesForAllPatches = false;
-        public ICollection<NesMiniApplication> AddGames(string[] files, Form parentForm = null)
+        public ICollection<NesMiniApplication> AddGames(IEnumerable<string> files, Form parentForm = null)
         {
             var apps = new List<NesMiniApplication>();
             addedApplications = null;
@@ -985,21 +985,21 @@ namespace com.clusterrr.hakchi_gui
                         using (var szExtractor = new SevenZipExtractor(sourceFileName))
                         {
                             var filesInArchive = new List<string>();
-                            var nesFilesInArchive = new List<string>();
+                            var gameFilesInArchive = new List<string>();
                             foreach (var f in szExtractor.ArchiveFileNames)
                             {
                                 var e = Path.GetExtension(f).ToLower();
                                 if (e == ".desktop" || AppTypeCollection.GetAppByExtension(e) != null)
-                                    nesFilesInArchive.Add(f);
+                                    gameFilesInArchive.Add(f);
                                 filesInArchive.Add(f);
                             }
-                            if (nesFilesInArchive.Count == 1) // Only one NES file (or app)
+                            if (gameFilesInArchive.Count == 1) // Only one NES file (or app)
                             {
-                                fileName = nesFilesInArchive[0];
+                                fileName = gameFilesInArchive[0];
                             }
-                            else if (nesFilesInArchive.Count > 1) // Many NES files, need to select
+                            else if (gameFilesInArchive.Count > 1) // Many NES files, need to select
                             {
-                                var r = SelectFileFromThread(nesFilesInArchive.ToArray());
+                                var r = SelectFileFromThread(gameFilesInArchive.ToArray());
                                 if (r == DialogResult.OK)
                                     fileName = selectedFile;
                                 else if (r == DialogResult.Ignore)
@@ -1065,7 +1065,7 @@ namespace com.clusterrr.hakchi_gui
                                        ? string.Format(Resources.MapperNotSupported, Path.GetFileName(fileName), (ex as UnsupportedMapperException).ROM.Mapper)
                                        : string.Format(Resources.FourScreenNotSupported, Path.GetFileName(fileName)),
                                     Resources.AreYouSure,
-                                    files.Length <= 1 ? MessageBoxButtons.YesNo : MessageBoxButtons.AbortRetryIgnore,
+                                    files.Count() <= 1 ? MessageBoxButtons.YesNo : MessageBoxButtons.AbortRetryIgnore,
                                     MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
                                 if (r == DialogResult.Abort)
                                     YesForAllUnsupportedMappers = true;
@@ -1092,7 +1092,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 if (app != null)
                     apps.Add(app);
-                SetProgress(++count, files.Length);
+                SetProgress(++count, files.Count());
             }
             addedApplications = apps.ToArray();
             return apps; // Added games/apps
@@ -1100,7 +1100,7 @@ namespace com.clusterrr.hakchi_gui
 
         private bool needPatchCallback(Form parentForm, string nesFileName)
         {
-            if (GamesToAdd == null || GamesToAdd.Length <= 1)
+            if (GamesToAdd == null || GamesToAdd.Count() <= 1)
             {
                 return MessageBoxFromThread(parentForm,
                     string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)),

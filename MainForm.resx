@@ -134,9 +134,6 @@
   <data name="radioButtonTwo.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;pictureBoxArt.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
   <data name="&gt;&gt;foldersSplitByFirstLetterOriginalToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -158,8 +155,8 @@
   <data name="uninstallModulesToolStripMenuItem.Text" xml:space="preserve">
     <value>Uninstall extra modules</value>
   </data>
-  <data name="buttonBrowseImage.Text" xml:space="preserve">
-    <value>Browse</value>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;labelID.Name" xml:space="preserve">
     <value>labelID</value>
@@ -170,11 +167,8 @@
   <data name="&gt;&gt;textBoxArguments.Name" xml:space="preserve">
     <value>textBoxArguments</value>
   </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
   </data>
   <data name="&gt;&gt;kernelToolStripMenuItem.Name" xml:space="preserve">
     <value>kernelToolStripMenuItem</value>
@@ -198,8 +192,8 @@
   <data name="&gt;&gt;gitHubPageWithActualReleasesToolStripMenuItem.Name" xml:space="preserve">
     <value>gitHubPageWithActualReleasesToolStripMenuItem</value>
   </data>
-  <data name="openFileDialogImage.Title" xml:space="preserve">
-    <value>Select cover for game</value>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 13</value>
   </data>
   <data name="&gt;&gt;toolStripStatusConnectionIcon.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -207,17 +201,17 @@
   <data name="&gt;&gt;max70toolStripMenuItem.Name" xml:space="preserve">
     <value>max70toolStripMenuItem</value>
   </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;pagesOriginalToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="groupBoxDefaultGames.Location" type="System.Drawing.Point, System.Drawing">
     <value>306, 27</value>
   </data>
-  <data name="buttonGoogle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 427</value>
-  </data>
-  <data name="&gt;&gt;groupBoxOptions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="statusStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="groupBoxOptions.Text" xml:space="preserve">
     <value>Game options</value>
@@ -237,8 +231,8 @@
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>235, 6</value>
   </data>
-  <data name="&gt;&gt;max45toolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;selectButtonCombinationToolStripMenuItem.Name" xml:space="preserve">
+    <value>selectButtonCombinationToolStripMenuItem</value>
   </data>
   <data name="buttonShowGameGenieDatabase.Size" type="System.Drawing.Size, System.Drawing">
     <value>25, 20</value>
@@ -270,12 +264,6 @@
   <data name="&gt;&gt;toolStripMenuItem4.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 157</value>
-  </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>246, 22</value>
   </data>
@@ -303,14 +291,11 @@
   <data name="labelName.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 49</value>
   </data>
-  <data name="buttonGoogle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 23</value>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>376, 22</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>356, 22</value>
-  </data>
-  <data name="groupBoxOptions.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
   </data>
   <data name="&gt;&gt;labelName.Parent" xml:space="preserve">
     <value>groupBoxOptions</value>
@@ -330,8 +315,8 @@
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;buttonStart.Name" xml:space="preserve">
-    <value>buttonStart</value>
+  <data name="&gt;&gt;toolStripStatusConnectionIcon.Name" xml:space="preserve">
+    <value>toolStripStatusConnectionIcon</value>
   </data>
   <data name="&gt;&gt;pagesToolStripMenuItem.Name" xml:space="preserve">
     <value>pagesToolStripMenuItem</value>
@@ -351,6 +336,9 @@
   <data name="&gt;&gt;max30toolStripMenuItem.Name" xml:space="preserve">
     <value>max30toolStripMenuItem</value>
   </data>
+  <data name="openFileDialogImage.Title" xml:space="preserve">
+    <value>Select cover for game</value>
+  </data>
   <data name="&gt;&gt;checkedListBoxDefaultGames.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -369,14 +357,11 @@
   <data name="&gt;&gt;pagesfoldersTypeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;max90toolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;synchronizeToolStripMenuItem.Name" xml:space="preserve">
+    <value>synchronizeToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;checkedListBoxDefaultGames.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;labelName.ZOrder" xml:space="preserve">
-    <value>18</value>
+  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 22</value>
   </data>
   <data name="uninstallToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 22</value>
@@ -387,6 +372,9 @@
   <data name="&gt;&gt;buttonShowGameGenieDatabase.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="&gt;&gt;useXYOnClassicControllerAsAutofireABToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="toolStripProgressBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 16</value>
   </data>
@@ -396,17 +384,14 @@
   <data name="&gt;&gt;epilepsyProtectionToolStripMenuItem.Name" xml:space="preserve">
     <value>epilepsyProtectionToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;checkedListBoxGames.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;max90toolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="groupBoxDefaultGames.Size" type="System.Drawing.Size, System.Drawing">
-    <value>293, 529</value>
+  <data name="&gt;&gt;buttonAddGames.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
-  <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 22</value>
-  </data>
-  <data name="&gt;&gt;fAQToolStripMenuItem.Name" xml:space="preserve">
-    <value>fAQToolStripMenuItem</value>
+  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text" xml:space="preserve">
+    <value>Use X/Y on Classic Controller as autofire A/B</value>
   </data>
   <data name="&gt;&gt;deletePresetToolStripMenuItem.Name" xml:space="preserve">
     <value>deletePresetToolStripMenuItem</value>
@@ -417,8 +402,8 @@
   <data name="selectButtonCombinationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>308, 22</value>
   </data>
-  <data name="&gt;&gt;openFileDialogNes.Name" xml:space="preserve">
-    <value>openFileDialogNes</value>
+  <data name="groupBoxOptions.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+O</value>
@@ -432,9 +417,6 @@
   <data name="&gt;&gt;textBoxName.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
-  <data name="radioButtonTwo.Text" xml:space="preserve">
-    <value>Two players, not simultaneously</value>
-  </data>
   <data name="&gt;&gt;radioButtonOne.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -444,8 +426,8 @@
   <data name="&gt;&gt;selectAllToolStripMenuItem.Name" xml:space="preserve">
     <value>selectAllToolStripMenuItem</value>
   </data>
-  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+  <data name="&gt;&gt;buttonGoogle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="toolStripStatusConnectionIcon.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 17</value>
@@ -462,6 +444,9 @@
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text" xml:space="preserve">
     <value>"Up+A+B = Start" on 2nd controller</value>
   </data>
+  <data name="&gt;&gt;cloverconHackToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
   </data>
@@ -477,11 +462,14 @@
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>14</value>
   </data>
+  <data name="fAQToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 22</value>
+  </data>
   <data name="checkedListBoxDefaultGames.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 49</value>
   </data>
-  <data name="labelID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>21, 13</value>
+  <data name="&gt;&gt;labelName.ZOrder" xml:space="preserve">
+    <value>18</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -498,11 +486,8 @@
   <data name="&gt;&gt;buttonAddGames.Name" xml:space="preserve">
     <value>buttonAddGames</value>
   </data>
-  <data name="deletePresetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
-  </data>
-  <data name="&gt;&gt;globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;openFileDialogNes.Name" xml:space="preserve">
+    <value>openFileDialogNes</value>
   </data>
   <data name="&gt;&gt;max25toolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -524,9 +509,6 @@
   </data>
   <data name="&gt;&gt;menuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;foldersOriginalToolStripMenuItem.Name" xml:space="preserve">
-    <value>foldersOriginalToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;uninstallModulesToolStripMenuItem.Name" xml:space="preserve">
     <value>uninstallModulesToolStripMenuItem</value>
@@ -563,6 +545,9 @@
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 13</value>
+  </data>
+  <data name="&gt;&gt;downloadCoversForAllGamesToolStripMenuItem.Name" xml:space="preserve">
+    <value>downloadCoversForAllGamesToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -603,6 +588,9 @@
   <data name="checkedListBoxGames.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
+  <data name="&gt;&gt;foldersToolStripMenuItem.Name" xml:space="preserve">
+    <value>foldersToolStripMenuItem</value>
+  </data>
   <data name="customToolStripMenuItem.Text" xml:space="preserve">
     <value>Custom - show Folders Manager every time</value>
   </data>
@@ -615,8 +603,11 @@
   <data name="&gt;&gt;radioButtonTwo.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="&gt;&gt;cloverconHackToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;buttonStart.Name" xml:space="preserve">
+    <value>buttonStart</value>
+  </data>
+  <data name="buttonBrowseImage.Text" xml:space="preserve">
+    <value>Browse</value>
   </data>
   <data name="&gt;&gt;famicomMiniToolStripMenuItem.Name" xml:space="preserve">
     <value>famicomMiniToolStripMenuItem</value>
@@ -669,9 +660,6 @@
   <data name="&gt;&gt;synchronizeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="checkedListBoxGames.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 499</value>
-  </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text" xml:space="preserve">
     <value>GitHub page with actual releases</value>
   </data>
@@ -687,6 +675,12 @@
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 13</value>
   </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="upABStartOnSecondControllerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 22</value>
+  </data>
   <data name="radioButtonOne.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
@@ -695,9 +689,6 @@
   </data>
   <data name="groupBoxDefaultGames.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
-  </data>
-  <data name="foldersToolStripMenuItem.Text" xml:space="preserve">
-    <value>Folders, split games equally</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text" xml:space="preserve">
     <value>Delete preset</value>
@@ -726,11 +717,14 @@
   <data name="buttonBrowseImage.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 23</value>
   </data>
+  <data name="max80toolStripMenuItem.Text" xml:space="preserve">
+    <value>80</value>
+  </data>
   <data name="&gt;&gt;openFileDialogImage.Name" xml:space="preserve">
     <value>openFileDialogImage</value>
   </data>
-  <data name="&gt;&gt;toolStripStatusConnectionIcon.Name" xml:space="preserve">
-    <value>toolStripStatusConnectionIcon</value>
+  <data name="foldersSplitByFirstLetterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Folders, split by first letter</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1867,11 +1861,11 @@
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 20</value>
   </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
   </data>
-  <data name="&gt;&gt;max45toolStripMenuItem.Name" xml:space="preserve">
-    <value>max45toolStripMenuItem</value>
+  <data name="&gt;&gt;installModulesToolStripMenuItem.Name" xml:space="preserve">
+    <value>installModulesToolStripMenuItem</value>
   </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -1915,9 +1909,6 @@
   <data name="downloadCoversForAllGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
-  <data name="labelID.Text" xml:space="preserve">
-    <value>ID:</value>
-  </data>
   <data name="maskedTextBoxReleaseDate.Mask" xml:space="preserve">
     <value>0000-00-00</value>
   </data>
@@ -1948,8 +1939,14 @@
   <data name="&gt;&gt;timerCalculateGames.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Disable epilepsy protection</value>
+  </data>
   <data name="&gt;&gt;useXYOnClassicControllerAsAutofireABToolStripMenuItem.Name" xml:space="preserve">
     <value>useXYOnClassicControllerAsAutofireABToolStripMenuItem</value>
+  </data>
+  <data name="buttonGoogle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 23</value>
   </data>
   <data name="&gt;&gt;checkedListBoxDefaultGames.Parent" xml:space="preserve">
     <value>groupBoxDefaultGames</value>
@@ -1963,20 +1960,14 @@
   <data name="disablePagefoldersToolStripMenuItem.Text" xml:space="preserve">
     <value>Disable page/folders</value>
   </data>
-  <data name="&gt;&gt;radioButtonTwoSim.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="checkedListBoxGames.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 499</value>
   </data>
   <data name="&gt;&gt;flashOriginalKernelToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="pagesToolStripMenuItem.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Select games:</value>
-  </data>
-  <data name="toolStripStatusLabelSelected.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 17</value>
   </data>
   <data name="buttonAddGames.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -1993,9 +1984,6 @@
   <data name="&gt;&gt;consoleTypeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 409</value>
-  </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>308, 22</value>
   </data>
@@ -2005,14 +1993,11 @@
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>253, 13</value>
   </data>
-  <data name="automaticToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>356, 22</value>
+  <data name="toolStripStatusLabelSelected.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 17</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text" xml:space="preserve">
     <value>Flash custom kernel</value>
-  </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
   </data>
   <data name="textBoxPublisher.Location" type="System.Drawing.Point, System.Drawing">
     <value>77, 186</value>
@@ -2047,6 +2032,9 @@
   <data name="label5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
+  <data name="&gt;&gt;groupBoxOptions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="buttonGoogle.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
@@ -2056,11 +2044,17 @@
   <data name="kernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 20</value>
   </data>
-  <data name="&gt;&gt;modulesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;radioButtonTwoSim.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;searchToolStripMenuItem.Name" xml:space="preserve">
     <value>searchToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;buttonStart.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="synchronizeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Synchronize</value>
   </data>
   <data name="openFileDialogNes.Title" xml:space="preserve">
     <value>Select NES file(s)</value>
@@ -2068,8 +2062,11 @@
   <data name="toolStripStatusLabelSelected.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Publisher:</value>
+  <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>376, 22</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Command line arguments (for advanced users only!):</value>
   </data>
   <data name="&gt;&gt;dumpKernelToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2083,11 +2080,14 @@
   <data name="&gt;&gt;automaticToolStripMenuItem.Name" xml:space="preserve">
     <value>automaticToolStripMenuItem</value>
   </data>
+  <data name="flashOriginalKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 22</value>
+  </data>
   <data name="&gt;&gt;selectButtonCombinationToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;textBoxArguments.ZOrder" xml:space="preserve">
-    <value>11</value>
+  <data name="&gt;&gt;maskedTextBoxReleaseDate.Name" xml:space="preserve">
+    <value>maskedTextBoxReleaseDate</value>
   </data>
   <data name="&gt;&gt;menuStrip.Name" xml:space="preserve">
     <value>menuStrip</value>
@@ -2098,14 +2098,8 @@
   <data name="radioButtonTwoSim.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;maskedTextBoxReleaseDate.Name" xml:space="preserve">
-    <value>maskedTextBoxReleaseDate</value>
-  </data>
   <data name="&gt;&gt;timerConnectionCheck.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 33</value>
   </data>
   <data name="&gt;&gt;flashOriginalKernelToolStripMenuItem.Name" xml:space="preserve">
     <value>flashOriginalKernelToolStripMenuItem</value>
@@ -2133,9 +2127,6 @@
   </data>
   <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Select all</value>
-  </data>
-  <data name="&gt;&gt;cloverconHackToolStripMenuItem.Name" xml:space="preserve">
-    <value>cloverconHackToolStripMenuItem</value>
   </data>
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
     <value>373, 6</value>
@@ -2176,9 +2167,6 @@
   <data name="&gt;&gt;max50toolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
   <data name="&gt;&gt;radioButtonOne.ZOrder" xml:space="preserve">
     <value>16</value>
   </data>
@@ -2188,17 +2176,17 @@
   <data name="pagesToolStripMenuItem.Text" xml:space="preserve">
     <value>Pages, split games equally</value>
   </data>
+  <data name="dumpKernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dump kernel</value>
+  </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 13</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
   </data>
   <data name="max70toolStripMenuItem.Text" xml:space="preserve">
     <value>70</value>
   </data>
-  <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Disable epilepsy protection</value>
+  <data name="&gt;&gt;buttonBrowseImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Name" xml:space="preserve">
     <value>globalCommandLineArgumentsexpertsOnluToolStripMenuItem</value>
@@ -2224,23 +2212,20 @@
   <data name="&gt;&gt;fileToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;upABStartOnSecondControllerToolStripMenuItem.Name" xml:space="preserve">
-    <value>upABStartOnSecondControllerToolStripMenuItem</value>
+  <data name="groupBoxDefaultGames.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 529</value>
   </data>
   <data name="&gt;&gt;textBoxPublisher.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;downloadCoversForAllGamesToolStripMenuItem.Name" xml:space="preserve">
-    <value>downloadCoversForAllGamesToolStripMenuItem</value>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 157</value>
   </data>
   <data name="&gt;&gt;pagesfoldersTypeToolStripMenuItem.Name" xml:space="preserve">
     <value>pagesfoldersTypeToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;groupBoxDefaultGames.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Kernel</value>
   </data>
   <data name="buttonStart.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -2296,8 +2281,8 @@
   <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
     <value>toolStripMenuItem1</value>
   </data>
-  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 22</value>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;textBoxGameGenie.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -2305,11 +2290,11 @@
   <data name="cloverconHackToolStripMenuItem.Text" xml:space="preserve">
     <value>Controller hacks</value>
   </data>
-  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text" xml:space="preserve">
-    <value>Use X/Y on Classic Controller as autofire A/B</value>
+  <data name="&gt;&gt;cloverconHackToolStripMenuItem.Name" xml:space="preserve">
+    <value>cloverconHackToolStripMenuItem</value>
   </data>
-  <data name="buttonAddGames.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 38</value>
+  <data name="selectButtonCombinationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Select reset button combination</value>
   </data>
   <data name="&gt;&gt;max35toolStripMenuItem.Name" xml:space="preserve">
     <value>max35toolStripMenuItem</value>
@@ -2326,8 +2311,8 @@
   <data name="radioButtonTwoSim.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;radioButtonOne.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
+  <data name="labelID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 13</value>
   </data>
   <data name="&gt;&gt;max25toolStripMenuItem.Name" xml:space="preserve">
     <value>max25toolStripMenuItem</value>
@@ -2374,11 +2359,8 @@
   <data name="&gt;&gt;groupBoxDefaultGames.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="&gt;&gt;buttonAddGames.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 13</value>
+  <data name="&gt;&gt;textBoxPublisher.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
   <data name="&gt;&gt;compressGamesIfPossibleToolStripMenuItem.Name" xml:space="preserve">
     <value>compressGamesIfPossibleToolStripMenuItem</value>
@@ -2386,8 +2368,8 @@
   <data name="max100toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 22</value>
   </data>
-  <data name="synchronizeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Synchronize</value>
+  <data name="&gt;&gt;fAQToolStripMenuItem.Name" xml:space="preserve">
+    <value>fAQToolStripMenuItem</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text" xml:space="preserve">
     <value>Original games in root -&gt; Folders, split by first letter</value>
@@ -2404,8 +2386,8 @@
   <data name="&gt;&gt;automaticOriginalToolStripMenuItem.Name" xml:space="preserve">
     <value>automaticOriginalToolStripMenuItem</value>
   </data>
-  <data name="automaticToolStripMenuItem.Text" xml:space="preserve">
-    <value>Automatic</value>
+  <data name="deletePresetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 22</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2416,8 +2398,8 @@
   <data name="&gt;&gt;foldersOriginalToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="statusStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>609, 22</value>
+  <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Kernel</value>
   </data>
   <data name="foldersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>356, 22</value>
@@ -2431,8 +2413,8 @@
   <data name="&gt;&gt;foldersSplitByFirstLetterToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;checkedListBoxDefaultGames.Name" xml:space="preserve">
-    <value>checkedListBoxDefaultGames</value>
+  <data name="&gt;&gt;upABStartOnSecondControllerToolStripMenuItem.Name" xml:space="preserve">
+    <value>upABStartOnSecondControllerToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;textBoxName.Name" xml:space="preserve">
     <value>textBoxName</value>
@@ -2443,8 +2425,8 @@
   <data name="label6.Text" xml:space="preserve">
     <value>Max players:</value>
   </data>
-  <data name="max50toolStripMenuItem.Text" xml:space="preserve">
-    <value>50</value>
+  <data name="textBoxGameGenie.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
   </data>
   <data name="&gt;&gt;textBoxGameGenie.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2470,8 +2452,8 @@
   <data name="&gt;&gt;labelID.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
-  <data name="presetsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Selection presets</value>
+  <data name="&gt;&gt;max45toolStripMenuItem.Name" xml:space="preserve">
+    <value>max45toolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;labelID.Parent" xml:space="preserve">
     <value>groupBoxOptions</value>
@@ -2497,6 +2479,9 @@
   <data name="&gt;&gt;contextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="&gt;&gt;searchToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -2512,8 +2497,8 @@
   <data name="epilepsyProtectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>376, 22</value>
   </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 22</value>
   </data>
   <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2521,11 +2506,14 @@
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>141, 70</value>
   </data>
+  <data name="statusStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>609, 22</value>
+  </data>
   <data name="&gt;&gt;max100toolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Command line arguments (for advanced users only!):</value>
+  <data name="&gt;&gt;buttonShowGameGenieDatabase.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
   </data>
   <data name="textBoxPublisher.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -2536,11 +2524,14 @@
   <data name="nESMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>151, 22</value>
   </data>
-  <data name="fAQToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+  <data name="max50toolStripMenuItem.Text" xml:space="preserve">
+    <value>50</value>
   </data>
-  <data name="&gt;&gt;buttonBrowseImage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem2.Name" xml:space="preserve">
+    <value>toolStripMenuItem2</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text" xml:space="preserve">
     <value>Console type</value>
@@ -2575,8 +2566,8 @@
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Help</value>
   </data>
-  <data name="&gt;&gt;synchronizeToolStripMenuItem.Name" xml:space="preserve">
-    <value>synchronizeToolStripMenuItem</value>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 409</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>376, 22</value>
@@ -2599,11 +2590,11 @@
   <data name="&gt;&gt;upABStartOnSecondControllerToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;buttonStart.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;textBoxArguments.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
-  <data name="&gt;&gt;textBoxPublisher.ZOrder" xml:space="preserve">
-    <value>13</value>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 33</value>
   </data>
   <data name="&gt;&gt;label4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2632,17 +2623,20 @@
   <data name="toolStripStatusConnectionIcon.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="statusStrip.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="radioButtonTwo.Text" xml:space="preserve">
+    <value>Two players, not simultaneously</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxDefaultGames.Name" xml:space="preserve">
+    <value>checkedListBoxDefaultGames</value>
   </data>
   <data name="textBoxGameGenie.Location" type="System.Drawing.Point, System.Drawing">
     <value>19, 286</value>
   </data>
-  <data name="max30toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 22</value>
+  <data name="foldersToolStripMenuItem.Text" xml:space="preserve">
+    <value>Folders, split games equally</value>
   </data>
-  <data name="max80toolStripMenuItem.Text" xml:space="preserve">
-    <value>80</value>
+  <data name="&gt;&gt;max45toolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;installModulesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2665,14 +2659,14 @@
   <data name="textBoxName.Location" type="System.Drawing.Point, System.Drawing">
     <value>59, 46</value>
   </data>
-  <data name="textBoxGameGenie.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+  <data name="&gt;&gt;pictureBoxArt.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="&gt;&gt;max40toolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;modulesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;saveSettingsToNESMiniNowToolStripMenuItem.Name" xml:space="preserve">
     <value>saveSettingsToNESMiniNowToolStripMenuItem</value>
@@ -2698,23 +2692,23 @@
   <data name="foldersOriginalToolStripMenuItem.Text" xml:space="preserve">
     <value>Original games in root -&gt; Folders, split games equally</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItem2.Name" xml:space="preserve">
-    <value>toolStripMenuItem2</value>
-  </data>
   <data name="&gt;&gt;toolStripMenuItem3.Name" xml:space="preserve">
     <value>toolStripMenuItem3</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>356, 22</value>
   </data>
-  <data name="foldersSplitByFirstLetterToolStripMenuItem.Text" xml:space="preserve">
-    <value>Folders, split by first letter</value>
+  <data name="automaticToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>356, 22</value>
+  </data>
+  <data name="synchronizeToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>F5</value>
   </data>
   <data name="statusStrip.Text" xml:space="preserve">
     <value>statusStrip1</value>
   </data>
-  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
+  <data name="&gt;&gt;foldersOriginalToolStripMenuItem.Name" xml:space="preserve">
+    <value>foldersOriginalToolStripMenuItem</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>hakchi2</value>
@@ -2731,14 +2725,14 @@
   <data name="max70toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 22</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItem3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
   </data>
-  <data name="&gt;&gt;labelID.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="labelID.Text" xml:space="preserve">
+    <value>ID:</value>
   </data>
-  <data name="&gt;&gt;selectButtonCombinationToolStripMenuItem.Name" xml:space="preserve">
-    <value>selectButtonCombinationToolStripMenuItem</value>
+  <data name="buttonAddGames.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 38</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
@@ -2776,6 +2770,9 @@
   <data name="&gt;&gt;resetUsingCombinationOfButtonsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="max30toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 22</value>
+  </data>
   <data name="&gt;&gt;pagesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -2785,8 +2782,11 @@
   <data name="&gt;&gt;customToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="selectButtonCombinationToolStripMenuItem.Text" xml:space="preserve">
-    <value>Select reset button combination</value>
+  <data name="pagesToolStripMenuItem.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;radioButtonOne.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;modulesToolStripMenuItem.Name" xml:space="preserve">
     <value>modulesToolStripMenuItem</value>
@@ -2839,11 +2839,11 @@
   <data name="&gt;&gt;toolStripProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;buttonShowGameGenieDatabase.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
+  <data name="&gt;&gt;toolStripMenuItem3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;useXYOnClassicControllerAsAutofireABToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="automaticToolStripMenuItem.Text" xml:space="preserve">
+    <value>Automatic</value>
   </data>
   <data name="&gt;&gt;fAQToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2863,8 +2863,8 @@
   <data name="radioButtonTwo.Location" type="System.Drawing.Point, System.Drawing">
     <value>103, 99</value>
   </data>
-  <data name="flashOriginalKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 22</value>
+  <data name="&gt;&gt;checkedListBoxGames.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
@@ -2875,20 +2875,20 @@
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;buttonGoogle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Publisher:</value>
   </data>
   <data name="&gt;&gt;textBoxArguments.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="upABStartOnSecondControllerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
+  <data name="&gt;&gt;labelID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="groupBoxOptions.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="dumpKernelToolStripMenuItem.Text" xml:space="preserve">
-    <value>Dump kernel</value>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>376, 22</value>
@@ -2902,14 +2902,14 @@
   <data name="uninstallModulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 22</value>
   </data>
-  <data name="synchronizeToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>F5</value>
+  <data name="&gt;&gt;checkedListBoxDefaultGames.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
-  <data name="&gt;&gt;installModulesToolStripMenuItem.Name" xml:space="preserve">
-    <value>installModulesToolStripMenuItem</value>
+  <data name="presetsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Selection presets</value>
   </data>
   <data name="textBoxArguments.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 237</value>
@@ -2917,8 +2917,8 @@
   <data name="&gt;&gt;gitHubPageWithActualReleasesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;foldersToolStripMenuItem.Name" xml:space="preserve">
-    <value>foldersToolStripMenuItem</value>
+  <data name="buttonGoogle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 427</value>
   </data>
   <data name="&gt;&gt;textBoxName.Parent" xml:space="preserve">
     <value>groupBoxOptions</value>

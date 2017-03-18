@@ -685,7 +685,7 @@ namespace com.clusterrr.hakchi_gui
             return workerForm.DialogResult == DialogResult.OK;
         }
 
-        void AddGames(string[] files)
+        void AddGames(IEnumerable<string> files)
         {
             SaveConfig();
             ICollection<NesMiniApplication> addedApps;
@@ -1046,7 +1046,13 @@ namespace com.clusterrr.hakchi_gui
         private void checkedListBoxGames_DragDrop(object sender, DragEventArgs e)
         {
             var files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            AddGames(files);
+            var allFilesToAdd = new List<string>();
+            foreach (var file in files)
+                if (Directory.Exists(file))
+                    allFilesToAdd.AddRange(Directory.GetFiles(file, "*.*", SearchOption.AllDirectories));
+                else if (File.Exists(file))
+                    allFilesToAdd.Add(file);
+            AddGames(allFilesToAdd);
         }
 
         private void searchToolStripMenuItem_Click(object sender, EventArgs e)

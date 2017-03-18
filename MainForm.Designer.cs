@@ -627,13 +627,10 @@
             // checkedListBoxGames
             // 
             resources.ApplyResources(this.checkedListBoxGames, "checkedListBoxGames");
-            this.checkedListBoxGames.AllowDrop = true;
             this.checkedListBoxGames.FormattingEnabled = true;
             this.checkedListBoxGames.Name = "checkedListBoxGames";
             this.checkedListBoxGames.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxGames_ItemCheck);
             this.checkedListBoxGames.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxGames_SelectedIndexChanged);
-            this.checkedListBoxGames.DragDrop += new System.Windows.Forms.DragEventHandler(this.checkedListBoxGames_DragDrop);
-            this.checkedListBoxGames.DragEnter += new System.Windows.Forms.DragEventHandler(this.checkedListBoxGames_DragEnter);
             this.checkedListBoxGames.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkedListBoxGames_KeyDown);
             this.checkedListBoxGames.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkedListBoxGames_MouseDown);
             // 
@@ -904,6 +901,7 @@
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
+            this.AllowDrop = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.statusStrip);
@@ -920,6 +918,8 @@
             this.Name = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.checkedListBoxGames_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.checkedListBoxGames_DragEnter);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();

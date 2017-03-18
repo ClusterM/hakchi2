@@ -61,7 +61,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Processing games, please wait....
+        ///   Looks up a localized string similar to Processing files, please wait....
         /// </summary>
         internal static string AddingGames {
             get {
@@ -1054,7 +1054,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loading games....
+        ///   Looks up a localized string similar to Loading files....
         /// </summary>
         internal static string LoadingGames {
             get {
