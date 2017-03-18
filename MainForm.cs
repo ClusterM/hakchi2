@@ -182,13 +182,15 @@ namespace com.clusterrr.hakchi_gui
             {
                 var region = Clovershell.ExecuteSimple("cat /etc/clover/REGION", 500, true);
                 if (region == "JPN")
-                    Invoke(new Action(delegate { 
+                    Invoke(new Action(delegate
+                    {
                         famicomMiniToolStripMenuItem.PerformClick();
                     }));
                 if (region == "EUR_USA")
-                    Invoke(new Action(delegate {
+                    Invoke(new Action(delegate
+                    {
                         nESMiniToolStripMenuItem.PerformClick();
-                    }));                    
+                    }));
             }
             catch (Exception ex)
             {
@@ -472,7 +474,7 @@ namespace com.clusterrr.hakchi_gui
         {
             SaveSelectedGames();
             ConfigIni.Save();
-            for(int i = 0; i < checkedListBoxGames.Items.Count; i++)
+            for (int i = 0; i < checkedListBoxGames.Items.Count; i++)
             {
                 var game = checkedListBoxGames.Items[i];
                 try
@@ -1081,7 +1083,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         foreach (var f in szExtractor.ArchiveFileNames)
                             if (Path.GetExtension(f).ToLower() == ".hmod")
-                            mods = true;
+                                mods = true;
                     }
                 }
             }
@@ -1098,7 +1100,8 @@ namespace com.clusterrr.hakchi_gui
                     allFilesToAdd.AddRange(Directory.GetFiles(file, "*.*", SearchOption.AllDirectories));
                 else if (File.Exists(file))
                     allFilesToAdd.Add(file);
-            AddGames(allFilesToAdd);
+            if (allFilesToAdd.Count > 0)
+                AddGames(allFilesToAdd);
         }
 
         private void searchToolStripMenuItem_Click(object sender, EventArgs e)
