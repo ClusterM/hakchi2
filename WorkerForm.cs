@@ -72,7 +72,11 @@ namespace com.clusterrr.hakchi_gui
             fes1Path = Path.Combine(Path.Combine(baseDirectory, "data"), "fes1.bin");
             ubootPath = Path.Combine(Path.Combine(baseDirectory, "data"), "uboot.bin");
             splashScreenPath = Path.Combine(Path.Combine(baseDirectory, "data"), "splash.gz");
+#if DEBUG
+            tempDirectory = Path.Combine(baseDirectory, "temp");
+#else
             tempDirectory = Path.Combine(Path.GetTempPath(), "hakchi-temp");
+#endif
             kernelDirectory = Path.Combine(tempDirectory, "kernel");
             initramfs_cpio = Path.Combine(kernelDirectory, "initramfs.cpio");
             initramfs_cpioPatched = Path.Combine(kernelDirectory, "initramfs_mod.cpio");
