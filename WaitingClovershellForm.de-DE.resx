@@ -59,24 +59,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Game Genie Codeliste</value>
+    <value>Warte auf dein NES Mini...</value>
   </data>
-  <data name="addToolStripMenuItem.Text">
-    <value>Hinzufügen</value>
+  <data name="buttonDriver.Text">
+    <value>Installiere Treiber</value>
   </data>
-  <data name="buttonAdd.Text">
-    <value>Hinzufügen</value>
+  <data name="label1.Text">
+    <value>Bitte führe die folgenden Schritte aus:</value>
   </data>
-  <data name="buttonCancel.Text">
-    <value>Abbrechen</value>
+  <data name="label2.Text">
+    <value>1. Connect your NES Mini to the PC via USB cable.</value>
   </data>
-  <data name="buttonImport.Text">
-    <value>Importieren</value>
+  <data name="label3.Text">
+    <value>2. Turn it on.</value>
   </data>
-  <data name="editToolStripMenuItem.Text">
-    <value>Bearbeiten</value>
-  </data>
-  <data name="removeToolStripMenuItem.Text">
-    <value>Löschen</value>
+  <data name="label6.Text">
+    <value>3. Install driver if it's not installed yet:</value>
   </data>
 </root>

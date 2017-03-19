@@ -16,6 +16,7 @@ namespace com.clusterrr.hakchi_gui
         public WaitingFelForm(UInt16 vid, UInt16 pid)
         {
             InitializeComponent();
+            buttonDriver.Left = label6.Left + label6.Width;
             this.vid = vid;
             this.pid = pid;
             timer.Enabled = true;

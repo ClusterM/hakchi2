@@ -14,6 +14,7 @@ namespace com.clusterrr.hakchi_gui
         public WaitingClovershellForm()
         {
             InitializeComponent();
+            buttonDriver.Left = label6.Left + label6.Width;
             timer.Enabled = true;
         }
 
