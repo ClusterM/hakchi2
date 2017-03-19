@@ -138,6 +138,11 @@ namespace com.clusterrr.hakchi_gui
                 max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
                 max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
 
+                // Little tweak for easy translation
+                var tbl = textBoxName.Left;
+                textBoxName.Left = labelName.Left + labelName.Width;
+                textBoxName.Width -= textBoxName.Left - tbl;
+
                 // Tweeks for message boxes
                 MessageBoxManager.Yes = MessageBoxManager.Retry = Resources.Yes;
                 MessageBoxManager.No = MessageBoxManager.Ignore = Resources.No;

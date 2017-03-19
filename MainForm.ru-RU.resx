@@ -110,7 +110,7 @@
     <value>Сдампить ядро</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
-    <value>Включить турбо кнопки</value>
+    <value>Использовать "Select+A/B" для включения турбо кнопок</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>Выключить защиту от приступов эпилепсии</value>
