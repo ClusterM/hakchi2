@@ -934,6 +934,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void nESMiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (nESMiniToolStripMenuItem.Checked) return;
             ConfigIni.ConsoleType = 0;
             nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
             famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
@@ -943,6 +944,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void famicomMiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (famicomMiniToolStripMenuItem.Checked) return;
             ConfigIni.ConsoleType = 1;
             nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
             famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
