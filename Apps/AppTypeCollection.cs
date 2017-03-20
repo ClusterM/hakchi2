@@ -64,14 +64,6 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(SmsGame),
-                Extensions = new string[] { ".sms" },
-                DefaultApps = new string[] {"/bin/sms"},
-                Prefix = 'M',
-                DefaultCover = Resources.blank_sms
-            },
-            new AppInfo
-            {
                 Class = typeof(GenesisGame),
                 Extensions = new string[] { ".gen", ".md", ".smd" },
                 DefaultApps = new string[] {"/bin/md"},
