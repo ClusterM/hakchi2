@@ -540,6 +540,17 @@ namespace com.clusterrr.hakchi_gui
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
+                var maxGamesSize = (MainForm.NandCFree + MainForm.WritedGamesSize) - MainForm.ReservedMemory * 1024 * 1024;
+                if (stats.TotalSize > maxGamesSize)
+                {
+                    throw new Exception(string.Format(Resources.MemoryFull, stats.TotalSize / 1024 / 1024) + "\r\n\r\n" +
+                        string.Format(Resources.MemoryStats.Replace("|", "\r\n"),
+                        MainForm.NandCTotal / 1024.0 / 1024.0,
+                        (MainForm.NandCFree + MainForm.WritedGamesSize - MainForm.ReservedMemory * 1024 * 1024) / 1024 / 1024,
+                        MainForm.SaveStatesSize / 1024.0 / 1024.0,
+                        (MainForm.NandCUsed - MainForm.WritedGamesSize - MainForm.SaveStatesSize) / 1024.0 / 1024.0));
+                }
+
                 byte[] gamesTar;
                 if (Directory.GetDirectories(tempGamesDirectory).Count() > 0)
                 {

@@ -16,12 +16,14 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class MainForm : Form
     {
-        const long maxTotalSize = 300;
+        public const long DefaultMaxGamesSize = 300;
+        public const long ReservedMemory = 10;
         public static string BaseDirectory;
         public static string[] InternalMods = new string[] { "clovercon", "fontfix", "clovershell" };
         public static ClovershellConnection Clovershell;
         //readonly string UBootDump;
         readonly string KernelDump;
+        public int NandCTotal, NandCUsed, NandCFree, WritedGamesSize, SaveStatesSize;
 
         NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
             new NesDefaultGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros." },
@@ -186,6 +188,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 var region = Clovershell.ExecuteSimple("cat /etc/clover/REGION", 500, true);
+                Debug.WriteLine(string.Format("Detected region: {0}", region));
                 if (region == "JPN")
                     Invoke(new Action(delegate
                     {
@@ -196,6 +199,18 @@ namespace com.clusterrr.hakchi_gui
                     {
                         nESMiniToolStripMenuItem.PerformClick();
                     }));
+                var nandc = Clovershell.ExecuteSimple("df /dev/nandc | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 500, true).Split('|');
+                WritedGamesSize = int.Parse(Clovershell.ExecuteSimple("mkdir -p /var/lib/hakchi/rootfs/usr/share/games/ && du -s /var/lib/hakchi/rootfs/usr/share/games/ | awk '{ print $1 }'", 1000, true)) * 1024;
+                SaveStatesSize = int.Parse(Clovershell.ExecuteSimple("mkdir -p /var/lib/clover/profiles/0/ && du -s /var/lib/clover/profiles/0/ | awk '{ print $1 }'", 1000, true)) * 1024;
+                NandCTotal = int.Parse(nandc[0]) * 1024;
+                NandCUsed = int.Parse(nandc[1]) * 1024;
+                NandCFree = int.Parse(nandc[2]) * 1024;
+                Debug.WriteLine(string.Format("NANDC size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", NandCTotal / 1024.0 / 1024.0, NandCUsed / 1024.0 / 1024.0, NandCFree / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by games: {0:F1}MB", WritedGamesSize / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", SaveStatesSize / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Available for games: {0:F1}MB", (NandCFree + WritedGamesSize) / 1024.0 / 1024.0));
+                new Thread(RecalculateSelectedGamesThread).Start();
             }
             catch (Exception ex)
             {
@@ -550,9 +565,12 @@ namespace com.clusterrr.hakchi_gui
                     Invoke(new Action<CountResult>(showStats), new object[] { stats });
                     return;
                 }
+                var maxGamesSize = DefaultMaxGamesSize * 1024 * 1024;
+                if (NandCTotal > 0)
+                    maxGamesSize = (NandCFree + WritedGamesSize) - ReservedMemory * 1024 * 1024;
                 toolStripStatusLabelSelected.Text = stats.Count + " " + Resources.GamesSelected;
-                toolStripStatusLabelSize.Text = string.Format("{0}MB / {1}MB", stats.Size / 1024 / 1024, maxTotalSize);
-                toolStripProgressBar.Maximum = (int)(maxTotalSize * 1024 * 1024);
+                toolStripStatusLabelSize.Text = string.Format("{0:F1}MB / {1:F1}MB", stats.Size / 1024.0 / 1024.0, maxGamesSize / 1024.0 / 1024.0);
+                toolStripProgressBar.Maximum = (int)maxGamesSize;
                 toolStripProgressBar.Value = Math.Min((int)stats.Size, toolStripProgressBar.Maximum);
                 toolStripStatusLabelSize.ForeColor =
                     (toolStripProgressBar.Value < toolStripProgressBar.Maximum) ?
@@ -596,17 +614,30 @@ namespace com.clusterrr.hakchi_gui
         private void buttonStart_Click(object sender, EventArgs e)
         {
             SaveConfig();
+
             var stats = RecalculateSelectedGames();
             if (stats.Count == 0)
             {
                 MessageBox.Show(Resources.SelectAtLeast, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (stats.Size > maxTotalSize * 1024 * 1024)
+            var maxGamesSize = DefaultMaxGamesSize * 1024 * 1024;
+            if (NandCTotal > 0)
+                maxGamesSize = (NandCFree + WritedGamesSize) - ReservedMemory * 1024 * 1024;
+            if (stats.Size > maxGamesSize)
             {
-                if (MessageBox.Show(string.Format(Resources.MemoryFull, stats.Size / 1024 / 1024) + " " + Resources.DoYouWantToContinue,
-                    Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No)
-                    return;
+                if (NandCTotal == 0)
+                    MessageBox.Show(string.Format(Resources.MemoryFull, stats.Size / 1024 / 1024),
+                        Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show(string.Format(Resources.MemoryFull, stats.Size / 1024 / 1024) + "\r\n\r\n" +
+                        string.Format(Resources.MemoryStats.Replace("|", "\r\n"),
+                        NandCTotal / 1024.0 / 1024.0,
+                        (NandCFree + WritedGamesSize - ReservedMemory * 1024 * 1024) / 1024.0 / 1024.0,
+                        SaveStatesSize / 1024.0 / 1024.0,
+                        (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0),
+                        Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             bool dumpedKernelNow = false;
