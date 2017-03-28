@@ -205,7 +205,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public void Save(string path)
+        public long Save(string path)
         {
             Directory.CreateDirectory(path);
             var ConfigPath = Path.Combine(path, Code + ".desktop");
@@ -255,6 +255,7 @@ namespace com.clusterrr.hakchi_gui
                  );
             Image.Save(IconPath, ImageFormat.Png);
             ImageThumbnail.Save(ThumnnailIconPath, ImageFormat.Png);
+            return new FileInfo(ConfigPath).Length + new FileInfo(IconPath).Length + new FileInfo(ThumnnailIconPath).Length;
         }
 
         public override string ToString()

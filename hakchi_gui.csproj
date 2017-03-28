@@ -363,8 +363,8 @@
     <Compile Include="StringInputForm.Designer.cs">
       <DependentUpon>StringInputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TarStream.cs" />
     <Compile Include="TaskbarProgress.cs" />
-    <Compile Include="TrackableMemoryStream.cs" />
     <Compile Include="FoldersManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -980,12 +980,6 @@
     <Content Include="images\snes-eu-jp_sm_tr.png" />
     <Content Include="images\snes-us_sm.png" />
     <Content Include="images\snes-us_sm_tr.png" />
-    <None Include="tools\msys-1.0.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tools\tar.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <Content Include="user_mods\music_hack.hmod\music.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

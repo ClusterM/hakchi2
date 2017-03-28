@@ -22,5 +22,13 @@ namespace com.clusterrr.hakchi_gui
         {
             return Name;
         }
+
+        private int size;
+
+        public int Size
+        {
+            get { return size; }
+            set { size = value; }
+        }
     }
 }
