@@ -115,6 +115,7 @@ static DEFINE_MUTEX(con_state_lock);
 static DEFINE_MUTEX(detect_task_lock);
 
 #define VERBOSITY        3
+#define STATE_DEVICES    1
 
 #if VERBOSITY > 0
 	#define ERR(m, ...) {int dbg_len = snprintf((void*)(debug_buff+debug_pos), sizeof(debug_buff)-1-debug_pos, "Clovercon error: " m "\n", ##__VA_ARGS__); if (dbg_len>0) debug_pos+=dbg_len;}
@@ -150,6 +151,80 @@ void hex_dump(char* str, char* buf, int len)
     if (dbg_len>0) debug_pos+=dbg_len;
 #endif
 }
+
+#if VERBOSITY > 0
+static ssize_t clovercon_debug_read(struct file *fp, char __user *buf,
+	size_t count, loff_t *pos)
+{
+	size_t l = MAX(MIN(count, debug_pos - *pos), 0);
+	memcpy(buf, (void*)(debug_buff + *pos), l);
+	if (l > 0) *pos += l;
+	return l;
+}
+#endif
+
+#if (VERBOSITY > 0) || STATE_DEVICES
+static ssize_t device_dumb_write(struct file *fp, const char __user *buf,
+	size_t count, loff_t *pos)
+{
+	return count; // a-la /dev/null
+}
+
+static long device_dumb_ioctl(struct file *fp, unsigned code, unsigned long value)
+{
+	long ret = 0;
+	switch (code) {
+        default:
+		ret = -EINVAL;
+		break;
+	}
+
+	return ret;
+}
+
+static int device_dumb_open(struct inode *ip, struct file *fp)
+{
+	return 0;
+}
+
+static int device_dumb_release(struct inode *ip, struct file *fp)
+{
+	return 0;
+}
+#endif
+
+#if VERBOSITY > 0
+/* file operations for /dev/clovercon_debug */
+static const struct file_operations clovercon_debug_fops = {
+	.owner = THIS_MODULE,
+	.read = clovercon_debug_read,
+	.write = device_dumb_write,
+	.unlocked_ioctl = device_dumb_ioctl,
+	.open = device_dumb_open,
+	.release = device_dumb_release,
+};
+
+static struct miscdevice clovercon_debug_device = {
+	.minor = MISC_DYNAMIC_MINOR,
+	.name = "clovercon_debug",
+	.fops = &clovercon_debug_fops,
+};
+#endif
+
+#if STATE_DEVICES
+static ssize_t clovercon_state_read(struct file *fp, char __user *buf,
+	size_t count, loff_t *pos);
+
+/* file operations for /dev/clovercon* */
+static const struct file_operations clovercon_state_fops = {
+	.owner = THIS_MODULE,
+	.read = clovercon_state_read,
+	.write = device_dumb_write,
+	.unlocked_ioctl = device_dumb_ioctl,
+	.open = device_dumb_open,
+	.release = device_dumb_release,
+};
+#endif
 
 enum ControllerState {
 	CS_OK,
@@ -194,6 +269,11 @@ struct clovercon_info {
 	bool autofire_y;
 	int start_counter;
 	u8 data_format;
+	u16 buttons_state;
+#if STATE_DEVICES
+	struct miscdevice state_device;
+	char state_device_name[32];
+#endif
 };
 
 static struct clovercon_info con_info_list[MAX_CON_COUNT];
@@ -228,6 +308,31 @@ struct clovercon_info * clovercon_info_from_irq(int irq) {
 		}
 	}
 	return NULL;
+}
+#endif
+
+#if STATE_DEVICES
+static ssize_t clovercon_state_read(struct file *fp, char __user *buf,
+	size_t count, loff_t *pos)
+{
+	// which contoller? we need device file name
+	char path_buffer[64];
+	char state_buffer[16];
+	int id;
+	size_t l;
+	u16 state;
+
+	char* path = dentry_path_raw(fp->f_path.dentry,path_buffer,sizeof(path_buffer));
+	while (*path && *(path+1)) path++; // moving to last character which is number
+	if (!*path) return 0;
+	id = *path - '0';
+
+	state = con_info_list[id-1].buttons_state;
+	snprintf(state_buffer, sizeof(state_buffer), "%02X%02X", state & 0xFF, (state >> 8) & 0xFF);
+	l = MAX(MIN(count, strlen(state_buffer) - *pos), 0);
+	memcpy(buf, state_buffer + *pos, l);
+	if (l > 0) *pos += l;
+	return l;
 }
 #endif
 
@@ -428,6 +533,7 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 	int jx, jy, rx, ry, tl, tr;
 	bool left, right, up, down, a, b, x, y, select, start, home, l, r, zl, zr, reset;
 	u16 retry_delay = RETRY_BASE_DELAY;
+	u16 buttons_state;
 	int ret;
 	bool turbo;
 
@@ -514,20 +620,26 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 		    zl   = !get_bit(data[5], D_BTN_ZL);
 		}
 
+		// Bitmask for current controller state
+		buttons_state = 0;
+		if (a) buttons_state |= (1 << 0);
+		if (b) buttons_state |= (1 << 1);
+		if (select) buttons_state |= (1 << 2);
+		if (start) buttons_state |= (1 << 3);
+		if (up) buttons_state |= (1 << 4);
+		if (down) buttons_state |= (1 << 5);
+		if (left) buttons_state |= (1 << 6);
+		if (right) buttons_state |= (1 << 7);
+		if (x) buttons_state |= (1 << 8);
+		if (y) buttons_state |= (1 << 9);
+		if (l) buttons_state |= (1 << 10);
+		if (r) buttons_state |= (1 << 11);
+		if (zl) buttons_state |= (1 << 12);
+		if (zr) buttons_state |= (1 << 13);
+		info->buttons_state = buttons_state;
+
 		// Reset combination
-		reset =
-		    (((home_combination >> 0) & 1) ^ !a) &&
-		    (((home_combination >> 1) & 1) ^ !b) &&
-		    (((home_combination >> 2) & 1) ^ !select) &&
-		    (((home_combination >> 3) & 1) ^ !start) &&
-		    (((home_combination >> 4) & 1) ^ !up) &&
-		    (((home_combination >> 5) & 1) ^ !down) &&
-		    (((home_combination >> 6) & 1) ^ !left) &&
-		    (((home_combination >> 7) & 1) ^ !right) &&
-		    (((home_combination >> 8) & 1) ^ !x) &&
-		    (((home_combination >> 9) & 1) ^ !y) &&
-		    (((home_combination >> 10) & 1) ^ !l) &&
-		    (((home_combination >> 11) & 1) ^ !r);
+		reset = home_combination == buttons_state;
 
 		// Start button workaroud for second controller on Famicom
 		if (fc_start && info->id == 2)
@@ -822,6 +934,14 @@ int clovercon_add_controller(struct clovercon_info *info) {
 		return -ENOMEM;
 	}
 
+#if STATE_DEVICES
+	info->state_device.minor = MISC_DYNAMIC_MINOR,
+	sprintf(info->state_device_name, "clovercon%d", info->id);
+	info->state_device.name = info->state_device_name;
+	info->state_device.fops = &clovercon_state_fops,
+	misc_register(&info->state_device);
+#endif
+
 	INF("added device for controller %i", info->id);
 	return 0;
 }
@@ -834,6 +954,9 @@ void clovercon_remove_controller(struct clovercon_info *info) {
 	i2c_unregister_device(client);
 	mutex_lock(&con_state_lock);
 	info->client = NULL;
+#if STATE_DEVICES
+	misc_deregister(&info->state_device);
+#endif
 
 	INF("removed device for controller %i", info->id);
 }
@@ -1066,58 +1189,6 @@ static void clovercon_teardown_detection(void) {
 	}
 }
 
-static ssize_t clovercon_debug_read(struct file *fp, char __user *buf,
-	size_t count, loff_t *pos)
-{
-	size_t l = MAX(MIN(count, debug_pos - *pos), 0);
-	memcpy(buf, (void*)(debug_buff + *pos), l);
-	if (l > 0) *pos += l;
-	return l;
-}
-
-static ssize_t clovercon_debug_write(struct file *fp, const char __user *buf,
-	size_t count, loff_t *pos)
-{
-	return count; // a-la /dev/null
-}
-
-static long clovercon_debug_ioctl(struct file *fp, unsigned code, unsigned long value)
-{
-	long ret = 0;
-	switch (code) {
-        default:
-		ret = -EINVAL;
-		break;
-	}
-
-	return ret;
-}
-
-static int clovercon_debug_open(struct inode *ip, struct file *fp)
-{
-	return 0;
-}
-
-static int clovercon_debug_release(struct inode *ip, struct file *fp)
-{
-	return 0;
-}
-
-/* file operations for /dev/clovercon_debug */
-static const struct file_operations clovercon_debug_fops = {
-	.owner = THIS_MODULE,
-	.read = clovercon_debug_read,
-	.write = clovercon_debug_write,
-	.unlocked_ioctl = clovercon_debug_ioctl,
-	.open = clovercon_debug_open,
-	.release = clovercon_debug_release,
-};
-
-static struct miscdevice clovercon_debug_device = {
-	.minor = MISC_DYNAMIC_MINOR,
-	.name = "clovercon_debug",
-	.fops = &clovercon_debug_fops,
-};
 
 static int __init clovercon_init(void) {
 	int i2c_bus;
@@ -1181,6 +1252,9 @@ static void __exit clovercon_exit(void) {
 	clovercon_teardown_detection();
 	clovercon_remove_controllers();
 	i2c_del_driver(&clovercon_driver);
+#if VERBOSITY > 0
+	misc_deregister(&clovercon_debug_device);
+#endif
 }
 
 module_exit(clovercon_exit);
