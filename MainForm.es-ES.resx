@@ -59,195 +59,195 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="aboutToolStripMenuItem.Text">
-    <value>&amp;О программе...</value>
+    <value>Acerca de...</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>Добавить &amp;игр</value>
+    <value>Añadir más &amp;juegos</value>
   </data>
   <data name="addPresetToolStripMenuItem.Text">
-    <value>Добавить пресет</value>
+    <value>Añadir prefijo</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
-    <value>Оригинальные игры в корне -&gt; Автоматически в подпапке</value>
+    <value>Juegos originales en Root -&gt; Automático en subcarpeta</value>
   </data>
   <data name="automaticToolStripMenuItem.Text">
-    <value>Автоматически</value>
+    <value>Automático</value>
   </data>
   <data name="buttonAddGames.Text">
-    <value>Добавить игр</value>
+    <value>Añadir más juegos</value>
   </data>
   <data name="buttonBrowseImage.Text">
-    <value>Выбрать</value>
+    <value>Buscar</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Синхронизировать список игр с NES Mini</value>
+    <value>Sincronizar los juegos seleccionados con NES Mini</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
-    <value>Хаки контроллера</value>
+    <value>Ayuda/atajos para los mandos</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
-    <value>Сжимать не-NES игры (для дополнительного эмулятора)</value>
+    <value>Comprimir juegos que no sean de NES (para emuladores adicionales)</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
-    <value>Тип консоли</value>
+    <value>Tipo de consola</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>Настроить вручную - показывать менеджер папок перед загрузкой</value>
+    <value>Personalizado - muestra la gestión de las carpetas todo el tiempo</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
-    <value>Удалить игру</value>
+    <value>Eliminar juego</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
-    <value>Удалить пресет</value>
+    <value>Eliminar prefijo</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
-    <value>Без папок</value>
+    <value>Desactivar páginas/carpetas</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Скачать обложки для всех игр</value>
+    <value>Descargar carátulas para todos los juegos</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Сдампить ядро</value>
+    <value>Volcar kernel</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
-    <value>Использовать "Select+A/B" для включения турбо кнопок</value>
+    <value>Pulsa "Select+A/B" para activar Autofire en A/B</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
-    <value>Выключить защиту от приступов эпилепсии</value>
+    <value>Desactivar protección contra la epilepsia</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
-    <value>&amp;Выйти</value>
+    <value>&amp;Salir</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
-    <value>&amp;Файл</value>
+    <value>&amp;Archivo</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Прошить модифицированное ядро</value>
+    <value>Flashear custom kernel</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Прошить оригинальное ядро</value>
+    <value>Flashear kernel original</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>Оригинальные в корне -&gt; Папки, разделить поровну</value>
+    <value>Juegos originales en Root -&gt; Carpetas, dividir juegos por igual</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Оригинальные в корне -&gt; Папки, по буквам</value>
+    <value>Juegos originales en Root -&gt; Carpetas, dividir por primera letra</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>Папки, по буквам</value>
+    <value>Carpetas, dividir por la primera letra</value>
   </data>
   <data name="foldersToolStripMenuItem.Text">
-    <value>Папки, разделить поровну</value>
+    <value>Carpetas, dividir juegos por igual</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>Страница GitHub и свежие версии</value>
+    <value>GitHub: Página con las versiones actuales</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>Глобальные параметры командной строки</value>
+    <value>Línea de comando global (Sólo usuarios expertos)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>Тут можно скрыть некоторые встроенные игры</value>
+    <value>Puedes ocultar algunos juegos predeterminados</value>
   </data>
   <data name="groupBoxOptions.Text">
-    <value>Параметры игры</value>
+    <value>Opciones de juego</value>
   </data>
   <data name="helpToolStripMenuItem.Text">
-    <value>&amp;Помощь</value>
+    <value>&amp;Ayuda</value>
   </data>
   <data name="installModulesToolStripMenuItem.Text">
-    <value>Установить модули</value>
+    <value>Instalar módulos extras</value>
   </data>
   <data name="kernelToolStripMenuItem.Text">
-    <value>&amp;Ядро</value>
+    <value>&amp;Kernel</value>
   </data>
   <data name="label1.Text">
-    <value>Дата выхода (YYYY-MM-DD):</value>
+    <value>Fecha de lanzamiento (AAAA-MM-DD)</value>
   </data>
   <data name="label2.Text">
-    <value>Издатель:</value>
+    <value>Editor</value>
   </data>
   <data name="label3.Text">
-    <value>Параметры командной строки (для продвинутых!):</value>
+    <value>Línea de comando (Sólo usuarios avanzados)</value>
   </data>
   <data name="label4.Text">
-    <value>Обложка:</value>
+    <value>Carátula</value>
   </data>
   <data name="label5.Text">
-    <value>Выберите игры:</value>
+    <value>Seleccionar juegos:</value>
   </data>
   <data name="label6.Text">
-    <value>Кол-во игроков:</value>
+    <value>Número de jugadores:</value>
   </data>
   <data name="label7.Text">
-    <value>Game Genie коды (через запятую):</value>
+    <value>Códigos Game Genie (separados por comas):</value>
   </data>
   <data name="labelName.Text">
-    <value>Название:</value>
+    <value>Nombre:</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
-    <value>Максимум игр на страницу</value>
+    <value>Número de juegos por página/carpeta</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
-    <value>&amp;Модули</value>
+    <value>&amp;Módulos</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>Оригинальные в корне -&gt; Страницы, разделить поровну</value>
+    <value>Juegos originales en Root -&amp;gt Páginas, dividir los juegos por igual</value>
   </data>
   <data name="pagesToolStripMenuItem.Text">
-    <value>Страницы, разделить игры поровну</value>
+    <value>Páginas, dividir juegos por igual</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>Структура папок</value>
+    <value>Páginas/estructura de las carpetas</value>
   </data>
   <data name="presetsToolStripMenuItem.Text">
-    <value>Пресеты</value>
+    <value>Selección de ajustes</value>
   </data>
   <data name="radioButtonOne.Text">
-    <value>Один игрок</value>
+    <value>Un jugador</value>
   </data>
   <data name="radioButtonTwo.Text">
-    <value>Два игрока, по очереди</value>
+    <value>Dos jugadores, no simultáneos</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Два игрока, одновременно</value>
+    <value>Dos jugadores, simultáneamente</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>Использовать комбинацию кнопок для выхода в меню</value>
+    <value>Usar combinación de botones para Reset</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Сохранить настройки в NES Mini сейчас</value>
+    <value>Guardar opciones a la NES Mini ahora</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
-    <value>Поиск</value>
+    <value>Buscar</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text">
-    <value>Отметить все</value>
+    <value>Seleccionar todo</value>
   </data>
   <data name="selectButtonCombinationToolStripMenuItem.Text">
-    <value>Выбрать комбинацию кнопок для выхода в меню</value>
+    <value>Selecciona una combinación de botones para Reset</value>
   </data>
   <data name="settingsToolStripMenuItem.Text">
-    <value>&amp;Настройки</value>
+    <value>&amp;Opciones</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
-    <value>Синхронизация</value>
+    <value>Sincronizar</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
-    <value>Удалить модули</value>
+    <value>Desinstalar módulos extras</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text">
-    <value>Полностью удалиться с NES Mini</value>
+    <value>Desinstalar</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
-    <value>Снять отметку со всех</value>
+    <value>Deseleccionar todo</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>"Up+A+B = Start" на втором контроллере</value>
+    <value>"Arriba+A+B = Start" en el 2º mando</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
-    <value>Использовать расширенный шрифт</value>
+    <value>Usar fuente extendida</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
-    <value>Использовать X/Y на Classic Controller как турбо A/B</value>
+    <value>Usa X/Y en el mando Wii Classic Controller como Autofire A/B</value>
   </data>
 </root>

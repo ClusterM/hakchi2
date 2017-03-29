@@ -59,6 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Выбрать комбинацию кнопок для выхода в меню</value>
+    <value>Lista de códigos de Game Genie</value>
+  </data>
+  <data name="addToolStripMenuItem.Text">
+    <value>Añadir</value>
+  </data>
+  <data name="buttonAdd.Text">
+    <value>Añadir</value>
+  </data>
+  <data name="buttonCancel.Text">
+    <value>Cancelar</value>
+  </data>
+  <data name="buttonImport.Text">
+    <value>Importar</value>
+  </data>
+  <data name="editToolStripMenuItem.Text">
+    <value>Editar</value>
+  </data>
+  <data name="removeToolStripMenuItem.Text">
+    <value>Eliminar</value>
   </data>
 </root>

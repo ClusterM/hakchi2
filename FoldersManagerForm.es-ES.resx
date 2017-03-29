@@ -59,6 +59,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Выбрать комбинацию кнопок для выхода в меню</value>
+    <value>Gestión de las carpetas</value>
+  </data>
+  <data name="buttonCancel.Text">
+    <value>Cancelar</value>
+  </data>
+  <data name="buttonFoldersEqually.Text">
+    <value>Dividir por igual</value>
+  </data>
+  <data name="buttonFoldersEquallyOriginal.Text">
+    <value>Juegos originales -&gt; Dividir por igual</value>
+  </data>
+  <data name="buttonFoldersLetters.Text">
+    <value>Dividir por primera letra</value>
+  </data>
+  <data name="buttonFoldersLettersOriginal.Text">
+    <value>Juegos originales -&gt; Dividir por primera letra</value>
+  </data>
+  <data name="buttonNewFolder.Text">
+    <value>Nueva carpeta</value>
+  </data>
+  <data name="buttonNoFolders.Text">
+    <value>Sin carpetas</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Text">
+    <value>Juegos originales -&gt; Otros juegos</value>
+  </data>
+  <data name="cutToolStripMenuItem.Text">
+    <value>Cortar</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text">
+    <value>Eliminar</value>
+  </data>
+  <data name="groupBoxArt.Text">
+    <value>Icono a mostrar en el menú</value>
+  </data>
+  <data name="groupBoxSplitModes.Text">
+    <value>Crear automáticamente la estructura de las carpetas</value>
+  </data>
+  <data name="labelPosition.Text">
+    <value>Prioridad de posición de carpeta</value>
+  </data>
+  <data name="newFolderToolStripMenuItem.Text">
+    <value>Crear nueva carpeta</value>
+  </data>
+  <data name="pasteToolStripMenuItem.Text">
+    <value>Pegar</value>
+  </data>
+  <data name="renameToolStripMenuItem.Text">
+    <value>Renombrar carpeta</value>
+  </data>
+  <data name="labelElementCount.Text">
+    <value>Folder statistics</value>
   </data>
 </root>

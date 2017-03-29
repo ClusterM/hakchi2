@@ -59,6 +59,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Выбрать комбинацию кнопок для выхода в меню</value>
+    <value>Αναμονή για το NES Mini σας…</value>
+  </data>
+  <data name="buttonDriver.Text">
+    <value>Εγκαταστήστε τον οδηγό</value>
+  </data>
+  <data name="label1.Text">
+    <value>Παρακαλώ ακολουθήστε τα παρακάτω βήματα:</value>
+  </data>
+  <data name="label2.Text">
+    <value>1. Συνδέστε το NES Mini σας στον Η/Υ με το καλώδιο USB.</value>
+  </data>
+  <data name="label3.Text">
+    <value>2. Ενεργοποιήστε το.</value>
+  </data>
+  <data name="label6.Text">
+    <value>3. Εγκαταστήστε τον οδηγό, αν δεν είναι ήδη εγκατεστημένος:</value>
   </data>
 </root>

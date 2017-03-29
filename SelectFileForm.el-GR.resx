@@ -59,6 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Выбрать комбинацию кнопок для выхода в меню</value>
+    <value>Επιλογή αρχείου</value>
+  </data>
+  <data name="buttonArchive.Text">
+    <value>Εισαγωγή ως συμπιεσμένο αρχείο</value>
   </data>
 </root>

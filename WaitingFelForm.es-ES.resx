@@ -59,6 +59,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Выбрать комбинацию кнопок для выхода в меню</value>
+    <value>Esperando a la NES Mini</value>
+  </data>
+  <data name="buttonDriver.Text">
+    <value>Instalar controlador</value>
+  </data>
+  <data name="label1.Text">
+    <value>Por favor, sigue estos pasos</value>
+  </data>
+  <data name="label2.Text">
+    <value>1. Asegúrate de que el botón Power de la NES Mini está en la posición de apagado</value>
+  </data>
+  <data name="label3.Text">
+    <value>2. Vuelve a conectar la NES Mini al PC vía USB</value>
+  </data>
+  <data name="label4.Text">
+    <value>3. Mantén presionado el botón Reset y aprieta el botón Power</value>
+  </data>
+  <data name="label5.Text">
+    <value>4. Después de unos segundos, suelta el botón Reset, la luz del botón Power debe apagarse</value>
+  </data>
+  <data name="label6.Text">
+    <value>5. Instala el controlador si aún no lo has hecho:</value>
   </data>
 </root>
