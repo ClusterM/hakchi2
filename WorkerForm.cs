@@ -598,7 +598,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static bool SyncConfig(Dictionary<string, string> Config, bool reboot = false)
+        public static void SyncConfig(Dictionary<string, string> Config, bool reboot = false)
         {
             var clovershell = MainForm.Clovershell;
 
@@ -615,12 +615,14 @@ namespace com.clusterrr.hakchi_gui
             clovershell.Execute("cat > /tmp/config", config, null, null, 1000, true);
             clovershell.Execute("source /etc/preinit && script_init && source /tmp/config && source $preinit.d/pffff_config", null, null, null, 30000, true);
             config.Dispose();
-            try
+            if (reboot)
             {
-                clovershell.Execute("reboot", null, null, null, 1000);
+                try
+                {
+                    clovershell.ExecuteSimple("reboot", 100);
+                }
+                catch { }
             }
-            catch { }
-            return true;
         }
 
         public void Memboot(int maxProgress = -1, int progress = 0)

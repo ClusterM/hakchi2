@@ -29,10 +29,21 @@ namespace com.clusterrr.hakchi_gui
         static void Main()
         {
 #if DEBUG
-            AllocConsole();
-            Stream logFile = File.Create("debuglog.txt");
-            Debug.Listeners.Add(new TextWriterTraceListener(logFile));
-            Debug.Listeners.Add(new TextWriterTraceListener(System.Console.Out));
+            try
+            {
+                AllocConsole();
+                Debug.Listeners.Add(new TextWriterTraceListener(System.Console.Out));
+            }
+            catch { }
+            try
+            {
+                Stream logFile = File.Create("debuglog.txt");
+                Debug.Listeners.Add(new TextWriterTraceListener(logFile));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error: " + ex.Message + ex.StackTrace);
+            }
             Debug.AutoFlush = true;
 #endif
             bool createdNew = true;

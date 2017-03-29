@@ -31,6 +31,7 @@ fi
 
 pkill -KILL clover-mcp
 pkill -KILL ReedPlayer-Clover
+rm -rf /var/cache/clover
 
 overmount_games
 
