@@ -59,6 +59,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Выбрать комбинацию кнопок для выхода в меню</value>
+    <value>Διαχειριστής Φακέλων</value>
+  </data>
+  <data name="buttonCancel.Text">
+    <value>Ακύρωση</value>
+  </data>
+  <data name="buttonFoldersEqually.Text">
+    <value>Διαχωρισμός εξίσου</value>
+  </data>
+  <data name="buttonFoldersEquallyOriginal.Text">
+    <value>Αυθεντικά παιχνίδια -&gt; Διαχωρισμός εξίσου</value>
+  </data>
+  <data name="buttonFoldersLetters.Text">
+    <value>Διαχωρισμός ανά πρώτο γράμμα</value>
+  </data>
+  <data name="buttonFoldersLettersOriginal.Text">
+    <value>Αυθεντικά παιχνίδια -&gt; Διαχωρισμός ανά πρώτο γράμμα</value>
+  </data>
+  <data name="buttonNewFolder.Text">
+    <value>Νέος φάκελος</value>
+  </data>
+  <data name="buttonNoFolders.Text">
+    <value>Χωρίς φακέλους</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Text">
+    <value>Αυθεντικά παιχνίδια -&gt; Άλλα παιχνίδια</value>
+  </data>
+  <data name="cutToolStripMenuItem.Text">
+    <value>Αποκοπή</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text">
+    <value>Διαγραφή</value>
+  </data>
+  <data name="groupBoxArt.Text">
+    <value>Εικονίδιο μενού</value>
+  </data>
+  <data name="groupBoxSplitModes.Text">
+    <value>Αυτόματη δημιουργία δομής φακέλων</value>
+  </data>
+  <data name="labelPosition.Text">
+    <value>Προτεραιότητα θέσης φακέλου</value>
+  </data>
+  <data name="newFolderToolStripMenuItem.Text">
+    <value>Δημιουργία νέου φακέλου</value>
+  </data>
+  <data name="pasteToolStripMenuItem.Text">
+    <value>Επικόλληση</value>
+  </data>
+  <data name="renameToolStripMenuItem.Text">
+    <value>Μετονομασία φακέλου</value>
+  </data>
+  <data name="labelElementCount.Text">
+    <value>Folder statistics</value>
   </data>
 </root>

@@ -352,6 +352,9 @@
   <data name="YesForAll">
     <value>Ja für alle</value>
   </data>
+  <data name="MemoryStats">
+    <value>Total writable memory size: {0:F1}MBytes|Available memory for games: {1:F1}MBytes|Used by save-states: {2:F1}MBytes|Used by other files: {3:F1}MBytes</value>
+  </data>
   <data name="UploadingConfig">
     <value>Uploading new config...</value>
   </data>
