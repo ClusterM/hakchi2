@@ -34,12 +34,16 @@
 #include <linux/workqueue.h>
 #include <linux/mutex.h>
 #include <linux/bug.h>
+#include <linux/miscdevice.h>
 
 static unsigned short home_combination = 0xffff;
 static char autofire = 0;
 static char autofire_xy = 0;
 static unsigned char autofire_interval = 8;
 static char fc_start = 0;
+
+volatile static char debug_buff[30000];
+volatile static long int debug_pos = 0;
 
 MODULE_AUTHOR("Christophe Aguettaz <christophe.aguettaz@nerd.nintendo.com>, mod by Cluster <clusterrr@clusterrr.com");
 MODULE_DESCRIPTION("Nintendo Clover/Wii Classic/Wii Pro controllers on I2C");
@@ -110,30 +114,42 @@ static struct delayed_work detect_work;
 static DEFINE_MUTEX(con_state_lock);
 static DEFINE_MUTEX(detect_task_lock);
 
-#define VERBOSITY        0
+#define VERBOSITY        3
 
 #if VERBOSITY > 0
-	#define ERR(m, ...) printk(KERN_ERR  "Clovercon error: " m "\n", ##__VA_ARGS__)
-	#define INF(m, ...) printk(KERN_INFO  "Clovercon info: " m "\n", ##__VA_ARGS__)
+	#define ERR(m, ...) {int dbg_len = snprintf((void*)(debug_buff+debug_pos), sizeof(debug_buff)-1-debug_pos, "Clovercon error: " m "\n", ##__VA_ARGS__); if (dbg_len>0) debug_pos+=dbg_len;}
+	#define INF(m, ...) {int dbg_len = snprintf((void*)(debug_buff+debug_pos), sizeof(debug_buff)-1-debug_pos, "Clovercon info: " m "\n", ##__VA_ARGS__); if (dbg_len>0) debug_pos+=dbg_len;}
 #else
 	#define ERR(m, ...)
 	#define INF(m, ...)
 #endif
 
 #if VERBOSITY > 1
-	#define DBG(m, ...) printk(KERN_DEBUG  "Clovercon: " m "\n", ##__VA_ARGS__)
-	#if VERBOSITY > 2
-		#define FAST_ERR(m, ...) ERR(m, ##__VA_ARGS__)
-		#define FAST_DBG(m, ...) DBG(m, ##__VA_ARGS__)
-	#else
-		#define FAST_ERR(m, ...) trace_printk(KERN_ERR  "Clovercon error: " m "\n", ##__VA_ARGS__)
-		#define FAST_DBG(m, ...) trace_printk(KERN_DEBUG  "Clovercon: " m "\n", ##__VA_ARGS__)
-	#endif
+	#define DBG(m, ...) {int dbg_len = snprintf((void*)(debug_buff+debug_pos), sizeof(debug_buff)-1-debug_pos, "Clovercon: " m "\n", ##__VA_ARGS__); if (dbg_len>0) debug_pos+=dbg_len;}
+	#define FAST_ERR(m, ...) ERR(m, ##__VA_ARGS__)
+	#define FAST_DBG(m, ...) DBG(m, ##__VA_ARGS__)
 #else
 	#define DBG(m, ...)
 	#define FAST_ERR(m, ...)
 	#define FAST_DBG(m, ...)
 #endif
+
+void hex_dump(char* str, char* buf, int len)
+{
+#if VERBOSITY > 2
+    int dbg_len = snprintf((void*)(debug_buff+debug_pos), sizeof(debug_buff)-1-debug_pos, "%s", str);
+    if (dbg_len>0) debug_pos+=dbg_len;
+    while (len)
+    {
+	dbg_len = snprintf((void*)(debug_buff+debug_pos), sizeof(debug_buff)-1-debug_pos, " %02X", *buf);
+	if (dbg_len>0) debug_pos+=dbg_len;
+	buf++;
+	len--;
+    }
+    dbg_len = snprintf((void*)(debug_buff+debug_pos), sizeof(debug_buff)-1-debug_pos, "\n");
+    if (dbg_len>0) debug_pos+=dbg_len;
+#endif
+}
 
 enum ControllerState {
 	CS_OK,
@@ -305,8 +321,20 @@ static int clovercon_setup(struct clovercon_info *info) {
 	static const int CON_INFO_LEN = 6;
 	u8 con_info_data[CON_INFO_LEN];
 	int ret;
-
+#if VERBOSITY > 2
+	static const int READ_LEN = 21;
+	u8 data[READ_LEN];
+#endif
 	DBG("Clovercon setup");
+
+#if VERBOSITY > 2
+	ret = clovercon_read_controller_info(client, con_info_data, CON_INFO_LEN);
+	if (ret < 0) {
+		ERR("error reading controller info");
+		goto err;
+	}
+	hex_dump("con_info_data before setup:", con_info_data, ret);
+#endif
 
 	ret = clovercon_write(client, &init_data[0], 2);
 	if (ret)
@@ -326,6 +354,18 @@ static int clovercon_setup(struct clovercon_info *info) {
 		ret = -EIO;
 		goto err;
 	}
+	hex_dump("con_info_data after setup:", con_info_data, sizeof(con_info_data));
+
+#if VERBOSITY > 2
+	ret = clovercon_read(client, 0, data, READ_LEN);
+	if (ret)
+	{
+	    ERR("read failed for active controller - possible controller disconnect");
+	    ret = -EIO;
+	    goto err;
+	}
+	hex_dump("poll:", data, READ_LEN);
+#endif
 
 	// autodetecting data format
 	// it should be 0x03 for original classic controllers and clovercons
@@ -337,7 +377,6 @@ static int clovercon_setup(struct clovercon_info *info) {
 		ret = -EIO;
 		goto err;
 	}
-
 	return 0;
 
 err:
@@ -818,7 +857,7 @@ static void clovercon_detect_task(struct work_struct *dummy) {
 	int val;
 
 	mutex_lock(&detect_task_lock);
-	DBG("detect task running");
+	//DBG("detect task running");
 	mutex_lock(&con_state_lock);
 	for (i = 0; i < MAX_CON_COUNT; i++) {
 		info = &con_info_list[i];
@@ -826,18 +865,18 @@ static void clovercon_detect_task(struct work_struct *dummy) {
 			continue;
 		}
 		val = gpio_get_value(info->gpio);
-		DBG("detect pin value: %i", val);
+		//DBG("detect pin value: %i", val);
 		if (val && !info->client) {
-			DBG("detect task adding controller %i", i);
+			//DBG("detect task adding controller %i", i);
 			clovercon_add_controller(info);
 		} else if (!val && info->client) {
-			DBG("detect task removing controller %i", i);
+			//DBG("detect task removing controller %i", i);
 			clovercon_remove_controller(info);
 		}
 	}
 	mutex_unlock(&con_state_lock);
 	mutex_unlock(&detect_task_lock);
-	DBG("detect task done");
+	//DBG("detect task done");
 }
 
 #if CLOVERCON_DETECT_USE_IRQ
@@ -1027,6 +1066,59 @@ static void clovercon_teardown_detection(void) {
 	}
 }
 
+static ssize_t clovercon_debug_read(struct file *fp, char __user *buf,
+	size_t count, loff_t *pos)
+{
+	size_t l = MAX(MIN(count, debug_pos - *pos), 0);
+	memcpy(buf, (void*)(debug_buff + *pos), l);
+	if (l > 0) *pos += l;
+	return l;
+}
+
+static ssize_t clovercon_debug_write(struct file *fp, const char __user *buf,
+	size_t count, loff_t *pos)
+{
+	return count; // a-la /dev/null
+}
+
+static long clovercon_debug_ioctl(struct file *fp, unsigned code, unsigned long value)
+{
+	long ret = 0;
+	switch (code) {
+        default:
+		ret = -EINVAL;
+		break;
+	}
+
+	return ret;
+}
+
+static int clovercon_debug_open(struct inode *ip, struct file *fp)
+{
+	return 0;
+}
+
+static int clovercon_debug_release(struct inode *ip, struct file *fp)
+{
+	return 0;
+}
+
+/* file operations for /dev/clovercon_debug */
+static const struct file_operations clovercon_debug_fops = {
+	.owner = THIS_MODULE,
+	.read = clovercon_debug_read,
+	.write = clovercon_debug_write,
+	.unlocked_ioctl = clovercon_debug_ioctl,
+	.open = clovercon_debug_open,
+	.release = clovercon_debug_release,
+};
+
+static struct miscdevice clovercon_debug_device = {
+	.minor = MISC_DYNAMIC_MINOR,
+	.name = "clovercon_debug",
+	.fops = &clovercon_debug_fops,
+};
+
 static int __init clovercon_init(void) {
 	int i2c_bus;
 	int gpio_pin;
@@ -1068,6 +1160,10 @@ static int __init clovercon_init(void) {
 		ERR("failed to add driver");
 		goto err_controller_cleanup;
 	}
+
+#if VERBOSITY > 0
+	misc_register(&clovercon_debug_device);
+#endif
 
 	return 0;
 
