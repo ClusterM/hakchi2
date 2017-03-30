@@ -399,6 +399,30 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.de-De.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.el-GR.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.es-ES.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.it-IT.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.de-DE.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.el-GR.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.es-ES.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.it-IT.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeAddModForm.pl-PL.resx">
       <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -407,6 +431,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeAddModForm.ru-RU.resx">
       <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.de-DE.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.el-GR.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.es-ES.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.it-IT.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeForm.pl-PL.resx">
       <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
@@ -420,7 +456,13 @@
     <EmbeddedResource Include="ImageGooglerForm.resx">
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.de-DE.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.el-GR.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.es-ES.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.it-IT.resx">
@@ -441,6 +483,54 @@
     <EmbeddedResource Include="Properties\Resources.el-GR.resx" />
     <EmbeddedResource Include="Properties\Resources.es-ES.resx" />
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
+    <EmbeddedResource Include="SearchForm.de-DE.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.el-GR.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.es-ES.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.it-IT.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.de-DE.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.el-GR.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.es-ES.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.it-IT.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.de-DE.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.el-GR.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.es-ES.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.it-IT.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.de-DE.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.el-GR.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.es-ES.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.it-IT.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectModsForm.resx">
       <DependentUpon>SelectModsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -505,11 +595,38 @@
     <EmbeddedResource Include="FoldersManagerForm.ru-RU.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.de-DE.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.el-GR.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.es-ES.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.it-IT.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.pl-PL.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.ru-RU.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.de-DE.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.el-GR.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.es-ES.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.it-IT.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.pl-PL.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
