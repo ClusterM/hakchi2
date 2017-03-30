@@ -258,11 +258,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources.ru-RU.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.ru-RU.resx</DependentUpon>
-    </Compile>
     <Compile Include="SelectModsForm.cs">
       <SubType>Form</SubType>
     </Compile>
