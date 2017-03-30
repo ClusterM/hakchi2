@@ -245,10 +245,10 @@
     <value>Este juego, "{0}" usa mapeador #{1} y no es compatible con la NES Mini, es probable que no inicie con el emulador predeterminado, pero debería funcionar si tienes un módulo extra instalado de otro emulador. ¿Quieres añadir este juego?</value>
   </data>
   <data name="MemoryFull">
-    <value>Hay {0}MB en juegos, es posible que dé error al sincronizar</value>
+    <value>Hay {0} MB en juegos, es mucho y podría da error al sincronizar, es recomendable liberar memoria</value>
   </data>
   <data name="MemoryStats">
-    <value>Memoria total: {0:F1}MB|Disponible para juegos: {1:F1}MB|Usada por los puntos de suspensión: {2:F1}MB|Usada por otros archivos: {3:F1}MB</value>
+    <value>Memoria total: {0:F1} MB|Disponible para juegos: {1:F1} MB|Usada por los puntos de suspensión: {2:F1} MB|Usada por otros archivos: {3:F1} MB</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>Los nuevos juegos se han añadido a la carpeta "Sin clasificar"</value>
