@@ -10,12 +10,13 @@ namespace com.clusterrr.util
     {
         List<string> entries = new List<string>();
         readonly string rootDirectory;
+        const string LongLinkFlag = "././@LongLink";
         long totalSize = 0;
         long position = 0;
         int currentEntry = 0;
         long currentEntryPosition = 0;
         long currentEntryLength = 0;
-        FileStream currentFile = null;
+        Stream currentFile = null;
         byte[] currentHeader;
 
         public delegate void OnProgressDelegate(long Position, long Length);
@@ -97,6 +98,18 @@ namespace com.clusterrr.util
                 throw new Exception("Invarid root directory");
 
             LoadDirectory(directory);
+            for (int i = entries.Count - 1; i >= 0; i--) // Checking filenames
+            {
+                var name = entries[i].Substring(rootDirectory.Length + 1).Replace(@"\", "/");
+                if (name.Length > 99) // Need to create LongLink
+                {
+                    entries.Insert(i, LongLinkFlag);
+                    int size = name.Length;
+                    if (size % 512 != 0)
+                        size += 512 - (size % 512);
+                    totalSize += 512 + size;
+                }
+            }
             if (totalSize % 10240 != 0)
                 totalSize += (10240 - (totalSize % 10240));
             this.rootDirectory = rootDirectory;
@@ -191,14 +204,32 @@ namespace com.clusterrr.util
                 {
                     currentEntryLength = 512;
                     var header = new TarHeader();
-                    header.FileName = entries[currentEntry].Substring(rootDirectory.Length + 1).Replace(@"\", "/");
-                    // close previous file
+                    if (entries[currentEntry] != LongLinkFlag)
+                        header.FileName = entries[currentEntry].Substring(rootDirectory.Length + 1).Replace(@"\", "/");
                     if (currentFile != null)
                     {
                         currentFile.Dispose();
                         currentFile = null;
                     }
-                    if (!header.FileName.EndsWith("/")) // It's a file!
+                    if (entries[currentEntry] == LongLinkFlag)
+                    {
+                        header.FileName = entries[currentEntry];
+                        header.FileMode = "0000000";
+                        var name = entries[currentEntry+1].Substring(rootDirectory.Length + 1).Replace(@"\", "/");
+                        var nameBuff = Encoding.UTF8.GetBytes(name);
+                        currentFile = new MemoryStream(nameBuff.Length + 1);
+                        currentFile.Write(nameBuff, 0, nameBuff.Length);
+                        currentFile.WriteByte(0);
+                        currentFile.Seek(0, SeekOrigin.Begin);
+                        currentEntryLength += currentFile.Length;
+                        if (currentFile.Length % 512 != 0)
+                            currentEntryLength += 512 - (currentFile.Length % 512);
+                        header.FileSize = Convert.ToString(currentFile.Length, 8).PadLeft(11, '0');
+                        header.LastModificationTime = "0".PadLeft(11, '0');
+                        header.FileType = 'L';
+
+                    }
+                    else if (!header.FileName.EndsWith("/")) // It's a file!
                     {
                         currentFile = new FileStream(entries[currentEntry], FileMode.Open);
                         header.FileMode = "0100644";
@@ -211,7 +242,7 @@ namespace com.clusterrr.util
                             , 8).PadLeft(11, '0');
                         header.FileType = '0';
                     }
-                    else // It's a directory...
+                    else if (header.FileName.EndsWith("/")) // It's a directory...
                     {
                         header.FileMode = "0040755";
                         header.FileSize = "".PadLeft(11, '0');
