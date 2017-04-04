@@ -568,4 +568,10 @@
   <data name="MemoryStats" xml:space="preserve">
     <value>Total writable memory size: {0:F1}MBytes|Available memory for games: {1:F1}MBytes|Used by saves: {2:F1}MBytes|Used by other files: {3:F1}MBytes</value>
   </data>
+  <data name="AllFiles" xml:space="preserve">
+    <value>All files</value>
+  </data>
+  <data name="GamesAndApps" xml:space="preserve">
+    <value>Games and apps</value>
+  </data>
 </root>

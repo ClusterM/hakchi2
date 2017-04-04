@@ -144,6 +144,7 @@ namespace com.clusterrr.hakchi_gui
                 var tbl = textBoxName.Left;
                 textBoxName.Left = labelName.Left + labelName.Width;
                 textBoxName.Width -= textBoxName.Left - tbl;
+                maskedTextBoxReleaseDate.Left = label1.Left + label1.Width + 3;
 
                 // Tweeks for message boxes
                 MessageBoxManager.Yes = MessageBoxManager.Retry = Resources.Yes;
@@ -156,7 +157,7 @@ namespace com.clusterrr.hakchi_gui
                     foreach (var ext in app.Extensions)
                         if (!extensions.Contains("*" + ext))
                             extensions.Add("*" + ext);
-                openFileDialogNes.Filter = "Games and apps|" + string.Join(";", extensions.ToArray()) + "|All files|*.*";
+                openFileDialogNes.Filter = Resources.GamesAndApps + "|" + string.Join(";", extensions.ToArray()) + "|" + Resources.AllFiles + "|*.*";
 
                 // Loading games database in background
                 new Thread(NesGame.LoadCache).Start();
