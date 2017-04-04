@@ -537,6 +537,7 @@ namespace com.clusterrr.hakchi_gui
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
+                if (MainForm.NandCTotal <= 0) throw new Exception("Can't get amount of free flash memory");
                 var maxGamesSize = (MainForm.NandCFree + MainForm.WritedGamesSize) - MainForm.ReservedMemory * 1024 * 1024;
                 if (stats.TotalSize > maxGamesSize)
                 {

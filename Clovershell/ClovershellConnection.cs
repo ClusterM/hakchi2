@@ -32,7 +32,7 @@ namespace com.clusterrr.clovershell
         byte[] lastPingResponse = null;
         DateTime lastAliveTime;
         public delegate void OnClovershellConnected();
-        public event OnClovershellConnected OnConnected = delegate{};
+        public event OnClovershellConnected OnConnected = delegate { };
 
         internal enum ClovershellCommand
         {
@@ -299,6 +299,16 @@ namespace com.clusterrr.clovershell
                 Thread.Sleep(50);
             }
             if (!online) throw new ClovershellException("no clovershell connection, make sure your NES Mini connected, turned on and clovershell mod installed");
+        }
+
+        public void Disconnect()
+        {
+            try
+            {
+                if (device != null)
+                    device.Close();
+            }
+            catch { }
         }
 
         void epReader_DataReceived(object sender, EndpointDataEventArgs e)

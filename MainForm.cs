@@ -215,6 +215,14 @@ namespace com.clusterrr.hakchi_gui
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
+                try
+                {
+                    Clovershell.ExecuteSimple("reboot", 100);
+                }
+                catch
+                {
+                }
+                Clovershell.Disconnect();
             }
         }
 
@@ -625,25 +633,6 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(Resources.SelectAtLeast, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var maxGamesSize = DefaultMaxGamesSize * 1024 * 1024;
-            if (NandCTotal > 0)
-                maxGamesSize = (NandCFree + WritedGamesSize) - ReservedMemory * 1024 * 1024;
-            if (stats.Size > maxGamesSize)
-            {
-                if (NandCTotal == 0)
-                    MessageBox.Show(string.Format(Resources.MemoryFull, stats.Size / 1024 / 1024),
-                        Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
-                    MessageBox.Show(string.Format(Resources.MemoryFull, stats.Size / 1024 / 1024) + "\r\n\r\n" +
-                        string.Format(Resources.MemoryStats.Replace("|", "\r\n"),
-                        NandCTotal / 1024.0 / 1024.0,
-                        (NandCFree + WritedGamesSize - ReservedMemory * 1024 * 1024) / 1024.0 / 1024.0,
-                        SaveStatesSize / 1024.0 / 1024.0,
-                        (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0),
-                        Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             bool dumpedKernelNow = false;
             if (!File.Exists(KernelDump))
             {
