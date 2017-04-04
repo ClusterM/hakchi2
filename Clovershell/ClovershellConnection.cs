@@ -429,7 +429,7 @@ namespace com.clusterrr.clovershell
                         {
                             Thread.Sleep(50);
                             t++;
-                            if (t >= 20)
+                            if (t >= 200)
                                 throw new ClovershellException("shell request timeout");
                         }
                     }
@@ -611,7 +611,7 @@ namespace com.clusterrr.clovershell
                     {
                         Thread.Sleep(50);
                         t++;
-                        if (t >= 20)
+                        if (t >= 200)
                             throw new ClovershellException("exec request timeout");
                     }
                     while (!c.finished)
