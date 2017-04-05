@@ -158,10 +158,10 @@ namespace com.clusterrr.FelLib
 
         private void WriteToUSB(byte[] buffer)
         {
-//#if DEBUG
-//            Debug.WriteLine("-> " + BitConverter.ToString(buffer));
-//#endif
-            Debug.WriteLine(string.Format("-> {0} bytes" , buffer.Length));
+#if VERY_DEBUG
+            Debug.WriteLine("->[FEL] " + BitConverter.ToString(buffer));
+#endif
+            Debug.WriteLine(string.Format("-> {0} bytes", buffer.Length));
             int pos = 0;
             int l;
             while (pos < buffer.Length)
@@ -180,9 +180,9 @@ namespace com.clusterrr.FelLib
             var result = epReader.Read(buffer, offset, length, ReadTimeout, out l);
             if (result != ErrorCode.Ok)
                 throw new Exception("USB read error: " + result.ToString());
-//#if DEBUG
-//            Debug.WriteLine("<- " + BitConverter.ToString(buffer));
-//#endif
+#if VERY_DEBUG
+            Debug.WriteLine("<-[FEL] " + BitConverter.ToString(buffer));
+#endif
             Debug.WriteLine(string.Format("<- {0} bytes", length));
             return l;
         }
