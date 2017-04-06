@@ -21,7 +21,7 @@
     <DebugType>Full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;LIBUSBDOTNET WINDOWS_TESTING VERY_DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;LIBUSBDOTNET WINDOWS_TESTING</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>

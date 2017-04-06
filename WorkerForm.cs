@@ -206,6 +206,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 DialogResult = DialogResult.None;
+                Debug.WriteLine("Executing task: " + Task.ToString());
                 switch (Task)
                 {
                     case Tasks.DumpKernel:
@@ -537,16 +538,27 @@ namespace com.clusterrr.hakchi_gui
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
-                if (MainForm.NandCTotal <= 0) throw new Exception("Can't get amount of free flash memory");
-                var maxGamesSize = (MainForm.NandCFree + MainForm.WritedGamesSize) - MainForm.ReservedMemory * 1024 * 1024;
+                var nandc = clovershell.ExecuteSimple("df /dev/nandc | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 500, true).Split('|');
+                var writedGamesSize = int.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/hakchi/rootfs/usr/share/games/ && du -s /var/lib/hakchi/rootfs/usr/share/games/ | awk '{ print $1 }'", 1000, true)) * 1024;
+                var saveStatesSize = int.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/clover/profiles/0/ && du -s /var/lib/clover/profiles/0/ | awk '{ print $1 }'", 1000, true)) * 1024;
+                var nandCTotal = int.Parse(nandc[0]) * 1024;
+                var nandCUsed = int.Parse(nandc[1]) * 1024;
+                var nandCFree = int.Parse(nandc[2]) * 1024;
+                Debug.WriteLine(string.Format("NANDC size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", nandCTotal / 1024.0 / 1024.0, nandCUsed / 1024.0 / 1024.0, nandCFree / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by games: {0:F1}MB", writedGamesSize / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", saveStatesSize / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (nandCUsed - writedGamesSize - saveStatesSize) / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Available for games: {0:F1}MB", (nandCFree + writedGamesSize) / 1024.0 / 1024.0));
+
+                var maxGamesSize = (nandCFree + writedGamesSize) - MainForm.ReservedMemory * 1024 * 1024;
                 if (stats.TotalSize > maxGamesSize)
                 {
                     throw new Exception(string.Format(Resources.MemoryFull, stats.TotalSize / 1024 / 1024) + "\r\n\r\n" +
                         string.Format(Resources.MemoryStats.Replace("|", "\r\n"),
-                        MainForm.NandCTotal / 1024.0 / 1024.0,
-                        (MainForm.NandCFree + MainForm.WritedGamesSize - MainForm.ReservedMemory * 1024 * 1024) / 1024 / 1024,
-                        MainForm.SaveStatesSize / 1024.0 / 1024.0,
-                        (MainForm.NandCUsed - MainForm.WritedGamesSize - MainForm.SaveStatesSize) / 1024.0 / 1024.0));
+                        nandCTotal / 1024.0 / 1024.0,
+                        (nandCFree + writedGamesSize - MainForm.ReservedMemory * 1024 * 1024) / 1024 / 1024,
+                        saveStatesSize / 1024.0 / 1024.0,
+                        (nandCUsed - writedGamesSize - saveStatesSize) / 1024.0 / 1024.0));
                 }
 
                 int startProgress = progress;
@@ -557,7 +569,7 @@ namespace com.clusterrr.hakchi_gui
 
                     clovershell.ExecuteSimple(string.Format("umount {0}", gamesPath));
                     clovershell.ExecuteSimple(string.Format("rm -rf {0}{1}/CLV-* {0}{1}/??? {2}/menu", rootFsPath, gamesPath, installPath), 5000, true);
-                    
+
                     if (gamesTar.Length > 0)
                     {
                         gamesTar.OnReadProgress += delegate(long pos, long len)

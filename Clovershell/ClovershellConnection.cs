@@ -236,13 +236,14 @@ namespace com.clusterrr.clovershell
                             epReader = device.OpenEndpointReader((ReadEndpointID)inEndp, 65536);
                             epWriter = device.OpenEndpointWriter((WriteEndpointID)outEndp);
                             Debug.WriteLine("clovershell connected");
-                            // Kill all other serrions and drop all output
+                            // Kill all other sessions and drop all output
                             killAll();
                             var body = new byte[65536];
                             int len;
                             while (epReader.Read(body, 50, out len) == ErrorCode.Ok) ;
                             epReader.ReadBufferSize = 65536;
                             epReader.DataReceived += epReader_DataReceived;
+                            epReader.ReadThreadPriority = ThreadPriority.AboveNormal;
                             epReader.DataReceivedEnabled = true;
                             lastAliveTime = DateTime.Now;
                             online = true;
@@ -447,7 +448,7 @@ namespace com.clusterrr.clovershell
                         {
                             Thread.Sleep(50);
                             t++;
-                            if (t >= 200)
+                            if (t >= 50)
                                 throw new ClovershellException("shell request timeout");
                         }
                     }
@@ -629,7 +630,7 @@ namespace com.clusterrr.clovershell
                     {
                         Thread.Sleep(50);
                         t++;
-                        if (t >= 200)
+                        if (t >= 50)
                             throw new ClovershellException("exec request timeout");
                     }
                     while (!c.finished)
