@@ -61,6 +61,8 @@ namespace com.clusterrr.hakchi_gui
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
         string selectedFile = null;
         public NesMiniApplication[] addedApplications;
+        public static int NandCTotal, NandCUsed, NandCFree, WritedGamesSize, SaveStatesSize;
+        public const long ReservedMemory = 10;
 
         public WorkerForm()
         {
@@ -479,6 +481,22 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        public static void GetMemoryStats()
+        {
+            var clovershell = MainForm.Clovershell;
+            var nandc = clovershell.ExecuteSimple("df /dev/nandc | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 500, true).Split('|');
+            WritedGamesSize = int.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/hakchi/rootfs/usr/share/games/ && du -s /var/lib/hakchi/rootfs/usr/share/games/ | awk '{ print $1 }'", 1000, true)) * 1024;
+            SaveStatesSize = int.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/clover/profiles/0/ && du -s /var/lib/clover/profiles/0/ | awk '{ print $1 }'", 1000, true)) * 1024;
+            NandCTotal = int.Parse(nandc[0]) * 1024;
+            NandCUsed = int.Parse(nandc[1]) * 1024;
+            NandCFree = int.Parse(nandc[2]) * 1024;
+            Debug.WriteLine(string.Format("NANDC size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", NandCTotal / 1024.0 / 1024.0, NandCUsed / 1024.0 / 1024.0, NandCFree / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Used by games: {0:F1}MB", WritedGamesSize / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", SaveStatesSize / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Available for games: {0:F1}MB", (NandCFree + WritedGamesSize) / 1024.0 / 1024.0));
+        }
+
         public void UploadGames()
         {
             const string gamesPath = "/usr/share/games/nes/kachikachi";
@@ -538,27 +556,16 @@ namespace com.clusterrr.hakchi_gui
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
-                var nandc = clovershell.ExecuteSimple("df /dev/nandc | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 500, true).Split('|');
-                var writedGamesSize = int.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/hakchi/rootfs/usr/share/games/ && du -s /var/lib/hakchi/rootfs/usr/share/games/ | awk '{ print $1 }'", 1000, true)) * 1024;
-                var saveStatesSize = int.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/clover/profiles/0/ && du -s /var/lib/clover/profiles/0/ | awk '{ print $1 }'", 1000, true)) * 1024;
-                var nandCTotal = int.Parse(nandc[0]) * 1024;
-                var nandCUsed = int.Parse(nandc[1]) * 1024;
-                var nandCFree = int.Parse(nandc[2]) * 1024;
-                Debug.WriteLine(string.Format("NANDC size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", nandCTotal / 1024.0 / 1024.0, nandCUsed / 1024.0 / 1024.0, nandCFree / 1024.0 / 1024.0));
-                Debug.WriteLine(string.Format("Used by games: {0:F1}MB", writedGamesSize / 1024.0 / 1024.0));
-                Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", saveStatesSize / 1024.0 / 1024.0));
-                Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (nandCUsed - writedGamesSize - saveStatesSize) / 1024.0 / 1024.0));
-                Debug.WriteLine(string.Format("Available for games: {0:F1}MB", (nandCFree + writedGamesSize) / 1024.0 / 1024.0));
-
-                var maxGamesSize = (nandCFree + writedGamesSize) - MainForm.ReservedMemory * 1024 * 1024;
+                GetMemoryStats();
+                var maxGamesSize = (NandCFree + WritedGamesSize) - ReservedMemory * 1024 * 1024;
                 if (stats.TotalSize > maxGamesSize)
                 {
                     throw new Exception(string.Format(Resources.MemoryFull, stats.TotalSize / 1024 / 1024) + "\r\n\r\n" +
                         string.Format(Resources.MemoryStats.Replace("|", "\r\n"),
-                        nandCTotal / 1024.0 / 1024.0,
-                        (nandCFree + writedGamesSize - MainForm.ReservedMemory * 1024 * 1024) / 1024 / 1024,
-                        saveStatesSize / 1024.0 / 1024.0,
-                        (nandCUsed - writedGamesSize - saveStatesSize) / 1024.0 / 1024.0));
+                        NandCTotal / 1024.0 / 1024.0,
+                        (NandCFree + WritedGamesSize - ReservedMemory * 1024 * 1024) / 1024 / 1024,
+                        SaveStatesSize / 1024.0 / 1024.0,
+                        (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
                 }
 
                 int startProgress = progress;
