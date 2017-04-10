@@ -506,7 +506,7 @@ namespace com.clusterrr.hakchi_gui
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message + ex.StackTrace);
-                    MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -1284,6 +1284,27 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void saveStateManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!ConfigIni.CustomFlashed)
+            {
+                MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var gameNames = new Dictionary<string, string>();
+            foreach (var game in defaultNesGames)
+                gameNames[game.Code] = game.Name;
+            foreach (var game in defaultFamicomGames)
+                gameNames[game.Code] = game.Name;
+            foreach (var game in checkedListBoxGames.Items)
+            {
+                if (game is NesMiniApplication)
+                    gameNames[(game as NesMiniApplication).Code] = (game as NesMiniApplication).Name;
+            }
+            var form = new SaveStateManager(gameNames);
+            form.ShowDialog();
         }
     }
 }

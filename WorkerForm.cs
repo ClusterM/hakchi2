@@ -38,7 +38,6 @@ namespace com.clusterrr.hakchi_gui
         readonly string baseDirectory;
         readonly string fes1Path;
         readonly string ubootPath;
-        readonly string splashScreenPath;
         readonly string tempDirectory;
         readonly string kernelDirectory;
         readonly string initramfs_cpio;
@@ -70,8 +69,7 @@ namespace com.clusterrr.hakchi_gui
             DialogResult = DialogResult.None;
             baseDirectory = MainForm.BaseDirectory;
             fes1Path = Path.Combine(Path.Combine(baseDirectory, "data"), "fes1.bin");
-            ubootPath = Path.Combine(Path.Combine(baseDirectory, "data"), "uboot.bin");
-            splashScreenPath = Path.Combine(Path.Combine(baseDirectory, "data"), "splash.gz");
+            ubootPath = Path.Combine(Path.Combine(baseDirectory, "data"), "uboot.bin");            
 #if DEBUG
             tempDirectory = Path.Combine(baseDirectory, "temp");
 #else
@@ -497,6 +495,22 @@ namespace com.clusterrr.hakchi_gui
             Debug.WriteLine(string.Format("Available for games: {0:F1}MB", (NandCFree + WritedGamesSize) / 1024.0 / 1024.0));
         }
 
+        public static void ShowSplashScreen()
+        {
+            var clovershell = MainForm.Clovershell;
+            var splashScreenPath = Path.Combine(Path.Combine(MainForm.BaseDirectory, "data"), "splash.gz");
+            clovershell.ExecuteSimple("pkill -KILL clover-mcp");
+            clovershell.ExecuteSimple("pkill -KILL ReedPlayer-Clover");
+            clovershell.ExecuteSimple("pkill -KILL kachikachi");
+            if (File.Exists(splashScreenPath))
+            {
+                using (var splash = new FileStream(splashScreenPath, FileMode.Open))
+                {
+                    clovershell.Execute("gunzip -c - > /dev/fb0", splash, null, null, 3000);
+                }
+            }
+        }
+
         public void UploadGames()
         {
             const string gamesPath = "/usr/share/games/nes/kachikachi";
@@ -531,16 +545,7 @@ namespace com.clusterrr.hakchi_gui
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
-                clovershell.ExecuteSimple("pkill -KILL clover-mcp");
-                clovershell.ExecuteSimple("pkill -KILL ReedPlayer-Clover");
-                clovershell.ExecuteSimple("pkill -KILL kachikachi");
-                if (File.Exists(splashScreenPath))
-                {
-                    using (var splash = new FileStream(splashScreenPath, FileMode.Open))
-                    {
-                        clovershell.Execute("gunzip -c - > /dev/fb0", splash, null, null, 3000);
-                    }
-                }
+                ShowSplashScreen();
 
                 SetStatus(Resources.BuildingFolders);
                 if (Directory.Exists(tempDirectory))

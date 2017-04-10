@@ -574,4 +574,16 @@
   <data name="GamesAndApps" xml:space="preserve">
     <value>Games and apps</value>
   </data>
+  <data name="DeleteSavesQ" xml:space="preserve">
+    <value>Do you really want to delete those save-states?</value>
+  </data>
+  <data name="SavesFlterName" xml:space="preserve">
+    <value>NES Mini save-state backups</value>
+  </data>
+  <data name="SizeOfSaves" xml:space="preserve">
+    <value>Size of selected save-states: {0}KB</value>
+  </data>
+  <data name="UnknownGame" xml:space="preserve">
+    <value>Unknown game</value>
+  </data>
 </root>

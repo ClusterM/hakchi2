@@ -393,39 +393,42 @@ namespace com.clusterrr.clovershell
 
         internal void writeUsb(ClovershellCommand cmd, byte arg, byte[] data = null, int l = -1)
         {
-            var len = (l >= 0) ? l : ((data != null) ? data.Length : 0);
-#if VERY_DEBUG
-            Debug.WriteLine(string.Format("->[CLV] cmd={0}, arg={1:X2}, len={2}, data={3}", cmd, arg, len, data != null ? BitConverter.ToString(data, 0, len) : ""));
-#endif
-            if (!online) throw new ClovershellException("NES Mini is offline");
-            var buff = new byte[len + 4];
-            buff[0] = (byte)cmd;
-            buff[1] = arg;
-            buff[2] = (byte)(len & 0xFF);
-            buff[3] = (byte)((len >> 8) & 0xFF);
-            if (data != null)
-                Array.Copy(data, 0, buff, 4, len);
-            int tLen = 0;
-            int pos = 0;
-            len += 4;
-            int repeats = 0;
-            while (pos < len)
+            lock (epWriter)
             {
-                var res = epWriter.Write(buff, pos, len, 1000, out tLen);
+                var len = (l >= 0) ? l : ((data != null) ? data.Length : 0);
 #if VERY_DEBUG
-                Debug.WriteLine("->[CLV] " + BitConverter.ToString(buff, pos, len));
+                Debug.WriteLine(string.Format("->[CLV] cmd={0}, arg={1:X2}, len={2}, data={3}", cmd, arg, len, data != null ? BitConverter.ToString(data, 0, len) : ""));
 #endif
-                pos += tLen;
-                len -= tLen;
-                if (res != ErrorCode.Ok)
+                if (!online) throw new ClovershellException("NES Mini is offline");
+                var buff = new byte[len + 4];
+                buff[0] = (byte)cmd;
+                buff[1] = arg;
+                buff[2] = (byte)(len & 0xFF);
+                buff[3] = (byte)((len >> 8) & 0xFF);
+                if (data != null)
+                    Array.Copy(data, 0, buff, 4, len);
+                int tLen = 0;
+                int pos = 0;
+                len += 4;
+                int repeats = 0;
+                while (pos < len)
                 {
-                    if (repeats >= 3) break;
-                    repeats++;
-                    Thread.Sleep(100);
+                    var res = epWriter.Write(buff, pos, len, 1000, out tLen);
+#if VERY_DEBUG
+                    Debug.WriteLine("->[CLV] " + BitConverter.ToString(buff, pos, len));
+#endif
+                    pos += tLen;
+                    len -= tLen;
+                    if (res != ErrorCode.Ok)
+                    {
+                        if (repeats >= 3) break;
+                        repeats++;
+                        Thread.Sleep(100);
+                    }
                 }
+                if (len > 0)
+                    throw new ClovershellException("write error");
             }
-            if (len > 0)
-                throw new ClovershellException("write error");
         }
 
         void shellListenerThreadLoop(object o)
@@ -609,9 +612,7 @@ namespace com.clusterrr.clovershell
         {
             var stdOut = new MemoryStream();
             Execute(command, null, stdOut, null, timeout, throwOnNonZero);
-            var buff = new byte[stdOut.Length];
-            stdOut.Seek(0, SeekOrigin.Begin);
-            stdOut.Read(buff, 0, buff.Length);
+            var buff = stdOut.ToArray();
             return Encoding.UTF8.GetString(buff).Trim();
         }
 
@@ -623,6 +624,7 @@ namespace com.clusterrr.clovershell
             {
                 try
                 {
+                    pendingExecConnections.RemoveAll(o => o.command == command);
                     pendingExecConnections.Add(c);
                     writeUsb(ClovershellCommand.CMD_EXEC_NEW_REQ, 0, Encoding.UTF8.GetBytes(command));
                     int t = 0;
@@ -655,6 +657,7 @@ namespace com.clusterrr.clovershell
                 }
                 finally
                 {
+                    pendingExecConnections.RemoveAll(o => o.command == command);
                     if (c.id >= 0)
                         execConnections[c.id] = null;
                 }
