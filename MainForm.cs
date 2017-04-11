@@ -202,6 +202,7 @@ namespace com.clusterrr.hakchi_gui
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
+                /*
                 try
                 {
                     Clovershell.ExecuteSimple("reboot", 100);
@@ -210,6 +211,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                 }
                 Clovershell.Disconnect();
+                 */
             }
         }
 

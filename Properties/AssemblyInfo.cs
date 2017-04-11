@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("hakchi2")]
-[assembly: AssemblyDescription("Based on hakchi by madmonkey.\r\n\r\nSpecial thanks:\r\nxsnake for Japanese font.\r\nPete Batard/Akeo for Zadig.\r\npbatard for libwdi.\r\nThomas Bleeker for WinUSBNet lib.\r\nbootgod for cartridge database.\r\nMarkovtsev Vadim for SevenZipSharp lib.\r\nNeoRame for Graphics.\r\nNhakin for Game Genie database.\r\nNintendo for my childhood.\r\n\r\nMy site: http://clusterrr.com\r\nEmail: clusterrr@clusterrr.com\r\nPayPal for donations: clusterrr@clusterrr.com")]
+[assembly: AssemblyDescription("Based on hakchi by madmonkey.\r\n\r\nSpecial thanks:\r\nxsnake for Japanese font.\r\nPete Batard/Akeo for Zadig.\r\npbatard for libwdi.\r\nThomas Bleeker for WinUSBNet lib.\r\nbootgod for cartridge database.\r\nMarkovtsev Vadim for SevenZipSharp lib.\r\nNeoRame for Graphics.\r\nNhakin for Game Genie database.\r\nmooware for mooftpserv\r\nNintendo for my childhood.\r\n\r\nMy site: http://clusterrr.com\r\nEmail: clusterrr@clusterrr.com\r\nPayPal for donations: clusterrr@clusterrr.com")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexey 'Cluster' Avdyukhin")]
 [assembly: AssemblyProduct("hakchi2")]

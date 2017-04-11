@@ -6,9 +6,6 @@ using com.clusterrr.clovershell;
 
 namespace mooftpserv
 {
-    /// <summary>
-    /// Default file system handler. Allows access to the whole file system. Supports drives on Windows.
-    /// </summary>
     public class NesMiniFileSystemHandler : IFileSystemHandler
     {
         // list of supported operating systems
