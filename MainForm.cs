@@ -1377,8 +1377,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     StartInfo = new ProcessStartInfo()
                     {
-                        FileName = "explorer.exe",
-                        Arguments = "ftp://root:clover@127.0.0.1:1021/"
+                        FileName = "ftp://root:clover@127.0.0.1:1021/",
                     }
                 }.Start();
             }
@@ -1397,8 +1396,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     StartInfo = new ProcessStartInfo()
                     {
-                        FileName = "telnet.exe",
-                        Arguments = "127.0.0.1 1023"
+                        FileName = "telnet://127.0.0.1:1023",
                     }
                 }.Start();
             }

@@ -514,7 +514,7 @@
     <value>331, 22</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Open FTP in explorer</value>
+    <value>Open FTP client</value>
   </data>
   <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
     <value>328, 6</value>
