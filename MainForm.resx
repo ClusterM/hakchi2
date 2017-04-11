@@ -492,16 +492,16 @@
     <value>&amp;Settings</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>402, 22</value>
+    <value>331, 22</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text" xml:space="preserve">
     <value>Save-State Manager</value>
   </data>
   <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>399, 6</value>
+    <value>328, 6</value>
   </data>
   <data name="FTPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>402, 22</value>
+    <value>331, 22</value>
   </data>
   <data name="FTPToolStripMenuItem.Text" xml:space="preserve">
     <value>FTP server on ftp://root:clover@127.0.0.1:1021</value>
@@ -511,19 +511,28 @@
     <value>False</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>402, 22</value>
+    <value>331, 22</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text" xml:space="preserve">
     <value>Open FTP in explorer</value>
   </data>
   <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>399, 6</value>
+    <value>328, 6</value>
   </data>
   <data name="shellToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>402, 22</value>
+    <value>331, 22</value>
   </data>
   <data name="shellToolStripMenuItem.Text" xml:space="preserve">
-    <value>Shell server on telnet://127.0.0.1:1023 (raw, noecho, login:root)</value>
+    <value>Shell server on telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>331, 22</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Open Telnet client</value>
   </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 20</value>
@@ -3027,6 +3036,12 @@
   </data>
   <data name="&gt;&gt;timerConnectionCheck.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;openTelnetToolStripMenuItem.Name" xml:space="preserve">
+    <value>openTelnetToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;openTelnetToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

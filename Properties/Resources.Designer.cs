@@ -1207,6 +1207,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t start Telnet client, seems like it&apos;s disabled. You need to enable it first, you can do it in “Control Panel“ -&gt; “Programs“ -&gt; Turn Windows features on or off&quot;..
+        /// </summary>
+        internal static string NoTelnet {
+            get {
+                return ResourceManager.GetString("NoTelnet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not found:.
         /// </summary>
         internal static string NotFound {

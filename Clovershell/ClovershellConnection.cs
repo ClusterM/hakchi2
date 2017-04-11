@@ -391,15 +391,15 @@ namespace com.clusterrr.clovershell
                 throw new ClovershellException("kill all exec: write error");
         }
 
-        internal void writeUsb(ClovershellCommand cmd, byte arg, byte[] data = null, int l = -1)
+        internal void writeUsb(ClovershellCommand cmd, byte arg, byte[] data = null, int pos = 0, int l = -1)
         {
             if (!IsOnline) throw new ClovershellException("NES Mini is offline");
             if (epWriter == null) return;
             lock (epWriter)
             {
-                var len = (l >= 0) ? l : ((data != null) ? data.Length : 0);
+                var len = (l >= 0) ? l : ((data != null) ? (data.Length - pos) : 0);
 #if VERY_DEBUG
-                Debug.WriteLine(string.Format("->[CLV] cmd={0}, arg={1:X2}, len={2}, data={3}", cmd, arg, len, data != null ? BitConverter.ToString(data, 0, len) : ""));
+                Debug.WriteLine(string.Format("->[CLV] cmd={0}, arg={1:X2}, len={2}, data={3}", cmd, arg, len, data != null ? BitConverter.ToString(data, pos, len) : ""));
 #endif
                 var buff = new byte[len + 4];
                 buff[0] = (byte)cmd;
@@ -407,9 +407,9 @@ namespace com.clusterrr.clovershell
                 buff[2] = (byte)(len & 0xFF);
                 buff[3] = (byte)((len >> 8) & 0xFF);
                 if (data != null)
-                    Array.Copy(data, 0, buff, 4, len);
+                    Array.Copy(data, pos, buff, 4, len);
                 int tLen = 0;
-                int pos = 0;
+                pos = 0;
                 len += 4;
                 int repeats = 0;
                 while (pos < len)

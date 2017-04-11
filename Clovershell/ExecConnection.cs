@@ -56,7 +56,7 @@ namespace com.clusterrr.clovershell
                 {
                     l = stdin.Read(buffer, 0, buffer.Length);
                     if (l > 0)
-                        connection.writeUsb(ClovershellConnection.ClovershellCommand.CMD_EXEC_STDIN, (byte)id, buffer, l);
+                        connection.writeUsb(ClovershellConnection.ClovershellCommand.CMD_EXEC_STDIN, (byte)id, buffer, 0, l);
                     else
                         break;
                     LastDataTime = DateTime.Now;

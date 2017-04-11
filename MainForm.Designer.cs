@@ -143,6 +143,7 @@
             this.checkedListBoxDefaultGames = new System.Windows.Forms.CheckedListBox();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
             this.timerConnectionCheck = new System.Windows.Forms.Timer(this.components);
+            this.openTelnetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -613,7 +614,8 @@
             this.FTPToolStripMenuItem,
             this.openFTPInExplorerToolStripMenuItem,
             this.toolStripMenuItem7,
-            this.shellToolStripMenuItem});
+            this.shellToolStripMenuItem,
+            this.openTelnetToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
             // 
@@ -954,6 +956,12 @@
             this.timerConnectionCheck.Interval = 500;
             this.timerConnectionCheck.Tick += new System.EventHandler(this.timerConnectionCheck_Tick);
             // 
+            // openTelnetToolStripMenuItem
+            // 
+            resources.ApplyResources(this.openTelnetToolStripMenuItem, "openTelnetToolStripMenuItem");
+            this.openTelnetToolStripMenuItem.Name = "openTelnetToolStripMenuItem";
+            this.openTelnetToolStripMenuItem.Click += new System.EventHandler(this.openTelnetToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1107,6 +1115,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem openFTPInExplorerToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem openTelnetToolStripMenuItem;
     }
 }
 

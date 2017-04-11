@@ -1368,7 +1368,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                Clovershell.ShellEnabled = shellToolStripMenuItem.Checked;
+                openTelnetToolStripMenuItem.Enabled = Clovershell.ShellEnabled = shellToolStripMenuItem.Checked;
             }
             catch (Exception ex)
             {
@@ -1395,6 +1395,26 @@ namespace com.clusterrr.hakchi_gui
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void openTelnetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new Process()
+                {
+                    StartInfo = new ProcessStartInfo()
+                    {
+                        FileName = "telnet.exe",
+                        Arguments = "127.0.0.1 1023"
+                    }
+                }.Start();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, Resources.NoTelnet, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
