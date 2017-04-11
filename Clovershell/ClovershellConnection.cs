@@ -262,7 +262,7 @@ namespace com.clusterrr.clovershell
                         }
                         catch (ClovershellException ex)
                         {
-                            Debug.WriteLine(ex.Message);
+                            Debug.WriteLine(ex.Message + ex.StackTrace);
                             break;
                         }
                     }
@@ -462,8 +462,10 @@ namespace com.clusterrr.clovershell
                     }
                     catch (ClovershellException ex)
                     {
+                        Debug.WriteLine(ex.Message + ex.StackTrace);
+                        if (connection.socket.Connected)
+                            connection.socket.Send(Encoding.ASCII.GetBytes("Error: " + ex.Message));
                         connection.Dispose();
-                        Debug.WriteLine("Error: " + ex.Message + ex.StackTrace);
                     }
                 }
             }
@@ -473,7 +475,7 @@ namespace com.clusterrr.clovershell
             }
             catch (ClovershellException ex)
             {
-                Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message + ex.StackTrace);
             }
             finally
             {

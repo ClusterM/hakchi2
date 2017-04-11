@@ -202,16 +202,6 @@ namespace com.clusterrr.hakchi_gui
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
-                /*
-                try
-                {
-                    Clovershell.ExecuteSimple("reboot", 100);
-                }
-                catch
-                {
-                }
-                Clovershell.Disconnect();
-                 */
             }
         }
 
@@ -394,6 +384,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonBrowseImage_Click(object sender, EventArgs e)
         {
+            openFileDialogImage.Filter = Resources.Images + " (*.bmp;*.png;*.jpg;*.jpeg;*.gif)|*.bmp;*.png;*.jpg;*.jpeg;*.gif|" + Resources.AllFiles + "|*.*";
             if (openFileDialogImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 SetImageForSelectedGame(openFileDialogImage.FileName);
@@ -1297,7 +1288,7 @@ namespace com.clusterrr.hakchi_gui
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
-                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

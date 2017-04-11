@@ -11,7 +11,7 @@ namespace com.clusterrr.clovershell
     internal class ShellConnection : IDisposable
     {
         public readonly ClovershellConnection connection;
-        Socket socket;
+        internal Socket socket;
         internal int id;
         internal Thread shellConnectionThread;
 
@@ -82,8 +82,11 @@ namespace com.clusterrr.clovershell
             catch (ThreadAbortException)
             {
             }
-            catch (ClovershellException)
+            catch (ClovershellException ex)
             {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                if (socket.Connected)
+                    socket.Send(Encoding.ASCII.GetBytes("Error: " + ex.Message));
             }
             finally
             {

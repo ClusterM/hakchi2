@@ -1036,6 +1036,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Images.
+        /// </summary>
+        internal static string Images {
+            get {
+                return ResourceManager.GetString("Images", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please input a preset name for the current games selection..
         /// </summary>
         internal static string InputPreset {
@@ -1275,6 +1284,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string PleaseTryAgainUSB {
             get {
                 return ResourceManager.GetString("PleaseTryAgainUSB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please wait....
+        /// </summary>
+        internal static string PleaseWait {
+            get {
+                return ResourceManager.GetString("PleaseWait", resourceCulture);
             }
         }
         

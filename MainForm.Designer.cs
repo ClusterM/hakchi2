@@ -99,6 +99,7 @@
             this.openFTPInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
             this.shellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openTelnetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -143,7 +144,6 @@
             this.checkedListBoxDefaultGames = new System.Windows.Forms.CheckedListBox();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
             this.timerConnectionCheck = new System.Windows.Forms.Timer(this.components);
-            this.openTelnetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -655,6 +655,12 @@
             resources.ApplyResources(this.shellToolStripMenuItem, "shellToolStripMenuItem");
             this.shellToolStripMenuItem.Click += new System.EventHandler(this.shellToolStripMenuItem_Click);
             // 
+            // openTelnetToolStripMenuItem
+            // 
+            resources.ApplyResources(this.openTelnetToolStripMenuItem, "openTelnetToolStripMenuItem");
+            this.openTelnetToolStripMenuItem.Name = "openTelnetToolStripMenuItem";
+            this.openTelnetToolStripMenuItem.Click += new System.EventHandler(this.openTelnetToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -955,12 +961,6 @@
             this.timerConnectionCheck.Enabled = true;
             this.timerConnectionCheck.Interval = 500;
             this.timerConnectionCheck.Tick += new System.EventHandler(this.timerConnectionCheck_Tick);
-            // 
-            // openTelnetToolStripMenuItem
-            // 
-            resources.ApplyResources(this.openTelnetToolStripMenuItem, "openTelnetToolStripMenuItem");
-            this.openTelnetToolStripMenuItem.Name = "openTelnetToolStripMenuItem";
-            this.openTelnetToolStripMenuItem.Click += new System.EventHandler(this.openTelnetToolStripMenuItem_Click);
             // 
             // MainForm
             // 

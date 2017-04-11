@@ -1,14 +1,10 @@
-﻿using com.clusterrr.clovershell;
-using com.clusterrr.hakchi_gui.Properties;
+﻿using com.clusterrr.hakchi_gui.Properties;
 using SevenZip;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -24,8 +20,9 @@ namespace com.clusterrr.hakchi_gui
         public SaveStateManager(Dictionary<string, string> gameNames)
         {
             InitializeComponent();
+            labelLoading.Text = Resources.PleaseWait;
             this.gameNames = gameNames;
-            openFileDialog.Filter = saveFileDialog.Filter = Resources.SavesFlterName + "|*.clvs|" + Resources.AllFiles + "|*.*";
+            openFileDialog.Filter = saveFileDialog.Filter = Resources.SavesFlterName + " (*.clvs)|*.clvs|" + Resources.AllFiles + "|*.*";
             try
             {
                 new Thread(LoadSaveStatesList).Start();
@@ -33,7 +30,7 @@ namespace com.clusterrr.hakchi_gui
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
-                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
             }
 
@@ -244,7 +241,7 @@ namespace com.clusterrr.hakchi_gui
                     if (!WaitingClovershellForm.WaitForDevice(this))
                         return false;
                     return true;
-                }))) return; 
+                }))) return;
                 foreach (var file in files)
                 {
                     var clovershell = MainForm.Clovershell;

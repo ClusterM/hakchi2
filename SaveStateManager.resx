@@ -126,16 +126,16 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="exportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 22</value>
+    <value>153, 22</value>
   </data>
   <data name="exportToolStripMenuItem.Text" xml:space="preserve">
-    <value>Export</value>
+    <value>Export selected</value>
   </data>
   <data name="importToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="importToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 22</value>
+    <value>153, 22</value>
   </data>
   <data name="importToolStripMenuItem.Text" xml:space="preserve">
     <value>Import</value>
@@ -144,13 +144,13 @@
     <value>False</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 22</value>
+    <value>153, 22</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Delete</value>
+    <value>Delete selected</value>
   </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 70</value>
+    <value>154, 70</value>
   </data>
   <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
     <value>contextMenuStrip</value>
@@ -172,7 +172,7 @@
     <value>175, 23</value>
   </data>
   <data name="buttonExport.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="buttonExport.Text" xml:space="preserve">
     <value>Export selected</value>
@@ -205,7 +205,7 @@
     <value>175, 23</value>
   </data>
   <data name="buttonImport.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="buttonImport.Text" xml:space="preserve">
     <value>Import</value>
@@ -238,7 +238,7 @@
     <value>175, 23</value>
   </data>
   <data name="buttonDelete.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="buttonDelete.Text" xml:space="preserve">
     <value>Delete selected</value>
@@ -355,7 +355,7 @@
     <value>710, 433</value>
   </data>
   <data name="listViewSaves.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;listViewSaves.Name" xml:space="preserve">
     <value>listViewSaves</value>
