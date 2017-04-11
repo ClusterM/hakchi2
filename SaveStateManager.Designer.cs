@@ -30,11 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaveStateManager));
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.colCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFlags = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,60 +42,14 @@
             this.toolStripStatusLabelSize = new System.Windows.Forms.ToolStripStatusLabel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.timerCellHover = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.listViewSaves = new System.Windows.Forms.ListView();
+            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colFlags = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dataGridView
-            // 
-            this.dataGridView.AllowUserToAddRows = false;
-            this.dataGridView.AllowUserToDeleteRows = false;
-            this.dataGridView.AllowUserToOrderColumns = true;
-            this.dataGridView.AllowUserToResizeRows = false;
-            resources.ApplyResources(this.dataGridView, "dataGridView");
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colCode,
-            this.colName,
-            this.colSize,
-            this.colFlags});
-            this.dataGridView.ContextMenuStrip = this.contextMenuStrip;
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.ReadOnly = true;
-            this.dataGridView.RowHeadersVisible = false;
-            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellMouseEnter);
-            this.dataGridView.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellMouseLeave);
-            this.dataGridView.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_CellMouseMove);
-            this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
-            // 
-            // colCode
-            // 
-            resources.ApplyResources(this.colCode, "colCode");
-            this.colCode.Name = "colCode";
-            this.colCode.ReadOnly = true;
-            // 
-            // colName
-            // 
-            resources.ApplyResources(this.colName, "colName");
-            this.colName.Name = "colName";
-            this.colName.ReadOnly = true;
-            // 
-            // colSize
-            // 
-            this.colSize.FillWeight = 30F;
-            resources.ApplyResources(this.colSize, "colSize");
-            this.colSize.Name = "colSize";
-            this.colSize.ReadOnly = true;
-            // 
-            // colFlags
-            // 
-            this.colFlags.FillWeight = 30F;
-            resources.ApplyResources(this.colFlags, "colFlags");
-            this.colFlags.Name = "colFlags";
-            this.colFlags.ReadOnly = true;
             // 
             // contextMenuStrip
             // 
@@ -110,6 +59,9 @@
             this.deleteToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
             resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
+            this.contextMenuStrip.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip_Closed);
+            this.contextMenuStrip.Opened += new System.EventHandler(this.contextMenuStrip_Opened);
+            this.contextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip_ItemClicked);
             // 
             // exportToolStripMenuItem
             // 
@@ -176,24 +128,51 @@
             this.openFileDialog.DefaultExt = "clvs";
             this.openFileDialog.Multiselect = true;
             // 
-            // timerCellHover
+            // listViewSaves
             // 
-            this.timerCellHover.Interval = 300;
-            this.timerCellHover.Tick += new System.EventHandler(this.timerCellHover_Tick);
+            resources.ApplyResources(this.listViewSaves, "listViewSaves");
+            this.listViewSaves.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colName,
+            this.colCode,
+            this.colSize,
+            this.colFlags});
+            this.listViewSaves.ContextMenuStrip = this.contextMenuStrip;
+            this.listViewSaves.Name = "listViewSaves";
+            this.listViewSaves.UseCompatibleStateImageBehavior = false;
+            this.listViewSaves.View = System.Windows.Forms.View.Details;
+            this.listViewSaves.ItemMouseHover += new System.Windows.Forms.ListViewItemMouseHoverEventHandler(this.listViewSaves_ItemMouseHover);
+            this.listViewSaves.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewSaves_ItemSelectionChanged);
+            this.listViewSaves.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewSaves_KeyDown);
+            this.listViewSaves.MouseMove += new System.Windows.Forms.MouseEventHandler(this.listViewSaves_MouseMove);
+            // 
+            // colName
+            // 
+            resources.ApplyResources(this.colName, "colName");
+            // 
+            // colCode
+            // 
+            resources.ApplyResources(this.colCode, "colCode");
+            // 
+            // colSize
+            // 
+            resources.ApplyResources(this.colSize, "colSize");
+            // 
+            // colFlags
+            // 
+            resources.ApplyResources(this.colFlags, "colFlags");
             // 
             // SaveStateManager
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.listViewSaves);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonImport);
             this.Controls.Add(this.buttonExport);
-            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.labelLoading);
             this.Name = "SaveStateManager";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SaveStateManager_FormClosed);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
@@ -204,7 +183,6 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button buttonExport;
         private System.Windows.Forms.Button buttonImport;
         private System.Windows.Forms.Button buttonDelete;
@@ -217,10 +195,10 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSize;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFlags;
-        private System.Windows.Forms.Timer timerCellHover;
+        private System.Windows.Forms.ListView listViewSaves;
+        private System.Windows.Forms.ColumnHeader colCode;
+        private System.Windows.Forms.ColumnHeader colName;
+        private System.Windows.Forms.ColumnHeader colSize;
+        private System.Windows.Forms.ColumnHeader colFlags;
     }
 }

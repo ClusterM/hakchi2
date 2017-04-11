@@ -393,13 +393,14 @@ namespace com.clusterrr.clovershell
 
         internal void writeUsb(ClovershellCommand cmd, byte arg, byte[] data = null, int l = -1)
         {
+            if (!IsOnline) throw new ClovershellException("NES Mini is offline");
+            if (epWriter == null) return;
             lock (epWriter)
             {
                 var len = (l >= 0) ? l : ((data != null) ? data.Length : 0);
 #if VERY_DEBUG
                 Debug.WriteLine(string.Format("->[CLV] cmd={0}, arg={1:X2}, len={2}, data={3}", cmd, arg, len, data != null ? BitConverter.ToString(data, 0, len) : ""));
 #endif
-                if (!online) throw new ClovershellException("NES Mini is offline");
                 var buff = new byte[len + 4];
                 buff[0] = (byte)cmd;
                 buff[1] = arg;
@@ -433,9 +434,9 @@ namespace com.clusterrr.clovershell
 
         void shellListenerThreadLoop(object o)
         {
+            var server = o as TcpListener;
             try
             {
-                var server = o as TcpListener;
                 while (true)
                 {
                     while (!server.Pending()) Thread.Sleep(100);
@@ -474,6 +475,10 @@ namespace com.clusterrr.clovershell
             {
                 Debug.WriteLine(ex.Message);
             }
+            finally
+            {
+                server.Stop();
+            }
             shellEnabled = false;
         }
 
@@ -499,7 +504,7 @@ namespace com.clusterrr.clovershell
         {
             try
             {
-                var connection = (from c in pendingExecConnections where c.command == command select c).First();
+                var connection = (from c in pendingExecConnections where c.command == command select c).Last();
                 pendingExecConnections.Remove(connection);
                 //Debug.WriteLine("Executing: " + command);
                 connection.id = arg;
@@ -592,6 +597,7 @@ namespace com.clusterrr.clovershell
         }
         public int Ping()
         {
+            if (!IsOnline) throw new ClovershellException("NES Mini is offline");
             var rnd = new Random();
             var data = new byte[4];
             rnd.NextBytes(data);
@@ -618,13 +624,13 @@ namespace com.clusterrr.clovershell
 
         public int Execute(string command, Stream stdin = null, Stream stdout = null, Stream stderr = null, int timeout = 0, bool throwOnNonZero = false)
         {
+            if (!IsOnline) throw new ClovershellException("NES Mini is offline");
             if (throwOnNonZero && stderr == null)
                 stderr = new MemoryStream();
             using (var c = new ExecConnection(this, command, stdin, stdout, stderr))
             {
                 try
                 {
-                    pendingExecConnections.RemoveAll(o => o.command == command);
                     pendingExecConnections.Add(c);
                     writeUsb(ClovershellCommand.CMD_EXEC_NEW_REQ, 0, Encoding.UTF8.GetBytes(command));
                     int t = 0;
@@ -657,7 +663,6 @@ namespace com.clusterrr.clovershell
                 }
                 finally
                 {
-                    pendingExecConnections.RemoveAll(o => o.command == command);
                     if (c.id >= 0)
                         execConnections[c.id] = null;
                 }

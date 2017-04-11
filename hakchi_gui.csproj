@@ -91,6 +91,21 @@
     <Compile Include="Clovershell\ExecConnection.cs" />
     <Compile Include="Clovershell\ShellConnection.cs" />
     <Compile Include="ConfigIni.cs" />
+    <Compile Include="FileBrowserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileBrowserForm.Designer.cs">
+      <DependentUpon>FileBrowserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FtpServer\NesMiniFileSystemHandler.cs" />
+    <Compile Include="FtpServer\NesMiniAuthHandler.cs" />
+    <Compile Include="FtpServer\DebugLogHandler.cs" />
+    <Compile Include="FtpServer\FileSystemHelper.cs" />
+    <Compile Include="FtpServer\IAuthHandler.cs" />
+    <Compile Include="FtpServer\IFileSystemHandler.cs" />
+    <Compile Include="FtpServer\ILogHandler.cs" />
+    <Compile Include="FtpServer\Server.cs" />
+    <Compile Include="FtpServer\Session.cs" />
     <Compile Include="GameGenieCodeAddModForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -405,6 +420,9 @@
     </Compile>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileBrowserForm.resx">
+      <DependentUpon>FileBrowserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FoldersManagerForm.de-De.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>

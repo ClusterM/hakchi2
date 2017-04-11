@@ -43,14 +43,19 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                Invoke(new Action(delegate
+                if (!(bool)Invoke(new Func<bool>(delegate
                 {
-                    dataGridView.Visible = false;
+                    listViewSaves.Visible = false;
                     exportToolStripMenuItem.Enabled = importToolStripMenuItem.Enabled =
                         buttonExport.Enabled = buttonImport.Enabled = false;
                     if (!WaitingClovershellForm.WaitForDevice(this))
-                        Close();
-                }));
+                        return false;
+                    return true;
+                })))
+                {
+                    Close();
+                    return;
+                }
 
                 var clovershell = MainForm.Clovershell;
                 WorkerForm.ShowSplashScreen();
@@ -82,13 +87,13 @@ namespace com.clusterrr.hakchi_gui
                 var lines = Encoding.UTF8.GetString(output.ToArray()).Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 Invoke(new Action(delegate
                 {
-                    dataGridView.Rows.Clear();
+                    listViewSaves.Items.Clear();
                     foreach (var line in lines)
                     {
                         var l = line;
                         var code = l.Substring(0, l.IndexOf(' '));
                         l = l.Substring(l.IndexOf(' ') + 1);
-                        var size = int.Parse(l.Substring(0, l.IndexOf(' ')));
+                        var size = l.Substring(0, l.IndexOf(' ')) + "KB";
                         l = l.Substring(l.IndexOf(' ') + 1);
                         var flags = l.Substring(0, l.IndexOf(' ')).Replace("F", "");
                         l = l.Substring(l.IndexOf(' ') + 1);
@@ -100,13 +105,16 @@ namespace com.clusterrr.hakchi_gui
                             else
                                 name = Resources.UnknownGame;
                         }
-                        var r = dataGridView.Rows.Add();
-                        dataGridView.Rows[r].Cells["colCode"].Value = code;
-                        dataGridView.Rows[r].Cells["colName"].Value = name;
-                        dataGridView.Rows[r].Cells["colSize"].Value = size;
-                        dataGridView.Rows[r].Cells["colFlags"].Value = flags;
+                        listViewSaves.Items.Add(new ListViewItem(new ListViewItem.ListViewSubItem[] {
+                            new  ListViewItem.ListViewSubItem() { Name = "colName", Text = name},
+                            new  ListViewItem.ListViewSubItem() { Name = "colCode", Text = code},
+                            new  ListViewItem.ListViewSubItem() { Name = "colSize", Text = size},
+                            new  ListViewItem.ListViewSubItem() { Name = "colFlags", Text = flags}                           
+                        }, 0));
+                        listViewSaves.Sorting = SortOrder.Ascending;
+                        listViewSaves.Sort();
                     }
-                    dataGridView.Visible = true;
+                    listViewSaves.Visible = true;
                     importToolStripMenuItem.Enabled = true;
                     buttonImport.Enabled = true;
                 }));
@@ -128,27 +136,14 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void dataGridView_SelectionChanged(object sender, EventArgs e)
-        {
-            exportToolStripMenuItem.Enabled = deleteToolStripMenuItem.Enabled =
-                buttonExport.Enabled = buttonDelete.Enabled = dataGridView.SelectedRows.Count > 0;
-            if (dataGridView.SelectedRows.Count > 0)
-            {
-                var size = 0;
-                foreach (DataGridViewRow game in dataGridView.SelectedRows)
-                    if (game.Cells["colSize"].Value != null)
-                        size += (int)game.Cells["colSize"].Value;
-                toolStripStatusLabelSize.Text = string.Format(Resources.SizeOfSaves, size);
-            }
-            else toolStripStatusLabelSize.Text = "";
-        }
-
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(this, Resources.DeleteSavesQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 != System.Windows.Forms.DialogResult.Yes)
                 return;
-            var savesToDelete = dataGridView.SelectedRows;
+            var savesToDelete = new List<ListViewItem>();
+            foreach (ListViewItem item in listViewSaves.SelectedItems)
+                savesToDelete.Add(item);
             new Thread(deleteRowsThread).Start(savesToDelete);
         }
 
@@ -156,19 +151,20 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                var savesToDelete = (DataGridViewSelectedRowCollection)o;
-                Invoke(new Action(delegate
+                var savesToDelete = (IEnumerable<ListViewItem>)o;
+                if (!(bool)Invoke(new Func<bool>(delegate
                 {
                     if (!WaitingClovershellForm.WaitForDevice(this))
-                        return;
-                }));
-                foreach (DataGridViewRow game in savesToDelete)
+                        return false;
+                    return true;
+                }))) return;
+                foreach (ListViewItem game in savesToDelete)
                 {
                     var clovershell = MainForm.Clovershell;
-                    clovershell.ExecuteSimple("rm -rf /var/lib/clover/profiles/0/" + game.Cells["colCode"].Value, 3000, true);
+                    clovershell.ExecuteSimple("rm -rf /var/lib/clover/profiles/0/" + game.SubItems["colCode"].Text, 3000, true);
                     Invoke(new Action(delegate
                     {
-                        dataGridView.Rows.Remove(game);
+                        listViewSaves.Items.Remove(game);
                     }));
                 }
             }
@@ -192,10 +188,10 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                foreach (DataGridViewRow game in dataGridView.SelectedRows)
+                foreach (ListViewItem game in listViewSaves.SelectedItems)
                 {
-                    saveFileDialog.FileName = game.Cells["colName"].Value + ".clvs";
-                    var name = game.Cells["colName"].Value != null ? game.Cells["colName"].Value.ToString() : "save";
+                    saveFileDialog.FileName = game.SubItems["colName"].Text + ".clvs";
+                    var name = game.SubItems["colName"].Text != null ? game.SubItems["colName"].Text : "save";
                     saveFileDialog.Title = name;
                     if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
@@ -204,7 +200,7 @@ namespace com.clusterrr.hakchi_gui
                         var clovershell = MainForm.Clovershell;
                         using (var save = new MemoryStream())
                         {
-                            clovershell.Execute("cd /var/lib/clover/profiles/0 && tar -cz " + game.Cells["colCode"].Value, null, save, null, 10000, true);
+                            clovershell.Execute("cd /var/lib/clover/profiles/0 && tar -cz " + game.SubItems["colCode"].Text, null, save, null, 10000, true);
                             var buffer = save.ToArray();
                             File.WriteAllBytes(saveFileDialog.FileName, buffer);
                         }
@@ -231,6 +227,9 @@ namespace com.clusterrr.hakchi_gui
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 var files = openFileDialog.FileNames;
+                listViewSaves.Visible = false;
+                buttonDelete.Enabled = buttonExport.Enabled = buttonImport.Enabled =
+                    deleteToolStripMenuItem.Enabled = exportToolStripMenuItem.Enabled = importToolStripMenuItem.Enabled = false;
                 new Thread(importSaves).Start(files);
             }
         }
@@ -240,11 +239,12 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 var files = (string[])o;
-                Invoke(new Action(delegate
+                if (!(bool)Invoke(new Func<bool>(delegate
                 {
                     if (!WaitingClovershellForm.WaitForDevice(this))
-                        return;
-                }));
+                        return false;
+                    return true;
+                }))) return; 
                 foreach (var file in files)
                 {
                     var clovershell = MainForm.Clovershell;
@@ -284,44 +284,6 @@ namespace com.clusterrr.hakchi_gui
             catch { }
         }
 
-        private void dataGridView_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            timerCellHover.Enabled = true;
-        }
-
-        private void dataGridView_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            timerCellHover.Enabled = false;
-            if (imagesForm != null)
-                imagesForm.Hide();
-        }
-
-        private void dataGridView_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (lastPosition.Equals(Cursor.Position)) return;
-            lastPosition = Cursor.Position;
-            if (imagesForm != null)
-                imagesForm.Hide();
-            timerCellHover.Enabled = false;
-            timerCellHover.Enabled = true;
-        }
-
-        private void timerCellHover_Tick(object sender, EventArgs e)
-        {
-            timerCellHover.Enabled = false;
-            if (!MainForm.Clovershell.IsOnline) return;
-            for (int i = 0; i < dataGridView.RowCount; i++)
-            {
-                var rect = dataGridView.RectangleToScreen(dataGridView.GetRowDisplayRectangle(i, true));
-                if (Cursor.Position.Y >= rect.Top && Cursor.Position.Y <= rect.Bottom)
-                {
-                    var row = dataGridView.Rows[i];
-                    if (row.Cells["colFlags"].Value.ToString().Equals("S")) return; // No images?
-                    new Thread(loadImagesThread).Start(row.Cells["colCode"].Value);
-                }
-            }
-        }
-
         // Mouse on cell? Show some screenshots to remember game!
         void loadImagesThread(object s)
         {
@@ -357,28 +319,21 @@ namespace com.clusterrr.hakchi_gui
 
                 }
                 Debug.WriteLine("Loaded " + images.Count + " imags");
+                if (images.Count == 0) return;
+                if (menuOpened) return; // Right click...
                 Invoke(new Action(delegate
                 {
                     // Maybe it's too late?
-                    string name = null;
-                    for (int i = 0; i < dataGridView.RowCount; i++)
-                    {
-                        var rect = dataGridView.RectangleToScreen(dataGridView.GetRowDisplayRectangle(i, true));
-                        if (Cursor.Position.Y >= rect.Top && Cursor.Position.Y <= rect.Bottom)
-                        {
-                            var row = dataGridView.Rows[i];
-                            if (row.Cells["colCode"].Value.ToString() != code)
-                                return;
-                            name = row.Cells["colName"].Value.ToString();
-                        }
-                    }
-                    if (name == null) return; // No rows at all
+                    var p = listViewSaves.PointToClient(Cursor.Position);
+                    var item = listViewSaves.GetItemAt(p.X, p.Y);
+                    if (item == null) return; // No rows at all
+                    if (item.SubItems["colCode"].Text != code) return; // Other item
 
                     if (imagesForm == null)
                         imagesForm = new ImagesForm();
                     imagesForm.Left = Cursor.Position.X + 5;
                     imagesForm.Top = Cursor.Position.Y + 5;
-                    imagesForm.Text = name;
+                    imagesForm.Text = item.SubItems["colName"].Text;
                     imagesForm.ShowImages(images);
                     imagesForm.Show();
                 }));
@@ -386,6 +341,59 @@ namespace com.clusterrr.hakchi_gui
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void listViewSaves_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            exportToolStripMenuItem.Enabled = deleteToolStripMenuItem.Enabled =
+                buttonExport.Enabled = buttonDelete.Enabled = listViewSaves.SelectedItems.Count > 0;
+            if (listViewSaves.SelectedItems.Count > 0)
+            {
+                var size = 0;
+                foreach (ListViewItem game in listViewSaves.SelectedItems)
+                    if (game.SubItems["colSize"].Text != null)
+                        size += int.Parse(game.SubItems["colSize"].Text.Replace("KB", ""));
+                toolStripStatusLabelSize.Text = string.Format(Resources.SizeOfSaves, size);
+            }
+            else toolStripStatusLabelSize.Text = "";
+        }
+
+        private void listViewSaves_ItemMouseHover(object sender, ListViewItemMouseHoverEventArgs e)
+        {
+            new Thread(loadImagesThread).Start(e.Item.SubItems["colCode"].Text);
+        }
+
+        private void listViewSaves_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (lastPosition.Equals(Cursor.Position)) return;
+            lastPosition = Cursor.Position;
+            if (imagesForm != null)
+                imagesForm.Hide();
+        }
+
+        bool menuOpened = false;
+        private void contextMenuStrip_Opened(object sender, EventArgs e)
+        {
+            menuOpened = true;
+        }
+
+        private void contextMenuStrip_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+        {
+            menuOpened = false;
+        }
+
+        private void contextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (imagesForm != null)
+                imagesForm.Hide();
+        }
+
+        private void listViewSaves_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete && buttonDelete.Enabled)
+            {
+                buttonDelete_Click(null, null);
             }
         }
     }

@@ -44,5 +44,10 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
+
+        private void ImagesForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+        }
     }
 }

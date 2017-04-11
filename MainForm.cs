@@ -22,6 +22,7 @@ namespace com.clusterrr.hakchi_gui
         public static ClovershellConnection Clovershell;
         //readonly string UBootDump;
         readonly string KernelDump;
+        mooftpserv.Server ftpServer;
 
         NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
             new NesDefaultGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros.", Size = 571031 },
@@ -164,16 +165,12 @@ namespace com.clusterrr.hakchi_gui
 
                 Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
                 Clovershell.OnConnected += Clovershell_OnConnected;
-#if DEBUG
-                try
-                {
-                    Clovershell.ShellEnabled = true;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message + ex.StackTrace);
-                }
-#endif
+
+                ftpServer = new mooftpserv.Server();
+                ftpServer.AuthHandler = new mooftpserv.NesMiniAuthHandler();
+                ftpServer.FileSystemHandler = new mooftpserv.NesMiniFileSystemHandler(Clovershell);
+                ftpServer.LogHandler = new mooftpserv.DebugLogHandler();
+                ftpServer.LocalPort = 1021;
             }
             catch (Exception ex)
             {
@@ -186,6 +183,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
+                ConfigIni.CustomFlashed = true; // Just in case of new installation
                 var region = Clovershell.ExecuteSimple("cat /etc/clover/REGION", 500, true);
                 Debug.WriteLine(string.Format("Detected region: {0}", region));
                 if (region == "JPN")
@@ -515,8 +513,14 @@ namespace com.clusterrr.hakchi_gui
         {
             Debug.WriteLine("Closing main form");
             SaveConfig();
+            ftpServer.Stop();
             Clovershell.Dispose();
         }
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Process.GetCurrentProcess().Kill(); // Suicide! Just easy and dirty way to kill all threads.
+        }
+
 
         struct CountResult
         {
@@ -612,6 +616,39 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        DialogResult RequireKernelDump()
+        {
+            if (File.Exists(KernelDump)) return DialogResult.OK; // OK - already dumped
+            // Asking user to dump kernel
+            if (MessageBox.Show(Resources.NoKernelWarning, Resources.NoKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (DoKernelDump())
+                    return DialogResult.Yes; // Succesfully dumped
+                else
+                    return DialogResult.No; // Not dumped for some other reason
+            }
+            else return DialogResult.No; // Kernel dump cancelled by user
+        }
+
+        DialogResult RequirePatchedKernel()
+        {
+            if (ConfigIni.CustomFlashed) return DialogResult.OK; // OK - already flashed
+            var kernelDump = RequireKernelDump(); // We need kernel dump first
+            if (kernelDump == System.Windows.Forms.DialogResult.No)
+                return DialogResult.No; // Abort if user has not dumped it
+            if (MessageBox.Show((kernelDump == DialogResult.Yes ? (Resources.KernelDumped + "\r\n") : "") +
+                    Resources.CustomWarning, Resources.CustomKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                    == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (FlashCustomKernel())
+                    return DialogResult.Yes; // Succesfully flashed
+                else
+                    return DialogResult.No; // Not flashed for some other reason
+            }
+            else return DialogResult.No;
+        }
+
         private void buttonStart_Click(object sender, EventArgs e)
         {
             SaveConfig();
@@ -622,28 +659,10 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(Resources.SelectAtLeast, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            bool dumpedKernelNow = false;
-            if (!File.Exists(KernelDump))
-            {
-                if (MessageBox.Show(Resources.NoKernelWarning, Resources.NoKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                    == System.Windows.Forms.DialogResult.Yes)
-                {
-                    if (!DoKernelDump()) return;
-                    dumpedKernelNow = true;
-                }
-                else return;
-            }
-            if (!ConfigIni.CustomFlashed)
-            {
-                if (MessageBox.Show((dumpedKernelNow ? (Resources.KernelDumped + "\r\n") : "") +
-                    Resources.CustomWarning, Resources.CustomKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                    == System.Windows.Forms.DialogResult.Yes)
-                {
-                    if (!FlashCustomKernel()) return;
-                    MessageBox.Show(Resources.DoneYouCanUpload + "\r\n" + Resources.PressOkToContinue, Resources.Congratulations, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else return;
-            }
+            var kernel = RequirePatchedKernel();
+            if (kernel == DialogResult.No) return;
+            if (kernel == DialogResult.Yes) // Message for new user
+                MessageBox.Show(Resources.DoneYouCanUpload + "\r\n" + Resources.PressOkToContinue, Resources.Congratulations, MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (UploadGames())
             {
                 MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -850,11 +869,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void flashCustomKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(KernelDump))
-            {
-                MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            if (RequireKernelDump() == DialogResult.No) return;
             if (MessageBox.Show(Resources.CustomKernelQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == System.Windows.Forms.DialogResult.Yes)
             {
@@ -1230,6 +1245,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void installModules(string[] add = null)
         {
+            if (RequireKernelDump() == DialogResult.No) return;
             var form = new SelectModsForm(false, true, add);
             form.Text = Resources.SelectModsInstall;
             if (form.ShowDialog() == DialogResult.OK)
@@ -1245,11 +1261,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void uninstallModulesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(KernelDump))
-            {
-                MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            if (RequireKernelDump() == DialogResult.No) return;
             var form = new SelectModsForm(true, false);
             form.Text = Resources.SelectModsUninstall;
             if (form.ShowDialog() == DialogResult.OK)
@@ -1271,6 +1283,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void saveSettingsToNESMiniNowToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (RequirePatchedKernel() == DialogResult.No) return;
             try
             {
                 if (WaitingClovershellForm.WaitForDevice(this))
@@ -1288,11 +1301,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void saveStateManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!ConfigIni.CustomFlashed)
-            {
-                MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            if (RequirePatchedKernel() == DialogResult.No) return;
             var gameNames = new Dictionary<string, string>();
             foreach (var game in defaultNesGames)
                 gameNames[game.Code] = game.Name;
@@ -1305,6 +1314,86 @@ namespace com.clusterrr.hakchi_gui
             }
             var form = new SaveStateManager(gameNames);
             form.ShowDialog();
+        }
+
+        private void FTPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FTPToolStripMenuItem.Checked)
+            {
+                try
+                {
+                    var ftpThread = new Thread(delegate()
+                    {
+                        try
+                        {
+                            ftpServer.Run();
+                        }
+                        catch (ThreadAbortException)
+                        {
+                        }
+                        catch (Exception ex)
+                        {
+                            try
+                            {
+                                ftpServer.Stop();
+                            }
+                            catch { }
+                            Debug.WriteLine(ex.Message + ex.StackTrace);
+                            Invoke(new Action(delegate()
+                                {
+                                    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    FTPToolStripMenuItem.Checked = false;
+                                }));
+                        }
+                    });
+                    ftpThread.Start();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message + ex.StackTrace);
+                    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    FTPToolStripMenuItem.Checked = false;
+                }
+            }
+            else
+            {
+                ftpServer.Stop();
+            }
+            openFTPInExplorerToolStripMenuItem.Enabled = FTPToolStripMenuItem.Checked;
+        }
+
+        private void shellToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Clovershell.ShellEnabled = shellToolStripMenuItem.Checked;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                shellToolStripMenuItem.Checked = false;
+            }
+        }
+
+        private void openFTPInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new Process()
+                {
+                    StartInfo = new ProcessStartInfo()
+                    {
+                        FileName = "explorer.exe",
+                        Arguments = "ftp://root:clover@127.0.0.1:1021/"
+                    }
+                }.Start();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

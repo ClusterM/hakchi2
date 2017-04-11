@@ -20,6 +20,7 @@ namespace com.clusterrr.clovershell
             this.connection = connection;
             this.socket = socket;
             id = -1;
+            //socket.Send(new byte[] { 0xFF, 0xFD, 0x2D });
         }
 
         internal void shellConnectionLoop()
