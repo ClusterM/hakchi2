@@ -587,7 +587,7 @@
     <value>Unknown game</value>
   </data>
   <data name="NoTelnet" xml:space="preserve">
-    <value>Can't start Telnet client, seems like it's disabled. You need to enable it first, you can do it in “Control Panel“ -&gt; “Programs“ -&gt; Turn Windows features on or off".</value>
+    <value>Can't start Telnet client, seems like it's disabled. You need to enable it first, you can do it in “Control Panel“ -&gt; “Programs“ -&gt; "Turn Windows features on or off".</value>
   </data>
   <data name="Images" xml:space="preserve">
     <value>Images</value>
