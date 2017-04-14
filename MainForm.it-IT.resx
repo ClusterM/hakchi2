@@ -118,6 +118,9 @@
   <data name="exitToolStripMenuItem.Text">
     <value>$Esci</value>
   </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>FAQ (domande frequenti)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;File</value>
   </data>
@@ -190,6 +193,12 @@
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Moduli</value>
   </data>
+  <data name="openFileDialogImage.Title">
+    <value>Seleziona la copertina per il gioco</value>
+  </data>
+  <data name="openFileDialogNes.Title">
+    <value>Seleziona Giochi</value>
+  </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
     <value>Giochi originali in root -&gt; giochi divisi in parti uguali</value>
   </data>
@@ -249,5 +258,23 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Utilizza X/Y sul Classic Controller come autofire per A/B</value>
+  </data>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>FTP server on ftp://root:clover@127.0.0.1:1021</value>
+  </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>Open FTP client</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>Open Telnet client</value>
+  </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>Save-State Manager</value>
+  </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Telnet server on telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;Tools</value>
   </data>
 </root>

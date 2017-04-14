@@ -322,6 +322,9 @@
   <data name="YesForAll">
     <value>Tak dla wszystkich</value>
   </data>
+  <data name="AllFiles">
+    <value>All files</value>
+  </data>
   <data name="DeleteElement">
     <value>Do you really want to delete "{0}"?</value>
   </data>
@@ -331,11 +334,20 @@
   <data name="DeleteGame">
     <value>Do you really want to delete "{0}" game?</value>
   </data>
+  <data name="DeleteSavesQ">
+    <value>Do you really want to delete those save-states?</value>
+  </data>
   <data name="FolderNameTrashBin">
     <value>Recycle Bin</value>
   </data>
   <data name="GameTooBig">
     <value>Sorry, game "{0}" is too big.</value>
+  </data>
+  <data name="GamesAndApps">
+    <value>Games and apps</value>
+  </data>
+  <data name="Images">
+    <value>Images</value>
   </data>
   <data name="InstallingMods">
     <value>Installing mods...</value>
@@ -344,7 +356,16 @@
     <value>Sorry, there are {0}MBytes of games, it's too much.</value>
   </data>
   <data name="MemoryStats">
-    <value>Total writable memory size: {0:F1}MBytes|Available memory for games: {1:F1}MBytes|Used by save-states: {2:F1}MBytes|Used by other files: {3:F1}MBytes</value>
+    <value>Total writable memory size: {0:F1}MBytes|Available memory for games: {1:F1}MBytes|Used by saves: {2:F1}MBytes|Used by other files: {3:F1}MBytes</value>
+  </data>
+  <data name="NoTelnet">
+    <value>Can't start Telnet client, seems like it's disabled. You need to enable it first, you can do it in "Control Panel" -&gt; "Programs" -&gt; "Turn Windows features on or off".</value>
+  </data>
+  <data name="PleaseWait">
+    <value>Please wait...</value>
+  </data>
+  <data name="SavesFlterName">
+    <value>NES Mini save-state backups</value>
   </data>
   <data name="SelectModsInstall">
     <value>Select the modules to install on your NES Mini.</value>
@@ -352,8 +373,14 @@
   <data name="SelectModsUninstall">
     <value>Select the modules to remove from your NES Mini.</value>
   </data>
+  <data name="SizeOfSaves">
+    <value>Size of selected save-states:</value>
+  </data>
   <data name="UninstallingMods">
     <value>Uninstalling mods...</value>
+  </data>
+  <data name="UnknownGame">
+    <value>Unknown game</value>
   </data>
   <data name="UploadingConfig">
     <value>Uploading new config...</value>

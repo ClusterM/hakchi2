@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>Διακομιστής FTP στο ftp://root:clover@127.0.0.1:1021</value>
+  </data>
   <data name="aboutToolStripMenuItem.Text">
     <value>Σχετικά με…</value>
   </data>
@@ -117,6 +120,9 @@
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Έξοδος</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>FAQ (Συχνές Ερωτήσεις)</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;Αρχείο</value>
@@ -190,6 +196,18 @@
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Modules</value>
   </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>Άνοιγμα πελάτη FTP</value>
+  </data>
+  <data name="openFileDialogImage.Title">
+    <value>Επιλογή εξώφυλλου κουτιού για το παιχνίδι</value>
+  </data>
+  <data name="openFileDialogNes.Title">
+    <value>Επιλογή παιχνιδιών</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>Άνοιγμα πελάτη Telnet</value>
+  </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
     <value>Αυθεντικά παιχνίδια στην αρχή -&gt; Σελίδες, διαχωρισμός παιχνιδιών εξίσου</value>
   </data>
@@ -217,6 +235,9 @@
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Αποθήκευση ρυθμίσεων στο NES Mini τώρα</value>
   </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>Διαχειριστής Αποθηκευμένων Σημείων</value>
+  </data>
   <data name="searchToolStripMenuItem.Text">
     <value>Αναζήτηση</value>
   </data>
@@ -229,8 +250,14 @@
   <data name="settingsToolStripMenuItem.Text">
     <value>&amp;Ρυθμίσεις</value>
   </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Διακομιστής κελύφους στο telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Συγχρονισμός</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;Εργαλεία</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
     <value>Απεγκατάσταση έξτρα modules</value>

@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>FTP server op ftp://root:clover@127.0.0.1:1021</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text">
+    <value>Over...</value>
+  </data>
+  <data name="addMoreGamesToolStripMenuItem.Text">
+    <value>Voeg meer toe &amp;spellen</value>
+  </data>
+  <data name="addPresetToolStripMenuItem.Text">
+    <value>Voeg een preset toe</value>
+  </data>
+  <data name="automaticOriginalToolStripMenuItem.Text">
+    <value>De originele spellen in de root -&gt; Automatisch in de submap</value>
+  </data>
+  <data name="automaticToolStripMenuItem.Text">
+    <value>Automatisch</value>
+  </data>
+  <data name="buttonAddGames.Text">
+    <value>Voeg meer spellen toe</value>
+  </data>
+  <data name="buttonBrowseImage.Text">
+    <value>Bladeren</value>
+  </data>
+  <data name="buttonStart.Text">
+    <value>Synchroniseer de geselecteerde spellen met de NES Mini</value>
+  </data>
+  <data name="cloverconHackToolStripMenuItem.Text">
+    <value>Controller hacks</value>
+  </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
+    <value>Comprimeer de niet-NES spellen (als je een extra emulator hebt geïnstalleerd)</value>
+  </data>
+  <data name="consoleTypeToolStripMenuItem.Text">
+    <value>Console type</value>
+  </data>
+  <data name="customToolStripMenuItem.Text">
+    <value>Aangepast – laat de Mappen Manager elke keer zien</value>
+  </data>
+  <data name="deleteGameToolStripMenuItem.Text">
+    <value>Verwijder een spel</value>
+  </data>
+  <data name="deletePresetToolStripMenuItem.Text">
+    <value>Verwijder preset</value>
+  </data>
+  <data name="disablePagefoldersToolStripMenuItem.Text">
+    <value>Zet de pagina/mappen uit</value>
+  </data>
+  <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
+    <value>Download</value>
+  </data>
+  <data name="dumpKernelToolStripMenuItem.Text">
+    <value>Kernel opslaan</value>
+  </data>
+  <data name="enableAutofireToolStripMenuItem.Text">
+    <value>Gebruik “Select+A/B” om autofire te gebruiken op A/B</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Text">
+    <value>Zet de epilepsie beveiliging uit</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text">
+    <value>&amp;Afsluiten</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>FAQ (Veel Gestelde Vragen)</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text">
+    <value>&amp;Bestand</value>
+  </data>
+  <data name="flashCustomKernelToolStripMenuItem.Text">
+    <value>Flash zelfgemaakte kernel</value>
+  </data>
+  <data name="flashOriginalKernelToolStripMenuItem.Text">
+    <value>Flash de originele kernel</value>
+  </data>
+  <data name="foldersOriginalToolStripMenuItem.Text">
+    <value>De originele spellen in de root -&gt; Mappen, gelijkmatig verdeeld</value>
+  </data>
+  <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
+    <value>De originele spellen in de root -&gt; Mappen, gesplitst vanaf de eerste letter.</value>
+  </data>
+  <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
+    <value>Mappen, verdeeld vanaf de eerste letter</value>
+  </data>
+  <data name="foldersToolStripMenuItem.Text">
+    <value>Mappen, gelijkmatig verdeeld</value>
+  </data>
+  <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
+    <value>GitHub pagina met de hudige versies</value>
+  </data>
+  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
+    <value>Globale opdracht regel (Alleen voor experts!)</value>
+  </data>
+  <data name="groupBoxDefaultGames.Text">
+    <value>Je kunt de standaard spellen verstoppen</value>
+  </data>
+  <data name="groupBoxOptions.Text">
+    <value>Spel opties</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text">
+    <value>&amp;Help</value>
+  </data>
+  <data name="installModulesToolStripMenuItem.Text">
+    <value>Installeer extra modules</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Text">
+    <value>&amp;Kernel</value>
+  </data>
+  <data name="label1.Text">
+    <value>Uitgifte datum (JJJJ-MM-DD)</value>
+  </data>
+  <data name="label2.Text">
+    <value>Uitgever:</value>
+  </data>
+  <data name="label3.Text">
+    <value>Opdracht regel (Alleen voor geavanceerde gebruikers!):</value>
+  </data>
+  <data name="label4.Text">
+    <value>Originele verpakking:</value>
+  </data>
+  <data name="label5.Text">
+    <value>Selecteer spellen:</value>
+  </data>
+  <data name="label6.Text">
+    <value>Maximaal aantal spelers:</value>
+  </data>
+  <data name="label7.Text">
+    <value>Game Genie codes (komma gescheiden):</value>
+  </data>
+  <data name="labelName.Text">
+    <value>Naam:</value>
+  </data>
+  <data name="maximumGamesPerFolderToolStripMenuItem.Text">
+    <value>Maximaal aantal spellen per pagina/map</value>
+  </data>
+  <data name="modulesToolStripMenuItem.Text">
+    <value>&amp;Modules</value>
+  </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>Open FTP client</value>
+  </data>
+  <data name="openFileDialogImage.Title">
+    <value>Selecteer een afbeelding voor een spel</value>
+  </data>
+  <data name="openFileDialogNes.Title">
+    <value>Geselecteerde spellen:</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>Open Telnet client</value>
+  </data>
+  <data name="pagesOriginalToolStripMenuItem.Text">
+    <value>Originele spellen in de root -&gt; Pagina's, verdeel spellen gelijkmatig</value>
+  </data>
+  <data name="pagesToolStripMenuItem.Text">
+    <value>Pagina's, verdeel de spellen gelijkmatig</value>
+  </data>
+  <data name="pagesfoldersTypeToolStripMenuItem.Text">
+    <value>Pagina's/mappen structuur</value>
+  </data>
+  <data name="presetsToolStripMenuItem.Text">
+    <value>Selectie presets</value>
+  </data>
+  <data name="radioButtonOne.Text">
+    <value>Één speler</value>
+  </data>
+  <data name="radioButtonTwo.Text">
+    <value>Twee spelers, niet tegelijkertijd</value>
+  </data>
+  <data name="radioButtonTwoSim.Text">
+    <value>Twee spelers, tegelijk</value>
+  </data>
+  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
+    <value>Gebruik een knop combinatie om te resetten</value>
+  </data>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
+    <value>Bewaar nu de instelling op de NES Mini</value>
+  </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>onderbrekingspunt Manager</value>
+  </data>
+  <data name="searchToolStripMenuItem.Text">
+    <value>Zoeken</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Text">
+    <value>Selecteer alles</value>
+  </data>
+  <data name="selectButtonCombinationToolStripMenuItem.Text">
+    <value>Selecteer de reset knop combinatie</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text">
+    <value>&amp;Instellingen</value>
+  </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Telnet server op telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="synchronizeToolStripMenuItem.Text">
+    <value>Synchroniseren</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;Gereedschap</value>
+  </data>
+  <data name="uninstallModulesToolStripMenuItem.Text">
+    <value>Deïnstalleer extra modules</value>
+  </data>
+  <data name="uninstallToolStripMenuItem.Text">
+    <value>Deïnstalleren</value>
+  </data>
+  <data name="unselectAllToolStripMenuItem.Text">
+    <value>Alles deselecteren</value>
+  </data>
+  <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
+    <value>"Omhoog+A+B = Start" op de 2de controller</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Text">
+    <value>Gebruik uitgebreid lettertype</value>
+  </data>
+  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
+    <value>Gebruik X/Y om autofire te gebruiken voor de A/B knoppen op de klassieke controller</value>
+  </data>
+</root>

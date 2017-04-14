@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="$this.Text">
+    <value>Organisateur de Dossiers</value>
+  </data>
+  <data name="buttonCancel.Text">
+    <value>Annuler</value>
+  </data>
+  <data name="buttonFoldersEqually.Text">
+    <value>Découper équitablement</value>
+  </data>
+  <data name="buttonFoldersEquallyOriginal.Text">
+    <value>Jeux Originaux -&gt; Découper équitablement</value>
+  </data>
+  <data name="buttonFoldersLetters.Text">
+    <value>Découper par première lettre</value>
+  </data>
+  <data name="buttonFoldersLettersOriginal.Text">
+    <value>Jeux Originaux -&gt; Découper par première lettre</value>
+  </data>
+  <data name="buttonNewFolder.Text">
+    <value>Nouveau dossier</value>
+  </data>
+  <data name="buttonNoFolders.Text">
+    <value>Pas de dossiers</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Text">
+    <value>Jeux Originaux -&gt; Autres jeux</value>
+  </data>
+  <data name="cutToolStripMenuItem.Text">
+    <value>Couper</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text">
+    <value>Supprimer</value>
+  </data>
+  <data name="groupBoxArt.Text">
+    <value>Menu icone</value>
+  </data>
+  <data name="groupBoxSplitModes.Text">
+    <value>Créer la structures des dossiers automatiquement</value>
+  </data>
+  <data name="labelPosition.Text">
+    <value>Priorité de la position du dossier:</value>
+  </data>
+  <data name="newFolderToolStripMenuItem.Text">
+    <value>Créer un nouveau dossier</value>
+  </data>
+  <data name="pasteToolStripMenuItem.Text">
+    <value>Coller</value>
+  </data>
+  <data name="renameToolStripMenuItem.Text">
+    <value>Renommer dossier</value>
+  </data>
+  <data name="labelElementCount.Text">
+    <value>Folder statistics</value>
+  </data>
+</root>

@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddingGames">
+    <value>Spracúvanie hier, prosím počkajte...</value>
+  </data>
+  <data name="AllFiles">
+    <value>Všetky súbory</value>
+  </data>
+  <data name="AreYouSure">
+    <value>Ste si istý?</value>
+  </data>
+  <data name="AutofillResult">
+    <value>Údaje boli automaticky doplnené pre {0} hry).</value>
+  </data>
+  <data name="AutofireHelp1">
+    <value>Stlačte a držte Select+A/B na sekundu pre povolenie/zrušenie autofire A/B</value>
+  </data>
+  <data name="BuildingCustom">
+    <value>Vytvára sa vlastný obraz kernelu</value>
+  </data>
+  <data name="BuildingFolders">
+    <value>Vytvára sa štruktúra priečinkov</value>
+  </data>
+  <data name="Congratulations">
+    <value>Gratulujeme!</value>
+  </data>
+  <data name="CustomKernel">
+    <value>Vlastný kernel</value>
+  </data>
+  <data name="CustomKernelQ">
+    <value>Chcete flashnúť vlastný kernel?</value>
+  </data>
+  <data name="CustomWarning">
+    <value>Teraz potrebujete flashnúť vlastný kernel to NES Mini. Je to potrebné urobiť iba raz. Chcete pokračovať?</value>
+  </data>
+  <data name="Default30games">
+    <value>Originálnych 30 hier</value>
+  </data>
+  <data name="DeleteElement">
+    <value>Naozaj chcte odstrániť "{0}"?</value>
+  </data>
+  <data name="DeleteElements">
+    <value>Naozaj chcete ostrániť {0} položiek?</value>
+  </data>
+  <data name="DeleteGame">
+    <value>Naozaj chcete odstrániť "{0}" hier?</value>
+  </data>
+  <data name="DeletePreset">
+    <value>Naozaj chcete odstrániť "{0}" predvoľbu?</value>
+  </data>
+  <data name="DeleteSavesQ">
+    <value>Naozaj chcete odstrániť tieto uložené pozície hier?</value>
+  </data>
+  <data name="DoYouWantCancel">
+    <value>Chcete zrušiť aktuálnu operáciu?</value>
+  </data>
+  <data name="DoYouWantToContinue">
+    <value>Chcete pokračovať?</value>
+  </data>
+  <data name="Donate">
+    <value>P.S. Ak sa vám táto aplikácia páči, môžete mi poslať dar. Môj PayPal e-mail nájdete v záložke "Informácie".</value>
+  </data>
+  <data name="Done">
+    <value>Hotovo!</value>
+  </data>
+  <data name="DoneUploaded">
+    <value>Dokončené! Počkajte kým prestane svietiť LEDka a reštartujte NES Mini.</value>
+  </data>
+  <data name="DoneYouCanUpload">
+    <value>Dokončené! Teraz môžete nahrávať hry do vašej NES Mini.</value>
+  </data>
+  <data name="DownloadAllCoversTitle">
+    <value>Stiahnutie obalu pre všetky hry (Skúsim štastie!)</value>
+  </data>
+  <data name="DumpKernelQ">
+    <value>Chcete zálohovať kernel?</value>
+  </data>
+  <data name="DumpingKernel">
+    <value>Zálohovanie kernelu...</value>
+  </data>
+  <data name="Error">
+    <value>Chyba</value>
+  </data>
+  <data name="ExecutingCommand">
+    <value>Vykonanie príkazu:</value>
+  </data>
+  <data name="ExecutingFes1">
+    <value>Vykonanie fes1...</value>
+  </data>
+  <data name="ExtraArgsInfo">
+    <value>Môžete pridať globálne argumenty pre príkazový riadok, ktoré budú pripojené k všetkým hrám vrátane 30 povodných. Táto možnosť je len pre odborníkov!</value>
+  </data>
+  <data name="ExtraArgsTitle">
+    <value>Extra argumenty príkazového riadku</value>
+  </data>
+  <data name="FirstRun">
+    <value>Ahoj! Som veľmi rád že používate hakchi2. Je veľmi jednoduchý na používanie. Stačí kliknú´t na "Pridať viac hier", vybrať niektoré hry, stlačiť tlačidlo "Synchronizovať" a postupovať podľa pokynov. Veľa štastia!</value>
+  </data>
+  <data name="FlasingCustom">
+    <value>Flashovanie vlastného kernelu...</value>
+  </data>
+  <data name="FlasingOriginal">
+    <value>Flashovanie originálneho kernelu...</value>
+  </data>
+  <data name="FolderNameBack">
+    <value>Späť</value>
+  </data>
+  <data name="FolderNameMoreGames">
+    <value>Viac hier...</value>
+  </data>
+  <data name="FolderNameNewFolder">
+    <value>Nový priečinok</value>
+  </data>
+  <data name="FolderNameOriginalGames">
+    <value>Originálnych 30 hier</value>
+  </data>
+  <data name="FolderNameTrashBin">
+    <value>Odpadkový kôš</value>
+  </data>
+  <data name="FolderNameUnsorted">
+    <value>Nezatriedené</value>
+  </data>
+  <data name="FolderStatistics">
+    <value>Zložka "{0}" obsahuje {1} položiek.</value>
+  </data>
+  <data name="FoldersSaveQ">
+    <value>Chcete uložiť túto štruktúru priečinkov?</value>
+  </data>
+  <data name="FourScreenNotSupported">
+    <value>Prepáčte, {0} používa režim na štyri obrazovky (napr. hra má ďalšiu VRAM pamäť na kartridži), a táto funkcia nie je podporovaná NES Mini. Hru pravdepodobne nebude možné spustiť pomocou predvoleného emulátora. Ale mala by fungovať s použitím iného modulu emulátora. Chcete pridať túto hru?</value>
+  </data>
+  <data name="GGCodeDelete">
+    <value>Naozaj chcte odstrániť "{0}" kód?</value>
+  </data>
+  <data name="GGCodeEmpty">
+    <value>Musíte zadať kód!</value>
+  </data>
+  <data name="GGCodeExists">
+    <value>Tento kód už existuje. Chcete ho upraviť?</value>
+  </data>
+  <data name="GGDescriptionEmpty">
+    <value>Musíte zadať popis!</value>
+  </data>
+  <data name="GameGenieFormatError">
+    <value>Neplatný Game Genie kód "{0}" pre hru "{1}".</value>
+  </data>
+  <data name="GameGenieNotFound">
+    <value>Nie je možné použiť Game Genie kód "{0}" pre hru "{1}" - hodnota nebola nájdená. Možno je tento kód pre inú hru?</value>
+  </data>
+  <data name="GameTooBig">
+    <value>Prepáčte, hra "{0}" je príliš veľká.</value>
+  </data>
+  <data name="GamesAndApps">
+    <value>Hry a aplikácie:</value>
+  </data>
+  <data name="GamesSelected">
+    <value>hier vybraných</value>
+  </data>
+  <data name="GooglingFor">
+    <value>Vyhľadávanie na Google</value>
+  </data>
+  <data name="Hello">
+    <value>Ahoj</value>
+  </data>
+  <data name="Images">
+    <value>Obrázky</value>
+  </data>
+  <data name="InputPreset">
+    <value>Prosím zadajte názov predvoľby pre aktuálny výber hier.</value>
+  </data>
+  <data name="InstallingMods">
+    <value>Inštalácia modulov...</value>
+  </data>
+  <data name="InvalidKernelHeader">
+    <value>Neplatný header kernelu.</value>
+  </data>
+  <data name="InvalidKernelSize">
+    <value>Neplatná veľkosť kernelu.</value>
+  </data>
+  <data name="KernelDumped">
+    <value>Váš originálny kernel je uložený v zložke "dump". Nestraťte ho.</value>
+  </data>
+  <data name="LoadingGames">
+    <value>Načítavanie hier...</value>
+  </data>
+  <data name="MD5Failed">
+    <value>Kernel je zálohovaný ale kontrolný súčet MD5 nie je známy:</value>
+  </data>
+  <data name="MD5Failed2">
+    <value>Kernel je už opravený alebo je neznámej revízie. Prosím pošlite mi túto správu (stlačte Ctrl+C). Pokračujte na vlastné riziko.</value>
+  </data>
+  <data name="MainMenu">
+    <value>Hlavné menu</value>
+  </data>
+  <data name="MapperNotSupported">
+    <value>Prepáčte, "{0}" používa mapper #{1} ale tento mapper nie je podporovaný NES Mini a hru pravdepodobne nebude možné spustiť pomocou predvoleného emulátora. Ale mala by fungovať s použitím iného modulu emulátora. Chcete pridať túto hru?</value>
+  </data>
+  <data name="MemoryFull">
+    <value>Prepáčte, je tu {0}MBytov hier, je to príliš veľa.</value>
+  </data>
+  <data name="MemoryStats">
+    <value>Celková zapisovateľná pamäť: {0:F1}MBytov|Dostupná pamäť pre hry: {1:F1}MBytov|Použitá save: {2:F1}MBytov|Použitá inými súbormi: {3:F1}MBytov</value>
+  </data>
+  <data name="NewGamesUnsorted">
+    <value>Nové hry sú presunuté do zložky "Nezatriedené".</value>
+  </data>
+  <data name="NewPreset">
+    <value>Nová predvoľba pre výber</value>
+  </data>
+  <data name="No">
+    <value>Nie</value>
+  </data>
+  <data name="NoForAll">
+    <value>Nie pre všetky</value>
+  </data>
+  <data name="NoKernel">
+    <value>Nenájdený žiadny zálohovaný kernel</value>
+  </data>
+  <data name="NoKernelWarning">
+    <value>Najprv zálohujte kernel vášho NES Mini. Je to potrebné urobiť len raz. Chcete pokračovať?</value>
+  </data>
+  <data name="NoKernelYouNeed">
+    <value>Nenájdený žiadny zálohovaný kernel. Musíte najprv zálohovať kernel.</value>
+  </data>
+  <data name="NoTelnet">
+    <value>Nie je možné spustiť Telnet klient zdá sa že je zakázaný. Najprv ho potrebujete spustiť, možete to spraviť v "Olvádací panel" -&gt; "programy" -&gt; "Zapnúť alebo vypnúť funkcie systému Windows".</value>
+  </data>
+  <data name="NotFound">
+    <value>Nenájdené:</value>
+  </data>
+  <data name="OriginalKernelQ">
+    <value>Chcete flashnúť originálny kernel?</value>
+  </data>
+  <data name="ParticallyBody">
+    <value>Žiadny strach! Všetko je v poriadku. Je tu príliš veľa hier na presunutie naraz. Ak chcete pokračovať, prosím počkajte kým prestane svietiť LED power svetielko, stlačte tlačidlo OK a postupujte podľa pokynov.</value>
+  </data>
+  <data name="ParticallyTitle">
+    <value>Príliš veľa hier</value>
+  </data>
+  <data name="PatchAvailable">
+    <value>Dostupný patch/oprava</value>
+  </data>
+  <data name="PatchQ">
+    <value>Je dostupný patch/oprava pre "{0}". Chcete patchnúť túto hru?</value>
+  </data>
+  <data name="PleaseTryAgainUSB">
+    <value>Ak tento problém pretrváva, skúste použiť iný USB port alebo kábel.</value>
+  </data>
+  <data name="PleaseWait">
+    <value>Prosím počkajte...</value>
+  </data>
+  <data name="PressOkToContinue">
+    <value>Pokračujte stlačením OK.</value>
+  </data>
+  <data name="ReplaceKernelQ">
+    <value>Už máte zálohovaný kernel. Ak NAOZAJ chcete nahradiť zálohu vášho kernelu a NAOZAJ rozumiete čo robíte, odstráňte priečinok "dump".</value>
+  </data>
+  <data name="SavesFlterName">
+    <value>NES Mini zálohy uložených pozícií hier</value>
+  </data>
+  <data name="SelectAtLeast">
+    <value>Vyberte aspoň jednu hru.</value>
+  </data>
+  <data name="SelectAtLeastTwo">
+    <value>Vyberte aspoň dve tlačidlá.</value>
+  </data>
+  <data name="SelectModsInstall">
+    <value>Vyberte moduly, ktoré chcete nainštalovať do NES Mini.</value>
+  </data>
+  <data name="SelectModsUninstall">
+    <value>Vyberte moduly, ktoré chcete odstrániť z NES Mini.</value>
+  </data>
+  <data name="SizeOfSaves">
+    <value>Veľkosť vybraných uložených pozícií:</value>
+  </data>
+  <data name="UninstallFactoryNote">
+    <value>Nezabudnite vykonať obnovenie továrenského nastavenia, ak chcete odstrániť všetky uložené pozície v hrách.</value>
+  </data>
+  <data name="UninstallQ1">
+    <value>Naozaj chcete odstrániť všetky stopy po hakchi2 a vrátiť NES Mini do pôvodného stavu?</value>
+  </data>
+  <data name="UninstallQ2">
+    <value>Dokončené. Počkajte kým prestane svietiť LED indikátor. Tiež je potrebné flashnúť originálny kernel. Chcete flashnúť originálny kernel teraz?</value>
+  </data>
+  <data name="Uninstalling">
+    <value>Odinštalovanie...</value>
+  </data>
+  <data name="UninstallingMods">
+    <value>Odinštalovanie módov...</value>
+  </data>
+  <data name="UnknownGame">
+    <value>Neznáma hra</value>
+  </data>
+  <data name="UploadingConfig">
+    <value>Nahrávanie nového nastavenia...</value>
+  </data>
+  <data name="UploadingFes1">
+    <value>Nahrávanie a spúštanie FES-1...</value>
+  </data>
+  <data name="UploadingGames">
+    <value>Nahrávanie hier...</value>
+  </data>
+  <data name="UploadingKernel">
+    <value>Nahrávanie kernelu...</value>
+  </data>
+  <data name="UploadingOriginalGames">
+    <value>Spracúvanie originálnych hier...</value>
+  </data>
+  <data name="VerifyFailed">
+    <value>Verifikácie zlyhala :O To nie je dobré.</value>
+  </data>
+  <data name="Verifying">
+    <value>Verifikácia...</value>
+  </data>
+  <data name="WaitingForDevice">
+    <value>Čakanie na zariadenie...</value>
+  </data>
+  <data name="Warning">
+    <value>Upozornenie!</value>
+  </data>
+  <data name="Wow">
+    <value>Wow</value>
+  </data>
+  <data name="Yes">
+    <value>Áno</value>
+  </data>
+  <data name="YesForAll">
+    <value>Áno pre všetky</value>
+  </data>
+  <data name="FolderContent">
+    <value>Deleted content will be moved to the Recycle Bin. You can delete this folder permanently or move the games to other folders.</value>
+  </data>
+</root>

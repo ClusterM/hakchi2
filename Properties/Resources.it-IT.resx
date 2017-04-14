@@ -61,6 +61,9 @@
   <data name="AddingGames">
     <value>Sto processando i giochi, attendere prego...</value>
   </data>
+  <data name="AllFiles">
+    <value>Tutti i files</value>
+  </data>
   <data name="AreYouSure">
     <value>Sei sicuro?</value>
   </data>
@@ -173,7 +176,7 @@
     <value>Cestino</value>
   </data>
   <data name="FolderNameUnsorted">
-    <value>Unsorted</value>
+    <value>Non classificati</value>
   </data>
   <data name="FolderStatistics">
     <value>La cartella "{0}" contiene {1} elementi.</value>
@@ -205,6 +208,9 @@
   <data name="GameTooBig">
     <value>Mi dispiace, il gioco "{0}" è troppo grande.</value>
   </data>
+  <data name="GamesAndApps">
+    <value>Giochi e Applicazioni</value>
+  </data>
   <data name="GamesSelected">
     <value>gioco(i) selezionato(i)</value>
   </data>
@@ -213,6 +219,9 @@
   </data>
   <data name="Hello">
     <value>Ciao</value>
+  </data>
+  <data name="Images">
+    <value>Immagini</value>
   </data>
   <data name="InputPreset">
     <value>Inserire un nome per il preset della attuale selezione di giochi.</value>
@@ -246,6 +255,9 @@
   </data>
   <data name="MemoryFull">
     <value>Mi dispiace, ci sono {0}Mbytes, sono troppi.</value>
+  </data>
+  <data name="MemoryStats">
+    <value>Memoria totale utilizzabile disponibile: {0:F1}MBytes|Memoria disponibile per i giochi: {1:F1}MBytes|Utilizzata dai savestates: {2:F1}MBytes|Utilizzata da altri files: {3:F1}MBytes</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>I nuovi giochi sono stati spostati nella cartella "Unsorted".</value>
@@ -358,7 +370,22 @@
   <data name="YesForAll">
     <value>Si per tutti</value>
   </data>
-  <data name="MemoryStats">
-    <value>Total writable memory size: {0:F1}MBytes|Available memory for games: {1:F1}MBytes|Used by save-states: {2:F1}MBytes|Used by other files: {3:F1}MBytes</value>
+  <data name="DeleteSavesQ">
+    <value>Do you really want to delete those save-states?</value>
+  </data>
+  <data name="NoTelnet">
+    <value>Can't start Telnet client, seems like it's disabled. You need to enable it first, you can do it in "Control Panel" -&gt; "Programs" -&gt; "Turn Windows features on or off".</value>
+  </data>
+  <data name="PleaseWait">
+    <value>Please wait...</value>
+  </data>
+  <data name="SavesFlterName">
+    <value>NES Mini save-state backups</value>
+  </data>
+  <data name="SizeOfSaves">
+    <value>Size of selected save-states:</value>
+  </data>
+  <data name="UnknownGame">
+    <value>Unknown game</value>
   </data>
 </root>

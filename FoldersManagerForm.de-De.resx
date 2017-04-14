@@ -65,22 +65,22 @@
     <value>Abbrechen</value>
   </data>
   <data name="buttonFoldersEqually.Text">
-    <value>Splitte gleichmäßig</value>
+    <value>Gleichmäßig aufteilen</value>
   </data>
   <data name="buttonFoldersEquallyOriginal.Text">
     <value>Originale Spiele -&gt; Splitte gleichmäßig</value>
   </data>
   <data name="buttonFoldersLetters.Text">
-    <value>Splitte nach dem 1. Buchstaben</value>
+    <value>Nach dem 1. Buchstaben aufteilen</value>
   </data>
   <data name="buttonFoldersLettersOriginal.Text">
-    <value>Originale Spiele -&gt; Splitte nach dem 1. Buchstaben</value>
+    <value>Originale Spiele -&gt; Nach dem 1. Buchstaben aufteilen</value>
   </data>
   <data name="buttonNewFolder.Text">
     <value>Neuer Ordner</value>
   </data>
   <data name="buttonNoFolders.Text">
-    <value>Keine Ordner</value>
+    <value>Ohne Ordner</value>
   </data>
   <data name="buttonNoFoldersOriginal.Text">
     <value>Originale Spiele -&gt; Andere Spiele</value>
@@ -95,16 +95,16 @@
     <value>Menu Icon</value>
   </data>
   <data name="groupBoxSplitModes.Text">
-    <value>Erstelle Ordnerstruktur automatisch</value>
+    <value>Ordnerstruktur automatisch erstellen</value>
   </data>
   <data name="labelElementCount.Text">
     <value>Ordnerstatistik</value>
   </data>
   <data name="labelPosition.Text">
-    <value>Ordner Position Priorität:</value>
+    <value>Position des Ordners:</value>
   </data>
   <data name="newFolderToolStripMenuItem.Text">
-    <value>Erstelle neuen Ordner</value>
+    <value>Neuen Ordner erstellen</value>
   </data>
   <data name="pasteToolStripMenuItem.Text">
     <value>Einfügen</value>
