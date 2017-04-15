@@ -29,7 +29,6 @@ namespace com.clusterrr.hakchi_gui
         [STAThread]
         static void Main()
         {
-            AppDomain.CurrentDomain.AppendPrivatePath("languages");
 #if DEBUG
             try
             {
@@ -53,6 +52,17 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (createdNew)
                 {
+                    // For updates
+                    AppDomain.CurrentDomain.AppendPrivatePath("languages");
+                    var oldFiles = Directory.GetFiles(Path.GetDirectoryName(Application.ExecutablePath), "hakchi.resources.dll", SearchOption.AllDirectories);
+                    foreach (var d in oldFiles)
+                        if (!d.Contains(@"\languages\"))
+                        {
+                            var dir = Path.GetDirectoryName(d);
+                            Debug.WriteLine("Removing old directory: " + dir);
+                            Directory.Delete(dir, true);
+                        }
+
                     Debug.WriteLine("Starting, version: " + Assembly.GetExecutingAssembly().GetName().Version);
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);

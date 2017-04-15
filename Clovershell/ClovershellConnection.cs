@@ -422,7 +422,8 @@ namespace com.clusterrr.clovershell
                     len -= tLen;
                     if (res != ErrorCode.Ok)
                     {
-                        if (repeats >= 3) break;
+                        if (repeats >= 10) break;
+                        Debug.WriteLine("write error: " + res);
                         repeats++;
                         Thread.Sleep(100);
                     }

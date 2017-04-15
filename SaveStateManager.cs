@@ -352,7 +352,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (ListViewItem game in listViewSaves.SelectedItems)
                     if (game.SubItems["colSize"].Text != null)
                         size += int.Parse(game.SubItems["colSize"].Text.Replace("KB", ""));
-                toolStripStatusLabelSize.Text = Resources.SizeOfSaves + " " + size;
+                toolStripStatusLabelSize.Text = Resources.SizeOfSaves + " " + size + "KB";
             }
             else toolStripStatusLabelSize.Text = "";
         }
