@@ -137,6 +137,7 @@
             this.colSize,
             this.colFlags});
             this.listViewSaves.ContextMenuStrip = this.contextMenuStrip;
+            this.listViewSaves.HideSelection = false;
             this.listViewSaves.Name = "listViewSaves";
             this.listViewSaves.UseCompatibleStateImageBehavior = false;
             this.listViewSaves.View = System.Windows.Forms.View.Details;

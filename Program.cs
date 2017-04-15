@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable 0618
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -28,6 +29,7 @@ namespace com.clusterrr.hakchi_gui
         [STAThread]
         static void Main()
         {
+            AppDomain.CurrentDomain.AppendPrivatePath("languages");
 #if DEBUG
             try
             {

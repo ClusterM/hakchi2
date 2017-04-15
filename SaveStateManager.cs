@@ -57,25 +57,25 @@ namespace com.clusterrr.hakchi_gui
                 var clovershell = MainForm.Clovershell;
                 WorkerForm.ShowSplashScreen();
                 var listSavesScript =
-                     "#!/bin/sh\n"+
-                     "savespath=/var/lib/clover/profiles/0\n"+
-                     "find $savespath -mindepth 1 -maxdepth 1 -type d -name \"CLV-*\" | sed 's#.*/##' | while read code ; do\n"+
-                     "  flags=F\n"+
-                     "  [ -f $savespath/$code/save.sram ] && flags=${flags}S\n"+
-                     "  [ -f $savespath/$code/1.state ] && flags=${flags}1\n"+
-                     "  [ -f $savespath/$code/2.state ] && flags=${flags}2\n"+
-                     "  [ -f $savespath/$code/3.state ] && flags=${flags}3\n"+
-                     "  [ -f $savespath/$code/4.state ] && flags=${flags}4\n"+
-                     "  if [ \"$flags\" != \"F\" ]; then\n"+
-                     "    size=$(du $savespath/$code | awk '{ print $1 }')\n"+
-                     "    name=$(find /var/lib -type f -name \"$code.desktop\" -exec cat {} + | sed -n 's/Name=\\(.*\\)/\\1/p')\n"+
-                     "    [ -z \"$name\" ] && name=UNKNOWN\n"+
-                     "    echo $code $size $flags $name\n"+
-                     "    unset flags\n"+
-	                 "    unset name\n"+
-                     "  else\n"+
-                     "    rm -rf $savespath/$code\n"+
-                     "  fi\n"+
+                     "#!/bin/sh\n" +
+                     "savespath=/var/lib/clover/profiles/0\n" +
+                     "find $savespath -mindepth 1 -maxdepth 1 -type d -name \"CLV-*\" | sed 's#.*/##' | while read code ; do\n" +
+                     "  flags=F\n" +
+                     "  [ -f $savespath/$code/save.sram ] && flags=${flags}-S\n" +
+                     "  [ -f $savespath/$code/1.state ] && flags=${flags}-1\n" +
+                     "  [ -f $savespath/$code/2.state ] && flags=${flags}-2\n" +
+                     "  [ -f $savespath/$code/3.state ] && flags=${flags}-3\n" +
+                     "  [ -f $savespath/$code/4.state ] && flags=${flags}-4\n" +
+                     "  if [ \"$flags\" != \"F\" ]; then\n" +
+                     "    size=$(du $savespath/$code | awk '{ print $1 }')\n" +
+                     "    name=$(find /var/lib -type f -name \"$code.desktop\" -exec cat {} + | sed -n 's/Name=\\(.*\\)/\\1/p')\n" +
+                     "    [ -z \"$name\" ] && name=UNKNOWN\n" +
+                     "    echo $code $size $flags $name\n" +
+                     "    unset flags\n" +
+                     "    unset name\n" +
+                     "  else\n" +
+                     "    rm -rf $savespath/$code\n" +
+                     "  fi\n" +
                      "done";
                 var listSavesScriptStream = new MemoryStream(Encoding.UTF8.GetBytes(listSavesScript));
                 listSavesScriptStream.Seek(0, SeekOrigin.Begin);
@@ -92,7 +92,7 @@ namespace com.clusterrr.hakchi_gui
                         l = l.Substring(l.IndexOf(' ') + 1);
                         var size = l.Substring(0, l.IndexOf(' ')) + "KB";
                         l = l.Substring(l.IndexOf(' ') + 1);
-                        var flags = l.Substring(0, l.IndexOf(' ')).Replace("F", "");
+                        var flags = l.Substring(0, l.IndexOf(' ')).Replace("F-", "").Replace("-", " ").Trim();
                         l = l.Substring(l.IndexOf(' ') + 1);
                         var name = l;
                         if (name == "UNKNOWN")
@@ -202,6 +202,7 @@ namespace com.clusterrr.hakchi_gui
                             File.WriteAllBytes(saveFileDialog.FileName, buffer);
                         }
                     }
+                    else break;
                 }
             }
             catch (Exception ex)
@@ -351,7 +352,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (ListViewItem game in listViewSaves.SelectedItems)
                     if (game.SubItems["colSize"].Text != null)
                         size += int.Parse(game.SubItems["colSize"].Text.Replace("KB", ""));
-                toolStripStatusLabelSize.Text = string.Format(Resources.SizeOfSaves, size);
+                toolStripStatusLabelSize.Text = Resources.SizeOfSaves + " " + size;
             }
             else toolStripStatusLabelSize.Text = "";
         }

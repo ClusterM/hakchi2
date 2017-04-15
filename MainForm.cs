@@ -144,6 +144,9 @@ namespace com.clusterrr.hakchi_gui
                 textBoxName.Left = labelName.Left + labelName.Width;
                 textBoxName.Width -= textBoxName.Left - tbl;
                 maskedTextBoxReleaseDate.Left = label1.Left + label1.Width + 3;
+                tbl = textBoxPublisher.Left;
+                textBoxPublisher.Left = label2.Left + label2.Width;
+                textBoxPublisher.Width -= textBoxPublisher.Left - tbl;
 
                 // Tweeks for message boxes
                 MessageBoxManager.Yes = MessageBoxManager.Retry = Resources.Yes;
@@ -907,6 +910,7 @@ namespace com.clusterrr.hakchi_gui
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var about = new AboutBox();
+            about.Text = aboutToolStripMenuItem.Text.Replace("&", "");
             about.ShowDialog();
         }
 
@@ -1228,11 +1232,6 @@ namespace com.clusterrr.hakchi_gui
 
         private void installModulesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(KernelDump))
-            {
-                MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             installModules();
         }
 
