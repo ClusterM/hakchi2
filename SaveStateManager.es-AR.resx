@@ -59,6 +59,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Images depuis Google</value>
+    <value>Administrador de puntos de suspensión</value>
+  </data>
+  <data name="buttonDelete.Text">
+    <value>Eliminar lo seleccionado</value>
+  </data>
+  <data name="buttonExport.Text">
+    <value>Exportar lo seleccionado</value>
+  </data>
+  <data name="buttonImport.Text">
+    <value>Importar</value>
+  </data>
+  <data name="colCode.Text">
+    <value>Código</value>
+  </data>
+  <data name="colFlags.Text">
+    <value>Ranura de punto de suspensión</value>
+  </data>
+  <data name="colName.Text">
+    <value>Nombre</value>
+  </data>
+  <data name="colSize.Text">
+    <value>Tamaño</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text">
+    <value>Eliminar lo seleccionado</value>
+  </data>
+  <data name="exportToolStripMenuItem.Text">
+    <value>Exportar lo seleccionado</value>
+  </data>
+  <data name="importToolStripMenuItem.Text">
+    <value>Importar</value>
   </data>
 </root>

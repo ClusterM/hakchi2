@@ -61,6 +61,9 @@
   <data name="AddingGames">
     <value>Traitement des jeux, patientez…</value>
   </data>
+  <data name="AllFiles">
+    <value>Tous les fichiers</value>
+  </data>
   <data name="AreYouSure">
     <value>Êtes-vous sûr?</value>
   </data>
@@ -102,6 +105,9 @@
   </data>
   <data name="DeletePreset">
     <value>Voulez-vous vraiment supprimer le Preset "{0}"?</value>
+  </data>
+  <data name="DeleteSavesQ">
+    <value>Voulez-vous vraiment supprimer définitivement ces sauvegardes ?</value>
   </data>
   <data name="DoYouWantCancel">
     <value>Voulez-vous annuler l'opération en cours?</value>
@@ -205,6 +211,9 @@
   <data name="GameTooBig">
     <value>Désolé, le jeu "{0}" est trop gros.</value>
   </data>
+  <data name="GamesAndApps">
+    <value>Jeux et applis</value>
+  </data>
   <data name="GamesSelected">
     <value>jeu(x) sélectionné(s)</value>
   </data>
@@ -213,6 +222,9 @@
   </data>
   <data name="Hello">
     <value>Bonjour</value>
+  </data>
+  <data name="Images">
+    <value>Images</value>
   </data>
   <data name="InputPreset">
     <value>Merci d'entrer un nom de Preset pour la sélection actuelle des jeux.</value>
@@ -271,6 +283,9 @@
   <data name="NoKernelYouNeed">
     <value>Pas de sauvegarde du Kernel trouvé. Vous devez d'abord sauvegarder le Kernel.</value>
   </data>
+  <data name="NoTelnet">
+    <value>Impossible d'ouvrir le client Telnet. Il est probablement désactivé. Pour l'activer, allez dans le "Panneau de Configuration", sélectionnez "Programmes" puis "Activer ou désactiver des fonctionnalités de Windows".</value>
+  </data>
   <data name="NotFound">
     <value>Non trouvé:</value>
   </data>
@@ -292,8 +307,14 @@
   <data name="PleaseTryAgainUSB">
     <value>Si le problème persiste, essayez d'utiliser un autre port ou cable USB.</value>
   </data>
+  <data name="PleaseWait">
+    <value>Veuillez patienter...</value>
+  </data>
   <data name="PressOkToContinue">
     <value>Appuyez sur OK pour continuer.</value>
+  </data>
+  <data name="SavesFlterName">
+    <value>Sauvegardes NES Mini</value>
   </data>
   <data name="SelectAtLeast">
     <value>Sélectioner au moins un jeu.</value>
@@ -306,6 +327,9 @@
   </data>
   <data name="SelectModsUninstall">
     <value>Sélectionnez les modules à désinstaller de votre NES Mini.</value>
+  </data>
+  <data name="SizeOfSaves">
+    <value>Taille des sauvegardes sélectionnées :</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>N'oubliez pas de faire un remise à zero d'usine si vous voulez supprimer tous les Suspend Points.</value>
@@ -321,6 +345,9 @@
   </data>
   <data name="UninstallingMods">
     <value>Désinstallation des mods…</value>
+  </data>
+  <data name="UnknownGame">
+    <value>Jeu inconnu</value>
   </data>
   <data name="UploadingConfig">
     <value>Transfert de la nouvelle configuration…</value>
@@ -358,34 +385,7 @@
   <data name="YesForAll">
     <value>Oui pour tous</value>
   </data>
-  <data name="AllFiles">
-    <value>All files</value>
-  </data>
-  <data name="DeleteSavesQ">
-    <value>Do you really want to delete those save-states?</value>
-  </data>
-  <data name="GamesAndApps">
-    <value>Games and apps</value>
-  </data>
-  <data name="Images">
-    <value>Images</value>
-  </data>
-  <data name="NoTelnet">
-    <value>Can't start Telnet client, seems like it's disabled. You need to enable it first, you can do it in "Control Panel" -&gt; "Programs" -&gt; "Turn Windows features on or off".</value>
-  </data>
-  <data name="PleaseWait">
-    <value>Please wait...</value>
-  </data>
   <data name="ReplaceKernelQ">
     <value>You already have the kernel dump. If you REALLY want to replace the backup of your kernel and you REALLY understand what you are doing, delete the "dump" folder manually.</value>
-  </data>
-  <data name="SavesFlterName">
-    <value>NES Mini save-state backups</value>
-  </data>
-  <data name="SizeOfSaves">
-    <value>Size of selected save-states:</value>
-  </data>
-  <data name="UnknownGame">
-    <value>Unknown game</value>
   </data>
 </root>

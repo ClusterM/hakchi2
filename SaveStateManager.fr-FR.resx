@@ -58,37 +58,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="buttonImport.Text">
-    <value>Importer</value>
-  </data>
-  <data name="importToolStripMenuItem.Text">
-    <value>Importer</value>
-  </data>
   <data name="$this.Text">
-    <value>Save-State Manager</value>
+    <value>Gestionnaire de sauvegardes</value>
   </data>
   <data name="buttonDelete.Text">
-    <value>Delete selected</value>
+    <value>Supprimer la sélection</value>
   </data>
   <data name="buttonExport.Text">
-    <value>Export selected</value>
+    <value>Exporter la sélection</value>
+  </data>
+  <data name="buttonImport.Text">
+    <value>Importer</value>
   </data>
   <data name="colCode.Text">
     <value>Code</value>
   </data>
   <data name="colFlags.Text">
-    <value>Save slots</value>
+    <value>Emplacements</value>
   </data>
   <data name="colName.Text">
-    <value>Name</value>
+    <value>Nom</value>
   </data>
   <data name="colSize.Text">
-    <value>Size</value>
+    <value>Taille</value>
   </data>
   <data name="deleteToolStripMenuItem.Text">
-    <value>Delete selected</value>
+    <value>Supprimer la sélection</value>
   </data>
   <data name="exportToolStripMenuItem.Text">
-    <value>Export selected</value>
+    <value>Exporter la sélection</value>
+  </data>
+  <data name="importToolStripMenuItem.Text">
+    <value>Importer</value>
   </data>
 </root>

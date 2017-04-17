@@ -59,6 +59,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Images depuis Google</value>
+    <value>Agregar código de Game Genie</value>
+  </data>
+  <data name="buttonCancel.Text">
+    <value>Cancelar</value>
+  </data>
+  <data name="label1.Text">
+    <value>Código:</value>
+  </data>
+  <data name="label2.Text">
+    <value>Descripción:</value>
   </data>
 </root>
