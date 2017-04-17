@@ -379,16 +379,16 @@ namespace com.clusterrr.clovershell
             buff[1] = 0;
             buff[2] = 0;
             buff[3] = 0;
-            epWriter.Write(buff, 0, buff.Length, 1000, out tLen);
+            var r = epWriter.Write(buff, 0, buff.Length, 1000, out tLen);
             if (tLen != buff.Length)
-                throw new ClovershellException("kill all shell: write error");
+                throw new ClovershellException("kill all shell: write error - " + r.ToString());
             buff[0] = (byte)ClovershellCommand.CMD_EXEC_KILL_ALL;
             buff[1] = 0;
             buff[2] = 0;
             buff[3] = 0;
-            epWriter.Write(buff, 0, buff.Length, 1000, out tLen);
+            r= epWriter.Write(buff, 0, buff.Length, 1000, out tLen);
             if (tLen != buff.Length)
-                throw new ClovershellException("kill all exec: write error");
+                throw new ClovershellException("kill all exec: write error - "+r.ToString());
         }
 
         internal void writeUsb(ClovershellCommand cmd, byte arg, byte[] data = null, int pos = 0, int l = -1)
