@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>Server FTP all'indirizzo ftp://root:clover@127.0.0.1:1021</value>
+  </data>
   <data name="aboutToolStripMenuItem.Text">
     <value>Informazioni…</value>
   </data>
@@ -193,11 +196,17 @@
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Moduli</value>
   </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>Apri client FTP</value>
+  </data>
   <data name="openFileDialogImage.Title">
     <value>Seleziona la copertina per il gioco</value>
   </data>
   <data name="openFileDialogNes.Title">
     <value>Seleziona Giochi</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>Apri client Telnet</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
     <value>Giochi originali in root -&gt; giochi divisi in parti uguali</value>
@@ -226,6 +235,9 @@
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Salva le impostazioni nel NES Mini ora</value>
   </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>Manager dei punti di sospensione</value>
+  </data>
   <data name="searchToolStripMenuItem.Text">
     <value>Cerca</value>
   </data>
@@ -238,8 +250,14 @@
   <data name="settingsToolStripMenuItem.Text">
     <value>&amp;Impostazioni</value>
   </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Server Telnet all'indirizzo telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Sincronizza</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;Strumenti</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
     <value>Disinstalla moduli extra</value>
@@ -258,23 +276,5 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Utilizza X/Y sul Classic Controller come autofire per A/B</value>
-  </data>
-  <data name="FTPToolStripMenuItem.Text">
-    <value>FTP server on ftp://root:clover@127.0.0.1:1021</value>
-  </data>
-  <data name="openFTPInExplorerToolStripMenuItem.Text">
-    <value>Open FTP client</value>
-  </data>
-  <data name="openTelnetToolStripMenuItem.Text">
-    <value>Open Telnet client</value>
-  </data>
-  <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Save-State Manager</value>
-  </data>
-  <data name="shellToolStripMenuItem.Text">
-    <value>Telnet server on telnet://127.0.0.1:1023 (login:root)</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Text">
-    <value>&amp;Tools</value>
   </data>
 </root>

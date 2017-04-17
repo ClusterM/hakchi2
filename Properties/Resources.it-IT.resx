@@ -106,6 +106,9 @@
   <data name="DeletePreset">
     <value>Vuoi veramente cancellare il preset "{0}" ?</value>
   </data>
+  <data name="DeleteSavesQ">
+    <value>Vuoi veramente cancellare questi punti di sospensione?</value>
+  </data>
   <data name="DoYouWantCancel">
     <value>Vuoi cancellare l'operazione in corso?</value>
   </data>
@@ -257,7 +260,7 @@
     <value>Mi dispiace, ci sono {0}Mbytes, sono troppi.</value>
   </data>
   <data name="MemoryStats">
-    <value>Memoria totale utilizzabile disponibile: {0:F1}MBytes|Memoria disponibile per i giochi: {1:F1}MBytes|Utilizzata dai savestates: {2:F1}MBytes|Utilizzata da altri files: {3:F1}MBytes</value>
+    <value>&amp;Strumenti</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>I nuovi giochi sono stati spostati nella cartella "Unsorted".</value>
@@ -280,6 +283,9 @@
   <data name="NoKernelYouNeed">
     <value>Non è stato trovato alcun dump del kernel. Devi prima di tutto dumpare il kernel.</value>
   </data>
+  <data name="NoTelnet">
+    <value>Impossibile avviare il client Telnet, sembra disabilitato. Va prima abilitato da "Pannello di Controllo" -&gt; "Programmi" -&gt; "Attivazione o disattivazione delle funzionalità Windows".</value>
+  </data>
   <data name="NotFound">
     <value>Non trovato:</value>
   </data>
@@ -301,11 +307,17 @@
   <data name="PleaseTryAgainUSB">
     <value>Se il problema persiste, prova ad utilizzare un'altra porta USB oppure un cavo USB differente.</value>
   </data>
+  <data name="PleaseWait">
+    <value>Attendere prego...</value>
+  </data>
   <data name="PressOkToContinue">
     <value>Premere OK per continuare.</value>
   </data>
   <data name="ReplaceKernelQ">
     <value>Hai già il dump del kernel. Se vuoi VERAMENTE sostituire il backup del kernel e sai VERAMENTE cosa stai facendo, cancella la cartella "dump" manualmente.</value>
+  </data>
+  <data name="SavesFlterName">
+    <value>Backup dei punti di sospensione del NES Mini</value>
   </data>
   <data name="SelectAtLeast">
     <value>Seleziona almeno 1 gioco.</value>
@@ -318,6 +330,9 @@
   </data>
   <data name="SelectModsUninstall">
     <value>Seleziona il modulo da rimuovere dal NES Mini</value>
+  </data>
+  <data name="SizeOfSaves">
+    <value>Dimensione dei punti di sospensione selezionati</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>Non dimenticare di eseguire un factory reset se si desidera cancellare tutti i punti di sospensione.</value>
@@ -333,6 +348,9 @@
   </data>
   <data name="UninstallingMods">
     <value>Sto disinstallando le mods…</value>
+  </data>
+  <data name="UnknownGame">
+    <value>Gioco sconosciuto</value>
   </data>
   <data name="UploadingConfig">
     <value>Caricando la nuova configurazione…</value>
@@ -369,23 +387,5 @@
   </data>
   <data name="YesForAll">
     <value>Si per tutti</value>
-  </data>
-  <data name="DeleteSavesQ">
-    <value>Do you really want to delete those save-states?</value>
-  </data>
-  <data name="NoTelnet">
-    <value>Can't start Telnet client, seems like it's disabled. You need to enable it first, you can do it in "Control Panel" -&gt; "Programs" -&gt; "Turn Windows features on or off".</value>
-  </data>
-  <data name="PleaseWait">
-    <value>Please wait...</value>
-  </data>
-  <data name="SavesFlterName">
-    <value>NES Mini save-state backups</value>
-  </data>
-  <data name="SizeOfSaves">
-    <value>Size of selected save-states:</value>
-  </data>
-  <data name="UnknownGame">
-    <value>Unknown game</value>
   </data>
 </root>
