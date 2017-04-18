@@ -40,6 +40,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
+                while (!this.IsHandleCreated) Thread.Sleep(100);
                 if (!(bool)Invoke(new Func<bool>(delegate
                 {
                     listViewSaves.Visible = false;
