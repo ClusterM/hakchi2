@@ -266,13 +266,13 @@
     <value>Language</value>
   </data>
   <data name="nESMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>151, 22</value>
   </data>
   <data name="nESMiniToolStripMenuItem.Text" xml:space="preserve">
     <value>NES Mini</value>
   </data>
   <data name="famicomMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>151, 22</value>
   </data>
   <data name="famicomMiniToolStripMenuItem.Text" xml:space="preserve">
     <value>Famicom Mini</value>
@@ -896,20 +896,20 @@
   <data name="&gt;&gt;pictureBoxArt.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 409</value>
+    <value>15, 316</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 13</value>
+    <value>53, 204</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Box art:</value>
+  </data>
+  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>

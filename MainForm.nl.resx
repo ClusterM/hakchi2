@@ -190,6 +190,9 @@
   <data name="labelName.Text">
     <value>Naam:</value>
   </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Taal</value>
+  </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Maximaal aantal spellen per pagina/map</value>
   </data>

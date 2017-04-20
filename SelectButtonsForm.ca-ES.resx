@@ -59,57 +59,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Manager Cartelle</value>
-  </data>
-  <data name="buttonCancel.Text">
-    <value>Cancella</value>
-  </data>
-  <data name="buttonFoldersEqually.Text">
-    <value>Dividi in parti uguali</value>
-  </data>
-  <data name="buttonFoldersEquallyOriginal.Text">
-    <value>Giochi originali -&gt; Divisi in parti uguali</value>
-  </data>
-  <data name="buttonFoldersLetters.Text">
-    <value>Dividi considerando la prima lettera</value>
-  </data>
-  <data name="buttonFoldersLettersOriginal.Text">
-    <value>Giochi originali -&gt; Divisi considerando la prima lettera</value>
-  </data>
-  <data name="buttonNewFolder.Text">
-    <value>Nuova cartella</value>
-  </data>
-  <data name="buttonNoFolders.Text">
-    <value>Nessuna cartella</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.Text">
-    <value>Giochi originali -&gt; Altri giochi</value>
-  </data>
-  <data name="cutToolStripMenuItem.Text">
-    <value>Taglia</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Text">
-    <value>Cancella</value>
-  </data>
-  <data name="groupBoxArt.Text">
-    <value>Icona menu</value>
-  </data>
-  <data name="groupBoxSplitModes.Text">
-    <value>Creare una struttura di cartelle automaticamente</value>
-  </data>
-  <data name="labelPosition.Text">
-    <value>Priorità di posizione della cartella:</value>
-  </data>
-  <data name="newFolderToolStripMenuItem.Text">
-    <value>Crea una nuova cartella</value>
-  </data>
-  <data name="pasteToolStripMenuItem.Text">
-    <value>Incolla</value>
-  </data>
-  <data name="renameToolStripMenuItem.Text">
-    <value>Rinomina cartella</value>
-  </data>
-  <data name="labelElementCount.Text">
-    <value>Folder statistics</value>
+    <value>Selecciona una combinació de botons per a Reset</value>
   </data>
 </root>

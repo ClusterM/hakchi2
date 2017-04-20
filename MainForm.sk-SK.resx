@@ -190,6 +190,9 @@
   <data name="labelName.Text">
     <value>Názov:</value>
   </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Jazyk</value>
+  </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Maximálny počet hier na stránku/priečinok</value>
   </data>

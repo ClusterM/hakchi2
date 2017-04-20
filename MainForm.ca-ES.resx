@@ -58,226 +58,226 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FTPToolStripMenuItem.Text">
-    <value>FTP-Server auf ftp://root:clover@127.0.0.1:1021</value>
-  </data>
   <data name="aboutToolStripMenuItem.Text">
-    <value>Über...</value>
+    <value>Sobre...</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>Mehr &amp;Spiele hinzufügen</value>
+    <value>Afegir més%jocs</value>
   </data>
   <data name="addPresetToolStripMenuItem.Text">
-    <value>Preset hinzufügen</value>
+    <value>Afegir llista</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
-    <value>Original Spiele in Root -&gt; automatisch in Unterordner</value>
+    <value>Jocs originals en Root -&gt; Automátic en subcarpeta</value>
   </data>
   <data name="automaticToolStripMenuItem.Text">
-    <value>Automatich</value>
+    <value>Automàtic</value>
   </data>
   <data name="buttonAddGames.Text">
-    <value>Mehr Spiele hinzufügen</value>
+    <value>Afegir més jocs</value>
   </data>
   <data name="buttonBrowseImage.Text">
-    <value>Durchsuchen</value>
+    <value>Cercar</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Synchronisiere gewählte Spiele mit NES Mini</value>
+    <value>Sincronitzar els jocs seleccionats amb Nes Mini</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
-    <value>Controller Hacks</value>
+    <value>Ajuda/dreceres per als comandaments</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
-    <value>Komprimiere nicht-NES Spiele (für zusätzliche Emulatoren)</value>
+    <value>Comprimir jocs que no siguin de NES (Per a emuladors adicionals)</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
-    <value>Konsolentyp</value>
+    <value>Tipus de consola</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>Benutzerdefiniert - Ordner Manager jedes mal anzeigen</value>
+    <value>Personalitzat -mostra la gestió de les carpetes tot el temps</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
-    <value>Spiel löschen</value>
+    <value>Eliminar joc</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
-    <value>Preset löschen</value>
+    <value>Eliminar llista</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
-    <value>Seiten/Ordner deaktivieren</value>
+    <value>Desactivar pàgines/carpetes</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Lade Covers für alle Spiele</value>
+    <value>Descarregar caràtules per a tots els jocs</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Kernel sichern</value>
+    <value>Volcar kernel</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
-    <value>Benutze "Select+A/B", um Autofeuer für A/B zu aktivieren</value>
+    <value>Prem "Select+A/B" per activar el "Autofire" en A/B</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
-    <value>Epilepsie-Schutz deaktivieren</value>
+    <value>Desactivar protecció contra la epilèpsia</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
-    <value>&amp;Beenden</value>
-  </data>
-  <data name="fAQToolStripMenuItem.Text">
-    <value>Fragen und Antworten</value>
+    <value>&amp;Sortir</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
-    <value>&amp;Datei</value>
+    <value>Arxiu</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Flashe benutzerdefinierten Kernel</value>
+    <value>Flashear custom kernel</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Original Kernel flashen</value>
+    <value>Flashear kernel original</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>Original Spiele in Root -&gt; Ordner, Spiele gleichmäßig aufteilen</value>
+    <value>Jocs originals en Root -&gt; Carpetes, organitzar jocs per igual</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Originale Spiele in Root -&gt; Ordner, Aufgeteilt nach dem 1. Buchstaben</value>
+    <value>Jocs originals en Root -&gt; Carpetes, organitzar jocs per primera lletra</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>Ordner, aufgeteilt nach dem 1. Buchstaben</value>
+    <value>Carpetes, dividir per la primera lletra</value>
   </data>
   <data name="foldersToolStripMenuItem.Text">
-    <value>Ordner, splitte Spiele gleichmäßig</value>
+    <value>Carpetes. organitzar jocs per igual</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>GitHub Homepage mit aktuellen Versionen</value>
+    <value>Github: Pàgina amb les versions actuals</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>Globale Kommandozeilen-Argumente (nur Experten!)</value>
+    <value>Línia de comandament global (Només per a usuaris experts)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>Hier kann man einige Standardspiele ausblenden</value>
+    <value>Pots ocultar alguns jocs predeterminats</value>
   </data>
   <data name="groupBoxOptions.Text">
-    <value>Spieloptionen</value>
+    <value>Opcions de joc</value>
   </data>
   <data name="helpToolStripMenuItem.Text">
-    <value>&amp;Hilfe</value>
+    <value>&amp;Ajuda</value>
   </data>
   <data name="installModulesToolStripMenuItem.Text">
-    <value>Zusätzliche Module installieren</value>
+    <value>Instalar mòduls extres</value>
   </data>
   <data name="kernelToolStripMenuItem.Text">
     <value>&amp;Kernel</value>
   </data>
   <data name="label1.Text">
-    <value>Veröffentlichungsdatum (JJJJ-MM-TT):</value>
+    <value>Data de llançament (AAAA-MM-DD)</value>
   </data>
   <data name="label2.Text">
-    <value>Herausgeber:</value>
+    <value>Editor:</value>
   </data>
   <data name="label3.Text">
-    <value>Kommandozeilenargumente (nur für fortgeschrittene Benutzer!):</value>
+    <value>Línia de comandament (Només usuaris avançats)</value>
   </data>
   <data name="label4.Text">
-    <value>Cover:</value>
+    <value>Caràtula</value>
   </data>
   <data name="label5.Text">
-    <value>Spiel auswählen:</value>
+    <value>Seleccionar jocs:</value>
   </data>
   <data name="label6.Text">
-    <value>Max Spieler:</value>
+    <value>Nombre de jugadors:</value>
   </data>
   <data name="label7.Text">
-    <value>Game Genie Codes (getrennt mit Komma):</value>
+    <value>Codis Game Genie (separats per comes):</value>
   </data>
   <data name="labelName.Text">
-    <value>Name:</value>
-  </data>
-  <data name="languageToolStripMenuItem.Text">
-    <value>Sprache</value>
+    <value>Nom:</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
-    <value>Maximal Spiele pro Seite/Ordner</value>
+    <value>Nombre de jocs per pàgina/carpeta</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
-    <value>&amp;Module</value>
-  </data>
-  <data name="openFTPInExplorerToolStripMenuItem.Text">
-    <value>FTP-Client öffnen</value>
-  </data>
-  <data name="openFileDialogImage.Title">
-    <value>Cover für Spiel auswählen</value>
-  </data>
-  <data name="openFileDialogNes.Title">
-    <value>Spiele auswählen</value>
-  </data>
-  <data name="openTelnetToolStripMenuItem.Text">
-    <value>Telnet-Client öffnen</value>
+    <value>&amp;Mòduls</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>Originale Spiele in Root -&gt; Seiten, Spiele gleichmäßig aufteilen</value>
+    <value>Jocs originals en Root -&gt; Pàgines, dividir els jocs per igual</value>
   </data>
   <data name="pagesToolStripMenuItem.Text">
-    <value>Seiten, Spiele gleichmäßig aufteilen</value>
+    <value>Pàgines, organitzar jocs per igual</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>Seiten-/Ordnerstruktur</value>
+    <value>Pàgines/estructura de les carpetes</value>
   </data>
   <data name="presetsToolStripMenuItem.Text">
-    <value>Presets</value>
+    <value>Seleccionar llista</value>
   </data>
   <data name="radioButtonOne.Text">
-    <value>Ein Spieler</value>
+    <value>Un jugador</value>
   </data>
   <data name="radioButtonTwo.Text">
-    <value>Zwei Spieler, abwechselnd</value>
+    <value>Dos jugadors, no simultanis</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Zwei Spieler, gleichzeitig</value>
+    <value>Dos jugadors, simultàneament</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>Benutze Tastenkombination für Zurücksetzen</value>
+    <value>Utilitzar combinació de botons per a Reset</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Einstellungen in NES mini jetzt speichern</value>
-  </data>
-  <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Manager der Speicherstände</value>
+    <value>Guardar opcions a la Nes Mini ara</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
-    <value>Suche</value>
+    <value>Cercar</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text">
-    <value>Alle Auswählen</value>
+    <value>Seleccionar tot</value>
   </data>
   <data name="selectButtonCombinationToolStripMenuItem.Text">
-    <value>Wähle Kombination, um ins Menu zu gehen</value>
+    <value>Selecciona una combinació de botons per a Reset</value>
   </data>
   <data name="settingsToolStripMenuItem.Text">
-    <value>&amp;Einstellungen</value>
-  </data>
-  <data name="shellToolStripMenuItem.Text">
-    <value>Telnet Server auf telnet://127.0.0.1:1023 (login:root)</value>
+    <value>&amp;Opcions</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
-    <value>Synchronisieren</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Text">
-    <value>&amp;Extras</value>
+    <value>Sincronitzar</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
-    <value>Module deinstallieren</value>
+    <value>Desinstalar mòduls extres</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text">
-    <value>Deinstallieren</value>
+    <value>Desinstalar mòduls extres</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
-    <value>Alle abwählen</value>
+    <value>Deseleccionar tot</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>"Hoch+A+B = Start" auf dem 2. Controller</value>
+    <value>"Amunt+A+B = Start" en el 2n comandament</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
-    <value>Erweiterte Schriftart verwenden</value>
+    <value>Utilitzar font extesa</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
-    <value>Nutze X/Y auf dem Classic Controller als Autofeuer A/B</value>
+    <value>Utilitza X/Y en el comandament Wii Classic Controller com "Autofire" A/B</value>
+  </data>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>FTP server on ftp://root:clover@127.0.0.1:1021</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>FAQ</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Language</value>
+  </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>Open FTP client</value>
+  </data>
+  <data name="openFileDialogImage.Title">
+    <value>Select box art for game</value>
+  </data>
+  <data name="openFileDialogNes.Title">
+    <value>Select games</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>Open Telnet client</value>
+  </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>Save-State Manager</value>
+  </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Telnet server on telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;Tools</value>
   </data>
 </root>

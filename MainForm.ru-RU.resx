@@ -190,6 +190,9 @@
   <data name="labelName.Text">
     <value>Название:</value>
   </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Язык</value>
+  </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Максимум игр на страницу</value>
   </data>

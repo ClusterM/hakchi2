@@ -178,6 +178,9 @@
   <data name="labelName.Text">
     <value>Nazwa:</value>
   </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Język</value>
+  </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Maksimum gier na stronę/folder</value>
   </data>

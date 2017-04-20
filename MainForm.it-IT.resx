@@ -190,6 +190,9 @@
   <data name="labelName.Text">
     <value>Nome:</value>
   </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Lingua</value>
+  </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Numero massimo di giochi per pagina/cartella</value>
   </data>

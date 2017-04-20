@@ -10,7 +10,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -26,7 +25,7 @@ namespace com.clusterrr.hakchi_gui
         public static string KernelDump;
         mooftpserv.Server ftpServer;
 
-        NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
+        static NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
             new NesDefaultGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros.", Size = 571031 },
             new NesDefaultGame { Code = "CLV-P-NAACE",  Name = "Super Mario Bros. 3", Size = 1163285 },
             new NesDefaultGame { Code = "CLV-P-NAADE",  Name = "Super Mario Bros. 2",Size = 1510337 },
@@ -96,7 +95,8 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.Load();
             try
             {
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(ConfigIni.Language);
+                if (!string.IsNullOrEmpty(ConfigIni.Language))
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo(ConfigIni.Language);
             }
             catch { }
             InitializeComponent();
@@ -381,9 +381,11 @@ namespace com.clusterrr.hakchi_gui
             foreach (var language in languages)
             {
                 var code = Path.GetFileName(language);
-                langCodes[Regex.Replace(new CultureInfo(code).DisplayName, @"\s?\(.+\)", "")] = code;
+                langCodes[new CultureInfo(code).DisplayName] = code;
             }
-            foreach (var language in langCodes.Keys.OrderBy<string,string>(o => o))
+            ToolStripMenuItem english = null;
+            bool found = false;
+            foreach (var language in langCodes.Keys.OrderBy<string, string>(o => o))
             {
                 var item = new ToolStripMenuItem();
                 item.Text = Path.GetFileName(language);
@@ -396,8 +398,13 @@ namespace com.clusterrr.hakchi_gui
                         FormInitialize();
                     };
                 item.Checked = Thread.CurrentThread.CurrentUICulture.Name == langCodes[language];
+                found |= item.Checked;
+                if (language == "en-US")
+                    english = item;
                 languageToolStripMenuItem.DropDownItems.Add(item);
             }
+            if (!found)
+                english.Checked = true;
         }
 
         void AddPreset(object sender, EventArgs e)

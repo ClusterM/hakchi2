@@ -152,7 +152,7 @@
     <value>Extra argumenty príkazového riadku</value>
   </data>
   <data name="FirstRun">
-    <value>Ahoj! Som veľmi rád že používate hakchi2. Je veľmi jednoduchý na používanie. Stačí kliknú´t na "Pridať viac hier", vybrať niektoré hry, stlačiť tlačidlo "Synchronizovať" a postupovať podľa pokynov. Veľa štastia!</value>
+    <value>Ahoj! Som veľmi rád že používate hakchi2. Je veľmi jednoduchý na používanie. Stačí kliknúť na tlačidlo "Pridať viac hier", vybrať niektoré hry, stlačiť tlačidlo "Synchronizovať" a postupovať podľa pokynov. Veľa štastia!</value>
   </data>
   <data name="FlasingCustom">
     <value>Flashovanie vlastného kernelu...</value>

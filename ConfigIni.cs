@@ -28,7 +28,7 @@ namespace com.clusterrr.hakchi_gui
         public const string ConfigFile = "config.ini";
         public static bool FtpServer = false;
         public static bool TelnetServer = false;
-        public static string Language = "jp";
+        public static string Language = "";
 
         public static void Load()
         {
