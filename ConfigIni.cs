@@ -28,6 +28,7 @@ namespace com.clusterrr.hakchi_gui
         public const string ConfigFile = "config.ini";
         public static bool FtpServer = false;
         public static bool TelnetServer = false;
+        public static string Language = "jp";
 
         public static void Load()
         {
@@ -60,6 +61,9 @@ namespace com.clusterrr.hakchi_gui
                             param = param.ToLower();
                             switch (param)
                             {
+                                case "language":
+                                    Language = value;
+                                    break;
                                 case "selectedgames":
                                     SelectedGames = value;
                                     break;
@@ -131,6 +135,7 @@ namespace com.clusterrr.hakchi_gui
             Debug.WriteLine("Saving config");
             var configLines = new List<string>();
             configLines.Add("[Config]");
+            configLines.Add(string.Format("Language={0}", Language));            
             configLines.Add(string.Format("SelectedGames={0}", SelectedGames));
             configLines.Add(string.Format("HiddenGames={0}", HiddenGames));
             configLines.Add(string.Format("Custom2Flashed={0}", CustomFlashed));

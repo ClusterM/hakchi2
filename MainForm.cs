@@ -6,9 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -21,7 +23,7 @@ namespace com.clusterrr.hakchi_gui
         public static string[] InternalMods = new string[] { "clovercon", "fontfix", "clovershell" };
         public static ClovershellConnection Clovershell;
         //readonly string UBootDump;
-        readonly string KernelDump;
+        public static string KernelDump;
         mooftpserv.Server ftpServer;
 
         NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
@@ -91,15 +93,39 @@ namespace com.clusterrr.hakchi_gui
 
         public MainForm()
         {
+            ConfigIni.Load();
             try
             {
-                InitializeComponent();
-                ConfigIni.Load();
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(ConfigIni.Language);
+            }
+            catch { }
+            InitializeComponent();
+            FormInitialize();
+            Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
+            Clovershell.OnConnected += Clovershell_OnConnected;
+
+            ftpServer = new mooftpserv.Server();
+            ftpServer.AuthHandler = new mooftpserv.NesMiniAuthHandler();
+            ftpServer.FileSystemHandler = new mooftpserv.NesMiniFileSystemHandler(Clovershell);
+            ftpServer.LogHandler = new mooftpserv.DebugLogHandler();
+            ftpServer.LocalPort = 1021;
+
+            if (ConfigIni.FtpServer)
+                FTPToolStripMenuItem_Click(null, null);
+            if (ConfigIni.TelnetServer)
+                shellToolStripMenuItem.Checked = true;
+        }
+
+        void FormInitialize()
+        {
+            try
+            {
                 BaseDirectory = Path.GetDirectoryName(Application.ExecutablePath);
                 KernelDump = Path.Combine(Path.Combine(BaseDirectory, "dump"), "kernel.img");
                 LoadGames();
                 LoadHidden();
                 LoadPresets();
+                LoadLanguages();
                 var version = Assembly.GetExecutingAssembly().GetName().Version;
                 Text = string.Format("hakchi2 - v{0}.{1:D2}{2}", version.Major, version.Build, (version.Revision < 10) ?
                     ("rc" + version.Revision.ToString()) : (version.Revision > 10 ? ((char)('a' + version.Revision - 10)).ToString() : ""));
@@ -166,25 +192,8 @@ namespace com.clusterrr.hakchi_gui
                 // Recalculate games in background
                 new Thread(RecalculateSelectedGamesThread).Start();
 
-                Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
-                Clovershell.OnConnected += Clovershell_OnConnected;
-
-                ftpServer = new mooftpserv.Server();
-                ftpServer.AuthHandler = new mooftpserv.NesMiniAuthHandler();
-                ftpServer.FileSystemHandler = new mooftpserv.NesMiniFileSystemHandler(Clovershell);
-                ftpServer.LogHandler = new mooftpserv.DebugLogHandler();
-                ftpServer.LocalPort = 1021;
-
-                if (ConfigIni.FtpServer)
-                {
-                    FTPToolStripMenuItem.Checked = true;
-                    FTPToolStripMenuItem_Click(null, null);
-                }
-                if (ConfigIni.TelnetServer)
-                {
-                    shellToolStripMenuItem.Checked = true;
-                    shellToolStripMenuItem_Click(null, null);
-                }
+                FTPToolStripMenuItem.Checked = ConfigIni.FtpServer;
+                shellToolStripMenuItem.Checked = ConfigIni.TelnetServer;
             }
             catch (Exception ex)
             {
@@ -361,6 +370,33 @@ namespace com.clusterrr.hakchi_gui
                     }));
                 deletePresetToolStripMenuItem.Enabled = true;
                 i++;
+            }
+        }
+
+        void LoadLanguages()
+        {
+            var languages = new List<string>(Directory.GetDirectories(Path.Combine(BaseDirectory, "languages")));
+            languages.Add("en-US"); // default language
+            var langCodes = new Dictionary<string, string>();
+            foreach (var language in languages)
+            {
+                var code = Path.GetFileName(language);
+                langCodes[Regex.Replace(new CultureInfo(code).DisplayName, @"\s?\(.+\)", "")] = code;
+            }
+            foreach (var language in langCodes.Keys.OrderBy<string,string>(o => o))
+            {
+                var item = new ToolStripMenuItem();
+                item.Text = Path.GetFileName(language);
+                item.Click += delegate(object sender, EventArgs e)
+                    {
+                        ConfigIni.Language = langCodes[language];
+                        Thread.CurrentThread.CurrentUICulture = new CultureInfo(langCodes[language]);
+                        this.Controls.Clear();
+                        this.InitializeComponent();
+                        FormInitialize();
+                    };
+                item.Checked = Thread.CurrentThread.CurrentUICulture.Name == langCodes[language];
+                languageToolStripMenuItem.DropDownItems.Add(item);
             }
         }
 
@@ -1372,7 +1408,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-               ConfigIni.TelnetServer = openTelnetToolStripMenuItem.Enabled = Clovershell.ShellEnabled = shellToolStripMenuItem.Checked;
+                ConfigIni.TelnetServer = openTelnetToolStripMenuItem.Enabled = Clovershell.ShellEnabled = shellToolStripMenuItem.Checked;
             }
             catch (Exception ex)
             {
