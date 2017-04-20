@@ -192,8 +192,8 @@ namespace com.clusterrr.hakchi_gui
                 // Recalculate games in background
                 new Thread(RecalculateSelectedGamesThread).Start();
 
-                FTPToolStripMenuItem.Checked = ConfigIni.FtpServer;
-                shellToolStripMenuItem.Checked = ConfigIni.TelnetServer;
+                openFTPInExplorerToolStripMenuItem.Enabled = FTPToolStripMenuItem.Checked = ConfigIni.FtpServer;
+                openTelnetToolStripMenuItem.Enabled = shellToolStripMenuItem.Checked = ConfigIni.TelnetServer;
             }
             catch (Exception ex)
             {
