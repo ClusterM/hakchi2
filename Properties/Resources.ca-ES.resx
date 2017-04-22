@@ -73,8 +73,89 @@
   <data name="CustomKernelQ">
     <value>Voleu flashear el custom kernel?</value>
   </data>
+  <data name="CustomWarning">
+    <value>Ara teniu que flashear el custom kernel.</value>
+  </data>
+  <data name="Default30games">
+    <value>30 jocs originals</value>
+  </data>
+  <data name="DeleteGame">
+    <value>¿Vols eliminar el joc "{0}"?</value>
+  </data>
+  <data name="DoYouWantCancel">
+    <value>Voleu cancelar la operació actual?</value>
+  </data>
+  <data name="DoYouWantToContinue">
+    <value>Voleu continuar?</value>
+  </data>
+  <data name="Done">
+    <value>El proces s'ha realitzat correctament</value>
+  </data>
+  <data name="DoneUploaded">
+    <value>Espereu a que la llum del botó Power s'apagui i es renicïi la NES Mini</value>
+  </data>
+  <data name="DoneYouCanUpload">
+    <value>Ja podeu afegir jocs a la NES Mini</value>
+  </data>
+  <data name="DumpKernelQ">
+    <value>Voleu volcar el kernel?</value>
+  </data>
+  <data name="DumpingKernel">
+    <value>Volcant el kernel...</value>
+  </data>
+  <data name="Error">
+    <value>Error</value>
+  </data>
+  <data name="ExecutingCommand">
+    <value>Executant el comandament:</value>
+  </data>
+  <data name="ExecutingFes1">
+    <value>Executant fes1..</value>
+  </data>
+  <data name="FlasingCustom">
+    <value>Flashetjant el custom kernel...</value>
+  </data>
+  <data name="FlasingOriginal">
+    <value>Flashetjant el kernel original...</value>
+  </data>
   <data name="FolderNameNewFolder">
     <value>Nova carpeta</value>
+  </data>
+  <data name="FolderNameOriginalGames">
+    <value>30 jocs originals</value>
+  </data>
+  <data name="GamesSelected">
+    <value>joc(s) seleccionats</value>
+  </data>
+  <data name="InvalidKernelHeader">
+    <value>L'encapçalament del kernel no és vàlid</value>
+  </data>
+  <data name="InvalidKernelSize">
+    <value>El tamany del kernel no és vàlid</value>
+  </data>
+  <data name="MD5Failed">
+    <value>Kernel volcat, però la suma de comprovació MD5 es desconeguda</value>
+  </data>
+  <data name="MD5Failed2">
+    <value>No s'ha trobat cap volcat del kernel</value>
+  </data>
+  <data name="MapperNotSupported">
+    <value>Aquest joc, "{0}" fa servir un mapeador #{1} i no es compatible amb la NES Mini, és probable que no inicïi amb el emulador predeterminat, però deuria funcionar si teniu un mòdul extra instalat d'un altre emulador. Voleu afegir aquest joc?</value>
+  </data>
+  <data name="NoKernel">
+    <value>El kernel ja està adobat o és una revisió desconeguda. Envia'm aquest missatge (Prem Control+C). COntinua baix el teu propi risc</value>
+  </data>
+  <data name="NoKernelWarning">
+    <value>Primer, heu de fer un volcat del kernel de la NES mini,. Aquesta acció, només és necessària fer-la una vegada. Voleu continuar?</value>
+  </data>
+  <data name="NoKernelYouNeed">
+    <value>No s'ha trobat cap volcat del kernel, primer, heu de fer-li el volcat</value>
+  </data>
+  <data name="OriginalKernelQ">
+    <value>Voleu flashetjar el kernel original?</value>
+  </data>
+  <data name="PressOkToContinue">
+    <value>Premeu Ok per continuar</value>
   </data>
   <data name="AddingGames">
     <value>Processing games, please wait...</value>
@@ -91,20 +172,11 @@
   <data name="BuildingFolders">
     <value>Building the folder structure...</value>
   </data>
-  <data name="CustomWarning">
-    <value>Now you need to flash the custom kernel to your NES Mini. This is only required once. Do you want to continue?</value>
-  </data>
-  <data name="Default30games">
-    <value>Original 30 games</value>
-  </data>
   <data name="DeleteElement">
     <value>Do you really want to delete "{0}"?</value>
   </data>
   <data name="DeleteElements">
     <value>Do you really want to delete {0} elements?</value>
-  </data>
-  <data name="DeleteGame">
-    <value>Do you really want to delete "{0}" game?</value>
   </data>
   <data name="DeletePreset">
     <value>Do you really want to delete the "{0}" preset?</value>
@@ -112,41 +184,11 @@
   <data name="DeleteSavesQ">
     <value>Do you really want to delete those save-states?</value>
   </data>
-  <data name="DoYouWantCancel">
-    <value>Do you want to cancel the current operation?</value>
-  </data>
-  <data name="DoYouWantToContinue">
-    <value>Do you want to continue?</value>
-  </data>
   <data name="Donate">
     <value>P.S. If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
   </data>
-  <data name="Done">
-    <value>Done!</value>
-  </data>
-  <data name="DoneUploaded">
-    <value>Done! Wait until the power LED goes out and restart your NES Mini.</value>
-  </data>
-  <data name="DoneYouCanUpload">
-    <value>Done! You can upload games to your NES Mini now.</value>
-  </data>
   <data name="DownloadAllCoversTitle">
     <value>Downloading box art for all games (I'm feeling lucky!)</value>
-  </data>
-  <data name="DumpKernelQ">
-    <value>Do you want to dump the kernel?</value>
-  </data>
-  <data name="DumpingKernel">
-    <value>Dumping kernel...</value>
-  </data>
-  <data name="Error">
-    <value>Error</value>
-  </data>
-  <data name="ExecutingCommand">
-    <value>Executing command:</value>
-  </data>
-  <data name="ExecutingFes1">
-    <value>Executing fes1...</value>
   </data>
   <data name="ExtraArgsInfo">
     <value>You can add global command-line arguments which will be appended to all games including the original 30. This is only for experts!</value>
@@ -157,12 +199,6 @@
   <data name="FirstRun">
     <value>Hello there! I'm very glad that you are using hakchi2. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>
   </data>
-  <data name="FlasingCustom">
-    <value>Flashing custom kernel...</value>
-  </data>
-  <data name="FlasingOriginal">
-    <value>Flashing original kernel...</value>
-  </data>
   <data name="FolderContent">
     <value>Deleted content will be moved to the Recycle Bin. You can delete this folder permanently or move the games to other folders.</value>
   </data>
@@ -171,9 +207,6 @@
   </data>
   <data name="FolderNameMoreGames">
     <value>More games...</value>
-  </data>
-  <data name="FolderNameOriginalGames">
-    <value>Original 30 games</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Recycle Bin</value>
@@ -214,9 +247,6 @@
   <data name="GamesAndApps">
     <value>Games and apps</value>
   </data>
-  <data name="GamesSelected">
-    <value>games(s) selected</value>
-  </data>
   <data name="GooglingFor">
     <value>Googling for</value>
   </data>
@@ -232,29 +262,14 @@
   <data name="InstallingMods">
     <value>Installing mods...</value>
   </data>
-  <data name="InvalidKernelHeader">
-    <value>Invalid kernel header.</value>
-  </data>
-  <data name="InvalidKernelSize">
-    <value>Invalid kernel size:</value>
-  </data>
   <data name="KernelDumped">
     <value>Your original kernel is saved in the "dump" folder. Do not lose it.</value>
   </data>
   <data name="LoadingGames">
     <value>Loading games...</value>
   </data>
-  <data name="MD5Failed">
-    <value>Kernel dumped but the MD5 checksum is unknown:</value>
-  </data>
-  <data name="MD5Failed2">
-    <value>The kernel is already patched or it's an unknown revision. Please send this message to me (press Ctrl+C). Continue at your own risk.</value>
-  </data>
   <data name="MainMenu">
     <value>HOME Menu</value>
-  </data>
-  <data name="MapperNotSupported">
-    <value>Sorry, "{0}" uses mapper #{1} but this mapper is not supported by the NES Mini and the game will probably not start with the default emulator. But it should work if other emulator's module installed. Do you want to add this game?</value>
   </data>
   <data name="MemoryFull">
     <value>Sorry, there are {0}MBytes of games, it's too much.</value>
@@ -274,23 +289,11 @@
   <data name="NoForAll">
     <value>No for all</value>
   </data>
-  <data name="NoKernel">
-    <value>No kernel dump found</value>
-  </data>
-  <data name="NoKernelWarning">
-    <value>First, dump the kernel image of your NES Mini. You only need to do this once. Do you want to continue?</value>
-  </data>
-  <data name="NoKernelYouNeed">
-    <value>No kernel dump found. You need to dump the kernel first.</value>
-  </data>
   <data name="NoTelnet">
     <value>Can't start Telnet client, seems like it's disabled. You need to enable it first, you can do it in "Control Panel" -&gt; "Programs" -&gt; "Turn Windows features on or off".</value>
   </data>
   <data name="NotFound">
     <value>Not found:</value>
-  </data>
-  <data name="OriginalKernelQ">
-    <value>Do you want to flash the original kernel?</value>
   </data>
   <data name="ParticallyBody">
     <value>Don't worry! Everything is fine. There are just too many ROMs to transfer at once. Please wait until power LED goes out, press OK and follow the instructions to continue.</value>
@@ -309,9 +312,6 @@
   </data>
   <data name="PleaseWait">
     <value>Please wait...</value>
-  </data>
-  <data name="PressOkToContinue">
-    <value>Press OK to continue.</value>
   </data>
   <data name="ReplaceKernelQ">
     <value>You already have the kernel dump. If you REALLY want to replace the backup of your kernel and you REALLY understand what you are doing, delete the "dump" folder manually.</value>

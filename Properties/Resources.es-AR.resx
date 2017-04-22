@@ -92,7 +92,7 @@
     <value>Ahora necesitás flashear el kernel personalizado a tu NES Classic Edition. Sólo necesitás hacerlo una vez. ¿Querés continuar?</value>
   </data>
   <data name="Default30games">
-    <value>30 juegos originales</value>
+    <value>Los 30 juegos originales</value>
   </data>
   <data name="DeleteElement">
     <value>¿Estás seguro que querés eliminar "{0}"?</value>
@@ -116,7 +116,7 @@
     <value>¿Querés continuar?</value>
   </data>
   <data name="Donate">
-    <value>Por cierto, si te gusta, podés hacer una donación. Podés encontrar mi cuenta de PayPal en la caja "Acerca de hakchi".</value>
+    <value>Por cierto, si te gusta, podés hacer una donación. Podés encontrar mi cuenta de PayPal en la caja "Acerca de hakchi2".</value>
   </data>
   <data name="Done">
     <value>¡Listo!</value>
@@ -131,7 +131,7 @@
     <value>Descargando arte de caja para todos los juegos (¡Me siento con suerte!)</value>
   </data>
   <data name="DumpKernelQ">
-    <value>¿Querés volcar el kernerl?</value>
+    <value>¿Querés volcar el kernel?</value>
   </data>
   <data name="DumpingKernel">
     <value>Volcando kernel…</value>
@@ -152,7 +152,7 @@
     <value>Argumentos extra de línea de comando</value>
   </data>
   <data name="FirstRun">
-    <value>¡Hola, che! Estoy muy contento de que estés usando hakchi2. Es muy fácil de usar. Simplemente hacé clic en "Agregar más juegos", seleccioná algunas ROMs, presioná "Sincronizar" y seguí las instrucciones. ¡Éxitos!</value>
+    <value>¡Hola, che! Estoy muy contento de que estés usando hakchi2. Es muy fácil de usar. Simplemente hacé clic en "Agregar más juegos", seleccioná algunas ROMs, presioná el botón para sincronizar y seguí las instrucciones. ¡Éxitos!</value>
   </data>
   <data name="FlasingCustom">
     <value>Flasheando kernel personalizado…</value>
@@ -173,7 +173,7 @@
     <value>Nueva carpeta</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>30 juegos originales</value>
+    <value>Los 30 juegos originales</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Papelera de reciclaje</value>
@@ -380,7 +380,7 @@
     <value>¡Advertencia!</value>
   </data>
   <data name="Wow">
-    <value>Epa</value>
+    <value>¡Esa!</value>
   </data>
   <data name="Yes">
     <value>Sí</value>

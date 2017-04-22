@@ -59,208 +59,205 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FTPToolStripMenuItem.Text">
-    <value>Servidor FTP en ftp://root:clover@127.0.0.1:1021</value>
+    <value>Servidor FTP em ftp: // root: clover@127.0.0.1: 1021</value>
   </data>
   <data name="aboutToolStripMenuItem.Text">
-    <value>Acerca de hakchi2</value>
+    <value>Sobre...</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>Agregar más jue&amp;gos</value>
+    <value>Adicionar mais &amp; jogos</value>
   </data>
   <data name="addPresetToolStripMenuItem.Text">
-    <value>Agregar lista personalizada de juegos</value>
+    <value>Adicionar predefinido</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
-    <value>Juegos originales en raíz -&gt; Subcarpetas automáticas</value>
+    <value>Jogos originais na raiz - &amp; gt; Automático na subpasta</value>
   </data>
   <data name="automaticToolStripMenuItem.Text">
     <value>Automático</value>
   </data>
   <data name="buttonAddGames.Text">
-    <value>Agregar más juegos</value>
+    <value>Adicionar mais jogos</value>
   </data>
   <data name="buttonBrowseImage.Text">
-    <value>Explorar</value>
+    <value>Procurar</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Sinc. juegos seleccionados con la NES Classic Edition</value>
+    <value>Sincronizar jogos selecionados com NES Mini</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
-    <value>Configuración avanzada del control</value>
+    <value>Controlador hacks</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
-    <value>Comprimir juegos que no sean de NES (para un módulo emulador adicional)</value>
+    <value>Comprimir jogos não-NES (para modulação de emulador adicional)</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
-    <value>Tipo de consola</value>
+    <value>Tipo de console</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>Personalizada (mostrar el administrador de carpetas cada vez)</value>
+    <value>Personalizado - mostra o Gerenciador de pastas sempre</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
-    <value>Eliminar juego</value>
+    <value>Excluir jogo</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
-    <value>Eliminar lista personalizada de juegos</value>
+    <value>Excluir predefinição</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
-    <value>Deshabilitar páginas/carpetas</value>
+    <value>Desativar página / pastas</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Descargar arte de caja para todos los juegos</value>
+    <value>Baixe a caixa de arte para todos os jogos</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Volcar kernel</value>
+    <value>Dump kernel (despejo)</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
-    <value>Usar "Select" + "A"/"B" para habilitar disparo automático en los botones "A"/"B"</value>
+    <value>Use "Selecionar + A / B" para ativar o autofire em A / B</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
-    <value>Deshabilitar protección antiepiléptica</value>
+    <value>Desativar a proteção contra epilepsia</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
-    <value>&amp;Salir</value>
+    <value>&amp;Saída</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
-    <value>Preguntas frecuentes</value>
+    <value>Perguntas frequentes (FAQ)</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
-    <value>&amp;Archivo</value>
+    <value>&amp;Ficheiro</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Flashear el kernel personalizado</value>
+    <value>Escreve o custom Kernal</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Flashear el kernel original</value>
+    <value>Flash(escreve) original kernel</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>Juegos originales en raíz -&gt; Carpetas, separar juegos equitativamente</value>
+    <value>Jogos originais na raiz - &amp; gt; Pastas, dividir jogos igualmente</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Juegos originales en raíz -&gt; Carpetas, separar juegos por la primera letra</value>
+    <value>Jogos originais na raiz - &amp; gt; Pastas, divididas pela primeira letra</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>Carpetas, separar por la primera letra</value>
+    <value>Pastas, divididas pela primeira letra</value>
   </data>
   <data name="foldersToolStripMenuItem.Text">
-    <value>Carpetas, separar juegos equitativamente</value>
+    <value>Pastas, dividir jogos igualmente</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>Página de GitHub con los lanzamientos actuales</value>
+    <value>Página GitHub com lançamentos reais</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>Argumentos globales de línea de comando (¡sólo para expertos!)</value>
+    <value>Argumentos de linha de comando globais (somente especialistas!)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>Podés ocultar algunos juegos predeterminados</value>
+    <value>Você pode ocultar alguns jogos</value>
   </data>
   <data name="groupBoxOptions.Text">
-    <value>Configuración del juego</value>
+    <value>Opções de jogo</value>
   </data>
   <data name="helpToolStripMenuItem.Text">
-    <value>&amp;Ayuda</value>
+    <value>&amp;Ajuda</value>
   </data>
   <data name="installModulesToolStripMenuItem.Text">
     <value>Instalar módulos extras</value>
   </data>
   <data name="kernelToolStripMenuItem.Text">
-    <value>&amp;Kernel</value>
+    <value>&amp;Kernal</value>
   </data>
   <data name="label1.Text">
-    <value>Fecha de lanzamiento (AAAA-MM-DD):</value>
+    <value>Data de lançamento (AAAA-MM-DD):</value>
   </data>
   <data name="label2.Text">
-    <value>Publicador:</value>
+    <value>Editor:</value>
   </data>
   <data name="label3.Text">
-    <value>Argumentos de línea de comando (¡sólo para expertos!):</value>
+    <value>Argumentos da linha de comando (somente para usuários avançados):</value>
   </data>
   <data name="label4.Text">
-    <value>Arte de la caja:</value>
+    <value>Arte da caixa:</value>
   </data>
   <data name="label5.Text">
-    <value>Seleccionar juegos:</value>
+    <value>Selecione jogos:</value>
   </data>
   <data name="label6.Text">
-    <value>Cantidad máxima de jugadores:</value>
+    <value>Máximo de jogadores:</value>
   </data>
   <data name="label7.Text">
-    <value>Códigos de Game Genie (separados por comas):</value>
+    <value>Códigos Game Genie (separados por vírgula):</value>
   </data>
   <data name="labelName.Text">
-    <value>Nombre:</value>
-  </data>
-  <data name="languageToolStripMenuItem.Text">
-    <value>Idioma</value>
+    <value>Nome:</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
-    <value>Cantidad máxima de juegos por página/carpeta</value>
+    <value>Máximo de jogos por página / pasta</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Módulos</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
-    <value>Abrir cliente FTP</value>
+    <value>Abrir cliente de FTP</value>
   </data>
   <data name="openFileDialogImage.Title">
-    <value>Seleccionar arte de caja para el juego</value>
+    <value>Selecionar a arte da caixa do jogo</value>
   </data>
   <data name="openFileDialogNes.Title">
-    <value>Seleccionar juegos</value>
+    <value>Selecionar jogos</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Abrir cliente Telnet</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>Juegos originales en raíz -&gt; Páginas, separar juegos equitativamente</value>
+    <value>Jogos originais na raiz - &amp; gt; Páginas, dividir jogos igualmente</value>
   </data>
   <data name="pagesToolStripMenuItem.Text">
-    <value>Páginas, separar juegos equitativamente</value>
+    <value>Páginas, dividir jogos igualmente</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>Estructura de páginas/carpetas</value>
+    <value>Estrutura de páginas / pastas</value>
   </data>
   <data name="presetsToolStripMenuItem.Text">
-    <value>Seleccionar lista personalizada de juegos</value>
+    <value>Predefinições de seleção</value>
   </data>
   <data name="radioButtonOne.Text">
-    <value>Un jugador</value>
+    <value>Um jogador</value>
   </data>
   <data name="radioButtonTwo.Text">
-    <value>2 jugadores, por turnos</value>
+    <value>Dois jogadores, não simultaneamente</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Dos jugadores, simultáneamente</value>
+    <value>Dois jogadores, simultaneamente</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>Usar combinación de botones para resetear</value>
+    <value>Use a combinação de botões para</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Guardar configuración a la NES Classic Edition ahora</value>
+    <value>Salvar configurações no NES Mini agora</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Administrador de puntos de suspensión</value>
+    <value>Gerente de Save-State</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
-    <value>Buscar</value>
+    <value>Pesquisa</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text">
-    <value>Seleccionar todo</value>
+    <value>Selecionar tudo</value>
   </data>
   <data name="selectButtonCombinationToolStripMenuItem.Text">
-    <value>Seleccionar combinación de botones para resetear</value>
+    <value>Selecionar combinação de botão de reset</value>
   </data>
   <data name="settingsToolStripMenuItem.Text">
-    <value>&amp;Configuración</value>
+    <value>&amp;Configurações</value>
   </data>
   <data name="shellToolStripMenuItem.Text">
-    <value>Servidor shell en telnet://127.0.0.1:1023 (login:root)</value>
+    <value>Servidor Telnet no telnet: //127.0.0.1: 1023 (login: root)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Sincronizar</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
-    <value>Herramien&amp;tas</value>
+    <value>&amp;Ferramentas</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
     <value>Desinstalar módulos extras</value>
@@ -269,15 +266,18 @@
     <value>Desinstalar</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
-    <value>Quitar selección a todo</value>
+    <value>Desmarque todos</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>"Arriba" + "A" + "B" = Start" en el 2° control</value>
+    <value>Up + A + B = Start no 2º controlador</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
-    <value>Usar tipografía extendida</value>
+    <value>Usar fonte estendida</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
-    <value>Usar los botones "X"/"Y" en el Classic Controller como disparo automático de "A"/"B"</value>
+    <value>Use X / Y no Controlador Clássico como autofire A / B</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Language</value>
   </data>
 </root>
