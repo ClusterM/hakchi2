@@ -399,7 +399,7 @@ namespace com.clusterrr.hakchi_gui
                     };
                 item.Checked = Thread.CurrentThread.CurrentUICulture.Name == langCodes[language];
                 found |= item.Checked;
-                if (language == "en-US")
+                if (langCodes[language] == "en-US")
                     english = item;
                 languageToolStripMenuItem.DropDownItems.Add(item);
             }
