@@ -560,6 +560,9 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 		 *
 		 * Use that as last resort discarding criteria */
 		jy = 0;
+		data[18] = 0;	// for ultra shitty pro controller clones
+				// which will work only after hardware
+				// modification (2.2K pull-up resistor on SCL and SDA)
 		for (jx=8; jx<21; jx++) {
 			if (data[jx] == 0xFF) data[jx] = 0; // for 3rd party controllers
 			jy += data[jx];
