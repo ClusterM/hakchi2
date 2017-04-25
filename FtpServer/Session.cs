@@ -474,6 +474,26 @@ namespace mooftpserv
                     Respond(200, GetRandomText(OK_TEXT));
                     break;
                 }
+                case "SITE":
+                {
+                    string[] tokens = arguments.Split(' ');
+                    var newverb = tokens[0].ToUpper(); // commands are case insensitive
+                    var newargs = (tokens.Length > 1 ? String.Join(" ", tokens, 1, tokens.Length - 1) : null);
+                    ProcessCommand(newverb, newargs);
+                    break;
+                }
+                case "CHMOD":
+                {
+                    string[] tokens = arguments.Split(' ');
+                    var mode = tokens[0].ToUpper(); // commands are case insensitive
+                    var file = (tokens.Length > 1 ? String.Join(" ", tokens, 1, tokens.Length - 1) : "");
+                    ResultOrError<bool> ret = fsHandler.ChmodFile(mode, file);
+                    if (ret.HasError)
+                        Respond(550, ret.Error);
+                    else
+                        Respond(250, GetRandomText(OK_TEXT));
+                    break;
+                }
                 default:
                 {
                     Respond(500, "Unknown command.");
@@ -932,9 +952,10 @@ namespace mooftpserv
                     timestr += time.ToString(" dd  yyyy");
                 else
                     timestr += time.ToString(" dd hh:mm");
+                string mode = entry.Mode;
 
-                result.AppendFormat("{0}rwxr--r-- 1 owner group {1} {2} {3}\r\n",
-                                    dirflag, size, timestr, entry.Name);
+                result.AppendFormat("{0}{4} 1 owner group {1} {2} {3}\r\n",
+                                    dirflag, size, timestr, entry.Name, mode ?? "rwxr--r--");
             }
 
             return result.ToString();

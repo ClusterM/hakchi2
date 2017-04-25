@@ -13,6 +13,7 @@ namespace mooftpserv
         public bool IsDirectory;
         public long Size;
         public DateTime LastModifiedTimeUtc;
+        public string Mode;
     }
 
     /// <summary>
@@ -197,6 +198,8 @@ namespace mooftpserv
         /// A relative or absolute path.
         /// </param>
         ResultOrError<DateTime> GetLastModifiedTimeUtc(string path);
+
+        ResultOrError<bool> ChmodFile(string mode, string path);
     }
 }
 

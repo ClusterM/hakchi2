@@ -185,6 +185,7 @@ namespace mooftpserv
                 {
                     if (line.StartsWith("total")) continue;
                     FileSystemEntry entry = new FileSystemEntry();
+                    entry.Mode = line.Substring(1, 12).Trim();
                     entry.Name = line.Substring(69).Trim();
                     entry.IsDirectory = entry.Name.EndsWith("/");
                     if (entry.IsDirectory) entry.Name = entry.Name.Substring(0, entry.Name.Length - 1);
@@ -309,6 +310,19 @@ namespace mooftpserv
         private ResultOrError<T> MakeError<T>(string error)
         {
             return ResultOrError<T>.MakeError(error);
+        }
+
+        public ResultOrError<bool> ChmodFile(string mode, string path)
+        {
+            try
+            {
+                clovershell.ExecuteSimple(string.Format("chmod {0} {1}", mode, path), 1000, true);
+                return ResultOrError<bool>.MakeResult(true);
+            }
+            catch (Exception ex)
+            {
+                return MakeError<bool>(ex.Message);
+            }
         }
     }
 }
