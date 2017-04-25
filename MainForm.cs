@@ -19,7 +19,7 @@ namespace com.clusterrr.hakchi_gui
     {
         public const long DefaultMaxGamesSize = 300;
         public static string BaseDirectory;
-        public static string[] InternalMods = new string[] { "clovercon", "fontfix", "clovershell" };
+        public static IEnumerable<string> InternalMods;
         public static ClovershellConnection Clovershell;
         //readonly string UBootDump;
         public static string KernelDump;
@@ -113,7 +113,7 @@ namespace com.clusterrr.hakchi_gui
             if (ConfigIni.FtpServer)
                 FTPToolStripMenuItem_Click(null, null);
             if (ConfigIni.TelnetServer)
-                shellToolStripMenuItem.Checked = true;
+                Clovershell.ShellEnabled = shellToolStripMenuItem.Checked = true;
         }
 
         void FormInitialize()
@@ -122,6 +122,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 BaseDirectory = Path.GetDirectoryName(Application.ExecutablePath);
                 KernelDump = Path.Combine(Path.Combine(BaseDirectory, "dump"), "kernel.img");
+                InternalMods = from m in Directory.GetFiles(Path.Combine( BaseDirectory,"mods/hmods")) select Path.GetFileNameWithoutExtension(m);
                 LoadGames();
                 LoadHidden();
                 LoadPresets();
