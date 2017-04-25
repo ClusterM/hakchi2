@@ -38,7 +38,6 @@ namespace com.clusterrr.hakchi_gui
         readonly string baseDirectory;
         readonly string fes1Path;
         readonly string ubootPath;
-        readonly string splashScreenPath;
         readonly string tempDirectory;
         readonly string kernelDirectory;
         readonly string initramfs_cpio;
@@ -58,10 +57,11 @@ namespace com.clusterrr.hakchi_gui
         //string originalGamesConfigDirectory;
         //string hiddenPath;
         string[] correctKernels;
-        long maxRamfsSize = 40 * 1024 * 1024;
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
         string selectedFile = null;
         public NesMiniApplication[] addedApplications;
+        public static int NandCTotal, NandCUsed, NandCFree, WritedGamesSize, SaveStatesSize;
+        public const long ReservedMemory = 10;
 
         public WorkerForm()
         {
@@ -69,8 +69,7 @@ namespace com.clusterrr.hakchi_gui
             DialogResult = DialogResult.None;
             baseDirectory = MainForm.BaseDirectory;
             fes1Path = Path.Combine(Path.Combine(baseDirectory, "data"), "fes1.bin");
-            ubootPath = Path.Combine(Path.Combine(baseDirectory, "data"), "uboot.bin");
-            splashScreenPath = Path.Combine(Path.Combine(baseDirectory, "data"), "splash.gz");
+            ubootPath = Path.Combine(Path.Combine(baseDirectory, "data"), "uboot.bin");            
 #if DEBUG
             tempDirectory = Path.Combine(baseDirectory, "temp");
 #else
@@ -207,6 +206,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 DialogResult = DialogResult.None;
+                Debug.WriteLine("Executing task: " + Task.ToString());
                 switch (Task)
                 {
                     case Tasks.DumpKernel:
@@ -361,7 +361,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             );
 
-            var size = CalKernelSize(kernel);
+            var size = CalcKernelSize(kernel);
             if (size == 0 || size > Fel.kernel_max_size)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
             if (kernel.Length > size)
@@ -416,7 +416,7 @@ namespace com.clusterrr.hakchi_gui
             }
             else
                 kernel = File.ReadAllBytes(KernelDump);
-            var size = CalKernelSize(kernel);
+            var size = CalcKernelSize(kernel);
             if (size > kernel.Length || size > Fel.kernel_max_size)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
 
@@ -479,6 +479,38 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        public static void GetMemoryStats()
+        {
+            var clovershell = MainForm.Clovershell;
+            var nandc = clovershell.ExecuteSimple("df /dev/nandc | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 500, true).Split('|');
+            WritedGamesSize = int.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/hakchi/rootfs/usr/share/games/ && du -s /var/lib/hakchi/rootfs/usr/share/games/ | awk '{ print $1 }'", 1000, true)) * 1024;
+            SaveStatesSize = int.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/clover/profiles/0/ && du -s /var/lib/clover/profiles/0/ | awk '{ print $1 }'", 1000, true)) * 1024;
+            NandCTotal = int.Parse(nandc[0]) * 1024;
+            NandCUsed = int.Parse(nandc[1]) * 1024;
+            NandCFree = int.Parse(nandc[2]) * 1024;
+            Debug.WriteLine(string.Format("NANDC size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", NandCTotal / 1024.0 / 1024.0, NandCUsed / 1024.0 / 1024.0, NandCFree / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Used by games: {0:F1}MB", WritedGamesSize / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", SaveStatesSize / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Available for games: {0:F1}MB", (NandCFree + WritedGamesSize) / 1024.0 / 1024.0));
+        }
+
+        public static void ShowSplashScreen()
+        {
+            var clovershell = MainForm.Clovershell;
+            var splashScreenPath = Path.Combine(Path.Combine(MainForm.BaseDirectory, "data"), "splash.gz");
+            clovershell.ExecuteSimple("pkill -KILL clover-mcp");
+            clovershell.ExecuteSimple("pkill -KILL ReedPlayer-Clover");
+            clovershell.ExecuteSimple("pkill -KILL kachikachi");
+            if (File.Exists(splashScreenPath))
+            {
+                using (var splash = new FileStream(splashScreenPath, FileMode.Open))
+                {
+                    clovershell.Execute("gunzip -c - > /dev/fb0", splash, null, null, 3000);
+                }
+            }
+        }
+
         public void UploadGames()
         {
             const string gamesPath = "/usr/share/games/nes/kachikachi";
@@ -513,16 +545,7 @@ namespace com.clusterrr.hakchi_gui
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
-                clovershell.ExecuteSimple("pkill -KILL clover-mcp");
-                clovershell.ExecuteSimple("pkill -KILL ReedPlayer-Clover");
-                clovershell.ExecuteSimple("pkill -KILL kachikachi");
-                if (File.Exists(splashScreenPath))
-                {
-                    using (var splash = new FileStream(splashScreenPath, FileMode.Open))
-                    {
-                        clovershell.Execute("gunzip -c - > /dev/fb0", splash, null, null, 3000);
-                    }
-                }
+                ShowSplashScreen();
 
                 SetStatus(Resources.BuildingFolders);
                 if (Directory.Exists(tempDirectory))
@@ -534,38 +557,42 @@ namespace com.clusterrr.hakchi_gui
                 Directory.CreateDirectory(tempGamesDirectory);
                 Dictionary<string, string> originalGames = new Dictionary<string, string>();
                 var stats = new GamesTreeStats();
-                maxRamfsSize = -1;
-                stats.Next();
                 AddMenu(Games, originalGames, stats);
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
-                byte[] gamesTar;
-                if (Directory.GetDirectories(tempGamesDirectory).Count() > 0)
+                GetMemoryStats();
+                var maxGamesSize = (NandCFree + WritedGamesSize) - ReservedMemory * 1024 * 1024;
+                if (stats.TotalSize > maxGamesSize)
                 {
-                    if (!ExecuteTool("tar.exe", "-c *", out gamesTar, tempGamesDirectory))
-                        throw new Exception("can't pack games");
+                    throw new Exception(string.Format(Resources.MemoryFull, stats.TotalSize / 1024 / 1024) + "\r\n\r\n" +
+                        string.Format(Resources.MemoryStats.Replace("|", "\r\n"),
+                        NandCTotal / 1024.0 / 1024.0,
+                        (NandCFree + WritedGamesSize - ReservedMemory * 1024 * 1024) / 1024 / 1024,
+                        SaveStatesSize / 1024.0 / 1024.0,
+                        (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
                 }
-                else gamesTar = new byte[0];
-                progress += 5;
-                maxProgress = gamesTar.Length / 1024 / 1024 + 25 + originalGames.Count() * 2;
-                SetProgress(progress, maxProgress);
 
-                clovershell.ExecuteSimple(string.Format("umount {0}", gamesPath));
-                clovershell.ExecuteSimple(string.Format("rm -rf {0}{1}/CLV-* {0}{1}/??? {2}/menu", rootFsPath, gamesPath, installPath), 5000, true);
                 int startProgress = progress;
-                if (gamesTar.Length > 0)
+                using (var gamesTar = new TarStream(tempGamesDirectory))
                 {
-                    var gamesStream = new TrackableMemoryStream(gamesTar);
-                    gamesStream.OnReadProgress += delegate(long pos, long len)
-                    {
-                        progress = (int)(startProgress + pos / 1024 / 1024);
-                        SetProgress(progress, maxProgress);
-                    };
+                    maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 20 + originalGames.Count() * 2);
+                    SetProgress(progress, maxProgress);
 
-                    SetStatus(Resources.UploadingGames);
-                    clovershell.Execute(string.Format("tar -xvC {0}{1}", rootFsPath, gamesPath), gamesStream, null, null, 30000, true);
-                    gamesStream.Dispose();
+                    clovershell.ExecuteSimple(string.Format("umount {0}", gamesPath));
+                    clovershell.ExecuteSimple(string.Format("rm -rf {0}{1}/CLV-* {0}{1}/??? {2}/menu", rootFsPath, gamesPath, installPath), 5000, true);
+
+                    if (gamesTar.Length > 0)
+                    {
+                        gamesTar.OnReadProgress += delegate(long pos, long len)
+                        {
+                            progress = (int)(startProgress + pos / 1024 / 1024);
+                            SetProgress(progress, maxProgress);
+                        };
+
+                        SetStatus(Resources.UploadingGames);
+                        clovershell.Execute(string.Format("tar -xvC {0}{1}", rootFsPath, gamesPath), gamesTar, null, null, 30000, true);
+                    }
                 }
 
                 SetStatus(Resources.UploadingOriginalGames);
@@ -596,7 +623,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static bool SyncConfig(Dictionary<string, string> Config, bool reboot = false)
+        public static void SyncConfig(Dictionary<string, string> Config, bool reboot = false)
         {
             var clovershell = MainForm.Clovershell;
 
@@ -613,12 +640,14 @@ namespace com.clusterrr.hakchi_gui
             clovershell.Execute("cat > /tmp/config", config, null, null, 1000, true);
             clovershell.Execute("source /etc/preinit && script_init && source /tmp/config && source $preinit.d/pffff_config", null, null, null, 30000, true);
             config.Dispose();
-            try
+            if (reboot)
             {
-                clovershell.Execute("reboot", null, null, null, 1000);
+                try
+                {
+                    clovershell.ExecuteSimple("reboot", 100);
+                }
+                catch { }
             }
-            catch { }
-            return true;
         }
 
         public void Memboot(int maxProgress = -1, int progress = 0)
@@ -635,14 +664,10 @@ namespace com.clusterrr.hakchi_gui
 
             byte[] kernel;
             if (!string.IsNullOrEmpty(Mod))
-            {
                 kernel = CreatePatchedKernel();
-                if (kernel.Length > maxCompressedsRamfsSize)
-                    Debug.WriteLine(string.Format("Kernel size is too big: {0}MB, reducing max unpacked size to {1}MB", kernel.Length / 1024 / 1024, maxRamfsSize / 1024 / 1024));
-            }
             else
                 kernel = File.ReadAllBytes(KernelDump);
-            var size = CalKernelSize(kernel);
+            var size = CalcKernelSize(kernel);
             if (size > kernel.Length || size > Fel.kernel_max_size)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
             size = (size + Fel.sector_size - 1) / Fel.sector_size;
@@ -816,22 +841,8 @@ namespace com.clusterrr.hakchi_gui
         {
             public List<NesMenuCollection> allMenus = new List<NesMenuCollection>();
             public int TotalGames = 0;
-            public int GamesStart = 0;
-            public int GamesProceed = 0;
-            public long Size = 0;
             public long TotalSize = 0;
-            public bool Stopped;
-
-            public void Next()
-            {
-                allMenus.Clear();
-                GamesStart = GamesProceed;
-                TotalGames = 0;
-                GamesProceed = 0;
-                Size = 0;
-                TotalSize = 0;
-                Stopped = false;
-            }
+            public long TransferSize = 0;
         }
 
         private void AddMenu(NesMenuCollection menuCollection, Dictionary<string, string> originalGames, GamesTreeStats stats = null)
@@ -853,19 +864,11 @@ namespace com.clusterrr.hakchi_gui
                     stats.TotalGames++;
                     var game = element as NesMiniApplication;
                     var gameSize = game.Size();
-                    if (maxRamfsSize > 0 && gameSize >= maxRamfsSize) throw new Exception(string.Format(Resources.GameTooBig, game.Name));
-                    stats.TotalSize += gameSize;
-                    if ((maxRamfsSize > 0) && (stats.Stopped || stats.Size + gameSize >= maxRamfsSize))
-                    {
-                        stats.Stopped = true;
-                        continue;
-                    }
-                    stats.GamesProceed++;
-                    if (stats.GamesStart >= stats.GamesProceed) continue;
-                    Debug.Write(string.Format("Processing {0} ('{1}'), #{2}", game.Code, game.Name, stats.GamesProceed));
+                    Debug.WriteLine(string.Format("Processing {0} ('{1}'), size: {2}KB", game.Code, game.Name, gameSize / 1024));
                     var gameCopy = game.CopyTo(targetDirectory);
-                    stats.Size += gameSize;
-                    Debug.WriteLine(string.Format(", total size: {0}", stats.Size));
+                    stats.TotalSize += gameSize;
+                    stats.TransferSize += gameSize;
+                    stats.TotalGames++;
                     try
                     {
                         if (gameCopy is NesGame && File.Exists((gameCopy as NesGame).GameGeniePath))
@@ -891,20 +894,18 @@ namespace com.clusterrr.hakchi_gui
                         stats.allMenus.Add(folder.ChildMenuCollection);
                         AddMenu(folder.ChildMenuCollection, originalGames, stats);
                     }
-                    if (stats.GamesStart == 0)
-                    {
-                        folder.ChildIndex = stats.allMenus.IndexOf(folder.ChildMenuCollection);
-                        var folderDir = Path.Combine(targetDirectory, folder.Code);
-                        folder.Save(folderDir);
-                    }
+                    folder.ChildIndex = stats.allMenus.IndexOf(folder.ChildMenuCollection);
+                    var folderDir = Path.Combine(targetDirectory, folder.Code);
+                    var folderSize = folder.Save(folderDir);
+                    stats.TotalSize += folderSize;
+                    stats.TransferSize += folderSize;
+
                 }
                 if (element is NesDefaultGame)
                 {
-                    if (stats.GamesStart == 0)
-                    {
-                        var game = element as NesDefaultGame;
-                        originalGames[game.Code] = menuIndex == 0 ? "." : string.Format("{0:D3}", menuIndex);
-                    }
+                    var game = element as NesDefaultGame;
+                    stats.TotalSize += game.Size;
+                    originalGames[game.Code] = menuIndex == 0 ? "." : string.Format("{0:D3}", menuIndex);
                 }
             }
         }
@@ -946,7 +947,7 @@ namespace com.clusterrr.hakchi_gui
             return process.ExitCode == 0;
         }
 
-        static UInt32 CalKernelSize(byte[] header)
+        static UInt32 CalcKernelSize(byte[] header)
         {
             if (Encoding.ASCII.GetString(header, 0, 8) != "ANDROID!") throw new Exception(Resources.InvalidKernelHeader);
             UInt32 kernel_size = (UInt32)(header[8] | (header[9] * 0x100) | (header[10] * 0x10000) | (header[11] * 0x1000000));

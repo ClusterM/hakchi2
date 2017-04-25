@@ -65,7 +65,7 @@
     <value>Installiere Treiber</value>
   </data>
   <data name="label1.Text">
-    <value>Bitte führe die folgenden Schritte aus:</value>
+    <value>Bitte führe folgende Schritte aus:</value>
   </data>
   <data name="label2.Text">
     <value>1. Vergewissere dich, dass die POWER-Taste am NES Mini ausgeschaltet ist.</value>
@@ -74,7 +74,7 @@
     <value>2. Verbinde dein NES Mini mit deinem PC mit einem USB Kabel.</value>
   </data>
   <data name="label4.Text">
-    <value>3. Halte die RESET-Taste gedrückt und schalte den POWER-Schalter ein.</value>
+    <value>3. Halte die RESET-Taste gedrückt und drücke den POWER-Schalter.</value>
   </data>
   <data name="label5.Text">
     <value>4. Nach wenigen Sekunden die RESET-Taste loslassen, die POWER-LED sollte nicht eingeschaltet sein.</value>

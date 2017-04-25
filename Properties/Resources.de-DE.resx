@@ -61,6 +61,9 @@
   <data name="AddingGames">
     <value>Verarbeite Spiele, bitte warten...</value>
   </data>
+  <data name="AllFiles">
+    <value>Alle Dateien</value>
+  </data>
   <data name="AreYouSure">
     <value>Bist du dir sicher?</value>
   </data>
@@ -68,10 +71,10 @@
     <value>Daten automatisch gefüllt für {0} Spiel(e).</value>
   </data>
   <data name="AutofireHelp1">
-    <value>Halte eine Sekunde Select+A/B um Autofeuer A/B zu anktivieren/deaktivieren.</value>
+    <value>Halte eine Sekunde Select+A/B, um Autofeuer A/B zu anktivieren/deaktivieren.</value>
   </data>
   <data name="BuildingCustom">
-    <value>Erstelle ein Abbild des benutzerdefinierten Kernel...</value>
+    <value>Der Kernel wird gepatcht...</value>
   </data>
   <data name="BuildingFolders">
     <value>Erstelle die Ordnerstruktur...</value>
@@ -86,31 +89,34 @@
     <value>Möchtest du den benutzerdefinierten Kernel flashen?</value>
   </data>
   <data name="CustomWarning">
-    <value>Nun musst du dein benutzerdefinierten Kernel auf dein NES Mini flashen. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>
+    <value>Nun musst du deinen benutzerdefinierten Kernel auf dein NES Mini flashen. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>
   </data>
   <data name="Default30games">
-    <value>Original 30 Spiele</value>
+    <value>Originale Spiele</value>
   </data>
   <data name="DeleteElement">
-    <value>Möchtest die wirklich "{0}" löschen?</value>
+    <value>Möchtest du wirklich "{0}" löschen?</value>
   </data>
   <data name="DeleteElements">
-    <value>Du möchtest wirklich {0} Elemente löschen?</value>
+    <value>Möchtest du wirklich {0} Elemente löschen?</value>
   </data>
   <data name="DeleteGame">
-    <value>Möchstest du wirklich Spiel "{0}" löschen?</value>
+    <value>Möchstest du wirklich das Spiel "{0}" löschen?</value>
   </data>
   <data name="DeletePreset">
-    <value>Möchtest du wirklich die Voreinstellung "{0}" löschen?</value>
+    <value>Möchtest du wirklich das Preset "{0}" löschen?</value>
+  </data>
+  <data name="DeleteSavesQ">
+    <value>Möchtest du wirklich diese Speicherstände löschen?</value>
   </data>
   <data name="DoYouWantCancel">
-    <value>Möchten Sie den aktuellen Vorgang abbrechen?</value>
+    <value>Möchtest du den aktuellen Vorgang abbrechen?</value>
   </data>
   <data name="DoYouWantToContinue">
     <value>Möchtest du fortfahren?</value>
   </data>
   <data name="Donate">
-    <value>P.S. Wenn du magst, kannst du mir eine Spende zukommen lassen. Du findest meine PayPal im Menü "Über".</value>
+    <value>P.S. Wenn du magst, du kannst mir eine Spende zukommen lassen. Du findest meine PayPal im Menü "Über".</value>
   </data>
   <data name="Done">
     <value>Fertig!</value>
@@ -122,13 +128,13 @@
     <value>Fertig! Du kannst nun Spiele auf dein NES Mini laden.</value>
   </data>
   <data name="DownloadAllCoversTitle">
-    <value>Downloade Box Arts für alle Spiele (Ich fühle mich glücklich!)</value>
+    <value>Downloade Covers für alle Spiele (Ich fühle mich glücklich!)</value>
   </data>
   <data name="DumpKernelQ">
     <value>Möchtest du den Kernel sichern?</value>
   </data>
   <data name="DumpingKernel">
-    <value>Sicher Kernel...</value>
+    <value>Kernel wird gesichert...</value>
   </data>
   <data name="Error">
     <value>Fehler</value>
@@ -140,22 +146,22 @@
     <value>Ausführen fes1...</value>
   </data>
   <data name="ExtraArgsInfo">
-    <value>Du kannst Globale Kommandozeilen Argumente hinzufügen welche an alle Spiele angehängt werden inklusive der 30 originalen. Das ist nur für Experten!</value>
+    <value>Du kannst Globale Kommandozeilen Argumente hinzufügen, welche an alle Spiele angehängt werden, inklusive der 30 originalen. Das ist nur für Experten!</value>
   </data>
   <data name="ExtraArgsTitle">
-    <value>Extra Kommandozeilen Argumente</value>
+    <value>Globale Parameter der Kommandozeile</value>
   </data>
   <data name="FirstRun">
-    <value>Hallo! Ich bin sehr froh, dass Du hakchi2 benutzt. Es ist sehr einfach zu bedienen. Klicke einfach auf "Mehr Spiele hinzufügen", wähle ein paar ROMs, drücke "Synchronisieren" und folge den Anweisungen. Viel Glück!</value>
+    <value>Hallo! Ich bin sehr froh, dass Du hakchi2 verwnedest. Es ist sehr einfach zu bedienen. Klicke auf "Mehr Spiele hinzufügen", wähle ein paar ROMs, drücke "Synchronisieren" und folge den Anweisungen. Viel Glück!</value>
   </data>
   <data name="FlasingCustom">
     <value>Flashe benutzerdefinierten Kernel...</value>
   </data>
   <data name="FlasingOriginal">
-    <value>Flashe original Kernel...</value>
+    <value>Flashe originalen Kernel...</value>
   </data>
   <data name="FolderContent">
-    <value>Gelöschter Inhalt wird in den Papierkorb verschoben. Du kannst diesen Ordner permanent löschen oder die Spiele in andere Ordner verschieben.</value>
+    <value>Gelöschter Inhalt wird in den Papierkorb verschoben. Du kannst diesen Ordner permanent löschen oder die Spiele in andere Ordnern verschieben.</value>
   </data>
   <data name="FolderNameBack">
     <value>Zurück</value>
@@ -167,7 +173,7 @@
     <value>Neuer Ordner</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>Original 30 Spiele</value>
+    <value>Originale Spiele</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Papierkorb</value>
@@ -176,22 +182,22 @@
     <value>Unsortiert</value>
   </data>
   <data name="FolderStatistics">
-    <value>Ordner "{0}" enthält {1} Elemente.</value>
+    <value>Ordner "{0}" enthält {1} Element(e).</value>
   </data>
   <data name="FoldersSaveQ">
     <value>Möchtest du diese Ordnerstruktur speichern?</value>
   </data>
   <data name="FourScreenNotSupported">
-    <value>Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
+    <value>Sorry, das Spiel {0} verwendet das s.g. four-screen mode (d.h. das Spiel hat zusätzliche VRAM-Speicher auf dem Modul) und diese Funktion wird vom NES Mini nicht unterstützt. Das Spiel kann vermutlich nicht gestartet werden. Ist aber in Ordnung, wenn ein anderer Emulator (als Modul) installiert ist. Möchtest du das Spiel trotzdem hinzufügen?</value>
   </data>
   <data name="GGCodeDelete">
     <value>Möchtest du "{0}" Codes löschen?</value>
   </data>
   <data name="GGCodeEmpty">
-    <value>Du musst ein Code eingeben!</value>
+    <value>Du musst einen Code eingeben!</value>
   </data>
   <data name="GGCodeExists">
-    <value>Dieser Code existiert bereits. Möchtets du ihn editieren?</value>
+    <value>Dieser Code existiert bereits. Möchtest du ihn editieren?</value>
   </data>
   <data name="GGDescriptionEmpty">
     <value>Du musst eine Beschreibung hinzufügen!</value>
@@ -200,10 +206,13 @@
     <value>Ungültiger Game Genie Code "{0}" für das Spiel "{1}".</value>
   </data>
   <data name="GameGenieNotFound">
-    <value>Kann Game Genie Code "{0}" für das Spiel "{1}" nicht anwenden - Wert nnicht gefunden. Ist der Code vielleicht für ein anderes Spiel?</value>
+    <value>Kann den Game Genie Code "{0}" für das Spiel "{1}" nicht anwenden - Wert nicht gefunden. Ist der Code vielleicht für ein anderes Spiel?</value>
   </data>
   <data name="GameTooBig">
-    <value>Sorry, Spiel "{0}" ist zu groß.</value>
+    <value>Sorry, das Spiel "{0}" ist zu groß.</value>
+  </data>
+  <data name="GamesAndApps">
+    <value>Spiele und Programme</value>
   </data>
   <data name="GamesSelected">
     <value>Spiel(e) ausgewählt</value>
@@ -212,19 +221,22 @@
     <value>Google nach</value>
   </data>
   <data name="Hello">
-    <value>Hallo</value>
+    <value>Hallo!</value>
+  </data>
+  <data name="Images">
+    <value>Bilder</value>
   </data>
   <data name="InputPreset">
-    <value>Bitte gebe einen voreingestellten Namen für die aktuelle Spielauswahl ein.</value>
+    <value>Bitte gebe einen Namen für das aktuelle Preset ein.</value>
   </data>
   <data name="InstallingMods">
     <value>Installiere Mods...</value>
   </data>
   <data name="InvalidKernelHeader">
-    <value>Ungültiger Kernel Header.</value>
+    <value>Ungültiger Header des Kernels.</value>
   </data>
   <data name="InvalidKernelSize">
-    <value>Ungültige Kernel Größe:</value>
+    <value>Ungültige Größe des Kernels:</value>
   </data>
   <data name="KernelDumped">
     <value>Dein Original Kernel ist gesichert im Ordner "dump". Verliere ihn nicht.</value>
@@ -233,25 +245,28 @@
     <value>Lade Spiele...</value>
   </data>
   <data name="MD5Failed">
-    <value>Kernel gesichert aber die MD5 Prüfsumme ist unbekannt:</value>
+    <value>Kernel gesichert, aber die MD5 Prüfsumme ist falsch:</value>
   </data>
   <data name="MD5Failed2">
-    <value>Der Kernel ist schon gepatcht oder eine unbekannte Revision. Bitte sende diese Nachricht zu mir (drücke Ctrl+C). Weiter auf eigene Gefahr.</value>
+    <value>Der Kernel ist schon gepatcht oder die Revision ist uns unbekannt. Bitte sende mir diese Nachricht (drücke Ctrl+C). Weiter auf eigene Gefahr.</value>
   </data>
   <data name="MainMenu">
     <value>HOME Menü</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Entschuldige, "{0}" benutzt Mapper #{1} aber dieser Mapper wird vom NES Mini nicht unterstützt und das Spiel wird wahrscheinlich nicht starten mit dem Standard Emulator. Aber es könnte funktionieren wenn ein anderes Emulator Modul installiert ist. Möchtest du das Spiel hinzufügen?</value>
+    <value>Entschuldige, "{0}" benutzt Mapper #{1}, aber dieser wird vom NES Mini nicht unterstützt und das Spiel wird wahrscheinlich mit dem Standard Emulator nicht starten. Es könnte funktionieren, wenn ein anderer Emulator installiert ist. Möchtest du das Spiel trotzdem hinzufügen?</value>
   </data>
   <data name="MemoryFull">
-    <value>Sorry, da sind {0}MBytes an Spiele, das ist zu viel.</value>
+    <value>Sorry, es sind zu viele Spiele, {0}MBytes, das ist zu viel.</value>
+  </data>
+  <data name="MemoryStats">
+    <value>Speicher insgesamt: {0:F1}Mb|Verfügbar für Spiele: {1:F1}Mb|Von Speicherständen verwendet: {2:F1}Mb|Von anderen Dateien verwendet: {3:F1}Mb</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>Neue Spiele sind im Ordner "Unsortiert" .</value>
   </data>
   <data name="NewPreset">
-    <value>Neue Auswahl Voreingestellt</value>
+    <value>Ein Preset erstellen</value>
   </data>
   <data name="No">
     <value>Nein</value>
@@ -263,10 +278,13 @@
     <value>Kein gesicherter Kernel gefunden</value>
   </data>
   <data name="NoKernelWarning">
-    <value>Zuerst, sichere das Kernel Abbild von deinem NES Mini. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>
+    <value>Sichere zuerst das Kernel Abbild von deinem NES Mini. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>
   </data>
   <data name="NoKernelYouNeed">
-    <value>Kein gesicherter Kernel gefunden. Du must den Kernerl ersteinmal sichern.</value>
+    <value>Kein gesicherter Kernel gefunden. Du musst den Kernel erst einmal sichern.</value>
+  </data>
+  <data name="NoTelnet">
+    <value>Kann den Telnet-Client nicht öffnen, vermutlich ist der Dienst ausgeschaltet. Schalte bitte diesen zuerst ein über "Systemsteuerung" -&gt; "Programme" -&gt; "Windows-Funktionen aktivieren bzw. deaktivieren".</value>
   </data>
   <data name="NotFound">
     <value>Nicht gefunden:</value>
@@ -275,7 +293,7 @@
     <value>Möchtest du den Original Kernel flashen?</value>
   </data>
   <data name="ParticallyBody">
-    <value>Keine Angst! Alles ist OK. Es sind nur zu viele ROMs um sie auf einmal zu übertragen. Bitte warte bis die Power LED erlischt, drücke dann OK und folge dann den Anweisungen um fortzufahren.</value>
+    <value>Keine Angst! Alles ist OK. Es sind nur zu viele ROMs, um sie auf einmal zu übertragen. Bitte warte bis die Power LED erlischt, drücke dann OK und folge den Anweisungen, um fortzufahren.</value>
   </data>
   <data name="ParticallyTitle">
     <value>Zu viele ROMs</value>
@@ -289,11 +307,17 @@
   <data name="PleaseTryAgainUSB">
     <value>Wenn dieses Problem weiterhin besteht, versuche es mit einem anderen USB-Port oder Kabel.</value>
   </data>
+  <data name="PleaseWait">
+    <value>Bitte warten...</value>
+  </data>
   <data name="PressOkToContinue">
     <value>Drücke OK, um fortzufahren.</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>Du hast dein Kernel schon gesichert. Wenn du WIRKLICH dein Kernel Backup ersetzen möchtest und du WIRKLICH weist was du da tust, dann lösche den Ordner "dump" mit manuell.</value>
+    <value>Du hast dein Kernel schon gesichert. Wenn du WIRKLICH dein Kernel Backup ersetzen möchtest und du WIRKLICH weisst, was du tust, dann lösche den Ordner "dump" manuell.</value>
+  </data>
+  <data name="SavesFlterName">
+    <value>Sicherheitskopie der Speicherstände von NES Mini</value>
   </data>
   <data name="SelectAtLeast">
     <value>Wähle mindestens ein Spiel.</value>
@@ -302,25 +326,34 @@
     <value>Wähle mindestens zwei Tasten.</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Wähle die Module zum instalieren auf das NES Mini.</value>
+    <value>Wähle Module zum instalieren auf das NES Mini.</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Wähle die Module die du vom NES Mini entfernen möchtest.</value>
+    <value>Wähle Module, die du vom NES Mini entfernen möchtest.</value>
+  </data>
+  <data name="SizeOfSaves">
+    <value>Größe der gewählten Speicherstände:</value>
   </data>
   <data name="UninstallFactoryNote">
-    <value>Vergesse nicht, auf Werkeinstellung zurückzusetzen, wenn du alle Einstellungen löschen möchten.</value>
+    <value>Vergesse nicht, auf Werkeinstellung zurückzusetzen, wenn du alle Speicherstände löschen möchtest.</value>
   </data>
   <data name="UninstallQ1">
-    <value>Möchtest du wirklich alle Spuren von hakchi2 beseitigen und dein NES Mini in sein Originalzustand zurücksetzen?</value>
+    <value>Möchtest du wirklich alle Spuren von hakchi2 beseitigen und dein NES Mini in seinen Originalzustand zurücksetzen?</value>
   </data>
   <data name="UninstallQ2">
-    <value>Fertig. Warte bis die Power LED erlischt. Du musst auch den originalen Kernel flashen. Möchtest du den Original Kernel jetzt flashen?</value>
+    <value>Fertig. Warte bis die Power LED erlischt. Du musst auch den originalen Kernel flashen. Möchtest du den originalen Kernel jetzt flashen?</value>
   </data>
   <data name="Uninstalling">
     <value>Deinstallieren...</value>
   </data>
   <data name="UninstallingMods">
     <value>Deinstalliere Mods...</value>
+  </data>
+  <data name="UnknownGame">
+    <value>Unbekanntes Spiel</value>
+  </data>
+  <data name="UploadingConfig">
+    <value>Einstellungen werden aktualisiert...</value>
   </data>
   <data name="UploadingFes1">
     <value>Lade hoch und führe FES-1 aus...</value>
@@ -330,6 +363,9 @@
   </data>
   <data name="UploadingKernel">
     <value>Lade den Kernel hoch...</value>
+  </data>
+  <data name="UploadingOriginalGames">
+    <value>Originale Spiele werden verteilt...</value>
   </data>
   <data name="VerifyFailed">
     <value>Überprüfen fehlgeschlagen :O Das ist nicht gut.</value>
@@ -344,18 +380,12 @@
     <value>Warnung!</value>
   </data>
   <data name="Wow">
-    <value>Wow</value>
+    <value>Hurra</value>
   </data>
   <data name="Yes">
     <value>Ja</value>
   </data>
   <data name="YesForAll">
     <value>Ja für alle</value>
-  </data>
-  <data name="UploadingConfig">
-    <value>Uploading new config...</value>
-  </data>
-  <data name="UploadingOriginalGames">
-    <value>Processing original games...</value>
   </data>
 </root>

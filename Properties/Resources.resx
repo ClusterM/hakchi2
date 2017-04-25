@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AreYouSure" xml:space="preserve">
     <value>Are you sure?</value>
@@ -321,7 +321,7 @@
   <data name="ParticallyTitle" xml:space="preserve">
     <value>Too many ROMs</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="gamepad" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\gamepad.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -564,5 +564,35 @@
   </data>
   <data name="blank_neogeo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\blank_neogeo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MemoryStats" xml:space="preserve">
+    <value>Total writable memory size: {0:F1}MBytes|Available memory for games: {1:F1}MBytes|Used by saves: {2:F1}MBytes|Used by other files: {3:F1}MBytes</value>
+  </data>
+  <data name="AllFiles" xml:space="preserve">
+    <value>All files</value>
+  </data>
+  <data name="GamesAndApps" xml:space="preserve">
+    <value>Games and apps</value>
+  </data>
+  <data name="DeleteSavesQ" xml:space="preserve">
+    <value>Do you really want to delete those save-states?</value>
+  </data>
+  <data name="SavesFlterName" xml:space="preserve">
+    <value>NES Mini save-state backups</value>
+  </data>
+  <data name="SizeOfSaves" xml:space="preserve">
+    <value>Size of selected save-states: {0}KB</value>
+  </data>
+  <data name="UnknownGame" xml:space="preserve">
+    <value>Unknown game</value>
+  </data>
+  <data name="NoTelnet" xml:space="preserve">
+    <value>Can't start Telnet client, seems like it's disabled. You need to enable it first, you can do it in “Control Panel“ -&gt; “Programs“ -&gt; "Turn Windows features on or off".</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Please wait...</value>
   </data>
 </root>

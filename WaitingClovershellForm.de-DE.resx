@@ -65,15 +65,15 @@
     <value>Installiere Treiber</value>
   </data>
   <data name="label1.Text">
-    <value>Bitte führe die folgenden Schritte aus:</value>
+    <value>Bitte führe folgende Schritte aus:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Connect your NES Mini to the PC via USB cable.</value>
+    <value>1. Verbinde NES Mini mit PC via USB.</value>
   </data>
   <data name="label3.Text">
-    <value>2. Turn it on.</value>
+    <value>2. Die Konsole einschalten.</value>
   </data>
   <data name="label6.Text">
-    <value>3. Install driver if it's not installed yet:</value>
+    <value>3. Treiber installieren, wenn noch nicht installiert ist:</value>
   </data>
 </root>

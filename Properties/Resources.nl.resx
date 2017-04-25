@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddingGames">
+    <value>De spellen aan het verwerken, nog even geduld alstjeblieft...</value>
+  </data>
+  <data name="AllFiles">
+    <value>Alle bestanden</value>
+  </data>
+  <data name="AreYouSure">
+    <value>Weet je het zeker?</value>
+  </data>
+  <data name="AutofillResult">
+    <value>De data is automatisch aangevuld voor {0} spel(len).</value>
+  </data>
+  <data name="AutofireHelp1">
+    <value>Houd Select+A/B even ingedrukt om autofire A/B aan of uit te schakelen</value>
+  </data>
+  <data name="BuildingCustom">
+    <value>De aangepaste kernel aan het opbouwen...</value>
+  </data>
+  <data name="BuildingFolders">
+    <value>De mappen structuur aan het bouwen...</value>
+  </data>
+  <data name="Congratulations">
+    <value>Gefeliciteerd!</value>
+  </data>
+  <data name="CustomKernel">
+    <value>Aangepaste kernel</value>
+  </data>
+  <data name="CustomKernelQ">
+    <value>Wil je de aangepast kernel flashen?</value>
+  </data>
+  <data name="CustomWarning">
+    <value>Nu moet je de aangepaste kernel nog naar je NES Mini flashen. Dit hoeft maar één keer. Wil je doorgaan?</value>
+  </data>
+  <data name="Default30games">
+    <value>De originele 30 spellen</value>
+  </data>
+  <data name="DeleteElement">
+    <value>Wil je echt “{0}” verwijderen ?</value>
+  </data>
+  <data name="DeleteElements">
+    <value>Wil je echt “{0}”ROMS verwijderen?</value>
+  </data>
+  <data name="DeleteGame">
+    <value>Wil je echt spel “{0}” verwijderen?</value>
+  </data>
+  <data name="DeletePreset">
+    <value>Wil je echt instelling “{0}” verwijderen?</value>
+  </data>
+  <data name="DeleteSavesQ">
+    <value>Wil je echt alle onderbrekingspunten verwijderen?</value>
+  </data>
+  <data name="DoYouWantCancel">
+    <value>Wil je de huidige werkzaamheden afbreken ?</value>
+  </data>
+  <data name="DoYouWantToContinue">
+    <value>Wil je doorgaan?</value>
+  </data>
+  <data name="Donate">
+    <value>P.S. Als je dit programma leuk vind, dan wil je vast wat doneren. Je kunt mijn PayPal informatie vinden in “Over”...</value>
+  </data>
+  <data name="Done">
+    <value>Klaar!</value>
+  </data>
+  <data name="DoneUploaded">
+    <value>Klaar! Wacht tot het rode LED uitgaat, en herstart dan je NES Mini.</value>
+  </data>
+  <data name="DoneYouCanUpload">
+    <value>Klaar! Je kunt nu je spellen naar je NES Mini uploaden.</value>
+  </data>
+  <data name="DownloadAllCoversTitle">
+    <value>Download de originele verpakking voor alle spellen (Het geluk staat aan mijn kant!)</value>
+  </data>
+  <data name="DumpKernelQ">
+    <value>Wil je de kernel opslaan?</value>
+  </data>
+  <data name="DumpingKernel">
+    <value>Kernel aan het opslaan...</value>
+  </data>
+  <data name="Error">
+    <value>Fout</value>
+  </data>
+  <data name="ExecutingCommand">
+    <value>Commando's aan het uitvoeren:</value>
+  </data>
+  <data name="ExecutingFes1">
+    <value>FES-1 aan het uitvoeren...</value>
+  </data>
+  <data name="ExtraArgsInfo">
+    <value>Je kunt een globale opdracht regel toevoegen voor alle spellen, inclusief de originele 30. Dit is alleen voor experts!</value>
+  </data>
+  <data name="ExtraArgsTitle">
+    <value>Extra opdracht regel commando's</value>
+  </data>
+  <data name="FirstRun">
+    <value>Hallo! Ik vind het fijn dat je Hakchi2 gebruikt. Het is simpel in gebruik. Klik gewoon op “Meer spellen toevoegen”, selecteer wat ROMS, druk op ”Synchroniseren” en lees de instructies. Veel plezier!</value>
+  </data>
+  <data name="FlasingCustom">
+    <value>De aangepaste kernel aan het flashen...</value>
+  </data>
+  <data name="FlasingOriginal">
+    <value>De originele kernel aan het flashen...</value>
+  </data>
+  <data name="FolderContent">
+    <value>Verwijderde spellen worden in de prullenbak geplaast. Je kunt deze map in zijn geheel verwijderen of de spellen naar een andere map verplaatsen.</value>
+  </data>
+  <data name="FolderNameBack">
+    <value>Terug</value>
+  </data>
+  <data name="FolderNameMoreGames">
+    <value>Meer spellen...</value>
+  </data>
+  <data name="FolderNameNewFolder">
+    <value>Nieuwe map</value>
+  </data>
+  <data name="FolderNameOriginalGames">
+    <value>De originele 30 spellen</value>
+  </data>
+  <data name="FolderNameTrashBin">
+    <value>Prullenbak</value>
+  </data>
+  <data name="FolderNameUnsorted">
+    <value>Ongesorteerd</value>
+  </data>
+  <data name="FolderStatistics">
+    <value>Map “{0}” bevat {1} ROM.</value>
+  </data>
+  <data name="FoldersSaveQ">
+    <value>Wil je deze mappen structuur bewaren?</value>
+  </data>
+  <data name="FourScreenNotSupported">
+    <value>Sorry maar “{0}” gebruikt four-screen mode (m.a.w. dit spel heeft extra VRAM geheugen in de originele cartridge) en dit wordt niet ondersteund door de NES Mini emulator en dit spel zal waarschijnlijk niet werken. Maar waarschijnlijk wel met een andere emulator. Wil je het toch proberen?</value>
+  </data>
+  <data name="GGCodeDelete">
+    <value>Wil je code “{0}” verwijderen?</value>
+  </data>
+  <data name="GGCodeEmpty">
+    <value>Je moet een code invullen!</value>
+  </data>
+  <data name="GGCodeExists">
+    <value>Deze code bestaat al. Wil je hem bewerken?</value>
+  </data>
+  <data name="GGDescriptionEmpty">
+    <value>Je moet een beschrijving invullen!</value>
+  </data>
+  <data name="GameGenieFormatError">
+    <value>Ongeldige Game Genie code “{0}” voor spel “{1}”.</value>
+  </data>
+  <data name="GameGenieNotFound">
+    <value>Kan geen Game Genie code “{0}” toepassen voor spel “{1}” – waarde niet gevonden. Misschien is deze code voor een ander spel?</value>
+  </data>
+  <data name="GameTooBig">
+    <value>Sorr maar het spel “{0}” is te groot.</value>
+  </data>
+  <data name="GamesAndApps">
+    <value>Spellen en apps</value>
+  </data>
+  <data name="GamesSelected">
+    <value>spel(len) geselecteerd</value>
+  </data>
+  <data name="GooglingFor">
+    <value>Aan het Googlen voor</value>
+  </data>
+  <data name="Hello">
+    <value>Hallo</value>
+  </data>
+  <data name="Images">
+    <value>Afbeeldingen</value>
+  </data>
+  <data name="InputPreset">
+    <value>Vul alstjeblieft een</value>
+  </data>
+  <data name="InstallingMods">
+    <value>Modules aan het installeren...</value>
+  </data>
+  <data name="InvalidKernelHeader">
+    <value>Ongeldige kernel header.</value>
+  </data>
+  <data name="InvalidKernelSize">
+    <value>Ongeldige kernel grootte.</value>
+  </data>
+  <data name="KernelDumped">
+    <value>Je originele kernel is opgeslagen in de “dump” map. Verlies het niet!</value>
+  </data>
+  <data name="LoadingGames">
+    <value>Spellen aan het laden...</value>
+  </data>
+  <data name="MD5Failed">
+    <value>De opgeslagen kernel heeft een onbekende MD5 check-sum:</value>
+  </data>
+  <data name="MD5Failed2">
+    <value>De kernel is al gepatched maar het is een onbekende versie. Stuur dit naar me toe, alstjeblieft, druk op CTRL-C. Doorgaan is op eigen risico.</value>
+  </data>
+  <data name="MainMenu">
+    <value>HOME Menu</value>
+  </data>
+  <data name="MapperNotSupported">
+    <value>Sorry maar “{0}” gebruikt mapper #{1} en die wordt niet ondersteund door de NES Mini emulator en dit spel zal waarschijnlijk niet werken. Maar wel met een andere emulator. Wil je het toch proberen?</value>
+  </data>
+  <data name="MemoryFull">
+    <value>Sorry, maar er is “{0}”MBytes aan spellen, het is te groot.</value>
+  </data>
+  <data name="MemoryStats">
+    <value>Totaal schrijfbaar geheugen: {0:F1}MBytes|Beschikbaar geheugen voor spellen: {1:F1}MBytes|Gebruikt voor savegames: {2:F1}MBytes|Gebruikt door andere bestanden: {3:F1}MBytes</value>
+  </data>
+  <data name="NewGamesUnsorted">
+    <value>Nieuwe spellen worden verplaatst naar de “Ongesorteerd” map.</value>
+  </data>
+  <data name="NewPreset">
+    <value>Nieuw instelling selectie</value>
+  </data>
+  <data name="No">
+    <value>Nee</value>
+  </data>
+  <data name="NoForAll">
+    <value>Op alles nee</value>
+  </data>
+  <data name="NoKernel">
+    <value>Geen opgeslagen kopie van de kernel gevonden</value>
+  </data>
+  <data name="NoKernelWarning">
+    <value>Allereerst, bewaar een kopie van de originele kernel van je NES Mini. Je hoeft dit maar één keer te doen. Wil je doorgaan?</value>
+  </data>
+  <data name="NoKernelYouNeed">
+    <value>Geen opgeslagen kopie van de kernel gevonden. Je moet de kernel eerst opslaan.</value>
+  </data>
+  <data name="NoTelnet">
+    <value>Ik kan de Telnet client niet starten, het lijkt alsof het uitgeschakeld is. Je moet het eerst weer inschakelen. Dat doe je in het “Configuratiescherm” -&gt; "Programma's" -&gt; "Windows onderdelen in-of uitschakelen".</value>
+  </data>
+  <data name="NotFound">
+    <value>Niet gevonden:</value>
+  </data>
+  <data name="OriginalKernelQ">
+    <value>Wil je de originele kernel flashen?</value>
+  </data>
+  <data name="ParticallyBody">
+    <value>Niet schrikken! Alles is in orde. Er zijn gewoon te veel ROMS om in één keer te uploaden. Wacht tot de rode LED uitgaat, druk dan op OK, en volg de instructies.</value>
+  </data>
+  <data name="ParticallyTitle">
+    <value>Te veel ROMS</value>
+  </data>
+  <data name="PatchAvailable">
+    <value>Patch beschikbaar</value>
+  </data>
+  <data name="PatchQ">
+    <value>Er is een patch voor “{0}”. Wil je dit spel patchen?</value>
+  </data>
+  <data name="PleaseTryAgainUSB">
+    <value>Als dit probleem blijft bestaan, probeer dan een andere USB poort of een andere USB kabel</value>
+  </data>
+  <data name="PleaseWait">
+    <value>Even geduld a.u.b...</value>
+  </data>
+  <data name="PressOkToContinue">
+    <value>Druk op OK om door te gaan.</value>
+  </data>
+  <data name="ReplaceKernelQ">
+    <value>Je hebt de kernel al opgeslagen. Maar als je ECHT de originele backup van je kernel wilt overschrijven en je ECHT zeker weet wat je doet, verwijder de map met de back je kernel dan handmatig.</value>
+  </data>
+  <data name="SavesFlterName">
+    <value>NES Mini onderbrekingspunten backups</value>
+  </data>
+  <data name="SelectAtLeast">
+    <value>Selecteer tenminste één spel.</value>
+  </data>
+  <data name="SelectAtLeastTwo">
+    <value>Selecteer tenminste 2 knoppen</value>
+  </data>
+  <data name="SelectModsInstall">
+    <value>Selecteer de modules die je op je NES Mini wilt installeren.</value>
+  </data>
+  <data name="SelectModsUninstall">
+    <value>Selecteer de modules die je van je NES Mini wilt verwijderen.</value>
+  </data>
+  <data name="SizeOfSaves">
+    <value>De grootte van de geselecteerde onderbrekingspunten:</value>
+  </data>
+  <data name="UninstallFactoryNote">
+    <value>Vergeet niet om een factory reset te doen als je alle Suspend Points wilt verwijderen.</value>
+  </data>
+  <data name="UninstallQ1">
+    <value>Wil je echt alle sporen van Hakchi2 verwijderen van je Mini NES en hem weer origineel maken?</value>
+  </data>
+  <data name="UninstallQ2">
+    <value>Klaar. Wacht tot de rode LED uitgaat.</value>
+  </data>
+  <data name="Uninstalling">
+    <value>Deïnstalleren...</value>
+  </data>
+  <data name="UninstallingMods">
+    <value>Modules aan het deïnstalleren...</value>
+  </data>
+  <data name="UnknownGame">
+    <value>Onbekend spel</value>
+  </data>
+  <data name="UploadingConfig">
+    <value>Nieuw configuratie aan het uploaden...</value>
+  </data>
+  <data name="UploadingFes1">
+    <value>FES-1 aan het uploaden en uitvoeren...</value>
+  </data>
+  <data name="UploadingGames">
+    <value>Spellen aan het uploaden...</value>
+  </data>
+  <data name="UploadingKernel">
+    <value>Kernel aan het uploaden...</value>
+  </data>
+  <data name="UploadingOriginalGames">
+    <value>De originele spellen aan het verwerken...</value>
+  </data>
+  <data name="VerifyFailed">
+    <value>Controle niet gelukt :O Dit is echt niet goed.</value>
+  </data>
+  <data name="Verifying">
+    <value>Controleren...</value>
+  </data>
+  <data name="WaitingForDevice">
+    <value>Aan het wachten op het apparaat...</value>
+  </data>
+  <data name="Warning">
+    <value>Waarschuwing!</value>
+  </data>
+  <data name="Wow">
+    <value>Wauw</value>
+  </data>
+  <data name="Yes">
+    <value>Ja</value>
+  </data>
+  <data name="YesForAll">
+    <value>Op alles ja</value>
+  </data>
+</root>

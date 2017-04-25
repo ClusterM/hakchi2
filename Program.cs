@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable 0618
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -29,10 +30,21 @@ namespace com.clusterrr.hakchi_gui
         static void Main()
         {
 #if DEBUG
-            AllocConsole();
-            Stream logFile = File.Create("debuglog.txt");
-            Debug.Listeners.Add(new TextWriterTraceListener(logFile));
-            Debug.Listeners.Add(new TextWriterTraceListener(System.Console.Out));
+            try
+            {
+                AllocConsole();
+                Debug.Listeners.Add(new TextWriterTraceListener(System.Console.Out));
+            }
+            catch { }
+            try
+            {
+                Stream logFile = File.Create("debuglog.txt");
+                Debug.Listeners.Add(new TextWriterTraceListener(logFile));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+            }
             Debug.AutoFlush = true;
 #endif
             bool createdNew = true;
@@ -40,6 +52,17 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (createdNew)
                 {
+                    // For updates
+                    AppDomain.CurrentDomain.AppendPrivatePath("languages");
+                    var oldFiles = Directory.GetFiles(Path.GetDirectoryName(Application.ExecutablePath), "hakchi.resources.dll", SearchOption.AllDirectories);
+                    foreach (var d in oldFiles)
+                        if (!d.Contains(@"\languages\"))
+                        {
+                            var dir = Path.GetDirectoryName(d);
+                            Debug.WriteLine("Removing old directory: " + dir);
+                            Directory.Delete(dir, true);
+                        }
+
                     Debug.WriteLine("Starting, version: " + Assembly.GetExecutingAssembly().GetName().Version);
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);

@@ -58,14 +58,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>FTP-Server auf ftp://root:clover@127.0.0.1:1021</value>
+  </data>
   <data name="aboutToolStripMenuItem.Text">
     <value>Über...</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>Mehr hinzufügen &amp;Spiele</value>
+    <value>Mehr &amp;Spiele hinzufügen</value>
   </data>
   <data name="addPresetToolStripMenuItem.Text">
-    <value>Voreinstellung hinzufügen</value>
+    <value>Preset hinzufügen</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>Original Spiele in Root -&gt; automatisch in Unterordner</value>
@@ -86,37 +89,40 @@
     <value>Controller Hacks</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
-    <value>Komprimiere Spiele, wenn möglich</value>
+    <value>Komprimiere nicht-NES Spiele (für zusätzliche Emulatoren)</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Konsolentyp</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>Benutzerdefiniert - zeige Ordner Manager jedesmal</value>
+    <value>Benutzerdefiniert - Ordner Manager jedes mal anzeigen</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
-    <value>Lösche Spiel</value>
+    <value>Spiel löschen</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
-    <value>Lösche Voreinstellung</value>
+    <value>Preset löschen</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
-    <value>Deaktiviere Seiten/Ordner</value>
+    <value>Seiten/Ordner deaktivieren</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Lade Box Art für alle Spiele</value>
+    <value>Lade Covers für alle Spiele</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Sichere Kernel</value>
+    <value>Kernel sichern</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
-    <value>Benutze "Select+A/B" um Autofeuer für A/B zu aktivieren</value>
+    <value>Benutze "Select+A/B", um Autofeuer für A/B zu aktivieren</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
-    <value>Deaktiviere Epilepsie-Schutz</value>
+    <value>Epilepsie-Schutz deaktivieren</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Beenden</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>Fragen und Antworten</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;Datei</value>
@@ -125,37 +131,37 @@
     <value>Flashe benutzerdefinierten Kernel</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Flashe Original Kernel</value>
+    <value>Original Kernel flashen</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>Original Spiele in Root -&gt; Ordner, splitte Spiele gleichmäßig</value>
+    <value>Original Spiele in Root -&gt; Ordner, Spiele gleichmäßig aufteilen</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Original Spiele in Root -&gt; Ordner, Aufgeteilt durch 1. Buchstaben</value>
+    <value>Originale Spiele in Root -&gt; Ordner, Aufgeteilt nach dem 1. Buchstaben</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>Ordner, Aufgeteilt nach 1. Buchstaben</value>
+    <value>Ordner, aufgeteilt nach dem 1. Buchstaben</value>
   </data>
   <data name="foldersToolStripMenuItem.Text">
     <value>Ordner, splitte Spiele gleichmäßig</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>GitHub Homepage mit aktuellen Veröffentlichungen</value>
+    <value>GitHub Homepage mit aktuellen Versionen</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
     <value>Globale Kommandozeilen-Argumente (nur Experten!)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>Du kannst einige Standardspiele verbergen</value>
+    <value>Hier kann man einige Standardspiele ausblenden</value>
   </data>
   <data name="groupBoxOptions.Text">
-    <value>Spiel Optionen</value>
+    <value>Spieloptionen</value>
   </data>
   <data name="helpToolStripMenuItem.Text">
     <value>&amp;Hilfe</value>
   </data>
   <data name="installModulesToolStripMenuItem.Text">
-    <value>Installiere Extra Module</value>
+    <value>Zusätzliche Module installieren</value>
   </data>
   <data name="kernelToolStripMenuItem.Text">
     <value>&amp;Kernel</value>
@@ -167,10 +173,10 @@
     <value>Herausgeber:</value>
   </data>
   <data name="label3.Text">
-    <value>Kommandozeilen Argumente (Nur für fortgeschrittene Benutzer!):</value>
+    <value>Kommandozeilenargumente (nur für fortgeschrittene Benutzer!):</value>
   </data>
   <data name="label4.Text">
-    <value>Box Art:</value>
+    <value>Cover:</value>
   </data>
   <data name="label5.Text">
     <value>Spiel auswählen:</value>
@@ -184,23 +190,38 @@
   <data name="labelName.Text">
     <value>Name:</value>
   </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Sprache</value>
+  </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
-    <value>Maximale Spiele pro Seite/Ordner</value>
+    <value>Maximal Spiele pro Seite/Ordner</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Module</value>
   </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>FTP-Client öffnen</value>
+  </data>
+  <data name="openFileDialogImage.Title">
+    <value>Cover für Spiel auswählen</value>
+  </data>
+  <data name="openFileDialogNes.Title">
+    <value>Spiele auswählen</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>Telnet-Client öffnen</value>
+  </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>Originale Spiele in Root -&gt; Seiten, splitte Spiele gleichmäßig</value>
+    <value>Originale Spiele in Root -&gt; Seiten, Spiele gleichmäßig aufteilen</value>
   </data>
   <data name="pagesToolStripMenuItem.Text">
-    <value>Seiten, splitte Spiele gleichmäßig</value>
+    <value>Seiten, Spiele gleichmäßig aufteilen</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>Seiten/Ordner Strucktur</value>
+    <value>Seiten-/Ordnerstruktur</value>
   </data>
   <data name="presetsToolStripMenuItem.Text">
-    <value>Auswahlvoreinstellungen</value>
+    <value>Presets</value>
   </data>
   <data name="radioButtonOne.Text">
     <value>Ein Spieler</value>
@@ -212,7 +233,13 @@
     <value>Zwei Spieler, gleichzeitig</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>Benutze Tastenkombination zum reseten</value>
+    <value>Benutze Tastenkombination für Zurücksetzen</value>
+  </data>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
+    <value>Einstellungen in NES mini jetzt speichern</value>
+  </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>Manager der Speicherstände</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
     <value>Suche</value>
@@ -221,16 +248,22 @@
     <value>Alle Auswählen</value>
   </data>
   <data name="selectButtonCombinationToolStripMenuItem.Text">
-    <value>Wähle Resetknopf Kombination</value>
+    <value>Wähle Kombination, um ins Menu zu gehen</value>
   </data>
   <data name="settingsToolStripMenuItem.Text">
     <value>&amp;Einstellungen</value>
   </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Telnet Server auf telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Synchronisieren</value>
   </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;Extras</value>
+  </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
-    <value>Deinstalliere Extra Module</value>
+    <value>Module deinstallieren</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text">
     <value>Deinstallieren</value>
@@ -242,12 +275,9 @@
     <value>"Hoch+A+B = Start" auf dem 2. Controller</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
-    <value>Benutze erweiterte Schriftart</value>
+    <value>Erweiterte Schriftart verwenden</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Nutze X/Y auf dem Classic Controller als Autofeuer A/B</value>
-  </data>
-  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Save settings to NES Mini now</value>
   </data>
 </root>

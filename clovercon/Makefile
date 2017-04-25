@@ -2,11 +2,9 @@ CURRENT = $(shell uname -r)
 HMOD = ../mods/hmods/clovercon.hmod
 TARGET  = clovercon
 TARGET_PATH = mod/lib/modules/3.4.112/extra
-TARGET  = clovercon
 OBJS    = clovercon.o
 KDIR    = ~/nesmini-linux
 PWD = $(shell pwd)
-DEST = .
 
 obj-m      := $(TARGET).o
 

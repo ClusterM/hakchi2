@@ -111,10 +111,7 @@ namespace com.clusterrr.hakchi_gui
                                 {
                                     var o = new MemoryStream();
                                     szExtractorTar.ExtractFile(f, o);
-                                    var rawData = new byte[o.Length];
-                                    o.Seek(0, SeekOrigin.Begin);
-                                    o.Read(rawData, 0, (int)o.Length);
-                                    text = Encoding.UTF8.GetString(rawData);
+                                    text = Encoding.UTF8.GetString(o.ToArray());
                                     if (!text.Contains("\r"))
                                         text = text.Replace("\n", "\r\n");
                                     break;

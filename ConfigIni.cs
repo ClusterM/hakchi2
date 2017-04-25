@@ -19,13 +19,16 @@ namespace com.clusterrr.hakchi_gui
         public static byte AntiArmetLevel = 0;
         public static byte ConsoleType = 0;
         public static byte MaxGamesPerFolder = 30;
-        public static NesMenuCollection.SplitStyle FoldersMode = NesMenuCollection.SplitStyle.Auto;
+        public static NesMenuCollection.SplitStyle FoldersMode = NesMenuCollection.SplitStyle.Original_Auto;
         public static SelectButtonsForm.NesButtons ResetCombination = SelectButtonsForm.NesButtons.Down | SelectButtonsForm.NesButtons.Select;
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         public static string ExtraCommandLineArguments = "";
         public static bool Compress = true;
         public const string ConfigDir = "config";
         public const string ConfigFile = "config.ini";
+        public static bool FtpServer = false;
+        public static bool TelnetServer = false;
+        public static string Language = "";
 
         public static void Load()
         {
@@ -58,6 +61,9 @@ namespace com.clusterrr.hakchi_gui
                             param = param.ToLower();
                             switch (param)
                             {
+                                case "language":
+                                    Language = value;
+                                    break;
                                 case "selectedgames":
                                     SelectedGames = value;
                                     break;
@@ -108,6 +114,12 @@ namespace com.clusterrr.hakchi_gui
                                 case "compress":
                                     Compress = !value.ToLower().Equals("false");
                                     break;
+                                case "ftpserver":
+                                    FtpServer = !value.ToLower().Equals("false");
+                                    break;
+                                case "telnetserver":
+                                    TelnetServer = !value.ToLower().Equals("false");
+                                    break;
                             }
                             break;
                         case "presets":
@@ -123,6 +135,7 @@ namespace com.clusterrr.hakchi_gui
             Debug.WriteLine("Saving config");
             var configLines = new List<string>();
             configLines.Add("[Config]");
+            configLines.Add(string.Format("Language={0}", Language));            
             configLines.Add(string.Format("SelectedGames={0}", SelectedGames));
             configLines.Add(string.Format("HiddenGames={0}", HiddenGames));
             configLines.Add(string.Format("Custom2Flashed={0}", CustomFlashed));
@@ -139,6 +152,8 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("FoldersMode={0}", (byte)FoldersMode));
             configLines.Add(string.Format("MaxGamesPerFolder={0}", MaxGamesPerFolder));
             configLines.Add(string.Format("Compress={0}", Compress));
+            configLines.Add(string.Format("FtpServer={0}", FtpServer));
+            configLines.Add(string.Format("TelnetServer={0}", TelnetServer));
 
             configLines.Add("");
             configLines.Add("[Presets]");

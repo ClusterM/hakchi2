@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddingGames">
+    <value>Procesando juegos. Esperá, por favor…</value>
+  </data>
+  <data name="AllFiles">
+    <value>Todos los archivos</value>
+  </data>
+  <data name="AreYouSure">
+    <value>¿Estás seguro?</value>
+  </data>
+  <data name="AutofillResult">
+    <value>Datos autocompletados para {0} juego/s.</value>
+  </data>
+  <data name="AutofireHelp1">
+    <value>Mantené presionado "Select" + "A"/"B" por un segundo para habilitar/deshabilitar disparo automático en los botones "A"/"B".</value>
+  </data>
+  <data name="BuildingCustom">
+    <value>Compilando la imagen del kernel personalizado…</value>
+  </data>
+  <data name="BuildingFolders">
+    <value>Compilando la estructura de carpetas…</value>
+  </data>
+  <data name="Congratulations">
+    <value>¡Felicitaciones!</value>
+  </data>
+  <data name="CustomKernel">
+    <value>Kernel personalizado</value>
+  </data>
+  <data name="CustomKernelQ">
+    <value>¿Querés flashear el kernel personalizado?</value>
+  </data>
+  <data name="CustomWarning">
+    <value>Ahora necesitás flashear el kernel personalizado a tu NES Classic Edition. Sólo necesitás hacerlo una vez. ¿Querés continuar?</value>
+  </data>
+  <data name="Default30games">
+    <value>Los 30 juegos originales</value>
+  </data>
+  <data name="DeleteElement">
+    <value>¿Estás seguro que querés eliminar "{0}"?</value>
+  </data>
+  <data name="DeleteElements">
+    <value>¿Estás seguro que querés eliminar {0} elementos?</value>
+  </data>
+  <data name="DeleteGame">
+    <value>¿Estás seguro que querés eliminar el juego "{0}"?</value>
+  </data>
+  <data name="DeletePreset">
+    <value>¿De verdad querés eliminar la lista personalizada de juegos "{0}"?</value>
+  </data>
+  <data name="DeleteSavesQ">
+    <value>¿Estás seguro que querés eliminar esos puntos de suspensión?</value>
+  </data>
+  <data name="DoYouWantCancel">
+    <value>¿Querés cancelar la operación actual?</value>
+  </data>
+  <data name="DoYouWantToContinue">
+    <value>¿Querés continuar?</value>
+  </data>
+  <data name="Donate">
+    <value>Por cierto, si te gusta, podés hacer una donación. Podés encontrar mi cuenta de PayPal en la caja "Acerca de hakchi2".</value>
+  </data>
+  <data name="Done">
+    <value>¡Listo!</value>
+  </data>
+  <data name="DoneUploaded">
+    <value>¡Listo! Esperá hasta que la luz indicadora de "POWER" se apague y reiniciá tu NES Classic Edition.</value>
+  </data>
+  <data name="DoneYouCanUpload">
+    <value>¡Listo! Ahora podés cargarle juegos a tu NES Classic Edition.</value>
+  </data>
+  <data name="DownloadAllCoversTitle">
+    <value>Descargando arte de caja para todos los juegos (¡Me siento con suerte!)</value>
+  </data>
+  <data name="DumpKernelQ">
+    <value>¿Querés volcar el kernel?</value>
+  </data>
+  <data name="DumpingKernel">
+    <value>Volcando kernel…</value>
+  </data>
+  <data name="Error">
+    <value>Error</value>
+  </data>
+  <data name="ExecutingCommand">
+    <value>Ejecutando comando:</value>
+  </data>
+  <data name="ExecutingFes1">
+    <value>Ejecutando fes1…</value>
+  </data>
+  <data name="ExtraArgsInfo">
+    <value>Podés agregar argumentos globales de línea de comando el cual pueden ser agregados a todos los juegos, incluyendo los 30 originales. ¡Sólo para expertos!</value>
+  </data>
+  <data name="ExtraArgsTitle">
+    <value>Argumentos extra de línea de comando</value>
+  </data>
+  <data name="FirstRun">
+    <value>¡Hola, che! Estoy muy contento de que estés usando hakchi2. Es muy fácil de usar. Simplemente hacé clic en "Agregar más juegos", seleccioná algunas ROMs, presioná el botón para sincronizar y seguí las instrucciones. ¡Éxitos!</value>
+  </data>
+  <data name="FlasingCustom">
+    <value>Flasheando kernel personalizado…</value>
+  </data>
+  <data name="FlasingOriginal">
+    <value>Flasheando kernel original…</value>
+  </data>
+  <data name="FolderContent">
+    <value>El contenido eliminado será movido a la Papelera de reciclaje. Podés eliminar esta carpeta permanentemente o mover los juegos a otras carpetas.</value>
+  </data>
+  <data name="FolderNameBack">
+    <value>Volver</value>
+  </data>
+  <data name="FolderNameMoreGames">
+    <value>Más juegos…</value>
+  </data>
+  <data name="FolderNameNewFolder">
+    <value>Nueva carpeta</value>
+  </data>
+  <data name="FolderNameOriginalGames">
+    <value>Los 30 juegos originales</value>
+  </data>
+  <data name="FolderNameTrashBin">
+    <value>Papelera de reciclaje</value>
+  </data>
+  <data name="FolderNameUnsorted">
+    <value>Sin ordenar</value>
+  </data>
+  <data name="FolderStatistics">
+    <value>La carpeta "{0}" contiene {1} elementos.</value>
+  </data>
+  <data name="FoldersSaveQ">
+    <value>¿Querés guardar esta estructura de carpetas?</value>
+  </data>
+  <data name="FourScreenNotSupported">
+    <value>Lo siento, pero {0} usa el modo de cuatro pantallas (es decir, el juego tiene memoria de video adicional en el cartucho) y esta característica no es compatible con la NES Classic Edition. El juego probablemente no arranque. Pero debería funcionar si hay otro módulo emulador instalado. ¿Querés agregar este juego de todas maneras?</value>
+  </data>
+  <data name="GGCodeDelete">
+    <value>¿Querés eliminar el código "{0}"?</value>
+  </data>
+  <data name="GGCodeEmpty">
+    <value>¡Tenés que ingresar un código!</value>
+  </data>
+  <data name="GGCodeExists">
+    <value>Este código ya existe. ¿Querés editarlo?</value>
+  </data>
+  <data name="GGDescriptionEmpty">
+    <value>¡Tenés que ingresar una descripción!</value>
+  </data>
+  <data name="GameGenieFormatError">
+    <value>Código "{0}" de Game Genie no válido para el juego "{1}".</value>
+  </data>
+  <data name="GameGenieNotFound">
+    <value>No se puede aplicar el código "{0}" de Game Genie al juego "{1}"; valor no encontrado. ¿Puede ser que el código sea para otro juego?</value>
+  </data>
+  <data name="GameTooBig">
+    <value>Lo siento, el juego "{0}" es demasiado grande.</value>
+  </data>
+  <data name="GamesAndApps">
+    <value>Juegos y aplicaciones</value>
+  </data>
+  <data name="GamesSelected">
+    <value>juego/s seleccionado/s</value>
+  </data>
+  <data name="GooglingFor">
+    <value>Buscar en Google</value>
+  </data>
+  <data name="Hello">
+    <value>Hola</value>
+  </data>
+  <data name="Images">
+    <value>Imágenes</value>
+  </data>
+  <data name="InputPreset">
+    <value>Por favor, ingresá un nombre de lista personalizada para la selección actual de juegos.</value>
+  </data>
+  <data name="InstallingMods">
+    <value>Instalando módulos…</value>
+  </data>
+  <data name="InvalidKernelHeader">
+    <value>Encabezado no válido del kernel.</value>
+  </data>
+  <data name="InvalidKernelSize">
+    <value>Tamaño no válido del kernel:</value>
+  </data>
+  <data name="KernelDumped">
+    <value>Se guardó tu kernel original en la carpeta "dump". No lo pierdas.</value>
+  </data>
+  <data name="LoadingGames">
+    <value>Descargando juegos…</value>
+  </data>
+  <data name="MD5Failed">
+    <value>Se realizó el volcado del kernel, pero la suma de integridad MD5 es desconocida:</value>
+  </data>
+  <data name="MD5Failed2">
+    <value>El kernel ya está parcheado o es una revisión desconocida. Por favor, enviame este mensaje (presioná "Ctrl" + "C"). Continuá bajo tu propio riesgo.</value>
+  </data>
+  <data name="MainMenu">
+    <value>Menú principal</value>
+  </data>
+  <data name="MapperNotSupported">
+    <value>Lo siento, "{0}" usa el mapeador #{1} pero dicho mapeador no es compatible con la NES Classic Edition y el juego probablemente no arranque con el emulador predeterminado. Pero debería funcionar si hay otro módulo emulador instalado. ¿Querés agregar este juego?</value>
+  </data>
+  <data name="MemoryFull">
+    <value>Lo siento, hay {0}MB de juegos, es demasiado.</value>
+  </data>
+  <data name="MemoryStats">
+    <value>Tamaño total de memoria escribible: {0:F1}MB|Memoria disponible para juegos: {1:F1}MB|Usada por partidas guardadas: {2:F1}MB|Usada por otros archivos: {3:F1}MB</value>
+  </data>
+  <data name="NewGamesUnsorted">
+    <value>Los nuevos juegos se moverán a la carpeta "Sin ordenar".</value>
+  </data>
+  <data name="NewPreset">
+    <value>Nueva lista personalizada de juegos</value>
+  </data>
+  <data name="No">
+    <value>No</value>
+  </data>
+  <data name="NoForAll">
+    <value>"No" a todo</value>
+  </data>
+  <data name="NoKernel">
+    <value>No se encontró el volcado del kernel</value>
+  </data>
+  <data name="NoKernelWarning">
+    <value>Primero, volcá la imagen del kernel a tu NES Classic Edition. Sólo necesitás hacerlo una vez. ¿Querés continuar?</value>
+  </data>
+  <data name="NoKernelYouNeed">
+    <value>No se encontró el volcado del kernel. Primero necesitás volcar el kernel.</value>
+  </data>
+  <data name="NoTelnet">
+    <value>No se puede iniciar el cliente Telnet; parece que está deshabilitado. Primero necesitás habilitarlo: podés hacerlo yendo a "Panel de control" -&gt; "Programas" -&gt; "Activar o desactivar las características de Windows".</value>
+  </data>
+  <data name="NotFound">
+    <value>No encontrado:</value>
+  </data>
+  <data name="OriginalKernelQ">
+    <value>¿Querés flashear el kernel original?</value>
+  </data>
+  <data name="ParticallyBody">
+    <value>¡No te preocupés! Está todo bien. Hay demasiadas ROMs para transferir al mismo tiempo. Por favor, esperá hasta que la luz indicadora se apague, presioná "Aceptar" y seguí las instrucciones para continuar.</value>
+  </data>
+  <data name="ParticallyTitle">
+    <value>Demasiadas ROMs</value>
+  </data>
+  <data name="PatchAvailable">
+    <value>Parche disponible</value>
+  </data>
+  <data name="PatchQ">
+    <value>Hay un parque para "{0}". ¿Querés parchear este juego?</value>
+  </data>
+  <data name="PleaseTryAgainUSB">
+    <value>Si el problema continúa, probá con otros cable USB u otro puerto.</value>
+  </data>
+  <data name="PleaseWait">
+    <value>Esperá, por favor…</value>
+  </data>
+  <data name="PressOkToContinue">
+    <value>Presioná "Aceptar" para continuar.</value>
+  </data>
+  <data name="ReplaceKernelQ">
+    <value>Ya realizaste el volcado de kernel. Si REALMENTE querés reemplazar el resguardo de tu kernel y REALMENTE entendés lo que estás haciendo, eliminá la carpeta "dump" manualmente.</value>
+  </data>
+  <data name="SavesFlterName">
+    <value>Resguardo de los puntos de suspensión de la NES Classic Edition</value>
+  </data>
+  <data name="SelectAtLeast">
+    <value>Seleccioná al menos un juego.</value>
+  </data>
+  <data name="SelectAtLeastTwo">
+    <value>Seleccioná al menos dos botones.</value>
+  </data>
+  <data name="SelectModsInstall">
+    <value>Seleccioná los módulos para instalar en tu NES Classic Edition.</value>
+  </data>
+  <data name="SelectModsUninstall">
+    <value>Seleccioná los módulos para quitar de tu NES Classic Edition.</value>
+  </data>
+  <data name="SizeOfSaves">
+    <value>Tamaño de los puntos de suspensión seleccionados:</value>
+  </data>
+  <data name="UninstallFactoryNote">
+    <value>No te olvidés de realizar un restablecimiento predeterminado si querés borrar todos los puntos de suspensión.</value>
+  </data>
+  <data name="UninstallQ1">
+    <value>¿Estás seguro que querés quitar todos los rastros de hakchi2 y volver tu NES Classic Edition a su estado original?</value>
+  </data>
+  <data name="UninstallQ2">
+    <value>Listo. Esperá hasta que la luz indicadora se apague. También necesitás flashear el kernel original. ¿Querés flashearlo ahora?</value>
+  </data>
+  <data name="Uninstalling">
+    <value>Desinstalando…</value>
+  </data>
+  <data name="UninstallingMods">
+    <value>Desinstalando módulos…</value>
+  </data>
+  <data name="UnknownGame">
+    <value>Juego desconocido</value>
+  </data>
+  <data name="UploadingConfig">
+    <value>Cargando nueva configuración…</value>
+  </data>
+  <data name="UploadingFes1">
+    <value>Cargando y ejecutando FES-1…</value>
+  </data>
+  <data name="UploadingGames">
+    <value>Cargando juegos…</value>
+  </data>
+  <data name="UploadingKernel">
+    <value>Cargando el kernel…</value>
+  </data>
+  <data name="UploadingOriginalGames">
+    <value>Procesando los juegos originales…</value>
+  </data>
+  <data name="VerifyFailed">
+    <value>Falló la verificación. :O Esto no es bueno.</value>
+  </data>
+  <data name="Verifying">
+    <value>Verificando…</value>
+  </data>
+  <data name="WaitingForDevice">
+    <value>Esperando al dispositivo…</value>
+  </data>
+  <data name="Warning">
+    <value>¡Advertencia!</value>
+  </data>
+  <data name="Wow">
+    <value>¡Esa!</value>
+  </data>
+  <data name="Yes">
+    <value>Sí</value>
+  </data>
+  <data name="YesForAll">
+    <value>"Sí" a todo</value>
+  </data>
+</root>

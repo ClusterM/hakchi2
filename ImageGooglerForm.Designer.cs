@@ -36,35 +36,26 @@
             // 
             // listView
             // 
-            this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.listView, "listView");
             this.listView.LargeImageList = this.imageList;
-            this.listView.Location = new System.Drawing.Point(12, 12);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(802, 469);
             this.listView.SmallImageList = this.imageList;
-            this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.DoubleClick += new System.EventHandler(this.listView_DoubleClick);
             // 
             // imageList
             // 
             this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imageList.ImageSize = new System.Drawing.Size(204, 204);
+            resources.ApplyResources(this.imageList, "imageList");
             this.imageList.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // ImageGooglerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(826, 493);
             this.Controls.Add(this.listView);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
             this.Name = "ImageGooglerForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Google Images";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImageGooglerForm_FormClosing);
             this.ResumeLayout(false);
 

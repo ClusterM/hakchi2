@@ -70,6 +70,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All files.
+        /// </summary>
+        internal static string AllFiles {
+            get {
+                return ResourceManager.GetString("AllFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
         internal static string AreYouSure {
@@ -362,6 +371,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string DeletePreset {
             get {
                 return ResourceManager.GetString("DeletePreset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete those save-states?.
+        /// </summary>
+        internal static string DeleteSavesQ {
+            get {
+                return ResourceManager.GetString("DeleteSavesQ", resourceCulture);
             }
         }
         
@@ -927,6 +945,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Games and apps.
+        /// </summary>
+        internal static string GamesAndApps {
+            get {
+                return ResourceManager.GetString("GamesAndApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to games(s) selected.
         /// </summary>
         internal static string GamesSelected {
@@ -1005,6 +1032,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string Hello {
             get {
                 return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Images.
+        /// </summary>
+        internal static string Images {
+            get {
+                return ResourceManager.GetString("Images", resourceCulture);
             }
         }
         
@@ -1108,6 +1144,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total writable memory size: {0:F1}MBytes|Available memory for games: {1:F1}MBytes|Used by saves: {2:F1}MBytes|Used by other files: {3:F1}MBytes.
+        /// </summary>
+        internal static string MemoryStats {
+            get {
+                return ResourceManager.GetString("MemoryStats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New games are moved to the &quot;Unsorted&quot; folder..
         /// </summary>
         internal static string NewGamesUnsorted {
@@ -1167,6 +1212,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string NoKernelYouNeed {
             get {
                 return ResourceManager.GetString("NoKernelYouNeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t start Telnet client, seems like it&apos;s disabled. You need to enable it first, you can do it in “Control Panel“ -&gt; “Programs“ -&gt; &quot;Turn Windows features on or off&quot;..
+        /// </summary>
+        internal static string NoTelnet {
+            get {
+                return ResourceManager.GetString("NoTelnet", resourceCulture);
             }
         }
         
@@ -1234,6 +1288,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please wait....
+        /// </summary>
+        internal static string PleaseWait {
+            get {
+                return ResourceManager.GetString("PleaseWait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Press OK to continue..
         /// </summary>
         internal static string PressOkToContinue {
@@ -1258,6 +1321,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string ReplaceKernelQ {
             get {
                 return ResourceManager.GetString("ReplaceKernelQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NES Mini save-state backups.
+        /// </summary>
+        internal static string SavesFlterName {
+            get {
+                return ResourceManager.GetString("SavesFlterName", resourceCulture);
             }
         }
         
@@ -1294,6 +1366,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string SelectModsUninstall {
             get {
                 return ResourceManager.GetString("SelectModsUninstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size of selected save-states: {0}KB.
+        /// </summary>
+        internal static string SizeOfSaves {
+            get {
+                return ResourceManager.GetString("SizeOfSaves", resourceCulture);
             }
         }
         
@@ -1339,6 +1420,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string UninstallQ2 {
             get {
                 return ResourceManager.GetString("UninstallQ2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown game.
+        /// </summary>
+        internal static string UnknownGame {
+            get {
+                return ResourceManager.GetString("UnknownGame", resourceCulture);
             }
         }
         

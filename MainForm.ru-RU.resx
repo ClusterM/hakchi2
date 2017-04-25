@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>FTP сервер на ftp://root:clover@127.0.0.1:1021</value>
+  </data>
   <data name="aboutToolStripMenuItem.Text">
     <value>&amp;О программе...</value>
   </data>
@@ -117,6 +120,9 @@
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Выйти</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>FAQ (Вопросы и ответы)</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;Файл</value>
@@ -184,11 +190,26 @@
   <data name="labelName.Text">
     <value>Название:</value>
   </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Язык</value>
+  </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Максимум игр на страницу</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Модули</value>
+  </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>Открыть FTP клиент</value>
+  </data>
+  <data name="openFileDialogImage.Title">
+    <value>Выберите обложку для игры</value>
+  </data>
+  <data name="openFileDialogNes.Title">
+    <value>Выберите игры</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>Открыть Telnet клиент</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
     <value>Оригинальные в корне -&gt; Страницы, разделить поровну</value>
@@ -217,6 +238,9 @@
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Сохранить настройки в NES Mini сейчас</value>
   </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>Менеджер сохранений</value>
+  </data>
   <data name="searchToolStripMenuItem.Text">
     <value>Поиск</value>
   </data>
@@ -224,13 +248,19 @@
     <value>Отметить все</value>
   </data>
   <data name="selectButtonCombinationToolStripMenuItem.Text">
-    <value>Выберите комбинацию кнопок для выхода в меню</value>
+    <value>Выбрать комбинацию кнопок для выхода в меню</value>
   </data>
   <data name="settingsToolStripMenuItem.Text">
     <value>&amp;Настройки</value>
   </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Telnet сервер на telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Синхронизация</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;Инструменты</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
     <value>Удалить модули</value>

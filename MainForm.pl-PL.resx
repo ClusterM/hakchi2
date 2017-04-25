@@ -178,8 +178,17 @@
   <data name="labelName.Text">
     <value>Nazwa:</value>
   </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Język</value>
+  </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Maksimum gier na stronę/folder</value>
+  </data>
+  <data name="openFileDialogImage.Title">
+    <value>Wybierz okładkę dla gry</value>
+  </data>
+  <data name="openFileDialogNes.Title">
+    <value>Wybierz plik(i) NES</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
     <value>Originalne gry na wierzchu -&gt; Strony, podziel gry po równo</value>
@@ -229,8 +238,14 @@
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Użyj rozszerzonej czcionki</value>
   </data>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>FTP server on ftp://root:clover@127.0.0.1:1021</value>
+  </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Compress non-NES games (for additional emulator mod)</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>FAQ</value>
   </data>
   <data name="installModulesToolStripMenuItem.Text">
     <value>Install extra modules</value>
@@ -238,11 +253,26 @@
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Modules</value>
   </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>Open FTP client</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>Open Telnet client</value>
+  </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Save settings to NES Mini now</value>
   </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>Save-State Manager</value>
+  </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Telnet server on telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Synchronize</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;Tools</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
     <value>Uninstall extra modules</value>

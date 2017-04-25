@@ -24,7 +24,8 @@ namespace com.clusterrr.hakchi_gui
         public ImageGooglerForm(NesMiniApplication app)
         {
             InitializeComponent();
-            Text = "Google Images - " + app.Name ?? "";
+            if (!string.IsNullOrEmpty(app.Name))
+                Text += " - " + app.Name;
             searchThread = new Thread(SearchThread);
             searchThread.Start(app);
         }
@@ -32,7 +33,7 @@ namespace com.clusterrr.hakchi_gui
         public static string[] GetImageUrls(NesMiniApplication app)
         {
             string query = app.Name ?? "";
-            query += " " +  app.GoogleSuffix + " (box|cover) art";
+            query += " " + app.GoogleSuffix + " (box|cover) art";
             var url = string.Format("https://www.google.com/search?q={0}&source=lnms&tbm=isch", HttpUtility.UrlEncode(query));
             Debug.WriteLine("Web request: " + url);
             var request = WebRequest.Create(url);
