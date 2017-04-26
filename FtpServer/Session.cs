@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -24,11 +25,11 @@ namespace mooftpserv
         // monthnames for LIST command, since DateTime returns localized names
         private static string[] MONTHS = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
         // response text for initial response. preceeded by application name and version number.
-        private static string[] HELLO_TEXT = { "What can I do for you?", "Good day, sir or madam.", "Hey ho let's go!", "The poor man's FTP server." };
+        private static string[] HELLO_TEXT = { "hakchi2 FTP server" };
         // response text for general ok messages
         private static string[] OK_TEXT = { "Sounds good.", "Success!", "Alright, I'll do it...", "Consider it done." };
         // Result for FEAT command
-        private static string[] FEATURES = { "MDTM", "PASV", "SIZE", "TVFS", "UTF8" };
+        private static string[] FEATURES = { "MDTM", "MLST modify*;perm*;size*;type*;unique*;UNIX.mode;", "PASV", "MFMT", "SIZE", "TVFS", "UTF8" };
 
         // local EOL flavor
         private static byte[] localEolBytes = Encoding.ASCII.GetBytes(Environment.NewLine);
@@ -108,7 +109,8 @@ namespace mooftpserv
         /// </summary>
         public void Start()
         {
-            if (!threadAlive) {
+            if (!threadAlive)
+            {
                 this.thread.Start();
                 threadAlive = true;
             }
@@ -119,7 +121,8 @@ namespace mooftpserv
         /// </summary>
         public void Stop()
         {
-            if (threadAlive) {
+            if (threadAlive)
+            {
                 threadAlive = false;
                 thread.Abort();
             }
@@ -140,8 +143,10 @@ namespace mooftpserv
             if (logHandler != null)
                 logHandler.NewControlConnection();
 
-            try {
-                if (!authHandler.AllowControlConnection()) {
+            try
+            {
+                if (!authHandler.AllowControlConnection())
+                {
                     Respond(421, "Control connection refused.");
                     // first flush, then close
                     controlSocket.Shutdown(SocketShutdown.Both);
@@ -152,44 +157,60 @@ namespace mooftpserv
                 Respond(220, String.Format("This is mooftpserv v{0}. {1}", LIB_VERSION, GetRandomText(HELLO_TEXT)));
 
                 // allow anonymous login?
-                if (authHandler.AllowLogin(null, null)) {
+                if (authHandler.AllowLogin(null, null))
+                {
                     loggedIn = true;
                 }
 
-                while (controlSocket.Connected) {
+                while (controlSocket.Connected)
+                {
                     string verb;
                     string args;
-                    if (!ReadCommand(out verb, out args)) {
-                        if (controlSocket.Connected) {
+                    if (!ReadCommand(out verb, out args))
+                    {
+                        if (controlSocket.Connected)
+                        {
                             // assume clean disconnect if there are no buffered bytes
                             if (cmdRcvBytes != 0)
                                 Respond(500, "Failed to read command, closing connection.");
                             controlSocket.Close();
                         }
                         break;
-                    } else if (verb.Trim() == "") {
+                    }
+                    else if (verb.Trim() == "")
+                    {
                         // ignore empty lines
                         continue;
                     }
 
-                    try {
+                    try
+                    {
                         if (loggedIn)
                             ProcessCommand(verb, args);
-                        else if (verb == "QUIT") { // QUIT should always be allowed
+                        else if (verb == "QUIT")
+                        { // QUIT should always be allowed
                             Respond(221, "Bye.");
                             // first flush, then close
                             controlSocket.Shutdown(SocketShutdown.Both);
                             controlSocket.Close();
-                        } else {
+                        }
+                        else
+                        {
                             HandleAuth(verb, args);
                         }
-                    } catch (Exception ex) {
+                    }
+                    catch (Exception ex)
+                    {
                         Respond(500, ex);
                     }
                 }
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 // catch any uncaught stuff, the server should not throw anything
-            } finally {
+            }
+            finally
+            {
                 if (controlSocket.Connected)
                     controlSocket.Close();
 
@@ -205,300 +226,340 @@ namespace mooftpserv
         /// </summary>
         private void ProcessCommand(string verb, string arguments)
         {
-            switch (verb) {
+            switch (verb)
+            {
                 case "SYST":
-                {
-                    Respond(215, "UNIX emulated by mooftpserv");
-                    break;
-                }
+                    {
+                        Respond(215, "UNIX emulated by mooftpserv");
+                        break;
+                    }
                 case "QUIT":
-                {
-                    Respond(221, "Bye.");
-                    // first flush, then close
-                    controlSocket.Shutdown(SocketShutdown.Both);
-                    controlSocket.Close();
-                    break;
-                }
+                    {
+                        Respond(221, "Bye.");
+                        // first flush, then close
+                        controlSocket.Shutdown(SocketShutdown.Both);
+                        controlSocket.Close();
+                        break;
+                    }
                 case "USER":
-                {
-                    Respond(230, "You are already logged in.");
-                    break;
-                }
+                    {
+                        Respond(230, "You are already logged in.");
+                        break;
+                    }
                 case "PASS":
-                {
-                    Respond(230, "You are already logged in.");
-                    break;
-                }
+                    {
+                        Respond(230, "You are already logged in.");
+                        break;
+                    }
                 case "FEAT":
-                {
-                    Respond(211, "Features:\r\n " + String.Join("\r\n ", FEATURES), true);
-                    Respond(211, "Features done.");
-                    break;
-                }
+                    {
+                        Respond(211, "Features:\r\n " + String.Join("\r\n ", FEATURES), true);
+                        Respond(211, "Features done.");
+                        break;
+                    }
                 case "OPTS":
-                {
-                    // Windows Explorer uses lowercase args
-                    if (arguments != null && arguments.ToUpper() == "UTF8 ON")
-                        Respond(200, "Always in UTF8 mode.");
-                    else
-                        Respond(504, "Unknown option.");
-                    break;
-                }
+                    {
+                        // Windows Explorer uses lowercase args
+                        if (arguments != null && arguments.ToUpper() == "UTF8 ON")
+                            Respond(200, "Always in UTF8 mode.");
+                        else
+                            Respond(504, "Unknown option.");
+                        break;
+                    }
                 case "TYPE":
-                {
-                    if (arguments == "A" || arguments == "A N") {
-                        transferDataType = DataType.ASCII;
-                        Respond(200, "Switching to ASCII mode.");
-                    } else if (arguments == "I") {
-                        transferDataType = DataType.IMAGE;
-                        Respond(200, "Switching to BINARY mode.");
-                    } else {
-                        Respond(500, "Unknown TYPE arguments.");
+                    {
+                        if (arguments == "A" || arguments == "A N")
+                        {
+                            transferDataType = DataType.ASCII;
+                            Respond(200, "Switching to ASCII mode.");
+                        }
+                        else if (arguments == "I")
+                        {
+                            transferDataType = DataType.IMAGE;
+                            Respond(200, "Switching to BINARY mode.");
+                        }
+                        else
+                        {
+                            Respond(500, "Unknown TYPE arguments.");
+                        }
+                        break;
                     }
-                    break;
-                }
                 case "PORT":
-                {
-                    IPEndPoint port = ParseAddress(arguments);
-                    if (port == null) {
-                        Respond(500, "Invalid host-port format.");
+                    {
+                        IPEndPoint port = ParseAddress(arguments);
+                        if (port == null)
+                        {
+                            Respond(500, "Invalid host-port format.");
+                            break;
+                        }
+
+                        if (!authHandler.AllowActiveDataConnection(port))
+                        {
+                            Respond(500, "PORT arguments refused.");
+                            break;
+                        }
+
+                        dataPort = port;
+                        CreateDataSocket(false);
+                        Respond(200, GetRandomText(OK_TEXT));
                         break;
                     }
-
-                    if (!authHandler.AllowActiveDataConnection(port)) {
-                        Respond(500, "PORT arguments refused.");
-                        break;
-                    }
-
-                    dataPort = port;
-                    CreateDataSocket(false);
-                    Respond(200, GetRandomText(OK_TEXT));
-                    break;
-                }
                 case "PASV":
-                {
-                    dataPort = null;
+                    {
+                        dataPort = null;
 
-                    try {
-                        CreateDataSocket(true);
-                    } catch (Exception ex) {
-                        Respond(500, ex);
+                        try
+                        {
+                            CreateDataSocket(true);
+                        }
+                        catch (Exception ex)
+                        {
+                            Respond(500, ex);
+                            break;
+                        }
+
+                        string port = FormatAddress((IPEndPoint)dataSocket.LocalEndPoint);
+                        Respond(227, String.Format("Switched to passive mode ({0})", port));
                         break;
                     }
-
-                    string port = FormatAddress((IPEndPoint) dataSocket.LocalEndPoint);
-                    Respond(227, String.Format("Switched to passive mode ({0})", port));
-                    break;
-                }
                 case "XPWD":
                 case "PWD":
-                {
-                    ResultOrError<string> ret = fsHandler.GetCurrentDirectory();
-                    if (ret.HasError)
-                        Respond(500, ret.Error);
-                    else
-                        Respond(257, EscapePath(ret.Result));
-                    break;
-                }
+                    {
+                        ResultOrError<string> ret = fsHandler.GetCurrentDirectory();
+                        if (ret.HasError)
+                            Respond(500, ret.Error);
+                        else
+                            Respond(257, EscapePath(ret.Result));
+                        break;
+                    }
                 case "XCWD":
                 case "CWD":
-                {
-                    ResultOrError<string> ret = fsHandler.ChangeDirectory(arguments);
-                    if (ret.HasError)
-                        Respond(550, ret.Error);
-                    else
-                        Respond(200, GetRandomText(OK_TEXT));
-                    break;
-                }
+                    {
+                        ResultOrError<string> ret = fsHandler.ChangeDirectory(arguments);
+                        if (ret.HasError)
+                            Respond(550, ret.Error);
+                        else
+                            Respond(200, GetRandomText(OK_TEXT));
+                        break;
+                    }
                 case "XCUP":
                 case "CDUP":
-                {
-                    ResultOrError<string> ret = fsHandler.ChangeDirectory("..");
-                    if (ret.HasError)
-                        Respond(550, ret.Error);
-                    else
-                        Respond(200, GetRandomText(OK_TEXT));
-                    break;
-                }
+                    {
+                        ResultOrError<string> ret = fsHandler.ChangeDirectory("..");
+                        if (ret.HasError)
+                            Respond(550, ret.Error);
+                        else
+                            Respond(200, GetRandomText(OK_TEXT));
+                        break;
+                    }
                 case "XMKD":
                 case "MKD":
-                {
-                    ResultOrError<string> ret = fsHandler.CreateDirectory(arguments);
-                    if (ret.HasError)
-                        Respond(550, ret.Error);
-                    else
-                        Respond(257, EscapePath(ret.Result));
-                    break;
-                }
+                    {
+                        ResultOrError<string> ret = fsHandler.CreateDirectory(arguments);
+                        if (ret.HasError)
+                            Respond(550, ret.Error);
+                        else
+                            Respond(257, EscapePath(ret.Result));
+                        break;
+                    }
                 case "XRMD":
                 case "RMD":
-                {
-                    ResultOrError<bool> ret = fsHandler.RemoveDirectory(arguments);
-                    if (ret.HasError)
-                        Respond(550, ret.Error);
-                    else
-                        Respond(250, GetRandomText(OK_TEXT));
-                    break;
-                }
+                    {
+                        ResultOrError<bool> ret = fsHandler.RemoveDirectory(arguments);
+                        if (ret.HasError)
+                            Respond(550, ret.Error);
+                        else
+                            Respond(250, GetRandomText(OK_TEXT));
+                        break;
+                    }
                 case "RETR":
-                {
-                    ResultOrError<Stream> ret = fsHandler.ReadFile(arguments);
-                    if (ret.HasError) {
-                        Respond(550, ret.Error);
+                    {
+                        ResultOrError<Stream> ret = fsHandler.ReadFile(arguments);
+                        if (ret.HasError)
+                        {
+                            Respond(550, ret.Error);
+                            break;
+                        }
+
+                        SendData(ret.Result);
                         break;
                     }
-
-                    SendData(ret.Result);
-                    break;
-                }
                 case "STOR":
-                {
-                    ResultOrError<Stream> ret = fsHandler.WriteFile(arguments);
-                    if (ret.HasError) {
-                        Respond(550, ret.Error);
-                        break;
-                    }
-                    ReceiveData(ret.Result);
-                    var ret2 = fsHandler.WriteFileFinalize(arguments, ret.Result);
-                    if (ret2.HasError)
                     {
-                        Respond(550, ret.Error);
+                        ResultOrError<Stream> ret = fsHandler.WriteFile(arguments);
+                        if (ret.HasError)
+                        {
+                            Respond(550, ret.Error);
+                            break;
+                        }
+                        ReceiveData(ret.Result);
+                        var ret2 = fsHandler.WriteFileFinalize(arguments, ret.Result);
+                        if (ret2.HasError)
+                        {
+                            Respond(550, ret2.Error);
+                            break;
+                        }
                         break;
                     }
-                    break;
-                }
                 case "DELE":
-                {
-                    ResultOrError<bool> ret = fsHandler.RemoveFile(arguments);
-                    if (ret.HasError)
-                        Respond(550, ret.Error);
-                    else
-                        Respond(250, GetRandomText(OK_TEXT));
-                    break;
-                }
-                case "RNFR":
-                {
-                    if (arguments == null || arguments.Trim() == "") {
-                        Respond(500, "Empty path is invalid.");
-                        break;
-                    }
-
-                    renameFromPath = arguments;
-                    Respond(350, "Waiting for target path.");
-                    break;
-                }
-                case "RNTO":
-                {
-                    if (renameFromPath == null) {
-                        Respond(503, "Use RNFR before RNTO.");
-                        break;
-                    }
-
-                    ResultOrError<bool> ret = fsHandler.RenameFile(renameFromPath, arguments);
-                    renameFromPath = null;
-                    if (ret.HasError)
-                        Respond(550, ret.Error);
-                    else
-                        Respond(250, GetRandomText(OK_TEXT));
-                    break;
-                }
-                case "MDTM":
-                {
-                    ResultOrError<DateTime> ret = fsHandler.GetLastModifiedTimeUtc(arguments);
-                    if (ret.HasError)
-                        Respond(550, ret.Error);
-                    else
-                        Respond(213, FormatTime(EnsureUnixTime(ret.Result)));
-                    break;
-                }
-                case "SIZE":
-                {
-                    ResultOrError<long> ret = fsHandler.GetFileSize(arguments);
-                    if (ret.HasError)
-                        Respond(550, ret.Error);
-                    else
-                        Respond(213, ret.Result.ToString());
-                    break;
-                }
-                case "LIST":
-                {
-                    // apparently browsers like to pass arguments to LIST
-                    // assuming they are passed through to the UNIX ls command
-                    arguments = RemoveLsArgs(arguments);
-
-                    ResultOrError<FileSystemEntry[]> ret = fsHandler.ListEntries(arguments);
-                    if (ret.HasError) {
-                        Respond(500, ret.Error);
-                        break;
-                    }
-
-                    SendData(MakeStream(FormatDirList(ret.Result)));
-                    break;
-                }
-                case "STAT":
-                {
-                    if (arguments == null || arguments.Trim() == "") {
-                        Respond(504, "Not implemented for these arguments.");
-                        break;
-                    }
-
-                    arguments = RemoveLsArgs(arguments);
-
-                    ResultOrError<FileSystemEntry[]> ret = fsHandler.ListEntries(arguments);
-                    if (ret.HasError) {
-                        Respond(500, ret.Error);
-                        break;
-                    }
-
-                    Respond(213, "Status:\r\n" + FormatDirList(ret.Result), true);
-                    Respond(213, "Status done.");
-                    break;
-                }
-                case "NLST":
-                {
-                    // remove common arguments, we do not support any of them
-                    arguments = RemoveLsArgs(arguments);
-
-                    ResultOrError<FileSystemEntry[]> ret = fsHandler.ListEntries(arguments);
-                    if (ret.HasError)
                     {
-                        Respond(500, ret.Error);
+                        ResultOrError<bool> ret = fsHandler.RemoveFile(arguments);
+                        if (ret.HasError)
+                            Respond(550, ret.Error);
+                        else
+                            Respond(250, GetRandomText(OK_TEXT));
                         break;
                     }
+                case "RNFR":
+                    {
+                        if (arguments == null || arguments.Trim() == "")
+                        {
+                            Respond(500, "Empty path is invalid.");
+                            break;
+                        }
 
-                    SendData(MakeStream(FormatNLST(ret.Result)));
-                    break;
-                }
+                        renameFromPath = arguments;
+                        Respond(350, "Waiting for target path.");
+                        break;
+                    }
+                case "RNTO":
+                    {
+                        if (renameFromPath == null)
+                        {
+                            Respond(503, "Use RNFR before RNTO.");
+                            break;
+                        }
+
+                        ResultOrError<bool> ret = fsHandler.RenameFile(renameFromPath, arguments);
+                        renameFromPath = null;
+                        if (ret.HasError)
+                            Respond(550, ret.Error);
+                        else
+                            Respond(250, GetRandomText(OK_TEXT));
+                        break;
+                    }
+                case "MDTM":
+                    {
+                        ResultOrError<DateTime> ret = fsHandler.GetLastModifiedTimeUtc(arguments);
+                        if (ret.HasError)
+                            Respond(550, ret.Error);
+                        else
+                            Respond(213, FormatTime(EnsureUnixTime(ret.Result)));
+                        break;
+                    }
+                case "SIZE":
+                    {
+                        ResultOrError<long> ret = fsHandler.GetFileSize(arguments);
+                        if (ret.HasError)
+                            Respond(550, ret.Error);
+                        else
+                            Respond(213, ret.Result.ToString());
+                        break;
+                    }
+                case "LIST":
+                    {
+                        // apparently browsers like to pass arguments to LIST
+                        // assuming they are passed through to the UNIX ls command
+                        arguments = RemoveLsArgs(arguments);
+
+                        ResultOrError<FileSystemEntry[]> ret = fsHandler.ListEntries(arguments);
+                        if (ret.HasError)
+                        {
+                            Respond(500, ret.Error);
+                            break;
+                        }
+
+                        SendData(MakeStream(FormatDirList(ret.Result)));
+                        break;
+                    }
+                case "STAT":
+                    {
+                        if (arguments == null || arguments.Trim() == "")
+                        {
+                            Respond(504, "Not implemented for these arguments.");
+                            break;
+                        }
+
+                        arguments = RemoveLsArgs(arguments);
+
+                        ResultOrError<FileSystemEntry[]> ret = fsHandler.ListEntries(arguments);
+                        if (ret.HasError)
+                        {
+                            Respond(500, ret.Error);
+                            break;
+                        }
+
+                        Respond(213, "Status:\r\n" + FormatDirList(ret.Result), true);
+                        Respond(213, "Status done.");
+                        break;
+                    }
+                case "NLST":
+                    {
+                        // remove common arguments, we do not support any of them
+                        arguments = RemoveLsArgs(arguments);
+
+                        ResultOrError<FileSystemEntry[]> ret = fsHandler.ListEntries(arguments);
+                        if (ret.HasError)
+                        {
+                            Respond(500, ret.Error);
+                            break;
+                        }
+
+                        SendData(MakeStream(FormatNLST(ret.Result)));
+                        break;
+                    }
+                case "MLSD":
+                case "MLST":
+                    {
+                        ResultOrError<FileSystemEntry[]> ret = fsHandler.ListEntries(arguments);
+                        if (ret.HasError)
+                        {
+                            Respond(500, ret.Error);
+                            break;
+                        }
+
+                        SendData(MakeStream(FormatMLST(ret.Result)));
+                        break;
+                    }
+                case "MFMT":
+                    {
+                        string[] tokens = arguments.Split(' ');
+                        var time = DateTime.ParseExact(tokens[0], "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+                        var file = (tokens.Length > 1 ? String.Join(" ", tokens, 1, tokens.Length - 1) : null);
+                        fsHandler.SetLastModifiedTimeUtc(file, time);
+                        Respond(213, string.Format("213 Modify={0}; {1}", tokens[0], file));
+                        break;
+                    }
                 case "NOOP":
-                {
-                    Respond(200, GetRandomText(OK_TEXT));
-                    break;
-                }
+                    {
+                        Respond(200, GetRandomText(OK_TEXT));
+                        break;
+                    }
                 case "SITE":
-                {
-                    string[] tokens = arguments.Split(' ');
-                    var newverb = tokens[0].ToUpper(); // commands are case insensitive
-                    var newargs = (tokens.Length > 1 ? String.Join(" ", tokens, 1, tokens.Length - 1) : null);
-                    ProcessCommand(newverb, newargs);
-                    break;
-                }
+                    {
+                        string[] tokens = arguments.Split(' ');
+                        var newverb = tokens[0].ToUpper(); // commands are case insensitive
+                        var newargs = (tokens.Length > 1 ? String.Join(" ", tokens, 1, tokens.Length - 1) : null);
+                        ProcessCommand(newverb, newargs);
+                        break;
+                    }
                 case "CHMOD":
-                {
-                    string[] tokens = arguments.Split(' ');
-                    var mode = tokens[0].ToUpper(); // commands are case insensitive
-                    var file = (tokens.Length > 1 ? String.Join(" ", tokens, 1, tokens.Length - 1) : "");
-                    ResultOrError<bool> ret = fsHandler.ChmodFile(mode, file);
-                    if (ret.HasError)
-                        Respond(550, ret.Error);
-                    else
-                        Respond(250, GetRandomText(OK_TEXT));
-                    break;
-                }
+                    {
+                        string[] tokens = arguments.Split(' ');
+                        var mode = tokens[0].ToUpper(); // commands are case insensitive
+                        var file = (tokens.Length > 1 ? String.Join(" ", tokens, 1, tokens.Length - 1) : "");
+                        ResultOrError<bool> ret = fsHandler.ChmodFile(mode, file);
+                        if (ret.HasError)
+                            Respond(550, ret.Error);
+                        else
+                            Respond(250, GetRandomText(OK_TEXT));
+                        break;
+                    }
                 default:
-                {
-                    Respond(500, "Unknown command.");
-                    break;
-                }
+                    {
+                        Respond(500, "Unknown command.");
+                        break;
+                    }
             }
         }
 
@@ -524,9 +585,11 @@ namespace mooftpserv
             if (cmdRcvBytes > 0)
                 Array.IndexOf(cmdRcvBuffer, (byte)'\n', 0, cmdRcvBytes);
 
-            try {
+            try
+            {
                 // read data until a newline is found
-                do {
+                do
+                {
                     int freeBytes = cmdRcvBuffer.Length - cmdRcvBytes;
                     int bytes = controlSocket.Receive(cmdRcvBuffer, cmdRcvBytes, freeBytes, SocketFlags.None);
                     if (bytes <= 0)
@@ -539,7 +602,9 @@ namespace mooftpserv
                     if (endPos != -1 && (cmdRcvBytes <= endPos + 1 || cmdRcvBuffer[endPos + 1] != (byte)'\n'))
                         endPos = -1;
                 } while (endPos == -1 && cmdRcvBytes < cmdRcvBuffer.Length);
-            } catch (SocketException) {
+            }
+            catch (SocketException)
+            {
                 // in case the socket is closed or has some other error while reading
                 return false;
             }
@@ -605,27 +670,41 @@ namespace mooftpserv
         /// </summary>
         private void HandleAuth(string verb, string args)
         {
-            if (verb == "USER" && args != null) {
-                if (authHandler.AllowLogin(args, null)) {
+            if (verb == "USER" && args != null)
+            {
+                if (authHandler.AllowLogin(args, null))
+                {
                     Respond(230, "Login successful.");
                     loggedIn = true;
-                } else {
+                }
+                else
+                {
                     loggedInUser = args;
                     Respond(331, "Password please.");
                 }
-            } else if (verb == "PASS") {
-                if (loggedInUser != null) {
-                    if (authHandler.AllowLogin(loggedInUser, args)) {
+            }
+            else if (verb == "PASS")
+            {
+                if (loggedInUser != null)
+                {
+                    if (authHandler.AllowLogin(loggedInUser, args))
+                    {
                         Respond(230, "Login successful.");
                         loggedIn = true;
-                    } else {
+                    }
+                    else
+                    {
                         loggedInUser = null;
                         Respond(530, "Login failed, please try again.");
                     }
-                } else {
+                }
+                else
+                {
                     Respond(530, "No USER specified.");
                 }
-            } else {
+            }
+            else
+            {
                 Respond(530, "Please login first.");
             }
         }
@@ -635,36 +714,45 @@ namespace mooftpserv
         /// </summary>
         private void SendData(Stream stream)
         {
-            try {
+            try
+            {
                 bool passive = (dataPort == null);
-                using (Socket socket = OpenDataConnection()) {
+                using (Socket socket = OpenDataConnection())
+                {
                     if (socket == null)
                         return;
 
-                    IPEndPoint remote = (IPEndPoint) socket.RemoteEndPoint;
-                    IPEndPoint local = (IPEndPoint) socket.LocalEndPoint;
+                    IPEndPoint remote = (IPEndPoint)socket.RemoteEndPoint;
+                    IPEndPoint local = (IPEndPoint)socket.LocalEndPoint;
 
                     if (logHandler != null)
                         logHandler.NewDataConnection(remote, local, passive);
 
-                    try {
-                        while (true) {
+                    try
+                    {
+                        while (true)
+                        {
                             int bytes = stream.Read(dataBuffer, 0, dataBufferSize);
-                            if (bytes <= 0) {
+                            if (bytes <= 0)
+                            {
                                 break;
                             }
 
-                            if (transferDataType == DataType.IMAGE || noAsciiConv) {
+                            if (transferDataType == DataType.IMAGE || noAsciiConv)
+                            {
                                 // TYPE I -> just pass through
                                 socket.Send(dataBuffer, bytes, SocketFlags.None);
-                            } else {
+                            }
+                            else
+                            {
                                 // TYPE A -> convert local EOL style to CRLF
 
                                 // if the buffer ends with a potential partial EOL,
                                 // try to read the rest of the EOL
                                 // (i assume that the EOL has max. two bytes)
                                 if (localEolBytes.Length == 2 &&
-                                    dataBuffer[bytes - 1] == localEolBytes[0]) {
+                                    dataBuffer[bytes - 1] == localEolBytes[0])
+                                {
                                     if (stream.Read(dataBuffer, bytes, 1) == 1)
                                         ++bytes;
                                 }
@@ -678,15 +766,21 @@ namespace mooftpserv
                         // flush socket before closing (done by using-statement)
                         socket.Shutdown(SocketShutdown.Send);
                         Respond(226, "Transfer complete.");
-                    } catch (Exception ex) {
+                    }
+                    catch (Exception ex)
+                    {
                         Respond(500, ex);
                         return;
-                    } finally {
+                    }
+                    finally
+                    {
                         if (logHandler != null)
                             logHandler.ClosedDataConnection(remote, local, passive);
                     }
                 }
-            } finally {
+            }
+            finally
+            {
                 stream.Close();
             }
         }
@@ -696,32 +790,42 @@ namespace mooftpserv
         /// </summary>
         private void ReceiveData(Stream stream)
         {
-            try {
+            try
+            {
                 bool passive = (dataPort == null);
-                using (Socket socket = OpenDataConnection()) {
+                using (Socket socket = OpenDataConnection())
+                {
                     if (socket == null)
                         return;
 
-                    IPEndPoint remote = (IPEndPoint) socket.RemoteEndPoint;
-                    IPEndPoint local = (IPEndPoint) socket.LocalEndPoint;
+                    IPEndPoint remote = (IPEndPoint)socket.RemoteEndPoint;
+                    IPEndPoint local = (IPEndPoint)socket.LocalEndPoint;
 
                     if (logHandler != null)
                         logHandler.NewDataConnection(remote, local, passive);
 
-                    try {
-                        while (true) {
+                    try
+                    {
+                        while (true)
+                        {
                             // fill up the in-memory buffer before writing to disk
                             int totalBytes = 0;
-                            while (totalBytes < dataBufferSize) {
+                            while (totalBytes < dataBufferSize)
+                            {
                                 int freeBytes = dataBufferSize - totalBytes;
                                 int newBytes = socket.Receive(dataBuffer, totalBytes, freeBytes, SocketFlags.None);
 
-                                if (newBytes > 0) {
+                                if (newBytes > 0)
+                                {
                                     totalBytes += newBytes;
-                                } else if (newBytes < 0) {
+                                }
+                                else if (newBytes < 0)
+                                {
                                     Respond(500, String.Format("Transfer failed: Receive() returned {0}", newBytes));
                                     return;
-                                } else {
+                                }
+                                else
+                                {
                                     // end of data
                                     break;
                                 }
@@ -731,15 +835,19 @@ namespace mooftpserv
                             if (totalBytes == 0)
                                 break;
 
-                            if (transferDataType == DataType.IMAGE || noAsciiConv) {
+                            if (transferDataType == DataType.IMAGE || noAsciiConv)
+                            {
                                 // TYPE I -> just pass through
                                 stream.Write(dataBuffer, 0, totalBytes);
-                            } else {
+                            }
+                            else
+                            {
                                 // TYPE A -> convert CRLF to local EOL style
 
                                 // if the buffer ends with a potential partial CRLF,
                                 // try to read the LF
-                                if (dataBuffer[totalBytes - 1] == remoteEolBytes[0]) {
+                                if (dataBuffer[totalBytes - 1] == remoteEolBytes[0])
+                                {
                                     if (socket.Receive(dataBuffer, totalBytes, 1, SocketFlags.None) == 1)
                                         ++totalBytes;
                                 }
@@ -752,15 +860,21 @@ namespace mooftpserv
 
                         socket.Shutdown(SocketShutdown.Receive);
                         Respond(226, "Transfer complete.");
-                    } catch (Exception ex) {
+                    }
+                    catch (Exception ex)
+                    {
                         Respond(500, ex);
                         return;
-                    } finally {
+                    }
+                    finally
+                    {
                         if (logHandler != null)
                             logHandler.ClosedDataConnection(remote, local, passive);
                     }
                 }
-            } finally {
+            }
+            finally
+            {
                 //stream.Close();
             }
         }
@@ -779,8 +893,9 @@ namespace mooftpserv
 
             dataSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
 
-            if (listen) {
-                IPAddress serverIP = ((IPEndPoint) controlSocket.LocalEndPoint).Address;
+            if (listen)
+            {
+                IPAddress serverIP = ((IPEndPoint)controlSocket.LocalEndPoint).Address;
                 dataSocket.Bind(new IPEndPoint(serverIP, 0));
                 dataSocketBound = true; // CF is missing Socket.IsBound
                 dataSocket.Listen(1);
@@ -793,27 +908,34 @@ namespace mooftpserv
         /// </summary>
         private Socket OpenDataConnection()
         {
-            if (dataPort == null && !dataSocketBound) {
+            if (dataPort == null && !dataSocketBound)
+            {
                 Respond(425, "No data port configured, use PORT or PASV.");
                 return null;
             }
 
             Respond(150, "Opening data connection.");
 
-            try {
-                if (dataPort != null) {
+            try
+            {
+                if (dataPort != null)
+                {
                     // active mode
                     dataSocket.Connect(dataPort);
                     dataPort = null;
                     return dataSocket;
-                } else {
+                }
+                else
+                {
                     // passive mode
                     Socket socket = dataSocket.Accept();
                     dataSocket.Close();
                     dataSocketBound = false;
                     return socket;
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 Respond(500, String.Format("Failed to open data connection: {0}", ex.Message.Replace(Environment.NewLine, " ")));
                 return null;
             }
@@ -848,12 +970,14 @@ namespace mooftpserv
             int startIndex = 0;
             int resultLen = 0;
             int searchLen;
-            while ((searchLen = len - startIndex) > 0) {
+            while ((searchLen = len - startIndex) > 0)
+            {
                 // search for the first byte of the EOL sequence
                 int eolIndex = Array.IndexOf(buffer, fromBytes[0], startIndex, searchLen);
 
                 // shortcut if there is no EOL in the whole buffer
-                if (eolIndex == -1 && startIndex == 0) {
+                if (eolIndex == -1 && startIndex == 0)
+                {
                     resultBuffer = buffer;
                     return len;
                 }
@@ -862,29 +986,37 @@ namespace mooftpserv
                 if (resultBuffer == null)
                     resultBuffer = new byte[len * 2];
 
-                if (eolIndex == -1) {
+                if (eolIndex == -1)
+                {
                     Array.Copy(buffer, startIndex, resultBuffer, resultLen, searchLen);
                     resultLen += searchLen;
                     break;
-                } else {
+                }
+                else
+                {
                     // compare the rest of the EOL
                     int matchBytes = 1;
-                    for (int i = 1; i < fromBytes.Length && eolIndex + i < len; ++i) {
+                    for (int i = 1; i < fromBytes.Length && eolIndex + i < len; ++i)
+                    {
                         if (buffer[eolIndex + i] == fromBytes[i])
                             ++matchBytes;
                     }
 
-                    if (matchBytes == fromBytes.Length) {
+                    if (matchBytes == fromBytes.Length)
+                    {
                         // found an EOL to convert
                         int copyLen = eolIndex - startIndex;
-                        if (copyLen > 0) {
+                        if (copyLen > 0)
+                        {
                             Array.Copy(buffer, startIndex, resultBuffer, resultLen, copyLen);
                             resultLen += copyLen;
                         }
                         Array.Copy(toBytes, 0, resultBuffer, resultLen, toBytes.Length);
                         resultLen += toBytes.Length;
                         startIndex += copyLen + fromBytes.Length;
-                    } else {
+                    }
+                    else
+                    {
                         int copyLen = (eolIndex - startIndex) + 1;
                         Array.Copy(buffer, startIndex, resultBuffer, resultLen, copyLen);
                         resultLen += copyLen;
@@ -903,11 +1035,15 @@ namespace mooftpserv
         {
             string[] tokens = address.Split(',');
             byte[] bytes = new byte[tokens.Length];
-            for (int i = 0; i < tokens.Length; ++i) {
-                try {
+            for (int i = 0; i < tokens.Length; ++i)
+            {
+                try
+                {
                     // CF is missing TryParse
                     bytes[i] = byte.Parse(tokens[i]);
-                } catch (Exception) {
+                }
+                catch (Exception)
+                {
                     return null;
                 }
             }
@@ -936,14 +1072,16 @@ namespace mooftpserv
         private string FormatDirList(FileSystemEntry[] list)
         {
             int maxSizeChars = 0;
-            foreach (FileSystemEntry entry in list) {
+            foreach (FileSystemEntry entry in list)
+            {
                 maxSizeChars = Math.Max(maxSizeChars, entry.Size.ToString().Length);
             }
 
             DateTime sixMonthsAgo = EnsureUnixTime(DateTime.Now.ToUniversalTime().AddMonths(-6));
 
             StringBuilder result = new StringBuilder();
-            foreach (FileSystemEntry entry in list) {
+            foreach (FileSystemEntry entry in list)
+            {
                 char dirflag = (entry.IsDirectory ? 'd' : '-');
                 string size = entry.Size.ToString().PadLeft(maxSizeChars);
                 DateTime time = EnsureUnixTime(entry.LastModifiedTimeUtc);
@@ -955,7 +1093,7 @@ namespace mooftpserv
                 string mode = entry.Mode;
 
                 result.AppendFormat("{0}{4} 1 owner group {1} {2} {3}\r\n",
-                                    dirflag, size, timestr, entry.Name, mode ?? "rwxr--r--");
+                                    dirflag, size, timestr, entry.Name, mode.Substring(1) ?? "rwxr--r--");
             }
 
             return result.ToString();
@@ -967,8 +1105,55 @@ namespace mooftpserv
         private string FormatNLST(FileSystemEntry[] list)
         {
             StringBuilder sb = new StringBuilder();
-            foreach (FileSystemEntry entry in list) {
+            foreach (FileSystemEntry entry in list)
+            {
                 sb.Append(entry.Name);
+                sb.Append("\r\n");
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Formats a list of file system entries for a response to an MLST command
+        /// </summary>
+        private string FormatMLST(FileSystemEntry[] list)
+        {
+            StringBuilder sb = new StringBuilder();
+            var cd = fsHandler.GetCurrentDirectory();
+            foreach (FileSystemEntry entry in list)
+            {
+                int p = entry.Name.IndexOf(" -> ");
+                string l, f;
+                if (p >= 0)
+                {
+                    l = entry.Name.Substring(0, p);
+                    f = entry.Name.Substring(p + 4);
+                }
+                else
+                {
+                    l = f = entry.Name;
+                }
+                sb.AppendFormat("modify={0:yyyyMMddHHmmss};perm={1};size={2};type={3};unique={4:X};unix.mode={5:D4}; {6}\r\n",
+                    entry.LastModifiedTimeUtc,
+                    "rw" + (entry.IsDirectory ? "l" : "") + (entry.Mode != null && entry.Mode.Contains("x") ? "x" : ""),
+                    entry.Size,
+                    (l != f) ? "symlink" : (entry.IsDirectory ? "dir" : "file"),
+                    (cd.Result + f).GetHashCode(),
+                    (string.IsNullOrEmpty(entry.Mode) || entry.Mode.Length < 10) ? 0 : (
+                    ((entry.Mode[3] == 'S') ? 4000 : 0) +
+                    ((entry.Mode[6] == 'S') ? 2000 : 0) +
+                    ((entry.Mode[9] == 'T') ? 1000 : 0) +
+                    ((entry.Mode[1] == 'r') ? 400 : 0) +
+                    ((entry.Mode[2] == 'w') ? 200 : 0) +
+                    ((entry.Mode[3] != '-') ? 100 : 0) +
+                    ((entry.Mode[4] == 'r') ? 040 : 0) +
+                    ((entry.Mode[5] == 'w') ? 020 : 0) +
+                    ((entry.Mode[6] != '-') ? 010 : 0) +
+                    ((entry.Mode[7] == 'r') ? 004 : 0) +
+                    ((entry.Mode[8] == 'w') ? 002 : 0) +
+                    ((entry.Mode[9] != '-') ? 001 : 0)
+                    ),
+                    l);
                 sb.Append("\r\n");
             }
             return sb.ToString();
@@ -993,9 +1178,9 @@ namespace mooftpserv
 
             int yearDiff = time.Year - 1970;
             if (yearDiff < 0)
-              return time.AddYears(-yearDiff);
+                return time.AddYears(-yearDiff);
             else
-              return time;
+                return time;
         }
 
         /// <summary>
@@ -1012,7 +1197,8 @@ namespace mooftpserv
         /// </summary>
         private string RemoveLsArgs(string args)
         {
-            if (args != null && (args.StartsWith("-a") || args.StartsWith("-l"))) {
+            if (args != null && (args.StartsWith("-a") || args.StartsWith("-l")))
+            {
                 if (args.Length == 2)
                     return null;
                 else if (args.Length > 3 && args[2] == ' ')

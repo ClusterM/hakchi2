@@ -199,6 +199,8 @@ namespace mooftpserv
         /// </param>
         ResultOrError<DateTime> GetLastModifiedTimeUtc(string path);
 
+        ResultOrError<bool> SetLastModifiedTimeUtc(string path, DateTime time);
+
         ResultOrError<bool> ChmodFile(string mode, string path);
     }
 }

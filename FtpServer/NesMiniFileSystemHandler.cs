@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.IO;
 using com.clusterrr.clovershell;
+using System.Globalization;
 
 namespace mooftpserv
 {
@@ -131,7 +132,11 @@ namespace mooftpserv
             try
             {
                 str.Seek(0, SeekOrigin.Begin);
-                clovershell.Execute("cat > \"" + newPath + "\"", str, null, null, 1000, true);
+                string directory = "/";
+                int p = newPath.LastIndexOf("/");
+                if (p > 0)
+                    directory = newPath.Substring(0, p);
+                clovershell.Execute("mkdir -p \"" + directory + "\" && cat > \"" + newPath + "\"", str, null, null, 1000, true);
                 str.Dispose();
                 return MakeResult<bool>(true);
             }
@@ -179,20 +184,19 @@ namespace mooftpserv
             List<FileSystemEntry> result = new List<FileSystemEntry>();
             try
             {
-                var lines = clovershell.ExecuteSimple("ls -lep \"" + newPath + "\"", 1000, true)
+                var lines = clovershell.ExecuteSimple("ls -lApe \"" + newPath + "\"", 1000, true)
                     .Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var line in lines)
                 {
                     if (line.StartsWith("total")) continue;
                     FileSystemEntry entry = new FileSystemEntry();
-                    entry.Mode = line.Substring(1, 12).Trim();
+                    entry.Mode = line.Substring(0, 13).Trim();
                     entry.Name = line.Substring(69).Trim();
                     entry.IsDirectory = entry.Name.EndsWith("/");
                     if (entry.IsDirectory) entry.Name = entry.Name.Substring(0, entry.Name.Length - 1);
                     entry.Size = long.Parse(line.Substring(29, 15).Trim());
-                    // Who cares? There is no time source on NES Mini
-                    //DateTime.Parse(line.Substring(44, 25).Trim());
-                    entry.LastModifiedTimeUtc = DateTime.MinValue;
+                    var dt = line.Substring(44, 25).Trim();
+                    entry.LastModifiedTimeUtc = DateTime.ParseExact(dt, "ddd MMM  d HH:mm:ss yyyy", CultureInfo.InvariantCulture, DateTimeStyles.AllowInnerWhite);
                     result.Add(entry);
                 }
             }
@@ -200,50 +204,35 @@ namespace mooftpserv
             {
                 return MakeError<FileSystemEntry[]>(ex.Message);
             }
-
             return MakeResult<FileSystemEntry[]>(result.ToArray());
         }
 
         public ResultOrError<long> GetFileSize(string path)
         {
             string newPath = ResolvePath(path);
-            List<FileSystemEntry> result = new List<FileSystemEntry>();
             try
             {
-                var lines = clovershell.ExecuteSimple("ls -le \"" + newPath + "\"", 1000, true)
-                    .Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var line in lines)
-                {
-                    return MakeResult<long>(long.Parse(line.Substring(29, 15).Trim()));
-                }
+                var size = clovershell.ExecuteSimple("stat -c%s \"" + newPath + "\"", 1000, true);
+                return MakeResult<long>(long.Parse(size));
             }
             catch (Exception ex)
             {
                 return MakeError<long>(ex.Message);
             }
-            return MakeResult<long>(0);
         }
 
         public ResultOrError<DateTime> GetLastModifiedTimeUtc(string path)
         {
-            /*
             string newPath = ResolvePath(path);
-            List<FileSystemEntry> result = new List<FileSystemEntry>();
             try
             {
-                var lines = clovershell.ExecuteSimple("ls -le \"" + newPath + "\"", 1000, true)
-                    .Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var line in lines)
-                {
-                    MakeResult<DateTime>(DateTime.Parse(line.Substring(45, 25).Trim()));
-                }
+                var time = clovershell.ExecuteSimple("stat -c%Z \"" + newPath + "\"", 1000, true);
+                return MakeResult<DateTime>(DateTime.FromFileTime(long.Parse(time)));
             }
             catch (Exception ex)
             {
                 return MakeError<DateTime>(ex.Message);
             }
-             */
-            return MakeResult<DateTime>(DateTime.MinValue);
         }
 
         private string ResolvePath(string path)
@@ -314,9 +303,24 @@ namespace mooftpserv
 
         public ResultOrError<bool> ChmodFile(string mode, string path)
         {
+            string newPath = ResolvePath(path);
             try
             {
-                clovershell.ExecuteSimple(string.Format("chmod {0} {1}", mode, path), 1000, true);
+                clovershell.ExecuteSimple(string.Format("chmod {0} {1}", mode, newPath), 1000, true);
+                return ResultOrError<bool>.MakeResult(true);
+            }
+            catch (Exception ex)
+            {
+                return MakeError<bool>(ex.Message);
+            }
+        }
+
+        public ResultOrError<bool> SetLastModifiedTimeUtc(string path, DateTime time)
+        {
+            string newPath = ResolvePath(path);
+            try
+            {
+                clovershell.ExecuteSimple(string.Format("touch -ct {0:yyyyMMddHHmm.ss} \"{1}\"", time, newPath), 1000, true);
                 return ResultOrError<bool>.MakeResult(true);
             }
             catch (Exception ex)

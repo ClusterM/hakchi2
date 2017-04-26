@@ -122,15 +122,22 @@ namespace com.clusterrr.hakchi_gui
             {
                 BaseDirectory = Path.GetDirectoryName(Application.ExecutablePath);
                 KernelDump = Path.Combine(Path.Combine(BaseDirectory, "dump"), "kernel.img");
-                InternalMods = from m in Directory.GetFiles(Path.Combine( BaseDirectory,"mods/hmods")) select Path.GetFileNameWithoutExtension(m);
+                InternalMods = from m in Directory.GetFiles(Path.Combine(BaseDirectory, "mods/hmods")) select Path.GetFileNameWithoutExtension(m);
                 LoadGames();
                 LoadHidden();
                 LoadPresets();
                 LoadLanguages();
                 var version = Assembly.GetExecutingAssembly().GetName().Version;
                 Text = string.Format("hakchi2 - v{0}.{1:D2}{2}", version.Major, version.Build, (version.Revision < 10) ?
-                    ("rc" + version.Revision.ToString()) : (version.Revision > 10 ? ((char)('a' + version.Revision - 10)).ToString() : ""));
-
+                    ("rc" + version.Revision.ToString()) : (version.Revision > 10 ? ((char)('a' + version.Revision - 10)).ToString() : ""))
+#if DEBUG
+ + " (debug version"
+#if VERY_DEBUG
+ + ", very verbose mode"
+#endif
+ + ")"
+#endif
+;
                 // Some settnigs
                 useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
                 epilepsyProtectionToolStripMenuItem.Checked = ConfigIni.AntiArmetLevel > 0;
@@ -208,6 +215,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 ConfigIni.CustomFlashed = true; // Just in case of new installation
+                Clovershell.ExecuteSimple(string.Format("date -s \"{0:yyyy-MM-dd HH:mm:ss}\"", DateTime.UtcNow));
                 var region = Clovershell.ExecuteSimple("cat /etc/clover/REGION", 500, true);
                 Debug.WriteLine(string.Format("Detected region: {0}", region));
                 if (region == "JPN")
@@ -393,6 +401,7 @@ namespace com.clusterrr.hakchi_gui
                 item.Click += delegate(object sender, EventArgs e)
                     {
                         ConfigIni.Language = langCodes[language];
+                        SaveConfig();
                         Thread.CurrentThread.CurrentUICulture = new CultureInfo(langCodes[language]);
                         this.Controls.Clear();
                         this.InitializeComponent();
