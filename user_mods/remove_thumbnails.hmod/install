@@ -1,0 +1,22 @@
+# Lines started with "#" are ignored and can be used as comments
+# Next line defines "scnfile" variable with path to "sys_game_thumbnail.scn" file
+scnfile=/usr/share/clover-ui/resources/prefab/sys_game_thumbnail.scn
+# Same with nes.json file
+nesjson=/usr/share/clover-ui/resources/sprites/nes.json
+# This line defines "preinitfile" variable with pre-init file name
+preinitfile=p81a8_hide_thumnbnails
+# "restore" is hakchi function which copies original file to corresponding path in /var/lib/hakchi/rootfs
+restore $scnfile
+restore $nesjson
+# sed is GNU util to modify file, this command replaces "enabled:true" to "enabled:false"
+# Please note that we need to edit $rootfs$scnfile (writable file), not a just $scnfile (original read-only file)
+sed -i -e 's/"enabled":true/"enabled":false/g' $rootfs$scnfile
+# Same with nes.json file, most simple way is to replace coordinates sprite coords with zeros
+sed -i -e 's/\[93,861,12,8\]/\[0,0,0,0\]/g' $rootfs$nesjson
+sed -i -e 's/\[93,871,12,8\]/\[0,0,0,0\]/g' $rootfs$nesjson
+sed -i -e 's/\[107,861,12,8\]/\[0,0,0,0\]/g' $rootfs$nesjson
+# Create pre-init script and echo "overmount" command to it
+echo "overmount $scnfile" > $preinitpath/$preinitfile
+echo "overmount $nesjson" >> $preinitpath/$preinitfile
+# We should return 1 to prevent execution of automatic installer 
+return 1

@@ -216,18 +216,22 @@ namespace com.clusterrr.hakchi_gui
             {
                 ConfigIni.CustomFlashed = true; // Just in case of new installation
                 Clovershell.ExecuteSimple(string.Format("date -s \"{0:yyyy-MM-dd HH:mm:ss}\"", DateTime.UtcNow));
-                var region = Clovershell.ExecuteSimple("cat /etc/clover/REGION", 500, true);
-                Debug.WriteLine(string.Format("Detected region: {0}", region));
-                if (region == "JPN")
-                    Invoke(new Action(delegate
-                    {
-                        famicomMiniToolStripMenuItem.PerformClick();
-                    }));
-                if (region == "EUR_USA")
-                    Invoke(new Action(delegate
-                    {
-                        nESMiniToolStripMenuItem.PerformClick();
-                    }));
+                var customFirmware = Clovershell.ExecuteSimple("[ -d /var/lib/hakchi/firmware/ ] && [ -f /var/lib/hakchi/firmware/*.hsqs ] && echo YES || echo NO");
+                if (customFirmware == "NO")
+                {
+                    var region = Clovershell.ExecuteSimple("cat /etc/clover/REGION", 500, true);
+                    Debug.WriteLine(string.Format("Detected region: {0}", region));
+                    if (region == "JPN")
+                        Invoke(new Action(delegate
+                        {
+                            famicomMiniToolStripMenuItem.PerformClick();
+                        }));
+                    if (region == "EUR_USA")
+                        Invoke(new Action(delegate
+                        {
+                            nESMiniToolStripMenuItem.PerformClick();
+                        }));
+                }
                 WorkerForm.GetMemoryStats();
                 new Thread(RecalculateSelectedGamesThread).Start();
             }

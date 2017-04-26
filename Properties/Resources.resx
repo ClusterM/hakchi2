@@ -178,7 +178,7 @@
     <value>Flashing original kernel...</value>
   </data>
   <data name="GamesSelected" xml:space="preserve">
-    <value>games(s) selected</value>
+    <value>game(s) selected</value>
   </data>
   <data name="InvalidKernelHeader" xml:space="preserve">
     <value>Invalid kernel header.</value>
@@ -494,10 +494,10 @@
     <value>Installing mods...</value>
   </data>
   <data name="SelectModsInstall" xml:space="preserve">
-    <value>Select the modules to install on your NES Mini.</value>
+    <value>Select the modules to install on your NES Mini</value>
   </data>
   <data name="SelectModsUninstall" xml:space="preserve">
-    <value>Select the modules to remove from your NES Mini.</value>
+    <value>Select the modules to remove from your NES Mini</value>
   </data>
   <data name="UninstallingMods" xml:space="preserve">
     <value>Uninstalling mods...</value>

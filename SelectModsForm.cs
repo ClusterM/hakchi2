@@ -52,6 +52,7 @@ namespace com.clusterrr.hakchi_gui
             readmeFiles = new string[] { "readme.txt", "readme.md", "readme" };
             checkedListBoxMods.Items.Clear();
             checkedListBoxMods.Items.AddRange(modsList.ToArray());
+            checkedListBoxMods.Sorted = true;
             if (filesToAdd != null) AddMods(filesToAdd);
             this.AllowDrop = allowDropMods;
         }
