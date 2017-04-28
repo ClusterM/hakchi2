@@ -144,9 +144,6 @@
   <data name="Done" xml:space="preserve">
     <value>Done!</value>
   </data>
-  <data name="DoneUploaded" xml:space="preserve">
-    <value>Done! Wait until the power LED goes out and restart your NES Mini.</value>
-  </data>
   <data name="DoneYouCanUpload" xml:space="preserve">
     <value>Done! You can upload games to your NES Mini now.</value>
   </data>
@@ -167,9 +164,6 @@
   </data>
   <data name="ExecutingCommand" xml:space="preserve">
     <value>Executing command:</value>
-  </data>
-  <data name="ExecutingFes1" xml:space="preserve">
-    <value>Executing fes1...</value>
   </data>
   <data name="FlasingCustom" xml:space="preserve">
     <value>Flashing custom kernel...</value>
@@ -314,12 +308,6 @@
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>Not found:</value>
-  </data>
-  <data name="ParticallyBody" xml:space="preserve">
-    <value>Don't worry! Everything is fine. There are just too many ROMs to transfer at once. Please wait until power LED goes out, press OK and follow the instructions to continue.</value>
-  </data>
-  <data name="ParticallyTitle" xml:space="preserve">
-    <value>Too many ROMs</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="gamepad" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -531,9 +519,6 @@
   </data>
   <data name="blank_n64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\blank_n64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="GameTooBig" xml:space="preserve">
-    <value>Sorry, game "{0}" is too big.</value>
   </data>
   <data name="MemoryFull" xml:space="preserve">
     <value>Sorry, there are {0}MBytes of games, it's too much.</value>

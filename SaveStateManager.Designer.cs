@@ -141,6 +141,7 @@
             this.listViewSaves.Name = "listViewSaves";
             this.listViewSaves.UseCompatibleStateImageBehavior = false;
             this.listViewSaves.View = System.Windows.Forms.View.Details;
+            this.listViewSaves.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewSaves_ColumnClick);
             this.listViewSaves.ItemMouseHover += new System.Windows.Forms.ListViewItemMouseHoverEventHandler(this.listViewSaves_ItemMouseHover);
             this.listViewSaves.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewSaves_ItemSelectionChanged);
             this.listViewSaves.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewSaves_KeyDown);

@@ -63,6 +63,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else DrawTree();
                 splitContainer.Panel2MinSize = 485;
+                comboBoxPosition.Left = labelPosition.Left + labelPosition.Width;
                 treeView.TreeViewNodeSorter = new NodeSorter();
                 listViewContent.ListViewItemSorter = new NodeSorter();
             }

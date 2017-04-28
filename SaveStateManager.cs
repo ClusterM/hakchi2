@@ -1,6 +1,7 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using SevenZip;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -33,7 +34,6 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
             }
-
         }
 
         void LoadSaveStatesList()
@@ -109,7 +109,7 @@ namespace com.clusterrr.hakchi_gui
                             new  ListViewItem.ListViewSubItem() { Name = "colSize", Text = size},
                             new  ListViewItem.ListViewSubItem() { Name = "colFlags", Text = flags}                           
                         }, 0));
-                        listViewSaves.Sorting = SortOrder.Ascending;
+                        listViewSaves.ListViewItemSorter = new SavesSorter(0, false);
                         listViewSaves.Sort();
                     }
                     listViewSaves.Visible = true;
@@ -393,6 +393,52 @@ namespace com.clusterrr.hakchi_gui
             if (e.KeyCode == Keys.Delete && buttonDelete.Enabled)
             {
                 buttonDelete_Click(null, null);
+            }
+        }
+
+        private void listViewSaves_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            listViewSaves.ListViewItemSorter = new SavesSorter(e.Column,
+                ((listViewSaves.ListViewItemSorter as SavesSorter).Column == e.Column &&
+                !(listViewSaves.ListViewItemSorter as SavesSorter).Reverse));
+            listViewSaves.Sort();
+        }
+
+        private class SavesSorter : IComparer
+        {
+            public readonly int Column;
+            public readonly bool Reverse;
+
+            public SavesSorter(int column, bool reverse)
+            {
+                Column = column;
+                Reverse = reverse;
+            }
+
+            public int Compare(object o1, object o2)
+            {
+                var l1 = o1 as ListViewItem;
+                var l2 = o2 as ListViewItem;
+                int r = Reverse ? -1 : 1;
+                try
+                {
+                    switch (Column)
+                    {
+                        case 0:
+                        default:
+                            return l1.SubItems["colName"].Text.CompareTo(l2.SubItems["colName"].Text) * r;
+                        case 1:
+                            return l1.SubItems["colCode"].Text.CompareTo(l2.SubItems["colCode"].Text) * r;
+                        case 2:
+                            return (int.Parse(l1.SubItems["colSize"].Text.Replace("KB", "")) - int.Parse(l2.SubItems["colSize"].Text.Replace("KB", ""))) * r;
+                        case 3:
+                            return (l1.SubItems["colFlags"].Text.Length - l2.SubItems["colFlags"].Text.Length) * r;
+                    }
+                }
+                catch
+                {
+                    return 0;
+                }
             }
         }
     }
