@@ -178,6 +178,18 @@ namespace mooftpserv
         ResultOrError<FileSystemEntry[]> ListEntries(string path);
 
         /// <summary>
+        /// LIST: Return a raw output of 'ls' command.
+        /// </summary>
+        /// <param name="path">
+        /// The relative or absolute path of an existing directory or file.
+        /// Can be null or empty to return the current directory.
+        /// </para>
+        /// <return>
+        /// Raw output of 'ls' command
+        /// </return>
+        ResultOrError<string> ListEntriesRaw(string path);
+
+        /// <summary>
         /// SIZE: Gets the size of a file in bytes.
         /// </summary>
         /// <returns>

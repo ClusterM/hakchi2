@@ -460,8 +460,9 @@ namespace mooftpserv
                     {
                         // apparently browsers like to pass arguments to LIST
                         // assuming they are passed through to the UNIX ls command
+                        /*
                         arguments = RemoveLsArgs(arguments);
-
+                        
                         ResultOrError<FileSystemEntry[]> ret = fsHandler.ListEntries(arguments);
                         if (ret.HasError)
                         {
@@ -470,6 +471,16 @@ namespace mooftpserv
                         }
 
                         SendData(MakeStream(FormatDirList(ret.Result)));
+                         */
+                        ResultOrError<string> ret = fsHandler.ListEntriesRaw(arguments);
+                        if (ret.HasError)
+                        {
+                            Respond(500, ret.Error);
+                            break;
+                        }
+
+                        SendData(MakeStream(ret.Result));
+
                         break;
                     }
                 case "STAT":
@@ -1092,8 +1103,11 @@ namespace mooftpserv
                     timestr += time.ToString(" dd hh:mm");
                 string mode = entry.Mode;
 
-                result.AppendFormat("{0}{4} 1 owner group {1} {2} {3}\r\n",
-                                    dirflag, size, timestr, entry.Name, mode.Substring(1) ?? "rwxr--r--");
+                if (string.IsNullOrEmpty(mode))
+                    mode = dirflag + "rwxr--r--";
+
+                result.AppendFormat("{0} 1 owner group {1} {2} {3}\r\n",
+                                    mode, size, timestr, entry.Name);
             }
 
             return result.ToString();

@@ -51,7 +51,15 @@ namespace mooftpserv
         public ResultOrError<string> ChangeDirectory(string path)
         {
             string newPath = ResolvePath(path);
-            currentPath = newPath;
+            try
+            {
+                clovershell.ExecuteSimple("cd \""+newPath+"\"", 1000 ,true);
+                currentPath = newPath;
+            }
+            catch (Exception ex)
+            {
+                return MakeError<string>(ex.Message);
+            }
             return MakeResult<string>(newPath);
         }
 
@@ -205,6 +213,23 @@ namespace mooftpserv
                 return MakeError<FileSystemEntry[]>(ex.Message);
             }
             return MakeResult<FileSystemEntry[]>(result.ToArray());
+        }
+
+        public ResultOrError<string> ListEntriesRaw(string path)
+        {
+            if (path.StartsWith("-"))
+                path = ". " + path;
+            string newPath = ResolvePath(path);
+            List<string> result = new List<string>();
+            try
+            {
+                var lines = clovershell.ExecuteSimple("ls " + newPath, 1000, true);
+                return MakeResult<string>(lines);
+            }
+            catch (Exception ex)
+            {
+                return MakeError<string>(ex.Message);
+            }
         }
 
         public ResultOrError<long> GetFileSize(string path)

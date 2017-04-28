@@ -581,7 +581,7 @@
     <value>NES Mini save-state backups</value>
   </data>
   <data name="SizeOfSaves" xml:space="preserve">
-    <value>Size of selected save-states: {0}KB</value>
+    <value>Size of selected save-states: </value>
   </data>
   <data name="UnknownGame" xml:space="preserve">
     <value>Unknown game</value>
