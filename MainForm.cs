@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -1474,6 +1475,41 @@ namespace com.clusterrr.hakchi_gui
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 MessageBox.Show(this, Resources.NoTelnet, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void takeScreenshotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (RequirePatchedKernel() == DialogResult.No) return;
+            try
+            {
+                if (WaitingClovershellForm.WaitForDevice(this))
+                {
+                    var screenshot = WorkerForm.TakeScreenshot();
+                    var screenshotPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()+".png");
+                    screenshot.Save(screenshotPath, ImageFormat.Png);
+                    var showProcess = new Process()
+                    {
+                        StartInfo = new ProcessStartInfo()
+                        {
+                            FileName = screenshotPath
+                        }
+                    };
+                    showProcess.Start();
+                    new Thread(delegate() {
+                        showProcess.WaitForExit();
+                        try
+                        {
+                            File.Delete(screenshotPath);
+                        }
+                        catch { }
+                    }).Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

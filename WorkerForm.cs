@@ -6,6 +6,8 @@ using SevenZip;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -69,7 +71,7 @@ namespace com.clusterrr.hakchi_gui
             DialogResult = DialogResult.None;
             baseDirectory = MainForm.BaseDirectory;
             fes1Path = Path.Combine(Path.Combine(baseDirectory, "data"), "fes1.bin");
-            ubootPath = Path.Combine(Path.Combine(baseDirectory, "data"), "uboot.bin");            
+            ubootPath = Path.Combine(Path.Combine(baseDirectory, "data"), "uboot.bin");
 #if DEBUG
             tempDirectory = Path.Combine(baseDirectory, "temp");
 #else
@@ -648,6 +650,39 @@ namespace com.clusterrr.hakchi_gui
                 }
                 catch { }
             }
+        }
+
+        public static Image TakeScreenshot()
+        {
+            var clovershell = MainForm.Clovershell;
+            var screenshot = new Bitmap(1280, 720, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            var rawStream = new MemoryStream();
+            clovershell.Execute("cat /dev/fb0", null, rawStream, null, 1000, true);
+            var raw = rawStream.ToArray();
+            BitmapData data = screenshot.LockBits(
+                new Rectangle(0, 0, screenshot.Width, screenshot.Height),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+            int rawOffset = 0;
+            unsafe
+            {
+                for (int y = 0; y < screenshot.Height; ++y)
+                {
+                    byte* row = (byte*)data.Scan0 + (y * data.Stride);
+                    int columnOffset = 0;
+                    for (int x = 0; x < screenshot.Width; ++x)
+                    {
+                        row[columnOffset] = raw[rawOffset];
+                        row[columnOffset + 1] = raw[rawOffset + 1];
+                        row[columnOffset + 2] = raw[rawOffset + 2];
+
+                        columnOffset += 3;
+                        rawOffset += 4;
+                    }
+                }
+            }
+            screenshot.UnlockBits(data);
+            return screenshot;
         }
 
         public void Memboot(int maxProgress = -1, int progress = 0)
