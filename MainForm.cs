@@ -11,6 +11,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -402,7 +403,11 @@ namespace com.clusterrr.hakchi_gui
             foreach (var language in langCodes.Keys.OrderBy<string, string>(o => o))
             {
                 var item = new ToolStripMenuItem();
-                item.Text = Path.GetFileName(language);
+                var displayName = Regex.Replace(language, @" \(.+\)", "");
+                if (langCodes.Keys.Count(o => Regex.Replace(o, @" \(.+\)", "") == displayName) == 1)
+                    item.Text = displayName;
+                else 
+                    item.Text = language;
                 item.Click += delegate(object sender, EventArgs e)
                     {
                         ConfigIni.Language = langCodes[language];
