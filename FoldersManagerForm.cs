@@ -14,7 +14,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class FoldersManagerForm : Form
     {
-        public static string FoldersXmlPath = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigIni.ConfigDir), "folders.xml");
+        public static string FoldersXmlPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders.xml");
         List<TreeNode> cuttedNodes = new List<TreeNode>();
         List<INesMenuElement> deletedGames = new List<INesMenuElement>();
         NesMenuCollection gamesCollection = new NesMenuCollection();

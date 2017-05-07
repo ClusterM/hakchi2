@@ -4,6 +4,7 @@ using com.clusterrr.hakchi_gui.Properties;
 using SevenZip;
 using System;
 using System.Collections.Generic;
+using System.Deployment.Application;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -20,7 +21,6 @@ namespace com.clusterrr.hakchi_gui
     public partial class MainForm : Form
     {
         public const long DefaultMaxGamesSize = 300;
-        public static string BaseDirectory;
         public static IEnumerable<string> InternalMods;
         public static ClovershellConnection Clovershell;
         //readonly string UBootDump;
@@ -94,6 +94,11 @@ namespace com.clusterrr.hakchi_gui
 
         public MainForm()
         {
+            Program.BaseDirectoryInternal = Path.GetDirectoryName(Application.ExecutablePath);
+            if (ApplicationDeployment.IsNetworkDeployed)
+                Program.BaseDirectoryExternal = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "hakchi2");
+            else
+                Program.BaseDirectoryExternal = Program.BaseDirectoryInternal;
             ConfigIni.Load();
             try
             {
@@ -122,9 +127,8 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                BaseDirectory = Path.GetDirectoryName(Application.ExecutablePath);
-                KernelDump = Path.Combine(Path.Combine(BaseDirectory, "dump"), "kernel.img");
-                InternalMods = from m in Directory.GetFiles(Path.Combine(BaseDirectory, "mods/hmods")) select Path.GetFileNameWithoutExtension(m);
+                KernelDump = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "dump"), "kernel.img");
+                InternalMods = from m in Directory.GetFiles(Path.Combine(Program.BaseDirectoryInternal, "mods/hmods")) select Path.GetFileNameWithoutExtension(m);
                 LoadGames();
                 LoadHidden();
                 LoadPresets();
@@ -399,7 +403,7 @@ namespace com.clusterrr.hakchi_gui
 
         void LoadLanguages()
         {
-            var languages = new List<string>(Directory.GetDirectories(Path.Combine(BaseDirectory, "languages")));
+            var languages = new List<string>(Directory.GetDirectories(Path.Combine(Program.BaseDirectoryInternal, "languages")));
             languages.Add("en-US"); // default language
             var langCodes = new Dictionary<string, string>();
             foreach (var language in languages)
@@ -1193,7 +1197,7 @@ namespace com.clusterrr.hakchi_gui
                 var ext = Path.GetExtension(files[0]).ToLower();
                 if (ext == ".7z" || ext == ".zip" || ext == ".rar")
                 {
-                    SevenZipExtractor.SetLibraryPath(Path.Combine(BaseDirectory, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+                    SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
                     using (var szExtractor = new SevenZipExtractor(files[0]))
                     {
                         foreach (var f in szExtractor.ArchiveFileNames)

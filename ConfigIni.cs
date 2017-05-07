@@ -33,8 +33,8 @@ namespace com.clusterrr.hakchi_gui
         public static void Load()
         {
             Debug.WriteLine("Loading config");
-            var fileNameOld = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigFile);
-            var configFullDir = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigDir);
+            var fileNameOld = Path.Combine(Program.BaseDirectoryExternal, ConfigFile);
+            var configFullDir = Path.Combine(Program.BaseDirectoryExternal, ConfigDir);
             var fileName = Path.Combine(configFullDir, ConfigFile);
             if (File.Exists(fileNameOld)) // Moving old config to new directory
             {
@@ -162,7 +162,7 @@ namespace com.clusterrr.hakchi_gui
                 configLines.Add(string.Format("{0}={1}", preset, Presets[preset]));
             }
 
-            var configFullDir = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), ConfigDir);
+            var configFullDir = Path.Combine(Program.BaseDirectoryExternal, ConfigDir);
             var fileName = Path.Combine(configFullDir, ConfigFile);
             Directory.CreateDirectory(configFullDir);
             File.WriteAllLines(fileName, configLines.ToArray());

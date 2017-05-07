@@ -14,20 +14,27 @@
     <NoStdLib>False</NoStdLib>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <PublishUrl>publish\</PublishUrl>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>ftp://clusterrr.com/www/www/soft/hakchi2/</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Background</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <MapFileExtensions>false</MapFileExtensions>
+    <InstallUrl>http://clusterrr.com/soft/hakchi2/</InstallUrl>
+    <SupportUrl>http://clusterrr.com</SupportUrl>
+    <ProductName>hakchi2</ProductName>
+    <PublisherName>Alexey %27Cluster%27 Avdyukhin</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>index.html</WebPage>
+    <ApplicationRevision>23</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -63,6 +70,26 @@
     <BaseAddress>4194304</BaseAddress>
     <RegisterForComInterop>False</RegisterForComInterop>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>1D05715BF83320949FC1BAC8462308051A0C0F04</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>cluster_cert.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup />
@@ -943,201 +970,202 @@
     <EmbeddedResource Include="WorkerForm.resx">
       <DependentUpon>WorkerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="art\README.txt">
+    <Content Include="art\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="data\fes1.bin">
+    </Content>
+    <Content Include="data\fes1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="data\splash.gz">
+    </Content>
+    <Content Include="data\splash.gz">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="data\uboot.bin">
+    </Content>
+    <Content Include="data\uboot.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="LICENSE">
+    </Content>
+    <Content Include="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\hmods\clovercon.hmod">
+    </Content>
+    <Content Include="mods\hmods\clovercon.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\hmods\clovershell.hmod">
+    </Content>
+    <Content Include="mods\hmods\clovershell.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\hmods\copyleft.hmod">
+    </Content>
+    <Content Include="mods\hmods\copyleft.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\hmods\fontfix.hmod">
+    </Content>
+    <Content Include="mods\hmods\fontfix.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\bin\busybox">
+    </Content>
+    <Content Include="mods\mod_hakchi\bin\busybox">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\bin\rsync">
+    </Content>
+    <Content Include="mods\mod_hakchi\bin\rsync">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\config">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\init">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\bin\chmenu">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\chmenu">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\bin\clover-kachikachi-wr">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\clover-kachikachi-wr">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\inittab">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\inittab">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0000_defines">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0000_defines">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0010_functions">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0010_functions">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p0000_config">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p0000_config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7000_preinit">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7000_preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7070_firmware">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7070_firmware">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7100_preinit">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7100_preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pa100_games">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pa100_games">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pffff_config">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pffff_config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\profile">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\profile">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\script\backup">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\backup">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\script\base">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\base">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\script\games">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\games">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\script\install">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\install">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\script\package">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\package">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\script\removed">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\removed">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\script\transfer">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\transfer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\sbin\init">
+    </Content>
+    <Content Include="mods\mod_hakchi\sbin\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\busybox">
+    </Content>
+    <Content Include="mods\mod_uninstall\bin\busybox">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\hakchi\init">
+    </Content>
+    <Content Include="mods\mod_uninstall\hakchi\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\sbin\init">
+    </Content>
+    <Content Include="mods\mod_uninstall\sbin\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\1dac6208-Snow Bros. %28U%29 [!] - NES Mini patch.ips">
+    </Content>
+    <Content Include="patches\1dac6208-Snow Bros. %28U%29 [!] - NES Mini patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\279710dc-Battletoads %28U%29 [bugfix].ips">
+    </Content>
+    <Content Include="patches\279710dc-Battletoads %28U%29 [bugfix].ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\2caae01c-Felix the cat noDim hack %28for U [!] version%29.ips">
+    </Content>
+    <Content Include="patches\2caae01c-Felix the cat noDim hack %28for U [!] version%29.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\46fd7843-Splatter House - Wanpaku Graffiti %28J%29 [!] - MMC3 patch.ips">
+    </Content>
+    <Content Include="patches\46fd7843-Splatter House - Wanpaku Graffiti %28J%29 [!] - MMC3 patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\4ec0fecc-Ufouria - The Saga %28E%29 [NTSC hack].ips">
+    </Content>
+    <Content Include="patches\4ec0fecc-Ufouria - The Saga %28E%29 [NTSC hack].ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\61179bfa-Jungle Book %28no dim%29 .ips">
+    </Content>
+    <Content Include="patches\61179bfa-Jungle Book %28no dim%29 .ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\6dc28b5a-Bio Miracle Bokutte Upa - MMC5 patch.ips">
+    </Content>
+    <Content Include="patches\6dc28b5a-Bio Miracle Bokutte Upa - MMC5 patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\75b3eb37-Saiyuuki World 2 - MMC3 patch.ips">
+    </Content>
+    <Content Include="patches\75b3eb37-Saiyuuki World 2 - MMC3 patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\8889c564-Immortal, The %28U%29 [!] %28bright hack%29.ips">
+    </Content>
+    <Content Include="patches\8889c564-Immortal, The %28U%29 [!] %28bright hack%29.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\96087988-RoboCop 3 %28U%29 [!] - NES Mini patch.ips">
+    </Content>
+    <Content Include="patches\96087988-RoboCop 3 %28U%29 [!] - NES Mini patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\9ab274ae-Cheetahmen II - MMC1 patch.ips">
+    </Content>
+    <Content Include="patches\9ab274ae-Cheetahmen II - MMC1 patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\ac8dcdea-Cybernoid - The Fighting Machine %28U%29 [!] %28fix%29.ips">
+    </Content>
+    <Content Include="patches\ac8dcdea-Cybernoid - The Fighting Machine %28U%29 [!] %28fix%29.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\ba51ac6f-Holy Diver %28J%29 - MMC1 patch.ips">
+    </Content>
+    <Content Include="patches\ba51ac6f-Holy Diver %28J%29 - MMC1 patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\c4b6ed3c-Bill &amp; Ted%27s Excellent Video Game Adventure %28U%29 - NES Mini patch.ips">
+    </Content>
+    <Content Include="patches\c4b6ed3c-Bill &amp; Ted%27s Excellent Video Game Adventure %28U%29 - NES Mini patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\ca033b3a-Dragon%27s Lair %28U%29 [!] %28no dim%29.ips">
+    </Content>
+    <Content Include="patches\ca033b3a-Dragon%27s Lair %28U%29 [!] %28no dim%29.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\d054ffb0-Startropics II - Zoda%27s Revenge %28U%29 [!] - MMC3 patch.ips">
+    </Content>
+    <Content Include="patches\d054ffb0-Startropics II - Zoda%27s Revenge %28U%29 [!] - MMC3 patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\f6898a59-James Bond Jr %28no dim%29.ips">
+    </Content>
+    <Content Include="patches\f6898a59-James Bond Jr %28no dim%29.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\music_hack.hmod\install">
+    </Content>
+    <Content Include="user_mods\music_hack.hmod\install">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\music_hack.hmod\pb223_music_hack">
+    </Content>
+    <Content Include="user_mods\music_hack.hmod\pb223_music_hack">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\music_hack.hmod\uninstall">
+    </Content>
+    <Content Include="user_mods\music_hack.hmod\uninstall">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\password.hmod\install">
+    </Content>
+    <Content Include="user_mods\password.hmod\install">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\password.hmod\password.raw.gz">
+    </Content>
+    <Content Include="user_mods\password.hmod\password.raw.gz">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\password.hmod\password_fail.raw.gz">
+    </Content>
+    <Content Include="user_mods\password.hmod\password_fail.raw.gz">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\password.hmod\password_ok.raw.gz">
+    </Content>
+    <Content Include="user_mods\password.hmod\password_ok.raw.gz">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\password.hmod\S810password">
+    </Content>
+    <Content Include="user_mods\password.hmod\S810password">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\password.hmod\uninstall">
+    </Content>
+    <Content Include="user_mods\password.hmod\uninstall">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\remove_thumbnails.hmod\install">
+    </Content>
+    <Content Include="user_mods\remove_thumbnails.hmod\install">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\remove_thumbnails.hmod\uninstall">
+    </Content>
+    <Content Include="user_mods\remove_thumbnails.hmod\uninstall">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
+    <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\GameGenieDB.xml">
@@ -1380,61 +1408,61 @@
     <Content Include="folder_images\snes_usa.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\2600_sm.png" />
-    <Content Include="images\2600_sm_tr.png" />
-    <Content Include="images\32x_sm.png" />
-    <Content Include="images\32x_sm_tr.png" />
-    <Content Include="images\app_sm.png" />
-    <Content Include="images\app_sm_tr.png" />
-    <Content Include="images\arcade_sm.png" />
-    <Content Include="images\arcade_sm_tr.png" />
-    <Content Include="images\blank_2600.png" />
-    <Content Include="images\blank_32x.png" />
-    <Content Include="images\blank_app.png" />
-    <Content Include="images\blank_arcade.png" />
-    <Content Include="images\blank_gb.png" />
-    <Content Include="images\blank_gba.png" />
-    <Content Include="images\blank_gbc.png" />
-    <Content Include="images\blank_genesis.png" />
-    <Content Include="images\blank_gg.png" />
-    <Content Include="images\blank_n64.png" />
-    <Content Include="images\blank_neogeo.png" />
-    <Content Include="images\blank_nes.png" />
-    <Content Include="images\blank_pce.png" />
-    <Content Include="images\blank_sms.png" />
-    <Content Include="images\blank_snes-eu-jp.png" />
-    <Content Include="images\blank_snes-us.png" />
-    <Content Include="images\gba_sm.png" />
-    <Content Include="images\gba_sm_tr.png" />
-    <Content Include="images\gbc_sm.png" />
-    <Content Include="images\gbc_sm_tr.png" />
-    <Content Include="images\gb_sm.png" />
-    <Content Include="images\gb_sm_tr.png" />
-    <Content Include="images\genesis_sm.png" />
-    <Content Include="images\genesis_sm_tr.png" />
-    <Content Include="images\gg_sm.png" />
-    <Content Include="images\gg_sm_tr.png" />
-    <Content Include="images\green.png" />
-    <Content Include="images\n64_sm.png" />
-    <Content Include="images\n64_sm_tr.png" />
-    <Content Include="images\neogeo_sm.png" />
-    <Content Include="images\neogeo_sm_tr.png" />
-    <Content Include="images\nes_sm_tr.png" />
-    <Content Include="images\famicom_sm.png" />
-    <Content Include="images\famicom_sm_tr.png" />
-    <Content Include="images\fds_sm.png" />
-    <Content Include="images\fds_sm_tr.png" />
-    <Content Include="images\folder_sm_tr.png" />
-    <Content Include="images\original_sm_tr.png" />
-    <Content Include="images\pce_sm.png" />
-    <Content Include="images\pce_sm_tr.png" />
-    <Content Include="images\red.png" />
-    <Content Include="images\sms_sm.png" />
-    <Content Include="images\sms_sm_tr.png" />
-    <Content Include="images\snes-eu-jp_sm.png" />
-    <Content Include="images\snes-eu-jp_sm_tr.png" />
-    <Content Include="images\snes-us_sm.png" />
-    <Content Include="images\snes-us_sm_tr.png" />
+    <EmbeddedResource Include="images\2600_sm.png" />
+    <EmbeddedResource Include="images\2600_sm_tr.png" />
+    <EmbeddedResource Include="images\32x_sm.png" />
+    <EmbeddedResource Include="images\32x_sm_tr.png" />
+    <EmbeddedResource Include="images\app_sm.png" />
+    <EmbeddedResource Include="images\app_sm_tr.png" />
+    <EmbeddedResource Include="images\arcade_sm.png" />
+    <EmbeddedResource Include="images\arcade_sm_tr.png" />
+    <EmbeddedResource Include="images\blank_2600.png" />
+    <EmbeddedResource Include="images\blank_32x.png" />
+    <EmbeddedResource Include="images\blank_app.png" />
+    <EmbeddedResource Include="images\blank_arcade.png" />
+    <EmbeddedResource Include="images\blank_gb.png" />
+    <EmbeddedResource Include="images\blank_gba.png" />
+    <EmbeddedResource Include="images\blank_gbc.png" />
+    <EmbeddedResource Include="images\blank_genesis.png" />
+    <EmbeddedResource Include="images\blank_gg.png" />
+    <EmbeddedResource Include="images\blank_n64.png" />
+    <EmbeddedResource Include="images\blank_neogeo.png" />
+    <EmbeddedResource Include="images\blank_nes.png" />
+    <EmbeddedResource Include="images\blank_pce.png" />
+    <EmbeddedResource Include="images\blank_sms.png" />
+    <EmbeddedResource Include="images\blank_snes-eu-jp.png" />
+    <EmbeddedResource Include="images\blank_snes-us.png" />
+    <EmbeddedResource Include="images\gba_sm.png" />
+    <EmbeddedResource Include="images\gba_sm_tr.png" />
+    <EmbeddedResource Include="images\gbc_sm.png" />
+    <EmbeddedResource Include="images\gbc_sm_tr.png" />
+    <EmbeddedResource Include="images\gb_sm.png" />
+    <EmbeddedResource Include="images\gb_sm_tr.png" />
+    <EmbeddedResource Include="images\genesis_sm.png" />
+    <EmbeddedResource Include="images\genesis_sm_tr.png" />
+    <EmbeddedResource Include="images\gg_sm.png" />
+    <EmbeddedResource Include="images\gg_sm_tr.png" />
+    <EmbeddedResource Include="images\green.png" />
+    <EmbeddedResource Include="images\n64_sm.png" />
+    <EmbeddedResource Include="images\n64_sm_tr.png" />
+    <EmbeddedResource Include="images\neogeo_sm.png" />
+    <EmbeddedResource Include="images\neogeo_sm_tr.png" />
+    <EmbeddedResource Include="images\nes_sm_tr.png" />
+    <EmbeddedResource Include="images\famicom_sm.png" />
+    <EmbeddedResource Include="images\famicom_sm_tr.png" />
+    <EmbeddedResource Include="images\fds_sm.png" />
+    <EmbeddedResource Include="images\fds_sm_tr.png" />
+    <EmbeddedResource Include="images\folder_sm_tr.png" />
+    <EmbeddedResource Include="images\original_sm_tr.png" />
+    <EmbeddedResource Include="images\pce_sm.png" />
+    <EmbeddedResource Include="images\pce_sm_tr.png" />
+    <EmbeddedResource Include="images\red.png" />
+    <EmbeddedResource Include="images\sms_sm.png" />
+    <EmbeddedResource Include="images\sms_sm_tr.png" />
+    <EmbeddedResource Include="images\snes-eu-jp_sm.png" />
+    <EmbeddedResource Include="images\snes-eu-jp_sm_tr.png" />
+    <EmbeddedResource Include="images\snes-us_sm.png" />
+    <EmbeddedResource Include="images\snes-us_sm_tr.png" />
     <Content Include="user_mods\music_hack.hmod\music.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1450,60 +1478,60 @@
     <Content Include="user_mods\remove_thumbnails.hmod\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="folder_images\README.txt">
+    <Content Include="folder_images\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <Content Include="icon.ico" />
+    </Content>
+    <None Include="icon.ico" />
     <Content Include="folder_images\folder_back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\blank_fds.png" />
-    <Content Include="images\blank_jp.png" />
-    <Content Include="images\nes_sm.png" />
-    <Content Include="images\folder_sm.png" />
-    <Content Include="images\gamepad.png" />
-    <Content Include="images\original_sm.png" />
-    <None Include="patches\README.txt">
+    <EmbeddedResource Include="images\blank_fds.png" />
+    <EmbeddedResource Include="images\blank_jp.png" />
+    <EmbeddedResource Include="images\nes_sm.png" />
+    <EmbeddedResource Include="images\folder_sm.png" />
+    <EmbeddedResource Include="images\gamepad.png" />
+    <EmbeddedResource Include="images\original_sm.png" />
+    <Content Include="patches\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tools\7z.dll">
+    </Content>
+    <Content Include="tools\7z.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tools\7z64.dll">
+    </Content>
+    <Content Include="tools\7z64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <Content Include="SevenZip\gpl.txt" />
     <Content Include="SevenZip\lgpl.txt" />
-    <None Include="tools\cpio.exe">
+    <Content Include="tools\cpio.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tools\cyggcc_s-1.dll">
+    </Content>
+    <Content Include="tools\cyggcc_s-1.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tools\cygiconv-2.dll">
+    </Content>
+    <Content Include="tools\cygiconv-2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tools\cygintl-8.dll">
+    </Content>
+    <Content Include="tools\cygintl-8.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tools\cyglzo2-2.dll">
+    </Content>
+    <Content Include="tools\cyglzo2-2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tools\cygwin1.dll">
+    </Content>
+    <Content Include="tools\cygwin1.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tools\lzop.exe">
+    </Content>
+    <Content Include="tools\lzop.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tools\mkbootfs.exe">
+    </Content>
+    <Content Include="tools\mkbootfs.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tools\mkbootimg.exe">
+    </Content>
+    <Content Include="tools\mkbootimg.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tools\unpackbootimg.exe">
+    </Content>
+    <Content Include="tools\unpackbootimg.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -1516,6 +1544,33 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="data\GameGenieDB.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="data\nescarts.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -1525,7 +1580,9 @@
   <PropertyGroup>
     <PostBuildEvent>if exist languages rd /S /Q languages
 md languages
-for /D %25%25i in (*.*) do if exist %25%25i\hakchi.resources.dll move /Y %25%25i languages\%25%25i</PostBuildEvent>
+for /D %25%25i in (*.*) do if exist %25%25i\hakchi.resources.dll move /Y %25%25i languages\%25%25i
+del *.application
+del *.manifest</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

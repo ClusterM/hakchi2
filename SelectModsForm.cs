@@ -18,7 +18,7 @@ namespace com.clusterrr.hakchi_gui
         public SelectModsForm(bool loadInstalledMods, bool allowDropMods, string[] filesToAdd = null)
         {
             InitializeComponent();
-            baseDirectory = MainForm.BaseDirectory;
+            baseDirectory = Program.BaseDirectoryExternal;
             usermodsDirectory = Path.Combine(baseDirectory, "user_mods");
             var modsList = new List<string>();
             if (loadInstalledMods && MainForm.Clovershell.IsOnline)

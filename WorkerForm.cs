@@ -37,7 +37,8 @@ namespace com.clusterrr.hakchi_gui
         const UInt16 vid = 0x1F3A;
         const UInt16 pid = 0xEFE8;
 
-        readonly string baseDirectory;
+        readonly string baseDirectoryInternal;
+        readonly string baseDirectoryExternal;
         readonly string fes1Path;
         readonly string ubootPath;
         readonly string tempDirectory;
@@ -69,11 +70,12 @@ namespace com.clusterrr.hakchi_gui
         {
             InitializeComponent();
             DialogResult = DialogResult.None;
-            baseDirectory = MainForm.BaseDirectory;
-            fes1Path = Path.Combine(Path.Combine(baseDirectory, "data"), "fes1.bin");
-            ubootPath = Path.Combine(Path.Combine(baseDirectory, "data"), "uboot.bin");
+            baseDirectoryInternal = Program.BaseDirectoryInternal;
+            baseDirectoryExternal = Program.BaseDirectoryExternal;
+            fes1Path = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "fes1.bin");
+            ubootPath = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "uboot.bin");
 #if DEBUG
-            tempDirectory = Path.Combine(baseDirectory, "temp");
+            tempDirectory = Path.Combine(baseDirectoryInternal, "temp");
 #else
             tempDirectory = Path.Combine(Path.GetTempPath(), "hakchi-temp");
 #endif
@@ -82,12 +84,12 @@ namespace com.clusterrr.hakchi_gui
             initramfs_cpioPatched = Path.Combine(kernelDirectory, "initramfs_mod.cpio");
             ramfsDirectory = Path.Combine(kernelDirectory, "initramfs");
             hakchiDirectory = Path.Combine(ramfsDirectory, "hakchi");
-            modsDirectory = Path.Combine(baseDirectory, "mods");
+            modsDirectory = Path.Combine(baseDirectoryInternal, "mods");
             hmodDirectories = new string[]{
-                Path.Combine(baseDirectory, "user_mods"),
+                Path.Combine(baseDirectoryExternal, "user_mods"),
                 Path.Combine(modsDirectory, "hmods")
             };
-            toolsDirectory = Path.Combine(baseDirectory, "tools");
+            toolsDirectory = Path.Combine(baseDirectoryInternal, "tools");
             kernelPatched = Path.Combine(kernelDirectory, "patched_kernel.img");
             ramdiskPatched = Path.Combine(kernelDirectory, "kernel.img-ramdisk_mod.gz");
             cloverconDriverPath = Path.Combine(hakchiDirectory, "clovercon.ko");
@@ -500,7 +502,7 @@ namespace com.clusterrr.hakchi_gui
         public static void ShowSplashScreen()
         {
             var clovershell = MainForm.Clovershell;
-            var splashScreenPath = Path.Combine(Path.Combine(MainForm.BaseDirectory, "data"), "splash.gz");
+            var splashScreenPath = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "splash.gz");
             clovershell.ExecuteSimple("pkill -KILL clover-mcp");
             clovershell.ExecuteSimple("pkill -KILL ReedPlayer-Clover");
             clovershell.ExecuteSimple("pkill -KILL kachikachi");
@@ -954,7 +956,7 @@ namespace com.clusterrr.hakchi_gui
         private bool ExecuteTool(string tool, string args, out byte[] output, string directory = null, bool external = false)
         {
             var process = new Process();
-            var appDirectory = baseDirectory;
+            var appDirectory = baseDirectoryInternal;
             var fileName = !external ? Path.Combine(toolsDirectory, tool) : tool;
             process.StartInfo.FileName = fileName;
             process.StartInfo.Arguments = args;
@@ -1025,7 +1027,7 @@ namespace com.clusterrr.hakchi_gui
                     string tmp = null;
                     if (ext == ".7z" || ext == ".zip" || ext == ".rar")
                     {
-                        SevenZipExtractor.SetLibraryPath(Path.Combine(baseDirectory, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+                        SevenZipExtractor.SetLibraryPath(Path.Combine(baseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
                         using (var szExtractor = new SevenZipExtractor(sourceFileName))
                         {
                             var filesInArchive = new List<string>();

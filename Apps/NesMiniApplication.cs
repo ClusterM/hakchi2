@@ -14,7 +14,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public class NesMiniApplication : INesMenuElement
     {
-        public readonly static string GamesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "games");
+        public readonly static string GamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games");
         const string DefaultReleaseDate = "1900-01-01";
         const string DefaultPublisher = "UNKNOWN";
 
@@ -379,7 +379,7 @@ namespace com.clusterrr.hakchi_gui
                 imagePath = Path.Combine(Path.GetDirectoryName(romFileName), Path.GetFileNameWithoutExtension(romFileName) + ".jpg");
                 if (File.Exists(imagePath))
                     cover = LoadBitmap(imagePath);
-                var artDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "art");
+                var artDirectory = Path.Combine(Program.BaseDirectoryExternal, "art");
                 Directory.CreateDirectory(artDirectory);
                 imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(romFileName) + ".png");
                 if (File.Exists(imagePath))
@@ -535,7 +535,7 @@ namespace com.clusterrr.hakchi_gui
 
         private static byte[] Compress(string filename)
         {
-            SevenZipExtractor.SetLibraryPath(Path.Combine(MainForm.BaseDirectory, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+            SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
             var arch = new MemoryStream();
             var compressor = new SevenZipCompressor();
             compressor.CompressionLevel = CompressionLevel.High;

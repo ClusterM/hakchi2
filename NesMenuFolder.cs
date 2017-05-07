@@ -12,7 +12,7 @@ namespace com.clusterrr.hakchi_gui
     {
         static Random rnd = new Random();
         static ResourceManager rm = Resources.ResourceManager;
-        public static readonly string FolderImagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "folder_images");
+        public static readonly string FolderImagesDirectory = Path.Combine(Program.BaseDirectoryExternal, "folder_images");
 
         private int childIndex = 0;
 
@@ -195,7 +195,7 @@ namespace com.clusterrr.hakchi_gui
             get { return imageId; }
             set
             {
-                var folderImagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "folder_images");
+                var folderImagesDirectory = Path.Combine(Program.BaseDirectoryExternal, "folder_images");
                 var filePath = Path.Combine(folderImagesDirectory, value + ".png");
                 if (File.Exists(filePath))
                     image = NesMiniApplication.LoadBitmap(filePath);

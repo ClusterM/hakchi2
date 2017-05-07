@@ -74,7 +74,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 var process = new Process();
-                var fileName = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "driver"), "nesmini_driver.exe");
+                var fileName = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "driver"), "nesmini_driver.exe");
                 process.StartInfo.FileName = fileName;
                 process.Start();
             }
