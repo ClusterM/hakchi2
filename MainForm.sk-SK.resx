@@ -259,6 +259,9 @@
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Synchronizovať</value>
   </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>Urobiť fotku obrazovky</value>
+  </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Nástroje</value>
   </data>

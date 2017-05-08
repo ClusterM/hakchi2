@@ -12,6 +12,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Resources;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -404,6 +405,7 @@ namespace com.clusterrr.hakchi_gui
         void LoadLanguages()
         {
             var languages = new List<string>(Directory.GetDirectories(Path.Combine(Program.BaseDirectoryInternal, "languages")));
+            ResourceManager rm = Resources.ResourceManager;
             languages.Add("en-US"); // default language
             var langCodes = new Dictionary<string, string>();
             foreach (var language in languages)
@@ -421,6 +423,10 @@ namespace com.clusterrr.hakchi_gui
                     item.Text = displayName;
                 else
                     item.Text = language;
+                var country = langCodes[language];
+                if (country.Length > 2) country = country.Substring(country.Length - 2).ToLower();
+                item.Image = (Image)rm.GetObject(country);
+                item.ImageScaling = ToolStripItemImageScaling.None;
                 item.Click += delegate(object sender, EventArgs e)
                     {
                         ConfigIni.Language = langCodes[language];

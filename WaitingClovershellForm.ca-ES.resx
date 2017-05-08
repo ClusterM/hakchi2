@@ -62,10 +62,10 @@
     <value>Esperant a la NES Mini</value>
   </data>
   <data name="buttonDriver.Text">
-    <value>Instaleu controlador</value>
+    <value>Instal·leu controlador</value>
   </data>
   <data name="label1.Text">
-    <value>Si us plau, segueixi aquestes pases:</value>
+    <value>Si us plau, segueixi aquests passos:</value>
   </data>
   <data name="label2.Text">
     <value>1.Conecteu la NES Mini al PC via USB</value>
@@ -74,6 +74,6 @@
     <value>2.Enceneu la NES Mini</value>
   </data>
   <data name="label6.Text">
-    <value>3. Instaleu el controlador si encara no ho heu fet:</value>
+    <value>3. Instal·leu el controlador si encara no ho heu fet:</value>
   </data>
 </root>

@@ -121,9 +121,6 @@
   <data name="Done">
     <value>Feito!</value>
   </data>
-  <data name="DoneUploaded">
-    <value>Feito! Aguarde até que o LED de alimentação se apague e reinicie o Mini NES.</value>
-  </data>
   <data name="DoneYouCanUpload">
     <value>Feito! Você pode fazer upload de jogos para o NES Mini agora.</value>
   </data>
@@ -141,9 +138,6 @@
   </data>
   <data name="ExecutingCommand">
     <value>Executando comando:</value>
-  </data>
-  <data name="ExecutingFes1">
-    <value>Executando fes1 ...</value>
   </data>
   <data name="ExtraArgsInfo">
     <value>Você pode adicionar argumentos globais de linha de comando que serão anexados a todos os jogos, incluindo o original 30. Isso é apenas para especialistas!</value>
@@ -208,9 +202,6 @@
   <data name="GameGenieNotFound">
     <value>Não é possível aplicar o código Game Genie "{0}" ao jogo "{1}" - valor não encontrado. Talvez este código seja para outro jogo?</value>
   </data>
-  <data name="GameTooBig">
-    <value>Desculpe, o jogo "{0}" é muito grande.</value>
-  </data>
   <data name="GamesAndApps">
     <value>Jogos e aplicativos</value>
   </data>
@@ -239,7 +230,7 @@
     <value>Tamanho do kernel inválido:</value>
   </data>
   <data name="KernelDumped">
-    <value>Seu kernel original é salvo na pasta "dump". Não perca isso.</value>
+    <value>Seu kernel original é salvo na pasta "hakchi2\dump". Não perca isso.</value>
   </data>
   <data name="LoadingGames">
     <value>Carregando jogos ...</value>
@@ -284,19 +275,13 @@
     <value>Nenhum despejo do kernel encontrado. Você precisa descarregar o kernel primeiro.</value>
   </data>
   <data name="NoTelnet">
-    <value>Não é possível iniciar o cliente Telnet, parece que ele está desativado. Você precisa habilitá-lo primeiro, você pode fazê-lo em "Painel de controle" - &amp; gt; "Programas" - &amp; gt; "Liga ou desliga características das janelas".</value>
+    <value>Não é possível iniciar o cliente Telnet, parece que ele está desativado. Você precisa habilitá-lo primeiro, você pode fazê-lo em "Painel de controle" -&gt; "Programas" -&gt; "Liga ou desliga características das janelas".</value>
   </data>
   <data name="NotFound">
     <value>Não encontrado:</value>
   </data>
   <data name="OriginalKernelQ">
     <value>Deseja piscar o kernel original?</value>
-  </data>
-  <data name="ParticallyBody">
-    <value>Não se preocupe! Tudo está bem. Existem apenas muitas ROMs para transferir de uma só vez. Aguarde até que o LED de alimentação se apague, pressione OK e siga as instruções para continuar.</value>
-  </data>
-  <data name="ParticallyTitle">
-    <value>Demasiadas ROMs</value>
   </data>
   <data name="PatchAvailable">
     <value>Patch disponível</value>
@@ -314,7 +299,7 @@
     <value>Pressione OK para continuar.</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>Você já tem o despejo(dump) do kernel. Se você REALMENTE deseja substituir o backup do seu kernel e você REALMENTE entender o que está fazendo, exclua a pasta "dump" manualmente.</value>
+    <value>Você já tem o despejo(dump) do kernel. Se você REALMENTE deseja substituir o backup do seu kernel e você REALMENTE entender o que está fazendo, exclua a pasta "hakchi2\dump" manualmente.</value>
   </data>
   <data name="SavesFlterName">
     <value>NES Mini-salva cópia de segurança</value>

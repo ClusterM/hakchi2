@@ -62,13 +62,13 @@
     <value>En attente de votre NES Mini…</value>
   </data>
   <data name="buttonDriver.Text">
-    <value>Installer le driver</value>
+    <value>Installer le pilote</value>
   </data>
   <data name="label1.Text">
-    <value>Merci de suivre les étapes suivante:</value>
+    <value>Merci de suivre les étapes suivantes:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Vérifiez que le buton POWER de la NES Mini n'est pas enfoncé.</value>
+    <value>1. Vérifiez que le bouton POWER de la NES Mini n'est pas enfoncé.</value>
   </data>
   <data name="label3.Text">
     <value>2. (Re)connectez la NES Mini au PC avec le cable USB.</value>
@@ -77,9 +77,9 @@
     <value>3. Maintenez le bouton RESET et enfoncez le bouton POWER.</value>
   </data>
   <data name="label5.Text">
-    <value>4. Après quelques secondes relachez le bouton RESET, la diode POWER doit être éteinte.</value>
+    <value>4. Après quelques secondes relâchez le bouton RESET, la diode POWER doit être éteinte.</value>
   </data>
   <data name="label6.Text">
-    <value>5. Installez le driver si il n'est pas encore installé:</value>
+    <value>5. Installez le pilote s'il n'est pas encore installé:</value>
   </data>
 </root>

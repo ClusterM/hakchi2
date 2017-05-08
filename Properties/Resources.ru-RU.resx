@@ -121,9 +121,6 @@
   <data name="Done">
     <value>Готово!</value>
   </data>
-  <data name="DoneUploaded">
-    <value>Готово! Подождите, пока не потухнет светодиод, и перезапустите NES Mini.</value>
-  </data>
   <data name="DoneYouCanUpload">
     <value>Готово! Теперь можно закачивать свои игры в NES Mini.</value>
   </data>
@@ -141,9 +138,6 @@
   </data>
   <data name="ExecutingCommand">
     <value>Выполняем команду:</value>
-  </data>
-  <data name="ExecutingFes1">
-    <value>Запускаем fes1...</value>
   </data>
   <data name="ExtraArgsInfo">
     <value>Вы можете задать глобальные параметры командной строки, которые будут добавлены ко всем играм, включая оригинальные. Только для экспертов!</value>
@@ -208,9 +202,6 @@
   <data name="GameGenieNotFound">
     <value>Не удалось применить Game Genie код "{0}" к игре "{1}", т.к. значение не было найдено. Быть может, это код не для этой игры?</value>
   </data>
-  <data name="GameTooBig">
-    <value>Простите, но игра "{0}" слишком большая.</value>
-  </data>
   <data name="GamesAndApps">
     <value>Игры и приложения</value>
   </data>
@@ -239,7 +230,7 @@
     <value>Некорректный размер ядра:</value>
   </data>
   <data name="KernelDumped">
-    <value>Оригинальный образ ядра сохранён в папке "dump". Желательно его не потерять и не стереть.</value>
+    <value>Оригинальный образ ядра сохранён в папке "hakchi2\dump". Желательно его не потерять и не стереть.</value>
   </data>
   <data name="LoadingGames">
     <value>Загружаем игры...</value>
@@ -292,12 +283,6 @@
   <data name="OriginalKernelQ">
     <value>Прошить оригинальный образ ядра?</value>
   </data>
-  <data name="ParticallyBody">
-    <value>Вы выбрали очень много игр. Это не страшно, но за один раз их закачать не получится. Будем закачивать в несколько заходов. Пожалуйста, подождите, пока погаснет светодиод, нажмите OK и следуйте инструкциям.</value>
-  </data>
-  <data name="ParticallyTitle">
-    <value>Очень много игр</value>
-  </data>
   <data name="PatchAvailable">
     <value>Доступен патч</value>
   </data>
@@ -314,7 +299,7 @@
     <value>Нажмите OK для продолжения.</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>Уже существует сохранённый образ ядра. Если вы ДЕЙСТВИТЕЛЬНО хотите заменить оригинальную копию ядра и ДЕЙСТВИТЕЛЬНО понимаете, что делаете, удалите папку "dump" вручную.</value>
+    <value>Уже существует сохранённый образ ядра. Если вы ДЕЙСТВИТЕЛЬНО хотите заменить оригинальную копию ядра и ДЕЙСТВИТЕЛЬНО понимаете, что делаете, удалите папку "hakchi2\dump" вручную.</value>
   </data>
   <data name="SavesFlterName">
     <value>Сохранения NES Mini</value>

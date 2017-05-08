@@ -259,6 +259,9 @@
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Συγχρονισμός</value>
   </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>Λήψη στιγμιότυπου οθόνης</value>
+  </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Εργαλεία</value>
   </data>

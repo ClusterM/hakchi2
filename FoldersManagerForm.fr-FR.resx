@@ -59,28 +59,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Organisateur de Dossiers</value>
+    <value>Gestionnaire de dossiers</value>
   </data>
   <data name="buttonCancel.Text">
     <value>Annuler</value>
   </data>
   <data name="buttonFoldersEqually.Text">
-    <value>Découper équitablement</value>
+    <value>Scinder également</value>
   </data>
   <data name="buttonFoldersEquallyOriginal.Text">
-    <value>Jeux Originaux -&gt; Découper équitablement</value>
+    <value>Jeux Originaux -&gt; Scinder également</value>
   </data>
   <data name="buttonFoldersLetters.Text">
-    <value>Découper par première lettre</value>
+    <value>Scinder à partir de la première lettre</value>
   </data>
   <data name="buttonFoldersLettersOriginal.Text">
-    <value>Jeux Originaux -&gt; Découper par première lettre</value>
+    <value>Jeux Originaux -&gt; Scinder à partir de la première lettre</value>
   </data>
   <data name="buttonNewFolder.Text">
     <value>Nouveau dossier</value>
   </data>
   <data name="buttonNoFolders.Text">
-    <value>Pas de dossiers</value>
+    <value>Aucun dossier</value>
   </data>
   <data name="buttonNoFoldersOriginal.Text">
     <value>Jeux Originaux -&gt; Autres jeux</value>
@@ -92,10 +92,10 @@
     <value>Supprimer</value>
   </data>
   <data name="groupBoxArt.Text">
-    <value>Menu icone</value>
+    <value>Icône du menu</value>
   </data>
   <data name="groupBoxSplitModes.Text">
-    <value>Créer la structures des dossiers automatiquement</value>
+    <value>Créer la structure des dossiers automatiquement</value>
   </data>
   <data name="labelPosition.Text">
     <value>Priorité de la position du dossier:</value>

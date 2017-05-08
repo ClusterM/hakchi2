@@ -226,6 +226,9 @@
   <data name="settingsToolStripMenuItem.Text">
     <value>&amp;Ustawienia</value>
   </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>Zrobić zrzut ekranu</value>
+  </data>
   <data name="uninstallToolStripMenuItem.Text">
     <value>Odinstaluj</value>
   </data>

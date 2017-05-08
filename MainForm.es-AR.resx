@@ -95,7 +95,7 @@
     <value>Tipo de consola</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>Personalizada (mostrar el administrador de carpetas cada vez)</value>
+    <value>Personalizada (mostrar el Administrador de carpetas cada vez)</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Eliminar juego</value>
@@ -137,10 +137,10 @@
     <value>Juegos originales en raíz -&gt; Carpetas, separar juegos equitativamente</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Juegos originales en raíz -&gt; Carpetas, separar juegos por la primera letra</value>
+    <value>Juegos originales en raíz -&gt; Carpetas, separar juegos alfabéticamente</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>Carpetas, separar por la primera letra</value>
+    <value>Carpetas, separar alfabéticamente</value>
   </data>
   <data name="foldersToolStripMenuItem.Text">
     <value>Carpetas, separar juegos equitativamente</value>
@@ -158,7 +158,7 @@
     <value>Configuración del juego</value>
   </data>
   <data name="helpToolStripMenuItem.Text">
-    <value>&amp;Ayuda</value>
+    <value>A&amp;yuda</value>
   </data>
   <data name="installModulesToolStripMenuItem.Text">
     <value>Instalar módulos extras</value>
@@ -170,13 +170,13 @@
     <value>Fecha de lanzamiento (AAAA-MM-DD):</value>
   </data>
   <data name="label2.Text">
-    <value>Publicador:</value>
+    <value>Editor:</value>
   </data>
   <data name="label3.Text">
     <value>Argumentos de línea de comando (¡sólo para expertos!):</value>
   </data>
   <data name="label4.Text">
-    <value>Arte de la caja:</value>
+    <value>Arte de caja:</value>
   </data>
   <data name="label5.Text">
     <value>Seleccionar juegos:</value>
@@ -224,13 +224,13 @@
     <value>Seleccionar lista personalizada de juegos</value>
   </data>
   <data name="radioButtonOne.Text">
-    <value>Un jugador</value>
+    <value>1 jugador</value>
   </data>
   <data name="radioButtonTwo.Text">
     <value>2 jugadores, por turnos</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Dos jugadores, simultáneamente</value>
+    <value>2 jugadores, simultáneamente</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Usar combinación de botones para resetear</value>
@@ -259,6 +259,9 @@
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Sincronizar</value>
   </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>Hacer una captura de pantalla</value>
+  </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>Herramien&amp;tas</value>
   </data>
@@ -272,7 +275,7 @@
     <value>Quitar selección a todo</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>"Arriba" + "A" + "B" = Start" en el 2° control</value>
+    <value>"Arriba" + "A" + "B" = "Start" en el 2° control</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Usar tipografía extendida</value>

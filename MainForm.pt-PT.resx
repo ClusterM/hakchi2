@@ -71,7 +71,7 @@
     <value>Adicionar predefinido</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
-    <value>Jogos originais na raiz - &amp; gt; Automático na subpasta</value>
+    <value>Jogos originais na raiz -&gt; Automático na subpasta</value>
   </data>
   <data name="automaticToolStripMenuItem.Text">
     <value>Automático</value>
@@ -134,10 +134,10 @@
     <value>Flash(escreve) original kernel</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>Jogos originais na raiz - &amp; gt; Pastas, dividir jogos igualmente</value>
+    <value>Jogos originais na raiz -&gt; Pastas, dividir jogos igualmente</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Jogos originais na raiz - &amp; gt; Pastas, divididas pela primeira letra</value>
+    <value>Jogos originais na raiz -&gt; Pastas, divididas pela primeira letra</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
     <value>Pastas, divididas pela primeira letra</value>
@@ -190,6 +190,9 @@
   <data name="labelName.Text">
     <value>Nome:</value>
   </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Lugha</value>
+  </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Máximo de jogos por página / pasta</value>
   </data>
@@ -209,7 +212,7 @@
     <value>Abrir cliente Telnet</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>Jogos originais na raiz - &amp; gt; Páginas, dividir jogos igualmente</value>
+    <value>Jogos originais na raiz -&gt; Páginas, dividir jogos igualmente</value>
   </data>
   <data name="pagesToolStripMenuItem.Text">
     <value>Páginas, dividir jogos igualmente</value>
@@ -256,6 +259,9 @@
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Sincronizar</value>
   </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>Tirar captura de tela</value>
+  </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Ferramentas</value>
   </data>
@@ -276,8 +282,5 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Use X / Y no Controlador Clássico como autofire A / B</value>
-  </data>
-  <data name="languageToolStripMenuItem.Text">
-    <value>Language</value>
   </data>
 </root>

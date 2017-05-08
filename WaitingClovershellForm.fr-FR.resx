@@ -62,18 +62,18 @@
     <value>En attente de votre NES Mini…</value>
   </data>
   <data name="buttonDriver.Text">
-    <value>Installer le driver</value>
+    <value>Installer le pilote</value>
   </data>
   <data name="label1.Text">
-    <value>Merci de suivre les étapes suivante:</value>
+    <value>Merci de suivre les étapes suivantes:</value>
   </data>
   <data name="label2.Text">
     <value>1. Connectez votre NES Mini à l'ordinateur via le cable USB.</value>
   </data>
   <data name="label3.Text">
-    <value>2. Allumez la.</value>
+    <value>2. Allumez-là.</value>
   </data>
   <data name="label6.Text">
-    <value>3. Installez le driver si il n'est pas encore installé:</value>
+    <value>3. Installez le pilote s'il n'est pas encore installé:</value>
   </data>
 </root>

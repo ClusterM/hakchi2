@@ -62,7 +62,7 @@
     <value>Gestió de les carpetes</value>
   </data>
   <data name="buttonCancel.Text">
-    <value>Cancelar</value>
+    <value>Cancel·lar</value>
   </data>
   <data name="buttonFoldersEqually.Text">
     <value>Organitzar per igual</value>
@@ -92,10 +92,10 @@
     <value>Eliminar</value>
   </data>
   <data name="groupBoxArt.Text">
-    <value>Icona a mostrar en el menu</value>
+    <value>Icona a mostrar en el menú</value>
   </data>
   <data name="groupBoxSplitModes.Text">
-    <value>Crear automàticament la estrucutura de les carpetes</value>
+    <value>Crear automàticament la estructura de les carpetes</value>
   </data>
   <data name="labelPosition.Text">
     <value>Prioritat de posició de la carpeta</value>

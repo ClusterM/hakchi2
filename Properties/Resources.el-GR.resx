@@ -121,9 +121,6 @@
   <data name="Done">
     <value>Έτοιμο!</value>
   </data>
-  <data name="DoneUploaded">
-    <value>Έτοιμο! Περιμένετε μέχρι να σβήσει το λαμπάκι POWER και επανεκκινήστε το NES Mini σας.</value>
-  </data>
   <data name="DoneYouCanUpload">
     <value>Έτοιμο! Τώρα μπορείτε να μεταφορτώσετε παιχνίδια στο NES Mini σας.</value>
   </data>
@@ -141,9 +138,6 @@
   </data>
   <data name="ExecutingCommand">
     <value>Εκτέλεση εντολής:</value>
-  </data>
-  <data name="ExecutingFes1">
-    <value>Εκτέλεση fes1…</value>
   </data>
   <data name="ExtraArgsInfo">
     <value>Μπορείτε να προσθέσετε καθολικές παραμέτρους γραμμής εντολών οι οποίες θα προσαρτηθούν σε όλα τα παιχνίδια, συμπεριλαμβανομένων των 30 αυθεντικών. Αυτό είναι μόνο για προχωρημένους!</value>
@@ -208,9 +202,6 @@
   <data name="GameGenieNotFound">
     <value>Δεν μπορεί να εφαρμοστεί ο κωδικός Game Genie "{0}" για το παιχνίδι "{1}" - η τιμή δεν βρέθηκε. Μήπως αυτός ο κωδικός είναι για κάποιο άλλο παιχνίδι;</value>
   </data>
-  <data name="GameTooBig">
-    <value>Λυπάμαι, το παιχνίδι "{0}" είναι πολύ μεγάλο.</value>
-  </data>
   <data name="GamesAndApps">
     <value>Παιχνίδια και εφαρμογές</value>
   </data>
@@ -239,7 +230,7 @@
     <value>Μη έγκυρο μέγεθος πυρήνα:</value>
   </data>
   <data name="KernelDumped">
-    <value>Ο αυθεντικός σας πυρήνας έχει αποθηκευτεί στο φάκελο "dump". Μη τον χάσετε.</value>
+    <value>Ο αυθεντικός σας πυρήνας έχει αποθηκευτεί στο φάκελο "hakchi2\dump". Μη τον χάσετε.</value>
   </data>
   <data name="LoadingGames">
     <value>Φόρτωση παιχνιδιών…</value>
@@ -292,12 +283,6 @@
   <data name="OriginalKernelQ">
     <value>Θέλετε να εγγράψετε τον αυθεντικό πυρήνα;</value>
   </data>
-  <data name="ParticallyBody">
-    <value>Μην ανησυχείτε! Όλα είναι εντάξει! Απλώς είναι πολλές οι ROMs για να μεταφερθούν μονομιάς. Παρακαλώ περιμένετε μέχρι να σβήσει το λαμπάκι power, πατήστε ΟΚ και ακολουθήστε τις οδηγίες για να συνεχίσετε.</value>
-  </data>
-  <data name="ParticallyTitle">
-    <value>Πάρα πολλές ROMs</value>
-  </data>
   <data name="PatchAvailable">
     <value>Διαθέσιμο διορθωτικό</value>
   </data>
@@ -314,7 +299,7 @@
     <value>Πιέστε ΟΚ για να συνεχίσετε.</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>Έχετε ήδη αποθηκεύσει τον πυρήνα. Αν ΠΡΑΓΜΑΤΙΚΑ θέλετε να αντικαταστήσετε το αντίγραφο του πυρήνα σας και ΠΡΑΓΜΑΤΙΚΑ καταλαβαίνετε τι κάνετε, διαγράψτε τον φάκελο "dump" χειροκίνητα.</value>
+    <value>Έχετε ήδη αποθηκεύσει τον πυρήνα. Αν ΠΡΑΓΜΑΤΙΚΑ θέλετε να αντικαταστήσετε το αντίγραφο του πυρήνα σας και ΠΡΑΓΜΑΤΙΚΑ καταλαβαίνετε τι κάνετε, διαγράψτε τον φάκελο "hakchi2\dump" χειροκίνητα.</value>
   </data>
   <data name="SavesFlterName">
     <value>Αντίγραφα αποθηκευμένων σημείων NES Mini</value>
@@ -326,10 +311,10 @@
     <value>Επιλέξτε τουλάχιστον δύο κουμπιά.</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Επιλέξτε τα modules που θα εγκατασταθούν στο NES Mini σας.</value>
+    <value>Επιλέξτε τα modules που θα εγκατασταθούν στο NES Mini σας</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Επιλέξτε τα modules που θα απεγκατασταθούν από το NES Mini σας.</value>
+    <value>Επιλέξτε τα modules που θα απεγκατασταθούν από το NES Mini σας</value>
   </data>
   <data name="SizeOfSaves">
     <value>Μέγεθος επιλεγμένων σημείων:</value>

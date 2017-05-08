@@ -58,17 +58,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>Servidor FTP en ftp://root:clover@127.0.0.1:1021</value>
+  </data>
   <data name="aboutToolStripMenuItem.Text">
     <value>Sobre...</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>Afegir més%jocs</value>
+    <value>Afegir més &amp;jocs</value>
   </data>
   <data name="addPresetToolStripMenuItem.Text">
     <value>Afegir llista</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
-    <value>Jocs originals en Root -&gt; Automátic en subcarpeta</value>
+    <value>Jocs originals en Root -&gt; Automàtic en subcarpeta</value>
   </data>
   <data name="automaticToolStripMenuItem.Text">
     <value>Automàtic</value>
@@ -80,13 +83,13 @@
     <value>Cercar</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Sincronitzar els jocs seleccionats amb Nes Mini</value>
+    <value>Sincronitzar els jocs seleccionats amb la NES Mini</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Ajuda/dreceres per als comandaments</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
-    <value>Comprimir jocs que no siguin de NES (Per a emuladors adicionals)</value>
+    <value>Comprimir jocs que no siguin de NES (Per a emuladors addicionals)</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Tipus de consola</value>
@@ -107,7 +110,7 @@
     <value>Descarregar caràtules per a tots els jocs</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Volcar kernel</value>
+    <value>Bolcar kernel</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Prem "Select+A/B" per activar el "Autofire" en A/B</value>
@@ -118,14 +121,17 @@
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Sortir</value>
   </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>FAQ (Preguntes freqüents)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>Arxiu</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Flashear custom kernel</value>
+    <value>Flashetjar custom kernel</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Flashear kernel original</value>
+    <value>Flashetjar kernel original</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
     <value>Jocs originals en Root -&gt; Carpetes, organitzar jocs per igual</value>
@@ -140,7 +146,7 @@
     <value>Carpetes. organitzar jocs per igual</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>Github: Pàgina amb les versions actuals</value>
+    <value>GitHub: Pàgina amb les versions actuals</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
     <value>Línia de comandament global (Només per a usuaris experts)</value>
@@ -155,7 +161,7 @@
     <value>&amp;Ajuda</value>
   </data>
   <data name="installModulesToolStripMenuItem.Text">
-    <value>Instalar mòduls extres</value>
+    <value>Instal·lar mòduls extres</value>
   </data>
   <data name="kernelToolStripMenuItem.Text">
     <value>&amp;Kernel</value>
@@ -184,11 +190,26 @@
   <data name="labelName.Text">
     <value>Nom:</value>
   </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Idioma</value>
+  </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Nombre de jocs per pàgina/carpeta</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Mòduls</value>
+  </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>Obrir client FTP</value>
+  </data>
+  <data name="openFileDialogImage.Title">
+    <value>Seleccioneu una caràtula per al joc</value>
+  </data>
+  <data name="openFileDialogNes.Title">
+    <value>Selecciona jocs de NES o un altre emulador</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>Obrir client Telnet</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
     <value>Jocs originals en Root -&gt; Pàgines, dividir els jocs per igual</value>
@@ -209,13 +230,16 @@
     <value>Dos jugadors, no simultanis</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Dos jugadors, simultàneament</value>
+    <value>Dos jugadors, simultàniament</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Utilitzar combinació de botons per a Reset</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Guardar opcions a la Nes Mini ara</value>
+    <value>Guardar opcions a la NES Mini ara</value>
+  </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>Gestió dels punts de suspensió</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
     <value>Cercar</value>
@@ -229,8 +253,17 @@
   <data name="settingsToolStripMenuItem.Text">
     <value>&amp;Opcions</value>
   </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Servidor Telnet en telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Sincronitzar</value>
+  </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>Fer una captura de pantalla</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;Eines</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
     <value>Desinstalar mòduls extres</value>
@@ -245,39 +278,9 @@
     <value>"Amunt+A+B = Start" en el 2n comandament</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
-    <value>Utilitzar font extesa</value>
+    <value>Utilitzar font estesa</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Utilitza X/Y en el comandament Wii Classic Controller com "Autofire" A/B</value>
-  </data>
-  <data name="FTPToolStripMenuItem.Text">
-    <value>FTP server on ftp://root:clover@127.0.0.1:1021</value>
-  </data>
-  <data name="fAQToolStripMenuItem.Text">
-    <value>FAQ</value>
-  </data>
-  <data name="languageToolStripMenuItem.Text">
-    <value>Language</value>
-  </data>
-  <data name="openFTPInExplorerToolStripMenuItem.Text">
-    <value>Open FTP client</value>
-  </data>
-  <data name="openFileDialogImage.Title">
-    <value>Select box art for game</value>
-  </data>
-  <data name="openFileDialogNes.Title">
-    <value>Select games</value>
-  </data>
-  <data name="openTelnetToolStripMenuItem.Text">
-    <value>Open Telnet client</value>
-  </data>
-  <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Save-State Manager</value>
-  </data>
-  <data name="shellToolStripMenuItem.Text">
-    <value>Telnet server on telnet://127.0.0.1:1023 (login:root)</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Text">
-    <value>&amp;Tools</value>
   </data>
 </root>

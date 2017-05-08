@@ -121,9 +121,6 @@
   <data name="Done">
     <value>Hotovo!</value>
   </data>
-  <data name="DoneUploaded">
-    <value>Dokončené! Počkajte kým prestane svietiť LEDka a reštartujte NES Mini.</value>
-  </data>
   <data name="DoneYouCanUpload">
     <value>Dokončené! Teraz môžete nahrávať hry do vašej NES Mini.</value>
   </data>
@@ -141,9 +138,6 @@
   </data>
   <data name="ExecutingCommand">
     <value>Vykonanie príkazu:</value>
-  </data>
-  <data name="ExecutingFes1">
-    <value>Vykonanie fes1...</value>
   </data>
   <data name="ExtraArgsInfo">
     <value>Môžete pridať globálne argumenty pre príkazový riadok, ktoré budú pripojené k všetkým hrám vrátane 30 povodných. Táto možnosť je len pre odborníkov!</value>
@@ -205,9 +199,6 @@
   <data name="GameGenieNotFound">
     <value>Nie je možné použiť Game Genie kód "{0}" pre hru "{1}" - hodnota nebola nájdená. Možno je tento kód pre inú hru?</value>
   </data>
-  <data name="GameTooBig">
-    <value>Prepáčte, hra "{0}" je príliš veľká.</value>
-  </data>
   <data name="GamesAndApps">
     <value>Hry a aplikácie:</value>
   </data>
@@ -236,7 +227,7 @@
     <value>Neplatná veľkosť kernelu.</value>
   </data>
   <data name="KernelDumped">
-    <value>Váš originálny kernel je uložený v zložke "dump". Nestraťte ho.</value>
+    <value>Váš originálny kernel je uložený v zložke "hakchi2\dump". Nestraťte ho.</value>
   </data>
   <data name="LoadingGames">
     <value>Načítavanie hier...</value>
@@ -289,12 +280,6 @@
   <data name="OriginalKernelQ">
     <value>Chcete flashnúť originálny kernel?</value>
   </data>
-  <data name="ParticallyBody">
-    <value>Žiadny strach! Všetko je v poriadku. Je tu príliš veľa hier na presunutie naraz. Ak chcete pokračovať, prosím počkajte kým prestane svietiť LED power svetielko, stlačte tlačidlo OK a postupujte podľa pokynov.</value>
-  </data>
-  <data name="ParticallyTitle">
-    <value>Príliš veľa hier</value>
-  </data>
   <data name="PatchAvailable">
     <value>Dostupný patch/oprava</value>
   </data>
@@ -311,7 +296,7 @@
     <value>Pokračujte stlačením OK.</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>Už máte zálohovaný kernel. Ak NAOZAJ chcete nahradiť zálohu vášho kernelu a NAOZAJ rozumiete čo robíte, odstráňte priečinok "dump".</value>
+    <value>Už máte zálohovaný kernel. Ak NAOZAJ chcete nahradiť zálohu vášho kernelu a NAOZAJ rozumiete čo robíte, odstráňte priečinok "hakchi2\dump".</value>
   </data>
   <data name="SavesFlterName">
     <value>NES Mini zálohy uložených pozícií hier</value>
@@ -323,10 +308,10 @@
     <value>Vyberte aspoň dve tlačidlá.</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Vyberte moduly, ktoré chcete nainštalovať do NES Mini.</value>
+    <value>Vyberte moduly, ktoré chcete nainštalovať do NES Mini</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Vyberte moduly, ktoré chcete odstrániť z NES Mini.</value>
+    <value>Vyberte moduly, ktoré chcete odstrániť z NES Mini</value>
   </data>
   <data name="SizeOfSaves">
     <value>Veľkosť vybraných uložených pozícií:</value>

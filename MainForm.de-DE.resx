@@ -259,6 +259,9 @@
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Synchronisieren</value>
   </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>Einen screenshot machen</value>
+  </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Extras</value>
   </data>

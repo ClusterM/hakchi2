@@ -62,7 +62,7 @@
     <value>Serveur FTP sur ftp://root:clover@127.0.0.1:1021</value>
   </data>
   <data name="aboutToolStripMenuItem.Text">
-    <value>A Propos…</value>
+    <value>À propos...</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text">
     <value>Ajouter plus de &amp;jeux</value>
@@ -86,7 +86,7 @@
     <value>Synchroniser les jeux sélectionnés avec la NES Mini</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
-    <value>Hacks des Manettes</value>
+    <value>Configuration des manettes</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Compresser les jeux non-NES (pour mod emulateur additionnel)</value>
@@ -95,7 +95,7 @@
     <value>Type de console</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>Custom - Voir Organisateur de Dossiers tout le temps</value>
+    <value>Custom - Toujours afficher le Gestionnaire de dossiers</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Supprimer jeu</value>
@@ -107,7 +107,7 @@
     <value>Désactiver page/dossiers</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Télécharger les jaquettes pour tous les jeux</value>
+    <value>Télécharger les pochettes pour tous les jeux</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Extraire Kernel</value>
@@ -116,7 +116,7 @@
     <value>Utiliser "Select+A/B" pour activer l'autofire sur A/B</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
-    <value>Désactiver protection épilepsie</value>
+    <value>Désactiver la protection pour épileptique</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Quitter</value>
@@ -131,22 +131,22 @@
     <value>Flasher Kernel Custom</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Flasher Kernel d'origine</value>
+    <value>Flasher le Kernel d'origine</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>Jeux Originaux à la racine -&gt; Dossiers, découper les jeux équitablement</value>
+    <value>Jeux Originaux à la racine -&gt; Dossiers, scinder les jeux également</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Jeux Originaux à la racine -&gt; Dossiers, découper par première lettre</value>
+    <value>Jeux Originaux à la racine -&gt; Dossiers, scinder à partir de la première lettre</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>Dossiers, découper par première lettre</value>
+    <value>Dossiers, Scinder à partir de la première lettre</value>
   </data>
   <data name="foldersToolStripMenuItem.Text">
-    <value>Dossiers, découper les jeux équitablement</value>
+    <value>Dossiers, scinder les jeux également</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>Page GitHub avec releases actuelle</value>
+    <value>Page GitHub avec les nouvelles publications</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
     <value>Arguments de ligne de commande globale (Utilisateurs avancés!)</value>
@@ -155,13 +155,13 @@
     <value>Vous pouvez cacher différents jeux par défaut</value>
   </data>
   <data name="groupBoxOptions.Text">
-    <value>Options jeu</value>
+    <value>Options des jeux</value>
   </data>
   <data name="helpToolStripMenuItem.Text">
-    <value>&amp;Help</value>
+    <value>&amp;Aide</value>
   </data>
   <data name="installModulesToolStripMenuItem.Text">
-    <value>Installer les modules supplémentaire</value>
+    <value>Installer les modules supplémentaires</value>
   </data>
   <data name="kernelToolStripMenuItem.Text">
     <value>&amp;Kernel</value>
@@ -176,7 +176,7 @@
     <value>Arguments de ligne de commande (Utilisateurs avancés!)</value>
   </data>
   <data name="label4.Text">
-    <value>Jaquette:</value>
+    <value>Pochette:</value>
   </data>
   <data name="label5.Text">
     <value>Sélectionner jeux:</value>
@@ -191,13 +191,13 @@
     <value>Nom:</value>
   </data>
   <data name="languageToolStripMenuItem.Text">
-    <value>La langue</value>
+    <value>Language</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Nombre de jeux maximum par page/dossier</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
-    <value>&amp;Module</value>
+    <value>&amp;Modules</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Ouvrir le client FTP</value>
@@ -212,10 +212,10 @@
     <value>Ouvrir le client Telnet</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>Jeux Originaux à la racine -&gt; Pages, découper les jeux équitablement</value>
+    <value>Jeux Originaux à la racine -&gt; Pages, scinder les jeux également</value>
   </data>
   <data name="pagesToolStripMenuItem.Text">
-    <value>Pages, découper les jeux équitablement</value>
+    <value>Pages, scinder les jeux également</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
     <value>Structure Pages/Dossiers</value>
@@ -227,19 +227,19 @@
     <value>Un joueur</value>
   </data>
   <data name="radioButtonTwo.Text">
-    <value>Deux joueurs, pas simultanément</value>
+    <value>Deux joueurs, non simultanés</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Deux joueurs, simultanément</value>
+    <value>Deux joueurs, simultanés</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>Utiliser une combinaison de boutons pour réinitialiser</value>
+    <value>Utiliser une combinaison de boutons pour retourner au menu</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Sauvegarder les paramètres vers la NES Mini maintenant</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Gestionnaire de sauvegardes</value>
+    <value>Gestionnaire des sauvegardes</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
     <value>Rechercher</value>
@@ -259,6 +259,9 @@
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Synchroniser</value>
   </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>Prendre une capture d'écran</value>
+  </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>Ou&amp;tils</value>
   </data>
@@ -275,7 +278,7 @@
     <value>"Haut+A+B=Start" sur seconde manette</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
-    <value>Utiliser police étendue</value>
+    <value>Utiliser la police avancée</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Utiliser X/Y sur le Classic Controller comme autofire A/B</value>

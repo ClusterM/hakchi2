@@ -71,10 +71,10 @@
     <value>Juegos originales -&gt; Separar equitativamente</value>
   </data>
   <data name="buttonFoldersLetters.Text">
-    <value>Separar por la primera letra</value>
+    <value>Separar alfabéticamente</value>
   </data>
   <data name="buttonFoldersLettersOriginal.Text">
-    <value>Juegos originales -&gt; Separar por la primera letra</value>
+    <value>Juegos originales -&gt; Separar alfabéticamente</value>
   </data>
   <data name="buttonNewFolder.Text">
     <value>Nueva carpeta</value>

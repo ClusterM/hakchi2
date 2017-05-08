@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="$this.Text">
+    <value>Mapphanterare</value>
+  </data>
+  <data name="buttonCancel.Text">
+    <value>Avbryt</value>
+  </data>
+  <data name="buttonFoldersEqually.Text">
+    <value>Jämnt fördelat</value>
+  </data>
+  <data name="buttonFoldersEquallyOriginal.Text">
+    <value>Originalspel -&gt; Jämnt fördelat</value>
+  </data>
+  <data name="buttonFoldersLetters.Text">
+    <value>Födelat på första bokstaven</value>
+  </data>
+  <data name="buttonFoldersLettersOriginal.Text">
+    <value>Originalspel -&gt; Fördelat efter första bokstaven</value>
+  </data>
+  <data name="buttonNewFolder.Text">
+    <value>Ny mapp</value>
+  </data>
+  <data name="buttonNoFolders.Text">
+    <value>Inga mappar</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Text">
+    <value>Originalspel -&gt; Andra spel</value>
+  </data>
+  <data name="cutToolStripMenuItem.Text">
+    <value>Klipp ut</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text">
+    <value>Ta bort</value>
+  </data>
+  <data name="groupBoxArt.Text">
+    <value>Menyikon</value>
+  </data>
+  <data name="groupBoxSplitModes.Text">
+    <value>Skapa mappstruktur automatiskt</value>
+  </data>
+  <data name="labelPosition.Text">
+    <value>Prioritet för mappordning:</value>
+  </data>
+  <data name="newFolderToolStripMenuItem.Text">
+    <value>Skapa ny mapp</value>
+  </data>
+  <data name="pasteToolStripMenuItem.Text">
+    <value>Klistra in</value>
+  </data>
+  <data name="renameToolStripMenuItem.Text">
+    <value>Döp om mapp</value>
+  </data>
+  <data name="labelElementCount.Text">
+    <value>Folder statistics</value>
+  </data>
+</root>

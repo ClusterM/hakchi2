@@ -121,9 +121,6 @@
   <data name="Done">
     <value>¡Listo!</value>
   </data>
-  <data name="DoneUploaded">
-    <value>¡Listo! Esperá hasta que la luz indicadora de "POWER" se apague y reiniciá tu NES Classic Edition.</value>
-  </data>
   <data name="DoneYouCanUpload">
     <value>¡Listo! Ahora podés cargarle juegos a tu NES Classic Edition.</value>
   </data>
@@ -141,9 +138,6 @@
   </data>
   <data name="ExecutingCommand">
     <value>Ejecutando comando:</value>
-  </data>
-  <data name="ExecutingFes1">
-    <value>Ejecutando fes1…</value>
   </data>
   <data name="ExtraArgsInfo">
     <value>Podés agregar argumentos globales de línea de comando el cual pueden ser agregados a todos los juegos, incluyendo los 30 originales. ¡Sólo para expertos!</value>
@@ -208,9 +202,6 @@
   <data name="GameGenieNotFound">
     <value>No se puede aplicar el código "{0}" de Game Genie al juego "{1}"; valor no encontrado. ¿Puede ser que el código sea para otro juego?</value>
   </data>
-  <data name="GameTooBig">
-    <value>Lo siento, el juego "{0}" es demasiado grande.</value>
-  </data>
   <data name="GamesAndApps">
     <value>Juegos y aplicaciones</value>
   </data>
@@ -239,7 +230,7 @@
     <value>Tamaño no válido del kernel:</value>
   </data>
   <data name="KernelDumped">
-    <value>Se guardó tu kernel original en la carpeta "dump". No lo pierdas.</value>
+    <value>Se guardó tu kernel original en la carpeta "hakchi2\dump". No lo pierdas.</value>
   </data>
   <data name="LoadingGames">
     <value>Descargando juegos…</value>
@@ -292,12 +283,6 @@
   <data name="OriginalKernelQ">
     <value>¿Querés flashear el kernel original?</value>
   </data>
-  <data name="ParticallyBody">
-    <value>¡No te preocupés! Está todo bien. Hay demasiadas ROMs para transferir al mismo tiempo. Por favor, esperá hasta que la luz indicadora se apague, presioná "Aceptar" y seguí las instrucciones para continuar.</value>
-  </data>
-  <data name="ParticallyTitle">
-    <value>Demasiadas ROMs</value>
-  </data>
   <data name="PatchAvailable">
     <value>Parche disponible</value>
   </data>
@@ -314,7 +299,7 @@
     <value>Presioná "Aceptar" para continuar.</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>Ya realizaste el volcado de kernel. Si REALMENTE querés reemplazar el resguardo de tu kernel y REALMENTE entendés lo que estás haciendo, eliminá la carpeta "dump" manualmente.</value>
+    <value>Ya realizaste el volcado de kernel. Si REALMENTE querés reemplazar el resguardo de tu kernel y REALMENTE entendés lo que estás haciendo, eliminá la carpeta "hakchi2\dump" manualmente.</value>
   </data>
   <data name="SavesFlterName">
     <value>Resguardo de los puntos de suspensión de la NES Classic Edition</value>
@@ -326,10 +311,10 @@
     <value>Seleccioná al menos dos botones.</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Seleccioná los módulos para instalar en tu NES Classic Edition.</value>
+    <value>Seleccioná los módulos para instalar en tu NES Classic Edition</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Seleccioná los módulos para quitar de tu NES Classic Edition.</value>
+    <value>Seleccioná los módulos para quitar de tu NES Classic Edition</value>
   </data>
   <data name="SizeOfSaves">
     <value>Tamaño de los puntos de suspensión seleccionados:</value>

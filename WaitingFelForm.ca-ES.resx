@@ -62,24 +62,24 @@
     <value>Esperant a la NES Mini</value>
   </data>
   <data name="buttonDriver.Text">
-    <value>Instaleu controlador</value>
+    <value>Instal·leu controlador</value>
   </data>
   <data name="label1.Text">
-    <value>Si us plau, segueixi aquestes pases:</value>
+    <value>Si us plau, segueixi aquests passos:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Asegurau-vos de que el botó Power de ls NES Mini estigui en la posició de apagat</value>
+    <value>1. Assegureu-vos de que el botó Power de la NES Mini estigui en la posició de apagat</value>
   </data>
   <data name="label3.Text">
-    <value>2. Torna a conectar la NES Mini al pc via USB</value>
+    <value>2. Torneu a connectar la NES Mini al PC via USB</value>
   </data>
   <data name="label4.Text">
-    <value>3. Mantingueu presionat el botó Reset i apreteu el botó Power</value>
+    <value>3. Mantingueu pressionat el botó Reset i premeu el botó Power</value>
   </data>
   <data name="label5.Text">
-    <value>4. Després de uns segons, amollau el botó Reset, la llum del botó Power deurà de apagar-se</value>
+    <value>4. Després de uns segons, amolleu el botó Reset, la llum del botó Power deurà de apagar-se</value>
   </data>
   <data name="label6.Text">
-    <value>5. Instaleu el controlador si encara no ho heu fet:</value>
+    <value>5. Instal·leu el controlador si encara no ho heu fet:</value>
   </data>
 </root>

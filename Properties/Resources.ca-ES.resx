@@ -58,11 +58,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddingGames">
+    <value>Processant jocs, si us plau, esperi...</value>
+  </data>
+  <data name="AllFiles">
+    <value>Tots els arxius</value>
+  </data>
   <data name="AreYouSure">
-    <value>Estau segur?</value>
+    <value>Esteu segur?</value>
+  </data>
+  <data name="AutofillResult">
+    <value>Dades introduïdes automàticament per {0} jocs</value>
+  </data>
+  <data name="AutofireHelp1">
+    <value>Mantingueu pressionat Select+A/B durant un segon per activar/desactivar Autofire A/B</value>
   </data>
   <data name="BuildingCustom">
     <value>Creant la imatge del custom kernel</value>
+  </data>
+  <data name="BuildingFolders">
+    <value>Creant l'estructura de les carpetes...</value>
   </data>
   <data name="Congratulations">
     <value>Enhorabona!</value>
@@ -71,37 +86,52 @@
     <value>Custom kernel</value>
   </data>
   <data name="CustomKernelQ">
-    <value>Voleu flashear el custom kernel?</value>
+    <value>Voleu flashetjar el custom kernel?</value>
   </data>
   <data name="CustomWarning">
-    <value>Ara teniu que flashear el custom kernel.</value>
+    <value>Ara teniu que flashetjar el custom kernel.</value>
   </data>
   <data name="Default30games">
     <value>30 jocs originals</value>
   </data>
+  <data name="DeleteElement">
+    <value>Voleu eliminar "{0}"?</value>
+  </data>
+  <data name="DeleteElements">
+    <value>Voleu eliminar {0} ROM(s)?</value>
+  </data>
   <data name="DeleteGame">
-    <value>¿Vols eliminar el joc "{0}"?</value>
+    <value>Voleu eliminar el joc "{0}"?</value>
+  </data>
+  <data name="DeletePreset">
+    <value>Voleu eliminar la llista "{0}"?</value>
+  </data>
+  <data name="DeleteSavesQ">
+    <value>Voleu eliminar els punts de suspensió seleccionats?</value>
   </data>
   <data name="DoYouWantCancel">
-    <value>Voleu cancelar la operació actual?</value>
+    <value>Voleu cancel·lar la operació actual?</value>
   </data>
   <data name="DoYouWantToContinue">
     <value>Voleu continuar?</value>
   </data>
-  <data name="Done">
-    <value>El proces s'ha realitzat correctament</value>
+  <data name="Donate">
+    <value>Si li agrada el projecte hakchi2, podeu realitzar-me una donació. Podeu trobar el meu PayPal a la secció "Sobre..."</value>
   </data>
-  <data name="DoneUploaded">
-    <value>Espereu a que la llum del botó Power s'apagui i es renicïi la NES Mini</value>
+  <data name="Done">
+    <value>El procés s'ha realitzat correctament</value>
   </data>
   <data name="DoneYouCanUpload">
-    <value>Ja podeu afegir jocs a la NES Mini</value>
+    <value>Fet! Ja podeu afegir jocs a la NES Mini</value>
+  </data>
+  <data name="DownloadAllCoversTitle">
+    <value>Descarregant caràtules para tots els jocs</value>
   </data>
   <data name="DumpKernelQ">
-    <value>Voleu volcar el kernel?</value>
+    <value>Voleu bolcar el kernel?</value>
   </data>
   <data name="DumpingKernel">
-    <value>Volcant el kernel...</value>
+    <value>Bolcant el kernel...</value>
   </data>
   <data name="Error">
     <value>Error</value>
@@ -109,8 +139,14 @@
   <data name="ExecutingCommand">
     <value>Executant el comandament:</value>
   </data>
-  <data name="ExecutingFes1">
-    <value>Executant fes1..</value>
+  <data name="ExtraArgsInfo">
+    <value>Podeu afegir línia de comando globals que s'aplicaran a tots els jocs, incloent els 30 originals. (Només per a experts)</value>
+  </data>
+  <data name="ExtraArgsTitle">
+    <value>Línia de comandament extra</value>
+  </data>
+  <data name="FirstRun">
+    <value>Hola! Moltes gràcies per fer servir hakchi2. Aquest programa és molt fàcil d'utilitzar, només ha de fer clic en "Afegir més jocs", seleccionar algunes ROMs, pressionar "Sincronitzar els jocs seleccionats amb la NES Mini " i seguir les instruccions</value>
   </data>
   <data name="FlasingCustom">
     <value>Flashetjant el custom kernel...</value>
@@ -118,274 +154,223 @@
   <data name="FlasingOriginal">
     <value>Flashetjant el kernel original...</value>
   </data>
+  <data name="FolderContent">
+    <value>El contingut eliminat es mourà a la paperera de reciclatge, podeu eliminar aquesta carpeta permanentment o moure els jocs a altres carpetes</value>
+  </data>
+  <data name="FolderNameBack">
+    <value>Enrere</value>
+  </data>
+  <data name="FolderNameMoreGames">
+    <value>Més jocs...</value>
+  </data>
   <data name="FolderNameNewFolder">
     <value>Nova carpeta</value>
   </data>
   <data name="FolderNameOriginalGames">
     <value>30 jocs originals</value>
   </data>
+  <data name="FolderNameTrashBin">
+    <value>Paperera de reciclatge</value>
+  </data>
+  <data name="FolderNameUnsorted">
+    <value>Sense classificar</value>
+  </data>
+  <data name="FolderStatistics">
+    <value>La carpeta "{0}" conté {1} ROM(s)</value>
+  </data>
+  <data name="FoldersSaveQ">
+    <value>Voleu guardar aquesta estructura de carpetes?</value>
+  </data>
+  <data name="FourScreenNotSupported">
+    <value>{0} fa servir la manera de four-screen (el joc té memòria VRAM addicional en el cartutx), i aquesta funció no és compatible amb la NES Mini, és probable que no iniciï amb l'emulador predeterminat, però deuria funcionar si teniu un mòdul extra instal·lat d'un altra emulador. Voleu afegir aquest joc?</value>
+  </data>
+  <data name="GGCodeDelete">
+    <value>Voleu eliminar el codi "{0}"?</value>
+  </data>
+  <data name="GGCodeEmpty">
+    <value>Heu d'escriure un codi</value>
+  </data>
+  <data name="GGCodeExists">
+    <value>Aquest codi ja existeix. Voleu editar-ho?</value>
+  </data>
+  <data name="GGDescriptionEmpty">
+    <value>Heu d'escriure una descripció</value>
+  </data>
+  <data name="GameGenieFormatError">
+    <value>Codi Game Genie no vàlid "{0}" per al joc "{1}"</value>
+  </data>
+  <data name="GameGenieNotFound">
+    <value>No es pot aplicar el codi Game Genie "{0}" al joc "{1}" - valor no trobat. És possible que aquest codi sigui para un altre joc</value>
+  </data>
+  <data name="GamesAndApps">
+    <value>Jocs i aplicacions</value>
+  </data>
   <data name="GamesSelected">
     <value>joc(s) seleccionats</value>
+  </data>
+  <data name="GooglingFor">
+    <value>Cercant en Google</value>
+  </data>
+  <data name="Hello">
+    <value>Hola</value>
+  </data>
+  <data name="Images">
+    <value>Imatges</value>
+  </data>
+  <data name="InputPreset">
+    <value>Escriu un nom per a la llista de jocs que tens seleccionats actualment</value>
+  </data>
+  <data name="InstallingMods">
+    <value>Instal·lant mòduls...</value>
   </data>
   <data name="InvalidKernelHeader">
     <value>L'encapçalament del kernel no és vàlid</value>
   </data>
   <data name="InvalidKernelSize">
-    <value>El tamany del kernel no és vàlid</value>
-  </data>
-  <data name="MD5Failed">
-    <value>Kernel volcat, però la suma de comprovació MD5 es desconeguda</value>
-  </data>
-  <data name="MD5Failed2">
-    <value>No s'ha trobat cap volcat del kernel</value>
-  </data>
-  <data name="MapperNotSupported">
-    <value>Aquest joc, "{0}" fa servir un mapeador #{1} i no es compatible amb la NES Mini, és probable que no inicïi amb el emulador predeterminat, però deuria funcionar si teniu un mòdul extra instalat d'un altre emulador. Voleu afegir aquest joc?</value>
-  </data>
-  <data name="NoKernel">
-    <value>El kernel ja està adobat o és una revisió desconeguda. Envia'm aquest missatge (Prem Control+C). COntinua baix el teu propi risc</value>
-  </data>
-  <data name="NoKernelWarning">
-    <value>Primer, heu de fer un volcat del kernel de la NES mini,. Aquesta acció, només és necessària fer-la una vegada. Voleu continuar?</value>
-  </data>
-  <data name="NoKernelYouNeed">
-    <value>No s'ha trobat cap volcat del kernel, primer, heu de fer-li el volcat</value>
-  </data>
-  <data name="OriginalKernelQ">
-    <value>Voleu flashetjar el kernel original?</value>
-  </data>
-  <data name="PressOkToContinue">
-    <value>Premeu Ok per continuar</value>
-  </data>
-  <data name="AddingGames">
-    <value>Processing games, please wait...</value>
-  </data>
-  <data name="AllFiles">
-    <value>All files</value>
-  </data>
-  <data name="AutofillResult">
-    <value>Data automatically filled for {0} game(s).</value>
-  </data>
-  <data name="AutofireHelp1">
-    <value>Hold Select+A/B for a second to enable/disable autofire A/B.</value>
-  </data>
-  <data name="BuildingFolders">
-    <value>Building the folder structure...</value>
-  </data>
-  <data name="DeleteElement">
-    <value>Do you really want to delete "{0}"?</value>
-  </data>
-  <data name="DeleteElements">
-    <value>Do you really want to delete {0} elements?</value>
-  </data>
-  <data name="DeletePreset">
-    <value>Do you really want to delete the "{0}" preset?</value>
-  </data>
-  <data name="DeleteSavesQ">
-    <value>Do you really want to delete those save-states?</value>
-  </data>
-  <data name="Donate">
-    <value>P.S. If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
-  </data>
-  <data name="DownloadAllCoversTitle">
-    <value>Downloading box art for all games (I'm feeling lucky!)</value>
-  </data>
-  <data name="ExtraArgsInfo">
-    <value>You can add global command-line arguments which will be appended to all games including the original 30. This is only for experts!</value>
-  </data>
-  <data name="ExtraArgsTitle">
-    <value>Extra command-line arguments</value>
-  </data>
-  <data name="FirstRun">
-    <value>Hello there! I'm very glad that you are using hakchi2. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>
-  </data>
-  <data name="FolderContent">
-    <value>Deleted content will be moved to the Recycle Bin. You can delete this folder permanently or move the games to other folders.</value>
-  </data>
-  <data name="FolderNameBack">
-    <value>Back</value>
-  </data>
-  <data name="FolderNameMoreGames">
-    <value>More games...</value>
-  </data>
-  <data name="FolderNameTrashBin">
-    <value>Recycle Bin</value>
-  </data>
-  <data name="FolderNameUnsorted">
-    <value>Unsorted</value>
-  </data>
-  <data name="FolderStatistics">
-    <value>Folder "{0}" contains {1} elements.</value>
-  </data>
-  <data name="FoldersSaveQ">
-    <value>Do you want to save this folder structure?</value>
-  </data>
-  <data name="FourScreenNotSupported">
-    <value>Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
-  </data>
-  <data name="GGCodeDelete">
-    <value>Do you want to delete "{0}" code?</value>
-  </data>
-  <data name="GGCodeEmpty">
-    <value>You must enter a code!</value>
-  </data>
-  <data name="GGCodeExists">
-    <value>This code already exists. Do you want to edit it?</value>
-  </data>
-  <data name="GGDescriptionEmpty">
-    <value>You must enter a description!</value>
-  </data>
-  <data name="GameGenieFormatError">
-    <value>Invalid Game Genie code "{0}" for game "{1}".</value>
-  </data>
-  <data name="GameGenieNotFound">
-    <value>Can't apply Game Genie code "{0}" to game "{1}" - value not found. Maybe this code is for another game?</value>
-  </data>
-  <data name="GameTooBig">
-    <value>Sorry, game "{0}" is too big.</value>
-  </data>
-  <data name="GamesAndApps">
-    <value>Games and apps</value>
-  </data>
-  <data name="GooglingFor">
-    <value>Googling for</value>
-  </data>
-  <data name="Hello">
-    <value>Hello</value>
-  </data>
-  <data name="Images">
-    <value>Images</value>
-  </data>
-  <data name="InputPreset">
-    <value>Please input a preset name for the current games selection.</value>
-  </data>
-  <data name="InstallingMods">
-    <value>Installing mods...</value>
+    <value>La grandària del kernel no és vàlid</value>
   </data>
   <data name="KernelDumped">
-    <value>Your original kernel is saved in the "dump" folder. Do not lose it.</value>
+    <value>El kernel original s'ha guardat a la carpeta "hakchi2\dump". NO el perdia, ja que és important</value>
   </data>
   <data name="LoadingGames">
-    <value>Loading games...</value>
+    <value>Carregant jocs...</value>
+  </data>
+  <data name="MD5Failed">
+    <value>Kernel bolcat, però la suma de comprovació MD5 es desconeguda</value>
+  </data>
+  <data name="MD5Failed2">
+    <value>El kernel ja està apedaçat o és una revisió desconeguda. Envia'm aquest missatge (Prem Control+C). Continua baix el teu propi risc</value>
   </data>
   <data name="MainMenu">
-    <value>HOME Menu</value>
+    <value>Menú d'inici</value>
+  </data>
+  <data name="MapperNotSupported">
+    <value>Aquest joc, "{0}" fa servir el mapper #{1} i no es compatible amb la NES Mini, és probable que no iniciï amb el emulador predeterminat, però deuria funcionar si teniu un mòdul extra instal·lat d'un altre emulador. Voleu afegir aquest joc?</value>
   </data>
   <data name="MemoryFull">
-    <value>Sorry, there are {0}MBytes of games, it's too much.</value>
+    <value>Hi ha {0} MB en jocs, és molt i podria donar error en sincronitzar, és recomanable alliberar memòria</value>
   </data>
   <data name="MemoryStats">
-    <value>Total writable memory size: {0:F1}MBytes|Available memory for games: {1:F1}MBytes|Used by saves: {2:F1}MBytes|Used by other files: {3:F1}MBytes</value>
+    <value>Memòria total: {0:F1} MB|Disponible per a jocs: {1:F1} MB|Utilitzada pels punts de suspensió: {2:F1} MB|Utilitzada per altres arxius: {3:F1} MB</value>
   </data>
   <data name="NewGamesUnsorted">
-    <value>New games are moved to the "Unsorted" folder.</value>
+    <value>Els nous jocs s'han afegit a la carpeta "Sense classificar"</value>
   </data>
   <data name="NewPreset">
-    <value>New selection preset</value>
+    <value>Nova llista</value>
   </data>
   <data name="No">
     <value>No</value>
   </data>
   <data name="NoForAll">
-    <value>No for all</value>
+    <value>No per tots</value>
+  </data>
+  <data name="NoKernel">
+    <value>No s'ha trobat cap bolcat del kernel</value>
+  </data>
+  <data name="NoKernelWarning">
+    <value>Primer, heu de fer un bolcat del kernel de la NES mini,. Aquesta acció, només és necessària fer-la una vegada. Voleu continuar?</value>
+  </data>
+  <data name="NoKernelYouNeed">
+    <value>No s'ha trobat cap bolcat del kernel, primer, heu de fer-li el bolcat</value>
   </data>
   <data name="NoTelnet">
-    <value>Can't start Telnet client, seems like it's disabled. You need to enable it first, you can do it in "Control Panel" -&gt; "Programs" -&gt; "Turn Windows features on or off".</value>
+    <value>No s'ha pogut iniciar el client Telnet, és possible que estigui desactivat. Heu d'activar-ho primer, per a això, aneu a "Panell de control" -&gt; "Programes i característiques" -&gt; "Activar o desactivar les característiques de Windows"</value>
   </data>
   <data name="NotFound">
-    <value>Not found:</value>
+    <value>No es troba:</value>
   </data>
-  <data name="ParticallyBody">
-    <value>Don't worry! Everything is fine. There are just too many ROMs to transfer at once. Please wait until power LED goes out, press OK and follow the instructions to continue.</value>
-  </data>
-  <data name="ParticallyTitle">
-    <value>Too many ROMs</value>
+  <data name="OriginalKernelQ">
+    <value>Voleu flashetjar el kernel original?</value>
   </data>
   <data name="PatchAvailable">
-    <value>Patch available</value>
+    <value>Pedaç disponible</value>
   </data>
   <data name="PatchQ">
-    <value>There is patch for "{0}". Do you want to patch this game?</value>
+    <value>Hi ha un pedaç per "{0}". Voleu apedaçar aquest joc?</value>
   </data>
   <data name="PleaseTryAgainUSB">
-    <value>If this problem persists, try using another USB port or cable.</value>
+    <value>Si el problema persisteix, proveu a utilitzar un altre cable o port USB</value>
   </data>
   <data name="PleaseWait">
-    <value>Please wait...</value>
+    <value>Si us plau, esperi...</value>
+  </data>
+  <data name="PressOkToContinue">
+    <value>Premeu Ok per continuar</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>You already have the kernel dump. If you REALLY want to replace the backup of your kernel and you REALLY understand what you are doing, delete the "dump" folder manually.</value>
+    <value>Ja has realitzat el bolcat del kernel. Si realment voleu reemplaçar la copia de seguretat del teu kernel i entens el que esteu fent, borra la carpeta "hakchi2\dump"</value>
   </data>
   <data name="SavesFlterName">
-    <value>NES Mini save-state backups</value>
+    <value>Còpia de seguretat dels punts de suspensió NES Mini</value>
   </data>
   <data name="SelectAtLeast">
-    <value>Select at least one game.</value>
+    <value>Selecciona com a mínim un joc</value>
   </data>
   <data name="SelectAtLeastTwo">
-    <value>Select at least two buttons.</value>
+    <value>Selecciona com a mínim dos botons</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Select the modules to install on your NES Mini.</value>
+    <value>Selecciona els mòduls que vols instal·lar en la NES Mini</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Select the modules to remove from your NES Mini.</value>
+    <value>Selecciona els mòduls que vols eliminar de la NES Mini</value>
   </data>
   <data name="SizeOfSaves">
-    <value>Size of selected save-states:</value>
+    <value>Grandària total dels punts de suspensió seleccionats:</value>
   </data>
   <data name="UninstallFactoryNote">
-    <value>Don't forget to perform a factory reset if you want to delete all Suspend Points.</value>
+    <value>No oblidis formatar la NES Mini si vols eliminar tots els punts de suspensió</value>
   </data>
   <data name="UninstallQ1">
-    <value>Do you really want to remove all traces of hakchi2 and return your NES Mini to its original state?</value>
+    <value>Vols eliminar totes les dades de hakchi2 i deixar la NES Mini com de fàbrica? (Això no elimina els punts de suspensió)</value>
   </data>
   <data name="UninstallQ2">
-    <value>Done. Wait until the power LED goes out. You also need to flash the original kernel. Do you want to flash the original kernel now?</value>
+    <value>Espera que la llum del botó Power s'apagui. Has de flashetjar el kernel original. Vols flashetjar el kernel original ara?</value>
   </data>
   <data name="Uninstalling">
-    <value>Uninstalling...</value>
+    <value>Desinstal·lant...</value>
   </data>
   <data name="UninstallingMods">
-    <value>Uninstalling mods...</value>
+    <value>Desinstal·lant mòduls...</value>
   </data>
   <data name="UnknownGame">
-    <value>Unknown game</value>
+    <value>Joc desconegut</value>
   </data>
   <data name="UploadingConfig">
-    <value>Uploading new config...</value>
+    <value>Actualitzant a la nova configuració...</value>
   </data>
   <data name="UploadingFes1">
-    <value>Uploading and running FES-1...</value>
+    <value>Carregant i executant fes1</value>
   </data>
   <data name="UploadingGames">
-    <value>Uploading games...</value>
+    <value>Sincronitzant jocs…</value>
   </data>
   <data name="UploadingKernel">
-    <value>Uploading the kernel...</value>
+    <value>Actualitzant el kernel…</value>
   </data>
   <data name="UploadingOriginalGames">
-    <value>Processing original games...</value>
+    <value>Processant els jocs originals...</value>
   </data>
   <data name="VerifyFailed">
-    <value>Verify failed :O This is not good.</value>
+    <value>La verificació ha fallat</value>
   </data>
   <data name="Verifying">
-    <value>Verifying...</value>
+    <value>Verificant…</value>
   </data>
   <data name="WaitingForDevice">
-    <value>Waiting for the device...</value>
+    <value>Esperant a la NES Mini</value>
   </data>
   <data name="Warning">
-    <value>Warning!</value>
+    <value>Atenció!</value>
   </data>
   <data name="Wow">
-    <value>Wow</value>
+    <value>Molt bé!</value>
   </data>
   <data name="Yes">
-    <value>Yes</value>
+    <value>Si</value>
   </data>
   <data name="YesForAll">
-    <value>Yes for all</value>
+    <value>Sí per tots</value>
   </data>
 </root>

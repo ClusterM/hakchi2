@@ -106,9 +106,6 @@
   <data name="Done">
     <value>Gotowe!</value>
   </data>
-  <data name="DoneUploaded">
-    <value>Gotowe! Poczekaj, aż dioda zasilania zgaśnie, po czym zrestartuj NES Mini.</value>
-  </data>
   <data name="DoneYouCanUpload">
     <value>Gotowe! Możesz teraz wgrywać gry do NES Mini.</value>
   </data>
@@ -126,9 +123,6 @@
   </data>
   <data name="ExecutingCommand">
     <value>Wykonywanie komendy:</value>
-  </data>
-  <data name="ExecutingFes1">
-    <value>Wykonywanie fes1...</value>
   </data>
   <data name="ExtraArgsInfo">
     <value>Możesz dodać globalne argumenty linii poleceń, które zostaną dodane do wszystkich gier, włącznie z oryginalnymi. Tylko dla ekspertów!</value>
@@ -209,7 +203,7 @@
     <value>Błędny rozmiar kernela:</value>
   </data>
   <data name="KernelDumped">
-    <value>Twój kernel został zapisany w folderze "dump". Lepiej go nie stracić!</value>
+    <value>Twój kernel został zapisany w folderze "hakchi2\dump". Lepiej go nie stracić!</value>
   </data>
   <data name="LoadingGames">
     <value>Ładowanie gier...</value>
@@ -253,12 +247,6 @@
   <data name="OriginalKernelQ">
     <value>Czy chcesz wgrać oryginalny kernel?</value>
   </data>
-  <data name="ParticallyBody">
-    <value>Bez obaw! Wszystko w najlepszym porządku. Jest tylko za dużo ROMów do przesłania za jednym zamachem. Poczekaj, aż lampa zasliania zgaśnie, naciśnij OK i postępuj zgodnie z instrukcjami.</value>
-  </data>
-  <data name="ParticallyTitle">
-    <value>Za dużo ROMów.</value>
-  </data>
   <data name="PatchAvailable">
     <value>Patch dostępny</value>
   </data>
@@ -272,7 +260,7 @@
     <value>Naciśnij OK, aby kontynuować..</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>Masz już zgrany kernel. Jeśli naprawdę chcesz, aby kopia kernela została nadpisana i naprawdę wiesz co robić, to usuń folder "dump" ręcznie.</value>
+    <value>Masz już zgrany kernel. Jeśli naprawdę chcesz, aby kopia kernela została nadpisana i naprawdę wiesz co robić, to usuń folder "hakchi2\dump" ręcznie.</value>
   </data>
   <data name="SelectAtLeast">
     <value>Musisz wybrać co najmniej jedną grę.</value>
@@ -340,9 +328,6 @@
   <data name="FolderNameTrashBin">
     <value>Recycle Bin</value>
   </data>
-  <data name="GameTooBig">
-    <value>Sorry, game "{0}" is too big.</value>
-  </data>
   <data name="GamesAndApps">
     <value>Games and apps</value>
   </data>
@@ -368,10 +353,10 @@
     <value>NES Mini save-state backups</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Select the modules to install on your NES Mini.</value>
+    <value>Select the modules to install on your NES Mini</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Select the modules to remove from your NES Mini.</value>
+    <value>Select the modules to remove from your NES Mini</value>
   </data>
   <data name="SizeOfSaves">
     <value>Size of selected save-states:</value>

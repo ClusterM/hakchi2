@@ -121,9 +121,6 @@
   <data name="Done">
     <value>Klaar!</value>
   </data>
-  <data name="DoneUploaded">
-    <value>Klaar! Wacht tot het rode LED uitgaat, en herstart dan je NES Mini.</value>
-  </data>
   <data name="DoneYouCanUpload">
     <value>Klaar! Je kunt nu je spellen naar je NES Mini uploaden.</value>
   </data>
@@ -141,9 +138,6 @@
   </data>
   <data name="ExecutingCommand">
     <value>Commando's aan het uitvoeren:</value>
-  </data>
-  <data name="ExecutingFes1">
-    <value>FES-1 aan het uitvoeren...</value>
   </data>
   <data name="ExtraArgsInfo">
     <value>Je kunt een globale opdracht regel toevoegen voor alle spellen, inclusief de originele 30. Dit is alleen voor experts!</value>
@@ -207,9 +201,6 @@
   </data>
   <data name="GameGenieNotFound">
     <value>Kan geen Game Genie code “{0}” toepassen voor spel “{1}” – waarde niet gevonden. Misschien is deze code voor een ander spel?</value>
-  </data>
-  <data name="GameTooBig">
-    <value>Sorr maar het spel “{0}” is te groot.</value>
   </data>
   <data name="GamesAndApps">
     <value>Spellen en apps</value>
@@ -292,12 +283,6 @@
   <data name="OriginalKernelQ">
     <value>Wil je de originele kernel flashen?</value>
   </data>
-  <data name="ParticallyBody">
-    <value>Niet schrikken! Alles is in orde. Er zijn gewoon te veel ROMS om in één keer te uploaden. Wacht tot de rode LED uitgaat, druk dan op OK, en volg de instructies.</value>
-  </data>
-  <data name="ParticallyTitle">
-    <value>Te veel ROMS</value>
-  </data>
   <data name="PatchAvailable">
     <value>Patch beschikbaar</value>
   </data>
@@ -326,10 +311,10 @@
     <value>Selecteer tenminste 2 knoppen</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Selecteer de modules die je op je NES Mini wilt installeren.</value>
+    <value>Selecteer de modules die je op je NES Mini wilt installeren</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Selecteer de modules die je van je NES Mini wilt verwijderen.</value>
+    <value>Selecteer de modules die je van je NES Mini wilt verwijderen</value>
   </data>
   <data name="SizeOfSaves">
     <value>De grootte van de geselecteerde onderbrekingspunten:</value>

@@ -121,9 +121,6 @@
   <data name="Done">
     <value>Fatto!</value>
   </data>
-  <data name="DoneUploaded">
-    <value>Fatto! Attendere che il POWER LED si spenga e riavviare il NES Mini.</value>
-  </data>
   <data name="DoneYouCanUpload">
     <value>Fatto! Ora è possibile caricare i giochi nel NES Mini.</value>
   </data>
@@ -141,9 +138,6 @@
   </data>
   <data name="ExecutingCommand">
     <value>Sto eseguendo il comando:</value>
-  </data>
-  <data name="ExecutingFes1">
-    <value>Sto eseguendo fes1…</value>
   </data>
   <data name="ExtraArgsInfo">
     <value>E'possibile aggiungere argomenti da linea di comando che saranno aggiunti a tutti i giochi compresi i 30 originali. Solo per esperti!</value>
@@ -208,9 +202,6 @@
   <data name="GameGenieNotFound">
     <value>Non è possibile applicare il codice Game Genie "{0}" al gioco "{1}" - valore non trovato. Forse il codice è per un gioco diverso?</value>
   </data>
-  <data name="GameTooBig">
-    <value>Mi dispiace, il gioco "{0}" è troppo grande.</value>
-  </data>
   <data name="GamesAndApps">
     <value>Giochi e Applicazioni</value>
   </data>
@@ -239,7 +230,7 @@
     <value>Dimensione del kernel non valida:</value>
   </data>
   <data name="KernelDumped">
-    <value>Il kernel originale è stato salvato nella cartella "dump". Non perderlo.</value>
+    <value>Il kernel originale è stato salvato nella cartella "hakchi2\dump". Non perderlo.</value>
   </data>
   <data name="LoadingGames">
     <value>Sto caricando i giochi…</value>
@@ -292,12 +283,6 @@
   <data name="OriginalKernelQ">
     <value>Vuoi flashare il kernel originale?</value>
   </data>
-  <data name="ParticallyBody">
-    <value>Non preoccuparti! Va tutto bene. Ci sono solo troppe ROMs da trasferire in un unico passaggio. Attendi che il power LED si spenga, premi OK e segui le istruzioni a schermo per continuare.</value>
-  </data>
-  <data name="ParticallyTitle">
-    <value>Troppe ROMs</value>
-  </data>
   <data name="PatchAvailable">
     <value>Patch disponibile</value>
   </data>
@@ -314,7 +299,7 @@
     <value>Premere OK per continuare.</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>Hai già il dump del kernel. Se vuoi VERAMENTE sostituire il backup del kernel e sai VERAMENTE cosa stai facendo, cancella la cartella "dump" manualmente.</value>
+    <value>Hai già il dump del kernel. Se vuoi VERAMENTE sostituire il backup del kernel e sai VERAMENTE cosa stai facendo, cancella la cartella "hakchi2\dump" manualmente.</value>
   </data>
   <data name="SavesFlterName">
     <value>Backup dei punti di sospensione del NES Mini</value>

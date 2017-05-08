@@ -68,13 +68,13 @@
     <value>Dividir igualmente</value>
   </data>
   <data name="buttonFoldersEquallyOriginal.Text">
-    <value>Jogos originais - &amp; gt; Dividir igualmente</value>
+    <value>Jogos originais -&gt; Dividir igualmente</value>
   </data>
   <data name="buttonFoldersLetters.Text">
     <value>Dividir pela primeira letra</value>
   </data>
   <data name="buttonFoldersLettersOriginal.Text">
-    <value>Jogos originais - &amp; gt; Dividir pela primeira letra</value>
+    <value>Jogos originais -&gt; Dividir pela primeira letra</value>
   </data>
   <data name="buttonNewFolder.Text">
     <value>Nova pasta</value>
@@ -83,7 +83,7 @@
     <value>Sem pastas</value>
   </data>
   <data name="buttonNoFoldersOriginal.Text">
-    <value>Jogos originais - &amp; gt; Outros jogos</value>
+    <value>Jogos originais -&gt; Outros jogos</value>
   </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Cortar</value>

@@ -259,6 +259,9 @@
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Synchroniseren</value>
   </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>Momentopname maken</value>
+  </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Gereedschap</value>
   </data>
