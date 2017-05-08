@@ -1511,12 +1511,16 @@ namespace com.clusterrr.hakchi_gui
                     showProcess.Start();
                     new Thread(delegate()
                     {
-                        showProcess.WaitForExit();
+                        try
+                        {
+                            showProcess.WaitForExit();
+                        }
+                        catch { }
                         try
                         {
                             File.Delete(screenshotPath);
                         }
-                        catch { }
+                        catch { }                        
                     }).Start();
                 }
             }
