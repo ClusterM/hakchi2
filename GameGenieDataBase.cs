@@ -62,7 +62,6 @@ namespace com.clusterrr.hakchi_gui
 
     class GameGenieDataBase
     {
-        private readonly string DataBasePath;
         private XmlDocument FXml = new XmlDocument();
         private XmlNode FGameNode = null;
         private List<GameGenieCode> FGameCodes = null;
