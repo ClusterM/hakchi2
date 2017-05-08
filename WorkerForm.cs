@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -206,6 +207,7 @@ namespace com.clusterrr.hakchi_gui
 
         public void StartThread()
         {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(ConfigIni.Language);
             SetProgress(0, 1);
             try
             {

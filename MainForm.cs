@@ -95,18 +95,6 @@ namespace com.clusterrr.hakchi_gui
 
         public MainForm()
         {
-            Program.BaseDirectoryInternal = Path.GetDirectoryName(Application.ExecutablePath);
-            if (ApplicationDeployment.IsNetworkDeployed)
-                Program.BaseDirectoryExternal = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "hakchi2");
-            else
-                Program.BaseDirectoryExternal = Program.BaseDirectoryInternal;
-            ConfigIni.Load();
-            try
-            {
-                if (!string.IsNullOrEmpty(ConfigIni.Language))
-                    Thread.CurrentThread.CurrentUICulture = new CultureInfo(ConfigIni.Language);
-            }
-            catch { }
             InitializeComponent();
             FormInitialize();
             Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
@@ -136,7 +124,7 @@ namespace com.clusterrr.hakchi_gui
                 LoadLanguages();
                 var version = Assembly.GetExecutingAssembly().GetName().Version;
                 Text = string.Format("hakchi2 - v{0}.{1:D2}{2}", version.Major, version.Build, (version.Revision < 10) ?
-                    ("rc" + version.Revision.ToString()) : (version.Revision > 10 ? ((char)('a' + version.Revision - 10)).ToString() : ""))
+                    ("rc" + version.Revision.ToString()) : (version.Revision > 20 ? ((char)('a' + (version.Revision - 20) / 10)).ToString() : ""))
 #if DEBUG
  + " (debug version"
 #if VERY_DEBUG
@@ -435,6 +423,7 @@ namespace com.clusterrr.hakchi_gui
                         this.Controls.Clear();
                         this.InitializeComponent();
                         FormInitialize();
+                        this.Invalidate(true);
                     };
                 item.Checked = Thread.CurrentThread.CurrentUICulture.Name == langCodes[language];
                 found |= item.Checked;

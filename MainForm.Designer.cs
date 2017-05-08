@@ -893,17 +893,23 @@
             // 
             resources.ApplyResources(this.toolStripStatusConnectionIcon, "toolStripStatusConnectionIcon");
             this.toolStripStatusConnectionIcon.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.red;
-            this.toolStripStatusConnectionIcon.Margin = new System.Windows.Forms.Padding(2, 3, 0, 2);
+            this.toolStripStatusConnectionIcon.Margin = new System.Windows.Forms.Padding(2, 3, 2, 2);
             this.toolStripStatusConnectionIcon.Name = "toolStripStatusConnectionIcon";
             // 
             // toolStripStatusLabelSelected
             // 
             resources.ApplyResources(this.toolStripStatusLabelSelected, "toolStripStatusLabelSelected");
+            this.toolStripStatusLabelSelected.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.toolStripStatusLabelSelected.Name = "toolStripStatusLabelSelected";
             // 
             // toolStripStatusLabelSize
             // 
             resources.ApplyResources(this.toolStripStatusLabelSize, "toolStripStatusLabelSize");
+            this.toolStripStatusLabelSize.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.toolStripStatusLabelSize.Name = "toolStripStatusLabelSize";
             // 
             // toolStripProgressBar

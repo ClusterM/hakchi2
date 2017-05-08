@@ -3,6 +3,7 @@ using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Deployment.Application;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -63,6 +64,13 @@ namespace com.clusterrr.hakchi_gui
                             BaseDirectoryExternal = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "hakchi2");
                         else
                             BaseDirectoryExternal = BaseDirectoryInternal;
+                        ConfigIni.Load();
+                        try
+                        {
+                            if (!string.IsNullOrEmpty(ConfigIni.Language))
+                                Thread.CurrentThread.CurrentUICulture = new CultureInfo(ConfigIni.Language);
+                        }
+                        catch { }
 
                         // There are some folders which should be accessed by user
                         // Moving them to "My documents"

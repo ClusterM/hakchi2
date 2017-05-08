@@ -205,7 +205,7 @@
     <value>Press OK to continue.</value>
   </data>
   <data name="ReplaceKernelQ" xml:space="preserve">
-    <value>You already have the kernel dump. If you REALLY want to replace the backup of your kernel and you REALLY understand what you are doing, delete the "dump" folder manually.</value>
+    <value>You already have the kernel dump. If you REALLY want to replace the backup of your kernel and you REALLY understand what you are doing, delete the "hakchi2\dump" folder manually.</value>
   </data>
   <data name="SelectAtLeast" xml:space="preserve">
     <value>Select at least one game.</value>
@@ -247,7 +247,7 @@
     <value>Hello</value>
   </data>
   <data name="KernelDumped" xml:space="preserve">
-    <value>Your original kernel is saved in the "dump" folder. Do not lose it. </value>
+    <value>Your original kernel is saved in the "hakchi2\dump" folder. Do not lose it. </value>
   </data>
   <data name="DeletePreset" xml:space="preserve">
     <value>Do you really want to delete the "{0}" preset?</value>
