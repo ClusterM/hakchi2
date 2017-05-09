@@ -272,22 +272,22 @@
   </data>
   <data name="languageToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAANASURBVDhPdZN9UMtxHMd/U7qj6zz1R6ltXB5ma6vMyrKsaSs2D3PoYW6VPA1DJZZMVtjN1Zyn
-        iKYQTqU7lWOdRNxwHkqRK3lMtU5UOJSjt1/zu3M4r7v3ff55vz73/fzxJf5mhkxOSz9gcSm1Ncy0Pe+K
-        r2vrTaxpfB1qzMl3pir/Z3t+sWt1S9fOR+09XY/be1D7phu1re/R3PkBjR2972wv3+qp6r9syKtwVVvN
-        l9Y2LIf1WQeONZUhrcUOS0s7TPfsWH2+BZqTV6C5mnY2MFb152t44ctos3OzS2fd4iPhgQLlrYV48rES
-        hT2dWGP/ioSbHYjLa0DMniro7mox37jrEKX+wk9hWsS1Th2IqPeHvlmFh71W1PZ1oay/H4mdfYiraUPs
-        8QYo9TYklZghiTcN+Cq1QZROEL4Ru68xyr3AushCbONSGLu7UdD3HeZP37Dq+QdEVr5CdG4d5uluYsG2
-        QhxuikRMcdQJh+zODHfxCU7r98lUgL+jBBGXr2NR/TssI0V1Uw9UtzugKGqGMusewrXXoMo2IbM2FOqq
-        ha2OBaO8ZtHp3BRM0MSAu/4EgnJuQFj0FOKLLxFa/gLiM82Q7n+ICJ0NM6IrEb03DdrrQgSf4v9wLBjp
-        KXEfy0oaYPJTwVlpAm9dDYQ7qzFtzwNMz6pDSOZ9SDaRsroK3NAL4K9IB/soAxN1c744FgzC4OraGGwD
-        2NJDmLIhCb7bkyHUncL0FdUIjquCYKHVIU8RngVbZAFHqQdHvuMOpRPEpECDeTwvA5OD98NtiyfcMsbA
-        M88bLEMkuGFF4MwsBkd8Gr4SC7jSw/CT7wNHakykdIIQSTd7CGfv7RbJD8AnVQDXdWMwLHkURhg8wEyV
-        gZWSgICoHAiW5EOkLkCYpvDFRLF2OKX/QqrMlosU5n6RWg+2UQi6gQWP3T7wPsgD70gkZJtLMDe9AsqM
-        ss/0AJlk6HA3GqX+hjFBIheEbX0r3piMkIIoBJ6TQXJ8IxZkn4Eq9wY5S9+MHs/WkFV/MiMd0l840YY4
-        B7gz2QfHyQT1QfEae4g60y6ITqmnC8IsNCfnxWQnkIw3GZdB4X8MfpYRZMaSYVJzNJnBu53IUBDET8tW
-        pSL+Tvj1AAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAA0BJREFUOE91
+        k31Qy3Ecx39TuqPrPPVHqW1cHmZrq8zKsqxpKzYPc+hhbpU8DUMllkxW2M3VnKeIphBOpTuVY51E3HAe
+        SpEreUy1TlQ4lKO3X/O7czivu/d9/nm/Pvf9/PEl/maGTE5LP2BxKbU1zLQ974qva+tNrGl8HWrMyXem
+        Kv9ne36xa3VL185H7T1dj9t7UPumG7Wt79Hc+QGNHb3vbC/f6qnqv2zIq3BVW82X1jYsh/VZB441lSGt
+        xQ5LSztM9+xYfb4FmpNXoLmadjYwVvXna3jhy2izc7NLZ93iI+GBAuWthXjysRKFPZ1YY/+KhJsdiMtr
+        QMyeKujuajHfuOsQpf7CT2FaxLVOHYio94e+WYWHvVbU9nWhrL8fiZ19iKtpQ+zxBij1NiSVmCGJNw34
+        KrVBlE4QvhG7rzHKvcC6yEJs41IYu7tR0Pcd5k/fsOr5B0RWvkJ0bh3m6W5iwbZCHG6KRExx1AmH7M4M
+        d/EJTuv3yVSAv6MEEZevY1H9OywjRXVTD1S3O6AoaoYy6x7CtdegyjYhszYU6qqFrY4Fo7xm0encFEzQ
+        xIC7/gSCcm5AWPQU4osvEVr+AuIzzZDuf4gInQ0zoisRvTcN2utCBJ/i/3AsGOkpcR/LShpg8lPBWWkC
+        b10NhDurMW3PA0zPqkNI5n1INpGyugrc0Avgr0gH+ygDE3VzvjgWDMLg6toYbAPY0kOYsiEJvtuTIdSd
+        wvQV1QiOq4JgodUhTxGeBVtkAUepB0e+4w6lE8SkQIN5PC8Dk4P3w22LJ9wyxsAzzxssQyS4YUXgzCwG
+        R3wavhILuNLD8JPvA0dqTKR0ghBJN3sIZ+/tFskPwCdVANd1YzAseRRGGDzATJWBlZKAgKgcCJbkQ6Qu
+        QJim8MVEsXY4pf9CqsyWixTmfpFaD7ZRCLqBBY/dPvA+yAPvSCRkm0swN70Cyoyyz/QAmWTocDcapf6G
+        MUEiF4RtfSvemIyQgigEnpNBcnwjFmSfgSr3BjlL34wez9aQVX8yIx3SXzjRhjgHuDPZB8fJBPVB8Rp7
+        iDrTLohOqacLwiw0J+fFZCeQjDcZl0Hhfwx+lhFkxpJhUnM0mcG7nchQEMRPy1alIv5O+PUAAAAASUVO
+        RK5CYII=
 </value>
   </data>
   <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -543,7 +543,7 @@
     <value>Save settings to NES Mini now</value>
   </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
+    <value>47, 20</value>
   </data>
   <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Tools</value>
@@ -649,270 +649,6 @@
   </data>
   <data name="groupBoxOptions.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
-  </data>
-  <data name="&gt;&gt;buttonShowGameGenieDatabase.Name" xml:space="preserve">
-    <value>buttonShowGameGenieDatabase</value>
-  </data>
-  <data name="&gt;&gt;buttonShowGameGenieDatabase.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonShowGameGenieDatabase.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;buttonShowGameGenieDatabase.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;maskedTextBoxReleaseDate.Name" xml:space="preserve">
-    <value>maskedTextBoxReleaseDate</value>
-  </data>
-  <data name="&gt;&gt;maskedTextBoxReleaseDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MaskedTextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;maskedTextBoxReleaseDate.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;maskedTextBoxReleaseDate.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;textBoxGameGenie.Name" xml:space="preserve">
-    <value>textBoxGameGenie</value>
-  </data>
-  <data name="&gt;&gt;textBoxGameGenie.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxGameGenie.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;textBoxGameGenie.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
-  </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;radioButtonTwoSim.Name" xml:space="preserve">
-    <value>radioButtonTwoSim</value>
-  </data>
-  <data name="&gt;&gt;radioButtonTwoSim.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioButtonTwoSim.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;radioButtonTwoSim.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;buttonGoogle.Name" xml:space="preserve">
-    <value>buttonGoogle</value>
-  </data>
-  <data name="&gt;&gt;buttonGoogle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonGoogle.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;buttonGoogle.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;buttonBrowseImage.Name" xml:space="preserve">
-    <value>buttonBrowseImage</value>
-  </data>
-  <data name="&gt;&gt;buttonBrowseImage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonBrowseImage.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;buttonBrowseImage.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxArt.Name" xml:space="preserve">
-    <value>pictureBoxArt</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxArt.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxArt.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxArt.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;textBoxArguments.Name" xml:space="preserve">
-    <value>textBoxArguments</value>
-  </data>
-  <data name="&gt;&gt;textBoxArguments.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxArguments.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;textBoxArguments.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;textBoxPublisher.Name" xml:space="preserve">
-    <value>textBoxPublisher</value>
-  </data>
-  <data name="&gt;&gt;textBoxPublisher.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxPublisher.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;textBoxPublisher.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;radioButtonTwo.Name" xml:space="preserve">
-    <value>radioButtonTwo</value>
-  </data>
-  <data name="&gt;&gt;radioButtonTwo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioButtonTwo.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;radioButtonTwo.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;radioButtonOne.Name" xml:space="preserve">
-    <value>radioButtonOne</value>
-  </data>
-  <data name="&gt;&gt;radioButtonOne.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioButtonOne.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;radioButtonOne.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;textBoxName.Name" xml:space="preserve">
-    <value>textBoxName</value>
-  </data>
-  <data name="&gt;&gt;textBoxName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxName.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;textBoxName.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;labelName.Name" xml:space="preserve">
-    <value>labelName</value>
-  </data>
-  <data name="&gt;&gt;labelName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelName.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;labelName.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;labelID.Name" xml:space="preserve">
-    <value>labelID</value>
-  </data>
-  <data name="&gt;&gt;labelID.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelID.Parent" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;labelID.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="groupBoxOptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>306, 27</value>
-  </data>
-  <data name="groupBoxOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>293, 529</value>
-  </data>
-  <data name="groupBoxOptions.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="groupBoxOptions.Text" xml:space="preserve">
-    <value>Game options</value>
-  </data>
-  <data name="&gt;&gt;groupBoxOptions.Name" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;groupBoxOptions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBoxOptions.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBoxOptions.ZOrder" xml:space="preserve">
-    <value>7</value>
   </data>
   <data name="buttonShowGameGenieDatabase.Location" type="System.Drawing.Point, System.Drawing">
     <value>252, 286</value>
@@ -1421,6 +1157,30 @@
   <data name="&gt;&gt;labelID.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
+  <data name="groupBoxOptions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 33</value>
+  </data>
+  <data name="groupBoxOptions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 529</value>
+  </data>
+  <data name="groupBoxOptions.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="groupBoxOptions.Text" xml:space="preserve">
+    <value>Game options</value>
+  </data>
+  <data name="&gt;&gt;groupBoxOptions.Name" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;groupBoxOptions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxOptions.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBoxOptions.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
   <data name="label5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
@@ -1481,29 +1241,8 @@
   <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>109, 17</value>
   </metadata>
-  <data name="toolStripStatusConnectionIcon.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="toolStripStatusConnectionIcon.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 17</value>
-  </data>
-  <data name="toolStripStatusLabelSelected.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="toolStripStatusLabelSelected.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 17</value>
-  </data>
-  <data name="toolStripStatusLabelSize.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="toolStripStatusLabelSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 17</value>
-  </data>
-  <data name="toolStripProgressBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 16</value>
-  </data>
   <data name="statusStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 615</value>
+    <value>0, 614</value>
   </data>
   <data name="statusStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>609, 22</value>
@@ -1525,6 +1264,27 @@
   </data>
   <data name="&gt;&gt;statusStrip.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="toolStripStatusConnectionIcon.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolStripStatusConnectionIcon.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 17</value>
+  </data>
+  <data name="toolStripStatusLabelSelected.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolStripStatusLabelSelected.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 17</value>
+  </data>
+  <data name="toolStripStatusLabelSize.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolStripStatusLabelSize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 17</value>
+  </data>
+  <data name="toolStripProgressBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 16</value>
   </data>
   <metadata name="openFileDialogNes.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>202, 17</value>
@@ -1598,72 +1358,6 @@
   <data name="&gt;&gt;buttonStart.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="groupBoxDefaultGames.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxDefaultGames.Name" xml:space="preserve">
-    <value>checkedListBoxDefaultGames</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxDefaultGames.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxDefaultGames.Parent" xml:space="preserve">
-    <value>groupBoxDefaultGames</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxDefaultGames.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="groupBoxDefaultGames.Location" type="System.Drawing.Point, System.Drawing">
-    <value>306, 27</value>
-  </data>
-  <data name="groupBoxDefaultGames.Size" type="System.Drawing.Size, System.Drawing">
-    <value>293, 529</value>
-  </data>
-  <data name="groupBoxDefaultGames.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="groupBoxDefaultGames.Text" xml:space="preserve">
-    <value>You can hide some default games</value>
-  </data>
-  <data name="groupBoxDefaultGames.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;groupBoxDefaultGames.Name" xml:space="preserve">
-    <value>groupBoxDefaultGames</value>
-  </data>
-  <data name="&gt;&gt;groupBoxDefaultGames.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBoxDefaultGames.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBoxDefaultGames.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="checkedListBoxDefaultGames.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="checkedListBoxDefaultGames.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 49</value>
-  </data>
-  <data name="checkedListBoxDefaultGames.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 454</value>
-  </data>
-  <data name="checkedListBoxDefaultGames.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxDefaultGames.Name" xml:space="preserve">
-    <value>checkedListBoxDefaultGames</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxDefaultGames.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxDefaultGames.Parent" xml:space="preserve">
-    <value>groupBoxDefaultGames</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxDefaultGames.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <metadata name="timerCalculateGames.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>473, 17</value>
   </metadata>
@@ -1683,7 +1377,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>609, 637</value>
+    <value>609, 636</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

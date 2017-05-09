@@ -851,11 +851,7 @@ namespace com.clusterrr.hakchi_gui
                     if (deletedGames.Contains(mainForm.checkedListBoxGames.Items[i] as NesMiniApplication))
                         mainForm.checkedListBoxGames.SetItemChecked(i, false);
                 }
-                for (int i = 0; i < mainForm.checkedListBoxDefaultGames.Items.Count; i++)
-                {
-                    if (deletedGames.Contains(mainForm.checkedListBoxDefaultGames.Items[i] as NesDefaultGame))
-                        mainForm.checkedListBoxDefaultGames.SetItemChecked(i, false);
-                }
+                
                 ConfigIni.Save();
             }
         }

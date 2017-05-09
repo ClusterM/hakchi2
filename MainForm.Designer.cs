@@ -143,8 +143,6 @@
             this.deleteGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
             this.buttonStart = new System.Windows.Forms.Button();
-            this.groupBoxDefaultGames = new System.Windows.Forms.GroupBox();
-            this.checkedListBoxDefaultGames = new System.Windows.Forms.CheckedListBox();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
             this.timerConnectionCheck = new System.Windows.Forms.Timer(this.components);
             this.menuStrip.SuspendLayout();
@@ -152,7 +150,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
-            this.groupBoxDefaultGames.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -963,21 +960,6 @@
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
-            // groupBoxDefaultGames
-            // 
-            resources.ApplyResources(this.groupBoxDefaultGames, "groupBoxDefaultGames");
-            this.groupBoxDefaultGames.Controls.Add(this.checkedListBoxDefaultGames);
-            this.groupBoxDefaultGames.Name = "groupBoxDefaultGames";
-            this.groupBoxDefaultGames.TabStop = false;
-            // 
-            // checkedListBoxDefaultGames
-            // 
-            resources.ApplyResources(this.checkedListBoxDefaultGames, "checkedListBoxDefaultGames");
-            this.checkedListBoxDefaultGames.FormattingEnabled = true;
-            this.checkedListBoxDefaultGames.Name = "checkedListBoxDefaultGames";
-            this.checkedListBoxDefaultGames.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxDefaultGames_ItemCheck);
-            this.checkedListBoxDefaultGames.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkedListBoxDefaultGames_MouseDown);
-            // 
             // timerCalculateGames
             // 
             this.timerCalculateGames.Enabled = true;
@@ -1002,9 +984,7 @@
             this.Controls.Add(this.checkedListBoxGames);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.groupBoxOptions);
-            this.Controls.Add(this.groupBoxDefaultGames);
             this.Cursor = System.Windows.Forms.Cursors.Default;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "MainForm";
@@ -1022,7 +1002,6 @@
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.contextMenuStrip.ResumeLayout(false);
-            this.groupBoxDefaultGames.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1066,7 +1045,6 @@
         private System.Windows.Forms.RadioButton radioButtonTwoSim;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBoxDefaultGames;
         private System.Windows.Forms.Timer timerCalculateGames;
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unselectAllToolStripMenuItem;
@@ -1122,7 +1100,6 @@
         private System.Windows.Forms.ToolStripMenuItem max100toolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem automaticToolStripMenuItem;
-        protected internal System.Windows.Forms.CheckedListBox checkedListBoxDefaultGames;
         private System.Windows.Forms.ToolStripMenuItem useExtendedFontToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modulesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem installModulesToolStripMenuItem;

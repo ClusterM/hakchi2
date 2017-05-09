@@ -13,7 +13,8 @@ namespace com.clusterrr.hakchi_gui
 
         public class AppInfo
         {
-            public Type Class;
+            public string SystemName;
+            public List<Type> Class;
             public string[] Extensions;
             public string[] DefaultApps;
             public char Prefix;
@@ -24,7 +25,8 @@ namespace com.clusterrr.hakchi_gui
         {
             new AppInfo
             {
-                Class = typeof(FdsGame),
+                SystemName = "Famicom Disk System",
+                Class = new List<Type>(){typeof(FdsGame) },
                 Extensions = new string[] {".fds"},
                 DefaultApps = new string[] {},
                 Prefix = 'D',
@@ -32,15 +34,26 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(NesUGame),
+                SystemName = "NES",
+                Class = new List<Type>(){typeof(NesUGame),typeof(NesGame) },
                 Extensions = new string[] {".nes", ".unf", ".unif"},
                 DefaultApps = new string[] {"/bin/nes"},
                 Prefix = 'I',
                 DefaultCover = Resources.blank_jp
             },
+           new AppInfo
+            {
+                SystemName = "NES Default Game",
+                Class = new List<Type>(){typeof(NesDefaultGame),typeof(NesGame) },
+                Extensions = new string[] {},
+                DefaultApps = new string[] {},
+                Prefix = 'S',
+                DefaultCover = Resources.blank_nes
+            },
             new AppInfo
             {
-                Class = typeof(SnesGame),
+                SystemName = "SNES",
+                Class = new List<Type>(){typeof(SnesGame) },
                 Extensions = new string[] { ".sfc", ".smc" },
                 DefaultApps = new string[] {"/bin/snes"},
                 Prefix = 'U',
@@ -48,7 +61,8 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(N64Game),
+                SystemName = "Nintendo 64",
+                Class = new List<Type>(){typeof(N64Game) },
                 Extensions = new string[] { ".n64", ".z64", ".v64" },
                 DefaultApps = new string[] {"/bin/n64"},
                 Prefix = '6',
@@ -56,7 +70,8 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(SmsGame),
+                SystemName = "Sega Master System",
+                Class = new List<Type>(){typeof(SmsGame) },
                 Extensions = new string[] { ".sms" },
                 DefaultApps = new string[] {"/bin/sms"},
                 Prefix = 'M',
@@ -64,7 +79,8 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(GenesisGame),
+                SystemName = "Sega Genesis",
+                Class = new List<Type>(){typeof(GenesisGame) },
                 Extensions = new string[] { ".gen", ".md", ".smd" },
                 DefaultApps = new string[] {"/bin/md"},
                 Prefix = 'G',
@@ -72,7 +88,8 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(Sega32XGame),
+                SystemName = "Sega 32X",
+                Class = new List<Type>(){ typeof(Sega32XGame) },
                 Extensions = new string[] { ".32x" },
                 DefaultApps = new string[] {"/bin/32x"},
                 Prefix = '3',
@@ -80,7 +97,8 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(GbGame),
+                SystemName = "GameBoy",
+                Class = new List<Type>(){typeof(GbGame) },
                 Extensions = new string[] { ".gb" },
                 DefaultApps = new string[] {"/bin/gb"},
                 Prefix = 'B',
@@ -88,7 +106,8 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(GbcGame),
+                SystemName = "GameBoy Color",
+                Class = new List<Type>(){typeof(GbcGame) },
                 Extensions = new string[] {".gbc"},
                 DefaultApps = new string[] {"/bin/gbc"},
                 Prefix = 'C',
@@ -96,7 +115,8 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(GbaGame),
+                SystemName = "GameBoy Advance",
+                Class = new List<Type>(){typeof(GbaGame) },
                 Extensions = new string[] {".gba"},
                 DefaultApps = new string[] {"/bin/gba"},
                 Prefix = 'A',
@@ -104,7 +124,8 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(PceGame),
+                SystemName = "PC Engine",
+                Class = new List<Type>(){typeof(PceGame) },
                 Extensions = new string[] {".pce"},
                 DefaultApps = new string[] {"/bin/pce"},
                 Prefix = 'E',
@@ -112,7 +133,8 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(GameGearGame),
+                SystemName = "Sega GameGear",
+                Class = new List<Type>(){typeof(GameGearGame) },
                 Extensions = new string[] {".gg"},
                 DefaultApps = new string[] {"/bin/gg"},
                 Prefix = 'R',
@@ -120,7 +142,8 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(GameGearGame),
+                SystemName="Atari 2600",
+                Class = new List<Type>(){typeof(Atari2600Game) },
                 Extensions = new string[] {".a26"},
                 DefaultApps = new string[] {"/bin/a26"},
                 Prefix = 'T',
@@ -128,14 +151,21 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(GameGearGame),
+                SystemName = "Arcade",
+                Class = new List<Type>(){typeof(GameGearGame) },
                 Extensions = new string[] {},
                 DefaultApps = new string[] {"/bin/fba", "/bin/mame", "/bin/cps2", "/bin/neogeo" },
                 Prefix = 'X',
                 DefaultCover = Resources.blank_arcade
             },
         };
-
+        public static AppInfo GetAppByClass(Type theClass)
+        {
+            foreach (var app in ApplicationTypes)
+                if(app.Class.Contains(theClass))
+                    return app;
+            return null;
+        }
         public static AppInfo GetAppByExtension(string extension)
         {
             foreach (var app in ApplicationTypes)
