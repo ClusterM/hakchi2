@@ -138,5 +138,36 @@ namespace com.clusterrr.hakchi_gui.UI.Components
             if (lFrm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 textBoxGameGenie.Text = nesGame.GameGenie;
         }
+
+        public void SetImageForSelectedGame(string fileName)
+        {
+        
+            if (currentApp == null || !(currentApp is NesMiniApplication)) return;
+            var game = (currentApp as NesMiniApplication);
+            game.Image = NesMiniApplication.LoadBitmap(fileName);
+            SetGame(game);
+           
+        }
+
+        private void buttonBrowseImage_Click(object sender, EventArgs e)
+        {
+            openFileDialogImage.Filter = Properties.Resources.Images + " (*.bmp;*.png;*.jpg;*.jpeg;*.gif)|*.bmp;*.png;*.jpg;*.jpeg;*.gif|" + Properties.Resources.AllFiles + "|*.*";
+            if (openFileDialogImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                SetImageForSelectedGame(openFileDialogImage.FileName);
+            }
+        }
+
+        private void buttonGoogle_Click(object sender, EventArgs e)
+        {
+            if (currentApp == null || !(currentApp is NesMiniApplication)) return;
+            var game = (currentApp as NesMiniApplication);
+            var googler = new ImageGooglerForm(game);
+            if (googler.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                game.Image = googler.Result;
+                SetGame(game);
+            }
+        }
     }
 }

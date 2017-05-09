@@ -49,6 +49,7 @@
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
             this.labelID = new System.Windows.Forms.Label();
+            this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
             this.SuspendLayout();
@@ -161,6 +162,7 @@
             this.buttonGoogle.TabIndex = 15;
             this.buttonGoogle.Text = "Google";
             this.buttonGoogle.UseVisualStyleBackColor = true;
+            this.buttonGoogle.Click += new System.EventHandler(this.buttonGoogle_Click);
             // 
             // buttonBrowseImage
             // 
@@ -171,6 +173,7 @@
             this.buttonBrowseImage.TabIndex = 13;
             this.buttonBrowseImage.Text = "Browse";
             this.buttonBrowseImage.UseVisualStyleBackColor = true;
+            this.buttonBrowseImage.Click += new System.EventHandler(this.buttonBrowseImage_Click);
             // 
             // pictureBoxArt
             // 
@@ -281,6 +284,10 @@
             this.labelID.TabIndex = 0;
             this.labelID.Text = "ID:";
             // 
+            // openFileDialogImage
+            // 
+            this.openFileDialogImage.FileName = "openFileDialog1";
+            // 
             // GameDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -318,5 +325,6 @@
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Label labelID;
+        private System.Windows.Forms.OpenFileDialog openFileDialogImage;
     }
 }

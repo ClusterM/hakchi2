@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tvGameSelecter = new System.Windows.Forms.TreeView();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
-            // tvGameSelecter
+            // checkedListBox1
             // 
-            this.tvGameSelecter.CheckBoxes = true;
-            this.tvGameSelecter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvGameSelecter.Location = new System.Drawing.Point(0, 0);
-            this.tvGameSelecter.Name = "tvGameSelecter";
-            this.tvGameSelecter.Size = new System.Drawing.Size(495, 607);
-            this.tvGameSelecter.TabIndex = 0;
+            this.checkedListBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(0, 0);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(495, 607);
+            this.checkedListBox1.TabIndex = 0;
             // 
             // GameSelecter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tvGameSelecter);
+            this.Controls.Add(this.checkedListBox1);
             this.Name = "GameSelecter";
             this.Size = new System.Drawing.Size(495, 607);
             this.ResumeLayout(false);
@@ -53,6 +53,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView tvGameSelecter;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }

@@ -442,6 +442,12 @@
     <Compile Include="FoldersManagerForm.Designer.cs">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Components\GameDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Components\GameDetail.Designer.cs">
+      <DependentUpon>GameDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Components\GameSelecter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -957,6 +963,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FoldersManagerForm.ru-RU.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Components\GameDetail.resx">
+      <DependentUpon>GameDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Components\GameSelecter.resx">
       <DependentUpon>GameSelecter.cs</DependentUpon>
@@ -1652,22 +1661,22 @@
   <ItemGroup>
     <PublishFile Include="data\GameGenieDB.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\nescarts.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

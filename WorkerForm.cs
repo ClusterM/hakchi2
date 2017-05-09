@@ -63,7 +63,7 @@ namespace com.clusterrr.hakchi_gui
         string[] correctKernels;
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
         string selectedFile = null;
-        public NesMiniApplication[] addedApplications;
+        public List<NesMiniApplication> addedApplications;
         public static int NandCTotal, NandCUsed, NandCFree, WritedGamesSize, SaveStatesSize;
         public const long ReservedMemory = 10;
 
@@ -1142,7 +1142,7 @@ namespace com.clusterrr.hakchi_gui
                     apps.Add(app);
                 SetProgress(++count, files.Count());
             }
-            addedApplications = apps.ToArray();
+            addedApplications = apps;
             return apps; // Added games/apps
         }
 

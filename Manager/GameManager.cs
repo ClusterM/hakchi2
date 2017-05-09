@@ -10,6 +10,16 @@ namespace com.clusterrr.hakchi_gui.Manager
 {
     public class GameManager
     {
+        public struct CountResult
+        {
+            public int SelectedCount;
+            public long SelectedSize;
+            public int TotalCount;
+            public long TotalSize;
+        }
+        public delegate void GameListEventHandler(List<NesMiniApplication> e);
+        public event GameListEventHandler NewGamesAdded;
+        public event GameListEventHandler GamesRemoved;
         static NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
             new NesDefaultGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros.", Size = 571031 },
             new NesDefaultGame { Code = "CLV-P-NAACE",  Name = "Super Mario Bros. 3", Size = 1163285 },
@@ -87,11 +97,93 @@ namespace com.clusterrr.hakchi_gui.Manager
         private List<NesMiniApplication> gameLibrary = new List<NesMiniApplication>();
         private GameManager()
         {
-            LoadLibrary();
+            
+        }
+        public CountResult GetStatistics()
+        {
+            CountResult stats = new CountResult();
+            stats.SelectedCount = 0;
+            stats.SelectedSize = 0;
+            stats.TotalCount = 0;
+            stats.TotalSize = 0;
+
+            foreach (var game in gameLibrary)
+            {
+                if (game is NesMiniApplication)
+                {
+                    long size = game.Size();
+                    stats.TotalSize += size;
+                    stats.TotalCount++;
+                    if(game.Selected)
+                    {
+                        stats.SelectedCount++;
+                        stats.SelectedSize += size;
+                    }
+                   
+                }
+
+            }
+            return stats;
         }
         public IOrderedEnumerable<NesMiniApplication> getAllGames()
         {
             return gameLibrary.OrderBy(o => o.Name);
+        }
+        public void DeleteGames(List<NesMiniApplication> toDelete)
+        {
+            foreach(NesMiniApplication game in toDelete)
+            {
+                try
+                {
+
+                    Directory.Delete(game.GamePath, true);
+                    gameLibrary.Remove(game);
+                    AppTypeCollection.AppInfo inf = AppTypeCollection.GetAppByClass(game.GetType());
+                    if (systemClassifiedGames.ContainsKey(inf))
+                    {
+                        systemClassifiedGames[inf].Remove(game);
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message + ex.StackTrace);
+                    MessageBox.Show(ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            if (GamesRemoved != null)
+            {
+                if (toDelete.Count() > 0)
+                {
+                    GamesRemoved(toDelete);
+                }
+            }
+        }
+        public void AddGames(List<NesMiniApplication> newGames)
+        {
+            List<NesMiniApplication> reallyAdded = new List<NesMiniApplication>();
+            foreach(NesMiniApplication g in newGames)
+            {
+                if (!gameLibrary.Contains(g))
+                {
+                    gameLibrary.Add(g);
+                    reallyAdded.Add(g);
+                    AppTypeCollection.AppInfo inf = AppTypeCollection.GetAppByClass(g.GetType());
+                    if (!systemClassifiedGames.ContainsKey(inf))
+                    {
+                        systemClassifiedGames[inf] = new List<NesMiniApplication>();
+                    }
+                    systemClassifiedGames[inf].Add(g);
+                }
+            }
+            if (NewGamesAdded != null)
+            {
+                if (reallyAdded.Count() > 0)
+                {
+                    NewGamesAdded(reallyAdded);
+                }
+            }
         }
         public void SaveChanges()
         {
@@ -124,7 +216,7 @@ namespace com.clusterrr.hakchi_gui.Manager
         public void ReloadDefault()
         {
             string[] selectedGames = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            List<NesDefaultGame> toremove = new List<NesDefaultGame>();
+            List<NesMiniApplication> toremove = new List<NesMiniApplication>();
             foreach (var game in gameLibrary)
             {
                 if (game.GetType() == typeof(NesDefaultGame))
@@ -136,29 +228,39 @@ namespace com.clusterrr.hakchi_gui.Manager
             {
                 gameLibrary.Remove(tr);
             }
+            if(GamesRemoved!=null)
+            {
+                if(toremove.Count() > 0)
+                {
+                    GamesRemoved(toremove);
+                }
+            }
             AppTypeCollection.AppInfo inf = AppTypeCollection.GetAppByClass(typeof(NesDefaultGame));
             if (systemClassifiedGames.ContainsKey(inf))
             {
                 systemClassifiedGames[inf].Clear();
             }
-
+            List<NesMiniApplication> toAdd = new List<NesMiniApplication>();
             foreach (var game in new List<NesDefaultGame>(ConfigIni.ConsoleType == 0 ? defaultNesGames : defaultFamicomGames).OrderBy(o => o.Name))
             {
                 game.Selected = selectedGames.Contains(game.Code);
-
-                gameLibrary.Add(game);
-
-                AppTypeCollection.AppInfo inf2 = AppTypeCollection.GetAppByClass(game.GetType());
-                if (!systemClassifiedGames.ContainsKey(inf2))
-                {
-                    systemClassifiedGames[inf2] = new List<NesMiniApplication>();
-                }
-                systemClassifiedGames[inf2].Add(game);
+                toAdd.Add(game);
             }
+            if(toAdd.Count()>0)
+            {
+                AddGames(toAdd);
+            }
+               
         }
-        private void LoadLibrary()
+        public void LoadLibrary()
         {
-
+            if (GamesRemoved != null)
+            {
+                if (gameLibrary.Count() > 0)
+                {
+                    GamesRemoved(gameLibrary);
+                }
+            }
             gameLibrary.Clear();
             ReloadDefault();
             string[] selectedGames = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
@@ -167,7 +269,7 @@ namespace com.clusterrr.hakchi_gui.Manager
                 Directory.CreateDirectory(NesMiniApplication.GamesDirectory);
             }
             var gameDirs = Directory.GetDirectories(NesMiniApplication.GamesDirectory);
-         
+            List<NesMiniApplication> toAdd = new List<NesMiniApplication>();
             foreach (var gameDir in gameDirs)
             {
                 try
@@ -177,15 +279,8 @@ namespace com.clusterrr.hakchi_gui.Manager
                     {
                         var game = NesMiniApplication.FromDirectory(gameDir);
                         game.Selected = selectedGames.Contains(game.Code);
-                        
-                        gameLibrary.Add(game);
-
-                        AppTypeCollection.AppInfo inf = AppTypeCollection.GetAppByClass(game.GetType());
-                        if(!systemClassifiedGames.ContainsKey(inf))
-                        {
-                            systemClassifiedGames[inf] = new List<NesMiniApplication>();
-                        }
-                        systemClassifiedGames[inf].Add(game);
+                        toAdd.Add(game);
+                      
                     }
                     catch (FileNotFoundException ex) // Remove bad directories if any
                     {
@@ -200,6 +295,11 @@ namespace com.clusterrr.hakchi_gui.Manager
                     continue;
                 }
             }
+            if(toAdd.Count() >0)
+            {
+                AddGames(toAdd);
+            }
+            
         }
     }
 }
