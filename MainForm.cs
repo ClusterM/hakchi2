@@ -1319,11 +1319,11 @@ namespace com.clusterrr.hakchi_gui
 
         private void installModules(string[] add = null)
         {
-            if (RequireKernelDump() == DialogResult.No) return;
             var form = new SelectModsForm(false, true, add);
             form.Text = Resources.SelectModsInstall;
             if (form.ShowDialog() == DialogResult.OK)
             {
+                if (RequireKernelDump() == DialogResult.No) return;
                 if (InstallMods(((from m
                                    in form.checkedListBoxMods.CheckedItems.OfType<object>().ToArray()
                                   select m.ToString())).ToArray()))
@@ -1335,11 +1335,11 @@ namespace com.clusterrr.hakchi_gui
 
         private void uninstallModulesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (RequireKernelDump() == DialogResult.No) return;
             var form = new SelectModsForm(true, false);
             form.Text = Resources.SelectModsUninstall;
             if (form.ShowDialog() == DialogResult.OK)
             {
+                if (RequireKernelDump() == DialogResult.No) return;
                 if (UninstallMods(((from m
                                    in form.checkedListBoxMods.CheckedItems.OfType<object>().ToArray()
                                     select m.ToString())).ToArray()))
@@ -1511,6 +1511,7 @@ namespace com.clusterrr.hakchi_gui
                     showProcess.Start();
                     new Thread(delegate()
                     {
+                        Thread.Sleep(5000);
                         try
                         {
                             showProcess.WaitForExit();

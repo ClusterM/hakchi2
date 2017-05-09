@@ -59,228 +59,228 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FTPToolStripMenuItem.Text">
-    <value>FTP server na ftp://root:clover@127.0.0.1:1021</value>
+    <value>FTP-palvelin osoitteessa ftp://root:clover@127.0.0.1:1021</value>
   </data>
   <data name="aboutToolStripMenuItem.Text">
-    <value>Informácie</value>
+    <value>Tietoa...</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>Pridať viac &amp;hier</value>
+    <value>Lisää &amp;pelejä</value>
   </data>
   <data name="addPresetToolStripMenuItem.Text">
-    <value>Pridať predvoľbu</value>
+    <value>Lisää valikoima</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
-    <value>Originálne hry v koreňovom adresári -&gt; Automaticky v podpriečinkoch</value>
+    <value>Alkuperäiset pelit juuressa -&gt; Automaattinen alikansioissa</value>
   </data>
   <data name="automaticToolStripMenuItem.Text">
-    <value>Automaticky</value>
+    <value>Automaattinen</value>
   </data>
   <data name="buttonAddGames.Text">
-    <value>Pridať viac hier</value>
+    <value>Lisää pelejä</value>
   </data>
   <data name="buttonBrowseImage.Text">
-    <value>Prehliadať</value>
+    <value>Selaa</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Synchronizovať vybrané hry s NES Mini</value>
+    <value>Synkronoi valitut pelit NES Minin kanssa</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
-    <value>Hack ovládača</value>
+    <value>Ohjainhackit</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
-    <value>Použiť kompresiu pre hry mimo NES (pre prídavný mód emulátora)</value>
+    <value>Pakkaa ei-NES-pelit (emulaattorimoduuleille)</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
-    <value>Typ konzoly</value>
+    <value>Konsolin tyyppi</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>Vlastné - ukázať Správcu priečinkov vždy</value>
+    <value>Mukautettu - näytä kansiohallinta joka kerta</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
-    <value>Odstrániť hru</value>
+    <value>Poista peli</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
-    <value>Odstrániť prednastavenie</value>
+    <value>Poista valikoima</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
-    <value>Zrušiť stránku/zložky</value>
+    <value>Poista sivut/kansiot</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Stiahnuť obal pre všetky hry</value>
+    <value>Lataa kansitaide kaikille peleille</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Zálohovať kernel</value>
+    <value>Dumppaa ydin</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
-    <value>Použiť "Select+A/B" pre povolenie autofire na A/B</value>
+    <value>Käytä "Select+A/B" A/B-automaattitulituksen aktivointiin </value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
-    <value>Zakázať ochranu proti epilepsii</value>
+    <value>Poista epilepsiasuoja</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
-    <value>&amp;Ukončiť</value>
+    <value>&amp;Lopeta</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
-    <value>FAQ</value>
+    <value>UKK</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
-    <value>&amp;Súbor</value>
+    <value>&amp;Tiedosto</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Flashnúť vlastný kernel</value>
+    <value>Flashaa mukautettu ydin</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Flashnúť originálny kernel</value>
+    <value>Flashaa alkuperäisydin</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>Originálne hry v koreňovom adresári -&gt; Priečinky, rozdeliť hry rovnomerne</value>
+    <value>Alkuperäiset pelit -&gt; Kansiot, pelit jaettu tasaisesti</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Pôvodné hry v koreňovom adresári -&gt; Zložky, rozdeliť podľa prvého písmena</value>
+    <value>Alkuperäiset pelit juuressa -&gt; Kansiot, jaettu alkukirjaimen mukaan</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>Zložky, rozdeliť podľa prvého písmena</value>
+    <value>Kansiot, jaettu alkukirjaimen mukaan</value>
   </data>
   <data name="foldersToolStripMenuItem.Text">
-    <value>Priečinky, rozdeliť hry rovnomerne</value>
+    <value>Kansiot, pelit jaettu tasaisesti</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>Stránka na GitHube s aktuálnymi verziami</value>
+    <value>GitHub-sivu varsinaisine julkaisuineen</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>Globálne argumenty príkazového riadku (iba pre odborníkov!)</value>
+    <value>Yleiset komentoriviparametrit (vain asiantuntijoille!)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>Môžete skryť niektoré predvolené hry</value>
+    <value>Voit piilottaa alkuperäispelejä</value>
   </data>
   <data name="groupBoxOptions.Text">
-    <value>Nastavenia hry</value>
+    <value>Pelivalinnat</value>
   </data>
   <data name="helpToolStripMenuItem.Text">
-    <value>&amp;Pomoc</value>
+    <value>&amp;Apua</value>
   </data>
   <data name="installModulesToolStripMenuItem.Text">
-    <value>Nainštalovať extra moduly</value>
+    <value>Asenna lisämoduuleja</value>
   </data>
   <data name="kernelToolStripMenuItem.Text">
-    <value>&amp;Kernel</value>
+    <value>&amp;Ydin</value>
   </data>
   <data name="label1.Text">
-    <value>Dátum vydania (RRRR-MM-DD):</value>
+    <value>Julkaisupäivämäärä (VVVV-KK-PP):</value>
   </data>
   <data name="label2.Text">
-    <value>Vydávateľ:</value>
+    <value>Julkaisija:</value>
   </data>
   <data name="label3.Text">
-    <value>Argumenty príkazového riadku (iba pre pokročilých používateľov!):</value>
+    <value>Komentoriviparametrit (vain asiantuntijoille!):</value>
   </data>
   <data name="label4.Text">
-    <value>Obal:</value>
+    <value>Kansitaide:</value>
   </data>
   <data name="label5.Text">
-    <value>Vyberte hry:</value>
+    <value>Valitse pelit:</value>
   </data>
   <data name="label6.Text">
-    <value>Maximálny počet hráčov</value>
+    <value>Pelaajia enintään:</value>
   </data>
   <data name="label7.Text">
-    <value>Game Genie kódy (oddelené čiarkou):</value>
+    <value>Game Genie -koodit (pilkuin eroteltuna):</value>
   </data>
   <data name="labelName.Text">
-    <value>Názov:</value>
+    <value>Nimi:</value>
   </data>
   <data name="languageToolStripMenuItem.Text">
-    <value>Jazyk</value>
+    <value>Kieli</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
-    <value>Maximálny počet hier na stránku/priečinok</value>
+    <value>Pelejä korkeintaan per sivu/kansio</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
-    <value>&amp;Moduly</value>
+    <value>&amp;Moduulit</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
-    <value>Spustiť FTP klient</value>
+    <value>Avaa FTP-asiakasohjelma</value>
   </data>
   <data name="openFileDialogImage.Title">
-    <value>Vyberte obal hry</value>
+    <value>Valitse pelin kansitaide</value>
   </data>
   <data name="openFileDialogNes.Title">
-    <value>Vybrať hry</value>
+    <value>Valitse pelit</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
-    <value>Spustiť Telnet klient</value>
+    <value>Avaa Telnet-asiakasohjelma</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>Originálne hry v koreňovom adresári -&gt; rozdeliť hry rovnomerne</value>
+    <value>Alkuperäiset pelit juuressa -&gt; Sivut, pelit jaettu tasaisesti</value>
   </data>
   <data name="pagesToolStripMenuItem.Text">
-    <value>Stránky, rozdeliť hry rovnomerne</value>
+    <value>Sivut, pelit jaettu tasaisesti</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>Štruktúra stránok/priečinkov</value>
+    <value>Sivut/kansiot -rakenne</value>
   </data>
   <data name="presetsToolStripMenuItem.Text">
-    <value>Predvoľba pre výber</value>
+    <value>Valikoimat</value>
   </data>
   <data name="radioButtonOne.Text">
-    <value>Jeden hráč</value>
+    <value>Yksi pelaaja</value>
   </data>
   <data name="radioButtonTwo.Text">
-    <value>Dvaja hráči, nesúčasne</value>
+    <value>Kaksi pelaajaa, ei yhtä aikaa</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Dvaja hráči, súčasne</value>
+    <value>Kaksi pelaajaa yhtä aikaa</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>Použiť kombináciu kláves pre resetovanie</value>
+    <value>Käytä näppäinyhdistelmää resetointiin</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Uložiť nastavenia do NES Mini</value>
+    <value>Tallenna asetukset NES Miniin nyt</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Správca uložených pozícií v hrách</value>
+    <value>Tallennusten hallinta</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
-    <value>Hľadať</value>
+    <value>Etsi</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text">
-    <value>Vybrať všetko</value>
+    <value>Valitse kaikki</value>
   </data>
   <data name="selectButtonCombinationToolStripMenuItem.Text">
-    <value>Vyberte kombináciu kláves pre resetovanie</value>
+    <value>Valitse resetointinäppäinyhdistelmä</value>
   </data>
   <data name="settingsToolStripMenuItem.Text">
-    <value>&amp;Nastavenia</value>
+    <value>&amp;Asetukset</value>
   </data>
   <data name="shellToolStripMenuItem.Text">
-    <value>Telnet server na telnet://127.0.0.1:1023 (login:root)</value>
+    <value>Telnet-palvelin osoitteessa telnet://127.0.0.1:1023 (login:root)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
-    <value>Synchronizovať</value>
+    <value>Synkronoi</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
-    <value>Urobiť fotku obrazovky</value>
+    <value>Ota kuvankaappaus</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
-    <value>&amp;Nástroje</value>
+    <value>&amp;Työkalut</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
-    <value>Odinštalovať prídavné moduly</value>
+    <value>Poista lisämoduulit</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text">
-    <value>Odinštalovať prídavné moduly</value>
+    <value>Poista asennus</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
-    <value>Odznačiť všetky</value>
+    <value>Poista kaikki valinnat</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>Hore+A+B = Start na 2. ovládači</value>
+    <value>Ylös+A+B = Start 2-ohjaimessa</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
-    <value>Použiť rozšírené fonty písma</value>
+    <value>Käytä laajennettua fonttia</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
-    <value>Použiť X/Y na klasickom ovládači ako autofire A/B</value>
+    <value>Käytä Classic Controllerin X/Y-näppäimiä A/B-automaattitulitukseen</value>
   </data>
 </root>
