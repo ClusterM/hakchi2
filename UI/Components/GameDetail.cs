@@ -30,6 +30,18 @@ namespace com.clusterrr.hakchi_gui.UI.Components
             currentApp = app;
             ReloadInfo();
         }
+        private void Disable()
+        {
+            buttonBrowseImage.Enabled = false;
+            buttonGoogle.Enabled = false;
+            groupBoxOptions.Enabled = false;
+        }
+        private void Enable()
+        {
+            buttonBrowseImage.Enabled = true;
+            buttonGoogle.Enabled = true;
+            groupBoxOptions.Enabled = true;
+        }
         private void ReloadInfo()
         {
             if (currentApp == null)
@@ -46,6 +58,8 @@ namespace com.clusterrr.hakchi_gui.UI.Components
                 textBoxPublisher.Text = "";
                 textBoxArguments.Text = "";
                 pictureBoxArt.Image = null;
+                buttonBrowseImage.Enabled = false;
+                buttonGoogle.Enabled = false;
             }
             else
             {
@@ -75,6 +89,15 @@ namespace com.clusterrr.hakchi_gui.UI.Components
                 buttonShowGameGenieDatabase.Enabled = textBoxGameGenie.Enabled = currentApp is NesGame;
                 textBoxGameGenie.Text = (currentApp is NesGame) ? (currentApp as NesGame).GameGenie : "";
                 groupBoxOptions.Enabled = true;
+             
+                if(currentApp.GetType() != typeof(NesDefaultGame))
+                {
+                    Enable();
+                }
+                else
+                {
+                    Disable();
+                }
             }
         }
 

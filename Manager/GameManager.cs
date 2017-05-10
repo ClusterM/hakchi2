@@ -99,6 +99,40 @@ namespace com.clusterrr.hakchi_gui.Manager
         {
             
         }
+        public void Unselect(string[] unselect)
+        {
+            foreach (var game in gameLibrary)
+            {
+                if (unselect.Contains(game.Code))
+                {
+                    if (game.Selected)
+                    {
+                        game.Selected = false;
+                    }
+                }
+                
+            }
+        }
+        public void SetSelected(string[] gameCodes)
+        {
+            foreach(var game in gameLibrary)
+            {
+                if (gameCodes.Contains(game.Code))
+                {
+                    if (!game.Selected)
+                    {
+                        game.Selected = true;
+                    }
+                }
+                else
+                {
+                    if(game.Selected)
+                    {
+                        game.Selected = false;
+                    }
+                }
+            }
+        }
         public CountResult GetStatistics()
         {
             CountResult stats = new CountResult();
@@ -124,6 +158,19 @@ namespace com.clusterrr.hakchi_gui.Manager
 
             }
             return stats;
+        }
+        public IOrderedEnumerable<NesMiniApplication> getSelectedGames()
+        {
+            List<NesMiniApplication> ret = new List<NesMiniApplication>();
+            foreach(NesMiniApplication app in gameLibrary)
+            {
+                if(app.Selected)
+                {
+                    ret.Add(app);
+                }
+            }
+
+            return ret.OrderBy(o => o.Name);
         }
         public IOrderedEnumerable<NesMiniApplication> getAllGames()
         {
@@ -167,6 +214,7 @@ namespace com.clusterrr.hakchi_gui.Manager
             {
                 if (!gameLibrary.Contains(g))
                 {
+                    g.SelectedChanged += G_SelectedChanged;
                     gameLibrary.Add(g);
                     reallyAdded.Add(g);
                     AppTypeCollection.AppInfo inf = AppTypeCollection.GetAppByClass(g.GetType());
@@ -185,6 +233,16 @@ namespace com.clusterrr.hakchi_gui.Manager
                 }
             }
         }
+        public event NesMiniApplication.ValueChangedHandler SelectedChanged;
+        private void G_SelectedChanged(NesMiniApplication app)
+        {
+            SaveChanges();
+            if(SelectedChanged != null)
+            {
+                SelectedChanged(app);
+            }
+        }
+
         public void SaveChanges()
         {
             var selected = new List<string>();
@@ -213,6 +271,7 @@ namespace com.clusterrr.hakchi_gui.Manager
             /*Why? If a game type has change its going to be reloaded...*/
           //  LoadLibrary();
         }
+    
         public void ReloadDefault()
         {
             string[] selectedGames = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);

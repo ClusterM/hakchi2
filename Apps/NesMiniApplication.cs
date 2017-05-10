@@ -17,7 +17,27 @@ namespace com.clusterrr.hakchi_gui
         public readonly static string GamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games");
         const string DefaultReleaseDate = "1900-01-01";
         const string DefaultPublisher = "UNKNOWN";
-        public bool Selected = false;
+        private bool selected = false;
+        public delegate void ValueChangedHandler(NesMiniApplication app);
+
+        public event ValueChangedHandler SelectedChanged;
+        public bool Selected
+        {
+            get { return selected; }
+            set
+            {
+                
+                if(value != selected)
+                {
+                    selected = value;
+                    if (SelectedChanged != null)
+                    {
+                        SelectedChanged(this);
+                    }
+                }
+                
+            }
+        }
         protected string code;
         public string Code
         {

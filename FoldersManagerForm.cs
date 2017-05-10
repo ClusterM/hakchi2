@@ -241,7 +241,8 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                if (node != null && node.Tag is NesMiniApplication)
+                if (node != null && node.Tag is NesMiniApplication  && !(node.Tag is NesDefaultGame))
+
                 {
                     var game = node.Tag as NesMiniApplication;
                     pictureBoxArt.Image = NesMiniApplication.LoadBitmap(game.IconPath);
@@ -846,11 +847,16 @@ namespace com.clusterrr.hakchi_gui
             File.WriteAllText(FoldersXmlPath, TreeToXml());
             if (mainForm != null)
             {
-                for (int i = 0; i < mainForm.checkedListBoxGames.Items.Count; i++)
+                List<string> codes = new List<string>();
+                foreach(INesMenuElement elem in deletedGames)
                 {
-                    if (deletedGames.Contains(mainForm.checkedListBoxGames.Items[i] as NesMiniApplication))
-                        mainForm.checkedListBoxGames.SetItemChecked(i, false);
+                    codes.Add(elem.Code);
                 }
+                if(codes.Count() >0)
+                {
+                    Manager.GameManager.GetInstance().Unselect(codes.ToArray());
+                }
+                
                 
                 ConfigIni.Save();
             }
