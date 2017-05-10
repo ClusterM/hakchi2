@@ -969,5 +969,10 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
+
+        private void buttonSplitByConsole_Click(object sender, EventArgs e)
+        {
+            DrawSplitTree(NesMenuCollection.SplitStyle.BySystem);
+        }
     }
 }
