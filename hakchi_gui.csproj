@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -31,8 +31,8 @@
     <PublisherName>Alexey %27Cluster%27 Avdyukhin</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
-    <ApplicationRevision>19</ApplicationRevision>
-    <ApplicationVersion>2.0.17.19</ApplicationVersion>
+    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationVersion>2.0.17.14</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -81,10 +81,10 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>1D05715BF83320949FC1BAC8462308051A0C0F04</ManifestCertificateThumbprint>
@@ -320,6 +320,8 @@
     <Compile Include="LibWinUsb\WinUsb\PowerPolicyType.cs" />
     <Compile Include="LibWinUsb\WinUsb\WinUsbDevice.cs" />
     <Compile Include="LibWinUsb\WinUsb\WinUsbRegistry.cs" />
+    <Compile Include="Manager\EventBus.cs" />
+    <Compile Include="Manager\GameManager.cs" />
     <Compile Include="MessageBoxManager.cs" />
     <Compile Include="Properties\Resources.Designer.cs" />
     <Compile Include="SaveStateManager.cs">
@@ -441,6 +443,18 @@
     <Compile Include="FoldersManagerForm.Designer.cs">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Components\GameDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Components\GameDetail.Designer.cs">
+      <DependentUpon>GameDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\GameSelecter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Components\GameSelecter.Designer.cs">
+      <DependentUpon>GameSelecter.cs</DependentUpon>
+    </Compile>
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
     <Compile Include="WaitingClovershellForm.cs">
@@ -485,9 +499,6 @@
     <EmbeddedResource Include="FoldersManagerForm.es-ES.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FoldersManagerForm.fi-FI.resx">
-      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FoldersManagerForm.fr-FR.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -522,9 +533,6 @@
       <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeAddModForm.es-ES.resx">
-      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GameGenieCodeAddModForm.fi-FI.resx">
       <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeAddModForm.fr-FR.resx">
@@ -572,9 +580,6 @@
     <EmbeddedResource Include="GameGenieCodeForm.es-ES.resx">
       <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GameGenieCodeForm.fi-FI.resx">
-      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeForm.fr-FR.resx">
       <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -618,9 +623,6 @@
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageGooglerForm.es-ES.resx">
-      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ImageGooglerForm.fi-FI.resx">
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageGooglerForm.fr-FR.resx">
@@ -671,9 +673,6 @@
     <EmbeddedResource Include="MainForm.es-ES.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.fi-FI.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.fr-FR.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -709,7 +708,6 @@
     <EmbeddedResource Include="Properties\Resources.el-GR.resx" />
     <EmbeddedResource Include="Properties\Resources.es-AR.resx" />
     <EmbeddedResource Include="Properties\Resources.es-ES.resx" />
-    <EmbeddedResource Include="Properties\Resources.fi-FI.resx" />
     <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
     <EmbeddedResource Include="Properties\Resources.nl.resx" />
@@ -736,9 +734,6 @@
       <DependentUpon>SaveStateManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveStateManager.es-ES.resx">
-      <DependentUpon>SaveStateManager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SaveStateManager.fi-FI.resx">
       <DependentUpon>SaveStateManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveStateManager.fr-FR.resx">
@@ -786,9 +781,6 @@
     <EmbeddedResource Include="SearchForm.es-ES.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchForm.fi-FI.resx">
-      <DependentUpon>SearchForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SearchForm.fr-FR.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -823,9 +815,6 @@
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectButtonsForm.es-ES.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.fi-FI.resx">
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectButtonsForm.fr-FR.resx">
@@ -864,9 +853,6 @@
     <EmbeddedResource Include="SelectFileForm.es-ES.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectFileForm.fi-FI.resx">
-      <DependentUpon>SelectFileForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SelectFileForm.fr-FR.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -901,9 +887,6 @@
       <DependentUpon>SelectIconForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectIconForm.es-ES.resx">
-      <DependentUpon>SelectIconForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectIconForm.fi-FI.resx">
       <DependentUpon>SelectIconForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectIconForm.fr-FR.resx">
@@ -982,6 +965,12 @@
     <EmbeddedResource Include="FoldersManagerForm.ru-RU.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Components\GameDetail.resx">
+      <DependentUpon>GameDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Components\GameSelecter.resx">
+      <DependentUpon>GameSelecter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.bg-BG.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -998,9 +987,6 @@
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.es-ES.resx">
-      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WaitingClovershellForm.fi-FI.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.fr-FR.resx">
@@ -1046,9 +1032,6 @@
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.es-ES.resx">
-      <DependentUpon>WaitingFelForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WaitingFelForm.fi-FI.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.fr-FR.resx">
@@ -1107,7 +1090,6 @@
     <EmbeddedResource Include="images\flags\se.png" />
     <EmbeddedResource Include="images\flags\sk.png" />
     <EmbeddedResource Include="images\flags\us.png" />
-    <EmbeddedResource Include="images\flags\fi.png" />
     <Content Include="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1718,4 +1700,5 @@ rem del *.manifest</PostBuildEvent>
   <Target Name="AfterBuild">
   </Target>
   -->
+
 </Project>

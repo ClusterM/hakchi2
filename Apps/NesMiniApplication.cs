@@ -17,7 +17,27 @@ namespace com.clusterrr.hakchi_gui
         public readonly static string GamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games");
         const string DefaultReleaseDate = "1900-01-01";
         const string DefaultPublisher = "UNKNOWN";
+        private bool selected = false;
+        public delegate void ValueChangedHandler(NesMiniApplication app);
 
+        public event ValueChangedHandler SelectedChanged;
+        public bool Selected
+        {
+            get { return selected; }
+            set
+            {
+                
+                if(value != selected)
+                {
+                    selected = value;
+                    if (SelectedChanged != null)
+                    {
+                        SelectedChanged(this);
+                    }
+                }
+                
+            }
+        }
         protected string code;
         public string Code
         {
@@ -119,7 +139,7 @@ namespace com.clusterrr.hakchi_gui
                     var app = AppTypeCollection.GetAppByExec(command);
                     if (app != null)
                     {
-                        var constructor = app.Class.GetConstructor(new Type[] { typeof(string), typeof(bool) });
+                        var constructor = app.Class[0].GetConstructor(new Type[] { typeof(string), typeof(bool) });
                         return (NesMiniApplication)constructor.Invoke(new object[] { path, ignoreEmptyConfig });
                     }
                     break;
@@ -138,7 +158,7 @@ namespace com.clusterrr.hakchi_gui
             var appinfo = AppTypeCollection.GetAppByExtension(extension);
             if (appinfo != null)
             {
-                var import = appinfo.Class.GetMethod("Import", new Type[] { typeof(string), typeof(string), typeof(byte[]) });
+                var import = appinfo.Class[0].GetMethod("Import", new Type[] { typeof(string), typeof(string), typeof(byte[]) });
                 if (import != null)
                     return (NesMiniApplication)import.Invoke(null, new object[] { fileName, sourceFile, rawRomData });
                 else
@@ -275,6 +295,7 @@ namespace com.clusterrr.hakchi_gui
 
         public virtual bool Save()
         {
+          
             if (!hasUnsavedChanges) return false;
             Debug.WriteLine(string.Format("Saving application \"{0}\" as {1}", Name, Code));
             Name = Regex.Replace(Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
@@ -463,6 +484,10 @@ namespace com.clusterrr.hakchi_gui
 
         public long Size(string path = null)
         {
+            if(this.GetType() == typeof(NesDefaultGame))
+            {
+                return ((NesDefaultGame)this).Size;
+            }
             if (path == null)
                 path = GamePath;
             long size = 0;
