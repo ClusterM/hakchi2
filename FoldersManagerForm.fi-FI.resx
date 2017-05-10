@@ -59,24 +59,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Списък на кодовете за Game Genie</value>
-  </data>
-  <data name="addToolStripMenuItem.Text">
-    <value>Добави </value>
-  </data>
-  <data name="buttonAdd.Text">
-    <value>Добави </value>
+    <value>Kansiohallinta</value>
   </data>
   <data name="buttonCancel.Text">
-    <value>Анулирай</value>
+    <value>Peruuta</value>
   </data>
-  <data name="buttonImport.Text">
-    <value>Импорт</value>
+  <data name="buttonFoldersEqually.Text">
+    <value>Jaettu tasaisesti</value>
   </data>
-  <data name="editToolStripMenuItem.Text">
-    <value>Редактиране</value>
+  <data name="buttonFoldersEquallyOriginal.Text">
+    <value>Alkuperäiset pelit -&gt; Jaettu tasaisesti</value>
   </data>
-  <data name="removeToolStripMenuItem.Text">
-    <value>Изтрий</value>
+  <data name="buttonFoldersLetters.Text">
+    <value>Jaettu alkukirjaimen mukaan</value>
+  </data>
+  <data name="buttonFoldersLettersOriginal.Text">
+    <value>Alkuperäiset pelit -&gt; Jaettu alkukirjaimen mukaan</value>
+  </data>
+  <data name="buttonNewFolder.Text">
+    <value>Uusi kansio</value>
+  </data>
+  <data name="buttonNoFolders.Text">
+    <value>Ei kansioita</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Text">
+    <value>Alkuperäiset pelit -&gt; Muut pelit</value>
+  </data>
+  <data name="cutToolStripMenuItem.Text">
+    <value>Leikkaa</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text">
+    <value>Poista</value>
+  </data>
+  <data name="groupBoxArt.Text">
+    <value>Valikkokuvake</value>
+  </data>
+  <data name="groupBoxSplitModes.Text">
+    <value>Luo kansiorakenne automaattisesti</value>
+  </data>
+  <data name="labelPosition.Text">
+    <value>Kansion paikka:</value>
+  </data>
+  <data name="newFolderToolStripMenuItem.Text">
+    <value>Luo uusi kansio</value>
+  </data>
+  <data name="pasteToolStripMenuItem.Text">
+    <value>Liitä</value>
+  </data>
+  <data name="renameToolStripMenuItem.Text">
+    <value>Nimeä kansio uudelleen</value>
+  </data>
+  <data name="labelElementCount.Text">
+    <value>Folder statistics</value>
   </data>
 </root>

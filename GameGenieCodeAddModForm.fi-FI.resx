@@ -59,24 +59,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Списък на кодовете за Game Genie</value>
-  </data>
-  <data name="addToolStripMenuItem.Text">
-    <value>Добави </value>
-  </data>
-  <data name="buttonAdd.Text">
-    <value>Добави </value>
+    <value>Lisää Game Genie -koodi</value>
   </data>
   <data name="buttonCancel.Text">
-    <value>Анулирай</value>
+    <value>Peruuta</value>
   </data>
-  <data name="buttonImport.Text">
-    <value>Импорт</value>
+  <data name="label1.Text">
+    <value>Koodi:</value>
   </data>
-  <data name="editToolStripMenuItem.Text">
-    <value>Редактиране</value>
-  </data>
-  <data name="removeToolStripMenuItem.Text">
-    <value>Изтрий</value>
+  <data name="label2.Text">
+    <value>Kuvaus:</value>
   </data>
 </root>

@@ -59,24 +59,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Списък на кодовете за Game Genie</value>
+    <value>Odotetaan NES Miniäsi...</value>
   </data>
-  <data name="addToolStripMenuItem.Text">
-    <value>Добави </value>
+  <data name="buttonDriver.Text">
+    <value>Asenna ajuri</value>
   </data>
-  <data name="buttonAdd.Text">
-    <value>Добави </value>
+  <data name="label1.Text">
+    <value>Seuraa näitä vaiheita:</value>
   </data>
-  <data name="buttonCancel.Text">
-    <value>Анулирай</value>
+  <data name="label2.Text">
+    <value>1. Varmista, että NES Minisi POWER-kytkin on pois päältä.</value>
   </data>
-  <data name="buttonImport.Text">
-    <value>Импорт</value>
+  <data name="label3.Text">
+    <value>2. Yhdistä (uudelleen) NES Minisi PC:hen USB-kaapelilla.</value>
   </data>
-  <data name="editToolStripMenuItem.Text">
-    <value>Редактиране</value>
+  <data name="label4.Text">
+    <value>3. Pidä RESET-painiketta painettuna ja paina POWER-kytkintä</value>
   </data>
-  <data name="removeToolStripMenuItem.Text">
-    <value>Изтрий</value>
+  <data name="label5.Text">
+    <value>4. Vapauta RESET-painike muutaman sekunnin kuluttua, POWER-ledin ei pitäisi palaa.</value>
+  </data>
+  <data name="label6.Text">
+    <value>5. Asenna ajuri, jos sitä ei ole vielä asennettu:</value>
   </data>
 </root>

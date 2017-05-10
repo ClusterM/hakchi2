@@ -304,7 +304,7 @@
     <value>Downloading box art for all games (I'm feeling lucky!)</value>
   </data>
   <data name="GooglingFor" xml:space="preserve">
-    <value>Googling for </value>
+    <value>Googling for</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>Not found:</value>
@@ -621,5 +621,8 @@
   </data>
   <data name="us" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\flags\us.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\fi.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

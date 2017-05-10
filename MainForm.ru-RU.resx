@@ -275,7 +275,7 @@
     <value>Снять отметку со всех</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>"Up+A+B = Start" на втором контроллере</value>
+    <value>Up+A+B = Start на втором контроллере</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Использовать расширенный шрифт</value>

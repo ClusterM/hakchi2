@@ -152,7 +152,7 @@
     <value>Argumentos de linha de comando globais (somente especialistas!)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>Você pode ocultar alguns jogos</value>
+    <value>Você pode ocultar alguns jogos </value>
   </data>
   <data name="groupBoxOptions.Text">
     <value>Opções de jogo</value>
@@ -191,7 +191,7 @@
     <value>Nome:</value>
   </data>
   <data name="languageToolStripMenuItem.Text">
-    <value>Lugha</value>
+    <value>Língua</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Máximo de jogos por página / pasta</value>
