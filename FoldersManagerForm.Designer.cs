@@ -57,6 +57,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
+            this.buttonSplitByConsole = new System.Windows.Forms.Button();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
@@ -194,6 +195,7 @@
             // groupBoxSplitModes
             // 
             resources.ApplyResources(this.groupBoxSplitModes, "groupBoxSplitModes");
+            this.groupBoxSplitModes.Controls.Add(this.buttonSplitByConsole);
             this.groupBoxSplitModes.Controls.Add(this.buttonNoFoldersOriginal);
             this.groupBoxSplitModes.Controls.Add(this.buttonNoFolders);
             this.groupBoxSplitModes.Controls.Add(this.buttonFoldersLetters);
@@ -336,6 +338,13 @@
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
+            // buttonSplitByConsole
+            // 
+            resources.ApplyResources(this.buttonSplitByConsole, "buttonSplitByConsole");
+            this.buttonSplitByConsole.Name = "buttonSplitByConsole";
+            this.buttonSplitByConsole.UseVisualStyleBackColor = true;
+            this.buttonSplitByConsole.Click += new System.EventHandler(this.buttonSplitByConsole_Click);
+            // 
             // FoldersManagerForm
             // 
             resources.ApplyResources(this, "$this");
@@ -387,5 +396,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItemSep;
         private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
+        private System.Windows.Forms.Button buttonSplitByConsole;
     }
 }
