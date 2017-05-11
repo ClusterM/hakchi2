@@ -164,7 +164,9 @@ namespace com.clusterrr.hakchi_gui
             foreach (var app in ApplicationTypes)
                 if(app.Class.Contains(theClass))
                     return app;
-            return null;
+            AppInfo inf = new AppInfo();
+            inf.SystemName = "Unknow";
+            return inf;
         }
         public static AppInfo GetAppByExtension(string extension)
         {
