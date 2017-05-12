@@ -58,6 +58,7 @@ namespace com.clusterrr.hakchi_gui
                 InternalMods = from m in Directory.GetFiles(Path.Combine(Program.BaseDirectoryInternal, "mods/hmods")) select Path.GetFileNameWithoutExtension(m);
                 gameSelecter1.Init();
                 gameSelecter1.SelectedAppChanged += GameSelecter1_SelectedAppChanged;
+                Manager.EventBus.getInstance().SizeRecalculationRequired += MainForm_SizeRecalculationRequired;
                 Manager.GameManager.GetInstance().SelectedChanged += MainForm_SelectedChanged;
                 Manager.GameManager.GetInstance().GamesRemoved += MainForm_GamesRemoved;
                 Manager.GameManager.GetInstance().NewGamesAdded += MainForm_NewGamesAdded;
@@ -141,14 +142,24 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void MainForm_SelectedChanged(NesMiniApplication app)
+        private void MainForm_SizeRecalculationRequired()
         {
             ShowStats();
         }
 
+        private void MainForm_SelectedChanged(NesMiniApplication app)
+        {
+            if (!Manager.GameManager.GetInstance().SelectedChangeBatch)
+            {
+                ShowStats();
+            }
+        }
+
         private void GameSelecter1_SelectedAppChanged(NesMiniApplication app)
         {
-            ShowSelected();
+           
+                ShowSelected();
+            
         }
 
         void Clovershell_OnConnected()

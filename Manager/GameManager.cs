@@ -218,6 +218,14 @@ namespace com.clusterrr.hakchi_gui.Manager
                     gameLibrary.Add(g);
                     reallyAdded.Add(g);
                     AppTypeCollection.AppInfo inf = AppTypeCollection.GetAppByClass(g.GetType());
+                    if (inf.Class[0] == typeof(UnknowSystem))
+                    {
+                        inf = AppTypeCollection.GetAppByExec(g.Command);
+                    }
+                    if (inf == null)
+                    {
+                        Console.Write("");
+                    }
                     if (!systemClassifiedGames.ContainsKey(inf))
                     {
                         systemClassifiedGames[inf] = new List<NesMiniApplication>();
@@ -233,10 +241,14 @@ namespace com.clusterrr.hakchi_gui.Manager
                 }
             }
         }
+        public bool SelectedChangeBatch = false;
         public event NesMiniApplication.ValueChangedHandler SelectedChanged;
         private void G_SelectedChanged(NesMiniApplication app)
         {
-            SaveChanges();
+            if (!SelectedChangeBatch)
+            {
+                SaveChanges();
+            }
             if(SelectedChanged != null)
             {
                 SelectedChanged(app);
@@ -336,7 +348,15 @@ namespace com.clusterrr.hakchi_gui.Manager
                     // Removing empty directories without errors
                     try
                     {
+                        if(gameDir == "C:\\Users\\elier\\Documents\\latesteliehakchi2\\bin\\Debug\\games\\CLV-E-ELHEW")
+                        {
+                            Console.Write("");
+                        }
                         var game = NesMiniApplication.FromDirectory(gameDir);
+                        if(game.GetType() == typeof(NesMiniApplication))
+                        {
+                            Console.Write("");
+                        }
                         game.Selected = selectedGames.Contains(game.Code);
                         toAdd.Add(game);
                       

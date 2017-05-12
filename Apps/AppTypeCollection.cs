@@ -104,6 +104,54 @@ namespace com.clusterrr.hakchi_gui
                 Prefix = 'B',
                 DefaultCover = Resources.blank_gb
             },
+            ///bin/a78 /usr/share/games/nes/kachikachi/CLV-Z-AGEPI/Ms._Pac-Man__USA_.7z
+            new AppInfo
+            {
+                SystemName = "Atari 7800",
+                Class = new List<Type>(){typeof(UnknowSystem) },
+                Extensions = new string[]{".a78"},
+                DefaultApps = new string[]{ "/bin/a78" },
+                Prefix = 'Z',
+                DefaultCover = Resources.blank_app
+            },
+            new AppInfo
+            {
+                SystemName = "Atari Lynx",
+                Class = new List<Type>(){typeof(UnknowSystem) },
+                Extensions = new string[]{".lnx"},
+                DefaultApps = new string[]{ "/bin/lnx" },
+                Prefix = 'Z',
+                DefaultCover = Resources.blank_app
+            },
+          
+            new AppInfo
+            {
+                SystemName = "SuperGrafx",
+                Class = new List<Type>(){typeof(UnknowSystem) },
+                Extensions = new string[]{".pce"},
+                DefaultApps = new string[]{ "/bin/sgfx" },
+                Prefix = 'E',
+                DefaultCover = Resources.blank_pce
+            },
+        
+            new AppInfo
+            {
+                SystemName = "NeoGeo Pocket (Color)",
+                Class = new List<Type>(){typeof(UnknowSystem) },
+                Extensions = new string[]{".ngc"},
+                DefaultApps = new string[]{ "/bin/ngc" },
+                Prefix = 'E',
+                DefaultCover = Resources.blank_app
+            },
+             new AppInfo
+            {
+                SystemName = "NeoGeo Pocket",
+                Class = new List<Type>(){typeof(UnknowSystem) },
+                Extensions = new string[]{".ngp"},
+                DefaultApps = new string[]{ "/bin/ngp" },
+                Prefix = 'E',
+                DefaultCover = Resources.blank_app
+            },
             new AppInfo
             {
                 SystemName = "GameBoy Color",
@@ -182,7 +230,9 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var cmd in app.DefaultApps)
                     if (exec.StartsWith(cmd + " "))
                         return app;
-            return null;
+            AppInfo inf = new AppInfo();
+            inf.SystemName = "Unknow";
+            return inf;
         }
     }
 }

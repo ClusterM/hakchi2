@@ -14,6 +14,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public class NesMiniApplication : INesMenuElement
     {
+
         public readonly static string GamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games");
         const string DefaultReleaseDate = "1900-01-01";
         const string DefaultPublisher = "UNKNOWN";

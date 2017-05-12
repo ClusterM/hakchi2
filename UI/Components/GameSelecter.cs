@@ -249,7 +249,12 @@ namespace com.clusterrr.hakchi_gui.UI.Components
             /*Add to treeview*/
             foreach(var game in e.OrderBy(o => o.Name))
             {
-                string systemName = AppTypeCollection.GetAppByClass(game.GetType()).SystemName;
+                AppTypeCollection.AppInfo inf = AppTypeCollection.GetAppByClass(game.GetType());
+                if (inf.Class[0] == typeof(UnknowSystem))
+                {
+                    inf = AppTypeCollection.GetAppByExec(game.Command);
+                }
+                string systemName = inf.SystemName;
                 TreeNode tn = getSystemTreeNode(systemName);
                 TreeNode gameNode = new TreeNode(game.Name);
                 gameNode.Tag = game;
@@ -377,7 +382,9 @@ namespace com.clusterrr.hakchi_gui.UI.Components
                 {
                     if (!InFolderUncheck)
                     {
+                        NesMiniApplication last = null;
                         Debug.WriteLine(e.Node.Text + " - " + e.Node.Checked.ToString());
+                        Manager.GameManager.GetInstance().SelectedChangeBatch = true;
                         treeView1.BeginUpdate();
                         if(e.Node.Checked)
                         {
@@ -385,6 +392,10 @@ namespace com.clusterrr.hakchi_gui.UI.Components
                         }
                         foreach (TreeNode tn in e.Node.Nodes)
                         {
+                            if(tn.Tag != null  && tn.Tag is NesMiniApplication)
+                            {
+                                last = tn.Tag as NesMiniApplication;
+                            }
                             if (tn.Checked != e.Node.Checked)
                             {
                                 tn.Checked = e.Node.Checked;
@@ -395,6 +406,10 @@ namespace com.clusterrr.hakchi_gui.UI.Components
                             InMassCheck = false;
                         }
                         treeView1.EndUpdate();
+                        Manager.GameManager.GetInstance().SelectedChangeBatch = false;
+                        Manager.EventBus.getInstance().SizeRecalculationRequest();
+                   
+                       
                     }
                 }
             }

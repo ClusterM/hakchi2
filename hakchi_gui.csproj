@@ -133,6 +133,7 @@
     <Compile Include="Apps\SmsGame.cs" />
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\NesUGame.cs" />
+    <Compile Include="Apps\UnknowSystem.cs" />
     <Compile Include="Clovershell\ClovershellConnection.cs" />
     <Compile Include="Clovershell\ClovershellException.cs" />
     <Compile Include="Clovershell\ExecConnection.cs" />
