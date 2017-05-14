@@ -1,3 +1,5 @@
 bin/
 driver/source/nesmini_driver/Release/
 obj/
+hakchi_gui.csproj.user
+*.pfx

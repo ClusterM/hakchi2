@@ -17,13 +17,8 @@ namespace com.clusterrr.hakchi_gui
         {
             if (textBoxSearch.Text.Length > 0)
             {
-                for (int i = 1; i < mainForm.checkedListBoxGames.Items.Count; i++)
-                    if ((mainForm.checkedListBoxGames.Items[i] as NesMiniApplication).Name.
-                            ToLower().StartsWith(textBoxSearch.Text.ToLower()))
-                    {
-                        mainForm.checkedListBoxGames.SelectedIndex = i;
-                        break;
-                    }
+                Manager.EventBus.getInstance().Search(textBoxSearch.Text);
+               
             }
         }
 

@@ -31,8 +31,8 @@
     <PublisherName>Alexey %27Cluster%27 Avdyukhin</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
-    <ApplicationRevision>19</ApplicationRevision>
-    <ApplicationVersion>2.0.17.19</ApplicationVersion>
+    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationVersion>2.0.17.14</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -81,10 +81,10 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>1D05715BF83320949FC1BAC8462308051A0C0F04</ManifestCertificateThumbprint>
@@ -100,6 +100,9 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.2\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -119,20 +122,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Apps\AppTypeCollection.cs" />
-    <Compile Include="Apps\ArcadeGame.cs" />
-    <Compile Include="Apps\Atari2600Game.cs" />
-    <Compile Include="Apps\Sega32XGame.cs" />
-    <Compile Include="Apps\GenesisGame.cs" />
-    <Compile Include="Apps\PceGame.cs" />
-    <Compile Include="Apps\GbaGame.cs" />
-    <Compile Include="Apps\GbcGame.cs" />
-    <Compile Include="Apps\GbGame.cs" />
-    <Compile Include="Apps\N64Game.cs" />
-    <Compile Include="Apps\GameGearGame.cs" />
-    <Compile Include="Apps\SmsGame.cs" />
-    <Compile Include="Apps\SnesGame.cs" />
-    <Compile Include="Apps\NesUGame.cs" />
+    <Compile Include="Apps\UnknowSystem.cs" />
     <Compile Include="Clovershell\ClovershellConnection.cs" />
     <Compile Include="Clovershell\ClovershellException.cs" />
     <Compile Include="Clovershell\ExecConnection.cs" />
@@ -320,8 +310,17 @@
     <Compile Include="LibWinUsb\WinUsb\PowerPolicyType.cs" />
     <Compile Include="LibWinUsb\WinUsb\WinUsbDevice.cs" />
     <Compile Include="LibWinUsb\WinUsb\WinUsbRegistry.cs" />
+    <Compile Include="Manager\BitmapManager.cs" />
+    <Compile Include="Manager\EventBus.cs" />
+    <Compile Include="Manager\GameManager.cs" />
+    <Compile Include="Manager\SystemType.cs" />
     <Compile Include="MessageBoxManager.cs" />
     <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="SaveStateManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -359,7 +358,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Apps\FdsGame.cs" />
     <Compile Include="NesMenuCollection.cs" />
     <Compile Include="NesMenuFolder.cs" />
     <Compile Include="NesFile.cs" />
@@ -441,6 +439,22 @@
     <Compile Include="FoldersManagerForm.Designer.cs">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tooling\TaskableTool.cs" />
+    <Compile Include="UI\Components\GameDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Components\GameDetail.Designer.cs">
+      <DependentUpon>GameDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\GameSelecter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Components\GameSelecter.Designer.cs">
+      <DependentUpon>GameSelecter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FixedTreeview.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
     <Compile Include="WaitingClovershellForm.cs">
@@ -485,9 +499,6 @@
     <EmbeddedResource Include="FoldersManagerForm.es-ES.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FoldersManagerForm.fi-FI.resx">
-      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FoldersManagerForm.fr-FR.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -522,9 +533,6 @@
       <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeAddModForm.es-ES.resx">
-      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GameGenieCodeAddModForm.fi-FI.resx">
       <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeAddModForm.fr-FR.resx">
@@ -572,9 +580,6 @@
     <EmbeddedResource Include="GameGenieCodeForm.es-ES.resx">
       <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GameGenieCodeForm.fi-FI.resx">
-      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeForm.fr-FR.resx">
       <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -618,9 +623,6 @@
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageGooglerForm.es-ES.resx">
-      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ImageGooglerForm.fi-FI.resx">
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageGooglerForm.fr-FR.resx">
@@ -671,9 +673,6 @@
     <EmbeddedResource Include="MainForm.es-ES.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.fi-FI.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.fr-FR.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -709,7 +708,6 @@
     <EmbeddedResource Include="Properties\Resources.el-GR.resx" />
     <EmbeddedResource Include="Properties\Resources.es-AR.resx" />
     <EmbeddedResource Include="Properties\Resources.es-ES.resx" />
-    <EmbeddedResource Include="Properties\Resources.fi-FI.resx" />
     <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
     <EmbeddedResource Include="Properties\Resources.nl.resx" />
@@ -736,9 +734,6 @@
       <DependentUpon>SaveStateManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveStateManager.es-ES.resx">
-      <DependentUpon>SaveStateManager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SaveStateManager.fi-FI.resx">
       <DependentUpon>SaveStateManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveStateManager.fr-FR.resx">
@@ -786,9 +781,6 @@
     <EmbeddedResource Include="SearchForm.es-ES.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchForm.fi-FI.resx">
-      <DependentUpon>SearchForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SearchForm.fr-FR.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -823,9 +815,6 @@
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectButtonsForm.es-ES.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.fi-FI.resx">
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectButtonsForm.fr-FR.resx">
@@ -864,9 +853,6 @@
     <EmbeddedResource Include="SelectFileForm.es-ES.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectFileForm.fi-FI.resx">
-      <DependentUpon>SelectFileForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SelectFileForm.fr-FR.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -901,9 +887,6 @@
       <DependentUpon>SelectIconForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectIconForm.es-ES.resx">
-      <DependentUpon>SelectIconForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectIconForm.fi-FI.resx">
       <DependentUpon>SelectIconForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectIconForm.fr-FR.resx">
@@ -982,6 +965,12 @@
     <EmbeddedResource Include="FoldersManagerForm.ru-RU.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Components\GameDetail.resx">
+      <DependentUpon>GameDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Components\GameSelecter.resx">
+      <DependentUpon>GameSelecter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.bg-BG.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -998,9 +987,6 @@
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.es-ES.resx">
-      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WaitingClovershellForm.fi-FI.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.fr-FR.resx">
@@ -1048,9 +1034,6 @@
     <EmbeddedResource Include="WaitingFelForm.es-ES.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WaitingFelForm.fi-FI.resx">
-      <DependentUpon>WaitingFelForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.fr-FR.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1084,6 +1067,9 @@
     <Content Include="art\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="config\SystemsDetection.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\fes1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1107,7 +1093,6 @@
     <EmbeddedResource Include="images\flags\se.png" />
     <EmbeddedResource Include="images\flags\sk.png" />
     <EmbeddedResource Include="images\flags\us.png" />
-    <EmbeddedResource Include="images\flags\fi.png" />
     <Content Include="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1291,8 +1276,14 @@
     <Content Include="user_mods\remove_thumbnails.hmod\uninstall">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="app.config" />
     <None Include="cluster_cert.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\GameGenieDB.xml">
@@ -1543,22 +1534,54 @@
     <EmbeddedResource Include="images\app_sm_tr.png" />
     <EmbeddedResource Include="images\arcade_sm.png" />
     <EmbeddedResource Include="images\arcade_sm_tr.png" />
-    <EmbeddedResource Include="images\blank_2600.png" />
-    <EmbeddedResource Include="images\blank_32x.png" />
-    <EmbeddedResource Include="images\blank_app.png" />
-    <EmbeddedResource Include="images\blank_arcade.png" />
-    <EmbeddedResource Include="images\blank_gb.png" />
-    <EmbeddedResource Include="images\blank_gba.png" />
-    <EmbeddedResource Include="images\blank_gbc.png" />
-    <EmbeddedResource Include="images\blank_genesis.png" />
-    <EmbeddedResource Include="images\blank_gg.png" />
-    <EmbeddedResource Include="images\blank_n64.png" />
-    <EmbeddedResource Include="images\blank_neogeo.png" />
-    <EmbeddedResource Include="images\blank_nes.png" />
-    <EmbeddedResource Include="images\blank_pce.png" />
-    <EmbeddedResource Include="images\blank_sms.png" />
-    <EmbeddedResource Include="images\blank_snes-eu-jp.png" />
-    <EmbeddedResource Include="images\blank_snes-us.png" />
+    <EmbeddedResource Include="images\blank_2600.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_32x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_app.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_arcade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_gb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_gba.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_gbc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_genesis.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_gg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_n64.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_neogeo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_nes.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_pce.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_sms.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_snes-eu-jp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_snes-us.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="images\gba_sm.png" />
     <EmbeddedResource Include="images\gba_sm_tr.png" />
     <EmbeddedResource Include="images\gbc_sm.png" />
@@ -1612,8 +1635,12 @@
     <Content Include="folder_images\folder_back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="images\blank_fds.png" />
-    <EmbeddedResource Include="images\blank_jp.png" />
+    <EmbeddedResource Include="images\blank_fds.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_jp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="images\nes_sm.png" />
     <EmbeddedResource Include="images\folder_sm.png" />
     <EmbeddedResource Include="images\gamepad.png" />
@@ -1680,25 +1707,26 @@
   <ItemGroup>
     <PublishFile Include="data\GameGenieDB.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\nescarts.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

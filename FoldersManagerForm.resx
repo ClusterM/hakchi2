@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="splitContainer.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -132,12 +132,15 @@
   <data name="treeView.ImageIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <metadata name="imageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="imageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAD0
-        IwAAAk1TRnQBSQFMAgEBJgEAAeQBAAHkAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        IwAAAk1TRnQBSQFMAgEBJgEAAewBAAHsAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAAaADAAEBAQABCAYAASgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -443,6 +446,33 @@
   <data name="groupBoxSplitModes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
+  <data name="buttonSplitByConsole.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonSplitByConsole.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 142</value>
+  </data>
+  <data name="buttonSplitByConsole.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 34</value>
+  </data>
+  <data name="buttonSplitByConsole.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="buttonSplitByConsole.Text" xml:space="preserve">
+    <value>Split by System</value>
+  </data>
+  <data name="&gt;&gt;buttonSplitByConsole.Name" xml:space="preserve">
+    <value>buttonSplitByConsole</value>
+  </data>
+  <data name="&gt;&gt;buttonSplitByConsole.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonSplitByConsole.Parent" xml:space="preserve">
+    <value>groupBoxSplitModes</value>
+  </data>
+  <data name="&gt;&gt;buttonSplitByConsole.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="buttonNoFoldersOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -450,7 +480,7 @@
     <value>129, 22</value>
   </data>
   <data name="buttonNoFoldersOriginal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
+    <value>110, 34</value>
   </data>
   <data name="buttonNoFoldersOriginal.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -468,13 +498,13 @@
     <value>groupBoxSplitModes</value>
   </data>
   <data name="&gt;&gt;buttonNoFoldersOriginal.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="buttonNoFolders.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 22</value>
   </data>
   <data name="buttonNoFolders.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
+    <value>110, 34</value>
   </data>
   <data name="buttonNoFolders.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -492,13 +522,13 @@
     <value>groupBoxSplitModes</value>
   </data>
   <data name="&gt;&gt;buttonNoFolders.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="buttonFoldersLetters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 154</value>
+    <value>13, 102</value>
   </data>
   <data name="buttonFoldersLetters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
+    <value>110, 34</value>
   </data>
   <data name="buttonFoldersLetters.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -516,16 +546,16 @@
     <value>groupBoxSplitModes</value>
   </data>
   <data name="&gt;&gt;buttonFoldersLetters.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="buttonFoldersEquallyOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <data name="buttonFoldersEquallyOriginal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 88</value>
+    <value>129, 62</value>
   </data>
   <data name="buttonFoldersEquallyOriginal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
+    <value>110, 34</value>
   </data>
   <data name="buttonFoldersEquallyOriginal.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -543,16 +573,16 @@
     <value>groupBoxSplitModes</value>
   </data>
   <data name="&gt;&gt;buttonFoldersEquallyOriginal.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="buttonFoldersLettersOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <data name="buttonFoldersLettersOriginal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 154</value>
+    <value>129, 102</value>
   </data>
   <data name="buttonFoldersLettersOriginal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
+    <value>110, 34</value>
   </data>
   <data name="buttonFoldersLettersOriginal.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -570,13 +600,13 @@
     <value>groupBoxSplitModes</value>
   </data>
   <data name="&gt;&gt;buttonFoldersLettersOriginal.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="buttonFoldersEqually.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 88</value>
+    <value>13, 62</value>
   </data>
   <data name="buttonFoldersEqually.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
+    <value>110, 34</value>
   </data>
   <data name="buttonFoldersEqually.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -594,7 +624,7 @@
     <value>groupBoxSplitModes</value>
   </data>
   <data name="&gt;&gt;buttonFoldersEqually.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="groupBoxSplitModes.Location" type="System.Drawing.Point, System.Drawing">
     <value>240, 12</value>
@@ -707,6 +737,9 @@
   <data name="&gt;&gt;splitContainer.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 17</value>
+  </metadata>
   <data name="newFolderToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+N</value>
   </data>
@@ -756,7 +789,7 @@
     <value>Delete</value>
   </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 142</value>
+    <value>211, 120</value>
   </data>
   <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
     <value>contextMenuStrip</value>
@@ -869,6 +902,9 @@
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -2064,13 +2100,4 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="imageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>120, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>
