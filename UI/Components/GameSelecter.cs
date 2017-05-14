@@ -249,12 +249,7 @@ namespace com.clusterrr.hakchi_gui.UI.Components
             /*Add to treeview*/
             foreach(var game in e.OrderBy(o => o.Name))
             {
-                AppTypeCollection.AppInfo inf = AppTypeCollection.GetAppByClass(game.GetType());
-                if (inf.Class[0] == typeof(UnknowSystem))
-                {
-                    inf = AppTypeCollection.GetAppByExec(game.Command);
-                }
-                string systemName = inf.SystemName;
+                string systemName = game.GetSystemName();
                 TreeNode tn = getSystemTreeNode(systemName);
                 TreeNode gameNode = new TreeNode(game.Name);
                 gameNode.Tag = game;
@@ -406,8 +401,12 @@ namespace com.clusterrr.hakchi_gui.UI.Components
                             InMassCheck = false;
                         }
                         treeView1.EndUpdate();
+                        
                         Manager.GameManager.GetInstance().SelectedChangeBatch = false;
-                        Manager.EventBus.getInstance().SizeRecalculationRequest();
+                        if (!Manager.GameManager.LoadingLibrary)
+                        {
+                            Manager.EventBus.getInstance().SizeRecalculationRequest();
+                        }
                    
                        
                     }
