@@ -100,6 +100,9 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.2\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -119,20 +122,6 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Apps\AppTypeCollection.cs" />
-    <Compile Include="Apps\ArcadeGame.cs" />
-    <Compile Include="Apps\Atari2600Game.cs" />
-    <Compile Include="Apps\Sega32XGame.cs" />
-    <Compile Include="Apps\GenesisGame.cs" />
-    <Compile Include="Apps\PceGame.cs" />
-    <Compile Include="Apps\GbaGame.cs" />
-    <Compile Include="Apps\GbcGame.cs" />
-    <Compile Include="Apps\GbGame.cs" />
-    <Compile Include="Apps\N64Game.cs" />
-    <Compile Include="Apps\GameGearGame.cs" />
-    <Compile Include="Apps\SmsGame.cs" />
-    <Compile Include="Apps\SnesGame.cs" />
-    <Compile Include="Apps\NesUGame.cs" />
     <Compile Include="Apps\UnknowSystem.cs" />
     <Compile Include="Clovershell\ClovershellConnection.cs" />
     <Compile Include="Clovershell\ClovershellException.cs" />
@@ -321,10 +310,17 @@
     <Compile Include="LibWinUsb\WinUsb\PowerPolicyType.cs" />
     <Compile Include="LibWinUsb\WinUsb\WinUsbDevice.cs" />
     <Compile Include="LibWinUsb\WinUsb\WinUsbRegistry.cs" />
+    <Compile Include="Manager\BitmapManager.cs" />
     <Compile Include="Manager\EventBus.cs" />
     <Compile Include="Manager\GameManager.cs" />
+    <Compile Include="Manager\SystemType.cs" />
     <Compile Include="MessageBoxManager.cs" />
     <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="SaveStateManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -362,7 +358,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Apps\FdsGame.cs" />
     <Compile Include="NesMenuCollection.cs" />
     <Compile Include="NesMenuFolder.cs" />
     <Compile Include="NesFile.cs" />
@@ -444,6 +439,7 @@
     <Compile Include="FoldersManagerForm.Designer.cs">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tooling\TaskableTool.cs" />
     <Compile Include="UI\Components\GameDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1277,8 +1273,14 @@
     <Content Include="user_mods\remove_thumbnails.hmod\uninstall">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="app.config" />
     <None Include="cluster_cert.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\GameGenieDB.xml">
@@ -1529,22 +1531,54 @@
     <EmbeddedResource Include="images\app_sm_tr.png" />
     <EmbeddedResource Include="images\arcade_sm.png" />
     <EmbeddedResource Include="images\arcade_sm_tr.png" />
-    <EmbeddedResource Include="images\blank_2600.png" />
-    <EmbeddedResource Include="images\blank_32x.png" />
-    <EmbeddedResource Include="images\blank_app.png" />
-    <EmbeddedResource Include="images\blank_arcade.png" />
-    <EmbeddedResource Include="images\blank_gb.png" />
-    <EmbeddedResource Include="images\blank_gba.png" />
-    <EmbeddedResource Include="images\blank_gbc.png" />
-    <EmbeddedResource Include="images\blank_genesis.png" />
-    <EmbeddedResource Include="images\blank_gg.png" />
-    <EmbeddedResource Include="images\blank_n64.png" />
-    <EmbeddedResource Include="images\blank_neogeo.png" />
-    <EmbeddedResource Include="images\blank_nes.png" />
-    <EmbeddedResource Include="images\blank_pce.png" />
-    <EmbeddedResource Include="images\blank_sms.png" />
-    <EmbeddedResource Include="images\blank_snes-eu-jp.png" />
-    <EmbeddedResource Include="images\blank_snes-us.png" />
+    <EmbeddedResource Include="images\blank_2600.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_32x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_app.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_arcade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_gb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_gba.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_gbc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_genesis.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_gg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_n64.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_neogeo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_nes.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_pce.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_sms.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_snes-eu-jp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_snes-us.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="images\gba_sm.png" />
     <EmbeddedResource Include="images\gba_sm_tr.png" />
     <EmbeddedResource Include="images\gbc_sm.png" />
@@ -1598,8 +1632,12 @@
     <Content Include="folder_images\folder_back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="images\blank_fds.png" />
-    <EmbeddedResource Include="images\blank_jp.png" />
+    <EmbeddedResource Include="images\blank_fds.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\blank_jp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="images\nes_sm.png" />
     <EmbeddedResource Include="images\folder_sm.png" />
     <EmbeddedResource Include="images\gamepad.png" />
@@ -1666,25 +1704,26 @@
   <ItemGroup>
     <PublishFile Include="data\GameGenieDB.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\nescarts.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

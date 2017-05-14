@@ -33,6 +33,7 @@ namespace com.clusterrr.hakchi_gui
         public MainForm()
         {
             InitializeComponent();
+            Manager.SystemType.getInstance();
             FormInitialize();
             Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
             Clovershell.OnConnected += Clovershell_OnConnected;
@@ -122,8 +123,7 @@ namespace com.clusterrr.hakchi_gui
                 MessageBoxManager.Abort = Resources.YesForAll;
 
                 var extensions = new List<string>() { "*.new", "*.unf", "*.unif", ".*fds", "*.desktop", "*.zip", "*.7z", "*.rar" };
-                foreach (var app in AppTypeCollection.ApplicationTypes)
-                    foreach (var ext in app.Extensions)
+                    foreach (var ext in Manager.SystemType.getInstance().GetSupportedExtensions())
                         if (!extensions.Contains("*" + ext))
                             extensions.Add("*" + ext);
                 openFileDialogNes.Filter = Resources.GamesAndApps + "|" + string.Join(";", extensions.ToArray()) + "|" + Resources.AllFiles + "|*.*";

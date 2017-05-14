@@ -115,7 +115,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (nesElement == null || nesElement is NesMenuFolder || nesElement is NesMenuCollection)
                 return 12;
-            
+            /*
             if (nesElement is Sega32XGame)
                 return 0;
             if (nesElement is Atari2600Game)
@@ -148,7 +148,7 @@ namespace com.clusterrr.hakchi_gui
                 return 34;
             if (nesElement is SnesGame)
                 return 36;
-            
+            */
             return 4;
         }
 

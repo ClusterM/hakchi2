@@ -76,12 +76,9 @@ namespace com.clusterrr.hakchi_gui.UI.Components
                     radioButtonOne.Checked = true;
                 maskedTextBoxReleaseDate.Text = currentApp.ReleaseDate;
                 textBoxPublisher.Text = currentApp.Publisher;
-                if (currentApp is NesGame)
-                    textBoxArguments.Text = (currentApp as NesGame).Args;
-                else if (currentApp is FdsGame)
-                    textBoxArguments.Text = (currentApp as FdsGame).Args;
-                else
-                    textBoxArguments.Text = currentApp.Command;
+   
+
+                textBoxArguments.Text = currentApp.Command;
                 if (System.IO.File.Exists(currentApp.IconPath))
                     pictureBoxArt.Image = NesMiniApplication.LoadBitmap(currentApp.IconPath);
                 else
@@ -131,11 +128,8 @@ namespace com.clusterrr.hakchi_gui.UI.Components
             
             if (currentApp == null || !(currentApp is NesMiniApplication)) return;
             var game = (currentApp as NesMiniApplication);
-            if (game is NesGame)
-                (game as NesGame).Args = textBoxArguments.Text;
-            else if (game is FdsGame)
-                (game as FdsGame).Args = textBoxArguments.Text;
-            else
+           
+
                 game.Command = textBoxArguments.Text;
         }
 

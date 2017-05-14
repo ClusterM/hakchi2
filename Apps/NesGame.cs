@@ -151,7 +151,7 @@ namespace com.clusterrr.hakchi_gui
             game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
             game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
             game.Name = game.Name.Replace("_", " ").Replace("  ", " ");
-            game.FindCover(nesFileName, sourceFileName, (game.region == "Japan") ? Resources.blank_jp : Resources.blank_nes, crc32);
+            game.FindCover(nesFileName, sourceFileName, (game.region == "Japan") ?Manager.BitmapManager.getInstance().GetBitmap(".\\images\\blank_jp.png") : Manager.BitmapManager.getInstance().GetBitmap(".\\images\\blank_nes.png"), crc32);
             game.Args = DefaultArgs;
             game.Save();
             return game;

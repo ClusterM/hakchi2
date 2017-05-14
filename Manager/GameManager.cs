@@ -93,7 +93,7 @@ namespace com.clusterrr.hakchi_gui.Manager
             return instance;
         }
         private static GameManager instance;
-        private Dictionary<AppTypeCollection.AppInfo, List<NesMiniApplication>> systemClassifiedGames = new Dictionary<AppTypeCollection.AppInfo, List<NesMiniApplication>>();
+
         private List<NesMiniApplication> gameLibrary = new List<NesMiniApplication>();
         private GameManager()
         {
@@ -185,11 +185,7 @@ namespace com.clusterrr.hakchi_gui.Manager
 
                     Directory.Delete(game.GamePath, true);
                     gameLibrary.Remove(game);
-                    AppTypeCollection.AppInfo inf = AppTypeCollection.GetAppByClass(game.GetType());
-                    if (systemClassifiedGames.ContainsKey(inf))
-                    {
-                        systemClassifiedGames[inf].Remove(game);
-                    }
+                
 
 
                 }
@@ -217,20 +213,7 @@ namespace com.clusterrr.hakchi_gui.Manager
                     g.SelectedChanged += G_SelectedChanged;
                     gameLibrary.Add(g);
                     reallyAdded.Add(g);
-                    AppTypeCollection.AppInfo inf = AppTypeCollection.GetAppByClass(g.GetType());
-                    if (inf.Class[0] == typeof(UnknowSystem))
-                    {
-                        inf = AppTypeCollection.GetAppByExec(g.Command);
-                    }
-                    if (inf == null)
-                    {
-                        Console.Write("");
-                    }
-                    if (!systemClassifiedGames.ContainsKey(inf))
-                    {
-                        systemClassifiedGames[inf] = new List<NesMiniApplication>();
-                    }
-                    systemClassifiedGames[inf].Add(g);
+                
                 }
             }
             if (NewGamesAdded != null)
@@ -306,11 +289,7 @@ namespace com.clusterrr.hakchi_gui.Manager
                     GamesRemoved(toremove);
                 }
             }
-            AppTypeCollection.AppInfo inf = AppTypeCollection.GetAppByClass(typeof(NesDefaultGame));
-            if (systemClassifiedGames.ContainsKey(inf))
-            {
-                systemClassifiedGames[inf].Clear();
-            }
+           
             List<NesMiniApplication> toAdd = new List<NesMiniApplication>();
             foreach (var game in new List<NesDefaultGame>(ConfigIni.ConsoleType == 0 ? defaultNesGames : defaultFamicomGames).OrderBy(o => o.Name))
             {
@@ -323,8 +302,10 @@ namespace com.clusterrr.hakchi_gui.Manager
             }
                
         }
+        public static bool LoadingLibrary = false;
         public void LoadLibrary()
         {
+            LoadingLibrary = true;
             if (GamesRemoved != null)
             {
                 if (gameLibrary.Count() > 0)
@@ -332,6 +313,7 @@ namespace com.clusterrr.hakchi_gui.Manager
                     GamesRemoved(gameLibrary);
                 }
             }
+
             gameLibrary.Clear();
             ReloadDefault();
             string[] selectedGames = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
@@ -341,6 +323,7 @@ namespace com.clusterrr.hakchi_gui.Manager
             }
             var gameDirs = Directory.GetDirectories(NesMiniApplication.GamesDirectory);
             List<NesMiniApplication> toAdd = new List<NesMiniApplication>();
+            
             foreach (var gameDir in gameDirs)
             {
                 try
@@ -348,10 +331,7 @@ namespace com.clusterrr.hakchi_gui.Manager
                     // Removing empty directories without errors
                     try
                     {
-                        if(gameDir == "C:\\Users\\elier\\Documents\\latesteliehakchi2\\bin\\Debug\\games\\CLV-E-ELHEW")
-                        {
-                            Console.Write("");
-                        }
+                        
                         var game = NesMiniApplication.FromDirectory(gameDir);
                         if(game.GetType() == typeof(NesMiniApplication))
                         {
@@ -378,7 +358,10 @@ namespace com.clusterrr.hakchi_gui.Manager
             {
                 AddGames(toAdd);
             }
-            
+            LoadingLibrary = false;
+            Manager.EventBus.getInstance().SizeRecalculationRequest();
+
+
         }
     }
 }
