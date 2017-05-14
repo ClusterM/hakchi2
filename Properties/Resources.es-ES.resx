@@ -65,7 +65,7 @@
     <value>Todos los archivos</value>
   </data>
   <data name="AreYouSure">
-    <value>¿Estás seguro?</value>
+    <value>¿Estás seguro? </value>
   </data>
   <data name="AutofillResult">
     <value>Datos introducidos automáticamente para {0} juegos</value>

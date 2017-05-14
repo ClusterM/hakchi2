@@ -275,7 +275,7 @@
     <value>Deseleccionar tot</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>"Amunt+A+B = Start" en el 2n comandament</value>
+    <value>Amunt+A+B = Start en el 2n comandament</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Utilitzar font estesa</value>

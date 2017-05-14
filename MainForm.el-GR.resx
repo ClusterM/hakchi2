@@ -275,7 +275,7 @@
     <value>Αποεπιλογή όλων</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>"Up+A+B = Start" στο 2ο χειριστήριο</value>
+    <value>Up+A+B = Start στο 2ο χειριστήριο</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Χρήση εκτεταμένης γραμματοσειράς</value>

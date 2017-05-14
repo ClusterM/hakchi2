@@ -263,7 +263,7 @@
     <value>No</value>
   </data>
   <data name="NoForAll">
-    <value>"No" a todo</value>
+    <value>No a todo</value>
   </data>
   <data name="NoKernel">
     <value>No se encontró el volcado del kernel</value>
@@ -371,6 +371,6 @@
     <value>Sí</value>
   </data>
   <data name="YesForAll">
-    <value>"Sí" a todo</value>
+    <value>Sí a todo</value>
   </data>
 </root>

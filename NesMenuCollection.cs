@@ -24,6 +24,7 @@ namespace com.clusterrr.hakchi_gui
             Original_FoldersAlphabetic_FoldersEqual = 9,
             FoldersAlphabetic_PagesEqual = 10,
             Original_FoldersAlphabetic_PagesEqual = 11,
+            BySystem = 12,
             Custom = 99
         }
 
@@ -143,6 +144,25 @@ namespace com.clusterrr.hakchi_gui
                         collections[i].Insert(collections[i].Count, folder);
                     }
                     TrimFolderNames(collections[i]);
+                }
+            }
+            else if (style == SplitStyle.BySystem)
+            {
+
+                var Systems = new Dictionary<string, NesMenuCollection>();
+                foreach(var game in root)
+                {
+                    if(!Systems.ContainsKey( AppTypeCollection.GetAppByClass( game.GetType()).SystemName))
+                    {
+                        Systems[AppTypeCollection.GetAppByClass(game.GetType()).SystemName] = new NesMenuCollection();
+                    }
+                    Systems[AppTypeCollection.GetAppByClass(game.GetType()).SystemName].Add(game);
+                }
+                root.Clear();
+                foreach(string system in Systems.Keys)
+                {
+                    var folder = new NesMenuFolder() { ChildMenuCollection = Systems[system], Name = system, Position = NesMenuFolder.Priority.Left, ImageId = "folder" };
+                    root.Add(folder);
                 }
             }
             else if (style == SplitStyle.FoldersAlphabetic_PagesEqual || style == SplitStyle.FoldersAlphabetic_FoldersEqual)

@@ -63,7 +63,7 @@ namespace com.clusterrr.hakchi_gui
         string[] correctKernels;
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
         string selectedFile = null;
-        public NesMiniApplication[] addedApplications;
+        public List<NesMiniApplication> addedApplications;
         public static int NandCTotal, NandCUsed, NandCFree, WritedGamesSize, SaveStatesSize;
         public const long ReservedMemory = 10;
 
@@ -900,29 +900,39 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (element is NesMiniApplication)
                 {
-                    stats.TotalGames++;
-                    var game = element as NesMiniApplication;
-                    var gameSize = game.Size();
-                    Debug.WriteLine(string.Format("Processing {0} ('{1}'), size: {2}KB", game.Code, game.Name, gameSize / 1024));
-                    var gameCopy = game.CopyTo(targetDirectory);
-                    stats.TotalSize += gameSize;
-                    stats.TransferSize += gameSize;
-                    stats.TotalGames++;
-                    try
+                    if (element is NesDefaultGame)
                     {
-                        if (gameCopy is NesGame && File.Exists((gameCopy as NesGame).GameGeniePath))
+                        var game = element as NesDefaultGame;
+                        stats.TotalSize += game.Size;
+                        originalGames[game.Code] = menuIndex == 0 ? "." : string.Format("{0:D3}", menuIndex);
+                    }
+                    else
+                    {
+
+                        stats.TotalGames++;
+                        var game = element as NesMiniApplication;
+                        var gameSize = game.Size();
+                        Debug.WriteLine(string.Format("Processing {0} ('{1}'), size: {2}KB", game.Code, game.Name, gameSize / 1024));
+                        var gameCopy = game.CopyTo(targetDirectory);
+                        stats.TotalSize += gameSize;
+                        stats.TransferSize += gameSize;
+                        stats.TotalGames++;
+                        try
                         {
-                            (gameCopy as NesGame).ApplyGameGenie();
-                            File.Delete((gameCopy as NesGame).GameGeniePath);
+                            if (gameCopy is NesGame && File.Exists((gameCopy as NesGame).GameGeniePath))
+                            {
+                                (gameCopy as NesGame).ApplyGameGenie();
+                                File.Delete((gameCopy as NesGame).GameGeniePath);
+                            }
                         }
-                    }
-                    catch (GameGenieFormatException ex)
-                    {
-                        ShowError(new Exception(string.Format(Resources.GameGenieFormatError, ex.Code, game.Name)), dontStop: true);
-                    }
-                    catch (GameGenieNotFoundException ex)
-                    {
-                        ShowError(new Exception(string.Format(Resources.GameGenieNotFound, ex.Code, game.Name)), dontStop: true);
+                        catch (GameGenieFormatException ex)
+                        {
+                            ShowError(new Exception(string.Format(Resources.GameGenieFormatError, ex.Code, game.Name)), dontStop: true);
+                        }
+                        catch (GameGenieNotFoundException ex)
+                        {
+                            ShowError(new Exception(string.Format(Resources.GameGenieNotFound, ex.Code, game.Name)), dontStop: true);
+                        }
                     }
                 }
                 if (element is NesMenuFolder)
@@ -940,12 +950,7 @@ namespace com.clusterrr.hakchi_gui
                     stats.TransferSize += folderSize;
 
                 }
-                if (element is NesDefaultGame)
-                {
-                    var game = element as NesDefaultGame;
-                    stats.TotalSize += game.Size;
-                    originalGames[game.Code] = menuIndex == 0 ? "." : string.Format("{0:D3}", menuIndex);
-                }
+                
             }
         }
 
@@ -1142,7 +1147,7 @@ namespace com.clusterrr.hakchi_gui
                     apps.Add(app);
                 SetProgress(++count, files.Count());
             }
-            addedApplications = apps.ToArray();
+            addedApplications = apps;
             return apps; // Added games/apps
         }
 

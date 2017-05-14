@@ -81,10 +81,10 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>1D05715BF83320949FC1BAC8462308051A0C0F04</ManifestCertificateThumbprint>
@@ -133,6 +133,7 @@
     <Compile Include="Apps\SmsGame.cs" />
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\NesUGame.cs" />
+    <Compile Include="Apps\UnknowSystem.cs" />
     <Compile Include="Clovershell\ClovershellConnection.cs" />
     <Compile Include="Clovershell\ClovershellException.cs" />
     <Compile Include="Clovershell\ExecConnection.cs" />
@@ -320,6 +321,8 @@
     <Compile Include="LibWinUsb\WinUsb\PowerPolicyType.cs" />
     <Compile Include="LibWinUsb\WinUsb\WinUsbDevice.cs" />
     <Compile Include="LibWinUsb\WinUsb\WinUsbRegistry.cs" />
+    <Compile Include="Manager\EventBus.cs" />
+    <Compile Include="Manager\GameManager.cs" />
     <Compile Include="MessageBoxManager.cs" />
     <Compile Include="Properties\Resources.Designer.cs" />
     <Compile Include="SaveStateManager.cs">
@@ -440,6 +443,21 @@
     </Compile>
     <Compile Include="FoldersManagerForm.Designer.cs">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\GameDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Components\GameDetail.Designer.cs">
+      <DependentUpon>GameDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\GameSelecter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Components\GameSelecter.Designer.cs">
+      <DependentUpon>GameSelecter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FixedTreeview.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
@@ -950,6 +968,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FoldersManagerForm.ru-RU.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Components\GameDetail.resx">
+      <DependentUpon>GameDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Components\GameSelecter.resx">
+      <DependentUpon>GameSelecter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.bg-BG.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
