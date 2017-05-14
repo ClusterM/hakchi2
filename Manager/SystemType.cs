@@ -7,7 +7,7 @@ namespace com.clusterrr.hakchi_gui.Manager
 {
     public class SystemType
     {
-        private static string FoldersXmlPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "SystemsDectection.txt");
+        private static string FoldersXmlPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "SystemsDetection.txt");
         public class SystemDetectionEntry
         {
             public string Prefix { get; set; }

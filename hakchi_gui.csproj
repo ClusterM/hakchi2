@@ -1067,7 +1067,7 @@
     <Content Include="art\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="config\SystemsDectection.txt">
+    <Content Include="config\SystemsDetection.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="data\fes1.bin">
