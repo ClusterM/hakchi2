@@ -10,9 +10,10 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                return "";
+                return GetSystemName();
             }
         }
+        
         public UnknowSystem(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {
