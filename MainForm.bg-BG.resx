@@ -95,7 +95,7 @@
     <value>Конзолен тип</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>Конфигурирай ръчно - покажи папка мениджер, преди да изтеглиш </value>
+    <value>Конфигурирай ръчно - покажи папка мениджер, преди да изтеглиш</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Изтриване на игра</value>
@@ -125,7 +125,7 @@
     <value>Често задавани въпроси (FAQ)</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
-    <value> &amp;Файл</value>
+    <value>&amp;Файл</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Флаш персонализирано ядро</value>
@@ -137,7 +137,7 @@
     <value>Оригинални игри в корен -&amp;gt, папки, разделени също и на игри</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Оригинални игри в корен -&gt; папки,  разделени по първата буква</value>
+    <value>Оригинални игри в корен -&gt; папки, разделени по първата буква</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
     <value>Папки, разделени по първата буква</value>
@@ -269,13 +269,13 @@
     <value>Деинсталиране на допълнителните модули</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text">
-    <value>Деинсталиране </value>
+    <value>Деинсталиране</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
     <value>Премахнете всички</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>Up+А+B=Start за втория контролер</value>
+    <value>"Up+А+B=Start" за втория контролер</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Използвайте разширен шрифт</value>

@@ -275,7 +275,7 @@
     <value>Odznačiť všetky</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>Hore+A+B = Start na 2. ovládači</value>
+    <value>"Hore+A+B = Start" na 2. ovládači</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Použiť rozšírené fonty písma</value>

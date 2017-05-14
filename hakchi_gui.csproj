@@ -499,6 +499,9 @@
     <EmbeddedResource Include="FoldersManagerForm.es-ES.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.fi-FI.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FoldersManagerForm.fr-FR.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -533,6 +536,9 @@
       <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeAddModForm.es-ES.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.fi-FI.resx">
       <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeAddModForm.fr-FR.resx">
@@ -580,6 +586,9 @@
     <EmbeddedResource Include="GameGenieCodeForm.es-ES.resx">
       <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.fi-FI.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeForm.fr-FR.resx">
       <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -623,6 +632,9 @@
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageGooglerForm.es-ES.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.fi-FI.resx">
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageGooglerForm.fr-FR.resx">
@@ -673,6 +685,9 @@
     <EmbeddedResource Include="MainForm.es-ES.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.fi-FI.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.fr-FR.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -708,6 +723,7 @@
     <EmbeddedResource Include="Properties\Resources.el-GR.resx" />
     <EmbeddedResource Include="Properties\Resources.es-AR.resx" />
     <EmbeddedResource Include="Properties\Resources.es-ES.resx" />
+    <EmbeddedResource Include="Properties\Resources.fi-FI.resx" />
     <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
     <EmbeddedResource Include="Properties\Resources.nl.resx" />
@@ -734,6 +750,9 @@
       <DependentUpon>SaveStateManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveStateManager.es-ES.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.fi-FI.resx">
       <DependentUpon>SaveStateManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveStateManager.fr-FR.resx">
@@ -781,6 +800,9 @@
     <EmbeddedResource Include="SearchForm.es-ES.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.fi-FI.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SearchForm.fr-FR.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -815,6 +837,9 @@
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectButtonsForm.es-ES.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.fi-FI.resx">
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectButtonsForm.fr-FR.resx">
@@ -853,6 +878,9 @@
     <EmbeddedResource Include="SelectFileForm.es-ES.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.fi-FI.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectFileForm.fr-FR.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -887,6 +915,9 @@
       <DependentUpon>SelectIconForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectIconForm.es-ES.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.fi-FI.resx">
       <DependentUpon>SelectIconForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectIconForm.fr-FR.resx">
@@ -989,6 +1020,9 @@
     <EmbeddedResource Include="WaitingClovershellForm.es-ES.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.fi-FI.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.fr-FR.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1032,6 +1066,9 @@
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.es-ES.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.fi-FI.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.fr-FR.resx">
@@ -1277,7 +1314,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="app.config" />
-    <None Include="cluster_cert.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

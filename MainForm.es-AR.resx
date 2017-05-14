@@ -275,7 +275,7 @@
     <value>Quitar selección a todo</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>Arriba + "A" + "B" = "Start" en el 2° control</value>
+    <value>"Arriba" + "A" + "B" = "Start" en el 2° control</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Usar tipografía extendida</value>

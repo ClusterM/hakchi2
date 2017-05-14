@@ -275,7 +275,7 @@
     <value>Alle abwählen</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>Hoch+A+B = Start auf dem 2. Controller</value>
+    <value>"Hoch+A+B = Start" auf dem 2. Controller</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Erweiterte Schriftart verwenden</value>

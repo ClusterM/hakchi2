@@ -275,7 +275,7 @@
     <value>Alles deselecteren</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>Omhoog+A+B = Start op de 2de controller</value>
+    <value>"Omhoog+A+B = Start" op de 2de controller</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Gebruik uitgebreid lettertype</value>

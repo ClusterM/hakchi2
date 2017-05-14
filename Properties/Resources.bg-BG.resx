@@ -260,7 +260,7 @@
     <value>Предварително зададена нова селекция</value>
   </data>
   <data name="No">
-    <value>Не </value>
+    <value>Не</value>
   </data>
   <data name="NoForAll">
     <value>Не за всички</value>
@@ -299,7 +299,7 @@
     <value>Вече имате дъмп от ядрото. Ако наистина искате да замените архива на вашето ядро и вие наистина разберете какво правите, изтрийте папката "hakchi2\dump" ръчно.</value>
   </data>
   <data name="SavesFlterName">
-    <value>Запазени резервни копия на NES Mini </value>
+    <value>Запазени резервни копия на NES Mini</value>
   </data>
   <data name="SelectAtLeast">
     <value>Избери поне една игра.</value>

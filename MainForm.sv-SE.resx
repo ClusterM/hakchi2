@@ -275,7 +275,7 @@
     <value>Avmarkera alla</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>Upp+A+B = Start på 2:a handkontrollen</value>
+    <value>"Upp+A+B = Start" på 2:a handkontrollen</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Använd utökad typsnitt</value>

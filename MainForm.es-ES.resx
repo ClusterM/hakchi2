@@ -275,7 +275,7 @@
     <value>Deseleccionar todo</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>Arriba+A+B = Start en el 2º mando</value>
+    <value>"Arriba+A+B = Start" en el 2º mando</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Usar fuente extendida</value>

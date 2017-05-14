@@ -275,7 +275,7 @@
     <value>Tout désélectionner</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>Haut+A+B=Start sur seconde manette</value>
+    <value>"Haut+A+B=Start" sur seconde manette</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Utiliser la police avancée</value>
