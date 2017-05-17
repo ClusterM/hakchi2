@@ -152,11 +152,12 @@ namespace com.clusterrr.hakchi_gui
                 var Systems = new Dictionary<string, NesMenuCollection>();
                 foreach(var game in root)
                 {
-                   if(!Systems.ContainsKey(((NesMiniApplication)game).GetSystemName()))
+                    Manager.EmulatorManager.Emulator emu = ((NesMiniApplication)game).GetEmulator();
+                   if(!Systems.ContainsKey(emu.SystemName))
                     {
-                        Systems[((NesMiniApplication)game).GetSystemName()] = new NesMenuCollection();
+                        Systems[emu.SystemName] = new NesMenuCollection();
                     }
-                    Systems[((NesMiniApplication)game).GetSystemName()].Add(game);
+                    Systems[emu.SystemName].Add(game);
                 }
                 root.Clear();
                 foreach(string system in Systems.Keys)

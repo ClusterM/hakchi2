@@ -263,7 +263,7 @@ namespace com.clusterrr.hakchi_gui.UI.Components
                 /*Add to treeview*/
                 foreach (var game in e.OrderBy(o => o.Name))
                 {
-                    string systemName = game.GetSystemName();
+                    string systemName = game.GetEmulator().SystemName;
                     TreeNode tn = getSystemTreeNode(systemName);
                     TreeNode gameNode = new TreeNode(game.Name);
                     gameNode.Tag = game;

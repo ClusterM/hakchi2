@@ -120,19 +120,58 @@ namespace com.clusterrr.hakchi_gui
             }
         }
         
-        private Manager.SystemType.SystemDetectionEntry getSysInfo()
+        public Manager.EmulatorManager.Emulator GetEmulator()
         {
-            if(_sysInfo == null)
-            {
-                _sysInfo = Manager.SystemType.getInstance().GetSystemInfo(this);
-            }
-            return _sysInfo;
+            return Manager.EmulatorManager.getInstance().GetEmulator(this);
         }
-        private Manager.SystemType.SystemDetectionEntry _sysInfo;
-        public string GetSystemName()
+      
+        public string Executable
         {
+            get
+            {
+                string ret =command;
+                if(ret.IndexOf(" ")!= -1)
+                {
+                    ret = ret.Substring(0, ret.IndexOf(" "));
+                }
 
-            return getSysInfo().SystemName;
+                return ret;
+
+            }
+        }
+        public string CommandWithoutArguments
+        {
+            get
+            {
+                string ret = command;
+                if(ret.IndexOf(" ") != -1)
+                {
+                    if(ret.IndexOf(" ",ret.IndexOf(" "))!=-1)
+                    {
+                        ret = ret.Substring(0, ret.IndexOf(" ", ret.IndexOf(" ")));
+                    }
+                }
+
+                return ret;
+            }
+        }
+        public string NesClassicRomPath
+        {
+            get
+            {
+                string ret = "";
+
+                if (this.Command.IndexOf(" ") != -1)
+                {
+                    ret = Command.Substring(Command.IndexOf(" ") + 1);
+                }
+              
+                if (ret.IndexOf(" ") != -1)
+                {
+                    ret = ret.Substring(0, ret.IndexOf(" "));
+                }
+                return ret;
+            }
         }
         public string RomFile
         {
@@ -199,18 +238,19 @@ namespace com.clusterrr.hakchi_gui
                 return ImportApp(fileName);
             if (rawRomData == null)
                 rawRomData = File.ReadAllBytes(fileName);
-            List<Manager.SystemType.SystemDetectionEntry> availableSystem = Manager.SystemType.getInstance().ListByFileType(System.IO.Path.GetFileName(fileName));
-            Manager.SystemType.SystemDetectionEntry toUse = null;
-            if(availableSystem.Count >0)
+            List<Manager.EmulatorManager.Emulator> availableEmus = Manager.EmulatorManager.getInstance().ListByFileType(System.IO.Path.GetFileName(fileName));
+            Manager.EmulatorManager.Emulator toUse = null;
+            if(availableEmus.Count >0)
             {
-                toUse = availableSystem[0];
+                toUse = availableEmus[0];
+                return (NesMiniApplication)UnknowSystem.Import(fileName, sourceFile, rawRomData, toUse.Prefix[0], toUse.Executable, Manager.BitmapManager.getInstance().GetBitmap(".\\images\\" + toUse.DefaultImage), toUse.SupportZip); ;
             }
-            else
+           else
             {
-                toUse = Manager.SystemType.getInstance().AddBlank(System.IO.Path.GetFileName(fileName));
+                return null;
             }
             
-            return (NesMiniApplication)UnknowSystem.Import(fileName, sourceFile, rawRomData, toUse.Prefix[0], toUse.Executable,Manager.BitmapManager.getInstance().GetBitmap(".\\images\\"+toUse.Image), toUse.SupportZip); ;
+            
             
             //string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : DefaultApp;
             //return Import(fileName, sourceFile, rawRomData, DefaultPrefix, application, DefaultCover);
@@ -282,16 +322,23 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                return command.Substring(command.IndexOf(RomFile) + RomFile.Length).Trim();
+                string ret = "";
+                if (command.IndexOf(" ") != -1)
+                {
+                    if (command.IndexOf(" ", command.IndexOf(" ")+1) != -1)
+                    {
+                        ret = command.Substring(command.IndexOf(" ", command.IndexOf(" ") + 1) + 1).Trim(); ;
+                    }
+                }
+
+                return ret;
             }
             set
             {
-                command = command.Substring(0, command.IndexOf(RomFile) + RomFile.Length);
-                if(value!= "")
-                {
-                    command = command + " " + value;
-                }
+
+                command = (Executable + " " + NesClassicRomPath + " " + value).Trim();
             }
+           
         }
         private static NesMiniApplication ImportApp(string fileName)
         {

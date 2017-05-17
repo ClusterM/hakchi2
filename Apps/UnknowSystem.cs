@@ -10,7 +10,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                return GetSystemName();
+                return "(" + GetEmulator().SystemName + ")";
             }
         }
         

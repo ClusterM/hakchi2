@@ -1042,7 +1042,7 @@ namespace com.clusterrr.hakchi_gui
                             foreach (var f in szExtractor.ArchiveFileNames)
                             {
                                 var e = Path.GetExtension(f).ToLower();
-                                if (e == ".desktop" || Manager.SystemType.getInstance().isFileValidRom(e))
+                                if (e == ".desktop" || Manager.EmulatorManager.getInstance().isFileValidRom(e))
                                     gameFilesInArchive.Add(f);
                                 filesInArchive.Add(f);
                             }

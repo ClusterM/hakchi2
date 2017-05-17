@@ -315,9 +315,9 @@
     <Compile Include="LibWinUsb\WinUsb\WinUsbDevice.cs" />
     <Compile Include="LibWinUsb\WinUsb\WinUsbRegistry.cs" />
     <Compile Include="Manager\BitmapManager.cs" />
+    <Compile Include="Manager\EmulatorManager.cs" />
     <Compile Include="Manager\EventBus.cs" />
     <Compile Include="Manager\GameManager.cs" />
-    <Compile Include="Manager\SystemType.cs" />
     <Compile Include="MessageBoxManager.cs" />
     <Compile Include="Properties\Resources.Designer.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

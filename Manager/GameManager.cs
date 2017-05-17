@@ -315,7 +315,7 @@ namespace com.clusterrr.hakchi_gui.Manager
             }
 
             gameLibrary.Clear();
-            ReloadDefault();
+          //  ReloadDefault();
             string[] selectedGames = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             if (!System.IO.Directory.Exists(NesMiniApplication.GamesDirectory))
             {
