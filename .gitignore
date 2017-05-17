@@ -1,7 +1,9 @@
 bin/
 driver/source/nesmini_driver/Release/
+driver/usb_driver/
 obj/
-hakchi_gui.csproj.user
 *.pfx
+*.csproj.user
 .vs/hakchi_gui/v15/.suo
-hakchi_gui.sln
+*.sln
+

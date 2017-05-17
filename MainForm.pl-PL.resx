@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>Serwer FTP ftp://root:clover@127.0.0.1:1021</value>
+  </data>
   <data name="aboutToolStripMenuItem.Text">
     <value>Informacje o...</value>
   </data>
@@ -115,6 +118,9 @@
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Wyjście</value>
   </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>FAQ</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;Plik</value>
   </data>
@@ -151,6 +157,9 @@
   <data name="helpToolStripMenuItem.Text">
     <value>&amp;Pomoc</value>
   </data>
+  <data name="installModulesToolStripMenuItem.Text">
+    <value>Zainstaluj dodatkowe moduły</value>
+  </data>
   <data name="kernelToolStripMenuItem.Text">
     <value>&amp;Kernel</value>
   </data>
@@ -184,11 +193,20 @@
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Maksimum gier na stronę/folder</value>
   </data>
+  <data name="modulesToolStripMenuItem.Text">
+    <value>&amp;Moduły</value>
+  </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>Otwórz klienta FTP</value>
+  </data>
   <data name="openFileDialogImage.Title">
     <value>Wybierz okładkę dla gry</value>
   </data>
   <data name="openFileDialogNes.Title">
     <value>Wybierz plik(i) NES</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>Otwórz klienta Telnet</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
     <value>Originalne gry na wierzchu -&gt; Strony, podziel gry po równo</value>
@@ -214,6 +232,12 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Użyj kombinacji klawiszy by zresetować</value>
   </data>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
+    <value>Zapisz ustawienia do NES Mini</value>
+  </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>Menadżer Save'ów</value>
+  </data>
   <data name="searchToolStripMenuItem.Text">
     <value>Szukaj</value>
   </data>
@@ -226,8 +250,20 @@
   <data name="settingsToolStripMenuItem.Text">
     <value>&amp;Ustawienia</value>
   </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Serwer Telnet telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="synchronizeToolStripMenuItem.Text">
+    <value>Synchronizuj</value>
+  </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
     <value>Zrobić zrzut ekranu</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;Narzędzia</value>
+  </data>
+  <data name="uninstallModulesToolStripMenuItem.Text">
+    <value>Odinstaluj dodatkowe moduły</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text">
     <value>Odinstaluj</value>
@@ -241,44 +277,8 @@
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Użyj rozszerzonej czcionki</value>
   </data>
-  <data name="FTPToolStripMenuItem.Text">
-    <value>FTP server on ftp://root:clover@127.0.0.1:1021</value>
-  </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Compress non-NES games (for additional emulator mod)</value>
-  </data>
-  <data name="fAQToolStripMenuItem.Text">
-    <value>FAQ</value>
-  </data>
-  <data name="installModulesToolStripMenuItem.Text">
-    <value>Install extra modules</value>
-  </data>
-  <data name="modulesToolStripMenuItem.Text">
-    <value>&amp;Modules</value>
-  </data>
-  <data name="openFTPInExplorerToolStripMenuItem.Text">
-    <value>Open FTP client</value>
-  </data>
-  <data name="openTelnetToolStripMenuItem.Text">
-    <value>Open Telnet client</value>
-  </data>
-  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Save settings to NES Mini now</value>
-  </data>
-  <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Save-State Manager</value>
-  </data>
-  <data name="shellToolStripMenuItem.Text">
-    <value>Telnet server on telnet://127.0.0.1:1023 (login:root)</value>
-  </data>
-  <data name="synchronizeToolStripMenuItem.Text">
-    <value>Synchronize</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Text">
-    <value>&amp;Tools</value>
-  </data>
-  <data name="uninstallModulesToolStripMenuItem.Text">
-    <value>Uninstall extra modules</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Use X/Y on Classic Controller as autofire A/B</value>

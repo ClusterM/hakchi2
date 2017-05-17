@@ -32,8 +32,8 @@
     <PublisherName>Alexey %27Cluster%27 Avdyukhin</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
-    <ApplicationRevision>14</ApplicationRevision>
-    <ApplicationVersion>2.0.17.14</ApplicationVersion>
+    <ApplicationRevision>31</ApplicationRevision>
+    <ApplicationVersion>2.0.17.31</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -1151,6 +1151,7 @@
     <EmbeddedResource Include="images\flags\se.png" />
     <EmbeddedResource Include="images\flags\sk.png" />
     <EmbeddedResource Include="images\flags\us.png" />
+    <EmbeddedResource Include="images\flags\fi.png" />
     <Content Include="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
