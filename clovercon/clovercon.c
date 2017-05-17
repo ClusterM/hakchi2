@@ -629,10 +629,10 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
 		if (b) buttons_state |= (1 << 1);
 		if (select) buttons_state |= (1 << 2);
 		if (start) buttons_state |= (1 << 3);
-		if (up) buttons_state |= (1 << 4);
-		if (down) buttons_state |= (1 << 5);
-		if (left) buttons_state |= (1 << 6);
-		if (right) buttons_state |= (1 << 7);
+		if (up || (jy < -DEAD_ZONE)) buttons_state |= (1 << 4);
+		if (down || (jy > DEAD_ZONE)) buttons_state |= (1 << 5);
+		if (left || (jx < -DEAD_ZONE)) buttons_state |= (1 << 6);
+		if (right || (jx > DEAD_ZONE)) buttons_state |= (1 << 7);
 		if (x) buttons_state |= (1 << 8);
 		if (y) buttons_state |= (1 << 9);
 		if (l) buttons_state |= (1 << 10);
