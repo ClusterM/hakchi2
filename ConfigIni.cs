@@ -135,7 +135,7 @@ namespace com.clusterrr.hakchi_gui
             Debug.WriteLine("Saving config");
             var configLines = new List<string>();
             configLines.Add("[Config]");
-            configLines.Add(string.Format("Language={0}", Language));            
+            configLines.Add(string.Format("Language={0}", Language));
             configLines.Add(string.Format("SelectedGames={0}", SelectedGames));
             configLines.Add(string.Format("HiddenGames={0}", HiddenGames));
             configLines.Add(string.Format("Custom2Flashed={0}", CustomFlashed));
@@ -168,10 +168,10 @@ namespace com.clusterrr.hakchi_gui
             File.WriteAllLines(fileName, configLines.ToArray());
         }
 
-        public static Dictionary<string,string> GetConfigDictionary()
+        public static Dictionary<string, string> GetConfigDictionary()
         {
             var config = new Dictionary<string, string>();
-            config["clovercon_home_combination"] = string.Format("0x{0:X2}", (byte)ConfigIni.ResetCombination);
+            config["clovercon_home_combination"] = ConfigIni.ResetHack ? string.Format("0x{0:X2}", (byte)ConfigIni.ResetCombination) : "0xFFFF";
             config["clovercon_autofire"] = ConfigIni.AutofireHack ? "1" : "0";
             config["clovercon_autofire_xy"] = ConfigIni.AutofireXYHack ? "1" : "0";
             config["clovercon_fc_start"] = ConfigIni.FcStart ? "1" : "0";
