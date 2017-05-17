@@ -11,15 +11,13 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class SelectModsForm : Form
     {
-        private readonly string baseDirectory;
         private readonly string usermodsDirectory;
         private readonly string[] readmeFiles;
 
         public SelectModsForm(bool loadInstalledMods, bool allowDropMods, string[] filesToAdd = null)
         {
             InitializeComponent();
-            baseDirectory = Program.BaseDirectoryExternal;
-            usermodsDirectory = Path.Combine(baseDirectory, "user_mods");
+            usermodsDirectory = Path.Combine(Program.BaseDirectoryExternal, "user_mods");
             var modsList = new List<string>();
             if (loadInstalledMods && MainForm.Clovershell.IsOnline)
             {
@@ -98,7 +96,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else if (File.Exists(dir))
                 {
-                    SevenZipExtractor.SetLibraryPath(Path.Combine(baseDirectory, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+                    SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
                     using (var szExtractor = new SevenZipExtractor(dir))
                     {
                         var tar = new MemoryStream();
@@ -163,7 +161,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else if (ext == ".7z" || ext == ".zip" || ext == ".rar")
                 {
-                    SevenZipExtractor.SetLibraryPath(Path.Combine(baseDirectory, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+                    SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
                     using (var szExtractor = new SevenZipExtractor(file))
                     {
                         foreach (var f in szExtractor.ArchiveFileNames)
