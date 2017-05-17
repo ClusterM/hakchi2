@@ -35,27 +35,34 @@ namespace com.clusterrr.hakchi_gui.UI.Components
         public event NesMiniApplication.ValueChangedHandler SelectedAppChanged;
         private void GameSelecter_SelectedChanged(NesMiniApplication app)
         {
-            /*Checked listbox*/
-            for(int x=0;x<checkedListBox1.Items.Count;x++)
+            if (this.InvokeRequired)
             {
-                if(checkedListBox1.Items[x] == app)
-                {
-                    checkedListBox1.SetItemChecked(x, app.Selected);
-                    break;
-                }
+                this.Invoke(new NesMiniApplication.ValueChangedHandler(GameSelecter_SelectedChanged), new object[] { app });
             }
-            /*Treeview*/
-            TreeNode tn = FindNode(app,treeView1.Nodes);
-            if(tn!=null)
-            {
-                tn.Checked = app.Selected;
-                if (tn.Parent != null)
-                {
-                    ValidateFolderCheck(tn.Parent);
-                }
-            }
+            else
 
-            
+            {
+                /*Checked listbox*/
+                for (int x = 0; x < checkedListBox1.Items.Count; x++)
+                {
+                    if (checkedListBox1.Items[x] == app)
+                    {
+                        checkedListBox1.SetItemChecked(x, app.Selected);
+                        break;
+                    }
+                }
+                /*Treeview*/
+                TreeNode tn = FindNode(app, treeView1.Nodes);
+                if (tn != null)
+                {
+                    tn.Checked = app.Selected;
+                    if (tn.Parent != null)
+                    {
+                        ValidateFolderCheck(tn.Parent);
+                    }
+                }
+
+            }
         
         }
         private void ValidateAllFolderCheck()
@@ -241,46 +248,61 @@ namespace com.clusterrr.hakchi_gui.UI.Components
         }
         private void GameSelecter_NewGamesAdded(List<NesMiniApplication> e)
         {
-            /*Add to A->Z*/
-            foreach (var game in e.OrderBy(o => o.Name))
+            if (this.InvokeRequired)
             {
-                this.checkedListBox1.Items.Add(game, game.Selected);
+                this.Invoke(new Manager.GameManager.GameListEventHandler(GameSelecter_NewGamesAdded), new object[] { e });
             }
-            /*Add to treeview*/
-            foreach(var game in e.OrderBy(o => o.Name))
+            else
+
             {
-                string systemName = game.GetSystemName();
-                TreeNode tn = getSystemTreeNode(systemName);
-                TreeNode gameNode = new TreeNode(game.Name);
-                gameNode.Tag = game;
-                gameNode.Checked = game.Selected;
-                tn.Nodes.Add(gameNode);
+                /*Add to A->Z*/
+                foreach (var game in e.OrderBy(o => o.Name))
+                {
+                    this.checkedListBox1.Items.Add(game, game.Selected);
+                }
+                /*Add to treeview*/
+                foreach (var game in e.OrderBy(o => o.Name))
+                {
+                    string systemName = game.GetSystemName();
+                    TreeNode tn = getSystemTreeNode(systemName);
+                    TreeNode gameNode = new TreeNode(game.Name);
+                    gameNode.Tag = game;
+                    gameNode.Checked = game.Selected;
+                    tn.Nodes.Add(gameNode);
+                }
+                treeView1.Sort();
+                ValidateAllFolderCheck();
+
             }
-            treeView1.Sort();
-            ValidateAllFolderCheck();
-
-
 
         }
 
         private void GameSelecter_GamesRemoved(List<NesMiniApplication> e)
         {
-            /*remove from checked listbox*/
-            foreach (var game in e)
+            if (this.InvokeRequired)
             {
-        
-                checkedListBox1.Items.Remove(game);
+                this.Invoke(new Manager.GameManager.GameListEventHandler(GameSelecter_GamesRemoved), new object[] { e });
             }
-            /*remove from treeview*/
-            foreach(var game in e)
+            else
+
             {
-                TreeNode tn = FindNode(game,treeView1.Nodes);
-                if(tn!=null)
+                /*remove from checked listbox*/
+                foreach (var game in e)
                 {
-                    tn.Remove();
+
+                    checkedListBox1.Items.Remove(game);
                 }
+                /*remove from treeview*/
+                foreach (var game in e)
+                {
+                    TreeNode tn = FindNode(game, treeView1.Nodes);
+                    if (tn != null)
+                    {
+                        tn.Remove();
+                    }
+                }
+                ValidateAllFolderCheck();
             }
-            ValidateAllFolderCheck();
         }
 
         private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -318,11 +340,18 @@ namespace com.clusterrr.hakchi_gui.UI.Components
         }
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (getSelectedTab() == "A->Z")
+            if (this.InvokeRequired)
             {
-                if (SelectedAppChanged != null)
+                this.Invoke(new EventHandler(checkedListBox1_SelectedIndexChanged), new object[] { sender, e });
+            }
+            else
+            {
+                if (getSelectedTab() == "A->Z")
                 {
-                    SelectedAppChanged(GetSelectedApp());
+                    if (SelectedAppChanged != null)
+                    {
+                        SelectedAppChanged(GetSelectedApp());
+                    }
                 }
             }
         }

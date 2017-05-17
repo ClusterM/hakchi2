@@ -206,16 +206,28 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_NewGamesAdded(List<NesMiniApplication> e)
         {
-           
-            ShowStats();
-            ShowSelected();
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Manager.GameManager.GameListEventHandler(MainForm_NewGamesAdded), new object[] { e });
+            }
+            else
+            {
+                ShowStats();
+                ShowSelected();
+            }
         }
 
         private void MainForm_GamesRemoved(List<NesMiniApplication> e)
         {
-            
-            ShowStats();
-            ShowSelected();
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Manager.GameManager.GameListEventHandler(MainForm_GamesRemoved), new object[] { e });
+            }
+            else
+            {
+                ShowStats();
+                ShowSelected();
+            }
         }
 
         public void ShowSelected()
@@ -1119,6 +1131,27 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void fetchOriginalGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (WaitingClovershellForm.WaitForDevice(this))
+                {
+                    UI.Forms.AsyncTask at = new UI.Forms.AsyncTask(new Tooling.Tasks.FetchOriginalGames(Clovershell));
+                    at.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+
+           
         }
     }
 }

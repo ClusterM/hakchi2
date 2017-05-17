@@ -7,22 +7,48 @@ namespace com.clusterrr.hakchi_gui.Tooling
 {
     public abstract class TaskableTool
     {
+  
+        public TaskableTool(string theName)
+        {
+            Name = theName;
+        }
+        public string Name { get; set; }
         public delegate void StringDelegate(String status);
         public delegate void IntDelegate(int pct);
-        public event IntDelegate ReportProgress;
-        public event StringDelegate ReportStatus;
-        protected void Status(string theStatus)
+        public delegate void VoidDelegate();
+        public delegate void StringBoolDelegate(string message, bool fatal);
+        public event IntDelegate Progress;
+        public event StringDelegate Status;
+        public event VoidDelegate Completed;
+        public event StringBoolDelegate Error;
+
+        protected void ReportError(string message, bool fatal)
         {
-            if(ReportStatus != null)
+            if(Error!=null)
             {
-                ReportStatus(theStatus);
+                Error(message, fatal);
             }
         }
-        protected void Progress(int theprogress)
+        protected void ReportCompleted()
         {
-            if (ReportProgress != null)
+            if(Completed != null)
             {
-                ReportProgress(theprogress);
+                Completed();
+            }
+        }
+
+        protected void ReportStatus(string theStatus)
+        {
+            if(Status != null)
+            {
+                Status(theStatus);
+            }
+        }
+        protected void ReportProgress(int theprogress)
+        {
+            if (Progress != null)
+            {
+                Progress(theprogress);
             }
         }
         public abstract void Execute();

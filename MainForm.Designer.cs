@@ -120,6 +120,8 @@
             this.timerConnectionCheck = new System.Windows.Forms.Timer(this.components);
             this.gameDetail1 = new com.clusterrr.hakchi_gui.UI.Components.GameDetail();
             this.gameSelecter1 = new com.clusterrr.hakchi_gui.UI.Components.GameSelecter();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
+            this.fetchOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -595,7 +597,9 @@
             this.shellToolStripMenuItem,
             this.openTelnetToolStripMenuItem,
             this.toolStripMenuItem8,
-            this.takeScreenshotToolStripMenuItem});
+            this.takeScreenshotToolStripMenuItem,
+            this.toolStripMenuItem9,
+            this.fetchOriginalGamesToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
             // 
@@ -765,6 +769,17 @@
             resources.ApplyResources(this.gameSelecter1, "gameSelecter1");
             this.gameSelecter1.Name = "gameSelecter1";
             // 
+            // toolStripMenuItem9
+            // 
+            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            resources.ApplyResources(this.toolStripMenuItem9, "toolStripMenuItem9");
+            // 
+            // fetchOriginalGamesToolStripMenuItem
+            // 
+            this.fetchOriginalGamesToolStripMenuItem.Name = "fetchOriginalGamesToolStripMenuItem";
+            resources.ApplyResources(this.fetchOriginalGamesToolStripMenuItem, "fetchOriginalGamesToolStripMenuItem");
+            this.fetchOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.fetchOriginalGamesToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -888,6 +903,8 @@
         private System.Windows.Forms.ToolStripMenuItem takeScreenshotToolStripMenuItem;
         private UI.Components.GameDetail gameDetail1;
         private UI.Components.GameSelecter gameSelecter1;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
+        private System.Windows.Forms.ToolStripMenuItem fetchOriginalGamesToolStripMenuItem;
     }
 }
 
