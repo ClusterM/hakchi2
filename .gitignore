@@ -3,3 +3,4 @@ driver/source/nesmini_driver/Release/
 obj/
 hakchi_gui.csproj.user
 *.pfx
+.vs/hakchi_gui/v15/.suo
