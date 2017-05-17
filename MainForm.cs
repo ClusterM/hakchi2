@@ -520,19 +520,16 @@ namespace com.clusterrr.hakchi_gui
 
         void AddGames(IEnumerable<string> files)
         {
-            List<NesMiniApplication> addedApps;
-            var workerForm = new WorkerForm();
-            workerForm.Text = Resources.LoadingGames;
-            workerForm.Task = WorkerForm.Tasks.AddGames;
-            workerForm.GamesToAdd = files;
-            workerForm.Start();
-            addedApps = workerForm.addedApplications;
+            Tooling.Tasks.ImportGames ig = new Tooling.Tasks.ImportGames(files);
+            UI.Forms.AsyncTask at = new UI.Forms.AsyncTask(ig);
+            at.ShowDialog();
+           
 
-            foreach (NesMiniApplication g in addedApps)
+            foreach (NesMiniApplication g in ig.addedApplications)
             {
                 g.Selected = true;
             }
-            Manager.GameManager.GetInstance().AddGames(addedApps);
+            Manager.GameManager.GetInstance().AddGames(ig.addedApplications);
 
             ShowStats();
         }

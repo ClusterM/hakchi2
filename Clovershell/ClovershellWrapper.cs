@@ -217,6 +217,21 @@ namespace com.clusterrr.clovershell
             UploadFile(path, ms2);
             ms2.Close();
         }
+        public void ShowSplashScreen()
+        {
+   
+            var splashScreenPath = Path.Combine(Path.Combine(com.clusterrr.hakchi_gui.Program.BaseDirectoryInternal, "data"), "splash.gz");
+            conn.ExecuteSimple("pkill -KILL clover-mcp");
+            conn.ExecuteSimple("pkill -KILL ReedPlayer-Clover");
+            conn.ExecuteSimple("pkill -KILL kachikachi");
+            if (File.Exists(splashScreenPath))
+            {
+                using (var splash = new FileStream(splashScreenPath, FileMode.Open))
+                {
+                    conn.Execute("gunzip -c - > /dev/fb0", splash, null, null, 3000);
+                }
+            }
+        }
         public void UploadFile(string path, byte[] data)
         {
             System.IO.MemoryStream mstr = new MemoryStream();

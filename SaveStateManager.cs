@@ -56,7 +56,8 @@ namespace com.clusterrr.hakchi_gui
                 }
 
                 var clovershell = MainForm.Clovershell;
-                WorkerForm.ShowSplashScreen();
+                new clovershell.ClovershellWrapper(clovershell).ShowSplashScreen();
+                
                 var listSavesScript =
                      "#!/bin/sh\n" +
                      "savespath=/var/lib/clover/profiles/0\n" +

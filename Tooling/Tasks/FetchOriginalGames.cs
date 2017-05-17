@@ -7,7 +7,6 @@ namespace com.clusterrr.hakchi_gui.Tooling.Tasks
 {
     class FetchOriginalGames:TaskableTool
     {
-        clovershell.ClovershellConnection theConnection;
         clovershell.ClovershellWrapper wrapper;
         public FetchOriginalGames(clovershell.ClovershellConnection conn):base("Fetching orignal games")
         {

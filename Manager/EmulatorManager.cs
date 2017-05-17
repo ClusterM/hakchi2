@@ -77,12 +77,44 @@ namespace com.clusterrr.hakchi_gui.Manager
             
             return ret;
         }
+        private Emulator getUnknowEmulator(string fileName)
+        {
+            Emulator emu = new Emulator();
+            emu.Extensions = new List<string>();
+           
+            emu.AvailableArguments = new List<string>();
+            string exeName = fileName;
+            if(System.IO.Path.GetExtension(fileName) !="")
+            {
+                emu.Extensions.Add(System.IO.Path.GetExtension(fileName));
+                exeName = System.IO.Path.GetExtension(fileName).Substring(1);
+            }
+            emu.Executable = "/bin/" + exeName;
+
+            if (emu.Extensions.Count > 0)
+            {
+                emu.SystemName = "Unknow / " + exeName;
+            }
+            else
+            {
+                emu.SystemName = "Application";
+            }
+
+            emu.Name = emu.SystemName;
+            emu.DefaultImage = "blank_"+exeName+".png";
+            emu.Prefix = "Z";
+            emu.SupportZip = true;
+            emulators.Add(emu);
+            SaveSettings();
+            return emu;
+        }
         private Emulator getUnknowEmulator(NesMiniApplication game)
         {
             Emulator emu = new Emulator();
             emu.Extensions = new List<string>();
             emu.Extensions.Add(System.IO.Path.GetExtension(game.RomFile));
             emu.AvailableArguments = new List<string>();
+            
             if((game.Command == null || game.Command == "" )&& emu.Extensions[0].Trim() != "")
             {
                 emu.Executable = "/bin/" + emu.Extensions[0].Substring(1);
@@ -111,7 +143,12 @@ namespace com.clusterrr.hakchi_gui.Manager
                 emu.SystemName = "Unknow";
             }
             emu.Name = emu.Executable;
-            emu.DefaultImage = "blank_app.png";
+            string exeName = "app";
+            if(emu.Executable.StartsWith("/bin/"))
+            {
+                exeName = emu.Executable.Substring(5);
+            }
+            emu.DefaultImage = "blank_"+exeName+".png";
             emu.Prefix = "Z";
             emu.SupportZip = true;
             emulators.Add(emu);
@@ -160,10 +197,13 @@ namespace com.clusterrr.hakchi_gui.Manager
                 bool apply = false;
                 foreach (string s in e.Extensions)
                 {
-                    if (fileName.EndsWith(s) || (e.SupportZip && fileName.EndsWith(".7z")))
+                    if (s != "")
                     {
-                        apply = true;
-                        break;
+                        if (fileName.EndsWith(s) || (e.SupportZip && fileName.EndsWith(".7z")))
+                        {
+                            apply = true;
+                            break;
+                        }
                     }
                 }
                 if (apply)
@@ -171,6 +211,10 @@ namespace com.clusterrr.hakchi_gui.Manager
                     fileTypeAppliable.Add(e);
                 }
 
+            }
+            if(fileTypeAppliable.Count==0)
+            {
+                fileTypeAppliable.Add(getUnknowEmulator(fileName));
             }
             return fileTypeAppliable;
         }

@@ -445,6 +445,7 @@
     </Compile>
     <Compile Include="Tooling\TaskableTool.cs" />
     <Compile Include="Tooling\Tasks\FetchOriginalGames.cs" />
+    <Compile Include="Tooling\Tasks\ImportGames.cs" />
     <Compile Include="UI\Components\GameDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
