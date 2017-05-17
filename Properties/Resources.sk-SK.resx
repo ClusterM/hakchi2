@@ -89,7 +89,7 @@
     <value>Chcete flashnúť vlastný kernel?</value>
   </data>
   <data name="CustomWarning">
-    <value>Teraz potrebujete flashnúť vlastný kernel to NES Mini. Je to potrebné urobiť iba raz. Chcete pokračovať?</value>
+    <value>Teraz potrebujete flashnúť vlastný kernel do NES Mini. Je to potrebné urobiť iba raz. Chcete pokračovať?</value>
   </data>
   <data name="Default30games">
     <value>Originálnych 30 hier</value>
