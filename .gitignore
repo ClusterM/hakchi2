@@ -4,3 +4,4 @@ obj/
 hakchi_gui.csproj.user
 *.pfx
 .vs/hakchi_gui/v15/.suo
+hakchi_gui.sln
