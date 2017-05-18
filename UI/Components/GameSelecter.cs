@@ -55,10 +55,13 @@ namespace com.clusterrr.hakchi_gui.UI.Components
                 TreeNode tn = FindNode(app, treeView1.Nodes);
                 if (tn != null)
                 {
-                    tn.Checked = app.Selected;
-                    if (tn.Parent != null)
+                    if (tn.Checked != app.Selected)
                     {
-                        ValidateFolderCheck(tn.Parent);
+                        tn.Checked = app.Selected;
+                        if (tn.Parent != null)
+                        {
+                            ValidateFolderCheck(tn.Parent);
+                        }
                     }
                 }
 

@@ -458,7 +458,7 @@
     <Compile Include="UI\Components\GameSelecter.Designer.cs">
       <DependentUpon>GameSelecter.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\FixedTreeview.cs">
+    <Compile Include="UI\Components\FixedTreeview.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\Forms\AsyncTask.cs">
