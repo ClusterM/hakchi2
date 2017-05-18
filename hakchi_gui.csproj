@@ -446,6 +446,12 @@
     <Compile Include="Tooling\TaskableTool.cs" />
     <Compile Include="Tooling\Tasks\FetchOriginalGames.cs" />
     <Compile Include="Tooling\Tasks\ImportGames.cs" />
+    <Compile Include="UI\Components\EmulatorSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Components\EmulatorSelector.Designer.cs">
+      <DependentUpon>EmulatorSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Components\GameDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1008,6 +1014,9 @@
     <EmbeddedResource Include="FoldersManagerForm.ru-RU.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Components\EmulatorSelector.resx">
+      <DependentUpon>EmulatorSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Components\GameDetail.resx">
       <DependentUpon>GameDetail.cs</DependentUpon>
     </EmbeddedResource>
@@ -1326,7 +1335,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="app.config" />
-    <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

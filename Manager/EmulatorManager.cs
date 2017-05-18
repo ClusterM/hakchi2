@@ -10,6 +10,11 @@ namespace com.clusterrr.hakchi_gui.Manager
         private static string FoldersXmlPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "Emulators.txt");
         public class Emulator
         {
+            public override string ToString()
+            {
+                return Name;
+            }
+            public bool NeedRomParameter { get; set; }
             public string SystemName { get; set; }
             public string Name { get; set; }
             public bool SupportZip { get; set; }
@@ -21,7 +26,14 @@ namespace com.clusterrr.hakchi_gui.Manager
 
             public string getCommandLine(NesMiniApplication app)
             {
-                return (Executable + " " + app.NesClassicRomPath + " " + app.Arguments).Trim();
+                if (NeedRomParameter)
+                {
+                    return (Executable + " " + app.NesClassicRomPath + " " + app.Arguments).Trim();
+                }
+                else
+                {
+                    return (Executable + " " + app.Arguments).Trim();
+                }
             }
         }
         public static EmulatorManager getInstance()
@@ -34,6 +46,12 @@ namespace com.clusterrr.hakchi_gui.Manager
         }
         private List<Emulator> emulators = new List<Emulator>();
         private static EmulatorManager instance;
+        public List<Emulator> getEmulatorList()
+        {
+            List<Emulator> ret = new List<Emulator>();
+            ret.AddRange(emulators);
+            return ret;
+        }
         private EmulatorManager()
         {
             LoadSettings();
@@ -94,10 +112,12 @@ namespace com.clusterrr.hakchi_gui.Manager
             if (emu.Extensions.Count > 0)
             {
                 emu.SystemName = "Unknow / " + exeName;
+                emu.NeedRomParameter = true;
             }
             else
             {
                 emu.SystemName = "Application";
+                emu.NeedRomParameter = false;
             }
 
             emu.Name = emu.SystemName;
@@ -137,10 +157,12 @@ namespace com.clusterrr.hakchi_gui.Manager
             if(game.NesClassicRomPath.Trim() =="")
             {
                 emu.SystemName = "Application";
+                emu.NeedRomParameter = false;
             }
             else
             {
                 emu.SystemName = "Unknow";
+                emu.NeedRomParameter = true;
             }
             emu.Name = emu.Executable;
             string exeName = "app";
