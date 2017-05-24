@@ -1150,5 +1150,26 @@ namespace com.clusterrr.hakchi_gui
 
            
         }
+
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UI.Forms.RomImporter ri = new UI.Forms.RomImporter();
+            ri.LoadRoms("D:\\Roms\\NES\\");
+            ri.ShowDialog();
+        }
+
+        private void viewRomsInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UI.Forms.RomImporter ri = new UI.Forms.RomImporter();
+            ri.SetInfoOnly();
+            ri.LoadRoms(Manager.RomManager.getInstance().RomFolder);
+            ri.ShowDialog();
+        }
+
+        private void viewAvailableRomsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UI.Forms.RomsList rl = new UI.Forms.RomsList();
+            rl.ShowDialog();
+        }
     }
 }

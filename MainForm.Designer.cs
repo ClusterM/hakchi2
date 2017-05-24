@@ -103,10 +103,16 @@
             this.openTelnetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.takeScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
+            this.fetchOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.romManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewAvailableRomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewRomsInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonAddGames = new System.Windows.Forms.Button();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -120,8 +126,6 @@
             this.timerConnectionCheck = new System.Windows.Forms.Timer(this.components);
             this.gameDetail1 = new com.clusterrr.hakchi_gui.UI.Components.GameDetail();
             this.gameSelecter1 = new com.clusterrr.hakchi_gui.UI.Components.GameSelecter();
-            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
-            this.fetchOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -134,7 +138,8 @@
             this.modulesToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.toolsToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.romManagerToolStripMenuItem});
             resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Name = "menuStrip";
             // 
@@ -656,6 +661,17 @@
             resources.ApplyResources(this.takeScreenshotToolStripMenuItem, "takeScreenshotToolStripMenuItem");
             this.takeScreenshotToolStripMenuItem.Click += new System.EventHandler(this.takeScreenshotToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem9
+            // 
+            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            resources.ApplyResources(this.toolStripMenuItem9, "toolStripMenuItem9");
+            // 
+            // fetchOriginalGamesToolStripMenuItem
+            // 
+            this.fetchOriginalGamesToolStripMenuItem.Name = "fetchOriginalGamesToolStripMenuItem";
+            resources.ApplyResources(this.fetchOriginalGamesToolStripMenuItem, "fetchOriginalGamesToolStripMenuItem");
+            this.fetchOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.fetchOriginalGamesToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -682,6 +698,33 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // romManagerToolStripMenuItem
+            // 
+            this.romManagerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importToolStripMenuItem,
+            this.viewAvailableRomsToolStripMenuItem,
+            this.viewRomsInfoToolStripMenuItem});
+            this.romManagerToolStripMenuItem.Name = "romManagerToolStripMenuItem";
+            resources.ApplyResources(this.romManagerToolStripMenuItem, "romManagerToolStripMenuItem");
+            // 
+            // importToolStripMenuItem
+            // 
+            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+            resources.ApplyResources(this.importToolStripMenuItem, "importToolStripMenuItem");
+            this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
+            // 
+            // viewAvailableRomsToolStripMenuItem
+            // 
+            this.viewAvailableRomsToolStripMenuItem.Name = "viewAvailableRomsToolStripMenuItem";
+            resources.ApplyResources(this.viewAvailableRomsToolStripMenuItem, "viewAvailableRomsToolStripMenuItem");
+            this.viewAvailableRomsToolStripMenuItem.Click += new System.EventHandler(this.viewAvailableRomsToolStripMenuItem_Click);
+            // 
+            // viewRomsInfoToolStripMenuItem
+            // 
+            this.viewRomsInfoToolStripMenuItem.Name = "viewRomsInfoToolStripMenuItem";
+            resources.ApplyResources(this.viewRomsInfoToolStripMenuItem, "viewRomsInfoToolStripMenuItem");
+            this.viewRomsInfoToolStripMenuItem.Click += new System.EventHandler(this.viewRomsInfoToolStripMenuItem_Click);
             // 
             // label5
             // 
@@ -768,17 +811,6 @@
             // 
             resources.ApplyResources(this.gameSelecter1, "gameSelecter1");
             this.gameSelecter1.Name = "gameSelecter1";
-            // 
-            // toolStripMenuItem9
-            // 
-            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            resources.ApplyResources(this.toolStripMenuItem9, "toolStripMenuItem9");
-            // 
-            // fetchOriginalGamesToolStripMenuItem
-            // 
-            this.fetchOriginalGamesToolStripMenuItem.Name = "fetchOriginalGamesToolStripMenuItem";
-            resources.ApplyResources(this.fetchOriginalGamesToolStripMenuItem, "fetchOriginalGamesToolStripMenuItem");
-            this.fetchOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.fetchOriginalGamesToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -905,6 +937,10 @@
         private UI.Components.GameSelecter gameSelecter1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
         private System.Windows.Forms.ToolStripMenuItem fetchOriginalGamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem romManagerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewAvailableRomsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewRomsInfoToolStripMenuItem;
     }
 }
 

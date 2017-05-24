@@ -15,7 +15,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public class NesMiniApplication : INesMenuElement
     {
-
+        private Manager.RomManager.Rom theRom;
         public readonly static string GamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games");
         const string DefaultReleaseDate = "1900-01-01";
         const string DefaultPublisher = "UNKNOWN";
@@ -243,7 +243,9 @@ namespace com.clusterrr.hakchi_gui
             if(availableEmus.Count >0)
             {
                 toUse = availableEmus[0];
-                return (NesMiniApplication)UnknowSystem.Import(fileName, sourceFile, rawRomData, toUse.Prefix[0], toUse.Executable, Manager.BitmapManager.getInstance().GetBitmap(".\\images\\" + toUse.DefaultImage), toUse.SupportZip); ;
+                NesMiniApplication app = (NesMiniApplication)UnknowSystem.Import(fileName, sourceFile, rawRomData, toUse.Prefix[0], toUse.Executable, Manager.BitmapManager.getInstance().GetBitmap(".\\images\\" + toUse.DefaultImage), toUse.SupportZip);
+               // app.theRom = Manager.RomManager.getInstance().AddRom(fileName);
+                return app;
             }
            else
             {

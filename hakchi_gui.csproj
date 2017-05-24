@@ -318,6 +318,7 @@
     <Compile Include="Manager\EmulatorManager.cs" />
     <Compile Include="Manager\EventBus.cs" />
     <Compile Include="Manager\GameManager.cs" />
+    <Compile Include="Manager\RomManager.cs" />
     <Compile Include="MessageBoxManager.cs" />
     <Compile Include="Properties\Resources.Designer.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -444,8 +445,10 @@
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tooling\TaskableTool.cs" />
+    <Compile Include="Tooling\Tasks\ExtractFiles.cs" />
     <Compile Include="Tooling\Tasks\FetchOriginalGames.cs" />
     <Compile Include="Tooling\Tasks\ImportGames.cs" />
+    <Compile Include="Tooling\Tasks\ImportRoms.cs" />
     <Compile Include="UI\Components\EmulatorSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -472,6 +475,18 @@
     </Compile>
     <Compile Include="UI\Forms\AsyncTask.Designer.cs">
       <DependentUpon>AsyncTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Forms\RomImporter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\RomImporter.Designer.cs">
+      <DependentUpon>RomImporter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Forms\RomsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\RomsList.Designer.cs">
+      <DependentUpon>RomsList.cs</DependentUpon>
     </Compile>
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
@@ -1026,6 +1041,12 @@
     <EmbeddedResource Include="UI\Forms\AsyncTask.resx">
       <DependentUpon>AsyncTask.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms\RomImporter.resx">
+      <DependentUpon>RomImporter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms\RomsList.resx">
+      <DependentUpon>RomsList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.bg-BG.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1336,6 +1357,8 @@
     </Content>
     <None Include="app.config" />
     <None Include="Properties\app.manifest" />
+    <None Include="Properties\DataSources\com.clusterrr.hakchi_gui.Manager.RomManager+Rom.datasource" />
+    <None Include="Properties\DataSources\com.clusterrr.hakchi_gui.UI.Forms.RomImporter+RomType.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1763,22 +1786,22 @@
   <ItemGroup>
     <PublishFile Include="data\GameGenieDB.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\nescarts.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

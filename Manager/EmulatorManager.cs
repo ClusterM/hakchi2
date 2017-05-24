@@ -185,7 +185,7 @@ namespace com.clusterrr.hakchi_gui.Manager
             {
                 foreach (string ext in sde.Extensions)
                 {
-                    if (ext == extension)
+                    if (ext.ToLower() == extension.ToLower())
                     {
                         ret = true;
                         break;
