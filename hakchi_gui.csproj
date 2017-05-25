@@ -315,6 +315,7 @@
     <Compile Include="LibWinUsb\WinUsb\WinUsbDevice.cs" />
     <Compile Include="LibWinUsb\WinUsb\WinUsbRegistry.cs" />
     <Compile Include="Manager\BitmapManager.cs" />
+    <Compile Include="Manager\BookManager.cs" />
     <Compile Include="Manager\CoverManager.cs" />
     <Compile Include="Manager\EmulatorManager.cs" />
     <Compile Include="Manager\EventBus.cs" />

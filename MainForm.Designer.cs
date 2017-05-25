@@ -130,6 +130,11 @@
             this.coverManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewCoversListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importCoversFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.booksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
+            this.createNewBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -680,7 +685,8 @@
             // 
             this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.romManagerToolStripMenuItem1,
-            this.coverManagerToolStripMenuItem});
+            this.coverManagerToolStripMenuItem,
+            this.booksToolStripMenuItem});
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
             resources.ApplyResources(this.advancedToolStripMenuItem, "advancedToolStripMenuItem");
             // 
@@ -844,6 +850,40 @@
             resources.ApplyResources(this.importCoversFolderToolStripMenuItem, "importCoversFolderToolStripMenuItem");
             this.importCoversFolderToolStripMenuItem.Click += new System.EventHandler(this.importCoversFolderToolStripMenuItem_Click);
             // 
+            // booksToolStripMenuItem
+            // 
+            this.booksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem10,
+            this.createNewBookToolStripMenuItem});
+            this.booksToolStripMenuItem.Name = "booksToolStripMenuItem";
+            resources.ApplyResources(this.booksToolStripMenuItem, "booksToolStripMenuItem");
+            this.booksToolStripMenuItem.DropDownOpening += new System.EventHandler(this.booksToolStripMenuItem_DropDownOpening);
+            // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            resources.ApplyResources(this.toolStripMenuItem10, "toolStripMenuItem10");
+            // 
+            // createNewBookToolStripMenuItem
+            // 
+            this.createNewBookToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTextBox1,
+            this.createToolStripMenuItem});
+            this.createNewBookToolStripMenuItem.Name = "createNewBookToolStripMenuItem";
+            resources.ApplyResources(this.createNewBookToolStripMenuItem, "createNewBookToolStripMenuItem");
+            this.createNewBookToolStripMenuItem.Click += new System.EventHandler(this.createNewBookToolStripMenuItem_Click);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            resources.ApplyResources(this.toolStripTextBox1, "toolStripTextBox1");
+            // 
+            // createToolStripMenuItem
+            // 
+            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
+            resources.ApplyResources(this.createToolStripMenuItem, "createToolStripMenuItem");
+            this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -977,6 +1017,11 @@
         private System.Windows.Forms.ToolStripMenuItem coverManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewCoversListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importCoversFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem booksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem10;
+        private System.Windows.Forms.ToolStripMenuItem createNewBookToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
     }
 }
 
