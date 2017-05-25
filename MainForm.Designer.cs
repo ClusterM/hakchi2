@@ -105,14 +105,15 @@
             this.takeScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
             this.fetchOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.romManagerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.importRomsFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewAvailableRomsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewRomsInfoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.romManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewAvailableRomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewRomsInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonAddGames = new System.Windows.Forms.Button();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -126,6 +127,9 @@
             this.timerConnectionCheck = new System.Windows.Forms.Timer(this.components);
             this.gameDetail1 = new com.clusterrr.hakchi_gui.UI.Components.GameDetail();
             this.gameSelecter1 = new com.clusterrr.hakchi_gui.UI.Components.GameSelecter();
+            this.coverManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewCoversListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importCoversFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -138,8 +142,8 @@
             this.modulesToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.toolsToolStripMenuItem,
-            this.helpToolStripMenuItem,
-            this.romManagerToolStripMenuItem});
+            this.advancedToolStripMenuItem,
+            this.helpToolStripMenuItem});
             resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Name = "menuStrip";
             // 
@@ -672,6 +676,41 @@
             resources.ApplyResources(this.fetchOriginalGamesToolStripMenuItem, "fetchOriginalGamesToolStripMenuItem");
             this.fetchOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.fetchOriginalGamesToolStripMenuItem_Click);
             // 
+            // advancedToolStripMenuItem
+            // 
+            this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.romManagerToolStripMenuItem1,
+            this.coverManagerToolStripMenuItem});
+            this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
+            resources.ApplyResources(this.advancedToolStripMenuItem, "advancedToolStripMenuItem");
+            // 
+            // romManagerToolStripMenuItem1
+            // 
+            this.romManagerToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importRomsFolderToolStripMenuItem,
+            this.viewAvailableRomsToolStripMenuItem1,
+            this.viewRomsInfoToolStripMenuItem1});
+            this.romManagerToolStripMenuItem1.Name = "romManagerToolStripMenuItem1";
+            resources.ApplyResources(this.romManagerToolStripMenuItem1, "romManagerToolStripMenuItem1");
+            // 
+            // importRomsFolderToolStripMenuItem
+            // 
+            this.importRomsFolderToolStripMenuItem.Name = "importRomsFolderToolStripMenuItem";
+            resources.ApplyResources(this.importRomsFolderToolStripMenuItem, "importRomsFolderToolStripMenuItem");
+            this.importRomsFolderToolStripMenuItem.Click += new System.EventHandler(this.importRomsFolderToolStripMenuItem_Click);
+            // 
+            // viewAvailableRomsToolStripMenuItem1
+            // 
+            this.viewAvailableRomsToolStripMenuItem1.Name = "viewAvailableRomsToolStripMenuItem1";
+            resources.ApplyResources(this.viewAvailableRomsToolStripMenuItem1, "viewAvailableRomsToolStripMenuItem1");
+            this.viewAvailableRomsToolStripMenuItem1.Click += new System.EventHandler(this.viewAvailableRomsToolStripMenuItem1_Click);
+            // 
+            // viewRomsInfoToolStripMenuItem1
+            // 
+            this.viewRomsInfoToolStripMenuItem1.Name = "viewRomsInfoToolStripMenuItem1";
+            resources.ApplyResources(this.viewRomsInfoToolStripMenuItem1, "viewRomsInfoToolStripMenuItem1");
+            this.viewRomsInfoToolStripMenuItem1.Click += new System.EventHandler(this.viewRomsInfoToolStripMenuItem1_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -698,33 +737,6 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // romManagerToolStripMenuItem
-            // 
-            this.romManagerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importToolStripMenuItem,
-            this.viewAvailableRomsToolStripMenuItem,
-            this.viewRomsInfoToolStripMenuItem});
-            this.romManagerToolStripMenuItem.Name = "romManagerToolStripMenuItem";
-            resources.ApplyResources(this.romManagerToolStripMenuItem, "romManagerToolStripMenuItem");
-            // 
-            // importToolStripMenuItem
-            // 
-            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            resources.ApplyResources(this.importToolStripMenuItem, "importToolStripMenuItem");
-            this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
-            // 
-            // viewAvailableRomsToolStripMenuItem
-            // 
-            this.viewAvailableRomsToolStripMenuItem.Name = "viewAvailableRomsToolStripMenuItem";
-            resources.ApplyResources(this.viewAvailableRomsToolStripMenuItem, "viewAvailableRomsToolStripMenuItem");
-            this.viewAvailableRomsToolStripMenuItem.Click += new System.EventHandler(this.viewAvailableRomsToolStripMenuItem_Click);
-            // 
-            // viewRomsInfoToolStripMenuItem
-            // 
-            this.viewRomsInfoToolStripMenuItem.Name = "viewRomsInfoToolStripMenuItem";
-            resources.ApplyResources(this.viewRomsInfoToolStripMenuItem, "viewRomsInfoToolStripMenuItem");
-            this.viewRomsInfoToolStripMenuItem.Click += new System.EventHandler(this.viewRomsInfoToolStripMenuItem_Click);
             // 
             // label5
             // 
@@ -811,6 +823,26 @@
             // 
             resources.ApplyResources(this.gameSelecter1, "gameSelecter1");
             this.gameSelecter1.Name = "gameSelecter1";
+            // 
+            // coverManagerToolStripMenuItem
+            // 
+            this.coverManagerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importCoversFolderToolStripMenuItem,
+            this.viewCoversListToolStripMenuItem});
+            this.coverManagerToolStripMenuItem.Name = "coverManagerToolStripMenuItem";
+            resources.ApplyResources(this.coverManagerToolStripMenuItem, "coverManagerToolStripMenuItem");
+            // 
+            // viewCoversListToolStripMenuItem
+            // 
+            this.viewCoversListToolStripMenuItem.Name = "viewCoversListToolStripMenuItem";
+            resources.ApplyResources(this.viewCoversListToolStripMenuItem, "viewCoversListToolStripMenuItem");
+            this.viewCoversListToolStripMenuItem.Click += new System.EventHandler(this.viewCoversListToolStripMenuItem_Click);
+            // 
+            // importCoversFolderToolStripMenuItem
+            // 
+            this.importCoversFolderToolStripMenuItem.Name = "importCoversFolderToolStripMenuItem";
+            resources.ApplyResources(this.importCoversFolderToolStripMenuItem, "importCoversFolderToolStripMenuItem");
+            this.importCoversFolderToolStripMenuItem.Click += new System.EventHandler(this.importCoversFolderToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -937,10 +969,14 @@
         private UI.Components.GameSelecter gameSelecter1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
         private System.Windows.Forms.ToolStripMenuItem fetchOriginalGamesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem romManagerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewAvailableRomsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewRomsInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem advancedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem romManagerToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem importRomsFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewAvailableRomsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem viewRomsInfoToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem coverManagerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewCoversListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importCoversFolderToolStripMenuItem;
     }
 }
 

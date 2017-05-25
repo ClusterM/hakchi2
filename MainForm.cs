@@ -1153,9 +1153,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UI.Forms.RomImporter ri = new UI.Forms.RomImporter();
-            ri.LoadRoms("D:\\Roms\\NES\\");
-            ri.ShowDialog();
+           
         }
 
         private void viewRomsInfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1170,6 +1168,53 @@ namespace com.clusterrr.hakchi_gui
         {
             UI.Forms.RomsList rl = new UI.Forms.RomsList();
             rl.ShowDialog();
+        }
+
+        private void importRomsFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                UI.Forms.RomImporter ri = new UI.Forms.RomImporter();
+                ri.LoadRoms(fbd.SelectedPath);
+                ri.ShowDialog();
+            }
+        }
+
+        private void viewAvailableRomsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            UI.Forms.RomsList rl = new UI.Forms.RomsList();
+            rl.ShowDialog();
+        }
+
+        private void viewRomsInfoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+           
+            UI.Forms.RomImporter ri = new UI.Forms.RomImporter();
+            ri.SetInfoOnly();
+            ri.LoadRoms(Manager.RomManager.getInstance().RomFolder);
+            ri.ShowDialog();
+        }
+
+        private void viewCoversListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UI.Forms.CoverList cl = new UI.Forms.CoverList();
+            cl.ShowDialog();
+        }
+
+        private void importCoversFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if(fbd.ShowDialog() == DialogResult.OK)
+            {
+                string[] covers = System.IO.Directory.GetFiles(fbd.SelectedPath, "*.png", System.IO.SearchOption.AllDirectories);
+                List<string> coverList = new List<string>();
+                coverList.AddRange(covers);
+                UI.Forms.AsyncTask at = new UI.Forms.AsyncTask(new Tooling.Tasks.ImportCovers(coverList));
+                at.ShowDialog();
+                UI.Forms.CoverList cl = new UI.Forms.CoverList();
+                cl.ShowDialog();
+            }
         }
     }
 }
