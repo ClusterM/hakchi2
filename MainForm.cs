@@ -1235,66 +1235,18 @@ namespace com.clusterrr.hakchi_gui
             booksToolStripMenuItem.DropDownItems.Clear();
             foreach(Manager.BookManager.Book b in Manager.BookManager.getInstance().GetLibrary())
             {
-                ToolStripMenuItem bookItm = new ToolStripMenuItem(b.Name);
-                bookItm.Tag = b;
-                bookItm.DropDownOpened += BookItm_DropDownOpened;
-                ToolStripMenuItem tempItm = new ToolStripMenuItem("-");
-
-                bookItm.DropDownItems.Add(tempItm);
-                booksToolStripMenuItem.DropDownItems.Add(bookItm);
+              
+                booksToolStripMenuItem.DropDownItems.Add(new UI.Components.BookMenuItem(b));
                 
             }
             booksToolStripMenuItem.DropDownItems.Add(toolStripMenuItem10);
             booksToolStripMenuItem.DropDownItems.Add(createNewBookToolStripMenuItem);
         }
 
-        private void BookItm_DropDownOpened(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            ToolStripMenuItem itm = (ToolStripMenuItem)sender;
-            Manager.BookManager.Book b = (Manager.BookManager.Book)itm.Tag;
-
-            itm.DropDownItems.Clear();
-            foreach(Manager.BookManager.Page p in b.Pages)
-            {
-                ToolStripMenuItem pageItm = new ToolStripMenuItem(p.FriendlyName);
-                pageItm.Tag = p;
-                pageItm.DropDownOpened += PageItm_DropDownOpened;
-                ToolStripSeparator atempItm = new ToolStripSeparator();
-
-                pageItm.DropDownItems.Add(atempItm);
-                itm.DropDownItems.Add(pageItm);
-            }
-            ToolStripSeparator tempItm = new ToolStripSeparator();
-
-
-            itm.DropDownItems.Add(tempItm);
-            ToolStripMenuItem addPageItm = new ToolStripMenuItem("Add Page");
-            ToolStripTextBox pageName = new ToolStripTextBox();
-            pageName.Tag = b;
-            addPageItm.DropDownItems.Add(pageName);
-            ToolStripMenuItem doAdd = new ToolStripMenuItem("Add!");
-            doAdd.Click += DoAdd_Click;
-            doAdd.Tag = pageName;
-            addPageItm.DropDownItems.Add(doAdd);
-            itm.DropDownItems.Add(addPageItm);
-            //  throw new NotImplementedException();
-            Console.Write("");
-        }
-
-        private void DoAdd_Click(object sender, EventArgs e)
-        {
-            ToolStripMenuItem itm = (ToolStripMenuItem)sender;
-            ToolStripTextBox txt = (ToolStripTextBox)itm.Tag;
-            if(txt.Text.Trim()!="")
-            {
-                Manager.BookManager.Book b = (Manager.BookManager.Book)txt.Tag;
-                b.AddPage(txt.Text);
-            }
-        }
-
-        private void PageItm_DropDownOpened(object sender, EventArgs e)
-        {
-           // throw new NotImplementedException();
+            UI.Forms.AsyncTask ast = new UI.Forms.AsyncTask(new Tooling.Tasks.SaveCurrentConfigAsBook());
+            ast.ShowDialog();
         }
     }
 }

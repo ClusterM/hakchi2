@@ -35,6 +35,20 @@ namespace com.clusterrr.hakchi_gui.Manager
                     return (Executable + " " + app.Arguments).Trim();
                 }
             }
+            public List<Manager.RomManager.Rom> GetAllCompatibleRoms()
+            {
+                List<Manager.RomManager.Rom> ret = new List<RomManager.Rom>();
+
+                foreach(Manager.RomManager.Rom r in RomManager.getInstance().GetLibrary())
+                {
+                    string extension = r.Extension.ToLower();
+                    if(Extensions.Contains(extension))
+                    {
+                        ret.Add(r);
+                    }
+                }
+                return ret;
+            }
         }
         public static EmulatorManager getInstance()
         {

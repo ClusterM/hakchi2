@@ -452,11 +452,18 @@
     <Compile Include="Tooling\Tasks\ImportCovers.cs" />
     <Compile Include="Tooling\Tasks\ImportGames.cs" />
     <Compile Include="Tooling\Tasks\ImportRoms.cs" />
+    <Compile Include="Tooling\Tasks\SaveCurrentConfigAsBook.cs" />
+    <Compile Include="UI\Components\BookMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\Components\EmulatorSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\Components\EmulatorSelector.Designer.cs">
       <DependentUpon>EmulatorSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\EntryMenuItem.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\Components\GameDetail.cs">
       <SubType>UserControl</SubType>
@@ -472,6 +479,15 @@
     </Compile>
     <Compile Include="UI\Components\FixedTreeview.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Components\PageMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\EntryCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\EntryCreator.Designer.cs">
+      <DependentUpon>EntryCreator.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Forms\AsyncTask.cs">
       <SubType>Form</SubType>
@@ -1046,6 +1062,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Components\GameSelecter.resx">
       <DependentUpon>GameSelecter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms\EntryCreator.resx">
+      <DependentUpon>EntryCreator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\AsyncTask.resx">
       <DependentUpon>AsyncTask.cs</DependentUpon>

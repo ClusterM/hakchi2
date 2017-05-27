@@ -12,7 +12,11 @@ namespace com.clusterrr.hakchi_gui.Manager
         public event RomModificationHandler RomAdded;
         public class Rom
         {
-           
+            public override string ToString()
+            {
+                return DetectedName;
+            }
+
             public Rom(string filePath)
             {
                 LocalPath = filePath;

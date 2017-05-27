@@ -5,7 +5,7 @@ using System.Text;
 using System.Drawing;
 namespace com.clusterrr.hakchi_gui.Manager
 {
-    class CoverManager
+    public class CoverManager
     {
         public string CoverFolder = System.IO.Path.Combine(Program.BaseDirectoryExternal, "covers");
         private CoverManager()
@@ -23,6 +23,10 @@ namespace com.clusterrr.hakchi_gui.Manager
         }
         public class Cover
         {
+            public override string ToString()
+            {
+                return System.IO.Path.GetFileNameWithoutExtension(LocalPath);
+            }
             public Cover(string path)
             {
                 LocalPath = path;
@@ -97,6 +101,19 @@ namespace com.clusterrr.hakchi_gui.Manager
                 }
             }
 
+            return ret;
+        }
+        public Cover GetCoverByName(string name)
+        {
+            Cover ret = null;
+            foreach(Cover c in _CoverLibrary)
+            {
+                if(System.IO.Path.GetFileNameWithoutExtension(c.LocalPath).ToLower() == name.ToLower())
+                {
+                    ret = c;
+                    break;
+                }
+            }
             return ret;
         }
         public Cover AddCover(string filePath)

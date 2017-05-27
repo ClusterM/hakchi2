@@ -110,6 +110,14 @@
             this.importRomsFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAvailableRomsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.viewRomsInfoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.coverManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importCoversFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewCoversListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.booksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
+            this.createNewBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,14 +135,7 @@
             this.timerConnectionCheck = new System.Windows.Forms.Timer(this.components);
             this.gameDetail1 = new com.clusterrr.hakchi_gui.UI.Components.GameDetail();
             this.gameSelecter1 = new com.clusterrr.hakchi_gui.UI.Components.GameSelecter();
-            this.coverManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewCoversListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importCoversFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.booksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
-            this.createNewBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -717,6 +718,60 @@
             resources.ApplyResources(this.viewRomsInfoToolStripMenuItem1, "viewRomsInfoToolStripMenuItem1");
             this.viewRomsInfoToolStripMenuItem1.Click += new System.EventHandler(this.viewRomsInfoToolStripMenuItem1_Click);
             // 
+            // coverManagerToolStripMenuItem
+            // 
+            this.coverManagerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importCoversFolderToolStripMenuItem,
+            this.viewCoversListToolStripMenuItem});
+            this.coverManagerToolStripMenuItem.Name = "coverManagerToolStripMenuItem";
+            resources.ApplyResources(this.coverManagerToolStripMenuItem, "coverManagerToolStripMenuItem");
+            // 
+            // importCoversFolderToolStripMenuItem
+            // 
+            this.importCoversFolderToolStripMenuItem.Name = "importCoversFolderToolStripMenuItem";
+            resources.ApplyResources(this.importCoversFolderToolStripMenuItem, "importCoversFolderToolStripMenuItem");
+            this.importCoversFolderToolStripMenuItem.Click += new System.EventHandler(this.importCoversFolderToolStripMenuItem_Click);
+            // 
+            // viewCoversListToolStripMenuItem
+            // 
+            this.viewCoversListToolStripMenuItem.Name = "viewCoversListToolStripMenuItem";
+            resources.ApplyResources(this.viewCoversListToolStripMenuItem, "viewCoversListToolStripMenuItem");
+            this.viewCoversListToolStripMenuItem.Click += new System.EventHandler(this.viewCoversListToolStripMenuItem_Click);
+            // 
+            // booksToolStripMenuItem
+            // 
+            this.booksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem10,
+            this.createNewBookToolStripMenuItem});
+            this.booksToolStripMenuItem.Name = "booksToolStripMenuItem";
+            resources.ApplyResources(this.booksToolStripMenuItem, "booksToolStripMenuItem");
+            this.booksToolStripMenuItem.DropDownOpening += new System.EventHandler(this.booksToolStripMenuItem_DropDownOpening);
+            // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            resources.ApplyResources(this.toolStripMenuItem10, "toolStripMenuItem10");
+            // 
+            // createNewBookToolStripMenuItem
+            // 
+            this.createNewBookToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTextBox1,
+            this.createToolStripMenuItem});
+            this.createNewBookToolStripMenuItem.Name = "createNewBookToolStripMenuItem";
+            resources.ApplyResources(this.createNewBookToolStripMenuItem, "createNewBookToolStripMenuItem");
+            this.createNewBookToolStripMenuItem.Click += new System.EventHandler(this.createNewBookToolStripMenuItem_Click);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            resources.ApplyResources(this.toolStripTextBox1, "toolStripTextBox1");
+            // 
+            // createToolStripMenuItem
+            // 
+            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
+            resources.ApplyResources(this.createToolStripMenuItem, "createToolStripMenuItem");
+            this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -830,65 +885,19 @@
             resources.ApplyResources(this.gameSelecter1, "gameSelecter1");
             this.gameSelecter1.Name = "gameSelecter1";
             // 
-            // coverManagerToolStripMenuItem
+            // button1
             // 
-            this.coverManagerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importCoversFolderToolStripMenuItem,
-            this.viewCoversListToolStripMenuItem});
-            this.coverManagerToolStripMenuItem.Name = "coverManagerToolStripMenuItem";
-            resources.ApplyResources(this.coverManagerToolStripMenuItem, "coverManagerToolStripMenuItem");
-            // 
-            // viewCoversListToolStripMenuItem
-            // 
-            this.viewCoversListToolStripMenuItem.Name = "viewCoversListToolStripMenuItem";
-            resources.ApplyResources(this.viewCoversListToolStripMenuItem, "viewCoversListToolStripMenuItem");
-            this.viewCoversListToolStripMenuItem.Click += new System.EventHandler(this.viewCoversListToolStripMenuItem_Click);
-            // 
-            // importCoversFolderToolStripMenuItem
-            // 
-            this.importCoversFolderToolStripMenuItem.Name = "importCoversFolderToolStripMenuItem";
-            resources.ApplyResources(this.importCoversFolderToolStripMenuItem, "importCoversFolderToolStripMenuItem");
-            this.importCoversFolderToolStripMenuItem.Click += new System.EventHandler(this.importCoversFolderToolStripMenuItem_Click);
-            // 
-            // booksToolStripMenuItem
-            // 
-            this.booksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem10,
-            this.createNewBookToolStripMenuItem});
-            this.booksToolStripMenuItem.Name = "booksToolStripMenuItem";
-            resources.ApplyResources(this.booksToolStripMenuItem, "booksToolStripMenuItem");
-            this.booksToolStripMenuItem.DropDownOpening += new System.EventHandler(this.booksToolStripMenuItem_DropDownOpening);
-            // 
-            // toolStripMenuItem10
-            // 
-            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            resources.ApplyResources(this.toolStripMenuItem10, "toolStripMenuItem10");
-            // 
-            // createNewBookToolStripMenuItem
-            // 
-            this.createNewBookToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripTextBox1,
-            this.createToolStripMenuItem});
-            this.createNewBookToolStripMenuItem.Name = "createNewBookToolStripMenuItem";
-            resources.ApplyResources(this.createNewBookToolStripMenuItem, "createNewBookToolStripMenuItem");
-            this.createNewBookToolStripMenuItem.Click += new System.EventHandler(this.createNewBookToolStripMenuItem_Click);
-            // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            resources.ApplyResources(this.toolStripTextBox1, "toolStripTextBox1");
-            // 
-            // createToolStripMenuItem
-            // 
-            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            resources.ApplyResources(this.createToolStripMenuItem, "createToolStripMenuItem");
-            this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.gameSelecter1);
             this.Controls.Add(this.gameDetail1);
             this.Controls.Add(this.buttonStart);
@@ -1022,6 +1031,7 @@
         private System.Windows.Forms.ToolStripMenuItem createNewBookToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace com.clusterrr.hakchi_gui.Manager
 {
-    class BookManager
+    public class BookManager
     {
         private string BookLibraryPath = System.IO.Path.Combine(Program.BaseDirectoryExternal, "Books\\data.dat");
         private static BookManager instance;
@@ -113,6 +113,10 @@ namespace com.clusterrr.hakchi_gui.Manager
         }
         public class Page
         {
+            public override string ToString()
+            {
+                return FriendlyName;
+            }
             public Page()
             {
                 Entries = new List<Entry>();
@@ -121,19 +125,20 @@ namespace com.clusterrr.hakchi_gui.Manager
             public List<Entry> Entries { get; set; }
             public int Id { get; set; }
         }
-        public abstract class Entry
+        public  class Entry
         {
+            public Entry()
+            {
+                IsLink = false;
+            }
             public string Label { get; set; }
             public CoverManager.Cover Cover { get; set; }
-        }
-        public class LinkEntry:Entry
-        {
-            public string PageId;
-        }
-        public class GameEntry : Entry
-        {
+            public int PageId;
+
             public RomManager.Rom Rom { get; set; }
             public EmulatorManager.Emulator Emulator { get; set; }
+            public bool IsLink { get; set; }
         }
+       
     }
 }
