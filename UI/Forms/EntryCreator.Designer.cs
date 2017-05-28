@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tpLink = new System.Windows.Forms.TabPage();
+            this.tpGame = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,8 +44,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tpLink.SuspendLayout();
+            this.tpGame.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,39 +53,39 @@
             // 
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tpLink);
+            this.tabControl1.Controls.Add(this.tpGame);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(223, 137);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabPage1
+            // tpLink
             // 
-            this.tabPage1.Controls.Add(this.comboBox1);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(215, 111);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Link";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tpLink.Controls.Add(this.comboBox1);
+            this.tpLink.Controls.Add(this.label1);
+            this.tpLink.Location = new System.Drawing.Point(4, 22);
+            this.tpLink.Name = "tpLink";
+            this.tpLink.Padding = new System.Windows.Forms.Padding(3);
+            this.tpLink.Size = new System.Drawing.Size(215, 111);
+            this.tpLink.TabIndex = 0;
+            this.tpLink.Text = "Link";
+            this.tpLink.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tpGame
             // 
-            this.tabPage2.Controls.Add(this.cmbRoms);
-            this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Controls.Add(this.cmbEmulator);
-            this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(215, 111);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Game";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tpGame.Controls.Add(this.cmbRoms);
+            this.tpGame.Controls.Add(this.label4);
+            this.tpGame.Controls.Add(this.cmbEmulator);
+            this.tpGame.Controls.Add(this.label3);
+            this.tpGame.Location = new System.Drawing.Point(4, 22);
+            this.tpGame.Name = "tpGame";
+            this.tpGame.Padding = new System.Windows.Forms.Padding(3);
+            this.tpGame.Size = new System.Drawing.Size(215, 111);
+            this.tpGame.TabIndex = 1;
+            this.tpGame.Text = "Game";
+            this.tpGame.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -218,10 +218,10 @@
             this.Name = "EntryCreator";
             this.Text = "EntryCreator";
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tpLink.ResumeLayout(false);
+            this.tpLink.PerformLayout();
+            this.tpGame.ResumeLayout(false);
+            this.tpGame.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -231,14 +231,14 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tpLink;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ComboBox cmbCover;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tpGame;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox cmbRoms;
         private System.Windows.Forms.Label label4;

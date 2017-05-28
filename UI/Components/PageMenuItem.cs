@@ -23,7 +23,7 @@ namespace com.clusterrr.hakchi_gui.UI.Components
 
             foreach (Manager.BookManager.Entry ee in _ThePage.Entries)
             {
-                DropDownItems.Add(new EntryMenuItem(ee));
+                DropDownItems.Add(new EntryMenuItem(ee,_ThePage,_theBook));
             }
             this.DropDownItems.Add(new ToolStripSeparator());
             ToolStripMenuItem ts = new ToolStripMenuItem("Add Entry");

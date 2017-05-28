@@ -83,6 +83,25 @@ namespace com.clusterrr.hakchi_gui.Manager
             }
             return ret;
         }
+        public Rom GetRomByFileName(string fileName)
+        {
+            Rom ret = null;
+
+            foreach (Rom r in _RomLibrary)
+            {
+                if (fileName.ToLower() == System.IO.Path.GetFileName(r.LocalPath.ToLower()))
+                {
+                    ret = r;
+                    break;
+                }
+            }
+            /*   if(ret == null)
+               {
+                   ret = AddRom(filePath);
+               }
+               */
+            return ret;
+        }
         public Rom GetRom(string filePath)
         {
             Rom ret = null;

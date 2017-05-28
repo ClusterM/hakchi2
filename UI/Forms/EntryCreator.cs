@@ -11,6 +11,7 @@ namespace com.clusterrr.hakchi_gui.UI
 {
     public partial class EntryCreator : Form
     {
+        private bool EditMode = false;
         private Manager.BookManager.Book _theBook;
         public EntryCreator(Manager.BookManager.Book theBook)
         {
@@ -28,6 +29,24 @@ namespace com.clusterrr.hakchi_gui.UI
             {
                 cmbEmulator.Items.Add(emu);
             }
+        }
+        public void EditEntry(Manager.BookManager.Entry _entr)
+        {
+            EditMode = true;
+            entr = _entr;
+            if(entr.IsLink)
+            {
+                tabControl1.SelectedTab = tpLink;
+                comboBox1.SelectedItem = _theBook.GetPageById(_entr.PageId);
+            }
+            else
+            {
+                tabControl1.SelectedTab = tpGame;
+                cmbEmulator.SelectedItem = _entr.Emulator;
+                cmbRoms.SelectedItem = _entr.Rom;
+            }
+            textBox1.Text = _entr.Label;
+            cmbCover.SelectedItem = _entr.Cover;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -55,10 +74,18 @@ namespace com.clusterrr.hakchi_gui.UI
         {
             if(textBox1.Text.Trim() != "")
             {
-                Manager.BookManager.Entry le = new Manager.BookManager.Entry();
+                Manager.BookManager.Entry le = null;
+                if (EditMode)
+                {
+                    le = entr;
+                }
+                else
+                {
+                    le=   new Manager.BookManager.Entry();
+                }
                 le.Cover = (Manager.CoverManager.Cover)cmbCover.SelectedItem;
                 le.Label = textBox1.Text;
-                if (tabControl1.SelectedTab.Text == "Link")
+                if (tabControl1.SelectedTab == tpLink)
                 {
                     le.PageId = ((Manager.BookManager.Page)comboBox1.SelectedItem).Id;
                     le.IsLink = true;

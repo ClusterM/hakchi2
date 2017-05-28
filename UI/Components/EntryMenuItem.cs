@@ -8,9 +8,13 @@ namespace com.clusterrr.hakchi_gui.UI.Components
     public class EntryMenuItem : System.Windows.Forms.ToolStripMenuItem
     {
         Manager.BookManager.Entry _TheEntry;
-        public EntryMenuItem(Manager.BookManager.Entry entr):base(entr.Label)
+        Manager.BookManager.Book _TheBook;
+        Manager.BookManager.Page _ThePage;
+        public EntryMenuItem(Manager.BookManager.Entry entr,Manager.BookManager.Page page,Manager.BookManager.Book book):base(entr.Label)
         {
             _TheEntry = entr;
+            _TheBook = book;
+            _ThePage = page;
             ToolStripMenuItem entryEdititm = new ToolStripMenuItem("Edit");
             entryEdititm.Click += EntryEdititm_Click;
           
@@ -28,7 +32,10 @@ namespace com.clusterrr.hakchi_gui.UI.Components
 
         private void EntryEdititm_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            UI.EntryCreator ec = new EntryCreator(_TheBook);
+            ec.EditEntry(_TheEntry);
+            ec.ShowDialog();
+
         }
     }
 }

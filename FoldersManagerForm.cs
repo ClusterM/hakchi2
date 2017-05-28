@@ -14,6 +14,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class FoldersManagerForm : Form
     {
+        public bool _SkipUnsortedFiltering = false;
         public static string FoldersXmlPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders.xml");
         List<TreeNode> cuttedNodes = new List<TreeNode>();
         List<INesMenuElement> deletedGames = new List<INesMenuElement>();
@@ -43,6 +44,11 @@ namespace com.clusterrr.hakchi_gui
 
         public FoldersManagerForm(NesMenuCollection nesMenuCollection, MainForm mainForm = null)
         {
+            Init(nesMenuCollection, false, mainForm);
+        }
+        private void Init(NesMenuCollection nesMenuCollection, bool SkipUnsorted, MainForm mainForm = null)
+        {
+            _SkipUnsortedFiltering = SkipUnsorted;
             try
             {
                 InitializeComponent();
@@ -76,6 +82,10 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 MessageBox.Show(this, message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        public FoldersManagerForm(NesMenuCollection nesMenuCollection,bool SkipUnsorted, MainForm mainForm = null)
+        {
+            Init(nesMenuCollection, SkipUnsorted, mainForm);
         }
 
         void DrawTree()
@@ -921,8 +931,9 @@ namespace com.clusterrr.hakchi_gui
             xml.LoadXml(xmlString);
             gamesCollection.Clear();
             XmlToNode(xml, xml.SelectSingleNode("/Tree").ChildNodes, oldCollection, gamesCollection);
+
             // oldCollection has only unsorted (new) games
-            if (oldCollection.Count > 0)
+            if (oldCollection.Count > 0 && !_SkipUnsortedFiltering)
             {
                 NesMenuFolder unsorted;
                 var unsorteds = from f in gamesCollection where f is NesMenuFolder && f.Name == Resources.FolderNameUnsorted select f;

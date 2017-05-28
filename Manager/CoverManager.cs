@@ -174,6 +174,10 @@ namespace com.clusterrr.hakchi_gui.Manager
                                 new Rectangle(0, 0, outImage.Width, outImage.Height), GraphicsUnit.Pixel);
                             gr.Flush();
                             outImageSmall.Save(smallDestPath, System.Drawing.Imaging.ImageFormat.Png);
+                            image.Dispose();
+                            outImage.Dispose();
+                            outImageSmall.Dispose();
+                            gr.Dispose();
      
                         }
                         ret = new Cover(destinationPath);

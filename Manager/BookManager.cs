@@ -90,25 +90,49 @@ namespace com.clusterrr.hakchi_gui.Manager
                 }
                 return currentHigh + 1;
             }
-            public void AddPage(string name)
+            public Page GetPageById(int pageId)
             {
-                bool found = false;
-
+                Page ret = null;
                 foreach(Page p in Pages)
                 {
-                    if(p.FriendlyName ==name)
+                    if(p.Id == pageId)
                     {
-                        found = true;
+                        ret = p;
+                        break;
                     }
                 }
-                if(!found)
+                return ret;
+            }
+            public Page AddPage(string name, bool forceNew)
+            {
+                Page ret = null;
+                bool found = false;
+
+                if (!forceNew)
+                {
+                    foreach (Page p in Pages)
+                    {
+                        if (p.FriendlyName == name)
+                        {
+                            found = true;
+                            ret = p;
+                        }
+                    }
+                }
+                if (!found)
                 {
                     Page p = new Page();
                     p.FriendlyName = name;
                     p.Id = GetNextPageId();
                     Pages.Add(p);
+                    ret = p;
                     BookManager.getInstance().SaveSettings();
                 }
+                return ret;
+            }
+            public Page AddPage(string name)
+            {
+                return AddPage(name, true);
             }
         }
         public class Page
