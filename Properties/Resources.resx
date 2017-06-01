@@ -1,4 +1,3 @@
-<<<<<<< 07ff4c5c79b71a994a62e2e5ad112f3a83b6ec23
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
@@ -1203,5 +1202,7 @@
   <data name="fi" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\flags\fi.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
->>>>>>> Translations, new minor version
+  <data name="id" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\id.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
