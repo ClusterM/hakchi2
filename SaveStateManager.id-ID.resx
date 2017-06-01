@@ -59,9 +59,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Wybierz plik</value>
+    <value>Manajer Save-State</value>
   </data>
-  <data name="buttonArchive.Text">
-    <value>Importuj jako archiwum</value>
+  <data name="buttonDelete.Text">
+    <value>Hapus pilihan</value>
+  </data>
+  <data name="buttonExport.Text">
+    <value>Ekspor pilian</value>
+  </data>
+  <data name="buttonImport.Text">
+    <value>Impor</value>
+  </data>
+  <data name="colCode.Text">
+    <value>Kode</value>
+  </data>
+  <data name="colFlags.Text">
+    <value>Slot penyimpanan</value>
+  </data>
+  <data name="colName.Text">
+    <value>Nama</value>
+  </data>
+  <data name="colSize.Text">
+    <value>Ukuran</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text">
+    <value>Hapus pilihan</value>
+  </data>
+  <data name="exportToolStripMenuItem.Text">
+    <value>Ekspor pilian</value>
+  </data>
+  <data name="importToolStripMenuItem.Text">
+    <value>Impor</value>
   </data>
 </root>

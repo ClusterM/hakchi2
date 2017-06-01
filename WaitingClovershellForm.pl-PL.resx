@@ -68,12 +68,12 @@
     <value>Proszę wykonać następujące kroki:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Connect your NES Mini to the PC via USB cable.</value>
+    <value>1. Podłącz NES Mini do PC kablem USB.</value>
   </data>
   <data name="label3.Text">
-    <value>2. Turn it on.</value>
+    <value>2. Uruchom konsolę.</value>
   </data>
   <data name="label6.Text">
-    <value>3. Install driver if it's not installed yet:</value>
+    <value>3. Jeśli brak - zainstaluj sterownik:</value>
   </data>
 </root>

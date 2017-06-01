@@ -85,6 +85,9 @@
   <data name="buttonNoFoldersOriginal.Text">
     <value>Oryginalne gry -&gt; Inne gry</value>
   </data>
+  <data name="cutToolStripMenuItem.Text">
+    <value>Wytnij</value>
+  </data>
   <data name="deleteToolStripMenuItem.Text">
     <value>Usuń</value>
   </data>
@@ -103,13 +106,10 @@
   <data name="newFolderToolStripMenuItem.Text">
     <value>Utwórz nowy folder</value>
   </data>
+  <data name="pasteToolStripMenuItem.Text">
+    <value>Wklej</value>
+  </data>
   <data name="renameToolStripMenuItem.Text">
     <value>Zmień nazwę folderu</value>
-  </data>
-  <data name="cutToolStripMenuItem.Text">
-    <value>Cut</value>
-  </data>
-  <data name="pasteToolStripMenuItem.Text">
-    <value>Paste</value>
   </data>
 </root>

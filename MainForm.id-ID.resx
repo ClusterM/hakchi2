@@ -59,228 +59,228 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FTPToolStripMenuItem.Text">
-    <value>Serwer FTP ftp://root:clover@127.0.0.1:1021</value>
+    <value>Server FTP pada ftp://root:clover@127.0.0.1:1021</value>
   </data>
   <data name="aboutToolStripMenuItem.Text">
-    <value>Informacje o...</value>
+    <value>Tentang...</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>Dodaj więcej &amp;gier</value>
+    <value>Tambah gim &amp;lagi</value>
   </data>
   <data name="addPresetToolStripMenuItem.Text">
-    <value>Dodaj preset</value>
+    <value>Tambahkan pra-atur</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
-    <value>Oryginalne gry na wierzchu -&gt; Automatycznie w podfolderach</value>
+    <value>Gim orisinal di root -&gt; Otomatis di dalam sub-folder</value>
   </data>
   <data name="automaticToolStripMenuItem.Text">
-    <value>Automatycznie</value>
+    <value>Otomatis</value>
   </data>
   <data name="buttonAddGames.Text">
-    <value>Dodaj więcej gier</value>
+    <value>Tambah gim</value>
   </data>
   <data name="buttonBrowseImage.Text">
-    <value>Przeglądaj</value>
+    <value>Jelajah</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Synchronizuj wybrane gry z NES Mini</value>
+    <value>Sinkronkan gim-gim terpilih dengan NES Mini</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
-    <value>Mody kontrolerów</value>
+    <value>Retasan kontroler</value>
+  </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
+    <value>Kompres gim non-NES (untuk mod emulator tambahan)</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
-    <value>Typ konsoli</value>
+    <value>Tipe konsol</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>Własne - pokazuje Menadżer Profili za każdym razem</value>
+    <value>Kustom - perlihatkan Manajer Folder setiap saat</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
-    <value>Usuń grę</value>
+    <value>Hapus gim</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
-    <value>Usuń preset</value>
+    <value>Hapus pra-atur</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
-    <value>Wyłącz strony/foldery</value>
+    <value>Nonaktifkan halaman/folder</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Pobierz okładki dla wszystkich gier</value>
+    <value>Unduh ilustrasi untuk semua gim</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Zgraj kernel</value>
+    <value>Menyalin kernel</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
-    <value>Włącz autofire</value>
+    <value>Tekan "Select+A/B" untuk mengaktifkan autofire pada A/B</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
-    <value>Zabezpieczenie przed epilepsją</value>
+    <value>Nonaktifkan proteksi epilepsi</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
-    <value>&amp;Wyjście</value>
+    <value>&amp;Keluar</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
-    <value>&amp;Plik</value>
+    <value>&amp;Fail</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Wgraj zmodyfikowany kernel</value>
+    <value>Flash kernel kustom</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Wgraj oryginalny kernel</value>
+    <value>Flash kernel orisinal</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>Oryginalne gry na wierzchu -&gt; Foldery, podziel gry po równo</value>
+    <value>Gim orisinal di root -&gt; Folder, bagi game secara sama</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Originalne gry na wierzchu -&gt; Foldery, podziel gry alfabetycznie</value>
+    <value>Gim orisinal di root -&gt; Folder, bagi berdasarkan huruf pertama</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>Foldery, podziel gry alfabetycznie</value>
+    <value>Folder, bagi berdasarkan huruf pertama</value>
   </data>
   <data name="foldersToolStripMenuItem.Text">
-    <value>Foldery, podziel gry po równo</value>
+    <value>Folder, bagi gim secara sama</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>GitHub z aktualnymi wydaniami</value>
+    <value>Halaman GitHub berikut perilisan aktual</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>Globalne argumenty wiersza poleceń (tylko eksperci!)</value>
+    <value>Kolom argumen perintah global (khusus ahli!)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>Można wyłączyć poszczególne oryginalne gry</value>
+    <value>Anda dapat menyembunyikan beberapa gim bawaan</value>
   </data>
   <data name="groupBoxOptions.Text">
-    <value>Opcje gier</value>
+    <value>Opsi gim</value>
   </data>
   <data name="helpToolStripMenuItem.Text">
-    <value>&amp;Pomoc</value>
+    <value>&amp;Bantuan</value>
   </data>
   <data name="installModulesToolStripMenuItem.Text">
-    <value>Zainstaluj dodatkowe moduły</value>
+    <value>Instal modul ekstra</value>
   </data>
   <data name="kernelToolStripMenuItem.Text">
     <value>&amp;Kernel</value>
   </data>
   <data name="label1.Text">
-    <value>Data wydania (YYYY-MM-DD):</value>
+    <value>Tanggal rilis (THN-BLN-TGL):</value>
   </data>
   <data name="label2.Text">
-    <value>Publikujący:</value>
+    <value>Penerbit:</value>
   </data>
   <data name="label3.Text">
-    <value>Argumenty wiersza poleceń (tylko eksperci!):</value>
+    <value>Argumen kolom perintah (khusus pengguna lanjutan!):</value>
   </data>
   <data name="label4.Text">
-    <value>Box art:</value>
+    <value>Ilustrasi:</value>
   </data>
   <data name="label5.Text">
-    <value>Wybierz gry:</value>
+    <value>Pilih gim:</value>
   </data>
   <data name="label6.Text">
-    <value>Max graczy:</value>
+    <value>Pemain maksimum:</value>
   </data>
   <data name="label7.Text">
-    <value>Game Genie - kody (oddzielone przecinkiem):</value>
+    <value>Kode Game Genie (pisahkan dengan koma):</value>
   </data>
   <data name="labelName.Text">
-    <value>Nazwa:</value>
+    <value>Nama:</value>
   </data>
   <data name="languageToolStripMenuItem.Text">
-    <value>Język</value>
+    <value>Bahasa</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
-    <value>Maksimum gier na stronę/folder</value>
+    <value>Gim maksimum per halaman/folder</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
-    <value>&amp;Moduły</value>
+    <value>&amp;Modul</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
-    <value>Otwórz klienta FTP</value>
+    <value>Buka klien FTP</value>
   </data>
   <data name="openFileDialogImage.Title">
-    <value>Wybierz okładkę dla gry</value>
+    <value>Pilih ilustrasi untuk gim</value>
   </data>
   <data name="openFileDialogNes.Title">
-    <value>Wybierz plik(i) NES</value>
+    <value>Pilih gim</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
-    <value>Otwórz klienta Telnet</value>
+    <value>Buka klien Telnet</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>Originalne gry na wierzchu -&gt; Strony, podziel gry po równo</value>
+    <value>Gim orisinal pada root -&gt; Halaman, bagi game secara sama</value>
   </data>
   <data name="pagesToolStripMenuItem.Text">
-    <value>Strony, podziel gry po równo</value>
+    <value>Halaman, bagi gim secara sama</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>Struktura stron/folderów</value>
+    <value>Halaman/struktur folder</value>
   </data>
   <data name="presetsToolStripMenuItem.Text">
-    <value>Wybierz preset</value>
+    <value>Pra-atur pilihan</value>
   </data>
   <data name="radioButtonOne.Text">
-    <value>Jeden gracz</value>
+    <value>Satu pemain</value>
   </data>
   <data name="radioButtonTwo.Text">
-    <value>Dwóch graczy, nierównocześnie</value>
+    <value>Dua pemain, tidak berbarengan</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Dwóch graczy, równocześnie</value>
+    <value>Dua pemain, berbarengan</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>Użyj kombinacji klawiszy by zresetować</value>
+    <value>Gunakan kombinasi tombol untuk menata ulang</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Zapisz ustawienia do NES Mini</value>
+    <value>Simpan penataan ke NES Mini sekarang</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Menadżer Save'ów</value>
+    <value>Manajer Save-State</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
-    <value>Szukaj</value>
+    <value>Telusur</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text">
-    <value>Zaznacz wszystko</value>
+    <value>Pilih semua</value>
   </data>
   <data name="selectButtonCombinationToolStripMenuItem.Text">
-    <value>Wybierz komibnację klawiszy resetu</value>
+    <value>Pilih kombinasi tombol tata ulang</value>
   </data>
   <data name="settingsToolStripMenuItem.Text">
-    <value>&amp;Ustawienia</value>
+    <value>&amp;Penataan</value>
   </data>
   <data name="shellToolStripMenuItem.Text">
-    <value>Serwer Telnet telnet://127.0.0.1:1023 (login:root)</value>
+    <value>Server Telnet pada Telnet: //127.0.0.1:1023 (login: root)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
-    <value>Synchronizuj</value>
+    <value>Sinkronkan</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
-    <value>Zrobić zrzut ekranu</value>
+    <value>Ambil cuplikan layar</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
-    <value>&amp;Narzędzia</value>
+    <value>&amp;Perkakas</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
-    <value>Odinstaluj dodatkowe moduły</value>
+    <value>Copot modul ekstra</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text">
-    <value>Odinstaluj</value>
+    <value>Copot</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
-    <value>Odznacz wszystko</value>
+    <value>Tidak pilih semuanya</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>"Góra+A+B = Start" na 2gim kontrolerze</value>
+    <value>"Atas+A+B = Start" pada kontroler 2</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
-    <value>Użyj rozszerzonej czcionki</value>
-  </data>
-  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
-    <value>Compress non-NES games (for additional emulator mod)</value>
+    <value>Gunakan fon yang diperpanjang</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
-    <value>Use X/Y on Classic Controller as autofire A/B</value>
+    <value>Gunakan X/Y pada Classic Controller sebagai autofire A/B</value>
   </data>
 </root>

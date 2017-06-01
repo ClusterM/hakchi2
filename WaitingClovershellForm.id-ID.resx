@@ -59,9 +59,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Wybierz plik</value>
+    <value>Menunggu NES Mini Anda...</value>
   </data>
-  <data name="buttonArchive.Text">
-    <value>Importuj jako archiwum</value>
+  <data name="buttonDriver.Text">
+    <value>Instal perangkat lunak</value>
+  </data>
+  <data name="label1.Text">
+    <value>Lakukan langkah-langkah berikut ini:</value>
+  </data>
+  <data name="label2.Text">
+    <value>1. Hubungkan NES Mini Anda ke PC via kabel USB.</value>
+  </data>
+  <data name="label3.Text">
+    <value>2. Nyalakan.</value>
+  </data>
+  <data name="label6.Text">
+    <value>3. Instal perangkat lunaknya jika belum menginstalnya:</value>
   </data>
 </root>
