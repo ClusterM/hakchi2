@@ -1,5 +1,6 @@
 ﻿#pragma warning disable 0618
 using com.clusterrr.hakchi_gui.Properties;
+using Microsoft.Win32.SafeHandles;
 using System;
 using System.Deployment.Application;
 using System.Diagnostics;
@@ -8,6 +9,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
@@ -28,6 +30,13 @@ namespace com.clusterrr.hakchi_gui
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
 
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern IntPtr CreateFile(string lpFileName, uint dwDesiredAccess, uint dwShareMode, uint lpSecurityAttributes, uint dwCreationDisposition, uint dwFlagsAndAttributes, uint hTemplateFile);
+
+        private const int MY_CODE_PAGE = 437;
+        private const uint GENERIC_WRITE = 0x40000000;
+        private const uint FILE_SHARE_WRITE = 0x2;
+        private const uint OPEN_EXISTING = 0x3;
         public static string BaseDirectoryInternal, BaseDirectoryExternal;
 
         /// <summary>
@@ -40,6 +49,13 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 AllocConsole();
+                IntPtr stdHandle = CreateFile("CONOUT$", GENERIC_WRITE, FILE_SHARE_WRITE, 0, OPEN_EXISTING, 0, 0);
+                SafeFileHandle safeFileHandle = new SafeFileHandle(stdHandle, true);
+                FileStream fileStream = new FileStream(safeFileHandle, FileAccess.Write);
+                Encoding encoding = System.Text.Encoding.GetEncoding(MY_CODE_PAGE);
+                StreamWriter standardOutput = new StreamWriter(fileStream, encoding);
+                standardOutput.AutoFlush = true;
+                Console.SetOut(standardOutput);
                 Debug.Listeners.Add(new TextWriterTraceListener(System.Console.Out));
             }
             catch { }
