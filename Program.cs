@@ -189,7 +189,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
-        
+
         [DllImport("Shell32.dll")]
         private static extern int SHGetKnownFolderPath([MarshalAs(UnmanagedType.LPStruct)]Guid rfid, uint dwFlags,
             IntPtr hToken, out IntPtr ppszPath);
@@ -206,7 +206,10 @@ namespace com.clusterrr.hakchi_gui
                 var nsmgr = new XmlNamespaceManager(libConfig.NameTable);
                 nsmgr.AddNamespace("ns", libConfig.LastChild.NamespaceURI);
                 var docs = libConfig.SelectSingleNode("//ns:searchConnectorDescription[ns:isDefaultSaveLocation='true']/ns:simpleLocation/ns:url/text()", nsmgr);
-                return docs.Value;
+                if (Directory.Exists(docs.Value))
+                    return docs.Value;
+                else
+                    throw new Exception("Invalid Documents directory: " + docs.Value);
             }
             else
             {

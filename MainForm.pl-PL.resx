@@ -88,6 +88,9 @@
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Mody kontrolerów</value>
   </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
+    <value>Kompresuj gry inne niż NES (dla dodatkowych modułów - emu)</value>
+  </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Typ konsoli</value>
   </data>
@@ -276,9 +279,6 @@
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Użyj rozszerzonej czcionki</value>
-  </data>
-  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
-    <value>Compress non-NES games (for additional emulator mod)</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Use X/Y on Classic Controller as autofire A/B</value>

@@ -59,57 +59,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Folders Manager</value>
+    <value>Savestate Manager</value>
   </data>
-  <data name="buttonCancel.Text">
-    <value>Batal</value>
+  <data name="buttonDelete.Text">
+    <value>Delete selected</value>
   </data>
-  <data name="buttonFoldersEqually.Text">
-    <value>Bagi secara sama</value>
+  <data name="buttonExport.Text">
+    <value>Export selected</value>
   </data>
-  <data name="buttonFoldersEquallyOriginal.Text">
-    <value>Game orisinal -&gt; Bagi secara sama</value>
+  <data name="buttonImport.Text">
+    <value>Import</value>
   </data>
-  <data name="buttonFoldersLetters.Text">
-    <value>Bagi berdasarkan huruf pertama</value>
+  <data name="colCode.Text">
+    <value>Code</value>
   </data>
-  <data name="buttonFoldersLettersOriginal.Text">
-    <value>Game orisinal -&gt; Bagi berdasarkan huruf pertama</value>
+  <data name="colFlags.Text">
+    <value>Save slots</value>
   </data>
-  <data name="buttonNewFolder.Text">
-    <value>Folder baru</value>
+  <data name="colName.Text">
+    <value>Name</value>
   </data>
-  <data name="buttonNoFolders.Text">
-    <value>Tanpa folder</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.Text">
-    <value>Game orisinal -&gt; Game lainnya</value>
-  </data>
-  <data name="cutToolStripMenuItem.Text">
-    <value>Potong</value>
+  <data name="colSize.Text">
+    <value>Size</value>
   </data>
   <data name="deleteToolStripMenuItem.Text">
-    <value>Hapus</value>
+    <value>Delete selected</value>
   </data>
-  <data name="groupBoxArt.Text">
-    <value>Ikon Menu</value>
+  <data name="exportToolStripMenuItem.Text">
+    <value>Export selected</value>
   </data>
-  <data name="groupBoxSplitModes.Text">
-    <value>Buat Folder Structure secara otomatis</value>
-  </data>
-  <data name="labelPosition.Text">
-    <value>Prioritas posisi folder:</value>
-  </data>
-  <data name="newFolderToolStripMenuItem.Text">
-    <value>Buat folder baru</value>
-  </data>
-  <data name="pasteToolStripMenuItem.Text">
-    <value>Tempel</value>
-  </data>
-  <data name="renameToolStripMenuItem.Text">
-    <value>Nama ulang folder</value>
-  </data>
-  <data name="labelElementCount.Text">
-    <value>Folder statistics</value>
+  <data name="importToolStripMenuItem.Text">
+    <value>Import</value>
   </data>
 </root>

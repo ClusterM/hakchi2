@@ -62,7 +62,7 @@
     <value>Menunggu NES Mini Anda...</value>
   </data>
   <data name="buttonDriver.Text">
-    <value>Instal perangkat lunak</value>
+    <value>Instal driver</value>
   </data>
   <data name="label1.Text">
     <value>Lakukan langkah-langkah berikut ini:</value>
@@ -74,6 +74,6 @@
     <value>2. Nyalakan.</value>
   </data>
   <data name="label6.Text">
-    <value>3. Instal perangkat lunaknya jika belum menginstalnya:</value>
+    <value>3. Instal driver jika belum menginstalnya:</value>
   </data>
 </root>

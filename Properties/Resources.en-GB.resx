@@ -59,318 +59,319 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddingGames">
-    <value>Game sedang diproses, mohon tunggu...</value>
+    <value>Processing games, please wait...</value>
   </data>
   <data name="AllFiles">
-    <value>Semua fail</value>
+    <value>All files</value>
   </data>
   <data name="AreYouSure">
-    <value>Apakah Anda yakin?</value>
+    <value>Are you sure?</value>
   </data>
   <data name="AutofillResult">
-    <value>Data otomatis terisi untuk {0} game.</value>
+    <value>Data automatically filled for {0}.</value>
   </data>
   <data name="AutofireHelp1">
-    <value>Tahan Select+A/B selama satu detik untuk mengaktifkan/menonaktifkan autofire A/B.</value>
+    <value>Hold Select + A/B for one second to toggle turbo A/B</value>
   </data>
   <data name="BuildingCustom">
-    <value>Membuat image kernel custom...</value>
+    <value>Building the custom kernel image...</value>
   </data>
   <data name="BuildingFolders">
-    <value>Membangun Folder Structure...</value>
+    <value>Building the folder structure...</value>
   </data>
   <data name="Congratulations">
-    <value>Selamat!</value>
+    <value>Congratulations!</value>
   </data>
   <data name="CustomKernel">
-    <value>Kernel custom</value>
+    <value>Custom kernel</value>
   </data>
   <data name="CustomKernelQ">
-    <value>Apakah Anda ingin mem-flash kernel custom?</value>
+    <value>Do you want to flash the custom kernel?</value>
   </data>
   <data name="CustomWarning">
-    <value>Sekarang Anda harus mem-flash kernel custom ke NES Mini. Ini hanya perlu dilakukan sekali saja. Apakah Anda ingin melanjutkan?</value>
+    <value>Now you need to flash a custom kernel to your NES Mini. This is only required once. Continue?</value>
   </data>
   <data name="Default30games">
-    <value>30 game orisinal</value>
+    <value>Original 30 games</value>
   </data>
   <data name="DeleteElement">
-    <value>Apakah Anda ingin menghapus "{0}"?</value>
+    <value>Do you really want to delete "{0}"?</value>
   </data>
   <data name="DeleteElements">
-    <value>Apakah Anda ingin menghapus {0} elemen?</value>
+    <value>Do you really want to delete {0} element(s)?</value>
   </data>
   <data name="DeleteGame">
-    <value>Apakah Anda ingin menghapus game "{0}"?</value>
+    <value>Do you really want to delete "{0}"?</value>
   </data>
   <data name="DeletePreset">
-    <value>Apakah Anda ingin menghapus pra-atur "{0}"?</value>
+    <value>Do you really want to delete preset "{0}"?</value>
   </data>
   <data name="DeleteSavesQ">
-    <value>Apakah Anda ingin menghapus Save State tersebut?</value>
+    <value>Do you really want to delete these savestates?</value>
   </data>
   <data name="DoYouWantCancel">
-    <value>Apakah Anda ingin membatalkan operasi ini?</value>
+    <value>Do you want to cancel the current operation?</value>
   </data>
   <data name="DoYouWantToContinue">
-    <value>Apakah Anda ingin melanjutkan?</value>
+    <value>Do you want to continue?</value>
   </data>
   <data name="Donate">
-    <value>NB: Jika Anda menyukai aplikasi ini, Anda dapat memberikan donasi kepada saya. Akun PayPal saya bisa dilihat di kotak "Tentang"..</value>
+    <value>P.S. If you want, you can donate to me. You can find my PayPal in the "About" section.</value>
   </data>
   <data name="Done">
-    <value>Selesai!</value>
+    <value>Done!</value>
   </data>
   <data name="DoneYouCanUpload">
-    <value>Selesai! Kini Anda dapat mengunggah game ke dalam NES Mini.</value>
+    <value>Done! You can now upload games to your NES Mini.</value>
   </data>
   <data name="DownloadAllCoversTitle">
-    <value>Unduh box art untuk semua game (Saya lagi beruntung!)</value>
+    <value>Downloading box art for all games (I'm feeling lucky!)</value>
   </data>
   <data name="DumpKernelQ">
-    <value>Apakah Anda ingin men-dump kernel?</value>
+    <value>Do you want to dump the kernel?</value>
   </data>
   <data name="DumpingKernel">
-    <value>Men-dump kernel...</value>
+    <value>Dumping kernel...</value>
   </data>
   <data name="Error">
     <value>Error</value>
   </data>
   <data name="ExecutingCommand">
-    <value>Melaksanakan perintah:</value>
+    <value>Executing command:</value>
   </data>
   <data name="ExtraArgsInfo">
-    <value>Anda dapat menambahkan global command-line arguments yang akan ditambahkan ke semua game termasuk 30 game orisinal. Ini hanya untuk yang ahli!</value>
+    <value>You can add global command-line arguments which will be applied to all games, including the original 30. Experts only!</value>
   </data>
   <data name="ExtraArgsTitle">
-    <value>Command-line arguments ekstra</value>
+    <value>Extra command-line arguments</value>
   </data>
   <data name="FirstRun">
-    <value>Halo! Saya senang Anda menggunakan hakchi2. Aplikasi ini sangatlah mudah digunakan. Cukup klik "Tambah game lagi", pilih ROM, klik "Sinkronkan", kemudian ikuti saja instruksi selanjutnya. Semoga sukses!</value>
+    <value>Hello there! I'm very happy that you're using hakchi2. It's very simple to use. Just click "Add more games", select some ROMs, 
+click "Synchronise" and follow the instructions. Good luck!</value>
   </data>
   <data name="FlasingCustom">
-    <value>Mem-flash kernel custom...</value>
+    <value>Flashing custom kernel...</value>
   </data>
   <data name="FlasingOriginal">
-    <value>Mem-flash kernel orisinal...</value>
+    <value>Flashing original kernel...</value>
   </data>
   <data name="FolderContent">
-    <value>Game yang terhapus akan dipindahkan ke dalam Recycle Bin. Anda dapat menghapus folder ini secara permanen atau memindahkan game-nya ke folder yang lain.</value>
+    <value>Deleted content will be moved to the Recycle Bin. You can delete this folder permanently or move the games to other folders.</value>
   </data>
   <data name="FolderNameBack">
-    <value>Kembali</value>
+    <value>Back</value>
   </data>
   <data name="FolderNameMoreGames">
-    <value>Game-game lainnya...</value>
+    <value>More games...</value>
   </data>
   <data name="FolderNameNewFolder">
-    <value>Folder baru</value>
+    <value>New folder</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>30 game orisinal</value>
+    <value>Original 30 games</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Recycle Bin</value>
   </data>
   <data name="FolderNameUnsorted">
-    <value>Belum Tersortir</value>
+    <value>Unsorted</value>
   </data>
   <data name="FolderStatistics">
-    <value>Folder "{0}" berisi {1} elemen.</value>
+    <value>"{0}" contains {1} element(s).</value>
   </data>
   <data name="FoldersSaveQ">
-    <value>Apakah Anda ingin menyimpan Folder Structure ini?</value>
+    <value>Do you want to save this folder structure?</value>
   </data>
   <data name="FourScreenNotSupported">
-    <value>Maaf, {0} menggunakan moda empat layar (game tersebut memiliki memori VRAM tambahan di dalam kartrid) dan fitur ini tidak didukung oleh NES Mini. Game ini mungkin tidak akan dapat dimainkan, kecuali jika ada modul emulator lain yang diinstal. Apakah Anda tetap ingin menambahkannya?</value>
+    <value>Sorry, {0} uses four-screen mode (the game had additional VRAM in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. It should work if a different emulator module is installed. Do you want to add this game anyway?</value>
   </data>
   <data name="GGCodeDelete">
-    <value>Apakah Anda ingin menghapus kode "{0}"?</value>
+    <value>Do you really want to delete "{0}"?</value>
   </data>
   <data name="GGCodeEmpty">
-    <value>Anda harus memasukkan kode!</value>
+    <value>You have to enter a code!</value>
   </data>
   <data name="GGCodeExists">
-    <value>Kode ini sudah ada. Apakah Anda ingin mengeditnya?</value>
+    <value>This code already exists. Do you want to edit it?</value>
   </data>
   <data name="GGDescriptionEmpty">
-    <value>Anda harus memasukkan deskripsi!</value>
+    <value>You have to enter a description!</value>
   </data>
   <data name="GameGenieFormatError">
-    <value>Kode Game Genie "{0}" tidak valid untuk game "{1}".</value>
+    <value>"{0}" is an invalid Game Genie code for "{1}".</value>
   </data>
   <data name="GameGenieNotFound">
-    <value>Tidak dapat menerapkan kode Game Genie "{0}" pada game "{1}" - value tidak ditemukan. Bisa jadi kode ini untuk game lainnya.</value>
+    <value>Can't apply "{0}" to "{1}" - value not found. Are you sure this code isn't for another game?</value>
   </data>
   <data name="GamesAndApps">
-    <value>Game dan aplikasi</value>
+    <value>Games and apps</value>
   </data>
   <data name="GamesSelected">
-    <value>game dipilih</value>
+    <value>game(s) selected</value>
   </data>
   <data name="GooglingFor">
-    <value>Meng-Google untuk</value>
+    <value>Googling</value>
   </data>
   <data name="Hello">
-    <value>Halo</value>
+    <value>Hello</value>
   </data>
   <data name="Images">
-    <value>Gambar</value>
+    <value>Images</value>
   </data>
   <data name="InputPreset">
-    <value>Mohon masukkan nama pra-atur untuk pilihan game saat ini.</value>
+    <value>Please input a name for the current selection.</value>
   </data>
   <data name="InstallingMods">
-    <value>Menginstal mod...</value>
+    <value>Installing mods...</value>
   </data>
   <data name="InvalidKernelHeader">
-    <value>Header kernel tidak valid.</value>
+    <value>Invalid kernel header.</value>
   </data>
   <data name="InvalidKernelSize">
-    <value>Ukuran kernel tidak valid:</value>
+    <value>Invalid kernel size:</value>
   </data>
   <data name="KernelDumped">
-    <value>Kernel orisinal Anda tersimpan di dalam folder "hakchi2\dump". Jangan sampai hilang.</value>
+    <value>Your factory kernel has been saved in the ~\hakchi2\dump\ folder. Do not lose it.</value>
   </data>
   <data name="LoadingGames">
-    <value>Memuat game...</value>
+    <value>Loading games...</value>
   </data>
   <data name="MD5Failed">
-    <value>Kernel dapat di-dump tetapi MD5 checksum tidak diketahui:</value>
+    <value>Kernel dumped but the MD5 checksum is unknown:</value>
   </data>
   <data name="MD5Failed2">
-    <value>Kernel ini sudah di-patch atau tidak diketahui revisinya. Beritahukan hal ini kepada saya (tekan Ctrl+C). Silakan tanggung sendiri risikonya jika memilih untuk melanjutkan.</value>
+    <value>The kernel is already patcher, or it's an unknown revision. Please send this message to me (press Ctrl+C). Continue at your own risk.</value>
   </data>
   <data name="MainMenu">
-    <value>Menu Home</value>
+    <value>Root</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Maaf, "{0}" menggunakan mapper #{1} tetapi mapper ini tidak didukung oleh NES Mini dan game ini mungkin tidak akan dapat dimainkan dengan emulator bawaan, kecuali jika modul emulator lain diinstal. Apakah Anda tetap ingin menambahkan game ini?</value>
+    <value>Sorry, "{0}" uses mapper #{1}, which is not supported by the NES Mini's built in emulator. However, it will probably work with external emulator mods. Continue?</value>
   </data>
   <data name="MemoryFull">
-    <value>Maaf, jumlah game Anda saat ini adalah {0}MB, terlalu banyak untuk disimpan.</value>
+    <value>Sorry, these games take up {0} megabytes. The max is ~300.</value>
   </data>
   <data name="MemoryStats">
-    <value>Ukuran memori yang dapat diisi: {0:F1}MB|Memori tersedia untuk game: {1:F1}MB|Digunakan untuk save: {2:F1}MB|Digunakan oleh fail lain: {3:F1}MB</value>
+    <value>Total writable memory size: {0:F1} megabytes|Available memory for games: {1:F1} megabytes|Used by saves: {2:F1} megabytes|Used by other files: {3:F1} megabytes</value>
   </data>
   <data name="NewGamesUnsorted">
-    <value>Game-game baru berada di dalam folder "Belum Tersortir".</value>
+    <value>New games are in the "Unsorted" folder.</value>
   </data>
   <data name="NewPreset">
-    <value>Pra-atur pilihan baru</value>
+    <value>New preset</value>
   </data>
   <data name="No">
-    <value>Tidak</value>
+    <value>No</value>
   </data>
   <data name="NoForAll">
-    <value>Tidak untuk semua</value>
+    <value>No to all</value>
   </data>
   <data name="NoKernel">
-    <value>Dump kernel tidak ditemukan</value>
+    <value>No kernel dump found.</value>
   </data>
   <data name="NoKernelWarning">
-    <value>Pertama, dump image kernel NES Mini Anda. Ini hanya perlu dilakukan sekali saja. Apakah Anda ingin melanjutkan?</value>
+    <value>First, dump the kernel image of your NES Mini. You only need to do this once. Continue?</value>
   </data>
   <data name="NoKernelYouNeed">
-    <value>Dump kernel tidak ditemukan. Anda harus men-dump kernel terlebih dahulu.</value>
+    <value>No kernel dump found. Please dump the kernel from your NES Mini first.</value>
   </data>
   <data name="NoTelnet">
-    <value>Tidak dapat memulai klien Telnet, sepertinya dinonaktifkan. Anda harus mengaktifkannya terlebih dahulu di "Control Panel" -&gt; "Programs" -&gt; "Turn Windows features on or off".</value>
+    <value>Can't start Telnet client, it looks like it's disabled. You need to enable it before you can use it - go to "Control Panel" -&gt; "Programs" -&gt; "Turn Windows features on or off".</value>
   </data>
   <data name="NotFound">
-    <value>Tidak ditemukan:</value>
+    <value>Not found:</value>
   </data>
   <data name="OriginalKernelQ">
-    <value>Apakah Anda ingin mem-flash kernel orisinal?</value>
+    <value>Do you want to flash the factory kernel?</value>
   </data>
   <data name="PatchAvailable">
-    <value>Patch tersedia</value>
+    <value>Patch available</value>
   </data>
   <data name="PatchQ">
-    <value>Patch untuk "{0}" tersedia. Apakah Anda ingin mem-patch game ini?</value>
+    <value>There is a patch for "{0}". Do you want to apply it?</value>
   </data>
   <data name="PleaseTryAgainUSB">
-    <value>Jika masalah berlanjut, cobalah gunakan port atau kabel USB lainnya.</value>
+    <value>If this problem persists, try using another USB port or cable.</value>
   </data>
   <data name="PleaseWait">
-    <value>Mohon tunggu...</value>
+    <value>Please wait...</value>
   </data>
   <data name="PressOkToContinue">
-    <value>Tekan OK untuk melanjutkan.</value>
+    <value>Press OK to continue.</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>Anda sudah mempunyai dump kernel. Jika Anda BENAR-BENAR ingin mengganti dump cadangan Anda dan tahu BENAR apa yang Anda lakukan, hapus folder "hakchi2\dump" secara manual.</value>
+    <value>You already have a kernel dump. If you REALLY want to replace the backup of your kernel and you ACTUALLY know what you are doing, delete the "hakchi2\dump" folder manually.</value>
   </data>
   <data name="SavesFlterName">
-    <value>Cadangan Save State NES Mini</value>
+    <value>NES Mini savestate backups</value>
   </data>
   <data name="SelectAtLeast">
-    <value>Pilih setidaknya satu game.</value>
+    <value>Select at least one game.</value>
   </data>
   <data name="SelectAtLeastTwo">
-    <value>Pilih setidaknya dua tombol.</value>
+    <value>Select at least two buttons.</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Pilih modul yang akan diinstal di NES Mini</value>
+    <value>Select modules to install to your NES Mini</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Pilih modul yang akan dicopot dari NES Mini</value>
+    <value>Select modules to remove from your NES Mini</value>
   </data>
   <data name="SizeOfSaves">
-    <value>Ukuran Save State yang dipilih</value>
+    <value>Size of selected savestates:</value>
   </data>
   <data name="UninstallFactoryNote">
-    <value>Jangan lupa untuk melakukan Factory Reset jika Anda ingin menghapus semua Suspend Point.</value>
+    <value>Don't forget to perform a factory reset it you want to delete all Suspend Points.</value>
   </data>
   <data name="UninstallQ1">
-    <value>Apakah Anda ingin menghapus semua jejak hakchi2 dan mengembalikan NES Mini Anda ke kondisi semula?</value>
+    <value>Dou you really want to remove all traces of hakchi2 and return your NES Mini to its factory state?</value>
   </data>
   <data name="UninstallQ2">
-    <value>Selesai. Tunggu sampai lampu LED tombol POWER mati. Anda juga harus mem-flash kernel orisinal. Apakah Anda ingin melakukannya sekarang?</value>
+    <value>Done, wait until the POWER LED goes out. You also need to flash the factory kernel. Flash the factory kernel now?</value>
   </data>
   <data name="Uninstalling">
-    <value>Mencopot...</value>
+    <value>Uninstalling...</value>
   </data>
   <data name="UninstallingMods">
-    <value>Mencopot mod...</value>
+    <value>Uninstalling mods...</value>
   </data>
   <data name="UnknownGame">
-    <value>Game tidak diketahui</value>
+    <value>Unknown game</value>
   </data>
   <data name="UploadingConfig">
-    <value>Mengunggah konfigurasi baru...</value>
+    <value>Uploading new config...</value>
   </data>
   <data name="UploadingFes1">
-    <value>Mengunggah dan menjalankan FES-1...</value>
+    <value>Uploading and running FES-1...</value>
   </data>
   <data name="UploadingGames">
-    <value>Mengunggah game...</value>
+    <value>Uploading games...</value>
   </data>
   <data name="UploadingKernel">
-    <value>Mengunggah kernel...</value>
+    <value>Uploading the kernel...</value>
   </data>
   <data name="UploadingOriginalGames">
-    <value>Memproses game orisinal...</value>
+    <value>Processing original games...</value>
   </data>
   <data name="VerifyFailed">
-    <value>Verifikasi gagal :O Ini buruk.</value>
+    <value>Verify failed :O Not good!</value>
   </data>
   <data name="Verifying">
-    <value>Memverifikasi...</value>
+    <value>Verifying...</value>
   </data>
   <data name="WaitingForDevice">
-    <value>Menunggu perangkat...</value>
+    <value>Waiting for the device...</value>
   </data>
   <data name="Warning">
-    <value>Peringatan!</value>
+    <value>Warning!</value>
   </data>
   <data name="Wow">
-    <value>Wow</value>
+    <value>Congraturation!</value>
   </data>
   <data name="Yes">
-    <value>Ya</value>
+    <value>Yes</value>
   </data>
   <data name="YesForAll">
-    <value>Ya untuk semua</value>
+    <value>Yes to all</value>
   </data>
 </root>

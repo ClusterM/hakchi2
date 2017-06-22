@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Manajer Save-State</value>
+    <value>Save-State Manager</value>
   </data>
   <data name="buttonDelete.Text">
     <value>Hapus pilihan</value>
@@ -74,7 +74,7 @@
     <value>Kode</value>
   </data>
   <data name="colFlags.Text">
-    <value>Slot penyimpanan</value>
+    <value>Save Slot</value>
   </data>
   <data name="colName.Text">
     <value>Nama</value>
