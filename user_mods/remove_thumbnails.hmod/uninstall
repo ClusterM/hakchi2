@@ -2,6 +2,6 @@
 scnfile=/usr/share/clover-ui/resources/prefab/sys_game_thumbnail.scn
 nesjson=/usr/share/clover-ui/resources/sprites/nes.json
 preinitfile=p81a8_hide_thumnbnails
-rm -f $preinitfile
+rm -f $preinitpath/$preinitfile
 rm -f $rootfs$scnfile
 rm -f $rootfs$nesjson
