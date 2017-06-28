@@ -425,7 +425,7 @@ namespace com.clusterrr.hakchi_gui
                         FormInitialize();
                         this.Invalidate(true);
                     };
-                item.Checked = Thread.CurrentThread.CurrentUICulture.Name == langCodes[language];
+                item.Checked = Thread.CurrentThread.CurrentUICulture.Name.ToUpper() == langCodes[language].ToUpper();
                 found |= item.Checked;
                 if (langCodes[language] == "en-US")
                     english = item;
