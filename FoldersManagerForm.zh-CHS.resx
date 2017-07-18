@@ -59,55 +59,55 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Менеджер папок</value>
+    <value>文件夹管理</value>
   </data>
   <data name="buttonCancel.Text">
-    <value>Отмена</value>
+    <value>取消</value>
   </data>
   <data name="buttonFoldersEqually.Text">
-    <value>Разделить поровну</value>
+    <value>以平均的方式分割</value>
   </data>
   <data name="buttonFoldersEquallyOriginal.Text">
-    <value>Оригинальные игры -&gt; Разделить поровну</value>
+    <value>原厂游戏 -&gt; 以平均的方式分割</value>
   </data>
   <data name="buttonFoldersLetters.Text">
-    <value>Разделить по первым буквам</value>
+    <value>以首位字母分割</value>
   </data>
   <data name="buttonFoldersLettersOriginal.Text">
-    <value>Оригинальные игры -&gt; Разделить по первым буквам</value>
+    <value>原厂游戏 -&gt; 以首位字母分割</value>
   </data>
   <data name="buttonNewFolder.Text">
-    <value>Новая папка</value>
+    <value>新增文件夹</value>
   </data>
   <data name="buttonNoFolders.Text">
-    <value>Без папок</value>
+    <value>无文件夹</value>
   </data>
   <data name="buttonNoFoldersOriginal.Text">
-    <value>Оригинальные игры -&gt; Другие игры</value>
+    <value>原厂内建游戏 -&gt; 其他游戏</value>
   </data>
   <data name="cutToolStripMenuItem.Text">
-    <value>Вырезать</value>
+    <value>剪下</value>
   </data>
   <data name="deleteToolStripMenuItem.Text">
-    <value>Удалить</value>
+    <value>删除</value>
   </data>
   <data name="groupBoxArt.Text">
-    <value>Иконка в меню</value>
+    <value>选单图示</value>
   </data>
   <data name="groupBoxSplitModes.Text">
-    <value>Создать дерево автоматически</value>
+    <value>自动建立文件夹结构</value>
   </data>
   <data name="labelPosition.Text">
-    <value>Положение папки:</value>
+    <value>文件夹优先级 :</value>
   </data>
   <data name="newFolderToolStripMenuItem.Text">
-    <value>Создать новую папку</value>
+    <value>建立新文件夹</value>
   </data>
   <data name="pasteToolStripMenuItem.Text">
-    <value>Вставить</value>
+    <value>贴上</value>
   </data>
   <data name="renameToolStripMenuItem.Text">
-    <value>Переименовать папку</value>
+    <value>重新命名文件夹</value>
   </data>
   <data name="labelElementCount.Text">
     <value>Folder statistics</value>

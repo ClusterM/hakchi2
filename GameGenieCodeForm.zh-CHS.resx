@@ -59,57 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Менеджер папок</value>
+    <value>游戏作弊代码清单</value>
+  </data>
+  <data name="addToolStripMenuItem.Text">
+    <value>新增</value>
+  </data>
+  <data name="buttonAdd.Text">
+    <value>新增</value>
   </data>
   <data name="buttonCancel.Text">
-    <value>Отмена</value>
+    <value>取消</value>
   </data>
-  <data name="buttonFoldersEqually.Text">
-    <value>Разделить поровну</value>
+  <data name="buttonImport.Text">
+    <value>汇入</value>
   </data>
-  <data name="buttonFoldersEquallyOriginal.Text">
-    <value>Оригинальные игры -&gt; Разделить поровну</value>
+  <data name="editToolStripMenuItem.Text">
+    <value>编辑</value>
   </data>
-  <data name="buttonFoldersLetters.Text">
-    <value>Разделить по первым буквам</value>
-  </data>
-  <data name="buttonFoldersLettersOriginal.Text">
-    <value>Оригинальные игры -&gt; Разделить по первым буквам</value>
-  </data>
-  <data name="buttonNewFolder.Text">
-    <value>Новая папка</value>
-  </data>
-  <data name="buttonNoFolders.Text">
-    <value>Без папок</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.Text">
-    <value>Оригинальные игры -&gt; Другие игры</value>
-  </data>
-  <data name="cutToolStripMenuItem.Text">
-    <value>Вырезать</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Text">
-    <value>Удалить</value>
-  </data>
-  <data name="groupBoxArt.Text">
-    <value>Иконка в меню</value>
-  </data>
-  <data name="groupBoxSplitModes.Text">
-    <value>Создать дерево автоматически</value>
-  </data>
-  <data name="labelPosition.Text">
-    <value>Положение папки:</value>
-  </data>
-  <data name="newFolderToolStripMenuItem.Text">
-    <value>Создать новую папку</value>
-  </data>
-  <data name="pasteToolStripMenuItem.Text">
-    <value>Вставить</value>
-  </data>
-  <data name="renameToolStripMenuItem.Text">
-    <value>Переименовать папку</value>
-  </data>
-  <data name="labelElementCount.Text">
-    <value>Folder statistics</value>
+  <data name="removeToolStripMenuItem.Text">
+    <value>删除</value>
   </data>
 </root>

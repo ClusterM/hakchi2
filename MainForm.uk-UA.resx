@@ -62,225 +62,225 @@
     <value>FTP сервер на ftp://root:clover@127.0.0.1:1021</value>
   </data>
   <data name="aboutToolStripMenuItem.Text">
-    <value>&amp;О программе...</value>
+    <value>&amp;Про програму...</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>Добавить &amp;игр</value>
+    <value>Дадати &amp;ігри</value>
   </data>
   <data name="addPresetToolStripMenuItem.Text">
-    <value>Добавить пресет</value>
+    <value>Додати пресет</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
-    <value>Оригинальные игры в корне -&gt; Автоматически в подпапке</value>
+    <value>Оригінальні ігри в корені -&gt; Автоматично в папці</value>
   </data>
   <data name="automaticToolStripMenuItem.Text">
-    <value>Автоматически</value>
+    <value>Автоматично</value>
   </data>
   <data name="buttonAddGames.Text">
-    <value>Добавить игр</value>
+    <value>Додати ігри</value>
   </data>
   <data name="buttonBrowseImage.Text">
-    <value>Выбрать</value>
+    <value>Вибрати</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Синхронизировать список игр с NES Mini</value>
+    <value>Скачать обложки для всех игр NES Mini</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
-    <value>Хаки контроллера</value>
+    <value>Хаки контролера</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
-    <value>Сжимать не-NES игры (для дополнительного эмулятора)</value>
+    <value>Стискати не-NES ігри (для додаткового емулятора)</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
-    <value>Тип консоли</value>
+    <value>Тип консолі</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>Настроить вручную - показывать менеджер папок перед загрузкой</value>
+    <value>Налаштувати вручну - показувати менеджер папок перед завантаженням</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
-    <value>Удалить игру</value>
+    <value>Видалити гру</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
-    <value>Удалить пресет</value>
+    <value>Видалити пресет</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Без папок</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Скачать обложки для всех игр</value>
+    <value>Завантажити обкладинки для всіх ігор</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Сдампить ядро</value>
+    <value>Здампити ядро</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
-    <value>Использовать "Select+A/B" для включения турбо кнопок</value>
+    <value>Використовувати "Select + A/B" для включення турбо кнопок</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
-    <value>Выключить защиту от приступов эпилепсии</value>
+    <value>Вимкнути захист від нападів епілепсії</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
-    <value>&amp;Выйти</value>
+    <value>&amp;Вийти</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
-    <value>FAQ (Вопросы и ответы)</value>
+    <value>FAQ (Питання і відповіді)</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;Файл</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Прошить модифицированное ядро</value>
+    <value>Прошити модифіковане ядро</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Прошить оригинальное ядро</value>
+    <value>Прошити оригінальне ядро</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>Оригинальные в корне -&gt; Папки, разделить поровну</value>
+    <value>Оригінальні ігри в корені -&gt; Папки, розділити порівну</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Оригинальные в корне -&gt; Папки, по буквам</value>
+    <value>Оригінальні в корені -&gt; Папки, по буквах</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>Папки, по буквам</value>
+    <value>Папки, по буквах</value>
   </data>
   <data name="foldersToolStripMenuItem.Text">
-    <value>Папки, разделить поровну</value>
+    <value>Папки, розділити порівну</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>Страница GitHub и свежие версии</value>
+    <value>Сторінка GitHub та свіжі версії</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>Глобальные параметры командной строки</value>
+    <value>Глобальні параметри командного рядка</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>Тут можно скрыть некоторые встроенные игры</value>
+    <value>Тут можна приховати деякі вбудовані ігри</value>
   </data>
   <data name="groupBoxOptions.Text">
-    <value>Параметры игры</value>
+    <value>Параметри гри</value>
   </data>
   <data name="helpToolStripMenuItem.Text">
-    <value>&amp;Помощь</value>
+    <value>&amp;Допомога</value>
   </data>
   <data name="installModulesToolStripMenuItem.Text">
-    <value>Установить модули</value>
+    <value>Встановити модулі</value>
   </data>
   <data name="kernelToolStripMenuItem.Text">
     <value>&amp;Ядро</value>
   </data>
   <data name="label1.Text">
-    <value>Дата выхода (YYYY-MM-DD):</value>
+    <value>Дата виходу (YYYY-MM-DD):</value>
   </data>
   <data name="label2.Text">
-    <value>Издатель:</value>
+    <value>Видавець:</value>
   </data>
   <data name="label3.Text">
-    <value>Параметры командной строки (для продвинутых!):</value>
+    <value>Параметри командного рядка (для просунутих користувачів!):</value>
   </data>
   <data name="label4.Text">
-    <value>Обложка:</value>
+    <value>Обкладинка:</value>
   </data>
   <data name="label5.Text">
-    <value>Выберите игры:</value>
+    <value>Виберіть ігри:</value>
   </data>
   <data name="label6.Text">
-    <value>Кол-во игроков:</value>
+    <value>Кіл-сть гравців:</value>
   </data>
   <data name="label7.Text">
-    <value>Game Genie коды (через запятую):</value>
+    <value>Game Genie коди (через кому):</value>
   </data>
   <data name="labelName.Text">
-    <value>Название:</value>
+    <value>Назва:</value>
   </data>
   <data name="languageToolStripMenuItem.Text">
-    <value>Язык</value>
+    <value>Мова</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
-    <value>Максимум игр на страницу</value>
+    <value>Максимум ігор на сторінці</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
-    <value>&amp;Модули</value>
+    <value>&amp;Модулі</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
-    <value>Открыть FTP клиент</value>
+    <value>Відкрити FTP клієнт</value>
   </data>
   <data name="openFileDialogImage.Title">
-    <value>Выберите обложку для игры</value>
+    <value>Виберіть обкладинку для гри</value>
   </data>
   <data name="openFileDialogNes.Title">
-    <value>Выберите игры</value>
+    <value>Виберіть ігри</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
-    <value>Открыть Telnet клиент</value>
+    <value>Відкрити Telnet клієнт</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>Оригинальные в корне -&gt; Страницы, разделить поровну</value>
+    <value>Оригінальні в корені -&gt; Сторінки, розділити порівну</value>
   </data>
   <data name="pagesToolStripMenuItem.Text">
-    <value>Страницы, разделить игры поровну</value>
+    <value>Сторінки, розділити ігри порівну</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
     <value>Структура папок</value>
   </data>
   <data name="presetsToolStripMenuItem.Text">
-    <value>Пресеты</value>
+    <value>Пресети</value>
   </data>
   <data name="radioButtonOne.Text">
-    <value>Один игрок</value>
+    <value>Один гравець</value>
   </data>
   <data name="radioButtonTwo.Text">
-    <value>Два игрока, по очереди</value>
+    <value>Два гравці, по черзі</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Два игрока, одновременно</value>
+    <value>Два гравці, одночасно</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>Использовать комбинацию кнопок для выхода в меню</value>
+    <value>Використовувати комбінацію кнопок для виходу в меню</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Сохранить настройки в NES Mini сейчас</value>
+    <value>Зберегти налаштування у NES Mini зараз</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Менеджер сохранений</value>
+    <value>Менеджер збережень</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
-    <value>Поиск</value>
+    <value>Пошук</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text">
-    <value>Отметить все</value>
+    <value>Відзначити всі</value>
   </data>
   <data name="selectButtonCombinationToolStripMenuItem.Text">
-    <value>Выбрать комбинацию кнопок для выхода в меню</value>
+    <value>Вибрати комбінацію кнопок для виходу у меню</value>
   </data>
   <data name="settingsToolStripMenuItem.Text">
-    <value>&amp;Настройки</value>
+    <value>&amp;Налаштування</value>
   </data>
   <data name="shellToolStripMenuItem.Text">
     <value>Telnet сервер на telnet://127.0.0.1:1023 (login:root)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
-    <value>Синхронизация</value>
+    <value>Синхронізація</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
-    <value>Сделать скриншот</value>
+    <value>Зробити скріншот</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
-    <value>&amp;Инструменты</value>
+    <value>&amp;Інструменти</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
-    <value>Удалить модули</value>
+    <value>Видалити модулі</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text">
-    <value>Полностью удалиться с NES Mini</value>
+    <value>Повністю видалитися з NES Mini</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
-    <value>Снять отметку со всех</value>
+    <value>Зняти відмітку з усіх</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>"Up+A+B = Start" на втором контроллере</value>
+    <value>"Up+A+B = Start" на другому контролері</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
-    <value>Использовать расширенный шрифт</value>
+    <value>Використовувати розширений шрифт</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
-    <value>Использовать X/Y на Classic Controller как турбо A/B</value>
+    <value>Використовувати X/Y на Classic Controller як турбо A/B</value>
   </data>
 </root>

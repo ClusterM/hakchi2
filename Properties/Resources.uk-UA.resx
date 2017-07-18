@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddingGames">
+    <value>Обробляємо і додаємо в базу ігри. Будь ласка зачекайте...</value>
+  </data>
+  <data name="AllFiles">
+    <value>Усі файли</value>
+  </data>
+  <data name="AreYouSure">
+    <value>Ви впевнені?</value>
+  </data>
+  <data name="AutofillResult">
+    <value>Дані автоматично заповнені для {0} ігор.</value>
+  </data>
+  <data name="AutofireHelp1">
+    <value>Затисніть Select + A/B на секунду, щоб включити турбо на кнопках A/B.</value>
+  </data>
+  <data name="BuildingCustom">
+    <value>Патчим ядро...</value>
+  </data>
+  <data name="BuildingFolders">
+    <value>Будуємо дерево папок...</value>
+  </data>
+  <data name="Congratulations">
+    <value>Вітаємо!</value>
+  </data>
+  <data name="CustomKernel">
+    <value>Модифіковане ядро</value>
+  </data>
+  <data name="CustomKernelQ">
+    <value>Хочете прошити модифікований образ ядра?</value>
+  </data>
+  <data name="CustomWarning">
+    <value>Тепер необхідно встановити модифіковане ядро на NES Mini. Цю процедуру теж потрібно виконати тільки один раз. Продовжити?</value>
+  </data>
+  <data name="Default30games">
+    <value>Оригінальні 30 ігор</value>
+  </data>
+  <data name="DeleteElement">
+    <value>Ви дійсно хочете видалити "{0}"?</value>
+  </data>
+  <data name="DeleteElements">
+    <value>Ви дійсно хочете видалити {0} елементів?</value>
+  </data>
+  <data name="DeleteGame">
+    <value>Ви дійсно хочете видалити гру "{0}"?</value>
+  </data>
+  <data name="DeletePreset">
+    <value>Ви дійсно хочете видалити пресет "{0}"?</value>
+  </data>
+  <data name="DeleteSavesQ">
+    <value>Ви дійсно хочете видалити ці збереження?</value>
+  </data>
+  <data name="DoYouWantCancel">
+    <value>Хочете скасувати поточну операцію?</value>
+  </data>
+  <data name="DoYouWantToContinue">
+    <value>Продовжити?</value>
+  </data>
+  <data name="Done">
+    <value>Готово!</value>
+  </data>
+  <data name="DoneYouCanUpload">
+    <value>Готово! Тепер можна завантажувати свої ігри в NES Mini.</value>
+  </data>
+  <data name="DownloadAllCoversTitle">
+    <value>Качаємо обкладинки дляусіх ігор (Мені пощастить!)</value>
+  </data>
+  <data name="DumpKernelQ">
+    <value>Здампити образ ядра NES Mini?</value>
+  </data>
+  <data name="DumpingKernel">
+    <value>Читаємо образ ядра...</value>
+  </data>
+  <data name="Error">
+    <value>Помилка</value>
+  </data>
+  <data name="ExecutingCommand">
+    <value>Виконуємо команду:</value>
+  </data>
+  <data name="ExtraArgsInfo">
+    <value>Ви можете задати глобальні параметри командного рядка, які будуть додані до усіх ігор, включаючи оригінальні. Тільки для експертів!</value>
+  </data>
+  <data name="ExtraArgsTitle">
+    <value>Глобальні параметри командного рядка</value>
+  </data>
+  <data name="FirstRun">
+    <value>Привіт! Я дуже радий, що ви користуєтеся моєю програмою. Її дуже просто користуватись: натисніть кнопку "Додати ігор", виберіть ROMи, потім натисніть"Синхронізувати" і дотримуйтесь інструкцій. Успіхів!</value>
+  </data>
+  <data name="FlasingCustom">
+    <value>Прошиваємо модифіковане ядро...</value>
+  </data>
+  <data name="FlasingOriginal">
+    <value>Прошиваємо оригінальне ядро...</value>
+  </data>
+  <data name="FolderContent">
+    <value>Контент буде переміщений в папку "Кошик". Ви можете видалити її назовсім або перемістити гри в інші директорії.</value>
+  </data>
+  <data name="FolderNameBack">
+    <value>Назад</value>
+  </data>
+  <data name="FolderNameMoreGames">
+    <value>Більше ігор...</value>
+  </data>
+  <data name="FolderNameNewFolder">
+    <value>Нова папка</value>
+  </data>
+  <data name="FolderNameOriginalGames">
+    <value>Оригінальні 30 ігор</value>
+  </data>
+  <data name="FolderNameTrashBin">
+    <value>Кошик</value>
+  </data>
+  <data name="FolderNameUnsorted">
+    <value>Невідсортовані</value>
+  </data>
+  <data name="FolderStatistics">
+    <value>Папка "{0}" містить {1} елементів.</value>
+  </data>
+  <data name="FoldersSaveQ">
+    <value>Зберегти це дерево папок?</value>
+  </data>
+  <data name="FourScreenNotSupported">
+    <value>На жаль, {0} використовує four-screen режим (тобто це рідкісний випадок, коли у гри в картриджі розширена відеопам'ять), а NES Mini його не підтримує, і гра швидше за все не запуститься на стандартному емуляторі. Але вона повинна запрацювати, якщо встановлено модуль з іншим емулятором. Додати цю гру?</value>
+  </data>
+  <data name="GGCodeDelete">
+    <value>Ви дійсно хочете видалити код "{0}"?</value>
+  </data>
+  <data name="GGCodeEmpty">
+    <value>Ви повинні ввести код!</value>
+  </data>
+  <data name="GGCodeExists">
+    <value>Цей код вже є у базі. Відредагувати його?</value>
+  </data>
+  <data name="GGDescriptionEmpty">
+    <value>Ви повинні ввести опис!</value>
+  </data>
+  <data name="GameGenieFormatError">
+    <value>Некоректний Game Genie код "{0}" для гри "{1}".</value>
+  </data>
+  <data name="GameGenieNotFound">
+    <value>Не вдалося застосувати Game Genie код "{0}" до гри "{1}", тому що значення не було знайдено. Може, це код не для цієї гри?</value>
+  </data>
+  <data name="GamesAndApps">
+    <value>Ігри та додатки</value>
+  </data>
+  <data name="GamesSelected">
+    <value>гра(ігри) вибрано</value>
+  </data>
+  <data name="GooglingFor">
+    <value>Гуглим</value>
+  </data>
+  <data name="Hello">
+    <value>Привіт!</value>
+  </data>
+  <data name="Images">
+    <value>Зображення</value>
+  </data>
+  <data name="InputPreset">
+    <value>Введіть назву для пресету обраних ігор.</value>
+  </data>
+  <data name="InstallingMods">
+    <value>Встановлюємо модулі...</value>
+  </data>
+  <data name="InvalidKernelHeader">
+    <value>Некоректний заголовок образу ядра.</value>
+  </data>
+  <data name="InvalidKernelSize">
+    <value>Некоректний розмір ядра:</value>
+  </data>
+  <data name="KernelDumped">
+    <value>Оригінальний образ ядра збережений в папці "hakchi2\dump". Бажано його не втратити і не стерти.</value>
+  </data>
+  <data name="LoadingGames">
+    <value>Завантажуємо ігри...</value>
+  </data>
+  <data name="MD5Failed">
+    <value>Образ ядра здамплен, але MD5 некоректний:</value>
+  </data>
+  <data name="MD5Failed2">
+    <value>Можливо, ядро вже модифіковано, або нам ще невідома така версія. Надішліть це повідомлення автору програми (натисніть Ctrl + C). Продовжуйте на свій страх і ризик.</value>
+  </data>
+  <data name="MainMenu">
+    <value>Головне меню</value>
+  </data>
+  <data name="MapperNotSupported">
+    <value>Нажаль, "{0}" використовує маппер #{1}, а NES Mini його, мабуть, не підтримує, і гра, швидше за все, не запуститься на стандартному емумуляторі. Але вона повинна заробити, якщо встановлений модуль з іншим емулятором. Додати цю игру?</value>
+  </data>
+  <data name="MemoryFull">
+    <value>Вибачте, дуже вже багато ігор, на {0} МБайт, NES Mini таке не подужає.</value>
+  </data>
+  <data name="MemoryStats">
+    <value>Всього можна перезаписувати пам'яті: {0:F1}МБайт|Доступно для ігор: {1:F1}МБайт|Використовується збереженнями: {2:F1}МБайт|Використовується іншими файлами: {3:F1}МБайт</value>
+  </data>
+  <data name="NewGamesUnsorted">
+    <value>Нові ігри поміщені в папку "Невідсортовані".</value>
+  </data>
+  <data name="NewPreset">
+    <value>Створення пресету</value>
+  </data>
+  <data name="No">
+    <value>Ні</value>
+  </data>
+  <data name="NoForAll">
+    <value>Ні для усіх</value>
+  </data>
+  <data name="NoKernel">
+    <value>Не вдалося знайти образ ядра</value>
+  </data>
+  <data name="NoKernelWarning">
+    <value>Перш за все, необхідно здампити образ ядра NES Mini. Цю процедуру потрібно зробити лише один раз. Продовжити?</value>
+  </data>
+  <data name="NoKernelYouNeed">
+    <value>Не найден образ ядра NES Mini. Сначала необходимо его сдампить.</value>
+  </data>
+  <data name="NoTelnet">
+    <value>Не можу відкрити Telnet клієнт. Схоже, що він вимкнений. Увімкніть його в "Панели управління" -&gt; "Програми і компоненти" -&gt; "Компоненти Windows".</value>
+  </data>
+  <data name="NotFound">
+    <value>Не знайдено:</value>
+  </data>
+  <data name="OriginalKernelQ">
+    <value>Прошити оригінальний образ ядра?</value>
+  </data>
+  <data name="PatchAvailable">
+    <value>Доступний патч</value>
+  </data>
+  <data name="PatchQ">
+    <value>Для файлу "{0}" доступний патч. Хочете його застосувати?</value>
+  </data>
+  <data name="PleaseTryAgainUSB">
+    <value>Якщо проблема повторюється, спробуйте інший USB порт або інший USB кабель.</value>
+  </data>
+  <data name="PleaseWait">
+    <value>Будь ласка зачекайте...</value>
+  </data>
+  <data name="PressOkToContinue">
+    <value>Натисніть OK для продовження.</value>
+  </data>
+  <data name="ReplaceKernelQ">
+    <value>Вже існує збережений образ ядра. Якщо ви ДІЙСНО хочете замінити оригінальну копію ядра і СПРАВДІ розумієте, що робите, видаліть папку "hakchi2 \ dump" вручну.</value>
+  </data>
+  <data name="SavesFlterName">
+    <value>Збереження NES Mini</value>
+  </data>
+  <data name="SelectAtLeast">
+    <value>Необхідно вибрати хоча б одну гру.</value>
+  </data>
+  <data name="SelectAtLeastTwo">
+    <value>Потрібно вибрати хоча б дві кнопки.</value>
+  </data>
+  <data name="SelectModsInstall">
+    <value>Виберіть модулі для установки на NES Mini</value>
+  </data>
+  <data name="SelectModsUninstall">
+    <value>Виберіть модулі, які потрібно видалити з NES Mini</value>
+  </data>
+  <data name="SizeOfSaves">
+    <value>Розмір обраних збережень:</value>
+  </data>
+  <data name="UninstallFactoryNote">
+    <value>Усе. Не забудьте також зробити скидання до заводських налаштувань, якщо хочете видалити збереження ігор.</value>
+  </data>
+  <data name="UninstallQ1">
+    <value>Ви дійсно хочете видалити всі файли hakchi2 з вашої NES Mini і повернути її в незайманий стан?</value>
+  </data>
+  <data name="UninstallQ2">
+    <value>Готово. Тільки почекайте, поки згасне світлодіод. І ще необхідно прошити назад оригінальне ядро. Зробити це зараз?</value>
+  </data>
+  <data name="Uninstalling">
+    <value>Удаляемся...</value>
+  </data>
+  <data name="UninstallingMods">
+    <value>Видаляємо модулі...</value>
+  </data>
+  <data name="UnknownGame">
+    <value>Невідома гра</value>
+  </data>
+  <data name="UploadingConfig">
+    <value>Оновлюємо настройки...</value>
+  </data>
+  <data name="UploadingFes1">
+    <value>Завантажуємо і виконуємо fes1...</value>
+  </data>
+  <data name="UploadingGames">
+    <value>Завантажуємо ігри...</value>
+  </data>
+  <data name="UploadingKernel">
+    <value>Завантажуємо образ ядра...</value>
+  </data>
+  <data name="UploadingOriginalGames">
+    <value>Розподіляємо оригінальні ігри...</value>
+  </data>
+  <data name="VerifyFailed">
+    <value>Перевірка закінчилася неуспішно. Це погано: o</value>
+  </data>
+  <data name="Verifying">
+    <value>Перевіряємо...</value>
+  </data>
+  <data name="WaitingForDevice">
+    <value>Очікуємо пристрій...</value>
+  </data>
+  <data name="Warning">
+    <value>Увага!</value>
+  </data>
+  <data name="Wow">
+    <value>Ура</value>
+  </data>
+  <data name="Yes">
+    <value>Так</value>
+  </data>
+  <data name="YesForAll">
+    <value>Так для усіх</value>
+  </data>
+  <data name="Donate">
+    <value>P.S. If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
+  </data>
+</root>

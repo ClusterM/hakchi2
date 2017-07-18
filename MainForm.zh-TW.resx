@@ -59,228 +59,228 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FTPToolStripMenuItem.Text">
-    <value>FTP сервер на ftp://root:clover@127.0.0.1:1021</value>
+    <value>FTP 伺服器在 ftp://root:clover@127.0.0.1:1021</value>
   </data>
   <data name="aboutToolStripMenuItem.Text">
-    <value>&amp;О программе...</value>
+    <value>關於...</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>Добавить &amp;игр</value>
+    <value>新增更多遊戲</value>
   </data>
   <data name="addPresetToolStripMenuItem.Text">
-    <value>Добавить пресет</value>
+    <value>新增預設組合</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
-    <value>Оригинальные игры в корне -&gt; Автоматически в подпапке</value>
+    <value>原廠遊戲在根目錄 -&gt; 自動放至子資料夾</value>
   </data>
   <data name="automaticToolStripMenuItem.Text">
-    <value>Автоматически</value>
+    <value>全自動</value>
   </data>
   <data name="buttonAddGames.Text">
-    <value>Добавить игр</value>
+    <value>新增更多遊戲</value>
   </data>
   <data name="buttonBrowseImage.Text">
-    <value>Выбрать</value>
+    <value>瀏覽</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Синхронизировать список игр с NES Mini</value>
+    <value>開始同步處理所選遊戲至迷你紅白機</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
-    <value>Хаки контроллера</value>
+    <value>強化手把控制器</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
-    <value>Сжимать не-NES игры (для дополнительного эмулятора)</value>
+    <value>壓縮非紅白機遊戲 ( 如其他模擬器的擴充模組 )</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
-    <value>Тип консоли</value>
+    <value>歐日機種類型</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>Настроить вручную - показывать менеджер папок перед загрузкой</value>
+    <value>自訂 - 每次都顯示資料夾管理界面</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
-    <value>Удалить игру</value>
+    <value>刪除遊戲</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
-    <value>Удалить пресет</value>
+    <value>刪除預設組合</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
-    <value>Без папок</value>
+    <value>停用頁面 / 資料夾</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Скачать обложки для всех игр</value>
+    <value>下載所有遊戲的封面圖片</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Сдампить ядро</value>
+    <value>傾印核心</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
-    <value>Использовать "Select+A/B" для включения турбо кнопок</value>
+    <value>使用「SELECT鍵 + A鍵 或 B鍵 」以啟用自動連發於 A鍵 或 B鍵</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
-    <value>Выключить защиту от приступов эпилепсии</value>
+    <value>停用 epilepsy 防護</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
-    <value>&amp;Выйти</value>
+    <value>&amp;離開</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
-    <value>FAQ (Вопросы и ответы)</value>
+    <value>常見問答集</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
-    <value>&amp;Файл</value>
+    <value>&amp;檔案</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Прошить модифицированное ядро</value>
+    <value>覆寫自訂核心</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Прошить оригинальное ядро</value>
+    <value>重新覆寫原廠核心檔案</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>Оригинальные в корне -&gt; Папки, разделить поровну</value>
+    <value>原廠遊戲在根目錄 -&gt; 遊戲平均分割至資料夾</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Оригинальные в корне -&gt; Папки, по буквам</value>
+    <value>原廠遊戲在根目錄 -&gt; 以首位字母分割資料夾</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>Папки, по буквам</value>
+    <value>以首位字母分割資料夾</value>
   </data>
   <data name="foldersToolStripMenuItem.Text">
-    <value>Папки, разделить поровну</value>
+    <value>遊戲平均分割至資料夾</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>Страница GitHub и свежие версии</value>
+    <value>版本歷程與GitHub網頁</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>Глобальные параметры командной строки</value>
+    <value>全域通用命令列參數 ( 限專業玩家使用 ! )</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>Тут можно скрыть некоторые встроенные игры</value>
+    <value>您可以隱藏預設的原廠遊戲</value>
   </data>
   <data name="groupBoxOptions.Text">
-    <value>Параметры игры</value>
+    <value>遊戲選項</value>
   </data>
   <data name="helpToolStripMenuItem.Text">
-    <value>&amp;Помощь</value>
+    <value>&amp;說明</value>
   </data>
   <data name="installModulesToolStripMenuItem.Text">
-    <value>Установить модули</value>
+    <value>安裝擴充模組</value>
   </data>
   <data name="kernelToolStripMenuItem.Text">
-    <value>&amp;Ядро</value>
+    <value>&amp;核心</value>
   </data>
   <data name="label1.Text">
-    <value>Дата выхода (YYYY-MM-DD):</value>
+    <value>發佈日期 (YYYY-MM-DD) :</value>
   </data>
   <data name="label2.Text">
-    <value>Издатель:</value>
+    <value>發佈商 :</value>
   </data>
   <data name="label3.Text">
-    <value>Параметры командной строки (для продвинутых!):</value>
+    <value>命令列執行參數 ( 適用於進階使用者使用 ! ) :</value>
   </data>
   <data name="label4.Text">
-    <value>Обложка:</value>
+    <value>封面圖片 :</value>
   </data>
   <data name="label5.Text">
-    <value>Выберите игры:</value>
+    <value>選擇遊戲 :</value>
   </data>
   <data name="label6.Text">
-    <value>Кол-во игроков:</value>
+    <value>遊玩人數 :</value>
   </data>
   <data name="label7.Text">
-    <value>Game Genie коды (через запятую):</value>
+    <value>遊戲作弊代碼 ( 逗號分隔 ) :</value>
   </data>
   <data name="labelName.Text">
-    <value>Название:</value>
+    <value>遊戲名稱 :</value>
   </data>
   <data name="languageToolStripMenuItem.Text">
-    <value>Язык</value>
+    <value>語系</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
-    <value>Максимум игр на страницу</value>
+    <value>單一頁面 / 資料夾要顯示多少遊戲</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
-    <value>&amp;Модули</value>
+    <value>&amp;擴充模組</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
-    <value>Открыть FTP клиент</value>
+    <value>開啟 FTP 用戶端</value>
   </data>
   <data name="openFileDialogImage.Title">
-    <value>Выберите обложку для игры</value>
+    <value>選擇遊戲封面圖片</value>
   </data>
   <data name="openFileDialogNes.Title">
-    <value>Выберите игры</value>
+    <value>選擇遊戲</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
-    <value>Открыть Telnet клиент</value>
+    <value>開啟 Telnet 用戶端</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>Оригинальные в корне -&gt; Страницы, разделить поровну</value>
+    <value>原廠遊戲在根目錄 -&gt; 遊戲平均分割及頁面</value>
   </data>
   <data name="pagesToolStripMenuItem.Text">
-    <value>Страницы, разделить игры поровну</value>
+    <value>遊戲平均分割在頁面</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>Структура папок</value>
+    <value>頁面 / 資料夾結構</value>
   </data>
   <data name="presetsToolStripMenuItem.Text">
-    <value>Пресеты</value>
+    <value>選擇預設組合</value>
   </data>
   <data name="radioButtonOne.Text">
-    <value>Один игрок</value>
+    <value>單人遊戲</value>
   </data>
   <data name="radioButtonTwo.Text">
-    <value>Два игрока, по очереди</value>
+    <value>雙人各別遊戲</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Два игрока, одновременно</value>
+    <value>雙人同時遊戲</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>Использовать комбинацию кнопок для выхода в меню</value>
+    <value>使用按鍵組合來重啟</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Сохранить настройки в NES Mini сейчас</value>
+    <value>儲存目前設定至迷你紅白機</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Менеджер сохранений</value>
+    <value>快速存檔管理工具</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
-    <value>Поиск</value>
+    <value>搜尋</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text">
-    <value>Отметить все</value>
+    <value>選擇所有</value>
   </data>
   <data name="selectButtonCombinationToolStripMenuItem.Text">
-    <value>Выбрать комбинацию кнопок для выхода в меню</value>
+    <value>選擇重啟按鈕組合</value>
   </data>
   <data name="settingsToolStripMenuItem.Text">
-    <value>&amp;Настройки</value>
+    <value>&amp;設定</value>
   </data>
   <data name="shellToolStripMenuItem.Text">
-    <value>Telnet сервер на telnet://127.0.0.1:1023 (login:root)</value>
+    <value>Telnet 伺服器在 Telnet://127.0.0.1:1023 (登入 : root)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
-    <value>Синхронизация</value>
+    <value>開始同步處理</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
-    <value>Сделать скриншот</value>
+    <value>擷取螢幕截圖</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
-    <value>&amp;Инструменты</value>
+    <value>&amp;工具</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
-    <value>Удалить модули</value>
+    <value>解除安裝擴充模組</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text">
-    <value>Полностью удалиться с NES Mini</value>
+    <value>解除安裝</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
-    <value>Снять отметку со всех</value>
+    <value>取消所有選取</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>"Up+A+B = Start" на втором контроллере</value>
+    <value>「上鍵 + A鍵 + B鍵」= 2P控制器的Start</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
-    <value>Использовать расширенный шрифт</value>
+    <value>使用擴充字型</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
-    <value>Использовать X/Y на Classic Controller как турбо A/B</value>
+    <value>使用 X鍵 或 Y鍵 當作傳統控制器的 自動連發 A鍵 或 B鍵</value>
   </data>
 </root>

@@ -51,7 +51,7 @@ namespace com.clusterrr.hakchi_gui
             new NesDefaultGame { Code = "CLV-P-NABJE",  Name = "FINAL FANTASY®", Size = 552556 },
             new NesDefaultGame { Code = "CLV-P-NABKE",  Name = "BUBBLE BOBBLE" , Size = 474232 },
             new NesDefaultGame { Code = "CLV-P-NABME",  Name = "PAC-MAN", Size = 325888 },
-            new NesDefaultGame { Code = "CLV-P-NABNE",  Name = "Galaga", Size =  347079	},
+            new NesDefaultGame { Code = "CLV-P-NABNE",  Name = "Galaga", Size =  347079 },
             new NesDefaultGame { Code = "CLV-P-NABQE",  Name = "Castlevania", Size = 434240 },
             new NesDefaultGame { Code = "CLV-P-NABRE",  Name = "GRADIUS", Size = 370790 },
             new NesDefaultGame { Code = "CLV-P-NABVE",  Name = "Super C", Size = 565974 },
@@ -67,16 +67,16 @@ namespace com.clusterrr.hakchi_gui
             new NesDefaultGame { Code = "CLV-P-HAAEJ",  Name = "ドンキーコング" , Size = 568006 },
             new NesDefaultGame { Code = "CLV-P-HAAHJ",  Name = "エキサイトバイク" , Size = 597513 },
             new NesDefaultGame { Code = "CLV-P-HAAMJ",  Name = "マリオオープンゴルフ" , Size = 798179 },
-            new NesDefaultGame { Code = "CLV-P-HAANJ",  Name = "ゼルダの伝説", Size = 677971	},
+            new NesDefaultGame { Code = "CLV-P-HAANJ",  Name = "ゼルダの伝説", Size = 677971  },
             new NesDefaultGame { Code = "CLV-P-HAAPJ",  Name = "星のカービィ　夢の泉の物語" , Size = 1331436 },
             new NesDefaultGame { Code = "CLV-P-HAAQJ",  Name = "メトロイド" , Size = 666895 },
             new NesDefaultGame { Code = "CLV-P-HAARJ",  Name = "バルーンファイト" , Size = 569750 },
             new NesDefaultGame { Code = "CLV-P-HAASJ",  Name = "リンクの冒険" , Size = 666452 },
-            new NesDefaultGame { Code = "CLV-P-HAAUJ",  Name = "アイスクライマー" , Size = 812372	 },
+            new NesDefaultGame { Code = "CLV-P-HAAUJ",  Name = "アイスクライマー" , Size = 812372    },
             new NesDefaultGame { Code = "CLV-P-HAAWJ",  Name = "マリオブラザーズ" , Size = 1038275 },
-            new NesDefaultGame { Code = "CLV-P-HAAXJ",  Name = "ドクターマリオ" , Size = 1083234	},
-            new NesDefaultGame { Code = "CLV-P-HABBJ",  Name = "ロックマン®2 Dr.ワイリーの謎" , Size = 592425	},
-            new NesDefaultGame { Code = "CLV-P-HABCJ",  Name = "魔界村®", Size = 456166	},
+            new NesDefaultGame { Code = "CLV-P-HAAXJ",  Name = "ドクターマリオ" , Size = 1083234   },
+            new NesDefaultGame { Code = "CLV-P-HABBJ",  Name = "ロックマン®2 Dr.ワイリーの謎" , Size = 592425  },
+            new NesDefaultGame { Code = "CLV-P-HABCJ",  Name = "魔界村®", Size = 456166    },
             new NesDefaultGame { Code = "CLV-P-HABLJ",  Name = "ファイナルファンタジー®III" , Size = 830898 },
             new NesDefaultGame { Code = "CLV-P-HABMJ",  Name = "パックマン" , Size = 341593 },
             new NesDefaultGame { Code = "CLV-P-HABNJ",  Name = "ギャラガ", Size =  345552 },
@@ -360,7 +360,7 @@ namespace com.clusterrr.hakchi_gui
             foreach (var preset in ConfigIni.Presets.Keys.OrderBy(o => o))
             {
                 presetsToolStripMenuItem.DropDownItems.Insert(i, new ToolStripMenuItem(preset, null,
-                    delegate(object sender, EventArgs e)
+                    delegate (object sender, EventArgs e)
                     {
                         var cols = ConfigIni.Presets[preset].Split('|');
                         ConfigIni.SelectedGames = cols[0];
@@ -376,7 +376,7 @@ namespace com.clusterrr.hakchi_gui
                                 !hide.Contains(((NesDefaultGame)checkedListBoxDefaultGames.Items[j]).Code));
                     }));
                 deletePresetToolStripMenuItem.DropDownItems.Insert(i, new ToolStripMenuItem(preset, null,
-                    delegate(object sender, EventArgs e)
+                    delegate (object sender, EventArgs e)
                     {
                         if (MessageBox.Show(this, string.Format(Resources.DeletePreset, preset), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                             == DialogResult.Yes)
@@ -412,10 +412,13 @@ namespace com.clusterrr.hakchi_gui
                 else
                     item.Text = language;
                 var country = langCodes[language];
-                if (country.Length > 2) country = country.Substring(country.Length - 2).ToLower();
+                if (langCodes[language] == "zh-CHS" || langCodes[language] == "zh-CHT") // chinese is awkward
+                    country = "cn";
+                else
+                    if (country.Length > 2) country = country.Substring(country.Length - 2).ToLower();
                 item.Image = (Image)rm.GetObject(country);
                 item.ImageScaling = ToolStripItemImageScaling.None;
-                item.Click += delegate(object sender, EventArgs e)
+                item.Click += delegate (object sender, EventArgs e)
                     {
                         ConfigIni.Language = langCodes[language];
                         SaveConfig();
@@ -1396,7 +1399,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 try
                 {
-                    var ftpThread = new Thread(delegate()
+                    var ftpThread = new Thread(delegate ()
                     {
                         try
                         {
@@ -1413,7 +1416,7 @@ namespace com.clusterrr.hakchi_gui
                             }
                             catch { }
                             Debug.WriteLine(ex.Message + ex.StackTrace);
-                            Invoke(new Action(delegate()
+                            Invoke(new Action(delegate ()
                                 {
                                     MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     FTPToolStripMenuItem.Checked = false;
@@ -1509,7 +1512,7 @@ namespace com.clusterrr.hakchi_gui
                         }
                     };
                     showProcess.Start();
-                    new Thread(delegate()
+                    new Thread(delegate ()
                     {
                         try
                         {
@@ -1520,7 +1523,7 @@ namespace com.clusterrr.hakchi_gui
                         {
                             File.Delete(screenshotPath);
                         }
-                        catch { }                        
+                        catch { }
                     }).Start();
                 }
             }
