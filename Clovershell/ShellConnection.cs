@@ -82,7 +82,7 @@ namespace com.clusterrr.clovershell
             catch (ThreadAbortException)
             {
             }
-            catch (ClovershellException ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 if (socket.Connected)

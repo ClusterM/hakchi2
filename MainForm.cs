@@ -210,16 +210,6 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 ConfigIni.CustomFlashed = true; // Just in case of new installation
-                // Requesting autoshutdown state
-                var autoshutdown = Clovershell.ExecuteSimple("cat /var/lib/clover/profiles/0/shutdown.txt");
-                // Disable automatic shutdown
-                if (autoshutdown != "0")
-                    Clovershell.ExecuteSimple("echo -n 0 > /var/lib/clover/profiles/0/shutdown.txt");
-                // Setting actual time for file transfer operations
-                Clovershell.ExecuteSimple(string.Format("date -s \"{0:yyyy-MM-dd HH:mm:ss}\"", DateTime.UtcNow));
-                // Restoring automatic shutdown
-                if (autoshutdown != "0")
-                    Clovershell.ExecuteSimple(string.Format("echo -n {0} > /var/lib/clover/profiles/0/shutdown.txt", autoshutdown));
                 var customFirmware = Clovershell.ExecuteSimple("[ -d /var/lib/hakchi/firmware/ ] && [ -f /var/lib/hakchi/firmware/*.hsqs ] && echo YES || echo NO");
                 if (customFirmware == "NO")
                 {
@@ -238,6 +228,21 @@ namespace com.clusterrr.hakchi_gui
                 }
                 WorkerForm.GetMemoryStats();
                 new Thread(RecalculateSelectedGamesThread).Start();
+
+                // It's good idea to sync time... or not?
+                // Requesting autoshutdown state
+                var autoshutdown = Clovershell.ExecuteSimple("cat /var/lib/clover/profiles/0/shutdown.txt");
+                // Disable automatic shutdown
+                if (autoshutdown != "0")
+                {
+                    Clovershell.ExecuteSimple("echo -n 0 > /var/lib/clover/profiles/0/shutdown.txt");
+                    Thread.Sleep(1500);
+                }
+                // Setting actual time for file transfer operations
+                Clovershell.ExecuteSimple(string.Format("date -s \"{0:yyyy-MM-dd HH:mm:ss}\"", DateTime.UtcNow));
+                // Restoring automatic shutdown
+                if (autoshutdown != "0")
+                    Clovershell.ExecuteSimple(string.Format("echo -n {0} > /var/lib/clover/profiles/0/shutdown.txt", autoshutdown));
             }
             catch (Exception ex)
             {
