@@ -114,7 +114,7 @@ static struct delayed_work detect_work;
 static DEFINE_MUTEX(con_state_lock);
 static DEFINE_MUTEX(detect_task_lock);
 
-#define VERBOSITY        3
+#define VERBOSITY        0
 #define STATE_DEVICES    1
 
 #if VERBOSITY > 0
@@ -432,7 +432,7 @@ static int clovercon_setup(struct clovercon_info *info) {
 #endif
 	DBG("Clovercon setup");
 
-#if VERBOSITY > 2
+#if VERBOSITY > 3
 	ret = clovercon_read_controller_info(client, con_info_data, CON_INFO_LEN);
 	if (ret < 0) {
 		ERR("error reading controller info");
