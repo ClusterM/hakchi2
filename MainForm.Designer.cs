@@ -46,10 +46,12 @@
             this.dumpKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashOriginalKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashCustomKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.dumpTheWholeNANDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumpNANDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
             this.uninstallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolFlashTheWholeNANDStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstallModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -153,7 +155,7 @@
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
             this.timerConnectionCheck = new System.Windows.Forms.Timer(this.components);
             this.saveDumpFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
+            this.openDumpFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -255,6 +257,7 @@
             this.flashCustomKernelToolStripMenuItem,
             this.toolStripMenuItem10,
             this.dumpTheWholeNANDToolStripMenuItem,
+            this.toolFlashTheWholeNANDStripMenuItem,
             this.dumpNANDBToolStripMenuItem,
             this.toolStripMenuItem9,
             this.uninstallToolStripMenuItem});
@@ -279,6 +282,11 @@
             resources.ApplyResources(this.flashCustomKernelToolStripMenuItem, "flashCustomKernelToolStripMenuItem");
             this.flashCustomKernelToolStripMenuItem.Click += new System.EventHandler(this.flashCustomKernelToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            resources.ApplyResources(this.toolStripMenuItem10, "toolStripMenuItem10");
+            // 
             // dumpTheWholeNANDToolStripMenuItem
             // 
             this.dumpTheWholeNANDToolStripMenuItem.Name = "dumpTheWholeNANDToolStripMenuItem";
@@ -301,6 +309,12 @@
             this.uninstallToolStripMenuItem.Name = "uninstallToolStripMenuItem";
             resources.ApplyResources(this.uninstallToolStripMenuItem, "uninstallToolStripMenuItem");
             this.uninstallToolStripMenuItem.Click += new System.EventHandler(this.uninstallToolStripMenuItem_Click);
+            // 
+            // toolFlashTheWholeNANDStripMenuItem
+            // 
+            this.toolFlashTheWholeNANDStripMenuItem.Name = "toolFlashTheWholeNANDStripMenuItem";
+            resources.ApplyResources(this.toolFlashTheWholeNANDStripMenuItem, "toolFlashTheWholeNANDStripMenuItem");
+            this.toolFlashTheWholeNANDStripMenuItem.Click += new System.EventHandler(this.toolFlashTheWholeNANDStripMenuItem_Click);
             // 
             // modulesToolStripMenuItem
             // 
@@ -1036,10 +1050,9 @@
             this.saveDumpFileDialog.FileName = "nand.bin";
             resources.ApplyResources(this.saveDumpFileDialog, "saveDumpFileDialog");
             // 
-            // toolStripMenuItem10
+            // openDumpFileDialog
             // 
-            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            resources.ApplyResources(this.toolStripMenuItem10, "toolStripMenuItem10");
+            this.openDumpFileDialog.FileName = "...";
             // 
             // MainForm
             // 
@@ -1205,6 +1218,8 @@
         private System.Windows.Forms.ToolStripMenuItem sNESMiniToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem superFamicomMiniToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem10;
+        private System.Windows.Forms.ToolStripMenuItem toolFlashTheWholeNANDStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openDumpFileDialog;
     }
 }
 

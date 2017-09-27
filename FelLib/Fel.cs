@@ -269,7 +269,7 @@ namespace com.clusterrr.FelLib
             int pos = 0;
             while (pos < buffer.Length)
             {
-                if (callback != null) callback(CurrentAction.WritingMemory, null);
+                callback?.Invoke(CurrentAction.WritingMemory, null);
                 var buf = new byte[Math.Min(buffer.Length - pos, MaxBulkSize)];
                 Array.Copy(buffer, pos, buf, 0, buf.Length);
                 FelRequest(AWFELStandardRequest.RequestType.FEL_DOWNLOAD, (UInt32)(address + pos), (uint)buf.Length);
@@ -334,7 +334,7 @@ namespace com.clusterrr.FelLib
             while (length > 0)
             {
                 var reqLen = Math.Min(length, transfer_max_size);
-                command = string.Format("sunxi_flash phy_read {0:x} {1:x} {2:x};{3}", transfer_base_m, address / sector_size, reqLen / sector_size, fastboot);
+                command = string.Format("sunxi_flash phy_read {0:x} {1:x} {2:x};{3}", transfer_base_m, address / sector_size, (int)Math.Floor((double)reqLen / (double)sector_size), fastboot);
                 RunUbootCmd(command, false, callback);
                 var buf = ReadMemory(transfer_base_m + address % sector_size, reqLen, callback);
                 result.AddRange(buf);
@@ -347,19 +347,20 @@ namespace com.clusterrr.FelLib
         public void WriteFlash(UInt32 address, byte[] buffer, OnFelProgress callback = null)
         {
             var length = (uint)buffer.Length;
-            int pos = 0;
+            uint pos = 0;
             if ((address % sector_size) != 0)
                 throw new FelException(string.Format("Invalid flash address : 0x{0:X8}", address));
             if ((length % sector_size) != 0)
                 throw new FelException(string.Format("Invalid flash length: 0x{0:X8}", length));
             while (length > 0)
             {
-                var wrLength = Math.Min(length, transfer_max_size);
+                var wrLength = Math.Min(length, transfer_max_size / 8);
                 var newBuf = new byte[wrLength];
                 Array.Copy(buffer, pos, newBuf, 0, wrLength);
                 WriteMemory(transfer_base_m, newBuf, callback);
-                var command = string.Format("sunxi_flash phy_write {0:x} {1:x} {2:x};{3}", transfer_base_m, address / sector_size, length / sector_size, fastboot);
+                var command = string.Format("sunxi_flash phy_write {0:x} {1:x} {2:x};{3}", transfer_base_m, address / sector_size, (int)Math.Floor((double)wrLength / (double)sector_size), fastboot);
                 RunUbootCmd(command, false, callback);
+                pos += (uint)wrLength;
                 address += (uint)wrLength;
                 length -= (uint)wrLength;
             }

@@ -229,6 +229,7 @@ namespace com.clusterrr.hakchi_gui
                 WorkerForm.GetMemoryStats();
                 new Thread(RecalculateSelectedGamesThread).Start();
 
+                /*
                 // It's good idea to sync time... or not?
                 // Requesting autoshutdown state
                 var autoshutdown = Clovershell.ExecuteSimple("cat /var/lib/clover/profiles/0/shutdown.txt");
@@ -243,6 +244,8 @@ namespace com.clusterrr.hakchi_gui
                 // Restoring automatic shutdown
                 if (autoshutdown != "0")
                     Clovershell.ExecuteSimple(string.Format("echo -n {0} > /var/lib/clover/profiles/0/shutdown.txt", autoshutdown));
+                */
+                // It was bad idea
             }
             catch (Exception ex)
             {
@@ -780,6 +783,20 @@ namespace com.clusterrr.hakchi_gui
             return workerForm.DialogResult == DialogResult.OK;
         }
 
+        bool DoNandFlash()
+        {
+            openDumpFileDialog.FileName = "nand.bin";
+            openDumpFileDialog.DefaultExt = "bin";
+            if (openDumpFileDialog.ShowDialog() != DialogResult.OK)
+                return false;
+            var workerForm = new WorkerForm();
+            workerForm.Text = "...";
+            workerForm.Task = WorkerForm.Tasks.FlashNand;
+            workerForm.NandDump = openDumpFileDialog.FileName;
+            workerForm.Start();
+            return workerForm.DialogResult == DialogResult.OK;
+        }
+
         bool DoNandBDump()
         {
             saveDumpFileDialog.FileName = "nandb.hsqs";
@@ -984,6 +1001,15 @@ namespace com.clusterrr.hakchi_gui
         private void dumpTheWholeNANDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (DoNandDump()) MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        private void toolFlashTheWholeNANDStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("...", Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                == System.Windows.Forms.DialogResult.Yes)
+            {
+                DoNandFlash();
+            }
         }
 
         private void dumpNANDBToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1576,5 +1602,6 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

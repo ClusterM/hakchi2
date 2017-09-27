@@ -19,7 +19,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class WorkerForm : Form
     {
-        public enum Tasks { DumpKernel, FlashKernel, DumpNand, DumpNandB, Memboot, UploadGames, DownloadAllCovers, AddGames };
+        public enum Tasks { DumpKernel, FlashKernel, DumpNand, FlashNand, DumpNandB, Memboot, UploadGames, DownloadAllCovers, AddGames };
         public Tasks Task;
         //public string UBootDump;
         public string KernelDump;
@@ -225,6 +225,9 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case Tasks.DumpNand:
                         DoNandDump();
+                        break;
+                    case Tasks.FlashNand:
+                        DoNandFlash();
                         break;
                     case Tasks.DumpNandB:
                         DoNandBDump();
@@ -530,6 +533,47 @@ namespace com.clusterrr.hakchi_gui
             File.WriteAllBytes(NandDump, kernel);
         }
 
+        public void DoNandFlash()
+        {
+            int progress = 0;
+            const int maxProgress = 9605;
+            if (WaitForFelFromThread() != DialogResult.OK)
+            {
+                DialogResult = DialogResult.Abort;
+                return;
+            }
+            progress += 5;
+            SetProgress(progress, maxProgress);
+
+            var nand = File.ReadAllBytes(NandDump);
+            if (nand.Length != 512 *1024*1024)
+                throw new Exception("Invalid NAND size");
+
+            SetStatus("...");
+            fel.WriteFlash(0, nand,
+                delegate (Fel.CurrentAction action, string command)
+                {
+                    switch (action)
+                    {
+                        case Fel.CurrentAction.RunningCommand:
+                            SetStatus(Resources.ExecutingCommand + " " + command);
+                            break;
+                        case Fel.CurrentAction.WritingMemory:
+                            SetStatus("...");
+                            break;
+                    }
+                    progress++;
+                    SetProgress(progress, maxProgress);
+                }
+            );
+
+            var shutdownCommand = "shutdown";
+            SetStatus(Resources.ExecutingCommand + " " + shutdownCommand);
+            fel.RunUbootCmd(shutdownCommand, true);
+            SetStatus(Resources.Done);
+            SetProgress(maxProgress, maxProgress);
+        }
+
         public void DoNandBDump()
         {
             int progress = 0;
@@ -804,7 +848,7 @@ namespace com.clusterrr.hakchi_gui
             else
                 kernel = File.ReadAllBytes(KernelDump);
             var size = CalcKernelSize(kernel);
-            if (size > kernel.Length || size > Fel.kernel_max_size)
+            if (size > kernel.Length || size > Fel.transfer_max_size)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
             size = (size + Fel.sector_size - 1) / Fel.sector_size;
             size = size * Fel.sector_size;
