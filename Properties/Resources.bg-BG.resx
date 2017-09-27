@@ -370,6 +370,12 @@
   <data name="YesForAll">
     <value>Да за всички</value>
   </data>
+  <data name="DumpingNand">
+    <value>Dumping NAND...</value>
+  </data>
+  <data name="NandDumped">
+    <value>NAND memory is dumped successfully.</value>
+  </data>
   <data name="NoKernelWarning">
     <value>First, dump the kernel image of your NES Mini. You only need to do this once. Do you want to continue?</value>
   </data>

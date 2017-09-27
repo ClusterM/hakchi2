@@ -280,6 +280,15 @@
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Użyj rozszerzonej czcionki</value>
   </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Dump decrypted NAND-B partition</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Dump the whole NAND flash</value>
+  </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Select dump filename</value>
+  </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Use X/Y on Classic Controller as autofire A/B</value>
   </data>

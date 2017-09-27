@@ -373,4 +373,10 @@
   <data name="YesForAll">
     <value>Ja für alle</value>
   </data>
+  <data name="DumpingNand">
+    <value>Dumping NAND...</value>
+  </data>
+  <data name="NandDumped">
+    <value>NAND memory is dumped successfully.</value>
+  </data>
 </root>

@@ -766,6 +766,34 @@ namespace com.clusterrr.hakchi_gui
             return workerForm.DialogResult == DialogResult.OK;
         }
 
+        bool DoNandDump()
+        {
+            saveDumpFileDialog.FileName = "nand.bin";
+            saveDumpFileDialog.DefaultExt = "bin";
+            if (saveDumpFileDialog.ShowDialog() != DialogResult.OK)
+                return false;
+            var workerForm = new WorkerForm();
+            workerForm.Text = Resources.DumpingNand;
+            workerForm.Task = WorkerForm.Tasks.DumpNand;
+            workerForm.NandDump = saveDumpFileDialog.FileName;
+            workerForm.Start();
+            return workerForm.DialogResult == DialogResult.OK;
+        }
+
+        bool DoNandBDump()
+        {
+            saveDumpFileDialog.FileName = "nandb.hsqs";
+            saveDumpFileDialog.DefaultExt = "hsqs";
+            if (saveDumpFileDialog.ShowDialog() != DialogResult.OK)
+                return false;
+            var workerForm = new WorkerForm();
+            workerForm.Text = Resources.DumpingNand;
+            workerForm.Task = WorkerForm.Tasks.DumpNandB;
+            workerForm.NandDump = saveDumpFileDialog.FileName;
+            workerForm.Start();
+            return workerForm.DialogResult == DialogResult.OK;
+        }
+
         bool FlashCustomKernel()
         {
             var workerForm = new WorkerForm();
@@ -951,6 +979,16 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (DoKernelDump()) MessageBox.Show(Resources.KernelDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void dumpTheWholeNANDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DoNandDump()) MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void dumpNANDBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DoNandBDump()) MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void flashCustomKernelToolStripMenuItem_Click(object sender, EventArgs e)

@@ -29,16 +29,15 @@ namespace com.clusterrr.FelLib
         int cmdOffset = -1;
         public const UInt32 fes1_base_m = 0x2000;
         public const UInt32 dram_base = 0x40000000;
-        public const UInt32 flash_mem_base = 0x43800000;
-        public const UInt32 flash_mem_size = 0x20;
-        public const UInt32 uboot_base_m = 0x47000000u;
-        public const UInt32 sector_size = 0x20000;
-        public const UInt32 uboot_base_f = 0x100000;
-        public const UInt32 kernel_base_f = (sector_size * 0x30);
-        public const UInt32 kernel_base_m = flash_mem_base;
-        public const UInt32 kernel_max_size = (uboot_base_m - flash_mem_base);
-        public const UInt32 kernel_max_flash_size = (sector_size * 0x20);
-        const string fastboot = "fastboot_test";
+        public const UInt32 uboot_base_m = dram_base + 0x7000000u;
+        public const UInt32 uboot_base_f = 0x100000u;
+        public const UInt32 sector_size = 0x20000u;
+        public const UInt32 uboot_maxsize_f = (sector_size * 0x10);
+        public const UInt32 kernel_base_f = sector_size * 0x30;
+        public const UInt32 kernel_max_size = sector_size * 0x20;
+        public const UInt32 transfer_base_m = dram_base + 0x7400000u;
+        public const UInt32 transfer_max_size = sector_size * 0x100;
+        const string fastboot = "efex_test";
 
         public byte[] UBootBin
         {
@@ -291,7 +290,7 @@ namespace com.clusterrr.FelLib
             var result = new List<byte>();
             while (length > 0)
             {
-                if (callback != null) callback(CurrentAction.ReadingMemory, null);
+                callback?.Invoke(CurrentAction.ReadingMemory, null);
                 var l = Math.Min(length, MaxBulkSize);
                 FelRequest(AWFELStandardRequest.RequestType.FEL_UPLOAD, address, l);
                 var r = FelRead((UInt32)l);
@@ -327,45 +326,43 @@ namespace com.clusterrr.FelLib
         public byte[] ReadFlash(UInt32 address, UInt32 length, OnFelProgress callback = null)
         {
             var result = new List<byte>();
-            while (((length + address % sector_size + sector_size - 1) / sector_size) > flash_mem_size)
+            string command;
+            if ((address % sector_size) != 0)
+                throw new FelException(string.Format("Invalid flash address : 0x{0:X8}", address));
+            if ((length % sector_size) != 0)
+                throw new FelException(string.Format("Invalid flash length: 0x{0:X8}", length));
+            while (length > 0)
             {
-                var sectors = (length + address % sector_size + sector_size - 1) / sector_size - flash_mem_size;
-                var buf = ReadFlash(address, sectors * sector_size - address % sector_size, callback);
+                var reqLen = Math.Min(length, transfer_max_size);
+                command = string.Format("sunxi_flash phy_read {0:x} {1:x} {2:x};{3}", transfer_base_m, address / sector_size, reqLen / sector_size, fastboot);
+                RunUbootCmd(command, false, callback);
+                var buf = ReadMemory(transfer_base_m + address % sector_size, reqLen, callback);
+                result.AddRange(buf);
                 address += (uint)buf.Length;
                 length -= (uint)buf.Length;
-                result.AddRange(buf);
             }
-            if (result.Count > 0) return result.ToArray();
-            var command = string.Format("sunxi_flash phy_read {0:x} {1:x} {2:x};{3}", flash_mem_base, address / sector_size, (length + address % sector_size + sector_size - 1) / sector_size, fastboot);
-            RunUbootCmd(command, false, callback);
-            result.AddRange(ReadMemory(flash_mem_base + address % sector_size, length, callback));
             return result.ToArray();
         }
 
         public void WriteFlash(UInt32 address, byte[] buffer, OnFelProgress callback = null)
         {
-            int length = buffer.Length;
+            var length = (uint)buffer.Length;
             int pos = 0;
             if ((address % sector_size) != 0)
-                throw new FelException(string.Format("Invalid address to flash: 0x{0:X8}", address));
+                throw new FelException(string.Format("Invalid flash address : 0x{0:X8}", address));
             if ((length % sector_size) != 0)
-                throw new FelException(string.Format("Invalid length to flash: 0x{0:X8}", length));
-            byte[] newBuf;
-            while ((length / sector_size) > flash_mem_size)
+                throw new FelException(string.Format("Invalid flash length: 0x{0:X8}", length));
+            while (length > 0)
             {
-                var sectors = (length / sector_size) - flash_mem_size;
-                newBuf = new byte[sectors * sector_size];
-                Array.Copy(buffer, pos, newBuf, 0, newBuf.Length);
-                WriteFlash(address, newBuf, callback);
-                address += (UInt32)newBuf.Length;
-                length -= newBuf.Length;
-                pos += newBuf.Length;
+                var wrLength = Math.Min(length, transfer_max_size);
+                var newBuf = new byte[wrLength];
+                Array.Copy(buffer, pos, newBuf, 0, wrLength);
+                WriteMemory(transfer_base_m, newBuf, callback);
+                var command = string.Format("sunxi_flash phy_write {0:x} {1:x} {2:x};{3}", transfer_base_m, address / sector_size, length / sector_size, fastboot);
+                RunUbootCmd(command, false, callback);
+                address += (uint)wrLength;
+                length -= (uint)wrLength;
             }
-            newBuf = new byte[length - pos];
-            Array.Copy(buffer, pos, newBuf, 0, newBuf.Length);
-            WriteMemory(flash_mem_base, newBuf, callback);
-            var command = string.Format("sunxi_flash phy_write {0:x} {1:x} {2:x};{3}", flash_mem_base, address / sector_size, length / sector_size, fastboot);
-            RunUbootCmd(command, false, callback);
         }
 
         public void Exec(UInt32 address)
@@ -377,7 +374,7 @@ namespace com.clusterrr.FelLib
 
         public void RunUbootCmd(string command, bool noreturn = false, OnFelProgress callback = null)
         {
-            if (callback != null) callback(CurrentAction.RunningCommand, command);
+            callback?.Invoke(CurrentAction.RunningCommand, command);
             if (cmdOffset < 0) throw new Exception("Invalid Unoot binary, command variable not found");
             const UInt32 testSize = 0x20;
             if (UBootBin == null || UBootBin.Length < testSize)
@@ -394,8 +391,8 @@ namespace com.clusterrr.FelLib
             Close();
             for (int i = 0; i < 10; i++)
             {
-                Thread.Sleep(1000);
-                if (callback != null) callback(CurrentAction.RunningCommand, command);
+                Thread.Sleep(500);
+                callback?.Invoke(CurrentAction.RunningCommand, command);
             }
             int errorCount = 0;
             while (true)

@@ -283,4 +283,13 @@
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Використовувати X/Y на Classic Controller як турбо A/B</value>
   </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Dump decrypted NAND-B partition</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Dump the whole NAND flash</value>
+  </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Select dump filename</value>
+  </data>
 </root>

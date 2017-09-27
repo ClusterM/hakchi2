@@ -112,6 +112,12 @@
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Сдампить ядро</value>
   </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Прочитать расшифрованный NAND-B раздел</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Прочитать всю NAND память</value>
+  </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Использовать "Select+A/B" для включения турбо кнопок</value>
   </data>
@@ -234,6 +240,9 @@
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Использовать комбинацию кнопок для выхода в меню</value>
+  </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Выберите, куда сохранить образ</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Сохранить настройки в NES Mini сейчас</value>

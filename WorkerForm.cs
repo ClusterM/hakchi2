@@ -19,10 +19,11 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class WorkerForm : Form
     {
-        public enum Tasks { DumpKernel, FlashKernel, Memboot, UploadGames, DownloadAllCovers, AddGames };
+        public enum Tasks { DumpKernel, FlashKernel, DumpNand, DumpNandB, Memboot, UploadGames, DownloadAllCovers, AddGames };
         public Tasks Task;
         //public string UBootDump;
         public string KernelDump;
+        public string NandDump;
         public string Mod = null;
         public Dictionary<string, string> Config = null;
         public NesMenuCollection Games;
@@ -100,7 +101,8 @@ namespace com.clusterrr.hakchi_gui
             correctKernels
                 = new string[] {
                 "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158", // NES Mini
-                "ac8144c3ea4ab32e017648ee80bdc230" // Famicom Mini
+                "ac8144c3ea4ab32e017648ee80bdc230", // Famicom Mini
+                "d76c2a091ebe7b4614589fc6954653a5" // SNES Mini (EU)
             };
         }
 
@@ -220,6 +222,12 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case Tasks.FlashKernel:
                         FlashKernel();
+                        break;
+                    case Tasks.DumpNand:
+                        DoNandDump();
+                        break;
+                    case Tasks.DumpNandB:
+                        DoNandBDump();
                         break;
                     case Tasks.UploadGames:
                         UploadGames();
@@ -477,12 +485,101 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                var shutdownCommand = string.Format("shutdown", Fel.kernel_base_m);
+                var shutdownCommand = "shutdown";
                 SetStatus(Resources.ExecutingCommand + " " + shutdownCommand);
                 fel.RunUbootCmd(shutdownCommand, true);
                 SetStatus(Resources.Done);
                 SetProgress(maxProgress, maxProgress);
             }
+        }
+
+        public void DoNandDump()
+        {
+            int progress = 0;
+            const int maxProgress = 8373;
+            if (WaitForFelFromThread() != DialogResult.OK)
+            {
+                DialogResult = DialogResult.Abort;
+                return;
+            }
+            progress += 5;
+            SetProgress(progress, maxProgress);
+
+            SetStatus(Resources.DumpingNand);
+            var kernel = fel.ReadFlash(0, Fel.sector_size * 0x1000,
+                delegate (Fel.CurrentAction action, string command)
+                {
+                    switch (action)
+                    {
+                        case Fel.CurrentAction.RunningCommand:
+                            SetStatus(Resources.ExecutingCommand + " " + command);
+                            break;
+                        case Fel.CurrentAction.ReadingMemory:
+                            SetStatus(Resources.DumpingNand);
+                            break;
+                    }
+                    progress++;
+                    SetProgress(progress, maxProgress);
+                }
+            );
+
+            SetProgress(maxProgress, maxProgress);
+            SetStatus(Resources.Done);
+            
+            Directory.CreateDirectory(Path.GetDirectoryName(NandDump));
+            File.WriteAllBytes(NandDump, kernel);
+        }
+
+        public void DoNandBDump()
+        {
+            int progress = 0;
+            int maxProgress = 30;
+            var clovershell = MainForm.Clovershell;
+            try
+            {
+                if (WaitForClovershellFromThread() != DialogResult.OK)
+                {
+                    DialogResult = DialogResult.Abort;
+                    return;
+                }
+                progress += 5;
+                SetProgress(progress, maxProgress);
+
+                ShowSplashScreen();
+
+                var nandbSize = int.Parse(clovershell.ExecuteSimple("df / | tail -n 1 | awk '{ print $2 }'"));
+                maxProgress = 5 + nandbSize / 1024;
+                SetProgress(progress, maxProgress);
+
+                SetStatus(Resources.DumpingNand);
+                using (var file = new TrackableFileStream(NandDump, FileMode.Create))
+                {
+                    file.OnProgress += delegate (long Position, long Length)
+                    {
+                        progress = (int)(5 + Position / 1024);
+                        SetProgress(progress, maxProgress);
+                    };
+                    clovershell.Execute("dd if=/dev/mapper/root-crypt", null, file);
+                    file.Close();
+                }
+
+                SetStatus(Resources.Done);
+                SetProgress(maxProgress, maxProgress);
+            }
+            finally
+            {
+                try
+                {
+                    if (clovershell.IsOnline)
+                        clovershell.ExecuteSimple("reboot", 100);
+                }
+                catch { }
+            }
+        }
+
+        private void File_OnProgress(long Position, long Length)
+        {
+            throw new NotImplementedException();
         }
 
         public static void GetMemoryStats()
@@ -723,7 +820,7 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress);
 
             SetStatus(Resources.UploadingKernel);
-            fel.WriteMemory(Fel.flash_mem_base, kernel,
+            fel.WriteMemory(Fel.transfer_base_m, kernel,
                 delegate(Fel.CurrentAction action, string command)
                 {
                     switch (action)
@@ -737,7 +834,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             );
 
-            var bootCommand = string.Format("boota {0:x}", Fel.kernel_base_m);
+            var bootCommand = string.Format("boota {0:x}", Fel.transfer_base_m);
             SetStatus(Resources.ExecutingCommand + " " + bootCommand);
             fel.RunUbootCmd(bootCommand, true);
             Thread.Sleep(7000);

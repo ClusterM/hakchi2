@@ -31,7 +31,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -454,7 +454,18 @@ namespace com.clusterrr.hakchi_gui.Properties {
                 return ResourceManager.GetString("DumpingKernel", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Dumping kernel....
+        /// </summary>
+        internal static string DumpingNand
+        {
+            get
+            {
+                return ResourceManager.GetString("DumpingNand", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Do you want to dump the kernel?.
         /// </summary>
@@ -463,7 +474,18 @@ namespace com.clusterrr.hakchi_gui.Properties {
                 return ResourceManager.GetString("DumpKernelQ", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to dump the kernel?.
+        /// </summary>
+        internal static string DumpNandQ
+        {
+            get
+            {
+                return ResourceManager.GetString("DumpNandQ", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
@@ -1088,7 +1110,18 @@ namespace com.clusterrr.hakchi_gui.Properties {
                 return ResourceManager.GetString("KernelDumped", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Your original kernel is saved in the &quot;dump&quot; folder. Do not lose it. .
+        /// </summary>
+        internal static string NandDumped
+        {
+            get
+            {
+                return ResourceManager.GetString("NandDumped", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Loading games....
         /// </summary>

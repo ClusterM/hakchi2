@@ -112,6 +112,12 @@
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Dump kernel</value>
   </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Dump decrypted NAND-B partition</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Dump the whole NAND flash</value>
+  </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Use "Select + A/B" to enable autofire on A/B</value>
   </data>
@@ -234,6 +240,9 @@
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Reset with a button combination</value>
+  </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Select dump filename</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Save settings to NES Mini</value>
