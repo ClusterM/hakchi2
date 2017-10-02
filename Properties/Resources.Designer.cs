@@ -910,7 +910,18 @@ namespace com.clusterrr.hakchi_gui.Properties {
                 return ResourceManager.GetString("FolderNameUnsorted", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Membooting.
+        /// </summary>
+        internal static string Membooting
+        {
+            get
+            {
+                return ResourceManager.GetString("Membooting", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Do you want to save this folder structure?.
         /// </summary>

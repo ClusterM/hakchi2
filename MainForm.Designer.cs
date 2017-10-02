@@ -46,12 +46,15 @@
             this.dumpKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashOriginalKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashCustomKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
+            this.membootOriginalKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.membootPatchedKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.dumpTheWholeNANDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolFlashTheWholeNANDStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumpNANDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
             this.uninstallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolFlashTheWholeNANDStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstallModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -255,6 +258,9 @@
             this.dumpKernelToolStripMenuItem,
             this.flashOriginalKernelToolStripMenuItem,
             this.flashCustomKernelToolStripMenuItem,
+            this.toolStripMenuItem11,
+            this.membootOriginalKernelToolStripMenuItem,
+            this.membootPatchedKernelToolStripMenuItem,
             this.toolStripMenuItem10,
             this.dumpTheWholeNANDToolStripMenuItem,
             this.toolFlashTheWholeNANDStripMenuItem,
@@ -282,6 +288,23 @@
             resources.ApplyResources(this.flashCustomKernelToolStripMenuItem, "flashCustomKernelToolStripMenuItem");
             this.flashCustomKernelToolStripMenuItem.Click += new System.EventHandler(this.flashCustomKernelToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem11
+            // 
+            this.toolStripMenuItem11.Name = "toolStripMenuItem11";
+            resources.ApplyResources(this.toolStripMenuItem11, "toolStripMenuItem11");
+            // 
+            // membootOriginalKernelToolStripMenuItem
+            // 
+            this.membootOriginalKernelToolStripMenuItem.Name = "membootOriginalKernelToolStripMenuItem";
+            resources.ApplyResources(this.membootOriginalKernelToolStripMenuItem, "membootOriginalKernelToolStripMenuItem");
+            this.membootOriginalKernelToolStripMenuItem.Click += new System.EventHandler(this.membootOriginalKernelToolStripMenuItem_Click);
+            // 
+            // membootPatchedKernelToolStripMenuItem
+            // 
+            this.membootPatchedKernelToolStripMenuItem.Name = "membootPatchedKernelToolStripMenuItem";
+            resources.ApplyResources(this.membootPatchedKernelToolStripMenuItem, "membootPatchedKernelToolStripMenuItem");
+            this.membootPatchedKernelToolStripMenuItem.Click += new System.EventHandler(this.membootPatchedKernelToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem10
             // 
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
@@ -292,6 +315,12 @@
             this.dumpTheWholeNANDToolStripMenuItem.Name = "dumpTheWholeNANDToolStripMenuItem";
             resources.ApplyResources(this.dumpTheWholeNANDToolStripMenuItem, "dumpTheWholeNANDToolStripMenuItem");
             this.dumpTheWholeNANDToolStripMenuItem.Click += new System.EventHandler(this.dumpTheWholeNANDToolStripMenuItem_Click);
+            // 
+            // toolFlashTheWholeNANDStripMenuItem
+            // 
+            this.toolFlashTheWholeNANDStripMenuItem.Name = "toolFlashTheWholeNANDStripMenuItem";
+            resources.ApplyResources(this.toolFlashTheWholeNANDStripMenuItem, "toolFlashTheWholeNANDStripMenuItem");
+            this.toolFlashTheWholeNANDStripMenuItem.Click += new System.EventHandler(this.toolFlashTheWholeNANDStripMenuItem_Click);
             // 
             // dumpNANDBToolStripMenuItem
             // 
@@ -309,12 +338,6 @@
             this.uninstallToolStripMenuItem.Name = "uninstallToolStripMenuItem";
             resources.ApplyResources(this.uninstallToolStripMenuItem, "uninstallToolStripMenuItem");
             this.uninstallToolStripMenuItem.Click += new System.EventHandler(this.uninstallToolStripMenuItem_Click);
-            // 
-            // toolFlashTheWholeNANDStripMenuItem
-            // 
-            this.toolFlashTheWholeNANDStripMenuItem.Name = "toolFlashTheWholeNANDStripMenuItem";
-            resources.ApplyResources(this.toolFlashTheWholeNANDStripMenuItem, "toolFlashTheWholeNANDStripMenuItem");
-            this.toolFlashTheWholeNANDStripMenuItem.Click += new System.EventHandler(this.toolFlashTheWholeNANDStripMenuItem_Click);
             // 
             // modulesToolStripMenuItem
             // 
@@ -383,13 +406,15 @@
             // 
             // sNESMiniToolStripMenuItem
             // 
-            resources.ApplyResources(this.sNESMiniToolStripMenuItem, "sNESMiniToolStripMenuItem");
             this.sNESMiniToolStripMenuItem.Name = "sNESMiniToolStripMenuItem";
+            resources.ApplyResources(this.sNESMiniToolStripMenuItem, "sNESMiniToolStripMenuItem");
+            this.sNESMiniToolStripMenuItem.Click += new System.EventHandler(this.sNESMiniToolStripMenuItem_Click);
             // 
             // superFamicomMiniToolStripMenuItem
             // 
             resources.ApplyResources(this.superFamicomMiniToolStripMenuItem, "superFamicomMiniToolStripMenuItem");
             this.superFamicomMiniToolStripMenuItem.Name = "superFamicomMiniToolStripMenuItem";
+            this.superFamicomMiniToolStripMenuItem.Click += new System.EventHandler(this.superFamicomMiniToolStripMenuItem_Click);
             // 
             // cloverconHackToolStripMenuItem
             // 
@@ -1220,6 +1245,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem10;
         private System.Windows.Forms.ToolStripMenuItem toolFlashTheWholeNANDStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openDumpFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem membootPatchedKernelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem11;
+        private System.Windows.Forms.ToolStripMenuItem membootOriginalKernelToolStripMenuItem;
     }
 }
 

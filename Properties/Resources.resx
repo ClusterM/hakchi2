@@ -133,10 +133,10 @@
     <value>Do you want to flash the custom kernel?</value>
   </data>
   <data name="CustomWarning" xml:space="preserve">
-    <value>Now you need to flash the custom kernel to your NES Mini. This is only required once. Do you want to continue?</value>
+    <value>Now you need to flash the custom kernel to your NES/SNES Mini. This is only required once. Do you want to continue?</value>
   </data>
   <data name="Default30games" xml:space="preserve">
-    <value>Original 30 games</value>
+    <value>Original games</value>
   </data>
   <data name="DeleteGame" xml:space="preserve">
     <value>Do you really want to delete "{0}" game?</value>
@@ -145,7 +145,7 @@
     <value>Done!</value>
   </data>
   <data name="DoneYouCanUpload" xml:space="preserve">
-    <value>Done! You can upload games to your NES Mini now.</value>
+    <value>Done! You can upload games to your NES/SNES Mini now.</value>
   </data>
   <data name="DoYouWantCancel" xml:space="preserve">
     <value>Do you want to cancel the current operation?</value>
@@ -193,7 +193,7 @@
     <value>No kernel dump found</value>
   </data>
   <data name="NoKernelWarning" xml:space="preserve">
-    <value>First, dump the kernel image of your NES Mini. You only need to do this once. Do you want to continue?</value>
+    <value>First, dump the kernel image of your NES/SNES Mini. You only need to do this once. Do you want to continue?</value>
   </data>
   <data name="NoKernelYouNeed" xml:space="preserve">
     <value>No kernel dump found. You need to dump the kernel first.</value>
@@ -268,7 +268,7 @@
     <value>Uninstalling...</value>
   </data>
   <data name="UninstallQ1" xml:space="preserve">
-    <value>Do you really want to remove all traces of hakchi2 and return your NES Mini to its original state?</value>
+    <value>Do you really want to remove all traces of hakchi2 and return your NES/SNES Mini to its original state?</value>
   </data>
   <data name="UninstallQ2" xml:space="preserve">
     <value>Done. Wait until the power LED goes out. You also need to flash the original kernel. Do you want to flash the original kernel now?</value>
@@ -353,7 +353,7 @@
     <value>More games...</value>
   </data>
   <data name="FolderNameOriginalGames" xml:space="preserve">
-    <value>Original 30 games</value>
+    <value>Original games</value>
   </data>
   <data name="folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\folder_images\folder.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -482,10 +482,10 @@
     <value>Installing mods...</value>
   </data>
   <data name="SelectModsInstall" xml:space="preserve">
-    <value>Select the modules to install on your NES Mini</value>
+    <value>Select the modules to install on your NES/SNES Mini</value>
   </data>
   <data name="SelectModsUninstall" xml:space="preserve">
-    <value>Select the modules to remove from your NES Mini</value>
+    <value>Select the modules to remove from your NES/SNES Mini</value>
   </data>
   <data name="UninstallingMods" xml:space="preserve">
     <value>Uninstalling mods...</value>
@@ -563,7 +563,7 @@
     <value>Do you really want to delete those save-states?</value>
   </data>
   <data name="SavesFlterName" xml:space="preserve">
-    <value>NES Mini save-state backups</value>
+    <value>Save-state backups</value>
   </data>
   <data name="SizeOfSaves" xml:space="preserve">
     <value>Size of selected save-states: </value>
@@ -648,5 +648,8 @@
   </data>
   <data name="dk" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\flags\dk.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Membooting" xml:space="preserve">
+    <value>Booting the kernel from RAM...</value>
   </data>
 </root>

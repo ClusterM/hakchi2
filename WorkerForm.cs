@@ -102,7 +102,8 @@ namespace com.clusterrr.hakchi_gui
                 = new string[] {
                 "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158", // NES Mini
                 "ac8144c3ea4ab32e017648ee80bdc230", // Famicom Mini
-                "d76c2a091ebe7b4614589fc6954653a5" // SNES Mini (EU)
+                "d76c2a091ebe7b4614589fc6954653a5", // SNES Mini (EUR)
+                "449b711238575763c6701f5958323d48" // SNES Mini (USA)
             };
         }
 
@@ -362,7 +363,7 @@ namespace com.clusterrr.hakchi_gui
 
             SetStatus(Resources.DumpingKernel);
             var kernel = fel.ReadFlash(Fel.kernel_base_f, Fel.sector_size * 0x20,
-                delegate(Fel.CurrentAction action, string command)
+                delegate (Fel.CurrentAction action, string command)
                 {
                     switch (action)
                     {
@@ -447,7 +448,7 @@ namespace com.clusterrr.hakchi_gui
             }
 
             fel.WriteFlash(Fel.kernel_base_f, kernel,
-                delegate(Fel.CurrentAction action, string command)
+                delegate (Fel.CurrentAction action, string command)
                 {
                     switch (action)
                     {
@@ -463,7 +464,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             );
             var r = fel.ReadFlash((UInt32)Fel.kernel_base_f, (UInt32)kernel.Length,
-                delegate(Fel.CurrentAction action, string command)
+                delegate (Fel.CurrentAction action, string command)
                 {
                     switch (action)
                     {
@@ -528,7 +529,7 @@ namespace com.clusterrr.hakchi_gui
 
             SetProgress(maxProgress, maxProgress);
             SetStatus(Resources.Done);
-            
+
             Directory.CreateDirectory(Path.GetDirectoryName(NandDump));
             File.WriteAllBytes(NandDump, kernel);
         }
@@ -546,7 +547,7 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress);
 
             var nand = File.ReadAllBytes(NandDump);
-            if (nand.Length != 512 *1024*1024)
+            if (nand.Length != 512 * 1024 * 1024)
                 throw new Exception("Invalid NAND size");
 
             SetStatus("...");
@@ -649,6 +650,7 @@ namespace com.clusterrr.hakchi_gui
             clovershell.ExecuteSimple("pkill -KILL clover-mcp");
             clovershell.ExecuteSimple("pkill -KILL ReedPlayer-Clover");
             clovershell.ExecuteSimple("pkill -KILL kachikachi");
+            clovershell.ExecuteSimple("pkill -KILL canoe-shvc");
             if (File.Exists(splashScreenPath))
             {
                 using (var splash = new FileStream(splashScreenPath, FileMode.Open))
@@ -731,7 +733,7 @@ namespace com.clusterrr.hakchi_gui
 
                     if (gamesTar.Length > 0)
                     {
-                        gamesTar.OnReadProgress += delegate(long pos, long len)
+                        gamesTar.OnReadProgress += delegate (long pos, long len)
                         {
                             progress = (int)(startProgress + pos / 1024 / 1024);
                             SetProgress(progress, maxProgress);
@@ -865,7 +867,7 @@ namespace com.clusterrr.hakchi_gui
 
             SetStatus(Resources.UploadingKernel);
             fel.WriteMemory(Fel.transfer_base_m, kernel,
-                delegate(Fel.CurrentAction action, string command)
+                delegate (Fel.CurrentAction action, string command)
                 {
                     switch (action)
                     {

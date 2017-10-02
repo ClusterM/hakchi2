@@ -8,13 +8,10 @@ mod_uninstall(){
 mod_repair(){
   mod_repair_etc full
   chmod 755 $modpath/rootfs/bin/*
+  chmod 755 $modpath/rootfs/etc/init.d/*
   copy "/bin/" "$rootfs/bin/"
   copy "/sbin/cryptsetup" "$rootfs/bin/cryptsetup"
   copy "$modpath/rootfs/" "$rootfs/"
-
-  # This file required by hakchi2 kernel...
-  echo "hakchi_enabled=y" > "$temppath/config"
-  copy "$temppath/config" "$installpath/"
 }
 
 mod_install(){

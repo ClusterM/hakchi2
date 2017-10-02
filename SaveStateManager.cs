@@ -63,12 +63,17 @@ namespace com.clusterrr.hakchi_gui
                      "find $savespath -mindepth 1 -maxdepth 1 -type d -name \"CLV-*\" | sed 's#.*/##' | while read code ; do\n" +
                      "  flags=F\n" +
                      "  [ -f $savespath/$code/save.sram ] && flags=${flags}-S\n" +
+                     "  [ -f $savespath/$code/cartridge.sram ] && [ $(wc -c <$savespath/$code/cartridge.sram) -gt 20 ] && flags=${flags}-S\n" +
                      "  [ -f $savespath/$code/1.state ] && flags=${flags}-1\n" +
+                     "  [ -d $savespath/$code/suspendpoint1  ] && flags=${flags}-1\n" +
                      "  [ -f $savespath/$code/2.state ] && flags=${flags}-2\n" +
+                     "  [ -d $savespath/$code/suspendpoint2 ] && flags=${flags}-2\n" +
                      "  [ -f $savespath/$code/3.state ] && flags=${flags}-3\n" +
+                     "  [ -d $savespath/$code/suspendpoint3 ] && flags=${flags}-3\n" +
                      "  [ -f $savespath/$code/4.state ] && flags=${flags}-4\n" +
+                     "  [ -d $savespath/$code/suspendpoint4 ] && flags=${flags}-4\n" +
                      "  if [ \"$flags\" != \"F\" ]; then\n" +
-                     "    size=$(du $savespath/$code | awk '{ print $1 }')\n" +
+                     "    size=$(du -d 0 $savespath/$code | awk '{ print $1 }')\n" +
                      "    name=$(find /var/lib -type f -name \"$code.desktop\" -exec cat {} + | sed -n 's/Name=\\(.*\\)/\\1/p')\n" +
                      "    [ -z \"$name\" ] && name=UNKNOWN\n" +
                      "    echo $code $size $flags $name\n" +

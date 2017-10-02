@@ -21,6 +21,8 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class MainForm : Form
     {
+        public enum ConsoleType { NES = 0, Famicom = 1, SNES = 2, SuperFamicom = 3, Unknown = 255 }
+
         public const long DefaultMaxGamesSize = 300;
         public static IEnumerable<string> InternalMods;
         public static ClovershellConnection Clovershell;
@@ -92,6 +94,30 @@ namespace com.clusterrr.hakchi_gui
             new NesDefaultGame { Code = "CLV-P-HACLJ",  Name = "ダウンタウン熱血行進曲 それゆけ大運動会", Size = 587083 },
             new NesDefaultGame { Code = "CLV-P-HACPJ",  Name = "アトランチスの謎", Size = 376213 }
         };
+        NesDefaultGame[] defaultSnesGames = new NesDefaultGame[]
+        {
+            new NesDefaultGame { Code = "CLV-P-SAAAE",  Name = "Super Mario World", Size = 2979540 },
+            new NesDefaultGame { Code = "CLV-P-SAABE",  Name = "F-ZERO", Size = 2770166 },
+            new NesDefaultGame { Code = "CLV-P-SAAEE",  Name = "The Legend of Zelda: A Link to the Past", Size = 2618796 },
+            new NesDefaultGame { Code = "CLV-P-SAAFE",  Name = "Super Mario Kart", Size = 2436777 },
+            new NesDefaultGame { Code = "CLV-P-SAAHE",  Name = "Super Metroid", Size = 6237435 },
+            new NesDefaultGame { Code = "CLV-P-SAAJE",  Name = "EarthBound", Size = 5954521 },
+            new NesDefaultGame { Code = "CLV-P-SAAKE",  Name = "Kirby's Dream Course", Size = 3210055 },
+            new NesDefaultGame { Code = "CLV-P-SAALE",  Name = "Donkey Kong Country", Size = 5899153 },
+            new NesDefaultGame { Code = "CLV-P-SAAQE",  Name = "Kirby Super Star", Size = 6893805 },
+            new NesDefaultGame { Code = "CLV-P-SAAXE",  Name = "Super Punch-Out!!", Size = 5085386 },
+            new NesDefaultGame { Code = "CLV-P-SABCE",  Name = "Mega Man X", Size = 2680591 },
+            new NesDefaultGame { Code = "CLV-P-SABDE",  Name = "Super Ghouls'n Ghosts", Size = 2157749 },
+            new NesDefaultGame { Code = "CLV-P-SABHE",  Name = "Street Fighter II Turbo: Hyper Fighting", Size = 9166072 },
+            new NesDefaultGame { Code = "CLV-P-SABQE",  Name = "Super Mario RPG: Legend of the Seven Stars", Size = 5620137 },
+            new NesDefaultGame { Code = "CLV-P-SABRE",  Name = "Secret of Mana", Size = 3029013 },
+            new NesDefaultGame { Code = "CLV-P-SABTE",  Name = "Final Fantasy III", Size = 4336655 },
+            new NesDefaultGame { Code = "CLV-P-SACBE",  Name = "Super Castlevania IV", Size = 2953337 },
+            new NesDefaultGame { Code = "CLV-P-SACCE",  Name = "CONTRA III THE ALIEN WARS", Size = 2803555 },
+            new NesDefaultGame { Code = "CLV-P-SADGE",  Name = "Star Fox", Size = 3339549 },
+            new NesDefaultGame { Code = "CLV-P-SADJE",  Name = "Yoshi's Island", Size = 4261051 },
+            new NesDefaultGame { Code = "CLV-P-SADKE",  Name = "Star Fox 2", Size = 2088122 }
+        };
 
         public MainForm()
         {
@@ -119,7 +145,7 @@ namespace com.clusterrr.hakchi_gui
                 KernelDump = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "dump"), "kernel.img");
                 InternalMods = from m in Directory.GetFiles(Path.Combine(Program.BaseDirectoryInternal, "mods/hmods")) select Path.GetFileNameWithoutExtension(m);
                 LoadGames();
-                LoadHidden();
+                SyncConsoleType();
                 LoadPresets();
                 LoadLanguages();
                 var version = Assembly.GetExecutingAssembly().GetName().Version;
@@ -139,8 +165,8 @@ namespace com.clusterrr.hakchi_gui
                 selectButtonCombinationToolStripMenuItem.Enabled = resetUsingCombinationOfButtonsToolStripMenuItem.Checked = ConfigIni.ResetHack;
                 enableAutofireToolStripMenuItem.Checked = ConfigIni.AutofireHack;
                 useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack;
-                nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
-                famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
+                nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.NES;
+                famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.Famicom;
                 upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart;
                 compressGamesIfPossibleToolStripMenuItem.Checked = ConfigIni.Compress;
 
@@ -354,7 +380,11 @@ namespace com.clusterrr.hakchi_gui
         {
             checkedListBoxDefaultGames.Items.Clear();
             var hidden = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (var game in new List<NesDefaultGame>(ConfigIni.ConsoleType == 0 ? defaultNesGames : defaultFamicomGames).OrderBy(o => o.Name))
+            NesDefaultGame[] games = null;
+            if (ConfigIni.ConsoleType == ConsoleType.NES) games = defaultNesGames;
+            if (ConfigIni.ConsoleType == ConsoleType.Famicom) games = defaultFamicomGames;
+            if (ConfigIni.ConsoleType == ConsoleType.SNES) games = defaultSnesGames;
+            foreach (var game in games.OrderBy(o => o.Name))
                 checkedListBoxDefaultGames.Items.Add(game, !hidden.Contains(game.Code));
         }
 
@@ -831,6 +861,32 @@ namespace com.clusterrr.hakchi_gui
             return result;
         }
 
+        bool MembootOriginalKernel()
+        {
+            var workerForm = new WorkerForm();
+            workerForm.Text = Resources.Membooting;
+            workerForm.Task = WorkerForm.Tasks.Memboot;
+            workerForm.KernelDump = KernelDump;
+            workerForm.Mod = null;
+            workerForm.Config = null;
+            workerForm.Games = null;
+            workerForm.Start();
+            return workerForm.DialogResult == DialogResult.OK;
+        }
+
+        bool MembootCustomKernel()
+        {
+            var workerForm = new WorkerForm();
+            workerForm.Text = Resources.Membooting;
+            workerForm.Task = WorkerForm.Tasks.Memboot;
+            workerForm.KernelDump = KernelDump;
+            workerForm.Mod = "mod_hakchi";
+            workerForm.Config = null;
+            workerForm.Games = null;
+            workerForm.Start();
+            return workerForm.DialogResult == DialogResult.OK;
+        }
+
         bool UploadGames()
         {
             var workerForm = new WorkerForm();
@@ -1002,7 +1058,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (DoNandDump()) MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        
+
         private void toolFlashTheWholeNANDStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("...", Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
@@ -1014,6 +1070,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void dumpNANDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (RequirePatchedKernel() == DialogResult.No) return;
             if (DoNandBDump()) MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -1025,6 +1082,23 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (FlashCustomKernel()) MessageBox.Show(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void membootOriginalKernelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists(KernelDump))
+            {
+                MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MembootOriginalKernel();
+        }
+
+
+        private void membootPatchedKernelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (RequireKernelDump() == DialogResult.No) return;
+            MembootCustomKernel();
         }
 
         private void flashOriginalKernelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1111,24 +1185,44 @@ namespace com.clusterrr.hakchi_gui
                 ConfigIni.ResetCombination = form.SelectedButtons;
         }
 
+        static ConsoleType lastConsoleType = ConsoleType.Unknown;
+        public void SyncConsoleType()
+        {
+            nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.NES;
+            famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.Famicom;
+            sNESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.SNES;
+            superFamicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.SuperFamicom;
+            if (lastConsoleType == ConfigIni.ConsoleType) return;
+            ConfigIni.HiddenGames = "";
+            LoadHidden();
+        }
+
         private void nESMiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (nESMiniToolStripMenuItem.Checked) return;
-            ConfigIni.ConsoleType = 0;
-            nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
-            famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
-            ConfigIni.HiddenGames = "";
-            LoadHidden();
+            ConfigIni.ConsoleType = ConsoleType.NES;
+            SyncConsoleType();
         }
 
         private void famicomMiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (famicomMiniToolStripMenuItem.Checked) return;
-            ConfigIni.ConsoleType = 1;
-            nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 0;
-            famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == 1;
-            ConfigIni.HiddenGames = "";
-            LoadHidden();
+            ConfigIni.ConsoleType = ConsoleType.Famicom;
+            SyncConsoleType();
+        }
+
+        private void sNESMiniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (sNESMiniToolStripMenuItem.Checked) return;
+            ConfigIni.ConsoleType = ConsoleType.SNES;
+            SyncConsoleType();
+        }
+
+        private void superFamicomMiniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (superFamicomMiniToolStripMenuItem.Checked) return;
+            ConfigIni.ConsoleType = ConsoleType.SuperFamicom;
+            SyncConsoleType();
         }
 
         private void enableAutofireToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1453,6 +1547,8 @@ namespace com.clusterrr.hakchi_gui
                 gameNames[game.Code] = game.Name;
             foreach (var game in defaultFamicomGames)
                 gameNames[game.Code] = game.Name;
+            foreach (var game in defaultSnesGames)
+                gameNames[game.Code] = game.Name;
             foreach (var game in checkedListBoxGames.Items)
             {
                 if (game is NesMiniApplication)
@@ -1602,6 +1698,5 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }

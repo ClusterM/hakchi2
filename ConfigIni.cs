@@ -17,7 +17,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool AutofireXYHack = false;
         public static bool FcStart = false;
         public static byte AntiArmetLevel = 0;
-        public static byte ConsoleType = 0;
+        public static MainForm.ConsoleType ConsoleType = MainForm.ConsoleType.NES;
         public static byte MaxGamesPerFolder = 30;
         public static NesMenuCollection.SplitStyle FoldersMode = NesMenuCollection.SplitStyle.Original_Auto;
         public static SelectButtonsForm.NesButtons ResetCombination = SelectButtonsForm.NesButtons.Down | SelectButtonsForm.NesButtons.Select;
@@ -97,7 +97,7 @@ namespace com.clusterrr.hakchi_gui
                                     ResetCombination = (SelectButtonsForm.NesButtons)byte.Parse(value);
                                     break;
                                 case "consoletype":
-                                    ConsoleType = byte.Parse(value);
+                                    ConsoleType = (MainForm.ConsoleType)byte.Parse(value);
                                     break;
                                 case "extracommandlinearguments":
                                     ExtraCommandLineArguments = value;
@@ -146,7 +146,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("FirstRun={0}", FirstRun));
             configLines.Add(string.Format("AntiArmetLevel={0}", AntiArmetLevel));
             configLines.Add(string.Format("ResetCombination={0}", (byte)ResetCombination));
-            configLines.Add(string.Format("ConsoleType={0}", ConsoleType));
+            configLines.Add(string.Format("ConsoleType={0}", (byte)ConsoleType));
             configLines.Add(string.Format("ExtraCommandLineArguments={0}", ExtraCommandLineArguments));
             configLines.Add(string.Format("FcStart={0}", FcStart));
             configLines.Add(string.Format("FoldersMode={0}", (byte)FoldersMode));
