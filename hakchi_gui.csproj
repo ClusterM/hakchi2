@@ -982,9 +982,6 @@
     <EmbeddedResource Include="SelectButtonsForm.en-GB.resx">
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.en.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SelectButtonsForm.es-AR.resx">
       <DependentUpon>SelectButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1045,9 +1042,6 @@
     <EmbeddedResource Include="SelectFileForm.en-GB.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectFileForm.en.resx">
-      <DependentUpon>SelectFileForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SelectFileForm.es-AR.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1106,9 +1100,6 @@
       <DependentUpon>SelectIconForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectIconForm.en-GB.resx">
-      <DependentUpon>SelectIconForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectIconForm.en.resx">
       <DependentUpon>SelectIconForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectIconForm.es-AR.resx">
