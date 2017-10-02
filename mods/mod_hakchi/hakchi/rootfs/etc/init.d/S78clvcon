@@ -1,0 +1,47 @@
+#!/bin/sh
+
+CLV_BOARD_NAME=$(cat /etc/clover/boardtype)
+MODULE="clvcon"
+[ -f "/lib/modules/$(uname -r)/extra/$MODULE.ko" ] || MODULE="clovercon"
+
+start()
+{
+        echo "$MODULE: starting driver"
+        case "${CLV_BOARD_NAME}" in
+                fp) 
+                        # inverted c1/c2 detect lines               
+                        MODULE_PARAMS="2,195,1,194"
+                        ;;
+                ep|dp-nes|dp-shvc)                                  
+                        # regular setup w/ detect lines
+                        MODULE_PARAMS="1,195,2,194"
+                        ;;                                                      
+                dp-hvc)                          
+                        # no detect lines        
+                        MODULE_PARAMS="1,-1,2,-1"                                
+                        ;;                         
+        esac                                       
+        modprobe "$MODULE" module_params=$MODULE_PARAMS 
+}                                                      
+                                                       
+stop()                                                 
+{                                      
+        echo "$MODULE: stopping driver"
+        modprobe -r "$MODULE"          
+}                                      
+                                       
+case "$1" in                 
+start)       
+        start
+;;           
+stop)        
+        stop 
+;;          
+restart)    
+        stop 
+        start
+;;           
+*)                                                         
+        echo "$MODULE: Please use start, stop, or restart."
+        exit 1                                             
+esac                       

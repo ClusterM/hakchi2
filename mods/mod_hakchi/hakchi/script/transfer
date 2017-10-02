@@ -7,16 +7,9 @@ backup_nandc
 mount_base
 backup
 
-remove_old "$modpath/rootfs"
-remove_old "$rootfs"
-
-source "$modpath/rootfs/etc/preinit"
-source_base "$modpath/rootfs/etc/preinit.d"
 source_config
 
-remove_old "$rootfs"
-
-local transferpath=$modpath/transfer
+local transferpath="$modpath/transfer"
 
 [ -f "$transferpath/earlybird" ] && source "$transferpath/earlybird"
 rm -f "$transferpath/earlybird"

@@ -2,16 +2,16 @@ init(){
 echo
 /bin/busybox --install -s /bin/
 
-local modname=hakchi
-local modpath=/$modname
-local mountpoint=/newroot
-local installpath=$mountpoint/var/lib/$modname
-local firmwarepath=$installpath/firmware
-local rootfs=$installpath/rootfs
-local preinit=$rootfs/etc/preinit
-local preinitpath=$preinit.d
-local gamepath=/usr/share/games/nes/kachikachi
-local temppath=/tmp
+local modname="hakchi"
+local modpath="/$modname"
+local mountpoint="/newroot"
+local installpath
+local firmwarepath
+local rootfs
+local preinit
+local preinitpath
+local gamepath
+local temppath="/tmp"
 
 mkdir -p "$temppath"
 

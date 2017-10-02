@@ -1,1 +1,5 @@
-overmount_games
+if [ -z "$(ls $rootfs$gamepath/CLV-* 2>/dev/null)" ]; then
+  echo "no romz found"
+else
+  overmount_games
+fi

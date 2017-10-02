@@ -10,6 +10,34 @@ umount_base(){
   umount "$mountpoint/var"
 }
 
+remove_old(){
+  [ -d "$1" ] || return 1
+  [ -f "$modpath/script/removed" ] || return 0
+  local basepath="$1"
+  source "$modpath/script/removed"
+}
+
+mod_repair_etc(){
+  remove_old "$rootfs"
+  rm -f "$modpath/rootfs/etc/preinit.d/p0000_config"
+  chown -R 0:0 $modpath/
+
+  local etc="$temppath/etc"
+  rm -rf "$etc"
+  mkdir -p "$etc"
+  copy "$mountpoint/etc/" "$etc/"
+  if [ "$1" == "full" ]; then
+    copy "$modpath/rootfs/etc/" "$etc/"
+  else
+    copy "$rootfs/etc/inittab" "$etc/inittab"
+  fi
+  copy "$etc/" "$rootfs/etc/"
+}
+
+mod_repair_modules(){
+  restore "/lib/modules/$(uname -r)/"
+}
+
 remount_root(){
   [ -z "$(mount | grep -F loop)" ] || return 1
 
@@ -29,7 +57,16 @@ load_firmware(){
   [ -d "$firmwarepath" ] || return 0
   local firmware=$(find "$firmwarepath" -type f -name "*.hsqs" | sort | head -n 1)
   [ -f "$firmware" ] || return 0
-  remount_root "$firmware" && cryptsetup close root-crypt
+  mod_repair_modules
+  remount_root "$firmware" || return 0
+  cryptsetup close root-crypt
+  mod_repair_etc
+  if [ -d "$rootfs/lib/modules/$(uname -r)" ]; then
+    overmount "/lib/modules"
+  else
+    echo "no modules for loaded kernel $(uname -r)"
+  fi
+  set_gamepath
 }
 
 shutdown(){

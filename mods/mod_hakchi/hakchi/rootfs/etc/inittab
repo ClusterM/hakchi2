@@ -5,7 +5,7 @@ null::sysinit:/bin/mkdir -p /var/cache /var/lock /var/log /var/spool
 null::sysinit:/bin/ln -s /tmp /var/tmp
 null::sysinit:/bin/ln -s /run /var/run
 
-null::sysinit:/bin/mkdir -p /var/cache/clover/reed-libs/tmp /var/lib/clover/profiles/0/home-menu /var/lib/clover/config/reed-libs
+null::sysinit:/bin/mkdir -p /var/cache/clover/reed-libs/tmp /var/lib/clover/profiles/0/home-menu /var/lib/clover/config/reed-libs /var/lib/profiling-data
 
 null::sysinit:/etc/init.d/rcS
 
