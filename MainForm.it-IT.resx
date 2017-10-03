@@ -284,12 +284,12 @@
     <value>Utilizza X/Y sul Classic Controller come autofire per A/B</value>
   </data>
   <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump decrypted NAND-B partition</value>
+    <value>Esegui il dump decriptato nella partizione NAND-B</value>
   </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dump the whole NAND flash</value>
+    <value>Effettua il dump dell'intera NAND flash</value>
   </data>
   <data name="saveDumpFileDialog.Title">
-    <value>Select dump filename</value>
+    <value>Seleziona il nome del file di dump</value>
   </data>
 </root>
