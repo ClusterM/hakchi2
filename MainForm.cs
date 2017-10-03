@@ -766,7 +766,7 @@ namespace com.clusterrr.hakchi_gui
 
         DialogResult RequireKernelDump()
         {
-            if (File.Exists(WorkerForm.KernelDump)) return DialogResult.OK; // OK - already dumped
+            if (File.Exists(WorkerForm.KernelDumpPath)) return DialogResult.OK; // OK - already dumped
             // Asking user to dump kernel
             if (MessageBox.Show(Resources.NoKernelWarning, Resources.NoKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == System.Windows.Forms.DialogResult.Yes)
@@ -782,11 +782,7 @@ namespace com.clusterrr.hakchi_gui
         DialogResult RequirePatchedKernel()
         {
             if (ConfigIni.CustomFlashed) return DialogResult.OK; // OK - already flashed
-            var kernelDump = RequireKernelDump(); // We need kernel dump first
-            if (kernelDump == System.Windows.Forms.DialogResult.No)
-                return DialogResult.No; // Abort if user has not dumped it
-            if (MessageBox.Show((kernelDump == DialogResult.Yes ? (Resources.KernelDumped + "\r\n") : "") +
-                    Resources.CustomWarning, Resources.CustomKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            if (MessageBox.Show(Resources.CustomWarning, Resources.CustomKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                     == System.Windows.Forms.DialogResult.Yes)
             {
                 if (FlashCustomKernel())
@@ -1060,7 +1056,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void dumpKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (File.Exists(WorkerForm.KernelDump))
+            if (File.Exists(WorkerForm.KernelDumpPath))
             {
                 MessageBox.Show(Resources.ReplaceKernelQ, Resources.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -1094,7 +1090,6 @@ namespace com.clusterrr.hakchi_gui
 
         private void flashCustomKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (RequireKernelDump() == DialogResult.No) return;
             if (MessageBox.Show(Resources.CustomKernelQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == System.Windows.Forms.DialogResult.Yes)
             {
@@ -1104,7 +1099,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void membootOriginalKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(WorkerForm.KernelDump))
+            if (!File.Exists(WorkerForm.KernelDumpPath))
             {
                 MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -1121,7 +1116,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void flashOriginalKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(WorkerForm.KernelDump))
+            if (!File.Exists(WorkerForm.KernelDumpPath))
             {
                 MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -1135,7 +1130,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void uninstallToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(WorkerForm.KernelDump))
+            if (!File.Exists(WorkerForm.KernelDumpPath))
             {
                 MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -1295,7 +1290,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            if (ConfigIni.FirstRun && !File.Exists(WorkerForm.KernelDump))
+            if (ConfigIni.FirstRun && !File.Exists(WorkerForm.KernelDumpPath))
             {
                 MessageBox.Show(this, Resources.FirstRun + "\r\n\r\n" + Resources.Donate, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ConfigIni.FirstRun = false;
