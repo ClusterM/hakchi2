@@ -237,7 +237,7 @@ namespace com.clusterrr.hakchi_gui
                  "Exec=/bin/chmenu {1:D3} {8}\n" +
                  "Path=/var/lib/clover/profiles/0/FOLDER\n" +
                  "Name={2}\n" +
-                 "Icon=/usr/share/games/nes/kachikachi/{0}/{0}.png\n\n" +
+                 "Icon={9}/{0}/{0}.png\n\n" +
                  "[X-CLOVER Game]\n" +
                  "Code={0}\n" +
                  "TestID=777\n" +
@@ -251,7 +251,7 @@ namespace com.clusterrr.hakchi_gui
                  "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
                  Code, ChildIndex, Name ?? Code, Players, ReleaseDate,
                  prefix + (Name ?? Code).ToLower(), (Publisher ?? "").ToUpper(),
-                 Simultaneous, Initial)
+                 Simultaneous, Initial, NesMiniApplication.GamesCloverPath)
                  );
             Image.Save(IconPath, ImageFormat.Png);
             ImageThumbnail.Save(ThumnnailIconPath, ImageFormat.Png);

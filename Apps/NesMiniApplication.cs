@@ -14,7 +14,39 @@ namespace com.clusterrr.hakchi_gui
 {
     public class NesMiniApplication : INesMenuElement
     {
-        public readonly static string GamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games");
+        public static string GamesDirectory
+        {
+            get
+            {
+                switch (ConfigIni.ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        return Path.Combine(Program.BaseDirectoryExternal, "games");
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return Path.Combine(Program.BaseDirectoryExternal, "games_snes");
+                }
+            }
+        }
+        public static string GamesCloverPath
+        {
+            get
+            {
+                switch (ConfigIni.ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        return "/usr/share/games/nes/kachikachi";
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return "/usr/share/games";
+                }
+            }
+        }
+
         const string DefaultReleaseDate = "1900-01-01";
         const string DefaultPublisher = "UNKNOWN";
 

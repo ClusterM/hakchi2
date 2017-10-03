@@ -26,8 +26,6 @@ namespace com.clusterrr.hakchi_gui
         public const long DefaultMaxGamesSize = 300;
         public static IEnumerable<string> InternalMods;
         public static ClovershellConnection Clovershell;
-        //readonly string UBootDump;
-        public static string KernelDump;
         mooftpserv.Server ftpServer;
 
         static NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
@@ -62,7 +60,7 @@ namespace com.clusterrr.hakchi_gui
             new NesDefaultGame { Code = "CLV-P-NACDE",  Name = "TECMO BOWL", Size =568276 },
             new NesDefaultGame { Code = "CLV-P-NACHE",  Name = "DOUBLE DRAGON II: The Revenge", Size = 578900 }
         };
-        NesDefaultGame[] defaultFamicomGames = new NesDefaultGame[] {
+        static NesDefaultGame[] defaultFamicomGames = new NesDefaultGame[] {
             new NesDefaultGame { Code = "CLV-P-HAAAJ",  Name = "スーパーマリオブラザーズ", Size = 596775 },
             new NesDefaultGame { Code = "CLV-P-HAACJ",  Name = "スーパーマリオブラザーズ３", Size = 1411534 },
             new NesDefaultGame { Code = "CLV-P-HAADJ",  Name = "スーパーマリオＵＳＡ", Size = 1501542 },
@@ -94,7 +92,7 @@ namespace com.clusterrr.hakchi_gui
             new NesDefaultGame { Code = "CLV-P-HACLJ",  Name = "ダウンタウン熱血行進曲 それゆけ大運動会", Size = 587083 },
             new NesDefaultGame { Code = "CLV-P-HACPJ",  Name = "アトランチスの謎", Size = 376213 }
         };
-        NesDefaultGame[] defaultSnesGames = new NesDefaultGame[]
+        static NesDefaultGame[] defaultSnesGames = new NesDefaultGame[]
         {
             new NesDefaultGame { Code = "CLV-P-SAAAE",  Name = "Super Mario World", Size = 2979540 },
             new NesDefaultGame { Code = "CLV-P-SAABE",  Name = "F-ZERO", Size = 2770166 },
@@ -142,10 +140,9 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                KernelDump = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "dump"), "kernel.img");
+                SyncConsoleType();
                 InternalMods = from m in Directory.GetFiles(Path.Combine(Program.BaseDirectoryInternal, "mods/hmods")) select Path.GetFileNameWithoutExtension(m);
                 LoadGames();
-                SyncConsoleType();
                 LoadPresets();
                 LoadLanguages();
                 var version = Assembly.GetExecutingAssembly().GetName().Version;
@@ -164,9 +161,7 @@ namespace com.clusterrr.hakchi_gui
                 epilepsyProtectionToolStripMenuItem.Checked = ConfigIni.AntiArmetLevel > 0;
                 selectButtonCombinationToolStripMenuItem.Enabled = resetUsingCombinationOfButtonsToolStripMenuItem.Checked = ConfigIni.ResetHack;
                 enableAutofireToolStripMenuItem.Checked = ConfigIni.AutofireHack;
-                useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack;
-                nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.NES;
-                famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.Famicom;
+                useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack;                
                 upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart;
                 compressGamesIfPossibleToolStripMenuItem.Checked = ConfigIni.Compress;
 
@@ -236,21 +231,43 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 ConfigIni.CustomFlashed = true; // Just in case of new installation
+                // Trying to autodetect console type
                 var customFirmware = Clovershell.ExecuteSimple("[ -d /var/lib/hakchi/firmware/ ] && [ -f /var/lib/hakchi/firmware/*.hsqs ] && echo YES || echo NO");
                 if (customFirmware == "NO")
                 {
+                    var board = Clovershell.ExecuteSimple("cat /etc/clover/boardtype", 500, true);                    
                     var region = Clovershell.ExecuteSimple("cat /etc/clover/REGION", 500, true);
+                    Debug.WriteLine(string.Format("Detected board: {0}", board));
                     Debug.WriteLine(string.Format("Detected region: {0}", region));
-                    if (region == "JPN")
-                        Invoke(new Action(delegate
-                        {
-                            famicomMiniToolStripMenuItem.PerformClick();
-                        }));
-                    if (region == "EUR_USA")
-                        Invoke(new Action(delegate
-                        {
-                            nESMiniToolStripMenuItem.PerformClick();
-                        }));
+                    switch (board)
+                    {
+                        default:
+                        case "dp-nes":
+                        case "dp-hvc":
+                            switch(region)
+                            {
+                                case "EUR_USA":
+                                    ConfigIni.ConsoleType = ConsoleType.NES;
+                                    break;
+                                case "JPN":
+                                    ConfigIni.ConsoleType = ConsoleType.Famicom;
+                                    break;
+                            }
+                            break;
+                        case "dp-shvc":
+                            switch (region)
+                            {
+                                case "USA":
+                                case "EUR":
+                                    ConfigIni.ConsoleType = ConsoleType.SNES;
+                                    break;
+                                case "JPN":
+                                    ConfigIni.ConsoleType = ConsoleType.SuperFamicom;
+                                    break;
+                            }
+                            break;
+                    }
+                    Invoke(new Action(SyncConsoleType));
                 }
                 WorkerForm.GetMemoryStats();
                 new Thread(RecalculateSelectedGamesThread).Start();
@@ -379,13 +396,24 @@ namespace com.clusterrr.hakchi_gui
         void LoadHidden()
         {
             checkedListBoxDefaultGames.Items.Clear();
-            var hidden = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             NesDefaultGame[] games = null;
-            if (ConfigIni.ConsoleType == ConsoleType.NES) games = defaultNesGames;
-            if (ConfigIni.ConsoleType == ConsoleType.Famicom) games = defaultFamicomGames;
-            if (ConfigIni.ConsoleType == ConsoleType.SNES) games = defaultSnesGames;
+            switch (ConfigIni.ConsoleType)
+            {
+                case ConsoleType.NES:
+                    games = defaultNesGames;
+                    break;
+                case ConsoleType.Famicom:
+                    games = defaultFamicomGames;
+                    break;
+                case ConsoleType.SNES:
+                    games = defaultSnesGames;
+                    break;
+                case ConsoleType.SuperFamicom:
+                    //games = defaultSuperFamicomGames;
+                    break;
+            }
             foreach (var game in games.OrderBy(o => o.Name))
-                checkedListBoxDefaultGames.Items.Add(game, !hidden.Contains(game.Code));
+                checkedListBoxDefaultGames.Items.Add(game, !ConfigIni.HiddenGames.Contains(game.Code));
         }
 
         void LoadPresets()
@@ -597,6 +625,7 @@ namespace com.clusterrr.hakchi_gui
             }
             ConfigIni.SelectedGames = string.Join(";", selected.ToArray());
             selected.Clear();
+
             foreach (NesDefaultGame game in checkedListBoxDefaultGames.Items)
                 selected.Add(game.Code);
             foreach (NesDefaultGame game in checkedListBoxDefaultGames.CheckedItems)
@@ -737,7 +766,7 @@ namespace com.clusterrr.hakchi_gui
 
         DialogResult RequireKernelDump()
         {
-            if (File.Exists(KernelDump)) return DialogResult.OK; // OK - already dumped
+            if (File.Exists(WorkerForm.KernelDump)) return DialogResult.OK; // OK - already dumped
             // Asking user to dump kernel
             if (MessageBox.Show(Resources.NoKernelWarning, Resources.NoKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == System.Windows.Forms.DialogResult.Yes)
@@ -790,11 +819,9 @@ namespace com.clusterrr.hakchi_gui
 
         bool DoKernelDump()
         {
-            var workerForm = new WorkerForm();
+            var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.DumpingKernel;
             workerForm.Task = WorkerForm.Tasks.DumpKernel;
-            //workerForm.UBootDump = UBootDump;
-            workerForm.KernelDump = KernelDump;
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
         }
@@ -805,7 +832,7 @@ namespace com.clusterrr.hakchi_gui
             saveDumpFileDialog.DefaultExt = "bin";
             if (saveDumpFileDialog.ShowDialog() != DialogResult.OK)
                 return false;
-            var workerForm = new WorkerForm();
+            var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.DumpingNand;
             workerForm.Task = WorkerForm.Tasks.DumpNand;
             workerForm.NandDump = saveDumpFileDialog.FileName;
@@ -819,7 +846,7 @@ namespace com.clusterrr.hakchi_gui
             openDumpFileDialog.DefaultExt = "bin";
             if (openDumpFileDialog.ShowDialog() != DialogResult.OK)
                 return false;
-            var workerForm = new WorkerForm();
+            var workerForm = new WorkerForm(this);
             workerForm.Text = "...";
             workerForm.Task = WorkerForm.Tasks.FlashNand;
             workerForm.NandDump = openDumpFileDialog.FileName;
@@ -833,7 +860,7 @@ namespace com.clusterrr.hakchi_gui
             saveDumpFileDialog.DefaultExt = "hsqs";
             if (saveDumpFileDialog.ShowDialog() != DialogResult.OK)
                 return false;
-            var workerForm = new WorkerForm();
+            var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.DumpingNand;
             workerForm.Task = WorkerForm.Tasks.DumpNandB;
             workerForm.NandDump = saveDumpFileDialog.FileName;
@@ -843,10 +870,9 @@ namespace com.clusterrr.hakchi_gui
 
         bool FlashCustomKernel()
         {
-            var workerForm = new WorkerForm();
+            var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.FlasingCustom;
             workerForm.Task = WorkerForm.Tasks.FlashKernel;
-            workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_hakchi";
             workerForm.hmodsInstall = new List<string>(InternalMods);
             workerForm.Config = null;
@@ -863,10 +889,9 @@ namespace com.clusterrr.hakchi_gui
 
         bool MembootOriginalKernel()
         {
-            var workerForm = new WorkerForm();
+            var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.Membooting;
             workerForm.Task = WorkerForm.Tasks.Memboot;
-            workerForm.KernelDump = KernelDump;
             workerForm.Mod = null;
             workerForm.Config = null;
             workerForm.Games = null;
@@ -876,10 +901,9 @@ namespace com.clusterrr.hakchi_gui
 
         bool MembootCustomKernel()
         {
-            var workerForm = new WorkerForm();
+            var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.Membooting;
             workerForm.Task = WorkerForm.Tasks.Memboot;
-            workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_hakchi";
             workerForm.Config = null;
             workerForm.Games = null;
@@ -889,10 +913,9 @@ namespace com.clusterrr.hakchi_gui
 
         bool UploadGames()
         {
-            var workerForm = new WorkerForm();
+            var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.UploadingGames;
             workerForm.Task = WorkerForm.Tasks.UploadGames;
-            workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_hakchi";
             workerForm.Config = ConfigIni.GetConfigDictionary();
             workerForm.Games = new NesMenuCollection();
@@ -912,7 +935,6 @@ namespace com.clusterrr.hakchi_gui
 
             workerForm.FoldersMode = ConfigIni.FoldersMode;
             workerForm.MaxGamesPerFolder = ConfigIni.MaxGamesPerFolder;
-            workerForm.MainForm = this;
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
         }
@@ -921,7 +943,7 @@ namespace com.clusterrr.hakchi_gui
         {
             SaveConfig();
             ICollection<NesMiniApplication> addedApps;
-            var workerForm = new WorkerForm();
+            var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.LoadingGames;
             workerForm.Task = WorkerForm.Tasks.AddGames;
             workerForm.GamesToAdd = files;
@@ -976,10 +998,9 @@ namespace com.clusterrr.hakchi_gui
 
         bool FlashOriginalKernel(bool boot = true)
         {
-            var workerForm = new WorkerForm();
+            var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.FlasingOriginal;
             workerForm.Task = WorkerForm.Tasks.FlashKernel;
-            workerForm.KernelDump = KernelDump;
             workerForm.Mod = null;
             workerForm.Start();
             var result = workerForm.DialogResult == DialogResult.OK;
@@ -993,10 +1014,9 @@ namespace com.clusterrr.hakchi_gui
 
         bool Uninstall()
         {
-            var workerForm = new WorkerForm();
+            var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.Uninstalling;
             workerForm.Task = WorkerForm.Tasks.Memboot;
-            workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_uninstall";
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
@@ -1004,10 +1024,9 @@ namespace com.clusterrr.hakchi_gui
 
         bool InstallMods(string[] mods)
         {
-            var workerForm = new WorkerForm();
+            var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.InstallingMods;
             workerForm.Task = WorkerForm.Tasks.Memboot;
-            workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_hakchi";
             workerForm.hmodsInstall = new List<string>(mods);
             workerForm.Start();
@@ -1016,10 +1035,9 @@ namespace com.clusterrr.hakchi_gui
 
         bool UninstallMods(string[] mods)
         {
-            var workerForm = new WorkerForm();
+            var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.UninstallingMods;
             workerForm.Task = WorkerForm.Tasks.Memboot;
-            workerForm.KernelDump = KernelDump;
             workerForm.Mod = "mod_hakchi";
             workerForm.hmodsUninstall = new List<string>(mods);
             workerForm.Start();
@@ -1028,7 +1046,7 @@ namespace com.clusterrr.hakchi_gui
 
         bool DownloadAllCovers()
         {
-            var workerForm = new WorkerForm();
+            var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.DownloadAllCoversTitle;
             workerForm.Task = WorkerForm.Tasks.DownloadAllCovers;
             workerForm.Games = new NesMenuCollection();
@@ -1042,7 +1060,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void dumpKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (File.Exists(KernelDump))
+            if (File.Exists(WorkerForm.KernelDump))
             {
                 MessageBox.Show(Resources.ReplaceKernelQ, Resources.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -1086,7 +1104,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void membootOriginalKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(KernelDump))
+            if (!File.Exists(WorkerForm.KernelDump))
             {
                 MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -1103,7 +1121,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void flashOriginalKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(KernelDump))
+            if (!File.Exists(WorkerForm.KernelDump))
             {
                 MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -1117,7 +1135,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void uninstallToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(KernelDump))
+            if (!File.Exists(WorkerForm.KernelDump))
             {
                 MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -1188,18 +1206,20 @@ namespace com.clusterrr.hakchi_gui
         static ConsoleType lastConsoleType = ConsoleType.Unknown;
         public void SyncConsoleType()
         {
+            if (lastConsoleType == ConfigIni.ConsoleType) return;
             nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.NES;
             famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.Famicom;
             sNESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.SNES;
             superFamicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.SuperFamicom;
-            if (lastConsoleType == ConfigIni.ConsoleType) return;
-            ConfigIni.HiddenGames = "";
             LoadHidden();
+            LoadGames();
+            lastConsoleType = ConfigIni.ConsoleType;
         }
 
         private void nESMiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (nESMiniToolStripMenuItem.Checked) return;
+            SaveConfig();
             ConfigIni.ConsoleType = ConsoleType.NES;
             SyncConsoleType();
         }
@@ -1207,6 +1227,7 @@ namespace com.clusterrr.hakchi_gui
         private void famicomMiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (famicomMiniToolStripMenuItem.Checked) return;
+            SaveConfig();
             ConfigIni.ConsoleType = ConsoleType.Famicom;
             SyncConsoleType();
         }
@@ -1214,6 +1235,7 @@ namespace com.clusterrr.hakchi_gui
         private void sNESMiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (sNESMiniToolStripMenuItem.Checked) return;
+            SaveConfig();
             ConfigIni.ConsoleType = ConsoleType.SNES;
             SyncConsoleType();
         }
@@ -1221,6 +1243,7 @@ namespace com.clusterrr.hakchi_gui
         private void superFamicomMiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (superFamicomMiniToolStripMenuItem.Checked) return;
+            SaveConfig();
             ConfigIni.ConsoleType = ConsoleType.SuperFamicom;
             SyncConsoleType();
         }
@@ -1272,7 +1295,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            if (ConfigIni.FirstRun && !File.Exists(KernelDump))
+            if (ConfigIni.FirstRun && !File.Exists(WorkerForm.KernelDump))
             {
                 MessageBox.Show(this, Resources.FirstRun + "\r\n\r\n" + Resources.Donate, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ConfigIni.FirstRun = false;

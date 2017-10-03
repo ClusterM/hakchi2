@@ -22,7 +22,24 @@ namespace com.clusterrr.hakchi_gui
         public enum Tasks { DumpKernel, FlashKernel, DumpNand, FlashNand, DumpNandB, Memboot, UploadGames, DownloadAllCovers, AddGames };
         public Tasks Task;
         //public string UBootDump;
-        public string KernelDump;
+        public static string KernelDump
+        {
+            get
+            {
+                switch (ConfigIni.ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "dump"), "kernel.img");
+                    case MainForm.ConsoleType.Famicom:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "dump"), "kernel_famicom.img");
+                    case MainForm.ConsoleType.SNES:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "dump"), "kernel_snes.img");
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "dump"), "kernel_super_famicom.img");
+                }
+            }
+        }
         public string NandDump;
         public string Mod = null;
         public Dictionary<string, string> Config = null;
@@ -32,7 +49,7 @@ namespace com.clusterrr.hakchi_gui
         public IEnumerable<string> GamesToAdd;
         public NesMenuCollection.SplitStyle FoldersMode = NesMenuCollection.SplitStyle.Auto;
         public int MaxGamesPerFolder = 35;
-        public MainForm MainForm;
+        private MainForm MainForm;
         Thread thread = null;
         Fel fel = null;
 
@@ -55,22 +72,22 @@ namespace com.clusterrr.hakchi_gui
         readonly string kernelPatched;
         readonly string ramdiskPatched;
         readonly string tempHmodsDirectory;
-        readonly string cloverconDriverPath;
         readonly string argumentsFilePath;
         readonly string transferDirectory;
         string tempGamesDirectory;
         //string originalGamesConfigDirectory;
         //string hiddenPath;
-        string[] correctKernels;
+        Dictionary<MainForm.ConsoleType, string[]> correctKernels = new Dictionary<MainForm.ConsoleType, string[]>();
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
         string selectedFile = null;
         public NesMiniApplication[] addedApplications;
         public static int NandCTotal, NandCUsed, NandCFree, WritedGamesSize, SaveStatesSize;
         public const long ReservedMemory = 10;
 
-        public WorkerForm()
+        public WorkerForm(MainForm parentForm)
         {
             InitializeComponent();
+            MainForm = parentForm;
             DialogResult = DialogResult.None;
             baseDirectoryInternal = Program.BaseDirectoryInternal;
             baseDirectoryExternal = Program.BaseDirectoryExternal;
@@ -94,17 +111,17 @@ namespace com.clusterrr.hakchi_gui
             toolsDirectory = Path.Combine(baseDirectoryInternal, "tools");
             kernelPatched = Path.Combine(kernelDirectory, "patched_kernel.img");
             ramdiskPatched = Path.Combine(kernelDirectory, "kernel.img-ramdisk_mod.gz");
-            cloverconDriverPath = Path.Combine(hakchiDirectory, "clovercon.ko");
             argumentsFilePath = Path.Combine(hakchiDirectory, "extra_args");
             transferDirectory = Path.Combine(hakchiDirectory, "transfer");
             tempHmodsDirectory = Path.Combine(transferDirectory, "hmod");
-            correctKernels
-                = new string[] {
-                "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158", // NES Mini
-                "ac8144c3ea4ab32e017648ee80bdc230", // Famicom Mini
+
+            correctKernels[MainForm.ConsoleType.NES] = new string[] { "5cfdca351484e7025648abc3b20032ff", "07bfb800beba6ef619c29990d14b5158" }; // NES Mini
+            correctKernels[MainForm.ConsoleType.Famicom] = new string[] { "ac8144c3ea4ab32e017648ee80bdc230" }; // Famicom Mini
+            correctKernels[MainForm.ConsoleType.SNES] = new string[] {
                 "d76c2a091ebe7b4614589fc6954653a5", // SNES Mini (EUR)
                 "449b711238575763c6701f5958323d48" // SNES Mini (USA)
             };
+            correctKernels[MainForm.ConsoleType.SuperFamicom] = new string[] { }; // SNES Mini (USA)
         }
 
         public DialogResult Start()
@@ -394,7 +411,8 @@ namespace com.clusterrr.hakchi_gui
 
             var md5 = System.Security.Cryptography.MD5.Create();
             var hash = BitConverter.ToString(md5.ComputeHash(kernel)).Replace("-", "").ToLower();
-            if (!correctKernels.Contains(hash))
+            var matchedKernels = from k in correctKernels where k.Value.Contains(hash) select k.Key;
+            if (matchedKernels.Count() == 0)
             {
                 if (MessageBoxFromThread(this, Resources.MD5Failed + " " + hash + "\r\n" + Resources.MD5Failed2 +
                     "\r\n" + Resources.DoYouWantToContinue, Resources.Warning, MessageBoxButtons.YesNo,
@@ -403,6 +421,15 @@ namespace com.clusterrr.hakchi_gui
                 {
                     DialogResult = DialogResult.Abort;
                     return;
+                }
+            }
+            else
+            {
+                var console = matchedKernels.First();
+                if (console != ConfigIni.ConsoleType)
+                {
+                    ConfigIni.ConsoleType = console;
+                    Invoke(new Action(MainForm.SyncConsoleType));
                 }
             }
 
@@ -662,7 +689,7 @@ namespace com.clusterrr.hakchi_gui
 
         public void UploadGames()
         {
-            const string gamesPath = "/usr/share/games/nes/kachikachi";
+            string gamesPath = NesMiniApplication.GamesCloverPath;
             const string rootFsPath = "/var/lib/hakchi/rootfs";
             const string installPath = "/var/lib/hakchi";
             int progress = 0;
@@ -748,7 +775,20 @@ namespace com.clusterrr.hakchi_gui
                 startProgress = progress;
                 foreach (var originalCode in originalGames.Keys)
                 {
-                    clovershell.ExecuteSimple(string.Format(@"mkdir -p ""{2}{3}/{1}/{0}/"" && rsync -ac ""{3}/{0}/"" ""{2}{3}/{1}/{0}/"" && sed -i -e 's/\/usr\/bin\/clover-kachikachi/\/bin\/clover-kachikachi-wr/g' ""{2}{3}/{1}/{0}/{0}.desktop""", originalCode, originalGames[originalCode], rootFsPath, gamesPath), 5000, true);
+                    string originalSyncCode = "";
+                    switch (ConfigIni.ConsoleType)
+                    {
+                        case MainForm.ConsoleType.NES:
+                        case MainForm.ConsoleType.Famicom:
+                            originalSyncCode = @"mkdir -p ""{2}{3}/{1}/{0}/"" && rsync -ac ""{3}/{0}/"" ""{2}{3}/{1}/{0}/"" && sed -i -e 's/\/usr\/bin\/clover-kachikachi/\/bin\/clover-kachikachi-wr/g' ""{2}{3}/{1}/{0}/{0}.desktop""";
+                            break;
+                        case MainForm.ConsoleType.SNES:
+                        case MainForm.ConsoleType.SuperFamicom:
+                            originalSyncCode = @"mkdir -p ""{2}{3}/{1}/{0}/"" && rsync -ac ""{3}/{0}/"" ""{2}{3}/{1}/{0}/""";
+                            break;
+                    }
+                    clovershell.ExecuteSimple(string.Format(originalSyncCode, 
+                        originalCode, originalGames[originalCode], rootFsPath, gamesPath), 5000, true);
                     progress += 2;
                     SetProgress(progress, maxProgress);
                 };
@@ -787,7 +827,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
             clovershell.Execute("cat > /tmp/config", config, null, null, 1000, true);
-            clovershell.Execute("source /etc/preinit && script_init && source /tmp/config && source $preinit.d/pffff_config", null, null, null, 30000, true);
+            clovershell.Execute("temppath=/tmp && source /etc/preinit && script_init && source /tmp/config && source $preinit.d/pffff_config", null, null, null, 30000, true);
             config.Dispose();
             if (reboot)
             {
@@ -896,7 +936,9 @@ namespace com.clusterrr.hakchi_gui
             Directory.CreateDirectory(tempDirectory);
             Directory.CreateDirectory(kernelDirectory);
             Directory.CreateDirectory(ramfsDirectory);
-            if (!ExecuteTool("unpackbootimg.exe", string.Format("-i \"{0}\" -o \"{1}\"", KernelDump, kernelDirectory)))
+            string KernelDumpTemp = Path.Combine(tempDirectory, "kernel.img");
+            File.Copy(KernelDump, KernelDumpTemp);
+            if (!ExecuteTool("unpackbootimg.exe", string.Format("-i \"{0}\" -o \"{1}\"", KernelDumpTemp, kernelDirectory)))
                 throw new Exception("Can't unpack kernel image");
             if (!ExecuteTool("lzop.exe", string.Format("-d \"{0}\" -o \"{1}\"",
                 Path.Combine(kernelDirectory, "kernel.img-ramdisk.gz"), initramfs_cpio)))
