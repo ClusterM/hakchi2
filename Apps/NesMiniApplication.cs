@@ -1,6 +1,8 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using SevenZip;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -12,7 +14,39 @@ namespace com.clusterrr.hakchi_gui
 {
     public class NesMiniApplication : INesMenuElement
     {
-        public readonly static string GamesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "games");
+        public static string GamesDirectory
+        {
+            get
+            {
+                switch (ConfigIni.ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        return Path.Combine(Program.BaseDirectoryExternal, "games");
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return Path.Combine(Program.BaseDirectoryExternal, "games_snes");
+                }
+            }
+        }
+        public static string GamesCloverPath
+        {
+            get
+            {
+                switch (ConfigIni.ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        return "/usr/share/games/nes/kachikachi";
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return "/usr/share/games";
+                }
+            }
+        }
+
         const string DefaultReleaseDate = "1900-01-01";
         const string DefaultPublisher = "UNKNOWN";
 
@@ -126,7 +160,7 @@ namespace com.clusterrr.hakchi_gui
             return new NesMiniApplication(path, ignoreEmptyConfig);
         }
 
-        public static NesMiniApplication Import(string fileName, byte[] rawRomData = null)
+        public static NesMiniApplication Import(string fileName, string sourceFile = null, byte[] rawRomData = null)
         {
             var extension = Path.GetExtension(fileName).ToLower();
             if (extension == ".desktop")
@@ -136,17 +170,19 @@ namespace com.clusterrr.hakchi_gui
             var appinfo = AppTypeCollection.GetAppByExtension(extension);
             if (appinfo != null)
             {
-                var import = appinfo.Class.GetMethod("Import", new Type[] { typeof(string), typeof(byte[]) });
+                var import = appinfo.Class.GetMethod("Import", new Type[] { typeof(string), typeof(string), typeof(byte[]) });
                 if (import != null)
-                    return (NesMiniApplication)import.Invoke(null, new object[] { fileName, rawRomData });
+                    return (NesMiniApplication)import.Invoke(null, new object[] { fileName, sourceFile, rawRomData });
                 else
-                    return Import(fileName, rawRomData, appinfo.Prefix, appinfo.DefaultApp, appinfo.DefaultCover, ConfigIni.Compress);
+                    return Import(fileName, sourceFile, rawRomData, appinfo.Prefix, 
+                        appinfo.DefaultApps.Length > 0 ? appinfo.DefaultApps[0] : DefaultApp, 
+                        appinfo.DefaultCover, ConfigIni.Compress);
             }
             string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : DefaultApp;
-            return Import(fileName, rawRomData, DefaultPrefix, application, DefaultCover);
+            return Import(fileName, sourceFile, rawRomData, DefaultPrefix, application, DefaultCover);
         }
 
-        private static NesMiniApplication Import(string fileName, byte[] rawRomData, char prefixCode, string application, Image defaultCover, bool compress = false)
+        private static NesMiniApplication Import(string fileName, string sourceFile, byte[] rawRomData, char prefixCode, string application, Image defaultCover, bool compress = false)
         {
             var crc32 = CRC32(rawRomData);
             var code = GenerateCode(crc32, prefixCode);
@@ -191,7 +227,7 @@ namespace com.clusterrr.hakchi_gui
             game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
             game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
             game.Name = game.Name.Replace("_", " ").Replace("  ", " ").Trim();
-            game.FindCover(fileName, defaultCover, crc32);
+            game.FindCover(fileName, sourceFile, defaultCover, crc32);
             game.Command = string.Format("{0} /usr/share/games/nes/kachikachi/{1}/{2}", application, code, romName);
             game.Save();
             return NesMiniApplication.FromDirectory(gamePath);
@@ -269,9 +305,9 @@ namespace com.clusterrr.hakchi_gui
             hasUnsavedChanges = false;
         }
 
-        public virtual void Save()
+        public virtual bool Save()
         {
-            if (!hasUnsavedChanges) return;
+            if (!hasUnsavedChanges) return false;
             Debug.WriteLine(string.Format("Saving application \"{0}\" as {1}", Name, Code));
             Name = Regex.Replace(Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
             File.WriteAllText(ConfigPath, string.Format(
@@ -296,6 +332,7 @@ namespace com.clusterrr.hakchi_gui
                 (Name ?? Code).ToLower(), (Publisher ?? DefaultPublisher).ToUpper(),
                 Simultaneous ? 1 : 0));
             hasUnsavedChanges = false;
+            return true;
         }
 
         public override string ToString()
@@ -353,19 +390,28 @@ namespace com.clusterrr.hakchi_gui
             outImageSmall.Save(SmallIconPath, ImageFormat.Png);
         }
 
-        internal bool FindCover(string romFileName, Image defaultCover, uint crc32 = 0)
+        internal bool FindCover(string romFileName, string sourceFileName, Image defaultCover, uint crc32 = 0)
         {
             // Trying to find cover file
             Image cover = null;
             if (!string.IsNullOrEmpty(romFileName))
             {
+                if (!string.IsNullOrEmpty(sourceFileName) && sourceFileName != romFileName)
+                {
+                    var archImagePath = Path.Combine(Path.GetDirectoryName(sourceFileName), Path.GetFileNameWithoutExtension(romFileName) + ".png");
+                    if (File.Exists(archImagePath))
+                        cover = LoadBitmap(archImagePath);
+                    archImagePath = Path.Combine(Path.GetDirectoryName(sourceFileName), Path.GetFileNameWithoutExtension(romFileName) + ".jpg");
+                    if (File.Exists(archImagePath))
+                        cover = LoadBitmap(archImagePath);
+                }
                 var imagePath = Path.Combine(Path.GetDirectoryName(romFileName), Path.GetFileNameWithoutExtension(romFileName) + ".png");
                 if (File.Exists(imagePath))
                     cover = LoadBitmap(imagePath);
                 imagePath = Path.Combine(Path.GetDirectoryName(romFileName), Path.GetFileNameWithoutExtension(romFileName) + ".jpg");
                 if (File.Exists(imagePath))
                     cover = LoadBitmap(imagePath);
-                var artDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "art");
+                var artDirectory = Path.Combine(Program.BaseDirectoryExternal, "art");
                 Directory.CreateDirectory(artDirectory);
                 imagePath = Path.Combine(artDirectory, Path.GetFileNameWithoutExtension(romFileName) + ".png");
                 if (File.Exists(imagePath))
@@ -521,7 +567,7 @@ namespace com.clusterrr.hakchi_gui
 
         private static byte[] Compress(string filename)
         {
-            SevenZipExtractor.SetLibraryPath(Path.Combine(MainForm.BaseDirectory, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+            SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
             var arch = new MemoryStream();
             var compressor = new SevenZipCompressor();
             compressor.CompressionLevel = CompressionLevel.High;
@@ -530,6 +576,19 @@ namespace com.clusterrr.hakchi_gui
             var result = new byte[arch.Length];
             arch.Read(result, 0, result.Length);
             return result;
+        }
+
+        public class NesMiniAppEqualityComparer : IEqualityComparer<NesMiniApplication>
+        {
+            public bool Equals(NesMiniApplication x, NesMiniApplication y)
+            {
+                return x.Code == y.Code;
+            }
+
+            public int GetHashCode(NesMiniApplication obj)
+            {
+                return obj.Code.GetHashCode();
+            }
         }
     }
 }

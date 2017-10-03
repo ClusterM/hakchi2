@@ -51,6 +51,7 @@ transfer_games(){
     transfer_original_games "$1/original"
     echo transfering new games...
     # this is simple
+    [ "$gamepath" == "/usr/share/games" ] && find "$1" -name *.desktop -exec sed -i -e 's/\/games\/nes\/kachikachi/\/games/g' {} +
     copy_mask "$1/*" "$target_dir"
     # need to reset menu state
     rm -f $installpath/menu

@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>FTP 服务器在 ftp://root:clover@127.0.0.1:1021</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text">
+    <value>关于...</value>
+  </data>
+  <data name="addMoreGamesToolStripMenuItem.Text">
+    <value>新增更多游戏</value>
+  </data>
+  <data name="addPresetToolStripMenuItem.Text">
+    <value>新增默认组合</value>
+  </data>
+  <data name="automaticOriginalToolStripMenuItem.Text">
+    <value>原厂游戏在根目录 -&gt; 自动放至子文件夹</value>
+  </data>
+  <data name="automaticToolStripMenuItem.Text">
+    <value>全自动</value>
+  </data>
+  <data name="buttonAddGames.Text">
+    <value>新增更多游戏</value>
+  </data>
+  <data name="buttonBrowseImage.Text">
+    <value>浏览</value>
+  </data>
+  <data name="buttonStart.Text">
+    <value>开始同步处理所选游戏至迷你红白机</value>
+  </data>
+  <data name="cloverconHackToolStripMenuItem.Text">
+    <value>强化手把控制器</value>
+  </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
+    <value>压缩非红白机游戏 ( 如其他仿真器的扩充模块 )</value>
+  </data>
+  <data name="consoleTypeToolStripMenuItem.Text">
+    <value>欧日机种类型</value>
+  </data>
+  <data name="customToolStripMenuItem.Text">
+    <value>自定义 - 每次都显示文件夹管理界面</value>
+  </data>
+  <data name="deleteGameToolStripMenuItem.Text">
+    <value>删除游戏</value>
+  </data>
+  <data name="deletePresetToolStripMenuItem.Text">
+    <value>删除默认组合</value>
+  </data>
+  <data name="disablePagefoldersToolStripMenuItem.Text">
+    <value>停用页面 / 文件夹</value>
+  </data>
+  <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
+    <value>下载所有游戏的封面图片</value>
+  </data>
+  <data name="dumpKernelToolStripMenuItem.Text">
+    <value>倾印核心</value>
+  </data>
+  <data name="enableAutofireToolStripMenuItem.Text">
+    <value>使用「SELECT键 + A键 或 B键 」以启用自动连发于 A键 或 B键</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Text">
+    <value>停用 epilepsy 防护</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text">
+    <value>&amp;离开</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>常见问答集</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text">
+    <value>&amp;档案</value>
+  </data>
+  <data name="flashCustomKernelToolStripMenuItem.Text">
+    <value>覆写自定义核心</value>
+  </data>
+  <data name="flashOriginalKernelToolStripMenuItem.Text">
+    <value>重新覆写原厂核心档案</value>
+  </data>
+  <data name="foldersOriginalToolStripMenuItem.Text">
+    <value>原厂游戏在根目录 -&gt; 游戏平均分割至文件夹</value>
+  </data>
+  <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
+    <value>原厂游戏在根目录 -&gt; 以首位字母分割文件夹</value>
+  </data>
+  <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
+    <value>以首位字母分割文件夹</value>
+  </data>
+  <data name="foldersToolStripMenuItem.Text">
+    <value>游戏平均分割至文件夹</value>
+  </data>
+  <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
+    <value>版本历程与GitHub网页</value>
+  </data>
+  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
+    <value>全局通用命令行参数 ( 限专业玩家使用 ! )</value>
+  </data>
+  <data name="groupBoxDefaultGames.Text">
+    <value>您可以隐藏预设的原厂游戏</value>
+  </data>
+  <data name="groupBoxOptions.Text">
+    <value>游戏选项</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text">
+    <value>&amp;说明</value>
+  </data>
+  <data name="installModulesToolStripMenuItem.Text">
+    <value>安装扩充模块</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Text">
+    <value>&amp;核心</value>
+  </data>
+  <data name="label1.Text">
+    <value>发布日期 (YYYY-MM-DD) :</value>
+  </data>
+  <data name="label2.Text">
+    <value>发布商 :</value>
+  </data>
+  <data name="label3.Text">
+    <value>命令行执行参数 ( 适用于进阶使用者使用 ! ) :</value>
+  </data>
+  <data name="label4.Text">
+    <value>封面图片 :</value>
+  </data>
+  <data name="label5.Text">
+    <value>选择游戏 :</value>
+  </data>
+  <data name="label6.Text">
+    <value>游玩人数 :</value>
+  </data>
+  <data name="label7.Text">
+    <value>游戏作弊代码 ( 逗号分隔 ) :</value>
+  </data>
+  <data name="labelName.Text">
+    <value>游戏名称 :</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>语系</value>
+  </data>
+  <data name="maximumGamesPerFolderToolStripMenuItem.Text">
+    <value>单一页面 / 文件夹要显示多少游戏</value>
+  </data>
+  <data name="modulesToolStripMenuItem.Text">
+    <value>&amp;扩充模块</value>
+  </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>开启 FTP 客户端</value>
+  </data>
+  <data name="openFileDialogImage.Title">
+    <value>选择游戏封面图片</value>
+  </data>
+  <data name="openFileDialogNes.Title">
+    <value>选择游戏</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>开启 Telnet 客户端</value>
+  </data>
+  <data name="pagesOriginalToolStripMenuItem.Text">
+    <value>原厂游戏在根目录 -&gt; 游戏平均分割及页面</value>
+  </data>
+  <data name="pagesToolStripMenuItem.Text">
+    <value>游戏平均分割在页面</value>
+  </data>
+  <data name="pagesfoldersTypeToolStripMenuItem.Text">
+    <value>页面 / 文件夹结构</value>
+  </data>
+  <data name="presetsToolStripMenuItem.Text">
+    <value>选择默认组合</value>
+  </data>
+  <data name="radioButtonOne.Text">
+    <value>单人游戏</value>
+  </data>
+  <data name="radioButtonTwo.Text">
+    <value>双人各别游戏</value>
+  </data>
+  <data name="radioButtonTwoSim.Text">
+    <value>双人同时游戏</value>
+  </data>
+  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
+    <value>使用按键组合来重启</value>
+  </data>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
+    <value>储存目前设定至迷你红白机</value>
+  </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>快速存档管理工具</value>
+  </data>
+  <data name="searchToolStripMenuItem.Text">
+    <value>搜寻</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Text">
+    <value>选择所有</value>
+  </data>
+  <data name="selectButtonCombinationToolStripMenuItem.Text">
+    <value>选择重启按钮组合</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text">
+    <value>&amp;设定</value>
+  </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Telnet 服务器在 Telnet://127.0.0.1:1023 (登入 : root)</value>
+  </data>
+  <data name="synchronizeToolStripMenuItem.Text">
+    <value>开始同步处理</value>
+  </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>撷取屏幕截图</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;工具</value>
+  </data>
+  <data name="uninstallModulesToolStripMenuItem.Text">
+    <value>卸载扩充模块</value>
+  </data>
+  <data name="uninstallToolStripMenuItem.Text">
+    <value>卸载</value>
+  </data>
+  <data name="unselectAllToolStripMenuItem.Text">
+    <value>取消所有选取</value>
+  </data>
+  <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
+    <value>「上键 + A键 + B键」= 2P控制器的Start</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Text">
+    <value>使用扩充字型</value>
+  </data>
+  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
+    <value>使用 X键 或 Y键 当作传统控制器的 自动连发 A键 或 B键</value>
+  </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Dump decrypted NAND-B partition</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Dump the whole NAND flash</value>
+  </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Select dump filename</value>
+  </data>
+</root>

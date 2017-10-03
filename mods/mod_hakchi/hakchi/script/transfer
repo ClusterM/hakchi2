@@ -7,11 +7,9 @@ backup_nandc
 mount_base
 backup
 
-source "$modpath/rootfs/etc/preinit"
-source_base "$modpath/rootfs/etc/preinit.d"
 source_config
 
-local transferpath=$modpath/transfer
+local transferpath="$modpath/transfer"
 
 [ -f "$transferpath/earlybird" ] && source "$transferpath/earlybird"
 rm -f "$transferpath/earlybird"
@@ -30,11 +28,10 @@ if [ -d "$transferpath/firmware" ]; then
 fi
 
 # if we're running modified firmware, mount it now
-source_parts "$preinitpath/p????_*firmware*"
 source_parts "$modpath/rootfs/etc/preinit.d/p????_*firmware*"
 
 # now we can do install/repair
-if [ -d "$preinitpath" ]; then
+if [ -f "$preinit" ]; then
   echo $modname already installed
   mod_repair
 else

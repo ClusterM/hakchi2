@@ -133,10 +133,10 @@
     <value>Do you want to flash the custom kernel?</value>
   </data>
   <data name="CustomWarning" xml:space="preserve">
-    <value>Now you need to flash the custom kernel to your NES Mini. This is only required once. Do you want to continue?</value>
+    <value>You need to flash the custom kernel to your NES/SNES Mini. This is only required once. Do you want to continue?</value>
   </data>
   <data name="Default30games" xml:space="preserve">
-    <value>Original 30 games</value>
+    <value>Original games</value>
   </data>
   <data name="DeleteGame" xml:space="preserve">
     <value>Do you really want to delete "{0}" game?</value>
@@ -144,11 +144,8 @@
   <data name="Done" xml:space="preserve">
     <value>Done!</value>
   </data>
-  <data name="DoneUploaded" xml:space="preserve">
-    <value>Done! Wait until the power LED goes out and restart your NES Mini.</value>
-  </data>
   <data name="DoneYouCanUpload" xml:space="preserve">
-    <value>Done! You can upload games to your NES Mini now.</value>
+    <value>Done! You can upload games to your NES/SNES Mini now.</value>
   </data>
   <data name="DoYouWantCancel" xml:space="preserve">
     <value>Do you want to cancel the current operation?</value>
@@ -168,9 +165,6 @@
   <data name="ExecutingCommand" xml:space="preserve">
     <value>Executing command:</value>
   </data>
-  <data name="ExecutingFes1" xml:space="preserve">
-    <value>Executing fes1...</value>
-  </data>
   <data name="FlasingCustom" xml:space="preserve">
     <value>Flashing custom kernel...</value>
   </data>
@@ -178,7 +172,7 @@
     <value>Flashing original kernel...</value>
   </data>
   <data name="GamesSelected" xml:space="preserve">
-    <value>games(s) selected</value>
+    <value>game(s) selected</value>
   </data>
   <data name="InvalidKernelHeader" xml:space="preserve">
     <value>Invalid kernel header.</value>
@@ -199,7 +193,7 @@
     <value>No kernel dump found</value>
   </data>
   <data name="NoKernelWarning" xml:space="preserve">
-    <value>First, dump the kernel image of your NES Mini. You only need to do this once. Do you want to continue?</value>
+    <value>First, dump the kernel image of your NES/SNES Mini. You only need to do this once. Do you want to continue?</value>
   </data>
   <data name="NoKernelYouNeed" xml:space="preserve">
     <value>No kernel dump found. You need to dump the kernel first.</value>
@@ -211,7 +205,7 @@
     <value>Press OK to continue.</value>
   </data>
   <data name="ReplaceKernelQ" xml:space="preserve">
-    <value>You already have the kernel dump. If you REALLY want to replace the backup of your kernel and you REALLY understand what you are doing, delete the "dump" folder manually.</value>
+    <value>You already have the kernel dump. If you REALLY want to replace the backup of your kernel and you REALLY understand what you are doing, delete the "hakchi2/dump" folder manually.</value>
   </data>
   <data name="SelectAtLeast" xml:space="preserve">
     <value>Select at least one game.</value>
@@ -243,9 +237,6 @@
   <data name="PleaseTryAgainUSB" xml:space="preserve">
     <value>If this problem persists, try using another USB port or cable.</value>
   </data>
-  <data name="XpZadig" xml:space="preserve">
-    <value>Please use the Zadig utility to install the driver on Windows XP/2000.</value>
-  </data>
   <data name="Donate" xml:space="preserve">
     <value>P.S. If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
   </data>
@@ -256,7 +247,7 @@
     <value>Hello</value>
   </data>
   <data name="KernelDumped" xml:space="preserve">
-    <value>Your original kernel is saved in the "dump" folder. Do not lose it. </value>
+    <value>Your original kernel is saved in the "hakchi2\dump" folder. Do not lose it. </value>
   </data>
   <data name="DeletePreset" xml:space="preserve">
     <value>Do you really want to delete the "{0}" preset?</value>
@@ -277,7 +268,7 @@
     <value>Uninstalling...</value>
   </data>
   <data name="UninstallQ1" xml:space="preserve">
-    <value>Do you really want to remove all traces of hakchi2 and return your NES Mini to its original state?</value>
+    <value>Do you really want to remove all traces of hakchi2 and return your NES/SNES Mini to its original state?</value>
   </data>
   <data name="UninstallQ2" xml:space="preserve">
     <value>Done. Wait until the power LED goes out. You also need to flash the original kernel. Do you want to flash the original kernel now?</value>
@@ -317,12 +308,6 @@
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>Not found:</value>
-  </data>
-  <data name="ParticallyBody" xml:space="preserve">
-    <value>Don't worry! Everything is fine. There are just too many ROMs to transfer at once. Please wait until power LED goes out, press OK and follow the instructions to continue.</value>
-  </data>
-  <data name="ParticallyTitle" xml:space="preserve">
-    <value>Too many ROMs</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="gamepad" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -368,7 +353,7 @@
     <value>More games...</value>
   </data>
   <data name="FolderNameOriginalGames" xml:space="preserve">
-    <value>Original 30 games</value>
+    <value>Original games</value>
   </data>
   <data name="folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\folder_images\folder.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -497,10 +482,10 @@
     <value>Installing mods...</value>
   </data>
   <data name="SelectModsInstall" xml:space="preserve">
-    <value>Select the modules to install on your NES Mini.</value>
+    <value>Select the modules to install on your NES/SNES Mini</value>
   </data>
   <data name="SelectModsUninstall" xml:space="preserve">
-    <value>Select the modules to remove from your NES Mini.</value>
+    <value>Select the modules to remove from your NES/SNES Mini</value>
   </data>
   <data name="UninstallingMods" xml:space="preserve">
     <value>Uninstalling mods...</value>
@@ -535,10 +520,136 @@
   <data name="blank_n64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\blank_n64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GameTooBig" xml:space="preserve">
-    <value>Sorry, game "{0}" is too big.</value>
-  </data>
   <data name="MemoryFull" xml:space="preserve">
     <value>Sorry, there are {0}MBytes of games, it's too much.</value>
+  </data>
+  <data name="green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\green.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\red.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UploadingConfig" xml:space="preserve">
+    <value>Uploading new config...</value>
+  </data>
+  <data name="UploadingOriginalGames" xml:space="preserve">
+    <value>Processing original games...</value>
+  </data>
+  <data name="blank_2600" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_2600.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_32x.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_arcade" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_arcade.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_gg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_gg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank_neogeo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_neogeo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MemoryStats" xml:space="preserve">
+    <value>Total writable memory size: {0:F1}MBytes|Available memory for games: {1:F1}MBytes|Used by saves: {2:F1}MBytes|Used by other files: {3:F1}MBytes</value>
+  </data>
+  <data name="AllFiles" xml:space="preserve">
+    <value>All files</value>
+  </data>
+  <data name="GamesAndApps" xml:space="preserve">
+    <value>Games and apps</value>
+  </data>
+  <data name="DeleteSavesQ" xml:space="preserve">
+    <value>Do you really want to delete those save-states?</value>
+  </data>
+  <data name="SavesFlterName" xml:space="preserve">
+    <value>Save-state backups</value>
+  </data>
+  <data name="SizeOfSaves" xml:space="preserve">
+    <value>Size of selected save-states: </value>
+  </data>
+  <data name="UnknownGame" xml:space="preserve">
+    <value>Unknown game</value>
+  </data>
+  <data name="NoTelnet" xml:space="preserve">
+    <value>Can't start Telnet client, seems like it's disabled. You need to enable it first, you can do it in “Control Panel“ -&gt; “Programs“ -&gt; "Turn Windows features on or off".</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Please wait...</value>
+  </data>
+  <data name="ar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\ar.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\bg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="de" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\de.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="es" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\es.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\fr.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\gr.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="it" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\it.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\nl.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\pl.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\pt.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ru" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\ru.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="se" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\se.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\sk.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="us" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\us.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\fi.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="id" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\id.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\gb.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\cn.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\tw.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ua" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\ua.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DumpingNand" xml:space="preserve">
+    <value>Dumping NAND...</value>
+  </data>
+  <data name="NandDumped" xml:space="preserve">
+    <value>NAND memory is dumped successfully.</value>
+  </data>
+  <data name="dk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\dk.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Membooting" xml:space="preserve">
+    <value>Booting the kernel from RAM...</value>
   </data>
 </root>

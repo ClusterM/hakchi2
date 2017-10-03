@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>FTP-palvelin osoitteessa ftp://root:clover@127.0.0.1:1021</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text">
+    <value>Tietoa...</value>
+  </data>
+  <data name="addMoreGamesToolStripMenuItem.Text">
+    <value>Lisää &amp;pelejä</value>
+  </data>
+  <data name="addPresetToolStripMenuItem.Text">
+    <value>Lisää valikoima</value>
+  </data>
+  <data name="automaticOriginalToolStripMenuItem.Text">
+    <value>Alkuperäiset pelit juuressa -&gt; Automaattinen alikansioissa</value>
+  </data>
+  <data name="automaticToolStripMenuItem.Text">
+    <value>Automaattinen</value>
+  </data>
+  <data name="buttonAddGames.Text">
+    <value>Lisää pelejä</value>
+  </data>
+  <data name="buttonBrowseImage.Text">
+    <value>Selaa</value>
+  </data>
+  <data name="buttonStart.Text">
+    <value>Synkronoi valitut pelit NES Minin kanssa</value>
+  </data>
+  <data name="cloverconHackToolStripMenuItem.Text">
+    <value>Ohjainhackit</value>
+  </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
+    <value>Pakkaa ei-NES-pelit (emulaattorimoduuleille)</value>
+  </data>
+  <data name="consoleTypeToolStripMenuItem.Text">
+    <value>Konsolin tyyppi</value>
+  </data>
+  <data name="customToolStripMenuItem.Text">
+    <value>Mukautettu - näytä kansiohallinta joka kerta</value>
+  </data>
+  <data name="deleteGameToolStripMenuItem.Text">
+    <value>Poista peli</value>
+  </data>
+  <data name="deletePresetToolStripMenuItem.Text">
+    <value>Poista valikoima</value>
+  </data>
+  <data name="disablePagefoldersToolStripMenuItem.Text">
+    <value>Poista sivut/kansiot</value>
+  </data>
+  <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
+    <value>Lataa kansitaide kaikille peleille</value>
+  </data>
+  <data name="dumpKernelToolStripMenuItem.Text">
+    <value>Dumppaa ydin</value>
+  </data>
+  <data name="enableAutofireToolStripMenuItem.Text">
+    <value>Käytä "Select+A/B" A/B-automaattitulituksen aktivointiin</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Text">
+    <value>Poista epilepsiasuoja</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text">
+    <value>&amp;Lopeta</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>UKK</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text">
+    <value>&amp;Tiedosto</value>
+  </data>
+  <data name="flashCustomKernelToolStripMenuItem.Text">
+    <value>Flashaa mukautettu ydin</value>
+  </data>
+  <data name="flashOriginalKernelToolStripMenuItem.Text">
+    <value>Flashaa alkuperäisydin</value>
+  </data>
+  <data name="foldersOriginalToolStripMenuItem.Text">
+    <value>Alkuperäiset pelit -&gt; Kansiot, pelit jaettu tasaisesti</value>
+  </data>
+  <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
+    <value>Alkuperäiset pelit juuressa -&gt; Kansiot, jaettu alkukirjaimen mukaan</value>
+  </data>
+  <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
+    <value>Kansiot, jaettu alkukirjaimen mukaan</value>
+  </data>
+  <data name="foldersToolStripMenuItem.Text">
+    <value>Kansiot, pelit jaettu tasaisesti</value>
+  </data>
+  <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
+    <value>GitHub-sivu varsinaisine julkaisuineen</value>
+  </data>
+  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
+    <value>Yleiset komentoriviparametrit (vain asiantuntijoille!)</value>
+  </data>
+  <data name="groupBoxDefaultGames.Text">
+    <value>Voit piilottaa alkuperäispelejä</value>
+  </data>
+  <data name="groupBoxOptions.Text">
+    <value>Pelivalinnat</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text">
+    <value>&amp;Apua</value>
+  </data>
+  <data name="installModulesToolStripMenuItem.Text">
+    <value>Asenna lisämoduuleja</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Text">
+    <value>&amp;Ydin</value>
+  </data>
+  <data name="label1.Text">
+    <value>Julkaisupäivämäärä (VVVV-KK-PP):</value>
+  </data>
+  <data name="label2.Text">
+    <value>Julkaisija:</value>
+  </data>
+  <data name="label3.Text">
+    <value>Komentoriviparametrit (vain asiantuntijoille!):</value>
+  </data>
+  <data name="label4.Text">
+    <value>Kansitaide:</value>
+  </data>
+  <data name="label5.Text">
+    <value>Valitse pelit:</value>
+  </data>
+  <data name="label6.Text">
+    <value>Pelaajia enintään:</value>
+  </data>
+  <data name="label7.Text">
+    <value>Game Genie -koodit (pilkuin eroteltuna):</value>
+  </data>
+  <data name="labelName.Text">
+    <value>Nimi:</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Kieli</value>
+  </data>
+  <data name="maximumGamesPerFolderToolStripMenuItem.Text">
+    <value>Pelejä korkeintaan per sivu/kansio</value>
+  </data>
+  <data name="modulesToolStripMenuItem.Text">
+    <value>&amp;Moduulit</value>
+  </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>Avaa FTP-asiakasohjelma</value>
+  </data>
+  <data name="openFileDialogImage.Title">
+    <value>Valitse pelin kansitaide</value>
+  </data>
+  <data name="openFileDialogNes.Title">
+    <value>Valitse pelit</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>Avaa Telnet-asiakasohjelma</value>
+  </data>
+  <data name="pagesOriginalToolStripMenuItem.Text">
+    <value>Alkuperäiset pelit juuressa -&gt; Sivut, pelit jaettu tasaisesti</value>
+  </data>
+  <data name="pagesToolStripMenuItem.Text">
+    <value>Sivut, pelit jaettu tasaisesti</value>
+  </data>
+  <data name="pagesfoldersTypeToolStripMenuItem.Text">
+    <value>Sivut/kansiot -rakenne</value>
+  </data>
+  <data name="presetsToolStripMenuItem.Text">
+    <value>Valikoimat</value>
+  </data>
+  <data name="radioButtonOne.Text">
+    <value>Yksi pelaaja</value>
+  </data>
+  <data name="radioButtonTwo.Text">
+    <value>Kaksi pelaajaa, ei yhtä aikaa</value>
+  </data>
+  <data name="radioButtonTwoSim.Text">
+    <value>Kaksi pelaajaa yhtä aikaa</value>
+  </data>
+  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
+    <value>Käytä näppäinyhdistelmää resetointiin</value>
+  </data>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
+    <value>Tallenna asetukset NES Miniin nyt</value>
+  </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>Tallennusten hallinta</value>
+  </data>
+  <data name="searchToolStripMenuItem.Text">
+    <value>Etsi</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Text">
+    <value>Valitse kaikki</value>
+  </data>
+  <data name="selectButtonCombinationToolStripMenuItem.Text">
+    <value>Valitse resetointinäppäinyhdistelmä</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text">
+    <value>&amp;Asetukset</value>
+  </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Telnet-palvelin osoitteessa telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="synchronizeToolStripMenuItem.Text">
+    <value>Synkronoi</value>
+  </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>Ota kuvankaappaus</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;Työkalut</value>
+  </data>
+  <data name="uninstallModulesToolStripMenuItem.Text">
+    <value>Poista lisämoduulit</value>
+  </data>
+  <data name="uninstallToolStripMenuItem.Text">
+    <value>Poista asennus</value>
+  </data>
+  <data name="unselectAllToolStripMenuItem.Text">
+    <value>Poista kaikki valinnat</value>
+  </data>
+  <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
+    <value>"Ylös+A+B" = Start 2-ohjaimessa</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Text">
+    <value>Käytä laajennettua fonttia</value>
+  </data>
+  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
+    <value>Käytä Classic Controllerin X/Y-näppäimiä A/B-automaattitulitukseen</value>
+  </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Dump decrypted NAND-B partition</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Dump the whole NAND flash</value>
+  </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Select dump filename</value>
+  </data>
+</root>

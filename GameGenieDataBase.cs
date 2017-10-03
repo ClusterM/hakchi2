@@ -62,11 +62,11 @@ namespace com.clusterrr.hakchi_gui
 
     class GameGenieDataBase
     {
-        private readonly string DataBasePath;
         private XmlDocument FXml = new XmlDocument();
         private XmlNode FGameNode = null;
         private List<GameGenieCode> FGameCodes = null;
-        private string FDBName = "";
+        private string originalDatabasePath = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "GameGenieDB.xml");
+        private string userDatabasePath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "GameGenieDB.xml");
         private NesMiniApplication FGame = null;
         private bool FModified = false;
 
@@ -80,7 +80,7 @@ namespace com.clusterrr.hakchi_gui
 
                     if (FGameNode == null)
                     {
-                        string lGamesDir = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "games");
+                        string lGamesDir = Path.Combine(Program.BaseDirectoryExternal, "games");
                         NesFile lGame = new NesFile(Path.Combine(Path.Combine(lGamesDir, FGame.Code), FGame.Code + ".nes"));
                         XmlAttribute lXmlAttribute;
 
@@ -133,11 +133,13 @@ namespace com.clusterrr.hakchi_gui
 
         public GameGenieDataBase(NesMiniApplication AGame)
         {
-            DataBasePath = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "data"), "GameGenieDB.xml");
+            //DataBasePath = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "GameGenieDB.xml");
             FGame = AGame;
-            FDBName = DataBasePath;
-            if (File.Exists(FDBName))
-                FXml.Load(FDBName);
+            //FDBName = DataBasePath;
+            if (File.Exists(userDatabasePath))
+                FXml.Load(userDatabasePath);
+            else if (File.Exists(originalDatabasePath))
+                FXml.Load(originalDatabasePath);
             else
                 FXml.AppendChild(FXml.CreateElement("database"));
         }
@@ -207,7 +209,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 GameCodes.Clear();
 
-                string lGameFileName = Path.Combine(Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "games"), FGame.Code), FGame.Code + ".nes");
+                string lGameFileName = Path.Combine(Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "games"), FGame.Code), FGame.Code + ".nes");
                 foreach (XmlNode lCurCode in lCodes)
                 {
                     NesFile lGame = new NesFile(lGameFileName);
@@ -246,7 +248,8 @@ namespace com.clusterrr.hakchi_gui
         {
             if (GameCodes.Count == 0)
                 GameNode.ParentNode.RemoveChild(GameNode);
-            FXml.Save(FDBName);
+            Directory.CreateDirectory(Path.GetDirectoryName(userDatabasePath));
+            FXml.Save(userDatabasePath);
         }
     }
 }

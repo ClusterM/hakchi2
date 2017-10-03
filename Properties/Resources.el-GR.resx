@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddingGames">
+    <value>Επεξεργασία παιχνιδιών, παρακαλώ περιμένετε…</value>
+  </data>
+  <data name="AllFiles">
+    <value>Όλα τα αρχεία</value>
+  </data>
+  <data name="AreYouSure">
+    <value>Είστε σίγουροι;</value>
+  </data>
+  <data name="AutofillResult">
+    <value>Τα στοιχεία συμπληρώθηκαν αυτόματα για {0} παιχνίδι(α).</value>
+  </data>
+  <data name="AutofireHelp1">
+    <value>Κρατήστε πατημένα Select+A/B για ένα δευτερόλεπτο για να ενεργοποιήσετε/απενεργοποιήσετε το αυτόματο Α/Β.</value>
+  </data>
+  <data name="BuildingCustom">
+    <value>Δημιουργία του προσαρμοσμένου πυρήνα…</value>
+  </data>
+  <data name="BuildingFolders">
+    <value>Δημιουργία της δομής των φακέλων…</value>
+  </data>
+  <data name="Congratulations">
+    <value>Συγχαρητήρια!</value>
+  </data>
+  <data name="CustomKernel">
+    <value>Προσαρμοσμένος πυρήνας</value>
+  </data>
+  <data name="CustomKernelQ">
+    <value>Θέλετε να εγγράψετε τον προσαρμοσμένο πυρήνα;</value>
+  </data>
+  <data name="CustomWarning">
+    <value>Τώρα χρειάζεται να εγγράψετε τον προσαρμοσμένο πυρήνα στο NES Mini σας. Αυτό απαιτείται μόνο μία φορά. Θέλετε να συνεχίσετε;</value>
+  </data>
+  <data name="Default30games">
+    <value>30 αυθεντικά παιχνίδια</value>
+  </data>
+  <data name="DeleteElement">
+    <value>Σίγουρα θέλετε να διαγράψετε το "{0}";</value>
+  </data>
+  <data name="DeleteElements">
+    <value>Σίγουρα θέλετε να διαγράψετε "{0}" στοιχεία;</value>
+  </data>
+  <data name="DeleteGame">
+    <value>Είστε σίγουροι ότι θέλετε να διαγράψετε το παιχνίδι "{0}";</value>
+  </data>
+  <data name="DeletePreset">
+    <value>Σίγουρα θέλετε να διαγράψετε την προεπιλογή "{0}";</value>
+  </data>
+  <data name="DeleteSavesQ">
+    <value>Θέλετε πραγματικά να διαγράψετε αυτά τα αποθηκευμένα σημεία;</value>
+  </data>
+  <data name="DoYouWantCancel">
+    <value>Θέλετε να ακυρώσετε την τρέχουσα εργασία;</value>
+  </data>
+  <data name="DoYouWantToContinue">
+    <value>Θέλετε να συνεχίσετε;</value>
+  </data>
+  <data name="Donate">
+    <value>Υ.Γ. Αν σας αρέσει, μπορείτε να μου κάνετε δωρεά. Μπορείτε να βρείτε το PayPal μου στο παράθυρο "Σχετικά με".</value>
+  </data>
+  <data name="Done">
+    <value>Έτοιμο!</value>
+  </data>
+  <data name="DoneYouCanUpload">
+    <value>Έτοιμο! Τώρα μπορείτε να μεταφορτώσετε παιχνίδια στο NES Mini σας.</value>
+  </data>
+  <data name="DownloadAllCoversTitle">
+    <value>Κατέβασμα εξώφυλλων κουτιών για όλα τα παιχνίδια (Αισθάνομαι τυχερός!)</value>
+  </data>
+  <data name="DumpKernelQ">
+    <value>Θέλετε να αποθηκεύσετε τον πυρήνα;</value>
+  </data>
+  <data name="DumpingKernel">
+    <value>Αποθήκευση πυρήνα…</value>
+  </data>
+  <data name="Error">
+    <value>Σφάλμα</value>
+  </data>
+  <data name="ExecutingCommand">
+    <value>Εκτέλεση εντολής:</value>
+  </data>
+  <data name="ExtraArgsInfo">
+    <value>Μπορείτε να προσθέσετε καθολικές παραμέτρους γραμμής εντολών οι οποίες θα προσαρτηθούν σε όλα τα παιχνίδια, συμπεριλαμβανομένων των 30 αυθεντικών. Αυτό είναι μόνο για προχωρημένους!</value>
+  </data>
+  <data name="ExtraArgsTitle">
+    <value>Έξτρα παράμετροι γραμμής εντολών</value>
+  </data>
+  <data name="FirstRun">
+    <value>Γεια σας! Είμαι πολύ χαρούμενος που χρησιμοποιείτε το hakchi2. Είναι πολύ απλό στη χρήση. Απλά επιλέξτε "Προσθήκη περισσότερων παιχνιδιών", επιλέξτε μερικές ROMs, πατήστε "Συγχρονισμός" και ακολουθήστε τις οδηγίες. Καλή επιτυχία!</value>
+  </data>
+  <data name="FlasingCustom">
+    <value>Εγγραφή προσαρμοσμένου πυρήνα…</value>
+  </data>
+  <data name="FlasingOriginal">
+    <value>Εγγραφή αυθεντικού πυρήνα…</value>
+  </data>
+  <data name="FolderContent">
+    <value>Το διαγραμμένο περιεχόμενο θα μετακινηθεί στον Κάδο Ανακύκλωσης. Μπορείτε να διαγράψετε αυτό τον φάκελο μόνιμα ή να μετακινήσετε τα παιχνίδια σε άλλους φακέλους.</value>
+  </data>
+  <data name="FolderNameBack">
+    <value>Πίσω</value>
+  </data>
+  <data name="FolderNameMoreGames">
+    <value>Περισσότερα παιχνίδια…</value>
+  </data>
+  <data name="FolderNameNewFolder">
+    <value>Νέος φάκελος</value>
+  </data>
+  <data name="FolderNameOriginalGames">
+    <value>30 αυθεντικά παιχνίδια</value>
+  </data>
+  <data name="FolderNameTrashBin">
+    <value>Κάδος Ανακύκλωσης</value>
+  </data>
+  <data name="FolderNameUnsorted">
+    <value>Μη ταξινομημένα</value>
+  </data>
+  <data name="FolderStatistics">
+    <value>Ο φάκελος "{0}" περιέχει {1} στοιχεία.</value>
+  </data>
+  <data name="FoldersSaveQ">
+    <value>Θέλετε να αποθηκεύσετε αυτή τη δομή φακέλων;</value>
+  </data>
+  <data name="FourScreenNotSupported">
+    <value>Λυπάμαι, το "{0}" χρησιμοποιεί λειτουργία τετραπλής οθόνης (π.χ. το παιχνίδι έχει επιπλέον μνήμη VRAM στην κασέτα) και αυτό το χαρακτηριστικό δεν υποστηρίζεται από το NES Mini. Το παιχνίδι πιθανόν δεν θα ξεκινήσει. Πρέπει όμως να δουλέψει αν έχει εγκατασταθεί το module άλλων εξομοιωτών. Θέλετε να προσθέσετε αυτό το παιχνίδι;</value>
+  </data>
+  <data name="GGCodeDelete">
+    <value>Θέλετε να διαγράψετε τον κωδικό "{0}";</value>
+  </data>
+  <data name="GGCodeEmpty">
+    <value>Πρέπει να εισάγετε έναν κωδικό!</value>
+  </data>
+  <data name="GGCodeExists">
+    <value>Αυτός ο κωδικός υπάρχει ήδη. Θέλετε να τον επεξεργαστείτε;</value>
+  </data>
+  <data name="GGDescriptionEmpty">
+    <value>Πρέπει να εισάγετε μια περιγραφή!</value>
+  </data>
+  <data name="GameGenieFormatError">
+    <value>Μη έγκυρος κωδικός Game Genie "{0}" για το παιχνίδι "{1}".</value>
+  </data>
+  <data name="GameGenieNotFound">
+    <value>Δεν μπορεί να εφαρμοστεί ο κωδικός Game Genie "{0}" για το παιχνίδι "{1}" - η τιμή δεν βρέθηκε. Μήπως αυτός ο κωδικός είναι για κάποιο άλλο παιχνίδι;</value>
+  </data>
+  <data name="GamesAndApps">
+    <value>Παιχνίδια και εφαρμογές</value>
+  </data>
+  <data name="GamesSelected">
+    <value>παιχνίδι(α) επιλέχθηκαν</value>
+  </data>
+  <data name="GooglingFor">
+    <value>Αναζήτηση για</value>
+  </data>
+  <data name="Hello">
+    <value>Γεια σας</value>
+  </data>
+  <data name="Images">
+    <value>Εικόνες</value>
+  </data>
+  <data name="InputPreset">
+    <value>Παρακαλώ εισάγετε το όνομα της προεπιλογής για την τρέχουσα επιλογή παιχνιδιών.</value>
+  </data>
+  <data name="InstallingMods">
+    <value>Εγκατάσταση modules...</value>
+  </data>
+  <data name="InvalidKernelHeader">
+    <value>Μη έγκυρη κεφαλίδα πυρήνα.</value>
+  </data>
+  <data name="InvalidKernelSize">
+    <value>Μη έγκυρο μέγεθος πυρήνα:</value>
+  </data>
+  <data name="KernelDumped">
+    <value>Ο αυθεντικός σας πυρήνας έχει αποθηκευτεί στο φάκελο "hakchi2\dump". Μη τον χάσετε.</value>
+  </data>
+  <data name="LoadingGames">
+    <value>Φόρτωση παιχνιδιών…</value>
+  </data>
+  <data name="MD5Failed">
+    <value>Ο πυρήνας αποθηκεύτηκε αλλά το άθροισμα ελέγχου MD5 είναι άγνωστο:</value>
+  </data>
+  <data name="MD5Failed2">
+    <value>Ο πυρήνας είναι ήδη προσαρμοσμένος ή είναι κάποιας άγνωστης αναθεώρησης. Παρακαλώ στείλτε το μήνυμα αυτό σε εμένα (πατήστε Ctrl+C). Συνεχίστε με δική σας ευθύνη.</value>
+  </data>
+  <data name="MainMenu">
+    <value>ΑΡΧΙΚΟ Μενού</value>
+  </data>
+  <data name="MapperNotSupported">
+    <value>Λυπάμαι, το "{0}" χρησιμοποιεί τον mapper #{1} ο οποίος δεν υποστηρίζεται από το NES Mini και το παιχνίδι πιθανόν δεν θα ξεκινήσει με τον προκαθορισμένο εξομοιωτή. Πρέπει όμως να δουλέψει αν έχει εγκατασταθεί το module άλλων εξομοιωτών. Θέλετε να προσθέσετε αυτό το παιχνίδι;</value>
+  </data>
+  <data name="MemoryFull">
+    <value>Λυπάμαι, υπάρχουν "{0}"Mbytes με παιχνίδια, είναι πάρα πολλά.</value>
+  </data>
+  <data name="MemoryStats">
+    <value>Συνολικό μέγεθος εγγράψιμης μνήμης: {0:F1}MBytes|Διαθέσιμη μνήμη για παιχνίδια: {1:F1}MBytes|Χρησιμοποιείται από αποθηκευμένα: {2:F1}MBytes|Χρησιμοποιείται από άλλα αρχεία: {3:F1}MBytes</value>
+  </data>
+  <data name="NewGamesUnsorted">
+    <value>Τα νέα παιχίδια μετακινήθηκαν στον φάκελο "Μη ταξινομημένα".</value>
+  </data>
+  <data name="NewPreset">
+    <value>Νέα προεπιλογή</value>
+  </data>
+  <data name="No">
+    <value>Όχι</value>
+  </data>
+  <data name="NoForAll">
+    <value>Όχι σε όλα</value>
+  </data>
+  <data name="NoKernel">
+    <value>Δεν βρέθηκε αποθηκευμένος πυρήνας</value>
+  </data>
+  <data name="NoKernelWarning">
+    <value>Αρχικά, αποθηκεύστε τον πυρήνα του NES Mini σας. Χρειάζετε να το κάνετε μόνο μία φορά. Θέλετε να συνεχίσετε;</value>
+  </data>
+  <data name="NoKernelYouNeed">
+    <value>Δεν βρέθηκε αποθηκευμένος πυρήνας. Πρέπει πρώτα να αποθηκεύσετε τον πυρήνα.</value>
+  </data>
+  <data name="NoTelnet">
+    <value>Δεν μπορεί να γίνει εκκίνηση πελάτη Telnet, μάλλον είναι απενεργοποιημένος. Πρέπει πρώτα να τον ενεργοποιήσετε, μπορείτε να το κάνετε στον "Πίνακα Ελέγχου" -&gt; "Προγράμματα" -&gt; "Ενεργοποίηση και απενεργοποίηση δυνατοτήτων των Windows".</value>
+  </data>
+  <data name="NotFound">
+    <value>Δεν βρέθηκε:</value>
+  </data>
+  <data name="OriginalKernelQ">
+    <value>Θέλετε να εγγράψετε τον αυθεντικό πυρήνα;</value>
+  </data>
+  <data name="PatchAvailable">
+    <value>Διαθέσιμο διορθωτικό</value>
+  </data>
+  <data name="PatchQ">
+    <value>Υπάρχει διορθωτικό για το "{0}". Θέλετε να διορθώσετε αυτό το παιχνίδι;</value>
+  </data>
+  <data name="PleaseTryAgainUSB">
+    <value>Αν αυτό το πρόβλημα παραμένει, δοκιμάστε μια άλλη θύρα USB ή καλώδιο.</value>
+  </data>
+  <data name="PleaseWait">
+    <value>Παρακαλώ περιμένετε...</value>
+  </data>
+  <data name="PressOkToContinue">
+    <value>Πιέστε ΟΚ για να συνεχίσετε.</value>
+  </data>
+  <data name="ReplaceKernelQ">
+    <value>Έχετε ήδη αποθηκεύσει τον πυρήνα. Αν ΠΡΑΓΜΑΤΙΚΑ θέλετε να αντικαταστήσετε το αντίγραφο του πυρήνα σας και ΠΡΑΓΜΑΤΙΚΑ καταλαβαίνετε τι κάνετε, διαγράψτε τον φάκελο "hakchi2\dump" χειροκίνητα.</value>
+  </data>
+  <data name="SavesFlterName">
+    <value>Αντίγραφα αποθηκευμένων σημείων NES Mini</value>
+  </data>
+  <data name="SelectAtLeast">
+    <value>Επιλέξτε τουλάχιστον ένα παιχνίδι.</value>
+  </data>
+  <data name="SelectAtLeastTwo">
+    <value>Επιλέξτε τουλάχιστον δύο κουμπιά.</value>
+  </data>
+  <data name="SelectModsInstall">
+    <value>Επιλέξτε τα modules που θα εγκατασταθούν στο NES Mini σας</value>
+  </data>
+  <data name="SelectModsUninstall">
+    <value>Επιλέξτε τα modules που θα απεγκατασταθούν από το NES Mini σας</value>
+  </data>
+  <data name="SizeOfSaves">
+    <value>Μέγεθος επιλεγμένων σημείων:</value>
+  </data>
+  <data name="UninstallFactoryNote">
+    <value>Μην ξεχάσετε να κάνετε μια επαναφορά εργοστασιακών ρυθμίσεων αν θέλετε να διαγράψετε όλα τα αποθηκευμένα σημεία.</value>
+  </data>
+  <data name="UninstallQ1">
+    <value>Σίγουρα θέλετε να αφαιρέσετε όλα τα ίχνη του hakchi2 και να επαναφέρετε το NES Mini σας στην αρχική του κατάσταση;</value>
+  </data>
+  <data name="UninstallQ2">
+    <value>Έτοιμο. Περιμένετε μέχρι να σβήσει το λαμπάκι POWER. Πρέπει επίσης να εγγράψετε τον αυθεντικό πυρήνα. Θέλετε να εγγράψετε τον αυθεντικό πυρήνα τώρα;</value>
+  </data>
+  <data name="Uninstalling">
+    <value>Απεγκατάσταση…</value>
+  </data>
+  <data name="UninstallingMods">
+    <value>Απεγκατάσταση modules…</value>
+  </data>
+  <data name="UnknownGame">
+    <value>Άγνωστο παιχνίδι</value>
+  </data>
+  <data name="UploadingConfig">
+    <value>Μεταφόρτωση νέας διαμόρφωσης…</value>
+  </data>
+  <data name="UploadingFes1">
+    <value>Μεταφόρτωση και εκτέλεση FES-1…</value>
+  </data>
+  <data name="UploadingGames">
+    <value>Μεταφόρτωση παιχνιδιών…</value>
+  </data>
+  <data name="UploadingKernel">
+    <value>Μεταφόρτωση πυρήνα…</value>
+  </data>
+  <data name="UploadingOriginalGames">
+    <value>Επεξεργασία αυθεντικών παιχνιδιών…</value>
+  </data>
+  <data name="VerifyFailed">
+    <value>Η επαλήθευση απέτυχε! :O Αυτό δεν είναι καλό.</value>
+  </data>
+  <data name="Verifying">
+    <value>Επαλήθευση…</value>
+  </data>
+  <data name="WaitingForDevice">
+    <value>Αναμονή για τη συσκευή…</value>
+  </data>
+  <data name="Warning">
+    <value>Προσοχή!</value>
+  </data>
+  <data name="Wow">
+    <value>Ουάου</value>
+  </data>
+  <data name="Yes">
+    <value>Ναι</value>
+  </data>
+  <data name="YesForAll">
+    <value>Ναι σε όλα</value>
+  </data>
+  <data name="DumpingNand">
+    <value>Dumping NAND...</value>
+  </data>
+  <data name="NandDumped">
+    <value>NAND memory is dumped successfully.</value>
+  </data>
+</root>

@@ -39,7 +39,8 @@ namespace com.clusterrr.hakchi_gui
                 case SplitStyle.Original_FoldersEqual:
                 case SplitStyle.Original_PagesEqual:
                     style--;
-                    originalToRoot = true;
+                    if (this.Where(o => o is NesDefaultGame).Count() > 0)
+                        originalToRoot = true;
                     break;
             }
             if (style == SplitStyle.NoSplit && !originalToRoot) return;
@@ -57,6 +58,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 root = new NesMenuCollection();
                 root.AddRange(this.Where(o => !(o is NesDefaultGame)));
+                if (root.Count == 0)
+                    return;
                 this.RemoveAll(o => !(o is NesDefaultGame));
                 this.Add(new NesMenuFolder()
                 {

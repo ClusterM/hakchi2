@@ -21,6 +21,7 @@
             this.checkedListBoxMods.Location = new System.Drawing.Point(12, 12);
             this.checkedListBoxMods.Name = "checkedListBoxMods";
             this.checkedListBoxMods.Size = new System.Drawing.Size(258, 334);
+            this.checkedListBoxMods.Sorted = true;
             this.checkedListBoxMods.TabIndex = 0;
             this.checkedListBoxMods.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxMods_SelectedIndexChanged);
             // 
@@ -64,6 +65,8 @@
             this.Name = "SelectModsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ModsSelect";
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.SelectModsForm_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.SelectModsForm_DragEnter);
             this.ResumeLayout(false);
             this.PerformLayout();
 

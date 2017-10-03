@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>Servidor FTP en ftp://root:clover@127.0.0.1:1021</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text">
+    <value>Acerca de...</value>
+  </data>
+  <data name="addMoreGamesToolStripMenuItem.Text">
+    <value>Añadir más &amp;juegos</value>
+  </data>
+  <data name="addPresetToolStripMenuItem.Text">
+    <value>Añadir lista</value>
+  </data>
+  <data name="automaticOriginalToolStripMenuItem.Text">
+    <value>Juegos originales en Root -&gt; Automático en subcarpeta</value>
+  </data>
+  <data name="automaticToolStripMenuItem.Text">
+    <value>Automático</value>
+  </data>
+  <data name="buttonAddGames.Text">
+    <value>Añadir más juegos</value>
+  </data>
+  <data name="buttonBrowseImage.Text">
+    <value>Buscar</value>
+  </data>
+  <data name="buttonStart.Text">
+    <value>Sincronizar los juegos seleccionados con NES Mini</value>
+  </data>
+  <data name="cloverconHackToolStripMenuItem.Text">
+    <value>Ayuda/atajos para los mandos</value>
+  </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
+    <value>Comprimir juegos que no sean de NES (para emuladores adicionales)</value>
+  </data>
+  <data name="consoleTypeToolStripMenuItem.Text">
+    <value>Tipo de consola</value>
+  </data>
+  <data name="customToolStripMenuItem.Text">
+    <value>Personalizado - muestra la gestión de las carpetas todo el tiempo</value>
+  </data>
+  <data name="deleteGameToolStripMenuItem.Text">
+    <value>Eliminar juego</value>
+  </data>
+  <data name="deletePresetToolStripMenuItem.Text">
+    <value>Eliminar lista</value>
+  </data>
+  <data name="disablePagefoldersToolStripMenuItem.Text">
+    <value>Desactivar páginas/carpetas</value>
+  </data>
+  <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
+    <value>Descargar carátulas para todos los juegos</value>
+  </data>
+  <data name="dumpKernelToolStripMenuItem.Text">
+    <value>Volcar kernel</value>
+  </data>
+  <data name="enableAutofireToolStripMenuItem.Text">
+    <value>Pulsa "Select+A/B" para activar Autofire en A/B</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Text">
+    <value>Desactivar protección contra la epilepsia</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text">
+    <value>&amp;Salir</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>FAQ (Preguntas frecuentes)</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text">
+    <value>&amp;Archivo</value>
+  </data>
+  <data name="flashCustomKernelToolStripMenuItem.Text">
+    <value>Flashear custom kernel</value>
+  </data>
+  <data name="flashOriginalKernelToolStripMenuItem.Text">
+    <value>Flashear kernel original</value>
+  </data>
+  <data name="foldersOriginalToolStripMenuItem.Text">
+    <value>Juegos originales en Root -&gt; Carpetas, dividir juegos por igual</value>
+  </data>
+  <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
+    <value>Juegos originales en Root -&gt; Carpetas, dividir por primera letra</value>
+  </data>
+  <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
+    <value>Carpetas, dividir por la primera letra</value>
+  </data>
+  <data name="foldersToolStripMenuItem.Text">
+    <value>Carpetas, dividir juegos por igual</value>
+  </data>
+  <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
+    <value>GitHub: Página con las versiones actuales</value>
+  </data>
+  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
+    <value>Línea de comando global (Sólo usuarios expertos)</value>
+  </data>
+  <data name="groupBoxDefaultGames.Text">
+    <value>Puedes ocultar algunos juegos predeterminados</value>
+  </data>
+  <data name="groupBoxOptions.Text">
+    <value>Opciones de juego</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text">
+    <value>&amp;Ayuda</value>
+  </data>
+  <data name="installModulesToolStripMenuItem.Text">
+    <value>Instalar módulos extras</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Text">
+    <value>&amp;Kernel</value>
+  </data>
+  <data name="label1.Text">
+    <value>Fecha de lanzamiento (AAAA-MM-DD)</value>
+  </data>
+  <data name="label2.Text">
+    <value>Editor:</value>
+  </data>
+  <data name="label3.Text">
+    <value>Línea de comando (Sólo usuarios avanzados)</value>
+  </data>
+  <data name="label4.Text">
+    <value>Carátula</value>
+  </data>
+  <data name="label5.Text">
+    <value>Seleccionar juegos:</value>
+  </data>
+  <data name="label6.Text">
+    <value>Número de jugadores:</value>
+  </data>
+  <data name="label7.Text">
+    <value>Códigos Game Genie (separados por comas):</value>
+  </data>
+  <data name="labelName.Text">
+    <value>Nombre:</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Idioma</value>
+  </data>
+  <data name="maximumGamesPerFolderToolStripMenuItem.Text">
+    <value>Número de juegos por página/carpeta</value>
+  </data>
+  <data name="modulesToolStripMenuItem.Text">
+    <value>&amp;Módulos</value>
+  </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>Abrir cliente FTP</value>
+  </data>
+  <data name="openFileDialogImage.Title">
+    <value>Selecciona una carátula para el juego</value>
+  </data>
+  <data name="openFileDialogNes.Title">
+    <value>Selecciona juegos de NES u otro emulador</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>Abrir cliente Telnet</value>
+  </data>
+  <data name="pagesOriginalToolStripMenuItem.Text">
+    <value>Juegos originales en Root -&gt; Páginas, dividir los juegos por igual</value>
+  </data>
+  <data name="pagesToolStripMenuItem.Text">
+    <value>Páginas, dividir juegos por igual</value>
+  </data>
+  <data name="pagesfoldersTypeToolStripMenuItem.Text">
+    <value>Páginas/estructura de las carpetas</value>
+  </data>
+  <data name="presetsToolStripMenuItem.Text">
+    <value>Seleccionar lista</value>
+  </data>
+  <data name="radioButtonOne.Text">
+    <value>Un jugador</value>
+  </data>
+  <data name="radioButtonTwo.Text">
+    <value>Dos jugadores, no simultáneos</value>
+  </data>
+  <data name="radioButtonTwoSim.Text">
+    <value>Dos jugadores, simultáneamente</value>
+  </data>
+  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
+    <value>Usar combinación de botones para Reset</value>
+  </data>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
+    <value>Guardar opciones a la NES Mini ahora</value>
+  </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>Gestión de los puntos de suspensión</value>
+  </data>
+  <data name="searchToolStripMenuItem.Text">
+    <value>Buscar</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Text">
+    <value>Seleccionar todo</value>
+  </data>
+  <data name="selectButtonCombinationToolStripMenuItem.Text">
+    <value>Selecciona una combinación de botones para Reset</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text">
+    <value>&amp;Opciones</value>
+  </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Servidor Telnet en telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="synchronizeToolStripMenuItem.Text">
+    <value>Sincronizar</value>
+  </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>Realizar captura de pantalla</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;Herramientas</value>
+  </data>
+  <data name="uninstallModulesToolStripMenuItem.Text">
+    <value>Desinstalar módulos extras</value>
+  </data>
+  <data name="uninstallToolStripMenuItem.Text">
+    <value>Desinstalar</value>
+  </data>
+  <data name="unselectAllToolStripMenuItem.Text">
+    <value>Deseleccionar todo</value>
+  </data>
+  <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
+    <value>"Arriba+A+B = Start" en el 2º mando</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Text">
+    <value>Usar fuente extendida</value>
+  </data>
+  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
+    <value>Usa X/Y en el mando Wii Classic Controller como Autofire A/B</value>
+  </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Dump decrypted NAND-B partition</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Dump the whole NAND flash</value>
+  </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Select dump filename</value>
+  </data>
+</root>

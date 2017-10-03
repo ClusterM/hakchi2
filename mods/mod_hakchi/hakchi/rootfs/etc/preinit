@@ -53,7 +53,7 @@ script_init(){
 }
 
 preinit(){
-  [ -z "$gamepath" ] && [ -d "/newroot" ] && /bin/busybox --install -s /bin/ && cp -a $rootfs/bin/rsync /bin/
+  [ -z "$gamepath" ] && [ -d "/newroot" ] && /bin/busybox --install -s /bin/ && cp -a "$rootfs/bin/rsync" /bin/
   source_base
   source_parts "$preinitpath/p????_*"
 }

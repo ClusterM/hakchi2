@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 public static class TaskbarProgress
 {
@@ -47,16 +49,23 @@ public static class TaskbarProgress
     {
     }
 
-    private static ITaskbarList3 taskbarInstance = (ITaskbarList3)new TaskbarInstance();
     private static bool taskbarSupported = Environment.OSVersion.Version >= new Version(6, 1);
 
-    public static void SetState(IntPtr windowHandle, TaskbarStates taskbarState)
+    public static void SetState(Form form, TaskbarStates taskbarState)
     {
-        if (taskbarSupported) taskbarInstance.SetProgressState(windowHandle, taskbarState);
+        if (taskbarSupported)
+        {
+                var taskbarInstance = (ITaskbarList3)new TaskbarInstance();
+            taskbarInstance.SetProgressState(form.Handle, taskbarState);
+        }
     }
 
-    public static void SetValue(IntPtr windowHandle, double progressValue, double progressMax)
+    public static void SetValue(Form form, double progressValue, double progressMax)
     {
-        if (taskbarSupported) taskbarInstance.SetProgressValue(windowHandle, (ulong)progressValue, (ulong)progressMax);
+        if (taskbarSupported)
+        {
+            var taskbarInstance = (ITaskbarList3)new TaskbarInstance();
+            taskbarInstance.SetProgressValue(form.Handle, (ulong)progressValue, (ulong)progressMax);
+        }
     }
 }

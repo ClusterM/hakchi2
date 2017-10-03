@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>Server FTP pada ftp://root:clover@127.0.0.1:1021</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text">
+    <value>Tentang...</value>
+  </data>
+  <data name="addMoreGamesToolStripMenuItem.Text">
+    <value>Tambah game &amp;lagi</value>
+  </data>
+  <data name="addPresetToolStripMenuItem.Text">
+    <value>Tambahkan pra-atur</value>
+  </data>
+  <data name="automaticOriginalToolStripMenuItem.Text">
+    <value>Game orisinal di root -&gt; Otomatis di dalam sub-folder</value>
+  </data>
+  <data name="automaticToolStripMenuItem.Text">
+    <value>Otomatis</value>
+  </data>
+  <data name="buttonAddGames.Text">
+    <value>Tambah game</value>
+  </data>
+  <data name="buttonBrowseImage.Text">
+    <value>Jelajah</value>
+  </data>
+  <data name="buttonStart.Text">
+    <value>Sinkronkan game-game terpilih dengan NES Mini</value>
+  </data>
+  <data name="cloverconHackToolStripMenuItem.Text">
+    <value>Retasan kontroler</value>
+  </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
+    <value>Kompres game non-NES (untuk mod emulator tambahan)</value>
+  </data>
+  <data name="consoleTypeToolStripMenuItem.Text">
+    <value>Tipe konsol</value>
+  </data>
+  <data name="customToolStripMenuItem.Text">
+    <value>Custom - selalu perlihatkan Folders Manager</value>
+  </data>
+  <data name="deleteGameToolStripMenuItem.Text">
+    <value>Hapus game</value>
+  </data>
+  <data name="deletePresetToolStripMenuItem.Text">
+    <value>Hapus pra-atur</value>
+  </data>
+  <data name="disablePagefoldersToolStripMenuItem.Text">
+    <value>Nonaktifkan halaman/folder</value>
+  </data>
+  <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
+    <value>Unduh box art untuk semua game</value>
+  </data>
+  <data name="dumpKernelToolStripMenuItem.Text">
+    <value>Men-dump kernel</value>
+  </data>
+  <data name="enableAutofireToolStripMenuItem.Text">
+    <value>Tekan "Select+A/B" untuk mengaktifkan autofire pada A/B</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Text">
+    <value>Nonaktifkan proteksi epilepsi</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text">
+    <value>&amp;Keluar</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>FAQ</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text">
+    <value>&amp;Fail</value>
+  </data>
+  <data name="flashCustomKernelToolStripMenuItem.Text">
+    <value>Flash kernel custom</value>
+  </data>
+  <data name="flashOriginalKernelToolStripMenuItem.Text">
+    <value>Flash kernel orisinal</value>
+  </data>
+  <data name="foldersOriginalToolStripMenuItem.Text">
+    <value>Game orisinal di root -&gt; Folder, bagi game secara sama</value>
+  </data>
+  <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
+    <value>Game orisinal di root -&gt; Folder, bagi berdasarkan huruf pertama</value>
+  </data>
+  <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
+    <value>Folder, bagi berdasarkan huruf pertama</value>
+  </data>
+  <data name="foldersToolStripMenuItem.Text">
+    <value>Folder, bagi game secara sama</value>
+  </data>
+  <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
+    <value>Halaman GitHub berikut perilisan aktual</value>
+  </data>
+  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
+    <value>Global command-line arguments (khusus ahli!)</value>
+  </data>
+  <data name="groupBoxDefaultGames.Text">
+    <value>Anda dapat menyembunyikan beberapa game bawaan</value>
+  </data>
+  <data name="groupBoxOptions.Text">
+    <value>Opsi game</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text">
+    <value>&amp;Bantuan</value>
+  </data>
+  <data name="installModulesToolStripMenuItem.Text">
+    <value>Instal modul ekstra</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Text">
+    <value>&amp;Kernel</value>
+  </data>
+  <data name="label1.Text">
+    <value>Tanggal rilis (YYYY-MM-DD):</value>
+  </data>
+  <data name="label2.Text">
+    <value>Penerbit:</value>
+  </data>
+  <data name="label3.Text">
+    <value>Command line arguments (khusus ahli!):</value>
+  </data>
+  <data name="label4.Text">
+    <value>Box art:</value>
+  </data>
+  <data name="label5.Text">
+    <value>Pilih game:</value>
+  </data>
+  <data name="label6.Text">
+    <value>Player maksimum:</value>
+  </data>
+  <data name="label7.Text">
+    <value>Kode Game Genie (pisahkan dengan koma):</value>
+  </data>
+  <data name="labelName.Text">
+    <value>Nama:</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Bahasa</value>
+  </data>
+  <data name="maximumGamesPerFolderToolStripMenuItem.Text">
+    <value>Game maksimum per halaman/folder</value>
+  </data>
+  <data name="modulesToolStripMenuItem.Text">
+    <value>&amp;Modul</value>
+  </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>Buka klien FTP</value>
+  </data>
+  <data name="openFileDialogImage.Title">
+    <value>Pilih box art untuk game</value>
+  </data>
+  <data name="openFileDialogNes.Title">
+    <value>Pilih game</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>Buka klien Telnet</value>
+  </data>
+  <data name="pagesOriginalToolStripMenuItem.Text">
+    <value>Game orisinal pada root -&gt; Halaman, bagi game secara sama</value>
+  </data>
+  <data name="pagesToolStripMenuItem.Text">
+    <value>Halaman, bagi game secara sama</value>
+  </data>
+  <data name="pagesfoldersTypeToolStripMenuItem.Text">
+    <value>Halaman/Folder Structure</value>
+  </data>
+  <data name="presetsToolStripMenuItem.Text">
+    <value>Pra-atur pilihan</value>
+  </data>
+  <data name="radioButtonOne.Text">
+    <value>Satu player</value>
+  </data>
+  <data name="radioButtonTwo.Text">
+    <value>Dua player, tidak berbarengan</value>
+  </data>
+  <data name="radioButtonTwoSim.Text">
+    <value>Dua player, berbarengan</value>
+  </data>
+  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
+    <value>Gunakan kombinasi tombol untuk me-reset</value>
+  </data>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
+    <value>Simpan penataan ke NES Mini sekarang</value>
+  </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>Save-State Manager</value>
+  </data>
+  <data name="searchToolStripMenuItem.Text">
+    <value>Telusur</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Text">
+    <value>Pilih semua</value>
+  </data>
+  <data name="selectButtonCombinationToolStripMenuItem.Text">
+    <value>Pilih kombinasi tombol reset</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text">
+    <value>&amp;Penataan</value>
+  </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Server Telnet pada Telnet: //127.0.0.1:1023 (login: root)</value>
+  </data>
+  <data name="synchronizeToolStripMenuItem.Text">
+    <value>Sinkronkan</value>
+  </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>Ambil screenshot</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;Tools</value>
+  </data>
+  <data name="uninstallModulesToolStripMenuItem.Text">
+    <value>Copot modul ekstra</value>
+  </data>
+  <data name="uninstallToolStripMenuItem.Text">
+    <value>Copot</value>
+  </data>
+  <data name="unselectAllToolStripMenuItem.Text">
+    <value>Tidak pilih semuanya</value>
+  </data>
+  <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
+    <value>"Atas+A+B = Start" pada kontroler 2</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Text">
+    <value>Gunakan font yang diperpanjang</value>
+  </data>
+  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
+    <value>Gunakan X/Y pada Classic Controller sebagai autofire A/B</value>
+  </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Dump decrypted NAND-B partition</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Dump the whole NAND flash</value>
+  </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Select dump filename</value>
+  </data>
+</root>

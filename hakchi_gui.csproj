@@ -14,14 +14,37 @@
     <NoStdLib>False</NoStdLib>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>ftp://clusterrr.com/www/www/soft/hakchi2/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Background</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>false</MapFileExtensions>
+    <InstallUrl>http://clusterrr.com/soft/hakchi2/</InstallUrl>
+    <SupportUrl>http://clusterrr.com</SupportUrl>
+    <ProductName>hakchi2</ProductName>
+    <PublisherName>Alexey %27Cluster%27 Avdyukhin</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>index.html</WebPage>
+    <ApplicationRevision>11</ApplicationRevision>
+    <ApplicationVersion>2.0.18.11</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>Full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;COMPRESS</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;LIBUSBDOTNET WINDOWS_TESTING</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -31,7 +54,7 @@
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;LIBUSBDOTNET WINDOWS_TESTING</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -39,9 +62,7 @@
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup>
-    <NoWin32Manifest>True</NoWin32Manifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
@@ -51,8 +72,34 @@
     <RegisterForComInterop>False</RegisterForComInterop>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>1D05715BF83320949FC1BAC8462308051A0C0F04</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>cluster_cert.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -73,6 +120,8 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Apps\AppTypeCollection.cs" />
+    <Compile Include="Apps\ArcadeGame.cs" />
+    <Compile Include="Apps\Atari2600Game.cs" />
     <Compile Include="Apps\Sega32XGame.cs" />
     <Compile Include="Apps\GenesisGame.cs" />
     <Compile Include="Apps\PceGame.cs" />
@@ -84,7 +133,26 @@
     <Compile Include="Apps\SmsGame.cs" />
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\NesUGame.cs" />
+    <Compile Include="Clovershell\ClovershellConnection.cs" />
+    <Compile Include="Clovershell\ClovershellException.cs" />
+    <Compile Include="Clovershell\ExecConnection.cs" />
+    <Compile Include="Clovershell\ShellConnection.cs" />
     <Compile Include="ConfigIni.cs" />
+    <Compile Include="FileBrowserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileBrowserForm.Designer.cs">
+      <DependentUpon>FileBrowserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FtpServer\NesMiniFileSystemHandler.cs" />
+    <Compile Include="FtpServer\NesMiniAuthHandler.cs" />
+    <Compile Include="FtpServer\DebugLogHandler.cs" />
+    <Compile Include="FtpServer\FileSystemHelper.cs" />
+    <Compile Include="FtpServer\IAuthHandler.cs" />
+    <Compile Include="FtpServer\IFileSystemHandler.cs" />
+    <Compile Include="FtpServer\ILogHandler.cs" />
+    <Compile Include="FtpServer\Server.cs" />
+    <Compile Include="FtpServer\Session.cs" />
     <Compile Include="GameGenieCodeAddModForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,11 +166,167 @@
       <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GameGenieDataBase.cs" />
+    <Compile Include="ImagesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImagesForm.Designer.cs">
+      <DependentUpon>ImagesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LibWinUsb\Descriptors\ClassCodeType.cs" />
+    <Compile Include="LibWinUsb\Descriptors\DescriptorType.cs" />
+    <Compile Include="LibWinUsb\Descriptors\LangStringDescriptor.cs" />
+    <Compile Include="LibWinUsb\Descriptors\StringDescriptor.cs" />
+    <Compile Include="LibWinUsb\Descriptors\UsbConfigDescriptor.cs" />
+    <Compile Include="LibWinUsb\Descriptors\UsbDescriptor.cs" />
+    <Compile Include="LibWinUsb\Descriptors\UsbDeviceDescriptor.cs" />
+    <Compile Include="LibWinUsb\Descriptors\UsbEndpointDescriptor.cs" />
+    <Compile Include="LibWinUsb\Descriptors\UsbInterfaceDescriptor.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\DeviceNotifier.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\DeviceNotifyEventArgs.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\DeviceType.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\EventType.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\IDeviceNotifier.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Info\IPortNotifyInfo.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Info\IUsbDeviceNotifyInfo.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Info\IVolumeNotifyInfo.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Info\PortNotifyInfo.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Info\UsbDeviceNotifyInfo.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Info\VolumeNotifyInfo.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Internal\DevBroadcastDeviceinterface.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Internal\DevBroadcastHdr.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Internal\DevBroadcastPort.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Internal\DevBroadcastVolume.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Internal\DevNotifyNativeWindow.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Internal\SafeNotifyHandle.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Linux\LinuxDeviceNotifier.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Linux\LinuxDeviceNotifier.DeviceListPolling.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Linux\LinuxDeviceNotifier.DevMonitor.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Linux\LinuxDeviceNotifierMode.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Linux\LinuxDeviceNotifyEventArgs.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Linux\LinuxDevItem.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Linux\LinuxDevItemList.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\Linux\LinuxUsbDeviceNotifyInfo.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\WindowsDeviceNotifier.cs" />
+    <Compile Include="LibWinUsb\DeviceNotify\WindowsDeviceNotifyEventArgs.cs" />
+    <Compile Include="LibWinUsb\Info\UsbBaseInfo.cs" />
+    <Compile Include="LibWinUsb\Info\UsbConfigInfo.cs" />
+    <Compile Include="LibWinUsb\Info\UsbDeviceInfo.cs" />
+    <Compile Include="LibWinUsb\Info\UsbEndpointInfo.cs" />
+    <Compile Include="LibWinUsb\Info\UsbInterfaceInfo.cs" />
+    <Compile Include="LibWinUsb\Internal\Kernel32.cs" />
+    <Compile Include="LibWinUsb\Internal\OverlappedTransferContext.cs" />
+    <Compile Include="LibWinUsb\Internal\SafeOverlapped.cs" />
+    <Compile Include="LibWinUsb\Internal\SetupApi.cs" />
+    <Compile Include="LibWinUsb\Internal\TransferContextBase.cs" />
+    <Compile Include="LibWinUsb\Internal\UsbApiBase.cs" />
+    <Compile Include="LibWinUsb\Internal\UsbRegex\BaseRegSymbolicName.cs" />
+    <Compile Include="LibWinUsb\Internal\UsbRegex\NamedGroup.cs" />
+    <Compile Include="LibWinUsb\Internal\UsbRegex\RegHardwareID.cs" />
+    <Compile Include="LibWinUsb\Internal\UsbRegex\RegSymbolicName.cs" />
+    <Compile Include="LibWinUsb\IUsbDevice.cs" />
+    <Compile Include="LibWinUsb\IUsbInterface.cs" />
+    <Compile Include="LibWinUsb\LibUsb\Internal\LibUsbAPI.cs" />
+    <Compile Include="LibWinUsb\LibUsb\Internal\LibUsbDriverIO.cs" />
+    <Compile Include="LibWinUsb\LibUsb\Internal\LibUsbDriverIO_IOControlMessage.cs" />
+    <Compile Include="LibWinUsb\LibUsb\Internal\LibUsbIoCtl.cs" />
+    <Compile Include="LibWinUsb\LibUsb\Internal\LibUsbRequest.cs" />
+    <Compile Include="LibWinUsb\LibUsb\LibUsbDevice.cs" />
+    <Compile Include="LibWinUsb\LibUsb\LibUsbDeviceRegistryKeyRequest.cs" />
+    <Compile Include="LibWinUsb\LibUsb\LibUsbKernelType.cs" />
+    <Compile Include="LibWinUsb\LibUsb\LibUsbRegistry.cs" />
+    <Compile Include="LibWinUsb\Main\ControlEpLockType.cs" />
+    <Compile Include="LibWinUsb\Main\DataEpLockType.cs" />
+    <Compile Include="LibWinUsb\Main\DataReceivedEnabledChangedEventArgs.cs" />
+    <Compile Include="LibWinUsb\Main\DeviceLockType.cs" />
+    <Compile Include="LibWinUsb\Main\DevicePropertyType.cs" />
+    <Compile Include="LibWinUsb\Main\EndpointDataEventArgs.cs" />
+    <Compile Include="LibWinUsb\Main\EndpointType.cs" />
+    <Compile Include="LibWinUsb\Main\ErrorCode.cs" />
+    <Compile Include="LibWinUsb\Main\Helper.cs" />
+    <Compile Include="LibWinUsb\Main\LegacyUsbRegistry.cs" />
+    <Compile Include="LibWinUsb\Main\ReadEndpointID.cs" />
+    <Compile Include="LibWinUsb\Main\SafeContextHandle.cs" />
+    <Compile Include="LibWinUsb\Main\SetupApiRegistry.cs" />
+    <Compile Include="LibWinUsb\Main\SPDRP.cs" />
+    <Compile Include="LibWinUsb\Main\UsbConstants.cs" />
+    <Compile Include="LibWinUsb\Main\UsbCtrlFlags.cs" />
+    <Compile Include="LibWinUsb\Main\UsbDeviceFinder.cs" />
+    <Compile Include="LibWinUsb\Main\UsbEndpointBase.cs" />
+    <Compile Include="LibWinUsb\Main\UsbEndpointDirection.cs" />
+    <Compile Include="LibWinUsb\Main\UsbEndpointList.cs" />
+    <Compile Include="LibWinUsb\Main\UsbException.cs" />
+    <Compile Include="LibWinUsb\Main\UsbKernelVersion.cs" />
+    <Compile Include="LibWinUsb\Main\UsbLockStyle.cs" />
+    <Compile Include="LibWinUsb\Main\UsbRegDeviceList.cs" />
+    <Compile Include="LibWinUsb\Main\UsbRegistry.cs" />
+    <Compile Include="LibWinUsb\Main\UsbRequestRecipient.cs" />
+    <Compile Include="LibWinUsb\Main\UsbRequestType.cs" />
+    <Compile Include="LibWinUsb\Main\UsbSetupPacket.cs" />
+    <Compile Include="LibWinUsb\Main\UsbStandardRequest.cs" />
+    <Compile Include="LibWinUsb\Main\UsbStatusClodes.cs" />
+    <Compile Include="LibWinUsb\Main\UsbStream.cs" />
+    <Compile Include="LibWinUsb\Main\UsbSymbolicName.cs" />
+    <Compile Include="LibWinUsb\Main\UsbTransfer.cs" />
+    <Compile Include="LibWinUsb\Main\WriteEndpointID.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\CallbackDelegates.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Descriptors\MonoUsbAltInterfaceDescriptor.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Descriptors\MonoUsbConfigDescriptor.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Descriptors\MonoUsbDeviceDescriptor.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Descriptors\MonoUsbEndpointDescriptor.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Descriptors\MonoUsbInterface.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\MonoLibUsbApi.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\MonoUsbDevice.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\MonoUsbDeviceHandle.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\MonoUsbEndpointReader.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\MonoUsbEndpointWriter.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\MonoUsbError.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\MonoUsbEventHandler.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\MonoUsbSessionHandle.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Profile\AddRemoveEventArgs.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Profile\AddRemoveType.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Profile\MonoUsbConfigHandle.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Profile\MonoUsbProfile.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Profile\MonoUsbProfileHandle.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Profile\MonoUsbProfileHandleEnumerator.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Profile\MonoUsbProfileList.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Profile\MonoUsbProfileListHandle.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Profile\PollfdItem.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Transfer\Internal\libusb_control_setup.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Transfer\Internal\libusb_iso_packet_descriptor.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Transfer\Internal\libusb_transfer.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Transfer\MonoUsbControlSetup.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Transfer\MonoUsbControlSetupHandle.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Transfer\MonoUsbIsoPacket.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Transfer\MonoUsbTansferStatus.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Transfer\MonoUsbTransfer.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Transfer\MonoUsbTransferContext.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\Transfer\MonoUsbTransferFlags.cs" />
+    <Compile Include="LibWinUsb\MonoLibUsb\UnixNativeTimeval.cs" />
+    <Compile Include="LibWinUsb\UsbDevice.Common.cs" />
+    <Compile Include="LibWinUsb\UsbDevice.cs" />
+    <Compile Include="LibWinUsb\UsbDevice.Error.cs" />
+    <Compile Include="LibWinUsb\UsbDevice.OS.Specific.cs" />
+    <Compile Include="LibWinUsb\UsbEndpointReader.cs" />
+    <Compile Include="LibWinUsb\UsbEndpointWriter.cs" />
+    <Compile Include="LibWinUsb\UsbGlobals.cs" />
+    <Compile Include="LibWinUsb\WinUsb\DeviceInformationTypes.cs" />
+    <Compile Include="LibWinUsb\WinUsb\DeviceSpeedTypes.cs" />
+    <Compile Include="LibWinUsb\WinUsb\Internal\SafeWinUsbInterfaceHandle.cs" />
+    <Compile Include="LibWinUsb\WinUsb\Internal\WinUsbAPI.cs" />
+    <Compile Include="LibWinUsb\WinUsb\PipeInformation.cs" />
+    <Compile Include="LibWinUsb\WinUsb\PipePolicies.cs" />
+    <Compile Include="LibWinUsb\WinUsb\PipePolicyType.cs" />
+    <Compile Include="LibWinUsb\WinUsb\PowerPolicies.cs" />
+    <Compile Include="LibWinUsb\WinUsb\PowerPolicyType.cs" />
+    <Compile Include="LibWinUsb\WinUsb\WinUsbDevice.cs" />
+    <Compile Include="LibWinUsb\WinUsb\WinUsbRegistry.cs" />
     <Compile Include="MessageBoxManager.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="SaveStateManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaveStateManager.Designer.cs">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
     </Compile>
     <Compile Include="SelectModsForm.cs">
       <SubType>Form</SubType>
@@ -120,26 +344,6 @@
     <Compile Include="FelLib\Fel.cs" />
     <Compile Include="FelLib\FelException.cs" />
     <Compile Include="FelLib\FelParseException.cs" />
-    <Compile Include="FelLib\WinUSBNet\API\APIException.cs" />
-    <Compile Include="FelLib\WinUSBNet\API\DeviceDetails.cs" />
-    <Compile Include="FelLib\WinUSBNet\API\DeviceManagement.cs" />
-    <Compile Include="FelLib\WinUSBNet\API\DeviceManagementAPI.cs" />
-    <Compile Include="FelLib\WinUSBNet\API\FileAPI.cs" />
-    <Compile Include="FelLib\WinUSBNet\API\WinUSBDevice.cs" />
-    <Compile Include="FelLib\WinUSBNet\API\WinUSBDeviceAPI.cs" />
-    <Compile Include="FelLib\WinUSBNet\DeviceNotifyHook.cs" />
-    <Compile Include="FelLib\WinUSBNet\USB.cs" />
-    <Compile Include="FelLib\WinUSBNet\USBAsyncResult.cs" />
-    <Compile Include="FelLib\WinUSBNet\USBDevice.cs" />
-    <Compile Include="FelLib\WinUSBNet\USBDeviceDescriptor.cs" />
-    <Compile Include="FelLib\WinUSBNet\USBDeviceInfo.cs" />
-    <Compile Include="FelLib\WinUSBNet\USBException.cs" />
-    <Compile Include="FelLib\WinUSBNet\USBInterface.cs" />
-    <Compile Include="FelLib\WinUSBNet\USBInterfaceCollection.cs" />
-    <Compile Include="FelLib\WinUSBNet\USBNotifier.cs" />
-    <Compile Include="FelLib\WinUSBNet\USBPipe.cs" />
-    <Compile Include="FelLib\WinUSBNet\USBPipeCollection.cs" />
-    <Compile Include="FelLib\WinUSBNet\USBPipePolicy.cs" />
     <Compile Include="GameGeniePatcher.cs" />
     <Compile Include="ImageGooglerForm.cs">
       <SubType>Form</SubType>
@@ -163,11 +367,6 @@
     <Compile Include="Apps\NesMiniApplication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.ru-RU.Designer.cs">
-      <DependentUpon>Resources.ru-RU.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="SearchForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -234,20 +433,28 @@
     <Compile Include="StringInputForm.Designer.cs">
       <DependentUpon>StringInputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TarStream.cs" />
     <Compile Include="TaskbarProgress.cs" />
-    <Compile Include="TreeContructorForm.cs">
+    <Compile Include="FoldersManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TreeContructorForm.Designer.cs">
-      <DependentUpon>TreeContructorForm.cs</DependentUpon>
+    <Compile Include="FoldersManagerForm.Designer.cs">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TrackableFileStream.cs" />
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
-    <Compile Include="WaitingForm.cs">
+    <Compile Include="WaitingClovershellForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WaitingForm.Designer.cs">
-      <DependentUpon>WaitingForm.cs</DependentUpon>
+    <Compile Include="WaitingClovershellForm.Designer.cs">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WaitingFelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WaitingFelForm.Designer.cs">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WorkerForm.cs">
       <SubType>Form</SubType>
@@ -258,7 +465,112 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FileBrowserForm.resx">
+      <DependentUpon>FileBrowserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.bg-BG.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.ca-ES.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.da-DK.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.de-De.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.el-GR.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.en-GB.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.es-AR.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.es-ES.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.fi-FI.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.fr-FR.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.id-ID.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.it-IT.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.nl.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.pt-PT.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.sk-SK.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.sv-SE.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.uk-UA.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.zh-CHS.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.zh-CHT.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.zh-TW.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.bg-BG.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.ca-ES.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.da-DK.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.de-DE.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.el-GR.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.en-GB.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.es-AR.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.es-ES.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.fi-FI.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.fr-FR.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.id-ID.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.it-IT.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.nl.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeAddModForm.pl-PL.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.pt-PT.resx">
       <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeAddModForm.resx">
@@ -267,7 +579,67 @@
     <EmbeddedResource Include="GameGenieCodeAddModForm.ru-RU.resx">
       <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.sk-SK.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.sv-SE.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.uk-UA.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.zh-CHS.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.zh-CHT.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.zh-TW.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.bg-BG.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.ca-ES.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.da-DK.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.de-DE.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.el-GR.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.en-GB.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.es-AR.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.es-ES.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.fi-FI.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.fr-FR.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.id-ID.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.it-IT.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.nl.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeForm.pl-PL.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.pt-PT.resx">
       <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeForm.resx">
@@ -276,10 +648,139 @@
     <EmbeddedResource Include="GameGenieCodeForm.ru-RU.resx">
       <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.sk-SK.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.sv-SE.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.uk-UA.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.zh-CHS.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.zh-CHT.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.zh-TW.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.bg-BG.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.ca-ES.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.da-DK.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.de-DE.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.el-GR.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.en-GB.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.es-AR.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.es-ES.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.fi-FI.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.fr-FR.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.id-ID.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.it-IT.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.nl.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.pl-PL.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.pt-PT.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageGooglerForm.resx">
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.ru-RU.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.sk-SK.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.sv-SE.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.uk-UA.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.zh-CHS.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.zh-CHT.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.zh-TW.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImagesForm.resx">
+      <DependentUpon>ImagesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.bg-BG.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.ca-ES.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.da-DK.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.de-DE.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.el-GR.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.en-GB.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.es-AR.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.es-ES.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.fi-FI.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.fr-FR.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.id-ID.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.it-IT.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.nl.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.pl-PL.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.pt-PT.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
@@ -290,21 +791,361 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.sk-SK.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.sv-SE.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.uk-UA.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.zh-CHS.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.zh-CHT.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.zh-TW.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.bg-BG.resx" />
+    <EmbeddedResource Include="Properties\Resources.ca-ES.resx" />
+    <EmbeddedResource Include="Properties\Resources.da-DK.resx" />
+    <EmbeddedResource Include="Properties\Resources.de-DE.resx" />
+    <EmbeddedResource Include="Properties\Resources.el-GR.resx" />
+    <EmbeddedResource Include="Properties\Resources.en-GB.resx" />
+    <EmbeddedResource Include="Properties\Resources.es-AR.resx" />
+    <EmbeddedResource Include="Properties\Resources.es-ES.resx" />
+    <EmbeddedResource Include="Properties\Resources.fi-FI.resx" />
+    <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
+    <EmbeddedResource Include="Properties\Resources.id-ID.resx" />
+    <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
+    <EmbeddedResource Include="Properties\Resources.nl.resx" />
+    <EmbeddedResource Include="Properties\Resources.pl-PL.resx" />
+    <EmbeddedResource Include="Properties\Resources.pt-PT.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ru-RU.resx" />
+    <EmbeddedResource Include="Properties\Resources.sk-SK.resx" />
+    <EmbeddedResource Include="Properties\Resources.sv-SE.resx" />
+    <EmbeddedResource Include="Properties\Resources.uk-UA.resx" />
+    <EmbeddedResource Include="Properties\Resources.zh-CHS.resx" />
+    <EmbeddedResource Include="Properties\Resources.zh-CHT.resx" />
+    <EmbeddedResource Include="Properties\Resources.zh-TW.resx" />
+    <EmbeddedResource Include="SaveStateManager.bg-BG.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.ca-ES.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.da-DK.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.de-DE.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.el-GR.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.en-GB.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.es-AR.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.es-ES.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.fi-FI.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.fr-FR.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.id-ID.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.it-IT.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.nl.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.pl-PL.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.pt-PT.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.ru-RU.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.sk-SK.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.sv-SE.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.uk-UA.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.zh-CHS.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.zh-CHT.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.zh-TW.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.bg-BG.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.ca-ES.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.da-DK.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.de-DE.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.el-GR.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.en-GB.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.es-AR.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.es-ES.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.fi-FI.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.fr-FR.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.id-ID.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.it-IT.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.nl.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.pt-PT.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.sk-SK.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.sv-SE.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.uk-UA.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.zh-CHS.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.zh-CHT.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.zh-TW.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.bg-BG.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.ca-ES.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.da-DK.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.de-DE.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.el-GR.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.en-GB.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.es-AR.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.es-ES.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.fi-FI.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.fr-FR.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.id-ID.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.it-IT.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.nl.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.pt-PT.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.sk-SK.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.sv-SE.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.uk-UA.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.zh-CHS.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.zh-CHT.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectButtonsForm.zh-TW.resx">
+      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.bg-BG.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.ca-ES.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.da-DK.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.de-DE.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.el-GR.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.en-GB.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.es-AR.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.es-ES.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.fi-FI.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.fr-FR.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.id-ID.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.it-IT.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.nl.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.pt-PT.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.sk-SK.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.sv-SE.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.uk-UA.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.zh-CHS.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.zh-CHT.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.zh-TW.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.bg-BG.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.ca-ES.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.da-DK.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.de-DE.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.el-GR.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.en-GB.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.es-AR.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.es-ES.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.fi-FI.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.fr-FR.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.id-ID.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.it-IT.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.nl.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.pt-PT.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.sk-SK.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.sv-SE.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.uk-UA.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.zh-CHS.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.zh-CHT.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.zh-TW.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectModsForm.resx">
       <DependentUpon>SelectModsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.pl-PL.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.ru-RU.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.ru-RU.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchForm.pl-PL.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
@@ -345,192 +1186,377 @@
     <EmbeddedResource Include="StringInputForm.resx">
       <DependentUpon>StringInputForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TreeContructorForm.pl-PL.resx">
-      <DependentUpon>TreeContructorForm.cs</DependentUpon>
+    <EmbeddedResource Include="FoldersManagerForm.pl-PL.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TreeContructorForm.resx">
-      <DependentUpon>TreeContructorForm.cs</DependentUpon>
+    <EmbeddedResource Include="FoldersManagerForm.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TreeContructorForm.ru-RU.resx">
-      <DependentUpon>TreeContructorForm.cs</DependentUpon>
+    <EmbeddedResource Include="FoldersManagerForm.ru-RU.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WaitingForm.pl-PL.resx">
-      <DependentUpon>WaitingForm.cs</DependentUpon>
+    <EmbeddedResource Include="WaitingClovershellForm.bg-BG.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WaitingForm.resx">
-      <DependentUpon>WaitingForm.cs</DependentUpon>
+    <EmbeddedResource Include="WaitingClovershellForm.ca-ES.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WaitingForm.ru-RU.resx">
-      <DependentUpon>WaitingForm.cs</DependentUpon>
+    <EmbeddedResource Include="WaitingClovershellForm.da-DK.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.de-DE.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.el-GR.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.en-GB.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.es-AR.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.es-ES.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.fi-FI.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.fr-FR.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.id-ID.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.it-IT.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.nl.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.pl-PL.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.pt-PT.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.ru-RU.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.sk-SK.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.sv-SE.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.uk-UA.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.zh-CHS.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.zh-CHT.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.zh-TW.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.bg-BG.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.ca-ES.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.da-DK.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.de-DE.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.el-GR.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.en-GB.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.es-AR.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.es-ES.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.fi-FI.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.fr-FR.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.id-ID.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.it-IT.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.nl.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.pl-PL.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.pt-PT.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.ru-RU.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.sk-SK.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.sv-SE.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.uk-UA.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.zh-CHS.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.zh-CHT.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.zh-TW.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkerForm.resx">
       <DependentUpon>WorkerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="art\README.txt">
+    <Content Include="art\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="data\fes1.bin">
+    </Content>
+    <Content Include="data\fes1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="data\uboot.bin">
+    </Content>
+    <Content Include="data\splash.gz">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="LICENSE">
+    </Content>
+    <Content Include="data\uboot.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\hmods\clovercon.hmod">
+    </Content>
+    <EmbeddedResource Include="images\flags\ar.png" />
+    <EmbeddedResource Include="images\flags\bg.png" />
+    <EmbeddedResource Include="images\flags\de.png" />
+    <EmbeddedResource Include="images\flags\es.png" />
+    <EmbeddedResource Include="images\flags\fr.png" />
+    <EmbeddedResource Include="images\flags\gr.png" />
+    <EmbeddedResource Include="images\flags\it.png" />
+    <EmbeddedResource Include="images\flags\nl.png" />
+    <EmbeddedResource Include="images\flags\pl.png" />
+    <EmbeddedResource Include="images\flags\pt.png" />
+    <EmbeddedResource Include="images\flags\ru.png" />
+    <EmbeddedResource Include="images\flags\se.png" />
+    <EmbeddedResource Include="images\flags\sk.png" />
+    <EmbeddedResource Include="images\flags\us.png" />
+    <EmbeddedResource Include="images\flags\fi.png" />
+    <EmbeddedResource Include="images\flags\id.png" />
+    <EmbeddedResource Include="images\flags\gb.png" />
+    <EmbeddedResource Include="images\flags\cn.png" />
+    <EmbeddedResource Include="images\flags\tw.png" />
+    <EmbeddedResource Include="images\flags\ua.png" />
+    <Content Include="images\flags\dk.png" />
+    <Content Include="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\hmods\fontfix.hmod">
+    </Content>
+    <Content Include="mods\hmods\clovercon.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\bin\busybox">
+    </Content>
+    <Content Include="mods\hmods\clovershell.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\bin\rsync">
+    </Content>
+    <Content Include="mods\hmods\copyleft.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\config">
+    </Content>
+    <Content Include="mods\hmods\fontfix.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\init">
+    </Content>
+    <Content Include="mods\mod_uninstall\bin\busybox">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\bin\chmenu">
+    </Content>
+    <Content Include="mods\mod_uninstall\hakchi\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\bin\clover-kachikachi-wr">
+    </Content>
+    <Content Include="mods\mod_uninstall\sbin\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\inittab">
+    </Content>
+    <Content Include="patches\1dac6208-Snow Bros. %28U%29 [!] - NES Mini patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit">
+    </Content>
+    <Content Include="patches\279710dc-Battletoads %28U%29 [bugfix].ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0000_defines">
+    </Content>
+    <Content Include="patches\2caae01c-Felix the cat noDim hack %28for U [!] version%29.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0010_functions">
+    </Content>
+    <Content Include="patches\46fd7843-Splatter House - Wanpaku Graffiti %28J%29 [!] - MMC3 patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p0000_config">
+    </Content>
+    <Content Include="patches\4ec0fecc-Ufouria - The Saga %28E%29 [NTSC hack].ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7000_preinit">
+    </Content>
+    <Content Include="patches\61179bfa-Jungle Book %28no dim%29 .ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7070_firmware">
+    </Content>
+    <Content Include="patches\6dc28b5a-Bio Miracle Bokutte Upa - MMC5 patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7070_preinit">
+    </Content>
+    <Content Include="patches\75b3eb37-Saiyuuki World 2 - MMC3 patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7100_preinit">
+    </Content>
+    <Content Include="patches\8889c564-Immortal, The %28U%29 [!] %28bright hack%29.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pa100_games">
+    </Content>
+    <Content Include="patches\96087988-RoboCop 3 %28U%29 [!] - NES Mini patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pffff_bootstock">
+    </Content>
+    <Content Include="patches\9ab274ae-Cheetahmen II - MMC1 patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pffff_config">
+    </Content>
+    <Content Include="patches\ac8dcdea-Cybernoid - The Fighting Machine %28U%29 [!] %28fix%29.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\profile">
+    </Content>
+    <Content Include="patches\ba51ac6f-Holy Diver %28J%29 - MMC1 patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\script\backup">
+    </Content>
+    <Content Include="patches\c4b6ed3c-Bill &amp; Ted%27s Excellent Video Game Adventure %28U%29 - NES Mini patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\script\base">
+    </Content>
+    <Content Include="patches\ca033b3a-Dragon%27s Lair %28U%29 [!] %28no dim%29.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\script\games">
+    </Content>
+    <Content Include="patches\d054ffb0-Startropics II - Zoda%27s Revenge %28U%29 [!] - MMC3 patch.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\script\install">
+    </Content>
+    <Content Include="patches\f6898a59-James Bond Jr %28no dim%29.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\script\package">
+    </Content>
+    <Content Include="user_mods\music_hack.hmod\install">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\hakchi\script\transfer">
+    </Content>
+    <Content Include="user_mods\music_hack.hmod\pb223_music_hack">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_hakchi\sbin\init">
+    </Content>
+    <Content Include="user_mods\music_hack.hmod\uninstall">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\bin\busybox">
+    </Content>
+    <Content Include="user_mods\password.hmod\install">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\hakchi\init">
+    </Content>
+    <Content Include="user_mods\password.hmod\password.raw.gz">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\mod_uninstall\sbin\init">
+    </Content>
+    <Content Include="user_mods\password.hmod\password_fail.raw.gz">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\1dac6208-Snow Bros. %28U%29 [!] - NES Mini patch.ips">
+    </Content>
+    <Content Include="user_mods\password.hmod\password_ok.raw.gz">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\279710dc-Battletoads %28U%29 [bugfix].ips">
+    </Content>
+    <Content Include="user_mods\password.hmod\S810password">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\2caae01c-Felix the cat noDim hack %28for U [!] version%29.ips">
+    </Content>
+    <Content Include="user_mods\password.hmod\uninstall">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\46fd7843-Splatter House - Wanpaku Graffiti %28J%29 [!] - MMC3 patch.ips">
+    </Content>
+    <Content Include="user_mods\remove_thumbnails.hmod\install">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\4ec0fecc-Ufouria - The Saga %28E%29 [NTSC hack].ips">
+    </Content>
+    <Content Include="user_mods\remove_thumbnails.hmod\uninstall">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\61179bfa-Jungle Book %28no dim%29 .ips">
+    </Content>
+    <None Include="cluster_cert.pfx" />
+    <Content Include="mods\mod_hakchi\bin\busybox">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\6dc28b5a-Bio Miracle Bokutte Upa - MMC5 patch.ips">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\75b3eb37-Saiyuuki World 2 - MMC3 patch.ips">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\8889c564-Immortal, The %28U%29 [!] %28bright hack%29.ips">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\chmenu">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\96087988-RoboCop 3 %28U%29 [!] - NES Mini patch.ips">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\clover-kachikachi-wr">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\9ab274ae-Cheetahmen II - MMC1 patch.ips">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S78clvcon">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\ac8dcdea-Cybernoid - The Fighting Machine %28U%29 [!] %28fix%29.ips">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\inittab">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\ba51ac6f-Holy Diver %28J%29 - MMC1 patch.ips">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\c4b6ed3c-Bill &amp; Ted%27s Excellent Video Game Adventure %28U%29 - NES Mini patch.ips">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0000_defines">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\ca033b3a-Dragon%27s Lair %28U%29 [!] %28no dim%29.ips">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0010_functions">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\d054ffb0-Startropics II - Zoda%27s Revenge %28U%29 [!] - MMC3 patch.ips">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p0000_config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="patches\f6898a59-James Bond Jr %28no dim%29.ips">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7000_preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\music_hack.hmod\install">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7070_firmware">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\music_hack.hmod\pb223_music_hack">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7100_preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\music_hack.hmod\uninstall">
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pa100_games">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pffff_config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\profile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\backup">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\base">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\games">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\install">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\package">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\removed">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\transfer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\sbin\init">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\bin\rsync">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\GameGenieDB.xml">
@@ -540,6 +1566,27 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="driver\nesmini_driver.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\2600.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\2600jr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\2600_darth_vader.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\32x_genesis2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\32x_megadrive2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\32x_megadrive2_jp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\arcade.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="folder_images\folder.png">
@@ -605,6 +1652,15 @@
     <Content Include="folder_images\folder_s.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="folder_images\folder_system_2600.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_32x.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_arcade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="folder_images\folder_system_famicom.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -623,7 +1679,13 @@
     <Content Include="folder_images\folder_system_genesis.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="folder_images\folder_system_gg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="folder_images\folder_system_n64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\folder_system_neogeo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="folder_images\folder_system_nes.png">
@@ -665,69 +1727,164 @@
     <Content Include="folder_images\folder_z.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\app_sm.png" />
-    <Content Include="images\app_sm_tr.png" />
-    <Content Include="images\blank_app.png" />
-    <Content Include="images\blank_gb.png" />
-    <Content Include="images\blank_gba.png" />
-    <Content Include="images\blank_gbc.png" />
-    <Content Include="images\blank_genesis.png" />
-    <Content Include="images\blank_n64.png" />
-    <Content Include="images\blank_nes.png" />
-    <Content Include="images\blank_pce.png" />
-    <Content Include="images\blank_sms.png" />
-    <Content Include="images\blank_snes-eu-jp.png" />
-    <Content Include="images\blank_snes-us.png" />
-    <Content Include="images\gba_sm.png" />
-    <Content Include="images\gba_sm_tr.png" />
-    <Content Include="images\gbc_sm.png" />
-    <Content Include="images\gbc_sm_tr.png" />
-    <Content Include="images\gb_sm.png" />
-    <Content Include="images\gb_sm_tr.png" />
-    <Content Include="images\genesis_sm.png" />
-    <Content Include="images\genesis_sm_tr.png" />
-    <Content Include="images\n64_sm.png" />
-    <Content Include="images\n64_sm_tr.png" />
-    <Content Include="images\nes_sm_tr.png" />
-    <Content Include="images\famicom_sm.png" />
-    <Content Include="images\famicom_sm_tr.png" />
-    <Content Include="images\fds_sm.png" />
-    <Content Include="images\fds_sm_tr.png" />
-    <Content Include="images\folder_sm_tr.png" />
-    <Content Include="images\original_sm_tr.png" />
-    <Content Include="images\pce_sm.png" />
-    <Content Include="images\pce_sm_tr.png" />
-    <Content Include="images\sms_sm.png" />
-    <Content Include="images\sms_sm_tr.png" />
-    <Content Include="images\snes-eu-jp_sm.png" />
-    <Content Include="images\snes-eu-jp_sm_tr.png" />
-    <Content Include="images\snes-us_sm.png" />
-    <Content Include="images\snes-us_sm_tr.png" />
+    <Content Include="folder_images\gamegear.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gba.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gbc_green.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gbc_purple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gbc_red.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gbc_turquoise.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gbc_yellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gb_dmg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gb_play_it_loud_black.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gb_play_it_loud_blue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gb_play_it_loud_green.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gb_play_it_loud_red.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gb_play_it_loud_white.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\gb_play_it_loud_yellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\genesis2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\megadrive2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\megadrive2_jp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\n64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\neogeo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\nes.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\pce.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\sms.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\snes_eu_jp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="folder_images\snes_usa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="images\2600_sm.png" />
+    <EmbeddedResource Include="images\2600_sm_tr.png" />
+    <EmbeddedResource Include="images\32x_sm.png" />
+    <EmbeddedResource Include="images\32x_sm_tr.png" />
+    <EmbeddedResource Include="images\app_sm.png" />
+    <EmbeddedResource Include="images\app_sm_tr.png" />
+    <EmbeddedResource Include="images\arcade_sm.png" />
+    <EmbeddedResource Include="images\arcade_sm_tr.png" />
+    <EmbeddedResource Include="images\blank_2600.png" />
+    <EmbeddedResource Include="images\blank_32x.png" />
+    <EmbeddedResource Include="images\blank_app.png" />
+    <EmbeddedResource Include="images\blank_arcade.png" />
+    <EmbeddedResource Include="images\blank_gb.png" />
+    <EmbeddedResource Include="images\blank_gba.png" />
+    <EmbeddedResource Include="images\blank_gbc.png" />
+    <EmbeddedResource Include="images\blank_genesis.png" />
+    <EmbeddedResource Include="images\blank_gg.png" />
+    <EmbeddedResource Include="images\blank_n64.png" />
+    <EmbeddedResource Include="images\blank_neogeo.png" />
+    <EmbeddedResource Include="images\blank_nes.png" />
+    <EmbeddedResource Include="images\blank_pce.png" />
+    <EmbeddedResource Include="images\blank_sms.png" />
+    <EmbeddedResource Include="images\blank_snes-eu-jp.png" />
+    <EmbeddedResource Include="images\blank_snes-us.png" />
+    <EmbeddedResource Include="images\gba_sm.png" />
+    <EmbeddedResource Include="images\gba_sm_tr.png" />
+    <EmbeddedResource Include="images\gbc_sm.png" />
+    <EmbeddedResource Include="images\gbc_sm_tr.png" />
+    <EmbeddedResource Include="images\gb_sm.png" />
+    <EmbeddedResource Include="images\gb_sm_tr.png" />
+    <EmbeddedResource Include="images\genesis_sm.png" />
+    <EmbeddedResource Include="images\genesis_sm_tr.png" />
+    <EmbeddedResource Include="images\gg_sm.png" />
+    <EmbeddedResource Include="images\gg_sm_tr.png" />
+    <EmbeddedResource Include="images\green.png" />
+    <EmbeddedResource Include="images\n64_sm.png" />
+    <EmbeddedResource Include="images\n64_sm_tr.png" />
+    <EmbeddedResource Include="images\neogeo_sm.png" />
+    <EmbeddedResource Include="images\neogeo_sm_tr.png" />
+    <EmbeddedResource Include="images\nes_sm_tr.png" />
+    <EmbeddedResource Include="images\famicom_sm.png" />
+    <EmbeddedResource Include="images\famicom_sm_tr.png" />
+    <EmbeddedResource Include="images\fds_sm.png" />
+    <EmbeddedResource Include="images\fds_sm_tr.png" />
+    <EmbeddedResource Include="images\folder_sm_tr.png" />
+    <EmbeddedResource Include="images\original_sm_tr.png" />
+    <EmbeddedResource Include="images\pce_sm.png" />
+    <EmbeddedResource Include="images\pce_sm_tr.png" />
+    <EmbeddedResource Include="images\red.png" />
+    <EmbeddedResource Include="images\sms_sm.png" />
+    <EmbeddedResource Include="images\sms_sm_tr.png" />
+    <EmbeddedResource Include="images\snes-eu-jp_sm.png" />
+    <EmbeddedResource Include="images\snes-eu-jp_sm_tr.png" />
+    <EmbeddedResource Include="images\snes-us_sm.png" />
+    <EmbeddedResource Include="images\snes-us_sm_tr.png" />
     <Content Include="user_mods\music_hack.hmod\music.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="user_mods\music_hack.hmod\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="user_mods\password.hmod\readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="user_mods\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="folder_images\README.txt">
+    <Content Include="user_mods\remove_thumbnails.hmod\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <Content Include="icon.ico" />
+    </Content>
+    <Content Include="folder_images\README.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="icon.ico" />
     <Content Include="folder_images\folder_back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\blank_fds.png" />
-    <Content Include="images\blank_jp.png" />
-    <Content Include="images\nes_sm.png" />
-    <Content Include="images\folder_sm.png" />
-    <Content Include="images\gamepad.png" />
-    <Content Include="images\original_sm.png" />
-    <None Include="patches\README.txt">
+    <EmbeddedResource Include="images\blank_fds.png" />
+    <EmbeddedResource Include="images\blank_jp.png" />
+    <EmbeddedResource Include="images\nes_sm.png" />
+    <EmbeddedResource Include="images\folder_sm.png" />
+    <EmbeddedResource Include="images\gamepad.png" />
+    <EmbeddedResource Include="images\original_sm.png" />
+    <Content Include="patches\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <Content Include="tools\7z.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -766,15 +1923,58 @@
     <Content Include="tools\unpackbootimg.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="tools\upx.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="data\GameGenieDB.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="data\nescarts.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>if exist languages rd /S /Q languages
+md languages
+for /D %25%25i in (*.*) do if exist %25%25i\hakchi.resources.dll move /Y %25%25i languages\%25%25i
+
+rem del *.application
+rem del *.manifest</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

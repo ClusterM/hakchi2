@@ -6735,6 +6735,11 @@
   <game code="CLV-H-EISTB" name="Sunday Funday: The Ride" crc="5B16A3C8">
     <gamegenie code="ESNNUZEY" description="Enable level skip (Press B then Select)" />
   </game>
+  <game code="CLV-H-WMPJX" name="Super Mario Bros. 3" crc="A0B0B742">
+    <gamegenie code="KKKZSPIU" description="Enable Debug Mode" />
+    <gamegenie code="SLXPLOVS" description="Infinite lives for Mario and Luigi" />
+    <gamegenie code="YPXXLVGE" description="Mario (not Luigi) can re-use items again and again" />
+  </game>  
   <game code="CLV-H-IYAOH" name="Super Pitfall" crc="979C5314">
     <gamegenie code="SZKSASVK" description="Infinite lives - 1P game" />
     <gamegenie code="SXESTSVK" description="Infinite lives - P1" />

@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddingGames">
+    <value>Procesando juegos, por favor, espera...</value>
+  </data>
+  <data name="AllFiles">
+    <value>Todos los archivos</value>
+  </data>
+  <data name="AreYouSure">
+    <value>¿Estás seguro?</value>
+  </data>
+  <data name="AutofillResult">
+    <value>Datos introducidos automáticamente para {0} juegos</value>
+  </data>
+  <data name="AutofireHelp1">
+    <value>Mantén presionado Select+A/B durante un segundo para activar/desactivar Autofire A/B</value>
+  </data>
+  <data name="BuildingCustom">
+    <value>Creando la imagen del custom kernel</value>
+  </data>
+  <data name="BuildingFolders">
+    <value>Creando la estructura de las carpetas...</value>
+  </data>
+  <data name="Congratulations">
+    <value>¡Enhorabuena!</value>
+  </data>
+  <data name="CustomKernel">
+    <value>Custom kernel</value>
+  </data>
+  <data name="CustomKernelQ">
+    <value>¿Quieres flashear el custom kernel?</value>
+  </data>
+  <data name="CustomWarning">
+    <value>Ahora tienes que flashear el custom kernel. Esta acción sólo es necesaria realizarla una vez. ¿Quieres continuar?</value>
+  </data>
+  <data name="Default30games">
+    <value>30 juegos originales</value>
+  </data>
+  <data name="DeleteElement">
+    <value>¿Quieres eliminar "{0}"?</value>
+  </data>
+  <data name="DeleteElements">
+    <value>¿Quieres eliminar {0} ROM(s)?</value>
+  </data>
+  <data name="DeleteGame">
+    <value>¿Quieres eliminar el juego "{0}"?</value>
+  </data>
+  <data name="DeletePreset">
+    <value>¿Quieres eliminar la lista "{0}"?</value>
+  </data>
+  <data name="DeleteSavesQ">
+    <value>¿Quieres eliminar los puntos de suspensión seleccionados?</value>
+  </data>
+  <data name="DoYouWantCancel">
+    <value>¿Quieres cancelar la operación actual?</value>
+  </data>
+  <data name="DoYouWantToContinue">
+    <value>¿Quieres continuar?</value>
+  </data>
+  <data name="Donate">
+    <value>Si te gusta el proyecto hakchi2, puedes realizarme una donación. Puedes encontrar mi PayPal en la sección "Acerca de..."</value>
+  </data>
+  <data name="Done">
+    <value>El proceso se ha realizado correctamente</value>
+  </data>
+  <data name="DoneYouCanUpload">
+    <value>Ya puedes añadir juegos a la NES Mini</value>
+  </data>
+  <data name="DownloadAllCoversTitle">
+    <value>Descargando carátulas para todos los juegos</value>
+  </data>
+  <data name="DumpKernelQ">
+    <value>¿Quieres volcar el kernel?</value>
+  </data>
+  <data name="DumpingKernel">
+    <value>Volcando el kernel...</value>
+  </data>
+  <data name="Error">
+    <value>Error</value>
+  </data>
+  <data name="ExecutingCommand">
+    <value>Ejecutando el comando:</value>
+  </data>
+  <data name="ExtraArgsInfo">
+    <value>Puedes añadir línea de comando globales que se aplicarán a todos los juegos, incluyendo los 30 originales. (Sólo para expertos)</value>
+  </data>
+  <data name="ExtraArgsTitle">
+    <value>Línea de comando extra</value>
+  </data>
+  <data name="FirstRun">
+    <value>¡Hola! Muchas gracias por usar hakchi2. Este programa es muy fácil de usar, sólo tienes que hacer click en "Añadir más juegos", seleccionar algunas ROMs, presionar "Sincronizar los juegos seleccionados con NES Mini " y seguir las instrucciones</value>
+  </data>
+  <data name="FlasingCustom">
+    <value>Flasheando el custom kernel...</value>
+  </data>
+  <data name="FlasingOriginal">
+    <value>Flasheando el kernel original...</value>
+  </data>
+  <data name="FolderContent">
+    <value>El contenido eliminado se moverá a la papelera de reciclaje, puedes eliminar esta carpeta permanentemente o mover los juegos a otras carpetas</value>
+  </data>
+  <data name="FolderNameBack">
+    <value>Atrás</value>
+  </data>
+  <data name="FolderNameMoreGames">
+    <value>Más juegos...</value>
+  </data>
+  <data name="FolderNameNewFolder">
+    <value>Nueva carpeta</value>
+  </data>
+  <data name="FolderNameOriginalGames">
+    <value>30 juegos originales</value>
+  </data>
+  <data name="FolderNameTrashBin">
+    <value>Papelera de reciclaje</value>
+  </data>
+  <data name="FolderNameUnsorted">
+    <value>Sin clasificar</value>
+  </data>
+  <data name="FolderStatistics">
+    <value>La carpeta "{0}" contiene {1} ROM(s)</value>
+  </data>
+  <data name="FoldersSaveQ">
+    <value>¿Quieres guardar esta estructura de carpetas?</value>
+  </data>
+  <data name="FourScreenNotSupported">
+    <value>{0} usa el modo de four-screen (el juego tiene memoria VRAM adicional en el cartucho), y esta función no es compatible con la NES Mini, es probable que no inicie con el emulador predeterminado, pero debería funcionar si tienes un módulo extra instalado de otro emulador. ¿Quieres añadir este juego?</value>
+  </data>
+  <data name="GGCodeDelete">
+    <value>¿Quieres eliminar el código "{0}"?</value>
+  </data>
+  <data name="GGCodeEmpty">
+    <value>Tienes que escribir un código</value>
+  </data>
+  <data name="GGCodeExists">
+    <value>Este código ya existe. ¿Quieres editarlo?</value>
+  </data>
+  <data name="GGDescriptionEmpty">
+    <value>Tienes que escribir una descripción</value>
+  </data>
+  <data name="GameGenieFormatError">
+    <value>Código Game Genie no válido "{0}" para el juego "{1}"</value>
+  </data>
+  <data name="GameGenieNotFound">
+    <value>No se puede aplicar el código Game Genie "{0}" al juego "{1}" - valor no encontrado. Es posible que este código sea para otro juego</value>
+  </data>
+  <data name="GamesAndApps">
+    <value>Juegos y aplicaciones</value>
+  </data>
+  <data name="GamesSelected">
+    <value>juego(s) seleccionados</value>
+  </data>
+  <data name="GooglingFor">
+    <value>Buscando en Google</value>
+  </data>
+  <data name="Hello">
+    <value>Hola</value>
+  </data>
+  <data name="Images">
+    <value>Imágenes</value>
+  </data>
+  <data name="InputPreset">
+    <value>Escribe un nombre para la lista de juegos que tienes seleccionados actualmente</value>
+  </data>
+  <data name="InstallingMods">
+    <value>Instalando módulos...</value>
+  </data>
+  <data name="InvalidKernelHeader">
+    <value>El encabezado del kernel no es válido</value>
+  </data>
+  <data name="InvalidKernelSize">
+    <value>El tamaño del kernel no es válido</value>
+  </data>
+  <data name="KernelDumped">
+    <value>El kernel original se ha guardado en la carpeta "hakchi2\dump". No lo pierdas, ya que es importante</value>
+  </data>
+  <data name="LoadingGames">
+    <value>Cargando juegos...</value>
+  </data>
+  <data name="MD5Failed">
+    <value>Kernel volcado, pero la suma de comprobación MD5 es desconocida</value>
+  </data>
+  <data name="MD5Failed2">
+    <value>El kernel ya está parcheado o es una revisión desconocida. Envíame este mensaje (presiona Ctrl+C). Continúa bajo tu propio riesgo</value>
+  </data>
+  <data name="MainMenu">
+    <value>Menú de inicio</value>
+  </data>
+  <data name="MapperNotSupported">
+    <value>Este juego, "{0}" usa mapeador #{1} y no es compatible con la NES Mini, es probable que no inicie con el emulador predeterminado, pero debería funcionar si tienes un módulo extra instalado de otro emulador. ¿Quieres añadir este juego?</value>
+  </data>
+  <data name="MemoryFull">
+    <value>Hay {0} MB en juegos, es mucho y podría dar error al sincronizar, es recomendable liberar memoria</value>
+  </data>
+  <data name="MemoryStats">
+    <value>Memoria total: {0:F1} MB|Disponible para juegos: {1:F1} MB|Usada por los puntos de suspensión: {2:F1} MB|Usada por otros archivos: {3:F1} MB</value>
+  </data>
+  <data name="NewGamesUnsorted">
+    <value>Los nuevos juegos se han añadido a la carpeta "Sin clasificar"</value>
+  </data>
+  <data name="NewPreset">
+    <value>Nueva lista</value>
+  </data>
+  <data name="No">
+    <value>No</value>
+  </data>
+  <data name="NoForAll">
+    <value>No para todos</value>
+  </data>
+  <data name="NoKernel">
+    <value>No se ha encontrado ningún volcado del kernel</value>
+  </data>
+  <data name="NoKernelWarning">
+    <value>Primero, tienes hacer un volcado del kernel de la NES Mini. Esta acción, sólo es necesaria realizarla una vez. ¿Quieres continuar?</value>
+  </data>
+  <data name="NoKernelYouNeed">
+    <value>No se ha encontrado ningún volcado del kernel, primero, tienes que realizar un volcado de él</value>
+  </data>
+  <data name="NoTelnet">
+    <value>No se ha podido iniciar el cliente Telnet, es posible que esté desactivado. Debes activarlo primero, para ello, vete a "Panel de control" -&gt; "Programas y características" -&gt; "Activar o desactivar las características de Windows"</value>
+  </data>
+  <data name="NotFound">
+    <value>No se encuentra:</value>
+  </data>
+  <data name="OriginalKernelQ">
+    <value>¿Quieres flashear el kernel original?</value>
+  </data>
+  <data name="PatchAvailable">
+    <value>Parche disponible</value>
+  </data>
+  <data name="PatchQ">
+    <value>Hay un parche para "{0}". ¿Quieres parchear este juego?</value>
+  </data>
+  <data name="PleaseTryAgainUSB">
+    <value>Si el problema persiste, prueba a utilizar otro cable o puerto USB</value>
+  </data>
+  <data name="PleaseWait">
+    <value>Por favor, espera...</value>
+  </data>
+  <data name="PressOkToContinue">
+    <value>Presiona Ok para continuar</value>
+  </data>
+  <data name="ReplaceKernelQ">
+    <value>Ya has realizado el volcado del kernel. Si realmente quieres reemplazar la copia de seguridad de tu kernel y entiendes lo que estás haciendo, borra la carpeta "hakchi2\dump" manualmente</value>
+  </data>
+  <data name="SavesFlterName">
+    <value>Copia de seguridad de los puntos de suspensión NES Mini</value>
+  </data>
+  <data name="SelectAtLeast">
+    <value>Selecciona al menos un juego</value>
+  </data>
+  <data name="SelectAtLeastTwo">
+    <value>Selecciona al menos dos botones</value>
+  </data>
+  <data name="SelectModsInstall">
+    <value>Selecciona los módulos que quieres instalar en la NES Mini</value>
+  </data>
+  <data name="SelectModsUninstall">
+    <value>Selecciona los módulos que quieres eliminar de la NES Mini</value>
+  </data>
+  <data name="SizeOfSaves">
+    <value>Tamaño total de los puntos de suspensión seleccionados:</value>
+  </data>
+  <data name="UninstallFactoryNote">
+    <value>No olvides formatear la NES Mini si quieres eliminar todos los puntos de suspensión</value>
+  </data>
+  <data name="UninstallQ1">
+    <value>¿Quieres eliminar todos los datos de hakchi2 y dejar la NES Mini como de fábrica? (Esto no elimina los puntos de suspensión)</value>
+  </data>
+  <data name="UninstallQ2">
+    <value>Espera a que la luz del botón Power se apague. Tienes que flashear el kernel original. ¿Quieres flashear el kernel original ahora?</value>
+  </data>
+  <data name="Uninstalling">
+    <value>Desinstalando...</value>
+  </data>
+  <data name="UninstallingMods">
+    <value>Desinstalando módulos...</value>
+  </data>
+  <data name="UnknownGame">
+    <value>Juego desconocido</value>
+  </data>
+  <data name="UploadingConfig">
+    <value>Actualizando a la nueva configuración...</value>
+  </data>
+  <data name="UploadingFes1">
+    <value>Cargando y ejecutando fes1...</value>
+  </data>
+  <data name="UploadingGames">
+    <value>Sincronizando juegos...</value>
+  </data>
+  <data name="UploadingKernel">
+    <value>Actualizando el kernel...</value>
+  </data>
+  <data name="UploadingOriginalGames">
+    <value>Procesando los juegos originales...</value>
+  </data>
+  <data name="VerifyFailed">
+    <value>La verificación ha fallado</value>
+  </data>
+  <data name="Verifying">
+    <value>Verificando...</value>
+  </data>
+  <data name="WaitingForDevice">
+    <value>Esperando a la NES Mini...</value>
+  </data>
+  <data name="Warning">
+    <value>¡Atención!</value>
+  </data>
+  <data name="Wow">
+    <value>¡Bien!</value>
+  </data>
+  <data name="Yes">
+    <value>Sí</value>
+  </data>
+  <data name="YesForAll">
+    <value>Sí para todos</value>
+  </data>
+  <data name="DumpingNand">
+    <value>Dumping NAND...</value>
+  </data>
+  <data name="NandDumped">
+    <value>NAND memory is dumped successfully.</value>
+  </data>
+</root>

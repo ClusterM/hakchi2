@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddingGames">
+    <value>Prosessoidaan pelejä, odota ole hyvä...</value>
+  </data>
+  <data name="AllFiles">
+    <value>Kaikki tiedostot</value>
+  </data>
+  <data name="AreYouSure">
+    <value>Oletko varma?</value>
+  </data>
+  <data name="AutofillResult">
+    <value>Tiedot täytetty automaattisesti {0} pelille.</value>
+  </data>
+  <data name="AutofireHelp1">
+    <value>Pidä Select+A/B painettuna sekunnin ajan A/B-automaattitulituksen kytkemiseksi päälle ja pois.</value>
+  </data>
+  <data name="BuildingCustom">
+    <value>Rakennetaan mukautettua ydinkuvaa...</value>
+  </data>
+  <data name="BuildingFolders">
+    <value>Rakennetaan kansiorakennetta...</value>
+  </data>
+  <data name="Congratulations">
+    <value>Onneksi olkoon!</value>
+  </data>
+  <data name="CustomKernel">
+    <value>Mukautettu ydin</value>
+  </data>
+  <data name="CustomKernelQ">
+    <value>Haluatko flashata mukautetun ytimen?</value>
+  </data>
+  <data name="CustomWarning">
+    <value>Nyt sinun täytyy flashata mukautettu ydin NES Miniisi. Tämä tarvitsee tehdä vain kerran. Haluatko jatkaa?</value>
+  </data>
+  <data name="Default30games">
+    <value>Alkuperäiset 30 peliä</value>
+  </data>
+  <data name="DeleteElement">
+    <value>Haluatko, että "{0}" poistetaan varmasti?</value>
+  </data>
+  <data name="DeleteElements">
+    <value>Haluatko varmasti poistaa {0} elementtiä?</value>
+  </data>
+  <data name="DeleteGame">
+    <value>Haluatko varmasti poistaa pelin "{0}"?</value>
+  </data>
+  <data name="DeletePreset">
+    <value>Haluatko varmasti poistaa valikoiman "{0}"?</value>
+  </data>
+  <data name="DeleteSavesQ">
+    <value>Haluatko varmasti poistaa nämä pelitallennukset?</value>
+  </data>
+  <data name="DoYouWantCancel">
+    <value>Haluatko peruuttaa meneillään olevan toiminnon?</value>
+  </data>
+  <data name="DoYouWantToContinue">
+    <value>Haluatko jatkaa?</value>
+  </data>
+  <data name="Donate">
+    <value>P.S. Jos tykkäät siitä, voit tehdä minulle lahjoituksen. PayPal-osoitteeni löytyy "Tietoa"-ikkunasta.</value>
+  </data>
+  <data name="Done">
+    <value>Valmis!</value>
+  </data>
+  <data name="DoneYouCanUpload">
+    <value>Valmis! Voit nyt ladata pelejä NES Miniisi.</value>
+  </data>
+  <data name="DownloadAllCoversTitle">
+    <value>Ladataan kansitaidetta kaikille peleille (Kokeilen onneani!)</value>
+  </data>
+  <data name="DumpKernelQ">
+    <value>Haluatko dumpata ytimen?</value>
+  </data>
+  <data name="DumpingKernel">
+    <value>Dumpataan ydintä...</value>
+  </data>
+  <data name="Error">
+    <value>Virhe</value>
+  </data>
+  <data name="ExecutingCommand">
+    <value>Ajetaan komentoa:</value>
+  </data>
+  <data name="ExtraArgsInfo">
+    <value>Voit lisätä yleisiä komentoriviargumentteja, jotka lisätään kaikkiin peleihin alkuperäiset 30 mukaan lukien. Tämä on vain asiantuntijoille!</value>
+  </data>
+  <data name="ExtraArgsTitle">
+    <value>Lisäkomentoriviargumentit</value>
+  </data>
+  <data name="FirstRun">
+    <value>Heipä hei! Olen iloinen, että käytät hakchi2:a. Sen käyttäminen on todella yksinkertaista. Klikkaa vain "Lisää pelejä", valitse ROMeja, paina "Synkronoi" ja seuraa ohjeita. Onnea matkaan!</value>
+  </data>
+  <data name="FlasingCustom">
+    <value>Flashataan mukautettua ydintä…</value>
+  </data>
+  <data name="FlasingOriginal">
+    <value>Flashataan alkuperäistä ydintä…</value>
+  </data>
+  <data name="FolderContent">
+    <value>Poistettu sisältö siirretään Roskakoriin. Voit poistaa tämän kansion pysyvästi tai siirtää pelit muihin kansioihin.</value>
+  </data>
+  <data name="FolderNameBack">
+    <value>Takaisin</value>
+  </data>
+  <data name="FolderNameMoreGames">
+    <value>Lisää pelejä...</value>
+  </data>
+  <data name="FolderNameNewFolder">
+    <value>Uusi kansio</value>
+  </data>
+  <data name="FolderNameOriginalGames">
+    <value>Alkuperäiset 30 peliä</value>
+  </data>
+  <data name="FolderNameTrashBin">
+    <value>Roskakori</value>
+  </data>
+  <data name="FolderNameUnsorted">
+    <value>Lajittelematon</value>
+  </data>
+  <data name="FolderStatistics">
+    <value>Kansio "{0}" sisältää {1} elementtiä.</value>
+  </data>
+  <data name="FoldersSaveQ">
+    <value>Haluatko tallentaa tämän kansiorakenteen?</value>
+  </data>
+  <data name="FourScreenNotSupported">
+    <value>Valitettavasti {0} käyttää 4-screen-tilaa (eli pelikasetin VRAM-lisämuistia), eikä NES Mini ei tue tätä ominaisuutta. Peli ei luultavasti käynnisty. Sen pitäisi kuitenkin toimi lisäemulaattorimoduuli asennettuna. Haluatko lisätä pelin joka tapauksessa?</value>
+  </data>
+  <data name="GGCodeDelete">
+    <value>Haluatko poistaa koodin "{0}"?</value>
+  </data>
+  <data name="GGCodeEmpty">
+    <value>Koodi on syötettävä!</value>
+  </data>
+  <data name="GGCodeExists">
+    <value>Koodi löytyy jo. Haluatko muokata sitä?</value>
+  </data>
+  <data name="GGDescriptionEmpty">
+    <value>Kuvaus on syötettävä!</value>
+  </data>
+  <data name="GameGenieFormatError">
+    <value>Virheellinen Game Genie -koodi "{0}" peliin "{1}".</value>
+  </data>
+  <data name="GameGenieNotFound">
+    <value>Game Genie -koodi "{0}" ei päde peliin "{1}" - arvoa ei löydy. Koodi on ehkä toiseen peliin?</value>
+  </data>
+  <data name="GamesAndApps">
+    <value>Pelit ja sovellukset</value>
+  </data>
+  <data name="GamesSelected">
+    <value>peli(ä) valittu</value>
+  </data>
+  <data name="GooglingFor">
+    <value>Googlataan</value>
+  </data>
+  <data name="Hello">
+    <value>Hei</value>
+  </data>
+  <data name="Images">
+    <value>Kuvat</value>
+  </data>
+  <data name="InputPreset">
+    <value>Syötä nimi nykyiselle pelivalikoimalle.</value>
+  </data>
+  <data name="InstallingMods">
+    <value>Asennetaan moduuleja...</value>
+  </data>
+  <data name="InvalidKernelHeader">
+    <value>Virheelliset ytimen otsikkotiedot.</value>
+  </data>
+  <data name="InvalidKernelSize">
+    <value>Virheellinen ytimen koko:</value>
+  </data>
+  <data name="KernelDumped">
+    <value>Alkuperäinen ytimesi on tallennettu "dump"-kansioon. Älä hukkaa sitä.</value>
+  </data>
+  <data name="LoadingGames">
+    <value>Ladataan pelejä...</value>
+  </data>
+  <data name="MD5Failed">
+    <value>Ydin dumpattiin, mutta MD5-tarkistussumma on tuntematon:</value>
+  </data>
+  <data name="MD5Failed2">
+    <value>Ydin on jo patchattu tai sen revisio on tuntematon. Ole hyvä ja lähetä tämä viesti minulle (paina Ctrl+C). Jatka omalla vastuullasi.</value>
+  </data>
+  <data name="MainMenu">
+    <value>Päävalikko</value>
+  </data>
+  <data name="MapperNotSupported">
+    <value>Valitettavasti "{0}" käyttää mapperia #{1}, jota NES Mini ei tue ja peli ei luultavasti käynnisty oletusemulaattorilla. Sen pitäisi kuitenkin toimi lisäemulaattorimoduuli asennettuna. Haluatko lisätä pelin?</value>
+  </data>
+  <data name="MemoryFull">
+    <value>Valitettavasti {0} megatavua pelejä on liikaa.</value>
+  </data>
+  <data name="MemoryStats">
+    <value>Kirjoitettavan muistin kokonaismäärä: {0:F1} megatavua|Muistia tarjolla peleille: {1:F1} megatavua|Tallennukset vievät: {2:F1} megatavua|Muut tiedostot vievät: {3:F1} megatavua</value>
+  </data>
+  <data name="NewGamesUnsorted">
+    <value>Uudet pelit siirretään "Lajittelematon"-kansioon.</value>
+  </data>
+  <data name="NewPreset">
+    <value>Uusi pelivalikoima</value>
+  </data>
+  <data name="No">
+    <value>Ei</value>
+  </data>
+  <data name="NoForAll">
+    <value>Ei kaikkiin</value>
+  </data>
+  <data name="NoKernel">
+    <value>Dumpattua ydintä ei löydy</value>
+  </data>
+  <data name="NoKernelWarning">
+    <value>Dumppaa aluksi NES Minisi ydin. Tämä on tarve tehdä vain kerran. Haluatko jatkaa?</value>
+  </data>
+  <data name="NoKernelYouNeed">
+    <value>Dumpattua ydintä ei löydy. Sinun on dumpattava ydin ensin.</value>
+  </data>
+  <data name="NoTelnet">
+    <value>Telnet-asiakasohjelmaa ei voida käynnistää, koska se vaikuttaa olevan poissa käytöstä. Se täytyy ensin ottaa käyttöön: "Ohjauspaneeli" - &gt; "Ohjelmat" - &gt; "Ota Windowsin ominaisuuksia käyttöön tai poista niitä käytöstä".</value>
+  </data>
+  <data name="NotFound">
+    <value>Ei löytynyt:</value>
+  </data>
+  <data name="OriginalKernelQ">
+    <value>Haluatko flashata alkuperäisytimen?</value>
+  </data>
+  <data name="PatchAvailable">
+    <value>Korjaustiedosto tarjolla</value>
+  </data>
+  <data name="PatchQ">
+    <value>Pelille "{0}" löytyy korjaustiedosto. Haluatko korjata pelin?</value>
+  </data>
+  <data name="PleaseTryAgainUSB">
+    <value>Jos ongelma ei poistu, yritä käyttää toista USB-porttia tai -kaapelia.</value>
+  </data>
+  <data name="PleaseWait">
+    <value>Odota, ole hyvä...</value>
+  </data>
+  <data name="PressOkToContinue">
+    <value>Paina OK jatkaaksesi.</value>
+  </data>
+  <data name="ReplaceKernelQ">
+    <value>Sinulla on jo dumpattu ydin. Jos TODELLA haluat korvata ytimesi varmuuskopion ja TODELLA ymmärrät mitä olet tekemässä, poista "dump"-kansio manuaalisesti.</value>
+  </data>
+  <data name="SavesFlterName">
+    <value>NES Mini -pelitallennusten varmuuskopiot</value>
+  </data>
+  <data name="SelectAtLeast">
+    <value>Valitse ainakin yksi peli.</value>
+  </data>
+  <data name="SelectAtLeastTwo">
+    <value>Valitse ainakin kaksi nappia.</value>
+  </data>
+  <data name="SelectModsInstall">
+    <value>Valitse NES Miniisi asennettavat moduulit.</value>
+  </data>
+  <data name="SelectModsUninstall">
+    <value>Valitse NES Ministäsi poistettavat moduulit.</value>
+  </data>
+  <data name="SizeOfSaves">
+    <value>Valittujen tallennusten koko:</value>
+  </data>
+  <data name="UninstallFactoryNote">
+    <value>Älä unohda tehdä tehdasasetusten palautusta, jos haluat poistaa kaikki pelitilanteen tallennukset.</value>
+  </data>
+  <data name="UninstallQ1">
+    <value>Haluatko varmasti poistaa kaikki jäljet hakchi2:sta ja palauttaa NES Minisi alkuperäistilaan?</value>
+  </data>
+  <data name="UninstallQ2">
+    <value>Valmis! Odota, kunnes POWER-ledi sammuu. Sinun täytyy myös flashata alkuperäinen ydin. Haluatko tehdä sen nyt?</value>
+  </data>
+  <data name="Uninstalling">
+    <value>Poistetaan asennusta...</value>
+  </data>
+  <data name="UninstallingMods">
+    <value>Poistetaan moduuleja...</value>
+  </data>
+  <data name="UnknownGame">
+    <value>Tuntematon peli</value>
+  </data>
+  <data name="UploadingConfig">
+    <value>Ladataan uusia asetuksia...</value>
+  </data>
+  <data name="UploadingFes1">
+    <value>Ladataan ja ajetaan FES-1…</value>
+  </data>
+  <data name="UploadingGames">
+    <value>Ladataan pelejä...</value>
+  </data>
+  <data name="UploadingKernel">
+    <value>Ladataan ydintä...</value>
+  </data>
+  <data name="UploadingOriginalGames">
+    <value>Prosessoidaan alkuperäispelejä...</value>
+  </data>
+  <data name="VerifyFailed">
+    <value>Tarkistus epäonnistui :O Tämä ei vaikuta hyvältä.</value>
+  </data>
+  <data name="Verifying">
+    <value>Tarkistetaan...</value>
+  </data>
+  <data name="WaitingForDevice">
+    <value>Odotetaan laitetta…</value>
+  </data>
+  <data name="Warning">
+    <value>Varoitus!</value>
+  </data>
+  <data name="Wow">
+    <value>Jee</value>
+  </data>
+  <data name="Yes">
+    <value>Kyllä</value>
+  </data>
+  <data name="YesForAll">
+    <value>Kyllä kaikkiin</value>
+  </data>
+  <data name="DumpingNand">
+    <value>Dumping NAND...</value>
+  </data>
+  <data name="NandDumped">
+    <value>NAND memory is dumped successfully.</value>
+  </data>
+</root>

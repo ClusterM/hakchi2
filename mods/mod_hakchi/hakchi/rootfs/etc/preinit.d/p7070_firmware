@@ -1,1 +1,1 @@
-[ "cfg_boot_stock_firmware" == "y" ] || load_firmware
+[ "$cfg_boot_stock_firmware" == "y" ] || load_firmware

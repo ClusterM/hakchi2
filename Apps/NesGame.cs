@@ -76,7 +76,7 @@ namespace com.clusterrr.hakchi_gui
             Args = Args; // To update exec path if need
         }
 
-        public static NesMiniApplication Import(string nesFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback = null, Form parentForm = null, byte[] rawRomData = null)
+        public static NesMiniApplication Import(string nesFileName, string sourceFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback = null, Form parentForm = null, byte[] rawRomData = null)
         {
             NesFile nesFile;
             try
@@ -88,14 +88,14 @@ namespace com.clusterrr.hakchi_gui
             }
             catch
             {
-                return NesMiniApplication.Import(nesFileName, rawRomData);
+                return NesMiniApplication.Import(nesFileName, sourceFileName, rawRomData);
             }
             nesFile.CorrectRom();
             var crc32 = nesFile.CRC32;
             var code = GenerateCode(crc32, Prefix);
             var gamePath = Path.Combine(GamesDirectory, code);
             var nesPath = Path.Combine(gamePath, code + ".nes");
-            var patchesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "patches");
+            var patchesDirectory = Path.Combine(Program.BaseDirectoryExternal, "patches");
             Directory.CreateDirectory(patchesDirectory);
             Directory.CreateDirectory(gamePath);
             var patches = Directory.GetFiles(patchesDirectory, string.Format("{0:X8}*.ips", crc32), SearchOption.AllDirectories);
@@ -151,7 +151,7 @@ namespace com.clusterrr.hakchi_gui
             game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
             game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
             game.Name = game.Name.Replace("_", " ").Replace("  ", " ");
-            game.FindCover(nesFileName, (game.region == "Japan") ? Resources.blank_jp : Resources.blank_nes, crc32);
+            game.FindCover(nesFileName, sourceFileName, (game.region == "Japan") ? Resources.blank_jp : Resources.blank_nes, crc32);
             game.Args = DefaultArgs;
             game.Save();
             return game;
@@ -176,13 +176,16 @@ namespace com.clusterrr.hakchi_gui
             return false;
         }
 
-        public override void Save()
+        public override bool Save()
         {
-            if (!string.IsNullOrEmpty(gameGenie))
-                File.WriteAllText(GameGeniePath, gameGenie);
-            else
-                File.Delete(GameGeniePath);
-            base.Save();
+            if (this.hasUnsavedChanges)
+            {
+                if (!string.IsNullOrEmpty(gameGenie))
+                    File.WriteAllText(GameGeniePath, gameGenie);
+                else
+                    File.Delete(GameGeniePath);
+            }
+            return base.Save() || this.hasUnsavedChanges;
         }
 
         public void ApplyGameGenie()
@@ -212,7 +215,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                var xmlDataBasePath = Path.Combine(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "data"), "nescarts.xml");
+                var xmlDataBasePath = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "nescarts.xml");
                 Debug.WriteLine("Loading " + xmlDataBasePath);
 
                 if (File.Exists(xmlDataBasePath))

@@ -47,7 +47,7 @@ pack_install(){
   transfer_path "$transferpath"
   echo creating uninstall for $(basename "$1" .hmod)...
   echo >> "$transferpath/uninstall"
-  echo "\# auto-generated" >> "$transferpath/uninstall"
+  echo "# auto-generated" >> "$transferpath/uninstall"
   cd "$transferpath"
   find . -type l -exec echo rm -f \"\$rootfs/{}\" + >> "$transferpath/uninstall"
   find . -type f -exec echo rm -f \"\$rootfs/{}\" + >> "$transferpath/uninstall"

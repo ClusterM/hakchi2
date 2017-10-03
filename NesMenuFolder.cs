@@ -12,7 +12,7 @@ namespace com.clusterrr.hakchi_gui
     {
         static Random rnd = new Random();
         static ResourceManager rm = Resources.ResourceManager;
-        public static readonly string FolderImagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "folder_images");
+        public static readonly string FolderImagesDirectory = Path.Combine(Program.BaseDirectoryExternal, "folder_images");
 
         private int childIndex = 0;
 
@@ -195,7 +195,7 @@ namespace com.clusterrr.hakchi_gui
             get { return imageId; }
             set
             {
-                var folderImagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "folder_images");
+                var folderImagesDirectory = Path.Combine(Program.BaseDirectoryExternal, "folder_images");
                 var filePath = Path.Combine(folderImagesDirectory, value + ".png");
                 if (File.Exists(filePath))
                     image = NesMiniApplication.LoadBitmap(filePath);
@@ -205,7 +205,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public void Save(string path)
+        public long Save(string path)
         {
             Directory.CreateDirectory(path);
             var ConfigPath = Path.Combine(path, Code + ".desktop");
@@ -237,7 +237,7 @@ namespace com.clusterrr.hakchi_gui
                  "Exec=/bin/chmenu {1:D3} {8}\n" +
                  "Path=/var/lib/clover/profiles/0/FOLDER\n" +
                  "Name={2}\n" +
-                 "Icon=/usr/share/games/nes/kachikachi/{0}/{0}.png\n\n" +
+                 "Icon={9}/{0}/{0}.png\n\n" +
                  "[X-CLOVER Game]\n" +
                  "Code={0}\n" +
                  "TestID=777\n" +
@@ -251,10 +251,11 @@ namespace com.clusterrr.hakchi_gui
                  "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
                  Code, ChildIndex, Name ?? Code, Players, ReleaseDate,
                  prefix + (Name ?? Code).ToLower(), (Publisher ?? "").ToUpper(),
-                 Simultaneous, Initial)
+                 Simultaneous, Initial, NesMiniApplication.GamesCloverPath)
                  );
             Image.Save(IconPath, ImageFormat.Png);
             ImageThumbnail.Save(ThumnnailIconPath, ImageFormat.Png);
+            return new FileInfo(ConfigPath).Length + new FileInfo(IconPath).Length + new FileInfo(ThumnnailIconPath).Length;
         }
 
         public override string ToString()

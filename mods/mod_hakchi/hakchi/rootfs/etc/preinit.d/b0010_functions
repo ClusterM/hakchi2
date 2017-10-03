@@ -6,8 +6,36 @@ mount_base(){
 
 umount_base(){
   sync
-  umount -r "$mountpoint/var/lib"
+  umount "$mountpoint/var/lib"
   umount "$mountpoint/var"
+}
+
+remove_old(){
+  [ -d "$1" ] || return 1
+  [ -f "$modpath/script/removed" ] || return 0
+  local basepath="$1"
+  source "$modpath/script/removed"
+}
+
+mod_repair_etc(){
+  remove_old "$rootfs"
+  rm -f "$modpath/rootfs/etc/preinit.d/p0000_config"
+  chown -R 0:0 $modpath/
+
+  local etc="$temppath/etc"
+  rm -rf "$etc"
+  mkdir -p "$etc"
+  copy "$mountpoint/etc/" "$etc/"
+  if [ "$1" == "full" ]; then
+    copy "$modpath/rootfs/etc/" "$etc/"
+  else
+    copy "$rootfs/etc/inittab" "$etc/inittab"
+  fi
+  copy "$etc/" "$rootfs/etc/"
+}
+
+mod_repair_modules(){
+  restore "/lib/modules/$(uname -r)/"
 }
 
 remount_root(){
@@ -29,7 +57,16 @@ load_firmware(){
   [ -d "$firmwarepath" ] || return 0
   local firmware=$(find "$firmwarepath" -type f -name "*.hsqs" | sort | head -n 1)
   [ -f "$firmware" ] || return 0
-  remount_root "$firmware" && cryptsetup close root-crypt
+  mod_repair_modules
+  remount_root "$firmware" || return 0
+  cryptsetup close root-crypt
+  mod_repair_etc
+  if [ -d "$rootfs/lib/modules/$(uname -r)" ]; then
+    overmount "/lib/modules"
+  else
+    echo "no modules for loaded kernel $(uname -r)"
+  fi
+  set_gamepath
 }
 
 shutdown(){
@@ -38,11 +75,13 @@ shutdown(){
   sync
   umount -a -r 2>/dev/null
   poweroff -f
-  while :;do :;done
+  while :;do sleep 1;:;done
 }
 
 early_getty(){
+  cd "$modpath/transfer"
   getty -ni 115200 ttyS0 -l /bin/sh
+  cd /
 }
 
 copy(){
@@ -71,15 +110,15 @@ mount_bind(){
 }
 
 overmount(){
-  l_boot_stock=n
   if [ "$#" == "1" ]; then
     echo overmounting $1
-    mount_bind "$rootfs$1" "$mountpoint$1"
+    mount_bind "$rootfs$1" "$mountpoint$1" && return 0
   fi
   if [ "$#" == "2" ]; then
     echo overmounting $1 on $2
-    mount_bind "$1" "$mountpoint$2"
+    mount_bind "$rootfs$1" "$mountpoint$2" && return 0
   fi
+  echo overmounting failed
 }
 
 overmount_games(){
@@ -89,8 +128,7 @@ overmount_games(){
   echo menu code: $menu_code
   if [ "$menu_code" != "000" ]; then
     if [ -d "$rootfs$gamepath/$menu_code" ]; then
-      overmount "$rootfs$gamepath/$menu_code" "$gamepath"
-      return $?
+      overmount "$gamepath/$menu_code" "$gamepath" && return 0
     fi
   fi
   overmount "$gamepath"
