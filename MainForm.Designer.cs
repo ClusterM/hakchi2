@@ -73,7 +73,7 @@
             this.upABStartOnSecondControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.epilepsyProtectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.compressGamesIfPossibleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagesfoldersTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disablePagefoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -119,6 +119,8 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkedListBoxGames = new System.Windows.Forms.CheckedListBox();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.labelSize = new System.Windows.Forms.Label();
+            this.checkBoxCompressed = new System.Windows.Forms.CheckBox();
             this.buttonShowGameGenieDatabase = new System.Windows.Forms.Button();
             this.maskedTextBoxReleaseDate = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -159,8 +161,6 @@
             this.timerConnectionCheck = new System.Windows.Forms.Timer(this.components);
             this.saveDumpFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openDumpFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.checkBoxCompressed = new System.Windows.Forms.CheckBox();
-            this.labelSize = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -369,8 +369,8 @@
             this.cloverconHackToolStripMenuItem,
             this.useExtendedFontToolStripMenuItem,
             this.epilepsyProtectionToolStripMenuItem,
-            this.compressGamesIfPossibleToolStripMenuItem,
             this.pagesfoldersTypeToolStripMenuItem,
+            this.compressGamesToolStripMenuItem,
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem,
             this.toolStripMenuItem5,
             this.saveSettingsToNESMiniNowToolStripMenuItem});
@@ -481,12 +481,14 @@
             resources.ApplyResources(this.epilepsyProtectionToolStripMenuItem, "epilepsyProtectionToolStripMenuItem");
             this.epilepsyProtectionToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemArmet_Click);
             // 
-            // compressGamesIfPossibleToolStripMenuItem
+            // compressGamesToolStripMenuItem
             // 
-            this.compressGamesIfPossibleToolStripMenuItem.CheckOnClick = true;
-            this.compressGamesIfPossibleToolStripMenuItem.Name = "compressGamesIfPossibleToolStripMenuItem";
-            resources.ApplyResources(this.compressGamesIfPossibleToolStripMenuItem, "compressGamesIfPossibleToolStripMenuItem");
-            this.compressGamesIfPossibleToolStripMenuItem.Click += new System.EventHandler(this.compressGamesIfPossibleToolStripMenuItem_Click);
+            this.compressGamesToolStripMenuItem.Checked = true;
+            this.compressGamesToolStripMenuItem.CheckOnClick = true;
+            this.compressGamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.compressGamesToolStripMenuItem.Name = "compressGamesToolStripMenuItem";
+            resources.ApplyResources(this.compressGamesToolStripMenuItem, "compressGamesToolStripMenuItem");
+            this.compressGamesToolStripMenuItem.Click += new System.EventHandler(this.compressGamesToolStripMenuItem_Click);
             // 
             // pagesfoldersTypeToolStripMenuItem
             // 
@@ -794,7 +796,6 @@
             // checkedListBoxGames
             // 
             resources.ApplyResources(this.checkedListBoxGames, "checkedListBoxGames");
-            this.checkedListBoxGames.FormattingEnabled = true;
             this.checkedListBoxGames.Name = "checkedListBoxGames";
             this.checkedListBoxGames.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxGames_ItemCheck);
             this.checkedListBoxGames.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxGames_SelectedIndexChanged);
@@ -828,6 +829,18 @@
             this.groupBoxOptions.Controls.Add(this.labelID);
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
+            // 
+            // labelSize
+            // 
+            resources.ApplyResources(this.labelSize, "labelSize");
+            this.labelSize.Name = "labelSize";
+            // 
+            // checkBoxCompressed
+            // 
+            resources.ApplyResources(this.checkBoxCompressed, "checkBoxCompressed");
+            this.checkBoxCompressed.Name = "checkBoxCompressed";
+            this.checkBoxCompressed.UseVisualStyleBackColor = true;
+            this.checkBoxCompressed.CheckedChanged += new System.EventHandler(this.checkBoxCompressed_CheckedChanged);
             // 
             // buttonShowGameGenieDatabase
             // 
@@ -1083,18 +1096,6 @@
             // 
             this.openDumpFileDialog.FileName = "...";
             // 
-            // checkBoxCompressed
-            // 
-            resources.ApplyResources(this.checkBoxCompressed, "checkBoxCompressed");
-            this.checkBoxCompressed.Name = "checkBoxCompressed";
-            this.checkBoxCompressed.UseVisualStyleBackColor = true;
-            this.checkBoxCompressed.CheckedChanged += new System.EventHandler(this.checkBoxCompressed_CheckedChanged);
-            // 
-            // labelSize
-            // 
-            resources.ApplyResources(this.labelSize, "labelSize");
-            this.labelSize.Name = "labelSize";
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1239,7 +1240,6 @@
         private System.Windows.Forms.Timer timerConnectionCheck;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem saveSettingsToNESMiniNowToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem compressGamesIfPossibleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveStateManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem FTPToolStripMenuItem;
@@ -1265,6 +1265,7 @@
         private System.Windows.Forms.ToolStripMenuItem membootOriginalKernelToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBoxCompressed;
         private System.Windows.Forms.Label labelSize;
+        private System.Windows.Forms.ToolStripMenuItem compressGamesToolStripMenuItem;
     }
 }
 

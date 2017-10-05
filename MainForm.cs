@@ -162,7 +162,7 @@ namespace com.clusterrr.hakchi_gui
                 enableAutofireToolStripMenuItem.Checked = ConfigIni.AutofireHack;
                 useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack;
                 upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart;
-                compressGamesIfPossibleToolStripMenuItem.Checked = ConfigIni.Compress;
+                compressGamesToolStripMenuItem.Checked = ConfigIni.Compress;
 
                 disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
                 automaticToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 2;
@@ -656,7 +656,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         // Maybe type was changed? Need to reload games
                         if ((game as NesMiniApplication).Save())
-                            checkedListBoxGames.Items[i] = NesMiniApplication.FromDirectory((game as NesMiniApplication).Path);
+                            checkedListBoxGames.Items[i] = NesMiniApplication.FromDirectory((game as NesMiniApplication).GamePath);
                     }
                 }
                 catch (Exception ex)
@@ -1320,7 +1320,7 @@ namespace com.clusterrr.hakchi_gui
                 var game = checkedListBoxGames.Items[pos] as NesMiniApplication;
                 if (MessageBox.Show(this, string.Format(Resources.DeleteGame, game.Name), Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    Directory.Delete(game.Path, true);
+                    Directory.Delete(game.GamePath, true);
                     checkedListBoxGames.Items.RemoveAt(pos);
                 }
             }
@@ -1450,10 +1450,10 @@ namespace com.clusterrr.hakchi_gui
             max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
             max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
         }
-
-        private void compressGamesIfPossibleToolStripMenuItem_Click(object sender, EventArgs e)
+        
+        private void compressGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigIni.Compress = compressGamesIfPossibleToolStripMenuItem.Checked;
+            ConfigIni.Compress = compressGamesToolStripMenuItem.Checked;
         }
 
         private void buttonShowGameGenieDatabase_Click(object sender, EventArgs e)
@@ -1713,6 +1713,7 @@ namespace com.clusterrr.hakchi_gui
                 else
                     selected.Decompress();
                 selected.Save();
+                timerCalculateGames.Enabled = true;
                 ShowSelected();
             }
             catch (Exception ex)

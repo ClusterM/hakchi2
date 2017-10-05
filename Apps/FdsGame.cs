@@ -40,6 +40,8 @@ namespace com.clusterrr.hakchi_gui
             }
             if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
                 application = "/bin/clover-kachikachi-wr";
+            else
+                application = "/bin/nes";
             args = DefaultArgs;
             return true;
         }

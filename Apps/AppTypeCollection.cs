@@ -51,7 +51,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(SnesGame),
                 Extensions = new string[] { ".sfc", ".smc", ".sfrom" },
-                DefaultApps = new string[] { "/bin/snes", "/usr/bin/clover-canoe-shvc", },
+                DefaultApps = new string[] { "/bin/snes", "/bin/clover-canoe-shvc-wr", "/usr/bin/clover-canoe-shvc" },
                 Prefix = 'U',
                 DefaultCover = Resources.blank_snes_us
             },

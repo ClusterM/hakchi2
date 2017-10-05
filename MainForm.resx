@@ -121,6 +121,122 @@
     <value>315, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 20</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Kernel</value>
+  </data>
+  <data name="modulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="modulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Modules</value>
+  </data>
+  <data name="languageToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAA0BJREFUOE91
+        k31Qy3Ecx39TuqPrPPVHqW1cHmZrq8zKsqxpKzYPc+hhbpU8DUMllkxW2M3VnKeIphBOpTuVY51E3HAe
+        SpEreUy1TlQ4lKO3X/O7czivu/d9/nm/Pvf9/PEl/maGTE5LP2BxKbU1zLQ974qva+tNrGl8HWrMyXem
+        Kv9ne36xa3VL185H7T1dj9t7UPumG7Wt79Hc+QGNHb3vbC/f6qnqv2zIq3BVW82X1jYsh/VZB441lSGt
+        xQ5LSztM9+xYfb4FmpNXoLmadjYwVvXna3jhy2izc7NLZ93iI+GBAuWthXjysRKFPZ1YY/+KhJsdiMtr
+        QMyeKujuajHfuOsQpf7CT2FaxLVOHYio94e+WYWHvVbU9nWhrL8fiZ19iKtpQ+zxBij1NiSVmCGJNw34
+        KrVBlE4QvhG7rzHKvcC6yEJs41IYu7tR0Pcd5k/fsOr5B0RWvkJ0bh3m6W5iwbZCHG6KRExx1AmH7M4M
+        d/EJTuv3yVSAv6MEEZevY1H9OywjRXVTD1S3O6AoaoYy6x7CtdegyjYhszYU6qqFrY4Fo7xm0encFEzQ
+        xIC7/gSCcm5AWPQU4osvEVr+AuIzzZDuf4gInQ0zoisRvTcN2utCBJ/i/3AsGOkpcR/LShpg8lPBWWkC
+        b10NhDurMW3PA0zPqkNI5n1INpGyugrc0Avgr0gH+ygDE3VzvjgWDMLg6toYbAPY0kOYsiEJvtuTIdSd
+        wvQV1QiOq4JgodUhTxGeBVtkAUepB0e+4w6lE8SkQIN5PC8Dk4P3w22LJ9wyxsAzzxssQyS4YUXgzCwG
+        R3wavhILuNLD8JPvA0dqTKR0ghBJN3sIZ+/tFskPwCdVANd1YzAseRRGGDzATJWBlZKAgKgcCJbkQ6Qu
+        QJim8MVEsXY4pf9CqsyWixTmfpFaD7ZRCLqBBY/dPvA+yAPvSCRkm0swN70Cyoyyz/QAmWTocDcapf6G
+        MUEiF4RtfSvemIyQgigEnpNBcnwjFmSfgSr3BjlL34wez9aQVX8yIx3SXzjRhjgHuDPZB8fJBPVB8Rp7
+        iDrTLohOqacLwiw0J+fFZCeQjDcZl0Hhfwx+lhFkxpJhUnM0mcG7nchQEMRPy1alIv5O+PUAAAAASUVO
+        RK5CYII=
+</value>
+  </data>
+  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="consoleTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="consoleTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Console type</value>
+  </data>
+  <data name="cloverconHackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="cloverconHackToolStripMenuItem.Text" xml:space="preserve">
+    <value>Controller hacks</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
+    <value>Use extended font</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Disable epilepsy protection</value>
+  </data>
+  <data name="pagesfoldersTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="pagesfoldersTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pages/folders structure</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Compress games</value>
+  </data>
+  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text" xml:space="preserve">
+    <value>Global command-line arguments (experts only!)</value>
+  </data>
+  <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 6</value>
+  </data>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text" xml:space="preserve">
+    <value>Save settings to NES/SNES Mini now</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Settings</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 20</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Tools</value>
+  </data>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
   <data name="menuStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -145,12 +261,6 @@
   </data>
   <data name="&gt;&gt;menuStrip.ZOrder" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;File</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="addMoreGamesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
@@ -215,12 +325,6 @@
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Exit</value>
-  </data>
-  <data name="kernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 20</value>
-  </data>
-  <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Kernel</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>270, 22</value>
@@ -288,12 +392,6 @@
   <data name="uninstallToolStripMenuItem.Text" xml:space="preserve">
     <value>Uninstall</value>
   </data>
-  <data name="modulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 20</value>
-  </data>
-  <data name="modulesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Modules</value>
-  </data>
   <data name="installModulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 22</value>
   </data>
@@ -305,44 +403,6 @@
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text" xml:space="preserve">
     <value>Uninstall extra modules</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Settings</value>
-  </data>
-  <data name="languageToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAA0BJREFUOE91
-        k31Qy3Ecx39TuqPrPPVHqW1cHmZrq8zKsqxpKzYPc+hhbpU8DUMllkxW2M3VnKeIphBOpTuVY51E3HAe
-        SpEreUy1TlQ4lKO3X/O7czivu/d9/nm/Pvf9/PEl/maGTE5LP2BxKbU1zLQ974qva+tNrGl8HWrMyXem
-        Kv9ne36xa3VL185H7T1dj9t7UPumG7Wt79Hc+QGNHb3vbC/f6qnqv2zIq3BVW82X1jYsh/VZB441lSGt
-        xQ5LSztM9+xYfb4FmpNXoLmadjYwVvXna3jhy2izc7NLZ93iI+GBAuWthXjysRKFPZ1YY/+KhJsdiMtr
-        QMyeKujuajHfuOsQpf7CT2FaxLVOHYio94e+WYWHvVbU9nWhrL8fiZ19iKtpQ+zxBij1NiSVmCGJNw34
-        KrVBlE4QvhG7rzHKvcC6yEJs41IYu7tR0Pcd5k/fsOr5B0RWvkJ0bh3m6W5iwbZCHG6KRExx1AmH7M4M
-        d/EJTuv3yVSAv6MEEZevY1H9OywjRXVTD1S3O6AoaoYy6x7CtdegyjYhszYU6qqFrY4Fo7xm0encFEzQ
-        xIC7/gSCcm5AWPQU4osvEVr+AuIzzZDuf4gInQ0zoisRvTcN2utCBJ/i/3AsGOkpcR/LShpg8lPBWWkC
-        b10NhDurMW3PA0zPqkNI5n1INpGyugrc0Avgr0gH+ygDE3VzvjgWDMLg6toYbAPY0kOYsiEJvtuTIdSd
-        wvQV1QiOq4JgodUhTxGeBVtkAUepB0e+4w6lE8SkQIN5PC8Dk4P3w22LJ9wyxsAzzxssQyS4YUXgzCwG
-        R3wavhILuNLD8JPvA0dqTKR0ghBJN3sIZ+/tFskPwCdVANd1YzAseRRGGDzATJWBlZKAgKgcCJbkQ6Qu
-        QJim8MVEsXY4pf9CqsyWixTmfpFaD7ZRCLqBBY/dPvA+yAPvSCRkm0swN70Cyoyyz/QAmWTocDcapf6G
-        MUEiF4RtfSvemIyQgigEnpNBcnwjFmSfgSr3BjlL34wez9aQVX8yIx3SXzjRhjgHuDPZB8fJBPVB8Rp7
-        iDrTLohOqacLwiw0J+fFZCeQjDcZl0Hhfwx+lhFkxpJhUnM0mcG7nchQEMRPy1alIv5O+PUAAAAASUVO
-        RK5CYII=
-</value>
-  </data>
-  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 22</value>
-  </data>
-  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="consoleTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 22</value>
-  </data>
-  <data name="consoleTypeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Console type</value>
   </data>
   <data name="nESMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>184, 22</value>
@@ -370,12 +430,6 @@
   </data>
   <data name="superFamicomMiniToolStripMenuItem.Text" xml:space="preserve">
     <value>Super Famicom Mini</value>
-  </data>
-  <data name="cloverconHackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 22</value>
-  </data>
-  <data name="cloverconHackToolStripMenuItem.Text" xml:space="preserve">
-    <value>Controller hacks</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>308, 22</value>
@@ -406,30 +460,6 @@
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text" xml:space="preserve">
     <value>"Up+A+B = Start" on 2nd controller</value>
-  </data>
-  <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 22</value>
-  </data>
-  <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
-    <value>Use extended font</value>
-  </data>
-  <data name="epilepsyProtectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 22</value>
-  </data>
-  <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Disable epilepsy protection</value>
-  </data>
-  <data name="compressGamesIfPossibleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 22</value>
-  </data>
-  <data name="compressGamesIfPossibleToolStripMenuItem.Text" xml:space="preserve">
-    <value>Compress non-NES games (for additional emulator mod)</value>
-  </data>
-  <data name="pagesfoldersTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 22</value>
-  </data>
-  <data name="pagesfoldersTypeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pages/folders structure</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>356, 22</value>
@@ -581,30 +611,6 @@
   <data name="customToolStripMenuItem.Text" xml:space="preserve">
     <value>Custom - show Folders Manager every time</value>
   </data>
-  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 22</value>
-  </data>
-  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text" xml:space="preserve">
-    <value>Global command-line arguments (experts only!)</value>
-  </data>
-  <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>373, 6</value>
-  </data>
-  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 22</value>
-  </data>
-  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text" xml:space="preserve">
-    <value>Save settings to NES/SNES Mini now</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 20</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Tools</value>
-  </data>
   <data name="saveStateManagerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>331, 22</value>
   </data>
@@ -656,12 +662,6 @@
   <data name="takeScreenshotToolStripMenuItem.Text" xml:space="preserve">
     <value>Take screenshot</value>
   </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Help</value>
-  </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>246, 22</value>
   </data>
@@ -706,6 +706,294 @@
   </data>
   <data name="groupBoxOptions.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
+  </data>
+  <data name="&gt;&gt;labelSize.Name" xml:space="preserve">
+    <value>labelSize</value>
+  </data>
+  <data name="&gt;&gt;labelSize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelSize.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;labelSize.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;checkBoxCompressed.Name" xml:space="preserve">
+    <value>checkBoxCompressed</value>
+  </data>
+  <data name="&gt;&gt;checkBoxCompressed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxCompressed.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;checkBoxCompressed.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;buttonShowGameGenieDatabase.Name" xml:space="preserve">
+    <value>buttonShowGameGenieDatabase</value>
+  </data>
+  <data name="&gt;&gt;buttonShowGameGenieDatabase.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonShowGameGenieDatabase.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;buttonShowGameGenieDatabase.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;maskedTextBoxReleaseDate.Name" xml:space="preserve">
+    <value>maskedTextBoxReleaseDate</value>
+  </data>
+  <data name="&gt;&gt;maskedTextBoxReleaseDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MaskedTextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maskedTextBoxReleaseDate.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;maskedTextBoxReleaseDate.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;textBoxGameGenie.Name" xml:space="preserve">
+    <value>textBoxGameGenie</value>
+  </data>
+  <data name="&gt;&gt;textBoxGameGenie.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxGameGenie.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;textBoxGameGenie.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;radioButtonTwoSim.Name" xml:space="preserve">
+    <value>radioButtonTwoSim</value>
+  </data>
+  <data name="&gt;&gt;radioButtonTwoSim.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioButtonTwoSim.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;radioButtonTwoSim.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;buttonGoogle.Name" xml:space="preserve">
+    <value>buttonGoogle</value>
+  </data>
+  <data name="&gt;&gt;buttonGoogle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonGoogle.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;buttonGoogle.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;buttonBrowseImage.Name" xml:space="preserve">
+    <value>buttonBrowseImage</value>
+  </data>
+  <data name="&gt;&gt;buttonBrowseImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonBrowseImage.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;buttonBrowseImage.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxArt.Name" xml:space="preserve">
+    <value>pictureBoxArt</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxArt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxArt.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxArt.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;textBoxArguments.Name" xml:space="preserve">
+    <value>textBoxArguments</value>
+  </data>
+  <data name="&gt;&gt;textBoxArguments.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxArguments.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;textBoxArguments.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;textBoxPublisher.Name" xml:space="preserve">
+    <value>textBoxPublisher</value>
+  </data>
+  <data name="&gt;&gt;textBoxPublisher.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxPublisher.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;textBoxPublisher.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;radioButtonTwo.Name" xml:space="preserve">
+    <value>radioButtonTwo</value>
+  </data>
+  <data name="&gt;&gt;radioButtonTwo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioButtonTwo.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;radioButtonTwo.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;radioButtonOne.Name" xml:space="preserve">
+    <value>radioButtonOne</value>
+  </data>
+  <data name="&gt;&gt;radioButtonOne.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioButtonOne.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;radioButtonOne.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;textBoxName.Name" xml:space="preserve">
+    <value>textBoxName</value>
+  </data>
+  <data name="&gt;&gt;textBoxName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxName.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;textBoxName.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;labelName.Name" xml:space="preserve">
+    <value>labelName</value>
+  </data>
+  <data name="&gt;&gt;labelName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelName.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;labelName.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;labelID.Name" xml:space="preserve">
+    <value>labelID</value>
+  </data>
+  <data name="&gt;&gt;labelID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelID.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;labelID.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="groupBoxOptions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 27</value>
+  </data>
+  <data name="groupBoxOptions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 529</value>
+  </data>
+  <data name="groupBoxOptions.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="groupBoxOptions.Text" xml:space="preserve">
+    <value>Game options</value>
+  </data>
+  <data name="&gt;&gt;groupBoxOptions.Name" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;groupBoxOptions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxOptions.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBoxOptions.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="labelSize.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1273,30 +1561,6 @@
   </data>
   <data name="&gt;&gt;labelID.ZOrder" xml:space="preserve">
     <value>21</value>
-  </data>
-  <data name="groupBoxOptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>306, 27</value>
-  </data>
-  <data name="groupBoxOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>293, 529</value>
-  </data>
-  <data name="groupBoxOptions.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="groupBoxOptions.Text" xml:space="preserve">
-    <value>Game options</value>
-  </data>
-  <data name="&gt;&gt;groupBoxOptions.Name" xml:space="preserve">
-    <value>groupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;groupBoxOptions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBoxOptions.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBoxOptions.ZOrder" xml:space="preserve">
-    <value>7</value>
   </data>
   <data name="label5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -2967,10 +3231,10 @@
   <data name="&gt;&gt;epilepsyProtectionToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;compressGamesIfPossibleToolStripMenuItem.Name" xml:space="preserve">
-    <value>compressGamesIfPossibleToolStripMenuItem</value>
+  <data name="&gt;&gt;compressGamesToolStripMenuItem.Name" xml:space="preserve">
+    <value>compressGamesToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;compressGamesIfPossibleToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;compressGamesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pagesfoldersTypeToolStripMenuItem.Name" xml:space="preserve">

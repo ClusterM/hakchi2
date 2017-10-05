@@ -1086,7 +1086,7 @@ namespace com.clusterrr.hakchi_gui
             int i = 0;
             foreach (NesMiniApplication game in Games)
             {
-                SetStatus(Resources.GooglingFor + " " + game.Name);
+                SetStatus(Resources.GooglingFor.Trim() + " " + game.Name);
                 string[] urls = null;
                 for (int tries = 0; tries < 5; tries++)
                 {
@@ -1163,7 +1163,15 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (gameCopy is ISupportsGameGenie && File.Exists((gameCopy as NesGame).GameGeniePath))
                         {
+                            bool compressed = false;
+                            if (gameCopy.DecompressPossible().Count() > 0)
+                            {
+                                gameCopy.Decompress();
+                                compressed = true;
+                            }
                             (gameCopy as ISupportsGameGenie).ApplyGameGenie();
+                            if (compressed)
+                                gameCopy.Compress();
                             File.Delete((gameCopy as ISupportsGameGenie).GameGeniePath);
                         }
                     }

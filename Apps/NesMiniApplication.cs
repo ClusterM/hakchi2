@@ -65,7 +65,7 @@ namespace com.clusterrr.hakchi_gui
             get { return "game"; }
         }
 
-        public readonly string Path;
+        public readonly string GamePath;
         public readonly string ConfigPath;
         public readonly string IconPath;
         public readonly string SmallIconPath;
@@ -201,10 +201,18 @@ namespace com.clusterrr.hakchi_gui
                 FindPatch(ref rawRomData, inputFileName, crc32);
 
             var code = GenerateCode(crc32, prefix);
-            var gamePath = System.IO.Path.Combine(GamesDirectory, code);
-            var romPath = System.IO.Path.Combine(gamePath, outputFileName);
+            var gamePath = Path.Combine(GamesDirectory, code);
+            var romPath = Path.Combine(gamePath, outputFileName);
             if (Directory.Exists(gamePath))
-                Directory.Delete(gamePath, true);
+            {
+                var files = Directory.GetFiles(gamePath, "*.*", SearchOption.AllDirectories);
+                foreach (var f in files)
+                try
+                {
+                        File.Delete(f);
+                }
+                catch { }
+            }
             Directory.CreateDirectory(gamePath);
             File.WriteAllBytes(romPath, rawRomData);
             var game = new NesMiniApplication(gamePath, true);
@@ -240,7 +248,7 @@ namespace com.clusterrr.hakchi_gui
 
         protected NesMiniApplication()
         {
-            Path = null;
+            GamePath = null;
             ConfigPath = null;
             Players = 1;
             Simultaneous = false;
@@ -251,7 +259,7 @@ namespace com.clusterrr.hakchi_gui
 
         protected NesMiniApplication(string path, bool ignoreEmptyConfig = false)
         {
-            Path = path;
+            GamePath = path;
             code = System.IO.Path.GetFileName(path);
             Name = Code;
             ConfigPath = System.IO.Path.Combine(path, Code + ".desktop");
@@ -305,27 +313,24 @@ namespace com.clusterrr.hakchi_gui
             if (!hasUnsavedChanges) return false;
             Debug.WriteLine(string.Format("Saving application \"{0}\" as {1}", Name, Code));
             Name = Regex.Replace(Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
-            File.WriteAllText(ConfigPath, string.Format(
-                "[Desktop Entry]\n" +
-                "Type=Application\n" +
-                "Exec={1}\n" +
-                "Path=/var/lib/clover/profiles/0/{0}\n" +
-                "Name={2}\n" +
-                "Icon=/usr/share/games/nes/kachikachi/{0}/{0}.png\n\n" +
-                "[X-CLOVER Game]\n" +
-                "Code={0}\n" +
-                "TestID=777\n" +
-                "ID=0\n" +
-                "Players={3}\n" +
-                "Simultaneous={7}\n" +
-                "ReleaseDate={4}\n" +
-                "SaveCount=0\n" +
-                "SortRawTitle={5}\n" +
-                "SortRawPublisher={6}\n" +
-                "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
-                Code, command, Name ?? Code, Players, ReleaseDate ?? DefaultReleaseDate,
-                (Name ?? Code).ToLower(), (Publisher ?? DefaultPublisher).ToUpper(),
-                Simultaneous ? 1 : 0));
+            File.WriteAllText(ConfigPath, 
+                $"[Desktop Entry]\n" +
+                $"Type=Application\n" +
+                $"Exec={command}\n" +
+                $"Path=/var/lib/clover/profiles/0/{Code}\n" +
+                $"Name={Name ?? Code}\n" +
+                $"Icon={GamesCloverPath}/{Code}/{Code}.png\n\n" +
+                $"[X-CLOVER Game]\n" +
+                $"Code={Code}\n" +
+                $"TestID=777\n" +
+                $"ID=0\n" +
+                $"Players={Players}\n" +
+                $"Simultaneous={(Simultaneous ? 1 : 0)}\n" +
+                $"ReleaseDate={ReleaseDate ?? DefaultReleaseDate}\n" +
+                $"SaveCount=0\n" +
+                $"SortRawTitle={(Name ?? Code).ToLower()}\n" +
+                $"SortRawPublisher={(Publisher ?? DefaultPublisher).ToUpper()}\n" +
+                $"Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n");
             hasUnsavedChanges = false;
             return true;
         }
@@ -481,7 +486,7 @@ namespace com.clusterrr.hakchi_gui
         public NesMiniApplication CopyTo(string path)
         {
             var targetDir = System.IO.Path.Combine(path, code);
-            DirectoryCopy(Path, targetDir, true);
+            DirectoryCopy(GamePath, targetDir, true);
             return FromDirectory(targetDir);
         }
 
@@ -528,7 +533,7 @@ namespace com.clusterrr.hakchi_gui
         public long Size(string path = null)
         {
             if (path == null)
-                path = Path;
+                path = GamePath;
             long size = 0;
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(path);
@@ -600,15 +605,15 @@ namespace com.clusterrr.hakchi_gui
         public string[] CompressPossible()
         {
             var result = new List<string>();
-            var exec = Regex.Replace(Command, "['\\\"]", " ") + " ";
-            var files = Directory.GetFiles(Path, "*.*", SearchOption.TopDirectoryOnly);
+            var exec = Regex.Replace(Command, "['/\\\"]", " ") + " ";
+            var files = Directory.GetFiles(GamePath, "*.*", SearchOption.TopDirectoryOnly);
             foreach (var file in files)
             {
                 if (System.IO.Path.GetExtension(file).ToLower() == ".7z")
                     continue;
                 if (System.IO.Path.GetExtension(file).ToLower() == ".zip")
                     continue;
-                if (exec.Contains(System.IO.Path.GetFileName(file) + " "))
+                if (exec.Contains(" " + System.IO.Path.GetFileName(file) + " "))
                     result.Add(file);
             }
             return result.ToArray();
@@ -617,11 +622,11 @@ namespace com.clusterrr.hakchi_gui
         public string[] DecompressPossible()
         {
             var result = new List<string>();
-            var exec = Regex.Replace(Command, "['\\\"]", " ") + " ";
-            var files = Directory.GetFiles(Path, "*.7z", SearchOption.TopDirectoryOnly);
+            var exec = Regex.Replace(Command, "['/\\\"]", " ") + " ";
+            var files = Directory.GetFiles(GamePath, "*.7z", SearchOption.TopDirectoryOnly);
             foreach (var file in files)
             {
-                if (exec.Contains(System.IO.Path.GetFileName(file) + " "))
+                if (exec.Contains(" " + System.IO.Path.GetFileName(file) + " "))
                     result.Add(file);
             }
             return result.ToArray();
@@ -650,7 +655,7 @@ namespace com.clusterrr.hakchi_gui
                 using (var szExtractor = new SevenZipExtractor(filename))
                 {
                     Debug.WriteLine("Decompressing " + filename);
-                    szExtractor.ExtractArchive(Path);
+                    szExtractor.ExtractArchive(GamePath);
                     foreach (var f in szExtractor.ArchiveFileNames)
                         Command = Command.Replace(System.IO.Path.GetFileName(filename), f);
                 }

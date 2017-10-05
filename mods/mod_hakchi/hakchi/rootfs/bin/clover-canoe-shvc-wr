@@ -6,7 +6,8 @@
 source /etc/preinit
 script_init
 
-filename=$1
+arg1=$1
+filename=$2
 filebase=$(basename "$filename")
 extension="${filebase##*.}"
 tmppath=/tmp/rom
@@ -18,7 +19,8 @@ if [ "$extension" == "7z" ]; then
   filename=$(ls)
 fi
 shift
+shift
 
-args="$filename $@ $cfg_snes_extra_args"
+args="$arg1 $filename $@ $cfg_snes_extra_args"
 
 exec /usr/bin/clover-canoe-shvc $args

@@ -113,85 +113,6 @@ namespace com.clusterrr.hakchi_gui
             return true;
         }
 
-        /*
-        public static NesMiniApplication Import(string nesFileName, string sourceFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback = null, Form parentForm = null, byte[] rawRomData = null)
-        {
-            NesFile nesFile;
-            try
-            {
-                if (rawRomData != null)
-                    nesFile = new NesFile(rawRomData);
-                else
-                    nesFile = new NesFile(nesFileName);
-            }
-            catch
-            {
-                return NesMiniApplication.Import(nesFileName, sourceFileName, rawRomData);
-            }
-            nesFile.CorrectRom();
-            var crc32 = nesFile.CRC32;
-            var code = GenerateCode(crc32, Prefix);
-            var gamePath = Path.Combine(GamesDirectory, code);
-            var nesPath = Path.Combine(gamePath, code + ".nes");
-            var patchesDirectory = Path.Combine(Program.BaseDirectoryExternal, "patches");
-            Directory.CreateDirectory(patchesDirectory);
-            Directory.CreateDirectory(gamePath);
-            var patches = Directory.GetFiles(patchesDirectory, string.Format("{0:X8}*.ips", crc32), SearchOption.AllDirectories);
-            if (patches.Length > 0 && needPatch != false)
-            {
-                if (needPatch == true || ((needPatchCallback != null) && needPatchCallback(parentForm, Path.GetFileName(nesFileName))))
-                {
-                    needPatch = true;
-                    var patch = patches[0];
-                    if (rawRomData == null)
-                        rawRomData = File.ReadAllBytes(nesFileName);
-                    Debug.WriteLine(string.Format("Patching {0}", nesFileName));
-                    IpsPatcher.Patch(patch, ref rawRomData);
-                    nesFile = new NesFile(rawRomData);
-                }
-                else needPatch = false;
-            }
-
-            if (!supportedMappers.Contains(nesFile.Mapper) && (ignoreMapper != true))
-            {
-                Directory.Delete(gamePath, true);
-                if (ignoreMapper != false)
-                    throw new UnsupportedMapperException(nesFile);
-                else
-                {
-                    Debug.WriteLine(string.Format("Game {0} has mapper #{1}, skipped", nesFileName, nesFile.Mapper));
-                    return null;
-                }
-            }
-            if ((nesFile.Mirroring == NesFile.MirroringType.FourScreenVram) && (ignoreMapper != true))
-            {
-                Directory.Delete(gamePath, true);
-                if (ignoreMapper != false)
-                    throw new UnsupportedFourScreenException(nesFile);
-                else
-                {
-                    Debug.WriteLine(string.Format("Game {0} has four-screen mirroring, skipped", nesFileName, nesFile.Mapper));
-                    return null;
-                }
-            }
-            // TODO: Make trainer check. I think that the NES Mini doesn't support it.
-
-            nesFile.Save(nesPath);
-            var game = new NesGame(gamePath, true);
-
-            game.Name = Path.GetFileNameWithoutExtension(nesFileName);
-            if (game.Name.Contains("(J)")) game.region = "Japan";
-            game.TryAutofill(crc32);
-            game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
-            game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
-            game.Name = game.Name.Replace("_", " ").Replace("  ", " ");
-            game.FindCover(nesFileName, sourceFileName, (game.region == "Japan") ? Resources.blank_jp : Resources.blank_nes, crc32);
-            game.Args = DefaultArgs;
-            game.Save();
-            return game;
-        }
-        */
-
         public bool TryAutofill(uint crc32)
         {
             CachedGameInfo gameinfo;
@@ -228,7 +149,7 @@ namespace com.clusterrr.hakchi_gui
             if (!string.IsNullOrEmpty(GameGenie))
             {
                 var codes = GameGenie.Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
-                var nesFiles = Directory.GetFiles(this.Path, "*.nes", SearchOption.TopDirectoryOnly);
+                var nesFiles = Directory.GetFiles(this.GamePath, "*.nes", SearchOption.TopDirectoryOnly);
                 foreach (var f in nesFiles)
                 {
                     var nesFile = new NesFile(f);
