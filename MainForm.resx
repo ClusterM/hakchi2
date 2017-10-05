@@ -714,7 +714,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 73</value>
+    <value>15, 73</value>
   </data>
   <data name="labelSize.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 13</value>
@@ -741,7 +741,7 @@
     <value>True</value>
   </data>
   <data name="checkBoxCompressed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 71</value>
+    <value>103, 72</value>
   </data>
   <data name="checkBoxCompressed.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 17</value>
@@ -768,7 +768,7 @@
     <value>1</value>
   </data>
   <data name="buttonShowGameGenieDatabase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>252, 288</value>
+    <value>252, 289</value>
   </data>
   <data name="buttonShowGameGenieDatabase.Size" type="System.Drawing.Size, System.Drawing">
     <value>25, 20</value>
@@ -843,7 +843,7 @@
     <value>4</value>
   </data>
   <data name="textBoxGameGenie.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 288</value>
+    <value>18, 289</value>
   </data>
   <data name="textBoxGameGenie.Size" type="System.Drawing.Size, System.Drawing">
     <value>227, 20</value>
@@ -870,7 +870,7 @@
     <value>NoControl</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 271</value>
+    <value>15, 272</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 13</value>
@@ -927,7 +927,7 @@
     <value>NoControl</value>
   </data>
   <data name="radioButtonTwoSim.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 137</value>
+    <value>103, 135</value>
   </data>
   <data name="radioButtonTwoSim.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 17</value>
@@ -1050,7 +1050,7 @@
     <value>12</value>
   </data>
   <data name="textBoxArguments.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 244</value>
+    <value>18, 245</value>
   </data>
   <data name="textBoxArguments.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 20</value>
@@ -1074,7 +1074,7 @@
     <value>True</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 227</value>
+    <value>15, 228</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 13</value>
@@ -1098,7 +1098,7 @@
     <value>14</value>
   </data>
   <data name="textBoxPublisher.Location" type="System.Drawing.Point, System.Drawing">
-    <value>71, 196</value>
+    <value>71, 195</value>
   </data>
   <data name="textBoxPublisher.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 20</value>
@@ -1122,7 +1122,7 @@
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 199</value>
+    <value>15, 198</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
@@ -1176,7 +1176,7 @@
     <value>True</value>
   </data>
   <data name="radioButtonOne.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 95</value>
+    <value>103, 97</value>
   </data>
   <data name="radioButtonOne.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 17</value>

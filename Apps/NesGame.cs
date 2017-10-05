@@ -68,7 +68,9 @@ namespace com.clusterrr.hakchi_gui
             }
             nesFile.CorrectRom();
             crc32 = nesFile.CRC32;
-            if (ConfigIni.ConsoleType != MainForm.ConsoleType.NES && ConfigIni.ConsoleType != MainForm.ConsoleType.Famicom)
+            if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
+                application = "/bin/clover-kachikachi-wr";
+            else
                 application = "/bin/nes";
 
             //if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk

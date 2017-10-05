@@ -27,7 +27,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(NesGame),
                 Extensions = new string[] {".nes"},
-                DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "/bin/clover-kachikachi", "/bin/nes"},
+                DefaultApps = new string[] { "/bin/nes", "/bin/clover-kachikachi-wr", "/usr/bin/clover-kachikachi" },
                 Prefix = 'H',
                 DefaultCover = Resources.blank_nes
             },
@@ -43,7 +43,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(FdsGame),
                 Extensions = new string[] {".fds"},
-                DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "/bin/clover-kachikachi",  "/bin/nes"},
+                DefaultApps = new string[] { "/bin/nes", "/bin/clover-kachikachi-wr", "/usr/bin/clover-kachikachi" },
                 Prefix = 'D',
                 DefaultCover = Resources.blank_fds
             },
@@ -51,7 +51,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Class = typeof(SnesGame),
                 Extensions = new string[] { ".sfc", ".smc", ".sfrom" },
-                DefaultApps = new string[] {"/usr/bin/clover-canoe-shvc", "/bin/snes"},
+                DefaultApps = new string[] { "/bin/snes", "/usr/bin/clover-canoe-shvc", },
                 Prefix = 'U',
                 DefaultCover = Resources.blank_snes_us
             },
