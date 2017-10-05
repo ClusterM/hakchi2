@@ -184,19 +184,19 @@ namespace com.clusterrr.hakchi_gui
 
         private delegate DialogResult MessageBoxFromThreadDelegate(IWin32Window owner, string text, string caption, MessageBoxButtons buttons,
             MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, bool tweak);
-        DialogResult MessageBoxFromThread(IWin32Window owner, string text, string caption, MessageBoxButtons buttons,
+        public static DialogResult MessageBoxFromThread(IWin32Window owner, string text, string caption, MessageBoxButtons buttons,
             MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, bool tweak)
         {
-            if (InvokeRequired)
+            if ((owner as Form).InvokeRequired)
             {
-                return (DialogResult)Invoke(new MessageBoxFromThreadDelegate(MessageBoxFromThread),
+                return (DialogResult)(owner as Form).Invoke(new MessageBoxFromThreadDelegate(MessageBoxFromThread),
                     new object[] { owner, text, caption, buttons, icon, defaultButton, tweak });
             }
-            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Paused);
+            TaskbarProgress.SetState(owner as Form, TaskbarProgress.TaskbarStates.Paused);
             if (tweak) MessageBoxManager.Register(); // Tweak button names
             var result = MessageBox.Show(owner, text, caption, buttons, icon, defaultButton);
             if (tweak) MessageBoxManager.Unregister();
-            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
+            TaskbarProgress.SetState(owner as Form, TaskbarProgress.TaskbarStates.Normal);
             return result;
         }
 
@@ -1161,10 +1161,10 @@ namespace com.clusterrr.hakchi_gui
                     stats.TotalGames++;
                     try
                     {
-                        if (gameCopy is NesGame && File.Exists((gameCopy as NesGame).GameGeniePath))
+                        if (gameCopy is ISupportsGameGenie && File.Exists((gameCopy as NesGame).GameGeniePath))
                         {
-                            (gameCopy as NesGame).ApplyGameGenie();
-                            File.Delete((gameCopy as NesGame).GameGeniePath);
+                            (gameCopy as ISupportsGameGenie).ApplyGameGenie();
+                            File.Delete((gameCopy as ISupportsGameGenie).GameGeniePath);
                         }
                     }
                     catch (GameGenieFormatException ex)
@@ -1263,9 +1263,9 @@ namespace com.clusterrr.hakchi_gui
         {
             var apps = new List<NesMiniApplication>();
             addedApplications = null;
-            //bool NoForAllUnsupportedMappers = false;
-            bool YesForAllUnsupportedMappers = false;
-            YesForAllPatches = false;
+            NesGame.ParentForm = this;
+            NesGame.NeedPatch = null;
+            NesGame.IgnoreMapper = null;
             int count = 0;
             SetStatus(Resources.AddingGames);
             foreach (var sourceFileName in files)
@@ -1292,11 +1292,11 @@ namespace com.clusterrr.hakchi_gui
                                     gameFilesInArchive.Add(f);
                                 filesInArchive.Add(f);
                             }
-                            if (gameFilesInArchive.Count == 1) // Only one NES file (or app)
+                            if (gameFilesInArchive.Count == 1) // Only one known file (or app)
                             {
                                 fileName = gameFilesInArchive[0];
                             }
-                            else if (gameFilesInArchive.Count > 1) // Many NES files, need to select
+                            else if (gameFilesInArchive.Count > 1) // Many known files, need to select
                             {
                                 var r = SelectFileFromThread(gameFilesInArchive.ToArray());
                                 if (r == DialogResult.OK)
@@ -1305,7 +1305,7 @@ namespace com.clusterrr.hakchi_gui
                                     fileName = sourceFileName;
                                 else continue;
                             }
-                            else if (filesInArchive.Count == 1) // No NES files but only one another file
+                            else if (filesInArchive.Count == 1) // No known files but only one another file
                             {
                                 fileName = filesInArchive[0];
                             }
@@ -1323,7 +1323,9 @@ namespace com.clusterrr.hakchi_gui
                                 var o = new MemoryStream();
                                 if (Path.GetExtension(fileName).ToLower() == ".desktop" // App in archive, need the whole directory
                                     || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName) + ".jpg") // Or it has cover in archive
-                                    || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName) + ".png"))
+                                    || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName) + ".png")
+                                    || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName) + ".ips") // Or IPS file
+                                    )
                                 {
                                     tmp = Path.Combine(Path.GetTempPath(), fileName);
                                     Directory.CreateDirectory(tmp);
@@ -1340,48 +1342,19 @@ namespace com.clusterrr.hakchi_gui
                             }
                         }
                     }
-                    if (Path.GetExtension(fileName).ToLower() == ".nes")
-                    {
-                        try
-                        {
-                            app = NesGame.Import(fileName, sourceFileName, YesForAllUnsupportedMappers ? (bool?)true : null, ref needPatch, needPatchCallback, this, rawData);
+                    app = NesMiniApplication.Import(fileName, sourceFileName, rawData);
 
-                            // Trying to import Game Genie codes
-                            var lGameGeniePath = Path.Combine(Path.GetDirectoryName(fileName), Path.GetFileNameWithoutExtension(fileName) + ".xml");
-                            if (File.Exists(lGameGeniePath))
-                            {
-                                GameGenieDataBase lGameGenieDataBase = new GameGenieDataBase(app);
-                                lGameGenieDataBase.ImportCodes(lGameGeniePath, true);
-                                lGameGenieDataBase.Save();
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            if (ex is UnsupportedMapperException || ex is UnsupportedFourScreenException)
-                            {
-                                var r = MessageBoxFromThread(this,
-                                    (ex is UnsupportedMapperException)
-                                       ? string.Format(Resources.MapperNotSupported, Path.GetFileName(fileName), (ex as UnsupportedMapperException).ROM.Mapper)
-                                       : string.Format(Resources.FourScreenNotSupported, Path.GetFileName(fileName)),
-                                    Resources.AreYouSure,
-                                    files.Count() <= 1 ? MessageBoxButtons.YesNo : MessageBoxButtons.AbortRetryIgnore,
-                                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
-                                if (r == DialogResult.Abort)
-                                    YesForAllUnsupportedMappers = true;
-                                if (r == DialogResult.Yes || r == DialogResult.Abort || r == DialogResult.Retry)
-                                    app = NesGame.Import(fileName, sourceFileName, true, ref needPatch, needPatchCallback, this, rawData);
-                                else
-                                    continue;
-                            }
-                            else throw ex;
-                        }
-                    }
-                    else
+                    var lGameGeniePath = Path.Combine(Path.GetDirectoryName(fileName), Path.GetFileNameWithoutExtension(fileName) + ".xml");
+                    if (File.Exists(lGameGeniePath))
                     {
-                        app = NesMiniApplication.Import(fileName, sourceFileName, rawData);
+                        GameGenieDataBase lGameGenieDataBase = new GameGenieDataBase(app);
+                        lGameGenieDataBase.ImportCodes(lGameGeniePath, true);
+                        lGameGenieDataBase.Save();
                     }
+
                     if (!string.IsNullOrEmpty(tmp) && Directory.Exists(tmp)) Directory.Delete(tmp, true);
-                    ConfigIni.SelectedGames += ";" + app.Code;
+                    if (app != null)
+                        ConfigIni.SelectedGames += ";" + app.Code;
                 }
                 catch (Exception ex)
                 {
@@ -1395,31 +1368,6 @@ namespace com.clusterrr.hakchi_gui
             }
             addedApplications = apps.ToArray();
             return apps; // Added games/apps
-        }
-
-        private bool needPatchCallback(Form parentForm, string nesFileName)
-        {
-            if (GamesToAdd == null || GamesToAdd.Count() <= 1)
-            {
-                return MessageBoxFromThread(parentForm,
-                    string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)),
-                    Resources.PatchAvailable,
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button1, false) == DialogResult.Yes;
-            }
-            else
-            {
-                var r = MessageBoxFromThread(parentForm,
-                    string.Format(Resources.PatchQ, Path.GetFileName(nesFileName)),
-                    Resources.PatchAvailable,
-                    MessageBoxButtons.AbortRetryIgnore,
-                    MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button2, true);
-                if (r == DialogResult.Abort)
-                    YesForAllPatches = true;
-                return r != DialogResult.Ignore;
-            }
         }
 
         private void WorkerForm_FormClosing(object sender, FormClosingEventArgs e)

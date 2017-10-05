@@ -1,0 +1,10 @@
+#!/bin/sh
+flag=/tmp/startmpc.flag
+while [ true ]; do
+  #sleep 1
+  if [ -f "$flag" ]; then
+    echo Restart!
+    /etc/init.d/S81clover-mcp start
+    rm $flag
+  fi
+done

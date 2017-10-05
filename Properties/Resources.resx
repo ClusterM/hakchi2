@@ -652,4 +652,7 @@
   <data name="Membooting" xml:space="preserve">
     <value>Booting the kernel from RAM...</value>
   </data>
+  <data name="Size" xml:space="preserve">
+    <value>Size:</value>
+  </data>
 </root>

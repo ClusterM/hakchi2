@@ -4,6 +4,7 @@ using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -12,15 +13,16 @@ using System.Xml.XPath;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public class NesGame : NesMiniApplication
+    public class NesGame : NesMiniApplication, ICloverAutofill, ISupportsGameGenie
     {
-        public delegate bool NeedPatchDelegate(Form parentForm, string nesFileName);
         public const char Prefix = 'H';
-        public readonly string NesPath;
-        public readonly string GameGeniePath;
-
-        private string region = null;
+        public string GameGeniePath { private set; get; }
+        public static bool? IgnoreMapper;
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet";
+        private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
+
+        public const string GameGenieFileName = "gamegenie.txt";
+        private static byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10, 86, 87, 184 };
 
         public override string GoogleSuffix
         {
@@ -30,20 +32,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public string Args
-        {
-            get
-            {
-                if (Command.Contains(".nes"))
-                    return Command.Substring(Command.IndexOf(".nes") + 4).Trim();
-                else
-                    return "";
-            }
-            set
-            {
-                Command = string.Format("/bin/clover-kachikachi-wr /usr/share/games/nes/kachikachi/{0}/{0}.nes {1}", code, value);
-            }
-        }
         private string gameGenie = "";
         public string GameGenie
         {
@@ -54,28 +42,76 @@ namespace com.clusterrr.hakchi_gui
                 gameGenie = value;
             }
         }
-        public string Region
-        {
-            get { return region; }
-            private set { region = value; }
-        }
-
-        private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
-        public const string GameGenieFileName = "gamegenie.txt";
-        private static byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10, 86, 87, 184 };
 
         public NesGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {
-            NesPath = Path.Combine(GamePath, Code + ".nes");
-            GameGeniePath = Path.Combine(path, GameGenieFileName);
-            if (!File.Exists(NesPath)) throw new FileNotFoundException("Invalid game directory: " + path);
-
+            GameGeniePath = System.IO.Path.Combine(path, GameGenieFileName);
             if (File.Exists(GameGeniePath))
                 gameGenie = File.ReadAllText(GameGeniePath);
-            Args = Args; // To update exec path if need
+        }
+        
+        public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref uint crc32)
+        {
+            // Try to patch before mapper check, maybe it will patch mapper
+            FindPatch(ref rawRomData, inputFileName, crc32);
+
+            NesFile nesFile;
+            try
+            {
+                nesFile = new NesFile(rawRomData);
+            }
+            catch
+            {
+                application = "/bin/nes";
+                return true;
+            }
+            nesFile.CorrectRom();
+            crc32 = nesFile.CRC32;
+            if (ConfigIni.ConsoleType != MainForm.ConsoleType.NES && ConfigIni.ConsoleType != MainForm.ConsoleType.Famicom)
+                application = "/bin/nes";
+
+            //if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
+            //if (nesFile.Mapper == 88) nesFile.Mapper = 4; // Compatible with MMC3... sometimes
+            //if (nesFile.Mapper == 95) nesFile.Mapper = 4; // Compatible with MMC3
+            //if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
+            if (!supportedMappers.Contains(nesFile.Mapper) && (IgnoreMapper != true))
+            {
+                if (IgnoreMapper != false)
+                {
+                    var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                        string.Format(Resources.MapperNotSupported, System.IO.Path.GetFileName(inputFileName), nesFile.Mapper),
+                            Resources.AreYouSure,
+                            MessageBoxButtons.AbortRetryIgnore,
+                            MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
+                    if (r == DialogResult.Abort)
+                        IgnoreMapper = true;
+                    if (r == DialogResult.Ignore)
+                        return false;
+                }
+                else return false;
+            }
+            if ((nesFile.Mirroring == NesFile.MirroringType.FourScreenVram) && (IgnoreMapper != true))
+            {
+                var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                    string.Format(Resources.FourScreenNotSupported, System.IO.Path.GetFileName(inputFileName)),
+                        Resources.AreYouSure,
+                        MessageBoxButtons.AbortRetryIgnore,
+                        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
+                if (r == DialogResult.Abort)
+                    IgnoreMapper = true;
+                if (r == DialogResult.No)
+                    return false;
+            }
+
+            // TODO: Make trainer check. I think that the NES Mini doesn't support it.
+            rawRomData = nesFile.GetRaw();
+            if (inputFileName.Contains("(J)")) cover = Resources.blank_jp;
+            args = DefaultArgs;
+            return true;
         }
 
+        /*
         public static NesMiniApplication Import(string nesFileName, string sourceFileName, bool? ignoreMapper, ref bool? needPatch, NeedPatchDelegate needPatchCallback = null, Form parentForm = null, byte[] rawRomData = null)
         {
             NesFile nesFile;
@@ -114,10 +150,6 @@ namespace com.clusterrr.hakchi_gui
                 else needPatch = false;
             }
 
-            //if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
-            //if (nesFile.Mapper == 88) nesFile.Mapper = 4; // Compatible with MMC3... sometimes
-            //if (nesFile.Mapper == 95) nesFile.Mapper = 4; // Compatible with MMC3
-            //if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
             if (!supportedMappers.Contains(nesFile.Mapper) && (ignoreMapper != true))
             {
                 Directory.Delete(gamePath, true);
@@ -156,6 +188,7 @@ namespace com.clusterrr.hakchi_gui
             game.Save();
             return game;
         }
+        */
 
         public bool TryAutofill(uint crc32)
         {
@@ -170,7 +203,6 @@ namespace com.clusterrr.hakchi_gui
                 if (ReleaseDate.Length == 4) ReleaseDate += "-01";
                 if (ReleaseDate.Length == 7) ReleaseDate += "-01";
                 Publisher = gameinfo.Publisher.ToUpper();
-                Region = gameinfo.Region;
                 return true;
             }
             return false;
@@ -178,14 +210,15 @@ namespace com.clusterrr.hakchi_gui
 
         public override bool Save()
         {
-            if (this.hasUnsavedChanges)
+            var old = hasUnsavedChanges;
+            if (hasUnsavedChanges)
             {
                 if (!string.IsNullOrEmpty(gameGenie))
                     File.WriteAllText(GameGeniePath, gameGenie);
                 else
                     File.Delete(GameGeniePath);
             }
-            return base.Save() || this.hasUnsavedChanges;
+            return base.Save() || old;
         }
 
         public void ApplyGameGenie()
@@ -193,12 +226,16 @@ namespace com.clusterrr.hakchi_gui
             if (!string.IsNullOrEmpty(GameGenie))
             {
                 var codes = GameGenie.Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
-                var nesFile = new NesFile(NesPath);
-                foreach (var code in codes)
+                var nesFiles = Directory.GetFiles(this.Path, "*.nes", SearchOption.TopDirectoryOnly);
+                foreach (var f in nesFiles)
                 {
-                    nesFile.PRG = GameGeniePatcher.Patch(nesFile.PRG, code.Trim());
+                    var nesFile = new NesFile(f);
+                    foreach (var code in codes)
+                    {
+                        nesFile.PRG = GameGeniePatcher.Patch(nesFile.PRG, code.Trim());
+                    }
+                    nesFile.Save(f);
                 }
-                nesFile.Save(NesPath);
             }
         }
 
@@ -215,7 +252,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                var xmlDataBasePath = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "nescarts.xml");
+                var xmlDataBasePath = System.IO.Path.Combine(System.IO.Path.Combine(Program.BaseDirectoryInternal, "data"), "nescarts.xml");
                 Debug.WriteLine("Loading " + xmlDataBasePath);
 
                 if (File.Exists(xmlDataBasePath))
@@ -254,6 +291,7 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine(ex.Message + ex.StackTrace);
             }
         }
+
     }
 }
 

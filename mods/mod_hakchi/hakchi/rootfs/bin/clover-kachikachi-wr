@@ -7,6 +7,26 @@
 source /etc/preinit
 script_init
 
-args="$@ $cfg_nes_extra_args"
+filename=$1
+filebase=$(basename "$filename")
+extension="${filebase##*.}"
+tmppath=/tmp/rom
+if [ "$extension" == "7z" ]; then
+  mkdir -p $tmppath
+  rm -rf $tmppath/*
+  cd $tmppath
+  tiny7zx x $filename
+  filename=$(ls)
+fi
+if [ "$extension" == "gz" ]; then
+  mkdir -p $tmppath
+  rm -rf $tmppath/*
+  gunzip -c > $tmppath/$filebase
+  filename=$tmppath/$filebase
+fi
+shift
+
+args="$filename $@ $cfg_nes_extra_args"
 [ "$cfg_disable_armet" == "y" ] && args="$(echo $args | sed 's/--enable-armet//g')"
+
 exec /usr/bin/clover-kachikachi $args

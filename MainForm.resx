@@ -707,8 +707,68 @@
   <data name="groupBoxOptions.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
+  <data name="labelSize.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelSize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelSize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 73</value>
+  </data>
+  <data name="labelSize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 13</value>
+  </data>
+  <data name="labelSize.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="labelSize.Text" xml:space="preserve">
+    <value>Size:</value>
+  </data>
+  <data name="&gt;&gt;labelSize.Name" xml:space="preserve">
+    <value>labelSize</value>
+  </data>
+  <data name="&gt;&gt;labelSize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelSize.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;labelSize.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="checkBoxCompressed.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxCompressed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>103, 71</value>
+  </data>
+  <data name="checkBoxCompressed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 17</value>
+  </data>
+  <data name="checkBoxCompressed.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="checkBoxCompressed.Text" xml:space="preserve">
+    <value>Compressed</value>
+  </data>
+  <data name="checkBoxCompressed.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;checkBoxCompressed.Name" xml:space="preserve">
+    <value>checkBoxCompressed</value>
+  </data>
+  <data name="&gt;&gt;checkBoxCompressed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxCompressed.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;checkBoxCompressed.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="buttonShowGameGenieDatabase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>252, 286</value>
+    <value>252, 288</value>
   </data>
   <data name="buttonShowGameGenieDatabase.Size" type="System.Drawing.Size, System.Drawing">
     <value>25, 20</value>
@@ -729,10 +789,10 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;buttonShowGameGenieDatabase.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="maskedTextBoxReleaseDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>210, 154</value>
+    <value>210, 165</value>
   </data>
   <data name="maskedTextBoxReleaseDate.Mask" xml:space="preserve">
     <value>0000-00-00</value>
@@ -741,7 +801,7 @@
     <value>65, 20</value>
   </data>
   <data name="maskedTextBoxReleaseDate.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;maskedTextBoxReleaseDate.Name" xml:space="preserve">
     <value>maskedTextBoxReleaseDate</value>
@@ -753,13 +813,13 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;maskedTextBoxReleaseDate.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 157</value>
+    <value>15, 168</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 13</value>
@@ -780,10 +840,10 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="textBoxGameGenie.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 286</value>
+    <value>19, 288</value>
   </data>
   <data name="textBoxGameGenie.Size" type="System.Drawing.Size, System.Drawing">
     <value>227, 20</value>
@@ -801,7 +861,7 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;textBoxGameGenie.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -810,7 +870,7 @@
     <value>NoControl</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 269</value>
+    <value>16, 271</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 13</value>
@@ -831,10 +891,10 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 76</value>
+    <value>15, 93</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 63</value>
@@ -858,7 +918,7 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="radioButtonTwoSim.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -867,13 +927,13 @@
     <value>NoControl</value>
   </data>
   <data name="radioButtonTwoSim.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 122</value>
+    <value>103, 137</value>
   </data>
   <data name="radioButtonTwoSim.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 17</value>
   </data>
   <data name="radioButtonTwoSim.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="radioButtonTwoSim.Text" xml:space="preserve">
     <value>Two players, simultaneously</value>
@@ -888,7 +948,7 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;radioButtonTwoSim.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="buttonGoogle.Location" type="System.Drawing.Point, System.Drawing">
     <value>219, 427</value>
@@ -912,7 +972,7 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;buttonGoogle.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="buttonBrowseImage.Location" type="System.Drawing.Point, System.Drawing">
     <value>219, 384</value>
@@ -936,7 +996,7 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;buttonBrowseImage.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="pictureBoxArt.Location" type="System.Drawing.Point, System.Drawing">
     <value>71, 316</value>
@@ -960,7 +1020,7 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;pictureBoxArt.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 316</value>
@@ -987,10 +1047,10 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="textBoxArguments.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 237</value>
+    <value>18, 244</value>
   </data>
   <data name="textBoxArguments.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 20</value>
@@ -1008,22 +1068,22 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;textBoxArguments.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 220</value>
+    <value>15, 227</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 13</value>
+    <value>201, 13</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Command line arguments (for advanced users only!):</value>
+    <value>Command line (for advanced users only!):</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -1035,10 +1095,10 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="textBoxPublisher.Location" type="System.Drawing.Point, System.Drawing">
-    <value>71, 186</value>
+    <value>71, 196</value>
   </data>
   <data name="textBoxPublisher.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 20</value>
@@ -1056,13 +1116,13 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;textBoxPublisher.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 189</value>
+    <value>15, 199</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
@@ -1083,19 +1143,19 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="radioButtonTwo.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="radioButtonTwo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 99</value>
+    <value>103, 116</value>
   </data>
   <data name="radioButtonTwo.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 17</value>
   </data>
   <data name="radioButtonTwo.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="radioButtonTwo.Text" xml:space="preserve">
     <value>Two players, not simultaneously</value>
@@ -1110,19 +1170,19 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;radioButtonTwo.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>17</value>
   </data>
   <data name="radioButtonOne.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="radioButtonOne.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 76</value>
+    <value>103, 95</value>
   </data>
   <data name="radioButtonOne.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 17</value>
   </data>
   <data name="radioButtonOne.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="radioButtonOne.Text" xml:space="preserve">
     <value>One player</value>
@@ -1137,10 +1197,10 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;radioButtonOne.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="textBoxName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>59, 46</value>
+    <value>59, 44</value>
   </data>
   <data name="textBoxName.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 20</value>
@@ -1158,13 +1218,13 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;textBoxName.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>19</value>
   </data>
   <data name="labelName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="labelName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 49</value>
+    <value>15, 47</value>
   </data>
   <data name="labelName.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 13</value>
@@ -1185,7 +1245,7 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;labelName.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>20</value>
   </data>
   <data name="labelID.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1212,7 +1272,7 @@
     <value>groupBoxOptions</value>
   </data>
   <data name="&gt;&gt;labelID.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>21</value>
   </data>
   <data name="groupBoxOptions.Location" type="System.Drawing.Point, System.Drawing">
     <value>306, 27</value>

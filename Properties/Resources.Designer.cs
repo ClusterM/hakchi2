@@ -95,7 +95,17 @@ namespace com.clusterrr.hakchi_gui.Properties {
                 return ResourceManager.GetString("AutofillResult", resourceCulture);
             }
         }
-        
+        /// <summary>
+        ///   Looks up a localized string similar to Data automatically filled for {0} game(s)..
+        /// </summary>
+        internal static string Size
+        {
+            get
+            {
+                return ResourceManager.GetString("Size", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Hold Select+A/B for a second to enable/disable autofire A/B..
         /// </summary>

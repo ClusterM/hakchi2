@@ -87,7 +87,7 @@ namespace com.clusterrr.Famicom
             this.fileName = fileName;
         }
 
-        public void Save(string fileName)
+        public byte[] GetRaw()
         {
             if (PRG == null) PRG = new byte[0];
             if (CHR == null) CHR = new byte[0];
@@ -122,9 +122,12 @@ namespace com.clusterrr.Famicom
             data.AddRange(CHR);
             if (Trainer != null)
                 data.AddRange(Trainer);
+            return data.ToArray();
+        }
 
-            //data.AddRange(new byte[127]);
-            File.WriteAllBytes(fileName, data.ToArray());
+        public void Save(string fileName)
+        {
+            File.WriteAllBytes(fileName, GetRaw());
         }
 
         public byte[] MD5

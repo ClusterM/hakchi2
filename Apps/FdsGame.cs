@@ -11,62 +11,35 @@ namespace com.clusterrr.hakchi_gui
     public class FdsGame : NesMiniApplication
     {
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet --fds-auto-disk-side-switch-on-keypress";
+        const char Prefix = 'D';
 
         public override string GoogleSuffix
         {
             get
             {
-                return "fds";
+                return "(fds | nes | famicom)";
             }
         }
-
-        public string Args
-        {
-            get
-            {
-                if (Command.Contains(".fds"))
-                    return Command.Substring(Command.IndexOf(".fds") + 4).Trim();
-                else
-                    return "";
-            }
-            set
-            {
-                Command = string.Format("/bin/clover-kachikachi-wr /usr/share/games/nes/kachikachi/{0}/{0}.fds {1}", code, value);
-            }
-        }  
 
         public FdsGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {
-            Args = Args; // To update exec path if need
         }
 
-        public static FdsGame Import(string fdsFileName, string sourceFileName, byte[] rawRomData = null)
+        public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref uint crc32)
         {
-            if (rawRomData == null)
-                rawRomData = File.ReadAllBytes(fdsFileName);
+            FindPatch(ref rawRomData, inputFileName, crc32);
             if (Encoding.ASCII.GetString(rawRomData, 0, 3) == "FDS") // header? cut it!
             {
                 var fdsDataNoHeader = new byte[rawRomData.Length - 0x10];
                 Array.Copy(rawRomData, 0x10, fdsDataNoHeader, 0, fdsDataNoHeader.Length);
                 rawRomData = fdsDataNoHeader;
-            }
-            var crc32 = CRC32(rawRomData);
-            var code = GenerateCode(crc32, DefaultPrefix);
-            var gamePath = Path.Combine(GamesDirectory, code);
-            var fdsPath = Path.Combine(gamePath, code + ".fds");
-            Directory.CreateDirectory(gamePath);
-            File.WriteAllBytes(fdsPath, rawRomData);
-            var game = new FdsGame(gamePath, true);
-
-            game.Name = Path.GetFileNameWithoutExtension(fdsFileName);
-            game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
-            game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
-            game.Name = game.Name.Replace("_", " ").Replace("  ", " ").Trim();
-            game.FindCover(fdsFileName, sourceFileName, Resources.blank_fds, crc32);
-            game.Args = DefaultArgs;
-            game.Save();
-            return game;
+                crc32 = CRC32(rawRomData);
+                // Try to find patch again, using new CRC
+                FindPatch(ref rawRomData, inputFileName,  crc32);
+            }            
+            args = DefaultArgs;
+            return true;
         }
     }
 }

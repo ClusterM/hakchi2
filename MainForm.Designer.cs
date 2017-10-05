@@ -159,6 +159,8 @@
             this.timerConnectionCheck = new System.Windows.Forms.Timer(this.components);
             this.saveDumpFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openDumpFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.checkBoxCompressed = new System.Windows.Forms.CheckBox();
+            this.labelSize = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -802,6 +804,8 @@
             // groupBoxOptions
             // 
             resources.ApplyResources(this.groupBoxOptions, "groupBoxOptions");
+            this.groupBoxOptions.Controls.Add(this.labelSize);
+            this.groupBoxOptions.Controls.Add(this.checkBoxCompressed);
             this.groupBoxOptions.Controls.Add(this.buttonShowGameGenieDatabase);
             this.groupBoxOptions.Controls.Add(this.maskedTextBoxReleaseDate);
             this.groupBoxOptions.Controls.Add(this.label1);
@@ -1079,6 +1083,18 @@
             // 
             this.openDumpFileDialog.FileName = "...";
             // 
+            // checkBoxCompressed
+            // 
+            resources.ApplyResources(this.checkBoxCompressed, "checkBoxCompressed");
+            this.checkBoxCompressed.Name = "checkBoxCompressed";
+            this.checkBoxCompressed.UseVisualStyleBackColor = true;
+            this.checkBoxCompressed.CheckedChanged += new System.EventHandler(this.checkBoxCompressed_CheckedChanged);
+            // 
+            // labelSize
+            // 
+            resources.ApplyResources(this.labelSize, "labelSize");
+            this.labelSize.Name = "labelSize";
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1102,7 +1118,6 @@
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.checkedListBoxGames_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.checkedListBoxGames_DragEnter);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.groupBoxOptions.ResumeLayout(false);
@@ -1248,6 +1263,8 @@
         private System.Windows.Forms.ToolStripMenuItem membootPatchedKernelToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem11;
         private System.Windows.Forms.ToolStripMenuItem membootOriginalKernelToolStripMenuItem;
+        private System.Windows.Forms.CheckBox checkBoxCompressed;
+        private System.Windows.Forms.Label labelSize;
     }
 }
 
