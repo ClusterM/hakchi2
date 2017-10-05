@@ -73,7 +73,6 @@
             this.upABStartOnSecondControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.epilepsyProtectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagesfoldersTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disablePagefoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -100,6 +99,7 @@
             this.max100toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.customToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.saveSettingsToNESMiniNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -414,8 +414,8 @@
             // 
             // superFamicomMiniToolStripMenuItem
             // 
-            resources.ApplyResources(this.superFamicomMiniToolStripMenuItem, "superFamicomMiniToolStripMenuItem");
             this.superFamicomMiniToolStripMenuItem.Name = "superFamicomMiniToolStripMenuItem";
+            resources.ApplyResources(this.superFamicomMiniToolStripMenuItem, "superFamicomMiniToolStripMenuItem");
             this.superFamicomMiniToolStripMenuItem.Click += new System.EventHandler(this.superFamicomMiniToolStripMenuItem_Click);
             // 
             // cloverconHackToolStripMenuItem
@@ -480,15 +480,6 @@
             this.epilepsyProtectionToolStripMenuItem.Name = "epilepsyProtectionToolStripMenuItem";
             resources.ApplyResources(this.epilepsyProtectionToolStripMenuItem, "epilepsyProtectionToolStripMenuItem");
             this.epilepsyProtectionToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemArmet_Click);
-            // 
-            // compressGamesToolStripMenuItem
-            // 
-            this.compressGamesToolStripMenuItem.Checked = true;
-            this.compressGamesToolStripMenuItem.CheckOnClick = true;
-            this.compressGamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.compressGamesToolStripMenuItem.Name = "compressGamesToolStripMenuItem";
-            resources.ApplyResources(this.compressGamesToolStripMenuItem, "compressGamesToolStripMenuItem");
-            this.compressGamesToolStripMenuItem.Click += new System.EventHandler(this.compressGamesToolStripMenuItem_Click);
             // 
             // pagesfoldersTypeToolStripMenuItem
             // 
@@ -680,6 +671,15 @@
             resources.ApplyResources(this.customToolStripMenuItem, "customToolStripMenuItem");
             this.customToolStripMenuItem.Tag = "99";
             this.customToolStripMenuItem.Click += new System.EventHandler(this.pagesModefoldersToolStripMenuItem_Click);
+            // 
+            // compressGamesToolStripMenuItem
+            // 
+            this.compressGamesToolStripMenuItem.Checked = true;
+            this.compressGamesToolStripMenuItem.CheckOnClick = true;
+            this.compressGamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.compressGamesToolStripMenuItem.Name = "compressGamesToolStripMenuItem";
+            resources.ApplyResources(this.compressGamesToolStripMenuItem, "compressGamesToolStripMenuItem");
+            this.compressGamesToolStripMenuItem.Click += new System.EventHandler(this.compressGamesToolStripMenuItem_Click);
             // 
             // globalCommandLineArgumentsexpertsOnluToolStripMenuItem
             // 

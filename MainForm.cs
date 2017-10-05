@@ -116,6 +116,31 @@ namespace com.clusterrr.hakchi_gui
             new NesDefaultGame { Code = "CLV-P-SADJE",  Name = "Yoshi's Island", Size = 4261051 },
             new NesDefaultGame { Code = "CLV-P-SADKE",  Name = "Star Fox 2", Size = 2088122 }
         };
+        static NesDefaultGame[] defaultSuperFamicomGames = new NesDefaultGame[]
+        {
+            new NesDefaultGame { Code = "CLV-P-VAAAJ",  Name = "スーパーマリオワールド", Size = 2648224 },
+            new NesDefaultGame { Code = "CLV-P-VAABJ",  Name = "F-ZERO", Size = 2666349 },
+            new NesDefaultGame { Code = "CLV-P-VAAEJ",  Name = "ゼルダの伝説 神々のトライフォース", Size = 2377849 },
+            new NesDefaultGame { Code = "CLV-P-VAAFJ",  Name = "スーパーマリオカート", Size = 2295761 },
+            new NesDefaultGame { Code = "CLV-P-VAAGJ",  Name = "ファイアーエムブレム 紋章の謎", Size = 5272630 },
+            new NesDefaultGame { Code = "CLV-P-VAAHJ",  Name = "スーパーメトロイド", Size = 6211090 },
+            new NesDefaultGame { Code = "CLV-P-VAALJ",  Name = "スーパードンキーコング", Size = 5688108 },
+            new NesDefaultGame { Code = "CLV-P-VAAQJ",  Name = "星のカービィ スーパーデラックス", Size = 7071882 },
+            new NesDefaultGame { Code = "CLV-P-VABBJ",  Name = "スーパーストリートファイターⅡ ザ ニューチャレンジャーズ", Size = 13481718 },
+            new NesDefaultGame { Code = "CLV-P-VABCJ",  Name = "ロックマンX", Size = 2666724 },
+            new NesDefaultGame { Code = "CLV-P-VABDJ",  Name = "超魔界村", Size = 2143395 },
+            new NesDefaultGame { Code = "CLV-P-VABQJ",  Name = "スーパーマリオRPG", Size = 5659168 },
+            new NesDefaultGame { Code = "CLV-P-VABRJ",  Name = "聖剣伝説2", Size = 2922201 },
+            new NesDefaultGame { Code = "CLV-P-VABTJ",  Name = "ファイナルファンタジーVI", Size = 4335899 },
+            new NesDefaultGame { Code = "CLV-P-VACCJ",  Name = "魂斗羅スピリッツ", Size = 2762661 },
+            new NesDefaultGame { Code = "CLV-P-VACDJ",  Name = "がんばれゴエモン ゆき姫救出絵巻", Size = 2415384 },
+            new NesDefaultGame { Code = "CLV-P-VADFJ",  Name = "スーパーフォーメーションサッカー", Size = 1922523 },
+            new NesDefaultGame { Code = "CLV-P-VADGJ",  Name = "スターフォックス", Size = 3324346 },
+            new NesDefaultGame { Code = "CLV-P-VADJJ",  Name = "スーパーマリオ ヨッシーアイランド", Size = 3799569 },
+            new NesDefaultGame { Code = "CLV-P-VADKJ",  Name = "スターフォックス2", Size = 2066174 },
+            new NesDefaultGame { Code = "CLV-P-VADZJ",  Name = "パネルでポン", Size = 3563159 },
+        };
+
 
         public MainForm()
         {
@@ -424,7 +449,7 @@ namespace com.clusterrr.hakchi_gui
                     games = defaultSnesGames;
                     break;
                 case ConsoleType.SuperFamicom:
-                    //games = defaultSuperFamicomGames;
+                    games = defaultSuperFamicomGames;
                     break;
             }
             foreach (var game in games.OrderBy(o => o.Name))
@@ -1216,6 +1241,9 @@ namespace com.clusterrr.hakchi_gui
             famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.Famicom;
             sNESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.SNES;
             superFamicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.SuperFamicom;
+            epilepsyProtectionToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.NES || ConfigIni.ConsoleType == ConsoleType.Famicom;
+            useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.NES || ConfigIni.ConsoleType == ConsoleType.Famicom;
+            upABStartOnSecondControllerToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.Famicom;
             LoadHidden();
             LoadGames();
             lastConsoleType = ConfigIni.ConsoleType;
@@ -1550,6 +1578,8 @@ namespace com.clusterrr.hakchi_gui
             foreach (var game in defaultFamicomGames)
                 gameNames[game.Code] = game.Name;
             foreach (var game in defaultSnesGames)
+                gameNames[game.Code] = game.Name;
+            foreach (var game in defaultSuperFamicomGames)
                 gameNames[game.Code] = game.Name;
             foreach (var game in checkedListBoxGames.Items)
             {

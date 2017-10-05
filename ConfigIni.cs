@@ -29,7 +29,8 @@ namespace com.clusterrr.hakchi_gui
         public static NesMenuCollection.SplitStyle FoldersMode = NesMenuCollection.SplitStyle.Original_Auto;
         public static SelectButtonsForm.NesButtons ResetCombination = SelectButtonsForm.NesButtons.Down | SelectButtonsForm.NesButtons.Select;
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
-        public static string ExtraCommandLineArguments = "";
+        public static string ExtraCommandLineArgumentsNes = "";
+        public static string ExtraCommandLineArgumentsSnes = "";
         public static bool Compress = true;
         public const string ConfigDir = "config";
         public const string ConfigFile = "config.ini";
@@ -140,6 +141,38 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case MainForm.ConsoleType.SuperFamicom:
                         ConfigIni.HiddenGamesSuperFamicom = value;
+                        break;
+                }
+            }
+        }
+
+        public static string ExtraCommandLineArguments
+        {
+            get
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        return ExtraCommandLineArgumentsNes;
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return ExtraCommandLineArgumentsSnes;
+                }
+            }
+            set
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        ConfigIni.ExtraCommandLineArgumentsNes = value;
+                        break;
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        ConfigIni.ExtraCommandLineArgumentsSnes = value;
                         break;
                 }
             }
@@ -315,11 +348,14 @@ namespace com.clusterrr.hakchi_gui
             var config = new Dictionary<string, string>();
             config["clovercon_home_combination"] = ConfigIni.ResetHack ? string.Format("0x{0:X2}", (byte)ConfigIni.ResetCombination) : "0xFFFF";
             config["clovercon_autofire"] = ConfigIni.AutofireHack ? "1" : "0";
-            config["clovercon_autofire_xy"] = ConfigIni.AutofireXYHack ? "1" : "0";
-            config["clovercon_fc_start"] = ConfigIni.FcStart ? "1" : "0";
+            config["clovercon_autofire_xy"] = ConfigIni.AutofireXYHack && (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom) ? "1" : "0";
+            config["clovercon_fc_start"] = ConfigIni.FcStart && (ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom) ? "1" : "0";
             config["fontfix_enabled"] = ConfigIni.UseFont ? "y" : "n";
-            config["disable_armet"] = (ConfigIni.AntiArmetLevel > 0) ? "y" : "n";
-            config["nes_extra_args"] = ConfigIni.ExtraCommandLineArguments;
+            config["disable_armet"] = (ConfigIni.AntiArmetLevel > 0 && (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)) ? "y" : "n";
+            if ((ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom))
+                config["nes_extra_args"] = ConfigIni.ExtraCommandLineArguments;
+            if ((ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom))
+                config["snes_extra_args"] = ConfigIni.ExtraCommandLineArguments;
             return config;
         }
     }
