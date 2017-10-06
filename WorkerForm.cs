@@ -123,6 +123,7 @@ namespace com.clusterrr.hakchi_gui
             correctKernels[MainForm.ConsoleType.Famicom] = new string[] { "ac8144c3ea4ab32e017648ee80bdc230" }; // Famicom Mini
             correctKernels[MainForm.ConsoleType.SNES] = new string[] {
                 "d76c2a091ebe7b4614589fc6954653a5", // SNES Mini (EUR)
+                "c2b57b550f35d64d1c6ce66f9b5180ce", // SNES Mini (EUR)
                 "449b711238575763c6701f5958323d48" // SNES Mini (USA)
             };
             correctKernels[MainForm.ConsoleType.SuperFamicom] = new string[] { "632e179db63d9bcd42281f776a030c14" }; // Super Famicom Mini (JAP)
