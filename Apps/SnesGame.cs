@@ -170,6 +170,57 @@ namespace com.clusterrr.hakchi_gui
             rawRomData = result;
         }
 
+        public SfromHeader1 ReadSfromHeader1()
+        {
+            foreach (var f in Directory.GetFiles(GamePath, "*.sfrom"))
+            {
+                var sfrom = File.ReadAllBytes(f);
+                var sfromHeader1 = SfromHeader1.Read(sfrom, 0);
+                return sfromHeader1;
+            }
+            throw new Exception(".sfrom file not found");
+        }
+
+        public SfromHeader2 ReadSfromHeader2()
+        {
+            foreach (var f in Directory.GetFiles(GamePath, "*.sfrom"))
+            {
+                var sfrom = File.ReadAllBytes(f);
+                var sfromHeader1 = SfromHeader1.Read(sfrom, 0);
+                var sfromHeader2 = SfromHeader2.Read(sfrom, (int)sfromHeader1.Header2);
+                return sfromHeader2;
+            }
+            throw new Exception(".sfrom file not found");
+        }
+
+        public void WriteSfromHeader1(SfromHeader1 sfromHeader1)
+        {
+            foreach (var f in Directory.GetFiles(GamePath, "*.sfrom"))
+            {
+                var sfrom = File.ReadAllBytes(f);
+                var data = sfromHeader1.GetBytes();
+                Array.Copy(data, 0, sfrom, 0, data.Length);
+                File.WriteAllBytes(f, sfrom);
+                return;
+            }
+            throw new Exception(".sfrom file not found");
+        }
+
+        public void WriteSfromHeader2(SfromHeader2 sfromHeader2)
+        {
+            foreach (var f in Directory.GetFiles(GamePath, "*.sfrom"))
+            {
+                var sfrom = File.ReadAllBytes(f);
+                var sfromHeader1 = SfromHeader1.Read(sfrom, 0);
+                var data = sfromHeader2.GetBytes();
+                Array.Copy(data, 0, sfrom, (int)sfromHeader1.Header2, data.Length);
+                File.WriteAllBytes(f, sfrom);
+                return;
+            }
+            throw new Exception(".sfrom file not found");
+        }
+
+
         [StructLayout(LayoutKind.Sequential)]
         private struct SnesRomHeader
         {
@@ -217,7 +268,7 @@ namespace com.clusterrr.hakchi_gui
 
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct SfromHeader1
+        public struct SfromHeader1
         {
             [MarshalAs(UnmanagedType.U4)]
             public uint Uknown1_0x00000100;
@@ -283,7 +334,7 @@ namespace com.clusterrr.hakchi_gui
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        private struct SfromHeader2
+        public struct SfromHeader2
         {
             [MarshalAs(UnmanagedType.U1)] // 0x00
             public byte FPS;
@@ -352,7 +403,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private enum SnesRomType { LoRom = 0x14, HiRom = 0x15 };
+        public enum SnesRomType { LoRom = 0x14, HiRom = 0x15 };
     }
 }
 

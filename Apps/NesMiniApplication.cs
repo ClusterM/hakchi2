@@ -362,8 +362,13 @@ namespace com.clusterrr.hakchi_gui
             Graphics gr;
 
             // Just keep aspect ratio
-            const int maxX = 204;
-            const int maxY = 204;
+            int maxX = 204;
+            int maxY = 204;
+            if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
+            {
+                maxX = 228;
+                maxY = 228;
+            }
             if ((double)image.Width / (double)image.Height > (double)maxX / (double)maxY)
                 outImage = new Bitmap(maxX, (int)((double)maxY * (double)image.Height / (double)image.Width));
             else

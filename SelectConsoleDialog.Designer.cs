@@ -1,6 +1,6 @@
 ﻿namespace com.clusterrr.hakchi_gui
 {
-    partial class ConsoleSelectDialog
+    partial class SelectConsoleDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsoleSelectDialog));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectConsoleDialog));
             this.labelSelectConsole = new System.Windows.Forms.Label();
             this.buttonNes = new System.Windows.Forms.Button();
             this.buttonFamicom = new System.Windows.Forms.Button();

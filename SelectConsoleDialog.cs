@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public partial class ConsoleSelectDialog : Form
+    public partial class SelectConsoleDialog : Form
     {
-        public ConsoleSelectDialog()
+        public SelectConsoleDialog()
         {
             InitializeComponent();
         }
