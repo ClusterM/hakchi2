@@ -570,7 +570,8 @@ namespace com.clusterrr.hakchi_gui
                 SetStatus(Resources.ExecutingCommand + " " + shutdownCommand);
                 fel.RunUbootCmd(shutdownCommand, true);
 #if !DEBUG
-                Directory.Delete(tempDirectory, true);
+                if (Directory.Exists(tempDirectory))
+                    Directory.Delete(tempDirectory, true);
 #endif
                 SetStatus(Resources.Done);
                 SetProgress(maxProgress, maxProgress);
@@ -840,7 +841,7 @@ namespace com.clusterrr.hakchi_gui
                         case MainForm.ConsoleType.SNES:
                         case MainForm.ConsoleType.SuperFamicom:
                             originalSyncCode = $"mkdir -p \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
-                                $"rsync -ac \"{gamesPath}/{originalCode}/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" &&"+
+                                $"rsync -ac \"{gamesPath}/{originalCode}/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" &&" +
                                 $"sed -i -e 's/\\/usr\\/bin\\/clover-canoe-shvc/\\/bin\\/clover-canoe-shvc-wr/g' \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.desktop\"";
                             /*
                             // With compression but very slow
@@ -860,7 +861,8 @@ namespace com.clusterrr.hakchi_gui
                 SetStatus(Resources.UploadingConfig);
                 SyncConfig(Config);
 #if !DEBUG
-                Directory.Delete(tempDirectory, true);
+                if (Directory.Exists(tempDirectory))
+                    Directory.Delete(tempDirectory, true);
 #endif
                 SetStatus(Resources.Done);
                 SetProgress(maxProgress, maxProgress);
@@ -993,6 +995,7 @@ namespace com.clusterrr.hakchi_gui
             fel.RunUbootCmd(bootCommand, true);
             Thread.Sleep(7000);
 #if !DEBUG
+            if (Directory.Exists(tempDirectory))
                 Directory.Delete(tempDirectory, true);
 #endif
             SetStatus(Resources.Done);
@@ -1023,7 +1026,8 @@ namespace com.clusterrr.hakchi_gui
             SetStatus(Resources.BuildingCustom);
             if (!File.Exists(Path.Combine(ramfsDirectory, "init")))
                 UnpackRamfs(kernelPath);
-            if (Directory.Exists(hakchiDirectory)) Directory.Delete(hakchiDirectory, true);
+            if (Directory.Exists(hakchiDirectory))
+                Directory.Delete(hakchiDirectory, true);
             NesMiniApplication.DirectoryCopy(Path.Combine(modsDirectory, Mod), ramfsDirectory, true);
             var ramfsFiles = Directory.GetFiles(ramfsDirectory, "*.*", SearchOption.AllDirectories);
             foreach (var file in ramfsFiles)
@@ -1085,7 +1089,8 @@ namespace com.clusterrr.hakchi_gui
 
             var result = File.ReadAllBytes(kernelPatched);
 #if !DEBUG
-            Directory.Delete(tempDirectory, true);
+            if (Directory.Exists(tempDirectory))
+                Directory.Delete(tempDirectory, true);
 #endif
             return result;
         }
