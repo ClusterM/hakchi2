@@ -7,7 +7,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public class ConfigIni
     {
-        public static bool FirstRun = true;
+        public static int RunCount = 0;
         public static string SelectedGamesNes = "default";
         public static string SelectedGamesSnes = "default";
         public static string HiddenGamesNes = "";
@@ -245,8 +245,8 @@ namespace com.clusterrr.hakchi_gui
                                 case "usefont":
                                     UseFont = !value.ToLower().Equals("false");
                                     break;
-                                case "firstrun":
-                                    FirstRun = !value.ToLower().Equals("false");
+                                case "runcount":
+                                    RunCount = int.Parse(value);
                                     break;
                                 case "antiarmetlevel":
                                     AntiArmetLevel = byte.Parse(value);
@@ -318,7 +318,6 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("ResetHack={0}", ResetHack));
             configLines.Add(string.Format("AutofireHack={0}", AutofireHack));
             configLines.Add(string.Format("AutofireXYHack={0}", AutofireXYHack));
-            configLines.Add(string.Format("FirstRun={0}", FirstRun));
             configLines.Add(string.Format("AntiArmetLevel={0}", AntiArmetLevel));
             configLines.Add(string.Format("ResetCombination={0}", (byte)ResetCombination));
             configLines.Add(string.Format("ConsoleType={0}", (byte)ConsoleType));
@@ -329,6 +328,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("Compress={0}", Compress));
             configLines.Add(string.Format("FtpServer={0}", FtpServer));
             configLines.Add(string.Format("TelnetServer={0}", TelnetServer));
+            configLines.Add(string.Format("RunCount={0}", RunCount));
 
             configLines.Add("");
             configLines.Add("[Presets]");

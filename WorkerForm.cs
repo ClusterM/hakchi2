@@ -19,7 +19,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class WorkerForm : Form
     {
-        public enum Tasks { DumpKernel, FlashKernel, DumpNand, FlashNand, DumpNandB, Memboot, UploadGames, DownloadAllCovers, AddGames };
+        public enum Tasks { DumpKernel, FlashKernel, DumpNand, FlashNand, DumpNandB, Memboot, UploadGames, DownloadCovers, AddGames, CompressGames, DecompressGames, DeleteGames };
         public Tasks Task;
         //public string UBootDump;
         public static string KernelDumpPath
@@ -125,7 +125,7 @@ namespace com.clusterrr.hakchi_gui
                 "d76c2a091ebe7b4614589fc6954653a5", // SNES Mini (EUR)
                 "449b711238575763c6701f5958323d48" // SNES Mini (USA)
             };
-            correctKernels[MainForm.ConsoleType.SuperFamicom] = new string[] { "632e179db63d9bcd42281f776a030c14"}; // Super Famicom Mini (JAP)
+            correctKernels[MainForm.ConsoleType.SuperFamicom] = new string[] { "632e179db63d9bcd42281f776a030c14" }; // Super Famicom Mini (JAP)
             correctKeys[MainForm.ConsoleType.NES] = new string[] { "bb8f49e0ae5acc8d5f9b7fa40efbd3e7" };
             correctKeys[MainForm.ConsoleType.SNES] = new string[] { "c5dbb6e29ea57046579cfd50b124c9e1" };
         }
@@ -262,11 +262,20 @@ namespace com.clusterrr.hakchi_gui
                     case Tasks.Memboot:
                         Memboot();
                         break;
-                    case Tasks.DownloadAllCovers:
-                        DownloadAllCovers();
-                        break;
                     case Tasks.AddGames:
                         AddGames(GamesToAdd);
+                        break;
+                    case Tasks.DownloadCovers:
+                        DownloadCovers();
+                        break;
+                    case Tasks.CompressGames:
+                        CompressGames();
+                        break;
+                    case Tasks.DecompressGames:
+                        DecompressGames();
+                        break;
+                    case Tasks.DeleteGames:
+                        DeleteGames();
                         break;
                 }
                 if (DialogResult == DialogResult.None)
@@ -421,7 +430,7 @@ namespace com.clusterrr.hakchi_gui
             var matchedKernels = from k in correctKernels where k.Value.Contains(hash) select k.Key;
             if (matchedKernels.Count() == 0)
             {
-                if (MessageBoxFromThread(this, Resources.MD5Failed + " " + hash + "\r\n" + Resources.MD5Failed2 +
+                if (MessageBoxFromThread(this, Resources.MD5Failed + " " + hash + /*"\r\n" + Resources.MD5Failed2 +*/
                     "\r\n" + Resources.DoYouWantToContinue, Resources.Warning, MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, false)
                     == DialogResult.No)
@@ -831,7 +840,8 @@ namespace com.clusterrr.hakchi_gui
                         case MainForm.ConsoleType.SNES:
                         case MainForm.ConsoleType.SuperFamicom:
                             originalSyncCode = $"mkdir -p \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
-                                $"rsync -ac \"{gamesPath}/{originalCode}/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\"";
+                                $"rsync -ac \"{gamesPath}/{originalCode}/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" &&"+
+                                $"sed -i -e 's/\\/usr\\/bin\\/clover-canoe-shvc/\\/bin\\/clover-canoe-shvc-wr/g' \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.desktop\"";
                             /*
                             // With compression but very slow
                             originalSyncCode = $"mkdir -p \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
@@ -1078,53 +1088,6 @@ namespace com.clusterrr.hakchi_gui
             Directory.Delete(tempDirectory, true);
 #endif
             return result;
-        }
-
-        void DownloadAllCovers()
-        {
-            if (Games == null) return;
-            int i = 0;
-            foreach (NesMiniApplication game in Games)
-            {
-                SetStatus(Resources.GooglingFor.Trim() + " " + game.Name);
-                string[] urls = null;
-                for (int tries = 0; tries < 5; tries++)
-                {
-                    if (urls == null)
-                    {
-                        try
-                        {
-                            urls = ImageGooglerForm.GetImageUrls(game);
-                            break;
-                        }
-                        catch (Exception ex)
-                        {
-                            SetStatus(Resources.Error + ": " + ex.Message);
-                            Thread.Sleep(1500);
-                            continue;
-                        }
-                    }
-                }
-                if (urls != null && urls.Length == 0)
-                    SetStatus(Resources.NotFound + " " + game.Name);
-                for (int tries = 0; urls != null && tries < 5 && tries < urls.Length; tries++)
-                {
-                    try
-                    {
-                        var cover = ImageGooglerForm.DownloadImage(urls[tries]);
-                        game.Image = cover;
-                        break;
-                    }
-                    catch (Exception ex)
-                    {
-                        SetStatus(Resources.Error + ": " + ex.Message);
-                        Thread.Sleep(1500);
-                        continue;
-                    }
-                }
-                SetProgress(++i, Games.Count);
-                Thread.Sleep(500); // not so fast, Google don't like it
-            }
         }
 
         private class GamesTreeStats
@@ -1376,6 +1339,89 @@ namespace com.clusterrr.hakchi_gui
             }
             addedApplications = apps.ToArray();
             return apps; // Added games/apps
+        }
+
+        void DownloadCovers()
+        {
+            if (Games == null) return;
+            int i = 0;
+            foreach (NesMiniApplication game in Games)
+            {
+                SetStatus(Resources.GooglingFor.Trim() + " " + game.Name + "...");
+                string[] urls = null;
+                for (int tries = 0; tries < 5; tries++)
+                {
+                    if (urls == null)
+                    {
+                        try
+                        {
+                            urls = ImageGooglerForm.GetImageUrls(game);
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            SetStatus(Resources.Error + ": " + ex.Message);
+                            Thread.Sleep(1500);
+                            continue;
+                        }
+                    }
+                }
+                if (urls != null && urls.Length == 0)
+                    SetStatus(Resources.NotFound + " " + game.Name);
+                for (int tries = 0; urls != null && tries < 5 && tries < urls.Length; tries++)
+                {
+                    try
+                    {
+                        var cover = ImageGooglerForm.DownloadImage(urls[tries]);
+                        game.Image = cover;
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        SetStatus(Resources.Error + ": " + ex.Message);
+                        Thread.Sleep(1500);
+                        continue;
+                    }
+                }
+                SetProgress(++i, Games.Count);
+                Thread.Sleep(500); // not so fast, Google don't like it
+            }
+        }
+
+        void CompressGames()
+        {
+            if (Games == null) return;
+            int i = 0;
+            foreach (NesMiniApplication game in Games)
+            {
+                SetStatus(string.Format(Resources.Compressing, game.Name));
+                game.Compress();
+                SetProgress(++i, Games.Count);
+            }
+        }
+
+        void DecompressGames()
+        {
+            if (Games == null) return;
+            int i = 0;
+            foreach (NesMiniApplication game in Games)
+            {
+                SetStatus(string.Format(Resources.Decompressing, game.Name));
+                game.Decompress();
+                SetProgress(++i, Games.Count);
+            }
+        }
+
+        void DeleteGames()
+        {
+            if (Games == null) return;
+            int i = 0;
+            foreach (NesMiniApplication game in Games)
+            {
+                SetStatus(string.Format(Resources.Removing, game.Name));
+                Directory.Delete(game.GamePath, true);
+                SetProgress(++i, Games.Count);
+            }
         }
 
         private void WorkerForm_FormClosing(object sender, FormClosingEventArgs e)

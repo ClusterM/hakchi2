@@ -165,17 +165,53 @@
   <data name="languageToolStripMenuItem.Text" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 22</value>
+  </data>
+  <data name="nESMiniToolStripMenuItem.Text" xml:space="preserve">
+    <value>NES Classic Mini</value>
+  </data>
+  <data name="famicomMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 22</value>
+  </data>
+  <data name="famicomMiniToolStripMenuItem.Text" xml:space="preserve">
+    <value>Famicom Mini</value>
+  </data>
+  <data name="sNESMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 22</value>
+  </data>
+  <data name="sNESMiniToolStripMenuItem.Text" xml:space="preserve">
+    <value>SNES Classic Mini</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 22</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text" xml:space="preserve">
+    <value>Super Famicom Mini</value>
+  </data>
   <data name="consoleTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 22</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text" xml:space="preserve">
     <value>Console type</value>
   </data>
+  <data name="pagesfoldersTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="pagesfoldersTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pages/folders structure</value>
+  </data>
   <data name="cloverconHackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 22</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text" xml:space="preserve">
     <value>Controller hacks</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Compress games when adding</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 22</value>
@@ -188,18 +224,6 @@
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
     <value>Disable epilepsy protection</value>
-  </data>
-  <data name="pagesfoldersTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 22</value>
-  </data>
-  <data name="pagesfoldersTypeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pages/folders structure</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 22</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Compress games when adding</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 22</value>
@@ -260,20 +284,20 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="addMoreGamesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+O</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 22</value>
+    <value>208, 22</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Add more &amp;games</value>
   </data>
   <data name="presetsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 22</value>
+    <value>208, 22</value>
   </data>
   <data name="presetsToolStripMenuItem.Text" xml:space="preserve">
     <value>Selection presets</value>
@@ -297,7 +321,7 @@
     <value>F5</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 22</value>
+    <value>208, 22</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text" xml:space="preserve">
     <value>Synchronize</value>
@@ -306,22 +330,16 @@
     <value>Ctrl+F</value>
   </data>
   <data name="searchToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 22</value>
+    <value>208, 22</value>
   </data>
   <data name="searchToolStripMenuItem.Text" xml:space="preserve">
     <value>Search</value>
   </data>
-  <data name="downloadCoversForAllGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 22</value>
-  </data>
-  <data name="downloadCoversForAllGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Download box art for all games</value>
-  </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 6</value>
+    <value>205, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 22</value>
+    <value>208, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Exit</value>
@@ -403,60 +421,6 @@
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text" xml:space="preserve">
     <value>Uninstall extra modules</value>
-  </data>
-  <data name="nESMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
-  </data>
-  <data name="nESMiniToolStripMenuItem.Text" xml:space="preserve">
-    <value>NES Mini</value>
-  </data>
-  <data name="famicomMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
-  </data>
-  <data name="famicomMiniToolStripMenuItem.Text" xml:space="preserve">
-    <value>Famicom Mini</value>
-  </data>
-  <data name="sNESMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
-  </data>
-  <data name="sNESMiniToolStripMenuItem.Text" xml:space="preserve">
-    <value>SNES Mini</value>
-  </data>
-  <data name="superFamicomMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
-  </data>
-  <data name="superFamicomMiniToolStripMenuItem.Text" xml:space="preserve">
-    <value>Super Famicom Mini</value>
-  </data>
-  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
-  </data>
-  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Use button combination to reset</value>
-  </data>
-  <data name="selectButtonCombinationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
-  </data>
-  <data name="selectButtonCombinationToolStripMenuItem.Text" xml:space="preserve">
-    <value>Select reset button combination</value>
-  </data>
-  <data name="enableAutofireToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
-  </data>
-  <data name="enableAutofireToolStripMenuItem.Text" xml:space="preserve">
-    <value>Use "Select+A/B" to enable autofire on A/B </value>
-  </data>
-  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
-  </data>
-  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text" xml:space="preserve">
-    <value>Use X/Y on Classic Controller as autofire A/B</value>
-  </data>
-  <data name="upABStartOnSecondControllerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
-  </data>
-  <data name="upABStartOnSecondControllerToolStripMenuItem.Text" xml:space="preserve">
-    <value>"Up+A+B = Start" on 2nd controller</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>356, 22</value>
@@ -608,6 +572,36 @@
   <data name="customToolStripMenuItem.Text" xml:space="preserve">
     <value>Custom - show Folders Manager every time</value>
   </data>
+  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 22</value>
+  </data>
+  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Use button combination to reset</value>
+  </data>
+  <data name="selectButtonCombinationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 22</value>
+  </data>
+  <data name="selectButtonCombinationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Select reset button combination</value>
+  </data>
+  <data name="enableAutofireToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 22</value>
+  </data>
+  <data name="enableAutofireToolStripMenuItem.Text" xml:space="preserve">
+    <value>Use "Select+A/B" to enable autofire on A/B </value>
+  </data>
+  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 22</value>
+  </data>
+  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text" xml:space="preserve">
+    <value>Use X/Y on Classic Controller as autofire A/B</value>
+  </data>
+  <data name="upABStartOnSecondControllerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 22</value>
+  </data>
+  <data name="upABStartOnSecondControllerToolStripMenuItem.Text" xml:space="preserve">
+    <value>"Up+A+B = Start" on 2nd controller</value>
+  </data>
   <data name="saveStateManagerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>331, 22</value>
   </data>
@@ -671,35 +665,17 @@
   <data name="fAQToolStripMenuItem.Text" xml:space="preserve">
     <value>FAQ</value>
   </data>
+  <data name="donateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 22</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Donate</value>
+  </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>246, 22</value>
   </data>
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>About...</value>
-  </data>
-  <data name="checkedListBoxGames.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="checkedListBoxGames.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 57</value>
-  </data>
-  <data name="checkedListBoxGames.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 499</value>
-  </data>
-  <data name="checkedListBoxGames.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxGames.Name" xml:space="preserve">
-    <value>checkedListBoxGames</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxGames.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxGames.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxGames.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="groupBoxOptions.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -990,10 +966,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBoxOptions.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="labelSize.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>6</value>
   </data>
   <data name="labelSize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1002,7 +975,7 @@
     <value>15, 73</value>
   </data>
   <data name="labelSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 13</value>
+    <value>82, 41</value>
   </data>
   <data name="labelSize.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -1674,7 +1647,7 @@
     <value>638, 17</value>
   </metadata>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 70</value>
+    <value>270, 92</value>
   </data>
   <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
     <value>contextMenuStrip</value>
@@ -1682,23 +1655,32 @@
   <data name="&gt;&gt;contextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 22</value>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 22</value>
   </data>
-  <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
-    <value>Select all</value>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Download box art for selected games</value>
   </data>
-  <data name="unselectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 22</value>
+  <data name="compressSelectedGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 22</value>
   </data>
-  <data name="unselectAllToolStripMenuItem.Text" xml:space="preserve">
-    <value>Unselect all</value>
+  <data name="compressSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Compress selected games</value>
   </data>
-  <data name="deleteGameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 22</value>
+  <data name="decompressSelectedGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 22</value>
   </data>
-  <data name="deleteGameToolStripMenuItem.Text" xml:space="preserve">
-    <value>Delete game</value>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Decompress selected games</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Del</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 22</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Delete selected games</value>
   </data>
   <metadata name="openFileDialogImage.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 98</value>
@@ -1776,7 +1758,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBoxDefaultGames.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="checkedListBoxDefaultGames.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -1817,6 +1799,36 @@
   <metadata name="openDumpFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>164, 17</value>
   </metadata>
+  <data name="listViewGames.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="listViewGames.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 57</value>
+  </data>
+  <data name="listViewGames.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 499</value>
+  </data>
+  <data name="listViewGames.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;listViewGames.Name" xml:space="preserve">
+    <value>listViewGames</value>
+  </data>
+  <data name="&gt;&gt;listViewGames.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listViewGames.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;listViewGames.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="gameName.Text" xml:space="preserve">
+    <value>Game name</value>
+  </data>
+  <data name="gameName.Width" type="System.Int32, mscorlib">
+    <value>253</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -3024,12 +3036,6 @@
   <data name="&gt;&gt;searchToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;downloadCoversForAllGamesToolStripMenuItem.Name" xml:space="preserve">
-    <value>downloadCoversForAllGamesToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;downloadCoversForAllGamesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
     <value>toolStripMenuItem1</value>
   </data>
@@ -3178,54 +3184,6 @@
     <value>superFamicomMiniToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;superFamicomMiniToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cloverconHackToolStripMenuItem.Name" xml:space="preserve">
-    <value>cloverconHackToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;cloverconHackToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;resetUsingCombinationOfButtonsToolStripMenuItem.Name" xml:space="preserve">
-    <value>resetUsingCombinationOfButtonsToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;resetUsingCombinationOfButtonsToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;selectButtonCombinationToolStripMenuItem.Name" xml:space="preserve">
-    <value>selectButtonCombinationToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;selectButtonCombinationToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;enableAutofireToolStripMenuItem.Name" xml:space="preserve">
-    <value>enableAutofireToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;enableAutofireToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;useXYOnClassicControllerAsAutofireABToolStripMenuItem.Name" xml:space="preserve">
-    <value>useXYOnClassicControllerAsAutofireABToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;useXYOnClassicControllerAsAutofireABToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upABStartOnSecondControllerToolStripMenuItem.Name" xml:space="preserve">
-    <value>upABStartOnSecondControllerToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;upABStartOnSecondControllerToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;useExtendedFontToolStripMenuItem.Name" xml:space="preserve">
-    <value>useExtendedFontToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;useExtendedFontToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;epilepsyProtectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>epilepsyProtectionToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;epilepsyProtectionToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pagesfoldersTypeToolStripMenuItem.Name" xml:space="preserve">
@@ -3384,10 +3342,58 @@
   <data name="&gt;&gt;customToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;cloverconHackToolStripMenuItem.Name" xml:space="preserve">
+    <value>cloverconHackToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;cloverconHackToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;resetUsingCombinationOfButtonsToolStripMenuItem.Name" xml:space="preserve">
+    <value>resetUsingCombinationOfButtonsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;resetUsingCombinationOfButtonsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectButtonCombinationToolStripMenuItem.Name" xml:space="preserve">
+    <value>selectButtonCombinationToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;selectButtonCombinationToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;enableAutofireToolStripMenuItem.Name" xml:space="preserve">
+    <value>enableAutofireToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;enableAutofireToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;useXYOnClassicControllerAsAutofireABToolStripMenuItem.Name" xml:space="preserve">
+    <value>useXYOnClassicControllerAsAutofireABToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;useXYOnClassicControllerAsAutofireABToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upABStartOnSecondControllerToolStripMenuItem.Name" xml:space="preserve">
+    <value>upABStartOnSecondControllerToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;upABStartOnSecondControllerToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;compressGamesToolStripMenuItem.Name" xml:space="preserve">
     <value>compressGamesToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;compressGamesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;useExtendedFontToolStripMenuItem.Name" xml:space="preserve">
+    <value>useExtendedFontToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;useExtendedFontToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;epilepsyProtectionToolStripMenuItem.Name" xml:space="preserve">
+    <value>epilepsyProtectionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;epilepsyProtectionToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Name" xml:space="preserve">
@@ -3486,6 +3492,12 @@
   <data name="&gt;&gt;fAQToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;donateToolStripMenuItem.Name" xml:space="preserve">
+    <value>donateToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;donateToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;aboutToolStripMenuItem.Name" xml:space="preserve">
     <value>aboutToolStripMenuItem</value>
   </data>
@@ -3522,22 +3534,28 @@
   <data name="&gt;&gt;openFileDialogNes.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;selectAllToolStripMenuItem.Name" xml:space="preserve">
-    <value>selectAllToolStripMenuItem</value>
+  <data name="&gt;&gt;downloadBoxArtForSelectedGamesToolStripMenuItem.Name" xml:space="preserve">
+    <value>downloadBoxArtForSelectedGamesToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;selectAllToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;downloadBoxArtForSelectedGamesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;unselectAllToolStripMenuItem.Name" xml:space="preserve">
-    <value>unselectAllToolStripMenuItem</value>
+  <data name="&gt;&gt;compressSelectedGamesToolStripMenuItem.Name" xml:space="preserve">
+    <value>compressSelectedGamesToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;unselectAllToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;compressSelectedGamesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;deleteGameToolStripMenuItem.Name" xml:space="preserve">
-    <value>deleteGameToolStripMenuItem</value>
+  <data name="&gt;&gt;decompressSelectedGamesToolStripMenuItem.Name" xml:space="preserve">
+    <value>decompressSelectedGamesToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;deleteGameToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;decompressSelectedGamesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;deleteSelectedGamesToolStripMenuItem.Name" xml:space="preserve">
+    <value>deleteSelectedGamesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;deleteSelectedGamesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;openFileDialogImage.Name" xml:space="preserve">
@@ -3569,6 +3587,12 @@
   </data>
   <data name="&gt;&gt;openDumpFileDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gameName.Name" xml:space="preserve">
+    <value>gameName</value>
+  </data>
+  <data name="&gt;&gt;gameName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

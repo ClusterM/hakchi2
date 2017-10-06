@@ -4,3 +4,4 @@ driver/usb_driver/
 obj/
 *.csproj.user
 *.pfx
+Properties/Resources*.cs

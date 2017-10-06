@@ -17,11 +17,13 @@ namespace com.clusterrr.hakchi_gui
         {
             if (textBoxSearch.Text.Length > 0)
             {
-                for (int i = 1; i < mainForm.checkedListBoxGames.Items.Count; i++)
-                    if ((mainForm.checkedListBoxGames.Items[i] as NesMiniApplication).Name.
+                for (int i = 1; i < mainForm.listViewGames.Items.Count; i++)
+                    if ((mainForm.listViewGames.Items[i].Tag as NesMiniApplication).Name.
                             ToLower().StartsWith(textBoxSearch.Text.ToLower()))
                     {
-                        mainForm.checkedListBoxGames.SelectedIndex = i;
+                        for (int j = 1; j < mainForm.listViewGames.Items.Count; j++)
+                            mainForm.listViewGames.Items[j].Selected = i == j;
+                        mainForm.listViewGames.EnsureVisible(i);
                         break;
                     }
             }
