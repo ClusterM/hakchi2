@@ -34,6 +34,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
             }
         }
 

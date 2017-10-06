@@ -1,4 +1,19 @@
 if [ $cfg_music_hack_enabled == "y" ]; then
-overmount /usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav
-overmount /usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav
+
+# NES Mini
+[ -f "$mountpoint/usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav" ] && overmount /usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav
+[ -f "$mountpoint/usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav" ] && overmount /usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav
+
+# SNES Mini (USA)
+[ -f "$mountpoint/usr/share/ui/snes-usa/resources/sounds/hvc/bgm_boot.wav" ] && overmount "/usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav" "/usr/share/ui/snes-usa/resources/sounds/hvc/bgm_boot.wav"
+[ -f "$mountpoint/usr/share/ui/snes-usa/resources/sounds/hvc/bgm_home.wav" ] && overmount "/usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav" "/usr/share/ui/snes-usa/resources/sounds/hvc/bgm_home.wav"
+
+# SNES Mini (EUR)
+[ -f "$mountpoint/usr/share/ui/snes-eur/resources/sounds/hvc/bgm_boot.wav" ] && overmount "/usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav" "/usr/share/ui/snes-eur/resources/sounds/hvc/bgm_boot.wav"
+[ -f "$mountpoint/usr/share/ui/snes-eur/resources/sounds/hvc/bgm_home.wav" ] && overmount "/usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav" "/usr/share/ui/snes-eur/resources/sounds/hvc/bgm_home.wav"
+
+# Super Famicom Mini (JAP)
+[ -f "$mountpoint/usr/share/ui/shvc/resources/sounds/hvc/bgm_boot.wav" ] && overmount "/usr/share/clover-ui/resources/sounds/hvc/bgm_boot.wav" "/usr/share/ui/shvc/resources/sounds/hvc/bgm_boot.wav"
+[ -f "$mountpoint/usr/share/ui/shvc/resources/sounds/hvc/bgm_home.wav" ] && overmount "/usr/share/clover-ui/resources/sounds/hvc/bgm_home.wav" "/usr/share/ui/shvc/resources/sounds/hvc/bgm_home.wav"
+
 fi
