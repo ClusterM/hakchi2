@@ -83,7 +83,7 @@
     <value>Sfoglia</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Sincronizza i giochi selezionati con il NES Mini</value>
+    <value>Sincronizza i giochi selezionati con il NES/SNES Mini</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Hacks per il controller</value>
@@ -112,6 +112,12 @@
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Estrai e salva il kernel</value>
   </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Dumpa e decripta la partizione NAND-B</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Dumpa l'intera memoria flash NAND</value>
+  </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Usa "Select+A/B" per abilitare l'autofire su A/B</value>
   </data>
@@ -119,7 +125,7 @@
     <value>Disabilita protezione epilessia</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
-    <value>$Esci</value>
+    <value>&amp;Esci</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ (domande frequenti)</value>
@@ -235,8 +241,11 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Utilizza combinazione tasti per resettare</value>
   </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Seleziona il nome del file del dump</value>
+  </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Salva le impostazioni nel NES Mini ora</value>
+    <value>Salva le impostazioni nel NES/SNES Mini ora</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
     <value>Manager dei punti di sospensione</value>
@@ -283,13 +292,37 @@
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Utilizza X/Y sul Classic Controller come autofire per A/B</value>
   </data>
-  <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump decrypted NAND-B partition</value>
+  <data name="checkBoxCompressed.Text">
+    <value>Compress</value>
   </data>
-  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dump the whole NAND flash</value>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Compress games when adding</value>
   </data>
-  <data name="saveDumpFileDialog.Title">
-    <value>Select dump filename</value>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Compress selected games</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Decompress selected games</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Delete selected games</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Donate</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Download box art for selected games</value>
+  </data>
+  <data name="labelSize.Text">
+    <value>Size:</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Boot original kernel from RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Boot patched kernel from RAM</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>

@@ -89,10 +89,10 @@
     <value>Vill du flasha den anpassade kärnan?</value>
   </data>
   <data name="CustomWarning">
-    <value>Nu behöver du flasha den anpassade kärnan till din NES Mini. Detta krävs bara en gång. Vill du fortsätta?</value>
+    <value>Nu behöver du flasha den anpassade kärnan till din NES/SNES Mini. Detta krävs bara en gång. Vill du fortsätta?</value>
   </data>
   <data name="Default30games">
-    <value>30 orginalspelen</value>
+    <value>xx orginalspelen</value>
   </data>
   <data name="DeleteElement">
     <value>Vill du verkligen ta bort "{0}"?</value>
@@ -116,13 +116,13 @@
     <value>Vill du fortsätta?</value>
   </data>
   <data name="Donate">
-    <value>P.S. Om du gillar detta kan du donera till mig. Du hittar min PayPal i rutan "Om".</value>
+    <value>Om du gillar detta kan du donera till mig. Du hittar min PayPal i rutan "Om".</value>
   </data>
   <data name="Done">
     <value>Klar!</value>
   </data>
   <data name="DoneYouCanUpload">
-    <value>Klar! Du kan ladda upp spel till din NES Mini nu.</value>
+    <value>Klar! Du kan ladda upp spel till din NES/SNES Mini nu.</value>
   </data>
   <data name="DownloadAllCoversTitle">
     <value>Ladda ner omslag för alla spel (jag har tur!)</value>
@@ -167,7 +167,7 @@
     <value>Ny mapp</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>30 orginalspelen</value>
+    <value>xx orginalspelen</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Papperskorgen</value>
@@ -182,7 +182,7 @@
     <value>Vill du spara den här mappstrukturen?</value>
   </data>
   <data name="FourScreenNotSupported">
-    <value>Tyvärr, {0} använder fyrskärmsläge (dvs spelet har ytterligare VRAM-minne i sin cartridge), och den här funktionen stöds inte av NES Mini. Spelet kommer förmodligen inte att starta. Men det ska fungera om en annan emulatormodul installeras. Vill du lägga till det här spelet ändå?</value>
+    <value>Tyvärr, {0} använder fyrskärmsläge (dvs spelet har ytterligare VRAM-minne i sin cartridge), och den här funktionen stöds inte av NES/SNES Mini. Spelet kommer förmodligen inte att starta. Men det ska fungera om en annan emulatormodul installeras. Vill du lägga till det här spelet ändå?</value>
   </data>
   <data name="GGCodeDelete">
     <value>Vill du ta bort koden "{0}"?</value>
@@ -230,7 +230,7 @@
     <value>Ogiltig kärnstorlek:</value>
   </data>
   <data name="KernelDumped">
-    <value>Din ursprungliga kärna sparas i mappen "hakchi2\dump". Tappa inte bort den.</value>
+    <value>Din ursprungliga kärna sparas i mappen "hakchi2/dump". Tappa inte bort den.</value>
   </data>
   <data name="LoadingGames">
     <value>Laddar spel…</value>
@@ -245,7 +245,7 @@
     <value>HEMMA Meny</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Tyvärr, "{0}" använder mappning # {1} men den här mappningen stöds inte av NES Mini och spelet kommer förmodligen inte att starta med standardemulatorn. Men det ska fungera om en annan emulatormodul installeras. Vill du lägga till det här spelet?</value>
+    <value>Tyvärr, "{0}" använder mappning # {1} men den här mappningen stöds inte av NES/SNES Mini och spelet kommer förmodligen inte att starta med standardemulatorn. Men det ska fungera om en annan emulatormodul installeras. Vill du lägga till det här spelet?</value>
   </data>
   <data name="MemoryFull">
     <value>Tyvärr, det finns {0} MBytes av spel, det är för mycket.</value>
@@ -269,7 +269,7 @@
     <value>Ingen dumpad kärna hittades</value>
   </data>
   <data name="NoKernelWarning">
-    <value>Dumpa först kärnan på din NES Mini. Du behöver bara göra det här en gång. Vill du fortsätta?</value>
+    <value>Dumpa först kärnan på din NES/SNES Mini. Du behöver bara göra det här en gång. Vill du fortsätta?</value>
   </data>
   <data name="NoKernelYouNeed">
     <value>Ingen dumpad kärna hittades. Du måste dumpa kärnan först.</value>
@@ -299,10 +299,10 @@
     <value>Tryck OK för att fortsätta.</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>Du har redan dumpat kärnan Om du verkligen vill byta säkerhetskopiering av din kärna och du verkligen förstår vad du gör, ta bort mappen "hakchi2\dump" manuellt.</value>
+    <value>Du har redan dumpat kärnan Om du verkligen vill byta säkerhetskopiering av din kärna och du verkligen förstår vad du gör, ta bort mappen "hakchi2/dump" manuellt.</value>
   </data>
   <data name="SavesFlterName">
-    <value>NES Mini Save-States backuper</value>
+    <value>NES/SNES Mini Save-States backuper</value>
   </data>
   <data name="SelectAtLeast">
     <value>Välj minst ett spel.</value>
@@ -311,10 +311,10 @@
     <value>Välj minst två knappar.</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Välj de moduler som ska installeras på din NES Mini.</value>
+    <value>Välj de moduler som ska installeras på din NES/SNES Mini.</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Välj de moduler som ska avinstalleras på din NES Mini.</value>
+    <value>Välj de moduler som ska avinstalleras på din NES/SNES Mini.</value>
   </data>
   <data name="SizeOfSaves">
     <value>Storlek på valda Save-States:</value>
@@ -323,7 +323,7 @@
     <value>Glöm inte att göra en fabriksåterställning om du vill ta bort alla inställningspunkter.</value>
   </data>
   <data name="UninstallQ1">
-    <value>Vill du verkligen ta bort alla spår av hakchi2 och återställa din NES Mini till sitt ursprungliga tillstånd?</value>
+    <value>Vill du verkligen ta bort alla spår av hakchi2 och återställa din NES/SNES Mini till sitt ursprungliga tillstånd?</value>
   </data>
   <data name="UninstallQ2">
     <value>Klart. Vänta tills LEDen släcks. Du måste också flasha originalkärnan. Vill du flasha originalkärnan nu?</value>
@@ -373,10 +373,40 @@
   <data name="YesForAll">
     <value>Ja för alla</value>
   </data>
+  <data name="Compressing">
+    <value>Compressing {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Compressing games...</value>
+  </data>
+  <data name="Decompressing">
+    <value>Decompressing {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Decompressing games...</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Delete selected game(s)?</value>
+  </data>
   <data name="DumpingNand">
     <value>Dumping NAND...</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>Invalid console selected! Detected console:</value>
+  </data>
+  <data name="Membooting">
+    <value>Booting the kernel from RAM...</value>
+  </data>
   <data name="NandDumped">
     <value>NAND memory is dumped successfully.</value>
+  </data>
+  <data name="Removing">
+    <value>Removing {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Removing games...</value>
+  </data>
+  <data name="Size">
+    <value>Size:</value>
   </data>
 </root>

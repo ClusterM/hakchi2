@@ -846,10 +846,10 @@ namespace com.clusterrr.hakchi_gui
             File.WriteAllText(FoldersXmlPath, TreeToXml());
             if (mainForm != null)
             {
-                for (int i = 0; i < mainForm.checkedListBoxGames.Items.Count; i++)
+                for (int i = 1; i < mainForm.listViewGames.Items.Count; i++)
                 {
-                    if (deletedGames.Contains(mainForm.checkedListBoxGames.Items[i] as NesMiniApplication))
-                        mainForm.checkedListBoxGames.SetItemChecked(i, false);
+                    if (deletedGames.Contains(mainForm.listViewGames.Items[i].Tag as NesMiniApplication))
+                        mainForm.listViewGames.Items[i].Checked = false;
                 }
                 for (int i = 0; i < mainForm.checkedListBoxDefaultGames.Items.Count; i++)
                 {

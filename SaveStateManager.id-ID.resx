@@ -65,7 +65,7 @@
     <value>Hapus pilihan</value>
   </data>
   <data name="buttonExport.Text">
-    <value>Ekspor pilian</value>
+    <value>Ekspor pilihan</value>
   </data>
   <data name="buttonImport.Text">
     <value>Impor</value>
@@ -86,7 +86,7 @@
     <value>Hapus pilihan</value>
   </data>
   <data name="exportToolStripMenuItem.Text">
-    <value>Ekspor pilian</value>
+    <value>Ekspor pilihan</value>
   </data>
   <data name="importToolStripMenuItem.Text">
     <value>Impor</value>

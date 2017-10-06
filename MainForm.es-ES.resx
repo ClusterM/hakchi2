@@ -83,7 +83,7 @@
     <value>Buscar</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Sincronizar los juegos seleccionados con NES Mini</value>
+    <value>Sincronizar los juegos seleccionados con NES/SNES Mini</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Ayuda/atajos para los mandos</value>
@@ -111,6 +111,12 @@
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Volcar kernel</value>
+  </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Volcar la partición NAND-B desencriptada</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Volcar toda la memoria flash NAND</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Pulsa "Select+A/B" para activar Autofire en A/B</value>
@@ -235,8 +241,11 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Usar combinación de botones para Reset</value>
   </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Seleccionar el nombre del archivo de volcado</value>
+  </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Guardar opciones a la NES Mini ahora</value>
+    <value>Guardar opciones a la NES/SNES Mini ahora</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
     <value>Gestión de los puntos de suspensión</value>
@@ -283,13 +292,37 @@
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Usa X/Y en el mando Wii Classic Controller como Autofire A/B</value>
   </data>
-  <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump decrypted NAND-B partition</value>
+  <data name="checkBoxCompressed.Text">
+    <value>Compress</value>
   </data>
-  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dump the whole NAND flash</value>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Compress games when adding</value>
   </data>
-  <data name="saveDumpFileDialog.Title">
-    <value>Select dump filename</value>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Compress selected games</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Decompress selected games</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Delete selected games</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Donate</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Download box art for selected games</value>
+  </data>
+  <data name="labelSize.Text">
+    <value>Size:</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Boot original kernel from RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Boot patched kernel from RAM</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>

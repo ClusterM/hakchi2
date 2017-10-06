@@ -19,7 +19,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class WorkerForm : Form
     {
-        public enum Tasks { DumpKernel, FlashKernel, DumpNand, FlashNand, DumpNandB, Memboot, UploadGames, DownloadAllCovers, AddGames };
+        public enum Tasks { DumpKernel, FlashKernel, DumpNand, FlashNand, DumpNandB, Memboot, UploadGames, DownloadCovers, AddGames, CompressGames, DecompressGames, DeleteGames };
         public Tasks Task;
         //public string UBootDump;
         public static string KernelDumpPath
@@ -126,7 +126,7 @@ namespace com.clusterrr.hakchi_gui
                 "c2b57b550f35d64d1c6ce66f9b5180ce", // SNES Mini (EUR)
                 "449b711238575763c6701f5958323d48" // SNES Mini (USA)
             };
-            correctKernels[MainForm.ConsoleType.SuperFamicom] = new string[] { "632e179db63d9bcd42281f776a030c14"}; // Super Famicom Mini (JAP)
+            correctKernels[MainForm.ConsoleType.SuperFamicom] = new string[] { "632e179db63d9bcd42281f776a030c14" }; // Super Famicom Mini (JAP)
             correctKeys[MainForm.ConsoleType.NES] = new string[] { "bb8f49e0ae5acc8d5f9b7fa40efbd3e7" };
             correctKeys[MainForm.ConsoleType.SNES] = new string[] { "c5dbb6e29ea57046579cfd50b124c9e1" };
         }
@@ -263,11 +263,20 @@ namespace com.clusterrr.hakchi_gui
                     case Tasks.Memboot:
                         Memboot();
                         break;
-                    case Tasks.DownloadAllCovers:
-                        DownloadAllCovers();
-                        break;
                     case Tasks.AddGames:
                         AddGames(GamesToAdd);
+                        break;
+                    case Tasks.DownloadCovers:
+                        DownloadCovers();
+                        break;
+                    case Tasks.CompressGames:
+                        CompressGames();
+                        break;
+                    case Tasks.DecompressGames:
+                        DecompressGames();
+                        break;
+                    case Tasks.DeleteGames:
+                        DeleteGames();
                         break;
                 }
                 if (DialogResult == DialogResult.None)
@@ -422,15 +431,6 @@ namespace com.clusterrr.hakchi_gui
             var matchedKernels = from k in correctKernels where k.Value.Contains(hash) select k.Key;
             if (matchedKernels.Count() == 0)
             {
-                if (MessageBoxFromThread(this, Resources.MD5Failed + " " + hash + "\r\n" + Resources.MD5Failed2 +
-                    "\r\n" + Resources.DoYouWantToContinue, Resources.Warning, MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, false)
-                    == DialogResult.No)
-                {
-                    DialogResult = DialogResult.Abort;
-                    return false;
-                }
-
                 // Unknown MD5? Hmm... Lets extract ramfs and check keyfile!
                 string kernelDumpTemp = Path.Combine(tempDirectory, "kernel.img");
                 Directory.CreateDirectory(tempDirectory);
@@ -438,7 +438,7 @@ namespace com.clusterrr.hakchi_gui
                 UnpackRamfs(kernelDumpTemp);
                 var key = File.ReadAllBytes(Path.Combine(ramfsDirectory, "key-file"));
                 if (dumpPath == null)
-                    Directory.Delete(tempDirectory);
+                    Directory.Delete(tempDirectory, true);
                 // I don't want to store keyfile inside my code, so I'll store MD5 of it
                 var keymd5 = System.Security.Cryptography.MD5.Create();
                 var keyhash = BitConverter.ToString(md5.ComputeHash(key)).Replace("-", "").ToLower();
@@ -448,9 +448,18 @@ namespace com.clusterrr.hakchi_gui
                 {
                     var console = matchedKeys.First();
                     if (console != ConfigIni.ConsoleType)
-                        throw new Exception("Invalid console selected! Your kernel detected as " + console);
+                        throw new Exception(Resources.InvalidConsoleSelected + " " + console);
                 }
                 else throw new Exception("Unknown key, unknown console");
+
+                if (MessageBoxFromThread(this, Resources.MD5Failed + " " + hash + /*"\r\n" + Resources.MD5Failed2 +*/
+                    "\r\n" + Resources.DoYouWantToContinue, Resources.Warning, MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, false)
+                    == DialogResult.No)
+                {
+                    DialogResult = DialogResult.Abort;
+                    return false;
+                }
             }
             else
             {
@@ -475,7 +484,7 @@ namespace com.clusterrr.hakchi_gui
         {
             int progress = 0;
             int maxProgress = 115 + (string.IsNullOrEmpty(Mod) ? 0 : 110) +
-                ((hmodsInstall != null && hmodsInstall.Count() > 0) ? 75 : 0);
+                ((hmodsInstall != null && hmodsInstall.Count() > 0) ? 80 : 0);
             var tempKernelPath = Path.Combine(tempDirectory, "kernel.img");
             var hmods = hmodsInstall;
             hmodsInstall = null;
@@ -562,7 +571,8 @@ namespace com.clusterrr.hakchi_gui
                 SetStatus(Resources.ExecutingCommand + " " + shutdownCommand);
                 fel.RunUbootCmd(shutdownCommand, true);
 #if !DEBUG
-                Directory.Delete(tempDirectory, true);
+                if (Directory.Exists(tempDirectory))
+                    Directory.Delete(tempDirectory, true);
 #endif
                 SetStatus(Resources.Done);
                 SetProgress(maxProgress, maxProgress);
@@ -832,7 +842,8 @@ namespace com.clusterrr.hakchi_gui
                         case MainForm.ConsoleType.SNES:
                         case MainForm.ConsoleType.SuperFamicom:
                             originalSyncCode = $"mkdir -p \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
-                                $"rsync -ac \"{gamesPath}/{originalCode}/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\"";
+                                $"rsync -ac \"{gamesPath}/{originalCode}/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" &&" +
+                                $"sed -i -e 's/\\/usr\\/bin\\/clover-canoe-shvc/\\/bin\\/clover-canoe-shvc-wr/g' \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.desktop\"";
                             /*
                             // With compression but very slow
                             originalSyncCode = $"mkdir -p \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
@@ -851,7 +862,8 @@ namespace com.clusterrr.hakchi_gui
                 SetStatus(Resources.UploadingConfig);
                 SyncConfig(Config);
 #if !DEBUG
-                Directory.Delete(tempDirectory, true);
+                if (Directory.Exists(tempDirectory))
+                    Directory.Delete(tempDirectory, true);
 #endif
                 SetStatus(Resources.Done);
                 SetProgress(maxProgress, maxProgress);
@@ -961,7 +973,7 @@ namespace com.clusterrr.hakchi_gui
             }
             progress += 5;
             if (maxProgress < 0)
-                maxProgress = (int)((double)kernel.Length / (double)67000 + 20);
+                maxProgress = (int)((double)kernel.Length / (double)67000 + 22);
             SetProgress(progress, maxProgress);
 
             SetStatus(Resources.UploadingKernel);
@@ -982,8 +994,14 @@ namespace com.clusterrr.hakchi_gui
             var bootCommand = string.Format("boota {0:x}", Fel.transfer_base_m);
             SetStatus(Resources.ExecutingCommand + " " + bootCommand);
             fel.RunUbootCmd(bootCommand, true);
-            Thread.Sleep(7000);
+            for (int i = 0; i < 10; i++)
+            {
+                Thread.Sleep(1500);
+                progress++;
+                SetProgress(progress, maxProgress);
+            }
 #if !DEBUG
+            if (Directory.Exists(tempDirectory))
                 Directory.Delete(tempDirectory, true);
 #endif
             SetStatus(Resources.Done);
@@ -1014,7 +1032,8 @@ namespace com.clusterrr.hakchi_gui
             SetStatus(Resources.BuildingCustom);
             if (!File.Exists(Path.Combine(ramfsDirectory, "init")))
                 UnpackRamfs(kernelPath);
-            if (Directory.Exists(hakchiDirectory)) Directory.Delete(hakchiDirectory, true);
+            if (Directory.Exists(hakchiDirectory))
+                Directory.Delete(hakchiDirectory, true);
             NesMiniApplication.DirectoryCopy(Path.Combine(modsDirectory, Mod), ramfsDirectory, true);
             var ramfsFiles = Directory.GetFiles(ramfsDirectory, "*.*", SearchOption.AllDirectories);
             foreach (var file in ramfsFiles)
@@ -1076,56 +1095,10 @@ namespace com.clusterrr.hakchi_gui
 
             var result = File.ReadAllBytes(kernelPatched);
 #if !DEBUG
-            Directory.Delete(tempDirectory, true);
+            if (Directory.Exists(tempDirectory))
+                Directory.Delete(tempDirectory, true);
 #endif
             return result;
-        }
-
-        void DownloadAllCovers()
-        {
-            if (Games == null) return;
-            int i = 0;
-            foreach (NesMiniApplication game in Games)
-            {
-                SetStatus(Resources.GooglingFor.Trim() + " " + game.Name);
-                string[] urls = null;
-                for (int tries = 0; tries < 5; tries++)
-                {
-                    if (urls == null)
-                    {
-                        try
-                        {
-                            urls = ImageGooglerForm.GetImageUrls(game);
-                            break;
-                        }
-                        catch (Exception ex)
-                        {
-                            SetStatus(Resources.Error + ": " + ex.Message);
-                            Thread.Sleep(1500);
-                            continue;
-                        }
-                    }
-                }
-                if (urls != null && urls.Length == 0)
-                    SetStatus(Resources.NotFound + " " + game.Name);
-                for (int tries = 0; urls != null && tries < 5 && tries < urls.Length; tries++)
-                {
-                    try
-                    {
-                        var cover = ImageGooglerForm.DownloadImage(urls[tries]);
-                        game.Image = cover;
-                        break;
-                    }
-                    catch (Exception ex)
-                    {
-                        SetStatus(Resources.Error + ": " + ex.Message);
-                        Thread.Sleep(1500);
-                        continue;
-                    }
-                }
-                SetProgress(++i, Games.Count);
-                Thread.Sleep(500); // not so fast, Google don't like it
-            }
         }
 
         private class GamesTreeStats
@@ -1377,6 +1350,89 @@ namespace com.clusterrr.hakchi_gui
             }
             addedApplications = apps.ToArray();
             return apps; // Added games/apps
+        }
+
+        void DownloadCovers()
+        {
+            if (Games == null) return;
+            int i = 0;
+            foreach (NesMiniApplication game in Games)
+            {
+                SetStatus(Resources.GooglingFor.Trim() + " " + game.Name + "...");
+                string[] urls = null;
+                for (int tries = 0; tries < 5; tries++)
+                {
+                    if (urls == null)
+                    {
+                        try
+                        {
+                            urls = ImageGooglerForm.GetImageUrls(game);
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            SetStatus(Resources.Error + ": " + ex.Message);
+                            Thread.Sleep(1500);
+                            continue;
+                        }
+                    }
+                }
+                if (urls != null && urls.Length == 0)
+                    SetStatus(Resources.NotFound + " " + game.Name);
+                for (int tries = 0; urls != null && tries < 5 && tries < urls.Length; tries++)
+                {
+                    try
+                    {
+                        var cover = ImageGooglerForm.DownloadImage(urls[tries]);
+                        game.Image = cover;
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        SetStatus(Resources.Error + ": " + ex.Message);
+                        Thread.Sleep(1500);
+                        continue;
+                    }
+                }
+                SetProgress(++i, Games.Count);
+                Thread.Sleep(500); // not so fast, Google don't like it
+            }
+        }
+
+        void CompressGames()
+        {
+            if (Games == null) return;
+            int i = 0;
+            foreach (NesMiniApplication game in Games)
+            {
+                SetStatus(string.Format(Resources.Compressing, game.Name));
+                game.Compress();
+                SetProgress(++i, Games.Count);
+            }
+        }
+
+        void DecompressGames()
+        {
+            if (Games == null) return;
+            int i = 0;
+            foreach (NesMiniApplication game in Games)
+            {
+                SetStatus(string.Format(Resources.Decompressing, game.Name));
+                game.Decompress();
+                SetProgress(++i, Games.Count);
+            }
+        }
+
+        void DeleteGames()
+        {
+            if (Games == null) return;
+            int i = 0;
+            foreach (NesMiniApplication game in Games)
+            {
+                SetStatus(string.Format(Resources.Removing, game.Name));
+                Directory.Delete(game.GamePath, true);
+                SetProgress(++i, Games.Count);
+            }
         }
 
         private void WorkerForm_FormClosing(object sender, FormClosingEventArgs e)

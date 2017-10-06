@@ -83,7 +83,7 @@
     <value>Prehliadať</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Synchronizovať vybrané hry s NES Mini</value>
+    <value>Synchronizovať vybrané hry s NES/SNES Mini</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Hack ovládača</value>
@@ -236,7 +236,7 @@
     <value>Použiť kombináciu kláves pre resetovanie</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Uložiť nastavenia do NES Mini</value>
+    <value>Uložiť nastavenia do NES/SNES Mini</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
     <value>Správca uložených pozícií v hrách</value>
@@ -283,13 +283,46 @@
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Použiť X/Y na klasickom ovládači ako autofire A/B</value>
   </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Compress</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Compress games when adding</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Compress selected games</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Decompress selected games</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Delete selected games</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Donate</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Download box art for selected games</value>
+  </data>
   <data name="dumpNANDBToolStripMenuItem.Text">
     <value>Dump decrypted NAND-B partition</value>
   </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Dump the whole NAND flash</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Size:</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Boot original kernel from RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Boot patched kernel from RAM</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>Select dump filename</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>

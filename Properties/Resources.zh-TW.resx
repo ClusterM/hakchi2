@@ -92,7 +92,7 @@
     <value>現在您需要覆寫自訂核心到你的迷你紅白機，這只會執行一次。您要繼續嗎 ?</value>
   </data>
   <data name="Default30games">
-    <value>原廠內建30款經典遊戲</value>
+    <value>原廠內建xx款經典遊戲</value>
   </data>
   <data name="DeleteElement">
     <value>您真的要刪除 "{0}" 嗎 ?</value>
@@ -116,7 +116,7 @@
     <value>您要繼續嗎 ?</value>
   </data>
   <data name="Donate">
-    <value>附註: 如果您喜歡，歡迎捐贈給開發者。您可以到「關於」中找到開發者的PayPal</value>
+    <value>如果您喜歡，歡迎捐贈給開發者。您可以到「關於」中找到開發者的PayPal</value>
   </data>
   <data name="Done">
     <value>完成 !</value>
@@ -167,7 +167,7 @@
     <value>新增資料夾</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>原廠內建30款經典遊戲</value>
+    <value>原廠內建xx款經典遊戲</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Recycle Bin</value>
@@ -230,7 +230,7 @@
     <value>無效的核心大小</value>
   </data>
   <data name="KernelDumped">
-    <value>您的原始核心檔案儲存在「hakchi2\dump」資料夾。請不要刪除它。</value>
+    <value>您的原始核心檔案儲存在「hakchi2/dump」資料夾。請不要刪除它。</value>
   </data>
   <data name="LoadingGames">
     <value>載入遊戲中...</value>
@@ -299,7 +299,7 @@
     <value>按下「確定」以繼續進行操作。</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>您已傾印過核心。如果您真的要更換您的核心備份，並且你知道你正在做什麼，您可以自行刪除「hakchi2\dump」資料夾。</value>
+    <value>您已傾印過核心。如果您真的要更換您的核心備份，並且你知道你正在做什麼，您可以自行刪除「hakchi2/dump」資料夾。</value>
   </data>
   <data name="SavesFlterName">
     <value>迷你紅白機的快速存檔備份</value>
@@ -373,10 +373,40 @@
   <data name="YesForAll">
     <value>全部都要</value>
   </data>
+  <data name="Compressing">
+    <value>Compressing {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Compressing games...</value>
+  </data>
+  <data name="Decompressing">
+    <value>Decompressing {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Decompressing games...</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Delete selected game(s)?</value>
+  </data>
   <data name="DumpingNand">
     <value>Dumping NAND...</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>Invalid console selected! Detected console:</value>
+  </data>
+  <data name="Membooting">
+    <value>Booting the kernel from RAM...</value>
+  </data>
   <data name="NandDumped">
     <value>NAND memory is dumped successfully.</value>
+  </data>
+  <data name="Removing">
+    <value>Removing {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Removing games...</value>
+  </data>
+  <data name="Size">
+    <value>Size:</value>
   </data>
 </root>

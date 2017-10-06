@@ -539,11 +539,7 @@ namespace com.clusterrr.hakchi_gui
             DirectoryInfo dir = new DirectoryInfo(path);
 
             if (!dir.Exists)
-            {
-                throw new DirectoryNotFoundException(
-                    "Source directory does not exist or could not be found: "
-                    + path);
-            }
+                return 0;
 
             DirectoryInfo[] dirs = dir.GetDirectories();
             FileInfo[] files = dir.GetFiles();
@@ -604,6 +600,7 @@ namespace com.clusterrr.hakchi_gui
 
         public string[] CompressPossible()
         {
+            if (!Directory.Exists(GamePath)) return new string[0];
             var result = new List<string>();
             var exec = Regex.Replace(Command, "['/\\\"]", " ") + " ";
             var files = Directory.GetFiles(GamePath, "*.*", SearchOption.TopDirectoryOnly);
@@ -621,6 +618,7 @@ namespace com.clusterrr.hakchi_gui
 
         public string[] DecompressPossible()
         {
+            if (!Directory.Exists(GamePath)) return new string[0];
             var result = new List<string>();
             var exec = Regex.Replace(Command, "['/\\\"]", " ") + " ";
             var files = Directory.GetFiles(GamePath, "*.7z", SearchOption.TopDirectoryOnly);

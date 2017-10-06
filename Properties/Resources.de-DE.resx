@@ -89,7 +89,7 @@
     <value>Möchtest du den benutzerdefinierten Kernel flashen?</value>
   </data>
   <data name="CustomWarning">
-    <value>Nun musst du deinen benutzerdefinierten Kernel auf dein NES Mini flashen. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>
+    <value>Nun musst du deinen benutzerdefinierten Kernel auf dein NES/SNES Mini flashen. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>
   </data>
   <data name="Default30games">
     <value>Originale Spiele</value>
@@ -116,13 +116,13 @@
     <value>Möchtest du fortfahren?</value>
   </data>
   <data name="Donate">
-    <value>P.S. Wenn du magst, du kannst mir eine Spende zukommen lassen. Du findest meine PayPal im Menü "Über".</value>
+    <value>Wenn du magst, du kannst mir eine Spende zukommen lassen. Du findest meine PayPal im Menü "Über".</value>
   </data>
   <data name="Done">
     <value>Fertig!</value>
   </data>
   <data name="DoneYouCanUpload">
-    <value>Fertig! Du kannst nun Spiele auf dein NES Mini laden.</value>
+    <value>Fertig! Du kannst nun Spiele auf dein NES/SNES Mini laden.</value>
   </data>
   <data name="DownloadAllCoversTitle">
     <value>Downloade Covers für alle Spiele (Ich fühle mich glücklich!)</value>
@@ -182,7 +182,7 @@
     <value>Möchtest du diese Ordnerstruktur speichern?</value>
   </data>
   <data name="FourScreenNotSupported">
-    <value>Sorry, das Spiel {0} verwendet das s.g. four-screen mode (d.h. das Spiel hat zusätzliche VRAM-Speicher auf dem Modul) und diese Funktion wird vom NES Mini nicht unterstützt. Das Spiel kann vermutlich nicht gestartet werden. Ist aber in Ordnung, wenn ein anderer Emulator (als Modul) installiert ist. Möchtest du das Spiel trotzdem hinzufügen?</value>
+    <value>Sorry, das Spiel {0} verwendet das s.g. four-screen mode (d.h. das Spiel hat zusätzliche VRAM-Speicher auf dem Modul) und diese Funktion wird vom NES/SNES Mini nicht unterstützt. Das Spiel kann vermutlich nicht gestartet werden. Ist aber in Ordnung, wenn ein anderer Emulator (als Modul) installiert ist. Möchtest du das Spiel trotzdem hinzufügen?</value>
   </data>
   <data name="GGCodeDelete">
     <value>Möchtest du "{0}" Codes löschen?</value>
@@ -230,7 +230,7 @@
     <value>Ungültige Größe des Kernels:</value>
   </data>
   <data name="KernelDumped">
-    <value>Dein Original Kernel ist gesichert im Ordner "hakchi2\dump". Verliere ihn nicht.</value>
+    <value>Dein Original Kernel ist gesichert im Ordner "hakchi2/dump". Verliere ihn nicht.</value>
   </data>
   <data name="LoadingGames">
     <value>Lade Spiele...</value>
@@ -245,7 +245,7 @@
     <value>HOME Menü</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Entschuldige, "{0}" benutzt Mapper #{1}, aber dieser wird vom NES Mini nicht unterstützt und das Spiel wird wahrscheinlich mit dem Standard Emulator nicht starten. Es könnte funktionieren, wenn ein anderer Emulator installiert ist. Möchtest du das Spiel trotzdem hinzufügen?</value>
+    <value>Entschuldige, "{0}" benutzt Mapper #{1}, aber dieser wird vom NES/SNES Mini nicht unterstützt und das Spiel wird wahrscheinlich mit dem Standard Emulator nicht starten. Es könnte funktionieren, wenn ein anderer Emulator installiert ist. Möchtest du das Spiel trotzdem hinzufügen?</value>
   </data>
   <data name="MemoryFull">
     <value>Sorry, es sind zu viele Spiele, {0}MBytes, das ist zu viel.</value>
@@ -269,7 +269,7 @@
     <value>Kein gesicherter Kernel gefunden</value>
   </data>
   <data name="NoKernelWarning">
-    <value>Sichere zuerst das Kernel Abbild von deinem NES Mini. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>
+    <value>Sichere zuerst das Kernel Abbild von deinem NES/SNES Mini. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>
   </data>
   <data name="NoKernelYouNeed">
     <value>Kein gesicherter Kernel gefunden. Du musst den Kernel erst einmal sichern.</value>
@@ -299,10 +299,10 @@
     <value>Drücke OK, um fortzufahren.</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>Du hast dein Kernel schon gesichert. Wenn du WIRKLICH dein Kernel Backup ersetzen möchtest und du WIRKLICH weisst, was du tust, dann lösche den Ordner "hakchi2\dump" manuell.</value>
+    <value>Du hast dein Kernel schon gesichert. Wenn du WIRKLICH dein Kernel Backup ersetzen möchtest und du WIRKLICH weisst, was du tust, dann lösche den Ordner "hakchi2/dump" manuell.</value>
   </data>
   <data name="SavesFlterName">
-    <value>Sicherheitskopie der Speicherstände von NES Mini</value>
+    <value>Sicherheitskopie der Speicherstände von NES/SNES Mini</value>
   </data>
   <data name="SelectAtLeast">
     <value>Wähle mindestens ein Spiel.</value>
@@ -311,10 +311,10 @@
     <value>Wähle mindestens zwei Tasten.</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Wähle Module zum instalieren auf das NES Mini</value>
+    <value>Wähle Module zum instalieren auf das NES/SNES Mini</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Wähle Module, die du vom NES Mini entfernen möchtest</value>
+    <value>Wähle Module, die du vom NES/SNES Mini entfernen möchtest</value>
   </data>
   <data name="SizeOfSaves">
     <value>Größe der gewählten Speicherstände:</value>
@@ -323,7 +323,7 @@
     <value>Vergesse nicht, auf Werkeinstellung zurückzusetzen, wenn du alle Speicherstände löschen möchtest.</value>
   </data>
   <data name="UninstallQ1">
-    <value>Möchtest du wirklich alle Spuren von hakchi2 beseitigen und dein NES Mini in seinen Originalzustand zurücksetzen?</value>
+    <value>Möchtest du wirklich alle Spuren von hakchi2 beseitigen und dein NES/SNES Mini in seinen Originalzustand zurücksetzen?</value>
   </data>
   <data name="UninstallQ2">
     <value>Fertig. Warte bis die Power LED erlischt. Du musst auch den originalen Kernel flashen. Möchtest du den originalen Kernel jetzt flashen?</value>
@@ -373,10 +373,40 @@
   <data name="YesForAll">
     <value>Ja für alle</value>
   </data>
+  <data name="Compressing">
+    <value>Compressing {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Compressing games...</value>
+  </data>
+  <data name="Decompressing">
+    <value>Decompressing {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Decompressing games...</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Delete selected game(s)?</value>
+  </data>
   <data name="DumpingNand">
     <value>Dumping NAND...</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>Invalid console selected! Detected console:</value>
+  </data>
+  <data name="Membooting">
+    <value>Booting the kernel from RAM...</value>
+  </data>
   <data name="NandDumped">
     <value>NAND memory is dumped successfully.</value>
+  </data>
+  <data name="Removing">
+    <value>Removing {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Removing games...</value>
+  </data>
+  <data name="Size">
+    <value>Size:</value>
   </data>
 </root>

@@ -83,7 +83,10 @@
     <value>Browse</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Synchronise selected games with NES Mini</value>
+    <value>Synchronise selected games with NES/SNES Mini</value>
+  </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Compress</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Controller hacks</value>
@@ -91,11 +94,20 @@
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Compress non-NES games (for additional emulator mods)</value>
   </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Compress games when adding</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Compress selected games</value>
+  </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Console type</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>Custom - show Folder Manager every time</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Decompress selected games</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Remove game</value>
@@ -103,8 +115,17 @@
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Delete preset</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Delete selected games</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Disable pages/folders</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Donate</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Download box art for selected games</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Download box art for all games (I'm feeling lucky!)</value>
@@ -179,7 +200,7 @@
     <value>Publisher:</value>
   </data>
   <data name="label3.Text">
-    <value>Command-line arguments (advanced users only!)</value>
+    <value>Command-line (advanced users only!)</value>
   </data>
   <data name="label4.Text">
     <value>Box art:</value>
@@ -196,11 +217,20 @@
   <data name="labelName.Text">
     <value>Name:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Size:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
     <value>Language</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Maximum number of games per page/folder</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Boot original kernel from RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Boot patched kernel from RAM</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Modules</value>
@@ -245,7 +275,7 @@
     <value>Select dump filename</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Save settings to NES Mini</value>
+    <value>Save settings to NES/SNES Mini</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
     <value>Savestate Manager</value>
@@ -270,6 +300,9 @@
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
     <value>Take screenshot</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flash the whole NAND (experts only!)</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Tools</value>

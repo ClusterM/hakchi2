@@ -59,21 +59,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>正在等待您的计算机接上迷你红白机...</value>
+    <value>正在等待您的迷你红白机...</value>
   </data>
   <data name="buttonDriver.Text">
     <value>安装驱动程序</value>
   </data>
   <data name="label1.Text">
-    <value>请执行下列步骤 :</value>
+    <value>请按照下列步骤进行:</value>
   </data>
   <data name="label2.Text">
-    <value>1. 将迷你红白机用USB线连接至您的计算机</value>
+    <value>1. 用USB线将迷你红白机连接到计算机</value>
   </data>
   <data name="label3.Text">
     <value>2. 开启红白机电源</value>
   </data>
   <data name="label6.Text">
-    <value>3. 如果一直没有开始安装驱动程序 :</value>
+    <value>3. 安装驱动程序，如果尚未安装的话:</value>
   </data>
 </root>
