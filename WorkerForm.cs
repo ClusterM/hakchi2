@@ -487,7 +487,7 @@ namespace com.clusterrr.hakchi_gui
         {
             int progress = 0;
             int maxProgress = 115 + (string.IsNullOrEmpty(Mod) ? 0 : 110) +
-                ((hmodsInstall != null && hmodsInstall.Count() > 0) ? 80 : 0);
+                ((hmodsInstall != null && hmodsInstall.Count() > 0) ? 184 : 0);
             var tempKernelPath = Path.Combine(tempDirectory, "kernel.img");
             var hmods = hmodsInstall;
             hmodsInstall = null;
@@ -945,6 +945,14 @@ namespace com.clusterrr.hakchi_gui
         public void Memboot(int maxProgress = -1, int progress = 0)
         {
             SetProgress(progress, maxProgress < 0 ? 1000 : maxProgress);
+
+            int waitSeconds;
+            if ((hmodsInstall != null && hmodsInstall.Count() > 0)
+                || (hmodsUninstall != null && hmodsUninstall.Count() > 0))
+                waitSeconds = 60;
+            else
+                waitSeconds = 5;
+
             // Connecting to NES Mini
             if (WaitForFelFromThread() != DialogResult.OK)
             {
@@ -976,7 +984,7 @@ namespace com.clusterrr.hakchi_gui
             }
             progress += 5;
             if (maxProgress < 0)
-                maxProgress = (int)((double)kernel.Length / (double)67000 + 22);
+                maxProgress = (int)((double)kernel.Length / (double)67000 + waitSeconds * 2 + 12);
             SetProgress(progress, maxProgress);
 
             SetStatus(Resources.UploadingKernel);
@@ -997,11 +1005,13 @@ namespace com.clusterrr.hakchi_gui
             var bootCommand = string.Format("boota {0:x}", Fel.transfer_base_m);
             SetStatus(Resources.ExecutingCommand + " " + bootCommand);
             fel.RunUbootCmd(bootCommand, true);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < waitSeconds * 2; i++)
             {
-                Thread.Sleep(1500);
+                Thread.Sleep(500);
                 progress++;
                 SetProgress(progress, maxProgress);
+                if (MainForm.Clovershell.IsOnline)
+                    break;
             }
 #if !DEBUG
             if (Directory.Exists(tempDirectory))

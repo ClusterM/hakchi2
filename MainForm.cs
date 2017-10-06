@@ -537,7 +537,12 @@ namespace com.clusterrr.hakchi_gui
                         FormInitialize();
                         this.Invalidate(true);
                     };
-                item.Checked = Thread.CurrentThread.CurrentUICulture.Name.ToUpper() == langCodes[language].ToUpper();
+                if (Thread.CurrentThread.CurrentUICulture.Name.ToUpper() == langCodes[language].ToUpper())
+                {
+                    item.Checked = true;
+                    if (string.IsNullOrEmpty(ConfigIni.Language))
+                        ConfigIni.Language = langCodes[language];
+                }
                 found |= item.Checked;
                 if (langCodes[language] == "en-US")
                     english = item;
@@ -1128,7 +1133,8 @@ namespace com.clusterrr.hakchi_gui
             if (MessageBox.Show(Resources.OriginalKernelQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == System.Windows.Forms.DialogResult.Yes)
             {
-                if (FlashOriginalKernel()) MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (FlashOriginalKernel())
+                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1146,8 +1152,10 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (ConfigIni.CustomFlashed && MessageBox.Show(Resources.UninstallQ2, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                         == System.Windows.Forms.DialogResult.Yes)
-                        FlashOriginalKernel();
-                    MessageBox.Show(Resources.UninstallFactoryNote, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    {
+                        if (FlashOriginalKernel())
+                            MessageBox.Show(Resources.UninstallFactoryNote, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
         }
