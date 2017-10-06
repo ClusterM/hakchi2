@@ -89,10 +89,10 @@
     <value>Chcete flashnúť vlastný kernel?</value>
   </data>
   <data name="CustomWarning">
-    <value>Teraz potrebujete flashnúť vlastný kernel do NES Mini. Je to potrebné urobiť iba raz. Chcete pokračovať?</value>
+    <value>Teraz potrebujete flashnúť vlastný kernel do NES/SNES Mini. Je to potrebné urobiť iba raz. Chcete pokračovať?</value>
   </data>
   <data name="Default30games">
-    <value>Originálnych 30 hier</value>
+    <value>Originálnych xx hier</value>
   </data>
   <data name="DeleteElement">
     <value>Naozaj chcte odstrániť "{0}"?</value>
@@ -116,13 +116,13 @@
     <value>Chcete pokračovať?</value>
   </data>
   <data name="Donate">
-    <value>P.S. Ak sa vám táto aplikácia páči, môžete mi poslať dar. Môj PayPal e-mail nájdete v záložke "Informácie".</value>
+    <value>Ak sa vám táto aplikácia páči, môžete mi poslať dar. Môj PayPal e-mail nájdete v záložke "Informácie".</value>
   </data>
   <data name="Done">
     <value>Hotovo!</value>
   </data>
   <data name="DoneYouCanUpload">
-    <value>Dokončené! Teraz môžete nahrávať hry do vašej NES Mini.</value>
+    <value>Dokončené! Teraz môžete nahrávať hry do vašej NES/SNES Mini.</value>
   </data>
   <data name="DownloadAllCoversTitle">
     <value>Stiahnutie obalu pre všetky hry (Skúsim štastie!)</value>
@@ -164,7 +164,7 @@
     <value>Nový priečinok</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>Originálnych 30 hier</value>
+    <value>Originálnych xx hier</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Odpadkový kôš</value>
@@ -179,7 +179,7 @@
     <value>Chcete uložiť túto štruktúru priečinkov?</value>
   </data>
   <data name="FourScreenNotSupported">
-    <value>Prepáčte, {0} používa režim na štyri obrazovky (napr. hra má ďalšiu VRAM pamäť na kartridži), a táto funkcia nie je podporovaná NES Mini. Hru pravdepodobne nebude možné spustiť pomocou predvoleného emulátora. Ale mala by fungovať s použitím iného modulu emulátora. Chcete pridať túto hru?</value>
+    <value>Prepáčte, {0} používa režim na štyri obrazovky (napr. hra má ďalšiu VRAM pamäť na kartridži), a táto funkcia nie je podporovaná NES/SNES Mini. Hru pravdepodobne nebude možné spustiť pomocou predvoleného emulátora. Ale mala by fungovať s použitím iného modulu emulátora. Chcete pridať túto hru?</value>
   </data>
   <data name="GGCodeDelete">
     <value>Naozaj chcte odstrániť "{0}" kód?</value>
@@ -227,7 +227,7 @@
     <value>Neplatná veľkosť kernelu.</value>
   </data>
   <data name="KernelDumped">
-    <value>Váš originálny kernel je uložený v zložke "hakchi2\dump". Nestraťte ho.</value>
+    <value>Váš originálny kernel je uložený v zložke "hakchi2/dump". Nestraťte ho.</value>
   </data>
   <data name="LoadingGames">
     <value>Načítavanie hier...</value>
@@ -242,7 +242,7 @@
     <value>Hlavné menu</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Prepáčte, "{0}" používa mapper #{1} ale tento mapper nie je podporovaný NES Mini a hru pravdepodobne nebude možné spustiť pomocou predvoleného emulátora. Ale mala by fungovať s použitím iného modulu emulátora. Chcete pridať túto hru?</value>
+    <value>Prepáčte, "{0}" používa mapper #{1} ale tento mapper nie je podporovaný NES/SNES Mini a hru pravdepodobne nebude možné spustiť pomocou predvoleného emulátora. Ale mala by fungovať s použitím iného modulu emulátora. Chcete pridať túto hru?</value>
   </data>
   <data name="MemoryFull">
     <value>Prepáčte, je tu {0}MBytov hier, je to príliš veľa.</value>
@@ -266,7 +266,7 @@
     <value>Nenájdený žiadny zálohovaný kernel</value>
   </data>
   <data name="NoKernelWarning">
-    <value>Najprv zálohujte kernel vášho NES Mini. Je to potrebné urobiť len raz. Chcete pokračovať?</value>
+    <value>Najprv zálohujte kernel vášho NES/SNES Mini. Je to potrebné urobiť len raz. Chcete pokračovať?</value>
   </data>
   <data name="NoKernelYouNeed">
     <value>Nenájdený žiadny zálohovaný kernel. Musíte najprv zálohovať kernel.</value>
@@ -296,10 +296,10 @@
     <value>Pokračujte stlačením OK.</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>Už máte zálohovaný kernel. Ak NAOZAJ chcete nahradiť zálohu vášho kernelu a NAOZAJ rozumiete čo robíte, odstráňte priečinok "hakchi2\dump".</value>
+    <value>Už máte zálohovaný kernel. Ak NAOZAJ chcete nahradiť zálohu vášho kernelu a NAOZAJ rozumiete čo robíte, odstráňte priečinok "hakchi2/dump".</value>
   </data>
   <data name="SavesFlterName">
-    <value>NES Mini zálohy uložených pozícií hier</value>
+    <value>NES/SNES Mini zálohy uložených pozícií hier</value>
   </data>
   <data name="SelectAtLeast">
     <value>Vyberte aspoň jednu hru.</value>
@@ -308,10 +308,10 @@
     <value>Vyberte aspoň dve tlačidlá.</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Vyberte moduly, ktoré chcete nainštalovať do NES Mini</value>
+    <value>Vyberte moduly, ktoré chcete nainštalovať do NES/SNES Mini</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Vyberte moduly, ktoré chcete odstrániť z NES Mini</value>
+    <value>Vyberte moduly, ktoré chcete odstrániť z NES/SNES Mini</value>
   </data>
   <data name="SizeOfSaves">
     <value>Veľkosť vybraných uložených pozícií:</value>
@@ -320,7 +320,7 @@
     <value>Nezabudnite vykonať obnovenie továrenského nastavenia, ak chcete odstrániť všetky uložené pozície v hrách.</value>
   </data>
   <data name="UninstallQ1">
-    <value>Naozaj chcete odstrániť všetky stopy po hakchi2 a vrátiť NES Mini do pôvodného stavu?</value>
+    <value>Naozaj chcete odstrániť všetky stopy po hakchi2 a vrátiť NES/SNES Mini do pôvodného stavu?</value>
   </data>
   <data name="UninstallQ2">
     <value>Dokončené. Počkajte kým prestane svietiť LED indikátor. Tiež je potrebné flashnúť originálny kernel. Chcete flashnúť originálny kernel teraz?</value>
@@ -370,13 +370,43 @@
   <data name="YesForAll">
     <value>Áno pre všetky</value>
   </data>
+  <data name="Compressing">
+    <value>Compressing {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Compressing games...</value>
+  </data>
+  <data name="Decompressing">
+    <value>Decompressing {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Decompressing games...</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Delete selected game(s)?</value>
+  </data>
   <data name="DumpingNand">
     <value>Dumping NAND...</value>
   </data>
   <data name="FolderContent">
     <value>Deleted content will be moved to the Recycle Bin. You can delete this folder permanently or move the games to other folders.</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>Invalid console selected! Detected console:</value>
+  </data>
+  <data name="Membooting">
+    <value>Booting the kernel from RAM...</value>
+  </data>
   <data name="NandDumped">
     <value>NAND memory is dumped successfully.</value>
+  </data>
+  <data name="Removing">
+    <value>Removing {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Removing games...</value>
+  </data>
+  <data name="Size">
+    <value>Size:</value>
   </data>
 </root>

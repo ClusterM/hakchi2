@@ -59,22 +59,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>快速存档管理工具</value>
+    <value>即时存档管理器</value>
   </data>
   <data name="buttonDelete.Text">
-    <value>删除所选</value>
+    <value>删除所选项目</value>
   </data>
   <data name="buttonExport.Text">
-    <value>汇出所选</value>
+    <value>导出所选项目</value>
   </data>
   <data name="buttonImport.Text">
-    <value>汇入</value>
+    <value>导入</value>
   </data>
   <data name="colCode.Text">
     <value>代码</value>
   </data>
   <data name="colFlags.Text">
-    <value>储存槽</value>
+    <value>即时存档位置</value>
   </data>
   <data name="colName.Text">
     <value>名称</value>
@@ -83,12 +83,12 @@
     <value>大小</value>
   </data>
   <data name="deleteToolStripMenuItem.Text">
-    <value>删除所选</value>
+    <value>删除所选项目</value>
   </data>
   <data name="exportToolStripMenuItem.Text">
-    <value>汇出所选</value>
+    <value>导出所选项目</value>
   </data>
   <data name="importToolStripMenuItem.Text">
-    <value>汇入</value>
+    <value>导入</value>
   </data>
 </root>

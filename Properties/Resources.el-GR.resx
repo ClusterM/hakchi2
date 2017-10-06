@@ -89,10 +89,10 @@
     <value>Θέλετε να εγγράψετε τον προσαρμοσμένο πυρήνα;</value>
   </data>
   <data name="CustomWarning">
-    <value>Τώρα χρειάζεται να εγγράψετε τον προσαρμοσμένο πυρήνα στο NES Mini σας. Αυτό απαιτείται μόνο μία φορά. Θέλετε να συνεχίσετε;</value>
+    <value>Τώρα χρειάζεται να εγγράψετε τον προσαρμοσμένο πυρήνα στο NES/SNES Mini σας. Αυτό απαιτείται μόνο μία φορά. Θέλετε να συνεχίσετε;</value>
   </data>
   <data name="Default30games">
-    <value>30 αυθεντικά παιχνίδια</value>
+    <value>xx αυθεντικά παιχνίδια</value>
   </data>
   <data name="DeleteElement">
     <value>Σίγουρα θέλετε να διαγράψετε το "{0}";</value>
@@ -116,13 +116,13 @@
     <value>Θέλετε να συνεχίσετε;</value>
   </data>
   <data name="Donate">
-    <value>Υ.Γ. Αν σας αρέσει, μπορείτε να μου κάνετε δωρεά. Μπορείτε να βρείτε το PayPal μου στο παράθυρο "Σχετικά με".</value>
+    <value>Αν σας αρέσει, μπορείτε να μου κάνετε δωρεά. Μπορείτε να βρείτε το PayPal μου στο παράθυρο "Σχετικά με".</value>
   </data>
   <data name="Done">
     <value>Έτοιμο!</value>
   </data>
   <data name="DoneYouCanUpload">
-    <value>Έτοιμο! Τώρα μπορείτε να μεταφορτώσετε παιχνίδια στο NES Mini σας.</value>
+    <value>Έτοιμο! Τώρα μπορείτε να μεταφορτώσετε παιχνίδια στο NES/SNES Mini σας.</value>
   </data>
   <data name="DownloadAllCoversTitle">
     <value>Κατέβασμα εξώφυλλων κουτιών για όλα τα παιχνίδια (Αισθάνομαι τυχερός!)</value>
@@ -167,7 +167,7 @@
     <value>Νέος φάκελος</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>30 αυθεντικά παιχνίδια</value>
+    <value>xx αυθεντικά παιχνίδια</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Κάδος Ανακύκλωσης</value>
@@ -182,7 +182,7 @@
     <value>Θέλετε να αποθηκεύσετε αυτή τη δομή φακέλων;</value>
   </data>
   <data name="FourScreenNotSupported">
-    <value>Λυπάμαι, το "{0}" χρησιμοποιεί λειτουργία τετραπλής οθόνης (π.χ. το παιχνίδι έχει επιπλέον μνήμη VRAM στην κασέτα) και αυτό το χαρακτηριστικό δεν υποστηρίζεται από το NES Mini. Το παιχνίδι πιθανόν δεν θα ξεκινήσει. Πρέπει όμως να δουλέψει αν έχει εγκατασταθεί το module άλλων εξομοιωτών. Θέλετε να προσθέσετε αυτό το παιχνίδι;</value>
+    <value>Λυπάμαι, το "{0}" χρησιμοποιεί λειτουργία τετραπλής οθόνης (π.χ. το παιχνίδι έχει επιπλέον μνήμη VRAM στην κασέτα) και αυτό το χαρακτηριστικό δεν υποστηρίζεται από το NES/SNES Mini. Το παιχνίδι πιθανόν δεν θα ξεκινήσει. Πρέπει όμως να δουλέψει αν έχει εγκατασταθεί το module άλλων εξομοιωτών. Θέλετε να προσθέσετε αυτό το παιχνίδι;</value>
   </data>
   <data name="GGCodeDelete">
     <value>Θέλετε να διαγράψετε τον κωδικό "{0}";</value>
@@ -230,7 +230,7 @@
     <value>Μη έγκυρο μέγεθος πυρήνα:</value>
   </data>
   <data name="KernelDumped">
-    <value>Ο αυθεντικός σας πυρήνας έχει αποθηκευτεί στο φάκελο "hakchi2\dump". Μη τον χάσετε.</value>
+    <value>Ο αυθεντικός σας πυρήνας έχει αποθηκευτεί στο φάκελο "hakchi2/dump". Μη τον χάσετε.</value>
   </data>
   <data name="LoadingGames">
     <value>Φόρτωση παιχνιδιών…</value>
@@ -245,7 +245,7 @@
     <value>ΑΡΧΙΚΟ Μενού</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Λυπάμαι, το "{0}" χρησιμοποιεί τον mapper #{1} ο οποίος δεν υποστηρίζεται από το NES Mini και το παιχνίδι πιθανόν δεν θα ξεκινήσει με τον προκαθορισμένο εξομοιωτή. Πρέπει όμως να δουλέψει αν έχει εγκατασταθεί το module άλλων εξομοιωτών. Θέλετε να προσθέσετε αυτό το παιχνίδι;</value>
+    <value>Λυπάμαι, το "{0}" χρησιμοποιεί τον mapper #{1} ο οποίος δεν υποστηρίζεται από το NES/SNES Mini και το παιχνίδι πιθανόν δεν θα ξεκινήσει με τον προκαθορισμένο εξομοιωτή. Πρέπει όμως να δουλέψει αν έχει εγκατασταθεί το module άλλων εξομοιωτών. Θέλετε να προσθέσετε αυτό το παιχνίδι;</value>
   </data>
   <data name="MemoryFull">
     <value>Λυπάμαι, υπάρχουν "{0}"Mbytes με παιχνίδια, είναι πάρα πολλά.</value>
@@ -269,7 +269,7 @@
     <value>Δεν βρέθηκε αποθηκευμένος πυρήνας</value>
   </data>
   <data name="NoKernelWarning">
-    <value>Αρχικά, αποθηκεύστε τον πυρήνα του NES Mini σας. Χρειάζετε να το κάνετε μόνο μία φορά. Θέλετε να συνεχίσετε;</value>
+    <value>Αρχικά, αποθηκεύστε τον πυρήνα του NES/SNES Mini σας. Χρειάζετε να το κάνετε μόνο μία φορά. Θέλετε να συνεχίσετε;</value>
   </data>
   <data name="NoKernelYouNeed">
     <value>Δεν βρέθηκε αποθηκευμένος πυρήνας. Πρέπει πρώτα να αποθηκεύσετε τον πυρήνα.</value>
@@ -299,10 +299,10 @@
     <value>Πιέστε ΟΚ για να συνεχίσετε.</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>Έχετε ήδη αποθηκεύσει τον πυρήνα. Αν ΠΡΑΓΜΑΤΙΚΑ θέλετε να αντικαταστήσετε το αντίγραφο του πυρήνα σας και ΠΡΑΓΜΑΤΙΚΑ καταλαβαίνετε τι κάνετε, διαγράψτε τον φάκελο "hakchi2\dump" χειροκίνητα.</value>
+    <value>Έχετε ήδη αποθηκεύσει τον πυρήνα. Αν ΠΡΑΓΜΑΤΙΚΑ θέλετε να αντικαταστήσετε το αντίγραφο του πυρήνα σας και ΠΡΑΓΜΑΤΙΚΑ καταλαβαίνετε τι κάνετε, διαγράψτε τον φάκελο "hakchi2/dump" χειροκίνητα.</value>
   </data>
   <data name="SavesFlterName">
-    <value>Αντίγραφα αποθηκευμένων σημείων NES Mini</value>
+    <value>Αντίγραφα αποθηκευμένων σημείων NES/SNES Mini</value>
   </data>
   <data name="SelectAtLeast">
     <value>Επιλέξτε τουλάχιστον ένα παιχνίδι.</value>
@@ -311,10 +311,10 @@
     <value>Επιλέξτε τουλάχιστον δύο κουμπιά.</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Επιλέξτε τα modules που θα εγκατασταθούν στο NES Mini σας</value>
+    <value>Επιλέξτε τα modules που θα εγκατασταθούν στο NES/SNES Mini σας</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Επιλέξτε τα modules που θα απεγκατασταθούν από το NES Mini σας</value>
+    <value>Επιλέξτε τα modules που θα απεγκατασταθούν από το NES/SNES Mini σας</value>
   </data>
   <data name="SizeOfSaves">
     <value>Μέγεθος επιλεγμένων σημείων:</value>
@@ -323,7 +323,7 @@
     <value>Μην ξεχάσετε να κάνετε μια επαναφορά εργοστασιακών ρυθμίσεων αν θέλετε να διαγράψετε όλα τα αποθηκευμένα σημεία.</value>
   </data>
   <data name="UninstallQ1">
-    <value>Σίγουρα θέλετε να αφαιρέσετε όλα τα ίχνη του hakchi2 και να επαναφέρετε το NES Mini σας στην αρχική του κατάσταση;</value>
+    <value>Σίγουρα θέλετε να αφαιρέσετε όλα τα ίχνη του hakchi2 και να επαναφέρετε το NES/SNES Mini σας στην αρχική του κατάσταση;</value>
   </data>
   <data name="UninstallQ2">
     <value>Έτοιμο. Περιμένετε μέχρι να σβήσει το λαμπάκι POWER. Πρέπει επίσης να εγγράψετε τον αυθεντικό πυρήνα. Θέλετε να εγγράψετε τον αυθεντικό πυρήνα τώρα;</value>
@@ -373,10 +373,40 @@
   <data name="YesForAll">
     <value>Ναι σε όλα</value>
   </data>
+  <data name="Compressing">
+    <value>Compressing {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Compressing games...</value>
+  </data>
+  <data name="Decompressing">
+    <value>Decompressing {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Decompressing games...</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Delete selected game(s)?</value>
+  </data>
   <data name="DumpingNand">
     <value>Dumping NAND...</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>Invalid console selected! Detected console:</value>
+  </data>
+  <data name="Membooting">
+    <value>Booting the kernel from RAM...</value>
+  </data>
   <data name="NandDumped">
     <value>NAND memory is dumped successfully.</value>
+  </data>
+  <data name="Removing">
+    <value>Removing {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Removing games...</value>
+  </data>
+  <data name="Size">
+    <value>Size:</value>
   </data>
 </root>

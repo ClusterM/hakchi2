@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Väntar på din NES Mini…</value>
+    <value>Väntar på din NES/SNES Mini…</value>
   </data>
   <data name="buttonDriver.Text">
     <value>Installera drivrutin</value>
@@ -68,7 +68,7 @@
     <value>Vänligen följ stegen nedan:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Anslut din NES Mini till PCn via USB kabel.</value>
+    <value>1. Anslut din NES/SNES Mini till PCn via USB kabel.</value>
   </data>
   <data name="label3.Text">
     <value>2. Tryck på power knappen</value>

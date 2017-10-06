@@ -79,6 +79,12 @@
   <data name="BuildingFolders">
     <value>Строим дерево папок...</value>
   </data>
+  <data name="Compressing">
+    <value>Сжимаем {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Сжимаем игры...</value>
+  </data>
   <data name="Congratulations">
     <value>Поздравляем!</value>
   </data>
@@ -89,7 +95,13 @@
     <value>Хотите прошить модифицированный образ ядра?</value>
   </data>
   <data name="CustomWarning">
-    <value>Теперь необходимо установить модифицированное ядро на NES Mini. Эту процедуру тоже нужно выполнить только один раз. Продолжить?</value>
+    <value>Необходимо установить модифицированное ядро на NES/SNES Mini. Эту процедуру тоже нужно выполнить только один раз. Продолжить?</value>
+  </data>
+  <data name="Decompressing">
+    <value>Расжимаем {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Расжимаем игры...</value>
   </data>
   <data name="Default30games">
     <value>Оригинальные игры</value>
@@ -109,6 +121,9 @@
   <data name="DeleteSavesQ">
     <value>Вы действительно хотите удалить эти сохранения?</value>
   </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Удалить выбранные игры?</value>
+  </data>
   <data name="DoYouWantCancel">
     <value>Хотите отменить текущую операцию?</value>
   </data>
@@ -122,13 +137,13 @@
     <value>Готово!</value>
   </data>
   <data name="DoneYouCanUpload">
-    <value>Готово! Теперь можно закачивать свои игры в NES Mini.</value>
+    <value>Готово! Теперь можно закачивать свои игры в NES/SNES Mini.</value>
   </data>
   <data name="DownloadAllCoversTitle">
     <value>Качаем обложки для всех игр (Мне повезёт!)</value>
   </data>
   <data name="DumpKernelQ">
-    <value>Сдампить образ ядра NES Mini?</value>
+    <value>Сдампить образ ядра NES/SNES Mini?</value>
   </data>
   <data name="DumpingKernel">
     <value>Читаем образ ядра...</value>
@@ -185,7 +200,7 @@
     <value>Сохранить это дерево папок?</value>
   </data>
   <data name="FourScreenNotSupported">
-    <value>Увы, {0} использует four-screen режим (т.е. это редкий случай, когда у игры в картридже расширенная видеопамять), а NES Mini его не поддерживает, и игра скорее всего не запустится на стандартном эмуляторе. Но она должна заработать, если установлен модуль с другим эмулятором. Добавить эту игру?</value>
+    <value>Увы, {0} использует four-screen режим (т.е. это редкий случай, когда у игры в картридже расширенная видеопамять), а NES/SNES Mini его не поддерживает, и игра скорее всего не запустится на стандартном эмуляторе. Но она должна заработать, если установлен модуль с другим эмулятором. Добавить эту игру?</value>
   </data>
   <data name="GGCodeDelete">
     <value>Вы действительно хотите удалить код "{0}"?</value>
@@ -226,6 +241,9 @@
   <data name="InstallingMods">
     <value>Устанавливаем модули...</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>Неверно выбрана консоль. Обнаружанная консоль:</value>
+  </data>
   <data name="InvalidKernelHeader">
     <value>Некорректный заголовок образа ядра.</value>
   </data>
@@ -233,7 +251,7 @@
     <value>Некорректный размер ядра:</value>
   </data>
   <data name="KernelDumped">
-    <value>Оригинальный образ ядра сохранён в папке "hakchi2\dump". Желательно его не потерять и не стереть.</value>
+    <value>Оригинальный образ ядра сохранён в папке "hakchi2/dump". Желательно его не потерять и не стереть.</value>
   </data>
   <data name="LoadingGames">
     <value>Загружаем игры...</value>
@@ -248,10 +266,13 @@
     <value>Главное меню</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Увы, "{0}" использует маппер #{1}, а NES Mini его вроде как не поддерживает, и игра скорее всего не запустится на стандартном эмуляторе. Но она должна заработать, если установлен модуль с другим эмулятором. Добавить эту игру?</value>
+    <value>Увы, "{0}" использует маппер #{1}, а NES/SNES Mini его вроде как не поддерживает, и игра скорее всего не запустится на стандартном эмуляторе. Но она должна заработать, если установлен модуль с другим эмулятором. Добавить эту игру?</value>
+  </data>
+  <data name="Membooting">
+    <value>Запускаем ядро из RAM...</value>
   </data>
   <data name="MemoryFull">
-    <value>Простите, слишком уж много игр, на {0}МБайт, NES Mini такое не осилит.</value>
+    <value>Простите, слишком уж много игр, на {0}МБайт, NES/SNES Mini такое не осилит.</value>
   </data>
   <data name="MemoryStats">
     <value>Всего перезаписываемой памяти: {0:F1}МБайт|Доступно для игр: {1:F1}МБайт|Используется сохранениями: {2:F1}МБайт|Используется другими файлами: {3:F1}МБайт</value>
@@ -275,10 +296,10 @@
     <value>Не найден образ ядра</value>
   </data>
   <data name="NoKernelWarning">
-    <value>Прежде всего, необходимо сдампить образ ядра NES Mini. Эту процедуру нужно проделать только один раз. Продолжить?</value>
+    <value>Прежде всего, необходимо сдампить образ ядра NES/SNES Mini. Эту процедуру нужно проделать только один раз. Продолжить?</value>
   </data>
   <data name="NoKernelYouNeed">
-    <value>Не найден образ ядра NES Mini. Сначала необходимо его сдампить.</value>
+    <value>Не найден образ ядра NES/SNES Mini. Сначала необходимо его сдампить.</value>
   </data>
   <data name="NoTelnet">
     <value>Не могу открыть Telnet клиент. Похоже, что он выключен. Включите его в "Панели управления" -&gt; "Программы и компоненты" -&gt; "Компоненты Windows".</value>
@@ -304,11 +325,17 @@
   <data name="PressOkToContinue">
     <value>Нажмите OK для продолжения.</value>
   </data>
+  <data name="Removing">
+    <value>Удаляем {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Удаляем игры...</value>
+  </data>
   <data name="ReplaceKernelQ">
-    <value>Уже существует сохранённый образ ядра. Если вы ДЕЙСТВИТЕЛЬНО хотите заменить оригинальную копию ядра и ДЕЙСТВИТЕЛЬНО понимаете, что делаете, удалите папку "hakchi2\dump" вручную.</value>
+    <value>Уже существует сохранённый образ ядра. Если вы ДЕЙСТВИТЕЛЬНО хотите заменить оригинальную копию ядра и ДЕЙСТВИТЕЛЬНО понимаете, что делаете, удалите папку "hakchi2/dump" вручную.</value>
   </data>
   <data name="SavesFlterName">
-    <value>Сохранения NES Mini</value>
+    <value>Сохранения NES/SNES Mini</value>
   </data>
   <data name="SelectAtLeast">
     <value>Необходимо выбрать хотя бы одну игру.</value>
@@ -317,10 +344,13 @@
     <value>Нужно выбрать хотя бы две кнопки.</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Выберите модули для установки на NES Mini</value>
+    <value>Выберите модули для установки на NES/SNES Mini</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Выберите модули, которые нужно удалить с NES Mini</value>
+    <value>Выберите модули, которые нужно удалить с NES/SNES Mini</value>
+  </data>
+  <data name="Size">
+    <value>Размер:</value>
   </data>
   <data name="SizeOfSaves">
     <value>Размер выбранных сохранений:</value>
@@ -329,7 +359,7 @@
     <value>Всё. Не забудьте также сделать сброс к заводским настройкам, если хотите удалить сохранения игр.</value>
   </data>
   <data name="UninstallQ1">
-    <value>Вы действительно хотите удалить все файлы hakchi2 с вашей NES Mini и вернуть её в девственное состояние?</value>
+    <value>Вы действительно хотите удалить все файлы hakchi2 с вашей NES/SNES Mini и вернуть её в девственное состояние?</value>
   </data>
   <data name="UninstallQ2">
     <value>Готово. Только подождите, пока погаснет светодиод. И ещё необходимо прошить назад оригинальное ядро. Сделать это сейчас?</value>

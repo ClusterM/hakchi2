@@ -257,7 +257,6 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                ConfigIni.CustomFlashed = true; // Just in case of new installation
                 // Trying to autodetect console type
                 var customFirmware = Clovershell.ExecuteSimple("[ -d /var/lib/hakchi/firmware/ ] && [ -f /var/lib/hakchi/firmware/*.hsqs ] && echo YES || echo NO");
                 if (customFirmware == "NO")
@@ -296,6 +295,9 @@ namespace com.clusterrr.hakchi_gui
                     }
                     Invoke(new Action(SyncConsoleType));
                 }
+
+                ConfigIni.CustomFlashed = true; // Just in case of new installation
+
                 WorkerForm.GetMemoryStats();
                 new Thread(RecalculateSelectedGamesThread).Start();
 
@@ -537,10 +539,11 @@ namespace com.clusterrr.hakchi_gui
                     {
                         ConfigIni.Language = langCodes[language];
                         SaveConfig();
+                        lastConsoleType = ConsoleType.Unknown;
                         Thread.CurrentThread.CurrentUICulture = new CultureInfo(langCodes[language]);
                         this.Controls.Clear();
                         this.InitializeComponent();
-                        FormInitialize();
+                        FormInitialize();                        
                         this.Invalidate(true);
                     };
                 item.Checked = Thread.CurrentThread.CurrentUICulture.Name.ToUpper() == langCodes[language].ToUpper();

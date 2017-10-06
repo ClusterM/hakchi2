@@ -83,7 +83,10 @@
     <value>Выбрать</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Синхронизировать список игр с NES Mini</value>
+    <value>Синхронизировать список игр с NES/SNES Mini</value>
+  </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Сжимать</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Хаки контроллера</value>
@@ -91,11 +94,20 @@
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Сжимать не-NES игры (для дополнительного эмулятора)</value>
   </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Сжимать игры при добавлении</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Сжать выбранные игры</value>
+  </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Тип консоли</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>Настроить вручную - показывать менеджер папок перед загрузкой</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Расжать выбранные игры</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Удалить игру</value>
@@ -103,8 +115,17 @@
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Удалить пресет</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Удалить выбранные игры</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Без папок</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Поддержать проект</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Скачать обложки для выбранных игр</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Скачать обложки для всех игр</value>
@@ -179,7 +200,7 @@
     <value>Издатель:</value>
   </data>
   <data name="label3.Text">
-    <value>Параметры командной строки (для продвинутых!):</value>
+    <value>Командная строка (для продвинутых!):</value>
   </data>
   <data name="label4.Text">
     <value>Обложка:</value>
@@ -196,11 +217,20 @@
   <data name="labelName.Text">
     <value>Название:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Размер:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
     <value>Язык</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Максимум игр на страницу</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Запустить оригинальное ядро из RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Запустить модифицированное ядро из RAM</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Модули</value>
@@ -245,7 +275,7 @@
     <value>Выберите, куда сохранить образ</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Сохранить настройки в NES Mini сейчас</value>
+    <value>Сохранить настройки в NES/SNES Mini сейчас</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
     <value>Менеджер сохранений</value>
@@ -278,7 +308,7 @@
     <value>Удалить модули</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text">
-    <value>Полностью удалиться с NES Mini</value>
+    <value>Полностью удалиться с NES/SNES Mini</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
     <value>Снять отметку со всех</value>
@@ -291,5 +321,8 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Использовать X/Y на Classic Controller как турбо A/B</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>

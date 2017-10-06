@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Väntar på din NES Mini…</value>
+    <value>Väntar på din NES/SNES Mini…</value>
   </data>
   <data name="buttonDriver.Text">
     <value>Installera drivrutin</value>
@@ -68,10 +68,10 @@
     <value>Vänligen följ stegen nedan:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Se till att POWER-knappen på din NES Mini är avstängd.</value>
+    <value>1. Se till att POWER-knappen på din NES/SNES Mini är avstängd.</value>
   </data>
   <data name="label3.Text">
-    <value>2. (Åter)anslut din NES Mini till PCn via USB kabeln.</value>
+    <value>2. (Åter)anslut din NES/SNES Mini till PCn via USB kabeln.</value>
   </data>
   <data name="label4.Text">
     <value>3. Håll RESET knappen intryckt och tryck på POWER knappen.</value>

@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Venter på din NES Mini...</value>
+    <value>Venter på din NES/SNES Mini...</value>
   </data>
   <data name="buttonDriver.Text">
     <value>Installer driver</value>
@@ -68,7 +68,7 @@
     <value>Venligst følg disse trin:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Forbind din NES Mini til din PC via USB kablet.</value>
+    <value>1. Forbind din NES/SNES Mini til din PC via USB kablet.</value>
   </data>
   <data name="label3.Text">
     <value>2. Tænd den</value>

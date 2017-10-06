@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Waiting for your NES Mini...</value>
+    <value>Waiting for your NES/SNES Mini...</value>
   </data>
   <data name="buttonDriver.Text">
     <value>Install driver</value>
@@ -68,7 +68,7 @@
     <value>Please follow these steps:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Connect your NES Mini to your PC via a USB cable.</value>
+    <value>1. Connect your NES/SNES Mini to your PC via a USB cable.</value>
   </data>
   <data name="label3.Text">
     <value>2. Turn it on</value>

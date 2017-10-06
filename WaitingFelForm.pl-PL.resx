@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Oczekiwanie na NES Mini...</value>
+    <value>Oczekiwanie na NES/SNES Mini...</value>
   </data>
   <data name="buttonDriver.Text">
     <value>Zainstaluj sterowniki</value>
@@ -68,10 +68,10 @@
     <value>Proszę wykonać następujące kroki:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Upewnij się, że przycisk POWER na NES Mini jest wyłączony.</value>
+    <value>1. Upewnij się, że przycisk POWER na NES/SNES Mini jest wyłączony.</value>
   </data>
   <data name="label3.Text">
-    <value>2. Odłącz i połącz ponownie NES Mini z PC kablem USB.</value>
+    <value>2. Odłącz i połącz ponownie NES/SNES Mini z PC kablem USB.</value>
   </data>
   <data name="label4.Text">
     <value>3. Przytrzymując przycisk RESET uruchom konsolę przyciskiem POWER.</value>

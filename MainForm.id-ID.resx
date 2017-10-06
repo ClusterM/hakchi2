@@ -83,7 +83,7 @@
     <value>Jelajah</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Sinkronkan game-game terpilih dengan NES Mini</value>
+    <value>Sinkronkan game-game terpilih dengan NES/SNES Mini</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Retasan kontroler</value>
@@ -112,6 +112,12 @@
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Men-dump kernel</value>
   </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Dump terdekripsi partisi NAND-B</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Dump seluruh flash NAND</value>
+  </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Tekan "Select+A/B" untuk mengaktifkan autofire pada A/B</value>
   </data>
@@ -125,7 +131,7 @@
     <value>FAQ</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
-    <value>&amp;Fail</value>
+    <value>&amp;File</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Flash kernel custom</value>
@@ -218,7 +224,7 @@
     <value>Halaman, bagi game secara sama</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>Halaman/Folder Structure</value>
+    <value>Halaman/Folders Structure</value>
   </data>
   <data name="presetsToolStripMenuItem.Text">
     <value>Pra-atur pilihan</value>
@@ -235,8 +241,11 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Gunakan kombinasi tombol untuk me-reset</value>
   </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Pilih nama file dump</value>
+  </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Simpan penataan ke NES Mini sekarang</value>
+    <value>Simpan penataan ke NES/SNES Mini sekarang</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
     <value>Save-State Manager</value>
@@ -283,13 +292,37 @@
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Gunakan X/Y pada Classic Controller sebagai autofire A/B</value>
   </data>
-  <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump decrypted NAND-B partition</value>
+  <data name="checkBoxCompressed.Text">
+    <value>Compress</value>
   </data>
-  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dump the whole NAND flash</value>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Compress games when adding</value>
   </data>
-  <data name="saveDumpFileDialog.Title">
-    <value>Select dump filename</value>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Compress selected games</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Decompress selected games</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Delete selected games</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Donate</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Download box art for selected games</value>
+  </data>
+  <data name="labelSize.Text">
+    <value>Size:</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Boot original kernel from RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Boot patched kernel from RAM</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>

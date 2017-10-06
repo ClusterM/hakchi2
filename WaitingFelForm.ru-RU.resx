@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Ожидаем NES Mini...</value>
+    <value>Ожидаем NES/SNES Mini...</value>
   </data>
   <data name="buttonDriver.Text">
     <value>Установить</value>
@@ -71,7 +71,7 @@
     <value>1. Убедитесь, что кнопка POWER выключена.</value>
   </data>
   <data name="label3.Text">
-    <value>2. (Пере)подключите NES Mini к компьютеру по USB.</value>
+    <value>2. (Пере)подключите NES/SNES Mini к компьютеру по USB.</value>
   </data>
   <data name="label4.Text">
     <value>3. Зажмите кнопку RESET и нажмите кнопку POWER.</value>

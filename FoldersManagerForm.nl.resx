@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Map Manager</value>
+    <value>Mappen Beheer</value>
   </data>
   <data name="buttonCancel.Text">
-    <value>Annuleer</value>
+    <value>Annuleren</value>
   </data>
   <data name="buttonFoldersEqually.Text">
     <value>Verdeel gelijkmatig</value>

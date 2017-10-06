@@ -679,4 +679,7 @@
   <data name="RemovingGames" xml:space="preserve">
     <value>Removing games...</value>
   </data>
+  <data name="InvalidConsoleSelected" xml:space="preserve">
+    <value>Invalid console selected! Detected console:</value>
+  </data>
 </root>

@@ -59,9 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>选择档案</value>
+    <value>选择文件</value>
   </data>
   <data name="buttonArchive.Text">
-    <value>汇入的档案</value>
+    <value>作为压缩包导入</value>
   </data>
 </root>

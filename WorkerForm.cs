@@ -446,7 +446,7 @@ namespace com.clusterrr.hakchi_gui
                 UnpackRamfs(kernelDumpTemp);
                 var key = File.ReadAllBytes(Path.Combine(ramfsDirectory, "key-file"));
                 if (dumpPath == null)
-                    Directory.Delete(tempDirectory);
+                    Directory.Delete(tempDirectory, true);
                 // I don't want to store keyfile inside my code, so I'll store MD5 of it
                 var keymd5 = System.Security.Cryptography.MD5.Create();
                 var keyhash = BitConverter.ToString(md5.ComputeHash(key)).Replace("-", "").ToLower();
@@ -456,7 +456,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     var console = matchedKeys.First();
                     if (console != ConfigIni.ConsoleType)
-                        throw new Exception("Invalid console selected! Your kernel detected as " + console);
+                        throw new Exception(Resources.InvalidConsoleSelected + " " + console);
                 }
                 else throw new Exception("Unknown key, unknown console");
             }
