@@ -430,15 +430,6 @@ namespace com.clusterrr.hakchi_gui
             var matchedKernels = from k in correctKernels where k.Value.Contains(hash) select k.Key;
             if (matchedKernels.Count() == 0)
             {
-                if (MessageBoxFromThread(this, Resources.MD5Failed + " " + hash + /*"\r\n" + Resources.MD5Failed2 +*/
-                    "\r\n" + Resources.DoYouWantToContinue, Resources.Warning, MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, false)
-                    == DialogResult.No)
-                {
-                    DialogResult = DialogResult.Abort;
-                    return false;
-                }
-
                 // Unknown MD5? Hmm... Lets extract ramfs and check keyfile!
                 string kernelDumpTemp = Path.Combine(tempDirectory, "kernel.img");
                 Directory.CreateDirectory(tempDirectory);
@@ -459,6 +450,15 @@ namespace com.clusterrr.hakchi_gui
                         throw new Exception(Resources.InvalidConsoleSelected + " " + console);
                 }
                 else throw new Exception("Unknown key, unknown console");
+
+                if (MessageBoxFromThread(this, Resources.MD5Failed + " " + hash + /*"\r\n" + Resources.MD5Failed2 +*/
+                    "\r\n" + Resources.DoYouWantToContinue, Resources.Warning, MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, false)
+                    == DialogResult.No)
+                {
+                    DialogResult = DialogResult.Abort;
+                    return false;
+                }
             }
             else
             {
@@ -483,7 +483,7 @@ namespace com.clusterrr.hakchi_gui
         {
             int progress = 0;
             int maxProgress = 115 + (string.IsNullOrEmpty(Mod) ? 0 : 110) +
-                ((hmodsInstall != null && hmodsInstall.Count() > 0) ? 75 : 0);
+                ((hmodsInstall != null && hmodsInstall.Count() > 0) ? 80 : 0);
             var tempKernelPath = Path.Combine(tempDirectory, "kernel.img");
             var hmods = hmodsInstall;
             hmodsInstall = null;
@@ -972,7 +972,7 @@ namespace com.clusterrr.hakchi_gui
             }
             progress += 5;
             if (maxProgress < 0)
-                maxProgress = (int)((double)kernel.Length / (double)67000 + 20);
+                maxProgress = (int)((double)kernel.Length / (double)67000 + 22);
             SetProgress(progress, maxProgress);
 
             SetStatus(Resources.UploadingKernel);
@@ -993,7 +993,12 @@ namespace com.clusterrr.hakchi_gui
             var bootCommand = string.Format("boota {0:x}", Fel.transfer_base_m);
             SetStatus(Resources.ExecutingCommand + " " + bootCommand);
             fel.RunUbootCmd(bootCommand, true);
-            Thread.Sleep(7000);
+            for (int i = 0; i < 10; i++)
+            {
+                Thread.Sleep(1500);
+                progress++;
+                SetProgress(progress, maxProgress);
+            }
 #if !DEBUG
             if (Directory.Exists(tempDirectory))
                 Directory.Delete(tempDirectory, true);
