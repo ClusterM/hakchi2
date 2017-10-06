@@ -293,36 +293,36 @@
     <value>Utilizza X/Y sul Classic Controller come autofire per A/B</value>
   </data>
   <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
+    <value>Comprimi</value>
   </data>
   <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
+    <value>Comprimi i giochi quando vengono aggiunti</value>
   </data>
   <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
+    <value>Comprimi i giochi selezionati</value>
   </data>
   <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
+    <value>Decomprimi i giochi selezionati</value>
   </data>
   <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
+    <value>Elimina i giochi selezionati</value>
   </data>
   <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
+    <value>Donazione</value>
   </data>
   <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
+    <value>Scarica box art per i giochi selezionati</value>
   </data>
   <data name="labelSize.Text">
-    <value>Size:</value>
+    <value>Dimensione:</value>
   </data>
   <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
+    <value>Avvia il kernel originale dalla RAM</value>
   </data>
   <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
+    <value>Avvia il kernel patchato dalla RAM</value>
   </data>
   <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
+    <value>Flasha l'intera NAND (solo esperti!)</value>
   </data>
 </root>
