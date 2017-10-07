@@ -2,16 +2,20 @@
 using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.XPath;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public class SnesGame : NesMiniApplication
+    public class SnesGame : NesMiniApplication, ICloverAutofill
     {
+        public enum SnesRomType { LoRom = 0x14, HiRom = 0x15 };
+
         const string DefaultArgs = "--volume 100 -rollback-snapshot-period 600";
         static List<byte> SfxTypes = new List<byte>() { 0x13, 0x14, 0x15, 0x1a };
         static List<byte> Dsp1Types = new List<byte>() { 0x03, 0x05 };
@@ -65,6 +69,7 @@ namespace com.clusterrr.hakchi_gui
             { "MEGAMAN X3", 0x113D },
             { "Breath of Fire", 0x1144 },
         };
+        private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
 
         public override string GoogleSuffix
         {
@@ -96,7 +101,9 @@ namespace com.clusterrr.hakchi_gui
                         var stripped = new byte[rawRomData.Length - 512];
                         Array.Copy(rawRomData, 512, stripped, 0, stripped.Length);
                         rawRomData = stripped;
+                        crc32 = CRC32(rawRomData);
                     }
+                    Debug.WriteLine($"Trying to convert {inputFileName}");
                     MakeSfrom(ref rawRomData, ref saveCount);
                     outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
                 }
@@ -135,29 +142,46 @@ namespace com.clusterrr.hakchi_gui
                 romType = SnesRomType.HiRom;
                 romHeader = romHeaderHiRom;
             }
-            else if ((romHeaderLoRom.RomMakeup & 1) == 0)
+            else if (((romHeaderLoRom.RomMakeup & 1) == 0) && ((romHeaderHiRom.RomMakeup & 1) == 0))
             {
                 romType = SnesRomType.LoRom;
                 romHeader = romHeaderLoRom;
             }
+            else if (((romHeaderLoRom.RomMakeup & 1) == 1) && ((romHeaderHiRom.RomMakeup & 1) == 1))
+            {
+                romType = SnesRomType.HiRom;
+                romHeader = romHeaderHiRom;
+            }
             else
             {
+                // WTF is it?
                 romType = SnesRomType.HiRom;
                 romHeader = romHeaderHiRom;
             }
 
             string gameTitle = romHeader.GameTitle.Trim();
+            Debug.WriteLine($"Game title: {gameTitle}");
             ushort presetId = 0; // 0x1011;
             ushort chip = 0;
             if (SfxTypes.Contains(romHeader.RomType)) // Super FX chip
+            {
+                Debug.WriteLine($"Super FX chip detected");
                 chip = 0x0C;
+            }
             if (!knownPresets.TryGetValue(gameTitle, out presetId)) // Known codes
             {
                 if (Dsp1Types.Contains(romHeader.RomType))
+                {
+                    Debug.WriteLine($"DSP-1 chip detected");
                     presetId = 0x10BD; // ID from Mario Kard, DSP1
+                }
                 if (SA1Types.Contains(romHeader.RomType))
+                {
+                    Debug.WriteLine($"SA1 chip detected");
                     presetId = 0x109C; // ID from Super Mario RPG, SA1
+                }
             }
+            Debug.WriteLine(string.Format("PresetID: 0x{0:X2}{1:X2}, extra byte: {2:X2}", presetId & 0xFF, (presetId >> 8) & 0xFF, chip));
 
             var sfromHeader1 = new SfromHeader1((uint)rawRomData.Length);
             var sfromHeader2 = new SfromHeader2((uint)rawRomData.Length, presetId, romType, chip);
@@ -407,7 +431,93 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public enum SnesRomType { LoRom = 0x14, HiRom = 0x15 };
+        private struct CachedGameInfo
+        {
+            public string Name;
+            public byte Players;
+            public bool Simultaneous;
+            public string ReleaseDate;
+            public string Publisher;
+            public string Region;
+        }
+
+        public static void LoadCache()
+        {
+            try
+            {
+                var xmlDataBasePath = Path.Combine(System.IO.Path.Combine(Program.BaseDirectoryInternal, "data"), "snescarts.xml");
+                Debug.WriteLine("Loading " + xmlDataBasePath);
+
+                if (File.Exists(xmlDataBasePath))
+                {
+                    var xpath = new XPathDocument(xmlDataBasePath);
+                    var navigator = xpath.CreateNavigator();
+                    var iterator = navigator.Select("/Data");
+                    gameInfoCache = new Dictionary<uint, CachedGameInfo>();
+                    while (iterator.MoveNext())
+                    {
+                        XPathNavigator game = iterator.Current;
+                        var cartridges = game.Select("Game");
+                        while (cartridges.MoveNext())
+                        {
+                            var cartridge = cartridges.Current;
+                            uint crc = 0;
+                            var info = new CachedGameInfo();
+
+                            try
+                            {
+                                var v = cartridge.Select("name");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    info.Name = v.Current.Value;
+                                v = cartridge.Select("players");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    info.Players = byte.Parse(v.Current.Value);
+                                v = cartridge.Select("simultaneous");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    info.Simultaneous = byte.Parse(v.Current.Value) != 0;
+                                v = cartridge.Select("crc");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    crc = Convert.ToUInt32(v.Current.Value, 16);
+                                v = cartridge.Select("date");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    info.ReleaseDate = v.Current.Value;
+                                v = cartridge.Select("publisher");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    info.Publisher = v.Current.Value;
+                            }
+                            catch
+                            {
+                                Debug.WriteLine($"Invalid XML record for game: {cartridge.OuterXml}");
+                            }
+
+                            gameInfoCache[crc] = info;
+                        };
+                    }
+                }
+                Debug.WriteLine(string.Format("SNES XML loading done, {0} roms total", gameInfoCache.Count));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+            }
+        }
+
+        public bool TryAutofill(uint crc32)
+        {
+            CachedGameInfo gameinfo;
+            if (gameInfoCache != null && gameInfoCache.TryGetValue(crc32, out gameinfo))
+            {
+                Name = gameinfo.Name;
+                Players = gameinfo.Players;
+                Simultaneous = gameinfo.Simultaneous;
+                ReleaseDate = gameinfo.ReleaseDate;
+                if (ReleaseDate.Length == 4) ReleaseDate += "-01";
+                if (ReleaseDate.Length == 7) ReleaseDate += "-01";
+                Publisher = gameinfo.Publisher.ToUpper();
+                return true;
+            }
+            return false;
+        }
     }
 }
 

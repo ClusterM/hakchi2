@@ -231,6 +231,7 @@ namespace com.clusterrr.hakchi_gui
 
                 // Loading games database in background
                 new Thread(NesGame.LoadCache).Start();
+                new Thread(SnesGame.LoadCache).Start();
                 // Recalculate games in background
                 new Thread(RecalculateSelectedGamesThread).Start();
 
