@@ -133,7 +133,7 @@
     <value>0</value>
   </data>
   <data name="labelSelectConsole.Text" xml:space="preserve">
-    <value>使用するコンソール(機種)を選択してください。\nあとで「設定」&gt;「コンソールタイプ」から変更できます。</value>
+    <value>使用するコンソール(機種)を選択してください。あとで「設定」&gt;「コンソールタイプ」から変更できます。</value>
     <comment>初回起動メッセージ</comment>
   </data>
   <data name="labelSelectConsole.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
