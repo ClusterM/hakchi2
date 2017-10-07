@@ -83,7 +83,7 @@
     <value>Browse</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Synchronise selected games with NES/SNES Mini</value>
+    <value>Synchronise selected games with S/NES Mini</value>
   </data>
   <data name="checkBoxCompressed.Text">
     <value>Compress</value>
@@ -128,7 +128,7 @@
     <value>Download box art for selected games</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Download box art for all games (I'm feeling lucky!)</value>
+    <value>Download box art for all games</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Dump kernel</value>
@@ -275,7 +275,7 @@
     <value>Select dump filename</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Save settings to NES/SNES Mini</value>
+    <value>Save settings to S/NES Mini</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
     <value>Savestate Manager</value>

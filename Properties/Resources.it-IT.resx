@@ -79,6 +79,12 @@
   <data name="BuildingFolders">
     <value>Sto costruendo la struttura cartelle…</value>
   </data>
+  <data name="Compressing">
+    <value>Compressione in corso {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Compressione dei giochi in corso...</value>
+  </data>
   <data name="Congratulations">
     <value>Congratulazioni!</value>
   </data>
@@ -90,6 +96,12 @@
   </data>
   <data name="CustomWarning">
     <value>Ora è necessario flashare il custom kernel nel NES/SNES Mini. E'richiesto 1 sola volta. Vuoi continuare?</value>
+  </data>
+  <data name="Decompressing">
+    <value>Decompressione {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Decompressione dei giochi in corso...</value>
   </data>
   <data name="Default30games">
     <value>xx giochi originali</value>
@@ -108,6 +120,9 @@
   </data>
   <data name="DeleteSavesQ">
     <value>Vuoi veramente cancellare questi punti di sospensione?</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Cancellare i giochi selezionati ?</value>
   </data>
   <data name="DoYouWantCancel">
     <value>Vuoi cancellare l'operazione in corso?</value>
@@ -226,6 +241,9 @@
   <data name="InstallingMods">
     <value>Sto installando le mods…</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>Console selezionata non valida! Console identificata:</value>
+  </data>
   <data name="InvalidKernelHeader">
     <value>Header del kernel non valido.</value>
   </data>
@@ -249,6 +267,9 @@
   </data>
   <data name="MapperNotSupported">
     <value>Mi dispiace, ma "{0}" utilizza il mapper #{1} e questo mapper non è supportato dal NES/SNES Mini ed il gioco probabilmente non partirà con l'emulatore originale di default. Dovrebbe invece funzionare se si è installato il modulo di un altro emulatore. Vuoi aggiungere il gioco comunque?</value>
+  </data>
+  <data name="Membooting">
+    <value>Avvio del kernel dalla RAM...</value>
   </data>
   <data name="MemoryFull">
     <value>Mi dispiace, ci sono {0}Mbytes, sono troppi.</value>
@@ -304,6 +325,12 @@
   <data name="PressOkToContinue">
     <value>Premere OK per continuare.</value>
   </data>
+  <data name="Removing">
+    <value>Cancellazione {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Cancellazione dei giochi in corso...</value>
+  </data>
   <data name="ReplaceKernelQ">
     <value>Hai già il dump del kernel. Se vuoi VERAMENTE sostituire il backup del kernel e sai VERAMENTE cosa stai facendo, cancella la cartella "hakchi2/dump" manualmente.</value>
   </data>
@@ -321,6 +348,9 @@
   </data>
   <data name="SelectModsUninstall">
     <value>Seleziona il modulo da rimuovere dal NES/SNES Mini</value>
+  </data>
+  <data name="Size">
+    <value>Dimensione:</value>
   </data>
   <data name="SizeOfSaves">
     <value>Dimensione dei punti di sospensione selezionati</value>
@@ -379,34 +409,10 @@
   <data name="YesForAll">
     <value>Si per tutti</value>
   </data>
-  <data name="Compressing">
-    <value>Compressing {0}...</value>
+  <data name="Cover">
+    <value>Box art</value>
   </data>
-  <data name="CompressingGames">
-    <value>Compressing games...</value>
-  </data>
-  <data name="Decompressing">
-    <value>Decompressing {0}...</value>
-  </data>
-  <data name="DecompressingGames">
-    <value>Decompressing games...</value>
-  </data>
-  <data name="DeleteSelectedGamesQ">
-    <value>Delete selected game(s)?</value>
-  </data>
-  <data name="InvalidConsoleSelected">
-    <value>Invalid console selected! Detected console:</value>
-  </data>
-  <data name="Membooting">
-    <value>Booting the kernel from RAM...</value>
-  </data>
-  <data name="Removing">
-    <value>Removing {0}...</value>
-  </data>
-  <data name="RemovingGames">
-    <value>Removing games...</value>
-  </data>
-  <data name="Size">
-    <value>Size:</value>
+  <data name="DownloadCoverQ">
+    <value>Do you want to try to download box art for "{0}"?</value>
   </data>
 </root>

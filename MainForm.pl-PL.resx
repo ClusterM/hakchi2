@@ -85,11 +85,20 @@
   <data name="buttonStart.Text">
     <value>Synchronizuj wybrane gry z NES/SNES Mini</value>
   </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Kompresuj</value>
+  </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Mody kontrolerów</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Kompresuj gry inne niż NES (dla dodatkowych modułów - emu)</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Kompresuj gry podczas dodawania</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Kompresuj zaznaczone gry</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Typ konsoli</value>
@@ -97,14 +106,26 @@
   <data name="customToolStripMenuItem.Text">
     <value>Własne - pokazuje Menadżer Profili za każdym razem</value>
   </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Dekompresuj zaznaczone gry</value>
+  </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Usuń grę</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Usuń preset</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Usuń zaznaczone gry</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Wyłącz strony/foldery</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Darowizna</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Ściągnij box art dla zaznaczonych gier</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Pobierz okładki dla wszystkich gier</value>
@@ -196,11 +217,20 @@
   <data name="labelName.Text">
     <value>Nazwa:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Wielkość:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
     <value>Język</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Maksimum gier na stronę/folder</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Bootuj oryginalny kernel z RAMu</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Bootuj patchowany kernel z RAMu</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Moduły</value>
@@ -271,6 +301,9 @@
   <data name="takeScreenshotToolStripMenuItem.Text">
     <value>Zrobić zrzut ekranu</value>
   </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flashuj cały NAND (tylko eksperci!)</value>
+  </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Narzędzia</value>
   </data>
@@ -288,39 +321,6 @@
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Użyj rozszerzonej czcionki</value>
-  </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
-  </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
-  </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
-  </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Size:</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Use X/Y on Classic Controller as autofire A/B</value>

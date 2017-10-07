@@ -62,10 +62,10 @@
     <value>Manager der Speicherstände</value>
   </data>
   <data name="buttonDelete.Text">
-    <value>Löschen ausgewählt</value>
+    <value>Ausgewählte löschen</value>
   </data>
   <data name="buttonExport.Text">
-    <value>Export ausgewählt</value>
+    <value>Ausgewählte exportieren</value>
   </data>
   <data name="buttonImport.Text">
     <value>Importieren</value>
@@ -83,10 +83,10 @@
     <value>Größe</value>
   </data>
   <data name="deleteToolStripMenuItem.Text">
-    <value>Löschen ausgewählt</value>
+    <value>Ausgewählte löschen</value>
   </data>
   <data name="exportToolStripMenuItem.Text">
-    <value>Export ausgewählt</value>
+    <value>Ausgewählte exportieren</value>
   </data>
   <data name="importToolStripMenuItem.Text">
     <value>Importieren</value>

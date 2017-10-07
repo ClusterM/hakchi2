@@ -2,7 +2,7 @@
 
 This is a GUI for hakchi by madmonkey.
 
-This application can add more games (game ROMs) to your Nintendo Classic Mini or Famicom Mini. All you need is to connect it to a Windows PC via Micro-USB cable. No soldering or disassembling required.
+This application can add more games (game ROMs) to your NES/SNES Classic Mini or Famicom Mini. All you need is to connect it to a Windows PC via Micro-USB cable. No soldering or disassembling required.
 
 https://github.com/ClusterM/hakchi2
 
@@ -11,7 +11,7 @@ https://github.com/ClusterM/hakchi2
 * Fill all game data automatically using included database
 * Automatically check for supported games
 * Search for box art using Google Images
-* Use [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) codes; includes Game Genie database
+* Use [Game Genie](https://en.wikipedia.org/wiki/Game_Genie) codes for NES games; includes Game Genie database
 * Automatically patch problem games (patches for many popular games included)
 * Upload hundreds of games at once
 * Return to the HOME menu with a button combination instead of the Reset button

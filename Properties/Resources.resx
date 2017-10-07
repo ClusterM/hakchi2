@@ -295,7 +295,7 @@
     <value>Hold Select+A/B for a second to enable/disable autofire A/B.</value>
   </data>
   <data name="ExtraArgsInfo" xml:space="preserve">
-    <value>You can add global command-line arguments which will be appended to all games including the original 30. This is only for experts!</value>
+    <value>You can add global command-line arguments which will be appended to all games including the original. This is only for experts!</value>
   </data>
   <data name="ExtraArgsTitle" xml:space="preserve">
     <value>Extra command-line arguments</value>

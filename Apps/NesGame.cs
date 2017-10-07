@@ -54,8 +54,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref byte saveCount, ref uint crc32)
         {
             // Try to patch before mapper check, maybe it will patch mapper
-            FindPatch(ref rawRomData, inputFileName, crc32);
-
+            var patched = FindPatch(ref rawRomData, inputFileName, crc32);
             NesFile nesFile;
             try
             {
@@ -66,8 +65,15 @@ namespace com.clusterrr.hakchi_gui
                 application = "/bin/nes";
                 return true;
             }
-            nesFile.CorrectRom();
             crc32 = nesFile.CRC32;
+            // Also search for patch using internal CRC32
+            if (!patched)
+            {
+                if (FindPatch(ref rawRomData, inputFileName, crc32))
+                    nesFile = new NesFile(rawRomData);
+            }
+            nesFile.CorrectRom();
+
             if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
             {
                 application = "/bin/clover-kachikachi-wr";

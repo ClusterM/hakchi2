@@ -74,7 +74,7 @@
     <value>Original Spiele in Root -&gt; automatisch in Unterordner</value>
   </data>
   <data name="automaticToolStripMenuItem.Text">
-    <value>Automatich</value>
+    <value>Automatisch</value>
   </data>
   <data name="buttonAddGames.Text">
     <value>Mehr Spiele hinzufügen</value>
@@ -85,11 +85,20 @@
   <data name="buttonStart.Text">
     <value>Synchronisiere gewählte Spiele mit NES/SNES Mini</value>
   </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Komprimieren</value>
+  </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Controller Hacks</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Komprimiere nicht-NES Spiele (für zusätzliche Emulatoren)</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Spiele beim Hinzufügen komprimieren</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Ausgewählte Spiele komprimieren</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Konsolentyp</value>
@@ -97,14 +106,26 @@
   <data name="customToolStripMenuItem.Text">
     <value>Benutzerdefiniert - Ordner Manager jedes mal anzeigen</value>
   </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Ausgewählte Spiele entpacken</value>
+  </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Spiel löschen</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Preset löschen</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Ausgewählte Spiele löschen</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Seiten/Ordner deaktivieren</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Projekt unterstützen</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Spielecovers herunterladen</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Lade Covers für alle Spiele</value>
@@ -112,11 +133,17 @@
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Kernel sichern</value>
   </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Verschlüsselten NAND-B Bereich lesen</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Die ganze NAND-Speicher auslesen.</value>
+  </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Benutze "Select+A/B", um Autofeuer für A/B zu aktivieren</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
-    <value>Epilepsie-Schutz deaktivieren</value>
+    <value>Epilepsieschutz deaktivieren</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Beenden</value>
@@ -190,11 +217,20 @@
   <data name="labelName.Text">
     <value>Name:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Größe:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
     <value>Sprache</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Maximal Spiele pro Seite/Ordner</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Den Originalkernel von RAM laden</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Den modifizierten Kernel von RAM laden</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Module</value>
@@ -235,6 +271,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Benutze Tastenkombination für Zurücksetzen</value>
   </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Wo soll der gesicherte Dump gespeichert werden</value>
+  </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Einstellungen in NES/SNES Mini jetzt speichern</value>
   </data>
@@ -248,7 +287,7 @@
     <value>Alle Auswählen</value>
   </data>
   <data name="selectButtonCombinationToolStripMenuItem.Text">
-    <value>Wähle Kombination, um ins Menu zu gehen</value>
+    <value>Wähle Kombination, um ins Menü zu gehen</value>
   </data>
   <data name="settingsToolStripMenuItem.Text">
     <value>&amp;Einstellungen</value>
@@ -260,7 +299,10 @@
     <value>Synchronisieren</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
-    <value>Einen screenshot machen</value>
+    <value>Einen Screenshot machen</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Die ganze NAND flashen (nur für Experten!)</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Extras</value>
@@ -282,47 +324,5 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Nutze X/Y auf dem Classic Controller als Autofeuer A/B</value>
-  </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
-  </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
-  </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
-  </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump decrypted NAND-B partition</value>
-  </data>
-  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dump the whole NAND flash</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Size:</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="saveDumpFileDialog.Title">
-    <value>Select dump filename</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>

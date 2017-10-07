@@ -522,6 +522,7 @@ namespace com.clusterrr.hakchi_gui
                 if (ReleaseDate.Length == 7) ReleaseDate += "-01";
                 Publisher = gameinfo.Publisher.ToUpper();
 
+                /*
                 if (!string.IsNullOrEmpty(gameinfo.CoverUrl))
                 {
                     if (NeedAutoDownloadCover != true)
@@ -535,7 +536,7 @@ namespace com.clusterrr.hakchi_gui
                                 MessageBoxIcon.Question,
                                 MessageBoxDefaultButton.Button2, true);
                             if (r == DialogResult.Abort)
-                                NeedPatch = true;
+                                NeedAutoDownloadCover = true;
                             if (r == DialogResult.Ignore)
                                 return true;
                         }
@@ -552,7 +553,7 @@ namespace com.clusterrr.hakchi_gui
                         Debug.WriteLine(ex.Message + ex.StackTrace);
                     }
                 }
-
+                */
                 return true;
             }
             return false;

@@ -85,11 +85,20 @@
   <data name="buttonStart.Text">
     <value>Synchroniser les jeux sélectionnés avec la NES/SNES Mini</value>
   </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Compressser</value>
+  </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Configuration des manettes</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Compresser les jeux non-NES (pour mod emulateur additionnel)</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Compresser les jeux au moment de l'ajout</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Compresser les jeux sélectionnés</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Type de console</value>
@@ -97,20 +106,38 @@
   <data name="customToolStripMenuItem.Text">
     <value>Custom - Toujours afficher le Gestionnaire de dossiers</value>
   </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Décompresser les jeux sélectionnés</value>
+  </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Supprimer jeu</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Supprimer Preset</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Supprimer les jeux sélectionnés</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Désactiver page/dossiers</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Faire un don</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Télécharger les pochettes pour les jeux sélectionnés</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Télécharger les pochettes pour tous les jeux</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Extraire Kernel</value>
+  </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Décoder la partition NAND-B</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Sauvegarde complète de la mémoire flash NAND</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Utiliser "Select+A/B" pour activer l'autofire sur A/B</value>
@@ -190,11 +217,20 @@
   <data name="labelName.Text">
     <value>Nom:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Taille:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
-    <value>Language</value>
+    <value>Langage</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Nombre de jeux maximum par page/dossier</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Démarrer le kernel d'origine à partir du RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Démarrer le kernel patché à partir du RAM</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Modules</value>
@@ -235,6 +271,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Utiliser une combinaison de boutons pour retourner au menu</value>
   </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Sélectionner le nom du fichier de sauvegarde</value>
+  </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Sauvegarder les paramètres vers la NES/SNES Mini maintenant</value>
   </data>
@@ -262,6 +301,9 @@
   <data name="takeScreenshotToolStripMenuItem.Text">
     <value>Prendre une capture d'écran</value>
   </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flasher le NAND entier (experts seulement!)</value>
+  </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>Ou&amp;tils</value>
   </data>
@@ -282,47 +324,5 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Utiliser X/Y sur le Classic Controller comme autofire A/B</value>
-  </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
-  </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
-  </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
-  </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump decrypted NAND-B partition</value>
-  </data>
-  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dump the whole NAND flash</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Size:</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="saveDumpFileDialog.Title">
-    <value>Select dump filename</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>
