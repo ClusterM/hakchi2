@@ -238,7 +238,7 @@
     <value>If this problem persists, try using another USB port or cable.</value>
   </data>
   <data name="Donate" xml:space="preserve">
-    <value>P.S. If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
+    <value>If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
   </data>
   <data name="FirstRun" xml:space="preserve">
     <value>Hello there! I'm very glad that you are using hakchi2. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>

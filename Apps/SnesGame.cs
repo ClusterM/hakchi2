@@ -446,7 +446,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                var xmlDataBasePath = Path.Combine(System.IO.Path.Combine(Program.BaseDirectoryInternal, "data"), "snescarts.xml");
+                var xmlDataBasePath = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "snescarts.xml");
                 Debug.WriteLine("Loading " + xmlDataBasePath);
 
                 if (File.Exists(xmlDataBasePath))
