@@ -63,7 +63,7 @@ namespace com.clusterrr.util
             public void CalcChecksum()
             {
                 Checksum = new byte[] { 32, 32, 32, 32, 32, 32, 32, 32 };
-                var bytes = getBytes();
+                var bytes = GetBytes();
                 uint summ = 0;
                 foreach (var b in bytes)
                     summ += b;
@@ -72,7 +72,7 @@ namespace com.clusterrr.util
                 Checksum[7] = 32;
             }
 
-            public byte[] getBytes()
+            public byte[] GetBytes()
             {
                 int size = Marshal.SizeOf(this);
                 byte[] arr = new byte[size];
@@ -256,7 +256,7 @@ namespace com.clusterrr.util
                     header.UstarMagic = "ustar  ";
                     //header.UstarVersion = new char[] {'0', '0'};
                     header.CalcChecksum();
-                    currentHeader = header.getBytes();
+                    currentHeader = header.GetBytes();
                 }
 
                 if (currentEntryPosition < 512) // Header

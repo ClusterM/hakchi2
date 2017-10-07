@@ -74,10 +74,10 @@
     <value>Vil du flashe custom kernen?</value>
   </data>
   <data name="CustomWarning">
-    <value>Nu skal du flashe custom kernen til din NES Mini. Dette skal du kun gøre én gang. Vil du forsætte?</value>
+    <value>Nu skal du flashe custom kernen til din NES/SNES Mini. Dette skal du kun gøre én gang. Vil du forsætte?</value>
   </data>
   <data name="Default30games">
-    <value>Originale 30 spil</value>
+    <value>Originale xx spil</value>
   </data>
   <data name="DeleteGame">
     <value>Er du sikker på du vil slette "{0}"</value>
@@ -89,13 +89,13 @@
     <value>Vil du forsætte?</value>
   </data>
   <data name="Donate">
-    <value>P.S hvis du kan lide det, kan du donere til mig. Du kan finde min PayPal i "Om" boksen.</value>
+    <value>Hvis du kan lide det, kan du donere til mig. Du kan finde min PayPal i "Om" boksen.</value>
   </data>
   <data name="Done">
     <value>Færdig!</value>
   </data>
   <data name="DoneYouCanUpload">
-    <value>Færdig! Du kan nu uploade spil til din NES Mini.</value>
+    <value>Færdig! Du kan nu uploade spil til din NES/SNES Mini.</value>
   </data>
   <data name="DumpKernelQ">
     <value>Vil du dumpe kernen?</value>
@@ -119,7 +119,7 @@
     <value>Ny mappe</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>Originale 30 spil</value>
+    <value>Originale xx spil</value>
   </data>
   <data name="GamesSelected">
     <value>Spil valgt(e)</value>
@@ -137,13 +137,13 @@
     <value>Kernen er allerede patched eller den er ukendt</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Beklager, "{0}" bruger mapper #{1}, men denne mapper understøttes ikke af NES Mini, og spillet vil sandsynligvis ikke starte med standard emulatoren. Men det skulle fungere, hvis en anden emulator modul installeres. Vil du tilføje dette spil?</value>
+    <value>Beklager, "{0}" bruger mapper #{1}, men denne mapper understøttes ikke af NES/SNES Mini, og spillet vil sandsynligvis ikke starte med standard emulatoren. Men det skulle fungere, hvis en anden emulator modul installeres. Vil du tilføje dette spil?</value>
   </data>
   <data name="NoKernel">
     <value>Ingen kerne dump fundet</value>
   </data>
   <data name="NoKernelWarning">
-    <value>Først, dump kerne image af din NES Mini. Du skal kun gøre dette én gang. Vil du forsætte?</value>
+    <value>Først, dump kerne image af din NES/SNES Mini. Du skal kun gøre dette én gang. Vil du forsætte?</value>
   </data>
   <data name="NoKernelYouNeed">
     <value>Ingen kerne dump fundet. Du skal dumpe kernen først.</value>
@@ -202,6 +202,18 @@
   <data name="BuildingFolders">
     <value>Building the folder structure...</value>
   </data>
+  <data name="Compressing">
+    <value>Compressing {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Compressing games...</value>
+  </data>
+  <data name="Decompressing">
+    <value>Decompressing {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Decompressing games...</value>
+  </data>
   <data name="DeleteElement">
     <value>Do you really want to delete "{0}"?</value>
   </data>
@@ -213,6 +225,9 @@
   </data>
   <data name="DeleteSavesQ">
     <value>Do you really want to delete those save-states?</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Delete selected game(s)?</value>
   </data>
   <data name="DownloadAllCoversTitle">
     <value>Downloading box art for all games (I'm feeling lucky!)</value>
@@ -251,7 +266,7 @@
     <value>Do you want to save this folder structure?</value>
   </data>
   <data name="FourScreenNotSupported">
-    <value>Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
+    <value>Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES/SNES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
   </data>
   <data name="GGCodeDelete">
     <value>Do you want to delete "{0}" code?</value>
@@ -289,14 +304,20 @@
   <data name="InstallingMods">
     <value>Installing mods...</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>Invalid console selected! Detected console:</value>
+  </data>
   <data name="KernelDumped">
-    <value>Your original kernel is saved in the "hakchi2\dump" folder. Do not lose it.</value>
+    <value>Your original kernel is saved in the "hakchi2/dump" folder. Do not lose it.</value>
   </data>
   <data name="LoadingGames">
     <value>Loading games...</value>
   </data>
   <data name="MainMenu">
     <value>HOME Menu</value>
+  </data>
+  <data name="Membooting">
+    <value>Booting the kernel from RAM...</value>
   </data>
   <data name="MemoryFull">
     <value>Sorry, there are {0}MBytes of games, it's too much.</value>
@@ -334,17 +355,26 @@
   <data name="PleaseWait">
     <value>Please wait...</value>
   </data>
+  <data name="Removing">
+    <value>Removing {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Removing games...</value>
+  </data>
   <data name="SavesFlterName">
-    <value>NES Mini save-state backups</value>
+    <value>NES/SNES Mini save-state backups</value>
   </data>
   <data name="SelectAtLeastTwo">
     <value>Select at least two buttons.</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Select the modules to install on your NES Mini</value>
+    <value>Select the modules to install on your NES/SNES Mini</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Select the modules to remove from your NES Mini</value>
+    <value>Select the modules to remove from your NES/SNES Mini</value>
+  </data>
+  <data name="Size">
+    <value>Size:</value>
   </data>
   <data name="SizeOfSaves">
     <value>Size of selected save-states:</value>
@@ -353,7 +383,7 @@
     <value>Don't forget to perform a factory reset if you want to delete all Suspend Points.</value>
   </data>
   <data name="UninstallQ1">
-    <value>Do you really want to remove all traces of hakchi2 and return your NES Mini to its original state?</value>
+    <value>Do you really want to remove all traces of hakchi2 and return your NES/SNES Mini to its original state?</value>
   </data>
   <data name="UninstallQ2">
     <value>Done. Wait until the power LED goes out. You also need to flash the original kernel. Do you want to flash the original kernel now?</value>

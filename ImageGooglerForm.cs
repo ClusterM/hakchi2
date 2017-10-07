@@ -46,7 +46,7 @@ namespace com.clusterrr.hakchi_gui
             string responseFromServer = reader.ReadToEnd();
             reader.Close();
             response.Close();
-            Debug.WriteLine("Web response: " + url);
+            //Debug.WriteLine("Web response: " + responseFromServer);
 
             var urls = new List<string>();
             string search = @"\""ou\""\:\""(?<url>.+?)\""";

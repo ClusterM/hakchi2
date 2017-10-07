@@ -1,15 +1,16 @@
 ﻿using com.clusterrr.Famicom;
 using com.clusterrr.hakchi_gui.Properties;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
 {
     public partial class GameGenieCodeAddModForm : Form
     {
-        readonly NesGame FGame = null;
+        readonly NesMiniApplication FGame = null;
 
-        public GameGenieCodeAddModForm(NesGame game)
+        public GameGenieCodeAddModForm(NesMiniApplication game)
         {
             InitializeComponent();
             FGame = game;
@@ -47,10 +48,14 @@ namespace com.clusterrr.hakchi_gui
 
             if (FGame != null)
             {
-                NesFile lGame = new NesFile(FGame.NesPath);
+                var tmpPath = Path.Combine(Path.GetTempPath(), FGame.Code);
                 try
                 {
-                    lGame.PRG = GameGeniePatcher.Patch(lGame.PRG, textBoxCode.Text);
+                    FGame.CopyTo(tmpPath);
+                    var lGame = NesMiniApplication.FromDirectory(tmpPath);
+                    (lGame as ISupportsGameGenie).GameGenie = textBoxCode.Text;
+                    lGame.Save();
+                    (lGame as ISupportsGameGenie).ApplyGameGenie();
                 }
                 catch (GameGenieFormatException)
                 {
@@ -61,6 +66,11 @@ namespace com.clusterrr.hakchi_gui
                 {
                     MessageBox.Show(this, string.Format(Resources.GameGenieNotFound, textBoxCode.Text, FGame.Name), Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
+                }
+                finally
+                {
+                    if (Directory.Exists(tmpPath))
+                        Directory.Delete(tmpPath, true);
                 }
             }
 

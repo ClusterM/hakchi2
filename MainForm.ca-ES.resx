@@ -83,7 +83,7 @@
     <value>Cercar</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Sincronitzar els jocs seleccionats amb la NES Mini</value>
+    <value>Sincronitzar els jocs seleccionats amb la NES/SNES Mini</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Ajuda/dreceres per als comandaments</value>
@@ -111,6 +111,12 @@
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Bolcar kernel</value>
+  </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Bolcar la partició NAND-B desencriptada</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Bolcar tota la NAND</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Prem "Select+A/B" per activar el "Autofire" en A/B</value>
@@ -206,7 +212,7 @@
     <value>Seleccioneu una caràtula per al joc</value>
   </data>
   <data name="openFileDialogNes.Title">
-    <value>Selecciona jocs de NES o un altre emulador</value>
+    <value>Selecciona jocs</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Obrir client Telnet</value>
@@ -235,8 +241,11 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Utilitzar combinació de botons per a Reset</value>
   </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Selecciona el nom de l'arxiu de bolcat</value>
+  </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Guardar opcions a la NES Mini ara</value>
+    <value>Guardar opcions a la NES/SNES Mini ara</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
     <value>Gestió dels punts de suspensió</value>
@@ -283,13 +292,37 @@
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Utilitza X/Y en el comandament Wii Classic Controller com "Autofire" A/B</value>
   </data>
-  <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump decrypted NAND-B partition</value>
+  <data name="checkBoxCompressed.Text">
+    <value>Compress</value>
   </data>
-  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dump the whole NAND flash</value>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Compress games when adding</value>
   </data>
-  <data name="saveDumpFileDialog.Title">
-    <value>Select dump filename</value>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Compress selected games</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Decompress selected games</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Delete selected games</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Donate</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Download box art for selected games</value>
+  </data>
+  <data name="labelSize.Text">
+    <value>Size:</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Boot original kernel from RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Boot patched kernel from RAM</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>

@@ -59,19 +59,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>游戏作弊代码清单</value>
+    <value>作弊码列表</value>
   </data>
   <data name="addToolStripMenuItem.Text">
-    <value>新增</value>
+    <value>添加</value>
   </data>
   <data name="buttonAdd.Text">
-    <value>新增</value>
+    <value>添加</value>
   </data>
   <data name="buttonCancel.Text">
     <value>取消</value>
   </data>
   <data name="buttonImport.Text">
-    <value>汇入</value>
+    <value>导入</value>
   </data>
   <data name="editToolStripMenuItem.Text">
     <value>编辑</value>

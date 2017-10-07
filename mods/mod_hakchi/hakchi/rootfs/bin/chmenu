@@ -3,6 +3,7 @@ source /etc/preinit
 script_init
 
 state_file=$installpath/menu
+flag=/tmp/startmpc.flag
 
 [ -z "$1" ] && exit 1
 [ -f "$state_file" ] && prev_code=$(cat "$state_file") || prev_code=000
@@ -29,9 +30,9 @@ if [ "$1" != "000" ]; then
   fi
 fi
 
-pkill -KILL clover-mcp
 pkill -KILL ReedPlayer-Clover
+pkill -KILL clover-mcp
 
 overmount_games
 
-/etc/init.d/S81clover-mcp start
+touch "$flag"

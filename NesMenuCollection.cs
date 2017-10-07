@@ -30,6 +30,7 @@ namespace com.clusterrr.hakchi_gui
         public void Split(SplitStyle style, int maxElements = 35)
         {
             bool originalToRoot = false;
+            int originalCount = 0;
             switch (style)
             {
                 case SplitStyle.Original_NoSplit:
@@ -39,14 +40,15 @@ namespace com.clusterrr.hakchi_gui
                 case SplitStyle.Original_FoldersEqual:
                 case SplitStyle.Original_PagesEqual:
                     style--;
-                    if (this.Where(o => o is NesDefaultGame).Count() > 0)
+                    originalCount = this.Where(o => o is NesDefaultGame).Count();
+                    if (originalCount > 0)
                         originalToRoot = true;
                     break;
             }
             if (style == SplitStyle.NoSplit && !originalToRoot) return;
             if (((style == SplitStyle.Auto && !originalToRoot) || style == SplitStyle.FoldersEqual || style == SplitStyle.PagesEqual) &&
                 (Count <= maxElements)) return;
-            var total = Count;
+            var total = Count - originalCount;
             var partsCount = (int)Math.Ceiling((float)total / (float)maxElements);
             var perPart = (int)Math.Ceiling((float)total / (float)partsCount);
             var alphaNum = new Regex("[^a-zA-Z0-9]");

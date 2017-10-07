@@ -1,6 +1,6 @@
 ﻿namespace com.clusterrr.hakchi_gui
 {
-    partial class SelectButtonsForm
+    partial class SelectSnesButtonsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectButtonsForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectSnesButtonsForm));
             this.buttonOk = new System.Windows.Forms.Button();
             this.checkBoxUp = new System.Windows.Forms.CheckBox();
             this.checkBoxDown = new System.Windows.Forms.CheckBox();
@@ -39,6 +39,10 @@
             this.checkBoxStart = new System.Windows.Forms.CheckBox();
             this.checkBoxSelect = new System.Windows.Forms.CheckBox();
             this.pictureBoxController = new System.Windows.Forms.PictureBox();
+            this.checkBoxY = new System.Windows.Forms.CheckBox();
+            this.checkBoxX = new System.Windows.Forms.CheckBox();
+            this.checkBoxL = new System.Windows.Forms.CheckBox();
+            this.checkBoxR = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxController)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,16 +118,52 @@
             // 
             // pictureBoxController
             // 
-            this.pictureBoxController.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.gamepad;
+            this.pictureBoxController.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.gamepad_SNES;
             resources.ApplyResources(this.pictureBoxController, "pictureBoxController");
             this.pictureBoxController.Name = "pictureBoxController";
             this.pictureBoxController.TabStop = false;
             // 
-            // SelectButtonsForm
+            // checkBoxY
+            // 
+            this.checkBoxY.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.checkBoxY, "checkBoxY");
+            this.checkBoxY.Name = "checkBoxY";
+            this.checkBoxY.UseVisualStyleBackColor = false;
+            this.checkBoxY.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // checkBoxX
+            // 
+            this.checkBoxX.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.checkBoxX, "checkBoxX");
+            this.checkBoxX.Name = "checkBoxX";
+            this.checkBoxX.UseVisualStyleBackColor = false;
+            this.checkBoxX.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // checkBoxL
+            // 
+            this.checkBoxL.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.checkBoxL, "checkBoxL");
+            this.checkBoxL.Name = "checkBoxL";
+            this.checkBoxL.UseVisualStyleBackColor = false;
+            this.checkBoxL.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // checkBoxR
+            // 
+            this.checkBoxR.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.checkBoxR, "checkBoxR");
+            this.checkBoxR.Name = "checkBoxR";
+            this.checkBoxR.UseVisualStyleBackColor = false;
+            this.checkBoxR.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // SelectSnesButtonsForm
             // 
             this.AcceptButton = this.buttonOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkBoxR);
+            this.Controls.Add(this.checkBoxL);
+            this.Controls.Add(this.checkBoxX);
+            this.Controls.Add(this.checkBoxY);
             this.Controls.Add(this.checkBoxUp);
             this.Controls.Add(this.checkBoxDown);
             this.Controls.Add(this.checkBoxA);
@@ -137,7 +177,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "SelectButtonsForm";
+            this.Name = "SelectSnesButtonsForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxController)).EndInit();
             this.ResumeLayout(false);
 
@@ -155,5 +195,9 @@
         private System.Windows.Forms.CheckBox checkBoxStart;
         private System.Windows.Forms.CheckBox checkBoxSelect;
         private System.Windows.Forms.PictureBox pictureBoxController;
+        private System.Windows.Forms.CheckBox checkBoxY;
+        private System.Windows.Forms.CheckBox checkBoxX;
+        private System.Windows.Forms.CheckBox checkBoxL;
+        private System.Windows.Forms.CheckBox checkBoxR;
     }
 }

@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Warte auf dein NES Mini...</value>
+    <value>Warte auf dein NES/SNES Mini...</value>
   </data>
   <data name="buttonDriver.Text">
     <value>Installiere Treiber</value>
@@ -68,10 +68,10 @@
     <value>Bitte führe folgende Schritte aus:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Vergewissere dich, dass die POWER-Taste am NES Mini ausgeschaltet ist.</value>
+    <value>1. Vergewissere dich, dass die POWER-Taste am NES/SNES Mini ausgeschaltet ist.</value>
   </data>
   <data name="label3.Text">
-    <value>2. Verbinde dein NES Mini mit deinem PC mit einem USB Kabel.</value>
+    <value>2. Verbinde dein NES/SNES Mini mit deinem PC mit einem USB Kabel.</value>
   </data>
   <data name="label4.Text">
     <value>3. Halte die RESET-Taste gedrückt und drücke den POWER-Schalter.</value>

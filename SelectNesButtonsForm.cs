@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public partial class SelectButtonsForm : Form
+    public partial class SelectNesButtonsForm : Form
     {
         [Flags]
         public enum NesButtons
@@ -21,7 +21,7 @@ namespace com.clusterrr.hakchi_gui
 
         public NesButtons SelectedButtons;
 
-        public SelectButtonsForm(NesButtons buttons)
+        public SelectNesButtonsForm(NesButtons buttons)
         {
             InitializeComponent();
             checkBoxA.Checked = (buttons & NesButtons.A) != 0;

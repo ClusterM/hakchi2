@@ -304,7 +304,7 @@
     <value>Downloading box art for all games (I'm feeling lucky!)</value>
   </data>
   <data name="GooglingFor" xml:space="preserve">
-    <value>Googling for </value>
+    <value>Googling for</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>Not found:</value>
@@ -651,5 +651,38 @@
   </data>
   <data name="Membooting" xml:space="preserve">
     <value>Booting the kernel from RAM...</value>
+  </data>
+  <data name="blank_snes_eu_jp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\blank_snes-eu-jp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Size:</value>
+  </data>
+  <data name="Compressing" xml:space="preserve">
+    <value>Compressing {0}...</value>
+  </data>
+  <data name="CompressingGames" xml:space="preserve">
+    <value>Compressing games...</value>
+  </data>
+  <data name="Decompressing" xml:space="preserve">
+    <value>Decompressing {0}...</value>
+  </data>
+  <data name="DecompressingGames" xml:space="preserve">
+    <value>Decompressing games...</value>
+  </data>
+  <data name="DeleteSelectedGamesQ" xml:space="preserve">
+    <value>Delete selected game(s)?</value>
+  </data>
+  <data name="Removing" xml:space="preserve">
+    <value>Removing {0}...</value>
+  </data>
+  <data name="RemovingGames" xml:space="preserve">
+    <value>Removing games...</value>
+  </data>
+  <data name="InvalidConsoleSelected" xml:space="preserve">
+    <value>Invalid console selected! Detected console:</value>
+  </data>
+  <data name="gamepad_SNES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\gamepad_snes.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

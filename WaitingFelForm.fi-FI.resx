@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Odotetaan NES Miniäsi...</value>
+    <value>Odotetaan NES/SNES Miniäsi...</value>
   </data>
   <data name="buttonDriver.Text">
     <value>Asenna ajuri</value>
@@ -68,10 +68,10 @@
     <value>Seuraa näitä vaiheita:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Varmista, että NES Minisi POWER-kytkin on pois päältä.</value>
+    <value>1. Varmista, että NES/SNES Minisi POWER-kytkin on pois päältä.</value>
   </data>
   <data name="label3.Text">
-    <value>2. Yhdistä (uudelleen) NES Minisi PC:hen USB-kaapelilla.</value>
+    <value>2. Yhdistä (uudelleen) NES/SNES Minisi PC:hen USB-kaapelilla.</value>
   </data>
   <data name="label4.Text">
     <value>3. Pidä RESET-painiketta painettuna ja paina POWER-kytkintä</value>

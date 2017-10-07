@@ -92,7 +92,7 @@
     <value>Ahora necesitás flashear el kernel personalizado a tu NES Classic Edition. Sólo necesitás hacerlo una vez. ¿Querés continuar?</value>
   </data>
   <data name="Default30games">
-    <value>Los 30 juegos originales</value>
+    <value>Los xx juegos originales</value>
   </data>
   <data name="DeleteElement">
     <value>¿Estás seguro que querés eliminar "{0}"?</value>
@@ -167,7 +167,7 @@
     <value>Nueva carpeta</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>Los 30 juegos originales</value>
+    <value>Los xx juegos originales</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Papelera de reciclaje</value>
@@ -230,7 +230,7 @@
     <value>Tamaño no válido del kernel:</value>
   </data>
   <data name="KernelDumped">
-    <value>Se guardó tu kernel original en la carpeta "hakchi2\dump". No lo pierdas.</value>
+    <value>Se guardó tu kernel original en la carpeta "hakchi2/dump". No lo pierdas.</value>
   </data>
   <data name="LoadingGames">
     <value>Descargando juegos…</value>
@@ -299,7 +299,7 @@
     <value>Presioná "Aceptar" para continuar.</value>
   </data>
   <data name="ReplaceKernelQ">
-    <value>Ya realizaste el volcado de kernel. Si REALMENTE querés reemplazar el resguardo de tu kernel y REALMENTE entendés lo que estás haciendo, eliminá la carpeta "hakchi2\dump" manualmente.</value>
+    <value>Ya realizaste el volcado de kernel. Si REALMENTE querés reemplazar el resguardo de tu kernel y REALMENTE entendés lo que estás haciendo, eliminá la carpeta "hakchi2/dump" manualmente.</value>
   </data>
   <data name="SavesFlterName">
     <value>Resguardo de los puntos de suspensión de la NES Classic Edition</value>
@@ -373,10 +373,40 @@
   <data name="YesForAll">
     <value>"Sí" a todo</value>
   </data>
+  <data name="Compressing">
+    <value>Compressing {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Compressing games...</value>
+  </data>
+  <data name="Decompressing">
+    <value>Decompressing {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Decompressing games...</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Delete selected game(s)?</value>
+  </data>
   <data name="DumpingNand">
     <value>Dumping NAND...</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>Invalid console selected! Detected console:</value>
+  </data>
+  <data name="Membooting">
+    <value>Booting the kernel from RAM...</value>
+  </data>
   <data name="NandDumped">
     <value>NAND memory is dumped successfully.</value>
+  </data>
+  <data name="Removing">
+    <value>Removing {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Removing games...</value>
+  </data>
+  <data name="Size">
+    <value>Size:</value>
   </data>
 </root>

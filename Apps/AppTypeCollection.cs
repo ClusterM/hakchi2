@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -24,25 +25,33 @@ namespace com.clusterrr.hakchi_gui
         {
             new AppInfo
             {
-                Class = typeof(FdsGame),
-                Extensions = new string[] {".fds"},
-                DefaultApps = new string[] {},
-                Prefix = 'D',
-                DefaultCover = Resources.blank_fds
+                Class = typeof(NesGame),
+                Extensions = new string[] {".nes"},
+                DefaultApps = new string[] { "/bin/nes", "/bin/clover-kachikachi-wr", "/usr/bin/clover-kachikachi" },
+                Prefix = 'H',
+                DefaultCover = Resources.blank_nes
             },
             new AppInfo
             {
                 Class = typeof(NesUGame),
-                Extensions = new string[] {".nes", ".unf", ".unif"},
+                Extensions = new string[] {".unf", ".unif", ".nes", ".fds" },
                 DefaultApps = new string[] {"/bin/nes"},
                 Prefix = 'I',
                 DefaultCover = Resources.blank_jp
             },
             new AppInfo
             {
+                Class = typeof(FdsGame),
+                Extensions = new string[] {".fds"},
+                DefaultApps = new string[] { "/bin/nes", "/bin/clover-kachikachi-wr", "/usr/bin/clover-kachikachi" },
+                Prefix = 'D',
+                DefaultCover = Resources.blank_fds
+            },
+            new AppInfo
+            {
                 Class = typeof(SnesGame),
-                Extensions = new string[] { ".sfc", ".smc" },
-                DefaultApps = new string[] {"/bin/snes"},
+                Extensions = new string[] { ".sfc", ".smc", ".sfrom" },
+                DefaultApps = new string[] { "/bin/snes", "/bin/clover-canoe-shvc-wr", "/usr/bin/clover-canoe-shvc" },
                 Prefix = 'U',
                 DefaultCover = Resources.blank_snes_us
             },
@@ -146,10 +155,19 @@ namespace com.clusterrr.hakchi_gui
 
         public static AppInfo GetAppByExec(string exec)
         {
+            exec = Regex.Replace(exec, "['\\\"]|(\\.7z)", " ")+" ";
             foreach (var app in ApplicationTypes)
                 foreach (var cmd in app.DefaultApps)
                     if (exec.StartsWith(cmd + " "))
-                        return app;
+                    {
+                        if (app.Extensions.Length == 0)
+                            return app;
+                        foreach (var ext in app.Extensions)
+                        {
+                            if (exec.Contains(ext + " "))
+                                return app;
+                        }
+                    }
             return null;
         }
     }
