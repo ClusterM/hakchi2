@@ -21,6 +21,7 @@ namespace com.clusterrr.hakchi_gui
         public static Image DefaultCover = Resources.blank_app;
         public static Form ParentForm;
         public static bool? NeedPatch;
+        public static bool? NeedAutoDownloadCover;
 
         public static string GamesDirectory
         {

@@ -28,6 +28,7 @@ namespace com.clusterrr.hakchi_gui
         public static IEnumerable<string> InternalMods;
         public static ClovershellConnection Clovershell;
         mooftpserv.Server ftpServer;
+        public static bool? DownloadCover;
 
         static NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
             new NesDefaultGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros.", Size = 571031 },

@@ -845,7 +845,7 @@ namespace com.clusterrr.hakchi_gui
                         case MainForm.ConsoleType.SNES:
                         case MainForm.ConsoleType.SuperFamicom:
                             originalSyncCode = $"mkdir -p \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
-                                $"rsync -ac \"{gamesPath}/{originalCode}/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" &&" +
+                                $"rsync -ac \"{gamesPath}/{originalCode}/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
                                 $"sed -i -e 's/\\/usr\\/bin\\/clover-canoe-shvc/\\/bin\\/clover-canoe-shvc-wr/g' \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.desktop\"";
                             /*
                             // With compression but very slow
@@ -1259,9 +1259,10 @@ namespace com.clusterrr.hakchi_gui
         {
             var apps = new List<NesMiniApplication>();
             addedApplications = null;
-            NesGame.ParentForm = this;
-            NesGame.NeedPatch = null;
+            NesMiniApplication.ParentForm = this;
+            NesMiniApplication.NeedPatch = null;
             NesGame.IgnoreMapper = null;
+            SnesGame.NeedAutoDownloadCover = null;
             int count = 0;
             SetStatus(Resources.AddingGames);
             foreach (var sourceFileName in files)

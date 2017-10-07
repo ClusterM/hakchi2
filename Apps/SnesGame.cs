@@ -86,6 +86,14 @@ namespace com.clusterrr.hakchi_gui
 
         public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref byte saveCount, ref uint crc32)
         {
+            var ext = Path.GetExtension(inputFileName);
+            if ((ext.ToLower() == ".smc") && ((rawRomData.Length % 1024) != 0))
+            {
+                var stripped = new byte[rawRomData.Length - 512];
+                Array.Copy(rawRomData, 512, stripped, 0, stripped.Length);
+                rawRomData = stripped;
+                crc32 = CRC32(rawRomData);
+            }
             FindPatch(ref rawRomData, inputFileName, crc32);
             if (inputFileName.Contains("(E)") || inputFileName.Contains("(J)"))
                 cover = Resources.blank_snes_eu_jp;
@@ -93,16 +101,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 application = "/bin/clover-canoe-shvc-wr -rom";
                 args = DefaultArgs;
-                var ext = Path.GetExtension(inputFileName);
                 if (ext.ToLower() != ".sfrom") // Need to patch for canoe
                 {
-                    if ((ext.ToLower() == ".smc") && ((rawRomData.Length % 1024) != 0))
-                    {
-                        var stripped = new byte[rawRomData.Length - 512];
-                        Array.Copy(rawRomData, 512, stripped, 0, stripped.Length);
-                        rawRomData = stripped;
-                        crc32 = CRC32(rawRomData);
-                    }
                     Debug.WriteLine($"Trying to convert {inputFileName}");
                     MakeSfrom(ref rawRomData, ref saveCount);
                     outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
@@ -439,6 +439,7 @@ namespace com.clusterrr.hakchi_gui
             public string ReleaseDate;
             public string Publisher;
             public string Region;
+            public string CoverUrl;
         }
 
         public static void LoadCache()
@@ -484,6 +485,12 @@ namespace com.clusterrr.hakchi_gui
                                 v = cartridge.Select("publisher");
                                 if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
                                     info.Publisher = v.Current.Value;
+                                v = cartridge.Select("region");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    info.Region = v.Current.Value;
+                                v = cartridge.Select("cover");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    info.CoverUrl = v.Current.Value;
                             }
                             catch
                             {
@@ -514,6 +521,38 @@ namespace com.clusterrr.hakchi_gui
                 if (ReleaseDate.Length == 4) ReleaseDate += "-01";
                 if (ReleaseDate.Length == 7) ReleaseDate += "-01";
                 Publisher = gameinfo.Publisher.ToUpper();
+
+                if (!string.IsNullOrEmpty(gameinfo.CoverUrl))
+                {
+                    if (NeedAutoDownloadCover != true)
+                    {
+                        if (NeedAutoDownloadCover != false)
+                        {
+                            var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                                string.Format(Resources.DownloadCoverQ, Name),
+                                Resources.Cover,
+                                MessageBoxButtons.AbortRetryIgnore,
+                                MessageBoxIcon.Question,
+                                MessageBoxDefaultButton.Button2, true);
+                            if (r == DialogResult.Abort)
+                                NeedPatch = true;
+                            if (r == DialogResult.Ignore)
+                                return true;
+                        }
+                        else return true;
+                    }
+
+                    try
+                    {
+                        var cover = ImageGooglerForm.DownloadImage(gameinfo.CoverUrl);
+                        Image = cover;
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message + ex.StackTrace);
+                    }
+                }
+
                 return true;
             }
             return false;
