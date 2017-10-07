@@ -6,21 +6,30 @@
 source /etc/preinit
 script_init
 
-arg1=$1
-filename=$2
-filebase=$(basename "$filename")
-extension="${filebase##*.}"
-tmppath=/tmp/rom
-if [ "$extension" == "7z" ]; then
-  mkdir -p $tmppath
-  rm -rf $tmppath/*
-  cd $tmppath
-  tiny7zx x $filename
-  filename=$(ls)
-fi
-shift
-shift
+options=""
 
-args="$arg1 $filename $@ $cfg_snes_extra_args"
+while [ $# -gt 0 ] ; do
+  case "$1" in
+  -rom)
+    filename=$2
+    filebase=$(basename "$filename")
+    extension="${filebase##*.}"
+    tmppath=/tmp/rom
+    if [ "$extension" == "7z" ]; then
+      mkdir -p $tmppath
+      rm -rf $tmppath/*
+      cd $tmppath
+      tiny7zx x $filename
+      filename=$tmppath/$(ls)
+    fi
+    options="-rom $filename"
+    shift
+    ;;
+  *) options="$options $1" ;;
+  esac
+  shift
+done
+
+args="$options $cfg_snes_extra_args"
 
 exec /usr/bin/clover-canoe-shvc $args

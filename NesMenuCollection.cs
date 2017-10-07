@@ -46,7 +46,9 @@ namespace com.clusterrr.hakchi_gui
                     break;
             }
             if (style == SplitStyle.NoSplit && !originalToRoot) return;
-            if (((style == SplitStyle.Auto && !originalToRoot) || style == SplitStyle.FoldersEqual || style == SplitStyle.PagesEqual) &&
+            if (((style == SplitStyle.Auto && !originalToRoot) ||
+                (style == SplitStyle.FoldersEqual && !originalToRoot) ||
+                (style == SplitStyle.PagesEqual) && !originalToRoot) &&
                 (Count <= maxElements)) return;
             var total = Count - originalCount;
             var partsCount = (int)Math.Ceiling((float)total / (float)maxElements);

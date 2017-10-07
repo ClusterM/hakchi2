@@ -79,7 +79,7 @@ namespace com.clusterrr.hakchi_gui
         {
         }
 
-        public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref uint crc32)
+        public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref byte saveCount, ref uint crc32)
         {
             FindPatch(ref rawRomData, inputFileName, crc32);
             if (inputFileName.Contains("(E)") || inputFileName.Contains("(J)"))
@@ -97,7 +97,7 @@ namespace com.clusterrr.hakchi_gui
                         Array.Copy(rawRomData, 512, stripped, 0, stripped.Length);
                         rawRomData = stripped;
                     }
-                    MakeSfrom(ref rawRomData);
+                    MakeSfrom(ref rawRomData, ref saveCount);
                     outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
                 }
             }
@@ -109,7 +109,7 @@ namespace com.clusterrr.hakchi_gui
             return true;
         }
 
-        private static void MakeSfrom(ref byte[] rawRomData)
+        private static void MakeSfrom(ref byte[] rawRomData, ref byte saveCount)
         {
             var romHeaderLoRom = SnesRomHeader.Read(rawRomData, 0x7FC0);
             var romHeaderHiRom = SnesRomHeader.Read(rawRomData, 0xFFC0);
@@ -167,6 +167,10 @@ namespace com.clusterrr.hakchi_gui
             Array.Copy(sfromHeader1Raw, 0, result, 0, sfromHeader1Raw.Length);
             Array.Copy(rawRomData, 0, result, sfromHeader1Raw.Length, rawRomData.Length);
             Array.Copy(sfromHeader2Raw, 0, result, sfromHeader1Raw.Length + rawRomData.Length, sfromHeader2Raw.Length);
+
+            if (romHeader.SramSize > 0)
+                saveCount = 3;
+
             rawRomData = result;
         }
 
