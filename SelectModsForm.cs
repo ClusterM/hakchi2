@@ -144,7 +144,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void SelectModsForm_DragDrop(object sender, DragEventArgs e)
         {
-                        var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop);
             AddMods(files);
         }
 
@@ -156,7 +156,9 @@ namespace com.clusterrr.hakchi_gui
                 var ext = Path.GetExtension(file).ToLower();
                 if (ext == ".hmod")
                 {
-                    File.Copy(file, Path.Combine(usermodsDirectory, Path.GetFileName(file)), true);
+                    var target = Path.Combine(usermodsDirectory, Path.GetFileName(file));
+                    if (file != target)
+                        File.Copy(file, target, true);
                     listAddedMods.Add(Path.GetFileNameWithoutExtension(file));
                 }
                 else if (ext == ".7z" || ext == ".zip" || ext == ".rar")

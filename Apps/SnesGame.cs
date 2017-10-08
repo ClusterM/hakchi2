@@ -2,16 +2,20 @@
 using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.XPath;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public class SnesGame : NesMiniApplication
+    public class SnesGame : NesMiniApplication, ICloverAutofill
     {
+        public enum SnesRomType { LoRom = 0x14, HiRom = 0x15 };
+
         const string DefaultArgs = "--volume 100 -rollback-snapshot-period 600";
         static List<byte> SfxTypes = new List<byte>() { 0x13, 0x14, 0x15, 0x1a };
         static List<byte> Dsp1Types = new List<byte>() { 0x03, 0x05 };
@@ -65,6 +69,7 @@ namespace com.clusterrr.hakchi_gui
             { "MEGAMAN X3", 0x113D },
             { "Breath of Fire", 0x1144 },
         };
+        private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
 
         public override string GoogleSuffix
         {
@@ -79,8 +84,16 @@ namespace com.clusterrr.hakchi_gui
         {
         }
 
-        public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref uint crc32)
+        public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref byte saveCount, ref uint crc32)
         {
+            var ext = Path.GetExtension(inputFileName);
+            if ((ext.ToLower() == ".smc") && ((rawRomData.Length % 1024) != 0))
+            {
+                var stripped = new byte[rawRomData.Length - 512];
+                Array.Copy(rawRomData, 512, stripped, 0, stripped.Length);
+                rawRomData = stripped;
+                crc32 = CRC32(rawRomData);
+            }
             FindPatch(ref rawRomData, inputFileName, crc32);
             if (inputFileName.Contains("(E)") || inputFileName.Contains("(J)"))
                 cover = Resources.blank_snes_eu_jp;
@@ -88,16 +101,10 @@ namespace com.clusterrr.hakchi_gui
             {
                 application = "/bin/clover-canoe-shvc-wr -rom";
                 args = DefaultArgs;
-                var ext = Path.GetExtension(inputFileName);
                 if (ext.ToLower() != ".sfrom") // Need to patch for canoe
                 {
-                    if ((ext.ToLower() == ".smc") && ((rawRomData.Length % 1024) != 0))
-                    {
-                        var stripped = new byte[rawRomData.Length - 512];
-                        Array.Copy(rawRomData, 512, stripped, 0, stripped.Length);
-                        rawRomData = stripped;
-                    }
-                    MakeSfrom(ref rawRomData);
+                    Debug.WriteLine($"Trying to convert {inputFileName}");
+                    MakeSfrom(ref rawRomData, ref saveCount);
                     outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
                 }
             }
@@ -109,7 +116,7 @@ namespace com.clusterrr.hakchi_gui
             return true;
         }
 
-        private static void MakeSfrom(ref byte[] rawRomData)
+        private static void MakeSfrom(ref byte[] rawRomData, ref byte saveCount)
         {
             var romHeaderLoRom = SnesRomHeader.Read(rawRomData, 0x7FC0);
             var romHeaderHiRom = SnesRomHeader.Read(rawRomData, 0xFFC0);
@@ -135,29 +142,46 @@ namespace com.clusterrr.hakchi_gui
                 romType = SnesRomType.HiRom;
                 romHeader = romHeaderHiRom;
             }
-            else if ((romHeaderLoRom.RomMakeup & 1) == 0)
+            else if (((romHeaderLoRom.RomMakeup & 1) == 0) && ((romHeaderHiRom.RomMakeup & 1) == 0))
             {
                 romType = SnesRomType.LoRom;
                 romHeader = romHeaderLoRom;
             }
+            else if (((romHeaderLoRom.RomMakeup & 1) == 1) && ((romHeaderHiRom.RomMakeup & 1) == 1))
+            {
+                romType = SnesRomType.HiRom;
+                romHeader = romHeaderHiRom;
+            }
             else
             {
+                // WTF is it?
                 romType = SnesRomType.HiRom;
                 romHeader = romHeaderHiRom;
             }
 
             string gameTitle = romHeader.GameTitle.Trim();
+            Debug.WriteLine($"Game title: {gameTitle}");
             ushort presetId = 0; // 0x1011;
             ushort chip = 0;
             if (SfxTypes.Contains(romHeader.RomType)) // Super FX chip
+            {
+                Debug.WriteLine($"Super FX chip detected");
                 chip = 0x0C;
+            }
             if (!knownPresets.TryGetValue(gameTitle, out presetId)) // Known codes
             {
                 if (Dsp1Types.Contains(romHeader.RomType))
+                {
+                    Debug.WriteLine($"DSP-1 chip detected");
                     presetId = 0x10BD; // ID from Mario Kard, DSP1
+                }
                 if (SA1Types.Contains(romHeader.RomType))
+                {
+                    Debug.WriteLine($"SA1 chip detected");
                     presetId = 0x109C; // ID from Super Mario RPG, SA1
+                }
             }
+            Debug.WriteLine(string.Format("PresetID: 0x{0:X2}{1:X2}, extra byte: {2:X2}", presetId & 0xFF, (presetId >> 8) & 0xFF, chip));
 
             var sfromHeader1 = new SfromHeader1((uint)rawRomData.Length);
             var sfromHeader2 = new SfromHeader2((uint)rawRomData.Length, presetId, romType, chip);
@@ -167,8 +191,63 @@ namespace com.clusterrr.hakchi_gui
             Array.Copy(sfromHeader1Raw, 0, result, 0, sfromHeader1Raw.Length);
             Array.Copy(rawRomData, 0, result, sfromHeader1Raw.Length, rawRomData.Length);
             Array.Copy(sfromHeader2Raw, 0, result, sfromHeader1Raw.Length + rawRomData.Length, sfromHeader2Raw.Length);
+
+            if (romHeader.SramSize > 0)
+                saveCount = 3;
+
             rawRomData = result;
         }
+
+        public SfromHeader1 ReadSfromHeader1()
+        {
+            foreach (var f in Directory.GetFiles(GamePath, "*.sfrom"))
+            {
+                var sfrom = File.ReadAllBytes(f);
+                var sfromHeader1 = SfromHeader1.Read(sfrom, 0);
+                return sfromHeader1;
+            }
+            throw new Exception(".sfrom file not found");
+        }
+
+        public SfromHeader2 ReadSfromHeader2()
+        {
+            foreach (var f in Directory.GetFiles(GamePath, "*.sfrom"))
+            {
+                var sfrom = File.ReadAllBytes(f);
+                var sfromHeader1 = SfromHeader1.Read(sfrom, 0);
+                var sfromHeader2 = SfromHeader2.Read(sfrom, (int)sfromHeader1.Header2);
+                return sfromHeader2;
+            }
+            throw new Exception(".sfrom file not found");
+        }
+
+        public void WriteSfromHeader1(SfromHeader1 sfromHeader1)
+        {
+            foreach (var f in Directory.GetFiles(GamePath, "*.sfrom"))
+            {
+                var sfrom = File.ReadAllBytes(f);
+                var data = sfromHeader1.GetBytes();
+                Array.Copy(data, 0, sfrom, 0, data.Length);
+                File.WriteAllBytes(f, sfrom);
+                return;
+            }
+            throw new Exception(".sfrom file not found");
+        }
+
+        public void WriteSfromHeader2(SfromHeader2 sfromHeader2)
+        {
+            foreach (var f in Directory.GetFiles(GamePath, "*.sfrom"))
+            {
+                var sfrom = File.ReadAllBytes(f);
+                var sfromHeader1 = SfromHeader1.Read(sfrom, 0);
+                var data = sfromHeader2.GetBytes();
+                Array.Copy(data, 0, sfrom, (int)sfromHeader1.Header2, data.Length);
+                File.WriteAllBytes(f, sfrom);
+                return;
+            }
+            throw new Exception(".sfrom file not found");
+        }
+
 
         [StructLayout(LayoutKind.Sequential)]
         private struct SnesRomHeader
@@ -217,7 +296,7 @@ namespace com.clusterrr.hakchi_gui
 
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct SfromHeader1
+        public struct SfromHeader1
         {
             [MarshalAs(UnmanagedType.U4)]
             public uint Uknown1_0x00000100;
@@ -283,7 +362,7 @@ namespace com.clusterrr.hakchi_gui
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        private struct SfromHeader2
+        public struct SfromHeader2
         {
             [MarshalAs(UnmanagedType.U1)] // 0x00
             public byte FPS;
@@ -352,7 +431,133 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private enum SnesRomType { LoRom = 0x14, HiRom = 0x15 };
+        private struct CachedGameInfo
+        {
+            public string Name;
+            public byte Players;
+            public bool Simultaneous;
+            public string ReleaseDate;
+            public string Publisher;
+            public string Region;
+            public string CoverUrl;
+        }
+
+        public static void LoadCache()
+        {
+            try
+            {
+                var xmlDataBasePath = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "snescarts.xml");
+                Debug.WriteLine("Loading " + xmlDataBasePath);
+
+                if (File.Exists(xmlDataBasePath))
+                {
+                    var xpath = new XPathDocument(xmlDataBasePath);
+                    var navigator = xpath.CreateNavigator();
+                    var iterator = navigator.Select("/Data");
+                    gameInfoCache = new Dictionary<uint, CachedGameInfo>();
+                    while (iterator.MoveNext())
+                    {
+                        XPathNavigator game = iterator.Current;
+                        var cartridges = game.Select("Game");
+                        while (cartridges.MoveNext())
+                        {
+                            var cartridge = cartridges.Current;
+                            uint crc = 0;
+                            var info = new CachedGameInfo();
+
+                            try
+                            {
+                                var v = cartridge.Select("name");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    info.Name = v.Current.Value;
+                                v = cartridge.Select("players");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    info.Players = byte.Parse(v.Current.Value);
+                                v = cartridge.Select("simultaneous");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    info.Simultaneous = byte.Parse(v.Current.Value) != 0;
+                                v = cartridge.Select("crc");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    crc = Convert.ToUInt32(v.Current.Value, 16);
+                                v = cartridge.Select("date");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    info.ReleaseDate = v.Current.Value;
+                                v = cartridge.Select("publisher");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    info.Publisher = v.Current.Value;
+                                v = cartridge.Select("region");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    info.Region = v.Current.Value;
+                                v = cartridge.Select("cover");
+                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
+                                    info.CoverUrl = v.Current.Value;
+                            }
+                            catch
+                            {
+                                Debug.WriteLine($"Invalid XML record for game: {cartridge.OuterXml}");
+                            }
+
+                            gameInfoCache[crc] = info;
+                        };
+                    }
+                }
+                Debug.WriteLine(string.Format("SNES XML loading done, {0} roms total", gameInfoCache.Count));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+            }
+        }
+
+        public bool TryAutofill(uint crc32)
+        {
+            CachedGameInfo gameinfo;
+            if (gameInfoCache != null && gameInfoCache.TryGetValue(crc32, out gameinfo))
+            {
+                Name = gameinfo.Name;
+                Players = gameinfo.Players;
+                Simultaneous = gameinfo.Simultaneous;
+                ReleaseDate = gameinfo.ReleaseDate;
+                if (ReleaseDate.Length == 4) ReleaseDate += "-01";
+                if (ReleaseDate.Length == 7) ReleaseDate += "-01";
+                Publisher = gameinfo.Publisher.ToUpper();
+
+                /*
+                if (!string.IsNullOrEmpty(gameinfo.CoverUrl))
+                {
+                    if (NeedAutoDownloadCover != true)
+                    {
+                        if (NeedAutoDownloadCover != false)
+                        {
+                            var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                                string.Format(Resources.DownloadCoverQ, Name),
+                                Resources.Cover,
+                                MessageBoxButtons.AbortRetryIgnore,
+                                MessageBoxIcon.Question,
+                                MessageBoxDefaultButton.Button2, true);
+                            if (r == DialogResult.Abort)
+                                NeedAutoDownloadCover = true;
+                            if (r == DialogResult.Ignore)
+                                return true;
+                        }
+                        else return true;
+                    }
+
+                    try
+                    {
+                        var cover = ImageGooglerForm.DownloadImage(gameinfo.CoverUrl);
+                        Image = cover;
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message + ex.StackTrace);
+                    }
+                }
+                */
+                return true;
+            }
+            return false;
+        }
     }
 }
 

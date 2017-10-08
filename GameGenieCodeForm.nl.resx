@@ -62,16 +62,16 @@
     <value>Game Genie code lijst</value>
   </data>
   <data name="addToolStripMenuItem.Text">
-    <value>Voeg toe</value>
+    <value>Toevoegen</value>
   </data>
   <data name="buttonAdd.Text">
-    <value>Voeg toe</value>
+    <value>Toevoegen</value>
   </data>
   <data name="buttonCancel.Text">
     <value>Annuleren</value>
   </data>
   <data name="buttonImport.Text">
-    <value>Importeer</value>
+    <value>Importeren</value>
   </data>
   <data name="editToolStripMenuItem.Text">
     <value>Bewerken</value>

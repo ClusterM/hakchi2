@@ -1,11 +1,11 @@
 #!/bin/sh -e
 
 start() {
-	mcp-restarter &
+	remote-exec &
 }
 
 stop() {
-	killall mcp-restarter
+	killall remote-exec
 }
 
 case "$1" in
@@ -20,7 +20,7 @@ restart)
 	start
 ;;
 *)
-	echo "mcp-restarter: Please use start, stop, or restart."
+	echo "remote-exec: Please use start, stop, or restart."
 	exit 1
 ;;
 esac

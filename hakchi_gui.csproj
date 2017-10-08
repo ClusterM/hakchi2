@@ -31,8 +31,8 @@
     <PublisherName>Alexey %27Cluster%27 Avdyukhin</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>2.0.20.2</ApplicationVersion>
+    <ApplicationRevision>15</ApplicationRevision>
+    <ApplicationVersion>2.0.20.15</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -140,11 +140,11 @@
     <Compile Include="Clovershell\ExecConnection.cs" />
     <Compile Include="Clovershell\ShellConnection.cs" />
     <Compile Include="ConfigIni.cs" />
-    <Compile Include="ConsoleSelectDialog.cs">
+    <Compile Include="SelectConsoleDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsoleSelectDialog.Designer.cs">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <Compile Include="SelectConsoleDialog.Designer.cs">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="FileBrowserForm.cs">
       <SubType>Form</SubType>
@@ -495,11 +495,17 @@
     <Compile Include="SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SelectButtonsForm.cs">
+    <Compile Include="SelectSnesButtonsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SelectButtonsForm.Designer.cs">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <Compile Include="SelectSnesButtonsForm.Designer.cs">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectNesButtonsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectNesButtonsForm.Designer.cs">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SelectIconForm.cs">
       <SubType>Form</SubType>
@@ -549,6 +555,12 @@
     <Compile Include="SevenZip\SevenZipExtractorAsynchronous.cs" />
     <Compile Include="SevenZip\SevenZipSfx.cs" />
     <Compile Include="SevenZip\StreamWrappers.cs" />
+    <Compile Include="SnesPresetEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SnesPresetEditor.Designer.cs">
+      <DependentUpon>SnesPresetEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="StringInputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -587,74 +599,74 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.bg-BG.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.bg-BG.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.ca-ES.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.ca-ES.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.da-DK.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.da-DK.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.de-DE.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.de-DE.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.el-GR.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.el-GR.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.en-GB.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.en-GB.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.es-AR.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.es-AR.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.es-ES.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.es-ES.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.fi-FI.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.fi-FI.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.fr-FR.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.fr-FR.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.id-ID.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.id-ID.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.it-IT.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.it-IT.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.nl.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.nl.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.pl-PL.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.pl-PL.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.pt-PT.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.pt-PT.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.ru-RU.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.ru-RU.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.sk-SK.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.sk-SK.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.sv-SE.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.sv-SE.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.uk-UA.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.uk-UA.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.zh-CHS.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.zh-CHS.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.zh-CHT.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.zh-CHT.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsoleSelectDialog.zh-TW.resx">
-      <DependentUpon>ConsoleSelectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SelectConsoleDialog.zh-TW.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FileBrowserForm.resx">
       <DependentUpon>FileBrowserForm.cs</DependentUpon>
@@ -1222,65 +1234,134 @@
     <EmbeddedResource Include="SearchForm.zh-TW.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.bg-BG.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.bg-BG.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.ca-ES.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.ca-ES.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.da-DK.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.da-DK.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.de-DE.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.de-DE.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.el-GR.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.el-GR.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.en-GB.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.en-GB.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.es-AR.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.es-AR.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.es-ES.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.es-ES.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.fi-FI.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.fi-FI.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.fr-FR.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.fr-FR.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.id-ID.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.id-ID.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.it-IT.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.it-IT.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.nl.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.nl.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.pt-PT.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.pl-PL.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.sk-SK.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.pt-PT.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.sv-SE.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.uk-UA.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.ru-RU.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.zh-CHS.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.sk-SK.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.zh-CHT.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.sv-SE.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.zh-TW.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectSnesButtonsForm.uk-UA.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectSnesButtonsForm.zh-CHS.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectSnesButtonsForm.zh-CHT.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectSnesButtonsForm.zh-TW.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.bg-BG.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.ca-ES.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.da-DK.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.de-DE.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.el-GR.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.en-GB.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.es-AR.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.es-ES.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.fi-FI.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.fr-FR.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.id-ID.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.it-IT.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.nl.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.pt-PT.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.sk-SK.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.sv-SE.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.uk-UA.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.zh-CHS.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.zh-CHT.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.zh-TW.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectFileForm.bg-BG.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
@@ -1414,14 +1495,14 @@
     <EmbeddedResource Include="SearchForm.ru-RU.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.pl-PL.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectNesButtonsForm.pl-PL.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectNesButtonsForm.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectButtonsForm.ru-RU.resx">
-      <DependentUpon>SelectButtonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectNesButtonsForm.ru-RU.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectFileForm.pl-PL.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
@@ -1440,6 +1521,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectIconForm.ru-RU.resx">
       <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SnesPresetEditor.resx">
+      <DependentUpon>SnesPresetEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StringInputForm.resx">
       <DependentUpon>StringInputForm.cs</DependentUpon>
@@ -1600,6 +1684,9 @@
     <Content Include="data\fes1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\snescarts.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\splash.gz">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1627,6 +1714,7 @@
     <EmbeddedResource Include="images\flags\tw.png" />
     <EmbeddedResource Include="images\flags\ua.png" />
     <Content Include="images\flags\dk.png" />
+    <EmbeddedResource Include="images\gamepad_SNES.png" />
     <Content Include="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1817,13 +1905,16 @@
     <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\clover-canoe-shvc-wr">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\mcp-restarter">
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\remote-exec">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S82mcp-restarter">
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S82remote-exec">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="mods\hmods\tiny7zx-dynamic.hmod">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\usleep">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\app.manifest" />
@@ -2223,6 +2314,16 @@
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\nescarts.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="data\snescarts.xml">
       <Visible>False</Visible>
       <Group>
       </Group>

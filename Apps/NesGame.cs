@@ -51,11 +51,10 @@ namespace com.clusterrr.hakchi_gui
                 gameGenie = File.ReadAllText(GameGeniePath);
         }
         
-        public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref uint crc32)
+        public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref byte saveCount, ref uint crc32)
         {
             // Try to patch before mapper check, maybe it will patch mapper
-            FindPatch(ref rawRomData, inputFileName, crc32);
-
+            var patched = FindPatch(ref rawRomData, inputFileName, crc32);
             NesFile nesFile;
             try
             {
@@ -66,18 +65,32 @@ namespace com.clusterrr.hakchi_gui
                 application = "/bin/nes";
                 return true;
             }
-            nesFile.CorrectRom();
             crc32 = nesFile.CRC32;
+            // Also search for patch using internal CRC32
+            if (!patched)
+            {
+                if (FindPatch(ref rawRomData, inputFileName, crc32))
+                    nesFile = new NesFile(rawRomData);
+            }
+            nesFile.CorrectRom();
+
             if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
+            {
                 application = "/bin/clover-kachikachi-wr";
+                args = DefaultArgs;
+            }
             else
+            {
                 application = "/bin/nes";
+            }
 
             //if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
             //if (nesFile.Mapper == 88) nesFile.Mapper = 4; // Compatible with MMC3... sometimes
             //if (nesFile.Mapper == 95) nesFile.Mapper = 4; // Compatible with MMC3
             //if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
-            if (!supportedMappers.Contains(nesFile.Mapper) && (IgnoreMapper != true))
+            if (!supportedMappers.Contains(nesFile.Mapper) && 
+                (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
+                && (IgnoreMapper != true))
             {
                 if (IgnoreMapper != false)
                 {
@@ -93,7 +106,9 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else return false;
             }
-            if ((nesFile.Mirroring == NesFile.MirroringType.FourScreenVram) && (IgnoreMapper != true))
+            if ((nesFile.Mirroring == NesFile.MirroringType.FourScreenVram) &&
+                (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom) &&
+                (IgnoreMapper != true))
             {
                 var r = WorkerForm.MessageBoxFromThread(ParentForm,
                     string.Format(Resources.FourScreenNotSupported, System.IO.Path.GetFileName(inputFileName)),
@@ -109,7 +124,10 @@ namespace com.clusterrr.hakchi_gui
             // TODO: Make trainer check. I think that the NES Mini doesn't support it.
             rawRomData = nesFile.GetRaw();
             if (inputFileName.Contains("(J)")) cover = Resources.blank_jp;
-            args = DefaultArgs;
+
+            if (nesFile.Battery)
+                saveCount = 3;
+
             return true;
         }
 
@@ -175,7 +193,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                var xmlDataBasePath = System.IO.Path.Combine(System.IO.Path.Combine(Program.BaseDirectoryInternal, "data"), "nescarts.xml");
+                var xmlDataBasePath = Path.Combine(System.IO.Path.Combine(Program.BaseDirectoryInternal, "data"), "nescarts.xml");
                 Debug.WriteLine("Loading " + xmlDataBasePath);
 
                 if (File.Exists(xmlDataBasePath))
@@ -207,14 +225,13 @@ namespace com.clusterrr.hakchi_gui
                         };
                     }
                 }
-                Debug.WriteLine(string.Format("XML loading done, {0} roms total", gameInfoCache.Count));
+                Debug.WriteLine(string.Format("NES XML loading done, {0} roms total", gameInfoCache.Count));
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
             }
         }
-
     }
 }
 

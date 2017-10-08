@@ -28,6 +28,7 @@ namespace com.clusterrr.hakchi_gui
         public static IEnumerable<string> InternalMods;
         public static ClovershellConnection Clovershell;
         mooftpserv.Server ftpServer;
+        public static bool? DownloadCover;
 
         static NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
             new NesDefaultGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros.", Size = 571031 },
@@ -181,15 +182,6 @@ namespace com.clusterrr.hakchi_gui
  + ")"
 #endif
 ;
-                // Some settnigs
-                useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
-                epilepsyProtectionToolStripMenuItem.Checked = ConfigIni.AntiArmetLevel > 0;
-                selectButtonCombinationToolStripMenuItem.Enabled = resetUsingCombinationOfButtonsToolStripMenuItem.Checked = ConfigIni.ResetHack;
-                enableAutofireToolStripMenuItem.Checked = ConfigIni.AutofireHack;
-                useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack;
-                upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart;
-                compressGamesToolStripMenuItem.Checked = ConfigIni.Compress;
-
                 disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
                 automaticToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 2;
                 automaticOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 3;
@@ -240,6 +232,7 @@ namespace com.clusterrr.hakchi_gui
 
                 // Loading games database in background
                 new Thread(NesGame.LoadCache).Start();
+                new Thread(SnesGame.LoadCache).Start();
                 // Recalculate games in background
                 new Thread(RecalculateSelectedGamesThread).Start();
 
@@ -543,10 +536,15 @@ namespace com.clusterrr.hakchi_gui
                         Thread.CurrentThread.CurrentUICulture = new CultureInfo(langCodes[language]);
                         this.Controls.Clear();
                         this.InitializeComponent();
-                        FormInitialize();                        
+                        FormInitialize();
                         this.Invalidate(true);
                     };
-                item.Checked = Thread.CurrentThread.CurrentUICulture.Name.ToUpper() == langCodes[language].ToUpper();
+                if (Thread.CurrentThread.CurrentUICulture.Name.ToUpper() == langCodes[language].ToUpper())
+                {
+                    item.Checked = true;
+                    if (string.IsNullOrEmpty(ConfigIni.Language))
+                        ConfigIni.Language = langCodes[language];
+                }
                 found |= item.Checked;
                 if (langCodes[language] == "en-US")
                     english = item;
@@ -1137,7 +1135,8 @@ namespace com.clusterrr.hakchi_gui
             if (MessageBox.Show(Resources.OriginalKernelQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == System.Windows.Forms.DialogResult.Yes)
             {
-                if (FlashOriginalKernel()) MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (FlashOriginalKernel())
+                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1155,8 +1154,10 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (ConfigIni.CustomFlashed && MessageBox.Show(Resources.UninstallQ2, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                         == System.Windows.Forms.DialogResult.Yes)
-                        FlashOriginalKernel();
-                    MessageBox.Show(Resources.UninstallFactoryNote, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    {
+                        if (FlashOriginalKernel())
+                            MessageBox.Show(Resources.UninstallFactoryNote, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
         }
@@ -1211,9 +1212,26 @@ namespace com.clusterrr.hakchi_gui
 
         private void selectButtonCombinationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new SelectButtonsForm(ConfigIni.ResetCombination);
-            if (form.ShowDialog() == DialogResult.OK)
-                ConfigIni.ResetCombination = form.SelectedButtons;
+            switch (ConfigIni.ConsoleType)
+            {
+                default:
+                case ConsoleType.NES:
+                case ConsoleType.Famicom:
+                    {
+                        var form = new SelectNesButtonsForm((SelectNesButtonsForm.NesButtons)ConfigIni.ResetCombination);
+                        if (form.ShowDialog() == DialogResult.OK)
+                            ConfigIni.ResetCombination = (uint)form.SelectedButtons;
+                    }
+                    break;
+                case ConsoleType.SNES:
+                case ConsoleType.SuperFamicom:
+                    {
+                        var form = new SelectSnesButtonsForm((SelectSnesButtonsForm.SnesButtons)ConfigIni.ResetCombination);
+                        if (form.ShowDialog() == DialogResult.OK)
+                            ConfigIni.ResetCombination = (uint)form.SelectedButtons;
+                    }
+                    break;
+            }
         }
 
         static ConsoleType lastConsoleType = ConsoleType.Unknown;
@@ -1227,6 +1245,16 @@ namespace com.clusterrr.hakchi_gui
             epilepsyProtectionToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.NES || ConfigIni.ConsoleType == ConsoleType.Famicom;
             useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.NES || ConfigIni.ConsoleType == ConsoleType.Famicom;
             upABStartOnSecondControllerToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.Famicom;
+
+            // Some settnigs
+            useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
+            epilepsyProtectionToolStripMenuItem.Checked = ConfigIni.AntiArmetLevel > 0 && epilepsyProtectionToolStripMenuItem.Enabled;
+            selectButtonCombinationToolStripMenuItem.Enabled = resetUsingCombinationOfButtonsToolStripMenuItem.Checked = ConfigIni.ResetHack;
+            enableAutofireToolStripMenuItem.Checked = ConfigIni.AutofireHack;
+            useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack && useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled;
+            upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
+            compressGamesToolStripMenuItem.Checked = ConfigIni.Compress;
+
             LoadHidden();
             LoadGames();
             lastConsoleType = ConfigIni.ConsoleType;
@@ -1314,7 +1342,7 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.RunCount++;
             if (ConfigIni.RunCount == 1)
             {
-                new ConsoleSelectDialog().ShowDialog();
+                new SelectConsoleDialog().ShowDialog();
                 SyncConsoleType();
                 MessageBox.Show(this, Resources.FirstRun, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -1789,8 +1817,19 @@ namespace com.clusterrr.hakchi_gui
 
         private void listViewGames_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete && ((listViewGames.SelectedItems.Count > 1) ||(listViewGames.SelectedItems.Count == 1 && listViewGames.SelectedItems[0].Tag is NesMiniApplication)))
+            if (e.KeyCode == Keys.Delete && ((listViewGames.SelectedItems.Count > 1) || (listViewGames.SelectedItems.Count == 1 && listViewGames.SelectedItems[0].Tag is NesMiniApplication)))
                 DeleteSelectedGames();
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (listViewGames.SelectedItems.Count != 1) return;
+            var selected = listViewGames.SelectedItems[0].Tag;
+            if ((e.KeyCode == Keys.E) && (e.Modifiers == (Keys.Alt | Keys.Control)) && (selected is SnesGame))
+            {
+                new SnesPresetEditor(selected as SnesGame).ShowDialog();
+                ShowSelected();
+            }
         }
     }
 }

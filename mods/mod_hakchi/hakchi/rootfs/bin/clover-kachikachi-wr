@@ -16,7 +16,7 @@ if [ "$extension" == "7z" ]; then
   rm -rf $tmppath/*
   cd $tmppath
   tiny7zx x $filename
-  filename=$(ls)
+  filename=$tmppath/$(ls)
 fi
 if [ "$extension" == "gz" ]; then
   mkdir -p $tmppath

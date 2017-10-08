@@ -137,10 +137,10 @@
     <value>Done!</value>
   </data>
   <data name="DoneYouCanUpload">
-    <value>Done! You can now upload games to your NES/SNES Mini.</value>
+    <value>Done! You can now upload games to your S/NES Mini.</value>
   </data>
   <data name="DownloadAllCoversTitle">
-    <value>Downloading box art for all games (I'm feeling lucky!)</value>
+    <value>Downloading box art (I'm feeling lucky!)</value>
   </data>
   <data name="DumpKernelQ">
     <value>Do you want to dump the kernel?</value>
@@ -158,7 +158,7 @@
     <value>Executing command:</value>
   </data>
   <data name="ExtraArgsInfo">
-    <value>You can add global command-line arguments which will be applied to all games, including the original 30. Experts only!</value>
+    <value>You can add global command-line arguments which will be applied to all games, including the original. Experts only!</value>
   </data>
   <data name="ExtraArgsTitle">
     <value>Extra command-line arguments</value>
@@ -243,7 +243,7 @@ click "Synchronise" and follow the instructions. Good luck!</value>
     <value>Installing mods...</value>
   </data>
   <data name="InvalidConsoleSelected">
-    <value>Invalid console selected! Detected console:</value>
+    <value>You selected the wrong console! Detected console:</value>
   </data>
   <data name="InvalidKernelHeader">
     <value>Invalid kernel header.</value>
@@ -279,7 +279,7 @@ click "Synchronise" and follow the instructions. Good luck!</value>
     <value>Total writable memory size: {0:F1} megabytes|Available memory for games: {1:F1} megabytes|Used by saves: {2:F1} megabytes|Used by other files: {3:F1} megabytes</value>
   </data>
   <data name="NandDumped">
-    <value>NAND memory has been dumped successfully.</value>
+    <value>The NAND memory has been dumped successfully.</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>New games are in the "Unsorted" folder.</value>
@@ -297,7 +297,7 @@ click "Synchronise" and follow the instructions. Good luck!</value>
     <value>No kernel dump found.</value>
   </data>
   <data name="NoKernelWarning">
-    <value>First, dump the kernel image of your NES/SNES Mini. You only need to do this once. Continue?</value>
+    <value>First, dump the kernel image of your S/NES Mini. You only need to do this once. Continue?</value>
   </data>
   <data name="NoKernelYouNeed">
     <value>No kernel dump found. Please dump the kernel from your NES/SNES Mini first.</value>
@@ -336,7 +336,7 @@ click "Synchronise" and follow the instructions. Good luck!</value>
     <value>You already have a kernel dump. If you REALLY want to replace the backup of your kernel and you ACTUALLY know what you are doing, delete the "hakchi2/dump" folder manually.</value>
   </data>
   <data name="SavesFlterName">
-    <value>NES/SNES Mini savestate backups</value>
+    <value>S/NES Mini savestate backups</value>
   </data>
   <data name="SelectAtLeast">
     <value>Select at least one game.</value>
@@ -345,10 +345,10 @@ click "Synchronise" and follow the instructions. Good luck!</value>
     <value>Select at least two buttons.</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Select modules to install to your NES/SNES Mini</value>
+    <value>Select modules to install to your S/NES Mini</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Select modules to remove from your NES/SNES Mini</value>
+    <value>Select modules to remove from your S/NES Mini</value>
   </data>
   <data name="Size">
     <value>Size:</value>
@@ -409,5 +409,11 @@ click "Synchronise" and follow the instructions. Good luck!</value>
   </data>
   <data name="YesForAll">
     <value>Yes to all</value>
+  </data>
+  <data name="Cover">
+    <value>Box art</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>Do you want to try to download box art for "{0}"?</value>
   </data>
 </root>

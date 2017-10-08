@@ -14,7 +14,24 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class FoldersManagerForm : Form
     {
-        public static string FoldersXmlPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders.xml");
+        public static string FoldersXmlPath
+        {
+            get
+            {
+                switch(ConfigIni.ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders.xml");
+                    case MainForm.ConsoleType.Famicom:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_famicom.xml");
+                    case MainForm.ConsoleType.SNES:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_snes.xml");
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_super_famicom.xml");
+                }
+            }
+        }
         List<TreeNode> cuttedNodes = new List<TreeNode>();
         List<INesMenuElement> deletedGames = new List<INesMenuElement>();
         NesMenuCollection gamesCollection = new NesMenuCollection();

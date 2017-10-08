@@ -21,6 +21,7 @@ namespace com.clusterrr.hakchi_gui
         public static Image DefaultCover = Resources.blank_app;
         public static Form ParentForm;
         public static bool? NeedPatch;
+        public static bool? NeedAutoDownloadCover;
 
         public static string GamesDirectory
         {
@@ -131,6 +132,16 @@ namespace com.clusterrr.hakchi_gui
                 publisher = value;
             }
         }
+        private byte saveCount;
+        public byte SaveCount
+        {
+            get { return saveCount; }
+            set
+            {
+                if (saveCount != value) hasUnsavedChanges = true;
+                saveCount = value;
+            }
+        }
 
         public static NesMiniApplication FromDirectory(string path, bool ignoreEmptyConfig = false)
         {
@@ -168,6 +179,7 @@ namespace com.clusterrr.hakchi_gui
             string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : DefaultApp;
             string args = null;
             Image cover = DefaultCover;
+            byte saveCount = 0;
             uint crc32 = CRC32(rawRomData);
             string outputFileName = Regex.Replace(System.IO.Path.GetFileName(inputFileName), @"[^A-Za-z0-9()!\[\]\.\-]", "_").Trim();
 
@@ -183,7 +195,7 @@ namespace com.clusterrr.hakchi_gui
                 var patch = appinfo.Class.GetMethod("Patch");
                 if (patch != null)
                 {
-                    object[] values = new object[] { inputFileName, rawRomData, prefix, application, outputFileName, args, cover, crc32 };
+                    object[] values = new object[] { inputFileName, rawRomData, prefix, application, outputFileName, args, cover, saveCount, crc32 };
                     var result = (bool)patch.Invoke(null, values);
                     if (!result) return null;
                     rawRomData = (byte[])values[1];
@@ -192,7 +204,8 @@ namespace com.clusterrr.hakchi_gui
                     outputFileName = (string)values[4];
                     args = (string)values[5];
                     cover = (Image)values[6];
-                    crc32 = (uint)values[7];
+                    saveCount = (byte)values[7];
+                    crc32 = (uint)values[8];
                     patched = true;
                 }
             }
@@ -224,6 +237,7 @@ namespace com.clusterrr.hakchi_gui
             if (!string.IsNullOrEmpty(args))
                 game.Command += " " + args;
             game.FindCover(inputFileName, cover, crc32);
+            game.SaveCount = saveCount;
             game.Save();
 
             var app = NesMiniApplication.FromDirectory(gamePath);
@@ -255,6 +269,7 @@ namespace com.clusterrr.hakchi_gui
             ReleaseDate = DefaultReleaseDate;
             Publisher = DefaultPublisher;
             Command = "";
+            SaveCount = 0;
         }
 
         protected NesMiniApplication(string path, bool ignoreEmptyConfig = false)
@@ -303,6 +318,9 @@ namespace com.clusterrr.hakchi_gui
                     case "sortrawpublisher":
                         Publisher = value;
                         break;
+                    case "savecount":
+                        SaveCount = byte.Parse(value);
+                        break;
                 }
             }
             hasUnsavedChanges = false;
@@ -327,7 +345,7 @@ namespace com.clusterrr.hakchi_gui
                 $"Players={Players}\n" +
                 $"Simultaneous={(Simultaneous ? 1 : 0)}\n" +
                 $"ReleaseDate={ReleaseDate ?? DefaultReleaseDate}\n" +
-                $"SaveCount=0\n" +
+                $"SaveCount={SaveCount}\n" +
                 $"SortRawTitle={(Name ?? Code).ToLower()}\n" +
                 $"SortRawPublisher={(Publisher ?? DefaultPublisher).ToUpper()}\n" +
                 $"Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n");
@@ -362,19 +380,24 @@ namespace com.clusterrr.hakchi_gui
             Graphics gr;
 
             // Just keep aspect ratio
-            const int maxX = 204;
-            const int maxY = 204;
+            int maxX = 204;
+            int maxY = 204;
+            if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
+            {
+                maxX = 228;
+                maxY = 204;
+            }
             if ((double)image.Width / (double)image.Height > (double)maxX / (double)maxY)
-                outImage = new Bitmap(maxX, (int)((double)maxY * (double)image.Height / (double)image.Width));
+                outImage = new Bitmap(maxX, (int)((double)maxX * (double)image.Height / (double)image.Width));
             else
-                outImage = new Bitmap((int)(maxX * (double)image.Width / (double)image.Height), maxY);
+                outImage = new Bitmap((int)(maxY * (double)image.Width / (double)image.Height), maxY);
 
             int maxXsmall = 40;
             int maxYsmall = 40;
             if ((double)image.Width / (double)image.Height > (double)maxXsmall / (double)maxYsmall)
-                outImageSmall = new Bitmap(maxXsmall, (int)((double)maxYsmall * (double)image.Height / (double)image.Width));
+                outImageSmall = new Bitmap(maxXsmall, (int)((double)maxXsmall * (double)image.Height / (double)image.Width));
             else
-                outImageSmall = new Bitmap((int)(maxXsmall * (double)image.Width / (double)image.Height), maxYsmall);
+                outImageSmall = new Bitmap((int)(maxYsmall * (double)image.Width / (double)image.Height), maxYsmall);
 
             gr = Graphics.FromImage(outImage);
             gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;

@@ -376,6 +376,9 @@
   <data name="CompressingGames">
     <value>Compressing games...</value>
   </data>
+  <data name="Cover">
+    <value>Box art</value>
+  </data>
   <data name="Decompressing">
     <value>Decompressing {0}...</value>
   </data>
@@ -384,6 +387,9 @@
   </data>
   <data name="DeleteSelectedGamesQ">
     <value>Delete selected game(s)?</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>Do you want to try to download box art for "{0}"?</value>
   </data>
   <data name="DumpingNand">
     <value>Dumping NAND...</value>

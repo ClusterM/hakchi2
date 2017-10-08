@@ -238,7 +238,7 @@
     <value>If this problem persists, try using another USB port or cable.</value>
   </data>
   <data name="Donate" xml:space="preserve">
-    <value>P.S. If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
+    <value>If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
   </data>
   <data name="FirstRun" xml:space="preserve">
     <value>Hello there! I'm very glad that you are using hakchi2. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>
@@ -295,7 +295,7 @@
     <value>Hold Select+A/B for a second to enable/disable autofire A/B.</value>
   </data>
   <data name="ExtraArgsInfo" xml:space="preserve">
-    <value>You can add global command-line arguments which will be appended to all games including the original 30. This is only for experts!</value>
+    <value>You can add global command-line arguments which will be appended to all games including the original. This is only for experts!</value>
   </data>
   <data name="ExtraArgsTitle" xml:space="preserve">
     <value>Extra command-line arguments</value>
@@ -681,5 +681,14 @@
   </data>
   <data name="InvalidConsoleSelected" xml:space="preserve">
     <value>Invalid console selected! Detected console:</value>
+  </data>
+  <data name="gamepad_SNES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\gamepad_snes.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Box art</value>
+  </data>
+  <data name="DownloadCoverQ" xml:space="preserve">
+    <value>Do you want to try to download box art for "{0}"?</value>
   </data>
 </root>

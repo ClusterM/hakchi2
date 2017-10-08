@@ -118,17 +118,29 @@ namespace com.clusterrr.hakchi_gui
 
             correctKernels[MainForm.ConsoleType.NES] = new string[] {
                 "5cfdca351484e7025648abc3b20032ff",
-                "07bfb800beba6ef619c29990d14b5158"
+                "07bfb800beba6ef619c29990d14b5158",
             };
-            correctKernels[MainForm.ConsoleType.Famicom] = new string[] { "ac8144c3ea4ab32e017648ee80bdc230" }; // Famicom Mini
+            correctKernels[MainForm.ConsoleType.Famicom] = new string[] {
+                "ac8144c3ea4ab32e017648ee80bdc230",  // Famicom Mini
+            };
             correctKernels[MainForm.ConsoleType.SNES] = new string[] {
                 "d76c2a091ebe7b4614589fc6954653a5", // SNES Mini (EUR)
                 "c2b57b550f35d64d1c6ce66f9b5180ce", // SNES Mini (EUR)
-                "449b711238575763c6701f5958323d48" // SNES Mini (USA)
+                "0f890bc78cbd9ede43b83b015ba4c022", // SNES Mini (EUR)
+                "449b711238575763c6701f5958323d48", // SNES Mini (USA)
+                "5296e64818bf2d1dbdc6b594f3eefd17", // SNES Mini (USA)
+                "228967ab1035a347caa9c880419df487", // SNES Mini (USA)
             };
-            correctKernels[MainForm.ConsoleType.SuperFamicom] = new string[] { "632e179db63d9bcd42281f776a030c14" }; // Super Famicom Mini (JAP)
-            correctKeys[MainForm.ConsoleType.NES] = new string[] { "bb8f49e0ae5acc8d5f9b7fa40efbd3e7" };
-            correctKeys[MainForm.ConsoleType.SNES] = new string[] { "c5dbb6e29ea57046579cfd50b124c9e1" };
+            correctKernels[MainForm.ConsoleType.SuperFamicom] = new string[]
+            {
+                "632e179db63d9bcd42281f776a030c14", // Super Famicom Mini (JAP)
+            };
+            correctKeys[MainForm.ConsoleType.NES] =
+                correctKeys[MainForm.ConsoleType.Famicom] = 
+                new string[] { "bb8f49e0ae5acc8d5f9b7fa40efbd3e7" };
+            correctKeys[MainForm.ConsoleType.SNES] =
+                correctKeys[MainForm.ConsoleType.SuperFamicom] =
+                new string[] { "c5dbb6e29ea57046579cfd50b124c9e1" };
         }
 
         public DialogResult Start()
@@ -446,9 +458,8 @@ namespace com.clusterrr.hakchi_gui
                 var matchedKeys = from k in correctKeys where k.Value.Contains(keyhash) select k.Key;
                 if (matchedKeys.Count() > 0)
                 {
-                    var console = matchedKeys.First();
-                    if (console != ConfigIni.ConsoleType)
-                        throw new Exception(Resources.InvalidConsoleSelected + " " + console);
+                    if (!matchedKeys.Contains(ConfigIni.ConsoleType))
+                        throw new Exception(Resources.InvalidConsoleSelected + " " + matchedKernels.First());
                 }
                 else throw new Exception("Unknown key, unknown console");
 
@@ -464,12 +475,8 @@ namespace com.clusterrr.hakchi_gui
             else
             {
                 // Lets try to autodetect console using kernel hash
-                var console = matchedKernels.First();
-                if (console != ConfigIni.ConsoleType)
-                {
-                    ConfigIni.ConsoleType = console;
-                    Invoke(new Action(MainForm.SyncConsoleType));
-                }
+                if (!matchedKernels.Contains(ConfigIni.ConsoleType))
+                    throw new Exception(Resources.InvalidConsoleSelected + " " + matchedKernels.First());
             }
 
             Directory.CreateDirectory(Path.GetDirectoryName(KernelDumpPath));
@@ -484,7 +491,7 @@ namespace com.clusterrr.hakchi_gui
         {
             int progress = 0;
             int maxProgress = 115 + (string.IsNullOrEmpty(Mod) ? 0 : 110) +
-                ((hmodsInstall != null && hmodsInstall.Count() > 0) ? 80 : 0);
+                ((hmodsInstall != null && hmodsInstall.Count() > 0) ? 150 : 0);
             var tempKernelPath = Path.Combine(tempDirectory, "kernel.img");
             var hmods = hmodsInstall;
             hmodsInstall = null;
@@ -842,7 +849,7 @@ namespace com.clusterrr.hakchi_gui
                         case MainForm.ConsoleType.SNES:
                         case MainForm.ConsoleType.SuperFamicom:
                             originalSyncCode = $"mkdir -p \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
-                                $"rsync -ac \"{gamesPath}/{originalCode}/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" &&" +
+                                $"rsync -ac \"{gamesPath}/{originalCode}/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
                                 $"sed -i -e 's/\\/usr\\/bin\\/clover-canoe-shvc/\\/bin\\/clover-canoe-shvc-wr/g' \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.desktop\"";
                             /*
                             // With compression but very slow
@@ -942,6 +949,7 @@ namespace com.clusterrr.hakchi_gui
         public void Memboot(int maxProgress = -1, int progress = 0)
         {
             SetProgress(progress, maxProgress < 0 ? 1000 : maxProgress);
+
             // Connecting to NES Mini
             if (WaitForFelFromThread() != DialogResult.OK)
             {
@@ -973,7 +981,7 @@ namespace com.clusterrr.hakchi_gui
             }
             progress += 5;
             if (maxProgress < 0)
-                maxProgress = (int)((double)kernel.Length / (double)67000 + 22);
+                maxProgress = (int)((double)kernel.Length / (double)67000 + 50);
             SetProgress(progress, maxProgress);
 
             SetStatus(Resources.UploadingKernel);
@@ -994,11 +1002,21 @@ namespace com.clusterrr.hakchi_gui
             var bootCommand = string.Format("boota {0:x}", Fel.transfer_base_m);
             SetStatus(Resources.ExecutingCommand + " " + bootCommand);
             fel.RunUbootCmd(bootCommand, true);
-            for (int i = 0; i < 10; i++)
+
+            // Wait some time while booting
+            int waitSeconds;
+            if ((hmodsInstall != null && hmodsInstall.Count() > 0)
+                || (hmodsUninstall != null && hmodsUninstall.Count() > 0))
+                waitSeconds = 60;
+            else
+                waitSeconds = 5;
+            for (int i = 0; i < waitSeconds * 2; i++)
             {
-                Thread.Sleep(1500);
+                Thread.Sleep(500);
                 progress++;
                 SetProgress(progress, maxProgress);
+                if (MainForm.Clovershell.IsOnline)
+                    break;
             }
 #if !DEBUG
             if (Directory.Exists(tempDirectory))
@@ -1245,9 +1263,10 @@ namespace com.clusterrr.hakchi_gui
         {
             var apps = new List<NesMiniApplication>();
             addedApplications = null;
-            NesGame.ParentForm = this;
-            NesGame.NeedPatch = null;
+            NesMiniApplication.ParentForm = this;
+            NesMiniApplication.NeedPatch = null;
             NesGame.IgnoreMapper = null;
+            SnesGame.NeedAutoDownloadCover = null;
             int count = 0;
             SetStatus(Resources.AddingGames);
             foreach (var sourceFileName in files)

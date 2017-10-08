@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Esperando a tu NES Classic Edition…</value>
+    <value>Esperando a tu NES/SNES Classic Edition…</value>
   </data>
   <data name="buttonDriver.Text">
     <value>Instalá el controlador</value>
@@ -68,10 +68,10 @@
     <value>Por favor, hacé lo siguiente:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Asegurate de que el botón "POWER" de tu NES Classic Edition esté apagado.</value>
+    <value>1. Asegurate de que el botón "POWER" de tu NES/SNES Classic Edition esté apagado.</value>
   </data>
   <data name="label3.Text">
-    <value>2. [Re]conectá tu NES Classic Edition a la PC a través del cable USB.</value>
+    <value>2. [Re]conectá tu NES/SNES Classic Edition a la PC a través del cable USB.</value>
   </data>
   <data name="label4.Text">
     <value>3. Mantené presionado el botón "RESET" y, sin soltarlo, dale al botón "POWER".</value>

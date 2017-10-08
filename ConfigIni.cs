@@ -18,16 +18,22 @@ namespace com.clusterrr.hakchi_gui
         public static bool CustomFlashedFamicom = false;
         public static bool CustomFlashedSnes = false;
         public static bool CustomFlashedSuperFamicom = false;
-        public static bool UseFont = true;
-        public static bool ResetHack = true;
-        public static bool AutofireHack = false;
-        public static bool AutofireXYHack = false;
-        public static bool FcStart = false;
+        public static bool UseFontNes = true;
+        public static bool UseFontFamicom = true;
+        public static bool UseFontSnes = true;
+        public static bool UseFontSuperFamicom = true;
         public static byte AntiArmetLevel = 0;
         public static MainForm.ConsoleType ConsoleType = MainForm.ConsoleType.NES;
         public static byte MaxGamesPerFolder = 30;
         public static NesMenuCollection.SplitStyle FoldersMode = NesMenuCollection.SplitStyle.Original_Auto;
-        public static SelectButtonsForm.NesButtons ResetCombination = SelectButtonsForm.NesButtons.Down | SelectButtonsForm.NesButtons.Select;
+        public static bool AutofireHackNes = false;
+        public static bool AutofireHackSnes = false;
+        public static bool AutofireXYHack = false;
+        public static bool FcStart = false;
+        public static bool ResetHackNes = true;
+        public static bool ResetHackSnes = true;
+        public static uint ResetCombinationNes = (uint)(SelectNesButtonsForm.NesButtons.Down | SelectNesButtonsForm.NesButtons.Select);
+        public static uint ResetCombinationSnes = (uint)(SelectNesButtonsForm.NesButtons.Down | SelectNesButtonsForm.NesButtons.Select);
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         public static string ExtraCommandLineArgumentsNes = "";
         public static string ExtraCommandLineArgumentsSnes = "";
@@ -98,11 +104,11 @@ namespace com.clusterrr.hakchi_gui
                     default:
                     case MainForm.ConsoleType.NES:
                     case MainForm.ConsoleType.Famicom:
-                        ConfigIni.SelectedGamesNes = value;
+                        SelectedGamesNes = value;
                         break;
                     case MainForm.ConsoleType.SNES:
                     case MainForm.ConsoleType.SuperFamicom:
-                        ConfigIni.SelectedGamesSnes = value;
+                        SelectedGamesSnes = value;
                         break;
                 }
             }
@@ -116,13 +122,13 @@ namespace com.clusterrr.hakchi_gui
                 {
                     default:
                     case MainForm.ConsoleType.NES:
-                        return ConfigIni.HiddenGamesNes;
+                        return HiddenGamesNes;
                     case MainForm.ConsoleType.Famicom:
-                        return ConfigIni.HiddenGamesFamicom;
+                        return HiddenGamesFamicom;
                     case MainForm.ConsoleType.SNES:
-                        return ConfigIni.HiddenGamesSnes;
+                        return HiddenGamesSnes;
                     case MainForm.ConsoleType.SuperFamicom:
-                        return ConfigIni.HiddenGamesSuperFamicom;
+                        return HiddenGamesSuperFamicom;
                 }
             }
             set
@@ -131,16 +137,150 @@ namespace com.clusterrr.hakchi_gui
                 {
                     default:
                     case MainForm.ConsoleType.NES:
-                        ConfigIni.HiddenGamesNes = value;
+                        HiddenGamesNes = value;
                         break;
                     case MainForm.ConsoleType.Famicom:
-                        ConfigIni.HiddenGamesFamicom = value;
+                        HiddenGamesFamicom = value;
                         break;
                     case MainForm.ConsoleType.SNES:
-                        ConfigIni.HiddenGamesSnes = value;
+                        HiddenGamesSnes = value;
                         break;
                     case MainForm.ConsoleType.SuperFamicom:
-                        ConfigIni.HiddenGamesSuperFamicom = value;
+                        HiddenGamesSuperFamicom = value;
+                        break;
+                }
+            }
+        }
+
+        public static bool AutofireHack
+        {
+            get
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        return AutofireHackNes;
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return AutofireHackSnes;
+                }
+            }
+            set
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        AutofireHackNes = value;
+                        break;
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        AutofireHackSnes = value;
+                        break;
+                }
+            }
+        }
+
+        public static bool UseFont
+        {
+            get
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                        return UseFontNes;
+                    case MainForm.ConsoleType.Famicom:
+                        return UseFontFamicom;
+                    case MainForm.ConsoleType.SNES:
+                        return UseFontSnes;
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return UseFontSuperFamicom;
+                }
+            }
+            set
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                        UseFontNes = value;
+                        break;
+                    case MainForm.ConsoleType.Famicom:
+                        UseFontFamicom = value;
+                        break;
+                    case MainForm.ConsoleType.SNES:
+                        UseFontSnes = value;
+                        break;
+                    case MainForm.ConsoleType.SuperFamicom:
+                        UseFontSuperFamicom = value;
+                        break;
+                }
+            }
+        }
+
+        public static bool ResetHack
+        {
+            get
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        return ResetHackNes;
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return ResetHackSnes;
+                }
+            }
+            set
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        ResetHackNes = value;
+                        break;
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        ResetHackSnes = value;
+                        break;
+                }
+            }
+        }
+
+        public static uint ResetCombination
+        {
+            get
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        return ResetCombinationNes;
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return ResetCombinationSnes;
+                }
+            }
+            set
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        ConfigIni.ResetCombinationNes = value;
+                        break;
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        ConfigIni.ResetCombinationSnes = value;
                         break;
                 }
             }
@@ -243,7 +383,16 @@ namespace com.clusterrr.hakchi_gui
                                     CustomFlashedSuperFamicom = !value.ToLower().Equals("false");
                                     break;
                                 case "usefont":
-                                    UseFont = !value.ToLower().Equals("false");
+                                    UseFontNes = !value.ToLower().Equals("false");
+                                    break;
+                                case "usefontfamicom":
+                                    UseFontFamicom = !value.ToLower().Equals("false");
+                                    break;
+                                case "usefontsnes":
+                                    UseFontSnes = !value.ToLower().Equals("false");
+                                    break;
+                                case "usefontsuperfamicom":
+                                    UseFontSuperFamicom = !value.ToLower().Equals("false");
                                     break;
                                 case "runcount":
                                     RunCount = int.Parse(value);
@@ -253,22 +402,34 @@ namespace com.clusterrr.hakchi_gui
                                     break;
                                 case "resethack":
                                 case "cloverconhack":
-                                    ResetHack = !value.ToLower().Equals("false");
+                                    ResetHackNes = !value.ToLower().Equals("false");
+                                    break;
+                                case "resethacksnes":
+                                    ResetHackSnes = !value.ToLower().Equals("false");
                                     break;
                                 case "autofirehack":
-                                    AutofireHack = !value.ToLower().Equals("false");
+                                    AutofireHackNes = !value.ToLower().Equals("false");
+                                    break;
+                                case "autofirehacksnes":
+                                    AutofireHackSnes = !value.ToLower().Equals("false");
                                     break;
                                 case "autofirexyhack":
                                     AutofireXYHack = !value.ToLower().Equals("false");
                                     break;
                                 case "resetcombination":
-                                    ResetCombination = (SelectButtonsForm.NesButtons)byte.Parse(value);
+                                    ResetCombinationNes = uint.Parse(value);
+                                    break;
+                                case "resetcombinationsnes":
+                                    ResetCombinationSnes = uint.Parse(value);
                                     break;
                                 case "consoletype":
                                     ConsoleType = (MainForm.ConsoleType)byte.Parse(value);
                                     break;
                                 case "extracommandlinearguments":
-                                    ExtraCommandLineArguments = value;
+                                    ExtraCommandLineArgumentsNes = value;
+                                    break;
+                                case "extracommandlineargumentssnes":
+                                    ExtraCommandLineArgumentsSnes = value;
                                     break;
                                 case "fcstart":
                                     FcStart = !value.ToLower().Equals("false");
@@ -314,15 +475,22 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("CustomFlashedFamicom={0}", CustomFlashedFamicom));
             configLines.Add(string.Format("CustomFlashedSnes={0}", CustomFlashedSnes));
             configLines.Add(string.Format("CustomFlashedSuperFamicom={0}", CustomFlashedSuperFamicom));
-            configLines.Add(string.Format("UseFont={0}", UseFont));
-            configLines.Add(string.Format("ResetHack={0}", ResetHack));
-            configLines.Add(string.Format("AutofireHack={0}", AutofireHack));
+            configLines.Add(string.Format("UseFont={0}", UseFontNes));
+            configLines.Add(string.Format("UseFontFamicom={0}", UseFontFamicom));
+            configLines.Add(string.Format("UseFontSuperFamicom={0}", UseFontSuperFamicom));
+            configLines.Add(string.Format("UseFontSnes={0}", UseFontSnes));
+            configLines.Add(string.Format("ResetHack={0}", ResetHackNes));
+            configLines.Add(string.Format("ResetHackSnes={0}", ResetHackSnes));
+            configLines.Add(string.Format("ResetCombination={0}", ResetCombinationNes));
+            configLines.Add(string.Format("ResetCombinationSnes={0}", ResetCombinationSnes));
+            configLines.Add(string.Format("AutofireHack={0}", AutofireHackNes));
+            configLines.Add(string.Format("AutofireHack={0}", AutofireHackSnes));
             configLines.Add(string.Format("AutofireXYHack={0}", AutofireXYHack));
             configLines.Add(string.Format("AntiArmetLevel={0}", AntiArmetLevel));
-            configLines.Add(string.Format("ResetCombination={0}", (byte)ResetCombination));
             configLines.Add(string.Format("ConsoleType={0}", (byte)ConsoleType));
-            configLines.Add(string.Format("ExtraCommandLineArguments={0}", ExtraCommandLineArguments));
             configLines.Add(string.Format("FcStart={0}", FcStart));
+            configLines.Add(string.Format("ExtraCommandLineArguments={0}", ExtraCommandLineArgumentsNes));
+            configLines.Add(string.Format("ExtraCommandLineArgumentsSnes={0}", ExtraCommandLineArgumentsSnes));
             configLines.Add(string.Format("FoldersMode={0}", (byte)FoldersMode));
             configLines.Add(string.Format("MaxGamesPerFolder={0}", MaxGamesPerFolder));
             configLines.Add(string.Format("Compress={0}", Compress));
@@ -346,7 +514,7 @@ namespace com.clusterrr.hakchi_gui
         public static Dictionary<string, string> GetConfigDictionary()
         {
             var config = new Dictionary<string, string>();
-            config["clovercon_home_combination"] = ConfigIni.ResetHack ? string.Format("0x{0:X2}", (byte)ConfigIni.ResetCombination) : "0xFFFF";
+            config["clovercon_home_combination"] = ConfigIni.ResetHack ? string.Format("0x{0:X4}", ConfigIni.ResetCombination) : "0xFFFF";
             config["clovercon_autofire"] = ConfigIni.AutofireHack ? "1" : "0";
             config["clovercon_autofire_xy"] = ConfigIni.AutofireXYHack && (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom) ? "1" : "0";
             config["clovercon_fc_start"] = ConfigIni.FcStart && (ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom) ? "1" : "0";
