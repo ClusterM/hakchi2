@@ -406,9 +406,16 @@ namespace com.clusterrr.hakchi_gui
             gr.Flush();
             outImage.Save(IconPath, ImageFormat.Png);
             gr = Graphics.FromImage(outImageSmall);
+
+            // Better resizing quality (more blur like original files)
+            gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
             gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-            gr.DrawImage(outImage, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height),
-                new Rectangle(0, 0, outImage.Width, outImage.Height), GraphicsUnit.Pixel);
+            // Fix first line and column alpha shit
+            using (ImageAttributes wrapMode = new ImageAttributes())
+            {
+                wrapMode.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY);
+                gr.DrawImage(outImage, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height), 0, 0, outImage.Width, outImage.Height, GraphicsUnit.Pixel, wrapMode);
+            }
             gr.Flush();
             outImageSmall.Save(SmallIconPath, ImageFormat.Png);
         }
