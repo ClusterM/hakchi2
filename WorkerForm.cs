@@ -131,12 +131,16 @@ namespace com.clusterrr.hakchi_gui
                 "5296e64818bf2d1dbdc6b594f3eefd17", // SNES Mini (USA)
                 "228967ab1035a347caa9c880419df487", // SNES Mini (USA)
             };
-            correctKernels[MainForm.ConsoleType.SuperFamicom] = new string[] 
+            correctKernels[MainForm.ConsoleType.SuperFamicom] = new string[]
             {
                 "632e179db63d9bcd42281f776a030c14", // Super Famicom Mini (JAP)
             };
-            correctKeys[MainForm.ConsoleType.NES] = new string[] { "bb8f49e0ae5acc8d5f9b7fa40efbd3e7" };
-            correctKeys[MainForm.ConsoleType.SNES] = new string[] { "c5dbb6e29ea57046579cfd50b124c9e1" };
+            correctKeys[MainForm.ConsoleType.NES] =
+                correctKeys[MainForm.ConsoleType.Famicom] = 
+                new string[] { "bb8f49e0ae5acc8d5f9b7fa40efbd3e7" };
+            correctKeys[MainForm.ConsoleType.SNES] =
+                correctKeys[MainForm.ConsoleType.SuperFamicom] =
+                new string[] { "c5dbb6e29ea57046579cfd50b124c9e1" };
         }
 
         public DialogResult Start()
@@ -454,9 +458,8 @@ namespace com.clusterrr.hakchi_gui
                 var matchedKeys = from k in correctKeys where k.Value.Contains(keyhash) select k.Key;
                 if (matchedKeys.Count() > 0)
                 {
-                    var console = matchedKeys.First();
-                    if (console != ConfigIni.ConsoleType)
-                        throw new Exception(Resources.InvalidConsoleSelected + " " + console);
+                    if (!matchedKeys.Contains(ConfigIni.ConsoleType))
+                        throw new Exception(Resources.InvalidConsoleSelected + " " + matchedKernels.First());
                 }
                 else throw new Exception("Unknown key, unknown console");
 
@@ -472,9 +475,8 @@ namespace com.clusterrr.hakchi_gui
             else
             {
                 // Lets try to autodetect console using kernel hash
-                var console = matchedKernels.First();
-                if (console != ConfigIni.ConsoleType)
-                    throw new Exception(Resources.InvalidConsoleSelected + " " + console);
+                if (!matchedKernels.Contains(ConfigIni.ConsoleType))
+                    throw new Exception(Resources.InvalidConsoleSelected + " " + matchedKernels.First());
             }
 
             Directory.CreateDirectory(Path.GetDirectoryName(KernelDumpPath));
