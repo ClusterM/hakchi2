@@ -13,4 +13,5 @@ while [ true ]; do
     rm $exec_flag
     $cmd
   fi
+  usleep 200000
 done

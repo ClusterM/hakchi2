@@ -31,8 +31,8 @@
     <PublisherName>Alexey %27Cluster%27 Avdyukhin</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
-    <ApplicationRevision>12</ApplicationRevision>
-    <ApplicationVersion>2.0.20.12</ApplicationVersion>
+    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationVersion>2.0.20.14</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -1908,10 +1908,13 @@
     <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\remote-exec">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S82remote-exec">
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S82remote-exec">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <Content Include="mods\hmods\tiny7zx-dynamic.hmod">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\usleep">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\app.manifest" />

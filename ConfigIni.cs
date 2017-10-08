@@ -33,7 +33,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool ResetHackNes = true;
         public static bool ResetHackSnes = true;
         public static uint ResetCombinationNes = (uint)(SelectNesButtonsForm.NesButtons.Down | SelectNesButtonsForm.NesButtons.Select);
-        public static uint ResetCombinationSnes = (uint)(SelectSnesButtonsForm.SnesButtons.L | SelectSnesButtonsForm.SnesButtons.R | SelectSnesButtonsForm.SnesButtons.Select | SelectSnesButtonsForm.SnesButtons.Start);
+        public static uint ResetCombinationSnes = (uint)(SelectNesButtonsForm.NesButtons.Down | SelectNesButtonsForm.NesButtons.Select);
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         public static string ExtraCommandLineArgumentsNes = "";
         public static string ExtraCommandLineArgumentsSnes = "";
