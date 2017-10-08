@@ -1,0 +1,2 @@
+#!/bin/sh
+exec hakchi "$(basename "$0")" ${1+"$@"}

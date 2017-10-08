@@ -11,16 +11,16 @@ options=""
 while [ $# -gt 0 ] ; do
   case "$1" in
   -rom)
-    filename=$2
-    filebase=$(basename "$filename")
+    filename="$(readlink -f "$2")"
+    filebase="$(basename "$filename")"
     extension="${filebase##*.}"
-    tmppath=/tmp/rom
+    tmppath="$temppath/rom"
     if [ "$extension" == "7z" ]; then
-      mkdir -p $tmppath
-      rm -rf $tmppath/*
-      cd $tmppath
-      tiny7zx x $filename
-      filename=$tmppath/$(ls)
+      rm -rf "$tmppath"
+      mkdir -p "$tmppath"
+      cd "$tmppath"
+      tiny7zx x "$filename"
+      filename="$tmppath/$(ls)"
     fi
     options="-rom $filename"
     shift
@@ -31,5 +31,4 @@ while [ $# -gt 0 ] ; do
 done
 
 args="$options $cfg_snes_extra_args"
-
 exec /usr/bin/clover-canoe-shvc $args

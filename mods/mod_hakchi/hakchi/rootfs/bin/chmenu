@@ -2,24 +2,23 @@
 source /etc/preinit
 script_init
 
-state_file=$installpath/menu
-flag=/var/startmpc.flag
+state_file="$installpath/menu"
 
 [ -z "$1" ] && exit 1
-[ -f "$state_file" ] && prev_code=$(cat "$state_file") || prev_code=000
+[ -f "$state_file" ] && prev_code="$(cat "$state_file")" || prev_code="000"
 [ "$1" == "$prev_code" ] && exit 1
 
-echo Switching to menu $1
+echo "Switching to menu $1"
 if [ "$1" == "000" ]; then
-  targetpath=$rootfs$gamepath
+  targetpath="$rootfs$gamepath"
 else
-  targetpath=$rootfs$gamepath/$1
+  targetpath="$rootfs$gamepath/$1"
 fi
 
 [ -d "$targetpath" ] || exit 1
-echo $1 > "$state_file"
+echo "$1" > "$state_file"
 
-echo New directory: $targetpath
+echo "New directory: $targetpath"
 
 if [ "$1" != "000" ]; then
   if [ -f "$rootfs$gamepath/title.fnt" ] && [ ! -f "$targetpath/title.fnt" ]; then
@@ -30,9 +29,7 @@ if [ "$1" != "000" ]; then
   fi
 fi
 
-pkill -KILL ReedPlayer-Clover
-pkill -KILL clover-mcp
-
+uistop
 overmount_games
 
-touch "$flag"
+touch "/var/startmpc.flag"

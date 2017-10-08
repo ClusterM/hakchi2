@@ -1,0 +1,28 @@
+local transferpath="$installpath/transfer"
+if [ -d "$transferpath" ]; then
+  cd "$transferpath"
+  [ -f "$transferpath/earlybird" ] && source "$transferpath/earlybird"
+  rm -f "$transferpath/earlybird"
+
+  [ -f "$transferpath/uninstall" ] && packs_uninstall $(cat "$transferpath/uninstall")
+  rm -f "$transferpath/uninstall"
+
+  [ -f "$transferpath/hmod/uninstall" ] && packs_uninstall $(cat "$transferpath/hmod/uninstall")
+  rm -f "$transferpath/hmod/uninstall"
+
+  packs_install "$transferpath"
+
+  if [ -d "$transferpath/hmod" ]; then
+    packs_install "$transferpath/hmod"
+    rm -rf "$transferpath/hmod"
+  fi
+
+  echo "transferring data..."
+  transfer_path "$transferpath"
+  echo
+  cd /
+  rm -rf "$transferpath"
+  save_config
+  reboot
+fi
+unset transferpath

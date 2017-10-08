@@ -1,1 +1,3 @@
-[ "$cfg_boot_stock_firmware" == "y" ] || load_firmware
+[ "$cfg_firmware" == "_nand_" ] || load_firmware
+mod_repair_etc
+setGamepath

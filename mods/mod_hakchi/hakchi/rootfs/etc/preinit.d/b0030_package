@@ -17,13 +17,15 @@ transfer_default(){
 }
 
 transfer_path(){
-  local transferpath=$1
+  local transferpath="$1"
   chown -R 0:0 "$transferpath/"
   find "$transferpath/" -maxdepth 1 -type f -iname "readme.*" -delete
   find "$transferpath/" -maxdepth 1 -type f -iname "*.txt" -delete
   find "$transferpath/" -maxdepth 1 -type f -iname "*.md" -delete
   local docopy=y
   cd "$transferpath"
+  [ -d "./bin" ] && chmod 755 ./bin/*
+  [ -d "./etc/init.d" ] && chmod 755 ./etc/init.d/*
   transfer_file "$transferpath/install" || docopy=n
   cd "$transferpath"
   transfer_file "$transferpath/transfer" || docopy=n
@@ -31,21 +33,21 @@ transfer_path(){
 }
 
 pack_upath(){
-  echo $installpath/hmod/uninstall-$(basename "$1" .hmod)
+  echo "$installpath/hmod/uninstall-$(basename "$1" .hmod)"
 }
 
 pack_install(){
-  echo installing $(basename "$1" .hmod)...
+  echo "installing $(basename "$1" .hmod)..."
   if [ -f "$1" ]; then
-    local transferpath=$temppath/pack
+    local transferpath="$temppath/pack"
     rm -rf "$transferpath"
     mkdir -p "$transferpath"
     cd "$transferpath" && tar -xzf "$1"
   else
-    local transferpath=$1
+    local transferpath="$1"
   fi
   transfer_path "$transferpath"
-  echo creating uninstall for $(basename "$1" .hmod)...
+  echo "creating uninstall for $(basename "$1" .hmod)..."
   echo >> "$transferpath/uninstall"
   echo "# auto-generated" >> "$transferpath/uninstall"
   cd "$transferpath"
@@ -54,7 +56,7 @@ pack_install(){
   find . -depth -mindepth 1 -type d -exec echo rmdir \"\$rootfs/{}\" + >> "$transferpath/uninstall"
   [ $(stat -c%s "$transferpath/uninstall") -gt 8 ] || rm -f "$transferpath/uninstall"
   cd /
-  local unfile=$(pack_upath "$1")
+  local unfile="$(pack_upath "$1")"
   if [ -f "$transferpath/uninstall" ]; then
     dos2unix -u "$transferpath/uninstall"
     sed -i "s#rmdir #rmdir --ignore-fail-on-non-empty #" "$transferpath/uninstall"
@@ -63,23 +65,29 @@ pack_install(){
   else
     rm -f "$unfile"
   fi
-  echo package $(basename "$1" .hmod) installed
+  echo "package $(basename "$1" .hmod) installed"
+}
+
+pack_list(){
+  if [ -d "$installpath/hmod" ]; then
+    for i in $(find "$installpath/hmod/" -maxdepth 1 -type f -name "uninstall-*" | sort); do
+      echo "${i##$installpath/hmod/uninstall-}"
+    done
+  fi
 }
 
 pack_uninstall(){
   if [ "$1" == "all" ]; then
-    if [ -d "$installpath/hmod" ]; then
-      for i in $(find "$installpath/hmod/" -maxdepth 1 -type f -name "uninstall-*" | sort); do
-        pack_uninstall "$i"
-      done
-    fi
+    for i in $(pack_list); do
+      pack_uninstall "$i"
+    done
   else
-    local unfile=$(pack_upath "$1")
+    local unfile="$(pack_upath "$1")"
     if [ -f "$unfile" ]; then
-      echo uninstalling $(basename "$1" .hmod)...
+      echo "uninstalling $(basename "$1" .hmod)..."
       cd "$rootfs"
       transfer_file "$unfile"
-      echo package $(basename "$1" .hmod) uninstalled
+      echo "package $(basename "$1" .hmod) uninstalled"
     fi
   fi
   cd /
