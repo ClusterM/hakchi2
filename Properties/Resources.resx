@@ -181,7 +181,7 @@
     <value>Invalid kernel size:</value>
   </data>
   <data name="MapperNotSupported" xml:space="preserve">
-    <value>Sorry, "{0}" uses mapper #{1} but this mapper is not supported by the NES Mini and the game will probably not start with the default emulator. But it should work if other emulator's module installed. Do you want to add this game?</value>
+    <value>"{0}" uses mapper #{1} but this mapper is not supported by the NES Mini and the game will probably not start with the default emulator. But it should work if other emulator's module installed. Do you want to add this game?</value>
   </data>
   <data name="MD5Failed" xml:space="preserve">
     <value>Kernel dumped but the MD5 checksum is unknown:</value>
@@ -253,7 +253,7 @@
     <value>Do you really want to delete the "{0}" preset?</value>
   </data>
   <data name="FourScreenNotSupported" xml:space="preserve">
-    <value>Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
+    <value>Oops, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
   </data>
   <data name="InputPreset" xml:space="preserve">
     <value>Please input a preset name for the current games selection.</value>
@@ -690,5 +690,8 @@
   </data>
   <data name="DownloadCoverQ" xml:space="preserve">
     <value>Do you want to try to download box art for "{0}"?</value>
+  </data>
+  <data name="Need3rdPartyEmulator" xml:space="preserve">
+    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
 </root>

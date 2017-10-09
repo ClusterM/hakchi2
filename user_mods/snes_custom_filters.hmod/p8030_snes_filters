@@ -1,0 +1,1 @@
+[ -f "$mountpoint/usr/bin/clover-canoe-shvc" ] && overmount /usr/bin/canoe-custom-filters /usr/bin/clover-canoe-shvc

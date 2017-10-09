@@ -1,0 +1,91 @@
+#!/bin/sh
+
+set -x
+
+export MALI_NOCLEAR=1
+
+decorative_options()
+{
+  local fn="$1_options.txt"
+  if [ ! -f "$fn" ] ; then
+    return
+  fi
+  while read option ; do
+    case "$option" in
+    hue) printf ' --decorative-frame-hue';;
+    luminosity) printf ' --decorative-frame-luminosity';;
+    saturation) printf ' --decorative-frame-saturation';;
+    esac
+  done < "$fn"
+}
+
+original_options=$@
+options=""
+clovercon_file=/dev/clovercon1
+video_mode=keep-aspect-ratio
+mode1="-filter 2 -magfilter 1"
+mode2="-filter 1 -magfilter 3"
+mode3="-filter 1 --pixel-perfect"
+
+while [ $# -gt 0 ] ; do
+  case "$1" in
+  --title-code) title_code="$2"; shift ;;
+  --load-state-file) options="$options -resume" ;;
+  --save-data-backing-file) options="$options --sram-file" ;;
+  --replay-inputs) options="$options -replay-all -replay" ;;
+  --record-inputs) options="$options -record-next -enable-pad-debug-controls" ;;
+  --video-mode)
+    video_mode=$2
+    shift
+    ;;
+  --no-scanlines)
+    mode1="-filter 1 -magfilter 1"
+    ;;
+  --no-smooth)
+    mode1="-filter 2 -magfilter 3"
+    ;;
+  --smooth43)
+    mode2="-filter 1 -magfilter 1"
+    ;;
+  --rollback-mode)
+    case "$2" in
+    record) options="$options -rollback-mode 1" ;;
+    replay) options="$options -rollback-mode 2" ;;
+    esac
+    options="$options --rollback-ui /usr/share/canoe/rollback-ui"
+    options="-rollback-snapshot-period 720 $options"
+    options="$options --enable-sram-file-hash"
+    shift
+    ;;
+  --rollback-output-dir) options="$options -rollback-output-dir $2"; shift ;;
+  --rollback-input-dir) options="$options -rollback-input-dir $2"; shift ;;
+  --decorative-frame-path) options="$options --use-decorative-frame $2 $(decorative_options $2)"; shift ;;
+  *.sfrom)
+    if [ -f "$1.gz" ]; then
+        options="$options /tmp/ROM.sfrom"
+        gunzip -c "$1.gz" > /tmp/ROM.sfrom
+        rom=/tmp/ROM.sfrom
+    else
+        options="$options $1"
+        rom=$1
+    fi
+    ;;
+  *) options="$options $1" ;;
+  esac
+  shift
+done
+
+case "$video_mode" in
+  keep-aspect-ratio) options="$options $mode2" ;;
+  pixel-perfect) options="$options $mode3" ;;
+  crt-filter) options="$options $mode1" ;;
+esac
+
+read BUILD_TYPE < /etc/clover/buildtype
+case "$BUILD_TYPE" in
+devel) log="-log $title_code.log -log-append --debug-menu-settings /var/lib/clover/canoe/debug-menu.json --decorative-frames-path /usr/share/backgrounds" ;;
+test) log="-log $title_code.log" ;;
+*) ;;
+esac
+
+exec canoe-shvc $options $log
