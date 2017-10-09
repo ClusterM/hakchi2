@@ -1,24 +1,24 @@
 mod_uninstall(){
-  echo uninstalling $modname...
+  echo "uninstalling $modname..."
   rm -rf "$installpath"
-  echo done.
+  echo "done."
   shutdown
 }
 
 mod_repair(){
   mod_repair_etc full
-  chmod 755 $modpath/rootfs/bin/*
-  chmod 755 $modpath/rootfs/etc/init.d/*
+  cd "$modpath/rootfs/bin" && chmod 755 *
+  cd "$modpath/rootfs/etc/init.d" && chmod 755 *
+  cd /
   copy "/bin/" "$rootfs/bin/"
   copy "/sbin/cryptsetup" "$rootfs/bin/cryptsetup"
   copy "$modpath/rootfs/" "$rootfs/"
 }
 
 mod_install(){
-  echo installing $modname...
+  echo "installing $modname..."
   rm -rf "$rootfs"
   restore "/bin/"
   restore "/etc/"
-  restore "$gamepath/"
   mod_repair
 }

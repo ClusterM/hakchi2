@@ -7,22 +7,22 @@
 source /etc/preinit
 script_init
 
-filename=$1
-filebase=$(basename "$filename")
+filename="$(readlink -f "$1")"
+filebase="$(basename "$filename")"
 extension="${filebase##*.}"
-tmppath=/tmp/rom
+tmppath="$temppath/rom"
 if [ "$extension" == "7z" ]; then
-  mkdir -p $tmppath
-  rm -rf $tmppath/*
-  cd $tmppath
-  tiny7zx x $filename
-  filename=$tmppath/$(ls)
+  rm -rf "$tmppath"
+  mkdir -p "$tmppath"
+  cd "$tmppath"
+  tiny7zx x "$filename"
+  filename="$tmppath/$(ls)"
 fi
 if [ "$extension" == "gz" ]; then
-  mkdir -p $tmppath
-  rm -rf $tmppath/*
-  gunzip -c > $tmppath/$filebase
-  filename=$tmppath/$filebase
+  rm -rf "$tmppath"
+  mkdir -p "$tmppath"
+  gunzip -c > "$tmppath/$filebase"
+  filename="$tmppath/$filebase"
 fi
 shift
 

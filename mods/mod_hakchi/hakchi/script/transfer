@@ -1,7 +1,4 @@
-source "$modpath/script/backup"
 source "$modpath/script/install"
-source "$modpath/script/package"
-source "$modpath/script/games"
 
 backup_nandc
 mount_base
@@ -11,17 +8,26 @@ source_config
 
 local transferpath="$modpath/transfer"
 
+cd "$transferpath"
+
 [ -f "$transferpath/earlybird" ] && source "$transferpath/earlybird"
 rm -f "$transferpath/earlybird"
 
+if [ -d "$transferpath/reflash" ]; then
+  cd "$transferpath/reflash"
+  source "$modpath/script/reflash"
+  cd "$transferpath"
+  rm -rf "$transferpath/reflash"
+fi
+
 # transfer firmware, if any
 if [ -d "$transferpath/firmware" ]; then
-  local firmware=$(find "$transferpath/firmware" -type f -name "*.hsqs" | sort | head -n 1)
+  local firmware="$(find "$transferpath/firmware" -type f -name "*.hsqs" | sort | head -n 1)"
   if [ -f "$firmware" ]; then
     mkdir -p "$firmwarepath"
-    local firmware_name=$(basename "$firmware")
+    local firmware_name="$(basename "$firmware")"
     find "$firmwarepath" -type f -not -name "$firmware_name" -delete
-    echo transferring firmware...
+    echo "transferring firmware..."
     copy "$firmware" "$firmwarepath/"
   fi
   rm -rf "$transferpath/firmware"
@@ -32,7 +38,7 @@ source_parts "$modpath/rootfs/etc/preinit.d/p????_*firmware*"
 
 # now we can do install/repair
 if [ -f "$preinit" ]; then
-  echo $modname already installed
+  echo "$modname already installed"
   mod_repair
 else
   mod_install
@@ -50,12 +56,15 @@ if [ -d "$transferpath/hmod" ]; then
 fi
 
 if [ -d "$transferpath/games" ]; then
+  source "$modpath/script/games"
   transfer_games "$transferpath/games"
   rm -rf "$transferpath/games"
 fi
 
-echo transferring data...
+echo "transferring data..."
 transfer_path "$transferpath"
+echo
 
 save_config
 [ "$cf_shutdown" != "y" ] || shutdown
+echo

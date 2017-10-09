@@ -1,0 +1,15 @@
+#!/bin/sh
+source /etc/preinit
+script_init
+
+hakchi(){
+  [ "$1" == "hakchi" ] && shift
+  if type "$1" | grep -q '^.* is a shell function$' 2>/dev/null; then
+    ${1+"$@"}
+  else
+    echo "no such function: $@"
+    return 1
+  fi
+}
+
+hakchi "$(basename "$0")" ${1+"$@"}

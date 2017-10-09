@@ -1,0 +1,27 @@
+local firmware="$(find -type f -name "*.hsqs" | sort | head -n 1)"
+if [ -f "$firmware" ]; then
+  umount_base
+  umount "$mountpoint"
+
+  cryptsetup close root-crypt
+  cryptsetup open /dev/nandb root-crypt --type plain --cipher aes-xts-plain --key-file /key-file
+
+  dd if=/dev/zero of=/dev/mapper/root-crypt bs=512 "seek=$(($(stat -c%s "$firmware")/512))"
+  dd "if=$firmware" of=/dev/mapper/root-crypt bs=512
+
+  cryptsetup close root-crypt
+  cryptsetup open /dev/nandb root-crypt --readonly --type plain --cipher aes-xts-plain --key-file /key-file
+
+  mount -o ro,noatime /dev/mapper/root-crypt "$mountpoint"
+
+  local tmk="$(pwd)/mkfs.txz"
+  if [ -f "$tmk"]; then
+    cd / && tar xJf "$tmk"
+    mount_bind "$mountpoint/lib" "/lib"
+#    /sbin/mkfs.ext4 -L data -m 0 /dev/nandc
+    mkfs.ext2 -L data -m 0 /dev/nandc
+    umount "/lib"
+  fi
+
+  mount_base
+fi

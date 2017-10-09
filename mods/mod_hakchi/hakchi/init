@@ -5,12 +5,15 @@ echo
 local modname="hakchi"
 local modpath="/$modname"
 local mountpoint="/newroot"
-local installpath
-local firmwarepath
-local rootfs
-local preinit
-local preinitpath
-local gamepath
+local installpath=""
+local firmwarepath=""
+local rootfs=""
+local squashfs=""
+local preinit=""
+local preinitpath=""
+local sftype=""
+local sfregion=""
+local gamepath=""
 local temppath="/tmp"
 
 mkdir -p "$temppath"

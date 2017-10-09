@@ -5,5 +5,5 @@ if [ "$cfg_boot_stock" == "y" ]; then
   umount_base 2>/dev/null
   return 0
 else
-  echo loading $modname
+  echo "loading $modname"
 fi

@@ -1,11 +1,30 @@
+squashDevice(){
+  echo "$(mount | grep -F squashfs | head -n1 | awk '{print $1;}')"
+}
+
+umountSquash(){
+  mountpoint -q "$squashfs" && umount "$squashfs"
+}
+
+mountSquash(){
+  [ -d "$(dirname "$squashfs")" ] || return 1
+  umountSquash
+  mkdir -p "$squashfs"
+  local sdev="$(squashDevice)"
+  [ -z "$sdev" ] && return 1
+  mount -o ro,noatime "$sdev" "$squashfs"
+}
+
 mount_base(){
   mount -t tmpfs -o mode=0755,nosuid,nodev tmpfs "$mountpoint/var"
   mkdir -p "$mountpoint/var/lib"
   mount -o defaults,nosuid,nodev,noatime /dev/nandc "$mountpoint/var/lib"
+  mountSquash
 }
 
 umount_base(){
   sync
+  umountSquash
   umount "$mountpoint/var/lib"
   umount "$mountpoint/var"
 }
@@ -20,7 +39,7 @@ remove_old(){
 mod_repair_etc(){
   remove_old "$rootfs"
   rm -f "$modpath/rootfs/etc/preinit.d/p0000_config"
-  chown -R 0:0 $modpath/
+  chown -R 0:0 "$modpath/"
 
   local etc="$temppath/etc"
   rm -rf "$etc"
@@ -39,42 +58,76 @@ mod_repair_modules(){
 }
 
 remount_root(){
-  [ -z "$(mount | grep -F loop)" ] || return 1
-
-  local tmpmount=$modpath/var.tmp
+  local tmpmount="/var"
   mkdir -p "$tmpmount"
   mount --move "$mountpoint/var" "$tmpmount"
 
   umount "$mountpoint"
 
-  local loopfile=$tmpmount${1##$mountpoint/var}
-  mount -o loop,ro "$loopfile" "$mountpoint" || shutdown
+  local loopfile="$tmpmount${1##$mountpoint/var}"
+  mount -o loop,ro,noatime "$loopfile" "$mountpoint" || shutdown
 
   mount --move "$tmpmount" "$mountpoint/var"
 }
 
-load_firmware(){
-  [ -d "$firmwarepath" ] || return 0
-  local firmware=$(find "$firmwarepath" -type f -name "*.hsqs" | sort | head -n 1)
-  [ -f "$firmware" ] || return 0
-  mod_repair_modules
-  remount_root "$firmware" || return 0
-  cryptsetup close root-crypt
-  mod_repair_etc
-  if [ -d "$rootfs/lib/modules/$(uname -r)" ]; then
-    overmount "/lib/modules"
-  else
-    echo "no modules for loaded kernel $(uname -r)"
+checkFirmware(){
+  [ -f "$1" ] || return 1
+  [ "$(hexdump -e '1/4 "%u"' -s 0 -n 4 "$1")" == "1936814952" ] || return 1
+  return 0
+}
+
+currentFirmware(){
+  local firmware="$(losetup | awk '{print $3'})"
+  if ! [ -z "$firmware" ]; then
+    echo "$firmware"
+    return 0
   fi
-  set_gamepath
+  if [ -b /dev/mapper/root-crypt ]; then
+    echo "_nand_"
+    return 0
+  fi
+  return 1
+}
+
+load_firmware(){
+  [ -z "$(mount | grep -F loop0)" ] || return 1
+
+  local firmware="$mountpoint$cfg_firmware"
+  if ! checkFirmware "$firmware"; then
+    [ -d "$firmwarepath" ] || return 0
+    firmware="$(find "$firmwarepath" -type f -name "*.hsqs" | sort | head -n 1)"
+  fi
+  checkFirmware "$firmware" || return 0
+
+  mod_repair_modules
+  umountSquash
+  remount_root "$firmware"
+  cryptsetup close root-crypt
+  mountSquash
+  if [ ! -d "$mountpoint/lib/modules/$(uname -r)" ]; then
+    if [ -d "$rootfs/lib/modules/$(uname -r)" ]; then
+      overmount "/lib/modules"
+    else
+      echo "no modules for loaded kernel $(uname -r)"
+    fi
+  fi
 }
 
 shutdown(){
-  echo shutting down...
+  echo "shutting down..."
   echo
   sync
   umount -a -r 2>/dev/null
   poweroff -f
+  while :;do sleep 1;:;done
+}
+
+reboot(){
+  echo "rebooting..."
+  echo
+  sync
+  umount -a -r 2>/dev/null
+  /bin/reboot -f
   while :;do sleep 1;:;done
 }
 
@@ -86,20 +139,24 @@ early_getty(){
 
 copy(){
   # we must create target directory
-  local dirname=$(dirname "$2")
+  local dirname="$(dirname "$2")"
   mkdir -p "$dirname"
   rsync -ac "$1" "$2"
 }
 
 copy_mask(){
   # this function is unsafe, avoid spaces in filenames!
-  local dirname=$(dirname "$2")
+  local dirname="$(dirname "$2")"
   mkdir -p "$dirname"
   rsync -ac $1 "$2"
 }
 
 restore(){
-  copy "$mountpoint$1" "$rootfs$1"
+  if mountpoint -q "$squashfs" && [ -e "$squashfs$1" ]; then
+    copy "$squashfs$1" "$rootfs$1"
+  else
+    copy "$mountpoint$1" "$rootfs$1"
+  fi
 }
 
 mount_bind(){
@@ -111,25 +168,60 @@ mount_bind(){
 
 overmount(){
   if [ "$#" == "1" ]; then
-    echo overmounting $1
+    echo "overmounting $1"
     mount_bind "$rootfs$1" "$mountpoint$1" && return 0
   fi
   if [ "$#" == "2" ]; then
-    echo overmounting $1 on $2
+    echo "overmounting $1 on $2"
     mount_bind "$rootfs$1" "$mountpoint$2" && return 0
   fi
-  echo overmounting failed
+  echo "overmounting failed"
+  return 1
+}
+
+containsGames(){
+  [ -d "$1" ] || return 1
+  [ -z "$(cd "$1";ls CLV-* 2>/dev/null)" ] && return 1
+  return 0
 }
 
 overmount_games(){
-  local menu_code=000
-  [ -f "$installpath/menu" ] && menu_code=$(cat "$installpath/menu")
-  [ -z "$menu_code" ] && menu_code=000
-  echo menu code: $menu_code
+  local menu_code="000"
+  [ -f "$installpath/menu" ] && menu_code="$(cat "$installpath/menu")"
+  [ -z "$menu_code" ] && menu_code="000"
+  echo "menu code: $menu_code"
   if [ "$menu_code" != "000" ]; then
-    if [ -d "$rootfs$gamepath/$menu_code" ]; then
+    if containsGames "$rootfs$gamepath/$menu_code"; then
       overmount "$gamepath/$menu_code" "$gamepath" && return 0
+    else
+      echo "no romz found at: $rootfs$gamepath/$menu_code"
     fi
   fi
-  overmount "$gamepath"
+  if containsGames "$rootfs$gamepath"; then
+    overmount "$gamepath" && return 0
+  fi
+  echo "no romz found at: $rootfs$gamepath"
+  return 1
+}
+
+uistop(){
+  killall -9 clover-mcp
+  killall -9 ReedPlayer-Clover
+  killall kachikachi
+  killall canoe-shvc
+  killall retroarch
+}
+
+uistart(){
+  uistop 1>/dev/null 2>&1
+  /etc/init.d/S81clover-mcp start
+}
+
+gameover(){
+  poweroff
+}
+
+printSoftwareInfo(){
+  echo "software=$sftype"
+  echo "region=$sfregion"
 }
