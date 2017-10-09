@@ -134,6 +134,7 @@ namespace com.clusterrr.hakchi_gui
             correctKernels[MainForm.ConsoleType.SuperFamicom] = new string[]
             {
                 "632e179db63d9bcd42281f776a030c14", // Super Famicom Mini (JAP)
+                "c3378edfc1b96a5268a066d5fbe12d89", // Super Famicom Mini (JAP)
             };
             correctKeys[MainForm.ConsoleType.NES] =
                 correctKeys[MainForm.ConsoleType.Famicom] = 

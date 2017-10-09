@@ -3,16 +3,18 @@
 # Next line defines "scnfile" variable with path to "sys_game_thumbnail.scn" file
 # It's more complicated since SNES Mini relased. Path is defferent for NES Mini and SNES Mini.
 # Lets try to find it
-scnfile=$(find $mountpoint/ -name "sys_game_thumbnail.scn") && scnfile=${scnfile:${#mountpoint}}
+scnfile=$(find $mountpoint/usr/share -name "sys_game_thumbnail.scn") && scnfile=${scnfile:${#mountpoint}}
 # Same with nes.json file
 nesjson=/usr/share/clover-ui/resources/sprites/nes.json
 # But nes.json exists on NES Mini only, otherwise we need packed.json
-[ ! -f "$nesjson" ] && nesjson=$(find $mountpoint/ -name "packed.json") && nesjson=${nesjson:${#mountpoint}}
+[ ! -f "$mountpoint/$nesjson" ] && nesjson=$(find $mountpoint/usr/share -name "packed.json") && nesjson=${nesjson:${#mountpoint}}
 
 # This line defines "preinitfile" variable with pre-init file name
 preinitfile=p81a8_hide_thumnbnails
 # "restore" is hakchi function which copies original file to corresponding path in /var/lib/hakchi/rootfs
+echo scnfile: $scnfile
 restore $scnfile
+echo nesjson: $nesjson
 restore $nesjson
 # sed is GNU util to modify file, this command replaces "enabled:true" to "enabled:false"
 # Please note that we need to edit $rootfs$scnfile (writable file), not a just $scnfile (original read-only file)

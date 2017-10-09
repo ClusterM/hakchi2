@@ -46,7 +46,7 @@ namespace com.clusterrr.hakchi_gui
             { "ZELDANODENSETSU", 0x101F },
             { "SHVC FIREEMBLEM", 0x102B },
             { "SUPER DONKEY KONG", 0x1023 },
-            { "Super Street Fighter", 0x1056 },
+            //{ "Super Street Fighter", 0x1056 },
             { "ROCKMAN X", 0x110A },
             { "CHOHMAKAIMURA", 0x1004 },
             { "SeikenDensetsu 2", 0x10B2 },
@@ -89,6 +89,7 @@ namespace com.clusterrr.hakchi_gui
             var ext = Path.GetExtension(inputFileName);
             if ((ext.ToLower() == ".smc") && ((rawRomData.Length % 1024) != 0))
             {
+                Debug.WriteLine("Removing SMC header");
                 var stripped = new byte[rawRomData.Length - 512];
                 Array.Copy(rawRomData, 512, stripped, 0, stripped.Length);
                 rawRomData = stripped;
@@ -180,6 +181,9 @@ namespace com.clusterrr.hakchi_gui
                     Debug.WriteLine($"SA1 chip detected");
                     presetId = 0x109C; // ID from Super Mario RPG, SA1
                 }
+            } else
+            {
+                Debug.WriteLine($"We have preset for this game");
             }
             Debug.WriteLine(string.Format("PresetID: 0x{0:X2}{1:X2}, extra byte: {2:X2}", presetId & 0xFF, (presetId >> 8) & 0xFF, chip));
 
