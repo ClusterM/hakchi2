@@ -1,0 +1,5 @@
+local ext_device=/dev/nande
+local ext_path=$mountpoint/var/lib/clover
+mkdir -p $ext_path
+echo mounting $ext_path
+mount -o rw,nosuid,nodev,noatime $ext_device $ext_path

@@ -596,6 +596,9 @@
     <Compile Include="WorkerForm.Designer.cs">
       <DependentUpon>WorkerForm.cs</DependentUpon>
     </Compile>
+    <Content Include="user_mods\extra_space.hmod\readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="user_mods\snes_custom_filters.hmod\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1827,97 +1830,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="cluster_cert.pfx" />
-    <Content Include="mods\mod_hakchi\bin\busybox">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\init">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\chmenu">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\clover-kachikachi-wr">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S78clvcon">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\inittab">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0000_defines">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0010_functions">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p0000_config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7000_preinit">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7070_firmware">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7100_preinit">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pa100_games">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pffff_config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\profile">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\script\backup">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\script\base">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\script\games">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\script\install">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\script\package">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\script\removed">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\script\transfer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\sbin\init">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\bin\rsync">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\clover-canoe-shvc-wr">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\remote-exec">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S82remote-exec">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="mods\hmods\tiny7zx-dynamic.hmod">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\usleep">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="patches\0354f4b1-Dirt Racer %28Europe%29 %28En,Fr,De%29.ips">
@@ -2034,6 +1947,120 @@
     <Content Include="patches\974523ff-Terranigma %28Europe, France, Germany, Spain%29.ips">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="mods\mod_hakchi\bin\busybox">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\bin\rsync">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\init">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\chmenu">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\clover-canoe-shvc-wr">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\clover-kachikachi-wr">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\gameover">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\hakchi">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\hsqs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\remote-exec">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\test-menu">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\uistart">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\uistop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\usleep">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S78clvcon">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S82remote-exec">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\inittab">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0000_defines">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0010_functions">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0020_backup">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0030_package">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p0000_config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7000_preinit">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7070_firmware">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7080_hmods">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7100_preinit">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pa100_games">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pffff_config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\profile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\base">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\games">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\install">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\reflash">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\removed">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\transfer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\sbin\init">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\app.manifest" />
     <Content Include="user_mods\snes_custom_filters.hmod\canoe-custom-filters">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -2045,6 +2072,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="user_mods\snes_custom_filters.hmod\uninstall">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\extra_space.hmod\etc\preinit.d\p7110_extra_space">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\extra_space.hmod\install">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\extra_space.hmod\uninstall">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

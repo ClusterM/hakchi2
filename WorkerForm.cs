@@ -83,10 +83,13 @@ namespace com.clusterrr.hakchi_gui
         string selectedFile = null;
         public NesMiniApplication[] addedApplications;
         public static int NandCTotal, NandCUsed, NandCFree, WritedGamesSize, SaveStatesSize;
+        public static bool ExternalSaves = false;
         public static long ReservedMemory
         {
             get
             {
+                if (ExternalSaves)
+                    return 5;
                 switch (ConfigIni.ConsoleType)
                 {
                     default:
@@ -95,7 +98,7 @@ namespace com.clusterrr.hakchi_gui
                         return 10;
                     case MainForm.ConsoleType.SNES:
                     case MainForm.ConsoleType.SuperFamicom:
-                        return 10;
+                        return 30;
                 }
             }
         }
@@ -736,6 +739,7 @@ namespace com.clusterrr.hakchi_gui
         {
             var clovershell = MainForm.Clovershell;
             var nandc = clovershell.ExecuteSimple("df /dev/nandc | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 500, true).Split('|');
+            ExternalSaves = clovershell.ExecuteSimple("mount | grep /var/lib/clover").Trim().Length > 0;
             WritedGamesSize = int.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/hakchi/rootfs/usr/share/games/ && du -s /var/lib/hakchi/rootfs/usr/share/games/ | awk '{ print $1 }'", 1000, true)) * 1024;
             SaveStatesSize = int.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/clover/profiles/0/ && du -s /var/lib/clover/profiles/0/ | awk '{ print $1 }'", 1000, true)) * 1024;
             NandCTotal = int.Parse(nandc[0]) * 1024;
