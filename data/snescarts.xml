@@ -8642,15 +8642,4 @@
     <cover>http://thegamesdb.net/banners/boxart/original/front/6373-1.jpg</cover>
     <api_id>6373</api_id>
   </Game>
-  <Game>
-    <name>Zool - Ninja of the Nth Dimension</name>
-    <players>1</players>
-    <simultaneous>0</simultaneous>
-    <crc>3c10daf1</crc>
-    <date>1994-01-01</date>
-    <publisher>GameTek</publisher>
-    <region>USA</region>
-    <cover>http://thegamesdb.net/banners/boxart/original/front/6373-1.jpg</cover>
-    <api_id>6373</api_id>
-  </Game>
 </Data>
