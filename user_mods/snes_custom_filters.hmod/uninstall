@@ -1,0 +1,2 @@
+rm "$preinitpath/p8030_snes_filters"
+rm "$rootfs/usr/bin/p8030_snes_filters"

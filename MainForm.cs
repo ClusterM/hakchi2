@@ -1255,6 +1255,11 @@ namespace com.clusterrr.hakchi_gui
             upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
             compressGamesToolStripMenuItem.Checked = ConfigIni.Compress;
 
+            // Reset known free space
+            WorkerForm.NandCTotal = WorkerForm.NandCFree = WorkerForm.NandCUsed = 0;
+            if (Clovershell != null && Clovershell.IsOnline)
+                new Thread(Clovershell_OnConnected).Start();
+
             LoadHidden();
             LoadGames();
             lastConsoleType = ConfigIni.ConsoleType;
@@ -1362,6 +1367,7 @@ namespace com.clusterrr.hakchi_gui
         private void dragDrop(object sender, DragEventArgs e)
         {
             var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (files == null) return;
 
             // Need to determine type of files
             // Maybe it's cover art?

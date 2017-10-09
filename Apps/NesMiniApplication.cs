@@ -21,6 +21,7 @@ namespace com.clusterrr.hakchi_gui
         public static Image DefaultCover = Resources.blank_app;
         public static Form ParentForm;
         public static bool? NeedPatch;
+        public static bool? Need3rdPartyEmulator;
         public static bool? NeedAutoDownloadCover;
 
         public static string GamesDirectory
@@ -462,10 +463,10 @@ namespace com.clusterrr.hakchi_gui
                     if (patches.Length > 0)
                         patch = patches[0];
                 }
-                var patchesPath = System.IO.Path.Combine(patchesDirectory, System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".ips");
+                var patchesPath = Path.Combine(patchesDirectory, Path.GetFileNameWithoutExtension(inputFileName) + ".ips");
                 if (File.Exists(patchesPath))
                     patch = patchesPath;
-                patchesPath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(inputFileName), System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".ips");
+                patchesPath = Path.Combine(Path.GetDirectoryName(inputFileName), System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".ips");
                 if (File.Exists(patchesPath))
                     patch = patchesPath;
             }

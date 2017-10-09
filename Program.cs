@@ -71,6 +71,7 @@ namespace com.clusterrr.hakchi_gui
             Debug.AutoFlush = true;
 #endif
 
+
             try
             {
                 bool createdNew = true;

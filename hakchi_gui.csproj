@@ -596,6 +596,9 @@
     <Compile Include="WorkerForm.Designer.cs">
       <DependentUpon>WorkerForm.cs</DependentUpon>
     </Compile>
+    <Content Include="user_mods\snes_custom_filters.hmod\readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -1917,7 +1920,133 @@
     <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\usleep">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="patches\0354f4b1-Dirt Racer %28Europe%29 %28En,Fr,De%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\09097b2b-ActRaiser %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\0ce626ba-Hebereke%27s Popoitto %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\0f8378a6-Winter Gold %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\17f946c5-K.H. Rummenigge%27s Player Manager %28Germany, Germany Sample%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\1ac7f523-Kick Off 3 - European Challenge %28Europe%29 %28En,Fr,De,Es,It%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\1ad61bd0-90 Minutes - European Prime Goal %28Europe, Europe Beta%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\29a78af9-ActRaiser %28Germany%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\2a9966c0-Soccer Kid %28Europe%29 %28En,Fr,De,Es,It%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\2ae148d6-Smurfs, The %28Europe%29 %28En,Fr,De,Es,It%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\2e9985bc-Super International Cricket %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\44a9db5c-Mega-lo-Mania %28Europe%29 %28En,Fr,De%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\4ee9ee99-Castlevania - Vampire%27s Kiss %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\588a9707-Pop%27n TwinBee %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\60b2d4a8-Striker %28Europe%29 %28En,Fr,De,Es,It,Nl,Sv%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\630e16a1-Actraiser 2 %28Europe%29 %28En,Fr,De%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\797e2e82-Spirou %28Europe%29 %28En,Fr,De,Es%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\7a313722-Hebereke%27s Popoon %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\7e2c7143-Lucky Luke %28Europe%29 %28En,Fr,De,Es%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\83af6152-Asterix &amp; Obelix %28Europe%29 %28En,Fr,De,Es%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\8d2596a7-Manchester United Championship Soccer %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\91a03035-Pop%27n TwinBee - Rainbow Bell Adventures %28Europe, Germany%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\96dec679-Lothar Matthaeus Super Soccer %28Germany%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\9b1ea779-Fever Pitch Soccer %28Europe%29 %28En,Fr,De,Es,It%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\a27e2664-ActRaiser %28France%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\b9d6269d-Joe &amp; Mac 3 - Lost in the Tropics %28Europe%29 %28En,Fr,De%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\bbcd16f4-Soccer Shootout %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\d190cf58-Eric Cantona Football Challenge %28France%29 %28En,Fr,De,Es,It,Nl,Sv%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\d56c21a1-Donald in Maui Mallard %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\e4925f15-Adventures of Dr. Franken, The %28Europe%29 %28En,Fr,De,Es,It,Nl,Sv%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\f1dce2b7-Tintin in Tibet %28Europe%29 %28En,Fr,De,Nl%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\fabff8bd-Zombies %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\fb1d16c4-Super Ice Hockey %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\fce7bade-Kevin Keegan%27s Player Manager %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\4824a630-Marko%27s Magic Football %28Europe%29 %28En,Fr,De,Es%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\6d16f5e7-World Cup Striker %28Europe%29 %28En,Fr,De%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\6f7d1745-Smash Tennis %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\974523ff-Terranigma %28Europe, France, Germany, Spain%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\app.manifest" />
+    <Content Include="user_mods\snes_custom_filters.hmod\canoe-custom-filters">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\snes_custom_filters.hmod\install">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\snes_custom_filters.hmod\p8030_snes_filters">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\snes_custom_filters.hmod\uninstall">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\GameGenieDB.xml">
@@ -2305,32 +2434,32 @@
   <ItemGroup>
     <PublishFile Include="data\GameGenieDB.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\nescarts.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\snescarts.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

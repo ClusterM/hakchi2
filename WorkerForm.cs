@@ -83,7 +83,22 @@ namespace com.clusterrr.hakchi_gui
         string selectedFile = null;
         public NesMiniApplication[] addedApplications;
         public static int NandCTotal, NandCUsed, NandCFree, WritedGamesSize, SaveStatesSize;
-        public const long ReservedMemory = 10;
+        public static long ReservedMemory
+        {
+            get
+            {
+                switch (ConfigIni.ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        return 10;
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return 10;
+                }
+            }
+        }
 
         public WorkerForm(MainForm parentForm)
         {
@@ -137,7 +152,7 @@ namespace com.clusterrr.hakchi_gui
                 "c3378edfc1b96a5268a066d5fbe12d89", // Super Famicom Mini (JAP)
             };
             correctKeys[MainForm.ConsoleType.NES] =
-                correctKeys[MainForm.ConsoleType.Famicom] = 
+                correctKeys[MainForm.ConsoleType.Famicom] =
                 new string[] { "bb8f49e0ae5acc8d5f9b7fa40efbd3e7" };
             correctKeys[MainForm.ConsoleType.SNES] =
                 correctKeys[MainForm.ConsoleType.SuperFamicom] =
@@ -348,14 +363,14 @@ namespace com.clusterrr.hakchi_gui
             catch { }
         }
 
-        void ShowError(Exception ex, bool dontStop = false)
+        void ShowError(Exception ex, bool dontStop = false, string prefix = null)
         {
             if (Disposing) return;
             try
             {
                 if (InvokeRequired)
                 {
-                    Invoke(new Action<Exception, bool>(ShowError), new object[] { ex, dontStop });
+                    Invoke(new Action<Exception, bool, string>(ShowError), new object[] { ex, dontStop, prefix });
                     return;
                 }
                 TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Error);
@@ -367,7 +382,7 @@ namespace com.clusterrr.hakchi_gui
                 //if (ex is MadWizard.WinUSBNet.USBException) // TODO
                 //    MessageBox.Show(this, message + "\r\n" + Resources.PleaseTryAgainUSB, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //else
-                MessageBox.Show(this, message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, (!string.IsNullOrEmpty(prefix) ? (prefix + ": ") : "") + message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
                 if (!dontStop)
                 {
@@ -1266,6 +1281,7 @@ namespace com.clusterrr.hakchi_gui
             addedApplications = null;
             NesMiniApplication.ParentForm = this;
             NesMiniApplication.NeedPatch = null;
+            NesMiniApplication.Need3rdPartyEmulator = null;
             NesGame.IgnoreMapper = null;
             SnesGame.NeedAutoDownloadCover = null;
             int count = 0;
@@ -1361,8 +1377,16 @@ namespace com.clusterrr.hakchi_gui
                 catch (Exception ex)
                 {
                     if (ex is ThreadAbortException) return null;
-                    Debug.WriteLine(ex.Message + ex.StackTrace);
-                    ShowError(ex, true);
+                    if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                    {
+                        Debug.WriteLine(ex.InnerException.Message + ex.InnerException.StackTrace);
+                        ShowError(ex.InnerException, true, Path.GetFileName(sourceFileName));
+                    }
+                    else
+                    {
+                        Debug.WriteLine(ex.Message + ex.StackTrace);
+                        ShowError(ex, true, Path.GetFileName(sourceFileName));
+                    }
                 }
                 if (app != null)
                     apps.Add(app);
