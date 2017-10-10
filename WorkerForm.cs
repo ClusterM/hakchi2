@@ -774,6 +774,7 @@ namespace com.clusterrr.hakchi_gui
             string gamesPath = NesMiniApplication.GamesCloverPath;
             const string rootFsPath = "/var/lib/hakchi/rootfs";
             const string installPath = "/var/lib/hakchi";
+            const string squashFsPath = "/var/lib/hakchi/squashfs";
             int progress = 0;
             int maxProgress = 400;
             if (Games == null || Games.Count == 0)
@@ -869,7 +870,11 @@ namespace com.clusterrr.hakchi_gui
                         case MainForm.ConsoleType.SNES:
                         case MainForm.ConsoleType.SuperFamicom:
                             originalSyncCode = $"mkdir -p \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
-                                $"rsync -ac \"{gamesPath}/{originalCode}/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
+                                $"ln -s \"{squashFsPath}{gamesPath}/{originalCode}/{originalCode}.png\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.png\" &&" +
+                                $"ln -s \"{squashFsPath}{gamesPath}/{originalCode}/{originalCode}_small.png\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}_small.png\" &&" +
+                                $"ln -s \"{squashFsPath}{gamesPath}/{originalCode}/{originalCode}.sfrom\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.sfrom\" &&" +
+                                $"ln -s \"{squashFsPath}{gamesPath}/{originalCode}/autoplay/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/autoplay\" &&" +
+                                $"cp \"{gamesPath}/{originalCode}/{originalCode}.desktop\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.desktop\" && " +
                                 $"sed -i -e 's/\\/usr\\/bin\\/clover-canoe-shvc/\\/bin\\/clover-canoe-shvc-wr/g' \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.desktop\"";
                             /*
                             // With compression but very slow
