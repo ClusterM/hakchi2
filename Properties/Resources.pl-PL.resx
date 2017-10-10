@@ -266,7 +266,7 @@
     <value>Główne Menu</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Przykro mi, {0} używa mappera #{1} który jest nieobsługiwany przez NES/SNES Mini i gra prawdopodnie nie zadziała. Czy chcesz mimo to ją dodać?</value>
+    <value>Przykro mi, {0} używa mappera #{1} który jest nieobsługiwany przez NES Mini i gra prawdopodnie nie zadziała. Czy chcesz mimo to ją dodać?</value>
   </data>
   <data name="Membooting">
     <value>Bootowanie kernela z RAMu...</value>
@@ -414,5 +414,8 @@
   </data>
   <data name="DownloadCoverQ">
     <value>Do you want to try to download box art for "{0}"?</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
 </root>

@@ -58,7 +58,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="labelSelectConsole.Text">
-    <value>开始之前请先选择你的主机类型。如果之后你希望使用其他类型的主机，可以在“设置”菜单中进行更改。</value>
+  <data name="$this.Text">
+    <value>セーブステート マネージャー</value>
+  </data>
+  <data name="buttonDelete.Text">
+    <value>選択した項目を削除</value>
+  </data>
+  <data name="buttonExport.Text">
+    <value>選択した項目をエクスポート</value>
+  </data>
+  <data name="buttonImport.Text">
+    <value>インポート</value>
+  </data>
+  <data name="colCode.Text">
+    <value>コード</value>
+  </data>
+  <data name="colFlags.Text">
+    <value>セーブスロット</value>
+  </data>
+  <data name="colName.Text">
+    <value>名前</value>
+  </data>
+  <data name="colSize.Text">
+    <value>サイズ</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text">
+    <value>選択した項目を削除</value>
+  </data>
+  <data name="exportToolStripMenuItem.Text">
+    <value>選択した項目をエクスポート</value>
+  </data>
+  <data name="importToolStripMenuItem.Text">
+    <value>インポート</value>
   </data>
 </root>

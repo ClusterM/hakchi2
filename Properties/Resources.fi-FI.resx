@@ -248,7 +248,7 @@
     <value>Päävalikko</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Valitettavasti "{0}" käyttää mapperia #{1}, jota NES/SNES Mini ei tue ja peli ei luultavasti käynnisty oletusemulaattorilla. Sen pitäisi kuitenkin toimi lisäemulaattorimoduuli asennettuna. Haluatko lisätä pelin?</value>
+    <value>Valitettavasti "{0}" käyttää mapperia #{1}, jota NES Mini ei tue ja peli ei luultavasti käynnisty oletusemulaattorilla. Sen pitäisi kuitenkin toimi lisäemulaattorimoduuli asennettuna. Haluatko lisätä pelin?</value>
   </data>
   <data name="MemoryFull">
     <value>Valitettavasti {0} megatavua pelejä on liikaa.</value>
@@ -405,6 +405,9 @@
   </data>
   <data name="Membooting">
     <value>Booting the kernel from RAM...</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
   <data name="Removing">
     <value>Removing {0}...</value>

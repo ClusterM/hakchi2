@@ -79,8 +79,17 @@
   <data name="BuildingFolders">
     <value>Creant l'estructura de les carpetes...</value>
   </data>
+  <data name="Compressing">
+    <value>Comprimint {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Comprimint jocs...</value>
+  </data>
   <data name="Congratulations">
     <value>Enhorabona!</value>
+  </data>
+  <data name="Cover">
+    <value>Caràtula</value>
   </data>
   <data name="CustomKernel">
     <value>Custom kernel</value>
@@ -90,6 +99,12 @@
   </data>
   <data name="CustomWarning">
     <value>Ara teniu que flashetjar el custom kernel.</value>
+  </data>
+  <data name="Decompressing">
+    <value>Descomprimint {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Descomprimint jocs...</value>
   </data>
   <data name="Default30games">
     <value>Jocs originals</value>
@@ -109,6 +124,9 @@
   <data name="DeleteSavesQ">
     <value>Voleu eliminar els punts de suspensió seleccionats?</value>
   </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Eliminar els jocs seleccionat(s)?</value>
+  </data>
   <data name="DoYouWantCancel">
     <value>Voleu cancel·lar la operació actual?</value>
   </data>
@@ -126,6 +144,9 @@
   </data>
   <data name="DownloadAllCoversTitle">
     <value>Descarregant caràtules para tots els jocs</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>Voleu probar a baixar la cartaula per al joc</value>
   </data>
   <data name="DumpKernelQ">
     <value>Voleu bolcar el kernel?</value>
@@ -226,6 +247,9 @@
   <data name="InstallingMods">
     <value>Instal·lant mòduls...</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>Consola detectada invàlida! Consola detectada:</value>
+  </data>
   <data name="InvalidKernelHeader">
     <value>L'encapçalament del kernel no és vàlid</value>
   </data>
@@ -248,7 +272,10 @@
     <value>Menú d'inici</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Aquest joc, "{0}" fa servir el mapper #{1} i no es compatible amb la NES/SNES Mini, és probable que no iniciï amb el emulador predeterminat, però deuria funcionar si teniu un mòdul extra instal·lat d'un altre emulador. Voleu afegir aquest joc?</value>
+    <value>Aquest joc, "{0}" fa servir el mapper #{1} i no es compatible amb la NES Mini, és probable que no iniciï amb el emulador predeterminat, però deuria funcionar si teniu un mòdul extra instal·lat d'un altre emulador. Voleu afegir aquest joc?</value>
+  </data>
+  <data name="Membooting">
+    <value>Iniciant el kernel des de la RAM...</value>
   </data>
   <data name="MemoryFull">
     <value>Hi ha {0} MB en jocs, és molt i podria donar error en sincronitzar, és recomanable alliberar memòria</value>
@@ -304,6 +331,12 @@
   <data name="PressOkToContinue">
     <value>Premeu Ok per continuar</value>
   </data>
+  <data name="Removing">
+    <value>Eliminant {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Eliminant jocs</value>
+  </data>
   <data name="ReplaceKernelQ">
     <value>Ja has realitzat el bolcat del kernel. Si realment voleu reemplaçar la copia de seguretat del teu kernel i entens el que esteu fent, borra la carpeta "hakchi2/dump"</value>
   </data>
@@ -321,6 +354,9 @@
   </data>
   <data name="SelectModsUninstall">
     <value>Selecciona els mòduls que vols eliminar de la NES/SNES Mini</value>
+  </data>
+  <data name="Size">
+    <value>Tamany:</value>
   </data>
   <data name="SizeOfSaves">
     <value>Grandària total dels punts de suspensió seleccionats:</value>
@@ -379,40 +415,7 @@
   <data name="YesForAll">
     <value>Sí per tots</value>
   </data>
-  <data name="Compressing">
-    <value>Compressing {0}...</value>
-  </data>
-  <data name="CompressingGames">
-    <value>Compressing games...</value>
-  </data>
-  <data name="Cover">
-    <value>Box art</value>
-  </data>
-  <data name="Decompressing">
-    <value>Decompressing {0}...</value>
-  </data>
-  <data name="DecompressingGames">
-    <value>Decompressing games...</value>
-  </data>
-  <data name="DeleteSelectedGamesQ">
-    <value>Delete selected game(s)?</value>
-  </data>
-  <data name="DownloadCoverQ">
-    <value>Do you want to try to download box art for "{0}"?</value>
-  </data>
-  <data name="InvalidConsoleSelected">
-    <value>Invalid console selected! Detected console:</value>
-  </data>
-  <data name="Membooting">
-    <value>Booting the kernel from RAM...</value>
-  </data>
-  <data name="Removing">
-    <value>Removing {0}...</value>
-  </data>
-  <data name="RemovingGames">
-    <value>Removing games...</value>
-  </data>
-  <data name="Size">
-    <value>Size:</value>
+  <data name="Need3rdPartyEmulator">
+    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
 </root>

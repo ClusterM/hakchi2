@@ -58,7 +58,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="labelSelectConsole.Text">
-    <value>开始之前请先选择你的主机类型。如果之后你希望使用其他类型的主机，可以在“设置”菜单中进行更改。</value>
+  <data name="$this.Text">
+    <value>ファミコン/スーファミ ミニを待機しています...</value>
+  </data>
+  <data name="buttonDriver.Text">
+    <value>ドライバーをインストール</value>
+  </data>
+  <data name="label1.Text">
+    <value>以下の順に進めてください:</value>
+  </data>
+  <data name="label2.Text">
+    <value>1.ファミコン/スーファミ ミニの電源が切れていることを確認</value>
+  </data>
+  <data name="label3.Text">
+    <value>2.ファミコン/スーファミ ミニとPCをUSBケーブルで再接続</value>
+  </data>
+  <data name="label4.Text">
+    <value>3. RESETを押しながら電源を入れる</value>
+  </data>
+  <data name="label5.Text">
+    <value>4.数秒待ちRESETから指を離す(この時LEDは無灯火)</value>
+  </data>
+  <data name="label6.Text">
+    <value>5. ドライバーをインストール(インストールされていない場合):</value>
   </data>
 </root>

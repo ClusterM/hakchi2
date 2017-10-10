@@ -406,6 +406,9 @@
   <data name="NandDumped">
     <value>NAND memory is dumped successfully.</value>
   </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
+  </data>
   <data name="Removing">
     <value>Removing {0}...</value>
   </data>

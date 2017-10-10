@@ -16,7 +16,7 @@ namespace com.clusterrr.hakchi_gui
     {
         public enum SnesRomType { LoRom = 0x14, HiRom = 0x15 };
 
-        const string DefaultArgs = "--volume 100 -rollback-snapshot-period 600";
+        const string DefaultCanoeArgs = "--volume 100 -rollback-snapshot-period 600";
         static List<byte> SfxTypes = new List<byte>() { 0x13, 0x14, 0x15, 0x1a };
         static List<byte> Dsp1Types = new List<byte>() { 0x03, 0x05 };
         static List<byte> SA1Types = new List<byte>() { 0x34, 0x35 };
@@ -58,7 +58,7 @@ namespace com.clusterrr.hakchi_gui
             { "YOSSY'S ISLAND", 0x1243 },
             { "FINAL FIGHT", 0x100E },
             { "DIDDY'S KONG QUEST", 0x105D },
-            { "KIRBY'S DREAM LAND 3", 0x10A2 },
+            //{ "KIRBY'S DREAM LAND 3", 0x10A2 }, // Reported as problematic, using ID from Mario RPG
             { "BREATH OF FIRE 2", 0x1068 },
             { "FINAL FIGHT 2", 0x10E1 },
             { "MEGAMAN X2", 0x1117 },
@@ -174,7 +174,7 @@ namespace com.clusterrr.hakchi_gui
             if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
             {
                 application = "/bin/clover-canoe-shvc-wr -rom";
-                args = DefaultArgs;
+                args = DefaultCanoeArgs;
                 if (ext.ToLower() != ".sfrom") // Need to patch for canoe
                 {
                     Debug.WriteLine($"Trying to convert {inputFileName}");

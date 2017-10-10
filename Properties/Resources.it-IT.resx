@@ -88,6 +88,9 @@
   <data name="Congratulations">
     <value>Congratulazioni!</value>
   </data>
+  <data name="Cover">
+    <value>Copertina</value>
+  </data>
   <data name="CustomKernel">
     <value>Kernel modificato</value>
   </data>
@@ -141,6 +144,9 @@
   </data>
   <data name="DownloadAllCoversTitle">
     <value>Scarica le copertine per tutti i giochi (mi sento fortunato!)</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>Vuoi provare a scaricare la copertina per "{0}"?</value>
   </data>
   <data name="DumpKernelQ">
     <value>Vuoi dumpare il kernel?</value>
@@ -266,7 +272,7 @@
     <value>Menu HOME</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Mi dispiace, ma "{0}" utilizza il mapper #{1} e questo mapper non è supportato dal NES/SNES Mini ed il gioco probabilmente non partirà con l'emulatore originale di default. Dovrebbe invece funzionare se si è installato il modulo di un altro emulatore. Vuoi aggiungere il gioco comunque?</value>
+    <value>Mi dispiace, ma "{0}" utilizza il mapper #{1} e questo mapper non è supportato dal NES Mini ed il gioco probabilmente non partirà con l'emulatore originale di default. Dovrebbe invece funzionare se si è installato il modulo di un altro emulatore. Vuoi aggiungere il gioco comunque?</value>
   </data>
   <data name="Membooting">
     <value>Avvio del kernel dalla RAM...</value>
@@ -279,6 +285,9 @@
   </data>
   <data name="NandDumped">
     <value>Memoria NAND dumpata con successo.</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Oops, "{0}" potrebbe non funzionare correttamente con l'emulatore originale. Vuoi utilizzare un emulatore non originale per questo gioco (deve essere installato)?</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>I nuovi giochi sono stati spostati nella cartella "Unsorted".</value>
@@ -408,11 +417,5 @@
   </data>
   <data name="YesForAll">
     <value>Si per tutti</value>
-  </data>
-  <data name="Cover">
-    <value>Box art</value>
-  </data>
-  <data name="DownloadCoverQ">
-    <value>Do you want to try to download box art for "{0}"?</value>
   </data>
 </root>

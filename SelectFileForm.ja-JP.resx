@@ -58,7 +58,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="labelSelectConsole.Text">
-    <value>开始之前请先选择你的主机类型。如果之后你希望使用其他类型的主机，可以在“设置”菜单中进行更改。</value>
+  <data name="$this.Text">
+    <value>ファイルを選択</value>
+  </data>
+  <data name="buttonArchive.Text">
+    <value>アーカイブからインポート</value>
   </data>
 </root>

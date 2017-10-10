@@ -79,8 +79,17 @@
   <data name="BuildingFolders">
     <value>Membangun Folders Structure...</value>
   </data>
+  <data name="Compressing">
+    <value>Mengkompres {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Mengkompres game...</value>
+  </data>
   <data name="Congratulations">
     <value>Selamat!</value>
+  </data>
+  <data name="Cover">
+    <value>Box art</value>
   </data>
   <data name="CustomKernel">
     <value>Kernel custom</value>
@@ -90,6 +99,12 @@
   </data>
   <data name="CustomWarning">
     <value>Sekarang Anda harus mem-flash kernel custom ke NES/SNES Mini. Ini hanya perlu dilakukan sekali saja. Apakah Anda ingin melanjutkan?</value>
+  </data>
+  <data name="Decompressing">
+    <value>Mendekompres {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Mendekompres game...</value>
   </data>
   <data name="Default30games">
     <value>xx game orisinal</value>
@@ -109,6 +124,9 @@
   <data name="DeleteSavesQ">
     <value>Apakah Anda ingin menghapus Save State tersebut?</value>
   </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Hapus game terpilih?</value>
+  </data>
   <data name="DoYouWantCancel">
     <value>Apakah Anda ingin membatalkan operasi ini?</value>
   </data>
@@ -126,6 +144,9 @@
   </data>
   <data name="DownloadAllCoversTitle">
     <value>Unduh box art untuk semua game (Saya lagi beruntung!)</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>Apakah Anda ingin mengunduh box art untuk "{0}"?</value>
   </data>
   <data name="DumpKernelQ">
     <value>Apakah Anda ingin men-dump kernel?</value>
@@ -226,6 +247,9 @@
   <data name="InstallingMods">
     <value>Menginstal mod...</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>Konsol yang dipilih invalid! Konsol yang terdeteksi:</value>
+  </data>
   <data name="InvalidKernelHeader">
     <value>Header kernel tidak valid.</value>
   </data>
@@ -248,7 +272,10 @@
     <value>Menu Home</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Maaf, "{0}" menggunakan mapper #{1} tetapi mapper ini tidak didukung oleh NES/SNES Mini dan game ini mungkin tidak akan dapat dimainkan dengan emulator bawaan, kecuali jika modul emulator lain diinstal. Apakah Anda tetap ingin menambahkan game ini?</value>
+    <value>Maaf, "{0}" menggunakan mapper #{1} tetapi mapper ini tidak didukung oleh NES Mini dan game ini mungkin tidak akan dapat dimainkan dengan emulator bawaan, kecuali jika modul emulator lain diinstal. Apakah Anda tetap ingin menambahkan game ini?</value>
+  </data>
+  <data name="Membooting">
+    <value>Mem-boot kernel dari RAM...</value>
   </data>
   <data name="MemoryFull">
     <value>Maaf, jumlah game Anda saat ini adalah {0}MB, terlalu banyak untuk disimpan.</value>
@@ -304,6 +331,12 @@
   <data name="PressOkToContinue">
     <value>Tekan OK untuk melanjutkan.</value>
   </data>
+  <data name="Removing">
+    <value>Menghapus {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Menghapus game...</value>
+  </data>
   <data name="ReplaceKernelQ">
     <value>Anda sudah mempunyai dump kernel. Jika Anda BENAR-BENAR ingin mengganti dump cadangan Anda dan tahu BENAR apa yang Anda lakukan, hapus folder "hakchi2/dump" secara manual.</value>
   </data>
@@ -321,6 +354,9 @@
   </data>
   <data name="SelectModsUninstall">
     <value>Pilih modul yang akan dicopot dari NES/SNES Mini</value>
+  </data>
+  <data name="Size">
+    <value>Ukuran:</value>
   </data>
   <data name="SizeOfSaves">
     <value>Ukuran Save State yang dipilih</value>
@@ -371,7 +407,7 @@
     <value>Peringatan!</value>
   </data>
   <data name="Wow">
-    <value>Wow</value>
+    <value>Wow!</value>
   </data>
   <data name="Yes">
     <value>Ya</value>
@@ -379,40 +415,7 @@
   <data name="YesForAll">
     <value>Ya untuk semua</value>
   </data>
-  <data name="Compressing">
-    <value>Compressing {0}...</value>
-  </data>
-  <data name="CompressingGames">
-    <value>Compressing games...</value>
-  </data>
-  <data name="Cover">
-    <value>Box art</value>
-  </data>
-  <data name="Decompressing">
-    <value>Decompressing {0}...</value>
-  </data>
-  <data name="DecompressingGames">
-    <value>Decompressing games...</value>
-  </data>
-  <data name="DeleteSelectedGamesQ">
-    <value>Delete selected game(s)?</value>
-  </data>
-  <data name="DownloadCoverQ">
-    <value>Do you want to try to download box art for "{0}"?</value>
-  </data>
-  <data name="InvalidConsoleSelected">
-    <value>Invalid console selected! Detected console:</value>
-  </data>
-  <data name="Membooting">
-    <value>Booting the kernel from RAM...</value>
-  </data>
-  <data name="Removing">
-    <value>Removing {0}...</value>
-  </data>
-  <data name="RemovingGames">
-    <value>Removing games...</value>
-  </data>
-  <data name="Size">
-    <value>Size:</value>
+  <data name="Need3rdPartyEmulator">
+    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
 </root>

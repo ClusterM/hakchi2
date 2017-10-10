@@ -245,7 +245,7 @@
     <value>HEMMA Meny</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Tyvärr, "{0}" använder mappning # {1} men den här mappningen stöds inte av NES/SNES Mini och spelet kommer förmodligen inte att starta med standardemulatorn. Men det ska fungera om en annan emulatormodul installeras. Vill du lägga till det här spelet?</value>
+    <value>Tyvärr, "{0}" använder mappning # {1} men den här mappningen stöds inte av NES Mini och spelet kommer förmodligen inte att starta med standardemulatorn. Men det ska fungera om en annan emulatormodul installeras. Vill du lägga till det här spelet?</value>
   </data>
   <data name="MemoryFull">
     <value>Tyvärr, det finns {0} MBytes av spel, det är för mycket.</value>
@@ -405,6 +405,9 @@
   </data>
   <data name="NandDumped">
     <value>NAND memory is dumped successfully.</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
   <data name="Removing">
     <value>Removing {0}...</value>

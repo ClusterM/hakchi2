@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Resources;
-using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
 {

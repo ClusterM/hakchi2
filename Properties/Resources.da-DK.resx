@@ -137,7 +137,7 @@
     <value>Kernen er allerede patched eller den er ukendt</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Beklager, "{0}" bruger mapper #{1}, men denne mapper understøttes ikke af NES/SNES Mini, og spillet vil sandsynligvis ikke starte med standard emulatoren. Men det skulle fungere, hvis en anden emulator modul installeres. Vil du tilføje dette spil?</value>
+    <value>Beklager, "{0}" bruger mapper #{1}, men denne mapper understøttes ikke af NES Mini, og spillet vil sandsynligvis ikke starte med standard emulatoren. Men det skulle fungere, hvis en anden emulator modul installeres. Vil du tilføje dette spil?</value>
   </data>
   <data name="NoKernel">
     <value>Ingen kerne dump fundet</value>
@@ -333,6 +333,9 @@
   </data>
   <data name="NandDumped">
     <value>NAND memory is dumped successfully.</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>New games are moved to the "Unsorted" folder.</value>

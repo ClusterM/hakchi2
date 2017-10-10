@@ -267,7 +267,7 @@ click "Synchronise" and follow the instructions. Good luck!</value>
     <value>Root</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Sorry, "{0}" uses mapper #{1}, which is not supported by the NES/SNES Mini's built in emulator. However, it will probably work with external emulator mods. Continue?</value>
+    <value>Sorry, "{0}" uses mapper #{1}, which is not supported by the NES Mini's built in emulator. However, it will probably work with external emulator mods. Continue?</value>
   </data>
   <data name="Membooting">
     <value>Booting the kernel from RAM...</value>
@@ -415,5 +415,8 @@ click "Synchronise" and follow the instructions. Good luck!</value>
   </data>
   <data name="DownloadCoverQ">
     <value>Do you want to try to download box art for "{0}"?</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
 </root>

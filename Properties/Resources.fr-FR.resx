@@ -266,7 +266,7 @@
     <value>Menu principal</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Désolé, "{0}" utilise le mapper #{1} mais ce mapper n'est pas supporté par la NES/SNES Mini et le jeu ne va probablement pas démarrer avec l'émulateur par defaut. Mais cela peut fonctionner si d'autres modules émulateurs sont installés. Voulez-vous ajouter ce jeu?</value>
+    <value>Désolé, "{0}" utilise le mapper #{1} mais ce mapper n'est pas supporté par la NES Mini et le jeu ne va probablement pas démarrer avec l'émulateur par defaut. Mais cela peut fonctionner si d'autres modules émulateurs sont installés. Voulez-vous ajouter ce jeu?</value>
   </data>
   <data name="Membooting">
     <value>Démarrer le kernel à partir du RAM</value>
@@ -414,5 +414,8 @@
   </data>
   <data name="DownloadCoverQ">
     <value>Do you want to try to download box art for "{0}"?</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
 </root>

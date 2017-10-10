@@ -95,7 +95,7 @@
     <value>Comprimeer de niet-NES spellen (als je een extra emulator hebt geïnstalleerd)</value>
   </data>
   <data name="compressGamesToolStripMenuItem.Text">
-    <value>Comprimeer spellen bij toevoegen</value>
+    <value>Comprimeer de spellen tijdens het toevoegen</value>
   </data>
   <data name="compressSelectedGamesToolStripMenuItem.Text">
     <value>Comprimeer geselecteerde spellen</value>
@@ -134,7 +134,7 @@
     <value>Kernel opslaan</value>
   </data>
   <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump gedecodeerde NAND-B partitie</value>
+    <value>Dump de gedecodeerde NAND-B partitie</value>
   </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Dump de gehele NAND flash</value>
@@ -227,10 +227,10 @@
     <value>Maximaal aantal spellen per pagina/map</value>
   </data>
   <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Start originele kernel vanaf RAM</value>
+    <value>Start de originele kernel vanaf RAM</value>
   </data>
   <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Start gepatchde kernel vanaf RAM</value>
+    <value>Start de gepatchde kernel vanaf RAM</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Modules</value>
@@ -239,7 +239,7 @@
     <value>Open FTP client</value>
   </data>
   <data name="openFileDialogImage.Title">
-    <value>Selecteer verpakkingsafbeelding voor het spel</value>
+    <value>Selecteer een verpakkingsafbeelding voor het spel</value>
   </data>
   <data name="openFileDialogNes.Title">
     <value>Geselecteerde spellen:</value>
@@ -272,7 +272,7 @@
     <value>Gebruik een knop combinatie om te resetten</value>
   </data>
   <data name="saveDumpFileDialog.Title">
-    <value>Selecteer bestandsnaam voor dump</value>
+    <value>Selecteer de bestandsnaam voor dump</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Bewaar nu de instelling op de NES/SNES Mini</value>

@@ -59,270 +59,270 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FTPToolStripMenuItem.Text">
-    <value>在ftp://root:clover@127.0.0.1:1021上运行FTP服务器</value>
+    <value>FTPサーバーアドレス ftp://root:clover@127.0.0.1:1021</value>
   </data>
   <data name="aboutToolStripMenuItem.Text">
-    <value>关于...</value>
+    <value>About...</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>添加游戏(&amp;G)</value>
+    <value>他のゲームを追加 (&amp;G)</value>
   </data>
   <data name="addPresetToolStripMenuItem.Text">
-    <value>添加预设组</value>
+    <value>プリセットを作成</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
-    <value>原版内置游戏在根目录 -&gt; 自动分配到文件夹</value>
+    <value>プリインストールされたゲームをルートに配置 -&gt; 自動でサブフォルダーに配置</value>
   </data>
   <data name="automaticToolStripMenuItem.Text">
-    <value>全自动</value>
+    <value>自動</value>
   </data>
   <data name="buttonAddGames.Text">
-    <value>添加游戏</value>
+    <value>ゲームの新規追加</value>
   </data>
   <data name="buttonBrowseImage.Text">
-    <value>浏览</value>
+    <value>参照</value>
   </data>
   <data name="buttonStart.Text">
-    <value>将选中的游戏同步到迷你红白机</value>
+    <value>選択されたファイルを NES/SNES ミニ へ同期</value>
   </data>
   <data name="checkBoxCompressed.Text">
-    <value>压缩</value>
+    <value>圧縮</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
-    <value>手柄强化功能</value>
-  </data>
-  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
-    <value>压缩非红白机游戏 ( 如其他仿真器的扩充模块 )</value>
+    <value>コントローラーハック</value>
   </data>
   <data name="compressGamesToolStripMenuItem.Text">
-    <value>添加游戏时进行压缩</value>
+    <value>新しいゲームを追加した時に圧縮を指定する</value>
   </data>
   <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>压缩选中的游戏</value>
+    <value>選択したゲームを圧縮</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
-    <value>主机型号</value>
+    <value>コンソールタイプ</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>自定义 - 每次均显示文件夹管理器</value>
+    <value>カスタム -フォルダーマネージャーを毎回表示</value>
   </data>
   <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>解压缩选中的游戏</value>
+    <value>選択したゲームを解凍</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
-    <value>删除游戏</value>
+    <value>ゲームを削除</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
-    <value>删除预设组</value>
+    <value>プリセットを削除</value>
   </data>
   <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>删除选中的游戏</value>
+    <value>選択したゲームを削除</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
-    <value>禁用分页/文件夹</value>
+    <value>ページ/フォルダー を無効化</value>
   </data>
   <data name="donateToolStripMenuItem.Text">
-    <value>捐款</value>
+    <value>寄付</value>
   </data>
   <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>为选中的游戏下载包装图片</value>
+    <value>選択したゲームのパッケージ画像をダウンロード</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>下载所有游戏的包装图片</value>
+    <value>全てのゲームのカバー写真をダウンロード</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>导出内核镜像</value>
+    <value>カーネルをダンプ</value>
   </data>
   <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>导出解密的NAND-B分区</value>
+    <value>復号化されたNAND-Bパーティションをダンプ</value>
   </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>导出完整的NAND闪存...</value>
+    <value>NAND型フラッシュメモリ全体をダンプする</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
-    <value>用“Select + A或B”打开A/B键连发</value>
+    <value>"Select+A/B"で連射モード(A,Bボタン)</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
-    <value>禁用癫痫保护</value>
+    <value>てんかん予防を無効化(原色表示)</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
-    <value>退出(&amp;E)</value>
+    <value>終了(&amp;E)</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
-    <value>常见问答</value>
+    <value>FAQ</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
-    <value>文件(&amp;F)</value>
+    <value>ファイル(&amp;F)</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>刷写定制内核镜像</value>
+    <value>カスタムカーネルを書き込み</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>刷写原版内核镜像</value>
+    <value>オリジナルカーネルを書き込み</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>原版内置游戏在根目录 -&gt; 按文件夹显示，平均分配</value>
+    <value>プリインストールされたゲームをルートに配置 -&gt; フォルダーとゲームを均等に分配</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>原版内置游戏在根目录 -&gt; 按文件夹显示，以首字母分配</value>
+    <value>プリインストールされたゲームをルートに配置 -&gt; 頭文字ごとにフォルダーを生成</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>按文件夹显示，以首字母分配</value>
+    <value>フォルダー, 頭文字で分配</value>
   </data>
   <data name="foldersToolStripMenuItem.Text">
-    <value>按文件夹显示，平均分配</value>
+    <value>フォルダー, 均等にゲームを分配</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>包含正式发行版的GitHub网页</value>
+    <value>Githubで最新のリリースを確認</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>全局命令行参数 (专业用户使用!)</value>
+    <value>グローバルコマンドライン引数 (上級者向け)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>您可以隐藏某些原版内置游戏</value>
+    <value>プリインストールされたゲームを非表示にできます</value>
   </data>
   <data name="groupBoxOptions.Text">
-    <value>游戏选项</value>
+    <value>ゲームオプション</value>
   </data>
   <data name="helpToolStripMenuItem.Text">
-    <value>帮助(&amp;H)</value>
+    <value>ヘルプ(&amp;H)</value>
   </data>
   <data name="installModulesToolStripMenuItem.Text">
-    <value>安装扩展模块</value>
+    <value>拡張モジュールをインストール</value>
   </data>
   <data name="kernelToolStripMenuItem.Text">
-    <value>内核(&amp;K)</value>
+    <value>カーネル(&amp;K)</value>
   </data>
   <data name="label1.Text">
-    <value>发行日期 (年-月-日):</value>
+    <value>発売日 (YYYY-MM-DD):</value>
   </data>
   <data name="label2.Text">
-    <value>发行商:</value>
+    <value>パブリッシャー:</value>
   </data>
   <data name="label3.Text">
-    <value>命令行参数 (高级用户使用!) :</value>
+    <value>コマンドライン(上級者向け):</value>
   </data>
   <data name="label4.Text">
-    <value>游戏封面:</value>
+    <value>パッケージ画像:</value>
   </data>
   <data name="label5.Text">
-    <value>选择游戏:</value>
+    <value>ゲームを選択:</value>
   </data>
   <data name="label6.Text">
-    <value>最大玩家数:</value>
+    <value>プレイ人数:</value>
   </data>
   <data name="label7.Text">
-    <value>作弊码 (用逗号分隔) :</value>
+    <value>Game Genie コード(カンマ区切り):</value>
   </data>
   <data name="labelName.Text">
-    <value>名称:</value>
+    <value>ゲーム名:</value>
   </data>
   <data name="labelSize.Text">
-    <value>大小:</value>
+    <value>容量:</value>
   </data>
   <data name="languageToolStripMenuItem.Text">
-    <value>语言</value>
+    <value>言語</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
-    <value>单个页面/文件夹显示的游戏最大数量</value>
+    <value>1ページに表示する最大ゲーム数</value>
   </data>
   <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>从内存运行原版内核</value>
+    <value>オリジナルカーネルをRAMから起動</value>
   </data>
   <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>从内存运行修改版内核</value>
+    <value>パッチされたカーネルをRAMから起動する</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
-    <value>扩展模块(&amp;M)</value>
+    <value>モジュール(&amp;M)</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
-    <value>打开FTP客户端</value>
+    <value>FTPクライアントを開く</value>
   </data>
   <data name="openFileDialogImage.Title">
-    <value>选择游戏的包装图片</value>
+    <value>ゲームのパッケージ画像を選択</value>
   </data>
   <data name="openFileDialogNes.Title">
-    <value>选择游戏</value>
+    <value>ゲームを選択</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
-    <value>打开Telnet客户端</value>
+    <value>Telnetクライアントを開く</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>原版内置游戏在根目录 -&gt; 分页显示，平均分配</value>
+    <value>プリインストールされたゲームをルートに配置 -&gt; ページとゲームを均等に分配</value>
   </data>
   <data name="pagesToolStripMenuItem.Text">
-    <value>分页显示，平均分配游戏</value>
+    <value>ページとゲームを分配</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>分页/文件夹结构</value>
+    <value>ページ/フォルダー 構造</value>
   </data>
   <data name="presetsToolStripMenuItem.Text">
-    <value>选辑预设组</value>
+    <value>プリセットを選択</value>
   </data>
   <data name="radioButtonOne.Text">
-    <value>单人游戏</value>
+    <value>1人プレイ</value>
   </data>
   <data name="radioButtonTwo.Text">
-    <value>双人非同时游戏</value>
+    <value>2人交互プレイ</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>双人同时游戏</value>
+    <value>2人同時プレイ</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>使用按键组合重启</value>
+    <value>コマンド入力でリセットする</value>
   </data>
   <data name="saveDumpFileDialog.Title">
-    <value>指定导出文件的文件名</value>
+    <value>ダンプ先のファイル名を指定</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>将设置保存到迷你红白机</value>
+    <value>設定をファミコン/スーファミ ミニへセーブ</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>即时存档管理器</value>
+    <value>セーブステート マネージャー</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
-    <value>搜索</value>
+    <value>検索</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text">
-    <value>全选</value>
+    <value>全て選択</value>
   </data>
   <data name="selectButtonCombinationToolStripMenuItem.Text">
-    <value>选择重启的按钮组合</value>
+    <value>リセットボタンにするコマンドを選択</value>
   </data>
   <data name="settingsToolStripMenuItem.Text">
-    <value>设置(&amp;S)</value>
+    <value>設定(&amp;S)</value>
   </data>
   <data name="shellToolStripMenuItem.Text">
-    <value>在Telnet://127.0.0.1:1023 (login:root)上运行Telnet 服务器</value>
+    <value>Telnetサーバーアドレス telnet://127.0.0.1:1023 (login:root)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
-    <value>开始同步</value>
+    <value>同期</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
-    <value>截取屏幕截图</value>
+    <value>スクリーンショットを撮る</value>
   </data>
   <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>刷写整个闪存(仅限专业用户使用！)</value>
+    <value>NAND全体をダンプ(上級者向け)</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
-    <value>工具(&amp;T)</value>
+    <value>ツール(&amp;T)</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
-    <value>卸载扩展模块</value>
+    <value>拡張モジュールをアンインストールする</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text">
-    <value>卸载</value>
+    <value>アンインストール</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
-    <value>取消选择</value>
+    <value>全て選択解除</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>上 + A + B = 2P手柄的Start键</value>
+    <value>2コンでStartボタン"十字キー上+A+B"(海外ソフト用)</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
-    <value>使用扩展字体</value>
+    <value>拡張フォントを使用する</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
-    <value>将经典控制器的X/Y按钮用作连发A/B键</value>
+    <value>クラシックコントローラーの X/Yボタン で A/Bボタンの連射入力</value>
+  </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
+    <value>Compress non-NES games (for additional emulator mod)</value>
   </data>
 </root>

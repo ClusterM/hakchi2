@@ -89,7 +89,7 @@
     <value>Gefeliciteerd!</value>
   </data>
   <data name="Cover">
-    <value>Verpakking</value>
+    <value>Verpakkingsafbeelding</value>
   </data>
   <data name="CustomKernel">
     <value>Aangepaste kernel</value>
@@ -170,7 +170,7 @@
     <value>Extra opdracht regel commando's</value>
   </data>
   <data name="FirstRun">
-    <value>Hallo! Ik vind het fijn dat je Hakchi2 gebruikt. Het werkt simpel: Klik gewoon op “Meer spellen toevoegen”, selecteer wat ROMs, druk op ”Synchroniseren” en volg de instructies. Veel plezier!</value>
+    <value>Hallo! Ik vind het fijn dat je Hakchi2 gebruikt. Het werkt heel simpel: Klik gewoon op “Meer spellen toevoegen”, selecteer wat ROMs, druk op ”Synchroniseren” en volg de instructies. Veel plezier!</value>
   </data>
   <data name="FlasingCustom">
     <value>De aangepaste kernel aan het flashen...</value>
@@ -272,7 +272,7 @@
     <value>HOME Menu</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Sorry, “{0}” gebruikt mapper #{1} maar die wordt niet ondersteund door NES/SNES Mini en dit spel zal waarschijnlijk niet werken met de standaard emulator. Maar wellicht wel als andere emulator modules zijn geinstalleerd. Wil je het toch proberen?</value>
+    <value>Sorry, “{0}” gebruikt mapper #{1} maar die wordt niet ondersteund door NES Mini en dit spel zal waarschijnlijk niet werken met de standaard emulator. Maar wellicht wel als andere emulator modules zijn geinstalleerd. Wil je het toch proberen?</value>
   </data>
   <data name="Membooting">
     <value>Kernel aan het starten vanaf RAM...</value>
@@ -392,7 +392,7 @@
     <value>Kernel aan het uploaden...</value>
   </data>
   <data name="UploadingOriginalGames">
-    <value>Verwerken van originele spellen...</value>
+    <value>Verwerken van de originele spellen...</value>
   </data>
   <data name="VerifyFailed">
     <value>Controle niet gelukt :O Dit is echt niet goed.</value>
@@ -414,5 +414,8 @@
   </data>
   <data name="YesForAll">
     <value>Op alles ja</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
 </root>

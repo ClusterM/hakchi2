@@ -85,11 +85,20 @@
   <data name="buttonStart.Text">
     <value>Sincronizar los juegos seleccionados con NES/SNES Mini</value>
   </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Comprimir</value>
+  </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Ayuda/atajos para los mandos</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Comprimir juegos que no sean de NES (para emuladores adicionales)</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Comprimir juegos al añadirlos</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Comprimir los juegos seleccionados</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Tipo de consola</value>
@@ -97,14 +106,26 @@
   <data name="customToolStripMenuItem.Text">
     <value>Personalizado - muestra la gestión de las carpetas todo el tiempo</value>
   </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Descomprimir los juegos seleccionados</value>
+  </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Eliminar juego</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Eliminar lista</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Eliminar los juegos sleecionados</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Desactivar páginas/carpetas</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Donar</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Descargar carátulas para los juegos seleccionados</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Descargar carátulas para todos los juegos</value>
@@ -196,11 +217,20 @@
   <data name="labelName.Text">
     <value>Nombre:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Tamaño:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
     <value>Idioma</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Número de juegos por página/carpeta</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Iniciar el kernel original desde la RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Iniciar el kernel parcheado desde la RAM</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Módulos</value>
@@ -271,6 +301,9 @@
   <data name="takeScreenshotToolStripMenuItem.Text">
     <value>Realizar captura de pantalla</value>
   </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flash todo el NAND (sólo usuarios avanzados)</value>
+  </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Herramientas</value>
   </data>
@@ -291,38 +324,5 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Usa X/Y en el mando Wii Classic Controller como Autofire A/B</value>
-  </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
-  </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
-  </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
-  </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Size:</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>
