@@ -94,29 +94,29 @@ namespace com.clusterrr.hakchi_gui
             new NesDefaultGame { Code = "CLV-P-HACLJ",  Name = "ダウンタウン熱血行進曲 それゆけ大運動会", Size = 587083 },
             new NesDefaultGame { Code = "CLV-P-HACPJ",  Name = "アトランチスの謎", Size = 376213 }
         };
-        static NesDefaultGame[] defaultSnesGames = new NesDefaultGame[]
-        {
-            new NesDefaultGame { Code = "CLV-P-SAAAE",  Name = "Super Mario World", Size = 2979540 },
-            new NesDefaultGame { Code = "CLV-P-SAABE",  Name = "F-ZERO", Size = 2770166 },
-            new NesDefaultGame { Code = "CLV-P-SAAEE",  Name = "The Legend of Zelda: A Link to the Past", Size = 2618796 },
-            new NesDefaultGame { Code = "CLV-P-SAAFE",  Name = "Super Mario Kart", Size = 2436777 },
-            new NesDefaultGame { Code = "CLV-P-SAAHE",  Name = "Super Metroid", Size = 6237435 },
-            new NesDefaultGame { Code = "CLV-P-SAAJE",  Name = "EarthBound", Size = 5954521 },
-            new NesDefaultGame { Code = "CLV-P-SAAKE",  Name = "Kirby's Dream Course", Size = 3210055 },
-            new NesDefaultGame { Code = "CLV-P-SAALE",  Name = "Donkey Kong Country", Size = 5899153 },
-            new NesDefaultGame { Code = "CLV-P-SAAQE",  Name = "Kirby Super Star", Size = 6893805 },
-            new NesDefaultGame { Code = "CLV-P-SAAXE",  Name = "Super Punch-Out!!", Size = 5085386 },
-            new NesDefaultGame { Code = "CLV-P-SABCE",  Name = "Mega Man X", Size = 2680591 },
-            new NesDefaultGame { Code = "CLV-P-SABDE",  Name = "Super Ghouls'n Ghosts", Size = 2157749 },
-            new NesDefaultGame { Code = "CLV-P-SABHE",  Name = "Street Fighter II Turbo: Hyper Fighting", Size = 9166072 },
-            new NesDefaultGame { Code = "CLV-P-SABQE",  Name = "Super Mario RPG: Legend of the Seven Stars", Size = 5620137 },
-            new NesDefaultGame { Code = "CLV-P-SABRE",  Name = "Secret of Mana", Size = 3029013 },
-            new NesDefaultGame { Code = "CLV-P-SABTE",  Name = "Final Fantasy III", Size = 4336655 },
-            new NesDefaultGame { Code = "CLV-P-SACBE",  Name = "Super Castlevania IV", Size = 2953337 },
-            new NesDefaultGame { Code = "CLV-P-SACCE",  Name = "CONTRA III THE ALIEN WARS", Size = 2803555 },
-            new NesDefaultGame { Code = "CLV-P-SADGE",  Name = "Star Fox", Size = 3339549 },
-            new NesDefaultGame { Code = "CLV-P-SADJE",  Name = "Yoshi's Island", Size = 4261051 },
-            new NesDefaultGame { Code = "CLV-P-SADKE",  Name = "Star Fox 2", Size = 2088122 }
+        static NesDefaultGame[] defaultSnesGames = new NesDefaultGame[] {
+        
+            new NesDefaultGame { Code = "CLV-P-SAAAE",  Name = "Super Mario World", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SAABE",  Name = "F-ZERO", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SAAEE",  Name = "The Legend of Zelda: A Link to the Past", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SAAFE",  Name = "Super Mario Kart", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SAAHE",  Name = "Super Metroid", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SAAJE",  Name = "EarthBound", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SAAKE",  Name = "Kirby's Dream Course", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SAALE",  Name = "Donkey Kong Country", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SAAQE",  Name = "Kirby Super Star", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SAAXE",  Name = "Super Punch-Out!!", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SABCE",  Name = "Mega Man X", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SABDE",  Name = "Super Ghouls'n Ghosts", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SABHE",  Name = "Street Fighter II Turbo: Hyper Fighting", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SABQE",  Name = "Super Mario RPG: Legend of the Seven Stars", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SABRE",  Name = "Secret of Mana", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SABTE",  Name = "Final Fantasy III", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SACBE",  Name = "Super Castlevania IV", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SACCE",  Name = "CONTRA III THE ALIEN WARS", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SADGE",  Name = "Star Fox", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SADJE",  Name = "Yoshi's Island", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-SADKE",  Name = "Star Fox 2", Size = 24576 }
         };
         static NesDefaultGame[] defaultSuperFamicomGames = new NesDefaultGame[]
         {
