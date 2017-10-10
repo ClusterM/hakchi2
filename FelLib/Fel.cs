@@ -149,9 +149,17 @@ namespace com.clusterrr.FelLib
             epWriter = device.OpenEndpointWriter((WriteEndpointID)outEndp);
 
             Debug.WriteLine("Trying to verify device");
-            if (VerifyDevice().Board != 0x00166700)
+            try
             {
-                Debug.WriteLine("Invalid board ID: " + VerifyDevice().Board);
+                if (VerifyDevice().Board != 0x00166700)
+                {
+                    Debug.WriteLine("Invalid board ID: " + VerifyDevice().Board);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error: " + ex.Message + ex.StackTrace);
                 return false;
             }
 
