@@ -864,7 +864,12 @@ namespace com.clusterrr.hakchi_gui
                         case MainForm.ConsoleType.NES:
                         case MainForm.ConsoleType.Famicom:
                             originalSyncCode = $"mkdir -p \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
-                                $"rsync -ac \"{gamesPath}/{originalCode}/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
+                                $"ln -s \"{squashFsPath}{gamesPath}/{originalCode}/{originalCode}.png\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.png\" &&" +
+                                $"ln -s \"{squashFsPath}{gamesPath}/{originalCode}/{originalCode}_small.png\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}_small.png\" &&" +
+                                $"ln -s \"{squashFsPath}{gamesPath}/{originalCode}/{originalCode}.nes\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.nes\" &&" +
+                                $"ln -s \"{squashFsPath}{gamesPath}/{originalCode}/autoplay/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/autoplay\" &&" +
+                                $"ln -s \"{squashFsPath}{gamesPath}/{originalCode}/pixelart/\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/pixelart\" &&" +
+                                $"cp \"{gamesPath}/{originalCode}/{originalCode}.desktop\" \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.desktop\" && " +
                                 $"sed -i -e 's/\\/usr\\/bin\\/clover-kachikachi/\\/bin\\/clover-kachikachi-wr/g' \"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.desktop\"";
                             break;
                         case MainForm.ConsoleType.SNES:
