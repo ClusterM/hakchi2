@@ -16,12 +16,10 @@ namespace com.clusterrr.hakchi_gui
     public class NesGame : NesMiniApplication, ICloverAutofill, ISupportsGameGenie
     {
         public const char Prefix = 'H';
-        public string GameGeniePath { private set; get; }
         public static bool? IgnoreMapper;
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet";
         private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
 
-        public const string GameGenieFileName = "gamegenie.txt";
         private static byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10, 86, 87, 184 };
 
         public override string GoogleSuffix
@@ -32,23 +30,9 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private string gameGenie = "";
-        public string GameGenie
-        {
-            get { return gameGenie; }
-            set
-            {
-                if (gameGenie != value) hasUnsavedChanges = true;
-                gameGenie = value;
-            }
-        }
-
         public NesGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {
-            GameGeniePath = System.IO.Path.Combine(path, GameGenieFileName);
-            if (File.Exists(GameGeniePath))
-                gameGenie = File.ReadAllText(GameGeniePath);
         }
         
         public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref byte saveCount, ref uint crc32)
@@ -149,37 +133,6 @@ namespace com.clusterrr.hakchi_gui
             return false;
         }
 
-        public override bool Save()
-        {
-            var old = hasUnsavedChanges;
-            if (hasUnsavedChanges)
-            {
-                if (!string.IsNullOrEmpty(gameGenie))
-                    File.WriteAllText(GameGeniePath, gameGenie);
-                else
-                    File.Delete(GameGeniePath);
-            }
-            return base.Save() || old;
-        }
-
-        public void ApplyGameGenie()
-        {
-            if (!string.IsNullOrEmpty(GameGenie))
-            {
-                var codes = GameGenie.Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
-                var nesFiles = Directory.GetFiles(this.GamePath, "*.nes", SearchOption.TopDirectoryOnly);
-                foreach (var f in nesFiles)
-                {
-                    var nesFile = new NesFile(f);
-                    foreach (var code in codes)
-                    {
-                        nesFile.PRG = GameGeniePatcher.Patch(nesFile.PRG, code.Trim());
-                    }
-                    nesFile.Save(f);
-                }
-            }
-        }
-
         private struct CachedGameInfo
         {
             public string Name;
@@ -230,6 +183,24 @@ namespace com.clusterrr.hakchi_gui
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
+            }
+        }
+
+        public void ApplyGameGenie()
+        {
+            if (!string.IsNullOrEmpty(GameGenie))
+            {
+                var codes = GameGenie.Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                var nesFiles = Directory.GetFiles(this.GamePath, "*.nes", SearchOption.TopDirectoryOnly);
+                foreach (var f in nesFiles)
+                {
+                    var nesFile = new NesFile(f);
+                    foreach (var code in codes)
+                    {
+                        nesFile.PRG = GameGeniePatcherNes.Patch(nesFile.PRG, code.Trim());
+                    }
+                    nesFile.Save(f);
+                }
             }
         }
     }

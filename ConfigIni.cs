@@ -514,7 +514,7 @@ namespace com.clusterrr.hakchi_gui
         public static Dictionary<string, string> GetConfigDictionary()
         {
             var config = new Dictionary<string, string>();
-            config["clovercon_home_combination"] = ConfigIni.ResetHack ? string.Format("0x{0:X4}", ConfigIni.ResetCombination) : "0xFFFF";
+            config["clovercon_home_combination"] = ConfigIni.ResetHack ? string.Format("0x{0:X4}", ConfigIni.ResetCombination) : "0x7FFF";
             config["clovercon_autofire"] = ConfigIni.AutofireHack ? "1" : "0";
             config["clovercon_autofire_xy"] = ConfigIni.AutofireXYHack && (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom) ? "1" : "0";
             config["clovercon_fc_start"] = ConfigIni.FcStart && (ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom) ? "1" : "0";

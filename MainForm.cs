@@ -418,8 +418,9 @@ namespace com.clusterrr.hakchi_gui
                     pictureBoxArt.Image = NesMiniApplication.LoadBitmap(app.IconPath);
                 else
                     pictureBoxArt.Image = null;
-                buttonShowGameGenieDatabase.Enabled = textBoxGameGenie.Enabled = app is ISupportsGameGenie;
-                textBoxGameGenie.Text = (app is ISupportsGameGenie) ? (app as ISupportsGameGenie).GameGenie : "";
+                buttonShowGameGenieDatabase.Enabled = app is NesGame; //ISupportsGameGenie;
+                textBoxGameGenie.Enabled = app is ISupportsGameGenie;
+                textBoxGameGenie.Text = (app is ISupportsGameGenie) ? (app as NesMiniApplication).GameGenie : "";
                 groupBoxOptions.Enabled = true;
                 if (app.CompressPossible().Count() > 0)
                 {
@@ -662,8 +663,8 @@ namespace com.clusterrr.hakchi_gui
         {
             if (listViewGames.SelectedItems.Count != 1) return;
             var selected = listViewGames.SelectedItems[0].Tag;
-            if (selected == null || !(selected is NesGame)) return;
-            var game = (selected as NesGame);
+            if (selected == null || !(selected is NesMiniApplication)) return;
+            var game = (selected as NesMiniApplication);
             game.GameGenie = textBoxGameGenie.Text;
         }
 
@@ -1456,7 +1457,7 @@ namespace com.clusterrr.hakchi_gui
             NesMiniApplication nesGame = selected as NesMiniApplication;
             GameGenieCodeForm lFrm = new GameGenieCodeForm(nesGame);
             if (lFrm.ShowDialog() == DialogResult.OK)
-                textBoxGameGenie.Text = (nesGame as ISupportsGameGenie).GameGenie;
+                textBoxGameGenie.Text = (nesGame as NesMiniApplication).GameGenie;
         }
 
         private void pagesModefoldersToolStripMenuItem_Click(object sender, EventArgs e)

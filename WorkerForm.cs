@@ -1173,7 +1173,7 @@ namespace com.clusterrr.hakchi_gui
                     stats.TotalGames++;
                     try
                     {
-                        if (gameCopy is ISupportsGameGenie && File.Exists((gameCopy as NesGame).GameGeniePath))
+                        if (gameCopy is ISupportsGameGenie && File.Exists(gameCopy.GameGeniePath))
                         {
                             bool compressed = false;
                             if (gameCopy.DecompressPossible().Count() > 0)
@@ -1184,7 +1184,7 @@ namespace com.clusterrr.hakchi_gui
                             (gameCopy as ISupportsGameGenie).ApplyGameGenie();
                             if (compressed)
                                 gameCopy.Compress();
-                            File.Delete((gameCopy as ISupportsGameGenie).GameGeniePath);
+                            File.Delete((gameCopy as NesMiniApplication).GameGeniePath);
                         }
                     }
                     catch (GameGenieFormatException ex)

@@ -67,6 +67,20 @@ namespace com.clusterrr.hakchi_gui
             get { return "game"; }
         }
 
+
+        public const string GameGenieFileName = "gamegenie.txt";
+        public string GameGeniePath { private set; get; }
+        private string gameGenie = "";
+        public string GameGenie
+        {
+            get { return gameGenie; }
+            set
+            {
+                if (gameGenie != value) hasUnsavedChanges = true;
+                gameGenie = value;
+            }
+        }
+
         public readonly string GamePath;
         public readonly string ConfigPath;
         public readonly string IconPath;
@@ -324,6 +338,11 @@ namespace com.clusterrr.hakchi_gui
                         break;
                 }
             }
+
+            GameGeniePath = Path.Combine(path, GameGenieFileName);
+            if (File.Exists(GameGeniePath))
+                gameGenie = File.ReadAllText(GameGeniePath);
+
             hasUnsavedChanges = false;
         }
 
@@ -350,6 +369,12 @@ namespace com.clusterrr.hakchi_gui
                 $"SortRawTitle={(Name ?? Code).ToLower()}\n" +
                 $"SortRawPublisher={(Publisher ?? DefaultPublisher).ToUpper()}\n" +
                 $"Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n");
+
+            if (!string.IsNullOrEmpty(gameGenie))
+                File.WriteAllText(GameGeniePath, gameGenie);
+            else if (File.Exists(GameGeniePath))
+                File.Delete(GameGeniePath);
+
             hasUnsavedChanges = false;
             return true;
         }

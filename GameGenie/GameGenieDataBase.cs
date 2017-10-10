@@ -215,7 +215,7 @@ namespace com.clusterrr.hakchi_gui
                     NesFile lGame = new NesFile(lGameFileName);
                     try
                     {
-                        lGame.PRG = GameGeniePatcher.Patch(lGame.PRG, lCurCode["genie"].InnerText);
+                        lGame.PRG = GameGeniePatcherNes.Patch(lGame.PRG, lCurCode["genie"].InnerText);
 
                         lCodeNode = FXml.CreateElement("gamegenie");
                         GameNode.AppendChild(lCodeNode);

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace com.clusterrr.Famicom
+namespace com.clusterrr.hakchi_gui
 {
-    public static class GameGeniePatcher
+    public static class GameGeniePatcherNes
     {
         public static byte[] Patch(byte[] data, string code)
         {
@@ -17,7 +17,7 @@ namespace com.clusterrr.Famicom
                 binaryCode.Replace(l.ToString(), letterValues[l]);
 
             byte value, compare;
-            Int16 address;
+            UInt16 address;
 
             if (binaryCode.Length == 24)
             {
@@ -26,7 +26,7 @@ namespace com.clusterrr.Famicom
                 try
                 {
                     value = Convert.ToByte(new string(new char[] { binaryCode[0], binaryCode[5], binaryCode[6], binaryCode[7], binaryCode[20], binaryCode[1], binaryCode[2], binaryCode[3] }), 2);
-                    address = Convert.ToInt16(new string(new char[] { binaryCode[13], binaryCode[14], binaryCode[15], binaryCode[16], binaryCode[21], binaryCode[22], binaryCode[23], binaryCode[4], binaryCode[9], binaryCode[10], binaryCode[11], binaryCode[12], binaryCode[17], binaryCode[18], binaryCode[19] }), 2);
+                    address = Convert.ToUInt16(new string(new char[] { binaryCode[13], binaryCode[14], binaryCode[15], binaryCode[16], binaryCode[21], binaryCode[22], binaryCode[23], binaryCode[4], binaryCode[9], binaryCode[10], binaryCode[11], binaryCode[12], binaryCode[17], binaryCode[18], binaryCode[19] }), 2);
                 }
                 catch
                 {
@@ -54,7 +54,7 @@ namespace com.clusterrr.Famicom
                 try
                 {
                     value = Convert.ToByte(new string(new char[] { binaryCode[0], binaryCode[5], binaryCode[6], binaryCode[7], binaryCode[28], binaryCode[1], binaryCode[2], binaryCode[3] }), 2);
-                    address = Convert.ToInt16(new string(new char[] { binaryCode[13], binaryCode[14], binaryCode[15], binaryCode[16], binaryCode[21], binaryCode[22], binaryCode[23], binaryCode[4], binaryCode[9], binaryCode[10], binaryCode[11], binaryCode[12], binaryCode[17], binaryCode[18], binaryCode[19] }), 2);
+                    address = Convert.ToUInt16(new string(new char[] { binaryCode[13], binaryCode[14], binaryCode[15], binaryCode[16], binaryCode[21], binaryCode[22], binaryCode[23], binaryCode[4], binaryCode[9], binaryCode[10], binaryCode[11], binaryCode[12], binaryCode[17], binaryCode[18], binaryCode[19] }), 2);
                     compare = Convert.ToByte(new string(new char[] { binaryCode[24], binaryCode[29], binaryCode[30], binaryCode[31], binaryCode[20], binaryCode[25], binaryCode[26], binaryCode[27] }), 2);
                 }
                 catch
@@ -99,25 +99,5 @@ namespace com.clusterrr.Famicom
             { 'V', "1110" },
             { 'N', "1111" }
         };
-    }
-
-    public class GameGenieFormatException : Exception
-    {
-        public readonly string Code;
-        public GameGenieFormatException(string code)
-            : base(string.Format("Invalid code \"{0}\"", code))
-        {
-            Code = code;
-        }
-    }
-
-    public class GameGenieNotFoundException : Exception
-    {
-        public readonly string Code;
-        public GameGenieNotFoundException(string code)
-            : base(string.Format("Invalid code \"{0}\"", code))
-        {
-            Code = code;
-        }
     }
 }

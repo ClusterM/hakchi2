@@ -12,7 +12,7 @@ using System.Xml.XPath;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public class SnesGame : NesMiniApplication, ICloverAutofill
+    public class SnesGame : NesMiniApplication, ICloverAutofill /*, ISupportsGameGenie*/
     {
         public enum SnesRomType { LoRom = 0x14, HiRom = 0x15 };
 
@@ -213,7 +213,7 @@ namespace com.clusterrr.hakchi_gui
             return true;
         }
 
-        private static SnesRomHeader GetCorrectHeader(byte[] rawRomData, out SnesRomType romType, out string gameTitle)
+        public static SnesRomHeader GetCorrectHeader(byte[] rawRomData, out SnesRomType romType, out string gameTitle)
         {
             var romHeaderLoRom = SnesRomHeader.Read(rawRomData, 0x7FC0);
             var romHeaderHiRom = SnesRomHeader.Read(rawRomData, 0xFFC0);
@@ -382,7 +382,7 @@ namespace com.clusterrr.hakchi_gui
 
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct SnesRomHeader
+        public struct SnesRomHeader
         {
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 21)]
             public byte[] GameTitleArr;
@@ -711,6 +711,43 @@ namespace com.clusterrr.hakchi_gui
                 return true;
             }
             return false;
+        }
+
+        public void ApplyGameGenie()
+        {
+            if (!string.IsNullOrEmpty(GameGenie))
+            {
+                var codes = GameGenie.Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                var nesFiles = Directory.GetFiles(this.GamePath, "*.*", SearchOption.TopDirectoryOnly);
+                foreach (var f in nesFiles)
+                {
+                    byte[] data;
+                    var ext = Path.GetExtension(f).ToLower();
+                    int offset;
+                    if (ext == ".sfrom")
+                    {
+                        data = File.ReadAllBytes(f);
+                        offset = 48;
+                    }  else if (ext == ".sfc" || ext == ".smc")
+                    {
+                        data = File.ReadAllBytes(f);
+                        if ((data.Length % 1024) != 0)
+                            offset = 512;
+                        else
+                            offset = 0;
+                    }
+                    else continue;
+
+                    var rawData = new byte[data.Length - offset];
+                    Array.Copy(data, offset, rawData, 0, rawData.Length);
+
+                    foreach (var code in codes)
+                        rawData = GameGeniePatcherSnes.Patch(rawData, code);
+
+                    Array.Copy(rawData, 0, data, offset, rawData.Length);
+                    File.WriteAllBytes(f, data);                        
+                }
+            }
         }
     }
 }

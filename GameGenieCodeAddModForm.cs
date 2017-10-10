@@ -53,7 +53,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     FGame.CopyTo(tmpPath);
                     var lGame = NesMiniApplication.FromDirectory(tmpPath);
-                    (lGame as ISupportsGameGenie).GameGenie = textBoxCode.Text;
+                    (lGame as NesMiniApplication).GameGenie = textBoxCode.Text;
                     lGame.Save();
                     (lGame as ISupportsGameGenie).ApplyGameGenie();
                 }
