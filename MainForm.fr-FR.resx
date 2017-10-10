@@ -119,7 +119,7 @@
     <value>Supprimer les jeux sélectionnés</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
-    <value>Désactiver page/dossiers</value>
+    <value>Désactiver les pages/dossiers</value>
   </data>
   <data name="donateToolStripMenuItem.Text">
     <value>Faire un don</value>
@@ -131,13 +131,13 @@
     <value>Télécharger les pochettes pour tous les jeux</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Sauvegarde du kernel</value>
+    <value>Sauvegarder le kernel</value>
   </data>
   <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Sauvegarde de la partition NAND-B déchiffré</value>
+    <value>Sauvegarder la partition NAND-B déchiffré</value>
   </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Sauvegarde complète de la mémoire flash NAND</value>
+    <value>Sauvegarder la totalité de la mémoire flash NAND</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Utiliser "Select+A/B" pour activer l'autofire sur A/B</value>
