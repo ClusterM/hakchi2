@@ -18,7 +18,7 @@ echo nesjson: $nesjson
 restore $nesjson
 # sed is GNU util to modify file, this command replaces "enabled:true" to "enabled:false"
 # Please note that we need to edit $rootfs$scnfile (writable file), not a just $scnfile (original read-only file)
-sed -i -e 's/"enabled":true/"enabled":false/g' $rootfs$scnfile
+sed -i -e 's/color":\[1,1,1,1\]/color":\[1,1,1,0\]/g' $rootfs$scnfile
 # Same with nes.json file, most simple way is to replace coordinates sprite coords with zeros
 # For NES Mini
 sed -i -e 's/\[93,861,12,8\]/\[0,0,0,0\]/g' $rootfs$nesjson

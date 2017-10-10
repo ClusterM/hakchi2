@@ -30,22 +30,6 @@ namespace com.clusterrr.hakchi_gui
             return form.DialogResult == DialogResult.OK;
         }
 
-        static bool DeviceExists(UInt16 vid, UInt16 pid)
-        {
-            try
-            {
-                using (var fel = new Fel())
-                {
-                    fel.Open(vid, pid);
-                    return true;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
         private void timer_Tick(object sender, EventArgs e)
         {
             if (Fel.DeviceExists(vid, pid))

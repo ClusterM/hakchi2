@@ -64,14 +64,14 @@ namespace com.clusterrr.FelLib
             var fel = new Fel();
             try
             {
-                fel.Open(vid, pid);
-                Debug.WriteLine("Device detection successful");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Device detection error: " + ex.Message + ex.StackTrace);
-                return false;
+                if (fel.Open(vid, pid))
+                {
+                    Debug.WriteLine("Device detection successful");
+                    return true;
+                } else
+                {
+                    return false;
+                }
             }
             finally
             {
@@ -79,12 +79,12 @@ namespace com.clusterrr.FelLib
             }
         }
 
-        public void Open(UInt16 vid, UInt16 pid)
+        public bool Open(UInt16 vid, UInt16 pid)
         {
             this.vid = vid;
             this.pid = pid;
             Close();
-            Debug.WriteLine("Trying to open device...");
+            //Debug.WriteLine("Trying to open device...");
             var devices = UsbDevice.AllDevices;
             device = null;
             foreach (UsbRegistry regDevice in devices)
@@ -95,7 +95,13 @@ namespace com.clusterrr.FelLib
                     break;
                 }
             }
-            if (device == null) throw new FelException("Device with such VID and PID not found");
+            if (device == null)
+            {
+#if VERY_DEBUG
+                Debug.WriteLine("Device with such VID and PID not found");
+#endif
+                return false;
+            }
 
             IUsbDevice wholeUsbDevice = device as IUsbDevice;
             if (!ReferenceEquals(wholeUsbDevice, null))
@@ -135,12 +141,21 @@ namespace com.clusterrr.FelLib
                         }
                     }
             if (inEndp != 0x82 || outEndp != 0x01)
-                throw new Exception("Uncorrect FEL device");
+            {
+                Debug.WriteLine("Uncorrect FEL device/mode");
+                return false;
+            }
             epReader = device.OpenEndpointReader((ReadEndpointID)inEndp, 65536);
             epWriter = device.OpenEndpointWriter((WriteEndpointID)outEndp);
 
             Debug.WriteLine("Trying to verify device");
-            if (VerifyDevice().Board != 0x00166700) throw new FelException("Invalid board ID: " + VerifyDevice().Board);
+            if (VerifyDevice().Board != 0x00166700)
+            {
+                Debug.WriteLine("Invalid board ID: " + VerifyDevice().Board);
+                return false;
+            }
+
+            return true;
         }
         public void Close()
         {
@@ -394,7 +409,7 @@ namespace com.clusterrr.FelLib
             {
                 Thread.Sleep(500);
                 callback?.Invoke(CurrentAction.RunningCommand, command);
-            }
+            } 
             int errorCount = 0;
             while (true)
             {

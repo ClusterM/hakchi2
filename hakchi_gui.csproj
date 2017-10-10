@@ -31,8 +31,8 @@
     <PublisherName>Alexey %27Cluster%27 Avdyukhin</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
-    <ApplicationRevision>10</ApplicationRevision>
-    <ApplicationVersion>2.0.21.10</ApplicationVersion>
+    <ApplicationRevision>20</ApplicationRevision>
+    <ApplicationVersion>2.0.21.20</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
