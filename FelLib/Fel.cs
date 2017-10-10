@@ -68,7 +68,8 @@ namespace com.clusterrr.FelLib
                 {
                     Debug.WriteLine("Device detection successful");
                     return true;
-                } else
+                }
+                else
                 {
                     return false;
                 }
@@ -81,89 +82,88 @@ namespace com.clusterrr.FelLib
 
         public bool Open(UInt16 vid, UInt16 pid)
         {
-            this.vid = vid;
-            this.pid = pid;
-            Close();
-            //Debug.WriteLine("Trying to open device...");
-            var devices = UsbDevice.AllDevices;
-            device = null;
-            foreach (UsbRegistry regDevice in devices)
+            try
             {
-                if (regDevice.Vid == vid && regDevice.Pid == pid)
+                this.vid = vid;
+                this.pid = pid;
+                Close();
+                //Debug.WriteLine("Trying to open device...");
+                var devices = UsbDevice.AllDevices;
+                device = null;
+                foreach (UsbRegistry regDevice in devices)
                 {
-                    regDevice.Open(out device);
-                    break;
+                    if (regDevice.Vid == vid && regDevice.Pid == pid)
+                    {
+                        regDevice.Open(out device);
+                        break;
+                    }
                 }
-            }
-            if (device == null)
-            {
+                if (device == null)
+                {
 #if VERY_DEBUG
                 Debug.WriteLine("Device with such VID and PID not found");
 #endif
-                return false;
-            }
+                    return false;
+                }
 
-            IUsbDevice wholeUsbDevice = device as IUsbDevice;
-            if (!ReferenceEquals(wholeUsbDevice, null))
-            {
-                // This is a "whole" USB device. Before it can be used, 
-                // the desired configuration and interface must be selected.
+                IUsbDevice wholeUsbDevice = device as IUsbDevice;
+                if (!ReferenceEquals(wholeUsbDevice, null))
+                {
+                    // This is a "whole" USB device. Before it can be used, 
+                    // the desired configuration and interface must be selected.
 
-                // Select config #1
-                wholeUsbDevice.SetConfiguration(1);
+                    // Select config #1
+                    wholeUsbDevice.SetConfiguration(1);
 
-                // Claim interface #0.
-                wholeUsbDevice.ClaimInterface(0);
-            }
+                    // Claim interface #0.
+                    wholeUsbDevice.ClaimInterface(0);
+                }
 
-            int inEndp = -1;
-            int outEndp = -1;
-            int inMax = 0;
-            int outMax = 0;
-            Debug.WriteLine("Checking USB endpoints...");
-            foreach (var config in device.Configs)
-                foreach (var @interface in config.InterfaceInfoList)
-                    foreach (var endp in @interface.EndpointInfoList)
-                    {
-                        if ((endp.Descriptor.EndpointID & 0x80) != 0)
+                int inEndp = -1;
+                int outEndp = -1;
+                int inMax = 0;
+                int outMax = 0;
+                Debug.WriteLine("Checking USB endpoints...");
+                foreach (var config in device.Configs)
+                    foreach (var @interface in config.InterfaceInfoList)
+                        foreach (var endp in @interface.EndpointInfoList)
                         {
-                            inEndp = endp.Descriptor.EndpointID;
-                            inMax = endp.Descriptor.MaxPacketSize;
-                            Debug.WriteLine("IN endpoint found: " + inEndp);
-                            Debug.WriteLine("IN endpoint maxsize: " + inMax);
+                            if ((endp.Descriptor.EndpointID & 0x80) != 0)
+                            {
+                                inEndp = endp.Descriptor.EndpointID;
+                                inMax = endp.Descriptor.MaxPacketSize;
+                                Debug.WriteLine("IN endpoint found: " + inEndp);
+                                Debug.WriteLine("IN endpoint maxsize: " + inMax);
+                            }
+                            else
+                            {
+                                outEndp = endp.Descriptor.EndpointID;
+                                outMax = endp.Descriptor.MaxPacketSize;
+                                Debug.WriteLine("OUT endpoint found: " + outEndp);
+                                Debug.WriteLine("OUT endpoint maxsize: " + outMax);
+                            }
                         }
-                        else
-                        {
-                            outEndp = endp.Descriptor.EndpointID;
-                            outMax = endp.Descriptor.MaxPacketSize;
-                            Debug.WriteLine("OUT endpoint found: " + outEndp);
-                            Debug.WriteLine("OUT endpoint maxsize: " + outMax);
-                        }
-                    }
-            if (inEndp != 0x82 || outEndp != 0x01)
-            {
-                Debug.WriteLine("Uncorrect FEL device/mode");
-                return false;
-            }
-            epReader = device.OpenEndpointReader((ReadEndpointID)inEndp, 65536);
-            epWriter = device.OpenEndpointWriter((WriteEndpointID)outEndp);
+                if (inEndp != 0x82 || outEndp != 0x01)
+                {
+                    Debug.WriteLine("Uncorrect FEL device/mode");
+                    return false;
+                }
+                epReader = device.OpenEndpointReader((ReadEndpointID)inEndp, 65536);
+                epWriter = device.OpenEndpointWriter((WriteEndpointID)outEndp);
 
-            Debug.WriteLine("Trying to verify device");
-            try
-            {
+                Debug.WriteLine("Trying to verify device");
                 if (VerifyDevice().Board != 0x00166700)
                 {
                     Debug.WriteLine("Invalid board ID: " + VerifyDevice().Board);
                     return false;
                 }
+                return true;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Error: " + ex.Message + ex.StackTrace);
                 return false;
             }
-
-            return true;
         }
         public void Close()
         {
@@ -417,25 +417,21 @@ namespace com.clusterrr.FelLib
             {
                 Thread.Sleep(500);
                 callback?.Invoke(CurrentAction.RunningCommand, command);
-            } 
+            }
             int errorCount = 0;
             while (true)
             {
-                try
-                {
-                    Open(vid, pid);
-                    break;
-                }
-                catch (Exception ex)
+                if (!Open(vid, pid))
                 {
                     errorCount++;
                     if (errorCount >= 10)
                     {
                         Close();
-                        throw ex;
+                        throw new Exception("No answer from device");
                     }
                     Thread.Sleep(2000);
                 }
+                else break;
             }
         }
 
