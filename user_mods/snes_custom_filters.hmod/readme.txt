@@ -12,3 +12,5 @@ Argument to disable scanlines in CRT mode (bilinear filter only):
 
 Argument to disable bilinear filter in CRT mode (scanlines only):
   --no-smooth
+
+WARNING: this mod can conflict with other mods, like RetroArch. Make sure that you are using latest versions.
