@@ -815,6 +815,7 @@ namespace com.clusterrr.hakchi_gui
                 SetProgress(progress, maxProgress);
 
                 ShowSplashScreen();
+                UpdateRootfs();
 
                 SetStatus(Resources.BuildingFolders);
                 if (Directory.Exists(tempDirectory))
@@ -849,6 +850,7 @@ namespace com.clusterrr.hakchi_gui
                     SetProgress(progress, maxProgress);
 
                     clovershell.ExecuteSimple(string.Format("umount {0}", gamesPath));
+                    clovershell.ExecuteSimple(string.Format($"mkdir -p {rootFsPath}{Games}", rootFsPath, gamesPath, installPath), 3000, true);
                     clovershell.ExecuteSimple(string.Format("rm -rf {0}{1}/CLV-* {0}{1}/??? {2}/menu", rootFsPath, gamesPath, installPath), 5000, true);
 
                     if (gamesTar.Length > 0)
@@ -910,7 +912,6 @@ namespace com.clusterrr.hakchi_gui
                 };
 
                 SetStatus(Resources.UploadingConfig);
-                UpdateRootfs();
                 SyncConfig(Config);
 #if !DEBUG
                 if (Directory.Exists(tempDirectory))
@@ -933,6 +934,15 @@ namespace com.clusterrr.hakchi_gui
         public void UpdateRootfs()
         {
             var modPath = Path.Combine(modsDirectory, Mod);
+            var garbage = Directory.GetFiles(modPath, "p0000_config", SearchOption.AllDirectories);
+            foreach (var file in garbage)
+            {
+                try
+                {
+                    File.Delete(file);
+                }
+                catch { }
+            }
             var rootFsPathes = Directory.GetDirectories(modsDirectory, "rootfs", SearchOption.AllDirectories);
             if (rootFsPathes.Length == 0) return;
             var rootFsPath = rootFsPathes[0];

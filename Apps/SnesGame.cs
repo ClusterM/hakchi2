@@ -140,6 +140,7 @@ namespace com.clusterrr.hakchi_gui
             { "WORLD MASTERS GOLF" }, // World Masters Golf (E).smc
             { "WWF SUPER WRESTLEMANI" }, // WWF Super WrestleMania (U) [!].smc
             { "WRESTLEMANIA" }, // WWF WrestleMania - The Arcade Game (U) [!].smc
+            { "SENSIBLE SOCCER" }, // Sensible Soccer - International Edition (E).smc
         };
 
         private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
