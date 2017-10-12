@@ -326,7 +326,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     Debug.WriteLine(ex.Message + ex.StackTrace);
                     ShowError(ex);
-                }                
+                }
             }
             finally
             {
@@ -816,6 +816,9 @@ namespace com.clusterrr.hakchi_gui
 
                 ShowSplashScreen();
                 UpdateRootfs();
+                var squashFsMount = clovershell.ExecuteSimple($"mount | grep {squashFsPath}", 3000, false);
+                if (string.IsNullOrEmpty(squashFsMount))
+                    clovershell.ExecuteSimple($"mkdir -p {squashFsPath} && mount /dev/mapper/root-crypt {squashFsPath}", 3000, true);
 
                 SetStatus(Resources.BuildingFolders);
                 if (Directory.Exists(tempDirectory))
@@ -850,7 +853,12 @@ namespace com.clusterrr.hakchi_gui
                     SetProgress(progress, maxProgress);
 
                     clovershell.ExecuteSimple(string.Format("umount {0}", gamesPath));
-                    clovershell.ExecuteSimple(string.Format($"mkdir -p {rootFsPath}{Games}", rootFsPath, gamesPath, installPath), 3000, true);
+                    clovershell.ExecuteSimple($"mkdir -p \"{rootFsPath}{gamesPath}\"", 3000, true);
+                    if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
+                    {
+                        clovershell.ExecuteSimple($"[ -f \"{squashFsPath}{gamesPath}/title.fnt\" ] && [ ! -f \"{rootFsPath}{gamesPath}/title.fnt\" ] && cp -f \"{squashFsPath}{gamesPath}/title.fnt\" \"{rootFsPath}{gamesPath}\"/", 3000, false);
+                        clovershell.ExecuteSimple($"[ -f \"{squashFsPath}{gamesPath}/copyright.fnt\" ] && [ ! -f \"{rootFsPath}{gamesPath}/copyright.fnt\" ] && cp -f \"{squashFsPath}{gamesPath}/copyright.fnt\" \"{rootFsPath}{gamesPath}\"/", 3000, false);
+                    }
                     clovershell.ExecuteSimple(string.Format("rm -rf {0}{1}/CLV-* {0}{1}/??? {2}/menu", rootFsPath, gamesPath, installPath), 5000, true);
 
                     if (gamesTar.Length > 0)
@@ -868,10 +876,6 @@ namespace com.clusterrr.hakchi_gui
 
                 SetStatus(Resources.UploadingOriginalGames);
                 // Need to make sure that squashfs if mounted
-                var squashFsMount = clovershell.ExecuteSimple($"mount | grep {squashFsPath}", 3000, false);
-                if (string.IsNullOrEmpty(squashFsMount))
-                    clovershell.ExecuteSimple($"mkdir -p {squashFsPath} && mount /dev/mapper/root-crypt {squashFsPath}", 3000, true);
-
                 startProgress = progress;
                 foreach (var originalCode in originalGames.Keys)
                 {
@@ -974,7 +978,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
             clovershell.Execute("cat > /tmp/config", config, null, null, 1000, true);
-            clovershell.Execute("temppath=/tmp && source /etc/preinit && script_init && source /tmp/config && source $preinit.d/pffff_config", null, null, null, 30000, true);
+            clovershell.Execute("temppath=/tmp ; source /etc/preinit ; script_init ; source /tmp/config ; source $preinit.d/pffff_config", null, null, null, 5000, true);
             config.Dispose();
             if (reboot)
             {

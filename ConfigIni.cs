@@ -151,7 +151,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
-
+        
         public static bool AutofireHack
         {
             get
