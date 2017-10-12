@@ -278,14 +278,16 @@ namespace com.clusterrr.hakchi_gui
             string gameTitle;
             SnesRomHeader romHeader = GetCorrectHeader(rawRomData, out romType, out gameTitle);
 
+            /*
             if (romType == SnesRomType.LoRom)
                 rawRomData[0x7FD9] = 0x01; // Force NTSC
             else
                 rawRomData[0xFFD9] = 0x01; // Force NTSC
+            */
 
             Debug.WriteLine($"Game title: {gameTitle}");
             Debug.WriteLine($"ROM type: {romType}");
-            ushort presetId = 0; // 0x1011;
+            ushort presetId = 0;
             ushort chip = 0;
             if (SfxTypes.Contains(romHeader.RomType)) // Super FX chip
             {

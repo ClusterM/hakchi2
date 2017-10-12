@@ -23,8 +23,22 @@ namespace com.clusterrr.hakchi_gui
     public partial class MainForm : Form
     {
         public enum ConsoleType { NES = 0, Famicom = 1, SNES = 2, SuperFamicom = 3, Unknown = 255 }
-
-        public const long DefaultMaxGamesSize = 300;
+        public long DefaultMaxGamesSize
+        {
+            get
+            {
+                switch(ConfigIni.ConsoleType)
+                {
+                    default:
+                    case ConsoleType.NES:
+                    case ConsoleType.Famicom:
+                        return 300;
+                    case ConsoleType.SNES:
+                    case ConsoleType.SuperFamicom:
+                        return 200;
+                }
+            }            
+        }
         public static IEnumerable<string> InternalMods;
         public static ClovershellConnection Clovershell;
         mooftpserv.Server ftpServer;
@@ -781,14 +795,15 @@ namespace com.clusterrr.hakchi_gui
                     return;
                 }
                 var maxGamesSize = DefaultMaxGamesSize * 1024 * 1024;
-                string prefix = "~";
                 if (WorkerForm.NandCTotal > 0)
                 {
                     maxGamesSize = (WorkerForm.NandCFree + WorkerForm.WritedGamesSize) - WorkerForm.ReservedMemory * 1024 * 1024;
-                    prefix = "";
+                    toolStripStatusLabelSize.Text = string.Format("{0:F1}MB / {1:F1}MB", stats.Size / 1024.0 / 1024.0, maxGamesSize / 1024.0 / 1024.0);
+                } else
+                {
+                    toolStripStatusLabelSize.Text = string.Format("{0:F1}MB / ???MB", stats.Size / 1024.0 / 1024.0);
                 }
                 toolStripStatusLabelSelected.Text = stats.Count + " " + Resources.GamesSelected;
-                toolStripStatusLabelSize.Text = string.Format("{0:F1}MB / {2}{1:F1}MB", stats.Size / 1024.0 / 1024.0, maxGamesSize / 1024.0 / 1024.0, prefix);
                 toolStripProgressBar.Maximum = (int)maxGamesSize;
                 toolStripProgressBar.Value = Math.Min((int)stats.Size, toolStripProgressBar.Maximum);
                 toolStripStatusLabelSize.ForeColor =

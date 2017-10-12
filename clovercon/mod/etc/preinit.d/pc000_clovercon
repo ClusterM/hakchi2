@@ -1,4 +1,4 @@
-if [ $cfg_clovercon_enabled == "y" ]; then
+if [ "$cfg_clovercon_enabled" == "y" ]; then
 CLOVER_BOARD_NAME=$(cat $mountpoint/etc/clover/boardtype)
 MODULE="clvcon"
 [ -f "$mountpoint/lib/modules/$(uname -r)/extra/$MODULE.ko" ] || MODULE="clovercon"

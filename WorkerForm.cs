@@ -317,7 +317,16 @@ namespace com.clusterrr.hakchi_gui
             catch (ThreadAbortException) { }
             catch (Exception ex)
             {
-                ShowError(ex);
+                if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                {
+                    Debug.WriteLine(ex.InnerException.Message + ex.InnerException.StackTrace);
+                    ShowError(ex.InnerException);
+                }
+                else
+                {
+                    Debug.WriteLine(ex.Message + ex.StackTrace);
+                    ShowError(ex);
+                }                
             }
             finally
             {
@@ -856,13 +865,15 @@ namespace com.clusterrr.hakchi_gui
                 }
 
                 SetStatus(Resources.UploadingOriginalGames);
-                var squashFsMount = clovershell.ExecuteSimple($"mount | grep {squashFsPath}", 30000, false);
+                var squashFsMount = clovershell.ExecuteSimple($"mount | grep {squashFsPath}", 3000, false);
                 if (string.IsNullOrEmpty(squashFsMount))
                 {
-                    clovershell.ExecuteSimple($"mkdir -p {squashFsPath} && mount /dev/mapper/root-crypt {squashFsPath}", 30000, true);
+                    clovershell.ExecuteSimple($"mkdir -p {squashFsPath} && mount /dev/mapper/root-crypt {squashFsPath}", 3000, true);
+                    /*
                     MessageBoxFromThread(this, "Seems like your are using old version of custom kernel. " +
                         "Please install latest version using \"Kernel->Flash custom kernel\" menu to make original games work.",
                         Resources.CustomKernel, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, false);
+                    */
                 }
 
                 startProgress = progress;
@@ -905,6 +916,7 @@ namespace com.clusterrr.hakchi_gui
                 };
 
                 SetStatus(Resources.UploadingConfig);
+                UpdateRootfs();
                 SyncConfig(Config);
 #if !DEBUG
                 if (Directory.Exists(tempDirectory))
@@ -921,6 +933,25 @@ namespace com.clusterrr.hakchi_gui
                         clovershell.ExecuteSimple("reboot", 100);
                 }
                 catch { }
+            }
+        }
+
+        public void UpdateRootfs()
+        {
+            var modPath = Path.Combine(modsDirectory, Mod);
+            var rootFsPathes = Directory.GetDirectories(modsDirectory, "rootfs", SearchOption.AllDirectories);
+            if (rootFsPathes.Length == 0) return;
+            var rootFsPath = rootFsPathes[0];
+
+            using (var updateTar = new TarStream(rootFsPath))
+            {
+                if (updateTar.Length > 0)
+                {
+                    var clovershell = MainForm.Clovershell;
+                    clovershell.Execute("tar -xvC /", updateTar, null, null, 30000, true);
+                    clovershell.ExecuteSimple("chmod +x /bin/*", 3000, true);
+                    clovershell.ExecuteSimple("chmod +x /etc/init.d/*", 3000, true);
+                }
             }
         }
 
