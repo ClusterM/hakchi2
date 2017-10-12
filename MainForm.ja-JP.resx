@@ -125,7 +125,7 @@
     <value>選択したゲームのパッケージ画像をダウンロード</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>全てのゲームのカバー写真をダウンロード</value>
+    <value>全てのゲームのパッケージ画像をダウンロード</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>カーネルをダンプ</value>
@@ -275,7 +275,7 @@
     <value>設定をファミコン/スーファミ ミニへセーブ</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>セーブステート マネージャー</value>
+    <value>ステートセーブ マネージャー</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
     <value>検索</value>

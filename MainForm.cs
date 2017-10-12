@@ -27,7 +27,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                switch(ConfigIni.ConsoleType)
+                switch (ConfigIni.ConsoleType)
                 {
                     default:
                     case ConsoleType.NES:
@@ -37,7 +37,7 @@ namespace com.clusterrr.hakchi_gui
                     case ConsoleType.SuperFamicom:
                         return 200;
                 }
-            }            
+            }
         }
         public static IEnumerable<string> InternalMods;
         public static ClovershellConnection Clovershell;
@@ -540,7 +540,10 @@ namespace com.clusterrr.hakchi_gui
                     country = "cn";
                 else
                     if (country.Length > 2) country = country.Substring(country.Length - 2).ToLower();
+                // Trying to load flag
                 item.Image = (Image)rm.GetObject(country);
+                if (item.Image == null)
+                    Debug.WriteLine($"There is no flag for \"{country}\"");
                 item.ImageScaling = ToolStripItemImageScaling.None;
                 item.Click += delegate (object sender, EventArgs e)
                     {
@@ -799,7 +802,8 @@ namespace com.clusterrr.hakchi_gui
                 {
                     maxGamesSize = (WorkerForm.NandCFree + WorkerForm.WritedGamesSize) - WorkerForm.ReservedMemory * 1024 * 1024;
                     toolStripStatusLabelSize.Text = string.Format("{0:F1}MB / {1:F1}MB", stats.Size / 1024.0 / 1024.0, maxGamesSize / 1024.0 / 1024.0);
-                } else
+                }
+                else
                 {
                     toolStripStatusLabelSize.Text = string.Format("{0:F1}MB / ???MB", stats.Size / 1024.0 / 1024.0);
                 }

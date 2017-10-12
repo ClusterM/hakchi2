@@ -484,7 +484,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("ResetCombination={0}", ResetCombinationNes));
             configLines.Add(string.Format("ResetCombinationSnes={0}", ResetCombinationSnes));
             configLines.Add(string.Format("AutofireHack={0}", AutofireHackNes));
-            configLines.Add(string.Format("AutofireHack={0}", AutofireHackSnes));
+            configLines.Add(string.Format("AutofireHackSnes={0}", AutofireHackSnes));
             configLines.Add(string.Format("AutofireXYHack={0}", AutofireXYHack));
             configLines.Add(string.Format("AntiArmetLevel={0}", AntiArmetLevel));
             configLines.Add(string.Format("ConsoleType={0}", (byte)ConsoleType));

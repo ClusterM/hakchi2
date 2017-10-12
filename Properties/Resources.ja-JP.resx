@@ -122,7 +122,7 @@
     <value>本当にプリセット "{0}" を削除しますか?</value>
   </data>
   <data name="DeleteSavesQ">
-    <value>本当にこれらのセーブステートを削除しますか?</value>
+    <value>本当にこれらのステートセーブを削除しますか?</value>
   </data>
   <data name="DeleteSelectedGamesQ">
     <value>選択したゲームを削除しますか?</value>
@@ -143,10 +143,10 @@
     <value>完了! ファミコン/スーファミ ミニ にゲームをアップロードすることができます.</value>
   </data>
   <data name="DownloadAllCoversTitle">
-    <value>パッケージ写真をダウンロード(Google I'm Feeling Luckyを使用)</value>
+    <value>パッケージ画像をダウンロード(Google I'm Feeling Luckyを使用)</value>
   </data>
   <data name="DownloadCoverQ">
-    <value>"{0}"のパッケージ写真のダウンロードを試みますか?</value>
+    <value>"{0}"のパッケージ画像のダウンロードを試みますか?</value>
   </data>
   <data name="DumpKernelQ">
     <value>カーネルをダンプしてもよろしいですか?</value>
@@ -344,7 +344,7 @@
     <value>既にカーネルのダンプファイルが存在します。あなたが何をしようとしているのか理解をしていて、本当にバックアップを置き換えたいのであれば "hakchi2\dump" フォルダーを手動で削除してください。</value>
   </data>
   <data name="SavesFlterName">
-    <value>ファミコン/スーファミ ミニ セーブステート バックアップ</value>
+    <value>ファミコン/スーファミ ミニ ステートセーブ バックアップ</value>
   </data>
   <data name="SelectAtLeast">
     <value>少なくとも1つのゲームを選択してください</value>
@@ -362,7 +362,7 @@
     <value>容量:</value>
   </data>
   <data name="SizeOfSaves">
-    <value>選択したセーブステートのサイズ:</value>
+    <value>選択したステートセーブのサイズ:</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>すべての中断ポイントを削除する場合は工場出荷時の状態に初期化することを忘れないでください。</value>
@@ -410,7 +410,7 @@
     <value>警告!</value>
   </data>
   <data name="Wow">
-    <value>Wow</value>
+    <value>ワォ！</value>
   </data>
   <data name="Yes">
     <value>はい</value>

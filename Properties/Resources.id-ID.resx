@@ -286,6 +286,9 @@
   <data name="NandDumped">
     <value>Memori NAND berhasil di-dump.</value>
   </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Ups, sepertinya "{0}" tidak akan dapat berjalan dengan baik dengan emulator orisinal. Apakah Anda ingin menggunakan emulator pihak ketiga untuk game ini (instalasi dibutuhkan)?</value>
+  </data>
   <data name="NewGamesUnsorted">
     <value>Game-game baru berada di dalam folder "Belum Tersortir".</value>
   </data>
@@ -414,8 +417,5 @@
   </data>
   <data name="YesForAll">
     <value>Ya untuk semua</value>
-  </data>
-  <data name="Need3rdPartyEmulator">
-    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
 </root>

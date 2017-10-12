@@ -59,57 +59,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>フォルダマネージャ</value>
+    <value>Esperando por seu NES/SNES Mini…</value>
   </data>
-  <data name="buttonCancel.Text">
-    <value>キャンセル</value>
+  <data name="buttonDriver.Text">
+    <value>Instalar driver</value>
   </data>
-  <data name="buttonFoldersEqually.Text">
-    <value>均等に分配</value>
+  <data name="label1.Text">
+    <value>Por favor, execute as seguintes etapas:</value>
   </data>
-  <data name="buttonFoldersEquallyOriginal.Text">
-    <value>プリインストールされたゲーム -&gt; 均等に分配</value>
+  <data name="label2.Text">
+    <value>1. Certifique-se de que o botão POWER do seu NES/SNES Mini encontra-se desligado.</value>
   </data>
-  <data name="buttonFoldersLetters.Text">
-    <value>最初の文字で区切る</value>
+  <data name="label3.Text">
+    <value>2. (Re)conecte seu NES/SNES Mini ao PC via cabo USB.</value>
   </data>
-  <data name="buttonFoldersLettersOriginal.Text">
-    <value>プリインストールされたゲーム -&gt; 頭文字で分配</value>
+  <data name="label4.Text">
+    <value>3. Mantenha pressionado o botão RESET e sem solta-lo, aperte o botão POWER.</value>
   </data>
-  <data name="buttonNewFolder.Text">
-    <value>新しいフォルダー</value>
+  <data name="label5.Text">
+    <value>4. Após alguns segundos, solte o botão RESET, o LED do POWER deve estar desligado.</value>
   </data>
-  <data name="buttonNoFolders.Text">
-    <value>フォルダーなし</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.Text">
-    <value>プリインストールされたゲーム -&gt; その他のゲーム</value>
-  </data>
-  <data name="cutToolStripMenuItem.Text">
-    <value>切り取り</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Text">
-    <value>削除</value>
-  </data>
-  <data name="groupBoxArt.Text">
-    <value>メニューアイコン</value>
-  </data>
-  <data name="groupBoxSplitModes.Text">
-    <value>フォルダ構造を自動で作成</value>
-  </data>
-  <data name="labelPosition.Text">
-    <value>フォルダーの優先順位:</value>
-  </data>
-  <data name="newFolderToolStripMenuItem.Text">
-    <value>新しいフォルダを作成</value>
-  </data>
-  <data name="pasteToolStripMenuItem.Text">
-    <value>貼り付け</value>
-  </data>
-  <data name="renameToolStripMenuItem.Text">
-    <value>フォルダ名の変更</value>
-  </data>
-  <data name="labelElementCount.Text">
-    <value>Folder statistics</value>
+  <data name="label6.Text">
+    <value>5. Instale o driver se ainda não estiver instalado:</value>
   </data>
 </root>

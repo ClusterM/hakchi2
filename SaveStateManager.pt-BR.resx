@@ -59,57 +59,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>フォルダマネージャ</value>
+    <value>Gerenciador de Save-State</value>
   </data>
-  <data name="buttonCancel.Text">
-    <value>キャンセル</value>
+  <data name="buttonDelete.Text">
+    <value>Excluir selecionado</value>
   </data>
-  <data name="buttonFoldersEqually.Text">
-    <value>均等に分配</value>
+  <data name="buttonExport.Text">
+    <value>Exportar selecionado</value>
   </data>
-  <data name="buttonFoldersEquallyOriginal.Text">
-    <value>プリインストールされたゲーム -&gt; 均等に分配</value>
+  <data name="buttonImport.Text">
+    <value>Importar</value>
   </data>
-  <data name="buttonFoldersLetters.Text">
-    <value>最初の文字で区切る</value>
+  <data name="colCode.Text">
+    <value>Código</value>
   </data>
-  <data name="buttonFoldersLettersOriginal.Text">
-    <value>プリインストールされたゲーム -&gt; 頭文字で分配</value>
+  <data name="colFlags.Text">
+    <value>Salve slots</value>
   </data>
-  <data name="buttonNewFolder.Text">
-    <value>新しいフォルダー</value>
+  <data name="colName.Text">
+    <value>Nome</value>
   </data>
-  <data name="buttonNoFolders.Text">
-    <value>フォルダーなし</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.Text">
-    <value>プリインストールされたゲーム -&gt; その他のゲーム</value>
-  </data>
-  <data name="cutToolStripMenuItem.Text">
-    <value>切り取り</value>
+  <data name="colSize.Text">
+    <value>Tamanho</value>
   </data>
   <data name="deleteToolStripMenuItem.Text">
-    <value>削除</value>
+    <value>Excluir selecionado</value>
   </data>
-  <data name="groupBoxArt.Text">
-    <value>メニューアイコン</value>
+  <data name="exportToolStripMenuItem.Text">
+    <value>Exportar selecionado</value>
   </data>
-  <data name="groupBoxSplitModes.Text">
-    <value>フォルダ構造を自動で作成</value>
-  </data>
-  <data name="labelPosition.Text">
-    <value>フォルダーの優先順位:</value>
-  </data>
-  <data name="newFolderToolStripMenuItem.Text">
-    <value>新しいフォルダを作成</value>
-  </data>
-  <data name="pasteToolStripMenuItem.Text">
-    <value>貼り付け</value>
-  </data>
-  <data name="renameToolStripMenuItem.Text">
-    <value>フォルダ名の変更</value>
-  </data>
-  <data name="labelElementCount.Text">
-    <value>Folder statistics</value>
+  <data name="importToolStripMenuItem.Text">
+    <value>Importar</value>
   </data>
 </root>

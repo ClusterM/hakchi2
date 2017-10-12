@@ -88,6 +88,9 @@
   <data name="Congratulations">
     <value>¡Felicitaciones!</value>
   </data>
+  <data name="Cover">
+    <value>Carátula</value>
+  </data>
   <data name="CustomKernel">
     <value>Kernel personalizado</value>
   </data>
@@ -141,6 +144,9 @@
   </data>
   <data name="DownloadAllCoversTitle">
     <value>Descargando arte de caja para todos los juegos (¡Me siento con suerte!)</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>¿Quieres intentar descargar la carátula para "{0}"?</value>
   </data>
   <data name="DumpKernelQ">
     <value>¿Querés volcar el kernel?</value>
@@ -280,6 +286,9 @@
   <data name="NandDumped">
     <value>El volcado de la memoria NAND se hizo exitosamente.</value>
   </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Oops, parece que "{0}" no va funcionar correctamente con el emulador original. Quieres usar el emulador de un 3° para este juego (es necesario estar instalado)?</value>
+  </data>
   <data name="NewGamesUnsorted">
     <value>Los nuevos juegos se moverán a la carpeta "Sin ordenar".</value>
   </data>
@@ -408,14 +417,5 @@
   </data>
   <data name="YesForAll">
     <value>"Sí" a todo</value>
-  </data>
-  <data name="Cover">
-    <value>Box art</value>
-  </data>
-  <data name="DownloadCoverQ">
-    <value>Do you want to try to download box art for "{0}"?</value>
-  </data>
-  <data name="Need3rdPartyEmulator">
-    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
 </root>

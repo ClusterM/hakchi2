@@ -865,16 +865,10 @@ namespace com.clusterrr.hakchi_gui
                 }
 
                 SetStatus(Resources.UploadingOriginalGames);
+                // Need to make sure that squashfs if mounted
                 var squashFsMount = clovershell.ExecuteSimple($"mount | grep {squashFsPath}", 3000, false);
                 if (string.IsNullOrEmpty(squashFsMount))
-                {
                     clovershell.ExecuteSimple($"mkdir -p {squashFsPath} && mount /dev/mapper/root-crypt {squashFsPath}", 3000, true);
-                    /*
-                    MessageBoxFromThread(this, "Seems like your are using old version of custom kernel. " +
-                        "Please install latest version using \"Kernel->Flash custom kernel\" menu to make original games work.",
-                        Resources.CustomKernel, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, false);
-                    */
-                }
 
                 startProgress = progress;
                 foreach (var originalCode in originalGames.Keys)

@@ -286,6 +286,9 @@
   <data name="NandDumped">
     <value>NAND geheugen succesvol gedumpt.</value>
   </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Oeps, het lijkt erop dat "{0}" niet goed gaat werken met de originele emulator. Wil je een andere emulator gebruiken voor dit spel (het moet wel geïnstalleerd worden)?</value>
+  </data>
   <data name="NewGamesUnsorted">
     <value>Nieuwe spellen worden verplaatst naar de “Ongesorteerd” map.</value>
   </data>
@@ -414,8 +417,5 @@
   </data>
   <data name="YesForAll">
     <value>Op alles ja</value>
-  </data>
-  <data name="Need3rdPartyEmulator">
-    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
 </root>

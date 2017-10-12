@@ -161,7 +161,7 @@
     <value>Flasha kernel originale</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>Giochi originali in root -&amp;gr; Cartelle, con giochi divisi in parti uguali</value>
+    <value>Giochi originali in root -&gt; Cartelle, con giochi divisi in parti uguali</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
     <value>Giochi originali in root -&gt; Cartelle, divise considerando la prima lettera</value>
@@ -248,7 +248,7 @@
     <value>Apri client Telnet</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>Giochi originali in root -&gt; giochi divisi in parti uguali</value>
+    <value>Giochi originali in root -&gt; Pagine, con giochi divisi in parti uguali</value>
   </data>
   <data name="pagesToolStripMenuItem.Text">
     <value>Pagine, con giochi divisi in parti uguali</value>

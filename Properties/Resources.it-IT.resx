@@ -107,7 +107,7 @@
     <value>Decompressione dei giochi in corso...</value>
   </data>
   <data name="Default30games">
-    <value>xx giochi originali</value>
+    <value>Giochi originali</value>
   </data>
   <data name="DeleteElement">
     <value>Vuoi veramente cancellare "{0}"?</value>
@@ -191,7 +191,7 @@
     <value>Nuova cartella</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>xx giochi originali</value>
+    <value>Giochi originali</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Cestino</value>
