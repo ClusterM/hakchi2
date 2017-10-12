@@ -784,7 +784,7 @@ namespace com.clusterrr.hakchi_gui
                 string prefix = "~";
                 if (WorkerForm.NandCTotal > 0)
                 {
-                    maxGamesSize = (WorkerForm.NandCFree + WorkerForm.WritedGamesSize) - WorkerForm.ReservedMemory * 1024 * 1024;
+                    maxGamesSize = ((WorkerForm.extraFs ? WorkerForm.NandEFree : 0) + WorkerForm.NandCFree + WorkerForm.WritedGamesSize) - WorkerForm.ReservedMemory * 1024 * 1024;
                     prefix = "";
                 }
                 toolStripStatusLabelSelected.Text = stats.Count + " " + Resources.GamesSelected;
