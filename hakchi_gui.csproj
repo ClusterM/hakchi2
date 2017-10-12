@@ -2111,9 +2111,6 @@
     <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0030_package">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p0000_config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7000_preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
