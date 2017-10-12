@@ -1,0 +1,11 @@
+local ext_device="/dev/nande"
+local ext_path="$installpath/extrafs"
+mkdir -p $ext_path
+
+if ! mount -o rw,nosuid,nodev,noatime "$ext_device" "$ext_path" ; then
+  echo creating fs on $ext_device
+  $rootfs/bin/mkfs.ext2 "$ext_device" || return 1
+  mount -o rw,nosuid,nodev,noatime "$ext_device" "$ext_path" || return 1
+fi
+
+return 0
