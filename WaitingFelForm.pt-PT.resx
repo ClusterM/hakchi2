@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Esperando por seu NES/SNES Mini …</value>
+    <value>A aguardar pelo NES/SNES Mini …</value>
   </data>
   <data name="buttonDriver.Text">
     <value>Instalar driver</value>
@@ -80,6 +80,6 @@
     <value>4. Após alguns segundos, solte o botão RESET, o LED POWER não deve estar ligado.</value>
   </data>
   <data name="label6.Text">
-    <value>5. Instale o driver se ainda não estiver instalado:</value>
+    <value>5. Instale o controlador se ainda não o estiver instalado:</value>
   </data>
 </root>
