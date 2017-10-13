@@ -24,8 +24,14 @@ namespace com.clusterrr.hakchi_gui
         public static bool UseFontSuperFamicom = true;
         public static byte AntiArmetLevel = 0;
         public static MainForm.ConsoleType ConsoleType = MainForm.ConsoleType.NES;
-        public static byte MaxGamesPerFolder = 30;
-        public static NesMenuCollection.SplitStyle FoldersMode = NesMenuCollection.SplitStyle.Original_Auto;
+        public static byte MaxGamesPerFolderNes = 30;
+        public static byte MaxGamesPerFolderFamicom = 30;
+        public static byte MaxGamesPerFolderSnes = 30;
+        public static byte MaxGamesPerFolderSuperFamicom = 30;
+        public static NesMenuCollection.SplitStyle FoldersModeNes = NesMenuCollection.SplitStyle.Original_Auto;
+        public static NesMenuCollection.SplitStyle FoldersModeFacmiom = NesMenuCollection.SplitStyle.Original_Auto;
+        public static NesMenuCollection.SplitStyle FoldersModeSnes = NesMenuCollection.SplitStyle.Original_Auto;
+        public static NesMenuCollection.SplitStyle FoldersModeSuperFamicom = NesMenuCollection.SplitStyle.Original_Auto;
         public static bool AutofireHackNes = false;
         public static bool AutofireHackSnes = false;
         public static bool AutofireXYHack = false;
@@ -151,7 +157,83 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
-        
+
+        public static byte MaxGamesPerFolder
+        {
+            get
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                        return MaxGamesPerFolderNes;
+                    case MainForm.ConsoleType.Famicom:
+                        return MaxGamesPerFolderFamicom;
+                    case MainForm.ConsoleType.SNES:
+                        return MaxGamesPerFolderSnes;
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return MaxGamesPerFolderSuperFamicom;
+                }
+            }
+            set
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                        MaxGamesPerFolderNes = value;
+                        break;
+                    case MainForm.ConsoleType.Famicom:
+                        MaxGamesPerFolderFamicom = value;
+                        break;
+                    case MainForm.ConsoleType.SNES:
+                        MaxGamesPerFolderSnes = value;
+                        break;
+                    case MainForm.ConsoleType.SuperFamicom:
+                        MaxGamesPerFolderSuperFamicom = value;
+                        break;
+                }
+            }
+        }
+
+        public static NesMenuCollection.SplitStyle FoldersMode
+        {
+            get
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                        return FoldersModeNes;
+                    case MainForm.ConsoleType.Famicom:
+                        return FoldersModeFamicom;
+                    case MainForm.ConsoleType.SNES:
+                        return FoldersModeSnes;
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return FoldersModeSuperFamicom;
+                }
+            }
+            set
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                        MaxGamesPerFolderNes = value;
+                        break;
+                    case MainForm.ConsoleType.Famicom:
+                        MaxGamesPerFolderFamicom = value;
+                        break;
+                    case MainForm.ConsoleType.SNES:
+                        MaxGamesPerFolderSnes = value;
+                        break;
+                    case MainForm.ConsoleType.SuperFamicom:
+                        MaxGamesPerFolderSuperFamicom = value;
+                        break;
+                }
+            }
+        }
+
         public static bool AutofireHack
         {
             get
@@ -435,10 +517,28 @@ namespace com.clusterrr.hakchi_gui
                                     FcStart = !value.ToLower().Equals("false");
                                     break;
                                 case "maxgamesperfolder":
-                                    MaxGamesPerFolder = byte.Parse(value);
+                                    MaxGamesPerFolderNes = byte.Parse(value);
+                                    break;
+                                case "maxgamesperfolderfamicom":
+                                    MaxGamesPerFolderFamicom = byte.Parse(value);
+                                    break;
+                                case "maxgamesperfoldersnes":
+                                    MaxGamesPerFolderSnes = byte.Parse(value);
+                                    break;
+                                case "maxgamesperfoldersuperfamicom":
+                                    MaxGamesPerFolderSuperFamicom = byte.Parse(value);
                                     break;
                                 case "foldersmode":
-                                    FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse(value);
+                                    FoldersModeNes = (NesMenuCollection.SplitStyle)byte.Parse(value);
+                                    break;
+                                case "foldersmodefamicom":
+                                    FoldersModeSuperFamicom = (NesMenuCollection.SplitStyle)byte.Parse(value);
+                                    break;
+                                case "foldersmodesnes":
+                                    FoldersModeSnes = (NesMenuCollection.SplitStyle)byte.Parse(value);
+                                    break;
+                                case "foldersmodesuperfamicom":
+                                    FoldersModeSuperFamicom = (NesMenuCollection.SplitStyle)byte.Parse(value);
                                     break;
                                 case "compress":
                                     Compress = !value.ToLower().Equals("false");
@@ -491,8 +591,14 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("FcStart={0}", FcStart));
             configLines.Add(string.Format("ExtraCommandLineArguments={0}", ExtraCommandLineArgumentsNes));
             configLines.Add(string.Format("ExtraCommandLineArgumentsSnes={0}", ExtraCommandLineArgumentsSnes));
-            configLines.Add(string.Format("FoldersMode={0}", (byte)FoldersMode));
-            configLines.Add(string.Format("MaxGamesPerFolder={0}", MaxGamesPerFolder));
+            configLines.Add(string.Format("FoldersMode={0}", (byte)FoldersModeNes));
+            configLines.Add(string.Format("FoldersModeFamicom={0}", (byte)FoldersModeFacmiom));
+            configLines.Add(string.Format("FoldersModeSnes={0}", (byte)FoldersModeSnes));
+            configLines.Add(string.Format("FoldersModeSuperFamicom={0}", (byte)FoldersModeSuperFamicom));
+            configLines.Add(string.Format("MaxGamesPerFolder={0}", MaxGamesPerFolderNes));
+            configLines.Add(string.Format("MaxGamesPerFolderFamicom={0}", MaxGamesPerFolderSuperFamicom));
+            configLines.Add(string.Format("MaxGamesPerFolderSnes={0}", MaxGamesPerFolderSnes));
+            configLines.Add(string.Format("MaxGamesPerFolderSuperFamicom={0}", MaxGamesPerFolderSuperFamicom));
             configLines.Add(string.Format("Compress={0}", Compress));
             configLines.Add(string.Format("FtpServer={0}", FtpServer));
             configLines.Add(string.Format("TelnetServer={0}", TelnetServer));

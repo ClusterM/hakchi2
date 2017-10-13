@@ -42,7 +42,7 @@ namespace com.clusterrr.hakchi_gui
             { "SUPER CASTLEVANIA 4", 0x1030 },
             { "CONTRA3 THE ALIEN WA", 0x1036 },
             { "STAR FOX", 0x1242 },
-            { "YOSHI'S ISLAND", 0x123D },
+            //{ "YOSHI'S ISLAND", 0x123D }, // Removed to use hacks and translations
             { "STARFOX2", 0x123C },
             //{ "ZELDANODENSETSU", 0x101F }, // Removed to use hacks and translations
             { "SHVC FIREEMBLEM", 0x102B },
