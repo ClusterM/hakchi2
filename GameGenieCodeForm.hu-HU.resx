@@ -58,7 +58,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="labelSelectConsole.Text">
-    <value>Prima di iniziare si prega di selezionare il tipo di console. È possibile modificare successivamente questa scelta nel menu Impostazioni per utilizzare una diversa console.</value>
+  <data name="$this.Text">
+    <value>Game Genie kód lista</value>
+  </data>
+  <data name="addToolStripMenuItem.Text">
+    <value>Hozzáadás</value>
+  </data>
+  <data name="buttonAdd.Text">
+    <value>Hozzáadás</value>
+  </data>
+  <data name="buttonCancel.Text">
+    <value>Mégse</value>
+  </data>
+  <data name="buttonImport.Text">
+    <value>Importálás</value>
+  </data>
+  <data name="editToolStripMenuItem.Text">
+    <value>Szerkesztés</value>
+  </data>
+  <data name="removeToolStripMenuItem.Text">
+    <value>Törlés</value>
   </data>
 </root>

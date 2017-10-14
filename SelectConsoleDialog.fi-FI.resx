@@ -59,6 +59,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="labelSelectConsole.Text">
-    <value>Before we start please select your console. You can change it later using Settings menu if you want to use other console.</value>
+    <value>Ennen kuin aloitamme, valitse konsolisi tyyppi. Voit vaihtaa tätä myöhemin Asetukset-valikosta.</value>
   </data>
 </root>

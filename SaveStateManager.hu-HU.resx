@@ -58,7 +58,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="labelSelectConsole.Text">
-    <value>Prima di iniziare si prega di selezionare il tipo di console. È possibile modificare successivamente questa scelta nel menu Impostazioni per utilizzare una diversa console.</value>
+  <data name="$this.Text">
+    <value>Játekmenet-mentés kezelő</value>
+  </data>
+  <data name="buttonDelete.Text">
+    <value>Kiválasztott törlése</value>
+  </data>
+  <data name="buttonExport.Text">
+    <value>Kiválasztott exportálása</value>
+  </data>
+  <data name="buttonImport.Text">
+    <value>Importálás</value>
+  </data>
+  <data name="colCode.Text">
+    <value>Kód</value>
+  </data>
+  <data name="colFlags.Text">
+    <value>Mentés-helyek</value>
+  </data>
+  <data name="colName.Text">
+    <value>Név</value>
+  </data>
+  <data name="colSize.Text">
+    <value>Méret</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text">
+    <value>Kiválasztott törlése</value>
+  </data>
+  <data name="exportToolStripMenuItem.Text">
+    <value>Kiválasztott exportálása</value>
+  </data>
+  <data name="importToolStripMenuItem.Text">
+    <value>Importálás</value>
   </data>
 </root>

@@ -89,7 +89,7 @@
     <value>¡Felicitaciones!</value>
   </data>
   <data name="Cover">
-    <value>Carátula</value>
+    <value>Arte de caja</value>
   </data>
   <data name="CustomKernel">
     <value>Kernel personalizado</value>
@@ -146,7 +146,7 @@
     <value>Descargando arte de caja para todos los juegos (¡Me siento con suerte!)</value>
   </data>
   <data name="DownloadCoverQ">
-    <value>¿Quieres intentar descargar la carátula para "{0}"?</value>
+    <value>¿Querés intentar descargar el arte de caja de "{0}"?</value>
   </data>
   <data name="DumpKernelQ">
     <value>¿Querés volcar el kernel?</value>
@@ -287,7 +287,7 @@
     <value>El volcado de la memoria NAND se hizo exitosamente.</value>
   </data>
   <data name="Need3rdPartyEmulator">
-    <value>Oops, parece que "{0}" no va funcionar correctamente con el emulador original. Quieres usar el emulador de un 3° para este juego (es necesario estar instalado)?</value>
+    <value>Epa, parece que "{0}" no va funcionar correctamente con el emulador original. ¿Querés usar el emulador de un tercero para este juego (necesita estar instalado)?</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>Los nuevos juegos se moverán a la carpeta "Sin ordenar".</value>

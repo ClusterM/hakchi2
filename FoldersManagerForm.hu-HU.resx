@@ -58,7 +58,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="labelSelectConsole.Text">
-    <value>Prima di iniziare si prega di selezionare il tipo di console. È possibile modificare successivamente questa scelta nel menu Impostazioni per utilizzare una diversa console.</value>
+  <data name="$this.Text">
+    <value>Mappakezelő</value>
+  </data>
+  <data name="buttonCancel.Text">
+    <value>Mégse</value>
+  </data>
+  <data name="buttonNewFolder.Text">
+    <value>Új mappa</value>
+  </data>
+  <data name="cutToolStripMenuItem.Text">
+    <value>Kivágás</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text">
+    <value>Törlés</value>
+  </data>
+  <data name="groupBoxArt.Text">
+    <value>Menü ikon</value>
+  </data>
+  <data name="groupBoxSplitModes.Text">
+    <value>Automatikus mappaszerkezet létrehozása</value>
+  </data>
+  <data name="labelPosition.Text">
+    <value>Mappa pozíciójának prioritása</value>
+  </data>
+  <data name="newFolderToolStripMenuItem.Text">
+    <value>Új mappa létrehozása</value>
+  </data>
+  <data name="pasteToolStripMenuItem.Text">
+    <value>Beillesztés</value>
+  </data>
+  <data name="renameToolStripMenuItem.Text">
+    <value>Mappa átnevezése</value>
+  </data>
+  <data name="buttonFoldersEqually.Text">
+    <value>Split equally</value>
+  </data>
+  <data name="buttonFoldersEquallyOriginal.Text">
+    <value>Original games -&gt; Split equally</value>
+  </data>
+  <data name="buttonFoldersLetters.Text">
+    <value>Split by first letter</value>
+  </data>
+  <data name="buttonFoldersLettersOriginal.Text">
+    <value>Original games -&gt; Split by first letter</value>
+  </data>
+  <data name="buttonNoFolders.Text">
+    <value>No folders</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Text">
+    <value>Original games -&gt; Other games</value>
+  </data>
+  <data name="labelElementCount.Text">
+    <value>Folder statistics</value>
   </data>
 </root>

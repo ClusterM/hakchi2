@@ -71,7 +71,7 @@
     <value>1. Assicurati che il tasto POWER del NES/SNES Mini sia spento.</value>
   </data>
   <data name="label3.Text">
-    <value>2. (ri)collega il NES/SNES Mini al PC tramite cavo USB.</value>
+    <value>2. (Ri)collega il NES/SNES Mini al PC tramite cavo USB.</value>
   </data>
   <data name="label4.Text">
     <value>3. Tieni premuto il tasto RESET e, mentre lo tieni premuto, accendi il tasto POWER</value>

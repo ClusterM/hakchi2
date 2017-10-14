@@ -58,271 +58,271 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FTPToolStripMenuItem.Text">
-    <value>FTP-palvelin osoitteessa ftp://root:clover@127.0.0.1:1021</value>
-  </data>
   <data name="aboutToolStripMenuItem.Text">
-    <value>Tietoa...</value>
-  </data>
-  <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>Lisää &amp;pelejä</value>
-  </data>
-  <data name="addPresetToolStripMenuItem.Text">
-    <value>Lisää valikoima</value>
-  </data>
-  <data name="automaticOriginalToolStripMenuItem.Text">
-    <value>Alkuperäiset pelit juuressa -&gt; Automaattinen alikansioissa</value>
-  </data>
-  <data name="automaticToolStripMenuItem.Text">
-    <value>Automaattinen</value>
-  </data>
-  <data name="buttonAddGames.Text">
-    <value>Lisää pelejä</value>
+    <value>Despre progam...</value>
   </data>
   <data name="buttonBrowseImage.Text">
-    <value>Selaa</value>
-  </data>
-  <data name="buttonStart.Text">
-    <value>Synkronoi valitut pelit NES/SNES Minin kanssa</value>
-  </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Pakkaa</value>
-  </data>
-  <data name="cloverconHackToolStripMenuItem.Text">
-    <value>Ohjainhackit</value>
-  </data>
-  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
-    <value>Pakkaa ei-NES-pelit (emulaattorimoduuleille)</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Pakkaa pelit lisättäessä</value>
-  </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Pakkaa valitut pelit</value>
-  </data>
-  <data name="consoleTypeToolStripMenuItem.Text">
-    <value>Konsolin tyyppi</value>
-  </data>
-  <data name="customToolStripMenuItem.Text">
-    <value>Mukautettu - näytä kansiohallinta joka kerta</value>
-  </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Pura valitut pelit</value>
+    <value>Navigare</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
-    <value>Poista peli</value>
-  </data>
-  <data name="deletePresetToolStripMenuItem.Text">
-    <value>Poista valikoima</value>
-  </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Poista valitut pelit</value>
-  </data>
-  <data name="disablePagefoldersToolStripMenuItem.Text">
-    <value>Poista sivut/kansiot</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Lahjoita</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Lataa kansitaide valituille peleille</value>
-  </data>
-  <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Lataa kansitaide kaikille peleille</value>
-  </data>
-  <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Dumppaa ydin</value>
-  </data>
-  <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dumppaa purettu NAND-B-osio</value>
-  </data>
-  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dumppaa koko NAND-muisti</value>
-  </data>
-  <data name="enableAutofireToolStripMenuItem.Text">
-    <value>Käytä "Select+A/B" A/B-automaattitulituksen aktivointiin</value>
-  </data>
-  <data name="epilepsyProtectionToolStripMenuItem.Text">
-    <value>Poista epilepsiasuoja</value>
-  </data>
-  <data name="exitToolStripMenuItem.Text">
-    <value>&amp;Lopeta</value>
-  </data>
-  <data name="fAQToolStripMenuItem.Text">
-    <value>UKK</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text">
-    <value>&amp;Tiedosto</value>
-  </data>
-  <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Flashaa mukautettu ydin</value>
-  </data>
-  <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Flashaa alkuperäisydin</value>
-  </data>
-  <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>Alkuperäiset pelit -&gt; Kansiot, pelit jaettu tasaisesti</value>
-  </data>
-  <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Alkuperäiset pelit juuressa -&gt; Kansiot, jaettu alkukirjaimen mukaan</value>
-  </data>
-  <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>Kansiot, jaettu alkukirjaimen mukaan</value>
-  </data>
-  <data name="foldersToolStripMenuItem.Text">
-    <value>Kansiot, pelit jaettu tasaisesti</value>
-  </data>
-  <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>GitHub-sivu varsinaisine julkaisuineen</value>
-  </data>
-  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>Yleiset komentoriviparametrit (vain asiantuntijoille!)</value>
-  </data>
-  <data name="groupBoxDefaultGames.Text">
-    <value>Voit piilottaa alkuperäispelejä</value>
-  </data>
-  <data name="groupBoxOptions.Text">
-    <value>Pelivalinnat</value>
+    <value>Ștergere joc</value>
   </data>
   <data name="helpToolStripMenuItem.Text">
-    <value>&amp;Apua</value>
-  </data>
-  <data name="installModulesToolStripMenuItem.Text">
-    <value>Asenna lisämoduuleja</value>
-  </data>
-  <data name="kernelToolStripMenuItem.Text">
-    <value>&amp;Ydin</value>
+    <value>&amp;Ajutor</value>
   </data>
   <data name="label1.Text">
-    <value>Julkaisupäivämäärä (VVVV-KK-PP):</value>
+    <value>Data apariției (AAAA-LL-ZZ)</value>
   </data>
   <data name="label2.Text">
-    <value>Julkaisija:</value>
-  </data>
-  <data name="label3.Text">
-    <value>Komentoriviparametrit (vain asiantuntijoille!):</value>
+    <value>Editor:</value>
   </data>
   <data name="label4.Text">
-    <value>Kansitaide:</value>
-  </data>
-  <data name="label5.Text">
-    <value>Valitse pelit:</value>
-  </data>
-  <data name="label6.Text">
-    <value>Pelaajia enintään:</value>
+    <value>Copertă:</value>
   </data>
   <data name="label7.Text">
-    <value>Game Genie -koodit (pilkuin eroteltuna):</value>
+    <value>Coduri Game Genie (delimitate cu virgulă)</value>
   </data>
   <data name="labelName.Text">
-    <value>Nimi:</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Koko:</value>
-  </data>
-  <data name="languageToolStripMenuItem.Text">
-    <value>Kieli</value>
-  </data>
-  <data name="maximumGamesPerFolderToolStripMenuItem.Text">
-    <value>Pelejä korkeintaan per sivu/kansio</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Käynnistä alkuperäisellä ytimellä muistista</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Käynnistä patchatulla ytimellä muistista</value>
+    <value>Nume:</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
-    <value>&amp;Moduulit</value>
-  </data>
-  <data name="openFTPInExplorerToolStripMenuItem.Text">
-    <value>Avaa FTP-asiakasohjelma</value>
-  </data>
-  <data name="openFileDialogImage.Title">
-    <value>Valitse pelin kansitaide</value>
-  </data>
-  <data name="openFileDialogNes.Title">
-    <value>Valitse pelit</value>
-  </data>
-  <data name="openTelnetToolStripMenuItem.Text">
-    <value>Avaa Telnet-asiakasohjelma</value>
-  </data>
-  <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>Alkuperäiset pelit juuressa -&gt; Sivut, pelit jaettu tasaisesti</value>
-  </data>
-  <data name="pagesToolStripMenuItem.Text">
-    <value>Sivut, pelit jaettu tasaisesti</value>
-  </data>
-  <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>Sivut/kansiot -rakenne</value>
-  </data>
-  <data name="presetsToolStripMenuItem.Text">
-    <value>Valikoimat</value>
+    <value>&amp;Module</value>
   </data>
   <data name="radioButtonOne.Text">
-    <value>Yksi pelaaja</value>
-  </data>
-  <data name="radioButtonTwo.Text">
-    <value>Kaksi pelaajaa, ei yhtä aikaa</value>
+    <value>Un jucător</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Kaksi pelaajaa yhtä aikaa</value>
-  </data>
-  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>Käytä näppäinyhdistelmää resetointiin</value>
-  </data>
-  <data name="saveDumpFileDialog.Title">
-    <value>Valitse dumpin tiedostonimi</value>
-  </data>
-  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Tallenna asetukset NES/SNES Miniin nyt</value>
-  </data>
-  <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Tallennusten hallinta</value>
-  </data>
-  <data name="searchToolStripMenuItem.Text">
-    <value>Etsi</value>
-  </data>
-  <data name="selectAllToolStripMenuItem.Text">
-    <value>Valitse kaikki</value>
-  </data>
-  <data name="selectButtonCombinationToolStripMenuItem.Text">
-    <value>Valitse resetointinäppäinyhdistelmä</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Text">
-    <value>&amp;Asetukset</value>
-  </data>
-  <data name="shellToolStripMenuItem.Text">
-    <value>Telnet-palvelin osoitteessa telnet://127.0.0.1:1023 (login:root)</value>
-  </data>
-  <data name="synchronizeToolStripMenuItem.Text">
-    <value>Synkronoi</value>
-  </data>
-  <data name="takeScreenshotToolStripMenuItem.Text">
-    <value>Ota kuvankaappaus</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flashaa koko NAND (vain asiantuntijoille!)</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Text">
-    <value>&amp;Työkalut</value>
+    <value>Doi jucători, simultan</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
-    <value>Poista lisämoduulit</value>
-  </data>
-  <data name="uninstallToolStripMenuItem.Text">
-    <value>Poista asennus</value>
+    <value>Îndepărtare module extra</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
-    <value>Poista kaikki valinnat</value>
+    <value>Deselectează tot</value>
+  </data>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>FTP server on ftp://root:clover@127.0.0.1:1021</value>
+  </data>
+  <data name="addMoreGamesToolStripMenuItem.Text">
+    <value>Add more &amp;games</value>
+  </data>
+  <data name="addPresetToolStripMenuItem.Text">
+    <value>Add preset</value>
+  </data>
+  <data name="automaticOriginalToolStripMenuItem.Text">
+    <value>Original games in root -&gt; Automatic in subfolder</value>
+  </data>
+  <data name="automaticToolStripMenuItem.Text">
+    <value>Automatic</value>
+  </data>
+  <data name="buttonAddGames.Text">
+    <value>Add more games</value>
+  </data>
+  <data name="buttonStart.Text">
+    <value>Synchronize selected games with NES/SNES Mini</value>
+  </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Compress</value>
+  </data>
+  <data name="cloverconHackToolStripMenuItem.Text">
+    <value>Controller hacks</value>
+  </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
+    <value>Compress non-NES games (for additional emulator mod)</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Compress games when adding</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Compress selected games</value>
+  </data>
+  <data name="consoleTypeToolStripMenuItem.Text">
+    <value>Console type</value>
+  </data>
+  <data name="customToolStripMenuItem.Text">
+    <value>Custom - show Folders Manager every time</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Decompress selected games</value>
+  </data>
+  <data name="deletePresetToolStripMenuItem.Text">
+    <value>Delete preset</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Delete selected games</value>
+  </data>
+  <data name="disablePagefoldersToolStripMenuItem.Text">
+    <value>Disable page/folders</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Donate</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Download box art for selected games</value>
+  </data>
+  <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
+    <value>Download box art for all games</value>
+  </data>
+  <data name="dumpKernelToolStripMenuItem.Text">
+    <value>Dump kernel</value>
+  </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Dump decrypted NAND-B partition</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Dump the whole NAND flash</value>
+  </data>
+  <data name="enableAutofireToolStripMenuItem.Text">
+    <value>Use "Select+A/B" to enable autofire on A/B</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Text">
+    <value>Disable epilepsy protection</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text">
+    <value>&amp;Exit</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>FAQ</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text">
+    <value>&amp;File</value>
+  </data>
+  <data name="flashCustomKernelToolStripMenuItem.Text">
+    <value>Flash custom kernel</value>
+  </data>
+  <data name="flashOriginalKernelToolStripMenuItem.Text">
+    <value>Flash original kernel</value>
+  </data>
+  <data name="foldersOriginalToolStripMenuItem.Text">
+    <value>Original games in root -&gt; Folders, split games equally</value>
+  </data>
+  <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
+    <value>Original games in root -&gt; Folders, split by first letter</value>
+  </data>
+  <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
+    <value>Folders, split by first letter</value>
+  </data>
+  <data name="foldersToolStripMenuItem.Text">
+    <value>Folders, split games equally</value>
+  </data>
+  <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
+    <value>GitHub page with actual releases</value>
+  </data>
+  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
+    <value>Global command-line arguments (experts only!)</value>
+  </data>
+  <data name="groupBoxDefaultGames.Text">
+    <value>You can hide some default games</value>
+  </data>
+  <data name="groupBoxOptions.Text">
+    <value>Game options</value>
+  </data>
+  <data name="installModulesToolStripMenuItem.Text">
+    <value>Install extra modules</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Text">
+    <value>&amp;Kernel</value>
+  </data>
+  <data name="label3.Text">
+    <value>Command line (for advanced users only!):</value>
+  </data>
+  <data name="label5.Text">
+    <value>Select games:</value>
+  </data>
+  <data name="label6.Text">
+    <value>Max players:</value>
+  </data>
+  <data name="labelSize.Text">
+    <value>Size:</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>Language</value>
+  </data>
+  <data name="maximumGamesPerFolderToolStripMenuItem.Text">
+    <value>Maximum games per page/folder</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Boot original kernel from RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Boot patched kernel from RAM</value>
+  </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>Open FTP client</value>
+  </data>
+  <data name="openFileDialogImage.Title">
+    <value>Select box art for game</value>
+  </data>
+  <data name="openFileDialogNes.Title">
+    <value>Select games</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>Open Telnet client</value>
+  </data>
+  <data name="pagesOriginalToolStripMenuItem.Text">
+    <value>Original games in root -&gt; Pages, split games equally</value>
+  </data>
+  <data name="pagesToolStripMenuItem.Text">
+    <value>Pages, split games equally</value>
+  </data>
+  <data name="pagesfoldersTypeToolStripMenuItem.Text">
+    <value>Pages/folders structure</value>
+  </data>
+  <data name="presetsToolStripMenuItem.Text">
+    <value>Selection presets</value>
+  </data>
+  <data name="radioButtonTwo.Text">
+    <value>Two players, not simultaneously</value>
+  </data>
+  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
+    <value>Use button combination to reset</value>
+  </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Select dump filename</value>
+  </data>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
+    <value>Save settings to NES/SNES Mini now</value>
+  </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>Save-State Manager</value>
+  </data>
+  <data name="searchToolStripMenuItem.Text">
+    <value>Search</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Text">
+    <value>Select all</value>
+  </data>
+  <data name="selectButtonCombinationToolStripMenuItem.Text">
+    <value>Select reset button combination</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text">
+    <value>&amp;Settings</value>
+  </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Telnet server on telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="synchronizeToolStripMenuItem.Text">
+    <value>Synchronize</value>
+  </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>Take screenshot</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flash the whole NAND (experts only!)</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;Tools</value>
+  </data>
+  <data name="uninstallToolStripMenuItem.Text">
+    <value>Uninstall</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>"Ylös+A+B" = Start 2-ohjaimessa</value>
+    <value>"Up+A+B = Start" on 2nd controller</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
-    <value>Käytä laajennettua fonttia</value>
+    <value>Use extended font</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
-    <value>Käytä Classic Controllerin X/Y-näppäimiä A/B-automaattitulitukseen</value>
+    <value>Use X/Y on Classic Controller as autofire A/B</value>
   </data>
 </root>

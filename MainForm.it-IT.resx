@@ -86,7 +86,7 @@
     <value>Sincronizza i giochi selezionati con il NES/SNES Mini</value>
   </data>
   <data name="checkBoxCompressed.Text">
-    <value>Coprimi</value>
+    <value>Comprimi</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Hacks per il controller</value>
@@ -95,7 +95,7 @@
     <value>Comprimi i giochi non-NES (per mod emulazione aggiuntiva)</value>
   </data>
   <data name="compressGamesToolStripMenuItem.Text">
-    <value>Comprimi i giochi mentre vengono aggiunti</value>
+    <value>Comprimi i giochi quando vengono aggiunti</value>
   </data>
   <data name="compressSelectedGamesToolStripMenuItem.Text">
     <value>Comprimi i giochi selezionati</value>
@@ -104,7 +104,7 @@
     <value>Tipo di console</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>Personalizzato - mostra ogni volta il Manager Cartelle</value>
+    <value>Personalizzato - mostra ogni volta il Gestore Cartelle</value>
   </data>
   <data name="decompressSelectedGamesToolStripMenuItem.Text">
     <value>Decomprimi i giochi selezionati</value>
@@ -119,25 +119,25 @@
     <value>Cancella i giochi selezionati</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
-    <value>Disabilita pagina/cartelle</value>
+    <value>Disabilita pagine/cartelle</value>
   </data>
   <data name="donateToolStripMenuItem.Text">
     <value>Fai una donazione</value>
   </data>
   <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Scarica la copertina per i giochi selezionati</value>
+    <value>Scarica le copertine per i giochi selezionati</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Scarica la copertina per tutti i giochi</value>
+    <value>Scarica le copertine per tutti i giochi</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Estrai e salva il kernel</value>
+    <value>Dump del kernel</value>
   </data>
   <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dumpa e decripta la partizione NAND-B</value>
+    <value>Dump della partizione NAND-B decriptata</value>
   </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dumpa l'intera memoria flash NAND</value>
+    <value>Dump dell'intera memoria flash NAND</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Usa "Select+A/B" per abilitare l'autofire su A/B</value>
@@ -176,10 +176,10 @@
     <value>Pagina GitHub con ultima release disponibile</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>Argomenti globali da linea di comando (solo per esperti !)</value>
+    <value>Argomenti globali da linea di comando (solo per esperti!)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>E'possibile nascondere alcuni giochi presenti di default</value>
+    <value>È possibile nascondere alcuni giochi presenti di default</value>
   </data>
   <data name="groupBoxOptions.Text">
     <value>Opzioni gioco</value>
@@ -200,7 +200,7 @@
     <value>Editore:</value>
   </data>
   <data name="label3.Text">
-    <value>Argomenti da linea di comando (solo per utenti esperti !)</value>
+    <value>Argomenti da linea di comando (solo per utenti esperti!)</value>
   </data>
   <data name="label4.Text">
     <value>Copertina:</value>
@@ -209,7 +209,7 @@
     <value>Seleziona giochi:</value>
   </data>
   <data name="label6.Text">
-    <value>Numero massimo giocatori:</value>
+    <value>Numero massimo di giocatori:</value>
   </data>
   <data name="label7.Text">
     <value>Codici Game Genie (separati da virgola):</value>
@@ -242,7 +242,7 @@
     <value>Seleziona la copertina per il gioco</value>
   </data>
   <data name="openFileDialogNes.Title">
-    <value>Seleziona Giochi</value>
+    <value>Seleziona i giochi</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Apri client Telnet</value>
@@ -263,10 +263,10 @@
     <value>Singolo giocatore</value>
   </data>
   <data name="radioButtonTwo.Text">
-    <value>2 giocatori, alternati</value>
+    <value>Due giocatori, alternati</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>2 giocatori, contemporaneamente</value>
+    <value>Due giocatori, contemporaneamente</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Utilizza combinazione tasti per resettare</value>
@@ -278,7 +278,7 @@
     <value>Salva le impostazioni nel NES/SNES Mini ora</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Manager dei punti di sospensione</value>
+    <value>Gestore dei punti di sospensione</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
     <value>Cerca</value>
