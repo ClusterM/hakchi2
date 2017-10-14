@@ -71,16 +71,16 @@
     <value>Dati inseriti automaticamente per {0} gioco(i)</value>
   </data>
   <data name="AutofireHelp1">
-    <value>Tieni premuto Select+A/B per 1 secondo per abilitare/disabilitare l'autofire A/B.</value>
+    <value>Tieni premuto Select+A/B per un secondo per abilitare/disabilitare l'autofire A/B.</value>
   </data>
   <data name="BuildingCustom">
     <value>Creazione dell'immagine del kernel modificato…</value>
   </data>
   <data name="BuildingFolders">
-    <value>Sto costruendo la struttura cartelle…</value>
+    <value>Sto costruendo la struttura delle cartelle…</value>
   </data>
   <data name="Compressing">
-    <value>Compressione in corso {0}...</value>
+    <value>Compressione in corso di {0}...</value>
   </data>
   <data name="CompressingGames">
     <value>Compressione dei giochi in corso...</value>
@@ -98,10 +98,10 @@
     <value>Vuoi flashare il kernel modificato?</value>
   </data>
   <data name="CustomWarning">
-    <value>Ora è necessario flashare il custom kernel nel NES/SNES Mini. E'richiesto 1 sola volta. Vuoi continuare?</value>
+    <value>È necessario flashare il custom kernel nel NES/SNES Mini. È richiesto una sola volta. Vuoi continuare?</value>
   </data>
   <data name="Decompressing">
-    <value>Decompressione {0}...</value>
+    <value>Decompressione di {0}...</value>
   </data>
   <data name="DecompressingGames">
     <value>Decompressione dei giochi in corso...</value>
@@ -113,10 +113,10 @@
     <value>Vuoi veramente cancellare "{0}"?</value>
   </data>
   <data name="DeleteElements">
-    <value>Vuoi veramente cancellare gli elementi {0} ?</value>
+    <value>Vuoi veramente cancellare {0} elementi?</value>
   </data>
   <data name="DeleteGame">
-    <value>Vuoi veramente cancellare il gioco "{0}" ?</value>
+    <value>Vuoi veramente cancellare il gioco "{0}"?</value>
   </data>
   <data name="DeletePreset">
     <value>Vuoi veramente cancellare il preset "{0}" ?</value>
@@ -149,10 +149,10 @@
     <value>Vuoi provare a scaricare la copertina per "{0}"?</value>
   </data>
   <data name="DumpKernelQ">
-    <value>Vuoi dumpare il kernel?</value>
+    <value>Vuoi fare il dump del kernel?</value>
   </data>
   <data name="DumpingKernel">
-    <value>Sto dumpando il kernel…</value>
+    <value>Sto facendo il dump del kernel...</value>
   </data>
   <data name="DumpingNand">
     <value>Dump della NAND in corso...</value>
@@ -164,13 +164,13 @@
     <value>Sto eseguendo il comando:</value>
   </data>
   <data name="ExtraArgsInfo">
-    <value>E'possibile aggiungere argomenti da linea di comando che saranno aggiunti a tutti i giochi compresi i 30 originali. Solo per esperti!</value>
+    <value>È possibile aggiungere argomenti da linea di comando che saranno aggiunti a tutti i giochi compresi gli originali. Solo per esperti!</value>
   </data>
   <data name="ExtraArgsTitle">
     <value>Argomenti da linea di comando extra</value>
   </data>
   <data name="FirstRun">
-    <value>Ciao! Sono molto felice che tu stia usando hakchi2. E'molto facile da usare. Clicca semplicemente sui "Aggiungi altri giochi", seleziona alcune ROMs, premi "Sincronizza" e segui le istruzioni. Buona fortuna!</value>
+    <value>Ciao! Sono molto felice che tu stia usando hakchi2. È molto facile da usare. Clicca semplicemente su "Aggiungi altri giochi", seleziona alcune ROMs, premi "Sincronizza" e segui le istruzioni. Buona fortuna!</value>
   </data>
   <data name="FlasingCustom">
     <value>Sto flashando il kernel modificato…</value>
@@ -203,10 +203,10 @@
     <value>La cartella "{0}" contiene {1} elementi.</value>
   </data>
   <data name="FoldersSaveQ">
-    <value>Vuoi salvare questa struttura cartelle?</value>
+    <value>Vuoi salvare questa struttura delle cartelle?</value>
   </data>
   <data name="FourScreenNotSupported">
-    <value>Mi dispiace, ma "{0}" utilizza la modalità "four-screen" (es. il gioco utilizza memoria VRAM aggiuntiva nella cartuccia) e questa caratteristica non è supportata dal NES/SNES Mini. Il gioco probabilmente non partirà con l'emulatore originale di default. Dovrebbe invece funzionare se si è installato il modulo di un altro emulatore. Vuoi aggiungere il gioco comunque?</value>
+    <value>Mi dispiace, ma "{0}" utilizza la modalità "four-screen" (ossia il gioco utilizza memoria VRAM aggiuntiva nella cartuccia) e questa caratteristica non è supportata dal NES/SNES Mini. Il gioco probabilmente non partirà con l'emulatore originale di default. Dovrebbe invece funzionare se si è installato il modulo di un altro emulatore. Vuoi aggiungere il gioco comunque?</value>
   </data>
   <data name="GGCodeDelete">
     <value>Vuoi cancellare il codice "{0}"?</value>
@@ -227,7 +227,7 @@
     <value>Non è possibile applicare il codice Game Genie "{0}" al gioco "{1}" - valore non trovato. Forse il codice è per un gioco diverso?</value>
   </data>
   <data name="GamesAndApps">
-    <value>Giochi e Applicazioni</value>
+    <value>Giochi e applicazioni</value>
   </data>
   <data name="GamesSelected">
     <value>gioco(i) selezionato(i)</value>
@@ -242,7 +242,7 @@
     <value>Immagini</value>
   </data>
   <data name="InputPreset">
-    <value>Inserire un nome per il preset della attuale selezione di giochi.</value>
+    <value>Inserire un nome per il preset dell'attuale selezione di giochi.</value>
   </data>
   <data name="InstallingMods">
     <value>Sto installando le mods…</value>
@@ -263,7 +263,7 @@
     <value>Sto caricando i giochi…</value>
   </data>
   <data name="MD5Failed">
-    <value>Kernel dumpato ma il checksum MD5 è sconosciuto:</value>
+    <value>Dump del kernel completato ma il checksum MD5 è sconosciuto:</value>
   </data>
   <data name="MD5Failed2">
     <value>Il kernel è stato già modificato oppure è una revisione sconosciuta. Per favore inviatemi questo messaggio (premere Ctrl+C). Continuate a vostro rischio e pericolo.</value>
@@ -272,25 +272,25 @@
     <value>Menu HOME</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Mi dispiace, ma "{0}" utilizza il mapper #{1} e questo mapper non è supportato dal NES Mini ed il gioco probabilmente non partirà con l'emulatore originale di default. Dovrebbe invece funzionare se si è installato il modulo di un altro emulatore. Vuoi aggiungere il gioco comunque?</value>
+    <value>Mi dispiace, "{0}" utilizza il mapper #{1} ma questo mapper non è supportato dal NES Mini ed il gioco probabilmente non partirà con l'emulatore originale di default. Dovrebbe invece funzionare se si è installato il modulo di un altro emulatore. Vuoi aggiungere il gioco comunque?</value>
   </data>
   <data name="Membooting">
     <value>Avvio del kernel dalla RAM...</value>
   </data>
   <data name="MemoryFull">
-    <value>Mi dispiace, ci sono {0}Mbytes, sono troppi.</value>
+    <value>Mi dispiace, ci sono {0}MBytes di giochi, sono troppi.</value>
   </data>
   <data name="MemoryStats">
-    <value>&amp;Strumenti</value>
+    <value>Memoria totale scrivibile: {0:F1}MBytes|Memoria disponibile per i giochi: {1:F1}MBytes|Usata dai salvataggi: {2:F1}MBytes|Usata da altri file: {3:F1}MBytes</value>
   </data>
   <data name="NandDumped">
-    <value>Memoria NAND dumpata con successo.</value>
+    <value>Dump della memoria NAND effettuato con successo.</value>
   </data>
   <data name="Need3rdPartyEmulator">
     <value>Oops, "{0}" potrebbe non funzionare correttamente con l'emulatore originale. Vuoi utilizzare un emulatore non originale per questo gioco (deve essere installato)?</value>
   </data>
   <data name="NewGamesUnsorted">
-    <value>I nuovi giochi sono stati spostati nella cartella "Unsorted".</value>
+    <value>I nuovi giochi sono stati spostati nella cartella "Non classificati".</value>
   </data>
   <data name="NewPreset">
     <value>Nuova selezione preset</value>
@@ -305,10 +305,10 @@
     <value>Non è stato trovato alcun dump del kernel</value>
   </data>
   <data name="NoKernelWarning">
-    <value>Prima di tutto dumpare l'immagine del kernel del proprio NES/SNES Mini. Questa operazione va eseguita 1 sola volta. Vuoi continuare?</value>
+    <value>Prima di tutto fare il dump dell'immagine del kernel del proprio NES/SNES Mini. È sufficiente eseguire questa operazione una sola volta. Vuoi continuare?</value>
   </data>
   <data name="NoKernelYouNeed">
-    <value>Non è stato trovato alcun dump del kernel. Devi prima di tutto dumpare il kernel.</value>
+    <value>Non è stato trovato alcun dump del kernel. Devi prima di tutto fare il dump del kernel.</value>
   </data>
   <data name="NoTelnet">
     <value>Impossibile avviare il client Telnet, sembra disabilitato. Va prima abilitato da "Pannello di Controllo" -&gt; "Programmi" -&gt; "Attivazione o disattivazione delle funzionalità Windows".</value>
@@ -335,7 +335,7 @@
     <value>Premere OK per continuare.</value>
   </data>
   <data name="Removing">
-    <value>Cancellazione {0}...</value>
+    <value>Cancellazione di {0}...</value>
   </data>
   <data name="RemovingGames">
     <value>Cancellazione dei giochi in corso...</value>
@@ -347,22 +347,22 @@
     <value>Backup dei punti di sospensione del NES/SNES Mini</value>
   </data>
   <data name="SelectAtLeast">
-    <value>Seleziona almeno 1 gioco.</value>
+    <value>Seleziona almeno un gioco.</value>
   </data>
   <data name="SelectAtLeastTwo">
-    <value>Selezionare almeno 2 pulsanti.</value>
+    <value>Selezionare almeno due pulsanti.</value>
   </data>
   <data name="SelectModsInstall">
-    <value>Seleziona il modulo da installare nel NES/SNES Mini</value>
+    <value>Seleziona i moduli da installare nel NES/SNES Mini</value>
   </data>
   <data name="SelectModsUninstall">
-    <value>Seleziona il modulo da rimuovere dal NES/SNES Mini</value>
+    <value>Seleziona i moduli da rimuovere dal NES/SNES Mini</value>
   </data>
   <data name="Size">
     <value>Dimensione:</value>
   </data>
   <data name="SizeOfSaves">
-    <value>Dimensione dei punti di sospensione selezionati</value>
+    <value>Dimensione dei punti di sospensione selezionati:</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>Non dimenticare di eseguire un factory reset se si desidera cancellare tutti i punti di sospensione.</value>
@@ -383,7 +383,7 @@
     <value>Gioco sconosciuto</value>
   </data>
   <data name="UploadingConfig">
-    <value>Caricando la nuova configurazione…</value>
+    <value>Sto caricando la nuova configurazione…</value>
   </data>
   <data name="UploadingFes1">
     <value>Sto caricando ed eseguendo FES-1…</value>
@@ -395,7 +395,7 @@
     <value>Sto caricando il kernel…</value>
   </data>
   <data name="UploadingOriginalGames">
-    <value>Processando i giochi originali…</value>
+    <value>Sto processando i giochi originali…</value>
   </data>
   <data name="VerifyFailed">
     <value>Verifica fallita :O Questo non va bene.</value>
@@ -410,7 +410,7 @@
     <value>Attenzione!</value>
   </data>
   <data name="Wow">
-    <value>Wow</value>
+    <value>Bene!</value>
   </data>
   <data name="Yes">
     <value>Si</value>

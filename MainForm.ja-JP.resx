@@ -101,7 +101,7 @@
     <value>コンソールタイプ</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>カスタム -フォルダーマネージャーを毎回表示</value>
+    <value>カスタム - フォルダーマネージャーを毎回表示</value>
   </data>
   <data name="decompressSelectedGamesToolStripMenuItem.Text">
     <value>選択したゲームを解凍</value>

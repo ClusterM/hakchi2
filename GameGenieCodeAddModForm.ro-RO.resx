@@ -58,7 +58,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="labelSelectConsole.Text">
-    <value>Prima di iniziare si prega di selezionare il tipo di console. È possibile modificare successivamente questa scelta nel menu Impostazioni per utilizzare una diversa console.</value>
+  <data name="$this.Text">
+    <value>Adăugare cod Game Genie</value>
+  </data>
+  <data name="buttonCancel.Text">
+    <value>Anulare</value>
+  </data>
+  <data name="label1.Text">
+    <value>Cod:</value>
+  </data>
+  <data name="label2.Text">
+    <value>Descriere:</value>
   </data>
 </root>

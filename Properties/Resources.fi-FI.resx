@@ -79,8 +79,17 @@
   <data name="BuildingFolders">
     <value>Rakennetaan kansiorakennetta...</value>
   </data>
+  <data name="Compressing">
+    <value>Pakataan {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Pakataan pelejä...</value>
+  </data>
   <data name="Congratulations">
     <value>Onneksi olkoon!</value>
+  </data>
+  <data name="Cover">
+    <value>Kansitaide</value>
   </data>
   <data name="CustomKernel">
     <value>Mukautettu ydin</value>
@@ -90,6 +99,12 @@
   </data>
   <data name="CustomWarning">
     <value>Nyt sinun täytyy flashata mukautettu ydin NES/SNES Miniisi. Tämä tarvitsee tehdä vain kerran. Haluatko jatkaa?</value>
+  </data>
+  <data name="Decompressing">
+    <value>Puretaan {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Puretaan pelejä...</value>
   </data>
   <data name="Default30games">
     <value>Alkuperäiset xx peliä</value>
@@ -109,6 +124,9 @@
   <data name="DeleteSavesQ">
     <value>Haluatko varmasti poistaa nämä pelitallennukset?</value>
   </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Poista valitut pelit?</value>
+  </data>
   <data name="DoYouWantCancel">
     <value>Haluatko peruuttaa meneillään olevan toiminnon?</value>
   </data>
@@ -126,6 +144,9 @@
   </data>
   <data name="DownloadAllCoversTitle">
     <value>Ladataan kansitaidetta kaikille peleille (Kokeilen onneani!)</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>Haluatko yrittää ladata kansitaiteen pelille "{0}"?</value>
   </data>
   <data name="DumpKernelQ">
     <value>Haluatko dumpata ytimen?</value>
@@ -226,6 +247,9 @@
   <data name="InstallingMods">
     <value>Asennetaan moduuleja...</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>Valitsit väärän konsolin! Tunnistettu konsoli:</value>
+  </data>
   <data name="InvalidKernelHeader">
     <value>Virheelliset ytimen otsikkotiedot.</value>
   </data>
@@ -250,6 +274,9 @@
   <data name="MapperNotSupported">
     <value>Valitettavasti "{0}" käyttää mapperia #{1}, jota NES Mini ei tue ja peli ei luultavasti käynnisty oletusemulaattorilla. Sen pitäisi kuitenkin toimi lisäemulaattorimoduuli asennettuna. Haluatko lisätä pelin?</value>
   </data>
+  <data name="Membooting">
+    <value>Käynnistetään ydin muistista</value>
+  </data>
   <data name="MemoryFull">
     <value>Valitettavasti {0} megatavua pelejä on liikaa.</value>
   </data>
@@ -258,6 +285,9 @@
   </data>
   <data name="NandDumped">
     <value>NAND-muisti dumpattu onnistuneesti.</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Hups. Näyttää, että "{0}" ei tule toimimaan oikein alkuperäisellä emulaattorilla. Haluatko käyttää kolmannen osapuolen emulaattoria tälle pelille? (Vaatii asennuksen.)</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>Uudet pelit siirretään "Lajittelematon"-kansioon.</value>
@@ -304,6 +334,12 @@
   <data name="PressOkToContinue">
     <value>Paina OK jatkaaksesi.</value>
   </data>
+  <data name="Removing">
+    <value>Poistetaan {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Poistetaan pelejä...</value>
+  </data>
   <data name="ReplaceKernelQ">
     <value>Sinulla on jo dumpattu ydin. Jos TODELLA haluat korvata ytimesi varmuuskopion ja TODELLA ymmärrät mitä olet tekemässä, poista "dump"-kansio manuaalisesti.</value>
   </data>
@@ -321,6 +357,9 @@
   </data>
   <data name="SelectModsUninstall">
     <value>Valitse NES/SNES Ministäsi poistettavat moduulit.</value>
+  </data>
+  <data name="Size">
+    <value>Koko:</value>
   </data>
   <data name="SizeOfSaves">
     <value>Valittujen tallennusten koko:</value>
@@ -378,44 +417,5 @@
   </data>
   <data name="YesForAll">
     <value>Kyllä kaikkiin</value>
-  </data>
-  <data name="Compressing">
-    <value>Compressing {0}...</value>
-  </data>
-  <data name="CompressingGames">
-    <value>Compressing games...</value>
-  </data>
-  <data name="Cover">
-    <value>Box art</value>
-  </data>
-  <data name="Decompressing">
-    <value>Decompressing {0}...</value>
-  </data>
-  <data name="DecompressingGames">
-    <value>Decompressing games...</value>
-  </data>
-  <data name="DeleteSelectedGamesQ">
-    <value>Delete selected game(s)?</value>
-  </data>
-  <data name="DownloadCoverQ">
-    <value>Do you want to try to download box art for "{0}"?</value>
-  </data>
-  <data name="InvalidConsoleSelected">
-    <value>Invalid console selected! Detected console:</value>
-  </data>
-  <data name="Membooting">
-    <value>Booting the kernel from RAM...</value>
-  </data>
-  <data name="Need3rdPartyEmulator">
-    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
-  </data>
-  <data name="Removing">
-    <value>Removing {0}...</value>
-  </data>
-  <data name="RemovingGames">
-    <value>Removing games...</value>
-  </data>
-  <data name="Size">
-    <value>Size:</value>
   </data>
 </root>
