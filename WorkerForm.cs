@@ -19,7 +19,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class WorkerForm : Form
     {
-        public enum Tasks { DumpKernel, FlashKernel, DumpNand, FlashNand, DumpNandB, DumpNandC, Memboot, UploadGames, DownloadCovers, AddGames, CompressGames, DecompressGames, DeleteGames };
+        public enum Tasks { DumpKernel, FlashKernel, DumpNand, FlashNand, DumpNandB, DumpNandC, FlashNandC, Memboot, UploadGames, DownloadCovers, AddGames, CompressGames, DecompressGames, DeleteGames };
         public Tasks Task;
         //public string UBootDump;
         public static string KernelDumpPath
@@ -288,6 +288,7 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case Tasks.DumpNandB:
                     case Tasks.DumpNandC:
+                    case Tasks.FlashNandC:
                         DoPartitionDump(Task);
                         break;
                     case Tasks.UploadGames:
@@ -718,30 +719,48 @@ namespace com.clusterrr.hakchi_gui
                         partitionSize = int.Parse(clovershell.ExecuteSimple("df /dev/mapper/root-crypt | tail -n 1 | awk '{ print $2 }'"));
                         break;
                     case Tasks.DumpNandC:
+                    case Tasks.FlashNandC:
                         partitionSize = int.Parse(clovershell.ExecuteSimple("df /dev/nandc | tail -n 1 | awk '{ print $2 }'"));
                         break;
                 }
                 maxProgress = 5 + (int)Math.Ceiling(partitionSize / 1024.0 * 1.05);
                 SetProgress(progress, maxProgress);
 
-                SetStatus(Resources.DumpingNand);
-                using (var file = new TrackableFileStream(NandDump, FileMode.Create))
+                if (task != Tasks.FlashNandC)
                 {
-                    file.OnProgress += delegate (long Position, long Length)
+                    SetStatus(Resources.DumpingNand);
+                    using (var file = new TrackableFileStream(NandDump, FileMode.Create))
                     {
-                        progress = (int)(5 + Position / 1024 / 1024);
-                        SetProgress(progress, maxProgress);
-                    };
-                    switch (task)
-                    {
-                        case Tasks.DumpNandB:
-                            clovershell.Execute("dd if=/dev/mapper/root-crypt", null, file);
-                            break;
-                        case Tasks.DumpNandC:
-                            clovershell.Execute("dd if=/dev/nandc", null, file);
-                            break;
+                        file.OnProgress += delegate (long Position, long Length)
+                        {
+                            progress = (int)(5 + Position / 1024 / 1024);
+                            SetProgress(progress, maxProgress);
+                        };
+                        switch (task)
+                        {
+                            case Tasks.DumpNandB:
+                                clovershell.Execute("dd if=/dev/mapper/root-crypt", null, file);
+                                break;
+                            case Tasks.DumpNandC:
+                                clovershell.Execute("dd if=/dev/nandc", null, file);
+                                break;
+                        }
+                        file.Close();
                     }
-                    file.Close();
+                }
+                else
+                {
+                    SetStatus(Resources.FlashingNand);
+                    using (var file = new TrackableFileStream(NandDump, FileMode.Open))
+                    {
+                        file.OnProgress += delegate (long Position, long Length)
+                        {
+                            progress = (int)(5 + Position / 1024 / 1024);
+                            SetProgress(progress, maxProgress);
+                        };
+                        clovershell.Execute("dd of=/dev/nandc", file);
+                        file.Close();
+                    }
                 }
 
                 SetStatus(Resources.Done);

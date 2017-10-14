@@ -940,6 +940,20 @@ namespace com.clusterrr.hakchi_gui
             return workerForm.DialogResult == DialogResult.OK;
         }
 
+        bool DoNandCFlash()
+        {
+            openDumpFileDialog.FileName = "nandc.hsqs";
+            openDumpFileDialog.DefaultExt = "hsqs";
+            if (openDumpFileDialog.ShowDialog() != DialogResult.OK)
+                return false;
+            var workerForm = new WorkerForm(this);
+            workerForm.Text = Resources.FlashingNand;
+            workerForm.Task = WorkerForm.Tasks.FlashNandC;
+            workerForm.NandDump = openDumpFileDialog.FileName;
+            workerForm.Start();
+            return workerForm.DialogResult == DialogResult.OK;
+        }
+
         bool FlashCustomKernel()
         {
             var workerForm = new WorkerForm(this);
@@ -1133,13 +1147,26 @@ namespace com.clusterrr.hakchi_gui
         private void dumpNANDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (RequirePatchedKernel() == DialogResult.No) return;
-            if (DoNandBDump()) MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (DoNandBDump())
+                MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void dumpNANDCPartitionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (RequirePatchedKernel() == DialogResult.No) return;
-            if (DoNandCDump()) MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (DoNandCFlash())
+                MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void flashNANDCPartitionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(Resources.FlashNandCQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                == DialogResult.Yes)
+            {
+                if (RequirePatchedKernel() == DialogResult.No) return;
+                if (DoNandCFlash())
+                    MessageBox.Show("NAND-C flashed", Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void flashCustomKernelToolStripMenuItem_Click(object sender, EventArgs e)
