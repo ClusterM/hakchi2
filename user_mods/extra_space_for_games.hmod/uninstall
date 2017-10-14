@@ -1,0 +1,5 @@
+local ext_device="/dev/nande"
+local ext_path="$installpath/extrafs"
+umount "$ext_path"
+rm "$preinitpath/p7120_extra_space_for_games"
+rm -rf "$ext_path"
