@@ -136,6 +136,9 @@
   <data name="dumpNANDBToolStripMenuItem.Text">
     <value>Volcar partición decifrada NAND-B</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Volcar partición decifrada NAND-C</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Volcar toda la flash NAND</value>
   </data>

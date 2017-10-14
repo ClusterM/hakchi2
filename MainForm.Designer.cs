@@ -163,6 +163,7 @@
             this.openDumpFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.listViewGames = new System.Windows.Forms.ListView();
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dumpNANDCPartitionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -262,6 +263,7 @@
             this.dumpTheWholeNANDToolStripMenuItem,
             this.toolFlashTheWholeNANDStripMenuItem,
             this.dumpNANDBToolStripMenuItem,
+            this.dumpNANDCPartitionToolStripMenuItem,
             this.toolStripMenuItem9,
             this.uninstallToolStripMenuItem});
             this.kernelToolStripMenuItem.Name = "kernelToolStripMenuItem";
@@ -1115,6 +1117,12 @@
             // 
             resources.ApplyResources(this.gameName, "gameName");
             // 
+            // dumpNANDCPartitionToolStripMenuItem
+            // 
+            this.dumpNANDCPartitionToolStripMenuItem.Name = "dumpNANDCPartitionToolStripMenuItem";
+            resources.ApplyResources(this.dumpNANDCPartitionToolStripMenuItem, "dumpNANDCPartitionToolStripMenuItem");
+            this.dumpNANDCPartitionToolStripMenuItem.Click += new System.EventHandler(this.dumpNANDCPartitionToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1288,6 +1296,7 @@
         private System.Windows.Forms.ToolStripMenuItem decompressSelectedGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downloadBoxArtForSelectedGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dumpNANDCPartitionToolStripMenuItem;
     }
 }
 

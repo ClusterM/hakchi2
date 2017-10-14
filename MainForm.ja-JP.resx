@@ -133,6 +133,9 @@
   <data name="dumpNANDBToolStripMenuItem.Text">
     <value>復号化されたNAND-Bパーティションをダンプ</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>復号化されたNAND-Cパーティションをダンプ</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>NAND型フラッシュメモリ全体をダンプする</value>
   </data>

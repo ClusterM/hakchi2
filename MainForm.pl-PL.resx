@@ -136,6 +136,9 @@
   <data name="dumpNANDBToolStripMenuItem.Text">
     <value>Zgraj odszyfrowaną partycję NAND-B</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Zgraj odszyfrowaną partycję NAND-C</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Zgraj całość pamięci NAND</value>
   </data>

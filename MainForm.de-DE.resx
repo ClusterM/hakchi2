@@ -136,6 +136,9 @@
   <data name="dumpNANDBToolStripMenuItem.Text">
     <value>Verschlüsselten NAND-B Bereich lesen</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Verschlüsselten NAND-C Bereich lesen</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Die ganze NAND-Speicher auslesen.</value>
   </data>

@@ -136,6 +136,9 @@
   <data name="dumpNANDBToolStripMenuItem.Text">
     <value>Dump de gedecodeerde NAND-B partitie</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Dump de gedecodeerde NAND-C partitie</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Dump de gehele NAND flash</value>
   </data>

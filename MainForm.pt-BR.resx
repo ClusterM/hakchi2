@@ -133,6 +133,9 @@
   <data name="dumpNANDBToolStripMenuItem.Text">
     <value>Obter a partição NAND-B descriptografada</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Obter a partição NAND-C descriptografada</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Obter toda a NAND flash</value>
   </data>

@@ -19,7 +19,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class WorkerForm : Form
     {
-        public enum Tasks { DumpKernel, FlashKernel, DumpNand, FlashNand, DumpNandB, Memboot, UploadGames, DownloadCovers, AddGames, CompressGames, DecompressGames, DeleteGames };
+        public enum Tasks { DumpKernel, FlashKernel, DumpNand, FlashNand, DumpNandB, DumpNandC, Memboot, UploadGames, DownloadCovers, AddGames, CompressGames, DecompressGames, DeleteGames };
         public Tasks Task;
         //public string UBootDump;
         public static string KernelDumpPath
@@ -287,7 +287,8 @@ namespace com.clusterrr.hakchi_gui
                         DoNandFlash();
                         break;
                     case Tasks.DumpNandB:
-                        DoNandBDump();
+                    case Tasks.DumpNandC:
+                        DoPartitionDump(Task);
                         break;
                     case Tasks.UploadGames:
                         UploadGames();
@@ -693,10 +694,10 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(maxProgress, maxProgress);
         }
 
-        public void DoNandBDump()
+        public void DoPartitionDump(Tasks task)
         {
             int progress = 0;
-            int maxProgress = 30;
+            int maxProgress = 500;
             var clovershell = MainForm.Clovershell;
             try
             {
@@ -710,8 +711,17 @@ namespace com.clusterrr.hakchi_gui
 
                 ShowSplashScreen();
 
-                var nandbSize = int.Parse(clovershell.ExecuteSimple("df / | tail -n 1 | awk '{ print $2 }'"));
-                maxProgress = 5 + nandbSize / 1024;
+                var partitionSize = 0;
+                switch (task)
+                {
+                    case Tasks.DumpNandB:
+                        partitionSize = int.Parse(clovershell.ExecuteSimple("df /dev/mapper/root-crypt | tail -n 1 | awk '{ print $2 }'"));
+                        break;
+                    case Tasks.DumpNandC:
+                        partitionSize = int.Parse(clovershell.ExecuteSimple("df /dev/nandc | tail -n 1 | awk '{ print $2 }'"));
+                        break;
+                }
+                maxProgress = 5 + (int)Math.Ceiling(partitionSize / 1024.0 * 1.05);
                 SetProgress(progress, maxProgress);
 
                 SetStatus(Resources.DumpingNand);
@@ -719,10 +729,18 @@ namespace com.clusterrr.hakchi_gui
                 {
                     file.OnProgress += delegate (long Position, long Length)
                     {
-                        progress = (int)(5 + Position / 1024);
+                        progress = (int)(5 + Position / 1024 / 1024);
                         SetProgress(progress, maxProgress);
                     };
-                    clovershell.Execute("dd if=/dev/mapper/root-crypt", null, file);
+                    switch (task)
+                    {
+                        case Tasks.DumpNandB:
+                            clovershell.Execute("dd if=/dev/mapper/root-crypt", null, file);
+                            break;
+                        case Tasks.DumpNandC:
+                            clovershell.Execute("dd if=/dev/nandc", null, file);
+                            break;
+                    }
                     file.Close();
                 }
 

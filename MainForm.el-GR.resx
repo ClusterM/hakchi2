@@ -136,6 +136,9 @@
   <data name="dumpNANDBToolStripMenuItem.Text">
     <value>Αποθήκευση αποκρυπτογραφημένου NAND-B partition</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Αποθήκευση αποκρυπτογραφημένου NAND-C partition</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Αποθήκευση ολόκληρης της NAND flash</value>
   </data>
