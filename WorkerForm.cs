@@ -966,6 +966,7 @@ namespace com.clusterrr.hakchi_gui
         public static void SyncConfig(Dictionary<string, string> Config, bool reboot = false)
         {
             var clovershell = MainForm.Clovershell;
+            const string configPath = "/etc/preinit.d/p0000_config";
 
             // Writing config
             var config = new MemoryStream();
@@ -977,8 +978,7 @@ namespace com.clusterrr.hakchi_gui
                     config.Write(data, 0, data.Length);
                 }
             }
-            clovershell.Execute("cat > /tmp/config", config, null, null, 1000, true);
-            clovershell.Execute("temppath=/tmp ; source /etc/preinit ; script_init ; source /tmp/config ; source $preinit.d/pffff_config", null, null, null, 5000, true);
+            clovershell.Execute($"cat >> {configPath}", config, null, null, 3000, true);
             config.Dispose();
             if (reboot)
             {

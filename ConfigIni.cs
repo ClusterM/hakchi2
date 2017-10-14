@@ -29,7 +29,7 @@ namespace com.clusterrr.hakchi_gui
         public static byte MaxGamesPerFolderSnes = 30;
         public static byte MaxGamesPerFolderSuperFamicom = 30;
         public static NesMenuCollection.SplitStyle FoldersModeNes = NesMenuCollection.SplitStyle.Original_Auto;
-        public static NesMenuCollection.SplitStyle FoldersModeFacmiom = NesMenuCollection.SplitStyle.Original_Auto;
+        public static NesMenuCollection.SplitStyle FoldersModeFamicom = NesMenuCollection.SplitStyle.Original_Auto;
         public static NesMenuCollection.SplitStyle FoldersModeSnes = NesMenuCollection.SplitStyle.Original_Auto;
         public static NesMenuCollection.SplitStyle FoldersModeSuperFamicom = NesMenuCollection.SplitStyle.Original_Auto;
         public static bool AutofireHackNes = false;
@@ -219,16 +219,16 @@ namespace com.clusterrr.hakchi_gui
                 {
                     default:
                     case MainForm.ConsoleType.NES:
-                        MaxGamesPerFolderNes = value;
+                        FoldersModeNes = value;
                         break;
                     case MainForm.ConsoleType.Famicom:
-                        MaxGamesPerFolderFamicom = value;
+                        FoldersModeFamicom = value;
                         break;
                     case MainForm.ConsoleType.SNES:
-                        MaxGamesPerFolderSnes = value;
+                        FoldersModeSnes = value;
                         break;
                     case MainForm.ConsoleType.SuperFamicom:
-                        MaxGamesPerFolderSuperFamicom = value;
+                        FoldersModeSuperFamicom = value;
                         break;
                 }
             }
@@ -592,7 +592,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("ExtraCommandLineArguments={0}", ExtraCommandLineArgumentsNes));
             configLines.Add(string.Format("ExtraCommandLineArgumentsSnes={0}", ExtraCommandLineArgumentsSnes));
             configLines.Add(string.Format("FoldersMode={0}", (byte)FoldersModeNes));
-            configLines.Add(string.Format("FoldersModeFamicom={0}", (byte)FoldersModeFacmiom));
+            configLines.Add(string.Format("FoldersModeFamicom={0}", (byte)FoldersModeFamicom));
             configLines.Add(string.Format("FoldersModeSnes={0}", (byte)FoldersModeSnes));
             configLines.Add(string.Format("FoldersModeSuperFamicom={0}", (byte)FoldersModeSuperFamicom));
             configLines.Add(string.Format("MaxGamesPerFolder={0}", MaxGamesPerFolderNes));
