@@ -59,21 +59,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Esperando por seu NES/SNES Mini …</value>
+    <value>A aguardar pelo NES/SNES Mini …</value>
   </data>
   <data name="buttonDriver.Text">
-    <value>Instalar driver</value>
+    <value>Instalar controlador</value>
   </data>
   <data name="label1.Text">
     <value>Execute as seguintes etapas:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Ligue o seu NES/SNES Mini ao PC através do cabo USB.</value>
+    <value>1. Conecte o NES/SNES Mini ao PC através do cabo USB.</value>
   </data>
   <data name="label3.Text">
     <value>2. Ligue-o.</value>
   </data>
   <data name="label6.Text">
-    <value>3. Instale o driver se ainda não estiver instalado:</value>
+    <value>3. Instale o controlador se ainda não estiver instalado:</value>
   </data>
 </root>
