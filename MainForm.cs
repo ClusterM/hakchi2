@@ -217,11 +217,13 @@ namespace com.clusterrr.hakchi_gui
                     item.Checked = ConfigIni.MaxGamesPerFolder == f;
                     item.Click += delegate (object sender, EventArgs e)
                     {
-                        (maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true).First() 
-                            as ToolStripMenuItem).Checked = false;
+                        var old = maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true);
+                        if (old.Count() > 0)
+                            (old.First() as ToolStripMenuItem).Checked = false;
                         ConfigIni.MaxGamesPerFolder = (byte)((sender as ToolStripMenuItem).Tag);
-                        (maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true).First()
-                            as ToolStripMenuItem).Checked = true;
+                        var n = maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true);
+                        if (n.Count() > 0)
+                            (n.First() as ToolStripMenuItem).Checked = true;
                     };
                     maximumGamesPerFolderToolStripMenuItem.DropDownItems.Add(item);
                 }
@@ -836,7 +838,7 @@ namespace com.clusterrr.hakchi_gui
         DialogResult RequireKernelDump()
         {
             if (File.Exists(WorkerForm.KernelDumpPath)) return DialogResult.OK; // OK - already dumped
-            // Asking user to dump kernel
+                                                                                // Asking user to dump kernel
             if (MessageBox.Show(Resources.NoKernelWarning, Resources.NoKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == System.Windows.Forms.DialogResult.Yes)
             {
