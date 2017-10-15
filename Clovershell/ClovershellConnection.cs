@@ -266,7 +266,12 @@ namespace com.clusterrr.clovershell
                             break;
                         }
                     }
-                    if (online) Debug.WriteLine("clovershell disconnected");
+                    if (online)
+                    {
+                        Debug.WriteLine("clovershell disconnected");
+                        ShellEnabled = !ShellEnabled;
+                        ShellEnabled = !ShellEnabled;
+                    }
                     online = false;
                     if (device != null)
                         device.Close();
