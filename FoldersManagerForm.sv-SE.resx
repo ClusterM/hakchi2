@@ -109,6 +109,18 @@
   <data name="renameToolStripMenuItem.Text">
     <value>Döp om mapp</value>
   </data>
+  <data name="comboBoxPosition.Items">
+    <value>Leftmost</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>Left to the games</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>Right to the games</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>Rightmost</value>
+  </data>
   <data name="labelElementCount.Text">
     <value>Folder statistics</value>
   </data>

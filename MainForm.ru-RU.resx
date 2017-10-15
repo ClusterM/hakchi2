@@ -154,11 +154,17 @@
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ (Вопросы и ответы)</value>
   </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Японка)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;Файл</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Прошить модифицированное ядро</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Записать NAND-C раздел</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Прошить оригинальное ядро</value>
@@ -238,6 +244,9 @@
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Модули</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (Американка/Европейка)</value>
+  </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Открыть FTP клиент</value>
   </data>
@@ -274,6 +283,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Использовать комбинацию кнопок для выхода в меню</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (Американка/Европейка)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>Выберите, куда сохранить образ</value>
   </data>
@@ -297,6 +309,9 @@
   </data>
   <data name="shellToolStripMenuItem.Text">
     <value>Telnet сервер на telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Японка)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Синхронизация</value>

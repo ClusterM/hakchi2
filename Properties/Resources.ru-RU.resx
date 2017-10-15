@@ -172,6 +172,12 @@
   <data name="FirstRun">
     <value>Привет! Я очень рад, что вы пользуетесь моей программой. Её очень просто использовать: нажмите кнопку "Добавить игр", выберите ROMы, затем жмите "Синхронизировать" и следуйте инструкциям. Удачи!</value>
   </data>
+  <data name="FlashNandCQ">
+    <value>Хотите записать образ NAND-C раздела? Это перезапишет все пользовательские данные.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Записываем NAND-память...</value>
+  </data>
   <data name="FlasingCustom">
     <value>Прошиваем модифицированное ядро...</value>
   </data>
@@ -286,6 +292,9 @@
   <data name="NandDumped">
     <value>NAND память успешно прочитана.</value>
   </data>
+  <data name="NandFlashed">
+    <value>NAND-память записана.</value>
+  </data>
   <data name="Need3rdPartyEmulator">
     <value>Увы, игра "{0} скорее всего будет некорректно работать на оригинальном эмуляторе. Хотите использовать сторонний эмулятор для этой игры (он должен быть установлен отдельно)?</value>
   </data>
@@ -315,6 +324,9 @@
   </data>
   <data name="NotFound">
     <value>Не найдено:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>не рекомендуется</value>
   </data>
   <data name="OriginalKernelQ">
     <value>Прошить оригинальный образ ядра?</value>
@@ -363,6 +375,9 @@
   </data>
   <data name="SizeOfSaves">
     <value>Размер выбранных сохранений:</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Внимание! Не рекомендуется делать так много игр на папку.</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>Всё. Не забудьте также сделать сброс к заводским настройкам, если хотите удалить сохранения игр.</value>

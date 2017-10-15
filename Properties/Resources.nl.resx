@@ -172,6 +172,12 @@
   <data name="FirstRun">
     <value>Hallo! Ik vind het fijn dat je Hakchi2 gebruikt. Het werkt heel simpel: Klik gewoon op “Meer spellen toevoegen”, selecteer wat ROMs, druk op ”Synchroniseren” en volg de instructies. Veel plezier!</value>
   </data>
+  <data name="FlashNandCQ">
+    <value>Wil je de NAND-C partitie flashen? Al je data zal overschreven worden.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Flashing NAND geheugen...</value>
+  </data>
   <data name="FlasingCustom">
     <value>De aangepaste kernel aan het flashen...</value>
   </data>
@@ -286,6 +292,9 @@
   <data name="NandDumped">
     <value>NAND geheugen succesvol gedumpt.</value>
   </data>
+  <data name="NandFlashed">
+    <value>NAND geheugen flashed.</value>
+  </data>
   <data name="Need3rdPartyEmulator">
     <value>Oeps, het lijkt erop dat "{0}" niet goed gaat werken met de originele emulator. Wil je een andere emulator gebruiken voor dit spel (het moet wel geïnstalleerd worden)?</value>
   </data>
@@ -315,6 +324,9 @@
   </data>
   <data name="NotFound">
     <value>Niet gevonden:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>niet aanbevolen</value>
   </data>
   <data name="OriginalKernelQ">
     <value>Wil je de originele kernel flashen?</value>
@@ -363,6 +375,9 @@
   </data>
   <data name="SizeOfSaves">
     <value>De grootte van de geselecteerde onderbrekingspunten:</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Waarschuwing! Het is niet aanbevolen om zoveel spellen in 1 map te hebben.</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>Vergeet niet om een factory reset te doen als je alle Suspend Points wilt verwijderen.</value>

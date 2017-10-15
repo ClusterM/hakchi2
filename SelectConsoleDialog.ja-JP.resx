@@ -61,4 +61,16 @@
   <data name="labelSelectConsole.Text">
     <value>使用するコンソール(機種)を選択してください。あとから「設定」&gt;「コンソールタイプ」から変更できます。</value>
   </data>
+  <data name="buttonFamicom.Text">
+    <value>Famicom (Japan)</value>
+  </data>
+  <data name="buttonNes.Text">
+    <value>NES (USA/Europe)</value>
+  </data>
+  <data name="buttonSnes.Text">
+    <value>SNES (USA/Europe)</value>
+  </data>
+  <data name="buttonSuperFamicom.Text">
+    <value>Super Famicom (Japan)</value>
+  </data>
 </root>

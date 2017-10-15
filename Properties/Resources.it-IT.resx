@@ -172,6 +172,12 @@
   <data name="FirstRun">
     <value>Ciao! Sono molto felice che tu stia usando hakchi2. È molto facile da usare. Clicca semplicemente su "Aggiungi altri giochi", seleziona alcune ROMs, premi "Sincronizza" e segui le istruzioni. Buona fortuna!</value>
   </data>
+  <data name="FlashNandCQ">
+    <value>Vuoi flashare l'immagine della partizione NAND-C? Tutti i dati utente verranno sovrascritti</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Sto flashando la memoria NAND...</value>
+  </data>
   <data name="FlasingCustom">
     <value>Sto flashando il kernel modificato…</value>
   </data>
@@ -286,6 +292,9 @@
   <data name="NandDumped">
     <value>Dump della memoria NAND effettuato con successo.</value>
   </data>
+  <data name="NandFlashed">
+    <value>Memoria NAND scritta.</value>
+  </data>
   <data name="Need3rdPartyEmulator">
     <value>Oops, "{0}" potrebbe non funzionare correttamente con l'emulatore originale. Vuoi utilizzare un emulatore non originale per questo gioco (deve essere installato)?</value>
   </data>
@@ -315,6 +324,9 @@
   </data>
   <data name="NotFound">
     <value>Non trovato:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>non consigliato</value>
   </data>
   <data name="OriginalKernelQ">
     <value>Vuoi flashare il kernel originale?</value>
@@ -364,6 +376,9 @@
   <data name="SizeOfSaves">
     <value>Dimensione dei punti di sospensione selezionati:</value>
   </data>
+  <data name="TooManyPerFolder">
+    <value>Attenzione! Non è consigliato inserire così tanti giochi in ogni singola cartella.</value>
+  </data>
   <data name="UninstallFactoryNote">
     <value>Non dimenticare di eseguire un factory reset se si desidera cancellare tutti i punti di sospensione.</value>
   </data>
@@ -371,7 +386,7 @@
     <value>Vuoi veramente rimuovere ogni traccia di hakchi2 e far ritornare il tuo NES/SNES Mini al suo stato originale?</value>
   </data>
   <data name="UninstallQ2">
-    <value>Fatto. Attendere che il power LED si spenga. Va inoltre flashato il kernel originale. Vuoi flashare il kernel originale ora?</value>
+    <value>Fatto. Attendere che il LED rosso di "acceso" si spenga. Va inoltre flashato il kernel originale. Vuoi flashare il kernel originale ora?</value>
   </data>
   <data name="Uninstalling">
     <value>Sto disinstallando…</value>

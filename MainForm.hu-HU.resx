@@ -274,11 +274,17 @@
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Use "Select+A/B" to enable autofire on A/B</value>
   </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Japan)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;File</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Flash custom kernel</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Flash NAND-C partition (experts only!)</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
     <value>Original games in root -&gt; Folders, split games equally</value>
@@ -301,6 +307,9 @@
   <data name="membootPatchedKernelToolStripMenuItem.Text">
     <value>Boot patched kernel from RAM</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Europe)</value>
+  </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
     <value>Original games in root -&gt; Pages, split games equally</value>
   </data>
@@ -313,11 +322,17 @@
   <data name="presetsToolStripMenuItem.Text">
     <value>Selection presets</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Europe)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>Select dump filename</value>
   </data>
   <data name="shellToolStripMenuItem.Text">
     <value>Telnet server on telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japan)</value>
   </data>
   <data name="toolFlashTheWholeNANDStripMenuItem.Text">
     <value>Flash the whole NAND (experts only!)</value>

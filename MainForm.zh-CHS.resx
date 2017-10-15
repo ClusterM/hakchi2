@@ -160,6 +160,9 @@
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>刷写定制内核镜像</value>
   </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>刷写NAND-C分区(仅限专业用户使用!)</value>
+  </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>刷写原版内核镜像</value>
   </data>
@@ -327,5 +330,17 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>将经典控制器的X/Y按钮用作连发A/B键</value>
+  </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Japan)</value>
+  </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Europe)</value>
+  </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Europe)</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japan)</value>
   </data>
 </root>

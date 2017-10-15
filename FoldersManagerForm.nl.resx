@@ -85,6 +85,18 @@
   <data name="buttonNoFoldersOriginal.Text">
     <value>Originele spellen -&gt; Andere spellen</value>
   </data>
+  <data name="comboBoxPosition.Items">
+    <value>Uiterst links</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>Links van de spellen</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>Rechts van de spellen</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>Uiterst rechts</value>
+  </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Knippen</value>
   </data>

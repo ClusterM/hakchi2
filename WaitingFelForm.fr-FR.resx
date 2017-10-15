@@ -65,7 +65,7 @@
     <value>Installer le pilote</value>
   </data>
   <data name="label1.Text">
-    <value>Merci de suivre les étapes suivantes:</value>
+    <value>Merci de suivre les étapes suivantes :</value>
   </data>
   <data name="label2.Text">
     <value>1. Vérifiez que le bouton POWER de la NES/SNES Mini n'est pas enfoncé.</value>

@@ -154,11 +154,17 @@
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ (domande frequenti)</value>
   </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Giappone)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;File</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Flasha kernel modificato</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Flasha la partizione NAND-C (solo per esperti!)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Flasha kernel originale</value>
@@ -182,7 +188,7 @@
     <value>Argomenti globali da linea di comando (solo per esperti!)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>È possibile nascondere alcuni giochi presenti di default</value>
+    <value>È possibile nascondere alcuni dei giochi originali di default</value>
   </data>
   <data name="groupBoxOptions.Text">
     <value>Opzioni gioco</value>
@@ -238,6 +244,9 @@
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Moduli</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Europa)</value>
+  </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Apri client FTP</value>
   </data>
@@ -274,6 +283,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Utilizza combinazione tasti per resettare</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Europa)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>Seleziona il nome del file del dump</value>
   </data>
@@ -297,6 +309,9 @@
   </data>
   <data name="shellToolStripMenuItem.Text">
     <value>Server Telnet all'indirizzo telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Giappone)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Sincronizza</value>

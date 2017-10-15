@@ -85,6 +85,18 @@
   <data name="buttonNoFoldersOriginal.Text">
     <value>Giochi originali -&gt; Altri giochi</value>
   </data>
+  <data name="comboBoxPosition.Items">
+    <value>Tutto a sinistra</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>A sinistra dei giochi</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>A destra dei giochi</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>Tutto a destra</value>
+  </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Taglia</value>
   </data>

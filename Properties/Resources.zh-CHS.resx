@@ -172,6 +172,12 @@
   <data name="FirstRun">
     <value>您好！感谢您使用hakchi2。本软件非常简单易用。您只需点击“添加游戏”，选择一些ROM，然后点击“开始同步”，再跟着指示进行操作就可以了。祝您好运！</value>
   </data>
+  <data name="FlashNandCQ">
+    <value>确定要刷写NAND-C分区镜像吗？这样将会覆盖所有用户数据。</value>
+  </data>
+  <data name="FlashingNand">
+    <value>刷写NAND存储器...</value>
+  </data>
   <data name="FlasingCustom">
     <value>正在刷写自定义内核镜像...</value>
   </data>
@@ -417,5 +423,14 @@
   </data>
   <data name="YesForAll">
     <value>全部选是</value>
+  </data>
+  <data name="NandFlashed">
+    <value>NAND memory flashed.</value>
+  </data>
+  <data name="NotRecommended">
+    <value>not recommended</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
 </root>

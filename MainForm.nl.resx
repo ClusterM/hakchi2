@@ -154,11 +154,17 @@
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ (Veel Gestelde Vragen)</value>
   </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Japan)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;Bestand</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Flash zelfgemaakte kernel</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Flash NAND-C partitie (alleen experts!)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Flash de originele kernel</value>
@@ -238,6 +244,9 @@
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Modules</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Europa)</value>
+  </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Open FTP client</value>
   </data>
@@ -274,6 +283,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Gebruik een knop combinatie om te resetten</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Europa)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>Selecteer de bestandsnaam voor dump</value>
   </data>
@@ -297,6 +309,9 @@
   </data>
   <data name="shellToolStripMenuItem.Text">
     <value>Telnet server op telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japan)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Synchroniseren</value>

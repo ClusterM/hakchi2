@@ -85,6 +85,18 @@
   <data name="buttonNoFoldersOriginal.Text">
     <value>Оригинальные игры -&gt; Другие игры</value>
   </data>
+  <data name="comboBoxPosition.Items">
+    <value>Самая левая</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>Слева от игр</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>Справа от игр</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>Самая правая</value>
+  </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Вырезать</value>
   </data>

@@ -229,6 +229,12 @@
   <data name="FirstRun">
     <value>Hello there! I'm very glad that you are using hakchi2. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>
   </data>
+  <data name="FlashNandCQ">
+    <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Flashing NAND memory...</value>
+  </data>
   <data name="FlasingCustom">
     <value>Flashing custom kernel...</value>
   </data>
@@ -325,6 +331,9 @@
   <data name="NandDumped">
     <value>NAND memory is dumped successfully.</value>
   </data>
+  <data name="NandFlashed">
+    <value>NAND memory flashed.</value>
+  </data>
   <data name="Need3rdPartyEmulator">
     <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
@@ -345,6 +354,9 @@
   </data>
   <data name="NoTelnet">
     <value>Can't start Telnet client, seems like it's disabled. You need to enable it first, you can do it in "Control Panel" -&gt; "Programs" -&gt; "Turn Windows features on or off".</value>
+  </data>
+  <data name="NotRecommended">
+    <value>not recommended</value>
   </data>
   <data name="OriginalKernelQ">
     <value>Do you want to flash the original kernel?</value>
@@ -375,6 +387,9 @@
   </data>
   <data name="SelectModsUninstall">
     <value>Select the modules to remove from your NES/SNES Mini</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>Don't forget to perform a factory reset if you want to delete all Suspend Points.</value>

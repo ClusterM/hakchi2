@@ -394,6 +394,12 @@
   <data name="DumpingNand">
     <value>Dumping NAND...</value>
   </data>
+  <data name="FlashNandCQ">
+    <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Flashing NAND memory...</value>
+  </data>
   <data name="InvalidConsoleSelected">
     <value>Invalid console selected! Detected console:</value>
   </data>
@@ -403,11 +409,17 @@
   <data name="NandDumped">
     <value>NAND memory is dumped successfully.</value>
   </data>
+  <data name="NandFlashed">
+    <value>NAND memory flashed.</value>
+  </data>
   <data name="Need3rdPartyEmulator">
     <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
   </data>
   <data name="NoKernelWarning">
     <value>First, dump the kernel image of your NES/SNES Mini. You only need to do this once. Do you want to continue?</value>
+  </data>
+  <data name="NotRecommended">
+    <value>not recommended</value>
   </data>
   <data name="Removing">
     <value>Removing {0}...</value>
@@ -417,5 +429,8 @@
   </data>
   <data name="Size">
     <value>Size:</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
 </root>

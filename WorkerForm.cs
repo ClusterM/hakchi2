@@ -989,7 +989,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 catch { }
             }
-            var rootFsPathes = Directory.GetDirectories(modsDirectory, "rootfs", SearchOption.AllDirectories);
+            var rootFsPathes = Directory.GetDirectories(modPath, "rootfs", SearchOption.AllDirectories);
             if (rootFsPathes.Length == 0) return;
             var rootFsPath = rootFsPathes[0];
 
