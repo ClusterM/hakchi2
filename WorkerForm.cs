@@ -1030,9 +1030,17 @@ namespace com.clusterrr.hakchi_gui
         public static Image TakeScreenshot()
         {
             var clovershell = MainForm.Clovershell;
+            var emulatorPID = findEmulatorProcess(clovershell);
+            if (emulatorPID < 0)
+            {
+                Debug.WriteLine("PID of emulator can't be found. Capturing without SIGSTOP.");
+            }
+
             var screenshot = new Bitmap(1280, 720, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
             var rawStream = new MemoryStream();
+            pauseEmulatorProcess(clovershell, emulatorPID);
             clovershell.Execute("cat /dev/fb0", null, rawStream, null, 1000, true);
+            resumeEmulatorProcess(clovershell, emulatorPID);
             var raw = rawStream.ToArray();
             BitmapData data = screenshot.LockBits(
                 new Rectangle(0, 0, screenshot.Width, screenshot.Height),
@@ -1059,6 +1067,46 @@ namespace com.clusterrr.hakchi_gui
             screenshot.UnlockBits(data);
             return screenshot;
         }
+
+        // -- Emulator stop-and-go routines --
+        // Stop emulator process to suppress tearing of the frame buffer.
+        public static Int64 findEmulatorProcess(com.clusterrr.clovershell.ClovershellConnection sh)
+        {
+            var stdoutResult = new MemoryStream();
+            sh.Execute("ps|grep canoe|grep -v grep", null, stdoutResult, null, 1000, false);
+            var resultStr = Encoding.UTF8.GetString(stdoutResult.ToArray());
+            resultStr = System.Text.RegularExpressions.Regex.Replace(resultStr, "^\\s+", ""); // Trim whitespaces
+
+            var fields = System.Text.RegularExpressions.Regex.Split(resultStr, " +");
+            if (fields.Length < 1)
+            {
+                return -1; // emulator not found
+            }
+
+            try
+            {
+                Int64 pid = Convert.ToInt64(fields[0], 10);
+                return pid;
+            }
+            catch
+            {
+                Debug.WriteLine("Bad PID : " + resultStr);
+                return -1;
+            }
+        }
+
+        public static void pauseEmulatorProcess(com.clusterrr.clovershell.ClovershellConnection sh, Int64 pid)
+        {
+            if (pid < 0) { return; } // emulator not found
+            sh.Execute($"kill -s SIGSTOP {pid}", null, null, null, 1000, false);
+        }
+
+        public static void resumeEmulatorProcess(com.clusterrr.clovershell.ClovershellConnection sh, Int64 pid)
+        {
+            if (pid < 0) { return; } // emulator not found
+            sh.Execute($"kill -s SIGCONT {pid}", null, null, null, 1000, false);
+        }
+
 
         public void Memboot(int maxProgress = -1, int progress = 0)
         {
