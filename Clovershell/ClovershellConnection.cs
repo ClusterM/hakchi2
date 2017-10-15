@@ -33,6 +33,7 @@ namespace com.clusterrr.clovershell
         DateTime lastAliveTime;
         public delegate void OnClovershellConnected();
         public event OnClovershellConnected OnConnected = delegate { };
+        public event OnClovershellConnected OnDisconnect = delegate { };
 
         internal enum ClovershellCommand
         {
@@ -266,7 +267,11 @@ namespace com.clusterrr.clovershell
                             break;
                         }
                     }
-                    if (online) Debug.WriteLine("clovershell disconnected");
+                    if (online)
+                    {
+                        Debug.WriteLine("clovershell disconnected");
+                        OnDisconnect();
+                    }
                     online = false;
                     if (device != null)
                         device.Close();
