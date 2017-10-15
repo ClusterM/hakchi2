@@ -160,7 +160,7 @@
     <value>1</value>
   </data>
   <data name="buttonNes.Text" xml:space="preserve">
-    <value>NES Classic Mini</value>
+    <value>NES (USA/Europe)</value>
   </data>
   <data name="&gt;&gt;buttonNes.Name" xml:space="preserve">
     <value>buttonNes</value>
@@ -187,7 +187,7 @@
     <value>2</value>
   </data>
   <data name="buttonFamicom.Text" xml:space="preserve">
-    <value>Famicom Mini</value>
+    <value>Famicom (Japan)</value>
   </data>
   <data name="&gt;&gt;buttonFamicom.Name" xml:space="preserve">
     <value>buttonFamicom</value>
@@ -214,7 +214,7 @@
     <value>3</value>
   </data>
   <data name="buttonSnes.Text" xml:space="preserve">
-    <value>SNES Classic Mini</value>
+    <value>SNES (USA/Europe)</value>
   </data>
   <data name="&gt;&gt;buttonSnes.Name" xml:space="preserve">
     <value>buttonSnes</value>
@@ -241,7 +241,7 @@
     <value>4</value>
   </data>
   <data name="buttonSuperFamicom.Text" xml:space="preserve">
-    <value>Super Famicom Mini</value>
+    <value>Super Famicom (Japan)</value>
   </data>
   <data name="&gt;&gt;buttonSuperFamicom.Name" xml:space="preserve">
     <value>buttonSuperFamicom</value>

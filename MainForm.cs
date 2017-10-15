@@ -39,6 +39,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
+        public const int MaxGamesPerFolder = 50;
         public static IEnumerable<string> InternalMods;
         public static ClovershellConnection Clovershell;
         mooftpserv.Server ftpServer;
@@ -156,7 +157,6 @@ namespace com.clusterrr.hakchi_gui
             new NesDefaultGame { Code = "CLV-P-VADZJ",  Name = "パネルでポン", Size = 25000 },
         };
 
-
         public MainForm()
         {
             InitializeComponent();
@@ -206,18 +206,24 @@ namespace com.clusterrr.hakchi_gui
                 foldersSplitByFirstLetterOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 9;
                 customToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 99;
 
-                max20toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 20;
-                max25toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 25;
-                max30toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 30;
-                max35toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 35;
-                max40toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 40;
-                max45toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 45;
-                max50toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 50;
-                max60toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 60;
-                max70toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 70;
-                max80toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 80;
-                max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
-                max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
+                for (byte f = 20; f <= 100; f += ((f < 50) ? (byte)5 : (byte)10))
+                {
+                    var item = new ToolStripMenuItem();
+                    item.Name = "folders" + f.ToString();
+                    item.Text = f.ToString();
+                    if (f >= MaxGamesPerFolder)
+                        item.Text += $" ({Resources.NotRecommended})";
+                    item.Checked = ConfigIni.MaxGamesPerFolder == f;
+                    item.Click += delegate (object sender, EventArgs e)
+                    {
+                        (maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true).First() 
+                            as ToolStripMenuItem).Checked = false;
+                        ConfigIni.MaxGamesPerFolder = f;
+                        (maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true).First()
+                            as ToolStripMenuItem).Checked = true;
+                    };
+                    maximumGamesPerFolderToolStripMenuItem.DropDownItems.Add(item);
+                }
 
                 listViewGames.ListViewItemSorter = new GamesSorter();
 
@@ -1165,7 +1171,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (RequirePatchedKernel() == DialogResult.No) return;
                 if (DoNandCFlash())
-                    MessageBox.Show("NAND-C flashed", Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Resources.NandFlashed, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1494,23 +1500,6 @@ namespace com.clusterrr.hakchi_gui
             searchForm.Left = this.Left + 200;
             searchForm.Top = this.Top + 300;
             searchForm.Show();
-        }
-
-        private void toolStripMenuMaxGamesPerFolder_Click(object sender, EventArgs e)
-        {
-            ConfigIni.MaxGamesPerFolder = byte.Parse((sender as ToolStripMenuItem).Text);
-            max20toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 20;
-            max25toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 25;
-            max30toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 30;
-            max35toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 35;
-            max40toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 40;
-            max45toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 45;
-            max50toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 50;
-            max60toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 60;
-            max70toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 70;
-            max80toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 80;
-            max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
-            max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
         }
 
         private void compressGamesToolStripMenuItem_Click(object sender, EventArgs e)

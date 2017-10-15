@@ -37,7 +37,7 @@ namespace com.clusterrr.hakchi_gui
             { "SUPER GHOULS'N GHOST", 0x1003 },
             { "Street Fighter2 Turb", 0x1065 },
             { "SUPER MARIO RPG", 0x109E },
-            { "Secret of MANA", 0x10B0 },
+            //{ "Secret of MANA", 0x10B0 },// Removed to use hacks and translations
             { "FINAL FANTASY 3", 0x10DC },
             { "SUPER CASTLEVANIA 4", 0x1030 },
             { "CONTRA3 THE ALIEN WA", 0x1036 },
@@ -123,7 +123,7 @@ namespace com.clusterrr.hakchi_gui
             { "ROMANCING SAGA3" }, // Romancing SaGa 3 (J) (V1.1).smc
             { "SD??????GX" }, // SD Gundam GX (J) [!].smc
             { "SECRET OF EVERMORE" }, // Secret of Evermore (U) [!].smc
-            { "Secret of MANA" }, // Secret of Mana (U) [!].smc
+            //{ "Secret of MANA" }, // Secret of Mana (U) [!].smc
             { "SIM CITY 2000" }, // Sim City 2000 (U).smc
             { "SMASH TENNIS" }, // Smash Tennis (E) [!].smc
             { "Star Ocean" }, // Star Ocean (J) [!].smc

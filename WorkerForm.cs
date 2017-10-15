@@ -711,18 +711,23 @@ namespace com.clusterrr.hakchi_gui
                 SetProgress(progress, maxProgress);
 
                 ShowSplashScreen();
+                clovershell.ExecuteSimple("sync");
 
-                var partitionSize = 0;
-                switch (task)
+                var partitionSize = 300 * 1024;
+                try
                 {
-                    case Tasks.DumpNandB:
-                        partitionSize = int.Parse(clovershell.ExecuteSimple("df /dev/mapper/root-crypt | tail -n 1 | awk '{ print $2 }'"));
-                        break;
-                    case Tasks.DumpNandC:
-                    case Tasks.FlashNandC:
-                        partitionSize = int.Parse(clovershell.ExecuteSimple("df /dev/nandc | tail -n 1 | awk '{ print $2 }'"));
-                        break;
+                    switch (task)
+                    {
+                        case Tasks.DumpNandB:
+                            partitionSize = int.Parse(clovershell.ExecuteSimple("df /dev/mapper/root-crypt | tail -n 1 | awk '{ print $2 }'"));
+                            break;
+                        case Tasks.DumpNandC:
+                        case Tasks.FlashNandC:
+                            partitionSize = int.Parse(clovershell.ExecuteSimple("df /dev/nandc | tail -n 1 | awk '{ print $2 }'"));
+                            break;
+                    }
                 }
+                catch { }
                 maxProgress = 5 + (int)Math.Ceiling(partitionSize / 1024.0 * 1.05);
                 SetProgress(progress, maxProgress);
 
