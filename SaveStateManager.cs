@@ -74,7 +74,7 @@ namespace com.clusterrr.hakchi_gui
                      "  [ -d $savespath/$code/suspendpoint4 ] && flags=${flags}-4\n" +
                      "  if [ \"$flags\" != \"F\" ]; then\n" +
                      "    size=$(du -d 0 $savespath/$code | awk '{ print $1 }')\n" +
-                     "    name=$(find /var/lib -type f -name \"$code.desktop\" -exec cat {} + | sed -n 's/Name=\\(.*\\)/\\1/p')\n" +
+                     "    name=$(find /var/lib -type f -name \"$code.desktop\" -exec cat {} + | sed -n 's/Name=\\(.*\\)/\\1/p' | head -n 1)\n" +
                      "    [ -z \"$name\" ] && name=UNKNOWN\n" +
                      "    echo $code $size $flags $name\n" +
                      "    unset flags\n" +
