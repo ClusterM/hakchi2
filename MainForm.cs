@@ -211,6 +211,7 @@ namespace com.clusterrr.hakchi_gui
                     var item = new ToolStripMenuItem();
                     item.Name = "folders" + f.ToString();
                     item.Text = f.ToString();
+                    item.Tag = f;
                     if (f >= MaxGamesPerFolder)
                         item.Text += $" ({Resources.NotRecommended})";
                     item.Checked = ConfigIni.MaxGamesPerFolder == f;
@@ -218,7 +219,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         (maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true).First() 
                             as ToolStripMenuItem).Checked = false;
-                        ConfigIni.MaxGamesPerFolder = f;
+                        ConfigIni.MaxGamesPerFolder = (byte)((sender as ToolStripMenuItem).Tag);
                         (maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true).First()
                             as ToolStripMenuItem).Checked = true;
                     };
@@ -1160,7 +1161,7 @@ namespace com.clusterrr.hakchi_gui
         private void dumpNANDCPartitionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (RequirePatchedKernel() == DialogResult.No) return;
-            if (DoNandCFlash())
+            if (DoNandCDump())
                 MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

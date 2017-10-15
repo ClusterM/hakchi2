@@ -1457,6 +1457,9 @@
   <metadata name="openDumpFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>164, 17</value>
   </metadata>
+  <data name="openDumpFileDialog.Title" xml:space="preserve">
+    <value>Select dump filename</value>
+  </data>
   <data name="listViewGames.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>

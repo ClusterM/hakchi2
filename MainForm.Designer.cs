@@ -1013,6 +1013,7 @@
             // openDumpFileDialog
             // 
             this.openDumpFileDialog.FileName = "...";
+            resources.ApplyResources(this.openDumpFileDialog, "openDumpFileDialog");
             // 
             // listViewGames
             // 
