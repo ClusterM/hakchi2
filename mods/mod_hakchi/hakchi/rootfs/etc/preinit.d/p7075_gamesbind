@@ -1,0 +1,13 @@
+local realgamespath="$installpath/games/$sftype-$sfregion"
+
+if [ ! -d "$rootfs/usr/share/games" ]; then
+  mkdir -p "$rootfs/usr/share/games"
+fi
+
+if [ ! -d "$realgamespath" ]; then
+  mkdir -p "$(dirname $realgamespath)"
+  mv "$rootfs/usr/share/games" "$realgamespath"
+  mkdir -p "$rootfs/usr/share/games"
+fi
+
+mount -o bind "$installpath/games/$sftype-$sfregion" "$rootfs/usr/share/games"
