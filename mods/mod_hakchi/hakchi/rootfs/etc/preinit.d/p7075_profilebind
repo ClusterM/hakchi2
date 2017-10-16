@@ -1,0 +1,15 @@
+local cloverpath="$mountpoint/var/lib/foreign-clover/$sftype-$sfregion"
+local hardwareid=$(cat "$mountpoint/var/lib/hakchi/hardware-id")
+
+if [ "$sftype-$sfregion" != "$hardwareid" ]; then
+  
+  if [ ! -d "$mountpoint/var/lib/clover" ]; then
+    mkdir -p "$mountpoint/var/lib/clover"
+  fi
+  
+  if [ ! -d "$cloverpath" ]; then
+    mkdir -p "$cloverpath"
+  fi
+
+  mount -o bind "$cloverpath" "$mountpoint/var/lib/clover"
+fi
