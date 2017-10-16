@@ -31,3 +31,7 @@ gamepath=""
 temppath="/tmp"
 
 setGamepath
+
+echo "$sftype-$sfregion" > "$installpath/hardware-id"
+cat "$mountpoint/etc/clover/boardtype" > "$installpath/boardtype"
+cat "$mountpoint/etc/clover/REGION" > "$installpath/REGION"
