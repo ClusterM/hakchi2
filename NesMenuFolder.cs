@@ -148,14 +148,19 @@ namespace com.clusterrr.hakchi_gui
                 if (image == null)
                     ImageId = "folder";
                 // Just keep aspect ratio
-                const int maxX = 204;
-                const int maxY = 204;
+                int maxX = 204;
+                int maxY = 204;
+                if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
+                {
+                    maxX = 228;
+                    maxY = 204;
+                }
                 if (image.Width <= maxX && image.Height <= maxY) // Do not upscale
                     return image;
                 if ((double)image.Width / (double)image.Height > (double)maxX / (double)maxY)
-                    outImage = new Bitmap(maxX, (int)((double)maxY * (double)image.Height / (double)image.Width));
+                    outImage = new Bitmap(maxX, (int)((double)maxX * (double)image.Height / (double)image.Width));
                 else
-                    outImage = new Bitmap((int)(maxX * (double)image.Width / (double)image.Height), maxY);
+                    outImage = new Bitmap((int)(maxY * (double)image.Width / (double)image.Height), maxY);
                 gr = Graphics.FromImage(outImage);
                 gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
                                     new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
@@ -178,9 +183,9 @@ namespace com.clusterrr.hakchi_gui
                 if (image.Width <= maxX && image.Height <= maxY) // Do not upscale
                     return image;
                 if ((double)image.Width / (double)image.Height > (double)maxX / (double)maxY)
-                    outImage = new Bitmap(maxX, (int)((double)maxY * (double)image.Height / (double)image.Width));
+                    outImage = new Bitmap(maxX, (int)((double)maxX * (double)image.Height / (double)image.Width));
                 else
-                    outImage = new Bitmap((int)(maxX * (double)image.Width / (double)image.Height), maxY);
+                    outImage = new Bitmap((int)(maxY * (double)image.Width / (double)image.Height), maxY);
                 gr = Graphics.FromImage(outImage);
                 gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
                                     new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
