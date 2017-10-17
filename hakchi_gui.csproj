@@ -2697,6 +2697,7 @@ git --version &amp;&amp; (
   for /f %25%25i in ('git rev-parse --short HEAD') do (
     git diff-index --quiet HEAD -- &amp;&amp; (
       echo|set /p="%25%25i" &gt;&gt; "$(ProjectDir)commit.txt"
+      SET ERRORLEVEL=0
     ) || (
       echo|set /p="%25%25i (dirty)" &gt;&gt; "$(ProjectDir)commit.txt"
     )

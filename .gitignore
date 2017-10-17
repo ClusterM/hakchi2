@@ -1,4 +1,3 @@
-commit.txt
 /bin/
 driver/source/nesmini_driver/Release/
 driver/usb_driver/
@@ -6,3 +5,4 @@ obj/
 *.csproj.user
 *.pfx
 Properties/Resources*.cs
+commit.txt
