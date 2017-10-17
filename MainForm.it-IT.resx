@@ -139,6 +139,9 @@
   <data name="dumpNANDCPartitionToolStripMenuItem.Text">
     <value>Dump della partizione NAND-C decriptata</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Seleziona il nome del file del dump</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Dump dell'intera memoria flash NAND</value>
   </data>

@@ -1260,7 +1260,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void donateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=clusterrr%40clusterrr%2ecom&lc=RU&item_name=Cluster&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted");
+            Process.Start("https://www.paypal.me/clusterm");
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

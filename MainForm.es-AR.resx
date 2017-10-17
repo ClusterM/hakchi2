@@ -139,6 +139,9 @@
   <data name="dumpNANDCPartitionToolStripMenuItem.Text">
     <value>Volcar partición decifrada NAND-C</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Seleccionar nombre de archivo del volcado</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Volcar toda la flash NAND</value>
   </data>
@@ -158,7 +161,7 @@
     <value>&amp;Archivo</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Flashear el kernel personalizado</value>
+    <value>Flashear el custom kernel</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Flashear el kernel original</value>

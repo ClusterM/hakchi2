@@ -173,7 +173,7 @@
     <value>Ciao! Sono molto felice che tu stia usando hakchi2. È molto facile da usare. Clicca semplicemente su "Aggiungi altri giochi", seleziona alcune ROMs, premi "Sincronizza" e segui le istruzioni. Buona fortuna!</value>
   </data>
   <data name="FlashNandCQ">
-    <value>Vuoi flashare l'immagine della partizione NAND-C? Tutti i dati utente verranno sovrascritti</value>
+    <value>Vuoi flashare l'immagine della partizione NAND-C? Tutti i dati utente verranno sovrascritti.</value>
   </data>
   <data name="FlashingNand">
     <value>Sto flashando la memoria NAND...</value>
@@ -377,7 +377,7 @@
     <value>Dimensione dei punti di sospensione selezionati:</value>
   </data>
   <data name="TooManyPerFolder">
-    <value>Attenzione! Non è consigliato inserire così tanti giochi in ogni singola cartella.</value>
+    <value>Attenzione! Non è consigliato inserire così tanti giochi in una singola cartella.</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>Non dimenticare di eseguire un factory reset se si desidera cancellare tutti i punti di sospensione.</value>

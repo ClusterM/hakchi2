@@ -172,6 +172,12 @@
   <data name="FirstRun">
     <value>¡Hola! Muchas gracias por usar hakchi2. Este programa es muy fácil de usar, sólo tienes que hacer click en "Añadir más juegos", seleccionar algunas ROMs, presionar "Sincronizar los juegos seleccionados con NES/SNES Mini " y seguir las instrucciones</value>
   </data>
+  <data name="FlashNandCQ">
+    <value>¿Quieres flashear la imagen de la partición NAND-C? Esta acción reemplazará todos los datos del usuario</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Flasheando memoria NAND</value>
+  </data>
   <data name="FlasingCustom">
     <value>Flasheando el custom kernel...</value>
   </data>
@@ -286,6 +292,9 @@
   <data name="NandDumped">
     <value>La memoria NAND se ha volcado correctamente</value>
   </data>
+  <data name="NandFlashed">
+    <value>Memoria NAND flasheada</value>
+  </data>
   <data name="Need3rdPartyEmulator">
     <value>Vaya, parece que "{0}" no va a funcionar bien con el emulador original. ¿Quieres usar un emulador de terceros para este juego (tiene que estar instalado)?</value>
   </data>
@@ -315,6 +324,9 @@
   </data>
   <data name="NotFound">
     <value>No se encuentra:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>No es recomendable</value>
   </data>
   <data name="OriginalKernelQ">
     <value>¿Quieres flashear el kernel original?</value>
@@ -363,6 +375,9 @@
   </data>
   <data name="SizeOfSaves">
     <value>Tamaño total de los puntos de suspensión seleccionados:</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>¡Atención! No es recomendable añadir tantos juegos por carpeta</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>No olvides formatear la NES/SNES Mini si quieres eliminar todos los puntos de suspensión</value>
@@ -417,20 +432,5 @@
   </data>
   <data name="YesForAll">
     <value>Sí para todos</value>
-  </data>
-  <data name="FlashNandCQ">
-    <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
-  </data>
-  <data name="FlashingNand">
-    <value>Flashing NAND memory...</value>
-  </data>
-  <data name="NandFlashed">
-    <value>NAND memory flashed.</value>
-  </data>
-  <data name="NotRecommended">
-    <value>not recommended</value>
-  </data>
-  <data name="TooManyPerFolder">
-    <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
 </root>

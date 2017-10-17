@@ -71,10 +71,10 @@
     <value>Jeux d’origine -&gt; Scinder uniformément</value>
   </data>
   <data name="buttonFoldersLetters.Text">
-    <value>Scinder à partir de la première lettre</value>
+    <value>Scinder en fonction de la première lettre</value>
   </data>
   <data name="buttonFoldersLettersOriginal.Text">
-    <value>Jeux d’origine -&gt; Scinder à partir de la première lettre</value>
+    <value>Jeux d’origine -&gt; Scinder en fonction de la première lettre</value>
   </data>
   <data name="buttonNewFolder.Text">
     <value>Nouveau dossier</value>
@@ -84,6 +84,18 @@
   </data>
   <data name="buttonNoFoldersOriginal.Text">
     <value>Jeux d’origine -&gt; Autres jeux</value>
+  </data>
+  <data name="comboBoxPosition.Items">
+    <value>Le plus à gauche</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>À gauche des jeux</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>À droite des jeux</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>Le plus à droite</value>
   </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Couper</value>
@@ -107,19 +119,7 @@
     <value>Coller</value>
   </data>
   <data name="renameToolStripMenuItem.Text">
-    <value>Renommer dossier</value>
-  </data>
-  <data name="comboBoxPosition.Items">
-    <value>Leftmost</value>
-  </data>
-  <data name="comboBoxPosition.Items1">
-    <value>Left to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items2">
-    <value>Right to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items3">
-    <value>Rightmost</value>
+    <value>Renommer le dossier</value>
   </data>
   <data name="labelElementCount.Text">
     <value>Folder statistics</value>

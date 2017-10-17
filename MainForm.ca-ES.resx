@@ -139,6 +139,9 @@
   <data name="dumpNANDCPartitionToolStripMenuItem.Text">
     <value>Bolcar la partició NAND-C desencriptada</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Selecciona el nom de l'arxiu de bolcat</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Bolcar tota la NAND</value>
   </data>
@@ -154,11 +157,17 @@
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ (Preguntes freqüents)</value>
   </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Japó)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>Arxiu</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Flashetjar custom kernel</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Partició flash NAND-C (Només usuaris avançats)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Flashetjar kernel original</value>
@@ -238,6 +247,9 @@
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Mòduls</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Europa)</value>
+  </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Obrir client FTP</value>
   </data>
@@ -274,6 +286,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Utilitzar combinació de botons per a Reset</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Europa)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>Selecciona el nom de l'arxiu de bolcat</value>
   </data>
@@ -297,6 +312,9 @@
   </data>
   <data name="shellToolStripMenuItem.Text">
     <value>Servidor Telnet en telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japó)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Sincronitzar</value>
@@ -327,20 +345,5 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Utilitza X/Y en el comandament Wii Classic Controller com "Autofire" A/B</value>
-  </data>
-  <data name="famicomMiniToolStripMenuItem.Text">
-    <value>Famicom (Japan)</value>
-  </data>
-  <data name="flashNANDCPartitionToolStripMenuItem.Text">
-    <value>Flash NAND-C partition (experts only!)</value>
-  </data>
-  <data name="nESMiniToolStripMenuItem.Text">
-    <value>NES (USA/Europe)</value>
-  </data>
-  <data name="sNESMiniToolStripMenuItem.Text">
-    <value>SNES (USA/Europe)</value>
-  </data>
-  <data name="superFamicomMiniToolStripMenuItem.Text">
-    <value>Super Famicom (Japan)</value>
   </data>
 </root>

@@ -95,10 +95,10 @@
     <value>Kernel personalizado</value>
   </data>
   <data name="CustomKernelQ">
-    <value>¿Querés flashear el kernel personalizado?</value>
+    <value>¿Querés flashear el custom kernel?</value>
   </data>
   <data name="CustomWarning">
-    <value>Necesitás flashear el kernel personalizado a tu NES/SNES Classic Edition. Sólo necesitás hacerlo una vez. ¿Querés continuar?</value>
+    <value>Necesitás flashear el custom kernel a tu NES/SNES Classic Edition. Sólo necesitás hacerlo una vez. ¿Querés continuar?</value>
   </data>
   <data name="Decompressing">
     <value>Descomprimiendo {0}…</value>
@@ -371,7 +371,7 @@
     <value>¿Estás seguro que querés quitar todos los rastros de hakchi2 y volver tu NES/SNES Classic Edition a su estado original?</value>
   </data>
   <data name="UninstallQ2">
-    <value>Listo. Esperá hasta que la luz indicadora se apague. También necesitás flashear el kernel original. ¿Querés flashearlo ahora?</value>
+    <value>Esperá hasta que la luz indicadora se apague. También necesitás flashear el kernel original. ¿Querés flashearlo ahora?</value>
   </data>
   <data name="Uninstalling">
     <value>Desinstalando…</value>

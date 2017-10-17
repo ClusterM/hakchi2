@@ -85,6 +85,18 @@
   <data name="buttonNoFoldersOriginal.Text">
     <value>Juegos originales -&gt; Otros juegos</value>
   </data>
+  <data name="comboBoxPosition.Items">
+    <value>A la izquierda de los juegos</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>A la izquierda</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>A la derecha de los juegos</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>A la derecha</value>
+  </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Cortar</value>
   </data>
@@ -108,18 +120,6 @@
   </data>
   <data name="renameToolStripMenuItem.Text">
     <value>Renombrar carpeta</value>
-  </data>
-  <data name="comboBoxPosition.Items">
-    <value>Leftmost</value>
-  </data>
-  <data name="comboBoxPosition.Items1">
-    <value>Left to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items2">
-    <value>Right to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items3">
-    <value>Rightmost</value>
   </data>
   <data name="labelElementCount.Text">
     <value>Folder statistics</value>

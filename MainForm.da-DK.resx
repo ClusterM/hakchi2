@@ -280,6 +280,9 @@
   <data name="dumpNANDCPartitionToolStripMenuItem.Text">
     <value>Dump NAND-C partition</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Select dump filename</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Dump the whole NAND flash</value>
   </data>

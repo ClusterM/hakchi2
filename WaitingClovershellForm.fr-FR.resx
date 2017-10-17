@@ -68,12 +68,12 @@
     <value>Merci de suivre les étapes suivantes :</value>
   </data>
   <data name="label2.Text">
-    <value>1. Connectez votre NES/SNES Mini à l'ordinateur via le cable USB.</value>
+    <value>1. Connectez votre NES/SNES Mini à l’ordinateur à l’aide du câble USB.</value>
   </data>
   <data name="label3.Text">
     <value>2. Allumez-la.</value>
   </data>
   <data name="label6.Text">
-    <value>3. Installez le pilote s'il n'est pas encore installé :</value>
+    <value>3. Installez le pilote s’il n’est pas encore installé :</value>
   </data>
 </root>

@@ -172,6 +172,12 @@
   <data name="FirstRun">
     <value>Hola! Moltes gràcies per fer servir hakchi2. Aquest programa és molt fàcil d'utilitzar, només ha de fer clic en "Afegir més jocs", seleccionar algunes ROMs, pressionar "Sincronitzar els jocs seleccionats amb la NES/SNES Mini " i seguir les instruccions</value>
   </data>
+  <data name="FlashNandCQ">
+    <value>Voleu flashetjar la imatge de la partició NAND-C?</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Flashejant memòria NAND...</value>
+  </data>
   <data name="FlasingCustom">
     <value>Flashetjant el custom kernel...</value>
   </data>
@@ -286,6 +292,9 @@
   <data name="NandDumped">
     <value>La memòria NAND s'ha bolcat satisfactòriament.</value>
   </data>
+  <data name="NandFlashed">
+    <value>Memòria NAND flashetjada.</value>
+  </data>
   <data name="Need3rdPartyEmulator">
     <value>Òndia, sembla que "{0}" no funcionarà bé amb l'emulador original. Voleu utilitzar
 un emulador de tercers per a aquest joc (ha d'estar instal·lat)?</value>
@@ -316,6 +325,9 @@ un emulador de tercers per a aquest joc (ha d'estar instal·lat)?</value>
   </data>
   <data name="NotFound">
     <value>No es troba:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>no recomanat</value>
   </data>
   <data name="OriginalKernelQ">
     <value>Voleu flashetjar el kernel original?</value>
@@ -364,6 +376,9 @@ un emulador de tercers per a aquest joc (ha d'estar instal·lat)?</value>
   </data>
   <data name="SizeOfSaves">
     <value>Grandària total dels punts de suspensió seleccionats:</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Perill! No es recomana emmagatzemar massa jocs per carpeta.</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>No oblidis formatar la NES/SNES Mini si vols eliminar tots els punts de suspensió</value>
@@ -418,20 +433,5 @@ un emulador de tercers per a aquest joc (ha d'estar instal·lat)?</value>
   </data>
   <data name="YesForAll">
     <value>Sí per tots</value>
-  </data>
-  <data name="FlashNandCQ">
-    <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
-  </data>
-  <data name="FlashingNand">
-    <value>Flashing NAND memory...</value>
-  </data>
-  <data name="NandFlashed">
-    <value>NAND memory flashed.</value>
-  </data>
-  <data name="NotRecommended">
-    <value>not recommended</value>
-  </data>
-  <data name="TooManyPerFolder">
-    <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
 </root>

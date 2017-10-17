@@ -139,6 +139,9 @@
   <data name="dumpNANDCPartitionToolStripMenuItem.Text">
     <value>导出解密的NAND-C分区</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>指定导出文件的文件名</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>导出完整的NAND闪存...</value>
   </data>

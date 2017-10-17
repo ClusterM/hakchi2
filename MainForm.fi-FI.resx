@@ -139,6 +139,9 @@
   <data name="dumpNANDCPartitionToolStripMenuItem.Text">
     <value>Dumppaa purettu NAND-C-osio</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Valitse dumpin tiedostonimi</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Dumppaa koko NAND-muisti</value>
   </data>
@@ -154,11 +157,17 @@
   <data name="fAQToolStripMenuItem.Text">
     <value>UKK</value>
   </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Japani)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;Tiedosto</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Flashaa mukautettu ydin</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Flashaa NAND-C-osiot (vain asiantuntijoille!)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Flashaa alkuperäisydin</value>
@@ -238,6 +247,9 @@
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Moduulit</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Europpa)</value>
+  </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Avaa FTP-asiakasohjelma</value>
   </data>
@@ -274,6 +286,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Käytä näppäinyhdistelmää resetointiin</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Eurooppa)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>Valitse dumpin tiedostonimi</value>
   </data>
@@ -297,6 +312,9 @@
   </data>
   <data name="shellToolStripMenuItem.Text">
     <value>Telnet-palvelin osoitteessa telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japani)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Synkronoi</value>
@@ -327,20 +345,5 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Käytä Classic Controllerin X/Y-näppäimiä A/B-automaattitulitukseen</value>
-  </data>
-  <data name="famicomMiniToolStripMenuItem.Text">
-    <value>Famicom (Japan)</value>
-  </data>
-  <data name="flashNANDCPartitionToolStripMenuItem.Text">
-    <value>Flash NAND-C partition (experts only!)</value>
-  </data>
-  <data name="nESMiniToolStripMenuItem.Text">
-    <value>NES (USA/Europe)</value>
-  </data>
-  <data name="sNESMiniToolStripMenuItem.Text">
-    <value>SNES (USA/Europe)</value>
-  </data>
-  <data name="superFamicomMiniToolStripMenuItem.Text">
-    <value>Super Famicom (Japan)</value>
   </data>
 </root>

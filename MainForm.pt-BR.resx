@@ -136,6 +136,9 @@
   <data name="dumpNANDCPartitionToolStripMenuItem.Text">
     <value>Obter a partição NAND-C descriptografada</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Selecionar o nome do arquivo da cópia de segurança obtida</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Obter toda a NAND flash</value>
   </data>

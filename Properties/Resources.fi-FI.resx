@@ -172,6 +172,12 @@
   <data name="FirstRun">
     <value>Heipä hei! Olen iloinen, että käytät hakchi2:a. Sen käyttäminen on todella yksinkertaista. Klikkaa vain "Lisää pelejä", valitse ROMeja, paina "Synkronoi" ja seuraa ohjeita. Onnea matkaan!</value>
   </data>
+  <data name="FlashNandCQ">
+    <value>Haluatko flashata NAND-C-osiokuvan? Se korvaa kaiken käyttäjädatan.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Flashataan NAND-muistia...</value>
+  </data>
   <data name="FlasingCustom">
     <value>Flashataan mukautettua ydintä…</value>
   </data>
@@ -286,6 +292,9 @@
   <data name="NandDumped">
     <value>NAND-muisti dumpattu onnistuneesti.</value>
   </data>
+  <data name="NandFlashed">
+    <value>NAND-muisti flashattu.</value>
+  </data>
   <data name="Need3rdPartyEmulator">
     <value>Hups. Näyttää, että "{0}" ei tule toimimaan oikein alkuperäisellä emulaattorilla. Haluatko käyttää kolmannen osapuolen emulaattoria tälle pelille? (Vaatii asennuksen.)</value>
   </data>
@@ -315,6 +324,9 @@
   </data>
   <data name="NotFound">
     <value>Ei löytynyt:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>ei suositeltavaa</value>
   </data>
   <data name="OriginalKernelQ">
     <value>Haluatko flashata alkuperäisytimen?</value>
@@ -363,6 +375,9 @@
   </data>
   <data name="SizeOfSaves">
     <value>Valittujen tallennusten koko:</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Varoitus! Kansioon ei ole suositeltavaa tallentaa näin montaa peliä.</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>Älä unohda tehdä tehdasasetusten palautusta, jos haluat poistaa kaikki pelitilanteen tallennukset.</value>
@@ -417,20 +432,5 @@
   </data>
   <data name="YesForAll">
     <value>Kyllä kaikkiin</value>
-  </data>
-  <data name="FlashNandCQ">
-    <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
-  </data>
-  <data name="FlashingNand">
-    <value>Flashing NAND memory...</value>
-  </data>
-  <data name="NandFlashed">
-    <value>NAND memory flashed.</value>
-  </data>
-  <data name="NotRecommended">
-    <value>not recommended</value>
-  </data>
-  <data name="TooManyPerFolder">
-    <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
 </root>

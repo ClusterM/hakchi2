@@ -65,7 +65,7 @@
     <value>À propos...</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>Ajouter plus de &amp;jeux</value>
+    <value>Ajouter des &amp;jeux supplémentaires</value>
   </data>
   <data name="addPresetToolStripMenuItem.Text">
     <value>Nouvelle liste</value>
@@ -89,13 +89,13 @@
     <value>Compressser</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
-    <value>Configuration des manettes</value>
+    <value>Hacks relatifs aux manettes</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Compresser les jeux non-NES (pour mod emulateur additionnel)</value>
   </data>
   <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compresser les jeux au moment de l'ajout</value>
+    <value>Compresser les jeux au moment de l’ajout</value>
   </data>
   <data name="compressSelectedGamesToolStripMenuItem.Text">
     <value>Compresser les jeux sélectionnés</value>
@@ -110,7 +110,7 @@
     <value>Décompresser les jeux sélectionnés</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
-    <value>Supprimer jeu</value>
+    <value>Supprimer le jeu</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Supprimer liste</value>
@@ -125,28 +125,31 @@
     <value>Faire un don</value>
   </data>
   <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Télécharger les pochettes pour les jeux sélectionnés</value>
+    <value>Télécharger les illustrations pour les jeux sélectionnés</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Télécharger les pochettes pour tous les jeux</value>
+    <value>Télécharger les illustrations pour tous les jeux</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Extraire Kernel</value>
+    <value>Extraire kernel</value>
   </data>
   <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Décoder la partition NAND-B</value>
+    <value>Extraire la partition NAND-B déchiffrée</value>
   </data>
   <data name="dumpNANDCPartitionToolStripMenuItem.Text">
     <value>Décoder la partition NAND-C</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Sélectionner le nom du fichier de sauvegarde</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Sauvegarde complète de la mémoire flash NAND</value>
+    <value>Extraction complète de la mémoire flash NAND</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
-    <value>Utiliser "Select+A/B" pour activer l'autofire sur A/B</value>
+    <value>Utiliser "Select+A/B" pour activer l’autofire sur A/B</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
-    <value>Désactiver la protection pour épileptique</value>
+    <value>Désactiver la protection contre l’épilepsie</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Quitter</value>
@@ -154,14 +157,20 @@
   <data name="fAQToolStripMenuItem.Text">
     <value>Questions fréquentes</value>
   </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Japon)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;Fichier</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Flasher Kernel Custom</value>
+    <value>Flasher kernel custom</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Flasher la partition NAND-C (utilisateurs avancés !)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Flasher le Kernel d'origine</value>
+    <value>Flasher le kernel d’origine</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
     <value>Jeux d’origine à la racine -&gt; Dossiers, scinder les jeux uniformément</value>
@@ -170,7 +179,7 @@
     <value>Jeux d’origine à la racine -&gt; Dossiers, scinder à partir de la première lettre</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>Dossiers, Scinder à partir de la première lettre</value>
+    <value>Dossiers, scinder en fonction de la première lettre</value>
   </data>
   <data name="foldersToolStripMenuItem.Text">
     <value>Dossiers, scinder les jeux uniformément</value>
@@ -179,13 +188,13 @@
     <value>Page GitHub avec les nouvelles publications</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>Arguments de ligne de commande globale (utilisateurs avancés !)</value>
+    <value>Arguments de ligne de commande globaux (utilisateurs avancés !)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>Vous pouvez cacher différents jeux par défaut</value>
+    <value>Vous pouvez masquer certains jeux d’origine</value>
   </data>
   <data name="groupBoxOptions.Text">
-    <value>Options des jeux</value>
+    <value>Options du jeu</value>
   </data>
   <data name="helpToolStripMenuItem.Text">
     <value>&amp;Aide</value>
@@ -200,13 +209,13 @@
     <value>Date de sortie (AAAA-MM-JJ) :</value>
   </data>
   <data name="label2.Text">
-    <value>Éditeur:</value>
+    <value>Éditeur :</value>
   </data>
   <data name="label3.Text">
-    <value>Arguments de ligne de commande (utilisateurs avancés!)</value>
+    <value>Arguments de ligne de commande (utilisateurs avancés !)</value>
   </data>
   <data name="label4.Text">
-    <value>Pochette :</value>
+    <value>Illustration :</value>
   </data>
   <data name="label5.Text">
     <value>Sélectionner jeux :</value>
@@ -230,13 +239,16 @@
     <value>Nombre de jeux maximum par page/dossier</value>
   </data>
   <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Démarrer le kernel d'origine à partir de la RAM</value>
+    <value>Démarrer le kernel d’origine à partir de la RAM</value>
   </data>
   <data name="membootPatchedKernelToolStripMenuItem.Text">
     <value>Démarrer le kernel patché à partir de la RAM</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Modules</value>
+  </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (États-Unis/Europe)</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Ouvrir le client FTP</value>
@@ -257,7 +269,7 @@
     <value>Pages, scinder les jeux uniformément</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>Structure pages/dossiers</value>
+    <value>Structure des pages/dossiers</value>
   </data>
   <data name="presetsToolStripMenuItem.Text">
     <value>Listes prédéfinies</value>
@@ -266,22 +278,25 @@
     <value>Un joueur</value>
   </data>
   <data name="radioButtonTwo.Text">
-    <value>Deux joueurs, non simultanés</value>
+    <value>Deux joueurs non simultanés</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Deux joueurs, simultanés</value>
+    <value>Deux joueurs simultanés</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Utiliser une combinaison de boutons pour retourner au menu</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (États-Unis/Europe)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
-    <value>Sélectionner le nom du fichier de sauvegarde</value>
+    <value>Sélectionner le nom du fichier de l’image extraite</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Sauvegarder les paramètres vers la NES/SNES Mini maintenant</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Gestionnaire des sauvegardes</value>
+    <value>Gestionnaire des sauvegardes d’état</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
     <value>Rechercher</value>
@@ -290,7 +305,7 @@
     <value>Tout sélectionner</value>
   </data>
   <data name="selectButtonCombinationToolStripMenuItem.Text">
-    <value>Sélectionner la combinaison du bouton Reset</value>
+    <value>Définir la combinaison du bouton Reset</value>
   </data>
   <data name="settingsToolStripMenuItem.Text">
     <value>&amp;Paramètres</value>
@@ -298,14 +313,17 @@
   <data name="shellToolStripMenuItem.Text">
     <value>Serveur Telnet sur telnet://127.0.0.1:1023 (login:root)</value>
   </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japon)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Synchroniser</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
-    <value>Faire une capture d'écran</value>
+    <value>Faire une capture d’écran</value>
   </data>
   <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flasher le NAND entier (utilisateurs avancés !)</value>
+    <value>Flasher la NAND tout entière (utilisateurs avancés !)</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>Ou&amp;tils</value>
@@ -320,27 +338,12 @@
     <value>Tout désélectionner</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>"Haut+A+B=Start" sur seconde manette</value>
+    <value>"Haut+A+B = Start" sur la manette 2</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Utiliser la police avancée</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
-    <value>Utiliser X/Y sur le Classic Controller comme autofire A/B</value>
-  </data>
-  <data name="famicomMiniToolStripMenuItem.Text">
-    <value>Famicom (Japan)</value>
-  </data>
-  <data name="flashNANDCPartitionToolStripMenuItem.Text">
-    <value>Flash NAND-C partition (experts only!)</value>
-  </data>
-  <data name="nESMiniToolStripMenuItem.Text">
-    <value>NES (USA/Europe)</value>
-  </data>
-  <data name="sNESMiniToolStripMenuItem.Text">
-    <value>SNES (USA/Europe)</value>
-  </data>
-  <data name="superFamicomMiniToolStripMenuItem.Text">
-    <value>Super Famicom (Japan)</value>
+    <value>Utiliser X/Y sur la Manette Classique comme autofire A/B</value>
   </data>
 </root>
