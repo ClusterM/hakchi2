@@ -163,6 +163,7 @@ namespace com.clusterrr.hakchi_gui
             FormInitialize();
             Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
             Clovershell.OnConnected += Clovershell_OnConnected;
+            Clovershell.OnDisconnect += Clovershell_OnDisconnect;
 
             ftpServer = new mooftpserv.Server();
             ftpServer.AuthHandler = new mooftpserv.NesMiniAuthHandler();
@@ -272,6 +273,10 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
+                if (ConfigIni.TelnetServer)
+                {
+                    Clovershell.ShellEnabled = true;
+                }
                 // Trying to autodetect console type
                 var customFirmware = Clovershell.ExecuteSimple("[ -d /var/lib/hakchi/firmware/ ] && [ -f /var/lib/hakchi/firmware/*.hsqs ] && echo YES || echo NO");
                 if (customFirmware == "NO")
@@ -338,6 +343,11 @@ namespace com.clusterrr.hakchi_gui
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
             }
+        }
+
+        void Clovershell_OnDisconnect()
+        {
+            Clovershell.ShellEnabled = false;
         }
 
         public void LoadGames()
