@@ -658,15 +658,15 @@ namespace com.clusterrr.hakchi_gui
         {
             if (!Directory.Exists(GamePath)) return new string[0];
             var result = new List<string>();
-            var exec = Regex.Replace(Command, "['/\\\"]", " ") + " ";
+            var exec = Regex.Replace(Command, "[/\\\"]", " ") + " ";
             var files = Directory.GetFiles(GamePath, "*.*", SearchOption.TopDirectoryOnly);
             foreach (var file in files)
             {
-                if (System.IO.Path.GetExtension(file).ToLower() == ".7z")
+                if (Path.GetExtension(file).ToLower() == ".7z")
                     continue;
-                if (System.IO.Path.GetExtension(file).ToLower() == ".zip")
+                if (Path.GetExtension(file).ToLower() == ".zip")
                     continue;
-                if (exec.Contains(" " + System.IO.Path.GetFileName(file) + " "))
+                if (exec.Contains(" " + Path.GetFileName(file) + " "))
                     result.Add(file);
             }
             return result.ToArray();
@@ -676,7 +676,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (!Directory.Exists(GamePath)) return new string[0];
             var result = new List<string>();
-            var exec = Regex.Replace(Command, "['/\\\"]", " ") + " ";
+            var exec = Regex.Replace(Command, "[/\\\"]", " ") + " ";
             var files = Directory.GetFiles(GamePath, "*.7z", SearchOption.TopDirectoryOnly);
             foreach (var file in files)
             {

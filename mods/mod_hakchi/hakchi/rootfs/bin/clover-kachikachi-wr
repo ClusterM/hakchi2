@@ -17,6 +17,9 @@ if [ "$extension" == "7z" ]; then
   cd "$tmppath"
   tiny7zx x "$filename"
   filename="$tmppath/$(ls)"
+  filename_str=${filename// /_}
+  mv "$filename" "$filename_str"
+  filename=$filename_str
 fi
 if [ "$extension" == "gz" ]; then
   rm -rf "$tmppath"
