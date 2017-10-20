@@ -33,6 +33,8 @@ namespace com.clusterrr.clovershell
         DateTime lastAliveTime;
         public delegate void OnClovershellConnected();
         public event OnClovershellConnected OnConnected = delegate { };
+        public delegate void OnClovershellDisconnected();
+        public event OnClovershellDisconnected OnDisconnected = delegate { };
 
         internal enum ClovershellCommand
         {
@@ -148,8 +150,16 @@ namespace com.clusterrr.clovershell
 
         void dropAll()
         {
-            writeUsb(ClovershellCommand.CMD_SHELL_KILL_ALL, 0);
-            writeUsb(ClovershellCommand.CMD_EXEC_KILL_ALL, 0);
+            try
+            {
+                writeUsb(ClovershellCommand.CMD_SHELL_KILL_ALL, 0);
+            }
+            catch { }
+            try
+            {
+                writeUsb(ClovershellCommand.CMD_EXEC_KILL_ALL, 0);
+            }
+            catch { }
             for (var i = 0; i < shellConnections.Length; i++)
                 if (shellConnections[i] != null)
                 {
@@ -266,7 +276,12 @@ namespace com.clusterrr.clovershell
                             break;
                         }
                     }
-                    if (online) Debug.WriteLine("clovershell disconnected");
+                    if (online)
+                    {
+                        dropAll();
+                        OnDisconnected();
+                        Debug.WriteLine("clovershell disconnected");
+                    }
                     online = false;
                     if (device != null)
                         device.Close();
@@ -386,9 +401,9 @@ namespace com.clusterrr.clovershell
             buff[1] = 0;
             buff[2] = 0;
             buff[3] = 0;
-            r= epWriter.Write(buff, 0, buff.Length, 1000, out tLen);
+            r = epWriter.Write(buff, 0, buff.Length, 1000, out tLen);
             if (tLen != buff.Length)
-                throw new ClovershellException("kill all exec: write error - "+r.ToString());
+                throw new ClovershellException("kill all exec: write error - " + r.ToString());
         }
 
         internal void writeUsb(ClovershellCommand cmd, byte arg, byte[] data = null, int pos = 0, int l = -1)
