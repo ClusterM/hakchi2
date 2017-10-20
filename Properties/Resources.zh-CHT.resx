@@ -71,7 +71,7 @@
     <value>會自動填滿為 { 0 } 款遊戲</value>
   </data>
   <data name="AutofireHelp1">
-    <value>Select鍵(按住不放) + A鍵 或 B鍵 來啟用或停用自動連發 A鍵 或 B鍵</value>
+    <value>按住Select鍵 + A鍵 或 B鍵 來啟用或停用自動連發 A鍵 或 B鍵</value>
   </data>
   <data name="BuildingCustom">
     <value>正在建構自訂核心映像檔案...</value>
@@ -170,7 +170,7 @@
     <value>原廠內建xx款經典遊戲</value>
   </data>
   <data name="FolderNameTrashBin">
-    <value>Recycle Bin</value>
+    <value>回收桶</value>
   </data>
   <data name="FolderNameUnsorted">
     <value>未分類</value>
@@ -365,7 +365,7 @@
     <value>警告 !</value>
   </data>
   <data name="Wow">
-    <value>哇</value>
+    <value>真棒 !</value>
   </data>
   <data name="Yes">
     <value>要</value>

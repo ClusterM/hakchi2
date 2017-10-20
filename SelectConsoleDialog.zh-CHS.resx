@@ -58,19 +58,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="labelSelectConsole.Text">
-    <value>开始之前请先选择你的主机类型。如果之后你希望使用其他类型的主机，可以在“设置”菜单中进行更改。</value>
-  </data>
   <data name="buttonFamicom.Text">
-    <value>Famicom (Japan)</value>
+    <value>红白机(日本)</value>
   </data>
   <data name="buttonNes.Text">
-    <value>NES (USA/Europe)</value>
+    <value>NES(美国/欧洲)</value>
   </data>
   <data name="buttonSnes.Text">
-    <value>SNES (USA/Europe)</value>
+    <value>SNES(美国/欧洲)</value>
   </data>
   <data name="buttonSuperFamicom.Text">
-    <value>Super Famicom (Japan)</value>
+    <value>超任(日本)</value>
+  </data>
+  <data name="labelSelectConsole.Text">
+    <value>开始之前请先选择你的主机类型。如果之后你希望使用其他类型的主机，可以在“设置”菜单中进行更改。</value>
   </data>
 </root>

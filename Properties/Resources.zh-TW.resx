@@ -71,7 +71,7 @@
     <value>會自動填滿為 { 0 } 款遊戲</value>
   </data>
   <data name="AutofireHelp1">
-    <value>Select鍵(按住不放) + A鍵 或 B鍵 來啟用或停用自動連發 A鍵 或 B鍵</value>
+    <value>按住Select鍵 + A鍵 或 B鍵 來啟用或停用自動連發 A鍵 或 B鍵</value>
   </data>
   <data name="BuildingCustom">
     <value>正在建構自訂核心映像檔案...</value>
@@ -133,6 +133,9 @@
   <data name="DumpingKernel">
     <value>正在傾印核心...</value>
   </data>
+  <data name="DumpingNand">
+    <value>正在傾印記億體...</value>
+  </data>
   <data name="Error">
     <value>錯誤</value>
   </data>
@@ -170,7 +173,7 @@
     <value>原廠內建xx款經典遊戲</value>
   </data>
   <data name="FolderNameTrashBin">
-    <value>Recycle Bin</value>
+    <value>回收桶</value>
   </data>
   <data name="FolderNameUnsorted">
     <value>未分類</value>
@@ -252,6 +255,9 @@
   </data>
   <data name="MemoryStats">
     <value>總共的儲存空間大小: {0:F1}MBytes|可存放遊戲的儲存空間大小: {1:F1}MBytes|目前已使用的檔案大小: {2:F1}MBytes|其他已使用的檔案大小: {3:F1}MBytes</value>
+  </data>
+  <data name="NandDumped">
+    <value>傾印記億體成功。</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>新的遊戲都會被移到「Unsorted」未分類資料夾。</value>
@@ -365,7 +371,7 @@
     <value>警告 !</value>
   </data>
   <data name="Wow">
-    <value>哇</value>
+    <value>真棒 !</value>
   </data>
   <data name="Yes">
     <value>要</value>
@@ -394,9 +400,6 @@
   <data name="DownloadCoverQ">
     <value>Do you want to try to download box art for "{0}"?</value>
   </data>
-  <data name="DumpingNand">
-    <value>Dumping NAND...</value>
-  </data>
   <data name="FlashNandCQ">
     <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
   </data>
@@ -408,9 +411,6 @@
   </data>
   <data name="Membooting">
     <value>Booting the kernel from RAM...</value>
-  </data>
-  <data name="NandDumped">
-    <value>NAND memory is dumped successfully.</value>
   </data>
   <data name="NandFlashed">
     <value>NAND memory flashed.</value>

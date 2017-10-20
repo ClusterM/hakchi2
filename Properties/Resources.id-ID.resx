@@ -191,7 +191,7 @@
     <value>Kembali</value>
   </data>
   <data name="FolderNameMoreGames">
-    <value>Game-game lainnya...</value>
+    <value>Game lainnya...</value>
   </data>
   <data name="FolderNameNewFolder">
     <value>Folder baru</value>
@@ -239,7 +239,7 @@
     <value>game dipilih</value>
   </data>
   <data name="GooglingFor">
-    <value>Meng-Google untuk</value>
+    <value>Mencari Google untuk</value>
   </data>
   <data name="Hello">
     <value>Halo</value>
@@ -275,7 +275,7 @@
     <value>Kernel ini sudah di-patch atau tidak diketahui revisinya. Beritahukan hal ini kepada saya (tekan Ctrl+C). Silakan tanggung sendiri risikonya jika memilih untuk melanjutkan.</value>
   </data>
   <data name="MainMenu">
-    <value>Menu Home</value>
+    <value>Menu HOME</value>
   </data>
   <data name="MapperNotSupported">
     <value>Maaf, "{0}" menggunakan mapper #{1} tetapi mapper ini tidak didukung oleh NES Mini dan game ini mungkin tidak akan dapat dimainkan dengan emulator bawaan, kecuali jika modul emulator lain diinstal. Apakah Anda tetap ingin menambahkan game ini?</value>
@@ -425,7 +425,7 @@
     <value>Peringatan!</value>
   </data>
   <data name="Wow">
-    <value>Wow!</value>
+    <value>Wow</value>
   </data>
   <data name="Yes">
     <value>Ya</value>

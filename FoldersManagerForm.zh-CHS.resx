@@ -85,6 +85,18 @@
   <data name="buttonNoFoldersOriginal.Text">
     <value>原版内置游戏 -&gt; 其他游戏</value>
   </data>
+  <data name="comboBoxPosition.Items">
+    <value>最左侧</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>游戏左侧</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>游戏右侧</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>最右侧</value>
+  </data>
   <data name="cutToolStripMenuItem.Text">
     <value>剪切</value>
   </data>
@@ -108,18 +120,6 @@
   </data>
   <data name="renameToolStripMenuItem.Text">
     <value>重命名文件夹</value>
-  </data>
-  <data name="comboBoxPosition.Items">
-    <value>Leftmost</value>
-  </data>
-  <data name="comboBoxPosition.Items1">
-    <value>Left to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items2">
-    <value>Right to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items3">
-    <value>Rightmost</value>
   </data>
   <data name="labelElementCount.Text">
     <value>Folder statistics</value>

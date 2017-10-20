@@ -281,7 +281,7 @@
     <value>Dua player, tidak berbarengan</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Dua player, berbarengan</value>
+    <value>Dua player, bersamaan</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Gunakan kombinasi tombol untuk me-reset</value>
@@ -296,7 +296,7 @@
     <value>Simpan penataan ke NES/SNES Mini sekarang</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Save-State Manager</value>
+    <value>Pengaturan Save-State</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
     <value>Telusur</value>
@@ -320,7 +320,7 @@
     <value>Sinkronkan</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
-    <value>Ambil screenshot</value>
+    <value>Ambil tangkapan layar</value>
   </data>
   <data name="toolFlashTheWholeNANDStripMenuItem.Text">
     <value>Flash seluruh NAND (khusus ahli!)</value>
@@ -335,7 +335,7 @@
     <value>Copot</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
-    <value>Tidak pilih semuanya</value>
+    <value>Batalkan semua pilihan</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
     <value>"Atas+A+B = Start" pada kontroler 2</value>

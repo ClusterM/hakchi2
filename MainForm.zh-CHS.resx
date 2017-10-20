@@ -157,6 +157,9 @@
   <data name="fAQToolStripMenuItem.Text">
     <value>常见问答</value>
   </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>红白机(日本)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>文件(&amp;F)</value>
   </data>
@@ -244,6 +247,9 @@
   <data name="modulesToolStripMenuItem.Text">
     <value>扩展模块(&amp;M)</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES(美国/欧洲)</value>
+  </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>打开FTP客户端</value>
   </data>
@@ -280,6 +286,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>使用按键组合重启</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES(美国/欧洲)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>指定导出文件的文件名</value>
   </data>
@@ -303,6 +312,9 @@
   </data>
   <data name="shellToolStripMenuItem.Text">
     <value>在Telnet://127.0.0.1:1023 (login:root)上运行Telnet 服务器</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>超任(日本)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>开始同步</value>
@@ -333,17 +345,5 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>将经典控制器的X/Y按钮用作连发A/B键</value>
-  </data>
-  <data name="famicomMiniToolStripMenuItem.Text">
-    <value>Famicom (Japan)</value>
-  </data>
-  <data name="nESMiniToolStripMenuItem.Text">
-    <value>NES (USA/Europe)</value>
-  </data>
-  <data name="sNESMiniToolStripMenuItem.Text">
-    <value>SNES (USA/Europe)</value>
-  </data>
-  <data name="superFamicomMiniToolStripMenuItem.Text">
-    <value>Super Famicom (Japan)</value>
   </data>
 </root>

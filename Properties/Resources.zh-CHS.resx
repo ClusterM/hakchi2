@@ -292,6 +292,9 @@
   <data name="NandDumped">
     <value>NAND存储器导出成功。</value>
   </data>
+  <data name="NandFlashed">
+    <value>NAND存储器刷写完毕。</value>
+  </data>
   <data name="Need3rdPartyEmulator">
     <value>不好，看来原版模拟器无法正确运行“{0}”。你希望使用第三方模拟器运行这个游戏吗(需要额外安装)？</value>
   </data>
@@ -321,6 +324,9 @@
   </data>
   <data name="NotFound">
     <value>未找到:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>不推荐</value>
   </data>
   <data name="OriginalKernelQ">
     <value>确定要刷写原版内核镜像？</value>
@@ -369,6 +375,9 @@
   </data>
   <data name="SizeOfSaves">
     <value>选中的即时存档大小:</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>警告！不建议在单个文件夹中存储这么多的游戏。</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>如果您希望删除所有即时存档，别忘了执行原厂重置。</value>
@@ -423,14 +432,5 @@
   </data>
   <data name="YesForAll">
     <value>全部选是</value>
-  </data>
-  <data name="NandFlashed">
-    <value>NAND memory flashed.</value>
-  </data>
-  <data name="NotRecommended">
-    <value>not recommended</value>
-  </data>
-  <data name="TooManyPerFolder">
-    <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
 </root>
