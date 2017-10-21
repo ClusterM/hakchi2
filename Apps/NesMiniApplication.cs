@@ -666,6 +666,8 @@ namespace com.clusterrr.hakchi_gui
                     continue;
                 if (System.IO.Path.GetExtension(file).ToLower() == ".zip")
                     continue;
+                if (System.IO.Path.GetExtension(file).ToLower() == ".hsqs")
+                    continue;
                 if (exec.Contains(" " + System.IO.Path.GetFileName(file) + " "))
                     result.Add(file);
             }
