@@ -127,6 +127,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.radioButtonTwo = new System.Windows.Forms.RadioButton();
             this.radioButtonOne = new System.Windows.Forms.RadioButton();
+            this.textBoxTitle = new System.Windows.Forms.TextBox();
+            this.labelTitle = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
             this.labelID = new System.Windows.Forms.Label();
@@ -736,6 +738,8 @@
             this.groupBoxOptions.Controls.Add(this.label2);
             this.groupBoxOptions.Controls.Add(this.radioButtonTwo);
             this.groupBoxOptions.Controls.Add(this.radioButtonOne);
+            this.groupBoxOptions.Controls.Add(this.textBoxTitle);
+            this.groupBoxOptions.Controls.Add(this.labelTitle);
             this.groupBoxOptions.Controls.Add(this.textBoxName);
             this.groupBoxOptions.Controls.Add(this.labelName);
             this.groupBoxOptions.Controls.Add(this.labelID);
@@ -857,6 +861,17 @@
             this.radioButtonOne.TabStop = true;
             this.radioButtonOne.UseVisualStyleBackColor = true;
             this.radioButtonOne.CheckedChanged += new System.EventHandler(this.radioButtonOne_CheckedChanged);
+            // 
+            // textBoxTitle
+            // 
+            resources.ApplyResources(this.textBoxTitle, "textBoxTitle");
+            this.textBoxTitle.Name = "textBoxTitle";
+            this.textBoxTitle.TextChanged += new System.EventHandler(this.textBoxTitle_TextChanged);
+            // 
+            // labelTitle
+            // 
+            resources.ApplyResources(this.labelTitle, "labelTitle");
+            this.labelTitle.Name = "labelTitle";
             // 
             // textBoxName
             // 
@@ -1198,6 +1213,8 @@
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dumpNANDCPartitionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flashNANDCPartitionToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBoxTitle;
+        private System.Windows.Forms.Label labelTitle;
     }
 }
 
