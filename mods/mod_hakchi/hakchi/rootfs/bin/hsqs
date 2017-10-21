@@ -6,8 +6,24 @@ echo "current firmware: $(currentFirmware)"
 printSoftwareInfo
 
 firmware="$1"
+menu="$(cat /var/lib/hakchi/menu)"
+
+if [ "$menu" == "000" ]; then
+  menu=""
+else
+  menu="$menu\\/"
+fi
+
+[ "$sftype" == "nes" ] && gamessuffix="nes\\/kachikachi\\/"
+ 
+echo "$firmware" | grep '^/usr/share/games/'
+
+if [ $? -eq 0 ]; then
+  firmware="`echo "$firmware" | sed -e "s/^\\/usr\\/share\\/games\\/$gamessuffix/\\/var\\/lib\\/hakchi\\/games\\/$sftype-$sfregion\\/$gamessuffix$menu/"`"
+fi
+
 if [ "$firmware" != "_nand_" ]; then
-  firmware="$(readlink -f "$1")"
+  firmware="$(readlink -f "$firmware")"
   checkFirmware "$firmware" || exit 1
 fi
 
@@ -18,5 +34,6 @@ save_config
 [ "$(currentFirmware)" == "$firmware" ] && exit 0
 
 echo "changing firmware to: $firmware"
+rm "/var/lib/hakchi/menu"
 reboot
 exit 0

@@ -56,24 +56,6 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
-        public static string HakchiGamesPath
-        {
-            get
-            {
-                switch (ConfigIni.ConsoleType)
-                {
-                    default:
-                    case MainForm.ConsoleType.NES:
-                        return "/var/lib/hakchi/games/nes-usa/nes/kachikachi";
-                    case MainForm.ConsoleType.Famicom:
-                        return "/var/lib/hakchi/games/nes-jpn/nes/kachikachi";
-                    case MainForm.ConsoleType.SNES:
-                        return "/var/lib/hakchi/games/snes-usa";
-                    case MainForm.ConsoleType.SuperFamicom:
-                        return "/var/lib/hakchi/games/snes-jpn";
-                }
-            }
-        }
 
         protected string code;
         public string Code
@@ -266,7 +248,7 @@ namespace com.clusterrr.hakchi_gui
             game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
             game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
             game.Name = game.Name.Replace("_", " ").Replace("  ", " ").Trim();
-            game.Command = $"{application} {HakchiGamesPath}/{code}/{outputFileName}";
+            game.Command = $"{application} {GamesCloverPath}/{code}/{outputFileName}";
             if (!string.IsNullOrEmpty(args))
                 game.Command += " " + args;
             game.FindCover(inputFileName, cover, crc32);
@@ -375,7 +357,7 @@ namespace com.clusterrr.hakchi_gui
                 $"Exec={command}\n" +
                 $"Path=/var/lib/clover/profiles/0/{Code}\n" +
                 $"Name={Name ?? Code}\n" +
-                $"Icon={HakchiGamesPath}/{Code}/{Code}.png\n\n" +
+                $"Icon={GamesCloverPath}/{Code}/{Code}.png\n\n" +
                 $"[X-CLOVER Game]\n" +
                 $"Code={Code}\n" +
                 $"TestID=777\n" +
