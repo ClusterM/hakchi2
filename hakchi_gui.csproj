@@ -122,6 +122,7 @@
     <Compile Include="Apps\AppTypeCollection.cs" />
     <Compile Include="Apps\ArcadeGame.cs" />
     <Compile Include="Apps\Atari2600Game.cs" />
+    <Compile Include="Apps\BorderElement.cs" />
     <Compile Include="Apps\ICloverAutofill.cs" />
     <Compile Include="Apps\ISupportsGameGenie.cs" />
     <Compile Include="Apps\Sega32XGame.cs" />
@@ -140,6 +141,13 @@
     <Compile Include="Clovershell\ExecConnection.cs" />
     <Compile Include="Clovershell\ShellConnection.cs" />
     <Compile Include="ConfigIni.cs" />
+    <Compile Include="CustomBorderManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomBorderManager.Designer.cs">
+      <DependentUpon>CustomBorderManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DefaultBorder.cs" />
     <Compile Include="GameGenie\GameGenieFormatException.cs" />
     <Compile Include="GameGenie\GameGenieNotFoundException.cs" />
     <Compile Include="GameGenie\GameGeniePatcherSnes.cs" />
@@ -619,6 +627,9 @@
     <Compile Include="WorkerForm.Designer.cs">
       <DependentUpon>WorkerForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CustomBorderManager.resx">
+      <DependentUpon>CustomBorderManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FoldersManagerForm.hu-HU.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>

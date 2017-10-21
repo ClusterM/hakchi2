@@ -1899,5 +1899,22 @@ namespace com.clusterrr.hakchi_gui
                 ShowSelected();
             }
         }
+
+        private void customBordersManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switch (ConfigIni.ConsoleType)
+            {
+                case ConsoleType.NES:
+                case ConsoleType.Famicom:
+                    // not available
+                    MessageBox.Show(this, "Change for a SNES Mini to access this ;)", "Not available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                case ConsoleType.SNES:
+                case ConsoleType.SuperFamicom:
+                    var form = new CustomBorderManager();
+                    form.ShowDialog();
+                    break;
+            }
+        }
     }
 }
