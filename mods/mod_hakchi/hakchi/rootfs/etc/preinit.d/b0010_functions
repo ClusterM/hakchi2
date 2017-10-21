@@ -54,7 +54,7 @@ mod_repair_etc(){
 }
 
 mod_repair_modules(){
-  restore "/lib/modules/$(uname -r)/"
+  restore "/lib/modules/$(uname -r)/" "--exclude "*/clvcon.ko" --exclude "*/clovercon.ko""
 }
 
 remount_root(){
@@ -141,7 +141,7 @@ copy(){
   # we must create target directory
   local dirname="$(dirname "$2")"
   mkdir -p "$dirname"
-  rsync -ac "$1" "$2"
+  rsync -ac "$1" "$2" $3
 }
 
 copy_mask(){
@@ -153,9 +153,9 @@ copy_mask(){
 
 restore(){
   if mountpoint -q "$squashfs" && [ -e "$squashfs$1" ]; then
-    copy "$squashfs$1" "$rootfs$1"
+    copy "$squashfs$1" "$rootfs$1" "$2"
   else
-    copy "$mountpoint$1" "$rootfs$1"
+    copy "$mountpoint$1" "$rootfs$1" "$2"
   fi
 }
 

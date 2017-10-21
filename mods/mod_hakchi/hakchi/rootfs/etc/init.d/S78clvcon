@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CLV_BOARD_NAME=$(cat /etc/clover/boardtype)
+CLV_BOARD_NAME=$(cat "/var/lib/hakchi/boardtype")
 MODULE="clvcon"
 [ -f "/lib/modules/$(uname -r)/extra/$MODULE.ko" ] || MODULE="clovercon"
 
