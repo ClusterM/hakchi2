@@ -6,7 +6,11 @@ echo "current firmware: $(currentFirmware)"
 printSoftwareInfo
 
 firmware="$1"
-menu="$(cat /var/lib/hakchi/menu)"
+if [ -f "/var/lib/hakchi/menu/" ]; then
+  menu="$(cat /var/lib/hakchi/menu)"
+else
+  menu="000"
+fi
 
 if [ "$menu" == "000" ]; then
   menu=""
