@@ -627,6 +627,16 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private void buttonCopyName_Click(object sender, EventArgs e)
+        {
+            if (listViewGames.SelectedItems.Count != 1) return;
+            var selectedItem = listViewGames.SelectedItems[0];
+            var selected = listViewGames.SelectedItems[0].Tag;
+            if (selected == null || !(selected is NesMiniApplication)) return;
+            var game = (selected as NesMiniApplication);
+            game.Title = textBoxTitle.Text = textBoxName.Text.ToLower();
+        }
+
         private void buttonGoogle_Click(object sender, EventArgs e)
         {
             if (listViewGames.SelectedItems.Count != 1) return;

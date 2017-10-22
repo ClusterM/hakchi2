@@ -155,6 +155,7 @@
             this.openDumpFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.listViewGames = new System.Windows.Forms.ListView();
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonCopyName = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -729,6 +730,7 @@
             this.groupBoxOptions.Controls.Add(this.label6);
             this.groupBoxOptions.Controls.Add(this.radioButtonTwoSim);
             this.groupBoxOptions.Controls.Add(this.buttonGoogle);
+            this.groupBoxOptions.Controls.Add(this.buttonCopyName);
             this.groupBoxOptions.Controls.Add(this.buttonBrowseImage);
             this.groupBoxOptions.Controls.Add(this.pictureBoxArt);
             this.groupBoxOptions.Controls.Add(this.label4);
@@ -1050,6 +1052,14 @@
             // 
             resources.ApplyResources(this.gameName, "gameName");
             // 
+            // buttonCopyName
+            // 
+            resources.ApplyResources(this.buttonCopyName, "buttonCopyName");
+            this.buttonCopyName.Name = "buttonCopyName";
+            this.buttonCopyName.TabStop = false;
+            this.buttonCopyName.UseVisualStyleBackColor = true;
+            this.buttonCopyName.Click += new System.EventHandler(this.buttonCopyName_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1215,6 +1225,7 @@
         private System.Windows.Forms.ToolStripMenuItem flashNANDCPartitionToolStripMenuItem;
         private System.Windows.Forms.TextBox textBoxTitle;
         private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.Button buttonCopyName;
     }
 }
 

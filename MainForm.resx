@@ -678,7 +678,7 @@
     <value>252, 298</value>
   </data>
   <data name="buttonShowGameGenieDatabase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 18</value>
+    <value>25, 22</value>
   </data>
   <data name="buttonShowGameGenieDatabase.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -880,6 +880,33 @@
   </data>
   <data name="&gt;&gt;buttonGoogle.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="buttonCopyName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonCopyName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 69</value>
+  </data>
+  <data name="buttonCopyName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <data name="buttonCopyName.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="buttonCopyName.Text" xml:space="preserve">
+    <value>⤶</value>
+  </data>
+  <data name="&gt;&gt;buttonCopyName.Name" xml:space="preserve">
+    <value>buttonCopyName</value>
+  </data>
+  <data name="&gt;&gt;buttonCopyName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonCopyName.Parent" xml:space="preserve">
+    <value>groupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;buttonCopyName.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="buttonBrowseImage.Location" type="System.Drawing.Point, System.Drawing">
     <value>219, 385</value>
@@ -1110,7 +1137,7 @@
     <value>59, 70</value>
   </data>
   <data name="textBoxTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 22</value>
+    <value>187, 22</value>
   </data>
   <data name="textBoxTitle.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
