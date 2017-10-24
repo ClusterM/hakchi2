@@ -89,10 +89,11 @@ namespace com.clusterrr.clovershell
             finally
             {
                 shellConnectionThread = null;
+                Debug.WriteLine(string.Format("Shell client {0} disconnected", id));
+                if (socket != null)
+                    socket.Close();
+                connection.shellConnections[id] = null;
             }
-            Debug.WriteLine(string.Format("Shell client {0} disconnected", id));
-            socket.Close();
-            connection.shellConnections[id] = null;
         }
 
         public void Dispose()
