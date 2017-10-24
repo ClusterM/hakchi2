@@ -351,6 +351,9 @@ namespace com.clusterrr.hakchi_gui
             if (!hasUnsavedChanges) return false;
             Debug.WriteLine(string.Format("Saving application \"{0}\" as {1}", Name, Code));
             Name = Regex.Replace(Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
+            var sortRawTitle = Name.ToLower();
+            if (sortRawTitle.StartsWith("the "))
+                sortRawTitle = sortRawTitle.Substring(4); // Sorting without "THE"
             File.WriteAllText(ConfigPath, 
                 $"[Desktop Entry]\n" +
                 $"Type=Application\n" +
@@ -366,7 +369,7 @@ namespace com.clusterrr.hakchi_gui
                 $"Simultaneous={(Simultaneous ? 1 : 0)}\n" +
                 $"ReleaseDate={ReleaseDate ?? DefaultReleaseDate}\n" +
                 $"SaveCount={SaveCount}\n" +
-                $"SortRawTitle={(Name ?? Code).ToLower()}\n" +
+                $"SortRawTitle={sortRawTitle}\n" +
                 $"SortRawPublisher={(Publisher ?? DefaultPublisher).ToUpper()}\n" +
                 $"Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n");
 
