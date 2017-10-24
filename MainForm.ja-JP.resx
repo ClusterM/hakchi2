@@ -154,11 +154,17 @@
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ</value>
   </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>ファミコン(日本)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>ファイル(&amp;F)</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>カスタムカーネルを書き込み</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>NAND-Cパーティションを書き込みます。(上級者向け)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>オリジナルカーネルを書き込み</value>
@@ -238,6 +244,9 @@
   <data name="modulesToolStripMenuItem.Text">
     <value>モジュール(&amp;M)</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES(アメリカ/欧州)</value>
+  </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>FTPクライアントを開く</value>
   </data>
@@ -274,6 +283,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>コマンド入力でリセットする</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES(アメリカ/欧州)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>ダンプ先のファイル名を指定</value>
   </data>
@@ -298,6 +310,9 @@
   <data name="shellToolStripMenuItem.Text">
     <value>Telnetサーバーアドレス telnet://127.0.0.1:1023 (login:root)</value>
   </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>スーパーファミコン(日本)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>同期</value>
   </data>
@@ -311,7 +326,7 @@
     <value>ツール(&amp;T)</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
-    <value>拡張モジュールをアンインストールする</value>
+    <value>拡張モジュールをアンインストール</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text">
     <value>アンインストール</value>
@@ -330,20 +345,5 @@
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Compress non-NES games (for additional emulator mod)</value>
-  </data>
-  <data name="famicomMiniToolStripMenuItem.Text">
-    <value>Famicom (Japan)</value>
-  </data>
-  <data name="flashNANDCPartitionToolStripMenuItem.Text">
-    <value>Flash NAND-C partition (experts only!)</value>
-  </data>
-  <data name="nESMiniToolStripMenuItem.Text">
-    <value>NES (USA/Europe)</value>
-  </data>
-  <data name="sNESMiniToolStripMenuItem.Text">
-    <value>SNES (USA/Europe)</value>
-  </data>
-  <data name="superFamicomMiniToolStripMenuItem.Text">
-    <value>Super Famicom (Japan)</value>
   </data>
 </root>

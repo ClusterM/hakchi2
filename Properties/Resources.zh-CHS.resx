@@ -107,7 +107,7 @@
     <value>正在解压缩游戏...</value>
   </data>
   <data name="Default30games">
-    <value>原版内置的xx个游戏</value>
+    <value>内置游戏</value>
   </data>
   <data name="DeleteElement">
     <value>确定要删除 "{0}" 吗?</value>
@@ -197,7 +197,7 @@
     <value>新建文件夹</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>原版内置的xx个游戏</value>
+    <value>内置游戏</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>回收站</value>

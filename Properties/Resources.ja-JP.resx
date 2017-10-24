@@ -172,6 +172,12 @@
   <data name="FirstRun">
     <value>こんにちは！ hakchi2をご使用いただきありがとうございます。 使い方はとても簡単です。 「ゲームの新規追加」をクリックし、追加したいROMを選択し、「同期」を押して指示に従ってください。</value>
   </data>
+  <data name="FlashNandCQ">
+    <value>NAND-Cパーティションにイメージを書き込みますか? これを行うと、すべてのユーザーデータが置き換えられます</value>
+  </data>
+  <data name="FlashingNand">
+    <value>NANDメモリーを書き込んでいます。</value>
+  </data>
   <data name="FlasingCustom">
     <value>カスタムカーネルを書き込み中...</value>
   </data>
@@ -286,8 +292,11 @@
   <data name="NandDumped">
     <value>NANDは正常にダンプされました。</value>
   </data>
+  <data name="NandFlashed">
+    <value>NANDメモリに書き込まれました。</value>
+  </data>
   <data name="Need3rdPartyEmulator">
-    <value>"{0}"はデフォルトのエミュレーターでは正しく動作しないようです。他のエミュレーターを使用しますか? (別途インストールする必要があります。)</value>
+    <value>おっと、"{0}"はデフォルトのエミュレーターでは正しく動作しないようです。他のエミュレーターを使用しますか? (別途インストールする必要があります。)</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>新たに追加されたゲームは "未分類" フォルダーに移動されます。</value>
@@ -315,6 +324,9 @@
   </data>
   <data name="NotFound">
     <value>存在しない:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>非推奨</value>
   </data>
   <data name="OriginalKernelQ">
     <value>オリジナルカーネルを書き込んでもよろしいですか?</value>
@@ -344,7 +356,7 @@
     <value>既にカーネルのダンプファイルが存在します。あなたが何をしようとしているのか理解をしていて、本当にバックアップを置き換えたいのであれば "hakchi2\dump" フォルダーを手動で削除してください。</value>
   </data>
   <data name="SavesFlterName">
-    <value>ファミコン/スーファミ ミニ ステートセーブ バックアップ</value>
+    <value>ファミコン/スーファミ ミニ ステートセーブのバックアップ</value>
   </data>
   <data name="SelectAtLeast">
     <value>少なくとも1つのゲームを選択してください</value>
@@ -363,6 +375,9 @@
   </data>
   <data name="SizeOfSaves">
     <value>選択したステートセーブのサイズ:</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>警告! 1つのフォルダに対し沢山のゲームを収納することは非推奨です。</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>すべての中断ポイントを削除する場合は工場出荷時の状態に初期化することを忘れないでください。</value>
@@ -417,20 +432,5 @@
   </data>
   <data name="YesForAll">
     <value>すべて "はい"</value>
-  </data>
-  <data name="FlashNandCQ">
-    <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
-  </data>
-  <data name="FlashingNand">
-    <value>Flashing NAND memory...</value>
-  </data>
-  <data name="NandFlashed">
-    <value>NAND memory flashed.</value>
-  </data>
-  <data name="NotRecommended">
-    <value>not recommended</value>
-  </data>
-  <data name="TooManyPerFolder">
-    <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
 </root>
