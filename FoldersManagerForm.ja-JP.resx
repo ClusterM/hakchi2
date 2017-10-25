@@ -85,6 +85,18 @@
   <data name="buttonNoFoldersOriginal.Text">
     <value>プリインストールされたゲーム -&gt; その他のゲーム</value>
   </data>
+  <data name="comboBoxPosition.Items">
+    <value>1番左側</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>ゲームの左側</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>ゲームの右側</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>1番右側</value>
+  </data>
   <data name="cutToolStripMenuItem.Text">
     <value>切り取り</value>
   </data>
@@ -108,18 +120,6 @@
   </data>
   <data name="renameToolStripMenuItem.Text">
     <value>フォルダ名の変更</value>
-  </data>
-  <data name="comboBoxPosition.Items">
-    <value>Leftmost</value>
-  </data>
-  <data name="comboBoxPosition.Items1">
-    <value>Left to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items2">
-    <value>Right to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items3">
-    <value>Rightmost</value>
   </data>
   <data name="labelElementCount.Text">
     <value>Folder statistics</value>
