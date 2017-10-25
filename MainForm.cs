@@ -634,7 +634,7 @@ namespace com.clusterrr.hakchi_gui
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesMiniApplication)) return;
             var game = (selected as NesMiniApplication);
-            game.Title = textBoxTitle.Text = textBoxName.Text.ToLower();
+            game.Title = textBoxTitle.Text = NesMiniApplication.TrimAsTitle(textBoxName.Text);
         }
 
         private void buttonGoogle_Click(object sender, EventArgs e)
