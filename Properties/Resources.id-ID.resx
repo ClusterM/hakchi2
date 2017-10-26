@@ -107,7 +107,7 @@
     <value>Mendekompres game...</value>
   </data>
   <data name="Default30games">
-    <value>xx game orisinal</value>
+    <value>Game orisinal</value>
   </data>
   <data name="DeleteElement">
     <value>Apakah Anda ingin menghapus "{0}"?</value>
@@ -197,7 +197,7 @@
     <value>Folder baru</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>xx game orisinal</value>
+    <value>Game orisinal</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Recycle Bin</value>
@@ -425,7 +425,7 @@
     <value>Peringatan!</value>
   </data>
   <data name="Wow">
-    <value>Wow</value>
+    <value>Yay!</value>
   </data>
   <data name="Yes">
     <value>Ya</value>
