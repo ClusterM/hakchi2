@@ -1037,7 +1037,8 @@ namespace com.clusterrr.hakchi_gui
             var clovershell = MainForm.Clovershell;
             var screenshot = new Bitmap(1280, 720, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
             var rawStream = new MemoryStream();
-            clovershell.Execute("cat /dev/fb0", null, rawStream, null, 1000, true);
+            clovershell.Execute("hakchi uipause;cat /dev/fb0", null, rawStream, null, 1000, true);
+            clovershell.ExecuteSimple("hakchi uiresume");
             var raw = rawStream.ToArray();
             BitmapData data = screenshot.LockBits(
                 new Rectangle(0, 0, screenshot.Width, screenshot.Height),

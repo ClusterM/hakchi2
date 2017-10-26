@@ -217,6 +217,18 @@ uistart(){
   /etc/init.d/S81clover-mcp start
 }
 
+uipause(){
+  lsof -n | grep /dev/fb0 | awk '{ print $1 }' | while read pid; do
+    kill -s SIGSTOP $pid
+  done
+}
+
+uiresume(){
+  lsof -n | grep /dev/fb0 | awk '{ print $1 }' | while read pid; do
+    kill -s SIGCONT $pid
+  done
+}
+
 gameover(){
   poweroff
 }
