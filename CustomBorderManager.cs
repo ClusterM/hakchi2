@@ -238,7 +238,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonSync_Click(object sender, EventArgs e)
         {
-            const string src_backgroundPath = "/usr/share/backgrounds";
+            const string src_backgroundPath = "/var/lib/hakchi/squashfs/usr/share/backgrounds";
             const string dest_backgroundPath = "/var/lib/hakchi/rootfs/usr/share/backgrounds";
             var clovershell = MainForm.Clovershell;
             string bgDirectory = BorderElement.BackgroundsDirectory;
@@ -266,7 +266,7 @@ namespace com.clusterrr.hakchi_gui
                 this.Enabled = false;
                 try
                 {
-                    labelSyncing.Text = "Deleting a file";
+                    /*labelSyncing.Text = "Deleting a file";
                     labelSyncing.Refresh();
                     progressBarSync.Value = 10;
                     progressBarSync.Refresh();
@@ -277,7 +277,7 @@ namespace com.clusterrr.hakchi_gui
                     labelSyncing.Refresh();
                     progressBarSync.Value = 20;
                     progressBarSync.Refresh();
-                    clovershell.ExecuteSimple("reboot", 1000);
+                    clovershell.ExecuteSimple("reboot", 3000);
                     Thread.Sleep(2000);
                     labelSyncing.Text = "Waiting reboot...";
                     labelSyncing.Refresh();
@@ -288,14 +288,14 @@ namespace com.clusterrr.hakchi_gui
                         Debug.WriteLine("Wait reboot");
                         Thread.Sleep(2000);
                     }
-
+                    */
                     labelSyncing.Text = "Creating directory...";
                     labelSyncing.Refresh();
-                    progressBarSync.Value = 40;
+                    progressBarSync.Value = 10;
                     progressBarSync.Refresh();
                     string command = $"src=\"{src_backgroundPath}\" && " +
                                     $"dst=\"{dest_backgroundPath}\" && " +
-                                    $"rm -rf \"$dst\" && " +
+                                    $"rm -rf \"$dst\" && " + 
                                     $"mkdir -p \"$dst\"";
                     clovershell.ExecuteSimple(command, 10000, true);
 
@@ -314,7 +314,7 @@ namespace com.clusterrr.hakchi_gui
 
                     labelSyncing.Text = "Uploading user borders...";
                     labelSyncing.Refresh();
-                    progressBarSync.Value = 50;
+                    progressBarSync.Value = 20;
                     progressBarSync.Refresh();
 
                     using (var bordersTar = new TarStream(tempBordersDirectory))
@@ -334,7 +334,7 @@ namespace com.clusterrr.hakchi_gui
                     string move_cmd = $"mv {dest_backgroundPath}/p8173_ownbgs /etc/preinit.d/";
                     clovershell.ExecuteSimple(move_cmd, 3000, true);
 
-                    labelSyncing.Text = "Copying default borders...";
+                    labelSyncing.Text = "Managing default borders...";
                     labelSyncing.Refresh();
                     progressBarSync.Value = 80;
                     progressBarSync.Refresh();
@@ -347,8 +347,8 @@ namespace com.clusterrr.hakchi_gui
                         foreach (string bordername in selected)
                         {
                             string cmd = $"src=\"{src_backgroundPath}/{bordername}\" && " +
-                                            $"dst=\"{dest_backgroundPath}/\" && " +
-                                            $"mkdir -p \"$dst\" && cp -R \"$src\" \"$dst\"";
+                                            $"dst=\"{dest_backgroundPath}/{bordername}\" && " +
+                                            $"ln -s \"$src\" \"$dst\"";
                             clovershell.ExecuteSimple(cmd, 10000, true);
                         }
                     }
