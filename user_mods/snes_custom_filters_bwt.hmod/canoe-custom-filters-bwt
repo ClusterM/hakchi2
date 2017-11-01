@@ -1,0 +1,128 @@
+#!/bin/sh
+
+set -x
+
+export MALI_NOCLEAR=1
+
+decorative_options()
+{
+  local fn="$1_options.txt"
+  if [ ! -f "$fn" ] ; then
+    return
+  fi
+  while read option ; do
+    case "$option" in
+    hue) printf ' --decorative-frame-hue';;
+    luminosity) printf ' --decorative-frame-luminosity';;
+    saturation) printf ' --decorative-frame-saturation';;
+    esac
+  done < "$fn"
+}
+
+controller_state=`cat /dev/clovercon1`
+controller_value=`printf %d 0x$controller_state`
+
+B_X=$((controller_value & 1))
+B_Y=$(((controller_value & 2)>>1))
+B_LB=$(((controller_value & 4)>>2))
+B_RB=$(((controller_value & 8)>>3))
+B_A=$(((controller_value & 256)>>8))
+B_B=$(((controller_value & 512)>>9))
+B_SELECT=$(((controller_value & 1024)>>10))
+B_START=$(((controller_value & 2048)>>11))
+B_UP=$(((controller_value & 4096)>>12))
+B_DOWN=$(((controller_value & 8192)>>13))
+B_LEFT=$(((controller_value & 16384)>>14))
+B_RIGHT=$(((controller_value & 32768)>>15))
+
+options=""
+
+rom="non_existing_file"
+filter_settings=""
+
+while [ $# -gt 0 ] ; do
+  case "$1" in
+  --title-code) title_code="$2"; shift ;;
+  --load-state-file) options="$options -resume" ;;
+  --save-data-backing-file) options="$options --sram-file" ;;
+  --replay-inputs) options="$options -replay-all -replay" ;;
+  --record-inputs) options="$options -record-next -enable-pad-debug-controls" ;;
+  --video-mode)
+    if [ "$B_RB" == "1" ]
+    then
+        case "$2" in
+        keep-aspect-ratio) filter_settings="-filter 1 -magfilter 3" ;;
+        pixel-perfect) filter_settings="-filter 1 --pixel-perfect" ;;
+        crt-filter) filter_settings="-filter 2 -magfilter 1" ;;
+        esac
+    fi
+    shift
+    ;;
+  --rollback-mode)
+    case "$2" in
+    record) options="$options -rollback-mode 1" ;;
+    replay) options="$options -rollback-mode 2" ;;
+    esac
+    options="$options --rollback-ui /usr/share/canoe/rollback-ui"
+    options="-rollback-snapshot-period 720 $options"
+    options="$options --enable-sram-file-hash"
+    shift
+    ;;
+  --rollback-output-dir) options="$options -rollback-output-dir $2"; shift ;;
+  --rollback-input-dir) options="$options -rollback-input-dir $2"; shift ;;
+  --decorative-frame-path) options="$options --use-decorative-frame $2 $(decorative_options $2)"; shift ;;
+  *.sfrom)
+    rom=$1
+    if [ -f "$1.gz" ]; then
+        options="$options /tmp/ROM.sfrom"
+        gunzip -c "$1.gz" > /tmp/ROM.sfrom
+    else
+        options="$options $1"
+    fi
+    ;;
+  *) options="$options $1" ;;
+  esac
+  shift
+done
+
+filter_settings_file=`echo $rom | tr / _`
+filter_settings_file=/etc/bwt_saved_filters/$filter_settings_file
+if [ -f "$filter_settings_file" ] && [ -f "$rom" ] && [ "$B_DOWN" == "1" ]
+then
+    filter_settings=`cat $filter_settings_file`
+else
+    if [ "$B_RB" == "0" ]
+    then
+        postprocess_filter=""
+        magnification_filter=""
+        if [ "$B_B" == "0" -a "$B_A" == "0" ]; then postprocess_filter=" -filter 0"; fi
+        if [ "$B_B" == "1" -a "$B_A" == "0" ]; then postprocess_filter=" -filter 1"; fi
+        if [ "$B_B" == "0" -a "$B_A" == "1" ]; then postprocess_filter=" -filter 2"; fi
+        if [ "$B_B" == "1" -a "$B_A" == "1" ]; then postprocess_filter=" -filter 3"; fi
+        if [ "$B_Y" == "0" -a "$B_X" == "0" ]; then magnification_filter=" -magfilter 0"; fi
+        if [ "$B_Y" == "1" -a "$B_X" == "0" ]; then magnification_filter=" -magfilter 1"; fi
+        if [ "$B_Y" == "0" -a "$B_X" == "1" ]; then magnification_filter=" -magfilter 2"; fi
+        if [ "$B_Y" == "1" -a "$B_X" == "1" ]; then magnification_filter=" -magfilter 3"; fi
+        filter_settings="$postprocess_filter $magnification_filter"
+        if [ "$B_LB" == "1" ]; then filter_settings="$filter_settings --pixel-perfect"; fi
+    fi
+fi
+
+if [ "$B_UP" == "1" ]
+then
+    if [ -f "$rom" ]
+    then
+        echo $filter_settings > $filter_settings_file
+    fi
+fi
+
+options="$options $filter_settings"
+
+read BUILD_TYPE < /etc/clover/buildtype
+case "$BUILD_TYPE" in
+devel) log="-log $title_code.log -log-append --debug-menu-settings /var/lib/clover/canoe/debug-menu.json --decorative-frames-path /usr/share/backgrounds" ;;
+test) log="-log $title_code.log" ;;
+*) ;;
+esac
+
+exec canoe-shvc $options $log
