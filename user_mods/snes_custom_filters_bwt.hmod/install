@@ -1,0 +1,6 @@
+copy "$transferpath/p8031_snes_filters_bwt" "$preinitpath"
+mkdir -p "$rootfs/usr/bin"
+chmod +x "$transferpath/canoe-custom-filters-bwt"
+copy "$transferpath/canoe-custom-filters-bwt" "$rootfs/usr/bin/"
+mkdir -p "$rootfs/etc/bwt_saved_filters"
+return 1

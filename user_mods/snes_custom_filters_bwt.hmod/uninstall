@@ -1,0 +1,4 @@
+rm "$preinitpath/p8031_snes_filters_bwt"
+rm "$rootfs/usr/bin/p8031_snes_filters_bwt"
+rm "$rootfs/usr/bin/canoe-custom-filters-bwt"
+rmdir --ignore-fail-on-non-empty "$rootfs/etc/bwt_saved_filters"
