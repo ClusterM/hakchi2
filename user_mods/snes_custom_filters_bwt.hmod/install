@@ -5,5 +5,4 @@ copy "$transferpath/canoe-custom-filters-bwt" "$rootfs/usr/bin/"
 mkdir -p "$rootfs/etc/bwt_snes_filters"
 copy "$transferpath/cfg_filters.raw.gz" "$rootfs/etc/bwt_snes_filters/"
 copy "$transferpath/cfg_filters_reset.raw.gz" "$rootfs/etc/bwt_snes_filters/"
-copy "$transferpath/cfg_filters_black.raw.gz" "$rootfs/etc/bwt_snes_filters/"
 return 1

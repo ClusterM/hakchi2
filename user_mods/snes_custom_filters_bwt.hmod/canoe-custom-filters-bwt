@@ -68,7 +68,7 @@ setup_filter_settings()
     done
     
     #Remove pixels (sometimes this is needed)
-    gunzip -c $images_path/cfg_filters_black.raw.gz > $output_device
+    cat /dev/zero > $output_device 2>/dev/null
     filter_settings="-filter $post_proc_filter -magfilter $mag_filter$pixel_perfect"
 }
 
