@@ -93,10 +93,8 @@ then
 else
     if [ "$B_RB" == "0" ]
     then
-        filter_settings=""
         postprocess_filter=""
         magnification_filter=""
-        filter_settings=""
         if [ "$B_B" == "0" -a "$B_A" == "0" ]; then postprocess_filter=" -filter 0"; fi
         if [ "$B_B" == "1" -a "$B_A" == "0" ]; then postprocess_filter=" -filter 1"; fi
         if [ "$B_B" == "0" -a "$B_A" == "1" ]; then postprocess_filter=" -filter 2"; fi
