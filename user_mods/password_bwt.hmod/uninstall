@@ -1,0 +1,3 @@
+local script=S811passwd_bwt
+rm "$rootfs/etc/init.d/$script"
+rm -rf "$rootfs/etc/bwt_password_mod"
