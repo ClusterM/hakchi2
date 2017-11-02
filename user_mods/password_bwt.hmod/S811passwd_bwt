@@ -245,6 +245,7 @@ wait_for_code()
                         gunzip -c $images_directory/access_denied.raw.gz > $output_device
                         /usr/bin/hexdump -e '1/1 "%02x"' -v -n 16 /dev/input/event4
                         poweroff
+                        while [ true ]; do sleep 1; done
                         exit 0
                         ;;
                     *)
@@ -252,6 +253,7 @@ wait_for_code()
                         gunzip -c $images_directory/access_denied.raw.gz > $output_device                        
                         /usr/bin/hexdump -e '1/1 "%02x"' -v -n 16 /dev/input/event4
                         poweroff
+                        while [ true ]; do sleep 1; done
                         exit 0
                         ;;
                     esac                
