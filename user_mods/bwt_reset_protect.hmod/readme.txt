@@ -1,6 +1,6 @@
-=== BWT Factor reset protection mod by Bewildered Thetan ===
+=== BWT Factory reset protection mod by Bewildered Thetan ===
 
-This mod protects the factor reset functionality of the SNES Classic Mini with a code.
+This mod protects the factory reset functionality of the SNES Classic Mini with a code.
 
 NOTE: This mod needs the BWT Code Protector hmod to be installed! If not, you will get an error
 when executing the factory reset, but the factory reset will NOT be executed (to be safe).
