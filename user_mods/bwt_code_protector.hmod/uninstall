@@ -1,0 +1,1 @@
+rm -rf "$rootfs/etc/bwt_code_protector"
