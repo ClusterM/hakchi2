@@ -810,7 +810,7 @@
     <EmbeddedResource Include="FoldersManagerForm.da-DK.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FoldersManagerForm.de-De.resx">
+    <EmbeddedResource Include="FoldersManagerForm.de-DE.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FoldersManagerForm.el-GR.resx">
@@ -1916,7 +1916,7 @@
     <EmbeddedResource Include="images\flags\tw.png" />
     <EmbeddedResource Include="images\flags\ua.png" />
     <EmbeddedResource Include="images\flags\dk.png" />
-    <EmbeddedResource Include="images\gamepad_SNES.png" />
+    <EmbeddedResource Include="images\gamepad_snes.png" />
     <Content Include="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
