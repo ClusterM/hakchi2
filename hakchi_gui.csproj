@@ -2695,12 +2695,8 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>if exist languages rd /S /Q languages
-md languages
-for /D %25%25i in (*.*) do if exist %25%25i\hakchi.resources.dll move /Y %25%25i languages\%25%25i
-
-rem del *.application
-rem del *.manifest</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -2709,4 +2705,14 @@ rem del *.manifest</PostBuildEvent>
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <BuildDependsOn>$(BuildDependsOn);MoveLanguageResourceFiles;</BuildDependsOn>
+  </PropertyGroup>
+  <Target Name="MoveLanguageResourceFiles">
+    <ItemGroup>
+      <LanguageResourceFiles Include="$(OutDir)**\hakchi.resources.dll;" Exclude="$(OutDir)languages\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(LanguageResourceFiles)" DestinationFolder="$(OutDir)languages\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <RemoveDir Directories="$(OutDir)%(LanguageResourceFiles.RecursiveDir);" />
+  </Target>
 </Project>
