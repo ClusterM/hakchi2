@@ -2,7 +2,6 @@
 using com.clusterrr.hakchi_gui.Properties;
 using Microsoft.Win32.SafeHandles;
 using System;
-using System.Deployment.Application;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
