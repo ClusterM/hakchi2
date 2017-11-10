@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NAAPE/CLV-P-NAAPE.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-NAAPE
+Name=Kirby's Adventure
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NAAPE/CLV-P-NAAPE.png
+
+[X-CLOVER Game]
+Code=CLV-P-NAAPE
+TestID=472
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1993-05-01
+SaveCount=3
+SortRawTitle=kirby's adventure
+SortRawPublisher=NINTENDO
+Copyright=Kirby's Adventure ©1993 HAL Laboratory, Inc. / Nintendo

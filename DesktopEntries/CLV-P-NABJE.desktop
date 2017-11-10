@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NABJE/CLV-P-NABJE.nes --armet-threshold 11 --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-NABJE
+Name=FINAL FANTASY®
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NABJE/CLV-P-NABJE.png
+
+[X-CLOVER Game]
+Code=CLV-P-NABJE
+TestID=82
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1990-05-01
+SaveCount=1
+SortRawTitle=final fantasy®
+SortRawPublisher=SQUARE ENIX
+Copyright=FINAL FANTASY® ©1987,1990 SQUARE ENIX CO., LTD. All Rights Reserved.

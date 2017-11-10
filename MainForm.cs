@@ -866,6 +866,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
+            bool exportGames = (Control.ModifierKeys == Keys.Shift);
             SaveConfig();
 
             var stats = RecalculateSelectedGames();
@@ -874,11 +875,14 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(Resources.SelectAtLeast, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var kernel = RequirePatchedKernel();
-            if (kernel == DialogResult.No) return;
-            if (kernel == DialogResult.Yes) // Message for new user
-                MessageBox.Show(Resources.DoneYouCanUpload + "\r\n" + Resources.PressOkToContinue, Resources.Congratulations, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            if (UploadGames())
+            if (!exportGames)
+            {
+                var kernel = RequirePatchedKernel();
+                if (kernel == DialogResult.No) return;
+                if (kernel == DialogResult.Yes) // Message for new user
+                    MessageBox.Show(Resources.DoneYouCanUpload + "\r\n" + Resources.PressOkToContinue, Resources.Congratulations, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            if (UploadGames(exportGames))
             {
                 MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -1006,14 +1010,22 @@ namespace com.clusterrr.hakchi_gui
             return workerForm.DialogResult == DialogResult.OK;
         }
 
-        bool UploadGames()
+        bool UploadGames(bool exportGames = false)
         {
+            if (exportGames && exportFolderDialog.ShowDialog() != DialogResult.OK)
+                return false;
+
             var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.UploadingGames;
             workerForm.Task = WorkerForm.Tasks.UploadGames;
             workerForm.Mod = "mod_hakchi";
             workerForm.Config = ConfigIni.GetConfigDictionary();
             workerForm.Games = new NesMenuCollection();
+            workerForm.exportGames = exportGames;
+            
+            if (exportGames)
+                workerForm.exportDirectory = exportFolderDialog.SelectedPath;
+
             bool needOriginal = false;
             foreach (ListViewItem game in listViewGames.CheckedItems)
             {

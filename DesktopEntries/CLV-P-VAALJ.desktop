@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VAALJ/CLV-P-VAALJ.sfrom --volume 100 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-VAALJ
+Name=スーパードンキーコング
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VAALJ/CLV-P-VAALJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-VAALJ
+TestID=6
+Status=Duplicate-3
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1994-11-26
+SaveCount=3
+SortRawTitle=すーぱーどんきーこんぐ
+SortRawPublisher=にんてんどう
+Copyright=スーパードンキーコング ©1994 Nintendo
+MyPlayDemoTime=45

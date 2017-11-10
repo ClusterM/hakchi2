@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SAAFE/CLV-P-SAAFE.sfrom --volume 70 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-SAAFE
+Name=Super Mario Kart
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SAAFE/CLV-P-SAAFE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SAAFE
+TestID=3
+Status=Finished-0009
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1992-09-01
+SaveCount=1
+SortRawTitle=super mario kart
+SortRawPublisher=NINTENDO
+Copyright=Super Mario Kart™ ©1992 Nintendo
+MyPlayDemoTime=45

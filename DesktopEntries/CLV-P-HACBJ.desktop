@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACBJ/CLV-P-HACBJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 82 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-HACBJ
+Name=忍者龍剣伝
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACBJ/CLV-P-HACBJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HACBJ
+TestID=251
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1988-12-09
+SaveCount=0
+SortRawTitle=にんじゃりゅうけんでん
+SortRawPublisher=こーえーてくも
+Copyright=忍者龍剣伝 ©1988 コーエーテクモゲームス All rights reserved.

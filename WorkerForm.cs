@@ -11,6 +11,7 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -42,6 +43,8 @@ namespace com.clusterrr.hakchi_gui
         }
         public string NandDump;
         public string Mod = null;
+        public string exportDirectory;
+        public bool exportGames = false;
         public Dictionary<string, string> Config = null;
         public NesMenuCollection Games;
         public IEnumerable<string> hmodsInstall;
@@ -848,132 +851,180 @@ namespace com.clusterrr.hakchi_gui
             var clovershell = MainForm.Clovershell;
             try
             {
-                if (WaitForClovershellFromThread() != DialogResult.OK)
+                if (!exportGames)
                 {
-                    DialogResult = DialogResult.Abort;
-                    return;
+                    if (WaitForClovershellFromThread() != DialogResult.OK)
+                    {
+                        DialogResult = DialogResult.Abort;
+                        return;
+                    }
                 }
                 progress += 5;
                 SetProgress(progress, maxProgress);
-
-                ShowSplashScreen();
-                UpdateRootfs();
-                var squashFsMount = clovershell.ExecuteSimple($"mount | grep {squashFsPath}", 3000, false);
-                if (string.IsNullOrEmpty(squashFsMount))
-                    clovershell.ExecuteSimple($"mkdir -p {squashFsPath} && mount /dev/mapper/root-crypt {squashFsPath}", 3000, true);
-
+                if (!exportGames)
+                {
+                    ShowSplashScreen();
+                    UpdateRootfs();
+                    var squashFsMount = clovershell.ExecuteSimple($"mount | grep {squashFsPath}", 3000, false);
+                    if (string.IsNullOrEmpty(squashFsMount))
+                        clovershell.ExecuteSimple($"mkdir -p {squashFsPath} && mount /dev/mapper/root-crypt {squashFsPath}", 3000, true);
+                }
                 SetStatus(Resources.BuildingFolders);
                 if (Directory.Exists(tempDirectory))
                     Directory.Delete(tempDirectory, true);
                 Directory.CreateDirectory(tempDirectory);
                 // Games!
                 tempGamesDirectory = Path.Combine(tempDirectory, "games");
+                if (exportDirectory != null)
+                {
+                    tempGamesDirectory = exportDirectory;
+                }
                 Directory.CreateDirectory(tempDirectory);
                 Directory.CreateDirectory(tempGamesDirectory);
+                if (Directory.GetDirectories(tempGamesDirectory).Length > 0)
+                {
+                    MessageBox.Show(Resources.FolderNotEmpty);
+                    return;
+                }
                 Dictionary<string, string> originalGames = new Dictionary<string, string>();
                 var stats = new GamesTreeStats();
                 AddMenu(Games, originalGames, stats);
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
-                GetMemoryStats();
-                var maxGamesSize = (NandCFree + WritedGamesSize) - ReservedMemory * 1024 * 1024;
-                if (stats.TotalSize > maxGamesSize)
-                {
-                    throw new Exception(string.Format(Resources.MemoryFull, stats.TotalSize / 1024 / 1024) + "\r\n\r\n" +
-                        string.Format(Resources.MemoryStats.Replace("|", "\r\n"),
-                        NandCTotal / 1024.0 / 1024.0,
-                        (NandCFree + WritedGamesSize - ReservedMemory * 1024 * 1024) / 1024 / 1024,
-                        SaveStatesSize / 1024.0 / 1024.0,
-                        (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
-                }
-
                 int startProgress = progress;
-                using (var gamesTar = new TarStream(tempGamesDirectory))
+                if (!exportGames)
                 {
-                    maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 20 + originalGames.Count() * 2);
-                    SetProgress(progress, maxProgress);
-
-                    clovershell.ExecuteSimple(string.Format("umount {0}", gamesPath));
-                    clovershell.ExecuteSimple($"mkdir -p \"{rootFsPath}{gamesPath}\"", 3000, true);
-                    if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
+                    GetMemoryStats();
+                    var maxGamesSize = (NandCFree + WritedGamesSize) - ReservedMemory * 1024 * 1024;
+                    if (stats.TotalSize > maxGamesSize)
                     {
-                        clovershell.ExecuteSimple($"[ -f \"{squashFsPath}{gamesPath}/title.fnt\" ] && [ ! -f \"{rootFsPath}{gamesPath}/title.fnt\" ] && cp -f \"{squashFsPath}{gamesPath}/title.fnt\" \"{rootFsPath}{gamesPath}\"/", 3000, false);
-                        clovershell.ExecuteSimple($"[ -f \"{squashFsPath}{gamesPath}/copyright.fnt\" ] && [ ! -f \"{rootFsPath}{gamesPath}/copyright.fnt\" ] && cp -f \"{squashFsPath}{gamesPath}/copyright.fnt\" \"{rootFsPath}{gamesPath}\"/", 3000, false);
+                        throw new Exception(string.Format(Resources.MemoryFull, stats.TotalSize / 1024 / 1024) + "\r\n\r\n" +
+                            string.Format(Resources.MemoryStats.Replace("|", "\r\n"),
+                            NandCTotal / 1024.0 / 1024.0,
+                            (NandCFree + WritedGamesSize - ReservedMemory * 1024 * 1024) / 1024 / 1024,
+                            SaveStatesSize / 1024.0 / 1024.0,
+                            (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
                     }
-                    clovershell.ExecuteSimple(string.Format("rm -rf {0}{1}/CLV-* {0}{1}/??? {2}/menu", rootFsPath, gamesPath, installPath), 5000, true);
-
-                    if (gamesTar.Length > 0)
+                    
+                    using (var gamesTar = new TarStream(tempGamesDirectory))
                     {
-                        gamesTar.OnReadProgress += delegate (long pos, long len)
-                        {
-                            progress = (int)(startProgress + pos / 1024 / 1024);
-                            SetProgress(progress, maxProgress);
-                        };
+                        maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 20 + originalGames.Count() * 2);
+                        SetProgress(progress, maxProgress);
 
-                        SetStatus(Resources.UploadingGames);
-                        clovershell.Execute(string.Format("tar -xvC {0}{1}", rootFsPath, gamesPath), gamesTar, null, null, 30000, true);
+                        clovershell.ExecuteSimple(string.Format("umount {0}", gamesPath));
+                        clovershell.ExecuteSimple($"mkdir -p \"{rootFsPath}{gamesPath}\"", 3000, true);
+                        if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
+                        {
+                            clovershell.ExecuteSimple($"[ -f \"{squashFsPath}{gamesPath}/title.fnt\" ] && [ ! -f \"{rootFsPath}{gamesPath}/title.fnt\" ] && cp -f \"{squashFsPath}{gamesPath}/title.fnt\" \"{rootFsPath}{gamesPath}\"/", 3000, false);
+                            clovershell.ExecuteSimple($"[ -f \"{squashFsPath}{gamesPath}/copyright.fnt\" ] && [ ! -f \"{rootFsPath}{gamesPath}/copyright.fnt\" ] && cp -f \"{squashFsPath}{gamesPath}/copyright.fnt\" \"{rootFsPath}{gamesPath}\"/", 3000, false);
+                        }
+                        clovershell.ExecuteSimple(string.Format("rm -rf {0}{1}/CLV-* {0}{1}/??? {2}/menu", rootFsPath, gamesPath, installPath), 5000, true);
+
+                        if (gamesTar.Length > 0)
+                        {
+                            gamesTar.OnReadProgress += delegate (long pos, long len)
+                            {
+                                progress = (int)(startProgress + pos / 1024 / 1024);
+                                SetProgress(progress, maxProgress);
+                            };
+
+                            SetStatus(Resources.UploadingGames);
+                            clovershell.Execute(string.Format("tar -xvC {0}{1}", rootFsPath, gamesPath), gamesTar, null, null, 30000, true);
+                        }
                     }
                 }
 
                 SetStatus(Resources.UploadingOriginalGames);
                 // Need to make sure that squashfs if mounted
                 startProgress = progress;
+                string executablePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string desktopEntriesPath = Path.Combine(executablePath, "DesktopEntries");
                 foreach (var originalCode in originalGames.Keys)
                 {
-                    string originalSyncCode = "";
-                    switch (ConfigIni.ConsoleType)
+                    if (exportGames)
                     {
-                        case MainForm.ConsoleType.NES:
-                        case MainForm.ConsoleType.Famicom:
-                            originalSyncCode =
-                                $"src=\"{squashFsPath}{gamesPath}/{originalCode}\" && " +
-                                $"dst=\"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
-                                $"mkdir -p \"$dst\" && " +
-                                $"ln -s \"$src/{originalCode}.png\" \"$dst\" && " +
-                                $"ln -s \"$src/{originalCode}_small.png\" \"$dst\" && " +
-                                $"ln -s \"$src/{originalCode}.nes\" \"$dst\" && " +
-                                $"ln -s \"$src/autoplay/\" \"$dst/autoplay\" && " +
-                                $"ln -s \"$src/pixelart/\" \"$dst/pixelart\" && " +
-                                $"cp \"$src/{originalCode}.desktop\" \"$dst/{originalCode}.desktop\" && " +
-                                $"sed -i -e 's/\\/usr\\/bin\\/clover-kachikachi/\\/bin\\/clover-kachikachi-wr/g' \"$dst/{originalCode}.desktop\"";
-                            break;
-                        case MainForm.ConsoleType.SNES:
-                        case MainForm.ConsoleType.SuperFamicom:
-                            originalSyncCode =
-                                $"src=\"{squashFsPath}{gamesPath}/{originalCode}\" && " +
-                                $"dst=\"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
-                                $"mkdir -p \"$dst\" && " +
-                                $"ln -s \"$src/{originalCode}.png\" \"$dst\" && " +
-                                $"ln -s \"$src/{originalCode}_small.png\" \"$dst\" && " +
-                                $"ln -s \"$src/{originalCode}.sfrom\" \"$dst\" && " +
-                                $"ln -s \"$src/autoplay/\" \"$dst/autoplay\" && " +
-                                $"cp \"$src/{originalCode}.desktop\" \"$dst/{originalCode}.desktop\" && " +
-                                $"sed -i -e 's/\\/usr\\/bin\\/clover-canoe-shvc/\\/bin\\/clover-canoe-shvc-wr/g' \"$dst/{originalCode}.desktop\"";
-                            break;
+                        string desktopFilePath = Path.Combine(desktopEntriesPath, $"{originalCode}.desktop");
+                        string tempGamePath = Path.Combine(tempGamesDirectory, $"{originalGames[originalCode]}/{originalCode}");
+                        Directory.CreateDirectory(Path.Combine(tempGamePath, "autoplay"));
+                        if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
+                        {
+                            Directory.CreateDirectory(Path.Combine(tempGamePath, "pixelart"));
+                        }
+                        File.Copy(desktopFilePath, Path.Combine(tempGamePath, $"{originalCode}.desktop"));
                     }
-                    clovershell.ExecuteSimple(originalSyncCode, 30000, true);
+                    else
+                    {
+                        string originalSyncCode = "";
+                        switch (ConfigIni.ConsoleType)
+                        {
+                            case MainForm.ConsoleType.NES:
+                            case MainForm.ConsoleType.Famicom:
+                                originalSyncCode =
+                                    $"src=\"{squashFsPath}{gamesPath}/{originalCode}\" && " +
+                                    $"dst=\"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
+                                    $"mkdir -p \"$dst\" && " +
+                                    $"ln -s \"$src/{originalCode}.png\" \"$dst\" && " +
+                                    $"ln -s \"$src/{originalCode}_small.png\" \"$dst\" && " +
+                                    $"ln -s \"$src/{originalCode}.nes\" \"$dst\" && " +
+                                    $"ln -s \"$src/autoplay/\" \"$dst/autoplay\" && " +
+                                    $"ln -s \"$src/pixelart/\" \"$dst/pixelart\" && " +
+                                    $"cp \"$src/{originalCode}.desktop\" \"$dst/{originalCode}.desktop\" && " +
+                                    $"sed -i -e 's/\\/usr\\/bin\\/clover-kachikachi/\\/bin\\/clover-kachikachi-wr/g' \"$dst/{originalCode}.desktop\"";
+                                break;
+                            case MainForm.ConsoleType.SNES:
+                            case MainForm.ConsoleType.SuperFamicom:
+                                originalSyncCode =
+                                    $"src=\"{squashFsPath}{gamesPath}/{originalCode}\" && " +
+                                    $"dst=\"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
+                                    $"mkdir -p \"$dst\" && " +
+                                    $"ln -s \"$src/{originalCode}.png\" \"$dst\" && " +
+                                    $"ln -s \"$src/{originalCode}_small.png\" \"$dst\" && " +
+                                    $"ln -s \"$src/{originalCode}.sfrom\" \"$dst\" && " +
+                                    $"ln -s \"$src/autoplay/\" \"$dst/autoplay\" && " +
+                                    $"cp \"$src/{originalCode}.desktop\" \"$dst/{originalCode}.desktop\" && " +
+                                    $"sed -i -e 's/\\/usr\\/bin\\/clover-canoe-shvc/\\/bin\\/clover-canoe-shvc-wr/g' \"$dst/{originalCode}.desktop\"";
+                                break;
+                        }
+                        clovershell.ExecuteSimple(originalSyncCode, 30000, true);
+                    }
                     progress += 2;
                     SetProgress(progress, maxProgress);
                 };
 
                 SetStatus(Resources.UploadingConfig);
-                SyncConfig(Config);
+                if (!exportGames)
+                {
+                    SyncConfig(Config);
+                }
 #if !DEBUG
-                if (Directory.Exists(tempDirectory))
+                if (!exportGames && Directory.Exists(tempDirectory))
                     Directory.Delete(tempDirectory, true);
 #endif
+                if (exportGames)
+                {
+                    new Process()
+                    {
+                        StartInfo = new ProcessStartInfo()
+                        {
+                            FileName = tempGamesDirectory,
+                        }
+                    }.Start();
+                }
                 SetStatus(Resources.Done);
                 SetProgress(maxProgress, maxProgress);
             }
             finally
             {
-                try
+                if (!exportGames)
                 {
-                    if (clovershell.IsOnline)
-                        clovershell.ExecuteSimple("reboot", 100);
+                    try
+                    {
+                        if (clovershell.IsOnline)
+                            clovershell.ExecuteSimple("reboot", 100);
+                    }
+                    catch { }
                 }
-                catch { }
             }
         }
 

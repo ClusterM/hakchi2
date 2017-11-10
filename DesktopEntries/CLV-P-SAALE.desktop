@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SAALE/CLV-P-SAALE.sfrom --volume 100 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-SAALE
+Name=Donkey Kong Country
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SAALE/CLV-P-SAALE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SAALE
+TestID=6
+Status=Completing-3
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1994-11-24
+SaveCount=3
+SortRawTitle=donkey kong country
+SortRawPublisher=NINTENDO
+Copyright=Donkey Kong Country™ ©1994 Nintendo
+MyPlayDemoTime=45

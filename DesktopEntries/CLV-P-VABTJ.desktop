@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VABTJ/CLV-P-VABTJ.sfrom --volume 85 -rollback-snapshot-period 3600
+Path=/var/lib/clover/profiles/0//CLV-P-VABTJ
+Name=ファイナルファンタジーVI
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VABTJ/CLV-P-VABTJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-VABTJ
+TestID=13
+Status=Completing-3
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1994-04-02
+SaveCount=3
+SortRawTitle=ふぁいなるふぁんたじー６
+SortRawPublisher=すくうぇあえにっくす
+Copyright=ファイナルファンタジーVI ©1994 SQUARE ENIX CO.,LTD. All Rights Reserved.
+MyPlayDemoTime=45

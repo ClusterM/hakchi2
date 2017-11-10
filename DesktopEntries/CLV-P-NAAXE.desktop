@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NAAXE/CLV-P-NAAXE.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-NAAXE
+Name=Dr. MARIO
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NAAXE/CLV-P-NAAXE.png
+
+[X-CLOVER Game]
+Code=CLV-P-NAAXE
+TestID=582
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1990-10-01
+SaveCount=0
+SortRawTitle=dr. mario
+SortRawPublisher=NINTENDO
+Copyright=Dr. MARIO ©1990 Nintendo

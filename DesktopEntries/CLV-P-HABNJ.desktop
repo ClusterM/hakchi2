@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HABNJ/CLV-P-HABNJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 63 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-HABNJ
+Name=ギャラガ
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HABNJ/CLV-P-HABNJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HABNJ
+TestID=121
+ID=0
+Players=2
+Simultaneous=0
+ReleaseDate=1985-02-15
+SaveCount=0
+SortRawTitle=ぎゃらが
+SortRawPublisher=ばんだいなむこえんたーていんめんと
+Copyright=ギャラガ ©1981 BANDAI NAMCO Entertainment Inc.

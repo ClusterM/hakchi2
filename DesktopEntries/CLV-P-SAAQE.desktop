@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SAAQE/CLV-P-SAAQE.sfrom --volume 80 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-SAAQE
+Name=Kirby Super Star
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SAAQE/CLV-P-SAAQE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SAAQE
+TestID=7
+Status=Completing-6
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1996-09-20
+SaveCount=3
+SortRawTitle=kirby super star
+SortRawPublisher=NINTENDO
+Copyright=Kirby™ Super Star ©1995-1996 HAL Laboratory, Inc. /　Nintendo
+MyPlayDemoTime=45

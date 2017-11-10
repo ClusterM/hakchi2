@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HABBJ/CLV-P-HABBJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 65 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-HABBJ
+Name=ロックマン®2 Dr.ワイリーの謎
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HABBJ/CLV-P-HABBJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HABBJ
+TestID=11
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1988-12-24
+SaveCount=0
+SortRawTitle=ろっくまん２　Ｄｒ．わいりーのなぞ
+SortRawPublisher=かぷこん
+Copyright=ロックマン®2 Dr.ワイリーの謎 ©CAPCOM CO., LTD. 1988, 2016 ALL RIGHTS RESERVED.

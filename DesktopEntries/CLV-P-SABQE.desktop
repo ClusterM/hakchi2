@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SABQE/CLV-P-SABQE.sfrom --volume 60 -rollback-snapshot-period 3600
+Path=/var/lib/clover/profiles/0//CLV-P-SABQE
+Name=Super Mario RPG: Legend of the Seven Stars
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SABQE/CLV-P-SABQE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SABQE
+TestID=12
+Status=Duplicate-2
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1996-05-13
+SaveCount=3
+SortRawTitle=super mario rpg: legend of the seven stars
+SortRawPublisher=NINTENDO
+Copyright=Super Mario RPG: Legend of the Seven Stars™ ©1996 Nintendo/ SQUARE ENIX CO., LTD. All Rights Reserved. CHARACTER：©Nintendo, ©SQUARE ENIX CO., LTD. All Rights Reserved.
+MyPlayDemoTime=45

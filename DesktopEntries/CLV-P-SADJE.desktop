@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SADJE/CLV-P-SADJE.sfrom --volume 70 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-SADJE
+Name=Yoshi's Island
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SADJE/CLV-P-SADJE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SADJE
+TestID=18
+Status=Completing-5
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1995-10-04
+SaveCount=3
+SortRawTitle=yoshi's island
+SortRawPublisher=NINTENDO
+Copyright=Yoshi's Island™ ©1995 Nintendo
+MyPlayDemoTime=45

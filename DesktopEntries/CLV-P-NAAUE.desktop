@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NAAUE/CLV-P-NAAUE.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 72 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-NAAUE
+Name=Ice Climber
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NAAUE/CLV-P-NAAUE.png
+
+[X-CLOVER Game]
+Code=CLV-P-NAAUE
+TestID=552
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1985-10-18
+SaveCount=0
+SortRawTitle=ice climber
+SortRawPublisher=NINTENDO
+Copyright=Ice Climber ©1984 Nintendo

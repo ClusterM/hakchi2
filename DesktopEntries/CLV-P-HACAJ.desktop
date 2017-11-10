@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACAJ/CLV-P-HACAJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 78 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-HACAJ
+Name=イー・アル・カンフー
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACAJ/CLV-P-HACAJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HACAJ
+TestID=241
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1985-04-22
+SaveCount=0
+SortRawTitle=いー・ある・かんふー
+SortRawPublisher=こなみ
+Copyright=Yie Ar KUNG-FU ©1985 Konami Digital Entertainment
