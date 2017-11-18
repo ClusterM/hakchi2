@@ -2273,6 +2273,27 @@
     <Content Include="user_mods\extra_space.hmod\uninstall">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="user_mods\canoe_save_compress.hmod\7zr">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\canoe_save_compress.hmod\clover-canoe-shvc-wr">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\canoe_save_compress.hmod\install">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\canoe_save_compress.hmod\readme">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\canoe_save_compress.hmod\snes-save-compress">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\canoe_save_compress.hmod\uninstall">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\canoe_save_compress.hmod\wait-for-exit">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\GameGenieDB.xml">

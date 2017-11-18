@@ -1,0 +1,47 @@
+#!/bin/sh
+
+# Wait for canoe to start
+usleep 500000
+canoe_pid=$(ps -o pid,args | grep canoe-shvc | grep -v grep | awk '{ print $1; }')
+
+# If canoe pid found
+if [ ! -z $canoe_pid ]; then
+  # Wait while game runs
+  wait-for-exit $canoe_pid
+  
+  # Get Output Directory based on canoe mode
+  play_mode="$1"
+  rollback_dir=""
+  if [ $play_mode = "record" ]; then
+    rollback_dir="$2"
+  else
+    if [ $play_mode = "replay" ]; then
+      # Replay mode stores game to temp memory and moves to suspendpoint0 after exit
+      rollback_dir="/var/cache/clover/volatile/$3/suspendpoint0/rollback/"
+      # Wait for rollback files to be moved to suspendpoint0
+      while [ -d $2 ]; do
+        usleep 200000
+      done
+    else
+      return
+    fi
+  fi
+  
+  #Find Home Screen pid
+  rplayer_pid=$(ps -o pid,args | grep ReedPlayer-Clover | grep -v grep | awk '{ print $1; }')
+  #If pid is not found console is shutting down
+  if [ ! -z $rplayer_pid ]; then
+    #Pause Home Screen while compressing save
+    kill -s SIGSTOP $rplayer_pid
+    
+    # Ensure rollback directory and save files exist before attempting compression
+    if [ -d "$rollback_dir" ] && [ -f "$rollback_dir/0.break" ]; then
+      cd "$rollback_dir" && 7zr u rollback.7z *.inputs *.break sram.hash && rm "$rollback_dir"/*.inputs && rm "$rollback_dir"/*.break
+      # Do not delete sram as game over-write warning message will always appear
+    fi
+    
+    #Continue Home Screen after save has been compressed
+    kill -s SIGCONT $rplayer_pid
+  fi
+  
+fi

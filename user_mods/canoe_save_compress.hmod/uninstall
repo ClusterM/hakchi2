@@ -1,0 +1,5 @@
+rm "$rootfs/bin/7zr"
+rm "$rootfs/bin/snes-save-compress"
+rm "$rootfs/bin/wait-for-exit"
+rm "$rootfs/bin/clover-canoe-shvc-wr"
+mv "$rootfs/bin/clover-canoe-shvc-wr-o" "$rootfs/bin/clover-canoe-shvc-wr"
