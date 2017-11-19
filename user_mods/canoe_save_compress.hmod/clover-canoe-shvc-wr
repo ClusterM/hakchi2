@@ -8,7 +8,6 @@ script_init
 
 options=""
 play_mode=""
-game_title_code=""
 output_rollback_dir=""
 retroarch=0
 
@@ -54,11 +53,6 @@ while [ $# -gt 0 ] ; do
     options="$options $1 $2"
     shift
     ;;
-  --title-code)
-    game_title_code="$2"
-    options="$options $1 $2"
-    shift
-    ;;
   --retroarch|-retroarch)
     retroarch=1
     options="$options $1"
@@ -68,16 +62,9 @@ while [ $# -gt 0 ] ; do
   shift
 done
 
-if [ $retroarch = 0 ]; then
-  if [ $play_mode = "record" ]; then
-    if [ -n $output_rollback_dir ]; then
-      snes-save-compress "$play_mode" "$output_rollback_dir" &
-    fi
-  fi
-  if [ $play_mode = "replay" ]; then
-    if [ -n $game_title_code ] && [ -n $output_rollback_dir ]; then
-      snes-save-compress "$play_mode" "$output_rollback_dir" "$game_title_code" &
-    fi
+if [ $retroarch = 0 ] && [ ! -z $output_rollback_dir ]; then
+  if [ $play_mode = "record" ] || [ $play_mode = "replay" ]; then
+    snes-save-compress "$output_rollback_dir" &
   fi
 fi
 
