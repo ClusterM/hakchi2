@@ -41,7 +41,7 @@ while [ $# -gt 0 ] ; do
     ;;
   --rollback-input-dir)
     if [ -f "$2/rollback.7z" ]; then
-      decompress_save_state $2
+      decompress_save_state "$2"
       options="$options $1 /tmp/rollback/"
     else
       options="$options $1 $2"
