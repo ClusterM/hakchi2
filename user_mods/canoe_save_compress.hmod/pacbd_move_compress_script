@@ -1,0 +1,2 @@
+copy "$rootfs/bin/clover-canoe-shvc-wr-scompress" "$rootfs/bin/clover-canoe-shvc-wr"
+chmod +x "$rootfs/bin/clover-canoe-shvc-wr"
