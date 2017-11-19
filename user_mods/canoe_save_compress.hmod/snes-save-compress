@@ -21,7 +21,7 @@ if [ ! -z $canoe_pid ]; then
     
     # Ensure rollback directory and save files exist before attempting compression
     if [ -d "$rollback_dir" ] && [ -f "$rollback_dir/0.break" ]; then
-      cd "$rollback_dir" && 7zr u rollback.7z *.inputs *.break sram.hash && rm "$rollback_dir"/*.inputs && rm "$rollback_dir"/*.break
+      cd "$rollback_dir" && 7zr u -mx9 rollback.7z *.inputs *.break sram.hash && rm "$rollback_dir"/*.inputs && rm "$rollback_dir"/*.break
       # Do not delete sram as game over-write warning message will always appear
     fi
     

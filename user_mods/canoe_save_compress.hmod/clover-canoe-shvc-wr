@@ -11,6 +11,14 @@ play_mode=""
 output_rollback_dir=""
 retroarch=0
 
+decompress_save_state()
+{
+  rm -rf /tmp/rollback/
+  mkdir -p /tmp/rollback/
+  cd /tmp/rollback/
+  tiny7zx x "$1/rollback.7z"
+}
+
 while [ $# -gt 0 ] ; do
   case "$1" in
   -rom)
@@ -33,10 +41,7 @@ while [ $# -gt 0 ] ; do
     ;;
   --rollback-input-dir)
     if [ -f "$2/rollback.7z" ]; then
-      rm -rf /tmp/rollback/
-      mkdir -p /tmp/rollback/
-      cd /tmp/rollback/
-      tiny7zx x "$2/rollback.7z"
+      decompress_save_state $2
       options="$options $1 /tmp/rollback/"
     else
       options="$options $1 $2"
@@ -51,6 +56,25 @@ while [ $# -gt 0 ] ; do
   --rollback-mode)
     play_mode="$2"
     options="$options $1 $2"
+    shift
+    ;;
+  --load-state-file)
+    save_path="$(dirname "$2")"
+    if [ -f "$save_path/rollback.7z" ]; then
+      decompress_save_state "$save_path"
+      options="$options $1 "/tmp/rollback/$(basename "$2")""
+    else
+      options="$options $1 $2"
+    fi
+    shift
+    ;;
+  --replay-inputs)
+    save_path="$(dirname "$2")"
+    if [ -f "$save_path/rollback.7z" ]; then
+      options="$options $1 "/tmp/rollback/$(basename "$2")""
+    else
+      options="$options $1 $2"
+    fi
     shift
     ;;
   --retroarch|-retroarch)

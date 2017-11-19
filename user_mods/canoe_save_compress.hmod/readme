@@ -5,7 +5,6 @@ The mod supports the execution of both compressed and uncompressed saves. This s
 
 Known Issues:
 Mod needs to be reinstalled after every game sync (due to hakchi script auto update).
-This mod currently breaks compatibility with the "My Game Play Demo" feature (it is recommended you disable this feature).
 Uninstalling this mod does not decompress your saves. It is recommended that users testing this mod know how to decompress their saves manually.
 
 As this mod is still experimental you agree to use the mod at your own risk and that I am not responsible for any issues, damages, errors, loss of saves .etc.
