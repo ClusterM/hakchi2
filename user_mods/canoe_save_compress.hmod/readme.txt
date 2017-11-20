@@ -10,6 +10,6 @@ As this mod is still experimental you agree to use the mod at your own risk and 
 *** Backup your save states before using this mod. ***
 
 Thanks to bewilderedthetan and Loafdude for their suggestions and discussion of compression implementation.
-Extra thanks to Loafdude for game sync fix.
+Extra thanks to Loafdude for game sync fix and compress all code.
 
-version 0.4
+version 0.5

@@ -1,0 +1,20 @@
+#!/bin/sh
+
+[ "$1" == "start" ] || exit 0
+
+source /etc/preinit
+script_init
+
+gunzip -c /etc/compress_message.raw.gz > /dev/fb0
+
+# Compress all existing saves
+find /var/lib/clover/profiles/0 -type d -name "rollback" | while read line; do
+  if [ -f "$line/0.break" ] && [ ! -f "$line/rollback.7z" ]; then
+    cd "$line" && 7zr u -mx9 rollback.7z *.inputs *.break && rm "$line"/*.inputs && rm "$line"/*.break
+  fi
+done
+
+rm "$rootfs/etc/compress_message.raw.gz"
+rm "$rootfs/etc/init.d/S8101compress_saves"
+
+exit 0
