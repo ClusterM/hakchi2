@@ -124,7 +124,7 @@ namespace com.clusterrr.hakchi_gui
                         // For updates
                         var oldFiles = Directory.GetFiles(Path.GetDirectoryName(Application.ExecutablePath), langFileNames, SearchOption.AllDirectories);
                         foreach (var d in oldFiles)
-                            if (!d.Contains(@"\languages\"))
+                            if (!d.Contains(Path.DirectorySeparatorChar + "languages" + Path.DirectorySeparatorChar))
                             {
                                 var dir = Path.GetDirectoryName(d);
                                 Debug.WriteLine("Removing old directory: " + dir);
