@@ -2276,13 +2276,10 @@
     <Content Include="user_mods\canoe_save_compress.hmod\7zr">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="user_mods\canoe_save_compress.hmod\clover-canoe-shvc-wr">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="user_mods\canoe_save_compress.hmod\install">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="user_mods\canoe_save_compress.hmod\readme">
+    <Content Include="user_mods\canoe_save_compress.hmod\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="user_mods\canoe_save_compress.hmod\snes-save-compress">
@@ -2292,6 +2289,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="user_mods\canoe_save_compress.hmod\wait-for-exit">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\canoe_save_compress.hmod\clover-canoe-shvc-wr-scompress">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\canoe_save_compress.hmod\compress_message.raw.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\canoe_save_compress.hmod\pacbd_move_compress_script">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\canoe_save_compress.hmod\S8101compress_saves">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
