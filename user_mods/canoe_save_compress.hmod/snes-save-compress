@@ -19,6 +19,9 @@ if [ ! -z $canoe_pid ]; then
     #Get Output Directory
     rollback_dir="$1"
     
+    # Remove uncompressed save state from ram
+    rm -rf /tmp/rollback/
+    
     # Ensure rollback directory and save files exist before attempting compression
     if [ -d "$rollback_dir" ] && [ -f "$rollback_dir/0.break" ]; then
       cd "$rollback_dir" && 7zr u -mx7 rollback.7z *.inputs *.break && rm "$rollback_dir"/*.inputs && rm "$rollback_dir"/*.break
