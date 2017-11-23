@@ -1,4 +1,4 @@
-mv -f "$rootfs/bin/clover-canoe-shvc-wr" "$rootfs/bin/clover-canoe-shvc-wr-o"
+[ ! -f "$rootfs/bin/clover-canoe-shvc-wr-o" ] && mv -f "$rootfs/bin/clover-canoe-shvc-wr" "$rootfs/bin/clover-canoe-shvc-wr-o"
 copy "$transferpath/7zr" "$rootfs/bin/"
 copy "$transferpath/snes-save-compress" "$rootfs/bin/"
 copy "$transferpath/wait-for-exit" "$rootfs/bin/"
