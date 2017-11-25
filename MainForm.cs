@@ -194,38 +194,6 @@ namespace com.clusterrr.hakchi_gui
  + ")"
 #endif
 ;
-                disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
-                automaticToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 2;
-                automaticOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 3;
-                pagesToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 4;
-                pagesOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 5;
-                foldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 6;
-                foldersOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 7;
-                foldersSplitByFirstLetterToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 8;
-                foldersSplitByFirstLetterOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 9;
-                customToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 99;
-
-                for (byte f = 20; f <= 100; f += ((f < 50) ? (byte)5 : (byte)10))
-                {
-                    var item = new ToolStripMenuItem();
-                    item.Name = "folders" + f.ToString();
-                    item.Text = f.ToString();
-                    item.Tag = f;
-                    if (f >= MaxGamesPerFolder)
-                        item.Text += $" ({Resources.NotRecommended})";
-                    item.Checked = ConfigIni.MaxGamesPerFolder == f;
-                    item.Click += delegate (object sender, EventArgs e)
-                    {
-                        var old = maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true);
-                        if (old.Count() > 0)
-                            (old.First() as ToolStripMenuItem).Checked = false;
-                        ConfigIni.MaxGamesPerFolder = (byte)((sender as ToolStripMenuItem).Tag);
-                        var n = maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true);
-                        if (n.Count() > 0)
-                            (n.First() as ToolStripMenuItem).Checked = true;
-                    };
-                    maximumGamesPerFolderToolStripMenuItem.DropDownItems.Add(item);
-                }
 
                 listViewGames.ListViewItemSorter = new GamesSorter();
 
@@ -1332,6 +1300,42 @@ namespace com.clusterrr.hakchi_gui
             useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack && useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled;
             upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
             compressGamesToolStripMenuItem.Checked = ConfigIni.Compress;
+
+            // Folders mods
+            disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
+            automaticToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 2;
+            automaticOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 3;
+            pagesToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 4;
+            pagesOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 5;
+            foldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 6;
+            foldersOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 7;
+            foldersSplitByFirstLetterToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 8;
+            foldersSplitByFirstLetterOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 9;
+            customToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 99;
+
+            // Items per folder
+            maximumGamesPerFolderToolStripMenuItem.DropDownItems.Clear();
+            for (byte f = 20; f <= 100; f += ((f < 50) ? (byte)5 : (byte)10))
+            {
+                var item = new ToolStripMenuItem();
+                item.Name = "folders" + f.ToString();
+                item.Text = f.ToString();
+                item.Tag = f;
+                if (f >= MaxGamesPerFolder)
+                    item.Text += $" ({Resources.NotRecommended})";
+                item.Checked = ConfigIni.MaxGamesPerFolder == f;
+                item.Click += delegate (object sender, EventArgs e)
+                {
+                    var old = maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true);
+                    if (old.Count() > 0)
+                        (old.First() as ToolStripMenuItem).Checked = false;
+                    ConfigIni.MaxGamesPerFolder = (byte)((sender as ToolStripMenuItem).Tag);
+                    var n = maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true);
+                    if (n.Count() > 0)
+                        (n.First() as ToolStripMenuItem).Checked = true;
+                };
+                maximumGamesPerFolderToolStripMenuItem.DropDownItems.Add(item);
+            }
 
             // Reset known free space
             WorkerForm.NandCTotal = WorkerForm.NandCFree = WorkerForm.NandCUsed = 0;
