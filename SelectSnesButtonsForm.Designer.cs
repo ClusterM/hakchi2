@@ -118,7 +118,7 @@
             // 
             // pictureBoxController
             // 
-            this.pictureBoxController.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.gamepad_snes;
+            this.pictureBoxController.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.gamepad_SNES;
             resources.ApplyResources(this.pictureBoxController, "pictureBoxController");
             this.pictureBoxController.Name = "pictureBoxController";
             this.pictureBoxController.TabStop = false;
