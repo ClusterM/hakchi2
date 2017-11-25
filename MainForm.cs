@@ -237,6 +237,9 @@ namespace com.clusterrr.hakchi_gui
                 tbl = textBoxPublisher.Left;
                 textBoxPublisher.Left = label2.Left + label2.Width;
                 textBoxPublisher.Width -= textBoxPublisher.Left - tbl;
+                tbl = textBoxTitle.Left;
+                textBoxTitle.Left = labelTitle.Left + labelTitle.Width;
+                textBoxTitle.Width -= textBoxTitle.Left - tbl;
 
                 // Tweeks for message boxes
                 MessageBoxManager.Yes = MessageBoxManager.Retry = Resources.Yes;
@@ -400,6 +403,7 @@ namespace com.clusterrr.hakchi_gui
                 labelID.Text = "ID: ";
                 labelSize.Text = Resources.Size;
                 textBoxName.Text = "";
+                textBoxTitle.Text = "";
                 radioButtonOne.Checked = true;
                 radioButtonTwo.Checked = false;
                 radioButtonTwoSim.Checked = false;
@@ -426,6 +430,7 @@ namespace com.clusterrr.hakchi_gui
                 labelID.Text = "ID: " + app.Code;
                 labelSize.Text = Resources.Size + " " + (app.Size() / 1024) + "KB";
                 textBoxName.Text = app.Name;
+                textBoxTitle.Text = app.Title;
                 if (app.Simultaneous && app.Players == 2)
                     radioButtonTwoSim.Checked = true;
                 else if (app.Players == 2)
@@ -621,6 +626,16 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private void buttonCopyName_Click(object sender, EventArgs e)
+        {
+            if (listViewGames.SelectedItems.Count != 1) return;
+            var selectedItem = listViewGames.SelectedItems[0];
+            var selected = listViewGames.SelectedItems[0].Tag;
+            if (selected == null || !(selected is NesMiniApplication)) return;
+            var game = (selected as NesMiniApplication);
+            game.Title = textBoxTitle.Text = NesMiniApplication.TrimAsTitle(textBoxName.Text);
+        }
+
         private void buttonGoogle_Click(object sender, EventArgs e)
         {
             if (listViewGames.SelectedItems.Count != 1) return;
@@ -644,6 +659,16 @@ namespace com.clusterrr.hakchi_gui
             if (selected == null || !(selected is NesMiniApplication)) return;
             var game = (selected as NesMiniApplication);
             selectedItem.Text = game.Name = textBoxName.Text;
+        }
+
+        private void textBoxTitle_TextChanged(object sender, EventArgs e)
+        {
+            if (listViewGames.SelectedItems.Count != 1) return;
+            var selectedItem = listViewGames.SelectedItems[0];
+            var selected = listViewGames.SelectedItems[0].Tag;
+            if (selected == null || !(selected is NesMiniApplication)) return;
+            var game = (selected as NesMiniApplication);
+            game.Title = textBoxTitle.Text;
         }
 
         private void radioButtonOne_CheckedChanged(object sender, EventArgs e)

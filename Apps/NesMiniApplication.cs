@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -67,6 +68,20 @@ namespace com.clusterrr.hakchi_gui
             get { return "game"; }
         }
 
+        public static string TrimAsTitle(string name)
+        {
+            string title;
+            List<string> articles = new List<string> {
+                "the",
+                "a",
+                "an"
+            };
+
+            title = name.ToLower();
+            if (articles.Any(a => title.StartsWith(a + " ")))
+                title = title.Substring(title.IndexOf(" ") + 1);
+            return title;
+        }
 
         public const string GameGenieFileName = "gamegenie.txt";
         public string GameGeniePath { private set; get; }
@@ -96,6 +111,16 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (name != value) hasUnsavedChanges = true;
                 name = value;
+            }
+        }
+        private string title;
+        public string Title
+        {
+            get { return title; }
+            set
+            {
+                if (title != value) hasUnsavedChanges = true;
+                title = value;
             }
         }
         public string Command
@@ -248,6 +273,7 @@ namespace com.clusterrr.hakchi_gui
             game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
             game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
             game.Name = game.Name.Replace("_", " ").Replace("  ", " ").Trim();
+            game.Title = TrimAsTitle(game.Name);
             game.Command = $"{application} {GamesCloverPath}/{code}/{outputFileName}";
             if (!string.IsNullOrEmpty(args))
                 game.Command += " " + args;
@@ -295,6 +321,7 @@ namespace com.clusterrr.hakchi_gui
             GamePath = path;
             code = System.IO.Path.GetFileName(path);
             Name = Code;
+            Title = Code.ToLower();
             ConfigPath = System.IO.Path.Combine(path, Code + ".desktop");
             IconPath = System.IO.Path.Combine(path, Code + ".png");
             SmallIconPath = System.IO.Path.Combine(path, Code + "_small.png");
@@ -339,6 +366,9 @@ namespace com.clusterrr.hakchi_gui
                     case "savecount":
                         SaveCount = byte.Parse(value);
                         break;
+                    case "sortrawtitle":
+                        Title = value;
+                        break;
                 }
             }
 
@@ -354,9 +384,7 @@ namespace com.clusterrr.hakchi_gui
             if (!hasUnsavedChanges) return false;
             Debug.WriteLine(string.Format("Saving application \"{0}\" as {1}", Name, Code));
             Name = Regex.Replace(Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
-            var sortRawTitle = Name.ToLower();
-            if (sortRawTitle.StartsWith("the "))
-                sortRawTitle = sortRawTitle.Substring(4); // Sorting without "THE"
+            Title = Regex.Replace(Title, @"'(\d)", @"`$1"); // Do the same for Sort Title
             File.WriteAllText(ConfigPath, 
                 $"[Desktop Entry]\n" +
                 $"Type=Application\n" +
@@ -372,7 +400,7 @@ namespace com.clusterrr.hakchi_gui
                 $"Simultaneous={(Simultaneous ? 1 : 0)}\n" +
                 $"ReleaseDate={ReleaseDate ?? DefaultReleaseDate}\n" +
                 $"SaveCount={SaveCount}\n" +
-                $"SortRawTitle={sortRawTitle}\n" +
+                $"SortRawTitle={(Title ?? Name ?? Code).ToLower()}\n" +
                 $"SortRawPublisher={(Publisher ?? DefaultPublisher).ToUpper()}\n" +
                 $"Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n");
 
