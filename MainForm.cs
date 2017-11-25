@@ -5,7 +5,6 @@ using SevenZip;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Deployment.Application;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;

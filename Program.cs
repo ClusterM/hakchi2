@@ -2,7 +2,6 @@
 using com.clusterrr.hakchi_gui.Properties;
 using Microsoft.Win32.SafeHandles;
 using System;
-using System.Deployment.Application;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -125,7 +124,7 @@ namespace com.clusterrr.hakchi_gui
                         // For updates
                         var oldFiles = Directory.GetFiles(Path.GetDirectoryName(Application.ExecutablePath), langFileNames, SearchOption.AllDirectories);
                         foreach (var d in oldFiles)
-                            if (!d.Contains(@"\languages\"))
+                            if (!d.Contains(Path.DirectorySeparatorChar + "languages" + Path.DirectorySeparatorChar))
                             {
                                 var dir = Path.GetDirectoryName(d);
                                 Debug.WriteLine("Removing old directory: " + dir);
