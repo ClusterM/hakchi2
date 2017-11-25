@@ -27,7 +27,7 @@ namespace com.clusterrr.hakchi_gui
                     game.Decompress();
                 this.game = game;
                 header2 = game.ReadSfromHeader2();
-                textBoxPresetID.Text = string.Format("{0:X2}{1:X2}", header2.PresetID & 0xFF, (header2.PresetID >> 8) & 0xFF);
+                textBoxPresetID.Text = header2.PresetID.ToString("X4"); // PresetID is already in 0xMSB,LSB order
                 textBoxExtra.Text = string.Format("{0:X2}", header2.Chip & 0xFF);
             }
             catch (Exception ex)
@@ -43,7 +43,6 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 var presetID = Convert.ToInt32(textBoxPresetID.Text, 16);
-                presetID = ((presetID & 0xFF) << 8) | ((presetID >> 8) & 0xFF);
                 var chip = Convert.ToInt32(textBoxExtra.Text, 16);
                 header2.PresetID = (ushort)presetID;
                 header2.Chip = (uint)chip;
