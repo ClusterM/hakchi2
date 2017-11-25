@@ -1899,5 +1899,10 @@ namespace com.clusterrr.hakchi_gui
                 ShowSelected();
             }
         }
+
+        private void pictureBoxArt_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -814,6 +814,7 @@
             resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
+            this.pictureBoxArt.Click += new System.EventHandler(this.pictureBoxArt_Click);
             // 
             // label4
             // 
