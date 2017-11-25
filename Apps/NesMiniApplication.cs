@@ -260,7 +260,10 @@ namespace com.clusterrr.hakchi_gui
                 (app as ICloverAutofill).TryAutofill(crc32);
 
             if (ConfigIni.Compress)
+            {
                 app.Compress();
+                app.Save();
+            }
 
             return app;
         }
