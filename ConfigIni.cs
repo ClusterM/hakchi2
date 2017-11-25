@@ -8,8 +8,10 @@ namespace com.clusterrr.hakchi_gui
     public class ConfigIni
     {
         public static int RunCount = 0;
+        public static string SelectedBorders = "default";
         public static string SelectedGamesNes = "default";
         public static string SelectedGamesSnes = "default";
+        public static string HiddenGamesBorders = "";
         public static string HiddenGamesNes = "";
         public static string HiddenGamesFamicom = "";
         public static string HiddenGamesSnes = "";
@@ -434,11 +436,17 @@ namespace com.clusterrr.hakchi_gui
                                 case "language":
                                     Language = value;
                                     break;
+                                case "selectedborders":
+                                    SelectedBorders = value;
+                                    break;
                                 case "selectedgames":
                                     SelectedGamesNes = value;
                                     break;
                                 case "selectedgamessnes":
                                     SelectedGamesSnes = value;
+                                    break;
+                                case "hiddengamesborders":
+                                    HiddenGamesBorders = value;
                                     break;
                                 case "hiddengames":
                                     HiddenGamesNes = value;
@@ -565,8 +573,10 @@ namespace com.clusterrr.hakchi_gui
             var configLines = new List<string>();
             configLines.Add("[Config]");
             configLines.Add(string.Format("Language={0}", Language));
+            configLines.Add(string.Format("SelectedBorders={0}", SelectedBorders));
             configLines.Add(string.Format("SelectedGames={0}", SelectedGamesNes));
             configLines.Add(string.Format("SelectedGamesSnes={0}", SelectedGamesSnes));
+            configLines.Add(string.Format("HiddenGamesBorders={0}", HiddenGamesBorders));
             configLines.Add(string.Format("HiddenGames={0}", HiddenGamesNes));
             configLines.Add(string.Format("HiddenGamesFamicom={0}", HiddenGamesFamicom));
             configLines.Add(string.Format("HiddenGamesSnes={0}", HiddenGamesSnes));

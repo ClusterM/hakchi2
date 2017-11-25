@@ -102,6 +102,8 @@
             this.openTelnetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.takeScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.customBordersManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -623,7 +625,9 @@
             this.shellToolStripMenuItem,
             this.openTelnetToolStripMenuItem,
             this.toolStripMenuItem8,
-            this.takeScreenshotToolStripMenuItem});
+            this.takeScreenshotToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.customBordersManagerToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
             // 
@@ -679,6 +683,17 @@
             this.takeScreenshotToolStripMenuItem.Name = "takeScreenshotToolStripMenuItem";
             resources.ApplyResources(this.takeScreenshotToolStripMenuItem, "takeScreenshotToolStripMenuItem");
             this.takeScreenshotToolStripMenuItem.Click += new System.EventHandler(this.takeScreenshotToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            // 
+            // customBordersManagerToolStripMenuItem
+            // 
+            this.customBordersManagerToolStripMenuItem.Name = "customBordersManagerToolStripMenuItem";
+            resources.ApplyResources(this.customBordersManagerToolStripMenuItem, "customBordersManagerToolStripMenuItem");
+            this.customBordersManagerToolStripMenuItem.Click += new System.EventHandler(this.customBordersManagerToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -1197,7 +1212,9 @@
         private System.Windows.Forms.ToolStripMenuItem downloadBoxArtForSelectedGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dumpNANDCPartitionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem flashNANDCPartitionToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem flashNANDCPartitionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem customBordersManagerToolStripMenuItem;
     }
 }
 

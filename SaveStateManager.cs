@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -193,8 +194,11 @@ namespace com.clusterrr.hakchi_gui
             {
                 foreach (ListViewItem game in listViewSaves.SelectedItems)
                 {
-                    saveFileDialog.FileName = game.SubItems["colName"].Text + ".clvs";
                     var name = game.SubItems["colName"].Text != null ? game.SubItems["colName"].Text : "save";
+                    string _invalidCharsRegex = "[" + new string(System.IO.Path.GetInvalidFileNameChars()).Replace(@"\", @"\\") + "]";
+                    name = Regex.Replace(name, _invalidCharsRegex, " ");
+                    name = Regex.Replace(name, @"\s+", " ");
+                    saveFileDialog.FileName = name + ".clvs";
                     saveFileDialog.Title = name;
                     if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
