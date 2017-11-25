@@ -420,14 +420,24 @@ namespace com.clusterrr.hakchi_gui
                 maxY = 204;
             }
             if ((double)image.Width / (double)image.Height > (double)maxX / (double)maxY)
-                outImage = new Bitmap(maxX, (int)((double)maxX * (double)image.Height / (double)image.Width));
+            {
+                int Y = (int)((double)maxX * (double)image.Height / (double)image.Width);
+                if (Y % 2 == 1)
+                    ++Y;
+                outImage = new Bitmap(maxX, Y);
+            }
             else
                 outImage = new Bitmap((int)(maxY * (double)image.Width / (double)image.Height), maxY);
 
             int maxXsmall = 40;
             int maxYsmall = 40;
             if ((double)image.Width / (double)image.Height > (double)maxXsmall / (double)maxYsmall)
-                outImageSmall = new Bitmap(maxXsmall, (int)((double)maxXsmall * (double)image.Height / (double)image.Width));
+            {
+                int Y = (int)((double)maxXsmall * (double)image.Height / (double)image.Width);
+                if (Y % 2 == 1)
+                    ++Y;
+                outImageSmall = new Bitmap(maxXsmall, Y);
+            }
             else
                 outImageSmall = new Bitmap((int)(maxYsmall * (double)image.Width / (double)image.Height), maxYsmall);
 
