@@ -153,6 +153,7 @@
             this.openDumpFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.listViewGames = new System.Windows.Forms.ListView();
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonClearImage = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -717,6 +718,7 @@
             // groupBoxOptions
             // 
             resources.ApplyResources(this.groupBoxOptions, "groupBoxOptions");
+            this.groupBoxOptions.Controls.Add(this.buttonClearImage);
             this.groupBoxOptions.Controls.Add(this.labelSize);
             this.groupBoxOptions.Controls.Add(this.checkBoxCompressed);
             this.groupBoxOptions.Controls.Add(this.buttonShowGameGenieDatabase);
@@ -814,7 +816,6 @@
             resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
-            this.pictureBoxArt.Click += new System.EventHandler(this.pictureBoxArt_Click);
             // 
             // label4
             // 
@@ -1036,6 +1037,13 @@
             // 
             resources.ApplyResources(this.gameName, "gameName");
             // 
+            // buttonClearImage
+            // 
+            resources.ApplyResources(this.buttonClearImage, "buttonClearImage");
+            this.buttonClearImage.Name = "buttonClearImage";
+            this.buttonClearImage.UseVisualStyleBackColor = true;
+            this.buttonClearImage.Click += new System.EventHandler(this.buttonClearImage_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1199,6 +1207,7 @@
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dumpNANDCPartitionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flashNANDCPartitionToolStripMenuItem;
+        private System.Windows.Forms.Button buttonClearImage;
     }
 }
 

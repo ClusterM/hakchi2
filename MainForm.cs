@@ -575,9 +575,21 @@ namespace com.clusterrr.hakchi_gui
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesMiniApplication)) return;
             var game = (selected as NesMiniApplication);
-            game.Image = NesMiniApplication.LoadBitmap(fileName);
+            if (fileName == null)
+            {
+                AppTypeCollection.AppInfo appinfo = AppTypeCollection.GetAppByExec(game.Command);
+                game.Image = appinfo == null ? NesMiniApplication.DefaultCover : appinfo.DefaultCover;
+            }
+            else
+                game.Image = NesMiniApplication.LoadBitmap(fileName);
             ShowSelected();
             timerCalculateGames.Enabled = true;
+        }
+
+
+        private void buttonClearImage_Click(object sender, EventArgs e)
+        {
+            SetImageForSelectedGame(null);
         }
 
         private void buttonBrowseImage_Click(object sender, EventArgs e)
@@ -1901,11 +1913,6 @@ namespace com.clusterrr.hakchi_gui
                 new SnesPresetEditor(selected as SnesGame).ShowDialog();
                 ShowSelected();
             }
-        }
-
-        private void pictureBoxArt_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
