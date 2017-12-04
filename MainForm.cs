@@ -1885,11 +1885,20 @@ namespace com.clusterrr.hakchi_gui
             DeleteSelectedGames();
         }
 
+        private void clearBoxArtForSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (GroupTaskWithSelected(WorkerForm.Tasks.ClearCovers))
+                MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ShowSelected();
+            timerCalculateGames.Enabled = true;
+        }
+
         private void listViewGames_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
                 downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                    clearBoxArtForSelectedGamesToolStripMenuItem.Enabled =
                     compressSelectedGamesToolStripMenuItem.Enabled =
                     decompressSelectedGamesToolStripMenuItem.Enabled =
                     deleteSelectedGamesToolStripMenuItem.Enabled =

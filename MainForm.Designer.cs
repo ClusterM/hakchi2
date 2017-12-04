@@ -108,6 +108,7 @@
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.buttonClearImage = new System.Windows.Forms.Button();
             this.labelSize = new System.Windows.Forms.Label();
             this.checkBoxCompressed = new System.Windows.Forms.CheckBox();
             this.buttonShowGameGenieDatabase = new System.Windows.Forms.Button();
@@ -153,7 +154,7 @@
             this.openDumpFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.listViewGames = new System.Windows.Forms.ListView();
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.buttonClearImage = new System.Windows.Forms.Button();
+            this.clearBoxArtForSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -744,6 +745,13 @@
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
             // 
+            // buttonClearImage
+            // 
+            resources.ApplyResources(this.buttonClearImage, "buttonClearImage");
+            this.buttonClearImage.Name = "buttonClearImage";
+            this.buttonClearImage.UseVisualStyleBackColor = true;
+            this.buttonClearImage.Click += new System.EventHandler(this.buttonClearImage_Click);
+            // 
             // labelSize
             // 
             resources.ApplyResources(this.labelSize, "labelSize");
@@ -939,6 +947,7 @@
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.downloadBoxArtForSelectedGamesToolStripMenuItem,
+            this.clearBoxArtForSelectedGamesToolStripMenuItem,
             this.compressSelectedGamesToolStripMenuItem,
             this.decompressSelectedGamesToolStripMenuItem,
             this.deleteSelectedGamesToolStripMenuItem});
@@ -1037,12 +1046,11 @@
             // 
             resources.ApplyResources(this.gameName, "gameName");
             // 
-            // buttonClearImage
+            // clearBoxArtForSelectedGamesToolStripMenuItem
             // 
-            resources.ApplyResources(this.buttonClearImage, "buttonClearImage");
-            this.buttonClearImage.Name = "buttonClearImage";
-            this.buttonClearImage.UseVisualStyleBackColor = true;
-            this.buttonClearImage.Click += new System.EventHandler(this.buttonClearImage_Click);
+            this.clearBoxArtForSelectedGamesToolStripMenuItem.Name = "clearBoxArtForSelectedGamesToolStripMenuItem";
+            resources.ApplyResources(this.clearBoxArtForSelectedGamesToolStripMenuItem, "clearBoxArtForSelectedGamesToolStripMenuItem");
+            this.clearBoxArtForSelectedGamesToolStripMenuItem.Click += new System.EventHandler(this.clearBoxArtForSelectedGamesToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1208,6 +1216,7 @@
         private System.Windows.Forms.ToolStripMenuItem dumpNANDCPartitionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flashNANDCPartitionToolStripMenuItem;
         private System.Windows.Forms.Button buttonClearImage;
+        private System.Windows.Forms.ToolStripMenuItem clearBoxArtForSelectedGamesToolStripMenuItem;
     }
 }
 
