@@ -1911,6 +1911,12 @@ namespace com.clusterrr.hakchi_gui
         {
             if (e.KeyCode == Keys.Delete && ((listViewGames.SelectedItems.Count > 1) || (listViewGames.SelectedItems.Count == 1 && listViewGames.SelectedItems[0].Tag is NesMiniApplication)))
                 DeleteSelectedGames();
+            else if( e.KeyCode == Keys.A && e.Modifiers == Keys.Control )
+            {
+                foreach (ListViewItem item in listViewGames.Items)
+                    if( item.Tag != "default" )
+                        item.Selected = true;
+            }
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
