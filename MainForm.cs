@@ -575,13 +575,7 @@ namespace com.clusterrr.hakchi_gui
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesMiniApplication)) return;
             var game = (selected as NesMiniApplication);
-            if (fileName == null)
-            {
-                AppTypeCollection.AppInfo appinfo = AppTypeCollection.GetAppByExec(game.Command);
-                game.Image = appinfo == null ? NesMiniApplication.DefaultCover : appinfo.DefaultCover;
-            }
-            else
-                game.Image = NesMiniApplication.LoadBitmap(fileName);
+            game.Image = fileName == null ? null : NesMiniApplication.LoadBitmap(fileName);
             ShowSelected();
             timerCalculateGames.Enabled = true;
         }
@@ -1312,6 +1306,7 @@ namespace com.clusterrr.hakchi_gui
             useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack && useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled;
             upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
             compressGamesToolStripMenuItem.Checked = ConfigIni.Compress;
+            compressBoxArtToolStripMenuItem.Checked = ConfigIni.CompressBoxart;
 
             // Folders mods
             disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
@@ -1523,6 +1518,11 @@ namespace com.clusterrr.hakchi_gui
         private void compressGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Compress = compressGamesToolStripMenuItem.Checked;
+        }
+
+        private void compressBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.CompressBoxart = compressBoxArtToolStripMenuItem.Checked;
         }
 
         private void buttonShowGameGenieDatabase_Click(object sender, EventArgs e)

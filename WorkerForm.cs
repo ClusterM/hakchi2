@@ -1594,8 +1594,7 @@ namespace com.clusterrr.hakchi_gui
             foreach(NesMiniApplication game in Games)
             {
                 SetStatus(string.Format(Resources.ClearingCovers, game.Name));
-                AppTypeCollection.AppInfo appinfo = AppTypeCollection.GetAppByExec(game.Command);
-                game.Image = appinfo == null ? NesMiniApplication.DefaultCover : appinfo.DefaultCover;
+                game.Image = null;
                 SetProgress(++i, Games.Count);
             }
         }
