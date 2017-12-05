@@ -401,7 +401,7 @@ namespace com.clusterrr.hakchi_gui
                     SetImage(img, false);
                 }
                 else
-                    SetImage(value, ConfigIni.CompressBoxart);
+                    SetImage(value, ConfigIni.CompressBoxArt);
             }
             get
             {

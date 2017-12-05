@@ -1306,7 +1306,7 @@ namespace com.clusterrr.hakchi_gui
             useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack && useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled;
             upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
             compressGamesToolStripMenuItem.Checked = ConfigIni.Compress;
-            compressBoxArtToolStripMenuItem.Checked = ConfigIni.CompressBoxart;
+            compressBoxArtToolStripMenuItem.Checked = ConfigIni.CompressBoxArt;
 
             // Folders mods
             disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
@@ -1522,7 +1522,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void compressBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigIni.CompressBoxart = compressBoxArtToolStripMenuItem.Checked;
+            ConfigIni.CompressBoxArt = compressBoxArtToolStripMenuItem.Checked;
         }
 
         private void buttonShowGameGenieDatabase_Click(object sender, EventArgs e)

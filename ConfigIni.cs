@@ -44,7 +44,7 @@ namespace com.clusterrr.hakchi_gui
         public static string ExtraCommandLineArgumentsNes = "";
         public static string ExtraCommandLineArgumentsSnes = "";
         public static bool Compress = true;
-        public static bool CompressBoxart = true;
+        public static bool CompressBoxArt = true;
         public const string ConfigDir = "config";
         public const string ConfigFile = "config.ini";
         public static bool FtpServer = false;
@@ -545,7 +545,7 @@ namespace com.clusterrr.hakchi_gui
                                     Compress = !value.ToLower().Equals("false");
                                     break;
                                 case "compressboxart":
-                                    CompressBoxart = !value.ToLower().Equals("false");
+                                    CompressBoxArt = !value.ToLower().Equals("false");
                                     break;
                                 case "ftpserver":
                                     FtpServer = !value.ToLower().Equals("false");
@@ -604,7 +604,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("MaxGamesPerFolderSnes={0}", MaxGamesPerFolderSnes));
             configLines.Add(string.Format("MaxGamesPerFolderSuperFamicom={0}", MaxGamesPerFolderSuperFamicom));
             configLines.Add(string.Format("Compress={0}", Compress));
-            configLines.Add(string.Format("CompressBoxart={0}", CompressBoxart));
+            configLines.Add(string.Format("CompressBoxArt={0}", CompressBoxArt));
             configLines.Add(string.Format("FtpServer={0}", FtpServer));
             configLines.Add(string.Format("TelnetServer={0}", TelnetServer));
             configLines.Add(string.Format("RunCount={0}", RunCount));

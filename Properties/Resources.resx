@@ -722,6 +722,6 @@
     <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
   <data name="ClearingCovers" xml:space="preserve">
-    <value>Clearing {0} cover image...</value>
+    <value>Clearing {0} box art...</value>
   </data>
 </root>
