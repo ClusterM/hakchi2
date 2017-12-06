@@ -11,6 +11,8 @@ check_free_space()
   fi
 }
 
+set -e
+
 find "$save_folder" -type d -name "rollback" | while read line; do
   if [ -f "$line/rollback.7z" ]; then
     check_free_space
