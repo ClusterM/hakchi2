@@ -2309,6 +2309,9 @@
     <Content Include="user_mods\canoe_save_compress.hmod\S8101compress_saves">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="user_mods\canoe_save_compress.hmod\decompress-canoe-saves">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\GameGenieDB.xml">

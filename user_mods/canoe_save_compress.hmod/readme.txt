@@ -12,4 +12,4 @@ As this mod is still experimental you agree to use the mod at your own risk and 
 Thanks to bewilderedthetan and Loafdude for their suggestions and discussion of compression implementation.
 Extra thanks to Loafdude for game sync fix and compress all code.
 
-version 0.9 (rc3)
+version 0.10 (rc4)
