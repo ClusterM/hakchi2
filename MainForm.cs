@@ -1914,8 +1914,7 @@ namespace com.clusterrr.hakchi_gui
             else if( e.KeyCode == Keys.A && e.Modifiers == Keys.Control )
             {
                 foreach (ListViewItem item in listViewGames.Items)
-                    if( item.Tag != "default" )
-                        item.Selected = true;
+                    item.Selected = item.Tag is NesMiniApplication;
             }
         }
 
