@@ -1,0 +1,4 @@
+mkdir -p "$rootfs/etc/bwt_code_protector"
+copy "$transferpath/bwt_code_protector" "$rootfs/etc/bwt_code_protector"
+copy "$transferpath/images" "$rootfs/etc/bwt_code_protector"
+return 1

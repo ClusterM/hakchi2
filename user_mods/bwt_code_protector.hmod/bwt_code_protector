@@ -1,0 +1,201 @@
+#Generic code protection script in the form of a hmod by Bewildered Thetan
+#Use this script the following way:
+# - Set the variable 'bwt_code_protector_code_dir' to point to a location where the access code will be stored
+#   This way you can use multiple codes for various functionalities
+#   If you don't set this variable, the directory of the hmod is used. This way you can use the same code for
+#   all functionality you wish to protect.
+# - source this file in your script file
+# - call the function 'bwt_code_protector'
+# - The function will set the variable 'bwt_code_protector_return_code' to the following values:
+#    IMAGE_NOT_FOUND -> the code protector uses background images, if they are not there, you can't use the mod
+#    CODE_SET -> the code was not set and is set now
+#    CODE_CORRECT -> user inputted correct code
+#    CODE_INCORRECT -> user inputted incorrect code
+
+#Controller pseudo-file
+clovercon=/dev/input/by-path/platform-twi.1-event-joystick
+
+#Display memory
+output_device=/dev/fb0
+
+#This hmod dir
+bwt_code_protector_mod_dir=/etc/bwt_code_protector
+
+if [ "$bwt_code_protector_code_dir" == "" ]
+then
+    bwt_code_protector_code_dir=$bwt_code_protector_mod_dir
+fi
+
+#images location
+images_dir=$bwt_code_protector_mod_dir/images
+
+entered_code=""
+code_file=$bwt_code_protector_code_dir/code
+bwt_code_protector_return_code="UNINITIALIZED"
+
+bwt_code_protector_initialize()
+{
+    if [ ! -f "$images_dir/code_correct.raw.gz" ]; then bwt_code_protector_return_code="IMAGE_NOT_FOUND"; return; fi
+    if [ ! -f "$images_dir/code_enter.raw.gz" ]; then bwt_code_protector_return_code="IMAGE_NOT_FOUND"; return; fi
+    if [ ! -f "$images_dir/code_incorrect.raw.gz" ]; then bwt_code_protector_return_code="IMAGE_NOT_FOUND"; return; fi
+    if [ ! -f "$images_dir/code_initialisation_confirm.raw.gz" ]; then bwt_code_protector_return_code="IMAGE_NOT_FOUND"; return; fi
+    if [ ! -f "$images_dir/code_initialisation_done.raw.gz" ]; then bwt_code_protector_return_code="IMAGE_NOT_FOUND"; return; fi
+    if [ ! -f "$images_dir/code_initialisation_enter.raw.gz" ]; then bwt_code_protector_return_code="IMAGE_NOT_FOUND"; return; fi
+    if [ ! -f "$images_dir/code_initialisation_mismatch.raw.gz" ]; then bwt_code_protector_return_code="IMAGE_NOT_FOUND"; return; fi
+    bwt_code_protector_return_code="OK"
+}
+
+#Record inputted code and return when START is released
+bwt_code_protector_ask_for_code()
+{
+    entered_code=""
+    previous_state=""
+    while [ true ]
+    do
+
+        #Each button press/release packet is 16 bytes, so one press is 16 bytes and so is a release   
+        #IMPORT TO USE THE CORRECT HEXDUMP!
+        packet=$(/usr/bin/hexdump -e '1/1 "%02x"' -v -n 16 $clovercon)
+        button=${packet:20:4}
+        pressed=${packet:24:2}
+         
+        case $button in
+        3001)
+            translated_button="A"
+            ;;
+        3101)
+            translated_button="B"
+            ;;
+        3301)
+            translated_button="X"
+            ;;
+        3401)
+            translated_button="Y"
+            ;;
+        c202)
+            translated_button="U"
+            ;;
+        c302)
+            translated_button="D"
+            ;;
+        c002)
+            translated_button="L"
+            ;;
+        c102)
+            translated_button="R"
+            ;;
+        #Sometimes the left bumper key is 3601, unknown why
+        0200|3601)
+            translated_button="["
+            ;;
+        #Sometimes the right bumper key is 3701, unknown why
+        0500|3701)
+            translated_button="]"
+            ;;
+        #Select button
+        3a01)
+            translated_button="S"
+            ;;
+        3b01)
+            translated_button="START"
+            ;;
+        #Can't happen I guess, but better be safe than sorry
+        *)
+            translated_button="?"
+            ;;
+        esac
+        
+        #Button state pressed is 01 for normal buttons and select/start and F8 for the bumper
+        #buttons, but for all of them 00 is a release
+        if [ "$pressed" == "00" ]
+        then
+            # Code is entered when START is released
+            if [ "$translated_button" == "START" ]
+            then    
+                break
+            fi 
+            translated_press="0"
+        else
+            translated_press="1"
+        fi
+
+        current_state="$translated_button$translated_press"
+        if [ "$translated_button" != "?" -a "$translated_button" != "START" ]
+        then
+            #Prevent lingering button presses (buggy controller driver handling)
+            if [ "$previous_state" != "$current_state" ]
+            then
+                entered_code="$entered_code$current_state"
+            fi
+        fi
+         previous_state=$current_state
+    done
+}
+
+#Main code input procedure with retry mechanism
+bwt_code_protector_wait_for_code()
+{
+    while [ true ]
+    do
+        #Blit the image to the display memory
+        gunzip -c $images_dir/code_enter.raw.gz > $output_device
+        bwt_code_protector_ask_for_code
+        
+        saved_code=`cat $code_file`
+        if [ "$entered_code" == "$saved_code" ]
+        then
+            #Blit the image to the display memory
+            gunzip -c $images_dir/code_correct.raw.gz > $output_device
+            sleep 1
+            bwt_code_protector_return_code="CODE_CORRECT"
+            break
+        else
+            #Blit the image to the display memory
+            gunzip -c $images_dir/code_incorrect.raw.gz > $output_device
+            sleep 1
+            bwt_code_protector_return_code="CODE_INCORRECT"
+            break
+        fi
+    done
+}
+
+#Initialize the code
+bwt_code_protector_initialize_code()
+{
+    while [ true ]
+    do
+        gunzip -c $images_dir/code_initialisation_enter.raw.gz > $output_device
+        bwt_code_protector_ask_for_code
+        first_code=$entered_code
+        gunzip -c $images_dir/code_initialisation_confirm.raw.gz > $output_device
+        bwt_code_protector_ask_for_code
+        second_code=$entered_code
+
+        if [ "$first_code" == "$second_code" ]
+        then
+            echo $first_code >  $code_file
+            gunzip -c $images_dir/code_initialisation_done.raw.gz > $output_device
+            sleep 1
+            break
+        else
+            gunzip -c $images_dir/code_initialisation_mismatch.raw.gz > $output_device
+            sleep 2     
+        fi
+    done     
+}
+
+bwt_code_protector()
+{
+    bwt_code_protector_initialize
+	if [ "$bwt_code_protector_return_code" == "OK" ]
+	then
+		/bin/uistop
+		if [ ! -f "$code_file" ]
+		then 
+			bwt_code_protector_initialize_code
+			bwt_code_protector_return_code="CODE_SET"
+		else
+			bwt_code_protector_wait_for_code
+		fi
+	fi
+}
