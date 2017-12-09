@@ -1,15 +1,16 @@
+showImage "$modpath/rootfs/etc/$modname.fb"
 source "$modpath/script/install"
 
 backup_nandc
 mount_base
 backup
 
+source "$modpath/rootfs/etc/preinit.d/p0000_config"
 source_config
 
 local transferpath="$modpath/transfer"
 
 cd "$transferpath"
-
 [ -f "$transferpath/earlybird" ] && source "$transferpath/earlybird"
 rm -f "$transferpath/earlybird"
 
@@ -29,6 +30,7 @@ if [ -d "$transferpath/firmware" ]; then
     find "$firmwarepath" -type f -not -name "$firmware_name" -delete
     echo "transferring firmware..."
     copy "$firmware" "$firmwarepath/"
+    cfg_firmware="auto"
   fi
   rm -rf "$transferpath/firmware"
 fi

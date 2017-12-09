@@ -1,21 +1,3 @@
-setGamepath(){
-  sftype="nes"
-  sfregion="usa"
-  [ "$(cat "$mountpoint/etc/clover/boardtype")" == "dp-shvc" ] && sftype="snes"
-  [ "$(cat "$mountpoint/etc/clover/REGION")" == "JPN" ] && sfregion="jpn"
-
-  local feck="$mountpoint/var/lib/clover/profiles/0/home-menu/save/system-save.json"
-  if [ "$sftype" == "snes" ]; then
-    gamepath="/usr/share/games"
-    [ -f "$feck" ] && mv -f "$feck" "$feck.nes"
-    [ -d "$feck.snes" ] && rm -rf "$feck" && mv "$feck.snes" "$feck"
-  else
-    gamepath="/usr/share/games/nes/kachikachi"
-    [ -d "$feck" ] && rm -rf "$feck.snes" && mv "$feck" "$feck.snes"
-    [ -f "$feck.nes" ] && mv -f "$feck.nes" "$feck"
-  fi
-}
-
 modname="hakchi"
 modpath="/$modname"
 #mountpoint="/newroot"
@@ -29,5 +11,3 @@ sftype=""
 sfregion=""
 gamepath=""
 temppath="/tmp"
-
-setGamepath

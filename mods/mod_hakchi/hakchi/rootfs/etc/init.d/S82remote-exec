@@ -1,7 +1,7 @@
-#!/bin/sh -e
+#!/bin/sh
 
 start() {
-	remote-exec &
+	nice remote-exec &
 }
 
 stop() {

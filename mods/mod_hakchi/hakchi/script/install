@@ -6,19 +6,29 @@ mod_uninstall(){
 }
 
 mod_repair(){
-  mod_repair_etc full
+  local bin="$temppath/bin"
+  rm -rf "$bin"
+  mkdir -p "$bin"
+  copy "$mountpoint/bin/" "$bin/"
+  copy "/bin/" "$bin/"
+  copy "$modpath/rootfs/bin/" "$bin/"
+  copy "/sbin/cryptsetup" "$bin/cryptsetup"
+  copy "$bin/" "$modpath/rootfs/bin/"
+  rm -rf "$bin"
+
+  copy "/key-file" "$modpath/rootfs/etc/key-file"
+  chown -R 0:0 "$modpath/"
   cd "$modpath/rootfs/bin" && chmod 755 *
   cd "$modpath/rootfs/etc/init.d" && chmod 755 *
-  cd /
-  copy "/bin/" "$rootfs/bin/"
-  copy "/sbin/cryptsetup" "$rootfs/bin/cryptsetup"
+  rm -f "$modpath/rootfs/etc/preinit.d/p0000_config"
   copy "$modpath/rootfs/" "$rootfs/"
+
+  mod_repair_etc full
+  cd /
 }
 
 mod_install(){
   echo "installing $modname..."
   rm -rf "$rootfs"
-  restore "/bin/"
-  restore "/etc/"
   mod_repair
 }

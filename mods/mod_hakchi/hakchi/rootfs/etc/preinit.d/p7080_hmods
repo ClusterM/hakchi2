@@ -1,4 +1,6 @@
 local transferpath="$installpath/transfer"
+[ -d "$mountpoint/media/$modname/transfer" ] && transferpath="$mountpoint/media/$modname/transfer"
+
 if [ -d "$transferpath" ]; then
   cd "$transferpath"
   [ -f "$transferpath/earlybird" ] && source "$transferpath/earlybird"
