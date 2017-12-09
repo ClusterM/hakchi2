@@ -2347,6 +2347,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DesktopEntries\CLV-P-VADZJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="mods\mod_hakchi\bin\usleep">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
