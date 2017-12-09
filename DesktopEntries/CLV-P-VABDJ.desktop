@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VABDJ/CLV-P-VABDJ.sfrom --volume 37 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-VABDJ
+Name=超魔界村
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VABDJ/CLV-P-VABDJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-VABDJ
+TestID=10
+Status=Duplicate-1
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1991-10-04
+SaveCount=0
+SortRawTitle=ちょうまかいむら
+SortRawPublisher=かぷこん
+Copyright=超魔界村® ©CAPCOM CO., LTD. 1991, 2017 ALL RIGHTS RESERVED.
+MyPlayDemoTime=45

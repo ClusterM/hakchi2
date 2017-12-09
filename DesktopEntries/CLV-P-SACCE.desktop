@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SACCE/CLV-P-SACCE.sfrom --volume 70 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-SACCE
+Name=CONTRA III THE ALIEN WARS
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SACCE/CLV-P-SACCE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SACCE
+TestID=16
+Status=Finished-0027
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1992-04-01
+SaveCount=0
+SortRawTitle=contra iii the alien wars
+SortRawPublisher=KONAMI
+Copyright=CONTRA III THE ALIEN WARS ©1992 Konami Digital Entertainment
+MyPlayDemoTime=45

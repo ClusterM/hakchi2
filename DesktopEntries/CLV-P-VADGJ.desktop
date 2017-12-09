@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VADGJ/CLV-P-VADGJ.sfrom --volume 65 -rollback-snapshot-period 600 -output-dir /var/lib/clover/profiles/0/
+Path=/var/lib/clover/profiles/0//CLV-P-VADGJ
+Name=スターフォックス
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VADGJ/CLV-P-VADGJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-VADGJ
+TestID=17
+Status=Duplicate-5
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1993-02-21
+SaveCount=0
+SortRawTitle=すたーふぉっくす
+SortRawPublisher=にんてんどう
+Copyright=スターフォックス ©1993 Nintendo
+MyPlayDemoTime=45

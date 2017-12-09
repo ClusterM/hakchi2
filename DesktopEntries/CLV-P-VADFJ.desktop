@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VADFJ/CLV-P-VADFJ.sfrom --volume 70 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-VADFJ
+Name=スーパーフォーメーションサッカー
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VADFJ/CLV-P-VADFJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-VADFJ
+TestID=16
+Status=Completing-1
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1991-12-13
+SaveCount=0
+SortRawTitle=すーぱーふぉーめーしょんさっかー
+SortRawPublisher=すぱいくちゅんそふと
+Copyright=スーパーフォーメーションサッカー ©Spike Chunsoft Co., Ltd. All Rights Reserved.
+MyPlayDemoTime=45

@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACHJ/CLV-P-HACHJ.nes  --guest-overscan-dimensions 12,8,9,11 --initial-fadein-durations 3,2 --volume 80 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-HACHJ
+Name=ダブルドラゴンⅡ The Revenge
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACHJ/CLV-P-HACHJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HACHJ
+TestID=311
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1989-12-22
+SaveCount=0
+SortRawTitle=だぶるどらごん２　Ｔｈｅ　Ｒｅｖｅｎｇｅ
+SortRawPublisher=あーくしすてむわーくす
+Copyright=ダブルドラゴンⅡ The Revenge © ARC SYSTEM WORKS

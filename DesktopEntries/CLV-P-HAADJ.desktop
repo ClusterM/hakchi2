@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HAADJ/CLV-P-HAADJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 70 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-HAADJ
+Name=スーパーマリオＵＳＡ
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HAADJ/CLV-P-HAADJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HAADJ
+TestID=511
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1992-09-14
+SaveCount=0
+SortRawTitle=すーぱーまりおＵＳＡ
+SortRawPublisher=にんてんどう
+Copyright=スーパーマリオＵＳＡ ©1988-1992 Nintendo

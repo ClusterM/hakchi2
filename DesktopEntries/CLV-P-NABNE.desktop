@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NABNE/CLV-P-NABNE.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 63 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-NABNE
+Name=Galaga
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NABNE/CLV-P-NABNE.png
+
+[X-CLOVER Game]
+Code=CLV-P-NABNE
+TestID=122
+ID=0
+Players=2
+Simultaneous=0
+ReleaseDate=1988-09-01
+SaveCount=0
+SortRawTitle=galaga
+SortRawPublisher=BANDAI NAMCO
+Copyright=Galaga™ & ©1981 BANDAI NAMCO Entertainment Inc.

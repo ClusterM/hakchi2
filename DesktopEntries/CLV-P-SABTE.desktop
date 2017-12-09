@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SABTE/CLV-P-SABTE.sfrom --volume 85 -rollback-snapshot-period 3600
+Path=/var/lib/clover/profiles/0//CLV-P-SABTE
+Name=Final Fantasy III
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SABTE/CLV-P-SABTE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SABTE
+TestID=14
+Status=Duplicate-2
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1994-10-11
+SaveCount=3
+SortRawTitle=final fantasy iii
+SortRawPublisher=SQUARE ENIX
+Copyright=Final Fantasy III ©1994 SQUARE ENIX CO., LTD. All Rights Reserved. ILLUSTRATION : ©1994 YOSHITAKA AMANO. FINAL FANTASY, SQUARE ENIX, and the SQUARE ENIX logo are registered trademarks or trademarks of Square Enix Holdings Co., Ltd.
+MyPlayDemoTime=45

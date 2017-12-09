@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HABLJ/CLV-P-HABLJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-HABLJ
+Name=ファイナルファンタジー®III
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HABLJ/CLV-P-HABLJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HABLJ
+TestID=101
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1990-04-27
+SaveCount=3
+SortRawTitle=ふぁいなるふぁんたじーＩＩＩ
+SortRawPublisher=すくうぇあえにっくす
+Copyright=ファイナルファンタジー®III ©1990 SQUARE ENIX CO., LTD. All Rights Reserved.
