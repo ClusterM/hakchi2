@@ -470,24 +470,48 @@ namespace com.clusterrr.hakchi_gui
             Directory.CreateDirectory(artDirectory);
             if (!string.IsNullOrEmpty(inputFileName))
             {
+                string name = System.IO.Path.GetFileNameWithoutExtension(inputFileName);
                 if (crc32 != 0)
                 {
                     var covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
                     if (covers.Length > 0)
                         cover = LoadBitmap(covers[0]);
                 }
-                var imagePath = System.IO.Path.Combine(artDirectory, System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".png");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
-                imagePath = System.IO.Path.Combine(artDirectory, System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".jpg");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
-                imagePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(inputFileName), System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".png");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
-                imagePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(inputFileName), System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".jpg");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
+                if (cover == null)
+                {
+                    // priority to inputFileName directory
+                    var imagePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(inputFileName), name + ".jpg");
+                    if (File.Exists(imagePath))
+                        cover = LoadBitmap(imagePath);
+                    imagePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(inputFileName), name + ".png");
+                    if (File.Exists(imagePath))
+                        cover = LoadBitmap(imagePath);
+                }
+                if( cover == null )
+                {
+                    // do a bidirectional search on sanitized filenames to allow minor variance in filenames, also allows subdirectories
+                    Regex rgx = new Regex("[^a-zA-Z0-9]", RegexOptions.Compiled);
+                    var sanitizedName = rgx.Replace(name, string.Empty).ToLower();
+
+                    var covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
+                    foreach(var file in covers)
+                    {
+                        var sanitized = rgx.Replace(System.IO.Path.GetFileNameWithoutExtension(file), "").ToLower();
+                        if (sanitizedName.StartsWith(sanitized) || sanitized.StartsWith(sanitizedName))
+                        {
+                            cover = LoadBitmap(file);
+                            break;
+                        }
+                    }
+                    /*
+                    var imagePath = System.IO.Path.Combine(artDirectory, System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".png");
+                    if (File.Exists(imagePath))
+                        cover = LoadBitmap(imagePath);
+                    imagePath = System.IO.Path.Combine(artDirectory, System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".jpg");
+                    if (File.Exists(imagePath))
+                        cover = LoadBitmap(imagePath);
+                    */
+                }
             }
             if (cover == null)
             {
