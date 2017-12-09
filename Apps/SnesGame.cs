@@ -223,9 +223,9 @@ namespace com.clusterrr.hakchi_gui
 
             // Boring LoRom/HiRom detection...
             if (((romHeaderLoRom.Checksum ^ 0xFFFF) == romHeaderLoRom.ChecksumComplement) &&
-                ((romHeaderHiRom.Checksum ^ 0xFFFF) != romHeaderHiRom.ChecksumComplement))
+                ((romHeaderHiRom.Checksum ^ 0xFFFF) != romHeaderHiRom.ChecksumComplement || romHeaderHiRom.Checksum == 0 || romHeaderHiRom.ChecksumComplement == 0))
                 romType = SnesRomType.LoRom;
-            else if (((romHeaderLoRom.Checksum ^ 0xFFFF) != romHeaderLoRom.ChecksumComplement) &&
+            else if (((romHeaderLoRom.Checksum ^ 0xFFFF) != romHeaderLoRom.ChecksumComplement || romHeaderLoRom.Checksum == 0 || romHeaderLoRom.ChecksumComplement == 0) &&
                 ((romHeaderHiRom.Checksum ^ 0xFFFF) == romHeaderHiRom.ChecksumComplement))
                 romType = SnesRomType.HiRom;
             else if (titleLo.Length != 0 && titleHi.Length == 0)

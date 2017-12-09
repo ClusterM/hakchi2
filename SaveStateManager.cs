@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -191,9 +192,12 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
+                string invalidChars = new string(Path.GetInvalidFileNameChars());
+                Regex removeInvalidChars = new Regex($"[{Regex.Escape(invalidChars)}]", RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
                 foreach (ListViewItem game in listViewSaves.SelectedItems)
                 {
-                    saveFileDialog.FileName = game.SubItems["colName"].Text + ".clvs";
+                    saveFileDialog.FileName = removeInvalidChars.Replace(game.SubItems["colName"].Text, "") + ".clvs";
                     var name = game.SubItems["colName"].Text != null ? game.SubItems["colName"].Text : "save";
                     saveFileDialog.Title = name;
                     if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
