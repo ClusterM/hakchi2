@@ -1,0 +1,23 @@
+#!/bin/sh
+
+save_folder="/var/lib/clover/profiles/0"
+
+check_free_space()
+{
+  free_space=$(df -m "$save_folder" | awk '{ print $4; }' | tail -n1)
+  if [ $free_space -lt 8 ]; then
+    echo "Decompression stopped. Out of space."
+    exit 1
+  fi
+}
+
+set -e
+
+find "$save_folder" -type d -name "rollback" | while read line; do
+  if [ -f "$line/rollback.7z" ]; then
+    check_free_space
+    cd "$line" && 7zr x -y rollback.7z 1>/dev/null && rm rollback.7z
+  fi
+done
+
+echo "Finished decompressing saves."

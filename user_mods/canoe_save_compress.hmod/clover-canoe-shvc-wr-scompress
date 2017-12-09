@@ -1,0 +1,96 @@
+#!/bin/sh
+# Wrapper for canoe
+# You can add extra command line arguments to all games at once
+# using "cfg_snes_extra_args" variable in p0000_config
+
+source /etc/preinit
+script_init
+
+options=""
+play_mode=""
+output_rollback_dir=""
+retroarch=0
+
+decompress_save_state()
+{
+  rm -rf /tmp/rollback/
+  mkdir -p /tmp/rollback/
+  cd /tmp/rollback/
+  tiny7zx x "$1/rollback.7z"
+}
+
+while [ $# -gt 0 ] ; do
+  case "$1" in
+  -rom)
+    filename="$(readlink -f "$2")"
+    filebase="$(basename "$filename")"
+    extension="${filebase##*.}"
+    tmppath="$temppath/rom"
+    if [ "$extension" == "7z" ]; then
+      rm -rf "$tmppath"
+      mkdir -p "$tmppath"
+      cd "$tmppath"
+      tiny7zx x "$filename"
+      filename="$tmppath/$(ls)"
+      filename_str=${filename// /_}
+      mv "$filename" "$filename_str"
+      filename=$filename_str
+    fi
+    options="-rom $filename"
+    shift
+    ;;
+  --rollback-input-dir)
+    if [ -f "$2/rollback.7z" ]; then
+      decompress_save_state "$2"
+      options="$options $1 /tmp/rollback/"
+    else
+      options="$options $1 $2"
+    fi
+    shift
+    ;;
+  --rollback-output-dir)
+    output_rollback_dir="$2"
+    options="$options $1 $2"
+    shift
+    ;;
+  --rollback-mode)
+    play_mode="$2"
+    options="$options $1 $2"
+    shift
+    ;;
+  --load-state-file)
+    save_path="$(dirname "$2")"
+    if [ -f "$save_path/rollback.7z" ]; then
+      decompress_save_state "$save_path"
+      options="$options $1 "/tmp/rollback/$(basename "$2")""
+    else
+      options="$options $1 $2"
+    fi
+    shift
+    ;;
+  --replay-inputs)
+    save_path="$(dirname "$2")"
+    if [ -f "$save_path/rollback.7z" ]; then
+      options="$options $1 "/tmp/rollback/$(basename "$2")""
+    else
+      options="$options $1 $2"
+    fi
+    shift
+    ;;
+  --retroarch|-retroarch)
+    retroarch=1
+    options="$options $1"
+    ;;
+  *) options="$options $1" ;;
+  esac
+  shift
+done
+
+if [ $retroarch = 0 ] && [ ! -z $output_rollback_dir ]; then
+  if [ $play_mode = "record" ] || [ $play_mode = "replay" ]; then
+    snes-save-compress "$output_rollback_dir" &
+  fi
+fi
+
+args="$options $cfg_snes_extra_args"
+exec /usr/bin/clover-canoe-shvc $args

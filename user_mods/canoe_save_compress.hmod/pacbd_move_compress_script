@@ -1,0 +1,5 @@
+
+if [ ! -f "$rootfs/bin/clover-canoe-shvc-wr" ] || [ $(cksum "$rootfs/bin/clover-canoe-shvc-wr" | awk '{ print $1; }') != $(cksum "$rootfs/bin/clover-canoe-shvc-wr-scompress" | awk '{ print $1; }') ]; then
+  copy "$rootfs/bin/clover-canoe-shvc-wr-scompress" "$rootfs/bin/clover-canoe-shvc-wr"
+  chmod +x "$rootfs/bin/clover-canoe-shvc-wr"
+fi

@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Wait for canoe to start
+usleep 500000
+canoe_pid=$(ps -o pid,args | grep canoe-shvc | grep -v grep | awk '{ print $1; }')
+
+# Ensure canoe is running
+if [ ! -z $canoe_pid ]; then
+  # Wait while game runs
+  wait-for-exit $canoe_pid
+  
+  # Find Home Screen pid
+  rplayer_pid=$(ps -o pid,args | grep ReedPlayer-Clover | grep -v grep | awk '{ print $1; }')
+  
+  # If pid is not found console is shutting down
+  if [ ! -z $rplayer_pid ]; then
+    # Pause Home Screen while compressing save
+    kill -s SIGSTOP $rplayer_pid
+    
+    # Get Output Directory
+    rollback_dir="$1"
+    
+    # Remove uncompressed save state from ram
+    rm -rf /tmp/rollback/
+    
+    # Ensure rollback directory and save files exist before attempting compression
+    if [ -d "$rollback_dir" ] && [ -f "$rollback_dir/0.break" ]; then
+      cd "$rollback_dir" && 7zr u -mx5 rollback.7z *.inputs *.break && rm "$rollback_dir"/*.inputs && rm "$rollback_dir"/*.break
+    fi
+    
+    # Continue Home Screen after save has been compressed
+    kill -s SIGCONT $rplayer_pid
+  fi
+fi

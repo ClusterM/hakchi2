@@ -1,0 +1,29 @@
+#!/bin/sh
+
+[ "$1" == "start" ] || exit 0
+
+source /etc/preinit
+script_init
+
+# Display Compression Message
+gunzip -c /etc/compress_message0.raw.gz > /dev/fb0
+# Set Compression message id
+msg_id=1
+
+# Compress all existing saves
+find /var/lib/clover/profiles/0 -type d -name "rollback" | while read line; do
+  if [ -f "$line/0.break" ] && [ ! -f "$line/rollback.7z" ]; then
+    cd "$line" && 7zr u -mx5 rollback.7z *.inputs *.break && rm "$line"/*.inputs && rm "$line"/*.break
+    # Change Compression Message and increase message id
+    gunzip -c "/etc/compress_message$msg_id.raw.gz" > /dev/fb0
+    msg_id=$(( ($msg_id+1)%3 ))
+  fi
+done
+
+# Remove self and all image files
+rm "$rootfs/etc/compress_message0.raw.gz"
+rm "$rootfs/etc/compress_message1.raw.gz"
+rm "$rootfs/etc/compress_message2.raw.gz"
+rm "$rootfs/etc/init.d/S8101compress_saves"
+
+exit 0
