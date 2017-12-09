@@ -1,0 +1,1 @@
+[ -f "$mountpoint/usr/bin/clover-reset.factory" ] && overmount "/usr/bin/clover-reset-bwt.factory" "/usr/bin/clover-reset.factory"

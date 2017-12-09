@@ -1,0 +1,7 @@
+copy "$transferpath/p8040_reset_protect_bwt" "$preinitpath"
+mkdir -p "$rootfs/usr/bin"
+chmod +x "$transferpath/clover-reset-bwt.factory"
+copy "$transferpath/clover-reset-bwt.factory" "$rootfs/usr/bin/"
+mkdir -p "$rootfs/etc/bwt_reset_protect"
+copy "$transferpath/bwt_code_protector_not_installed.raw.gz" "$rootfs/etc/bwt_reset_protect/"
+return 1

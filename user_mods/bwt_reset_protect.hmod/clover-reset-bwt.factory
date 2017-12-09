@@ -1,0 +1,28 @@
+#!/bin/sh
+
+do_factory_reset()
+{
+    rm -rf /var/lib/clover
+    sync
+    reboot
+} 
+
+if [ -d "/etc/bwt_code_protector" ]
+then
+    bwt_code_protector_code_dir=/etc/bwt_reset_protect
+    source /etc/bwt_code_protector/bwt_code_protector
+    bwt_code_protector
+    if [ "$bwt_code_protector_return_code" != "CODE_CORRECT" ]
+    then
+        /bin/uistart
+    else
+        echo "RESET"
+        do_factory_reset
+    fi
+else
+    /bin/uistop
+    gunzip -c /etc/bwt_reset_protect/bwt_code_protector_not_installed.raw.gz > /dev/fb0
+    sleep 2
+    #Just start the user-interface when the codeprotector is not installed and do NOT issue a reset
+    /bin/uistart
+fi

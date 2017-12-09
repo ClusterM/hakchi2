@@ -1,0 +1,3 @@
+rm "$preinitpath/p8040_reset_protect_bwt"
+rm "$rootfs/usr/bin/clover-reset-bwt.factory"
+rm -rf "$rootfs/etc/bwt_reset_protect"
