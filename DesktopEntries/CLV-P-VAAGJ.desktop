@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VAAGJ/CLV-P-VAAGJ.sfrom --volume 75 -rollback-snapshot-period 3600
+Path=/var/lib/clover/profiles/0//CLV-P-VAAGJ
+Name=ファイアーエムブレム 紋章の謎
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VAAGJ/CLV-P-VAAGJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-VAAGJ
+TestID=4
+Status=Completing-3
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1994-01-21
+SaveCount=3
+SortRawTitle=ふぁいあーえむぶれむもんしょうのなぞ
+SortRawPublisher=にんてんどう
+Copyright=ファイアーエムブレム 紋章の謎 ©1990-1993 Nintendo/INTELLIGENT SYSTEMS
+MyPlayDemoTime=45

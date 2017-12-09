@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SABHE/CLV-P-SABHE.sfrom --volume 100 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-SABHE
+Name=Street Fighter II Turbo: Hyper Fighting
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SABHE/CLV-P-SABHE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SABHE
+TestID=11
+Status=Finished-0022
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1993-08-01
+SaveCount=0
+SortRawTitle=street fighter ii' turbo: hyper fighting
+SortRawPublisher=CAPCOM
+Copyright=Street Fighter™ II Turbo: Hyper Fighting ©CAPCOM U.S.A., INC. 1993, 2017 ALL RIGHTS RESERVED.
+MyPlayDemoTime=45

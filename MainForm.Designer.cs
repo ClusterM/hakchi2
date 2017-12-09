@@ -156,6 +156,7 @@
             this.listViewGames = new System.Windows.Forms.ListView();
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.compressBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -1229,6 +1230,7 @@
         private System.Windows.Forms.Button buttonClearImage;
         private System.Windows.Forms.ToolStripMenuItem clearBoxArtForSelectedGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem compressBoxArtToolStripMenuItem;
+        private System.Windows.Forms.FolderBrowserDialog exportFolderDialog;
     }
 }
 

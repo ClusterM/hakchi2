@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HAASJ/CLV-P-HAASJ.qd  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 80 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-HAASJ
+Name=リンクの冒険
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HAASJ/CLV-P-HAASJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HAASJ
+TestID=531
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1987-01-14
+SaveCount=3
+SortRawTitle=りんくのぼうけん
+SortRawPublisher=にんてんどう
+Copyright=リンクの冒険 ©1987 Nintendo

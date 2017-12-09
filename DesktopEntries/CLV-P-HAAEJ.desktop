@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HAAEJ/CLV-P-HAAEJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-HAAEJ
+Name=ドンキーコング
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HAAEJ/CLV-P-HAAEJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HAAEJ
+TestID=481
+ID=0
+Players=2
+Simultaneous=0
+ReleaseDate=1983-07-15
+SaveCount=0
+SortRawTitle=どんきーこんぐ
+SortRawPublisher=にんてんどう
+Copyright=ドンキーコング ©1981 Nintendo

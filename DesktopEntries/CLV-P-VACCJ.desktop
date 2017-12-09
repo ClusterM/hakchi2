@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VACCJ/CLV-P-VACCJ.sfrom --volume 70 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-VACCJ
+Name=魂斗羅スピリッツ
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VACCJ/CLV-P-VACCJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-VACCJ
+TestID=14
+Status=Duplicate-1
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1992-02-28
+SaveCount=0
+SortRawTitle=こんとらすぴりっつ
+SortRawPublisher=こなみ
+Copyright=魂斗羅スピリッツ ©1992 Konami Digital Entertainment
+MyPlayDemoTime=45

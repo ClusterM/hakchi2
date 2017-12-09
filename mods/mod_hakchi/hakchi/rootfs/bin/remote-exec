@@ -1,16 +1,20 @@
 #!/bin/sh
-mpc_flag="/var/startmpc.flag"
+
+mcp_flag="/var/startmcp.flag"
+mcp_flag_compat="/var/startmpc.flag"
 exec_flag="/var/exec.flag"
-while [ true ]; do
-  if [ -f "$mpc_flag" ]; then
-    echo Restart!
-    rm "$mpc_flag"
-    /etc/init.d/S81clover-mcp start
+
+while true; do
+  if [ -f "$mcp_flag" ] || [ -f "$mcp_flag_compat" ]; then
+    echo "Restart!"
+    uistart
+    usleep 100000
+    rm -f "$mcp_flag" "$mcp_flag_compat"
   fi
   if [ -f "$exec_flag" ]; then
-    cmd="$(cat "$exec_flag")"
-    rm "$exec_flag"
-    $cmd
+    usleep 100000
+    source "$exec_flag"
+    rm -f "$exec_flag"
   fi
   usleep 200000
 done

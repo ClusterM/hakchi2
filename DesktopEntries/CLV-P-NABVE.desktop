@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NABVE/CLV-P-NABVE.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 77 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-NABVE
+Name=Super C
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NABVE/CLV-P-NABVE.png
+
+[X-CLOVER Game]
+Code=CLV-P-NABVE
+TestID=192
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1990-04-01
+SaveCount=0
+SortRawTitle=super c
+SortRawPublisher=KONAMI
+Copyright=Super C ©1990 Konami Digital Entertainment

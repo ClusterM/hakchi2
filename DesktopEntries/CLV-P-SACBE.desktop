@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SACBE/CLV-P-SACBE.sfrom --volume 85 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-SACBE
+Name=Super Castlevania IV
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SACBE/CLV-P-SACBE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SACBE
+TestID=15
+Status=Completing-3
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1991-12-01
+SaveCount=0
+SortRawTitle=super castlevania iv
+SortRawPublisher=KONAMI
+Copyright=Super Castlevania IV ©1991 Konami Digital Entertainment
+MyPlayDemoTime=45

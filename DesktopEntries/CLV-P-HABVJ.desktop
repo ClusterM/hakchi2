@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HABVJ/CLV-P-HABVJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 77 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-HABVJ
+Name=スーパー魂斗羅
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HABVJ/CLV-P-HABVJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HABVJ
+TestID=191
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1990-02-02
+SaveCount=0
+SortRawTitle=すーぱーこんとら
+SortRawPublisher=こなみ
+Copyright=スーパー魂斗羅 ©1990 Konami Digital Entertainment

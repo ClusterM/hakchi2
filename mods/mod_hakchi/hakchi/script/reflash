@@ -1,6 +1,7 @@
+umount_base
+
 local firmware="$(find -type f -name "*.hsqs" | sort | head -n 1)"
 if [ -f "$firmware" ]; then
-  umount_base
   umount "$mountpoint"
 
   cryptsetup close root-crypt
@@ -13,15 +14,18 @@ if [ -f "$firmware" ]; then
   cryptsetup open /dev/nandb root-crypt --readonly --type plain --cipher aes-xts-plain --key-file /key-file
 
   mount -o ro,noatime /dev/mapper/root-crypt "$mountpoint"
-
-  local tmk="$(pwd)/mkfs.txz"
-  if [ -f "$tmk"]; then
-    cd / && tar xJf "$tmk"
-    mount_bind "$mountpoint/lib" "/lib"
-#    /sbin/mkfs.ext4 -L data -m 0 /dev/nandc
-    mkfs.ext2 -L data -m 0 /dev/nandc
-    umount "/lib"
-  fi
-
-  mount_base
 fi
+unset firmware
+
+local tmk="$(pwd)/mkfs.txz"
+if [ -f "$tmk"]; then
+  rm "/lib"
+  cd / && tar xJf "$tmk"
+  mount_bind "$mountpoint/lib" "/lib"
+#  /sbin/mkfs.ext4 -L data -m 0 /dev/nandc
+  mkfs.ext2 -L data -m 0 /dev/nandc
+  umount "/lib"
+fi
+unset tmk
+
+mount_base

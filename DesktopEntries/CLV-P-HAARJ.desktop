@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HAARJ/CLV-P-HAARJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 70 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-HAARJ
+Name=バルーンファイト
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HAARJ/CLV-P-HAARJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HAARJ
+TestID=521
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1985-01-22
+SaveCount=0
+SortRawTitle=ばるーんふぁいと
+SortRawPublisher=にんてんどう
+Copyright=バルーンファイト ©1984 Nintendo

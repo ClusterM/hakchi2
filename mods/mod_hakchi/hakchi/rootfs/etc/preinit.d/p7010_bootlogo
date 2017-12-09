@@ -1,0 +1,1 @@
+showImage "$cfg_boot_logo" || showImage "$rootfs/etc/boot.png" || showImage "$rootfs/etc/$modname.png"

@@ -31,7 +31,7 @@ else
   /bin/mount -o "${MOUNT_OPTS}" ${ROOTFS} /newroot
 fi
 
-. /hakchi/init
+[ -f "/hakchi/init" ] && sh "/hakchi/init"
 
 /bin/mount --move /dev /newroot/dev
 /bin/umount /proc

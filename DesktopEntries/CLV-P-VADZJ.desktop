@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VADZJ/CLV-P-VADZJ.sfrom --volume 90 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-VADZJ
+Name=パネルでポン
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VADZJ/CLV-P-VADZJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-VADZJ
+TestID=20
+Status=Completing-2
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1995-10-27
+SaveCount=0
+SortRawTitle=ぱねるでぽん
+SortRawPublisher=にんてんどう
+Copyright=パネルでポン ©1995 Nintendo/INTELLIGENT SYSTEMS
+MyPlayDemoTime=45
