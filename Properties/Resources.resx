@@ -723,5 +723,7 @@
   </data>
   <data name="FolderNotEmpty" xml:space="preserve">
     <value>The selected folder isn't empty</value>
+  <data name="gitCommit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\commit.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

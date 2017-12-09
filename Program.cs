@@ -142,6 +142,10 @@ namespace com.clusterrr.hakchi_gui
                             }
 
                         Debug.WriteLine("Starting, version: " + Assembly.GetExecutingAssembly().GetName().Version);
+                        if (Resources.gitCommit.Length > 0)
+                        {
+                            Debug.WriteLine("git commit: " + Resources.gitCommit);
+                        }
                         Application.EnableVisualStyles();
                         Application.SetCompatibleTextRenderingDefault(false);
                         Application.Run(new MainForm());
