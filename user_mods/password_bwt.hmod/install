@@ -1,0 +1,6 @@
+local script=S811passwd_bwt
+copy "$transferpath/$script" "$rootfs/etc/init.d/"
+chmod +x "$rootfs/etc/init.d/$script"
+mkdir -p "$rootfs/etc/bwt_password_mod"
+copy "$transferpath/images" "$rootfs/etc/bwt_password_mod/"
+return 1

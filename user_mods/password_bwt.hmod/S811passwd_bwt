@@ -1,0 +1,364 @@
+#!/bin/sh -e
+
+#--------------------------------------------------------------------------
+#Hakchi2 password mod BWT (SNES Classic specific) by Bewildered Thetan
+#--------------------------------------------------------------------------
+#As learned from reading the original Password Protection Hack by Clusterrr
+#--------------------------------------------------------------------------
+
+# Init scripts are executed with "start" argument when system boots and with "stop" argument during shutdown
+# So we need to check that it's boot state, not shutdown
+[ -z "$1" ] || [ "$1" == "start" ] || exit 0
+
+#Mod name
+mod_install_dir=/etc/bwt_password_mod
+
+#Controller pseudo-file
+clovercon=/dev/input/by-path/platform-twi.1-event-joystick
+
+#Display memory
+output_device=/dev/fb0
+
+#File storing the main access code
+code_file=$mod_install_dir/snes_code
+
+#File storing the disable code to disable the module
+disable_code_file=$mod_install_dir/snes_code_disable
+
+#File storing the master code to change the access code
+master_code_file=$mod_install_dir/snes_code_master
+
+#File indicating the mod is already ran
+is_run_file=$mod_install_dir/is_run
+
+#File indicating module is disabled
+code_module_disabled_file=$mod_install_dir/disabled
+
+#Directory containing all images to be displayed
+images_directory=$mod_install_dir/images
+
+#Global variable for storing the entered code
+entered_code=""
+
+#Global variable for storing the confirmed code (when checking input code on installment)
+confirmed_code=""
+
+#Check if all the expected images are there
+check_images()
+{
+    [ -f "$images_directory/initialize_code.raw.gz" ] || exit 13
+    [ -f "$images_directory/initialize_code_confirm.raw.gz" ] || exit 13
+    [ -f "$images_directory/initialize_code_done.raw.gz" ] || exit 13
+    [ -f "$images_directory/initialize_code_mismatch.raw.gz" ] || exit 13
+
+    [ -f "$images_directory/master_code_entered.raw.gz" ] || exit 13
+    
+    [ -f "$images_directory/initialize_master_code.raw.gz" ] || exit 13
+    [ -f "$images_directory/initialize_master_code_confirm.raw.gz" ] || exit 13
+    [ -f "$images_directory/initialize_master_code_done.raw.gz" ] || exit 13
+    [ -f "$images_directory/initialize_master_code_mismatch.raw.gz" ] || exit 13
+    
+    [ -f "$images_directory/initialize_disable_code.raw.gz" ] || exit 13
+    [ -f "$images_directory/initialize_disable_code_confirm.raw.gz" ] || exit 13
+    [ -f "$images_directory/initialize_disable_code_done.raw.gz" ] || exit 13
+    [ -f "$images_directory/initialize_disable_code_mismatch.raw.gz" ] || exit 13
+    [ -f "$images_directory/disabled_code_module.raw.gz" ] || exit 13
+    [ -f "$images_directory/enabled_code_module.raw.gz" ] || exit 13
+    
+    [ -f "$images_directory/enter_code.raw.gz" ] || exit 13
+    [ -f "$images_directory/code_correct.raw.gz" ] || exit 13
+    [ -f "$images_directory/incorrect_2_tries_remain.raw.gz" ] || exit 13
+    [ -f "$images_directory/incorrect_1_try_remain.raw.gz" ] || exit 13
+    [ -f "$images_directory/access_denied.raw.gz" ] || exit 13
+
+    [ -f "$images_directory/change_code_enter_new.raw.gz" ] || exit 13
+    [ -f "$images_directory/change_code_confirm.raw.gz" ] || exit 13
+    [ -f "$images_directory/change_code_done.raw.gz" ] || exit 13
+    [ -f "$images_directory/change_code_mismatch.raw.gz" ] || exit 13
+}
+
+#Record inputted code and return when START is released
+ask_for_code()
+{
+    entered_code=""
+    previous_state=""
+    while [ true ]
+    do
+
+        #Each button press/release packet is 16 bytes, so one press is 16 bytes and so is a release   
+        #IMPORT TO USE THE CORRECT HEXDUMP!
+        packet=$(/usr/bin/hexdump -e '1/1 "%02x"' -v -n 16 $clovercon)
+        button=${packet:20:4}
+        pressed=${packet:24:2}
+         
+        case $button in
+        3001)
+            translated_button="A"
+            ;;
+        3101)
+            translated_button="B"
+            ;;
+        3301)
+            translated_button="X"
+            ;;
+        3401)
+            translated_button="Y"
+            ;;
+        c202)
+            translated_button="U"
+            ;;
+        c302)
+            translated_button="D"
+            ;;
+        c002)
+            translated_button="L"
+            ;;
+        c102)
+            translated_button="R"
+            ;;
+        #Sometimes the left bumper key is 3601, unknown why
+        0200|3601)
+            translated_button="["
+            ;;
+        #Sometimes the right bumper key is 3701, unknown why
+        0500|3701)
+            translated_button="]"
+            ;;
+        #Select button
+        3a01)
+            translated_button="S"
+            ;;
+        3b01)
+            translated_button="START"
+            ;;
+        #Can't happen I guess, but better be safe than sorry
+        *)
+            translated_button="?"
+            ;;
+        esac
+        
+        #Button state pressed is 01 for normal buttons and select/start and F8 for the bumper
+        #buttons, but for all of them 00 is a release
+        if [ "$pressed" == "00" ]
+        then
+            # Code is entered when START is released
+            if [ "$translated_button" == "START" ]
+            then    
+                break
+            fi 
+            translated_press="0"
+        else
+            translated_press="1"
+        fi
+
+        current_state="$translated_button$translated_press"
+        if [ "$translated_button" != "?" -a "$translated_button" != "START" ]
+        then
+            #Prevent lingering button presses (buggy controller driver handling)
+            if [ "$previous_state" != "$current_state" ]
+            then
+                entered_code="$entered_code$current_state"
+            fi
+        fi
+         previous_state=$current_state
+    done
+}
+
+#Initialize the access code (for accessing the system)
+initialize_code()
+{
+    while [ true ]
+    do
+        gunzip -c $images_directory/initialize_code.raw.gz > $output_device
+        ask_for_code
+        first_code=$entered_code
+        gunzip -c $images_directory/initialize_code_confirm.raw.gz > $output_device
+        ask_for_code
+        second_code=$entered_code
+
+        if [ "$first_code" == "$second_code" ]
+        then
+            echo $first_code >  $code_file
+            gunzip -c $images_directory/initialize_code_done.raw.gz > $output_device
+            sleep 1
+            break
+        else
+            gunzip -c $images_directory/initialize_code_mismatch.raw.gz > $output_device
+            sleep 2     
+        fi
+    done     
+}
+
+#Main code input procedure with retry mechanism
+wait_for_code()
+{
+    #This value can't be changed, there are a fixed number of background images that handle
+    #3 retries ;-)
+    retry_counter=3
+    while [ true ]
+    do
+        #Blit the image to the display memory
+        gunzip -c $images_directory/enter_code.raw.gz > $output_device
+        ask_for_code
+        
+        saved_disable_code=`cat $disable_code_file`
+        if [ "$entered_code" == "$saved_disable_code" ]
+        then
+            #Blit the image to the display memory
+            gunzip -c $images_directory/disabled_code_module.raw.gz > $output_device
+            sleep 1
+            rm -f $master_code_file
+            rm -f $code_file
+            touch $code_module_disabled_file
+            exit 0
+        else
+            saved_master_code=`cat $master_code_file`
+            if [ "$entered_code" == "$saved_master_code" ]
+            then
+                #Blit the image to the display memory
+                gunzip -c $images_directory/master_code_entered.raw.gz > $output_device
+                sleep 2
+                initialize_code
+                break
+            else
+                saved_code=`cat $code_file`
+                if [ "$entered_code" == "$saved_code" ]
+                then
+                    #Blit the image to the display memory
+                    gunzip -c $images_directory/code_correct.raw.gz > $output_device
+                    break
+                else
+                    retry_counter=$((retry_counter-1))
+                    case $retry_counter in
+                    2)
+                        #Blit the image to the display memory
+                        gunzip -c $images_directory/incorrect_2_tries_remain.raw.gz > $output_device
+                        sleep 2
+                        ;;
+                    1)
+                        #Blit the image to the display memory
+                        gunzip -c $images_directory/incorrect_1_try_remain.raw.gz > $output_device
+                        sleep 2
+                        ;;
+                    0)
+                        #Blit the image to the display memory
+                        gunzip -c $images_directory/access_denied.raw.gz > $output_device
+                        /usr/bin/hexdump -e '1/1 "%02x"' -v -n 16 /dev/input/event4
+                        poweroff
+                        while [ true ]; do sleep 1; done
+                        exit 0
+                        ;;
+                    *)
+                        #Blit the image to the display memory
+                        gunzip -c $images_directory/access_denied.raw.gz > $output_device                        
+                        /usr/bin/hexdump -e '1/1 "%02x"' -v -n 16 /dev/input/event4
+                        poweroff
+                        while [ true ]; do sleep 1; done
+                        exit 0
+                        ;;
+                    esac                
+                fi
+            fi
+        fi
+    done
+}
+
+#Initialize the disable code (for disabling the module)
+initialize_disable_code()
+{
+    while [ true ]
+    do
+        #Blit the image to the display memory
+        gunzip -c $images_directory/initialize_disable_code.raw.gz > $output_device
+        ask_for_code
+        first_code=$entered_code
+        #Blit the image to the display memory
+        gunzip -c $images_directory/initialize_disable_code_confirm.raw.gz > $output_device
+        ask_for_code
+        second_code=$entered_code
+    
+        if [ "$first_code" == "$second_code" ]
+        then
+            echo $first_code >  $disable_code_file
+            #Blit the image to the display memory
+            gunzip -c $images_directory/initialize_disable_code_done.raw.gz > $output_device
+            sleep 1
+            break
+        else
+            #Blit the image to the display memory
+            gunzip -c $images_directory/initialize_disable_code_mismatch.raw.gz > $output_device
+            sleep 2
+        fi
+    done
+}
+
+#Initialize the master code (for changing the access code)
+initialize_master_code()
+{
+    while [ true ]
+    do
+        #Blit the image to the display memory
+        gunzip -c $images_directory/initialize_master_code.raw.gz > $output_device
+        ask_for_code
+        first_code=$entered_code
+        #Blit the image to the display memory
+        gunzip -c $images_directory/initialize_master_code_confirm.raw.gz > $output_device
+        ask_for_code
+        second_code=$entered_code
+    
+        if [ "$first_code" == "$second_code" ]
+        then
+            echo $first_code >  $master_code_file
+            #Blit the image to the display memory
+            gunzip -c $images_directory/initialize_master_code_done.raw.gz > $output_device
+            sleep 1
+            break
+        else
+            #Blit the image to the display memory
+            gunzip -c $images_directory/initialize_master_code_mismatch.raw.gz > $output_device
+            sleep 2
+        fi
+    done
+}
+
+# Wait while pseudo-file doesn't exists (controller is not connected or is not initialized yet)
+while [ ! -e $clovercon ]; do usleep 100; done
+
+#Only proceed when all images are there
+check_images
+
+#First check if first installment
+if [ ! -f "$is_run_file" ]
+then
+    initialize_disable_code
+    touch $is_run_file
+fi
+
+#Check if module is disabled and check if we want to enable it again
+if [ -f "$code_module_disabled_file" ]
+then
+    check_if_enable=`cat /dev/clovercon1`
+    if [ "$check_if_enable" == "000C" ]
+    then
+        rm -f $code_module_disabled_file
+        gunzip -c $images_directory/enabled_code_module.raw.gz > $output_device
+        sleep 3
+    else
+        exit 0
+    fi
+fi
+
+#Check if master code must be initialized (on first installment of the mod, or when disable code entered)
+if [ ! -f "$master_code_file" ]
+then
+    initialize_master_code
+fi
+
+#Secondly check if the access code must be initialized (on first installment of the mod)
+if [ ! -f "$code_file" ]
+then
+    initialize_code
+else
+    #Master and access code are set, so ask for code to access the system
+    wait_for_code
+fi
