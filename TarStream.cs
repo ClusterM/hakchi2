@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -85,7 +86,7 @@ namespace com.clusterrr.util
             }
         }
 
-        public TarStream(string directory, string rootDirectory = null)
+        public TarStream(string directory, string rootDirectory = null, string[] skipFiles = null)
         {
             if (rootDirectory == null) rootDirectory = directory;
             if (!Directory.Exists(directory))
@@ -97,7 +98,7 @@ namespace com.clusterrr.util
             if (!directory.StartsWith(rootDirectory))
                 throw new Exception("Invarid root directory");
 
-            LoadDirectory(directory);
+            LoadDirectory(directory, skipFiles);
             for (int i = entries.Count - 1; i >= 0; i--) // Checking filenames
             {
                 var name = entries[i].Substring(rootDirectory.Length + 1).Replace(@"\", "/");
@@ -115,7 +116,7 @@ namespace com.clusterrr.util
             this.rootDirectory = rootDirectory;
         }
 
-        private void LoadDirectory(string directory)
+        private void LoadDirectory(string directory, string[] skipFiles)
         {
             if (!Directory.Exists(directory)) return;
             var directories = Directory.GetDirectories(directory);
@@ -126,11 +127,13 @@ namespace com.clusterrr.util
                     dname += @"\";
                 entries.Add(dname);
                 totalSize += 512;
-                LoadDirectory(d);
+                LoadDirectory(d, skipFiles);
             }
             var files = Directory.GetFiles(directory);
             foreach (var f in files)
             {
+                if (skipFiles != null && skipFiles.Contains(Path.GetFileName(f)))
+                    continue;
                 entries.Add(f);
                 var size = new FileInfo(f).Length;
                 if (size % 512 != 0)

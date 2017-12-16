@@ -323,15 +323,9 @@ namespace com.clusterrr.hakchi_gui
             catch (Exception ex)
             {
                 if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
-                {
-                    Debug.WriteLine(ex.InnerException.Message + ex.InnerException.StackTrace);
                     ShowError(ex.InnerException);
-                }
                 else
-                {
-                    Debug.WriteLine(ex.Message + ex.StackTrace);
                     ShowError(ex);
-                }
             }
             finally
             {
@@ -497,13 +491,16 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else throw new Exception("Unknown key, unknown console");
 
-                if (MessageBoxFromThread(this, Resources.MD5Failed + " " + hash + /*"\r\n" + Resources.MD5Failed2 +*/
-                    "\r\n" + Resources.DoYouWantToContinue, Resources.Warning, MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, false)
-                    == DialogResult.No)
+                if (!File.Exists(KernelDumpPath))
                 {
-                    DialogResult = DialogResult.Abort;
-                    return false;
+                    if (MessageBoxFromThread(this, Resources.MD5Failed + " " + hash + /*"\r\n" + Resources.MD5Failed2 +*/
+                        "\r\n" + Resources.DoYouWantToContinue, Resources.Warning, MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, false)
+                        == DialogResult.No)
+                    {
+                        DialogResult = DialogResult.Abort;
+                        return false;
+                    }
                 }
             }
             else
@@ -526,7 +523,6 @@ namespace com.clusterrr.hakchi_gui
             int progress = 0;
             int maxProgress = 115 + (string.IsNullOrEmpty(Mod) ? 0 : 110) +
                 ((hmodsInstall != null && hmodsInstall.Count() > 0) ? 150 : 0);
-            var tempKernelPath = Path.Combine(tempDirectory, "kernel.img");
             var hmods = hmodsInstall;
             hmodsInstall = null;
             if (WaitForFelFromThread() != DialogResult.OK)
@@ -544,10 +540,11 @@ namespace com.clusterrr.hakchi_gui
             byte[] kernel;
             if (!string.IsNullOrEmpty(Mod))
             {
-                if (!DoKernelDump(tempKernelPath, maxProgress, progress))
+                // Just to verify that correct console is selected
+                if (!DoKernelDump(null, maxProgress, progress))
                     return;
                 progress += 80;
-                kernel = CreatePatchedKernel(tempKernelPath);
+                kernel = CreatePatchedKernel();
                 progress += 5;
                 SetProgress(progress, maxProgress);
             }
@@ -883,8 +880,7 @@ namespace com.clusterrr.hakchi_gui
                 Directory.CreateDirectory(tempGamesDirectory);
                 if (Directory.GetDirectories(tempGamesDirectory).Length > 0)
                 {
-                    MessageBox.Show(Resources.FolderNotEmpty);
-                    return;
+                    throw new Exception(Resources.FolderNotEmpty);
                 }
                 Dictionary<string, string> originalGames = new Dictionary<string, string>();
                 var stats = new GamesTreeStats();
@@ -906,7 +902,7 @@ namespace com.clusterrr.hakchi_gui
                             SaveStatesSize / 1024.0 / 1024.0,
                             (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
                     }
-                    
+
                     using (var gamesTar = new TarStream(tempGamesDirectory))
                     {
                         maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 20 + originalGames.Count() * 2);
@@ -1031,20 +1027,11 @@ namespace com.clusterrr.hakchi_gui
         public void UpdateRootfs()
         {
             var modPath = Path.Combine(modsDirectory, Mod);
-            var garbage = Directory.GetFiles(modPath, "p0000_config", SearchOption.AllDirectories);
-            foreach (var file in garbage)
-            {
-                try
-                {
-                    File.Delete(file);
-                }
-                catch { }
-            }
             var rootFsPathes = Directory.GetDirectories(modPath, "rootfs", SearchOption.AllDirectories);
             if (rootFsPathes.Length == 0) return;
             var rootFsPath = rootFsPathes[0];
 
-            using (var updateTar = new TarStream(rootFsPath))
+            using (var updateTar = new TarStream(rootFsPath, null, new string[] { "p0000_config" }))
             {
                 if (updateTar.Length > 0)
                 {
