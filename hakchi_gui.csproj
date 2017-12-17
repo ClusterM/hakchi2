@@ -1715,9 +1715,6 @@
     <Content Include="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\hmods\clovercon.hmod">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="mods\hmods\clovershell.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
