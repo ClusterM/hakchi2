@@ -1979,9 +1979,6 @@
     <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\uistop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S78clvcon">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S82remote-exec">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

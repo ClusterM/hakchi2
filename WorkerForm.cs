@@ -64,6 +64,7 @@ namespace com.clusterrr.hakchi_gui
         //public string UBootDump;
         public string NandDump;
         public string Mod = null;
+        public string zImage = null;
         public string exportDirectory;
         public bool exportGames = false;
         public bool linkRelativeGames = false;
@@ -138,6 +139,7 @@ namespace com.clusterrr.hakchi_gui
             baseDirectoryExternal = Program.BaseDirectoryExternal;
             fes1Path = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "fes1.bin");
             ubootPath = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "uboot.bin");
+            zImage = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "zImage");
 #if DEBUG
             tempDirectory = Path.Combine(baseDirectoryInternal, "temp");
 #else
@@ -489,7 +491,7 @@ namespace com.clusterrr.hakchi_gui
             );
 
             var size = CalcKernelSize(kernel);
-            if (size == 0 || size > Fel.kernel_max_size)
+            if (size == 0 /*|| size > Fel.kernel_max_size*/)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
             if (kernel.Length > size)
             {
@@ -589,7 +591,7 @@ namespace com.clusterrr.hakchi_gui
             else
                 kernel = File.ReadAllBytes(KernelDumpPath);
             var size = CalcKernelSize(kernel);
-            if (size > kernel.Length || size > Fel.kernel_max_size)
+            if (size > kernel.Length /*|| size > Fel.kernel_max_size*/)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
 
             size = (size + Fel.sector_size - 1) / Fel.sector_size;
@@ -1381,6 +1383,10 @@ namespace com.clusterrr.hakchi_gui
                     mods.AppendFormat("{0}.hmod\n", hmod);
                 File.WriteAllText(Path.Combine(tempHmodsDirectory, "uninstall"), mods.ToString());
             }
+
+            // Custom zImage
+            if (!string.IsNullOrEmpty(zImage))
+                File.Copy(zImage, Path.Combine(kernelDirectory, "kernel.img-zImage"), true);
 
             // Building image
             byte[] ramdisk;
