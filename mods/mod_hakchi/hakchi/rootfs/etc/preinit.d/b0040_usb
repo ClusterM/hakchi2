@@ -4,6 +4,7 @@ disableUsbDevice(){
 }
 
 switchToUsbDevice(){
+  echo Switching to USB device mode
   disableUsbDevice
 
   # enable device mode
@@ -14,6 +15,7 @@ switchToUsbDevice(){
 }
 
 switchToUsbHost(){
+  echo Switching to USB host mode
   # make sure the usb gadgets are disabled
   echo 0 > "/sys/devices/virtual/android_usb/android0/enable"
 
