@@ -108,6 +108,7 @@
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.buttonClearImage = new System.Windows.Forms.Button();
             this.labelSize = new System.Windows.Forms.Label();
             this.checkBoxCompressed = new System.Windows.Forms.CheckBox();
             this.buttonShowGameGenieDatabase = new System.Windows.Forms.Button();
@@ -140,6 +141,7 @@
             this.openFileDialogNes = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.downloadBoxArtForSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearBoxArtForSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decompressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -153,6 +155,7 @@
             this.openDumpFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.listViewGames = new System.Windows.Forms.ListView();
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.compressBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
@@ -369,6 +372,7 @@
             this.pagesfoldersTypeToolStripMenuItem,
             this.cloverconHackToolStripMenuItem,
             this.compressGamesToolStripMenuItem,
+            this.compressBoxArtToolStripMenuItem,
             this.useExtendedFontToolStripMenuItem,
             this.epilepsyProtectionToolStripMenuItem,
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem,
@@ -718,6 +722,7 @@
             // groupBoxOptions
             // 
             resources.ApplyResources(this.groupBoxOptions, "groupBoxOptions");
+            this.groupBoxOptions.Controls.Add(this.buttonClearImage);
             this.groupBoxOptions.Controls.Add(this.labelSize);
             this.groupBoxOptions.Controls.Add(this.checkBoxCompressed);
             this.groupBoxOptions.Controls.Add(this.buttonShowGameGenieDatabase);
@@ -742,6 +747,13 @@
             this.groupBoxOptions.Controls.Add(this.labelID);
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
+            // 
+            // buttonClearImage
+            // 
+            resources.ApplyResources(this.buttonClearImage, "buttonClearImage");
+            this.buttonClearImage.Name = "buttonClearImage";
+            this.buttonClearImage.UseVisualStyleBackColor = true;
+            this.buttonClearImage.Click += new System.EventHandler(this.buttonClearImage_Click);
             // 
             // labelSize
             // 
@@ -815,7 +827,6 @@
             resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
-            this.pictureBoxArt.Click += new System.EventHandler(this.pictureBoxArt_Click);
             // 
             // label4
             // 
@@ -939,6 +950,7 @@
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.downloadBoxArtForSelectedGamesToolStripMenuItem,
+            this.clearBoxArtForSelectedGamesToolStripMenuItem,
             this.compressSelectedGamesToolStripMenuItem,
             this.decompressSelectedGamesToolStripMenuItem,
             this.deleteSelectedGamesToolStripMenuItem});
@@ -950,6 +962,12 @@
             this.downloadBoxArtForSelectedGamesToolStripMenuItem.Name = "downloadBoxArtForSelectedGamesToolStripMenuItem";
             resources.ApplyResources(this.downloadBoxArtForSelectedGamesToolStripMenuItem, "downloadBoxArtForSelectedGamesToolStripMenuItem");
             this.downloadBoxArtForSelectedGamesToolStripMenuItem.Click += new System.EventHandler(this.downloadBoxArtForSelectedGamesToolStripMenuItem_Click);
+            // 
+            // clearBoxArtForSelectedGamesToolStripMenuItem
+            // 
+            this.clearBoxArtForSelectedGamesToolStripMenuItem.Name = "clearBoxArtForSelectedGamesToolStripMenuItem";
+            resources.ApplyResources(this.clearBoxArtForSelectedGamesToolStripMenuItem, "clearBoxArtForSelectedGamesToolStripMenuItem");
+            this.clearBoxArtForSelectedGamesToolStripMenuItem.Click += new System.EventHandler(this.clearBoxArtForSelectedGamesToolStripMenuItem_Click);
             // 
             // compressSelectedGamesToolStripMenuItem
             // 
@@ -1036,6 +1054,15 @@
             // gameName
             // 
             resources.ApplyResources(this.gameName, "gameName");
+            // 
+            // compressBoxArtToolStripMenuItem
+            // 
+            this.compressBoxArtToolStripMenuItem.Checked = true;
+            this.compressBoxArtToolStripMenuItem.CheckOnClick = true;
+            this.compressBoxArtToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.compressBoxArtToolStripMenuItem.Name = "compressBoxArtToolStripMenuItem";
+            resources.ApplyResources(this.compressBoxArtToolStripMenuItem, "compressBoxArtToolStripMenuItem");
+            this.compressBoxArtToolStripMenuItem.Click += new System.EventHandler(this.compressBoxArtToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1200,6 +1227,9 @@
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dumpNANDCPartitionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flashNANDCPartitionToolStripMenuItem;
+        private System.Windows.Forms.Button buttonClearImage;
+        private System.Windows.Forms.ToolStripMenuItem clearBoxArtForSelectedGamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem compressBoxArtToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog exportFolderDialog;
     }
 }

@@ -575,9 +575,15 @@ namespace com.clusterrr.hakchi_gui
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesMiniApplication)) return;
             var game = (selected as NesMiniApplication);
-            game.Image = NesMiniApplication.LoadBitmap(fileName);
+            game.Image = fileName == null ? null : NesMiniApplication.LoadBitmap(fileName);
             ShowSelected();
             timerCalculateGames.Enabled = true;
+        }
+
+
+        private void buttonClearImage_Click(object sender, EventArgs e)
+        {
+            SetImageForSelectedGame(null);
         }
 
         private void buttonBrowseImage_Click(object sender, EventArgs e)
@@ -1312,6 +1318,7 @@ namespace com.clusterrr.hakchi_gui
             useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack && useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled;
             upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
             compressGamesToolStripMenuItem.Checked = ConfigIni.Compress;
+            compressBoxArtToolStripMenuItem.Checked = ConfigIni.CompressBoxArt;
 
             // Folders mods
             disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
@@ -1523,6 +1530,11 @@ namespace com.clusterrr.hakchi_gui
         private void compressGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Compress = compressGamesToolStripMenuItem.Checked;
+        }
+
+        private void compressBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.CompressBoxArt = compressBoxArtToolStripMenuItem.Checked;
         }
 
         private void buttonShowGameGenieDatabase_Click(object sender, EventArgs e)
@@ -1885,11 +1897,20 @@ namespace com.clusterrr.hakchi_gui
             DeleteSelectedGames();
         }
 
+        private void clearBoxArtForSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (GroupTaskWithSelected(WorkerForm.Tasks.ClearCovers))
+                MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ShowSelected();
+            timerCalculateGames.Enabled = true;
+        }
+
         private void listViewGames_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
                 downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                    clearBoxArtForSelectedGamesToolStripMenuItem.Enabled =
                     compressSelectedGamesToolStripMenuItem.Enabled =
                     decompressSelectedGamesToolStripMenuItem.Enabled =
                     deleteSelectedGamesToolStripMenuItem.Enabled =
@@ -1902,6 +1923,11 @@ namespace com.clusterrr.hakchi_gui
         {
             if (e.KeyCode == Keys.Delete && ((listViewGames.SelectedItems.Count > 1) || (listViewGames.SelectedItems.Count == 1 && listViewGames.SelectedItems[0].Tag is NesMiniApplication)))
                 DeleteSelectedGames();
+            else if( e.KeyCode == Keys.A && e.Modifiers == Keys.Control )
+            {
+                foreach (ListViewItem item in listViewGames.Items)
+                    item.Selected = item.Tag is NesMiniApplication;
+            }
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -1913,11 +1939,6 @@ namespace com.clusterrr.hakchi_gui
                 new SnesPresetEditor(selected as SnesGame).ShowDialog();
                 ShowSelected();
             }
-        }
-
-        private void pictureBoxArt_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

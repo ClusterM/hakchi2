@@ -167,5 +167,15 @@ namespace com.clusterrr.hakchi_gui
                     }
             return null;
         }
+
+        public static AppInfo GetAppByClass(Type cls)
+        {
+            foreach (var app in ApplicationTypes)
+            {
+                if (cls == app.Class)
+                    return app;
+            }
+            return null;
+        }
     }
 }

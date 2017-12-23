@@ -394,7 +394,14 @@ namespace com.clusterrr.hakchi_gui
         {
             set
             {
-                SetImage(value);
+                if (value == null)
+                {
+                    AppTypeCollection.AppInfo appinfo = AppTypeCollection.GetAppByClass(this.GetType());
+                    Image img = appinfo == null ? DefaultCover : appinfo.DefaultCover;
+                    SetImage(img, false);
+                }
+                else
+                    SetImage(value, ConfigIni.CompressBoxArt);
             }
             get
             {
@@ -447,6 +454,49 @@ namespace com.clusterrr.hakchi_gui
                                 new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
             gr.Flush();
             outImage.Save(IconPath, ImageFormat.Png);
+
+            // compression with pngquant
+            if (EightBitCompression)
+            {
+                // get pre-compression size
+                var fi = new FileInfo(IconPath);
+                var beforeLength = fi.Length;
+
+                // create hidden process for pngquant
+                var process = new Process();
+                var toolsDirectory = System.IO.Path.Combine(Program.BaseDirectoryExternal, "tools");
+                process.StartInfo.FileName = Path.Combine(toolsDirectory, "pngquant.exe");
+                process.StartInfo.Arguments = string.Format("--strip --speed 1 --skip-if-larger --force --output \"{0}\" \"{0}\"", IconPath);
+                process.StartInfo.WorkingDirectory = Program.BaseDirectoryExternal;
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.CreateNoWindow = true;
+                process.StartInfo.StandardOutputEncoding = System.Text.Encoding.GetEncoding(866);
+                process.StartInfo.RedirectStandardInput = true;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.RedirectStandardError = true;
+                Debug.WriteLine("Compressing cover art file " + System.IO.Path.GetFileName (IconPath) + "... ");
+                try
+                {
+                    process.Start();
+                    string outputStr = process.StandardOutput.ReadToEnd();
+                    string errorStr = process.StandardError.ReadToEnd();
+                    process.WaitForExit();
+                    Debug.WriteLineIf(outputStr.Length > 0 && outputStr.Length < 300, "Output:\r\n" + outputStr);
+                    Debug.WriteLineIf(errorStr.Length > 0, "Errors:\r\n" + errorStr);
+
+                    // post-compression size
+                    var fi2 = new FileInfo(IconPath);
+                    var afterLength = fi2.Length;
+
+                    Debug.WriteLine(string.Format("Done! {0} bytes before => {1} bytes after, {2}% of original size. Exit code: {3}", beforeLength, afterLength, Math.Round((float)afterLength / (float)beforeLength * 100), process.ExitCode));
+                }
+                catch
+                {
+                    Debug.WriteLine("Cannot compress image! Is pngquant.exe present in tools folder?");
+                }
+            }
+
             gr = Graphics.FromImage(outImageSmall);
 
             // Better resizing quality (more blur like original files)

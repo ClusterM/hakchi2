@@ -721,6 +721,9 @@
   <data name="TooManyPerFolder" xml:space="preserve">
     <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
+  <data name="ClearingCovers" xml:space="preserve">
+    <value>Clearing {0} box art...</value>
+  </data>
   <data name="FolderNotEmpty" xml:space="preserve">
     <value>The selected folder isn't empty</value>
   </data>

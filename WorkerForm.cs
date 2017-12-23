@@ -20,7 +20,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class WorkerForm : Form
     {
-        public enum Tasks { DumpKernel, FlashKernel, DumpNand, FlashNand, DumpNandB, DumpNandC, FlashNandC, Memboot, UploadGames, DownloadCovers, AddGames, CompressGames, DecompressGames, DeleteGames };
+        public enum Tasks { DumpKernel, FlashKernel, DumpNand, FlashNand, DumpNandB, DumpNandC, FlashNandC, Memboot, UploadGames, DownloadCovers, AddGames, CompressGames, DecompressGames, DeleteGames, ClearCovers };
         public Tasks Task;
         //public string UBootDump;
         public static string KernelDumpPath
@@ -316,6 +316,9 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case Tasks.DeleteGames:
                         DeleteGames();
+                        break;
+                    case Tasks.ClearCovers:
+                        ClearCovers();
                         break;
                 }
                 if (DialogResult == DialogResult.None)
@@ -1624,6 +1627,18 @@ namespace com.clusterrr.hakchi_gui
             {
                 SetStatus(string.Format(Resources.Removing, game.Name));
                 Directory.Delete(game.GamePath, true);
+                SetProgress(++i, Games.Count);
+            }
+        }
+
+        void ClearCovers()
+        {
+            if (Games == null) return;
+            int i = 0;
+            foreach(NesMiniApplication game in Games)
+            {
+                SetStatus(string.Format(Resources.ClearingCovers, game.Name));
+                game.Image = null;
                 SetProgress(++i, Games.Count);
             }
         }
