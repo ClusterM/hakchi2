@@ -24,8 +24,8 @@ source_base(){
     source_parts "$1/b????_*"
     return 0
   fi
-  if [ -d "$preinit.d" ]; then
-    source_parts "$preinit.d/b????_*"
+  if [ -d "$preinitpath" ]; then
+    source_parts "$preinitpath/b????_*"
     return 0
   fi
   if [ -d "$rootfs/etc/preinit.d" ]; then
@@ -40,20 +40,20 @@ source_base(){
 }
 
 source_config(){
-  [ -f "$preinit.d/p0000_config" ] && source "$preinit.d/p0000_config"
+  [ -f "$preinitpath/p0000_config" ] && source "$preinitpath/p0000_config"
 }
 
 save_config(){
-  [ -f "$preinit.d/pffff_config" ] && source "$preinit.d/pffff_config"
+  [ -f "$preinitpath/pffff_config" ] && source "$preinitpath/pffff_config"
 }
 
 script_init(){
   source_base
   source_config
-  softwareCheck
 }
 
 preinit(){
+  [ -z "$gamepath" ] && [ -d "/newroot" ] && /bin/busybox --install -s /bin/ && cp -a "$rootfs/bin/rsync" /bin/
   source_base
-  source_parts "$preinit.d/p????_*"
+  source_parts "$preinitpath/p????_*"
 }

@@ -7,8 +7,7 @@ printSoftwareInfo
 
 firmware="$1"
 if [ "$firmware" != "_nand_" ]; then
-  firmware="$(echo "$firmware" |  sed -re 's/^\/usr\/share\/games\/(nes\/kachikachi\/)?/\/var\/games\//')"
-  firmware="$(readlink -f "$firmware")"
+  firmware="$(readlink -f "$1")"
   checkFirmware "$firmware" || exit 1
 fi
 

@@ -16,22 +16,20 @@ if [ "$extension" == "7z" ]; then
   mkdir -p "$tmppath"
   cd "$tmppath"
   tiny7zx x "$filename"
-  filename="$(ls|head -n1)"
-  mv "$filename" "rom.${filename##*.}"
-  filename="$tmppath/rom.${filename##*.}"
+  filename="$tmppath/$(ls)"
+  filename_str=${filename// /_}
+  mv "$filename" "$filename_str"
+  filename=$filename_str
 fi
 if [ "$extension" == "gz" ]; then
   rm -rf "$tmppath"
   mkdir -p "$tmppath"
-  filebase="$(basename "$filebase" ".gz")"
-  extension="${filebase##*.}"
-  filename="$tmppath/rom.$extension"
-  gunzip -c > "$filename"
+  gunzip -c > "$tmppath/$filebase"
+  filename="$tmppath/$filebase"
 fi
 shift
 
 args="$filename $@ $cfg_nes_extra_args"
 [ "$cfg_disable_armet" == "y" ] && args="$(echo $args | sed 's/--enable-armet//g')"
 
-[ -f "/bin/clover-kachikachi" ] && exec /bin/clover-kachikachi $args
-[ -f "/usr/bin/clover-kachikachi" ] && exec /usr/bin/clover-kachikachi $args
+exec /usr/bin/clover-kachikachi $args

@@ -1,8 +1,3 @@
-[ "$cfg_firmware" == "_nand_" ] || loadFirmware
+[ "$cfg_firmware" == "_nand_" ] || load_firmware
 mod_repair_etc
-
-softwareCheck
-checkUsbGamepath
-
-# temporary
-[ "$(uname -n)" == "madmonkey" ] && overmount "/lib/modules"
+setGamepath

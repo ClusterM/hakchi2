@@ -1,36 +1,38 @@
-#!/bin/sh
-
 init(){
-  echo
-  export modname="hakchi"
-  export modpath="/$modname"
-  export mountpoint="/newroot"
-  export temppath="/tmp"
+echo
+/bin/busybox --install -s /bin/
 
-  /bin/busybox --install -s /bin/
-  mkdir -p "$temppath"
-  for dir in etc lib usr; do
-    [ -e "/$dir" ] || ln -s "$mountpoint/$dir" "/$dir"
-  done
-  export PATH="/sbin:$modpath/rootfs/bin:/bin:$mountpoint/sbin:/usr/sbin:$mountpoint/bin:/usr/bin"
+local modname="hakchi"
+local modpath="/$modname"
+local mountpoint="/newroot"
+local installpath=""
+local firmwarepath=""
+local rootfs=""
+local squashfs=""
+local preinit=""
+local preinitpath=""
+local sftype=""
+local sfregion=""
+local gamepath=""
+local temppath="/tmp"
 
-  source "$modpath/config"
-  source "$modpath/script/base"
+mkdir -p "$temppath"
 
-  if [ -d "$modpath/transfer" ]; then
-    export cf_usb='n'
-    source "$modpath/script/transfer"
-  else
-    mount_base
-  fi
+source "$modpath/config"
+source "$modpath/script/base"
 
-  if [ -f "$preinit" ]; then
-    PATH="$rootfs/sbin:$rootfs/usr/sbin:$rootfs/bin:$rootfs/usr/bin:$PATH"
-    "$rootfs/bin/busybox" sh -c "source "$preinit.d/b0000_defines" && source "$preinit" && preinit"
-  else
-    umount_base
-  fi
+if [ -d "$modpath/transfer" ]; then
+  source "$modpath/script/transfer"
+else
+  mount_base
+fi
+
+if [ -f "$preinit" ]; then
+  source "$preinit"
+  preinit
+else
+  umount_base
+fi
 }
 
 init
-echo
