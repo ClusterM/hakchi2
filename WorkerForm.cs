@@ -453,7 +453,7 @@ namespace com.clusterrr.hakchi_gui
             );
 
             var size = CalcKernelSize(kernel);
-            if (size == 0 /*|| size > Fel.kernel_max_size*/)
+            if (size == 0 || size > Fel.kernel_max_size)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
             if (kernel.Length > size)
             {
@@ -553,7 +553,7 @@ namespace com.clusterrr.hakchi_gui
             else
                 kernel = File.ReadAllBytes(KernelDumpPath);
             var size = CalcKernelSize(kernel);
-            if (size > kernel.Length /*|| size > Fel.kernel_max_size*/)
+            if (size > kernel.Length || size > Fel.kernel_max_size)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
 
             size = (size + Fel.sector_size - 1) / Fel.sector_size;
@@ -1197,9 +1197,31 @@ namespace com.clusterrr.hakchi_gui
                 File.Copy(kernelPath ?? KernelDumpPath, tempKernelDump, true);
             if (!ExecuteTool("unpackbootimg.exe", string.Format("-i \"{0}\" -o \"{1}\"", tempKernelDump, kernelDirectory)))
                 throw new Exception("Can't unpack kernel image");
-            if (!ExecuteTool("lzop.exe", string.Format("-d \"{0}\" -o \"{1}\"",
-                Path.Combine(kernelDirectory, "kernel.img-ramdisk.gz"), initramfs_cpio)))
-                throw new Exception("Can't unpack ramdisk");
+
+            string ramdiskPath = Path.Combine(kernelDirectory, "kernel.img-ramdisk.gz");
+            string ramdiskXZPath = Path.Combine(kernelDirectory, "kernel.img-ramdisk.xz");
+            byte[] ramdiskSignature = new byte[4];
+            using (BinaryReader reader = new BinaryReader(new FileStream(ramdiskPath, FileMode.Open)))
+            {
+                reader.Read(ramdiskSignature, 0, 4);
+            }
+
+            if (ramdiskSignature.SequenceEqual(new byte[] { 0xfd, 0x37, 0x7a, 0x58 }))
+            {
+                // file has to have the .xz extension or it will refuse decompression
+                File.Move(ramdiskPath, ramdiskXZPath);
+                if (!ExecuteTool("xz.exe", string.Format("-dk \"{0}\"", ramdiskXZPath)))
+                    throw new Exception("Can't unpack ramdisk");
+                File.Move(ramdiskXZPath, ramdiskPath);
+                File.Move(Path.Combine(kernelDirectory, "kernel.img-ramdisk"), initramfs_cpio);
+            }
+            else
+            {
+                if (!ExecuteTool("lzop.exe", string.Format("-d \"{0}\" -o \"{1}\"", ramdiskPath, initramfs_cpio)))
+                    throw new Exception("Can't unpack ramdisk");
+            }
+            
+
             ExecuteTool("cpio.exe", string.Format("-imd --no-preserve-owner --quiet -I \"{0}\"",
                @"..\initramfs.cpio"), ramfsDirectory);
             if (!File.Exists(Path.Combine(ramfsDirectory, "init"))) // cpio.exe fails on Windows XP for some reason. But working!
@@ -1269,9 +1291,19 @@ namespace com.clusterrr.hakchi_gui
             var argKerneloff = File.ReadAllText(Path.Combine(kernelDirectory, "kernel.img-kerneloff")).Trim();
             var argRamdiscoff = File.ReadAllText(Path.Combine(kernelDirectory, "kernel.img-ramdiskoff")).Trim();
             var argTagsoff = File.ReadAllText(Path.Combine(kernelDirectory, "kernel.img-tagsoff")).Trim();
-            if (!ExecuteTool("lzop.exe", string.Format("--best -f -o \"{0}\" \"{1}\"",
+            if (!string.IsNullOrEmpty(zImage))
+            {
+                if (!ExecuteTool("xz.exe", string.Format("-z -k --check=crc32 --lzma2=dict=1MiB \"{0}\"", initramfs_cpioPatched)))
+                    throw new Exception("Can't repack ramdisk 2");
+                File.Move($"{initramfs_cpioPatched}.xz", ramdiskPatched);
+            }
+            else
+            {
+                if (!ExecuteTool("lzop.exe", string.Format("--best -f -o \"{0}\" \"{1}\"",
                 ramdiskPatched, initramfs_cpioPatched)))
-                throw new Exception("Can't repack ramdisk 2");
+                    throw new Exception("Can't repack ramdisk 2");
+            }
+                
             if (!ExecuteTool("mkbootimg.exe", string.Format("--kernel \"{0}\" --ramdisk \"{1}\" --cmdline \"{2}\" --board \"{3}\" --base \"{4}\" --pagesize \"{5}\" --kernel_offset \"{6}\" --ramdisk_offset \"{7}\" --tags_offset \"{8}\" -o \"{9}\"",
                 Path.Combine(kernelDirectory, "kernel.img-zImage"), ramdiskPatched, argCmdline, argBoard, argBase, argPagesize, argKerneloff, argRamdiscoff, argTagsoff, kernelPatched)))
                 throw new Exception("Can't rebuild kernel");
