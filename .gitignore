@@ -2,6 +2,7 @@
 driver/source/nesmini_driver/Release/
 driver/usb_driver/
 obj/
+.vs/
 *.csproj.user
 *.pfx
 Properties/Resources*.cs

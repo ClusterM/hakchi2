@@ -81,10 +81,10 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>1D05715BF83320949FC1BAC8462308051A0C0F04</ManifestCertificateThumbprint>
@@ -92,6 +92,7 @@
   <PropertyGroup>
     <ManifestKeyFile>cluster_cert.pfx</ManifestKeyFile>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup />
@@ -143,17 +144,16 @@
     <Compile Include="GameGenie\GameGenieFormatException.cs" />
     <Compile Include="GameGenie\GameGenieNotFoundException.cs" />
     <Compile Include="GameGenie\GameGeniePatcherSnes.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SelectConsoleDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SelectConsoleDialog.Designer.cs">
       <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FileBrowserForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FileBrowserForm.Designer.cs">
-      <DependentUpon>FileBrowserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FtpServer\NesMiniFileSystemHandler.cs" />
     <Compile Include="FtpServer\NesMiniAuthHandler.cs" />
@@ -332,11 +332,6 @@
     <Compile Include="LibWinUsb\WinUsb\WinUsbDevice.cs" />
     <Compile Include="LibWinUsb\WinUsb\WinUsbRegistry.cs" />
     <Compile Include="MessageBoxManager.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="SaveStateManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -655,9 +650,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectConsoleDialog.zh-TW.resx">
       <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FileBrowserForm.resx">
-      <DependentUpon>FileBrowserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FoldersManagerForm.bg-BG.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
@@ -980,7 +972,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.ru-RU.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.sk-SK.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -1017,8 +1008,8 @@
     <EmbeddedResource Include="Properties\Resources.pt-PT.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.ru-RU.resx" />
     <EmbeddedResource Include="Properties\Resources.sk-SK.resx" />
@@ -1817,7 +1808,6 @@
     <Content Include="user_mods\remove_thumbnails.hmod\uninstall">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="cluster_cert.pfx" />
     <Content Include="mods\hmods\tiny7zx-dynamic.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2043,310 +2033,310 @@
     <Content Include="mods\mod_hakchi\sbin\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HAAAJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HAAAJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HAACJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HAACJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HAADJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HAADJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HAAEJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HAAEJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HAAHJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HAAHJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HAAMJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HAAMJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HAANJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HAANJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HAAPJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HAAPJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HAAQJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HAAQJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HAARJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HAARJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HAASJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HAASJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HAAUJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HAAUJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HAAWJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HAAWJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HAAXJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HAAXJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HABBJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HABBJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HABCJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HABCJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HABLJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HABLJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HABMJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HABMJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HABNJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HABNJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HABQJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HABQJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HABRJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HABRJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HABVJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HABVJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HACAJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HACAJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HACBJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HACBJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HACCJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HACCJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HACEJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HACEJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HACHJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HACHJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HACJJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HACJJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HACLJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HACLJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-HACPJ.desktop">
+    <Content Include="desktop_entries\CLV-P-HACPJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAAAE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAAAE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAACE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAACE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAADE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAADE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAAEE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAAEE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAAFE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAAFE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAAHE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAAHE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAANE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAANE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAAPE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAAPE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAAQE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAAQE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAARE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAARE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAASE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAASE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAATE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAATE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAAUE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAAUE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAAVE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAAVE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAAWE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAAWE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAAXE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAAXE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NAAZE.desktop">
+    <Content Include="desktop_entries\CLV-P-NAAZE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NABBE.desktop">
+    <Content Include="desktop_entries\CLV-P-NABBE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NABCE.desktop">
+    <Content Include="desktop_entries\CLV-P-NABCE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NABJE.desktop">
+    <Content Include="desktop_entries\CLV-P-NABJE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NABKE.desktop">
+    <Content Include="desktop_entries\CLV-P-NABKE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NABME.desktop">
+    <Content Include="desktop_entries\CLV-P-NABME.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NABNE.desktop">
+    <Content Include="desktop_entries\CLV-P-NABNE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NABQE.desktop">
+    <Content Include="desktop_entries\CLV-P-NABQE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NABRE.desktop">
+    <Content Include="desktop_entries\CLV-P-NABRE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NABVE.desktop">
+    <Content Include="desktop_entries\CLV-P-NABVE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NABXE.desktop">
+    <Content Include="desktop_entries\CLV-P-NABXE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NACBE.desktop">
+    <Content Include="desktop_entries\CLV-P-NACBE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NACDE.desktop">
+    <Content Include="desktop_entries\CLV-P-NACDE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-NACHE.desktop">
+    <Content Include="desktop_entries\CLV-P-NACHE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SAAAE.desktop">
+    <Content Include="desktop_entries\CLV-P-SAAAE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SAABE.desktop">
+    <Content Include="desktop_entries\CLV-P-SAABE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SAAEE.desktop">
+    <Content Include="desktop_entries\CLV-P-SAAEE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SAAFE.desktop">
+    <Content Include="desktop_entries\CLV-P-SAAFE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SAAHE.desktop">
+    <Content Include="desktop_entries\CLV-P-SAAHE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SAAJE.desktop">
+    <Content Include="desktop_entries\CLV-P-SAAJE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SAAKE.desktop">
+    <Content Include="desktop_entries\CLV-P-SAAKE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SAALE.desktop">
+    <Content Include="desktop_entries\CLV-P-SAALE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SAAQE.desktop">
+    <Content Include="desktop_entries\CLV-P-SAAQE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SAAXE.desktop">
+    <Content Include="desktop_entries\CLV-P-SAAXE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SABCE.desktop">
+    <Content Include="desktop_entries\CLV-P-SABCE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SABDE.desktop">
+    <Content Include="desktop_entries\CLV-P-SABDE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SABHE.desktop">
+    <Content Include="desktop_entries\CLV-P-SABHE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SABQE.desktop">
+    <Content Include="desktop_entries\CLV-P-SABQE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SABRE.desktop">
+    <Content Include="desktop_entries\CLV-P-SABRE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SABTE.desktop">
+    <Content Include="desktop_entries\CLV-P-SABTE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SACBE.desktop">
+    <Content Include="desktop_entries\CLV-P-SACBE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SACCE.desktop">
+    <Content Include="desktop_entries\CLV-P-SACCE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SADGE.desktop">
+    <Content Include="desktop_entries\CLV-P-SADGE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SADJE.desktop">
+    <Content Include="desktop_entries\CLV-P-SADJE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-SADKE.desktop">
+    <Content Include="desktop_entries\CLV-P-SADKE.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VAAAJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VAAAJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VAABJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VAABJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VAAEJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VAAEJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VAAFJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VAAFJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VAAGJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VAAGJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VAAHJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VAAHJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VAALJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VAALJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VAAQJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VAAQJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VABBJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VABBJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VABCJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VABCJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VABDJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VABDJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VABQJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VABQJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VABRJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VABRJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VABTJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VABTJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VACCJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VACCJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VACDJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VACDJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VADFJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VADFJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VADGJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VADGJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VADJJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VADJJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VADKJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VADKJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DesktopEntries\CLV-P-VADZJ.desktop">
+    <Content Include="desktop_entries\CLV-P-VADZJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="mods\mod_hakchi\bin\usleep">
@@ -2761,38 +2751,36 @@
   <ItemGroup>
     <PublishFile Include="data\GameGenieDB.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\nescarts.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\snescarts.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>echo. &gt; NUL 2&gt; "$(ProjectDir)commit.txt"

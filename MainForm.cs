@@ -38,123 +38,13 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
-        public const int MaxGamesPerFolder = 50;
+        public static ConsoleType? DetectedConnectedConsole = null;
         public static IEnumerable<string> InternalMods;
+        public static bool? DownloadCover;
+        public const int MaxGamesPerFolder = 50;
+
         public static ClovershellConnection Clovershell;
         mooftpserv.Server ftpServer;
-        public static bool? DownloadCover;
-
-        static NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
-            new NesDefaultGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros.", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAACE",  Name = "Super Mario Bros. 3", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAADE",  Name = "Super Mario Bros. 2",Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAAEE",  Name = "Donkey Kong", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAAFE",  Name = "Donkey Kong Jr." , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAAHE",  Name = "Excitebike", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAANE",  Name = "The Legend of Zelda", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAAPE",  Name = "Kirby's Adventure", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAAQE",  Name = "Metroid", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAARE",  Name = "Balloon Fight", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAASE",  Name = "Zelda II - The Adventure of Link", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAATE",  Name = "Punch-Out!! Featuring Mr. Dream", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAAUE",  Name = "Ice Climber", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAAVE",  Name = "Kid Icarus", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAAWE",  Name = "Mario Bros.", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAAXE",  Name = "Dr. MARIO", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NAAZE",  Name = "StarTropics", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NABBE",  Name = "MEGA MAN™ 2", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NABCE",  Name = "GHOSTS'N GOBLINS™", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NABJE",  Name = "FINAL FANTASY®", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NABKE",  Name = "BUBBLE BOBBLE" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NABME",  Name = "PAC-MAN", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NABNE",  Name = "Galaga", Size =  25000 },
-            new NesDefaultGame { Code = "CLV-P-NABQE",  Name = "Castlevania", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NABRE",  Name = "GRADIUS", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NABVE",  Name = "Super C", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NABXE",  Name = "Castlevania II Simon's Quest", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-NACBE",  Name = "NINJA GAIDEN", Size =25000 },
-            new NesDefaultGame { Code = "CLV-P-NACDE",  Name = "TECMO BOWL", Size =25000 },
-            new NesDefaultGame { Code = "CLV-P-NACHE",  Name = "DOUBLE DRAGON II: The Revenge", Size = 25000 }
-        };
-        static NesDefaultGame[] defaultFamicomGames = new NesDefaultGame[] {
-            new NesDefaultGame { Code = "CLV-P-HAAAJ",  Name = "スーパーマリオブラザーズ", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HAACJ",  Name = "スーパーマリオブラザーズ３", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HAADJ",  Name = "スーパーマリオＵＳＡ", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HAAEJ",  Name = "ドンキーコング" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HAAHJ",  Name = "エキサイトバイク" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HAAMJ",  Name = "マリオオープンゴルフ" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HAANJ",  Name = "ゼルダの伝説", Size = 25000  },
-            new NesDefaultGame { Code = "CLV-P-HAAPJ",  Name = "星のカービィ　夢の泉の物語" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HAAQJ",  Name = "メトロイド" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HAARJ",  Name = "バルーンファイト" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HAASJ",  Name = "リンクの冒険" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HAAUJ",  Name = "アイスクライマー" , Size = 25000    },
-            new NesDefaultGame { Code = "CLV-P-HAAWJ",  Name = "マリオブラザーズ" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HAAXJ",  Name = "ドクターマリオ" , Size = 25000   },
-            new NesDefaultGame { Code = "CLV-P-HABBJ",  Name = "ロックマン®2 Dr.ワイリーの謎" , Size = 25000  },
-            new NesDefaultGame { Code = "CLV-P-HABCJ",  Name = "魔界村®", Size = 25000    },
-            new NesDefaultGame { Code = "CLV-P-HABLJ",  Name = "ファイナルファンタジー®III" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HABMJ",  Name = "パックマン" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HABNJ",  Name = "ギャラガ", Size =  25000 },
-            new NesDefaultGame { Code = "CLV-P-HABQJ",  Name = "悪魔城ドラキュラ" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HABRJ",  Name = "グラディウス", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HABVJ",  Name = "スーパー魂斗羅" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HACAJ",  Name = "イー・アル・カンフー", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HACBJ",  Name = "忍者龍剣伝" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HACCJ",  Name = "ソロモンの鍵" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HACEJ",  Name = "つっぱり大相撲", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HACHJ",  Name = "ダブルドラゴンⅡ The Revenge", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HACJJ",  Name = "ダウンタウン熱血物語" , Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HACLJ",  Name = "ダウンタウン熱血行進曲 それゆけ大運動会", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-HACPJ",  Name = "アトランチスの謎", Size = 25000 }
-        };
-        static NesDefaultGame[] defaultSnesGames = new NesDefaultGame[] {
-            new NesDefaultGame { Code = "CLV-P-SAAAE",  Name = "Super Mario World", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SAABE",  Name = "F-ZERO", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SAAEE",  Name = "The Legend of Zelda: A Link to the Past", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SAAFE",  Name = "Super Mario Kart", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SAAHE",  Name = "Super Metroid", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SAAJE",  Name = "EarthBound", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SAAKE",  Name = "Kirby's Dream Course", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SAALE",  Name = "Donkey Kong Country", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SAAQE",  Name = "Kirby Super Star", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SAAXE",  Name = "Super Punch-Out!!", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SABCE",  Name = "Mega Man X", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SABDE",  Name = "Super Ghouls'n Ghosts", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SABHE",  Name = "Street Fighter II Turbo: Hyper Fighting", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SABQE",  Name = "Super Mario RPG: Legend of the Seven Stars", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SABRE",  Name = "Secret of Mana", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SABTE",  Name = "Final Fantasy III", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SACBE",  Name = "Super Castlevania IV", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SACCE",  Name = "CONTRA III THE ALIEN WARS", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SADGE",  Name = "Star Fox", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SADJE",  Name = "Yoshi's Island", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-SADKE",  Name = "Star Fox 2", Size = 25000 }
-        };
-        static NesDefaultGame[] defaultSuperFamicomGames = new NesDefaultGame[]
-        {
-            new NesDefaultGame { Code = "CLV-P-VAAAJ",  Name = "スーパーマリオワールド", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VAABJ",  Name = "F-ZERO", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VAAEJ",  Name = "ゼルダの伝説 神々のトライフォース", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VAAFJ",  Name = "スーパーマリオカート", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VAAGJ",  Name = "ファイアーエムブレム 紋章の謎", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VAAHJ",  Name = "スーパーメトロイド", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VAALJ",  Name = "スーパードンキーコング", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VAAQJ",  Name = "星のカービィ スーパーデラックス", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VABBJ",  Name = "スーパーストリートファイターⅡ ザ ニューチャレンジャーズ", Size = 24576 },
-            new NesDefaultGame { Code = "CLV-P-VABCJ",  Name = "ロックマンX", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VABDJ",  Name = "超魔界村", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VABQJ",  Name = "スーパーマリオRPG", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VABRJ",  Name = "聖剣伝説2", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VABTJ",  Name = "ファイナルファンタジーVI", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VACCJ",  Name = "魂斗羅スピリッツ", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VACDJ",  Name = "がんばれゴエモン ゆき姫救出絵巻", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VADFJ",  Name = "スーパーフォーメーションサッカー", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VADGJ",  Name = "スターフォックス", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VADJJ",  Name = "スーパーマリオ ヨッシーアイランド", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VADKJ",  Name = "スターフォックス2", Size = 25000 },
-            new NesDefaultGame { Code = "CLV-P-VADZJ",  Name = "パネルでポン", Size = 25000 },
-        };
 
         public MainForm()
         {
@@ -162,6 +52,7 @@ namespace com.clusterrr.hakchi_gui
             FormInitialize();
             Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
             Clovershell.OnConnected += Clovershell_OnConnected;
+            Clovershell.OnDisconnected += Clovershell_OnDisconnected;
 
             ftpServer = new mooftpserv.Server();
             ftpServer.AuthHandler = new mooftpserv.NesMiniAuthHandler();
@@ -247,6 +138,8 @@ namespace com.clusterrr.hakchi_gui
                     var region = Clovershell.ExecuteSimple("cat /etc/clover/REGION", 500, true);
                     Debug.WriteLine(string.Format("Detected board: {0}", board));
                     Debug.WriteLine(string.Format("Detected region: {0}", region));
+
+                    var c = ConfigIni.ConsoleType;
                     switch (board)
                     {
                         default:
@@ -255,10 +148,10 @@ namespace com.clusterrr.hakchi_gui
                             switch (region)
                             {
                                 case "EUR_USA":
-                                    ConfigIni.ConsoleType = ConsoleType.NES;
+                                    c = ConsoleType.NES;
                                     break;
                                 case "JPN":
-                                    ConfigIni.ConsoleType = ConsoleType.Famicom;
+                                    c = ConsoleType.Famicom;
                                     break;
                             }
                             break;
@@ -267,39 +160,24 @@ namespace com.clusterrr.hakchi_gui
                             {
                                 case "USA":
                                 case "EUR":
-                                    ConfigIni.ConsoleType = ConsoleType.SNES;
+                                    c = ConsoleType.SNES;
                                     break;
                                 case "JPN":
-                                    ConfigIni.ConsoleType = ConsoleType.SuperFamicom;
+                                    c = ConsoleType.SuperFamicom;
                                     break;
                             }
                             break;
                     }
+                    ConfigIni.ConsoleType = c;
+                    DetectedConnectedConsole = c;
+
                     Invoke(new Action(SyncConsoleType));
+                    Invoke(new Action(UpdateLocalCache));
                 }
 
                 ConfigIni.CustomFlashed = true; // Just in case of new installation
-
                 WorkerForm.GetMemoryStats();
                 new Thread(RecalculateSelectedGamesThread).Start();
-
-                /*
-                // It's good idea to sync time... or not?
-                // Requesting autoshutdown state
-                var autoshutdown = Clovershell.ExecuteSimple("cat /var/lib/clover/profiles/0/shutdown.txt");
-                // Disable automatic shutdown
-                if (autoshutdown != "0")
-                {
-                    Clovershell.ExecuteSimple("echo -n 0 > /var/lib/clover/profiles/0/shutdown.txt");
-                    Thread.Sleep(1500);
-                }
-                // Setting actual time for file transfer operations
-                Clovershell.ExecuteSimple(string.Format("date -s \"{0:yyyy-MM-dd HH:mm:ss}\"", DateTime.UtcNow));
-                // Restoring automatic shutdown
-                if (autoshutdown != "0")
-                    Clovershell.ExecuteSimple(string.Format("echo -n {0} > /var/lib/clover/profiles/0/shutdown.txt", autoshutdown));
-                */
-                // It was bad idea
             }
             catch (Exception ex)
             {
@@ -307,12 +185,168 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        void Clovershell_OnDisconnected()
+        {
+            DetectedConnectedConsole = null;
+        }
+
+        static ConsoleType lastConsoleType = ConsoleType.Unknown;
+        public void SyncConsoleType()
+        {
+            nESMiniToolStripMenuItem.Enabled =
+                famicomMiniToolStripMenuItem.Enabled =
+                sNESMiniToolStripMenuItem.Enabled =
+                superFamicomMiniToolStripMenuItem.Enabled = (DetectedConnectedConsole == null);
+
+            if (lastConsoleType == ConfigIni.ConsoleType) return;
+
+            // Console type and some settings
+            nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.NES;
+            famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.Famicom;
+            sNESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.SNES;
+            superFamicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.SuperFamicom;
+            epilepsyProtectionToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.NES || ConfigIni.ConsoleType == ConsoleType.Famicom;
+            useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.NES || ConfigIni.ConsoleType == ConsoleType.Famicom;
+            upABStartOnSecondControllerToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.Famicom;
+
+            // More settings
+            useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
+            epilepsyProtectionToolStripMenuItem.Checked = ConfigIni.AntiArmetLevel > 0 && epilepsyProtectionToolStripMenuItem.Enabled;
+            selectButtonCombinationToolStripMenuItem.Enabled = resetUsingCombinationOfButtonsToolStripMenuItem.Checked = ConfigIni.ResetHack;
+            enableAutofireToolStripMenuItem.Checked = ConfigIni.AutofireHack;
+            useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack && useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled;
+            upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
+            compressGamesToolStripMenuItem.Checked = ConfigIni.Compress;
+            compressBoxArtToolStripMenuItem.Checked = ConfigIni.CompressCover;
+
+            // Folders mods
+            disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
+            automaticToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 2;
+            automaticOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 3;
+            pagesToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 4;
+            pagesOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 5;
+            foldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 6;
+            foldersOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 7;
+            foldersSplitByFirstLetterToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 8;
+            foldersSplitByFirstLetterOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 9;
+            customToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 99;
+
+            // Items per folder
+            maximumGamesPerFolderToolStripMenuItem.DropDownItems.Clear();
+            for (byte f = 20; f <= 100; f += ((f < 50) ? (byte)5 : (byte)10))
+            {
+                var item = new ToolStripMenuItem();
+                item.Name = "folders" + f.ToString();
+                item.Text = f.ToString();
+                item.Tag = f;
+                if (f >= MaxGamesPerFolder)
+                    item.Text += $" ({Resources.NotRecommended})";
+                item.Checked = ConfigIni.MaxGamesPerFolder == f;
+                item.Click += delegate (object sender, EventArgs e)
+                {
+                    var old = maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true);
+                    if (old.Count() > 0)
+                        (old.First() as ToolStripMenuItem).Checked = false;
+                    ConfigIni.MaxGamesPerFolder = (byte)((sender as ToolStripMenuItem).Tag);
+                    var n = maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true);
+                    if (n.Count() > 0)
+                        (n.First() as ToolStripMenuItem).Checked = true;
+                };
+                maximumGamesPerFolderToolStripMenuItem.DropDownItems.Add(item);
+            }
+
+            // //Reset known free space
+            // WorkerForm.NandCTotal = WorkerForm.NandCFree = WorkerForm.NandCUsed = 0;
+            // if (Clovershell != null && Clovershell.IsOnline)
+            //     new Thread(Clovershell_OnConnected).Start();
+
+            SyncOriginalGames();
+            LoadGames();
+            lastConsoleType = ConfigIni.ConsoleType;
+        }
+
+        void UpdateLocalCache()
+        {
+            string cachePath = Path.Combine(Program.BaseDirectoryExternal, "image_cache");
+            var games = new NesMenuCollection();
+            foreach (NesDefaultGame game in NesMiniApplication.DefaultGames)
+            {
+                if (!File.Exists(Path.Combine(cachePath, game.Code + ".png")) || !File.Exists(Path.Combine(cachePath, game.Code + "_small.png")))
+                    games.Add(game);
+            }
+
+            if (games.Count > 0)
+            {
+                var workerForm = new WorkerForm(this);
+                workerForm.Text = Resources.UpdatingLocalCache;
+                workerForm.Task = WorkerForm.Tasks.UpdateLocalCache;
+                workerForm.Games = games;
+
+                if (workerForm.Start() == DialogResult.OK)
+                    Debug.WriteLine("successfully updated local original games cache.");
+            }
+            else
+                Debug.WriteLine("local original games cache in sync.");
+        }
+
+        void SyncOriginalGames()
+        {
+            SyncOriginalGames(false);
+        }
+
+        void SyncOriginalGames( bool forceReset )
+        {
+            string localPath = Path.Combine(Program.BaseDirectoryExternal, "desktop_entries");
+            string gamesPath = Path.Combine(Program.BaseDirectoryExternal, "games_originals");
+            var selected = new List<string>();
+            selected.AddRange(ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
+
+            if (!Directory.Exists(gamesPath))
+                Directory.CreateDirectory(gamesPath);
+
+            // restore all original games
+            foreach (NesDefaultGame game in NesMiniApplication.AllDefaultGames)
+            {
+                string path = Path.Combine(gamesPath, game.Code);
+
+                if (File.Exists(Path.Combine(localPath, game.Code + ".desktop")))
+                {
+                    Directory.CreateDirectory(path);
+                    if (!File.Exists(Path.Combine(path, game.Code)) || forceReset)
+                    {
+                        File.Copy(Path.Combine(localPath, game.Code + ".desktop"), Path.Combine(path, game.Code) + ".desktop", true);
+                        selected.Add(game.Code);
+                        Thread.Sleep(1);
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine($"missing game {game.Name} {game.Code}.desktop file in \"desktop_entries\".");
+                }
+            }
+
+            // save new selected games
+            ConfigIni.SelectedGames = string.Join(";", selected.Distinct().ToArray());
+        }
+
         public void LoadGames()
         {
             Debug.WriteLine("Loading games");
             var selected = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+            // add custom games
             Directory.CreateDirectory(NesMiniApplication.GamesDirectory);
-            var gameDirs = Directory.GetDirectories(NesMiniApplication.GamesDirectory);
+            var gameDirs = Directory.GetDirectories(NesMiniApplication.GamesDirectory).ToList();
+
+            // add original games
+            foreach(var game in NesMiniApplication.DefaultGames)
+            {
+                string path = Path.Combine(NesMiniApplication.OriginalGamesDirectory, game.Code);
+                if ( Directory.Exists(path))
+                    gameDirs.Add(path);
+            }
+
+            // instantiate Apps
             var games = new List<NesMiniApplication>();
             foreach (var gameDir in gameDirs)
             {
@@ -338,19 +372,18 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
+            // add games to listview
             var gamesSorted = games.OrderBy(o => o.Name);
+            listViewGames.BeginUpdate();
             listViewGames.Items.Clear();
-            var listViewItem = new ListViewItem(Resources.Default30games);
-            listViewItem.Tag = "default";
-            listViewItem.Checked = selected.Contains("default");
-            listViewGames.Items.Add(listViewItem);
             foreach (var game in gamesSorted)
             {
-                listViewItem = new ListViewItem(game.Name);
+                var listViewItem = new ListViewItem(game.Name);
                 listViewItem.Tag = game;
                 listViewItem.Checked = selected.Contains(game.Code);
                 listViewGames.Items.Add(listViewItem);
             }
+            listViewGames.EndUpdate();
             RecalculateSelectedGames();
             ShowSelected();
         }
@@ -362,7 +395,6 @@ namespace com.clusterrr.hakchi_gui
             if (selectedAll.Count == 1) selected = selectedAll[0].Tag;
             if (selected == null)
             {
-                groupBoxDefaultGames.Visible = false;
                 groupBoxOptions.Visible = true;
                 groupBoxOptions.Enabled = false;
                 labelID.Text = "ID: ";
@@ -380,16 +412,9 @@ namespace com.clusterrr.hakchi_gui
                 checkBoxCompressed.Enabled = false;
                 checkBoxCompressed.Checked = false;
             }
-            else if (!(selected is NesMiniApplication))
-            {
-                groupBoxDefaultGames.Visible = true;
-                groupBoxOptions.Visible = false;
-                groupBoxDefaultGames.Enabled = listViewGames.CheckedIndices.Contains(0);
-            }
             else
             {
                 var app = selected as NesMiniApplication;
-                groupBoxDefaultGames.Visible = false;
                 groupBoxOptions.Visible = true;
                 labelID.Text = "ID: " + app.Code;
                 labelSize.Text = Resources.Size + " " + (app.Size() / 1024) + "KB";
@@ -403,10 +428,11 @@ namespace com.clusterrr.hakchi_gui
                 maskedTextBoxReleaseDate.Text = app.ReleaseDate;
                 textBoxPublisher.Text = app.Publisher;
                 textBoxArguments.Text = app.Command;
-                if (File.Exists(app.IconPath))
-                    pictureBoxArt.Image = NesMiniApplication.LoadBitmap(app.IconPath);
-                else
-                    pictureBoxArt.Image = null;
+                pictureBoxArt.Image = app.Image;
+                // if (File.Exists(app.IconPath))
+                //     pictureBoxArt.Image = NesMiniApplication.LoadBitmap(app.IconPath);
+                // else
+                //     pictureBoxArt.Image = null;
                 buttonShowGameGenieDatabase.Enabled = app is NesGame; //ISupportsGameGenie;
                 textBoxGameGenie.Enabled = app is ISupportsGameGenie;
                 textBoxGameGenie.Text = (app is ISupportsGameGenie) ? (app as NesMiniApplication).GameGenie : "";
@@ -429,29 +455,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        void LoadHidden()
-        {
-            checkedListBoxDefaultGames.Items.Clear();
-            NesDefaultGame[] games = null;
-            switch (ConfigIni.ConsoleType)
-            {
-                case ConsoleType.NES:
-                    games = defaultNesGames;
-                    break;
-                case ConsoleType.Famicom:
-                    games = defaultFamicomGames;
-                    break;
-                case ConsoleType.SNES:
-                    games = defaultSnesGames;
-                    break;
-                case ConsoleType.SuperFamicom:
-                    games = defaultSuperFamicomGames;
-                    break;
-            }
-            foreach (var game in games.OrderBy(o => o.Name))
-                checkedListBoxDefaultGames.Items.Add(game, !ConfigIni.HiddenGames.Contains(game.Code));
-        }
-
         void LoadPresets()
         {
             while (presetsToolStripMenuItem.DropDownItems.Count > 3)
@@ -471,9 +474,6 @@ namespace com.clusterrr.hakchi_gui
                         var hide = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                         for (int j = 1; j < listViewGames.Items.Count; j++)
                             listViewGames.Items[j].Checked = selected.Contains((listViewGames.Items[j].Tag as NesMiniApplication).Code);
-                        for (int j = 0; j < checkedListBoxDefaultGames.Items.Count; j++)
-                            checkedListBoxDefaultGames.SetItemChecked(j,
-                                !hide.Contains(((NesDefaultGame)checkedListBoxDefaultGames.Items[j]).Code));
                     }));
                 deletePresetToolStripMenuItem.DropDownItems.Insert(i, new ToolStripMenuItem(preset, null,
                     delegate (object sender, EventArgs e)
@@ -547,6 +547,40 @@ namespace com.clusterrr.hakchi_gui
                 english.Checked = true;
         }
 
+        private void SaveSelectedGames()
+        {
+            var selected = new List<string>();
+            foreach (ListViewItem game in listViewGames.CheckedItems)
+            {
+                if (game.Tag is NesMiniApplication)
+                    selected.Add((game.Tag as NesMiniApplication).Code);
+            }
+            ConfigIni.SelectedGames = string.Join(";", selected.ToArray());
+        }
+
+        private void SaveConfig()
+        {
+            SaveSelectedGames();
+            ConfigIni.Save();
+            foreach (ListViewItem game in listViewGames.Items)
+            {
+                try
+                {
+                    if (game.Tag is NesMiniApplication)
+                    {
+                        // Maybe type was changed? Need to reload games
+                        if ((game.Tag as NesMiniApplication).Save())
+                            game.Tag = NesMiniApplication.FromDirectory((game.Tag as NesMiniApplication).GamePath);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message + ex.StackTrace);
+                    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
         void AddPreset(object sender, EventArgs e)
         {
             var form = new StringInputForm();
@@ -564,8 +598,14 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void listViewGames_SelectedIndexChanged(object sender, EventArgs e)
+        private void listViewGames_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
+            timerShowSelected.Enabled = true;
+        }
+
+        private void timerShowSelected_Tick(object sender, EventArgs e)
+        {
+            timerShowSelected.Enabled = false;
             ShowSelected();
         }
 
@@ -574,10 +614,16 @@ namespace com.clusterrr.hakchi_gui
             if (listViewGames.SelectedItems.Count != 1) return;
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesMiniApplication)) return;
+
             var game = (selected as NesMiniApplication);
-            game.Image = NesMiniApplication.LoadBitmap(fileName);
+            game.Image = String.IsNullOrEmpty(fileName) ? null : NesMiniApplication.LoadBitmap(fileName);
             ShowSelected();
             timerCalculateGames.Enabled = true;
+        }
+
+        private void buttonDefaultCover_Click(object sender, EventArgs e)
+        {
+            SetImageForSelectedGame(null);
         }
 
         private void buttonBrowseImage_Click(object sender, EventArgs e)
@@ -660,49 +706,6 @@ namespace com.clusterrr.hakchi_gui
             game.GameGenie = textBoxGameGenie.Text;
         }
 
-        private void SaveSelectedGames()
-        {
-            var selected = new List<string>();
-            foreach (ListViewItem game in listViewGames.CheckedItems)
-            {
-                if (game.Tag is NesMiniApplication)
-                    selected.Add((game.Tag as NesMiniApplication).Code);
-                else
-                    selected.Add("default");
-            }
-            ConfigIni.SelectedGames = string.Join(";", selected.ToArray());
-            selected.Clear();
-
-            foreach (NesDefaultGame game in checkedListBoxDefaultGames.Items)
-                selected.Add(game.Code);
-            foreach (NesDefaultGame game in checkedListBoxDefaultGames.CheckedItems)
-                selected.Remove(game.Code);
-            ConfigIni.HiddenGames = string.Join(";", selected.ToArray());
-        }
-
-        private void SaveConfig()
-        {
-            SaveSelectedGames();
-            ConfigIni.Save();
-            foreach (ListViewItem game in listViewGames.Items)
-            {
-                try
-                {
-                    if (game.Tag is NesMiniApplication)
-                    {
-                        // Maybe type was changed? Need to reload games
-                        if ((game.Tag as NesMiniApplication).Save())
-                            game.Tag = NesMiniApplication.FromDirectory((game.Tag as NesMiniApplication).GamePath);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message + ex.StackTrace);
-                    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Debug.WriteLine("Closing main form");
@@ -714,7 +717,6 @@ namespace com.clusterrr.hakchi_gui
         {
             Process.GetCurrentProcess().Kill(); // Suicide! Just easy and dirty way to kill all threads.
         }
-
 
         struct CountResult
         {
@@ -755,12 +757,6 @@ namespace com.clusterrr.hakchi_gui
                     stats.Count++;
                     stats.Size += (game as NesMiniApplication).Size();
                 }
-                else
-                {
-                    stats.Count += checkedListBoxDefaultGames.CheckedItems.Count;
-                    foreach (NesDefaultGame originalGame in checkedListBoxDefaultGames.CheckedItems)
-                        stats.Size += originalGame.Size;
-                }
             }
             return stats;
         }
@@ -776,7 +772,7 @@ namespace com.clusterrr.hakchi_gui
                 var maxGamesSize = DefaultMaxGamesSize * 1024 * 1024;
                 if (WorkerForm.NandCTotal > 0)
                 {
-                    maxGamesSize = (WorkerForm.NandCFree + WorkerForm.WritedGamesSize) - WorkerForm.ReservedMemory * 1024 * 1024;
+                    maxGamesSize = (WorkerForm.NandCFree + WorkerForm.WrittenGamesSize) - WorkerForm.ReservedMemory * 1024 * 1024;
                     toolStripStatusLabelSize.Text = string.Format("{0:F1}MB / {1:F1}MB", stats.Size / 1024.0 / 1024.0, maxGamesSize / 1024.0 / 1024.0);
                 }
                 else
@@ -993,18 +989,10 @@ namespace com.clusterrr.hakchi_gui
             if (exportGames)
                 workerForm.exportDirectory = exportFolderDialog.SelectedPath;
 
-            bool needOriginal = false;
             foreach (ListViewItem game in listViewGames.CheckedItems)
             {
                 if (game.Tag is NesMiniApplication)
                     workerForm.Games.Add(game.Tag as NesMiniApplication);
-                else
-                    needOriginal = true;
-            }
-            for (int i = 0; i < checkedListBoxDefaultGames.Items.Count; i++)
-            {
-                if (needOriginal && checkedListBoxDefaultGames.CheckedIndices.Contains(i))
-                    workerForm.Games.Add((NesDefaultGame)checkedListBoxDefaultGames.Items[i]);
             }
 
             workerForm.FoldersMode = ConfigIni.FoldersMode;
@@ -1292,73 +1280,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        static ConsoleType lastConsoleType = ConsoleType.Unknown;
-        public void SyncConsoleType()
-        {
-            if (lastConsoleType == ConfigIni.ConsoleType) return;
-            nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.NES;
-            famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.Famicom;
-            sNESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.SNES;
-            superFamicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.SuperFamicom;
-            epilepsyProtectionToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.NES || ConfigIni.ConsoleType == ConsoleType.Famicom;
-            useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.NES || ConfigIni.ConsoleType == ConsoleType.Famicom;
-            upABStartOnSecondControllerToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.Famicom;
-
-            // Some settnigs
-            useExtendedFontToolStripMenuItem.Checked = ConfigIni.UseFont;
-            epilepsyProtectionToolStripMenuItem.Checked = ConfigIni.AntiArmetLevel > 0 && epilepsyProtectionToolStripMenuItem.Enabled;
-            selectButtonCombinationToolStripMenuItem.Enabled = resetUsingCombinationOfButtonsToolStripMenuItem.Checked = ConfigIni.ResetHack;
-            enableAutofireToolStripMenuItem.Checked = ConfigIni.AutofireHack;
-            useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack && useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled;
-            upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
-            compressGamesToolStripMenuItem.Checked = ConfigIni.Compress;
-
-            // Folders mods
-            disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
-            automaticToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 2;
-            automaticOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 3;
-            pagesToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 4;
-            pagesOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 5;
-            foldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 6;
-            foldersOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 7;
-            foldersSplitByFirstLetterToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 8;
-            foldersSplitByFirstLetterOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 9;
-            customToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 99;
-
-            // Items per folder
-            maximumGamesPerFolderToolStripMenuItem.DropDownItems.Clear();
-            for (byte f = 20; f <= 100; f += ((f < 50) ? (byte)5 : (byte)10))
-            {
-                var item = new ToolStripMenuItem();
-                item.Name = "folders" + f.ToString();
-                item.Text = f.ToString();
-                item.Tag = f;
-                if (f >= MaxGamesPerFolder)
-                    item.Text += $" ({Resources.NotRecommended})";
-                item.Checked = ConfigIni.MaxGamesPerFolder == f;
-                item.Click += delegate (object sender, EventArgs e)
-                {
-                    var old = maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true);
-                    if (old.Count() > 0)
-                        (old.First() as ToolStripMenuItem).Checked = false;
-                    ConfigIni.MaxGamesPerFolder = (byte)((sender as ToolStripMenuItem).Tag);
-                    var n = maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true);
-                    if (n.Count() > 0)
-                        (n.First() as ToolStripMenuItem).Checked = true;
-                };
-                maximumGamesPerFolderToolStripMenuItem.DropDownItems.Add(item);
-            }
-
-            // Reset known free space
-            WorkerForm.NandCTotal = WorkerForm.NandCFree = WorkerForm.NandCUsed = 0;
-            if (Clovershell != null && Clovershell.IsOnline)
-                new Thread(Clovershell_OnConnected).Start();
-
-            LoadHidden();
-            LoadGames();
-            lastConsoleType = ConfigIni.ConsoleType;
-        }
-
         private void nESMiniToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (nESMiniToolStripMenuItem.Checked) return;
@@ -1421,15 +1342,6 @@ namespace com.clusterrr.hakchi_gui
         }
 
         private void listViewGames_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            if (e.Index == 0)
-                groupBoxDefaultGames.Enabled = e.NewValue == CheckState.Checked;
-            // Schedule recalculation
-            timerCalculateGames.Enabled = false;
-            timerCalculateGames.Enabled = true;
-        }
-
-        private void checkedListBoxDefaultGames_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             // Schedule recalculation
             timerCalculateGames.Enabled = false;
@@ -1525,6 +1437,11 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.Compress = compressGamesToolStripMenuItem.Checked;
         }
 
+        private void compressBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.CompressCover = compressBoxArtToolStripMenuItem.Checked;
+        }
+
         private void buttonShowGameGenieDatabase_Click(object sender, EventArgs e)
         {
             if (listViewGames.SelectedItems.Count != 1) return;
@@ -1616,13 +1533,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (RequirePatchedKernel() == DialogResult.No) return;
             var gameNames = new Dictionary<string, string>();
-            foreach (var game in defaultNesGames)
-                gameNames[game.Code] = game.Name;
-            foreach (var game in defaultFamicomGames)
-                gameNames[game.Code] = game.Name;
-            foreach (var game in defaultSnesGames)
-                gameNames[game.Code] = game.Name;
-            foreach (var game in defaultSuperFamicomGames)
+            foreach (var game in NesMiniApplication.AllDefaultGames)
                 gameNames[game.Code] = game.Name;
             foreach (ListViewItem item in listViewGames.Items)
             {
@@ -1820,6 +1731,9 @@ namespace com.clusterrr.hakchi_gui
                 case WorkerForm.Tasks.DownloadCovers:
                     workerForm.Text = Resources.DownloadAllCoversTitle;
                     break;
+                case WorkerForm.Tasks.DeleteCovers:
+                    workerForm.Text = Resources.RemovingCovers;
+                    break;
                 case WorkerForm.Tasks.CompressGames:
                     workerForm.Text = Resources.CompressingGames;
                     break;
@@ -1843,6 +1757,14 @@ namespace com.clusterrr.hakchi_gui
         private void downloadBoxArtForSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (GroupTaskWithSelected(WorkerForm.Tasks.DownloadCovers))
+                MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ShowSelected();
+            timerCalculateGames.Enabled = true;
+        }
+
+        private void deleteSelectedGamesBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (GroupTaskWithSelected(WorkerForm.Tasks.DeleteCovers))
                 MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             ShowSelected();
             timerCalculateGames.Enabled = true;
@@ -1885,7 +1807,13 @@ namespace com.clusterrr.hakchi_gui
             DeleteSelectedGames();
         }
 
-        private void listViewGames_MouseDown(object sender, MouseEventArgs e)
+        private void listViewGames_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete && ((listViewGames.SelectedItems.Count > 1) || (listViewGames.SelectedItems.Count == 1 && listViewGames.SelectedItems[0].Tag is NesMiniApplication)))
+                DeleteSelectedGames();
+        }
+
+        private void listViewGames_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -1893,31 +1821,38 @@ namespace com.clusterrr.hakchi_gui
                     compressSelectedGamesToolStripMenuItem.Enabled =
                     decompressSelectedGamesToolStripMenuItem.Enabled =
                     deleteSelectedGamesToolStripMenuItem.Enabled =
-                    (listViewGames.SelectedItems.Count > 1) || (listViewGames.SelectedItems.Count == 1 && listViewGames.SelectedItems[0].Tag is NesMiniApplication);
+                    (listViewGames.SelectedItems.Count >= 1);
                 contextMenuStrip.Show(sender as Control, e.X, e.Y);
             }
-        }
 
-        private void listViewGames_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete && ((listViewGames.SelectedItems.Count > 1) || (listViewGames.SelectedItems.Count == 1 && listViewGames.SelectedItems[0].Tag is NesMiniApplication)))
-                DeleteSelectedGames();
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (listViewGames.SelectedItems.Count != 1) return;
-            var selected = listViewGames.SelectedItems[0].Tag;
-            if ((e.KeyCode == Keys.E) && (e.Modifiers == (Keys.Alt | Keys.Control)) && (selected is SnesGame))
+            switch (e.KeyCode)
             {
-                new SnesPresetEditor(selected as SnesGame).ShowDialog();
-                ShowSelected();
+                case Keys.A:
+                    if (e.Modifiers == Keys.Control)
+                    {
+                        listViewGames.BeginUpdate();
+                        foreach (ListViewItem item in listViewGames.Items)
+                            item.Selected = true;
+                        listViewGames.EndUpdate();
+                    }
+                    break;
+                case Keys.E:
+                    if (e.Modifiers == (Keys.Alt | Keys.Control))
+                    {
+                        if (listViewGames.SelectedItems.Count != 1) return;
+                        var selected = listViewGames.SelectedItems[0].Tag;
+                        if (selected is SnesGame)
+                        {
+                            new SnesPresetEditor(selected as SnesGame).ShowDialog();
+                            ShowSelected();
+                        }
+                    }
+                    break;
             }
-        }
-
-        private void pictureBoxArt_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

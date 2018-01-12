@@ -24,6 +24,141 @@ namespace com.clusterrr.hakchi_gui
         public static bool? Need3rdPartyEmulator;
         public static bool? NeedAutoDownloadCover;
 
+        static NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
+            new NesDefaultGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros.", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAACE",  Name = "Super Mario Bros. 3", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAADE",  Name = "Super Mario Bros. 2",Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAEE",  Name = "Donkey Kong", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAFE",  Name = "Donkey Kong Jr." , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAHE",  Name = "Excitebike", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAANE",  Name = "The Legend of Zelda", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAPE",  Name = "Kirby's Adventure", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAQE",  Name = "Metroid", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAARE",  Name = "Balloon Fight", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAASE",  Name = "Zelda II - The Adventure of Link", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAATE",  Name = "Punch-Out!! Featuring Mr. Dream", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAUE",  Name = "Ice Climber", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAVE",  Name = "Kid Icarus", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAWE",  Name = "Mario Bros.", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAXE",  Name = "Dr. MARIO", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAZE",  Name = "StarTropics", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABBE",  Name = "MEGA MAN™ 2", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABCE",  Name = "GHOSTS'N GOBLINS™", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABJE",  Name = "FINAL FANTASY®", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABKE",  Name = "BUBBLE BOBBLE" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABME",  Name = "PAC-MAN", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABNE",  Name = "Galaga", Size =  25000 },
+            new NesDefaultGame { Code = "CLV-P-NABQE",  Name = "Castlevania", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABRE",  Name = "GRADIUS", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABVE",  Name = "Super C", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABXE",  Name = "Castlevania II Simon's Quest", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NACBE",  Name = "NINJA GAIDEN", Size =25000 },
+            new NesDefaultGame { Code = "CLV-P-NACDE",  Name = "TECMO BOWL", Size =25000 },
+            new NesDefaultGame { Code = "CLV-P-NACHE",  Name = "DOUBLE DRAGON II: The Revenge", Size = 25000 }
+        };
+        static NesDefaultGame[] defaultFamicomGames = new NesDefaultGame[] {
+            new NesDefaultGame { Code = "CLV-P-HAAAJ",  Name = "スーパーマリオブラザーズ", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAACJ",  Name = "スーパーマリオブラザーズ３", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAADJ",  Name = "スーパーマリオＵＳＡ", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAAEJ",  Name = "ドンキーコング" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAAHJ",  Name = "エキサイトバイク" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAAMJ",  Name = "マリオオープンゴルフ" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAANJ",  Name = "ゼルダの伝説", Size = 25000  },
+            new NesDefaultGame { Code = "CLV-P-HAAPJ",  Name = "星のカービィ　夢の泉の物語" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAAQJ",  Name = "メトロイド" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAARJ",  Name = "バルーンファイト" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAASJ",  Name = "リンクの冒険" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAAUJ",  Name = "アイスクライマー" , Size = 25000    },
+            new NesDefaultGame { Code = "CLV-P-HAAWJ",  Name = "マリオブラザーズ" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAAXJ",  Name = "ドクターマリオ" , Size = 25000   },
+            new NesDefaultGame { Code = "CLV-P-HABBJ",  Name = "ロックマン®2 Dr.ワイリーの謎" , Size = 25000  },
+            new NesDefaultGame { Code = "CLV-P-HABCJ",  Name = "魔界村®", Size = 25000    },
+            new NesDefaultGame { Code = "CLV-P-HABLJ",  Name = "ファイナルファンタジー®III" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HABMJ",  Name = "パックマン" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HABNJ",  Name = "ギャラガ", Size =  25000 },
+            new NesDefaultGame { Code = "CLV-P-HABQJ",  Name = "悪魔城ドラキュラ" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HABRJ",  Name = "グラディウス", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HABVJ",  Name = "スーパー魂斗羅" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACAJ",  Name = "イー・アル・カンフー", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACBJ",  Name = "忍者龍剣伝" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACCJ",  Name = "ソロモンの鍵" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACEJ",  Name = "つっぱり大相撲", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACHJ",  Name = "ダブルドラゴンⅡ The Revenge", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACJJ",  Name = "ダウンタウン熱血物語" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACLJ",  Name = "ダウンタウン熱血行進曲 それゆけ大運動会", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACPJ",  Name = "アトランチスの謎", Size = 25000 }
+        };
+        static NesDefaultGame[] defaultSnesGames = new NesDefaultGame[] {
+            new NesDefaultGame { Code = "CLV-P-SAAAE",  Name = "Super Mario World", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAABE",  Name = "F-ZERO", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAAEE",  Name = "The Legend of Zelda: A Link to the Past", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAAFE",  Name = "Super Mario Kart", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAAHE",  Name = "Super Metroid", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAAJE",  Name = "EarthBound", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAAKE",  Name = "Kirby's Dream Course", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAALE",  Name = "Donkey Kong Country", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAAQE",  Name = "Kirby Super Star", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAAXE",  Name = "Super Punch-Out!!", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SABCE",  Name = "Mega Man X", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SABDE",  Name = "Super Ghouls'n Ghosts", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SABHE",  Name = "Street Fighter II Turbo: Hyper Fighting", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SABQE",  Name = "Super Mario RPG: Legend of the Seven Stars", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SABRE",  Name = "Secret of Mana", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SABTE",  Name = "Final Fantasy III", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SACBE",  Name = "Super Castlevania IV", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SACCE",  Name = "CONTRA III THE ALIEN WARS", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SADGE",  Name = "Star Fox", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SADJE",  Name = "Yoshi's Island", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SADKE",  Name = "Star Fox 2", Size = 25000 }
+        };
+        static NesDefaultGame[] defaultSuperFamicomGames = new NesDefaultGame[]
+        {
+            new NesDefaultGame { Code = "CLV-P-VAAAJ",  Name = "スーパーマリオワールド", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VAABJ",  Name = "F-ZERO", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VAAEJ",  Name = "ゼルダの伝説 神々のトライフォース", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VAAFJ",  Name = "スーパーマリオカート", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VAAGJ",  Name = "ファイアーエムブレム 紋章の謎", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VAAHJ",  Name = "スーパーメトロイド", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VAALJ",  Name = "スーパードンキーコング", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VAAQJ",  Name = "星のカービィ スーパーデラックス", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VABBJ",  Name = "スーパーストリートファイターⅡ ザ ニューチャレンジャーズ", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-VABCJ",  Name = "ロックマンX", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VABDJ",  Name = "超魔界村", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VABQJ",  Name = "スーパーマリオRPG", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VABRJ",  Name = "聖剣伝説2", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VABTJ",  Name = "ファイナルファンタジーVI", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VACCJ",  Name = "魂斗羅スピリッツ", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VACDJ",  Name = "がんばれゴエモン ゆき姫救出絵巻", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VADFJ",  Name = "スーパーフォーメーションサッカー", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VADGJ",  Name = "スターフォックス", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VADJJ",  Name = "スーパーマリオ ヨッシーアイランド", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VADKJ",  Name = "スターフォックス2", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VADZJ",  Name = "パネルでポン", Size = 25000 },
+        };
+
+        public static NesDefaultGame[] DefaultGames
+        {
+            get
+            {
+                switch (ConfigIni.ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                        return defaultNesGames;
+                    case MainForm.ConsoleType.Famicom:
+                        return defaultFamicomGames;
+                    case MainForm.ConsoleType.SNES:
+                        return defaultSnesGames;
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return defaultSuperFamicomGames;
+                }
+            }
+        }
+
+        public static readonly NesDefaultGame[] AllDefaultGames = Program.ConcatArrays(
+            defaultNesGames, defaultFamicomGames, defaultSnesGames, defaultSuperFamicomGames);
+
+        public static readonly string OriginalGamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games_originals");
         public static string GamesDirectory
         {
             get
@@ -157,6 +292,32 @@ namespace com.clusterrr.hakchi_gui
                 saveCount = value;
             }
         }
+        private uint testId;
+        public uint TestId
+        {
+            get { return testId; }
+            set
+            {
+                if (testId != value) hasUnsavedChanges = true;
+                testId = value;
+            }
+        }
+        private string status;
+        public string Status
+        {
+            get { return status; }
+            set
+            {
+                if (status != value) hasUnsavedChanges = true;
+                status = value;
+            }
+        }
+
+        private bool isOriginalGame;
+        public bool IsOriginalGame
+        {
+            get { return isOriginalGame; }
+        }
 
         public static NesMiniApplication FromDirectory(string path, bool ignoreEmptyConfig = false)
         {
@@ -237,7 +398,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var f in files)
                 try
                 {
-                        File.Delete(f);
+                    File.Delete(f);
                 }
                 catch { }
             }
@@ -288,6 +449,9 @@ namespace com.clusterrr.hakchi_gui
             Publisher = DefaultPublisher;
             Command = "";
             SaveCount = 0;
+            Status = "";
+            TestId = 0;
+            isOriginalGame = false;
         }
 
         protected NesMiniApplication(string path, bool ignoreEmptyConfig = false)
@@ -303,12 +467,25 @@ namespace com.clusterrr.hakchi_gui
             ReleaseDate = DefaultReleaseDate;
             Publisher = DefaultPublisher;
             Command = "";
+            Status = "";
+            TestId = 0;
 
             if (!File.Exists(ConfigPath))
             {
                 if (ignoreEmptyConfig) return;
                 throw new FileNotFoundException("Invalid application directory: " + path);
             }
+
+            isOriginalGame = false;
+            foreach(var game in DefaultGames)
+            {
+                if( game.Code == code )
+                {
+                    isOriginalGame = true;
+                    break;
+                }
+            }
+
             var configLines = File.ReadAllLines(ConfigPath);
             foreach (var line in configLines)
             {
@@ -339,6 +516,12 @@ namespace com.clusterrr.hakchi_gui
                     case "savecount":
                         SaveCount = byte.Parse(value);
                         break;
+                    case "status":
+                        Status = value;
+                        break;
+                    case "testid":
+                        TestId = uint.Parse(value);
+                        break;
                 }
             }
 
@@ -353,20 +536,38 @@ namespace com.clusterrr.hakchi_gui
         {
             if (!hasUnsavedChanges) return false;
             Debug.WriteLine(string.Format("Saving application \"{0}\" as {1}", Name, Code));
+
+            // setup name and sort name
             Name = Regex.Replace(Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
             var sortRawTitle = Name.ToLower();
             if (sortRawTitle.StartsWith("the "))
                 sortRawTitle = sortRawTitle.Substring(4); // Sorting without "THE"
+
+            // reference original icon path if no image exists for original game
+            var cloverIconPath = $"{GamesCloverPath}/{Code}/{Code}.png";
+            if (IsOriginalGame && !File.Exists(IconPath))
+                cloverIconPath = "/var/lib/hakchi/squashfs" + cloverIconPath;
+
+            // these 2 lines are only present in snes/super famicom original games
+            var statusLine = "";
+            var lastLine = "";
+            if (IsOriginalGame && (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom))
+            {
+                statusLine = $"Status={Status}\n";
+                lastLine = "MyPlayDemoTime=45\n";
+            }
+
             File.WriteAllText(ConfigPath, 
                 $"[Desktop Entry]\n" +
                 $"Type=Application\n" +
                 $"Exec={command}\n" +
                 $"Path=/var/lib/clover/profiles/0/{Code}\n" +
                 $"Name={Name ?? Code}\n" +
-                $"Icon={GamesCloverPath}/{Code}/{Code}.png\n\n" +
+                $"Icon={cloverIconPath}\n\n" +
                 $"[X-CLOVER Game]\n" +
                 $"Code={Code}\n" +
-                $"TestID=777\n" +
+                $"TestID={TestId}\n" +
+                statusLine +
                 $"ID=0\n" +
                 $"Players={Players}\n" +
                 $"Simultaneous={(Simultaneous ? 1 : 0)}\n" +
@@ -374,8 +575,10 @@ namespace com.clusterrr.hakchi_gui
                 $"SaveCount={SaveCount}\n" +
                 $"SortRawTitle={sortRawTitle}\n" +
                 $"SortRawPublisher={(Publisher ?? DefaultPublisher).ToUpper()}\n" +
-                $"Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n");
+                $"Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n" +
+                lastLine);
 
+            // game genie stuff
             if (!string.IsNullOrEmpty(gameGenie))
                 File.WriteAllText(GameGeniePath, gameGenie);
             else if (File.Exists(GameGeniePath))
@@ -394,14 +597,44 @@ namespace com.clusterrr.hakchi_gui
         {
             set
             {
-                SetImage(value);
+                if (value == null)
+                {
+                    if (IsOriginalGame)
+                    {
+                        if (File.Exists(IconPath))
+                        {
+                            try
+                            {
+                                File.Delete(IconPath);
+                                File.Delete(SmallIconPath);
+                            }
+                            catch { // silently fail
+                            }
+                        }
+                    }
+                    else
+                    {
+                        AppTypeCollection.AppInfo info = AppTypeCollection.GetAppByClass(GetType());
+                        SetImage(info.DefaultCover);
+                    }
+                }
+                else
+                    SetImage(value);
             }
             get
             {
                 if (File.Exists(IconPath))
                     return LoadBitmap(IconPath);
                 else
+                {
+                    if(IsOriginalGame)
+                    {
+                        string cachedIconPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "image_cache"), Code + ".png");
+                        if (File.Exists(cachedIconPath))
+                            return LoadBitmap(cachedIconPath);
+                    }
                     return null;
+                }
             }
         }
 
@@ -421,25 +654,31 @@ namespace com.clusterrr.hakchi_gui
             }
             if ((double)image.Width / (double)image.Height > (double)maxX / (double)maxY)
             {
-                int Y = (int)((double)maxX * (double)image.Height / (double)image.Width);
-                if (Y % 2 == 1)
-                    ++Y;
+                int Y = (int)Math.Round((double)maxX * (double)image.Height / (double)image.Width);
+                if (Y % 2 == 1) ++Y;
                 outImage = new Bitmap(maxX, Y);
             }
             else
-                outImage = new Bitmap((int)(maxY * (double)image.Width / (double)image.Height), maxY);
+            {
+                int X = (int)Math.Round(maxY * (double)image.Width / (double)image.Height);
+                if (X % 2 == 1) ++X;
+                outImage = new Bitmap(X, maxY);
+            }
 
             int maxXsmall = 40;
             int maxYsmall = 40;
             if ((double)image.Width / (double)image.Height > (double)maxXsmall / (double)maxYsmall)
             {
-                int Y = (int)((double)maxXsmall * (double)image.Height / (double)image.Width);
-                if (Y % 2 == 1)
-                    ++Y;
+                int Y = (int)Math.Round((double)maxXsmall * (double)image.Height / (double)image.Width);
+                if (Y % 2 == 1) ++Y;
                 outImageSmall = new Bitmap(maxXsmall, Y);
             }
             else
-                outImageSmall = new Bitmap((int)(maxYsmall * (double)image.Width / (double)image.Height), maxYsmall);
+            {
+                int X = (int)Math.Round(maxYsmall * (double)image.Width / (double)image.Height);
+                if (X % 2 == 1) ++X;
+                outImageSmall = new Bitmap(X, maxYsmall);
+            }
 
             gr = Graphics.FromImage(outImage);
             gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
@@ -447,9 +686,8 @@ namespace com.clusterrr.hakchi_gui
                                 new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
             gr.Flush();
             outImage.Save(IconPath, ImageFormat.Png);
-            gr = Graphics.FromImage(outImageSmall);
 
-            // Better resizing quality (more blur like original files)
+            gr = Graphics.FromImage(outImageSmall);
             gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
             gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
             // Fix first line and column alpha shit
@@ -503,14 +741,6 @@ namespace com.clusterrr.hakchi_gui
                             break;
                         }
                     }
-                    /*
-                    var imagePath = System.IO.Path.Combine(artDirectory, System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".png");
-                    if (File.Exists(imagePath))
-                        cover = LoadBitmap(imagePath);
-                    imagePath = System.IO.Path.Combine(artDirectory, System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".jpg");
-                    if (File.Exists(imagePath))
-                        cover = LoadBitmap(imagePath);
-                    */
                 }
             }
             if (cover == null)

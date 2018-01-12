@@ -5,6 +5,7 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
@@ -111,9 +112,9 @@ namespace com.clusterrr.hakchi_gui
                         if (ApplicationDeployment.IsNetworkDeployed && ApplicationDeployment.CurrentDeployment.IsFirstRun)
                         {
                             var externalDirs = new string[]
-                        {
-                            "art", "folder_images", "patches", "user_mods"
-                        };
+                            {
+                                "art", "folder_images", "patches", "user_mods"
+                            };
                             foreach (var dir in externalDirs)
                                 DirectoryCopy(Path.Combine(BaseDirectoryInternal, dir), Path.Combine(BaseDirectoryExternal, dir), true);
                         }
@@ -237,6 +238,18 @@ namespace com.clusterrr.hakchi_gui
                 throw new ExternalException("Cannot get the known folder path. It may not be available on this system.",
                     result);
             }
+        }
+
+        public static T[] ConcatArrays<T>(params T[][] list)
+        {
+            var result = new T[list.Sum(a => a.Length)];
+            int offset = 0;
+            for (int x = 0; x < list.Length; x++)
+            {
+                list[x].CopyTo(result, offset);
+                offset += list[x].Length;
+            }
+            return result;
         }
     }
 }

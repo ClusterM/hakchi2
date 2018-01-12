@@ -238,7 +238,7 @@
     <value>If this problem persists, try using another USB port or cable.</value>
   </data>
   <data name="Donate" xml:space="preserve">
-    <value>If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
+    <value>If you like this app, you can donate to me. You can find my PayPal in the "About" box.</value>
   </data>
   <data name="FirstRun" xml:space="preserve">
     <value>Hello there! I'm very glad that you are using hakchi2. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>
@@ -726,5 +726,14 @@
   </data>
   <data name="gitCommit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\commit.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RemovingCovers" xml:space="preserve">
+    <value>Removing cover art...</value>
+  </data>
+  <data name="UpdatingLocalCache" xml:space="preserve">
+    <value>Updating local original games cache...</value>
   </data>
 </root>

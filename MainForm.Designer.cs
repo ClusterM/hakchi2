@@ -87,6 +87,7 @@
             this.useXYOnClassicControllerAsAutofireABToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.upABStartOnSecondControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compressBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.epilepsyProtectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,6 +109,7 @@
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.buttonDefaultCover = new System.Windows.Forms.Button();
             this.labelSize = new System.Windows.Forms.Label();
             this.checkBoxCompressed = new System.Windows.Forms.CheckBox();
             this.buttonShowGameGenieDatabase = new System.Windows.Forms.Button();
@@ -140,13 +142,12 @@
             this.openFileDialogNes = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.downloadBoxArtForSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSelectedGamesBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decompressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
             this.buttonStart = new System.Windows.Forms.Button();
-            this.groupBoxDefaultGames = new System.Windows.Forms.GroupBox();
-            this.checkedListBoxDefaultGames = new System.Windows.Forms.CheckedListBox();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
             this.timerConnectionCheck = new System.Windows.Forms.Timer(this.components);
             this.saveDumpFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -154,12 +155,12 @@
             this.listViewGames = new System.Windows.Forms.ListView();
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.exportFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.timerShowSelected = new System.Windows.Forms.Timer(this.components);
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
-            this.groupBoxDefaultGames.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -369,6 +370,7 @@
             this.pagesfoldersTypeToolStripMenuItem,
             this.cloverconHackToolStripMenuItem,
             this.compressGamesToolStripMenuItem,
+            this.compressBoxArtToolStripMenuItem,
             this.useExtendedFontToolStripMenuItem,
             this.epilepsyProtectionToolStripMenuItem,
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem,
@@ -580,6 +582,15 @@
             resources.ApplyResources(this.compressGamesToolStripMenuItem, "compressGamesToolStripMenuItem");
             this.compressGamesToolStripMenuItem.Click += new System.EventHandler(this.compressGamesToolStripMenuItem_Click);
             // 
+            // compressBoxArtToolStripMenuItem
+            // 
+            this.compressBoxArtToolStripMenuItem.Checked = true;
+            this.compressBoxArtToolStripMenuItem.CheckOnClick = true;
+            this.compressBoxArtToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.compressBoxArtToolStripMenuItem.Name = "compressBoxArtToolStripMenuItem";
+            resources.ApplyResources(this.compressBoxArtToolStripMenuItem, "compressBoxArtToolStripMenuItem");
+            this.compressBoxArtToolStripMenuItem.Click += new System.EventHandler(this.compressBoxArtToolStripMenuItem_Click);
+            // 
             // useExtendedFontToolStripMenuItem
             // 
             this.useExtendedFontToolStripMenuItem.Checked = true;
@@ -718,6 +729,7 @@
             // groupBoxOptions
             // 
             resources.ApplyResources(this.groupBoxOptions, "groupBoxOptions");
+            this.groupBoxOptions.Controls.Add(this.buttonDefaultCover);
             this.groupBoxOptions.Controls.Add(this.labelSize);
             this.groupBoxOptions.Controls.Add(this.checkBoxCompressed);
             this.groupBoxOptions.Controls.Add(this.buttonShowGameGenieDatabase);
@@ -742,6 +754,13 @@
             this.groupBoxOptions.Controls.Add(this.labelID);
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
+            // 
+            // buttonDefaultCover
+            // 
+            resources.ApplyResources(this.buttonDefaultCover, "buttonDefaultCover");
+            this.buttonDefaultCover.Name = "buttonDefaultCover";
+            this.buttonDefaultCover.UseVisualStyleBackColor = true;
+            this.buttonDefaultCover.Click += new System.EventHandler(this.buttonDefaultCover_Click);
             // 
             // labelSize
             // 
@@ -793,6 +812,7 @@
             // 
             resources.ApplyResources(this.radioButtonTwoSim, "radioButtonTwoSim");
             this.radioButtonTwoSim.Name = "radioButtonTwoSim";
+            this.radioButtonTwoSim.TabStop = true;
             this.radioButtonTwoSim.UseVisualStyleBackColor = true;
             this.radioButtonTwoSim.CheckedChanged += new System.EventHandler(this.radioButtonOne_CheckedChanged);
             // 
@@ -815,7 +835,6 @@
             resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
-            this.pictureBoxArt.Click += new System.EventHandler(this.pictureBoxArt_Click);
             // 
             // label4
             // 
@@ -848,6 +867,7 @@
             // 
             resources.ApplyResources(this.radioButtonTwo, "radioButtonTwo");
             this.radioButtonTwo.Name = "radioButtonTwo";
+            this.radioButtonTwo.TabStop = true;
             this.radioButtonTwo.UseVisualStyleBackColor = true;
             this.radioButtonTwo.CheckedChanged += new System.EventHandler(this.radioButtonOne_CheckedChanged);
             // 
@@ -939,6 +959,7 @@
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.downloadBoxArtForSelectedGamesToolStripMenuItem,
+            this.deleteSelectedGamesBoxArtToolStripMenuItem,
             this.compressSelectedGamesToolStripMenuItem,
             this.decompressSelectedGamesToolStripMenuItem,
             this.deleteSelectedGamesToolStripMenuItem});
@@ -950,6 +971,12 @@
             this.downloadBoxArtForSelectedGamesToolStripMenuItem.Name = "downloadBoxArtForSelectedGamesToolStripMenuItem";
             resources.ApplyResources(this.downloadBoxArtForSelectedGamesToolStripMenuItem, "downloadBoxArtForSelectedGamesToolStripMenuItem");
             this.downloadBoxArtForSelectedGamesToolStripMenuItem.Click += new System.EventHandler(this.downloadBoxArtForSelectedGamesToolStripMenuItem_Click);
+            // 
+            // deleteSelectedGamesBoxArtToolStripMenuItem
+            // 
+            this.deleteSelectedGamesBoxArtToolStripMenuItem.Name = "deleteSelectedGamesBoxArtToolStripMenuItem";
+            resources.ApplyResources(this.deleteSelectedGamesBoxArtToolStripMenuItem, "deleteSelectedGamesBoxArtToolStripMenuItem");
+            this.deleteSelectedGamesBoxArtToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedGamesBoxArtToolStripMenuItem_Click);
             // 
             // compressSelectedGamesToolStripMenuItem
             // 
@@ -979,20 +1006,6 @@
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
-            // 
-            // groupBoxDefaultGames
-            // 
-            resources.ApplyResources(this.groupBoxDefaultGames, "groupBoxDefaultGames");
-            this.groupBoxDefaultGames.Controls.Add(this.checkedListBoxDefaultGames);
-            this.groupBoxDefaultGames.Name = "groupBoxDefaultGames";
-            this.groupBoxDefaultGames.TabStop = false;
-            // 
-            // checkedListBoxDefaultGames
-            // 
-            resources.ApplyResources(this.checkedListBoxDefaultGames, "checkedListBoxDefaultGames");
-            this.checkedListBoxDefaultGames.FormattingEnabled = true;
-            this.checkedListBoxDefaultGames.Name = "checkedListBoxDefaultGames";
-            this.checkedListBoxDefaultGames.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxDefaultGames_ItemCheck);
             // 
             // timerCalculateGames
             // 
@@ -1029,13 +1042,17 @@
             this.listViewGames.UseCompatibleStateImageBehavior = false;
             this.listViewGames.View = System.Windows.Forms.View.Details;
             this.listViewGames.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listViewGames_ItemCheck);
-            this.listViewGames.SelectedIndexChanged += new System.EventHandler(this.listViewGames_SelectedIndexChanged);
+            this.listViewGames.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewGames_ItemSelectionChanged);
             this.listViewGames.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewGames_KeyDown);
-            this.listViewGames.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listViewGames_MouseDown);
+            this.listViewGames.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewGames_MouseClick);
             // 
             // gameName
             // 
             resources.ApplyResources(this.gameName, "gameName");
+            // 
+            // timerShowSelected
+            // 
+            this.timerShowSelected.Tick += new System.EventHandler(this.timerShowSelected_Tick);
             // 
             // MainForm
             // 
@@ -1048,7 +1065,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.groupBoxOptions);
-            this.Controls.Add(this.groupBoxDefaultGames);
             this.Controls.Add(this.listViewGames);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -1069,7 +1085,6 @@
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.contextMenuStrip.ResumeLayout(false);
-            this.groupBoxDefaultGames.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1112,7 +1127,6 @@
         private System.Windows.Forms.RadioButton radioButtonTwoSim;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBoxDefaultGames;
         private System.Windows.Forms.Timer timerCalculateGames;
         private System.Windows.Forms.ToolStripMenuItem uninstallToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
@@ -1152,7 +1166,6 @@
         private System.Windows.Forms.ToolStripMenuItem maximumGamesPerFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem automaticToolStripMenuItem;
-        protected internal System.Windows.Forms.CheckedListBox checkedListBoxDefaultGames;
         private System.Windows.Forms.ToolStripMenuItem useExtendedFontToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modulesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem installModulesToolStripMenuItem;
@@ -1201,6 +1214,10 @@
         private System.Windows.Forms.ToolStripMenuItem dumpNANDCPartitionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flashNANDCPartitionToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog exportFolderDialog;
+        private System.Windows.Forms.ToolStripMenuItem compressBoxArtToolStripMenuItem;
+        private System.Windows.Forms.Button buttonDefaultCover;
+        private System.Windows.Forms.ToolStripMenuItem deleteSelectedGamesBoxArtToolStripMenuItem;
+        private System.Windows.Forms.Timer timerShowSelected;
     }
 }
 
