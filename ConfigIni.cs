@@ -9,7 +9,9 @@ namespace com.clusterrr.hakchi_gui
     {
         public static int RunCount = 0;
         public static string SelectedGamesNes = "";
+        public static string SelectedGamesFamicom = "";
         public static string SelectedGamesSnes = "";
+        public static string SelectedGamesSuperFamicom = "";
         public static string HiddenGamesNes = "";
         public static string HiddenGamesFamicom = "";
         public static string HiddenGamesSnes = "";
@@ -23,7 +25,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool UseFontSnes = true;
         public static bool UseFontSuperFamicom = true;
         public static byte AntiArmetLevel = 0;
-        public static MainForm.ConsoleType ConsoleType = MainForm.ConsoleType.NES;
+        public static MainForm.ConsoleType ConsoleType = MainForm.ConsoleType.Unknown;
         public static byte MaxGamesPerFolderNes = 30;
         public static byte MaxGamesPerFolderFamicom = 30;
         public static byte MaxGamesPerFolderSnes = 30;
@@ -97,11 +99,13 @@ namespace com.clusterrr.hakchi_gui
                 {
                     default:
                     case MainForm.ConsoleType.NES:
-                    case MainForm.ConsoleType.Famicom:
                         return SelectedGamesNes;
+                    case MainForm.ConsoleType.Famicom:
+                        return SelectedGamesFamicom;
                     case MainForm.ConsoleType.SNES:
-                    case MainForm.ConsoleType.SuperFamicom:
                         return SelectedGamesSnes;
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return SelectedGamesSuperFamicom;
                 }
             }
             set
@@ -110,12 +114,16 @@ namespace com.clusterrr.hakchi_gui
                 {
                     default:
                     case MainForm.ConsoleType.NES:
-                    case MainForm.ConsoleType.Famicom:
                         SelectedGamesNes = value;
                         break;
+                    case MainForm.ConsoleType.Famicom:
+                        SelectedGamesFamicom = value;
+                        break;
                     case MainForm.ConsoleType.SNES:
-                    case MainForm.ConsoleType.SuperFamicom:
                         SelectedGamesSnes = value;
+                        break;
+                    case MainForm.ConsoleType.SuperFamicom:
+                        SelectedGamesSuperFamicom = value;
                         break;
                 }
             }
@@ -435,11 +443,17 @@ namespace com.clusterrr.hakchi_gui
                                 case "language":
                                     Language = value;
                                     break;
-                                case "selectedgames":
+                                case "selectedgamesnes":
                                     SelectedGamesNes = value;
+                                    break;
+                                case "selectedgamesfamicom":
+                                    SelectedGamesFamicom = value;
                                     break;
                                 case "selectedgamessnes":
                                     SelectedGamesSnes = value;
+                                    break;
+                                case "selectedgamessuperfamicom":
+                                    SelectedGamesSuperFamicom = value;
                                     break;
                                 case "hiddengames":
                                     HiddenGamesNes = value;
@@ -569,8 +583,10 @@ namespace com.clusterrr.hakchi_gui
             var configLines = new List<string>();
             configLines.Add("[Config]");
             configLines.Add(string.Format("Language={0}", Language));
-            configLines.Add(string.Format("SelectedGames={0}", SelectedGamesNes));
+            configLines.Add(string.Format("SelectedGamesNes={0}", SelectedGamesNes));
+            configLines.Add(string.Format("SelectedGamesFamicom={0}", SelectedGamesFamicom));
             configLines.Add(string.Format("SelectedGamesSnes={0}", SelectedGamesSnes));
+            configLines.Add(string.Format("SelectedGamesSuperFamicom={0}", SelectedGamesSuperFamicom));
             configLines.Add(string.Format("HiddenGames={0}", HiddenGamesNes));
             configLines.Add(string.Format("HiddenGamesFamicom={0}", HiddenGamesFamicom));
             configLines.Add(string.Format("HiddenGamesSnes={0}", HiddenGamesSnes));

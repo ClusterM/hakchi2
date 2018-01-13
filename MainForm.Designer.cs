@@ -156,6 +156,8 @@
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.exportFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.timerShowSelected = new System.Windows.Forms.Timer(this.components);
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
+            this.resetOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -390,7 +392,9 @@
             this.nESMiniToolStripMenuItem,
             this.famicomMiniToolStripMenuItem,
             this.sNESMiniToolStripMenuItem,
-            this.superFamicomMiniToolStripMenuItem});
+            this.superFamicomMiniToolStripMenuItem,
+            this.toolStripMenuItem12,
+            this.resetOriginalGamesToolStripMenuItem});
             this.consoleTypeToolStripMenuItem.Name = "consoleTypeToolStripMenuItem";
             resources.ApplyResources(this.consoleTypeToolStripMenuItem, "consoleTypeToolStripMenuItem");
             // 
@@ -1054,6 +1058,17 @@
             // 
             this.timerShowSelected.Tick += new System.EventHandler(this.timerShowSelected_Tick);
             // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            resources.ApplyResources(this.toolStripMenuItem12, "toolStripMenuItem12");
+            // 
+            // resetOriginalGamesToolStripMenuItem
+            // 
+            this.resetOriginalGamesToolStripMenuItem.Name = "resetOriginalGamesToolStripMenuItem";
+            resources.ApplyResources(this.resetOriginalGamesToolStripMenuItem, "resetOriginalGamesToolStripMenuItem");
+            this.resetOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.resetOriginalGamesToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1218,6 +1233,8 @@
         private System.Windows.Forms.Button buttonDefaultCover;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedGamesBoxArtToolStripMenuItem;
         private System.Windows.Forms.Timer timerShowSelected;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
+        private System.Windows.Forms.ToolStripMenuItem resetOriginalGamesToolStripMenuItem;
     }
 }
 

@@ -602,7 +602,6 @@ namespace com.clusterrr.hakchi_gui
                     if (IsOriginalGame)
                     {
                         if (File.Exists(IconPath))
-                        {
                             try
                             {
                                 File.Delete(IconPath);
@@ -610,7 +609,6 @@ namespace com.clusterrr.hakchi_gui
                             }
                             catch { // silently fail
                             }
-                        }
                     }
                     else
                     {
@@ -632,10 +630,17 @@ namespace com.clusterrr.hakchi_gui
                         string cachedIconPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "image_cache"), Code + ".png");
                         if (File.Exists(cachedIconPath))
                             return LoadBitmap(cachedIconPath);
+                        else
+                            return DefaultCover;
                     }
                     return null;
                 }
             }
+        }
+
+        public void SetImageFile(string fileName, bool EightBitCompression = false)
+        {
+
         }
 
         private void SetImage(Image image, bool EightBitCompression = false)
@@ -745,10 +750,10 @@ namespace com.clusterrr.hakchi_gui
             }
             if (cover == null)
             {
-                Image = defaultCover;
+                SetImage(DefaultCover);
                 return false;
             }
-            Image = cover;
+            SetImage(cover);
             return true;
         }
 

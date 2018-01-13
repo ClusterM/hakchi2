@@ -736,4 +736,7 @@
   <data name="UpdatingLocalCache" xml:space="preserve">
     <value>Updating local original games cache...</value>
   </data>
+  <data name="ResetOriginalGamesQ" xml:space="preserve">
+    <value>Do you really want to undo all customization on original games?</value>
+  </data>
 </root>

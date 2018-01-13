@@ -48,6 +48,7 @@ namespace com.clusterrr.hakchi_gui
 
         public MainForm()
         {
+            Debug.WriteLine("MainForm.Constructor()");
             InitializeComponent();
             FormInitialize();
             Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
@@ -68,6 +69,7 @@ namespace com.clusterrr.hakchi_gui
 
         void FormInitialize()
         {
+            Debug.WriteLine("MainForm.FormInitialize()");
             try
             {
                 SyncConsoleType();
@@ -188,6 +190,7 @@ namespace com.clusterrr.hakchi_gui
         void Clovershell_OnDisconnected()
         {
             DetectedConnectedConsole = null;
+            Invoke(new Action(SyncConsoleType));
         }
 
         static ConsoleType lastConsoleType = ConsoleType.Unknown;
@@ -198,7 +201,8 @@ namespace com.clusterrr.hakchi_gui
                 sNESMiniToolStripMenuItem.Enabled =
                 superFamicomMiniToolStripMenuItem.Enabled = (DetectedConnectedConsole == null);
 
-            if (lastConsoleType == ConfigIni.ConsoleType) return;
+            if (ConfigIni.ConsoleType == lastConsoleType || ConfigIni.ConsoleType == ConsoleType.Unknown)
+                return;
 
             // Console type and some settings
             nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.NES;
@@ -255,11 +259,6 @@ namespace com.clusterrr.hakchi_gui
                 maximumGamesPerFolderToolStripMenuItem.DropDownItems.Add(item);
             }
 
-            // //Reset known free space
-            // WorkerForm.NandCTotal = WorkerForm.NandCFree = WorkerForm.NandCUsed = 0;
-            // if (Clovershell != null && Clovershell.IsOnline)
-            //     new Thread(Clovershell_OnConnected).Start();
-
             SyncOriginalGames();
             LoadGames();
             lastConsoleType = ConfigIni.ConsoleType;
@@ -289,50 +288,63 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine("local original games cache in sync.");
         }
 
-        void SyncOriginalGames()
+        void SyncOriginalGames(bool forceReset = false)
         {
-            SyncOriginalGames(false);
-        }
-
-        void SyncOriginalGames( bool forceReset )
-        {
-            string localPath = Path.Combine(Program.BaseDirectoryExternal, "desktop_entries");
-            string gamesPath = Path.Combine(Program.BaseDirectoryExternal, "games_originals");
+            string desktopEntriesArchiveFile = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "desktop_entries.7z");
+            string originalGamesPath = Path.Combine(Program.BaseDirectoryExternal, "games_originals");
             var selected = new List<string>();
             selected.AddRange(ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
 
-            if (!Directory.Exists(gamesPath))
-                Directory.CreateDirectory(gamesPath);
-
-            // restore all original games
-            foreach (NesDefaultGame game in NesMiniApplication.AllDefaultGames)
+            try
             {
-                string path = Path.Combine(gamesPath, game.Code);
+                if (!Directory.Exists(originalGamesPath))
+                    Directory.CreateDirectory(originalGamesPath);
 
-                if (File.Exists(Path.Combine(localPath, game.Code + ".desktop")))
+                if (!File.Exists(desktopEntriesArchiveFile))
+                    throw new FileLoadException("desktop_entries.7z data file was deleted, cannot sync original games.");
+
+                SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+                using (var szExtractor = new SevenZipExtractor(desktopEntriesArchiveFile))
                 {
-                    Directory.CreateDirectory(path);
-                    if (!File.Exists(Path.Combine(path, game.Code)) || forceReset)
+                    foreach (var f in szExtractor.ArchiveFileNames)
                     {
-                        File.Copy(Path.Combine(localPath, game.Code + ".desktop"), Path.Combine(path, game.Code) + ".desktop", true);
-                        selected.Add(game.Code);
-                        Thread.Sleep(1);
+                        var code = Path.GetFileNameWithoutExtension(f);
+                        if (NesMiniApplication.DefaultGames.Where(g => g.Code == code).Count() != 1)
+                            continue;
+
+                        var ext = Path.GetExtension(f).ToLower();
+                        if (ext != ".desktop") // sanity check
+                            throw new FileLoadException("invalid file found in desktop_entries.7z data file.");
+
+                        string path = Path.Combine(originalGamesPath, code);
+                        string outputFile = Path.Combine(path, code + ".desktop");
+                        Directory.CreateDirectory(path);
+                        if (!File.Exists(outputFile) || forceReset)
+                        {
+                            using (var o = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
+                            {
+                                szExtractor.ExtractFile(f, o);
+                                selected.Add(code);
+                                o.Flush();
+                            }
+                        }
                     }
-                }
-                else
-                {
-                    Debug.WriteLine($"missing game {game.Name} {game.Code}.desktop file in \"desktop_entries\".");
+
+                    // save new selected games
+                    ConfigIni.SelectedGames = string.Join(";", selected.Distinct().ToArray());
                 }
             }
-
-            // save new selected games
-            ConfigIni.SelectedGames = string.Join(";", selected.Distinct().ToArray());
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+            }
         }
 
         public void LoadGames()
         {
             Debug.WriteLine("Loading games");
             var selected = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+            Debug.WriteLine($"{selected.Length} selected.");
 
             // add custom games
             Directory.CreateDirectory(NesMiniApplication.GamesDirectory);
@@ -342,7 +354,7 @@ namespace com.clusterrr.hakchi_gui
             foreach(var game in NesMiniApplication.DefaultGames)
             {
                 string path = Path.Combine(NesMiniApplication.OriginalGamesDirectory, game.Code);
-                if ( Directory.Exists(path))
+                if (Directory.Exists(path))
                     gameDirs.Add(path);
             }
 
@@ -429,10 +441,6 @@ namespace com.clusterrr.hakchi_gui
                 textBoxPublisher.Text = app.Publisher;
                 textBoxArguments.Text = app.Command;
                 pictureBoxArt.Image = app.Image;
-                // if (File.Exists(app.IconPath))
-                //     pictureBoxArt.Image = NesMiniApplication.LoadBitmap(app.IconPath);
-                // else
-                //     pictureBoxArt.Image = null;
                 buttonShowGameGenieDatabase.Enabled = app is NesGame; //ISupportsGameGenie;
                 textBoxGameGenie.Enabled = app is ISupportsGameGenie;
                 textBoxGameGenie.Text = (app is ISupportsGameGenie) ? (app as NesMiniApplication).GameGenie : "";
@@ -1312,6 +1320,16 @@ namespace com.clusterrr.hakchi_gui
             SyncConsoleType();
         }
 
+        private void resetOriginalGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(Resources.ResetOriginalGamesQ, Resources.Default30games, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                == DialogResult.Yes)
+            {
+                SyncOriginalGames(true);
+                LoadGames();
+            }
+        }
+
         private void enableAutofireToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.AutofireHack = enableAutofireToolStripMenuItem.Checked;
@@ -1350,12 +1368,20 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
+            Debug.WriteLine("MainForm.Shown()");
             ConfigIni.RunCount++;
             if (ConfigIni.RunCount == 1)
             {
-                new SelectConsoleDialog().ShowDialog();
-                SyncConsoleType();
-                MessageBox.Show(this, Resources.FirstRun, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.UseWaitCursor = true;
+                ShowSelected();
+                Thread.Sleep(1000);
+                Application.UseWaitCursor = false;
+                if (ConfigIni.ConsoleType == ConsoleType.Unknown && DetectedConnectedConsole == null)
+                {
+                    new SelectConsoleDialog().ShowDialog();
+                    SyncConsoleType();
+                    MessageBox.Show(this, Resources.FirstRun, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             if (ConfigIni.RunCount == 10 && !string.IsNullOrEmpty(Resources.Donate.Trim()))
             {
