@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Linq;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -617,7 +618,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
                 else
-                    SetImage(value);
+                    SetImage(value, ConfigIni.CompressCover);
             }
             get
             {
@@ -640,14 +641,47 @@ namespace com.clusterrr.hakchi_gui
 
         public void SetImageFile(string fileName, bool EightBitCompression = false)
         {
+            // failsafe
+            if (String.IsNullOrEmpty(fileName) || !File.Exists(fileName))
+            {
+                Image = null;
+                return;
+            }
 
+            // only file type candidate for direct copy is ".png"
+            if (Path.GetExtension(fileName).ToLower() != ".png")
+            {
+                SetImage(LoadBitmap(fileName), EightBitCompression);
+                return;
+            }
+
+            // aspect ratio
+            int maxX = 204;
+            int maxY = 204;
+            if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
+            {
+                maxX = 228;
+                maxY = 204;
+            }
+
+            // if file is exactly the right aspect ratio, keep it and only resize thumbnail
+            Bitmap bmp = LoadBitmap(fileName);
+            var pix = new PixelFormat[] { PixelFormat.Format1bppIndexed, PixelFormat.Format4bppIndexed, PixelFormat.Format8bppIndexed };
+            if ((!EightBitCompression || pix.Contains(bmp.PixelFormat)) && ((bmp.Height == maxY && bmp.Width <= maxX) || (bmp.Width == maxX && bmp.Height <= maxY)))
+            {
+                Debug.WriteLine($"Image file \"{Path.GetFileName(fileName)}\" is copied as is!");
+                File.Copy(fileName, IconPath);
+                SetThumbnail(bmp, EightBitCompression);
+            }
+            else
+            {
+                SetImage(bmp, EightBitCompression);
+            }
         }
 
         private void SetImage(Image image, bool EightBitCompression = false)
         {
             Bitmap outImage;
-            Bitmap outImageSmall;
-            Graphics gr;
 
             // Just keep aspect ratio
             int maxX = 204;
@@ -670,6 +704,25 @@ namespace com.clusterrr.hakchi_gui
                 outImage = new Bitmap(X, maxY);
             }
 
+            using (Graphics gr = Graphics.FromImage(outImage))
+            {
+                gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
+                                    new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
+                gr.Flush();
+                if (EightBitCompression)
+                    Quantize(ref outImage);
+                outImage.Save(IconPath, ImageFormat.Png);
+            }
+
+            SetThumbnail(image, EightBitCompression);
+        }
+
+        private void SetThumbnail(Image image, bool EightBitCompression = false)
+        {
+            Bitmap outImageSmall;
+
+            // Just keep aspect ratio
             int maxXsmall = 40;
             int maxYsmall = 40;
             if ((double)image.Width / (double)image.Height > (double)maxXsmall / (double)maxYsmall)
@@ -685,76 +738,102 @@ namespace com.clusterrr.hakchi_gui
                 outImageSmall = new Bitmap(X, maxYsmall);
             }
 
-            gr = Graphics.FromImage(outImage);
-            gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-            gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
-                                new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
-            gr.Flush();
-            outImage.Save(IconPath, ImageFormat.Png);
-
-            gr = Graphics.FromImage(outImageSmall);
-            gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-            // Fix first line and column alpha shit
-            using (ImageAttributes wrapMode = new ImageAttributes())
+            using (Graphics gr = Graphics.FromImage(outImageSmall))
             {
-                wrapMode.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY);
-                gr.DrawImage(outImage, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height), 0, 0, outImage.Width, outImage.Height, GraphicsUnit.Pixel, wrapMode);
+                gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                // Fix first line and column alpha shit
+                using (ImageAttributes wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY);
+                    gr.DrawImage(image, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height), 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+                gr.Flush();
+                if (EightBitCompression)
+                    Quantize(ref outImageSmall);
+                outImageSmall.Save(SmallIconPath, ImageFormat.Png);
             }
-            gr.Flush();
-            outImageSmall.Save(SmallIconPath, ImageFormat.Png);
+        }
+
+        private static void Quantize(ref Bitmap img)
+        {
+            if (img.PixelFormat != PixelFormat.Format32bppArgb)
+                ConvertTo32bppAndDisposeOriginal(ref img);
+
+            try
+            {
+                var quantizer = new nQuant.WuQuantizer();
+                Bitmap quantized = (Bitmap)quantizer.QuantizeImage(img);
+                img.Dispose();
+                img = quantized;
+                Debug.WriteLine("an image has been compressed using nQuant.");
+            }
+            catch (nQuant.QuantizationException q)
+            {
+                Debug.WriteLine(q.Message);
+            }
+        }
+
+        private static void ConvertTo32bppAndDisposeOriginal(ref Bitmap img)
+        {
+            var bmp = new Bitmap(img.Width, img.Height, PixelFormat.Format32bppArgb);
+            using (var gr = Graphics.FromImage(bmp))
+                gr.DrawImage(img, new Rectangle(0, 0, img.Width, img.Height));
+            img.Dispose();
+            img = bmp;
         }
 
         protected bool FindCover(string inputFileName, Image defaultCover, uint crc32 = 0)
         {
             // Trying to find cover file
-            Image cover = null;
             var artDirectory = System.IO.Path.Combine(Program.BaseDirectoryExternal, "art");
+            var imageExtensions = new string[] { ".png", ".jpg", ".jpeg", ".bmp", ".gif" };
             Directory.CreateDirectory(artDirectory);
             if (!string.IsNullOrEmpty(inputFileName))
             {
                 string name = System.IO.Path.GetFileNameWithoutExtension(inputFileName);
+                string[] covers;
+
+                // first test for crc32 match (most precise)
                 if (crc32 != 0)
                 {
-                    var covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
-                    if (covers.Length > 0)
-                        cover = LoadBitmap(covers[0]);
-                }
-                if (cover == null)
-                {
-                    // priority to inputFileName directory
-                    var imagePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(inputFileName), name + ".jpg");
-                    if (File.Exists(imagePath))
-                        cover = LoadBitmap(imagePath);
-                    imagePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(inputFileName), name + ".png");
-                    if (File.Exists(imagePath))
-                        cover = LoadBitmap(imagePath);
-                }
-                if( cover == null )
-                {
-                    // do a bidirectional search on sanitized filenames to allow minor variance in filenames, also allows subdirectories
-                    Regex rgx = new Regex("[^a-zA-Z0-9]", RegexOptions.Compiled);
-                    var sanitizedName = rgx.Replace(name, string.Empty).ToLower();
-
-                    var covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
-                    foreach(var file in covers)
+                    covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
+                    if (covers.Length > 0 && imageExtensions.Contains(Path.GetExtension(covers[0])))
                     {
-                        var sanitized = rgx.Replace(System.IO.Path.GetFileNameWithoutExtension(file), "").ToLower();
-                        if (sanitizedName.StartsWith(sanitized) || sanitized.StartsWith(sanitizedName))
-                        {
-                            cover = LoadBitmap(file);
-                            break;
-                        }
+                        SetImageFile(covers[0], ConfigIni.CompressCover);
+                        return true;
+                    }
+                }
+
+                // test presence of image file alongside the source file
+                foreach (var ext in imageExtensions)
+                {
+                    var imagePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(inputFileName), name + ext);
+                    if (File.Exists(imagePath))
+                    {
+                        SetImageFile(imagePath, ConfigIni.CompressCover);
+                        return true;
+                    }
+                }
+                
+                // last attempt brute force search:
+                // do a bidirectional search on sanitized filenames to allow minor variance in filenames, also allows subdirectories
+                Regex rgx = new Regex("[^a-zA-Z0-9]", RegexOptions.Compiled);
+                var sanitizedName = rgx.Replace(name, string.Empty).ToLower();
+
+                covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
+                foreach (var file in covers)
+                {
+                    var sanitized = rgx.Replace(System.IO.Path.GetFileNameWithoutExtension(file), "").ToLower();
+                    if ((sanitizedName.StartsWith(sanitized) || sanitized.StartsWith(sanitizedName)) && imageExtensions.Contains(Path.GetExtension(file)))
+                    {
+                        SetImageFile(file, ConfigIni.CompressCover);
+                        return true;
                     }
                 }
             }
-            if (cover == null)
-            {
-                SetImage(DefaultCover);
-                return false;
-            }
-            SetImage(cover);
-            return true;
+            SetImage(defaultCover);
+            return false;
         }
 
         protected static bool FindPatch(ref byte[] rawRomData, string inputFileName, uint crc32 = 0)

@@ -862,6 +862,24 @@ namespace com.clusterrr.hakchi_gui
             int maxProgress = 400;
             if (Games == null || Games.Count == 0)
                 throw new Exception("there are no games");
+
+            // cleanup first
+            tempGamesDirectory = Path.Combine(tempDirectory, "games");
+            SetStatus(Resources.CleaningUp);
+            try
+            {
+                Program.PersistentDeleteDirectory(tempDirectory);
+                Directory.CreateDirectory(tempGamesDirectory);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + " : " + ex.StackTrace);
+                MessageBox.Show(Resources.CannotDeleteTempFolder);
+                DialogResult = DialogResult.Abort;
+                return;
+            }
+
+            // building folders
             SetStatus(Resources.BuildingFolders);
             if (FoldersMode == NesMenuCollection.SplitStyle.Custom)
             {
@@ -887,27 +905,15 @@ namespace com.clusterrr.hakchi_gui
                 }
                 progress += 5;
                 SetProgress(progress, maxProgress);
-
+                
+                // prepare unit for upload
                 ShowSplashScreen();
                 UpdateRootfs();
                 var squashFsMount = clovershell.ExecuteSimple($"mount | grep {squashFsPath}", 3000, false);
                 if (string.IsNullOrEmpty(squashFsMount))
                     clovershell.ExecuteSimple($"mkdir -p {squashFsPath} && mount /dev/mapper/root-crypt {squashFsPath}", 3000, true);
-                SetStatus(Resources.BuildingFolders);
-
-                if (Directory.Exists(tempDirectory))
-                    Directory.Delete(tempDirectory, true);
-                Directory.CreateDirectory(tempDirectory);
 
                 // Games!
-                tempGamesDirectory = Path.Combine(tempDirectory, "games");
-                Directory.CreateDirectory(tempDirectory);
-                Directory.CreateDirectory(tempGamesDirectory);
-                if (Directory.GetDirectories(tempGamesDirectory).Length > 0)
-                {
-                    MessageBox.Show(Resources.FolderNotEmpty);
-                    return;
-                }
                 Dictionary<string, string> originalGames = new Dictionary<string, string>();
                 var stats = new GamesTreeStats();
                 AddMenu(Games, originalGames, stats);
@@ -927,7 +933,7 @@ namespace com.clusterrr.hakchi_gui
                         SaveStatesSize / 1024.0 / 1024.0,
                         (NandCUsed - WrittenGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
                 }
-                    
+                
                 using (var gamesTar = new TarStream(tempGamesDirectory))
                 {
                     maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 20 + originalGames.Count() * 2);
@@ -958,8 +964,6 @@ namespace com.clusterrr.hakchi_gui
                 SetStatus(Resources.UploadingOriginalGames);
                 // Need to make sure that squashfs if mounted
                 startProgress = progress;
-                string executablePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                string desktopEntriesPath = Path.Combine(executablePath, "desktop_entries");
                 foreach (var originalCode in originalGames.Keys)
                 {
                     string originalSyncCode = "";
@@ -970,27 +974,29 @@ namespace com.clusterrr.hakchi_gui
                             originalSyncCode =
                                 $"src=\"{squashFsPath}{gamesPath}/{originalCode}\" && " +
                                 $"dst=\"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
-                                $"mkdir -p \"$dst\" && " +
-                                $"ln -s \"$src/{originalCode}.png\" \"$dst\" && " +
-                                $"ln -s \"$src/{originalCode}_small.png\" \"$dst\" && " +
-                                $"ln -s \"$src/{originalCode}.nes\" \"$dst\" && " +
+                                //$"mkdir -p \"$dst\" && " +
+                                //$"ln -s \"$src/{originalCode}.png\" \"$dst\" && " +
+                                //$"ln -s \"$src/{originalCode}_small.png\" \"$dst\" && " +
+                                //$"ln -s \"$src/{originalCode}.nes\" \"$dst\" && " +
                                 $"ln -s \"$src/autoplay/\" \"$dst/autoplay\" && " +
                                 $"ln -s \"$src/pixelart/\" \"$dst/pixelart\" && " +
-                                $"cp \"$src/{originalCode}.desktop\" \"$dst/{originalCode}.desktop\" && " +
-                                $"sed -i -e 's/\\/usr\\/bin\\/clover-kachikachi/\\/bin\\/clover-kachikachi-wr/g' \"$dst/{originalCode}.desktop\"";
+                                //$"cp \"$src/{originalCode}.desktop\" \"$dst/{originalCode}.desktop\" && " +
+                                //$"sed -i -e 's/\\/usr\\/bin\\/clover-kachikachi/\\/bin\\/clover-kachikachi-wr/g' \"$dst/{originalCode}.desktop\"";
+                                "echo \"OK\"";
                             break;
                         case MainForm.ConsoleType.SNES:
                         case MainForm.ConsoleType.SuperFamicom:
                             originalSyncCode =
                                 $"src=\"{squashFsPath}{gamesPath}/{originalCode}\" && " +
                                 $"dst=\"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
-                                $"mkdir -p \"$dst\" && " +
-                                $"ln -s \"$src/{originalCode}.png\" \"$dst\" && " +
-                                $"ln -s \"$src/{originalCode}_small.png\" \"$dst\" && " +
-                                $"ln -s \"$src/{originalCode}.sfrom\" \"$dst\" && " +
+                                //$"mkdir -p \"$dst\" && " +
+                                //$"ln -s \"$src/{originalCode}.png\" \"$dst\" && " +
+                                //$"ln -s \"$src/{originalCode}_small.png\" \"$dst\" && " +
+                                //$"ln -s \"$src/{originalCode}.sfrom\" \"$dst\" && " +
                                 $"ln -s \"$src/autoplay/\" \"$dst/autoplay\" && " +
-                                $"cp \"$src/{originalCode}.desktop\" \"$dst/{originalCode}.desktop\" && " +
-                                $"sed -i -e 's/\\/usr\\/bin\\/clover-canoe-shvc/\\/bin\\/clover-canoe-shvc-wr/g' \"$dst/{originalCode}.desktop\"";
+                                //$"cp \"$src/{originalCode}.desktop\" \"$dst/{originalCode}.desktop\" && " +
+                                //$"sed -i -e 's/\\/usr\\/bin\\/clover-canoe-shvc/\\/bin\\/clover-canoe-shvc-wr/g' \"$dst/{originalCode}.desktop\"";
+                                "echo \"OK\"";
                             break;
                     }
                     clovershell.ExecuteSimple(originalSyncCode, 30000, true);
@@ -1042,18 +1048,18 @@ namespace com.clusterrr.hakchi_gui
             SetStatus(Resources.BuildingFolders);
 
             // export games directory!
-            if (Directory.Exists(tempDirectory))
-                Directory.Delete(tempDirectory, true);
-            Directory.CreateDirectory(tempDirectory);
-
             tempGamesDirectory = exportDirectory;
             Directory.CreateDirectory(tempGamesDirectory);
             if (Directory.GetDirectories(tempGamesDirectory).Length > 0)
             {
                 MessageBox.Show(Resources.FolderNotEmpty);
+                DialogResult = DialogResult.Abort;
                 return;
             }
+            progress += 5;
+            SetProgress(progress, maxProgress);
 
+            SetStatus(Resources.BuildingMenu);
             Dictionary<string, string> originalGames = new Dictionary<string, string>();
             var stats = new GamesTreeStats();
             AddMenu(Games, originalGames, stats);

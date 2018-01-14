@@ -947,6 +947,9 @@
   <data name="&gt;&gt;buttonBrowseImage.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="pictureBoxArt.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="pictureBoxArt.Location" type="System.Drawing.Point, System.Drawing">
     <value>76, 316</value>
   </data>
@@ -1368,7 +1371,7 @@
     <value>269, 22</value>
   </data>
   <data name="deleteSelectedGamesBoxArtToolStripMenuItem.Text" xml:space="preserve">
-    <value>Delete selected games' box art</value>
+    <value>Delete box art of selected games</value>
   </data>
   <data name="compressSelectedGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>269, 22</value>
@@ -2859,6 +2862,18 @@
   <data name="&gt;&gt;superFamicomMiniToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripMenuItem12.Name" xml:space="preserve">
+    <value>toolStripMenuItem12</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;resetOriginalGamesToolStripMenuItem.Name" xml:space="preserve">
+    <value>resetOriginalGamesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;resetOriginalGamesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;pagesfoldersTypeToolStripMenuItem.Name" xml:space="preserve">
     <value>pagesfoldersTypeToolStripMenuItem</value>
   </data>
@@ -3218,18 +3233,6 @@
   </data>
   <data name="&gt;&gt;timerShowSelected.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem12.Name" xml:space="preserve">
-    <value>toolStripMenuItem12</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem12.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;resetOriginalGamesToolStripMenuItem.Name" xml:space="preserve">
-    <value>resetOriginalGamesToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;resetOriginalGamesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

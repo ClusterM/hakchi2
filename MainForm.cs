@@ -609,6 +609,8 @@ namespace com.clusterrr.hakchi_gui
         private void listViewGames_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             timerShowSelected.Enabled = true;
+            if(!e.IsSelected)
+                (e.Item.Tag as NesMiniApplication).Save();
         }
 
         private void timerShowSelected_Tick(object sender, EventArgs e)
@@ -624,7 +626,7 @@ namespace com.clusterrr.hakchi_gui
             if (selected == null || !(selected is NesMiniApplication)) return;
 
             var game = (selected as NesMiniApplication);
-            game.Image = String.IsNullOrEmpty(fileName) ? null : NesMiniApplication.LoadBitmap(fileName);
+            game.SetImageFile(fileName, ConfigIni.CompressCover);
             ShowSelected();
             timerCalculateGames.Enabled = true;
         }

@@ -739,4 +739,13 @@
   <data name="ResetOriginalGamesQ" xml:space="preserve">
     <value>Do you really want to undo all customization on original games?</value>
   </data>
+  <data name="CannotDeleteTempFolder" xml:space="preserve">
+    <value>Error deleting temp folder. Please try again.</value>
+  </data>
+  <data name="CleaningUp" xml:space="preserve">
+    <value>Cleaning up previous task...</value>
+  </data>
+  <data name="BuildingMenu" xml:space="preserve">
+    <value>Building menu...</value>
+  </data>
 </root>

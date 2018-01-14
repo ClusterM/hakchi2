@@ -66,6 +66,8 @@
             this.famicomMiniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sNESMiniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.superFamicomMiniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
+            this.resetOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagesfoldersTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disablePagefoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -156,8 +158,6 @@
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.exportFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.timerShowSelected = new System.Windows.Forms.Timer(this.components);
-            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
-            this.resetOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -423,6 +423,17 @@
             this.superFamicomMiniToolStripMenuItem.Name = "superFamicomMiniToolStripMenuItem";
             resources.ApplyResources(this.superFamicomMiniToolStripMenuItem, "superFamicomMiniToolStripMenuItem");
             this.superFamicomMiniToolStripMenuItem.Click += new System.EventHandler(this.superFamicomMiniToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            resources.ApplyResources(this.toolStripMenuItem12, "toolStripMenuItem12");
+            // 
+            // resetOriginalGamesToolStripMenuItem
+            // 
+            this.resetOriginalGamesToolStripMenuItem.Name = "resetOriginalGamesToolStripMenuItem";
+            resources.ApplyResources(this.resetOriginalGamesToolStripMenuItem, "resetOriginalGamesToolStripMenuItem");
+            this.resetOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.resetOriginalGamesToolStripMenuItem_Click);
             // 
             // pagesfoldersTypeToolStripMenuItem
             // 
@@ -1057,17 +1068,6 @@
             // timerShowSelected
             // 
             this.timerShowSelected.Tick += new System.EventHandler(this.timerShowSelected_Tick);
-            // 
-            // toolStripMenuItem12
-            // 
-            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            resources.ApplyResources(this.toolStripMenuItem12, "toolStripMenuItem12");
-            // 
-            // resetOriginalGamesToolStripMenuItem
-            // 
-            this.resetOriginalGamesToolStripMenuItem.Name = "resetOriginalGamesToolStripMenuItem";
-            resources.ApplyResources(this.resetOriginalGamesToolStripMenuItem, "resetOriginalGamesToolStripMenuItem");
-            this.resetOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.resetOriginalGamesToolStripMenuItem_Click);
             // 
             // MainForm
             // 
