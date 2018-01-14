@@ -77,10 +77,11 @@ namespace com.clusterrr.hakchi_gui
                 LoadPresets();
                 LoadLanguages();
                 var version = Assembly.GetExecutingAssembly().GetName().Version;
-                Text = string.Format("hakchi2 - v{0}.{1:D2}{2}", version.Major, version.Build, (version.Revision < 10) ?
-                    ("rc" + version.Revision.ToString()) : (version.Revision > 20 ? ((char)('a' + (version.Revision - 20) / 10)).ToString() : ""))
+                var v = System.DateTime.Now.ToString("yyyyMMdd");
+                Text = string.Format("hakchi2 v{0}.{1}.{2}.{3}/princess_daphie fork v{4}",
+                    version.Major, version.Minor, version.Build, version.Revision, v)
 #if DEBUG
- + " (debug version"
+ + " (debug"
 #if VERY_DEBUG
  + ", very verbose mode"
 #endif
@@ -1881,6 +1882,16 @@ namespace com.clusterrr.hakchi_gui
                     }
                     break;
             }
+        }
+
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveConfig();
+            listViewGames.BeginUpdate();
+            foreach (ListViewItem item in listViewGames.Items)
+                item.Selected = false;
+            listViewGames.EndUpdate();
+            LoadGames();
         }
     }
 }

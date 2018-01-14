@@ -38,6 +38,7 @@
             this.addPresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.synchronizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -183,6 +184,7 @@
             this.addMoreGamesToolStripMenuItem,
             this.presetsToolStripMenuItem,
             this.synchronizeToolStripMenuItem,
+            this.refreshToolStripMenuItem,
             this.searchToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
@@ -225,6 +227,12 @@
             this.synchronizeToolStripMenuItem.Name = "synchronizeToolStripMenuItem";
             resources.ApplyResources(this.synchronizeToolStripMenuItem, "synchronizeToolStripMenuItem");
             this.synchronizeToolStripMenuItem.Click += new System.EventHandler(this.buttonStart_Click);
+            // 
+            // refreshToolStripMenuItem
+            // 
+            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            resources.ApplyResources(this.refreshToolStripMenuItem, "refreshToolStripMenuItem");
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
             // searchToolStripMenuItem
             // 
@@ -1054,6 +1062,7 @@
             this.listViewGames.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewGames.HideSelection = false;
             this.listViewGames.Name = "listViewGames";
+            this.listViewGames.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listViewGames.UseCompatibleStateImageBehavior = false;
             this.listViewGames.View = System.Windows.Forms.View.Details;
             this.listViewGames.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listViewGames_ItemCheck);
@@ -1235,6 +1244,7 @@
         private System.Windows.Forms.Timer timerShowSelected;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
         private System.Windows.Forms.ToolStripMenuItem resetOriginalGamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
     }
 }
 
