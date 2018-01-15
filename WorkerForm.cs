@@ -868,7 +868,8 @@ namespace com.clusterrr.hakchi_gui
             SetStatus(Resources.CleaningUp);
             try
             {
-                Program.PersistentDeleteDirectory(tempDirectory);
+                if (Directory.Exists(tempDirectory))
+                    Program.PersistentDeleteDirectory(tempDirectory);
                 Directory.CreateDirectory(tempGamesDirectory);
             }
             catch (Exception ex)
@@ -1008,7 +1009,13 @@ namespace com.clusterrr.hakchi_gui
                 SyncConfig(Config);
 #if !DEBUG
                 if (Directory.Exists(tempDirectory))
-                    Directory.Delete(tempDirectory, true);
+                {
+                    try
+                    {
+                        Directory.Delete(tempDirectory, true);
+                    }
+                    catch { }
+                }
 #endif
                 SetStatus(Resources.Done);
                 SetProgress(maxProgress, maxProgress);
