@@ -38,7 +38,7 @@
             this.addPresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.synchronizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,6 +112,7 @@
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.pictureBoxThumbnail = new System.Windows.Forms.PictureBox();
             this.buttonDefaultCover = new System.Windows.Forms.Button();
             this.labelSize = new System.Windows.Forms.Label();
             this.checkBoxCompressed = new System.Windows.Forms.CheckBox();
@@ -161,6 +162,7 @@
             this.timerShowSelected = new System.Windows.Forms.Timer(this.components);
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxThumbnail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -184,7 +186,7 @@
             this.addMoreGamesToolStripMenuItem,
             this.presetsToolStripMenuItem,
             this.synchronizeToolStripMenuItem,
-            this.refreshToolStripMenuItem,
+            this.reloadGamesToolStripMenuItem,
             this.searchToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
@@ -228,11 +230,11 @@
             resources.ApplyResources(this.synchronizeToolStripMenuItem, "synchronizeToolStripMenuItem");
             this.synchronizeToolStripMenuItem.Click += new System.EventHandler(this.buttonStart_Click);
             // 
-            // refreshToolStripMenuItem
+            // reloadGamesToolStripMenuItem
             // 
-            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            resources.ApplyResources(this.refreshToolStripMenuItem, "refreshToolStripMenuItem");
-            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+            this.reloadGamesToolStripMenuItem.Name = "reloadGamesToolStripMenuItem";
+            resources.ApplyResources(this.reloadGamesToolStripMenuItem, "reloadGamesToolStripMenuItem");
+            this.reloadGamesToolStripMenuItem.Click += new System.EventHandler(this.reloadGamesToolStripMenuItem_Click);
             // 
             // searchToolStripMenuItem
             // 
@@ -752,6 +754,7 @@
             // groupBoxOptions
             // 
             resources.ApplyResources(this.groupBoxOptions, "groupBoxOptions");
+            this.groupBoxOptions.Controls.Add(this.pictureBoxThumbnail);
             this.groupBoxOptions.Controls.Add(this.buttonDefaultCover);
             this.groupBoxOptions.Controls.Add(this.labelSize);
             this.groupBoxOptions.Controls.Add(this.checkBoxCompressed);
@@ -777,6 +780,13 @@
             this.groupBoxOptions.Controls.Add(this.labelID);
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
+            // 
+            // pictureBoxThumbnail
+            // 
+            resources.ApplyResources(this.pictureBoxThumbnail, "pictureBoxThumbnail");
+            this.pictureBoxThumbnail.Name = "pictureBoxThumbnail";
+            this.pictureBoxThumbnail.TabStop = false;
+            this.pictureBoxThumbnail.Click += new System.EventHandler(this.pictureBoxThumbnail_Click);
             // 
             // buttonDefaultCover
             // 
@@ -858,6 +868,7 @@
             resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
+            this.pictureBoxArt.Click += new System.EventHandler(this.buttonBrowseImage_Click);
             // 
             // label4
             // 
@@ -1059,16 +1070,16 @@
             this.listViewGames.CheckBoxes = true;
             this.listViewGames.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.gameName});
+            this.listViewGames.FullRowSelect = true;
             this.listViewGames.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewGames.HideSelection = false;
             this.listViewGames.Name = "listViewGames";
-            this.listViewGames.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listViewGames.UseCompatibleStateImageBehavior = false;
             this.listViewGames.View = System.Windows.Forms.View.Details;
             this.listViewGames.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listViewGames_ItemCheck);
             this.listViewGames.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewGames_ItemSelectionChanged);
             this.listViewGames.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewGames_KeyDown);
-            this.listViewGames.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewGames_MouseClick);
+            this.listViewGames.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listViewGames_MouseDown);
             // 
             // gameName
             // 
@@ -1105,6 +1116,7 @@
             this.menuStrip.PerformLayout();
             this.groupBoxOptions.ResumeLayout(false);
             this.groupBoxOptions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxThumbnail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
@@ -1244,7 +1256,8 @@
         private System.Windows.Forms.Timer timerShowSelected;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
         private System.Windows.Forms.ToolStripMenuItem resetOriginalGamesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reloadGamesToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBoxThumbnail;
     }
 }
 

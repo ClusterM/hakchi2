@@ -313,6 +313,26 @@ namespace com.clusterrr.hakchi_gui
                 status = value;
             }
         }
+        private string copyright;
+        public string Copyright
+        {
+            get { return copyright; }
+            set
+            {
+                if (copyright != value) hasUnsavedChanges = true;
+                copyright = value;
+            }
+        }
+        private string sortRawTitle;
+        public string SortRawTitle
+        {
+            get { return sortRawTitle; }
+            set
+            {
+                if (sortRawTitle != value) hasUnsavedChanges = true;
+                sortRawTitle = value;
+            }
+        }
 
         private bool isOriginalGame;
         public bool IsOriginalGame
@@ -448,6 +468,7 @@ namespace com.clusterrr.hakchi_gui
             Simultaneous = false;
             ReleaseDate = DefaultReleaseDate;
             Publisher = DefaultPublisher;
+            Copyright = "hakchi2 ©2017 Alexey 'Cluster' Avdyukhin";
             Command = "";
             SaveCount = 0;
             Status = "";
@@ -467,6 +488,7 @@ namespace com.clusterrr.hakchi_gui
             Simultaneous = false;
             ReleaseDate = DefaultReleaseDate;
             Publisher = DefaultPublisher;
+            Copyright = "hakchi2 ©2017 Alexey 'Cluster' Avdyukhin";
             Command = "";
             Status = "";
             TestId = 0;
@@ -511,8 +533,14 @@ namespace com.clusterrr.hakchi_gui
                     case "releasedate":
                         ReleaseDate = value;
                         break;
+                    case "sortrawtitle":
+                        SortRawTitle = value;
+                        break;
                     case "sortrawpublisher":
                         Publisher = value;
+                        break;
+                    case "copyright":
+                        Copyright = value;
                         break;
                     case "savecount":
                         SaveCount = byte.Parse(value);
@@ -540,9 +568,9 @@ namespace com.clusterrr.hakchi_gui
 
             // setup name and sort name
             Name = Regex.Replace(Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
-            var sortRawTitle = Name.ToLower();
-            if (sortRawTitle.StartsWith("the "))
-                sortRawTitle = sortRawTitle.Substring(4); // Sorting without "THE"
+            SortRawTitle = Name.ToLower();
+            if (SortRawTitle.StartsWith("the "))
+                SortRawTitle = SortRawTitle.Substring(4); // Sorting without "THE"
 
             // reference original icon path if no image exists for original game
             var cloverIconPath = $"{GamesCloverPath}/{Code}/{Code}.png";
@@ -574,9 +602,9 @@ namespace com.clusterrr.hakchi_gui
                 $"Simultaneous={(Simultaneous ? 1 : 0)}\n" +
                 $"ReleaseDate={ReleaseDate ?? DefaultReleaseDate}\n" +
                 $"SaveCount={SaveCount}\n" +
-                $"SortRawTitle={sortRawTitle}\n" +
+                $"SortRawTitle={SortRawTitle}\n" +
                 $"SortRawPublisher={(Publisher ?? DefaultPublisher).ToUpper()}\n" +
-                $"Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n" +
+                $"Copyright={Copyright}\n" +
                 lastLine);
 
             // game genie stuff
@@ -594,6 +622,115 @@ namespace com.clusterrr.hakchi_gui
             return Name;
         }
 
+        private void ProcessImage(Image inImage, string outPath, int targetWidth, int targetHeight, bool quantize)
+        {
+            int X, Y;
+            if ((double)inImage.Width / (double)inImage.Height > (double)targetWidth / (double)targetHeight)
+            {
+                X = targetWidth;
+                Y = (int)Math.Round((double)targetWidth * (double)inImage.Height / (double)inImage.Width);
+                if (Y % 2 == 1) ++Y;
+            }
+            else
+            {
+                X = (int)Math.Round((double)targetHeight * (double)inImage.Width / (double)inImage.Height);
+                if (X % 2 == 1) ++X;
+                Y = targetHeight;
+            }
+
+            Bitmap outImage = new Bitmap(X, Y);
+            using (Graphics gr = Graphics.FromImage(outImage))
+            {
+                gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                // Fix first line and column alpha shit
+                using (ImageAttributes wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY);
+                    gr.DrawImage(inImage, new Rectangle(0, 0, outImage.Width, outImage.Height), 0, 0, inImage.Width, inImage.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+                //gr.DrawImage(inImage, new Rectangle(0, 0, outImage.Width, outImage.Height),
+                //                      new Rectangle(0, 0, inImage.Width, inImage.Height), GraphicsUnit.Pixel);
+                gr.Flush();
+                if (quantize) Quantize(ref outImage);
+                outImage.Save(outPath, ImageFormat.Png);
+            }
+            outImage.Dispose();
+        }
+
+        private void ProcessImageFile(string inPath, string outPath, int targetWidth, int targetHeight, bool quantize)
+        {
+            if (String.IsNullOrEmpty(inPath) || !File.Exists(inPath)) // failsafe
+            {
+                Debug.WriteLine($"ProcessImageFile: Image file \"{inPath}\" doesn't exist.");
+                return;
+            }
+
+            // only file type candidate for direct copy is ".png"
+            if (Path.GetExtension(inPath).ToLower() == ".png")
+            {
+                // if file is exactly the right aspect ratio, copy it
+                Bitmap inImage = LoadBitmap(inPath);
+                var pix = new PixelFormat[] { PixelFormat.Format1bppIndexed, PixelFormat.Format4bppIndexed, PixelFormat.Format8bppIndexed };
+                if ((!quantize || pix.Contains(inImage.PixelFormat)) &&
+                    ((inImage.Height == targetHeight && inImage.Width <= targetWidth) ||
+                     (inImage.Width == targetWidth && inImage.Height <= targetHeight)))
+                {
+                    Debug.WriteLine($"ProcessImageFile: Image file \"{Path.GetFileName(inPath)}\" doesn't need resizing, kept intact!");
+                    File.Copy(inPath, outPath, true);
+                    return;
+                }
+            }
+
+            // any other case, fully process image
+            ProcessImage(LoadBitmap(inPath), outPath, targetWidth, targetHeight, quantize);
+        }
+
+        private void SetImage(Image img, bool EightBitCompression = false)
+        {
+            // full-size image ratio
+            int maxX = 204;
+            int maxY = 204;
+            if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
+            {
+                maxX = 228;
+                maxY = 204;
+            }
+            ProcessImage(img, IconPath, maxX, maxY, EightBitCompression);
+
+            // thumbnail image ratio
+            maxX = 40;
+            maxY = 40;
+            ProcessImage(img, SmallIconPath, maxX, maxY, EightBitCompression);
+        }
+
+        public void SetImageFile(string path, bool EightBitCompression = false)
+        {
+            // full-size image ratio
+            int maxX = 204;
+            int maxY = 204;
+            if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
+            {
+                maxX = 228;
+                maxY = 204;
+            }
+            ProcessImageFile(path, IconPath, maxX, maxY, EightBitCompression);
+
+            // check if a small image file might have accompanied the source image
+            string thumbnailPath = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path) + "_small" + Path.GetExtension(path));
+            if (File.Exists(thumbnailPath))
+                path = thumbnailPath;
+
+            // set thumbnail as well
+            SetThumbnailFile(path, EightBitCompression);
+        }
+
+        public void SetThumbnailFile(string path, bool EightBitCompression = false)
+        {
+            // thumbnail image ratio
+            ProcessImageFile(path, SmallIconPath, 40, 40, EightBitCompression);
+        }
+
         public Image Image
         {
             set
@@ -608,8 +745,7 @@ namespace com.clusterrr.hakchi_gui
                                 File.Delete(IconPath);
                                 File.Delete(SmallIconPath);
                             }
-                            catch { // silently fail
-                            }
+                            catch {}
                     }
                     else
                     {
@@ -626,7 +762,7 @@ namespace com.clusterrr.hakchi_gui
                     return LoadBitmap(IconPath);
                 else
                 {
-                    if(IsOriginalGame)
+                    if (IsOriginalGame)
                     {
                         string cachedIconPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "image_cache"), Code + ".png");
                         if (File.Exists(cachedIconPath))
@@ -639,119 +775,22 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public void SetImageFile(string fileName, bool EightBitCompression = false)
+        public Image Thumbnail
         {
-            // failsafe
-            if (String.IsNullOrEmpty(fileName) || !File.Exists(fileName))
+            get
             {
-                Image = null;
-                return;
-            }
-
-            // only file type candidate for direct copy is ".png"
-            if (Path.GetExtension(fileName).ToLower() != ".png")
-            {
-                SetImage(LoadBitmap(fileName), EightBitCompression);
-                return;
-            }
-
-            // aspect ratio
-            int maxX = 204;
-            int maxY = 204;
-            if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
-            {
-                maxX = 228;
-                maxY = 204;
-            }
-
-            // if file is exactly the right aspect ratio, keep it and only resize thumbnail
-            Bitmap bmp = LoadBitmap(fileName);
-            var pix = new PixelFormat[] { PixelFormat.Format1bppIndexed, PixelFormat.Format4bppIndexed, PixelFormat.Format8bppIndexed };
-            if ((!EightBitCompression || pix.Contains(bmp.PixelFormat)) && ((bmp.Height == maxY && bmp.Width <= maxX) || (bmp.Width == maxX && bmp.Height <= maxY)))
-            {
-                Debug.WriteLine($"Image file \"{Path.GetFileName(fileName)}\" is copied as is!");
-                File.Copy(fileName, IconPath);
-                SetThumbnail(bmp, EightBitCompression);
-            }
-            else
-            {
-                SetImage(bmp, EightBitCompression);
-            }
-        }
-
-        private void SetImage(Image image, bool EightBitCompression = false)
-        {
-            Bitmap outImage;
-
-            // Just keep aspect ratio
-            int maxX = 204;
-            int maxY = 204;
-            if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
-            {
-                maxX = 228;
-                maxY = 204;
-            }
-            if ((double)image.Width / (double)image.Height > (double)maxX / (double)maxY)
-            {
-                int Y = (int)Math.Round((double)maxX * (double)image.Height / (double)image.Width);
-                if (Y % 2 == 1) ++Y;
-                outImage = new Bitmap(maxX, Y);
-            }
-            else
-            {
-                int X = (int)Math.Round(maxY * (double)image.Width / (double)image.Height);
-                if (X % 2 == 1) ++X;
-                outImage = new Bitmap(X, maxY);
-            }
-
-            using (Graphics gr = Graphics.FromImage(outImage))
-            {
-                gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
-                                    new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
-                gr.Flush();
-                if (EightBitCompression)
-                    Quantize(ref outImage);
-                outImage.Save(IconPath, ImageFormat.Png);
-            }
-
-            SetThumbnail(image, EightBitCompression);
-        }
-
-        private void SetThumbnail(Image image, bool EightBitCompression = false)
-        {
-            Bitmap outImageSmall;
-
-            // Just keep aspect ratio
-            int maxXsmall = 40;
-            int maxYsmall = 40;
-            if ((double)image.Width / (double)image.Height > (double)maxXsmall / (double)maxYsmall)
-            {
-                int Y = (int)Math.Round((double)maxXsmall * (double)image.Height / (double)image.Width);
-                if (Y % 2 == 1) ++Y;
-                outImageSmall = new Bitmap(maxXsmall, Y);
-            }
-            else
-            {
-                int X = (int)Math.Round(maxYsmall * (double)image.Width / (double)image.Height);
-                if (X % 2 == 1) ++X;
-                outImageSmall = new Bitmap(X, maxYsmall);
-            }
-
-            using (Graphics gr = Graphics.FromImage(outImageSmall))
-            {
-                gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                // Fix first line and column alpha shit
-                using (ImageAttributes wrapMode = new ImageAttributes())
+                if (File.Exists(SmallIconPath))
+                    return LoadBitmap(SmallIconPath);
+                else
                 {
-                    wrapMode.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY);
-                    gr.DrawImage(image, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height), 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                    if (IsOriginalGame)
+                    {
+                        string cachedIconPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "image_cache"), Code + "_small.png");
+                        if (File.Exists(cachedIconPath))
+                            return LoadBitmap(cachedIconPath);
+                    }
+                    return null;
                 }
-                gr.Flush();
-                if (EightBitCompression)
-                    Quantize(ref outImageSmall);
-                outImageSmall.Save(SmallIconPath, ImageFormat.Png);
             }
         }
 
