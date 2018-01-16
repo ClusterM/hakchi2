@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -91,10 +89,11 @@ namespace com.clusterrr.clovershell
             finally
             {
                 shellConnectionThread = null;
+                Debug.WriteLine(string.Format("Shell client {0} disconnected", id));
+                if (socket != null)
+                    socket.Close();
+                connection.shellConnections[id] = null;
             }
-            Debug.WriteLine(string.Format("Shell client {0} disconnected", id));
-            socket.Close();
-            connection.shellConnections[id] = null;
         }
 
         public void Dispose()

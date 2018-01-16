@@ -85,11 +85,20 @@
   <data name="buttonStart.Text">
     <value>Sincronitzar els jocs seleccionats amb la NES/SNES Mini</value>
   </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Comprimir</value>
+  </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Ajuda/dreceres per als comandaments</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Comprimir jocs que no siguin de NES (Per a emuladors addicionals)</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Comprimir els jocs a l'hora d'afegir-los</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Comprimir els jocs seleccionats</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Tipus de consola</value>
@@ -97,14 +106,26 @@
   <data name="customToolStripMenuItem.Text">
     <value>Personalitzat -mostra la gestió de les carpetes tot el temps</value>
   </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Descomprimir els jocs seleccionats</value>
+  </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Eliminar joc</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Eliminar llista</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Eliminar els jocs seleccionats</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Desactivar pàgines/carpetes</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Fer una donació</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Baixar una caràtula per als jocs seleccionats</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Descarregar caràtules per a tots els jocs</value>
@@ -114,6 +135,12 @@
   </data>
   <data name="dumpNANDBToolStripMenuItem.Text">
     <value>Bolcar la partició NAND-B desencriptada</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Bolcar la partició NAND-C desencriptada</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Selecciona el nom de l'arxiu de bolcat</value>
   </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Bolcar tota la NAND</value>
@@ -130,11 +157,17 @@
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ (Preguntes freqüents)</value>
   </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Japó)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>Arxiu</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Flashetjar custom kernel</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Partició flash NAND-C (Només usuaris avançats)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Flashetjar kernel original</value>
@@ -155,7 +188,7 @@
     <value>GitHub: Pàgina amb les versions actuals</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>Línia de comandament global (Només per a usuaris experts)</value>
+    <value>Línia de comandament global (Només per a usuaris avançats)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
     <value>Pots ocultar alguns jocs predeterminats</value>
@@ -196,14 +229,26 @@
   <data name="labelName.Text">
     <value>Nom:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Tamany:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
     <value>Idioma</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Nombre de jocs per pàgina/carpeta</value>
   </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Iniciar el kernel original des de la RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Iniciar el kernel modificat des de la RAM</value>
+  </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Mòduls</value>
+  </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Europa)</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Obrir client FTP</value>
@@ -241,6 +286,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Utilitzar combinació de botons per a Reset</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Europa)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>Selecciona el nom de l'arxiu de bolcat</value>
   </data>
@@ -265,11 +313,17 @@
   <data name="shellToolStripMenuItem.Text">
     <value>Servidor Telnet en telnet://127.0.0.1:1023 (login:root)</value>
   </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japó)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Sincronitzar</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
     <value>Fer una captura de pantalla</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flashetjar tota la NAND (Només per a usuaris avançats)</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Eines</value>
@@ -291,38 +345,5 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Utilitza X/Y en el comandament Wii Classic Controller com "Autofire" A/B</value>
-  </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
-  </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
-  </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
-  </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Size:</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>

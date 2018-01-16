@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NAAEE/CLV-P-NAAEE.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-NAAEE
+Name=Donkey Kong
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NAAEE/CLV-P-NAAEE.png
+
+[X-CLOVER Game]
+Code=CLV-P-NAAEE
+TestID=482
+ID=0
+Players=2
+Simultaneous=0
+ReleaseDate=1986-06-01
+SaveCount=0
+SortRawTitle=donkey kong
+SortRawPublisher=NINTENDO
+Copyright=Donkey Kong ©1981 Nintendo

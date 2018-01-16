@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NAAVE/CLV-P-NAAVE.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 77 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-NAAVE
+Name=Kid Icarus
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NAAVE/CLV-P-NAAVE.png
+
+[X-CLOVER Game]
+Code=CLV-P-NAAVE
+TestID=562
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1987-07-01
+SaveCount=0
+SortRawTitle=kid icarus
+SortRawPublisher=NINTENDO
+Copyright=Kid Icarus ©1986 Nintendo

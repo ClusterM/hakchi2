@@ -137,7 +137,7 @@
     <value>Kernen er allerede patched eller den er ukendt</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Beklager, "{0}" bruger mapper #{1}, men denne mapper understøttes ikke af NES/SNES Mini, og spillet vil sandsynligvis ikke starte med standard emulatoren. Men det skulle fungere, hvis en anden emulator modul installeres. Vil du tilføje dette spil?</value>
+    <value>Beklager, "{0}" bruger mapper #{1}, men denne mapper understøttes ikke af NES Mini, og spillet vil sandsynligvis ikke starte med standard emulatoren. Men det skulle fungere, hvis en anden emulator modul installeres. Vil du tilføje dette spil?</value>
   </data>
   <data name="NoKernel">
     <value>Ingen kerne dump fundet</value>
@@ -208,6 +208,9 @@
   <data name="CompressingGames">
     <value>Compressing games...</value>
   </data>
+  <data name="Cover">
+    <value>Box art</value>
+  </data>
   <data name="Decompressing">
     <value>Decompressing {0}...</value>
   </data>
@@ -230,19 +233,28 @@
     <value>Delete selected game(s)?</value>
   </data>
   <data name="DownloadAllCoversTitle">
-    <value>Downloading box art for all games (I'm feeling lucky!)</value>
+    <value>Downloading box art (I'm feeling lucky!)</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>Do you want to try to download box art for "{0}"?</value>
   </data>
   <data name="DumpingNand">
     <value>Dumping NAND...</value>
   </data>
   <data name="ExtraArgsInfo">
-    <value>You can add global command-line arguments which will be appended to all games including the original 30. This is only for experts!</value>
+    <value>You can add global command-line arguments which will be appended to all games including the original. This is only for experts!</value>
   </data>
   <data name="ExtraArgsTitle">
     <value>Extra command-line arguments</value>
   </data>
   <data name="FirstRun">
     <value>Hello there! I'm very glad that you are using hakchi2. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>
+  </data>
+  <data name="FlashNandCQ">
+    <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Flashing NAND memory...</value>
   </data>
   <data name="FolderContent">
     <value>Deleted content will be moved to the Recycle Bin. You can delete this folder permanently or move the games to other folders.</value>
@@ -328,6 +340,12 @@
   <data name="NandDumped">
     <value>NAND memory is dumped successfully.</value>
   </data>
+  <data name="NandFlashed">
+    <value>NAND memory flashed.</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
+  </data>
   <data name="NewGamesUnsorted">
     <value>New games are moved to the "Unsorted" folder.</value>
   </data>
@@ -345,6 +363,9 @@
   </data>
   <data name="NotFound">
     <value>Not found:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>not recommended</value>
   </data>
   <data name="PatchAvailable">
     <value>Patch available</value>
@@ -378,6 +399,9 @@
   </data>
   <data name="SizeOfSaves">
     <value>Size of selected save-states:</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>Don't forget to perform a factory reset if you want to delete all Suspend Points.</value>

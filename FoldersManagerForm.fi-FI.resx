@@ -85,6 +85,18 @@
   <data name="buttonNoFoldersOriginal.Text">
     <value>Alkuperäiset pelit -&gt; Muut pelit</value>
   </data>
+  <data name="comboBoxPosition.Items">
+    <value>Vasemmanpuoleisin</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>Pelien vasemmalla puolella</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>Pelien oikealla puolella</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>Oikeanpuoleisin</value>
+  </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Leikkaa</value>
   </data>

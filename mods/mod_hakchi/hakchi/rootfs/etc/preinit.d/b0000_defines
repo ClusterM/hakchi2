@@ -1,27 +1,13 @@
-set_gamepath(){
-  local feck="$mountpoint/var/lib/clover/profiles/0/home-menu/save/system-save.json"
-  if [ -f "$mountpoint/etc/clover/version/canoe" ]; then
-#    echo "SNES gamepath"
-    gamepath="/usr/share/games"
-    [ -f "$feck" ] && mv -f "$feck" "$feck.nes"
-    [ -d "$feck.snes" ] && rm -rf "$feck" && mv "$feck.snes" "$feck"
-  else
-#    echo "NES gamepath"
-    gamepath="/usr/share/games/nes/kachikachi"
-    [ -d "$feck" ] && rm -rf "$feck.snes" && mv "$feck" "$feck.snes"
-    [ -f "$feck.nes" ] && mv -f "$feck.nes" "$feck"
-  fi
-}
-
 modname="hakchi"
 modpath="/$modname"
 #mountpoint="/newroot"
 installpath="$mountpoint/var/lib/$modname"
 firmwarepath="$installpath/firmware"
 rootfs="$installpath/rootfs"
+squashfs="$installpath/squashfs"
 preinit="$rootfs/etc/preinit"
 preinitpath="$preinit.d"
+sftype=""
+sfregion=""
 gamepath=""
-set_gamepath
 temppath="/tmp"
-

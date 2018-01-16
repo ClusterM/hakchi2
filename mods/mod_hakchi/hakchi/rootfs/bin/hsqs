@@ -1,0 +1,23 @@
+#!/bin/sh
+source /etc/preinit
+script_init
+
+echo "current firmware: $(currentFirmware)"
+printSoftwareInfo
+
+firmware="$1"
+if [ "$firmware" != "_nand_" ]; then
+  firmware="$(echo "$firmware" |  sed -re 's/^\/usr\/share\/games\/(nes\/kachikachi\/)?/\/var\/games\//')"
+  firmware="$(readlink -f "$firmware")"
+  checkFirmware "$firmware" || exit 1
+fi
+
+[ "$cfg_firmware" == "$firmware" ] && exit 0
+cfg_firmware="$firmware"
+save_config
+
+[ "$(currentFirmware)" == "$firmware" ] && exit 0
+
+echo "changing firmware to: $firmware"
+reboot
+exit 0

@@ -79,8 +79,17 @@
   <data name="BuildingFolders">
     <value>Creando la estructura de las carpetas...</value>
   </data>
+  <data name="Compressing">
+    <value>Comprimiendo {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Comprimiendo juegos...</value>
+  </data>
   <data name="Congratulations">
     <value>¡Enhorabuena!</value>
+  </data>
+  <data name="Cover">
+    <value>Carátula</value>
   </data>
   <data name="CustomKernel">
     <value>Custom kernel</value>
@@ -89,10 +98,16 @@
     <value>¿Quieres flashear el custom kernel?</value>
   </data>
   <data name="CustomWarning">
-    <value>Ahora tienes que flashear el custom kernel. Esta acción sólo es necesaria realizarla una vez. ¿Quieres continuar?</value>
+    <value>Necesitas flashear el custom kernel de tu NES/SNES Mini. Esta acción sólo es necesaria realizarla una vez. ¿Quieres continuar?</value>
+  </data>
+  <data name="Decompressing">
+    <value>Descomprimiendo {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Descomprimiendo juegos</value>
   </data>
   <data name="Default30games">
-    <value>xx juegos originales</value>
+    <value>Juegos originales</value>
   </data>
   <data name="DeleteElement">
     <value>¿Quieres eliminar "{0}"?</value>
@@ -108,6 +123,9 @@
   </data>
   <data name="DeleteSavesQ">
     <value>¿Quieres eliminar los puntos de suspensión seleccionados?</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>¿Eliminar juego(s) seleccionado(s)?</value>
   </data>
   <data name="DoYouWantCancel">
     <value>¿Quieres cancelar la operación actual?</value>
@@ -126,6 +144,9 @@
   </data>
   <data name="DownloadAllCoversTitle">
     <value>Descargando carátulas para todos los juegos</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>¿Quieres intentar descargar la carátula para "{0}"?</value>
   </data>
   <data name="DumpKernelQ">
     <value>¿Quieres volcar el kernel?</value>
@@ -151,6 +172,12 @@
   <data name="FirstRun">
     <value>¡Hola! Muchas gracias por usar hakchi2. Este programa es muy fácil de usar, sólo tienes que hacer click en "Añadir más juegos", seleccionar algunas ROMs, presionar "Sincronizar los juegos seleccionados con NES/SNES Mini " y seguir las instrucciones</value>
   </data>
+  <data name="FlashNandCQ">
+    <value>¿Quieres flashear la imagen de la partición NAND-C? Esta acción reemplazará todos los datos del usuario</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Flasheando memoria NAND</value>
+  </data>
   <data name="FlasingCustom">
     <value>Flasheando el custom kernel...</value>
   </data>
@@ -170,7 +197,7 @@
     <value>Nueva carpeta</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>xx juegos originales</value>
+    <value>Juegos originales</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Papelera de reciclaje</value>
@@ -226,6 +253,9 @@
   <data name="InstallingMods">
     <value>Instalando módulos...</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>La consola seleccionada no es válida. Consola detectada:</value>
+  </data>
   <data name="InvalidKernelHeader">
     <value>El encabezado del kernel no es válido</value>
   </data>
@@ -248,7 +278,10 @@
     <value>Menú de inicio</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Este juego, "{0}" usa mapeador #{1} y no es compatible con la NES/SNES Mini, es probable que no inicie con el emulador predeterminado, pero debería funcionar si tienes un módulo extra instalado de otro emulador. ¿Quieres añadir este juego?</value>
+    <value>Este juego, "{0}" usa mapeador #{1} y no es compatible con la NES Mini, es probable que no inicie con el emulador predeterminado, pero debería funcionar si tienes un módulo extra instalado de otro emulador. ¿Quieres añadir este juego?</value>
+  </data>
+  <data name="Membooting">
+    <value>Iniciando el kernel desde la RAM...</value>
   </data>
   <data name="MemoryFull">
     <value>Hay {0} MB en juegos, es mucho y podría dar error al sincronizar, es recomendable liberar memoria</value>
@@ -258,6 +291,12 @@
   </data>
   <data name="NandDumped">
     <value>La memoria NAND se ha volcado correctamente</value>
+  </data>
+  <data name="NandFlashed">
+    <value>Memoria NAND flasheada</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Vaya, parece que "{0}" no va a funcionar bien con el emulador original. ¿Quieres usar un emulador de terceros para este juego (tiene que estar instalado)?</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>Los nuevos juegos se han añadido a la carpeta "Sin clasificar"</value>
@@ -286,6 +325,9 @@
   <data name="NotFound">
     <value>No se encuentra:</value>
   </data>
+  <data name="NotRecommended">
+    <value>No es recomendable</value>
+  </data>
   <data name="OriginalKernelQ">
     <value>¿Quieres flashear el kernel original?</value>
   </data>
@@ -303,6 +345,12 @@
   </data>
   <data name="PressOkToContinue">
     <value>Presiona Ok para continuar</value>
+  </data>
+  <data name="Removing">
+    <value>Eliminando {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Eliminando juegos...</value>
   </data>
   <data name="ReplaceKernelQ">
     <value>Ya has realizado el volcado del kernel. Si realmente quieres reemplazar la copia de seguridad de tu kernel y entiendes lo que estás haciendo, borra la carpeta "hakchi2/dump" manualmente</value>
@@ -322,8 +370,14 @@
   <data name="SelectModsUninstall">
     <value>Selecciona los módulos que quieres eliminar de la NES/SNES Mini</value>
   </data>
+  <data name="Size">
+    <value>Tamaño:</value>
+  </data>
   <data name="SizeOfSaves">
     <value>Tamaño total de los puntos de suspensión seleccionados:</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>¡Atención! No es recomendable añadir tantos juegos por carpeta</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>No olvides formatear la NES/SNES Mini si quieres eliminar todos los puntos de suspensión</value>
@@ -378,35 +432,5 @@
   </data>
   <data name="YesForAll">
     <value>Sí para todos</value>
-  </data>
-  <data name="Compressing">
-    <value>Compressing {0}...</value>
-  </data>
-  <data name="CompressingGames">
-    <value>Compressing games...</value>
-  </data>
-  <data name="Decompressing">
-    <value>Decompressing {0}...</value>
-  </data>
-  <data name="DecompressingGames">
-    <value>Decompressing games...</value>
-  </data>
-  <data name="DeleteSelectedGamesQ">
-    <value>Delete selected game(s)?</value>
-  </data>
-  <data name="InvalidConsoleSelected">
-    <value>Invalid console selected! Detected console:</value>
-  </data>
-  <data name="Membooting">
-    <value>Booting the kernel from RAM...</value>
-  </data>
-  <data name="Removing">
-    <value>Removing {0}...</value>
-  </data>
-  <data name="RemovingGames">
-    <value>Removing games...</value>
-  </data>
-  <data name="Size">
-    <value>Size:</value>
   </data>
 </root>

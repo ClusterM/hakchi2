@@ -85,6 +85,18 @@
   <data name="buttonNoFoldersOriginal.Text">
     <value>原版内置游戏 -&gt; 其他游戏</value>
   </data>
+  <data name="comboBoxPosition.Items">
+    <value>最左侧</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>游戏左侧</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>游戏右侧</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>最右侧</value>
+  </data>
   <data name="cutToolStripMenuItem.Text">
     <value>剪切</value>
   </data>

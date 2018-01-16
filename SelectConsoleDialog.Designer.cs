@@ -69,7 +69,7 @@
             this.buttonSuperFamicom.UseVisualStyleBackColor = true;
             this.buttonSuperFamicom.Click += new System.EventHandler(this.buttonSuperFamicom_Click);
             // 
-            // ConsoleSelectDialog
+            // SelectConsoleDialog
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -82,7 +82,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ConsoleSelectDialog";
+            this.Name = "SelectConsoleDialog";
             this.ResumeLayout(false);
 
         }

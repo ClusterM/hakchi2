@@ -1,5 +1,4 @@
-﻿
-namespace com.clusterrr.hakchi_gui
+﻿namespace com.clusterrr.hakchi_gui
 {
     public class NesDefaultGame : INesMenuElement
     {

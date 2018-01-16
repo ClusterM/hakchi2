@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="splitContainer.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -132,12 +132,15 @@
   <data name="treeView.ImageIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <metadata name="imageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="imageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAD0
-        IwAAAk1TRnQBSQFMAgEBJgEAAeQBAAHkAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        IwAAAk1TRnQBSQFMAgEBJgEAAewBAAHsAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAAaADAAEBAQABCAYAASgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -300,7 +303,7 @@
     <value>0</value>
   </data>
   <data name="treeView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>280, 475</value>
+    <value>315, 475</value>
   </data>
   <data name="treeView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -393,7 +396,7 @@
     <value>Top, Right</value>
   </data>
   <data name="buttonNewFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>394, 243</value>
+    <value>459, 243</value>
   </data>
   <data name="buttonNewFolder.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 21</value>
@@ -423,7 +426,7 @@
     <value>2, 269</value>
   </data>
   <data name="listViewContent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 206</value>
+    <value>557, 206</value>
   </data>
   <data name="listViewContent.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -597,7 +600,7 @@
     <value>5</value>
   </data>
   <data name="groupBoxSplitModes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>240, 12</value>
+    <value>305, 12</value>
   </data>
   <data name="groupBoxSplitModes.Size" type="System.Drawing.Size, System.Drawing">
     <value>254, 227</value>
@@ -687,10 +690,10 @@
     <value>0</value>
   </data>
   <data name="splitContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>784, 475</value>
+    <value>884, 475</value>
   </data>
   <data name="splitContainer.SplitterDistance" type="System.Int32, mscorlib">
-    <value>280</value>
+    <value>315</value>
   </data>
   <data name="splitContainer.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -707,6 +710,9 @@
   <data name="&gt;&gt;splitContainer.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 17</value>
+  </metadata>
   <data name="newFolderToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+N</value>
   </data>
@@ -756,7 +762,7 @@
     <value>Delete</value>
   </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 142</value>
+    <value>211, 120</value>
   </data>
   <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
     <value>contextMenuStrip</value>
@@ -795,7 +801,7 @@
     <value>Top, Right</value>
   </data>
   <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>678, 7</value>
+    <value>778, 7</value>
   </data>
   <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>
@@ -822,7 +828,7 @@
     <value>Top, Right</value>
   </data>
   <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>572, 7</value>
+    <value>672, 7</value>
   </data>
   <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>
@@ -852,7 +858,7 @@
     <value>0, 474</value>
   </data>
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>784, 38</value>
+    <value>884, 38</value>
   </data>
   <data name="panel2.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -869,11 +875,14 @@
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>784, 512</value>
+    <value>884, 512</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2008,7 +2017,7 @@
 </value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>700, 550</value>
+    <value>900, 550</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
@@ -2064,13 +2073,4 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="imageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>120, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

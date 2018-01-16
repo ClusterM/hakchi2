@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HABMJ/CLV-P-HABMJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-HABMJ
+Name=パックマン
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HABMJ/CLV-P-HABMJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HABMJ
+TestID=111
+ID=0
+Players=2
+Simultaneous=0
+ReleaseDate=1984-11-02
+SaveCount=0
+SortRawTitle=ぱっくまん
+SortRawPublisher=ばんだいなむこえんたーていんめんと
+Copyright=パックマン ©1980 BANDAI NAMCO Entertainment Inc.

@@ -1,64 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -117,355 +58,379 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddingGames" xml:space="preserve">
+  <data name="AddingGames">
     <value>Обрабатываем и добавляем в базу игры. Пожалуйста, подождите...</value>
   </data>
-  <data name="AllFiles" xml:space="preserve">
+  <data name="AllFiles">
     <value>Все файлы</value>
   </data>
-  <data name="AreYouSure" xml:space="preserve">
+  <data name="AreYouSure">
     <value>Вы уверены?</value>
   </data>
-  <data name="AutofillResult" xml:space="preserve">
+  <data name="AutofillResult">
     <value>Данные автоматически заполнены для {0} игр.</value>
   </data>
-  <data name="AutofireHelp1" xml:space="preserve">
+  <data name="AutofireHelp1">
     <value>Зажмите Select+A/B на секунду, чтобы включить турбо на кнопках A/B.</value>
   </data>
-  <data name="BuildingCustom" xml:space="preserve">
+  <data name="BuildingCustom">
     <value>Патчим ядро...</value>
   </data>
-  <data name="BuildingFolders" xml:space="preserve">
+  <data name="BuildingFolders">
     <value>Строим дерево папок...</value>
   </data>
-  <data name="Compressing" xml:space="preserve">
+  <data name="Compressing">
     <value>Сжимаем {0}...</value>
   </data>
-  <data name="CompressingGames" xml:space="preserve">
+  <data name="CompressingGames">
     <value>Сжимаем игры...</value>
   </data>
-  <data name="Congratulations" xml:space="preserve">
+  <data name="Congratulations">
     <value>Поздравляем!</value>
   </data>
-  <data name="CustomKernel" xml:space="preserve">
+  <data name="Cover">
+    <value>Обложки</value>
+  </data>
+  <data name="CustomKernel">
     <value>Модифицированное ядро</value>
   </data>
-  <data name="CustomKernelQ" xml:space="preserve">
+  <data name="CustomKernelQ">
     <value>Хотите прошить модифицированный образ ядра?</value>
   </data>
-  <data name="CustomWarning" xml:space="preserve">
+  <data name="CustomWarning">
     <value>Необходимо установить модифицированное ядро на NES/SNES Mini. Эту процедуру тоже нужно выполнить только один раз. Продолжить?</value>
   </data>
-  <data name="Decompressing" xml:space="preserve">
-    <value>Разжимаем {0}...</value>
+  <data name="Decompressing">
+    <value>Расжимаем {0}...</value>
   </data>
-  <data name="DecompressingGames" xml:space="preserve">
-    <value>Разжимаем игры...</value>
+  <data name="DecompressingGames">
+    <value>Расжимаем игры...</value>
   </data>
-  <data name="Default30games" xml:space="preserve">
+  <data name="Default30games">
     <value>Оригинальные игры</value>
   </data>
-  <data name="DeleteElement" xml:space="preserve">
+  <data name="DeleteElement">
     <value>Вы действительно хотите удалить "{0}"?</value>
   </data>
-  <data name="DeleteElements" xml:space="preserve">
+  <data name="DeleteElements">
     <value>Вы действительно хотите удалить {0} элементов?</value>
   </data>
-  <data name="DeleteGame" xml:space="preserve">
+  <data name="DeleteGame">
     <value>Вы действительно хотите удалить игру "{0}"?</value>
   </data>
-  <data name="DeletePreset" xml:space="preserve">
+  <data name="DeletePreset">
     <value>Вы действительно хотите удалить пресет "{0}"?</value>
   </data>
-  <data name="DeleteSavesQ" xml:space="preserve">
+  <data name="DeleteSavesQ">
     <value>Вы действительно хотите удалить эти сохранения?</value>
   </data>
-  <data name="DeleteSelectedGamesQ" xml:space="preserve">
+  <data name="DeleteSelectedGamesQ">
     <value>Удалить выбранные игры?</value>
   </data>
-  <data name="Donate" xml:space="preserve">
-    <value> </value>
-  </data>
-  <data name="Done" xml:space="preserve">
-    <value>Готово!</value>
-  </data>
-  <data name="DoneYouCanUpload" xml:space="preserve">
-    <value>Готово! Теперь можно закачивать свои игры в NES/SNES Mini.</value>
-  </data>
-  <data name="DownloadAllCoversTitle" xml:space="preserve">
-    <value>Качаем обложки для всех игр (Мне повезёт!)</value>
-  </data>
-  <data name="DoYouWantCancel" xml:space="preserve">
+  <data name="DoYouWantCancel">
     <value>Хотите отменить текущую операцию?</value>
   </data>
-  <data name="DoYouWantToContinue" xml:space="preserve">
+  <data name="DoYouWantToContinue">
     <value>Продолжить?</value>
   </data>
-  <data name="DumpingKernel" xml:space="preserve">
-    <value>Читаем образ ядра...</value>
+  <data name="Donate">
+    <value> </value>
   </data>
-  <data name="DumpingNand" xml:space="preserve">
-    <value>Читаем NAND-память...</value>
+  <data name="Done">
+    <value>Готово!</value>
   </data>
-  <data name="DumpKernelQ" xml:space="preserve">
+  <data name="DoneYouCanUpload">
+    <value>Готово! Теперь можно закачивать свои игры в NES/SNES Mini.</value>
+  </data>
+  <data name="DownloadAllCoversTitle">
+    <value>Качаем обложки для игр (Мне повезёт!)</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>Хотите попытаться скачать обложку для игры "{0}"?</value>
+  </data>
+  <data name="DumpKernelQ">
     <value>Сдампить образ ядра NES/SNES Mini?</value>
   </data>
-  <data name="Error" xml:space="preserve">
+  <data name="DumpingKernel">
+    <value>Читаем образ ядра...</value>
+  </data>
+  <data name="DumpingNand">
+    <value>Читаем NAND-память...</value>
+  </data>
+  <data name="Error">
     <value>Ошибка</value>
   </data>
-  <data name="ExecutingCommand" xml:space="preserve">
+  <data name="ExecutingCommand">
     <value>Выполняем команду:</value>
   </data>
-  <data name="ExtraArgsInfo" xml:space="preserve">
+  <data name="ExtraArgsInfo">
     <value>Вы можете задать глобальные параметры командной строки, которые будут добавлены ко всем играм, включая оригинальные. Только для экспертов!</value>
   </data>
-  <data name="ExtraArgsTitle" xml:space="preserve">
+  <data name="ExtraArgsTitle">
     <value>Глобальные параметры командной строки</value>
   </data>
-  <data name="FirstRun" xml:space="preserve">
+  <data name="FirstRun">
     <value>Привет! Я очень рад, что вы пользуетесь моей программой. Её очень просто использовать: нажмите кнопку "Добавить игр", выберите ROMы, затем жмите "Синхронизировать" и следуйте инструкциям. Удачи!</value>
   </data>
-  <data name="FlasingCustom" xml:space="preserve">
+  <data name="FlashNandCQ">
+    <value>Хотите записать образ NAND-C раздела? Это перезапишет все пользовательские данные.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Записываем NAND-память...</value>
+  </data>
+  <data name="FlasingCustom">
     <value>Прошиваем модифицированное ядро...</value>
   </data>
-  <data name="FlasingOriginal" xml:space="preserve">
+  <data name="FlasingOriginal">
     <value>Прошиваем оригинальное ядро...</value>
   </data>
-  <data name="FolderContent" xml:space="preserve">
+  <data name="FolderContent">
     <value>Контент будет перемещён в папку "Корзина". Вы можете удалить её насовсем или переместить игры в другие директории.</value>
   </data>
-  <data name="FolderNameBack" xml:space="preserve">
+  <data name="FolderNameBack">
     <value>Назад</value>
   </data>
-  <data name="FolderNameMoreGames" xml:space="preserve">
+  <data name="FolderNameMoreGames">
     <value>Больше игр...</value>
   </data>
-  <data name="FolderNameNewFolder" xml:space="preserve">
+  <data name="FolderNameNewFolder">
     <value>Новая папка</value>
   </data>
-  <data name="FolderNameOriginalGames" xml:space="preserve">
+  <data name="FolderNameOriginalGames">
     <value>Оригинальные игры</value>
   </data>
-  <data name="FolderNameTrashBin" xml:space="preserve">
+  <data name="FolderNameTrashBin">
     <value>Корзина</value>
   </data>
-  <data name="FolderNameUnsorted" xml:space="preserve">
+  <data name="FolderNameUnsorted">
     <value>Неотсортированные</value>
   </data>
-  <data name="FoldersSaveQ" xml:space="preserve">
-    <value>Сохранить это дерево папок?</value>
-  </data>
-  <data name="FolderStatistics" xml:space="preserve">
+  <data name="FolderStatistics">
     <value>Папка "{0}" содержит {1} элементов.</value>
   </data>
-  <data name="FourScreenNotSupported" xml:space="preserve">
+  <data name="FoldersSaveQ">
+    <value>Сохранить это дерево папок?</value>
+  </data>
+  <data name="FourScreenNotSupported">
     <value>Увы, {0} использует four-screen режим (т.е. это редкий случай, когда у игры в картридже расширенная видеопамять), а NES/SNES Mini его не поддерживает, и игра скорее всего не запустится на стандартном эмуляторе. Но она должна заработать, если установлен модуль с другим эмулятором. Добавить эту игру?</value>
   </data>
-  <data name="GameGenieFormatError" xml:space="preserve">
-    <value>Некорректный Game Genie код "{0}" для игры "{1}".</value>
-  </data>
-  <data name="GameGenieNotFound" xml:space="preserve">
-    <value>Не удалось применить Game Genie код "{0}" к игре "{1}", т.к. значение не было найдено. Быть может, это код не для этой игры?</value>
-  </data>
-  <data name="GamesAndApps" xml:space="preserve">
-    <value>Игры и приложения</value>
-  </data>
-  <data name="GamesSelected" xml:space="preserve">
-    <value>игр(ы) выбрано</value>
-  </data>
-  <data name="GGCodeDelete" xml:space="preserve">
+  <data name="GGCodeDelete">
     <value>Вы действительно хотите удалить код "{0}"?</value>
   </data>
-  <data name="GGCodeEmpty" xml:space="preserve">
+  <data name="GGCodeEmpty">
     <value>Вы должны ввести код!</value>
   </data>
-  <data name="GGCodeExists" xml:space="preserve">
+  <data name="GGCodeExists">
     <value>Этот код уже есть в базе. Отредактировать его?</value>
   </data>
-  <data name="GGDescriptionEmpty" xml:space="preserve">
+  <data name="GGDescriptionEmpty">
     <value>Вы должны ввести описание!</value>
   </data>
-  <data name="GooglingFor" xml:space="preserve">
+  <data name="GameGenieFormatError">
+    <value>Некорректный Game Genie код "{0}" для игры "{1}".</value>
+  </data>
+  <data name="GameGenieNotFound">
+    <value>Не удалось применить Game Genie код "{0}" к игре "{1}", т.к. значение не было найдено. Быть может, это код не для этой игры?</value>
+  </data>
+  <data name="GamesAndApps">
+    <value>Игры и приложения</value>
+  </data>
+  <data name="GamesSelected">
+    <value>игр(ы) выбрано</value>
+  </data>
+  <data name="GooglingFor">
     <value>Гуглим</value>
   </data>
-  <data name="Hello" xml:space="preserve">
+  <data name="Hello">
     <value>Привет!</value>
   </data>
-  <data name="Images" xml:space="preserve">
+  <data name="Images">
     <value>Картинки</value>
   </data>
-  <data name="InputPreset" xml:space="preserve">
+  <data name="InputPreset">
     <value>Введите название для пресета выбранных игр.</value>
   </data>
-  <data name="InstallingMods" xml:space="preserve">
+  <data name="InstallingMods">
     <value>Устанавливаем модули...</value>
   </data>
-  <data name="InvalidConsoleSelected" xml:space="preserve">
+  <data name="InvalidConsoleSelected">
     <value>Неверно выбрана консоль. Обнаружанная консоль:</value>
   </data>
-  <data name="InvalidKernelHeader" xml:space="preserve">
+  <data name="InvalidKernelHeader">
     <value>Некорректный заголовок образа ядра.</value>
   </data>
-  <data name="InvalidKernelSize" xml:space="preserve">
+  <data name="InvalidKernelSize">
     <value>Некорректный размер ядра:</value>
   </data>
-  <data name="KernelDumped" xml:space="preserve">
+  <data name="KernelDumped">
     <value>Оригинальный образ ядра сохранён в папке "hakchi2/dump". Желательно его не потерять и не стереть.</value>
   </data>
-  <data name="LoadingGames" xml:space="preserve">
+  <data name="LoadingGames">
     <value>Загружаем игры...</value>
   </data>
-  <data name="MainMenu" xml:space="preserve">
-    <value>Главное меню</value>
-  </data>
-  <data name="MapperNotSupported" xml:space="preserve">
-    <value>Увы, "{0}" использует маппер #{1}, а NES/SNES Mini его вроде как не поддерживает, и игра скорее всего не запустится на стандартном эмуляторе. Но она должна заработать, если установлен модуль с другим эмулятором. Добавить эту игру?</value>
-  </data>
-  <data name="MD5Failed" xml:space="preserve">
+  <data name="MD5Failed">
     <value>Образ ядра сдамплен, но MD5 некорректный:</value>
   </data>
-  <data name="MD5Failed2" xml:space="preserve">
+  <data name="MD5Failed2">
     <value>Возможно, ядро уже модифицировано, или нам ещё неизвестна такая версия. Отправьте это сообщение автору программы (нажмите Ctrl+C). Продолжайте на свой страх и риск.</value>
   </data>
-  <data name="Membooting" xml:space="preserve">
+  <data name="MainMenu">
+    <value>Главное меню</value>
+  </data>
+  <data name="MapperNotSupported">
+    <value>Увы, "{0}" использует маппер #{1}, а NES Mini его вроде как не поддерживает, и игра скорее всего не запустится на стандартном эмуляторе. Но она должна заработать, если установлен модуль с другим эмулятором. Добавить эту игру?</value>
+  </data>
+  <data name="Membooting">
     <value>Запускаем ядро из RAM...</value>
   </data>
-  <data name="MemoryFull" xml:space="preserve">
+  <data name="MemoryFull">
     <value>Простите, слишком уж много игр, на {0}МБайт, NES/SNES Mini такое не осилит.</value>
   </data>
-  <data name="MemoryStats" xml:space="preserve">
+  <data name="MemoryStats">
     <value>Всего перезаписываемой памяти: {0:F1}МБайт|Доступно для игр: {1:F1}МБайт|Используется сохранениями: {2:F1}МБайт|Используется другими файлами: {3:F1}МБайт</value>
   </data>
-  <data name="NandDumped" xml:space="preserve">
+  <data name="NandDumped">
     <value>NAND память успешно прочитана.</value>
   </data>
-  <data name="NewGamesUnsorted" xml:space="preserve">
+  <data name="NandFlashed">
+    <value>NAND-память записана.</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Увы, игра "{0} скорее всего будет некорректно работать на оригинальном эмуляторе. Хотите использовать сторонний эмулятор для этой игры (он должен быть установлен отдельно)?</value>
+  </data>
+  <data name="NewGamesUnsorted">
     <value>Новые игры помещены в папку "Неотсортированные".</value>
   </data>
-  <data name="NewPreset" xml:space="preserve">
+  <data name="NewPreset">
     <value>Создание пресета</value>
   </data>
-  <data name="No" xml:space="preserve">
+  <data name="No">
     <value>Нет</value>
   </data>
-  <data name="NoForAll" xml:space="preserve">
+  <data name="NoForAll">
     <value>Нет для всех</value>
   </data>
-  <data name="NoKernel" xml:space="preserve">
+  <data name="NoKernel">
     <value>Не найден образ ядра</value>
   </data>
-  <data name="NoKernelWarning" xml:space="preserve">
+  <data name="NoKernelWarning">
     <value>Прежде всего, необходимо сдампить образ ядра NES/SNES Mini. Эту процедуру нужно проделать только один раз. Продолжить?</value>
   </data>
-  <data name="NoKernelYouNeed" xml:space="preserve">
+  <data name="NoKernelYouNeed">
     <value>Не найден образ ядра NES/SNES Mini. Сначала необходимо его сдампить.</value>
   </data>
-  <data name="NoTelnet" xml:space="preserve">
+  <data name="NoTelnet">
     <value>Не могу открыть Telnet клиент. Похоже, что он выключен. Включите его в "Панели управления" -&gt; "Программы и компоненты" -&gt; "Компоненты Windows".</value>
   </data>
-  <data name="NotFound" xml:space="preserve">
+  <data name="NotFound">
     <value>Не найдено:</value>
   </data>
-  <data name="OriginalKernelQ" xml:space="preserve">
+  <data name="NotRecommended">
+    <value>не рекомендуется</value>
+  </data>
+  <data name="OriginalKernelQ">
     <value>Прошить оригинальный образ ядра?</value>
   </data>
-  <data name="PatchAvailable" xml:space="preserve">
+  <data name="PatchAvailable">
     <value>Доступен патч</value>
   </data>
-  <data name="PatchQ" xml:space="preserve">
+  <data name="PatchQ">
     <value>Для файла "{0}" доступен патч. Хотите его применить?</value>
   </data>
-  <data name="PleaseTryAgainUSB" xml:space="preserve">
+  <data name="PleaseTryAgainUSB">
     <value>Если проблема повторяется, попробуйте другой USB порт или другой USB кабель.</value>
   </data>
-  <data name="PleaseWait" xml:space="preserve">
+  <data name="PleaseWait">
     <value>Пожалуйста, подождите...</value>
   </data>
-  <data name="PressOkToContinue" xml:space="preserve">
+  <data name="PressOkToContinue">
     <value>Нажмите OK для продолжения.</value>
   </data>
-  <data name="Removing" xml:space="preserve">
+  <data name="Removing">
     <value>Удаляем {0}...</value>
   </data>
-  <data name="RemovingGames" xml:space="preserve">
+  <data name="RemovingGames">
     <value>Удаляем игры...</value>
   </data>
-  <data name="ReplaceKernelQ" xml:space="preserve">
+  <data name="ReplaceKernelQ">
     <value>Уже существует сохранённый образ ядра. Если вы ДЕЙСТВИТЕЛЬНО хотите заменить оригинальную копию ядра и ДЕЙСТВИТЕЛЬНО понимаете, что делаете, удалите папку "hakchi2/dump" вручную.</value>
   </data>
-  <data name="SavesFlterName" xml:space="preserve">
+  <data name="SavesFlterName">
     <value>Сохранения NES/SNES Mini</value>
   </data>
-  <data name="SelectAtLeast" xml:space="preserve">
+  <data name="SelectAtLeast">
     <value>Необходимо выбрать хотя бы одну игру.</value>
   </data>
-  <data name="SelectAtLeastTwo" xml:space="preserve">
+  <data name="SelectAtLeastTwo">
     <value>Нужно выбрать хотя бы две кнопки.</value>
   </data>
-  <data name="SelectModsInstall" xml:space="preserve">
+  <data name="SelectModsInstall">
     <value>Выберите модули для установки на NES/SNES Mini</value>
   </data>
-  <data name="SelectModsUninstall" xml:space="preserve">
+  <data name="SelectModsUninstall">
     <value>Выберите модули, которые нужно удалить с NES/SNES Mini</value>
   </data>
-  <data name="Size" xml:space="preserve">
+  <data name="Size">
     <value>Размер:</value>
   </data>
-  <data name="SizeOfSaves" xml:space="preserve">
+  <data name="SizeOfSaves">
     <value>Размер выбранных сохранений:</value>
   </data>
-  <data name="UninstallFactoryNote" xml:space="preserve">
+  <data name="TooManyPerFolder">
+    <value>Внимание! Не рекомендуется делать так много игр на папку.</value>
+  </data>
+  <data name="UninstallFactoryNote">
     <value>Всё. Не забудьте также сделать сброс к заводским настройкам, если хотите удалить сохранения игр.</value>
   </data>
-  <data name="Uninstalling" xml:space="preserve">
-    <value>Удаляемся...</value>
-  </data>
-  <data name="UninstallingMods" xml:space="preserve">
-    <value>Удаляем модули...</value>
-  </data>
-  <data name="UninstallQ1" xml:space="preserve">
+  <data name="UninstallQ1">
     <value>Вы действительно хотите удалить все файлы hakchi2 с вашей NES/SNES Mini и вернуть её в девственное состояние?</value>
   </data>
-  <data name="UninstallQ2" xml:space="preserve">
+  <data name="UninstallQ2">
     <value>Готово. Только подождите, пока погаснет светодиод. И ещё необходимо прошить назад оригинальное ядро. Сделать это сейчас?</value>
   </data>
-  <data name="UnknownGame" xml:space="preserve">
+  <data name="Uninstalling">
+    <value>Удаляемся...</value>
+  </data>
+  <data name="UninstallingMods">
+    <value>Удаляем модули...</value>
+  </data>
+  <data name="UnknownGame">
     <value>Неизвестная игра</value>
   </data>
-  <data name="UploadingConfig" xml:space="preserve">
+  <data name="UploadingConfig">
     <value>Обновляем настройки...</value>
   </data>
-  <data name="UploadingFes1" xml:space="preserve">
+  <data name="UploadingFes1">
     <value>Загружаем и выполняем fes1...</value>
   </data>
-  <data name="UploadingGames" xml:space="preserve">
+  <data name="UploadingGames">
     <value>Загружаем игры...</value>
   </data>
-  <data name="UploadingKernel" xml:space="preserve">
+  <data name="UploadingKernel">
     <value>Загружаем образ ядра...</value>
   </data>
-  <data name="UploadingOriginalGames" xml:space="preserve">
+  <data name="UploadingOriginalGames">
     <value>Распределяем оригинальные игры...</value>
   </data>
-  <data name="VerifyFailed" xml:space="preserve">
+  <data name="VerifyFailed">
     <value>Проверка закончилась неуспешно. Это плохо :o</value>
   </data>
-  <data name="Verifying" xml:space="preserve">
+  <data name="Verifying">
     <value>Проверяем...</value>
   </data>
-  <data name="WaitingForDevice" xml:space="preserve">
+  <data name="WaitingForDevice">
     <value>Ожидаем устройство...</value>
   </data>
-  <data name="Warning" xml:space="preserve">
+  <data name="Warning">
     <value>Внимание!</value>
   </data>
-  <data name="Wow" xml:space="preserve">
+  <data name="Wow">
     <value>Ура</value>
   </data>
-  <data name="Yes" xml:space="preserve">
+  <data name="Yes">
     <value>Да</value>
   </data>
-  <data name="YesForAll" xml:space="preserve">
+  <data name="YesForAll">
     <value>Да для всех</value>
   </data>
 </root>

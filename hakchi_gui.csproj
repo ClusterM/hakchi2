@@ -15,7 +15,7 @@
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>ftp://clusterrr.com/www/www/soft/hakchi2/</PublishUrl>
+    <PublishUrl>ftp://ftp.h710140844.nichost.ru/software.clusterrr.com/docs/hakchi2/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -25,14 +25,14 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
-    <InstallUrl>http://clusterrr.com/soft/hakchi2/</InstallUrl>
+    <InstallUrl>http://software.clusterrr.com/hakchi2/</InstallUrl>
     <SupportUrl>http://clusterrr.com</SupportUrl>
     <ProductName>hakchi2</ProductName>
     <PublisherName>Alexey %27Cluster%27 Avdyukhin</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>2.0.20.4</ApplicationVersion>
+    <ApplicationRevision>72</ApplicationRevision>
+    <ApplicationVersion>2.0.21.72</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -107,12 +107,12 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationDeploymentWrapper.cs" />
     <Compile Include="AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +140,9 @@
     <Compile Include="Clovershell\ExecConnection.cs" />
     <Compile Include="Clovershell\ShellConnection.cs" />
     <Compile Include="ConfigIni.cs" />
+    <Compile Include="GameGenie\GameGenieFormatException.cs" />
+    <Compile Include="GameGenie\GameGenieNotFoundException.cs" />
+    <Compile Include="GameGenie\GameGeniePatcherSnes.cs" />
     <Compile Include="SelectConsoleDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,7 +176,7 @@
     <Compile Include="GameGenieCodeForm.designer.cs">
       <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameGenieDataBase.cs" />
+    <Compile Include="GameGenie\GameGenieDataBase.cs" />
     <Compile Include="ImagesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -329,116 +332,6 @@
     <Compile Include="LibWinUsb\WinUsb\WinUsbDevice.cs" />
     <Compile Include="LibWinUsb\WinUsb\WinUsbRegistry.cs" />
     <Compile Include="MessageBoxManager.cs" />
-    <Compile Include="Properties\Resources.bg-BG.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.bg-BG.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.ca-ES.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.ca-ES.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.da-DK.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.da-DK.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.de-DE.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.de-DE.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.el-GR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.el-GR.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.en-GB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.en-GB.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.es-AR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.es-AR.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.es-ES.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.es-ES.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.fi-FI.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.fi-FI.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.fr-FR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.fr-FR.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.id-ID.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.id-ID.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.it-IT.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.it-IT.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.nl.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.nl.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.pl-PL.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.pl-PL.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.pt-PT.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.pt-PT.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.ru-RU.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.ru-RU.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.sk-SK.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.sk-SK.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.sv-SE.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.sv-SE.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.uk-UA.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.uk-UA.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.zh-CHS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.zh-CHS.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.zh-CHT.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.zh-CHT.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.zh-TW.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.zh-TW.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -466,7 +359,7 @@
     <Compile Include="FelLib\Fel.cs" />
     <Compile Include="FelLib\FelException.cs" />
     <Compile Include="FelLib\FelParseException.cs" />
-    <Compile Include="GameGeniePatcher.cs" />
+    <Compile Include="GameGenie\GameGeniePatcherNes.cs" />
     <Compile Include="ImageGooglerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -596,8 +489,97 @@
     <Compile Include="WorkerForm.Designer.cs">
       <DependentUpon>WorkerForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FoldersManagerForm.hu-HU.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.ro-RO.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.hu-HU.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.ro-RO.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.hu-HU.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.ro-RO.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.hu-HU.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.ro-RO.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\flags\br.png" />
+    <EmbeddedResource Include="images\flags\hu.png" />
+    <EmbeddedResource Include="images\flags\jp.png" />
+    <EmbeddedResource Include="images\flags\ro.png" />
+    <Content Include="folder_images\cps.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\extra_space.hmod\readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\snes_custom_filters.hmod\readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.ja-JP.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.pt-BR.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.ja-JP.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.pt-BR.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.ja-JP.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.pt-BR.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.ja-JP.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.pt-BR.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.hu-HU.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.ja-JP.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.pt-BR.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.ro-RO.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.hu-HU.resx" />
+    <EmbeddedResource Include="Properties\Resources.ja-JP.resx" />
+    <EmbeddedResource Include="Properties\Resources.pt-BR.resx" />
+    <EmbeddedResource Include="Properties\Resources.ro-RO.resx" />
+    <EmbeddedResource Include="SaveStateManager.ja-JP.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveStateManager.pt-BR.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.ja-JP.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.pt-BR.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectConsoleDialog.bg-BG.resx">
       <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
@@ -635,10 +617,16 @@
     <EmbeddedResource Include="SelectConsoleDialog.it-IT.resx">
       <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectConsoleDialog.ja-JP.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectConsoleDialog.nl.resx">
       <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectConsoleDialog.pl-PL.resx">
+      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectConsoleDialog.pt-BR.resx">
       <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectConsoleDialog.pt-PT.resx">
@@ -680,7 +668,7 @@
     <EmbeddedResource Include="FoldersManagerForm.da-DK.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FoldersManagerForm.de-De.resx">
+    <EmbeddedResource Include="FoldersManagerForm.de-DE.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FoldersManagerForm.el-GR.resx">
@@ -1012,99 +1000,33 @@
     <EmbeddedResource Include="MainForm.zh-TW.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.bg-BG.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.bg-BG.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.ca-ES.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.ca-ES.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.da-DK.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.da-DK.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.de-DE.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.de-DE.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.el-GR.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.el-GR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.en-GB.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.en-GB.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.es-AR.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.es-AR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.es-ES.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.es-ES.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.fi-FI.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.fi-FI.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.fr-FR.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.fr-FR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.id-ID.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.id-ID.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.it-IT.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.it-IT.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.nl.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.nl.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.pl-PL.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.pl-PL.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.pt-PT.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.pt-PT.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.bg-BG.resx" />
+    <EmbeddedResource Include="Properties\Resources.ca-ES.resx" />
+    <EmbeddedResource Include="Properties\Resources.da-DK.resx" />
+    <EmbeddedResource Include="Properties\Resources.de-DE.resx" />
+    <EmbeddedResource Include="Properties\Resources.el-GR.resx" />
+    <EmbeddedResource Include="Properties\Resources.en-GB.resx" />
+    <EmbeddedResource Include="Properties\Resources.es-AR.resx" />
+    <EmbeddedResource Include="Properties\Resources.es-ES.resx" />
+    <EmbeddedResource Include="Properties\Resources.fi-FI.resx" />
+    <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
+    <EmbeddedResource Include="Properties\Resources.id-ID.resx" />
+    <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
+    <EmbeddedResource Include="Properties\Resources.nl.resx" />
+    <EmbeddedResource Include="Properties\Resources.pl-PL.resx" />
+    <EmbeddedResource Include="Properties\Resources.pt-PT.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.ru-RU.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.ru-RU.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.sk-SK.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.sk-SK.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.sv-SE.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.sv-SE.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.uk-UA.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.uk-UA.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.zh-CHS.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.zh-CHS.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.zh-CHT.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.zh-CHT.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.zh-TW.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.zh-TW.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ru-RU.resx" />
+    <EmbeddedResource Include="Properties\Resources.sk-SK.resx" />
+    <EmbeddedResource Include="Properties\Resources.sv-SE.resx" />
+    <EmbeddedResource Include="Properties\Resources.uk-UA.resx" />
+    <EmbeddedResource Include="Properties\Resources.zh-CHS.resx" />
+    <EmbeddedResource Include="Properties\Resources.zh-CHT.resx" />
+    <EmbeddedResource Include="Properties\Resources.zh-TW.resx" />
     <EmbeddedResource Include="SaveStateManager.bg-BG.resx">
       <DependentUpon>SaveStateManager.cs</DependentUpon>
     </EmbeddedResource>
@@ -1234,6 +1156,42 @@
     <EmbeddedResource Include="SearchForm.zh-TW.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.hu-HU.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.ja-JP.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.pt-BR.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.ro-RO.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.hu-HU.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.ja-JP.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.pt-BR.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.ro-RO.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.hu-HU.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.ja-JP.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.pt-BR.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.ro-RO.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectSnesButtonsForm.bg-BG.resx">
       <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1264,10 +1222,16 @@
     <EmbeddedResource Include="SelectSnesButtonsForm.fr-FR.resx">
       <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectSnesButtonsForm.hu-HU.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectSnesButtonsForm.id-ID.resx">
       <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectSnesButtonsForm.it-IT.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectSnesButtonsForm.ja-JP.resx">
       <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectSnesButtonsForm.nl.resx">
@@ -1276,10 +1240,16 @@
     <EmbeddedResource Include="SelectSnesButtonsForm.pl-PL.resx">
       <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectSnesButtonsForm.pt-BR.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectSnesButtonsForm.pt-PT.resx">
       <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectSnesButtonsForm.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectSnesButtonsForm.ro-RO.resx">
       <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectSnesButtonsForm.ru-RU.resx">
@@ -1567,10 +1537,16 @@
     <EmbeddedResource Include="WaitingClovershellForm.fr-FR.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.hu-HU.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.id-ID.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.it-IT.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.ja-JP.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.nl.resx">
@@ -1579,10 +1555,16 @@
     <EmbeddedResource Include="WaitingClovershellForm.pl-PL.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.pt-BR.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.pt-PT.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.resx">
+      <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingClovershellForm.ro-RO.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.ru-RU.resx">
@@ -1636,10 +1618,16 @@
     <EmbeddedResource Include="WaitingFelForm.fr-FR.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.hu-HU.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.id-ID.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.it-IT.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.ja-JP.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.nl.resx">
@@ -1648,10 +1636,16 @@
     <EmbeddedResource Include="WaitingFelForm.pl-PL.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.pt-BR.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.pt-PT.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.ro-RO.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.ru-RU.resx">
@@ -1684,6 +1678,9 @@
     <Content Include="data\fes1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\snescarts.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\splash.gz">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1710,12 +1707,9 @@
     <EmbeddedResource Include="images\flags\cn.png" />
     <EmbeddedResource Include="images\flags\tw.png" />
     <EmbeddedResource Include="images\flags\ua.png" />
-    <Content Include="images\flags\dk.png" />
-    <EmbeddedResource Include="images\gamepad_SNES.png" />
+    <EmbeddedResource Include="images\flags\dk.png" />
+    <EmbeddedResource Include="images\gamepad_snes.png" />
     <Content Include="LICENSE">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\hmods\clovercon.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="mods\hmods\clovershell.hmod">
@@ -1821,7 +1815,127 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="cluster_cert.pfx" />
+    <Content Include="mods\hmods\tiny7zx-dynamic.hmod">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\0354f4b1-Dirt Racer %28Europe%29 %28En,Fr,De%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\09097b2b-ActRaiser %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\0ce626ba-Hebereke%27s Popoitto %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\0f8378a6-Winter Gold %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\17f946c5-K.H. Rummenigge%27s Player Manager %28Germany, Germany Sample%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\1ac7f523-Kick Off 3 - European Challenge %28Europe%29 %28En,Fr,De,Es,It%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\1ad61bd0-90 Minutes - European Prime Goal %28Europe, Europe Beta%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\29a78af9-ActRaiser %28Germany%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\2a9966c0-Soccer Kid %28Europe%29 %28En,Fr,De,Es,It%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\2ae148d6-Smurfs, The %28Europe%29 %28En,Fr,De,Es,It%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\2e9985bc-Super International Cricket %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\44a9db5c-Mega-lo-Mania %28Europe%29 %28En,Fr,De%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\4ee9ee99-Castlevania - Vampire%27s Kiss %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\588a9707-Pop%27n TwinBee %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\60b2d4a8-Striker %28Europe%29 %28En,Fr,De,Es,It,Nl,Sv%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\630e16a1-Actraiser 2 %28Europe%29 %28En,Fr,De%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\797e2e82-Spirou %28Europe%29 %28En,Fr,De,Es%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\7a313722-Hebereke%27s Popoon %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\7e2c7143-Lucky Luke %28Europe%29 %28En,Fr,De,Es%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\83af6152-Asterix &amp; Obelix %28Europe%29 %28En,Fr,De,Es%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\8d2596a7-Manchester United Championship Soccer %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\91a03035-Pop%27n TwinBee - Rainbow Bell Adventures %28Europe, Germany%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\96dec679-Lothar Matthaeus Super Soccer %28Germany%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\9b1ea779-Fever Pitch Soccer %28Europe%29 %28En,Fr,De,Es,It%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\a27e2664-ActRaiser %28France%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\b9d6269d-Joe &amp; Mac 3 - Lost in the Tropics %28Europe%29 %28En,Fr,De%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\bbcd16f4-Soccer Shootout %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\d190cf58-Eric Cantona Football Challenge %28France%29 %28En,Fr,De,Es,It,Nl,Sv%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\d56c21a1-Donald in Maui Mallard %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\e4925f15-Adventures of Dr. Franken, The %28Europe%29 %28En,Fr,De,Es,It,Nl,Sv%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\f1dce2b7-Tintin in Tibet %28Europe%29 %28En,Fr,De,Nl%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\fabff8bd-Zombies %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\fb1d16c4-Super Ice Hockey %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\fce7bade-Kevin Keegan%27s Player Manager %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\4824a630-Marko%27s Magic Football %28Europe%29 %28En,Fr,De,Es%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\6d16f5e7-World Cup Striker %28Europe%29 %28En,Fr,De%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\6f7d1745-Smash Tennis %28Europe%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="patches\974523ff-Terranigma %28Europe, France, Germany, Spain%29.ips">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="mods\mod_hakchi\bin\busybox">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\bin\rsync">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="mods\mod_hakchi\hakchi\config">
@@ -1833,10 +1947,34 @@
     <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\chmenu">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\clover-canoe-shvc-wr">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\clover-kachikachi-wr">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S78clvcon">
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\gameover">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\hakchi">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\hsqs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\remote-exec">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\test-menu">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\uistart">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\uistop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S82remote-exec">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\inittab">
@@ -1851,13 +1989,19 @@
     <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0010_functions">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p0000_config">
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0020_backup">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0030_package">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7000_preinit">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7070_firmware">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7080_hmods">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7100_preinit">
@@ -1872,9 +2016,6 @@
     <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\profile">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\mod_hakchi\hakchi\script\backup">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="mods\mod_hakchi\hakchi\script\base">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1884,7 +2025,7 @@
     <Content Include="mods\mod_hakchi\hakchi\script\install">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\mod_hakchi\hakchi\script\package">
+    <Content Include="mods\mod_hakchi\hakchi\script\reflash">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="mods\mod_hakchi\hakchi\script\removed">
@@ -1896,22 +2037,352 @@
     <Content Include="mods\mod_hakchi\sbin\init">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\mod_hakchi\bin\rsync">
+    <Content Include="DesktopEntries\CLV-P-HAAAJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\clover-canoe-shvc-wr">
+    <Content Include="DesktopEntries\CLV-P-HAACJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\bin\mcp-restarter">
+    <Content Include="DesktopEntries\CLV-P-HAADJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S82mcp-restarter">
+    <Content Include="DesktopEntries\CLV-P-HAAEJ.desktop">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\hmods\tiny7zx-dynamic.hmod">
+    <Content Include="DesktopEntries\CLV-P-HAAHJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HAAMJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HAANJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HAAPJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HAAQJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HAARJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HAASJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HAAUJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HAAWJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HAAXJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HABBJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HABCJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HABLJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HABMJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HABNJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HABQJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HABRJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HABVJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HACAJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HACBJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HACCJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HACEJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HACHJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HACJJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HACLJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-HACPJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAAAE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAACE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAADE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAAEE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAAFE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAAHE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAANE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAAPE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAAQE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAARE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAASE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAATE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAAUE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAAVE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAAWE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAAXE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NAAZE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NABBE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NABCE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NABJE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NABKE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NABME.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NABNE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NABQE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NABRE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NABVE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NABXE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NACBE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NACDE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-NACHE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SAAAE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SAABE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SAAEE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SAAFE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SAAHE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SAAJE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SAAKE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SAALE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SAAQE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SAAXE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SABCE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SABDE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SABHE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SABQE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SABRE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SABTE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SACBE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SACCE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SADGE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SADJE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-SADKE.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VAAAJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VAABJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VAAEJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VAAFJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VAAGJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VAAHJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VAALJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VAAQJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VABBJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VABCJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VABDJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VABQJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VABRJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VABTJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VACCJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VACDJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VADFJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VADGJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VADJJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VADKJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DesktopEntries\CLV-P-VADZJ.desktop">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\bin\usleep">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\b0040_usb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p0000_config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7010_bootlogo">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p7020_usb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\zImage">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\app.manifest" />
+    <Content Include="user_mods\snes_custom_filters.hmod\canoe-custom-filters">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\snes_custom_filters.hmod\install">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\snes_custom_filters.hmod\p8030_snes_filters">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\snes_custom_filters.hmod\uninstall">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\extra_space.hmod\etc\preinit.d\p7110_extra_space">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\extra_space.hmod\install">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\extra_space.hmod\uninstall">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\GameGenieDB.xml">
@@ -2317,19 +2788,38 @@
       <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
+    <PublishFile Include="data\snescarts.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
+    <PreBuildEvent>echo. &gt; NUL 2&gt; "$(ProjectDir)commit.txt"
+
+git --version &amp;&amp; (
+  for /f %25%25i in ('git rev-parse --short HEAD') do (
+    git diff-index --quiet HEAD -- &amp;&amp; (
+      echo|set /p="%25%25i" &gt;&gt; "$(ProjectDir)commit.txt"
+      SET ERRORLEVEL=0
+    ) || (
+      echo|set /p="%25%25i (dirty)" &gt;&gt; "$(ProjectDir)commit.txt"
+    )
+  )
+) || SET ERRORLEVEL=0</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>if exist languages rd /S /Q languages
-md languages
-for /D %25%25i in (*.*) do if exist %25%25i\hakchi.resources.dll move /Y %25%25i languages\%25%25i
-
-rem del *.application
-rem del *.manifest</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -2338,4 +2828,14 @@ rem del *.manifest</PostBuildEvent>
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <BuildDependsOn>$(BuildDependsOn);MoveLanguageResourceFiles;</BuildDependsOn>
+  </PropertyGroup>
+  <Target Name="MoveLanguageResourceFiles">
+    <ItemGroup>
+      <LanguageResourceFiles Include="$(OutDir)**\hakchi.resources.dll;" Exclude="$(OutDir)languages\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(LanguageResourceFiles)" DestinationFolder="$(OutDir)languages\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <RemoveDir Directories="$(OutDir)%(LanguageResourceFiles.RecursiveDir);" />
+  </Target>
 </Project>

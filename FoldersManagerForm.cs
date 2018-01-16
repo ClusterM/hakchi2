@@ -14,7 +14,24 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class FoldersManagerForm : Form
     {
-        public static string FoldersXmlPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders.xml");
+        public static string FoldersXmlPath
+        {
+            get
+            {
+                switch(ConfigIni.ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders.xml");
+                    case MainForm.ConsoleType.Famicom:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_famicom.xml");
+                    case MainForm.ConsoleType.SNES:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_snes.xml");
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_super_famicom.xml");
+                }
+            }
+        }
         List<TreeNode> cuttedNodes = new List<TreeNode>();
         List<INesMenuElement> deletedGames = new List<INesMenuElement>();
         NesMenuCollection gamesCollection = new NesMenuCollection();
@@ -266,6 +283,8 @@ namespace com.clusterrr.hakchi_gui
             if (node != null && (node.Tag is NesMenuCollection || node.Tag is NesMenuFolder)) // Folder or root
             {
                 labelElementCount.Text = string.Format(Resources.FolderStatistics, node.Text, node.Nodes.Count);
+                if (node.Nodes.Count >= MainForm.MaxGamesPerFolder)
+                    labelElementCount.Text += " " + Resources.TooManyPerFolder;
                 buttonNewFolder.Enabled = true;
             }
             else
@@ -828,14 +847,14 @@ namespace com.clusterrr.hakchi_gui
 
         private void TreeContructorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason != CloseReason.UserClosing || DialogResult == System.Windows.Forms.DialogResult.OK) return;
+            if (e.CloseReason != CloseReason.UserClosing || DialogResult == DialogResult.OK) return;
             var a = MessageBox.Show(this, Resources.FoldersSaveQ, this.Text, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            if (a == System.Windows.Forms.DialogResult.Cancel)
+            if (a == DialogResult.Cancel)
             {
                 e.Cancel = true;
                 return;
             }
-            if (a == System.Windows.Forms.DialogResult.Yes)
+            if (a == DialogResult.Yes)
                 SaveTree();
             DialogResult = DialogResult.Cancel;
         }

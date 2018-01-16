@@ -1,10 +1,7 @@
 ﻿#pragma warning disable 0108
-using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Drawing;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace com.clusterrr.hakchi_gui
 {

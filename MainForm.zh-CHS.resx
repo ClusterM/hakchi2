@@ -85,11 +85,20 @@
   <data name="buttonStart.Text">
     <value>将选中的游戏同步到迷你红白机</value>
   </data>
+  <data name="checkBoxCompressed.Text">
+    <value>压缩</value>
+  </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>手柄强化功能</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>压缩非红白机游戏 ( 如其他仿真器的扩充模块 )</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>添加游戏时进行压缩</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>压缩选中的游戏</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>主机型号</value>
@@ -97,14 +106,26 @@
   <data name="customToolStripMenuItem.Text">
     <value>自定义 - 每次均显示文件夹管理器</value>
   </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>解压缩选中的游戏</value>
+  </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>删除游戏</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
     <value>删除预设组</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>删除选中的游戏</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>禁用分页/文件夹</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>捐款</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>为选中的游戏下载包装图片</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>下载所有游戏的包装图片</value>
@@ -114,6 +135,12 @@
   </data>
   <data name="dumpNANDBToolStripMenuItem.Text">
     <value>导出解密的NAND-B分区</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>导出解密的NAND-C分区</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>指定导出文件的文件名</value>
   </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>导出完整的NAND闪存...</value>
@@ -130,11 +157,17 @@
   <data name="fAQToolStripMenuItem.Text">
     <value>常见问答</value>
   </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>红白机(日本)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>文件(&amp;F)</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>刷写定制内核镜像</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>刷写NAND-C分区(仅限专业用户使用!)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>刷写原版内核镜像</value>
@@ -196,14 +229,26 @@
   <data name="labelName.Text">
     <value>名称:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>大小:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
     <value>语言</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>单个页面/文件夹显示的游戏最大数量</value>
   </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>从内存运行原版内核</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>从内存运行修改版内核</value>
+  </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>扩展模块(&amp;M)</value>
+  </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES(美国/欧洲)</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>打开FTP客户端</value>
@@ -241,6 +286,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>使用按键组合重启</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES(美国/欧洲)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>指定导出文件的文件名</value>
   </data>
@@ -265,11 +313,17 @@
   <data name="shellToolStripMenuItem.Text">
     <value>在Telnet://127.0.0.1:1023 (login:root)上运行Telnet 服务器</value>
   </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>超任(日本)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>开始同步</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
     <value>截取屏幕截图</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>刷写整个闪存(仅限专业用户使用！)</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>工具(&amp;T)</value>
@@ -291,38 +345,5 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>将经典控制器的X/Y按钮用作连发A/B键</value>
-  </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
-  </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
-  </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
-  </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Size:</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>

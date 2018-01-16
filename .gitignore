@@ -5,3 +5,4 @@ obj/
 *.csproj.user
 *.pfx
 Properties/Resources*.cs
+commit.txt

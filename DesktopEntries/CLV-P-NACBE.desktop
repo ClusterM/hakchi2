@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NACBE/CLV-P-NACBE.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 82 --enable-armet 
+Path=/var/lib/clover/profiles/0//CLV-P-NACBE
+Name=NINJA GAIDEN
+Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NACBE/CLV-P-NACBE.png
+
+[X-CLOVER Game]
+Code=CLV-P-NACBE
+TestID=252
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1989-03-01
+SaveCount=0
+SortRawTitle=ninja gaiden
+SortRawPublisher=KOEI TECMO
+Copyright=NINJA GAIDEN ©1989 KOEI TECMO GAMES Co., Ltd. All rights reserved.

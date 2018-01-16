@@ -21,6 +21,8 @@ namespace com.clusterrr.hakchi_gui
         public static Image DefaultCover = Resources.blank_app;
         public static Form ParentForm;
         public static bool? NeedPatch;
+        public static bool? Need3rdPartyEmulator;
+        public static bool? NeedAutoDownloadCover;
 
         public static string GamesDirectory
         {
@@ -63,6 +65,20 @@ namespace com.clusterrr.hakchi_gui
         public virtual string GoogleSuffix
         {
             get { return "game"; }
+        }
+
+
+        public const string GameGenieFileName = "gamegenie.txt";
+        public string GameGeniePath { private set; get; }
+        private string gameGenie = "";
+        public string GameGenie
+        {
+            get { return gameGenie; }
+            set
+            {
+                if (gameGenie != value) hasUnsavedChanges = true;
+                gameGenie = value;
+            }
         }
 
         public readonly string GamePath;
@@ -131,6 +147,16 @@ namespace com.clusterrr.hakchi_gui
                 publisher = value;
             }
         }
+        private byte saveCount;
+        public byte SaveCount
+        {
+            get { return saveCount; }
+            set
+            {
+                if (saveCount != value) hasUnsavedChanges = true;
+                saveCount = value;
+            }
+        }
 
         public static NesMiniApplication FromDirectory(string path, bool ignoreEmptyConfig = false)
         {
@@ -168,6 +194,7 @@ namespace com.clusterrr.hakchi_gui
             string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : DefaultApp;
             string args = null;
             Image cover = DefaultCover;
+            byte saveCount = 0;
             uint crc32 = CRC32(rawRomData);
             string outputFileName = Regex.Replace(System.IO.Path.GetFileName(inputFileName), @"[^A-Za-z0-9()!\[\]\.\-]", "_").Trim();
 
@@ -183,7 +210,7 @@ namespace com.clusterrr.hakchi_gui
                 var patch = appinfo.Class.GetMethod("Patch");
                 if (patch != null)
                 {
-                    object[] values = new object[] { inputFileName, rawRomData, prefix, application, outputFileName, args, cover, crc32 };
+                    object[] values = new object[] { inputFileName, rawRomData, prefix, application, outputFileName, args, cover, saveCount, crc32 };
                     var result = (bool)patch.Invoke(null, values);
                     if (!result) return null;
                     rawRomData = (byte[])values[1];
@@ -192,7 +219,8 @@ namespace com.clusterrr.hakchi_gui
                     outputFileName = (string)values[4];
                     args = (string)values[5];
                     cover = (Image)values[6];
-                    crc32 = (uint)values[7];
+                    saveCount = (byte)values[7];
+                    crc32 = (uint)values[8];
                     patched = true;
                 }
             }
@@ -224,6 +252,7 @@ namespace com.clusterrr.hakchi_gui
             if (!string.IsNullOrEmpty(args))
                 game.Command += " " + args;
             game.FindCover(inputFileName, cover, crc32);
+            game.SaveCount = saveCount;
             game.Save();
 
             var app = NesMiniApplication.FromDirectory(gamePath);
@@ -231,7 +260,10 @@ namespace com.clusterrr.hakchi_gui
                 (app as ICloverAutofill).TryAutofill(crc32);
 
             if (ConfigIni.Compress)
+            {
                 app.Compress();
+                app.Save();
+            }
 
             return app;
         }
@@ -255,6 +287,7 @@ namespace com.clusterrr.hakchi_gui
             ReleaseDate = DefaultReleaseDate;
             Publisher = DefaultPublisher;
             Command = "";
+            SaveCount = 0;
         }
 
         protected NesMiniApplication(string path, bool ignoreEmptyConfig = false)
@@ -303,8 +336,16 @@ namespace com.clusterrr.hakchi_gui
                     case "sortrawpublisher":
                         Publisher = value;
                         break;
+                    case "savecount":
+                        SaveCount = byte.Parse(value);
+                        break;
                 }
             }
+
+            GameGeniePath = Path.Combine(path, GameGenieFileName);
+            if (File.Exists(GameGeniePath))
+                gameGenie = File.ReadAllText(GameGeniePath);
+
             hasUnsavedChanges = false;
         }
 
@@ -313,6 +354,9 @@ namespace com.clusterrr.hakchi_gui
             if (!hasUnsavedChanges) return false;
             Debug.WriteLine(string.Format("Saving application \"{0}\" as {1}", Name, Code));
             Name = Regex.Replace(Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
+            var sortRawTitle = Name.ToLower();
+            if (sortRawTitle.StartsWith("the "))
+                sortRawTitle = sortRawTitle.Substring(4); // Sorting without "THE"
             File.WriteAllText(ConfigPath, 
                 $"[Desktop Entry]\n" +
                 $"Type=Application\n" +
@@ -327,10 +371,16 @@ namespace com.clusterrr.hakchi_gui
                 $"Players={Players}\n" +
                 $"Simultaneous={(Simultaneous ? 1 : 0)}\n" +
                 $"ReleaseDate={ReleaseDate ?? DefaultReleaseDate}\n" +
-                $"SaveCount=0\n" +
-                $"SortRawTitle={(Name ?? Code).ToLower()}\n" +
+                $"SaveCount={SaveCount}\n" +
+                $"SortRawTitle={sortRawTitle}\n" +
                 $"SortRawPublisher={(Publisher ?? DefaultPublisher).ToUpper()}\n" +
                 $"Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n");
+
+            if (!string.IsNullOrEmpty(gameGenie))
+                File.WriteAllText(GameGeniePath, gameGenie);
+            else if (File.Exists(GameGeniePath))
+                File.Delete(GameGeniePath);
+
             hasUnsavedChanges = false;
             return true;
         }
@@ -367,19 +417,29 @@ namespace com.clusterrr.hakchi_gui
             if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
             {
                 maxX = 228;
-                maxY = 228;
+                maxY = 204;
             }
             if ((double)image.Width / (double)image.Height > (double)maxX / (double)maxY)
-                outImage = new Bitmap(maxX, (int)((double)maxY * (double)image.Height / (double)image.Width));
+            {
+                int Y = (int)((double)maxX * (double)image.Height / (double)image.Width);
+                if (Y % 2 == 1)
+                    ++Y;
+                outImage = new Bitmap(maxX, Y);
+            }
             else
-                outImage = new Bitmap((int)(maxX * (double)image.Width / (double)image.Height), maxY);
+                outImage = new Bitmap((int)(maxY * (double)image.Width / (double)image.Height), maxY);
 
             int maxXsmall = 40;
             int maxYsmall = 40;
             if ((double)image.Width / (double)image.Height > (double)maxXsmall / (double)maxYsmall)
-                outImageSmall = new Bitmap(maxXsmall, (int)((double)maxYsmall * (double)image.Height / (double)image.Width));
+            {
+                int Y = (int)((double)maxXsmall * (double)image.Height / (double)image.Width);
+                if (Y % 2 == 1)
+                    ++Y;
+                outImageSmall = new Bitmap(maxXsmall, Y);
+            }
             else
-                outImageSmall = new Bitmap((int)(maxXsmall * (double)image.Width / (double)image.Height), maxYsmall);
+                outImageSmall = new Bitmap((int)(maxYsmall * (double)image.Width / (double)image.Height), maxYsmall);
 
             gr = Graphics.FromImage(outImage);
             gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
@@ -388,9 +448,16 @@ namespace com.clusterrr.hakchi_gui
             gr.Flush();
             outImage.Save(IconPath, ImageFormat.Png);
             gr = Graphics.FromImage(outImageSmall);
+
+            // Better resizing quality (more blur like original files)
+            gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
             gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-            gr.DrawImage(outImage, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height),
-                new Rectangle(0, 0, outImage.Width, outImage.Height), GraphicsUnit.Pixel);
+            // Fix first line and column alpha shit
+            using (ImageAttributes wrapMode = new ImageAttributes())
+            {
+                wrapMode.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY);
+                gr.DrawImage(outImage, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height), 0, 0, outImage.Width, outImage.Height, GraphicsUnit.Pixel, wrapMode);
+            }
             gr.Flush();
             outImageSmall.Save(SmallIconPath, ImageFormat.Png);
         }
@@ -403,24 +470,48 @@ namespace com.clusterrr.hakchi_gui
             Directory.CreateDirectory(artDirectory);
             if (!string.IsNullOrEmpty(inputFileName))
             {
+                string name = System.IO.Path.GetFileNameWithoutExtension(inputFileName);
                 if (crc32 != 0)
                 {
                     var covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
                     if (covers.Length > 0)
                         cover = LoadBitmap(covers[0]);
                 }
-                var imagePath = System.IO.Path.Combine(artDirectory, System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".png");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
-                imagePath = System.IO.Path.Combine(artDirectory, System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".jpg");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
-                imagePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(inputFileName), System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".png");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
-                imagePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(inputFileName), System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".jpg");
-                if (File.Exists(imagePath))
-                    cover = LoadBitmap(imagePath);
+                if (cover == null)
+                {
+                    // priority to inputFileName directory
+                    var imagePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(inputFileName), name + ".jpg");
+                    if (File.Exists(imagePath))
+                        cover = LoadBitmap(imagePath);
+                    imagePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(inputFileName), name + ".png");
+                    if (File.Exists(imagePath))
+                        cover = LoadBitmap(imagePath);
+                }
+                if( cover == null )
+                {
+                    // do a bidirectional search on sanitized filenames to allow minor variance in filenames, also allows subdirectories
+                    Regex rgx = new Regex("[^a-zA-Z0-9]", RegexOptions.Compiled);
+                    var sanitizedName = rgx.Replace(name, string.Empty).ToLower();
+
+                    var covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
+                    foreach(var file in covers)
+                    {
+                        var sanitized = rgx.Replace(System.IO.Path.GetFileNameWithoutExtension(file), "").ToLower();
+                        if (sanitizedName.StartsWith(sanitized) || sanitized.StartsWith(sanitizedName))
+                        {
+                            cover = LoadBitmap(file);
+                            break;
+                        }
+                    }
+                    /*
+                    var imagePath = System.IO.Path.Combine(artDirectory, System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".png");
+                    if (File.Exists(imagePath))
+                        cover = LoadBitmap(imagePath);
+                    imagePath = System.IO.Path.Combine(artDirectory, System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".jpg");
+                    if (File.Exists(imagePath))
+                        cover = LoadBitmap(imagePath);
+                    */
+                }
             }
             if (cover == null)
             {
@@ -444,10 +535,10 @@ namespace com.clusterrr.hakchi_gui
                     if (patches.Length > 0)
                         patch = patches[0];
                 }
-                var patchesPath = System.IO.Path.Combine(patchesDirectory, System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".ips");
+                var patchesPath = Path.Combine(patchesDirectory, Path.GetFileNameWithoutExtension(inputFileName) + ".ips");
                 if (File.Exists(patchesPath))
                     patch = patchesPath;
-                patchesPath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(inputFileName), System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".ips");
+                patchesPath = Path.Combine(Path.GetDirectoryName(inputFileName), System.IO.Path.GetFileNameWithoutExtension(inputFileName) + ".ips");
                 if (File.Exists(patchesPath))
                     patch = patchesPath;
             }
@@ -607,15 +698,15 @@ namespace com.clusterrr.hakchi_gui
         {
             if (!Directory.Exists(GamePath)) return new string[0];
             var result = new List<string>();
-            var exec = Regex.Replace(Command, "['/\\\"]", " ") + " ";
+            var exec = Regex.Replace(Command, "[/\\\"]", " ") + " ";
             var files = Directory.GetFiles(GamePath, "*.*", SearchOption.TopDirectoryOnly);
             foreach (var file in files)
             {
-                if (System.IO.Path.GetExtension(file).ToLower() == ".7z")
+                if (Path.GetExtension(file).ToLower() == ".7z")
                     continue;
-                if (System.IO.Path.GetExtension(file).ToLower() == ".zip")
+                if (Path.GetExtension(file).ToLower() == ".zip")
                     continue;
-                if (exec.Contains(" " + System.IO.Path.GetFileName(file) + " "))
+                if (exec.Contains(" " + Path.GetFileName(file) + " "))
                     result.Add(file);
             }
             return result.ToArray();
@@ -625,7 +716,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (!Directory.Exists(GamePath)) return new string[0];
             var result = new List<string>();
-            var exec = Regex.Replace(Command, "['/\\\"]", " ") + " ";
+            var exec = Regex.Replace(Command, "[/\\\"]", " ") + " ";
             var files = Directory.GetFiles(GamePath, "*.7z", SearchOption.TopDirectoryOnly);
             foreach (var file in files)
             {

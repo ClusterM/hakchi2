@@ -65,9 +65,9 @@
     <value>Annuler</value>
   </data>
   <data name="label1.Text">
-    <value>Code:</value>
+    <value>Code :</value>
   </data>
   <data name="label2.Text">
-    <value>Description:</value>
+    <value>Description :</value>
   </data>
 </root>

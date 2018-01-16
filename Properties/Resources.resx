@@ -181,7 +181,7 @@
     <value>Invalid kernel size:</value>
   </data>
   <data name="MapperNotSupported" xml:space="preserve">
-    <value>Sorry, "{0}" uses mapper #{1} but this mapper is not supported by the NES Mini and the game will probably not start with the default emulator. But it should work if other emulator's module installed. Do you want to add this game?</value>
+    <value>"{0}" uses mapper #{1} but this mapper is not supported by the NES Mini and the game will probably not start with the default emulator. But it should work if other emulator's module installed. Do you want to add this game?</value>
   </data>
   <data name="MD5Failed" xml:space="preserve">
     <value>Kernel dumped but the MD5 checksum is unknown:</value>
@@ -238,7 +238,7 @@
     <value>If this problem persists, try using another USB port or cable.</value>
   </data>
   <data name="Donate" xml:space="preserve">
-    <value>P.S. If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
+    <value>If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
   </data>
   <data name="FirstRun" xml:space="preserve">
     <value>Hello there! I'm very glad that you are using hakchi2. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>
@@ -253,7 +253,7 @@
     <value>Do you really want to delete the "{0}" preset?</value>
   </data>
   <data name="FourScreenNotSupported" xml:space="preserve">
-    <value>Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
+    <value>Oops, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
   </data>
   <data name="InputPreset" xml:space="preserve">
     <value>Please input a preset name for the current games selection.</value>
@@ -295,7 +295,7 @@
     <value>Hold Select+A/B for a second to enable/disable autofire A/B.</value>
   </data>
   <data name="ExtraArgsInfo" xml:space="preserve">
-    <value>You can add global command-line arguments which will be appended to all games including the original 30. This is only for experts!</value>
+    <value>You can add global command-line arguments which will be appended to all games including the original. This is only for experts!</value>
   </data>
   <data name="ExtraArgsTitle" xml:space="preserve">
     <value>Extra command-line arguments</value>
@@ -682,7 +682,49 @@
   <data name="InvalidConsoleSelected" xml:space="preserve">
     <value>Invalid console selected! Detected console:</value>
   </data>
-  <data name="gamepad_SNES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="gamepad_snes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\gamepad_snes.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Box art</value>
+  </data>
+  <data name="DownloadCoverQ" xml:space="preserve">
+    <value>Do you want to try to download box art for "{0}"?</value>
+  </data>
+  <data name="Need3rdPartyEmulator" xml:space="preserve">
+    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
+  </data>
+  <data name="jp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\jp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="br" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\br.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FlashingNand" xml:space="preserve">
+    <value>Flashing NAND memory...</value>
+  </data>
+  <data name="FlashNandCQ" xml:space="preserve">
+    <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
+  </data>
+  <data name="hu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\hu.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NandFlashed" xml:space="preserve">
+    <value>NAND memory flashed.</value>
+  </data>
+  <data name="NotRecommended" xml:space="preserve">
+    <value>not recommended</value>
+  </data>
+  <data name="ro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\ro.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TooManyPerFolder" xml:space="preserve">
+    <value>Warning! It's not recommended to store so many games per folder.</value>
+  </data>
+  <data name="FolderNotEmpty" xml:space="preserve">
+    <value>The selected folder isn't empty</value>
+  </data>
+  <data name="gitCommit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\commit.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

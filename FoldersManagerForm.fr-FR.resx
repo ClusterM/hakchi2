@@ -65,16 +65,16 @@
     <value>Annuler</value>
   </data>
   <data name="buttonFoldersEqually.Text">
-    <value>Scinder également</value>
+    <value>Scinder uniformément</value>
   </data>
   <data name="buttonFoldersEquallyOriginal.Text">
-    <value>Jeux Originaux -&gt; Scinder également</value>
+    <value>Jeux d’origine -&gt; Scinder uniformément</value>
   </data>
   <data name="buttonFoldersLetters.Text">
-    <value>Scinder à partir de la première lettre</value>
+    <value>Scinder en fonction de la première lettre</value>
   </data>
   <data name="buttonFoldersLettersOriginal.Text">
-    <value>Jeux Originaux -&gt; Scinder à partir de la première lettre</value>
+    <value>Jeux d’origine -&gt; Scinder en fonction de la première lettre</value>
   </data>
   <data name="buttonNewFolder.Text">
     <value>Nouveau dossier</value>
@@ -83,7 +83,19 @@
     <value>Aucun dossier</value>
   </data>
   <data name="buttonNoFoldersOriginal.Text">
-    <value>Jeux Originaux -&gt; Autres jeux</value>
+    <value>Jeux d’origine -&gt; Autres jeux</value>
+  </data>
+  <data name="comboBoxPosition.Items">
+    <value>Le plus à gauche</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>À gauche des jeux</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>À droite des jeux</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>Le plus à droite</value>
   </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Couper</value>
@@ -98,7 +110,7 @@
     <value>Créer la structure des dossiers automatiquement</value>
   </data>
   <data name="labelPosition.Text">
-    <value>Priorité de la position du dossier:</value>
+    <value>Priorité de la position du dossier :</value>
   </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Créer un nouveau dossier</value>
@@ -107,7 +119,7 @@
     <value>Coller</value>
   </data>
   <data name="renameToolStripMenuItem.Text">
-    <value>Renommer dossier</value>
+    <value>Renommer le dossier</value>
   </data>
   <data name="labelElementCount.Text">
     <value>Folder statistics</value>

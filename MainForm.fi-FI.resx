@@ -85,11 +85,20 @@
   <data name="buttonStart.Text">
     <value>Synkronoi valitut pelit NES/SNES Minin kanssa</value>
   </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Pakkaa</value>
+  </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Ohjainhackit</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Pakkaa ei-NES-pelit (emulaattorimoduuleille)</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Pakkaa pelit lisättäessä</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Pakkaa valitut pelit</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Konsolin tyyppi</value>
@@ -97,14 +106,26 @@
   <data name="customToolStripMenuItem.Text">
     <value>Mukautettu - näytä kansiohallinta joka kerta</value>
   </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Pura valitut pelit</value>
+  </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Poista peli</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Poista valikoima</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Poista valitut pelit</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Poista sivut/kansiot</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Lahjoita</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Lataa kansitaide valituille peleille</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Lataa kansitaide kaikille peleille</value>
@@ -114,6 +135,12 @@
   </data>
   <data name="dumpNANDBToolStripMenuItem.Text">
     <value>Dumppaa purettu NAND-B-osio</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Dumppaa purettu NAND-C-osio</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Valitse dumpin tiedostonimi</value>
   </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Dumppaa koko NAND-muisti</value>
@@ -130,11 +157,17 @@
   <data name="fAQToolStripMenuItem.Text">
     <value>UKK</value>
   </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Japani)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;Tiedosto</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Flashaa mukautettu ydin</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Flashaa NAND-C-osiot (vain asiantuntijoille!)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Flashaa alkuperäisydin</value>
@@ -196,14 +229,26 @@
   <data name="labelName.Text">
     <value>Nimi:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Koko:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
     <value>Kieli</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Pelejä korkeintaan per sivu/kansio</value>
   </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Käynnistä alkuperäisellä ytimellä muistista</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Käynnistä patchatulla ytimellä muistista</value>
+  </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Moduulit</value>
+  </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Europpa)</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Avaa FTP-asiakasohjelma</value>
@@ -241,6 +286,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Käytä näppäinyhdistelmää resetointiin</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Eurooppa)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>Valitse dumpin tiedostonimi</value>
   </data>
@@ -265,11 +313,17 @@
   <data name="shellToolStripMenuItem.Text">
     <value>Telnet-palvelin osoitteessa telnet://127.0.0.1:1023 (login:root)</value>
   </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japani)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Synkronoi</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
     <value>Ota kuvankaappaus</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flashaa koko NAND (vain asiantuntijoille!)</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Työkalut</value>
@@ -291,38 +345,5 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Käytä Classic Controllerin X/Y-näppäimiä A/B-automaattitulitukseen</value>
-  </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
-  </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
-  </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
-  </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Size:</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>

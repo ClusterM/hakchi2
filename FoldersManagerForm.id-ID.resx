@@ -85,6 +85,18 @@
   <data name="buttonNoFoldersOriginal.Text">
     <value>Game orisinal -&gt; Game lainnya</value>
   </data>
+  <data name="comboBoxPosition.Items">
+    <value>Paling kiri</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>Sebelah kiri game</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>Sebelah kanan game</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>Paling kanan</value>
+  </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Potong</value>
   </data>
@@ -95,7 +107,7 @@
     <value>Ikon Menu</value>
   </data>
   <data name="groupBoxSplitModes.Text">
-    <value>Buat Folders Structure secara otomatis</value>
+    <value>Buat struktur folder secara otomatis</value>
   </data>
   <data name="labelPosition.Text">
     <value>Prioritas posisi folder:</value>

@@ -58,6 +58,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="buttonFamicom.Text">
+    <value>Famicom (Японка)</value>
+  </data>
+  <data name="buttonNes.Text">
+    <value>NES (Американка/Европейка)</value>
+  </data>
+  <data name="buttonSnes.Text">
+    <value>SNES (Американка/Европейка)</value>
+  </data>
+  <data name="buttonSuperFamicom.Text">
+    <value>Super Famicom (Японка)</value>
+  </data>
   <data name="labelSelectConsole.Text">
     <value>Прежде всего, скажите, какая у вас консоль. Эту настройку можно будет изменить позже в меню, если вдруг у вас будет другая консоль или даже несколько консолей сразу.</value>
   </data>

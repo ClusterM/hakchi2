@@ -85,11 +85,20 @@
   <data name="buttonStart.Text">
     <value>Synchroniseer de geselecteerde spellen met de NES/SNES Mini</value>
   </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Comprimeren</value>
+  </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Besturingshacks</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Comprimeer de niet-NES spellen (als je een extra emulator hebt geïnstalleerd)</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Comprimeer de spellen tijdens het toevoegen</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Comprimeer geselecteerde spellen</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Console type</value>
@@ -97,14 +106,26 @@
   <data name="customToolStripMenuItem.Text">
     <value>Aangepast – laat de Mappen Manager elke keer zien</value>
   </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Decomprimeer geselecteerde spellen</value>
+  </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Verwijder een spel</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Verwijder preset</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Verwijder geselecteerde spellen</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Zet de pagina/mappen uit</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Doneren</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Download verpakkingsafbeelding voor geselecteerde spellen</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Download</value>
@@ -113,7 +134,13 @@
     <value>Kernel opslaan</value>
   </data>
   <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump gedecodeerde NAND-B partitie</value>
+    <value>Dump de gedecodeerde NAND-B partitie</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Dump de gedecodeerde NAND-C partitie</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Selecteer de bestandsnaam voor dump</value>
   </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Dump de gehele NAND flash</value>
@@ -130,11 +157,17 @@
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ (Veel Gestelde Vragen)</value>
   </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Japan)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;Bestand</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Flash zelfgemaakte kernel</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Flash NAND-C partitie (alleen experts!)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Flash de originele kernel</value>
@@ -182,13 +215,13 @@
     <value>Opdracht regel (Alleen voor geavanceerde gebruikers!):</value>
   </data>
   <data name="label4.Text">
-    <value>Originele verpakking:</value>
+    <value>Verpakking:</value>
   </data>
   <data name="label5.Text">
     <value>Selecteer spellen:</value>
   </data>
   <data name="label6.Text">
-    <value>Maximaal aantal spelers:</value>
+    <value>Max spelers:</value>
   </data>
   <data name="label7.Text">
     <value>Game Genie codes (komma gescheiden):</value>
@@ -196,20 +229,32 @@
   <data name="labelName.Text">
     <value>Naam:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Grootte:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
     <value>Taal</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Maximaal aantal spellen per pagina/map</value>
   </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Start de originele kernel vanaf RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Start de gepatchde kernel vanaf RAM</value>
+  </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Modules</value>
+  </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Europa)</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Open FTP client</value>
   </data>
   <data name="openFileDialogImage.Title">
-    <value>Selecteer afbeelding voor het spel</value>
+    <value>Selecteer een verpakkingsafbeelding voor het spel</value>
   </data>
   <data name="openFileDialogNes.Title">
     <value>Geselecteerde spellen:</value>
@@ -241,14 +286,17 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Gebruik een knop combinatie om te resetten</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Europa)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
-    <value>Selecteer dump bestandsnaam</value>
+    <value>Selecteer de bestandsnaam voor dump</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Bewaar nu de instelling op de NES/SNES Mini</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Opslagpunten Beheer</value>
+    <value>Opslagpunten Beheerder</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
     <value>Zoeken</value>
@@ -265,11 +313,17 @@
   <data name="shellToolStripMenuItem.Text">
     <value>Telnet server op telnet://127.0.0.1:1023 (login:root)</value>
   </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japan)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Synchroniseren</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
     <value>Schermafbeelding maken</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flash de gehele NAND (voor experts!)</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Gereedschap</value>
@@ -291,38 +345,5 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Gebruik X/Y om autofire te gebruiken voor de A/B knoppen op de klassieke controller</value>
-  </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
-  </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
-  </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
-  </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Size:</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>

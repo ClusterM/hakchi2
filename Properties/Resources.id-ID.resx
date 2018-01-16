@@ -79,8 +79,17 @@
   <data name="BuildingFolders">
     <value>Membangun Folders Structure...</value>
   </data>
+  <data name="Compressing">
+    <value>Mengkompres {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Mengkompres game...</value>
+  </data>
   <data name="Congratulations">
     <value>Selamat!</value>
+  </data>
+  <data name="Cover">
+    <value>Box art</value>
   </data>
   <data name="CustomKernel">
     <value>Kernel custom</value>
@@ -91,8 +100,14 @@
   <data name="CustomWarning">
     <value>Sekarang Anda harus mem-flash kernel custom ke NES/SNES Mini. Ini hanya perlu dilakukan sekali saja. Apakah Anda ingin melanjutkan?</value>
   </data>
+  <data name="Decompressing">
+    <value>Mendekompres {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Mendekompres game...</value>
+  </data>
   <data name="Default30games">
-    <value>xx game orisinal</value>
+    <value>Game orisinal</value>
   </data>
   <data name="DeleteElement">
     <value>Apakah Anda ingin menghapus "{0}"?</value>
@@ -108,6 +123,9 @@
   </data>
   <data name="DeleteSavesQ">
     <value>Apakah Anda ingin menghapus Save State tersebut?</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Hapus game terpilih?</value>
   </data>
   <data name="DoYouWantCancel">
     <value>Apakah Anda ingin membatalkan operasi ini?</value>
@@ -126,6 +144,9 @@
   </data>
   <data name="DownloadAllCoversTitle">
     <value>Unduh box art untuk semua game (Saya lagi beruntung!)</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>Apakah Anda ingin mengunduh box art untuk "{0}"?</value>
   </data>
   <data name="DumpKernelQ">
     <value>Apakah Anda ingin men-dump kernel?</value>
@@ -151,6 +172,12 @@
   <data name="FirstRun">
     <value>Halo! Saya senang Anda menggunakan hakchi2. Aplikasi ini sangatlah mudah digunakan. Cukup klik "Tambah game lagi", pilih ROM, klik "Sinkronkan", kemudian ikuti saja instruksi selanjutnya. Semoga berhasil!</value>
   </data>
+  <data name="FlashNandCQ">
+    <value>Apakah Anda ingin mem-flash image partisi NAND-C? Semua data pengguna akan tergantikan.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Mem-flash memori NAND...</value>
+  </data>
   <data name="FlasingCustom">
     <value>Mem-flash kernel custom...</value>
   </data>
@@ -164,13 +191,13 @@
     <value>Kembali</value>
   </data>
   <data name="FolderNameMoreGames">
-    <value>Game-game lainnya...</value>
+    <value>Game lainnya...</value>
   </data>
   <data name="FolderNameNewFolder">
     <value>Folder baru</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>xx game orisinal</value>
+    <value>Game orisinal</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Recycle Bin</value>
@@ -212,7 +239,7 @@
     <value>game dipilih</value>
   </data>
   <data name="GooglingFor">
-    <value>Meng-Google untuk</value>
+    <value>Mencari Google untuk</value>
   </data>
   <data name="Hello">
     <value>Halo</value>
@@ -225,6 +252,9 @@
   </data>
   <data name="InstallingMods">
     <value>Menginstal mod...</value>
+  </data>
+  <data name="InvalidConsoleSelected">
+    <value>Konsol yang dipilih invalid! Konsol yang terdeteksi:</value>
   </data>
   <data name="InvalidKernelHeader">
     <value>Header kernel tidak valid.</value>
@@ -245,10 +275,13 @@
     <value>Kernel ini sudah di-patch atau tidak diketahui revisinya. Beritahukan hal ini kepada saya (tekan Ctrl+C). Silakan tanggung sendiri risikonya jika memilih untuk melanjutkan.</value>
   </data>
   <data name="MainMenu">
-    <value>Menu Home</value>
+    <value>Menu HOME</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Maaf, "{0}" menggunakan mapper #{1} tetapi mapper ini tidak didukung oleh NES/SNES Mini dan game ini mungkin tidak akan dapat dimainkan dengan emulator bawaan, kecuali jika modul emulator lain diinstal. Apakah Anda tetap ingin menambahkan game ini?</value>
+    <value>Maaf, "{0}" menggunakan mapper #{1} tetapi mapper ini tidak didukung oleh NES Mini dan game ini mungkin tidak akan dapat dimainkan dengan emulator bawaan, kecuali jika modul emulator lain diinstal. Apakah Anda tetap ingin menambahkan game ini?</value>
+  </data>
+  <data name="Membooting">
+    <value>Mem-boot kernel dari RAM...</value>
   </data>
   <data name="MemoryFull">
     <value>Maaf, jumlah game Anda saat ini adalah {0}MB, terlalu banyak untuk disimpan.</value>
@@ -258,6 +291,12 @@
   </data>
   <data name="NandDumped">
     <value>Memori NAND berhasil di-dump.</value>
+  </data>
+  <data name="NandFlashed">
+    <value>Memori NAND ter-flash.</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Ups, sepertinya "{0}" tidak akan dapat berjalan dengan baik dengan emulator orisinal. Apakah Anda ingin menggunakan emulator pihak ketiga untuk game ini (instalasi dibutuhkan)?</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>Game-game baru berada di dalam folder "Belum Tersortir".</value>
@@ -286,6 +325,9 @@
   <data name="NotFound">
     <value>Tidak ditemukan:</value>
   </data>
+  <data name="NotRecommended">
+    <value>tidak disarankan</value>
+  </data>
   <data name="OriginalKernelQ">
     <value>Apakah Anda ingin mem-flash kernel orisinal?</value>
   </data>
@@ -303,6 +345,12 @@
   </data>
   <data name="PressOkToContinue">
     <value>Tekan OK untuk melanjutkan.</value>
+  </data>
+  <data name="Removing">
+    <value>Menghapus {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Menghapus game...</value>
   </data>
   <data name="ReplaceKernelQ">
     <value>Anda sudah mempunyai dump kernel. Jika Anda BENAR-BENAR ingin mengganti dump cadangan Anda dan tahu BENAR apa yang Anda lakukan, hapus folder "hakchi2/dump" secara manual.</value>
@@ -322,8 +370,14 @@
   <data name="SelectModsUninstall">
     <value>Pilih modul yang akan dicopot dari NES/SNES Mini</value>
   </data>
+  <data name="Size">
+    <value>Ukuran:</value>
+  </data>
   <data name="SizeOfSaves">
     <value>Ukuran Save State yang dipilih</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Peringatan! Disarankan untuk tidak menyimpan terlalu banyak game di dalam setiap folder.</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>Jangan lupa untuk melakukan Factory Reset jika Anda ingin menghapus semua Suspend Point.</value>
@@ -371,42 +425,12 @@
     <value>Peringatan!</value>
   </data>
   <data name="Wow">
-    <value>Wow</value>
+    <value>Yay!</value>
   </data>
   <data name="Yes">
     <value>Ya</value>
   </data>
   <data name="YesForAll">
     <value>Ya untuk semua</value>
-  </data>
-  <data name="Compressing">
-    <value>Compressing {0}...</value>
-  </data>
-  <data name="CompressingGames">
-    <value>Compressing games...</value>
-  </data>
-  <data name="Decompressing">
-    <value>Decompressing {0}...</value>
-  </data>
-  <data name="DecompressingGames">
-    <value>Decompressing games...</value>
-  </data>
-  <data name="DeleteSelectedGamesQ">
-    <value>Delete selected game(s)?</value>
-  </data>
-  <data name="InvalidConsoleSelected">
-    <value>Invalid console selected! Detected console:</value>
-  </data>
-  <data name="Membooting">
-    <value>Booting the kernel from RAM...</value>
-  </data>
-  <data name="Removing">
-    <value>Removing {0}...</value>
-  </data>
-  <data name="RemovingGames">
-    <value>Removing games...</value>
-  </data>
-  <data name="Size">
-    <value>Size:</value>
   </data>
 </root>

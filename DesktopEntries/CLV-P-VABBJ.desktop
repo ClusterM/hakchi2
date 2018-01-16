@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VABBJ/CLV-P-VABBJ.sfrom --volume 90 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-VABBJ
+Name=スーパーストリートファイターⅡ ザ ニューチャレンジャーズ
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VABBJ/CLV-P-VABBJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-VABBJ
+TestID=8
+Status=Completing-1
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1994-06-25
+SaveCount=0
+SortRawTitle=すーぱーすとりーとふぁいたー２
+SortRawPublisher=かぷこん
+Copyright=スーパーストリートファイター®Ⅱ ザ ニューチャレンジャーズ ©CAPCOM U.S.A., INC. 1993, 2017 ALL RIGHTS RESERVED.
+MyPlayDemoTime=45

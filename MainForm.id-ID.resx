@@ -85,11 +85,20 @@
   <data name="buttonStart.Text">
     <value>Sinkronkan game-game terpilih dengan NES/SNES Mini</value>
   </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Kompres</value>
+  </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Retasan kontroler</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Kompres game non-NES (untuk mod emulator tambahan)</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Kompres game saat menambahkan</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Kompres game-game yang terpilih</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Tipe konsol</value>
@@ -97,14 +106,26 @@
   <data name="customToolStripMenuItem.Text">
     <value>Custom - selalu perlihatkan Folders Manager</value>
   </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Dekompres game-game yang terpilih</value>
+  </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Hapus game</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Hapus pra-atur</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Hapus game-game yang terpilih</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Nonaktifkan halaman/folder</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Donasi</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Unduh box art untuk game terpilih</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Unduh box art untuk semua game</value>
@@ -114,6 +135,12 @@
   </data>
   <data name="dumpNANDBToolStripMenuItem.Text">
     <value>Dump terdekripsi partisi NAND-B</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Dump terdekripsi partisi NAND-C</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Pilih nama file dump</value>
   </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Dump seluruh flash NAND</value>
@@ -130,11 +157,17 @@
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ</value>
   </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Jepang)</value>
+  </data>
   <data name="fileToolStripMenuItem.Text">
     <value>&amp;File</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Flash kernel custom</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Flash partisi NAND-C (khusus ahli!)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Flash kernel orisinal</value>
@@ -196,14 +229,26 @@
   <data name="labelName.Text">
     <value>Nama:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Ukuran:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
     <value>Bahasa</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Game maksimum per halaman/folder</value>
   </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Boot kernel orisinal dari RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Boot kernel yang di-patch dari RAM</value>
+  </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Modul</value>
+  </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (AS/Eropa)</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Buka klien FTP</value>
@@ -236,10 +281,13 @@
     <value>Dua player, tidak berbarengan</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Dua player, berbarengan</value>
+    <value>Dua player, bersamaan</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Gunakan kombinasi tombol untuk me-reset</value>
+  </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (AS/Eropa)</value>
   </data>
   <data name="saveDumpFileDialog.Title">
     <value>Pilih nama file dump</value>
@@ -248,7 +296,7 @@
     <value>Simpan penataan ke NES/SNES Mini sekarang</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Save-State Manager</value>
+    <value>Pengaturan Save-State</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
     <value>Telusur</value>
@@ -265,11 +313,17 @@
   <data name="shellToolStripMenuItem.Text">
     <value>Server Telnet pada Telnet: //127.0.0.1:1023 (login: root)</value>
   </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Jepang)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Sinkronkan</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
-    <value>Ambil screenshot</value>
+    <value>Ambil tangkapan layar</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flash seluruh NAND (khusus ahli!)</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Tools</value>
@@ -281,7 +335,7 @@
     <value>Copot</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
-    <value>Tidak pilih semuanya</value>
+    <value>Batalkan semua pilihan</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
     <value>"Atas+A+B = Start" pada kontroler 2</value>
@@ -291,38 +345,5 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Gunakan X/Y pada Classic Controller sebagai autofire A/B</value>
-  </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
-  </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
-  </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
-  </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Size:</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>

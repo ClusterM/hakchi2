@@ -5,7 +5,6 @@ using SevenZip;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Deployment.Application;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -23,125 +22,139 @@ namespace com.clusterrr.hakchi_gui
     public partial class MainForm : Form
     {
         public enum ConsoleType { NES = 0, Famicom = 1, SNES = 2, SuperFamicom = 3, Unknown = 255 }
-
-        public const long DefaultMaxGamesSize = 300;
+        public long DefaultMaxGamesSize
+        {
+            get
+            {
+                switch (ConfigIni.ConsoleType)
+                {
+                    default:
+                    case ConsoleType.NES:
+                    case ConsoleType.Famicom:
+                        return 300;
+                    case ConsoleType.SNES:
+                    case ConsoleType.SuperFamicom:
+                        return 200;
+                }
+            }
+        }
+        public const int MaxGamesPerFolder = 50;
         public static IEnumerable<string> InternalMods;
         public static ClovershellConnection Clovershell;
         mooftpserv.Server ftpServer;
+        public static bool? DownloadCover;
 
         static NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
-            new NesDefaultGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros.", Size = 571031 },
-            new NesDefaultGame { Code = "CLV-P-NAACE",  Name = "Super Mario Bros. 3", Size = 1163285 },
-            new NesDefaultGame { Code = "CLV-P-NAADE",  Name = "Super Mario Bros. 2",Size = 1510337 },
-            new NesDefaultGame { Code = "CLV-P-NAAEE",  Name = "Donkey Kong", Size = 556016 },
-            new NesDefaultGame { Code = "CLV-P-NAAFE",  Name = "Donkey Kong Jr." , Size = 558176 },
-            new NesDefaultGame { Code = "CLV-P-NAAHE",  Name = "Excitebike", Size = 573231 },
-            new NesDefaultGame { Code = "CLV-P-NAANE",  Name = "The Legend of Zelda", Size = 663910 },
-            new NesDefaultGame { Code = "CLV-P-NAAPE",  Name = "Kirby's Adventure", Size = 1321661 },
-            new NesDefaultGame { Code = "CLV-P-NAAQE",  Name = "Metroid", Size = 662601 },
-            new NesDefaultGame { Code = "CLV-P-NAARE",  Name = "Balloon Fight", Size = 556131 },
-            new NesDefaultGame { Code = "CLV-P-NAASE",  Name = "Zelda II - The Adventure of Link", Size = 1024158 },
-            new NesDefaultGame { Code = "CLV-P-NAATE",  Name = "Punch-Out!! Featuring Mr. Dream", Size = 1038128 },
-            new NesDefaultGame { Code = "CLV-P-NAAUE",  Name = "Ice Climber", Size = 553436 },
-            new NesDefaultGame { Code = "CLV-P-NAAVE",  Name = "Kid Icarus", Size = 670710 },
-            new NesDefaultGame { Code = "CLV-P-NAAWE",  Name = "Mario Bros.", Size = 1018973 },
-            new NesDefaultGame { Code = "CLV-P-NAAXE",  Name = "Dr. MARIO", Size = 1089427 },
-            new NesDefaultGame { Code = "CLV-P-NAAZE",  Name = "StarTropics", Size = 1299361 },
-            new NesDefaultGame { Code = "CLV-P-NABBE",  Name = "MEGA MAN™ 2", Size = 569868 },
-            new NesDefaultGame { Code = "CLV-P-NABCE",  Name = "GHOSTS'N GOBLINS™", Size = 440971 },
-            new NesDefaultGame { Code = "CLV-P-NABJE",  Name = "FINAL FANTASY®", Size = 552556 },
-            new NesDefaultGame { Code = "CLV-P-NABKE",  Name = "BUBBLE BOBBLE" , Size = 474232 },
-            new NesDefaultGame { Code = "CLV-P-NABME",  Name = "PAC-MAN", Size = 325888 },
-            new NesDefaultGame { Code = "CLV-P-NABNE",  Name = "Galaga", Size =  347079 },
-            new NesDefaultGame { Code = "CLV-P-NABQE",  Name = "Castlevania", Size = 434240 },
-            new NesDefaultGame { Code = "CLV-P-NABRE",  Name = "GRADIUS", Size = 370790 },
-            new NesDefaultGame { Code = "CLV-P-NABVE",  Name = "Super C", Size = 565974 },
-            new NesDefaultGame { Code = "CLV-P-NABXE",  Name = "Castlevania II Simon's Quest", Size = 569759 },
-            new NesDefaultGame { Code = "CLV-P-NACBE",  Name = "NINJA GAIDEN", Size =573536 },
-            new NesDefaultGame { Code = "CLV-P-NACDE",  Name = "TECMO BOWL", Size =568276 },
-            new NesDefaultGame { Code = "CLV-P-NACHE",  Name = "DOUBLE DRAGON II: The Revenge", Size = 578900 }
+            new NesDefaultGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros.", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAACE",  Name = "Super Mario Bros. 3", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAADE",  Name = "Super Mario Bros. 2",Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAEE",  Name = "Donkey Kong", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAFE",  Name = "Donkey Kong Jr." , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAHE",  Name = "Excitebike", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAANE",  Name = "The Legend of Zelda", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAPE",  Name = "Kirby's Adventure", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAQE",  Name = "Metroid", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAARE",  Name = "Balloon Fight", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAASE",  Name = "Zelda II - The Adventure of Link", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAATE",  Name = "Punch-Out!! Featuring Mr. Dream", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAUE",  Name = "Ice Climber", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAVE",  Name = "Kid Icarus", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAWE",  Name = "Mario Bros.", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAXE",  Name = "Dr. MARIO", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NAAZE",  Name = "StarTropics", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABBE",  Name = "MEGA MAN™ 2", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABCE",  Name = "GHOSTS'N GOBLINS™", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABJE",  Name = "FINAL FANTASY®", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABKE",  Name = "BUBBLE BOBBLE" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABME",  Name = "PAC-MAN", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABNE",  Name = "Galaga", Size =  25000 },
+            new NesDefaultGame { Code = "CLV-P-NABQE",  Name = "Castlevania", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABRE",  Name = "GRADIUS", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABVE",  Name = "Super C", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NABXE",  Name = "Castlevania II Simon's Quest", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-NACBE",  Name = "NINJA GAIDEN", Size =25000 },
+            new NesDefaultGame { Code = "CLV-P-NACDE",  Name = "TECMO BOWL", Size =25000 },
+            new NesDefaultGame { Code = "CLV-P-NACHE",  Name = "DOUBLE DRAGON II: The Revenge", Size = 25000 }
         };
         static NesDefaultGame[] defaultFamicomGames = new NesDefaultGame[] {
-            new NesDefaultGame { Code = "CLV-P-HAAAJ",  Name = "スーパーマリオブラザーズ", Size = 596775 },
-            new NesDefaultGame { Code = "CLV-P-HAACJ",  Name = "スーパーマリオブラザーズ３", Size = 1411534 },
-            new NesDefaultGame { Code = "CLV-P-HAADJ",  Name = "スーパーマリオＵＳＡ", Size = 1501542 },
-            new NesDefaultGame { Code = "CLV-P-HAAEJ",  Name = "ドンキーコング" , Size = 568006 },
-            new NesDefaultGame { Code = "CLV-P-HAAHJ",  Name = "エキサイトバイク" , Size = 597513 },
-            new NesDefaultGame { Code = "CLV-P-HAAMJ",  Name = "マリオオープンゴルフ" , Size = 798179 },
-            new NesDefaultGame { Code = "CLV-P-HAANJ",  Name = "ゼルダの伝説", Size = 677971  },
-            new NesDefaultGame { Code = "CLV-P-HAAPJ",  Name = "星のカービィ　夢の泉の物語" , Size = 1331436 },
-            new NesDefaultGame { Code = "CLV-P-HAAQJ",  Name = "メトロイド" , Size = 666895 },
-            new NesDefaultGame { Code = "CLV-P-HAARJ",  Name = "バルーンファイト" , Size = 569750 },
-            new NesDefaultGame { Code = "CLV-P-HAASJ",  Name = "リンクの冒険" , Size = 666452 },
-            new NesDefaultGame { Code = "CLV-P-HAAUJ",  Name = "アイスクライマー" , Size = 812372    },
-            new NesDefaultGame { Code = "CLV-P-HAAWJ",  Name = "マリオブラザーズ" , Size = 1038275 },
-            new NesDefaultGame { Code = "CLV-P-HAAXJ",  Name = "ドクターマリオ" , Size = 1083234   },
-            new NesDefaultGame { Code = "CLV-P-HABBJ",  Name = "ロックマン®2 Dr.ワイリーの謎" , Size = 592425  },
-            new NesDefaultGame { Code = "CLV-P-HABCJ",  Name = "魔界村®", Size = 456166    },
-            new NesDefaultGame { Code = "CLV-P-HABLJ",  Name = "ファイナルファンタジー®III" , Size = 830898 },
-            new NesDefaultGame { Code = "CLV-P-HABMJ",  Name = "パックマン" , Size = 341593 },
-            new NesDefaultGame { Code = "CLV-P-HABNJ",  Name = "ギャラガ", Size =  345552 },
-            new NesDefaultGame { Code = "CLV-P-HABQJ",  Name = "悪魔城ドラキュラ" , Size = 428522 },
-            new NesDefaultGame { Code = "CLV-P-HABRJ",  Name = "グラディウス", Size = 393055 },
-            new NesDefaultGame { Code = "CLV-P-HABVJ",  Name = "スーパー魂斗羅" , Size = 569537 },
-            new NesDefaultGame { Code = "CLV-P-HACAJ",  Name = "イー・アル・カンフー", Size = 336353 },
-            new NesDefaultGame { Code = "CLV-P-HACBJ",  Name = "忍者龍剣伝" , Size = 578623 },
-            new NesDefaultGame { Code = "CLV-P-HACCJ",  Name = "ソロモンの鍵" , Size = 387084 },
-            new NesDefaultGame { Code = "CLV-P-HACEJ",  Name = "つっぱり大相撲", Size = 392595 },
-            new NesDefaultGame { Code = "CLV-P-HACHJ",  Name = "ダブルドラゴンⅡ The Revenge", Size = 579757 },
-            new NesDefaultGame { Code = "CLV-P-HACJJ",  Name = "ダウンタウン熱血物語" , Size = 588367 },
-            new NesDefaultGame { Code = "CLV-P-HACLJ",  Name = "ダウンタウン熱血行進曲 それゆけ大運動会", Size = 587083 },
-            new NesDefaultGame { Code = "CLV-P-HACPJ",  Name = "アトランチスの謎", Size = 376213 }
+            new NesDefaultGame { Code = "CLV-P-HAAAJ",  Name = "スーパーマリオブラザーズ", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAACJ",  Name = "スーパーマリオブラザーズ３", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAADJ",  Name = "スーパーマリオＵＳＡ", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAAEJ",  Name = "ドンキーコング" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAAHJ",  Name = "エキサイトバイク" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAAMJ",  Name = "マリオオープンゴルフ" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAANJ",  Name = "ゼルダの伝説", Size = 25000  },
+            new NesDefaultGame { Code = "CLV-P-HAAPJ",  Name = "星のカービィ　夢の泉の物語" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAAQJ",  Name = "メトロイド" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAARJ",  Name = "バルーンファイト" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAASJ",  Name = "リンクの冒険" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAAUJ",  Name = "アイスクライマー" , Size = 25000    },
+            new NesDefaultGame { Code = "CLV-P-HAAWJ",  Name = "マリオブラザーズ" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HAAXJ",  Name = "ドクターマリオ" , Size = 25000   },
+            new NesDefaultGame { Code = "CLV-P-HABBJ",  Name = "ロックマン®2 Dr.ワイリーの謎" , Size = 25000  },
+            new NesDefaultGame { Code = "CLV-P-HABCJ",  Name = "魔界村®", Size = 25000    },
+            new NesDefaultGame { Code = "CLV-P-HABLJ",  Name = "ファイナルファンタジー®III" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HABMJ",  Name = "パックマン" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HABNJ",  Name = "ギャラガ", Size =  25000 },
+            new NesDefaultGame { Code = "CLV-P-HABQJ",  Name = "悪魔城ドラキュラ" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HABRJ",  Name = "グラディウス", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HABVJ",  Name = "スーパー魂斗羅" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACAJ",  Name = "イー・アル・カンフー", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACBJ",  Name = "忍者龍剣伝" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACCJ",  Name = "ソロモンの鍵" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACEJ",  Name = "つっぱり大相撲", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACHJ",  Name = "ダブルドラゴンⅡ The Revenge", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACJJ",  Name = "ダウンタウン熱血物語" , Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACLJ",  Name = "ダウンタウン熱血行進曲 それゆけ大運動会", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-HACPJ",  Name = "アトランチスの謎", Size = 25000 }
         };
-        static NesDefaultGame[] defaultSnesGames = new NesDefaultGame[]
-        {
-            new NesDefaultGame { Code = "CLV-P-SAAAE",  Name = "Super Mario World", Size = 2979540 },
-            new NesDefaultGame { Code = "CLV-P-SAABE",  Name = "F-ZERO", Size = 2770166 },
-            new NesDefaultGame { Code = "CLV-P-SAAEE",  Name = "The Legend of Zelda: A Link to the Past", Size = 2618796 },
-            new NesDefaultGame { Code = "CLV-P-SAAFE",  Name = "Super Mario Kart", Size = 2436777 },
-            new NesDefaultGame { Code = "CLV-P-SAAHE",  Name = "Super Metroid", Size = 6237435 },
-            new NesDefaultGame { Code = "CLV-P-SAAJE",  Name = "EarthBound", Size = 5954521 },
-            new NesDefaultGame { Code = "CLV-P-SAAKE",  Name = "Kirby's Dream Course", Size = 3210055 },
-            new NesDefaultGame { Code = "CLV-P-SAALE",  Name = "Donkey Kong Country", Size = 5899153 },
-            new NesDefaultGame { Code = "CLV-P-SAAQE",  Name = "Kirby Super Star", Size = 6893805 },
-            new NesDefaultGame { Code = "CLV-P-SAAXE",  Name = "Super Punch-Out!!", Size = 5085386 },
-            new NesDefaultGame { Code = "CLV-P-SABCE",  Name = "Mega Man X", Size = 2680591 },
-            new NesDefaultGame { Code = "CLV-P-SABDE",  Name = "Super Ghouls'n Ghosts", Size = 2157749 },
-            new NesDefaultGame { Code = "CLV-P-SABHE",  Name = "Street Fighter II Turbo: Hyper Fighting", Size = 9166072 },
-            new NesDefaultGame { Code = "CLV-P-SABQE",  Name = "Super Mario RPG: Legend of the Seven Stars", Size = 5620137 },
-            new NesDefaultGame { Code = "CLV-P-SABRE",  Name = "Secret of Mana", Size = 3029013 },
-            new NesDefaultGame { Code = "CLV-P-SABTE",  Name = "Final Fantasy III", Size = 4336655 },
-            new NesDefaultGame { Code = "CLV-P-SACBE",  Name = "Super Castlevania IV", Size = 2953337 },
-            new NesDefaultGame { Code = "CLV-P-SACCE",  Name = "CONTRA III THE ALIEN WARS", Size = 2803555 },
-            new NesDefaultGame { Code = "CLV-P-SADGE",  Name = "Star Fox", Size = 3339549 },
-            new NesDefaultGame { Code = "CLV-P-SADJE",  Name = "Yoshi's Island", Size = 4261051 },
-            new NesDefaultGame { Code = "CLV-P-SADKE",  Name = "Star Fox 2", Size = 2088122 }
+        static NesDefaultGame[] defaultSnesGames = new NesDefaultGame[] {
+            new NesDefaultGame { Code = "CLV-P-SAAAE",  Name = "Super Mario World", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAABE",  Name = "F-ZERO", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAAEE",  Name = "The Legend of Zelda: A Link to the Past", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAAFE",  Name = "Super Mario Kart", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAAHE",  Name = "Super Metroid", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAAJE",  Name = "EarthBound", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAAKE",  Name = "Kirby's Dream Course", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAALE",  Name = "Donkey Kong Country", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAAQE",  Name = "Kirby Super Star", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SAAXE",  Name = "Super Punch-Out!!", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SABCE",  Name = "Mega Man X", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SABDE",  Name = "Super Ghouls'n Ghosts", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SABHE",  Name = "Street Fighter II Turbo: Hyper Fighting", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SABQE",  Name = "Super Mario RPG: Legend of the Seven Stars", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SABRE",  Name = "Secret of Mana", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SABTE",  Name = "Final Fantasy III", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SACBE",  Name = "Super Castlevania IV", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SACCE",  Name = "CONTRA III THE ALIEN WARS", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SADGE",  Name = "Star Fox", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SADJE",  Name = "Yoshi's Island", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-SADKE",  Name = "Star Fox 2", Size = 25000 }
         };
         static NesDefaultGame[] defaultSuperFamicomGames = new NesDefaultGame[]
         {
-            new NesDefaultGame { Code = "CLV-P-VAAAJ",  Name = "スーパーマリオワールド", Size = 2648224 },
-            new NesDefaultGame { Code = "CLV-P-VAABJ",  Name = "F-ZERO", Size = 2666349 },
-            new NesDefaultGame { Code = "CLV-P-VAAEJ",  Name = "ゼルダの伝説 神々のトライフォース", Size = 2377849 },
-            new NesDefaultGame { Code = "CLV-P-VAAFJ",  Name = "スーパーマリオカート", Size = 2295761 },
-            new NesDefaultGame { Code = "CLV-P-VAAGJ",  Name = "ファイアーエムブレム 紋章の謎", Size = 5272630 },
-            new NesDefaultGame { Code = "CLV-P-VAAHJ",  Name = "スーパーメトロイド", Size = 6211090 },
-            new NesDefaultGame { Code = "CLV-P-VAALJ",  Name = "スーパードンキーコング", Size = 5688108 },
-            new NesDefaultGame { Code = "CLV-P-VAAQJ",  Name = "星のカービィ スーパーデラックス", Size = 7071882 },
-            new NesDefaultGame { Code = "CLV-P-VABBJ",  Name = "スーパーストリートファイターⅡ ザ ニューチャレンジャーズ", Size = 13481718 },
-            new NesDefaultGame { Code = "CLV-P-VABCJ",  Name = "ロックマンX", Size = 2666724 },
-            new NesDefaultGame { Code = "CLV-P-VABDJ",  Name = "超魔界村", Size = 2143395 },
-            new NesDefaultGame { Code = "CLV-P-VABQJ",  Name = "スーパーマリオRPG", Size = 5659168 },
-            new NesDefaultGame { Code = "CLV-P-VABRJ",  Name = "聖剣伝説2", Size = 2922201 },
-            new NesDefaultGame { Code = "CLV-P-VABTJ",  Name = "ファイナルファンタジーVI", Size = 4335899 },
-            new NesDefaultGame { Code = "CLV-P-VACCJ",  Name = "魂斗羅スピリッツ", Size = 2762661 },
-            new NesDefaultGame { Code = "CLV-P-VACDJ",  Name = "がんばれゴエモン ゆき姫救出絵巻", Size = 2415384 },
-            new NesDefaultGame { Code = "CLV-P-VADFJ",  Name = "スーパーフォーメーションサッカー", Size = 1922523 },
-            new NesDefaultGame { Code = "CLV-P-VADGJ",  Name = "スターフォックス", Size = 3324346 },
-            new NesDefaultGame { Code = "CLV-P-VADJJ",  Name = "スーパーマリオ ヨッシーアイランド", Size = 3799569 },
-            new NesDefaultGame { Code = "CLV-P-VADKJ",  Name = "スターフォックス2", Size = 2066174 },
-            new NesDefaultGame { Code = "CLV-P-VADZJ",  Name = "パネルでポン", Size = 3563159 },
+            new NesDefaultGame { Code = "CLV-P-VAAAJ",  Name = "スーパーマリオワールド", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VAABJ",  Name = "F-ZERO", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VAAEJ",  Name = "ゼルダの伝説 神々のトライフォース", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VAAFJ",  Name = "スーパーマリオカート", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VAAGJ",  Name = "ファイアーエムブレム 紋章の謎", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VAAHJ",  Name = "スーパーメトロイド", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VAALJ",  Name = "スーパードンキーコング", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VAAQJ",  Name = "星のカービィ スーパーデラックス", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VABBJ",  Name = "スーパーストリートファイターⅡ ザ ニューチャレンジャーズ", Size = 24576 },
+            new NesDefaultGame { Code = "CLV-P-VABCJ",  Name = "ロックマンX", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VABDJ",  Name = "超魔界村", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VABQJ",  Name = "スーパーマリオRPG", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VABRJ",  Name = "聖剣伝説2", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VABTJ",  Name = "ファイナルファンタジーVI", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VACCJ",  Name = "魂斗羅スピリッツ", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VACDJ",  Name = "がんばれゴエモン ゆき姫救出絵巻", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VADFJ",  Name = "スーパーフォーメーションサッカー", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VADGJ",  Name = "スターフォックス", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VADJJ",  Name = "スーパーマリオ ヨッシーアイランド", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VADKJ",  Name = "スターフォックス2", Size = 25000 },
+            new NesDefaultGame { Code = "CLV-P-VADZJ",  Name = "パネルでポン", Size = 25000 },
         };
-
 
         public MainForm()
         {
@@ -181,29 +194,6 @@ namespace com.clusterrr.hakchi_gui
  + ")"
 #endif
 ;
-                disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
-                automaticToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 2;
-                automaticOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 3;
-                pagesToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 4;
-                pagesOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 5;
-                foldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 6;
-                foldersOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 7;
-                foldersSplitByFirstLetterToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 8;
-                foldersSplitByFirstLetterOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 9;
-                customToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 99;
-
-                max20toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 20;
-                max25toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 25;
-                max30toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 30;
-                max35toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 35;
-                max40toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 40;
-                max45toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 45;
-                max50toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 50;
-                max60toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 60;
-                max70toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 70;
-                max80toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 80;
-                max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
-                max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
 
                 listViewGames.ListViewItemSorter = new GamesSorter();
 
@@ -231,6 +221,7 @@ namespace com.clusterrr.hakchi_gui
 
                 // Loading games database in background
                 new Thread(NesGame.LoadCache).Start();
+                new Thread(SnesGame.LoadCache).Start();
                 // Recalculate games in background
                 new Thread(RecalculateSelectedGamesThread).Start();
 
@@ -416,8 +407,9 @@ namespace com.clusterrr.hakchi_gui
                     pictureBoxArt.Image = NesMiniApplication.LoadBitmap(app.IconPath);
                 else
                     pictureBoxArt.Image = null;
-                buttonShowGameGenieDatabase.Enabled = textBoxGameGenie.Enabled = app is ISupportsGameGenie;
-                textBoxGameGenie.Text = (app is ISupportsGameGenie) ? (app as ISupportsGameGenie).GameGenie : "";
+                buttonShowGameGenieDatabase.Enabled = app is NesGame; //ISupportsGameGenie;
+                textBoxGameGenie.Enabled = app is ISupportsGameGenie;
+                textBoxGameGenie.Text = (app is ISupportsGameGenie) ? (app as NesMiniApplication).GameGenie : "";
                 groupBoxOptions.Enabled = true;
                 if (app.CompressPossible().Count() > 0)
                 {
@@ -524,7 +516,10 @@ namespace com.clusterrr.hakchi_gui
                     country = "cn";
                 else
                     if (country.Length > 2) country = country.Substring(country.Length - 2).ToLower();
+                // Trying to load flag
                 item.Image = (Image)rm.GetObject(country);
+                if (item.Image == null)
+                    Debug.WriteLine($"There is no flag for \"{country}\"");
                 item.ImageScaling = ToolStripItemImageScaling.None;
                 item.Click += delegate (object sender, EventArgs e)
                     {
@@ -660,8 +655,8 @@ namespace com.clusterrr.hakchi_gui
         {
             if (listViewGames.SelectedItems.Count != 1) return;
             var selected = listViewGames.SelectedItems[0].Tag;
-            if (selected == null || !(selected is NesGame)) return;
-            var game = (selected as NesGame);
+            if (selected == null || !(selected is NesMiniApplication)) return;
+            var game = (selected as NesMiniApplication);
             game.GameGenie = textBoxGameGenie.Text;
         }
 
@@ -780,9 +775,15 @@ namespace com.clusterrr.hakchi_gui
                 }
                 var maxGamesSize = DefaultMaxGamesSize * 1024 * 1024;
                 if (WorkerForm.NandCTotal > 0)
+                {
                     maxGamesSize = (WorkerForm.NandCFree + WorkerForm.WritedGamesSize) - WorkerForm.ReservedMemory * 1024 * 1024;
+                    toolStripStatusLabelSize.Text = string.Format("{0:F1}MB / {1:F1}MB", stats.Size / 1024.0 / 1024.0, maxGamesSize / 1024.0 / 1024.0);
+                }
+                else
+                {
+                    toolStripStatusLabelSize.Text = string.Format("{0:F1}MB / ???MB", stats.Size / 1024.0 / 1024.0);
+                }
                 toolStripStatusLabelSelected.Text = stats.Count + " " + Resources.GamesSelected;
-                toolStripStatusLabelSize.Text = string.Format("{0:F1}MB / {1:F1}MB", stats.Size / 1024.0 / 1024.0, maxGamesSize / 1024.0 / 1024.0);
                 toolStripProgressBar.Maximum = (int)maxGamesSize;
                 toolStripProgressBar.Value = Math.Min((int)stats.Size, toolStripProgressBar.Maximum);
                 toolStripStatusLabelSize.ForeColor =
@@ -804,7 +805,7 @@ namespace com.clusterrr.hakchi_gui
         DialogResult RequireKernelDump()
         {
             if (File.Exists(WorkerForm.KernelDumpPath)) return DialogResult.OK; // OK - already dumped
-            // Asking user to dump kernel
+                                                                                // Asking user to dump kernel
             if (MessageBox.Show(Resources.NoKernelWarning, Resources.NoKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == System.Windows.Forms.DialogResult.Yes)
             {
@@ -832,6 +833,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
+            bool exportGames = (Control.ModifierKeys == Keys.Shift);
             SaveConfig();
 
             var stats = RecalculateSelectedGames();
@@ -840,11 +842,14 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(Resources.SelectAtLeast, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var kernel = RequirePatchedKernel();
-            if (kernel == DialogResult.No) return;
-            if (kernel == DialogResult.Yes) // Message for new user
-                MessageBox.Show(Resources.DoneYouCanUpload + "\r\n" + Resources.PressOkToContinue, Resources.Congratulations, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            if (UploadGames())
+            if (!exportGames)
+            {
+                var kernel = RequirePatchedKernel();
+                if (kernel == DialogResult.No) return;
+                if (kernel == DialogResult.Yes) // Message for new user
+                    MessageBox.Show(Resources.DoneYouCanUpload + "\r\n" + Resources.PressOkToContinue, Resources.Congratulations, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            if (UploadGames(exportGames))
             {
                 MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -901,6 +906,34 @@ namespace com.clusterrr.hakchi_gui
             return workerForm.DialogResult == DialogResult.OK;
         }
 
+        bool DoNandCDump()
+        {
+            saveDumpFileDialog.FileName = "nandc.hsqs";
+            saveDumpFileDialog.DefaultExt = "hsqs";
+            if (saveDumpFileDialog.ShowDialog() != DialogResult.OK)
+                return false;
+            var workerForm = new WorkerForm(this);
+            workerForm.Text = Resources.DumpingNand;
+            workerForm.Task = WorkerForm.Tasks.DumpNandC;
+            workerForm.NandDump = saveDumpFileDialog.FileName;
+            workerForm.Start();
+            return workerForm.DialogResult == DialogResult.OK;
+        }
+
+        bool DoNandCFlash()
+        {
+            openDumpFileDialog.FileName = "nandc.hsqs";
+            openDumpFileDialog.DefaultExt = "hsqs";
+            if (openDumpFileDialog.ShowDialog() != DialogResult.OK)
+                return false;
+            var workerForm = new WorkerForm(this);
+            workerForm.Text = Resources.FlashingNand;
+            workerForm.Task = WorkerForm.Tasks.FlashNandC;
+            workerForm.NandDump = openDumpFileDialog.FileName;
+            workerForm.Start();
+            return workerForm.DialogResult == DialogResult.OK;
+        }
+
         bool FlashCustomKernel()
         {
             var workerForm = new WorkerForm(this);
@@ -944,14 +977,22 @@ namespace com.clusterrr.hakchi_gui
             return workerForm.DialogResult == DialogResult.OK;
         }
 
-        bool UploadGames()
+        bool UploadGames(bool exportGames = false)
         {
+            if (exportGames && exportFolderDialog.ShowDialog() != DialogResult.OK)
+                return false;
+
             var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.UploadingGames;
             workerForm.Task = WorkerForm.Tasks.UploadGames;
             workerForm.Mod = "mod_hakchi";
             workerForm.Config = ConfigIni.GetConfigDictionary();
             workerForm.Games = new NesMenuCollection();
+            workerForm.exportGames = exportGames;
+            
+            if (exportGames)
+                workerForm.exportDirectory = exportFolderDialog.SelectedPath;
+
             bool needOriginal = false;
             foreach (ListViewItem game in listViewGames.CheckedItems)
             {
@@ -1094,7 +1135,26 @@ namespace com.clusterrr.hakchi_gui
         private void dumpNANDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (RequirePatchedKernel() == DialogResult.No) return;
-            if (DoNandBDump()) MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (DoNandBDump())
+                MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void dumpNANDCPartitionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (RequirePatchedKernel() == DialogResult.No) return;
+            if (DoNandCDump())
+                MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void flashNANDCPartitionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(Resources.FlashNandCQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                == DialogResult.Yes)
+            {
+                if (RequirePatchedKernel() == DialogResult.No) return;
+                if (DoNandCFlash())
+                    MessageBox.Show(Resources.NandFlashed, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void flashCustomKernelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1179,7 +1239,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void donateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=clusterrr%40clusterrr%2ecom&lc=RU&item_name=Cluster&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted");
+            Process.Start("https://www.paypal.me/clusterm");
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1252,6 +1312,47 @@ namespace com.clusterrr.hakchi_gui
             useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack && useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled;
             upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
             compressGamesToolStripMenuItem.Checked = ConfigIni.Compress;
+
+            // Folders mods
+            disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
+            automaticToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 2;
+            automaticOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 3;
+            pagesToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 4;
+            pagesOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 5;
+            foldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 6;
+            foldersOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 7;
+            foldersSplitByFirstLetterToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 8;
+            foldersSplitByFirstLetterOriginalToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 9;
+            customToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 99;
+
+            // Items per folder
+            maximumGamesPerFolderToolStripMenuItem.DropDownItems.Clear();
+            for (byte f = 20; f <= 100; f += ((f < 50) ? (byte)5 : (byte)10))
+            {
+                var item = new ToolStripMenuItem();
+                item.Name = "folders" + f.ToString();
+                item.Text = f.ToString();
+                item.Tag = f;
+                if (f >= MaxGamesPerFolder)
+                    item.Text += $" ({Resources.NotRecommended})";
+                item.Checked = ConfigIni.MaxGamesPerFolder == f;
+                item.Click += delegate (object sender, EventArgs e)
+                {
+                    var old = maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true);
+                    if (old.Count() > 0)
+                        (old.First() as ToolStripMenuItem).Checked = false;
+                    ConfigIni.MaxGamesPerFolder = (byte)((sender as ToolStripMenuItem).Tag);
+                    var n = maximumGamesPerFolderToolStripMenuItem.DropDownItems.Find("folders" + ConfigIni.MaxGamesPerFolder.ToString(), true);
+                    if (n.Count() > 0)
+                        (n.First() as ToolStripMenuItem).Checked = true;
+                };
+                maximumGamesPerFolderToolStripMenuItem.DropDownItems.Add(item);
+            }
+
+            // Reset known free space
+            WorkerForm.NandCTotal = WorkerForm.NandCFree = WorkerForm.NandCUsed = 0;
+            if (Clovershell != null && Clovershell.IsOnline)
+                new Thread(Clovershell_OnConnected).Start();
 
             LoadHidden();
             LoadGames();
@@ -1360,6 +1461,7 @@ namespace com.clusterrr.hakchi_gui
         private void dragDrop(object sender, DragEventArgs e)
         {
             var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (files == null) return;
 
             // Need to determine type of files
             // Maybe it's cover art?
@@ -1418,23 +1520,6 @@ namespace com.clusterrr.hakchi_gui
             searchForm.Show();
         }
 
-        private void toolStripMenuMaxGamesPerFolder_Click(object sender, EventArgs e)
-        {
-            ConfigIni.MaxGamesPerFolder = byte.Parse((sender as ToolStripMenuItem).Text);
-            max20toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 20;
-            max25toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 25;
-            max30toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 30;
-            max35toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 35;
-            max40toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 40;
-            max45toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 45;
-            max50toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 50;
-            max60toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 60;
-            max70toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 70;
-            max80toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 80;
-            max90toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 90;
-            max100toolStripMenuItem.Checked = ConfigIni.MaxGamesPerFolder == 100;
-        }
-
         private void compressGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Compress = compressGamesToolStripMenuItem.Checked;
@@ -1448,7 +1533,7 @@ namespace com.clusterrr.hakchi_gui
             NesMiniApplication nesGame = selected as NesMiniApplication;
             GameGenieCodeForm lFrm = new GameGenieCodeForm(nesGame);
             if (lFrm.ShowDialog() == DialogResult.OK)
-                textBoxGameGenie.Text = (nesGame as ISupportsGameGenie).GameGenie;
+                textBoxGameGenie.Text = (nesGame as NesMiniApplication).GameGenie;
         }
 
         private void pagesModefoldersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1828,6 +1913,11 @@ namespace com.clusterrr.hakchi_gui
                 new SnesPresetEditor(selected as SnesGame).ShowDialog();
                 ShowSelected();
             }
+        }
+
+        private void pictureBoxArt_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

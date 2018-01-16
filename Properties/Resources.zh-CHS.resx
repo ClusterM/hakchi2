@@ -79,8 +79,17 @@
   <data name="BuildingFolders">
     <value>正在建立文件夹结构...</value>
   </data>
+  <data name="Compressing">
+    <value>正在压缩 {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>正在压缩游戏...</value>
+  </data>
   <data name="Congratulations">
     <value>恭喜!</value>
+  </data>
+  <data name="Cover">
+    <value>包装图片</value>
   </data>
   <data name="CustomKernel">
     <value>自定义内核</value>
@@ -91,8 +100,14 @@
   <data name="CustomWarning">
     <value>现在您需要覆写自定义核心到你的迷你红白机，这只会执行一次。您要继续吗?</value>
   </data>
+  <data name="Decompressing">
+    <value>正在解压缩 {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>正在解压缩游戏...</value>
+  </data>
   <data name="Default30games">
-    <value>原版内置的xx个游戏</value>
+    <value>内置游戏</value>
   </data>
   <data name="DeleteElement">
     <value>确定要删除 "{0}" 吗?</value>
@@ -108,6 +123,9 @@
   </data>
   <data name="DeleteSavesQ">
     <value>确定要删除这些即时存档吗 ?</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>删除选中的游戏？</value>
   </data>
   <data name="DoYouWantCancel">
     <value>要取消当前的操作吗?</value>
@@ -126,6 +144,9 @@
   </data>
   <data name="DownloadAllCoversTitle">
     <value>正在自动下载所有游戏的包装图（全看人品了！）</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>确定要尝试为“{0}”下载包装图片吗?</value>
   </data>
   <data name="DumpKernelQ">
     <value>您是否要导出内核镜像?</value>
@@ -151,6 +172,12 @@
   <data name="FirstRun">
     <value>您好！感谢您使用hakchi2。本软件非常简单易用。您只需点击“添加游戏”，选择一些ROM，然后点击“开始同步”，再跟着指示进行操作就可以了。祝您好运！</value>
   </data>
+  <data name="FlashNandCQ">
+    <value>确定要刷写NAND-C分区镜像吗？这样将会覆盖所有用户数据。</value>
+  </data>
+  <data name="FlashingNand">
+    <value>刷写NAND存储器...</value>
+  </data>
   <data name="FlasingCustom">
     <value>正在刷写自定义内核镜像...</value>
   </data>
@@ -170,7 +197,7 @@
     <value>新建文件夹</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>原版内置的xx个游戏</value>
+    <value>内置游戏</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>回收站</value>
@@ -226,6 +253,9 @@
   <data name="InstallingMods">
     <value>正在安装扩展模块...</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>选择的主机类型无效！监测到的主机类型:</value>
+  </data>
   <data name="InvalidKernelHeader">
     <value>无效的内核镜像文件头。</value>
   </data>
@@ -250,6 +280,9 @@
   <data name="MapperNotSupported">
     <value>对不起，"{0}"使用了#{1}号Mapper，但是迷你红白机并不支持，用默认的模拟器可能无法启动该游戏。不过，如果安装了其他模拟器模块的话应该可以启动。确定要添加该游戏吗？</value>
   </data>
+  <data name="Membooting">
+    <value>正在从内存启动内核...</value>
+  </data>
   <data name="MemoryFull">
     <value>对不起，游戏的大小居然有{0}MB，实在是太大了。</value>
   </data>
@@ -258,6 +291,12 @@
   </data>
   <data name="NandDumped">
     <value>NAND存储器导出成功。</value>
+  </data>
+  <data name="NandFlashed">
+    <value>NAND存储器刷写完毕。</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>不好，看来原版模拟器无法正确运行“{0}”。你希望使用第三方模拟器运行这个游戏吗(需要额外安装)？</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>新添加的游戏会被移动到“Unsorted”文件夹。</value>
@@ -286,6 +325,9 @@
   <data name="NotFound">
     <value>未找到:</value>
   </data>
+  <data name="NotRecommended">
+    <value>不推荐</value>
+  </data>
   <data name="OriginalKernelQ">
     <value>确定要刷写原版内核镜像？</value>
   </data>
@@ -303,6 +345,12 @@
   </data>
   <data name="PressOkToContinue">
     <value>点击确定以继续</value>
+  </data>
+  <data name="Removing">
+    <value>正在删除 {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>正在删除游戏...</value>
   </data>
   <data name="ReplaceKernelQ">
     <value>您已经导出过内核镜像。如果您真的确定要替换您已经备份过的内核镜像，而且真正了解自己在进行什么操作，请先手动删除"hakchi2/dump"文件夹。</value>
@@ -322,8 +370,14 @@
   <data name="SelectModsUninstall">
     <value>选择要从迷你红白机中删除的扩展模块</value>
   </data>
+  <data name="Size">
+    <value>大小:</value>
+  </data>
   <data name="SizeOfSaves">
     <value>选中的即时存档大小:</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>警告！不建议在单个文件夹中存储这么多的游戏。</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>如果您希望删除所有即时存档，别忘了执行原厂重置。</value>
@@ -378,35 +432,5 @@
   </data>
   <data name="YesForAll">
     <value>全部选是</value>
-  </data>
-  <data name="Compressing">
-    <value>Compressing {0}...</value>
-  </data>
-  <data name="CompressingGames">
-    <value>Compressing games...</value>
-  </data>
-  <data name="Decompressing">
-    <value>Decompressing {0}...</value>
-  </data>
-  <data name="DecompressingGames">
-    <value>Decompressing games...</value>
-  </data>
-  <data name="DeleteSelectedGamesQ">
-    <value>Delete selected game(s)?</value>
-  </data>
-  <data name="InvalidConsoleSelected">
-    <value>Invalid console selected! Detected console:</value>
-  </data>
-  <data name="Membooting">
-    <value>Booting the kernel from RAM...</value>
-  </data>
-  <data name="Removing">
-    <value>Removing {0}...</value>
-  </data>
-  <data name="RemovingGames">
-    <value>Removing games...</value>
-  </data>
-  <data name="Size">
-    <value>Size:</value>
   </data>
 </root>

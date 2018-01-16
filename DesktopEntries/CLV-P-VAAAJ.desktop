@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VAAAJ/CLV-P-VAAAJ.sfrom --volume 100 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-VAAAJ
+Name=スーパーマリオワールド
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VAAAJ/CLV-P-VAAAJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-VAAAJ
+TestID=0
+Status=Duplicate-3
+ID=0
+Players=2
+Simultaneous=0
+ReleaseDate=1990-11-21
+SaveCount=3
+SortRawTitle=すーぱーまりおわーるど
+SortRawPublisher=にんてんどう
+Copyright=スーパーマリオワールド ©1990 Nintendo
+MyPlayDemoTime=45

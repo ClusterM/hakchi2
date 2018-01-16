@@ -307,8 +307,20 @@
   <data name="dumpNANDBToolStripMenuItem.Text">
     <value>Dump decrypted NAND-B partition</value>
   </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Dump NAND-C partition</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Select dump filename</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Dump the whole NAND flash</value>
+  </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Japan)</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Flash NAND-C partition (experts only!)</value>
   </data>
   <data name="labelSize.Text">
     <value>Size:</value>
@@ -319,8 +331,17 @@
   <data name="membootPatchedKernelToolStripMenuItem.Text">
     <value>Boot patched kernel from RAM</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Europe)</value>
+  </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Europe)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>Select dump filename</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japan)</value>
   </data>
   <data name="toolFlashTheWholeNANDStripMenuItem.Text">
     <value>Flash the whole NAND (experts only!)</value>

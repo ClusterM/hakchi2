@@ -83,7 +83,10 @@
     <value>Explorar</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Sinc. juegos seleccionados con la NES Classic Edition</value>
+    <value>Sinc. juegos selec. con la NES/SNES Classic Edition</value>
+  </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Comprimir</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Configuración avanzada del control</value>
@@ -91,11 +94,20 @@
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Comprimir juegos que no sean de NES (para un módulo emulador adicional)</value>
   </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Comprimir juegos al agregarlos</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Comprimir juegos seleccionados</value>
+  </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Tipo de consola</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>Personalizada (mostrar el Administrador de carpetas cada vez)</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Descomprimir juegos seleccionados</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Eliminar juego</value>
@@ -103,14 +115,35 @@
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Eliminar lista personalizada de juegos</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Eliminar juegos seleccionados</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Deshabilitar páginas/carpetas</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Doná</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Descargar arte de caja para los juegos seleccionados</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Descargar arte de caja para todos los juegos</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Volcar kernel</value>
+  </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Volcar partición decifrada NAND-B</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Volcar partición decifrada NAND-C</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Seleccionar nombre de archivo del volcado</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Volcar toda la flash NAND</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Usar "Select" + "A"/"B" para habilitar disparo automático en los botones "A"/"B"</value>
@@ -128,7 +161,7 @@
     <value>&amp;Archivo</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Flashear el kernel personalizado</value>
+    <value>Flashear el custom kernel</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Flashear el kernel original</value>
@@ -190,11 +223,20 @@
   <data name="labelName.Text">
     <value>Nombre:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Tamaño:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
     <value>Idioma</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Cantidad máxima de juegos por página/carpeta</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Iniciar kernel original desde la RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Iniciar kernel parchado desde la RAM</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Módulos</value>
@@ -235,8 +277,11 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Usar combinación de botones para resetear</value>
   </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Seleccionar nombre de archivo del volcado</value>
+  </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Guardar configuración a la NES Classic Edition ahora</value>
+    <value>Guardar configuración a la NES/SNES Classic Edition ahora</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
     <value>Administrador de puntos de suspensión</value>
@@ -262,6 +307,9 @@
   <data name="takeScreenshotToolStripMenuItem.Text">
     <value>Hacer una captura de pantalla</value>
   </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flashear toda la NAND (¡sólo para expertos!)</value>
+  </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>Herramien&amp;tas</value>
   </data>
@@ -283,46 +331,19 @@
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Usar los botones "X"/"Y" en el Classic Controller como disparo automático de "A"/"B"</value>
   </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Japan)</value>
   </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Flash NAND-C partition (experts only!)</value>
   </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Europe)</value>
   </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Europe)</value>
   </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump decrypted NAND-B partition</value>
-  </data>
-  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dump the whole NAND flash</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Size:</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="saveDumpFileDialog.Title">
-    <value>Select dump filename</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japan)</value>
   </data>
 </root>

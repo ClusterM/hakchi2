@@ -85,6 +85,18 @@
   <data name="buttonNoFoldersOriginal.Text">
     <value>Jocs originals -&gt; Altres jocs</value>
   </data>
+  <data name="comboBoxPosition.Items">
+    <value>A la esquerra</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>A la esquerra dels jocs</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>A la dreta dels jocs</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>A la dreta dels jocs</value>
+  </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Tallar</value>
   </data>

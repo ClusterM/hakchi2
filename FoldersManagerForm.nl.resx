@@ -71,7 +71,7 @@
     <value>Originele spellen -&gt; Verdeel gelijkmatig</value>
   </data>
   <data name="buttonFoldersLetters.Text">
-    <value>Verdeel op de eerste letter</value>
+    <value>Verdeel op eerste letter</value>
   </data>
   <data name="buttonFoldersLettersOriginal.Text">
     <value>Originele spellen -&gt; Verdeel vanaf de eerste letter</value>
@@ -85,6 +85,18 @@
   <data name="buttonNoFoldersOriginal.Text">
     <value>Originele spellen -&gt; Andere spellen</value>
   </data>
+  <data name="comboBoxPosition.Items">
+    <value>Uiterst links</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>Links van de spellen</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>Rechts van de spellen</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>Uiterst rechts</value>
+  </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Knippen</value>
   </data>
@@ -95,10 +107,10 @@
     <value>Menu icoon</value>
   </data>
   <data name="groupBoxSplitModes.Text">
-    <value>Creëer de mappen structuur automatisch</value>
+    <value>Creëer mappen structuur automatisch</value>
   </data>
   <data name="labelPosition.Text">
-    <value>Prioriteit van de mappen positie:</value>
+    <value>Prioriteit van mappen positie:</value>
   </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Creëer een nieuwe map</value>

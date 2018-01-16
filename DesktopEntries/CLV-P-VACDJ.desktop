@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VACDJ/CLV-P-VACDJ.sfrom --volume 65 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-VACDJ
+Name=がんばれゴエモン ゆき姫救出絵巻
+Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VACDJ/CLV-P-VACDJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-VACDJ
+TestID=15
+Status=Completing-1
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1991-07-19
+SaveCount=0
+SortRawTitle=がんばれごえもんゆきひめきゅうしゅつえまき
+SortRawPublisher=こなみ
+Copyright=がんばれゴエモン ゆき姫救出絵巻 ©1991 Konami Digital Entertainment
+MyPlayDemoTime=45

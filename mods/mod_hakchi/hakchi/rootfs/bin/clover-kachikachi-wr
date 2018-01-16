@@ -7,26 +7,31 @@
 source /etc/preinit
 script_init
 
-filename=$1
-filebase=$(basename "$filename")
+filename="$(readlink -f "$1")"
+filebase="$(basename "$filename")"
 extension="${filebase##*.}"
-tmppath=/tmp/rom
+tmppath="$temppath/rom"
 if [ "$extension" == "7z" ]; then
-  mkdir -p $tmppath
-  rm -rf $tmppath/*
-  cd $tmppath
-  tiny7zx x $filename
-  filename=$(ls)
+  rm -rf "$tmppath"
+  mkdir -p "$tmppath"
+  cd "$tmppath"
+  tiny7zx x "$filename"
+  filename="$(ls|head -n1)"
+  mv "$filename" "rom.${filename##*.}"
+  filename="$tmppath/rom.${filename##*.}"
 fi
 if [ "$extension" == "gz" ]; then
-  mkdir -p $tmppath
-  rm -rf $tmppath/*
-  gunzip -c > $tmppath/$filebase
-  filename=$tmppath/$filebase
+  rm -rf "$tmppath"
+  mkdir -p "$tmppath"
+  filebase="$(basename "$filebase" ".gz")"
+  extension="${filebase##*.}"
+  filename="$tmppath/rom.$extension"
+  gunzip -c > "$filename"
 fi
 shift
 
 args="$filename $@ $cfg_nes_extra_args"
 [ "$cfg_disable_armet" == "y" ] && args="$(echo $args | sed 's/--enable-armet//g')"
 
-exec /usr/bin/clover-kachikachi $args
+[ -f "/bin/clover-kachikachi" ] && exec /bin/clover-kachikachi $args
+[ -f "/usr/bin/clover-kachikachi" ] && exec /usr/bin/clover-kachikachi $args

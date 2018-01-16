@@ -85,11 +85,20 @@
   <data name="buttonStart.Text">
     <value>Συγχρονισμός επιλεγμένων παιχνιδιών με το NES/SNES Mini</value>
   </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Συμπίεση</value>
+  </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Hacks χειριστηρίου</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Συμπίεση παιχνιδιών εκτός NES (για επιπλέον εξομοιωτές)</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Συμπίεση παιχνιδιών κατά την προσθήκη</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Συμπίεση επιλεγμένων παιχνιδιών</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Τύπος κονσόλας</value>
@@ -97,20 +106,44 @@
   <data name="customToolStripMenuItem.Text">
     <value>Προσαρμογή - εμφάνιση Διαχειριστή Φακέλων κάθε φορά</value>
   </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Αποσυμπίεση επιλεγμένων παιχνιδιών</value>
+  </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Διαγραφή παιχνιδιού</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Διαγραφή προεπιλογής</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Διαγραφή επιλεγμένων παιχνιδιών</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Απενεργοποίηση σελίδας/φακέλων</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Δωρεά</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Κατέβασμα εξώφυλλων κουτιών για τα επιλεγμένα παιχνίδια</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Κατέβασμα εξώφυλλων κουτιών για όλα τα παιχνίδια</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Αποθήκευση πυρήνα</value>
+  </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Αποθήκευση αποκρυπτογραφημένου NAND-B partition</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Αποθήκευση αποκρυπτογραφημένου NAND-C partition</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Επιλογή ονόματος αρχείου</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Αποθήκευση ολόκληρης της NAND flash</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Χρήση "Select+A/B" για ενεργοποίηση αυτόματου στο Α/Β</value>
@@ -190,11 +223,20 @@
   <data name="labelName.Text">
     <value>Όνομα:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Μέγεθος:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
     <value>Γλώσσα</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Ανώτατο όριο παιχνιδιών ανά σελίδα/φάκελο</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Εκκίνηση αυθεντικού πυρήνα από τη RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Εκκίνηση προσαρμοσμένου πυρήνα από τη RAM</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Modules</value>
@@ -235,6 +277,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Χρήση συνδυασμού πλήκτρων για επαναφορά</value>
   </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Επιλογή ονόματος αρχείου</value>
+  </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Αποθήκευση ρυθμίσεων στο NES/SNES Mini τώρα</value>
   </data>
@@ -262,6 +307,9 @@
   <data name="takeScreenshotToolStripMenuItem.Text">
     <value>Λήψη στιγμιότυπου οθόνης</value>
   </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Εγγραφή ολόκληρης της NAND (μόνο για προχωρημένους!)</value>
+  </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Εργαλεία</value>
   </data>
@@ -283,46 +331,19 @@
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Χρήση Χ/Υ στο Κλασσικό Χειριστήριο ως αυτόματο Α/Β</value>
   </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Japan)</value>
   </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Flash NAND-C partition (experts only!)</value>
   </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Europe)</value>
   </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Europe)</value>
   </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump decrypted NAND-B partition</value>
-  </data>
-  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dump the whole NAND flash</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Size:</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="saveDumpFileDialog.Title">
-    <value>Select dump filename</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japan)</value>
   </data>
 </root>
