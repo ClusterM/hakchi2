@@ -186,8 +186,8 @@
             this.addMoreGamesToolStripMenuItem,
             this.presetsToolStripMenuItem,
             this.synchronizeToolStripMenuItem,
-            this.reloadGamesToolStripMenuItem,
             this.searchToolStripMenuItem,
+            this.reloadGamesToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";

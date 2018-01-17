@@ -48,7 +48,6 @@ namespace com.clusterrr.hakchi_gui
 
         public MainForm()
         {
-            Debug.WriteLine("MainForm.Constructor()");
             InitializeComponent();
             FormInitialize();
             Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
@@ -69,7 +68,6 @@ namespace com.clusterrr.hakchi_gui
 
         void FormInitialize()
         {
-            Debug.WriteLine("MainForm.FormInitialize()");
             try
             {
                 SyncConsoleType();
@@ -258,7 +256,6 @@ namespace com.clusterrr.hakchi_gui
                 maximumGamesPerFolderToolStripMenuItem.DropDownItems.Add(item);
             }
 
-            //SyncOriginalGames();
             LoadGames();
             lastConsoleType = ConfigIni.ConsoleType;
         }
@@ -308,7 +305,8 @@ namespace com.clusterrr.hakchi_gui
                     foreach (var f in szExtractor.ArchiveFileNames)
                     {
                         var code = Path.GetFileNameWithoutExtension(f);
-                        if (NesMiniApplication.DefaultGames.Where(g => g.Code == code).Count() != 1)
+                        var query = NesMiniApplication.DefaultGames.Where(g => g.Code == code);
+                        if (query.Count() != 1)
                             continue;
 
                         var ext = Path.GetExtension(f).ToLower();
@@ -317,15 +315,28 @@ namespace com.clusterrr.hakchi_gui
 
                         string path = Path.Combine(originalGamesPath, code);
                         string outputFile = Path.Combine(path, code + ".desktop");
+                        bool exists = File.Exists(outputFile);
+
+                        // delete if forced
+                        if (forceReset && exists)
+                            Program.PersistentDeleteDirectory(path);
+
+                        // create new game directory
                         Directory.CreateDirectory(path);
-                        if (!File.Exists(outputFile) || forceReset)
+                        if (!exists || forceReset)
                         {
+                            // extract .desktop file from archive
                             using (var o = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
                             {
                                 szExtractor.ExtractFile(f, o);
                                 selected.Add(code);
                                 o.Flush();
                             }
+
+                            // create game temporarily to perform cover search
+                            Debug.WriteLine(string.Format("Resetting game \"{0}\".", query.Single().Name));
+                            var game = NesMiniApplication.FromDirectory(path);
+                            game.FindCover(code + ".desktop", null, 0, query.Single().Name);
                         }
                     }
 
@@ -1420,7 +1431,6 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            Debug.WriteLine("MainForm.Shown()");
             ConfigIni.RunCount++;
             if (ConfigIni.RunCount == 1)
             {
@@ -1903,7 +1913,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (listViewGames.SelectedItems.Count != 1) return;
                         var selected = listViewGames.SelectedItems[0].Tag;
-                        if (selected is SnesGame)
+                        if (selected is SnesGame && !(selected as SnesGame).IsOriginalGame)
                         {
                             new SnesPresetEditor(selected as SnesGame).ShowDialog();
                             ShowSelected();

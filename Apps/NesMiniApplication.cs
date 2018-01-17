@@ -823,57 +823,118 @@ namespace com.clusterrr.hakchi_gui
             img = bmp;
         }
 
-        protected bool FindCover(string inputFileName, Image defaultCover, uint crc32 = 0)
+        public bool FindCover(string inputFileName, Image defaultCover, uint crc32 = 0, string alternateTitle = null)
         {
-            // Trying to find cover file
-            var artDirectory = System.IO.Path.Combine(Program.BaseDirectoryExternal, "art");
+            var artDirectory = Path.Combine(Program.BaseDirectoryExternal, "art");
             var imageExtensions = new string[] { ".png", ".jpg", ".jpeg", ".bmp", ".gif" };
+            var name = Path.GetFileNameWithoutExtension(inputFileName);
+            string[] covers;
+
             Directory.CreateDirectory(artDirectory);
-            if (!string.IsNullOrEmpty(inputFileName))
+
+            // first test for crc32 match (most precise)
+            if (crc32 != 0)
             {
-                string name = System.IO.Path.GetFileNameWithoutExtension(inputFileName);
-                string[] covers;
-
-                // first test for crc32 match (most precise)
-                if (crc32 != 0)
+                covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
+                if (covers.Length > 0 && imageExtensions.Contains(Path.GetExtension(covers[0])))
                 {
-                    covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
-                    if (covers.Length > 0 && imageExtensions.Contains(Path.GetExtension(covers[0])))
-                    {
-                        SetImageFile(covers[0], ConfigIni.CompressCover);
-                        return true;
-                    }
+                    SetImageFile(covers[0], ConfigIni.CompressCover);
+                    return true;
                 }
+            }
 
-                // test presence of image file alongside the source file
+            // test presence of image file alongside the source file, if inputFileName is fully qualified
+            if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(Path.GetDirectoryName(inputFileName)))
+            {
                 foreach (var ext in imageExtensions)
                 {
-                    var imagePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(inputFileName), name + ext);
+                    var imagePath = Path.Combine(Path.GetDirectoryName(inputFileName), name + ext);
                     if (File.Exists(imagePath))
                     {
                         SetImageFile(imagePath, ConfigIni.CompressCover);
                         return true;
                     }
                 }
-                
-                // last attempt brute force search:
-                // do a bidirectional search on sanitized filenames to allow minor variance in filenames, also allows subdirectories
-                Regex rgx = new Regex("[^a-zA-Z0-9]", RegexOptions.Compiled);
-                var sanitizedName = rgx.Replace(name, string.Empty).ToLower();
+            }
 
-                covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
+            Regex rgx = new Regex("[^a-zA-Z0-9]", RegexOptions.Compiled);
+            covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
+
+            // first fuzzy search on inputFileName
+            var sanitizedFilename = rgx.Replace(name, string.Empty).ToLower();
+            string sanitized;
+            if (!string.IsNullOrEmpty(sanitizedFilename))
+            {
+                int matchDistance = 0;
+                string matchFile = string.Empty;
                 foreach (var file in covers)
                 {
-                    var sanitized = rgx.Replace(System.IO.Path.GetFileNameWithoutExtension(file), "").ToLower();
-                    if ((sanitizedName.StartsWith(sanitized) || sanitized.StartsWith(sanitizedName)) && imageExtensions.Contains(Path.GetExtension(file)))
+                    if (imageExtensions.Contains(Path.GetExtension(file)))
                     {
-                        SetImageFile(file, ConfigIni.CompressCover);
-                        return true;
+                        sanitized = rgx.Replace(Path.GetFileNameWithoutExtension(file), string.Empty).ToLower();
+                        if (MatchDistance(sanitizedFilename, sanitized, out int distance))
+                        {
+                            if (distance > matchDistance)
+                            {
+                                matchFile = file;
+                                matchDistance = distance;
+                            }
+                        }
                     }
                 }
+
+                if (!string.IsNullOrEmpty(matchFile))
+                {
+                    SetImageFile(matchFile, ConfigIni.CompressCover);
+                    return true;
+                }
             }
-            SetImage(defaultCover);
+
+            // second fuzzy search on alternateTitle
+            var sanitizedTitle = rgx.Replace(alternateTitle, string.Empty).ToLower();
+            if (!string.IsNullOrEmpty(sanitizedTitle))
+            {
+                int matchDistance = 0;
+                string matchFile = string.Empty;
+                foreach (var file in covers)
+                {
+                    if (imageExtensions.Contains(Path.GetExtension(file)))
+                    {
+                        sanitized = rgx.Replace(Path.GetFileNameWithoutExtension(file), string.Empty).ToLower();
+                        if (MatchDistance(sanitizedTitle, sanitized, out int distance))
+                        {
+                            if (distance > matchDistance)
+                            {
+                                matchFile = file;
+                                matchDistance = distance;
+                            }
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(matchFile))
+                {
+                    SetImageFile(matchFile, ConfigIni.CompressCover);
+                    return true;
+                }
+            }
+
+            // fail!
+            if (defaultCover != null)
+                SetImage(defaultCover);
             return false;
+        }
+
+        private static bool MatchDistance(string a, string b, out int distance)
+        {
+            int maxLength = Math.Min(a.Length, b.Length);
+            distance = 0;
+            for (int c = 0; c < maxLength; ++c)
+                if (a[c] == b[c])
+                    ++distance;
+                else
+                    break;
+            return (distance == maxLength);
         }
 
         protected static bool FindPatch(ref byte[] rawRomData, string inputFileName, uint crc32 = 0)

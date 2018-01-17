@@ -252,21 +252,21 @@ namespace com.clusterrr.hakchi_gui
             return result;
         }
 
-        public static void PersistentDeleteDirectory(string target_dir, uint retries = 10, bool recursing = false)
+        public static void PersistentDeleteDirectory(string dir, uint retries = 10, bool recursing = false) // recurse is internal parameter
         {
-            string[] files = Directory.GetFiles(target_dir);
-            string[] dirs = Directory.GetDirectories(target_dir);
+            if (!Directory.Exists(dir))
+                return;
 
+            string[] files = Directory.GetFiles(dir);
             foreach (string file in files)
             {
                 File.SetAttributes(file, FileAttributes.Normal);
                 File.Delete(file);
             }
 
-            foreach (string dir in dirs)
-            {
-                PersistentDeleteDirectory(dir, retries, true);
-            }
+            string[] dirs = Directory.GetDirectories(dir);
+            foreach (string d in dirs)
+                PersistentDeleteDirectory(d, retries, true);
 
             bool deleted = false;
             uint r = retries;
@@ -274,7 +274,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 try
                 {
-                    Directory.Delete(target_dir, false);
+                    Directory.Delete(dir, false);
                     deleted = true;
                 }
                 catch
@@ -284,18 +284,18 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
             if (!deleted)
-                throw new IOException($"Could not persistent delete directory \"{target_dir}\".");
+                throw new IOException($"Could not delete directory \"{dir}\".");
 
             if (!recursing)
             {
                 while (retries > 0)
                 {
-                    if (!Directory.Exists(target_dir)) // success
+                    if (!Directory.Exists(dir)) // success
                         return;
                     Thread.Sleep(0);
                     --retries;
                 }
-                throw new IOException($"Could not confirm directory \"{target_dir}\" was persistently deleted.");
+                throw new IOException($"Could not confirm directory \"{dir}\" was deleted.");
             }
         }
     }
