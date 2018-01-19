@@ -938,6 +938,8 @@ namespace com.clusterrr.hakchi_gui
             if (kernel == DialogResult.No) return;
             if (kernel == DialogResult.Yes) // Message for new user
                 MessageBox.Show(Resources.DoneYouCanUpload + "\r\n" + Resources.PressOkToContinue, Resources.Congratulations, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (UploadGames())
+                MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void buttonExport_Click(object sender, EventArgs e)
