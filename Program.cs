@@ -252,7 +252,7 @@ namespace com.clusterrr.hakchi_gui
             return result;
         }
 
-        public static void PersistentDeleteDirectory(string dir, uint retries = 10, bool recursing = false) // recurse is internal parameter
+        public static void PersistentDeleteDirectory(string dir, bool excludeSelf = false, uint retries = 10, bool recursing = false) // recurse is internal parameter
         {
             if (!Directory.Exists(dir))
                 return;
@@ -266,36 +266,40 @@ namespace com.clusterrr.hakchi_gui
 
             string[] dirs = Directory.GetDirectories(dir);
             foreach (string d in dirs)
-                PersistentDeleteDirectory(d, retries, true);
+                PersistentDeleteDirectory(d, false, retries, true);
 
-            bool deleted = false;
-            uint r = retries;
-            while (r > 0)
+            if (!excludeSelf)
             {
-                try
+                bool deleted = false;
+                uint r = retries;
+                while (r > 0)
                 {
-                    Directory.Delete(dir, false);
-                    deleted = true;
+                    try
+                    {
+                        Directory.Delete(dir, false);
+                        deleted = true;
+                        break;
+                    }
+                    catch
+                    {
+                        Thread.Sleep(0);
+                        --r;
+                    }
                 }
-                catch
-                {
-                    Thread.Sleep(0);
-                    --r;
-                }
-            }
-            if (!deleted)
-                throw new IOException($"Could not delete directory \"{dir}\".");
+                if (!deleted)
+                    throw new IOException($"Could not delete directory \"{dir}\".");
 
-            if (!recursing)
-            {
-                while (retries > 0)
+                if (!recursing)
                 {
-                    if (!Directory.Exists(dir)) // success
-                        return;
-                    Thread.Sleep(0);
-                    --retries;
+                    while (retries > 0)
+                    {
+                        if (!Directory.Exists(dir)) // success
+                            return;
+                        Thread.Sleep(0);
+                        --retries;
+                    }
+                    throw new IOException($"Could not confirm directory \"{dir}\" was deleted.");
                 }
-                throw new IOException($"Could not confirm directory \"{dir}\" was deleted.");
             }
         }
     }
