@@ -64,6 +64,7 @@ namespace com.clusterrr.hakchi_gui
         public string Mod = null;
         public string exportDirectory;
         public bool exportGames = false;
+        public bool linkRelativeGames = false;
         public Dictionary<string, string> Config = null;
         public NesMenuCollection Games;
         public IEnumerable<string> hmodsInstall;
@@ -97,6 +98,7 @@ namespace com.clusterrr.hakchi_gui
         readonly string argumentsFilePath;
         readonly string transferDirectory;
         string tempGamesDirectory;
+        string relativeGamesPath;
         //string originalGamesConfigDirectory;
         //string hiddenPath;
         Dictionary<MainForm.ConsoleType, string[]> correctKernels = new Dictionary<MainForm.ConsoleType, string[]>();
@@ -874,6 +876,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
+                Debug.WriteLine("could not delete temp directory for UploadGames().");
                 Debug.WriteLine(ex.Message + " : " + ex.StackTrace);
                 MessageBox.Show(Resources.CannotDeleteTempFolder);
                 DialogResult = DialogResult.Abort;
@@ -1037,6 +1040,8 @@ namespace com.clusterrr.hakchi_gui
                 throw new Exception("there are no games");
 
             int progress = 0, maxProgress = 400;
+            linkRelativeGames = false;
+
             SetStatus(Resources.BuildingFolders);
             if (FoldersMode == NesMenuCollection.SplitStyle.Custom)
             {
@@ -1054,17 +1059,41 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress);
             SetStatus(Resources.BuildingFolders);
 
+            // linked games prompt
+            string exportDrive = Path.GetPathRoot(exportDirectory).ToLower();
+            string baseDrive = Path.GetPathRoot(Program.BaseDirectoryExternal).ToLower();
+            relativeGamesPath = "/media/" + NesMiniApplication.GamesDirectory.Substring(3).Replace("\\", "/");
+            linkRelativeGames = false;
+            if (exportDrive == baseDrive)
+                linkRelativeGames = (MessageBox.Show(Resources.LinkedGamesQ, Resources.ExportGames, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+
+            progress += 5;
+            SetProgress(progress, maxProgress);
+
             // export games directory!
             tempGamesDirectory = exportDirectory;
             Directory.CreateDirectory(tempGamesDirectory);
-            if (Directory.GetDirectories(tempGamesDirectory).Length > 0)
+
+            // check if directory exists and is populated, ask confirmation to delete
+            bool directoryNotEmpty = (Directory.GetDirectories(tempGamesDirectory).Length > 0);
+            if (directoryNotEmpty && MessageBox.Show(string.Format(Resources.PermanentlyDeleteQ, tempGamesDirectory), Resources.FolderNotEmpty, MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MessageBox.Show(Resources.FolderNotEmpty);
-                DialogResult = DialogResult.Abort;
-                return;
+                Program.PersistentDeleteDirectory(tempGamesDirectory, true);
+                directoryNotEmpty = false;
             }
             progress += 5;
             SetProgress(progress, maxProgress);
+            if (directoryNotEmpty)
+            {
+                SetStatus(Resources.Aborting);
+                DialogResult = DialogResult.Abort;
+                return;
+            }
+            if (Directory.GetDirectories(tempGamesDirectory).Length > 0)
+            {
+                throw new Exception(Resources.FolderNotEmpty);
+            }
+            Directory.CreateDirectory(tempGamesDirectory);
 
             SetStatus(Resources.BuildingMenu);
             Dictionary<string, string> originalGames = new Dictionary<string, string>();
@@ -1389,7 +1418,8 @@ namespace com.clusterrr.hakchi_gui
                     var game = element as NesMiniApplication;
                     var gameSize = game.Size();
                     Debug.WriteLine(string.Format("Processing {0} ('{1}'), size: {2}KB", game.Code, game.Name, gameSize / 1024));
-                    var gameCopy = game.CopyTo(targetDirectory);
+                    //var gameCopy = game.CopyTo(targetDirectory);
+                    var gameCopy = game.CopyTo(targetDirectory, (linkRelativeGames ? $"{relativeGamesPath}/{game.Code}" : null)); // linked games
                     stats.TotalSize += gameSize;
                     stats.TransferSize += gameSize;
                     stats.TotalGames++;

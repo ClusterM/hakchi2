@@ -998,9 +998,21 @@ namespace com.clusterrr.hakchi_gui
                 prefixCode);
         }
 
-        public NesMiniApplication CopyTo(string path)
+        public NesMiniApplication CopyTo(string path, string mediaGamePath = null)
         {
-            var targetDir = System.IO.Path.Combine(path, code);
+            var targetDir = Path.Combine(path, code);
+
+            // if mediaGamePath is supplied, creates a linked game
+            if (mediaGamePath != null)
+            {
+                Directory.CreateDirectory(targetDir);
+                string desktopFile = File.ReadAllText($"{GamePath}\\{code}.desktop");
+                // modified regex to only match when matching complete path (not within a longer path)
+                desktopFile = Regex.Replace(desktopFile, $"(([\\s=])(/usr/share/games/(nes/kachikachi/)?)|([\\s=])(/var/games/)){code}", "$2$5" + mediaGamePath);
+                File.WriteAllText(Path.Combine(targetDir, $"{code}.desktop"), desktopFile);
+                return FromDirectory(targetDir);
+            }
+
             DirectoryCopy(GamePath, targetDir, true);
             return FromDirectory(targetDir);
         }
