@@ -344,7 +344,7 @@ namespace com.clusterrr.hakchi_gui
         {
             var files = Directory.GetFiles(path, "*.desktop", SearchOption.TopDirectoryOnly);
             if (files.Length == 0)
-                throw new FileNotFoundException("Invalid app folder");
+                throw new FileNotFoundException($"Invalid app folder: \"{path}\".");
             var config = File.ReadAllLines(files[0]);
             foreach (var line in config)
             {
@@ -650,10 +650,10 @@ namespace com.clusterrr.hakchi_gui
                     wrapMode.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY);
                     gr.DrawImage(inImage, new Rectangle(0, 0, outImage.Width, outImage.Height), 0, 0, inImage.Width, inImage.Height, GraphicsUnit.Pixel, wrapMode);
                 }
-                //gr.DrawImage(inImage, new Rectangle(0, 0, outImage.Width, outImage.Height),
-                //                      new Rectangle(0, 0, inImage.Width, inImage.Height), GraphicsUnit.Pixel);
                 gr.Flush();
-                if (quantize) Quantize(ref outImage);
+                if (quantize)
+                    Quantize(ref outImage);
+
                 outImage.Save(outPath, ImageFormat.Png);
             }
             outImage.Dispose();
@@ -724,6 +724,10 @@ namespace com.clusterrr.hakchi_gui
 
             // set thumbnail as well
             SetThumbnailFile(path, EightBitCompression);
+
+            // save flag for original games
+            if (IsOriginalGame)
+                hasUnsavedChanges = true;
         }
 
         public void SetThumbnailFile(string path, bool EightBitCompression = false)
@@ -741,12 +745,15 @@ namespace com.clusterrr.hakchi_gui
                     if (IsOriginalGame)
                     {
                         if (File.Exists(IconPath))
+                        {
                             try
                             {
                                 File.Delete(IconPath);
                                 File.Delete(SmallIconPath);
                             }
-                            catch {}
+                            catch { }
+                            hasUnsavedChanges = true;
+                        }
                     }
                     else
                     {
@@ -755,7 +762,11 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
                 else
+                {
                     SetImage(value, ConfigIni.CompressCover);
+                    if (IsOriginalGame)
+                        hasUnsavedChanges = true;
+                }
             }
             get
             {
@@ -857,41 +868,42 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
-            Regex rgx = new Regex("[^a-zA-Z0-9]", RegexOptions.Compiled);
-            covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
-
             // first fuzzy search on inputFileName
-            var sanitizedFilename = rgx.Replace(name, string.Empty).ToLower();
-            string sanitized;
-            if (!string.IsNullOrEmpty(sanitizedFilename))
+            covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
+            if (!string.IsNullOrEmpty(name))
             {
-                int matchDistance = 0;
-                string matchFile = string.Empty;
-                foreach (var file in covers)
+                string imageFile = FuzzyCoverSearch(name, covers);
+                if (!string.IsNullOrEmpty(imageFile))
                 {
-                    if (imageExtensions.Contains(Path.GetExtension(file)))
-                    {
-                        sanitized = rgx.Replace(Path.GetFileNameWithoutExtension(file), string.Empty).ToLower();
-                        if (MatchDistance(sanitizedFilename, sanitized, out int distance))
-                        {
-                            if (distance > matchDistance)
-                            {
-                                matchFile = file;
-                                matchDistance = distance;
-                            }
-                        }
-                    }
-                }
-
-                if (!string.IsNullOrEmpty(matchFile))
-                {
-                    SetImageFile(matchFile, ConfigIni.CompressCover);
+                    SetImageFile(imageFile, ConfigIni.CompressCover);
                     return true;
                 }
             }
 
             // second fuzzy search on alternateTitle
-            var sanitizedTitle = rgx.Replace(alternateTitle, string.Empty).ToLower();
+            if (!string.IsNullOrEmpty(alternateTitle))
+            {
+                string imageFile = FuzzyCoverSearch(alternateTitle, covers);
+                if (!string.IsNullOrEmpty(imageFile))
+                {
+                    SetImageFile(imageFile, ConfigIni.CompressCover);
+                    return true;
+                }
+            }
+
+            // failed to find a cover, using default cover if provided
+            if (defaultCover != null)
+                SetImage(defaultCover);
+            return false;
+        }
+
+        private static string FuzzyCoverSearch(string title, string[] covers)
+        {
+            var imageExtensions = new string[] { ".png", ".jpg", ".jpeg", ".bmp", ".gif" };
+            var rgx = new Regex("[^a-zA-Z0-9]", RegexOptions.Compiled);
+            var sanitizedTitle = rgx.Replace(title, string.Empty).ToLower();
+            string sanitized;
+
             if (!string.IsNullOrEmpty(sanitizedTitle))
             {
                 int matchDistance = 0;
@@ -911,18 +923,10 @@ namespace com.clusterrr.hakchi_gui
                         }
                     }
                 }
-
                 if (!string.IsNullOrEmpty(matchFile))
-                {
-                    SetImageFile(matchFile, ConfigIni.CompressCover);
-                    return true;
-                }
+                    return matchFile;
             }
-
-            // fail!
-            if (defaultCover != null)
-                SetImage(defaultCover);
-            return false;
+            return null;
         }
 
         private static bool MatchDistance(string a, string b, out int distance)

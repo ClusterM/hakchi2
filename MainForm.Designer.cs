@@ -38,8 +38,8 @@
             this.addPresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.synchronizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reloadGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -160,6 +160,9 @@
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.exportFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.timerShowSelected = new System.Windows.Forms.Timer(this.components);
+            this.buttonExport = new System.Windows.Forms.Button();
+            this.exportGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxThumbnail)).BeginInit();
@@ -185,6 +188,8 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addMoreGamesToolStripMenuItem,
             this.presetsToolStripMenuItem,
+            this.toolStripMenuItem13,
+            this.exportGamesToolStripMenuItem,
             this.synchronizeToolStripMenuItem,
             this.searchToolStripMenuItem,
             this.reloadGamesToolStripMenuItem,
@@ -230,17 +235,17 @@
             resources.ApplyResources(this.synchronizeToolStripMenuItem, "synchronizeToolStripMenuItem");
             this.synchronizeToolStripMenuItem.Click += new System.EventHandler(this.buttonStart_Click);
             // 
-            // reloadGamesToolStripMenuItem
-            // 
-            this.reloadGamesToolStripMenuItem.Name = "reloadGamesToolStripMenuItem";
-            resources.ApplyResources(this.reloadGamesToolStripMenuItem, "reloadGamesToolStripMenuItem");
-            this.reloadGamesToolStripMenuItem.Click += new System.EventHandler(this.reloadGamesToolStripMenuItem_Click);
-            // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
             resources.ApplyResources(this.searchToolStripMenuItem, "searchToolStripMenuItem");
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
+            // 
+            // reloadGamesToolStripMenuItem
+            // 
+            this.reloadGamesToolStripMenuItem.Name = "reloadGamesToolStripMenuItem";
+            resources.ApplyResources(this.reloadGamesToolStripMenuItem, "reloadGamesToolStripMenuItem");
+            this.reloadGamesToolStripMenuItem.Click += new System.EventHandler(this.reloadGamesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -865,6 +870,7 @@
             // 
             // pictureBoxArt
             // 
+            this.pictureBoxArt.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.no_box_art;
             resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
@@ -1070,7 +1076,6 @@
             this.listViewGames.CheckBoxes = true;
             this.listViewGames.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.gameName});
-            this.listViewGames.FullRowSelect = true;
             this.listViewGames.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewGames.HideSelection = false;
             this.listViewGames.Name = "listViewGames";
@@ -1089,11 +1094,30 @@
             // 
             this.timerShowSelected.Tick += new System.EventHandler(this.timerShowSelected_Tick);
             // 
+            // buttonExport
+            // 
+            resources.ApplyResources(this.buttonExport, "buttonExport");
+            this.buttonExport.Name = "buttonExport";
+            this.buttonExport.UseVisualStyleBackColor = true;
+            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
+            // 
+            // exportGamesToolStripMenuItem
+            // 
+            this.exportGamesToolStripMenuItem.Name = "exportGamesToolStripMenuItem";
+            resources.ApplyResources(this.exportGamesToolStripMenuItem, "exportGamesToolStripMenuItem");
+            this.exportGamesToolStripMenuItem.Click += new System.EventHandler(this.buttonExport_Click);
+            // 
+            // toolStripMenuItem13
+            // 
+            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
+            resources.ApplyResources(this.toolStripMenuItem13, "toolStripMenuItem13");
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonExport);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.buttonAddGames);
@@ -1258,6 +1282,9 @@
         private System.Windows.Forms.ToolStripMenuItem resetOriginalGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reloadGamesToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBoxThumbnail;
+        private System.Windows.Forms.Button buttonExport;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem13;
+        private System.Windows.Forms.ToolStripMenuItem exportGamesToolStripMenuItem;
     }
 }
 

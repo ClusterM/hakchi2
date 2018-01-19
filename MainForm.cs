@@ -337,6 +337,7 @@ namespace com.clusterrr.hakchi_gui
                             Debug.WriteLine(string.Format("Resetting game \"{0}\".", query.Single().Name));
                             var game = NesMiniApplication.FromDirectory(path);
                             game.FindCover(code + ".desktop", null, 0, query.Single().Name);
+                            game.Save();
                         }
                     }
 
@@ -620,9 +621,17 @@ namespace com.clusterrr.hakchi_gui
 
         private void listViewGames_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
+            downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
+                compressSelectedGamesToolStripMenuItem.Enabled =
+                decompressSelectedGamesToolStripMenuItem.Enabled =
+                deleteSelectedGamesToolStripMenuItem.Enabled =
+                (listViewGames.SelectedItems.Count >= 1);
+
             timerShowSelected.Enabled = true;
             if(!e.IsSelected)
                 (e.Item.Tag as NesMiniApplication).Save();
+
         }
 
         private void timerShowSelected_Tick(object sender, EventArgs e)
@@ -653,14 +662,7 @@ namespace com.clusterrr.hakchi_gui
         private void listViewGames_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
-            {
-                downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
-                    compressSelectedGamesToolStripMenuItem.Enabled =
-                    decompressSelectedGamesToolStripMenuItem.Enabled =
-                    deleteSelectedGamesToolStripMenuItem.Enabled =
-                    (listViewGames.SelectedItems.Count >= 1);
                 contextMenuStrip.Show(sender as Control, e.X + 5, e.Y);
-            }
         }
 
         private NesMiniApplication GetSelectedGame()
@@ -882,6 +884,17 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private void reloadGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveConfig();
+            listViewGames.BeginUpdate();
+            foreach (ListViewItem item in listViewGames.Items)
+                item.Selected = false;
+            listViewGames.EndUpdate();
+            LoadGames();
+
+        }
+
         DialogResult RequireKernelDump()
         {
             if (File.Exists(WorkerForm.KernelDumpPath)) return DialogResult.OK; // OK - already dumped
@@ -913,7 +926,6 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            bool exportGames = (Control.ModifierKeys == Keys.Shift);
             SaveConfig();
 
             var stats = RecalculateSelectedGames();
@@ -922,17 +934,23 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(Resources.SelectAtLeast, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (!exportGames)
+            var kernel = RequirePatchedKernel();
+            if (kernel == DialogResult.No) return;
+            if (kernel == DialogResult.Yes) // Message for new user
+                MessageBox.Show(Resources.DoneYouCanUpload + "\r\n" + Resources.PressOkToContinue, Resources.Congratulations, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+            SaveConfig();
+            var stats = RecalculateSelectedGames();
+            if (stats.Count == 0)
             {
-                var kernel = RequirePatchedKernel();
-                if (kernel == DialogResult.No) return;
-                if (kernel == DialogResult.Yes) // Message for new user
-                    MessageBox.Show(Resources.DoneYouCanUpload + "\r\n" + Resources.PressOkToContinue, Resources.Congratulations, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Resources.SelectAtLeast, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            if (UploadGames(exportGames))
-            {
+            if (UploadGames(true))
                 MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
 
         bool DoKernelDump()
@@ -1921,17 +1939,6 @@ namespace com.clusterrr.hakchi_gui
                     }
                     break;
             }
-        }
-
-        private void reloadGamesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveConfig();
-            listViewGames.BeginUpdate();
-            foreach (ListViewItem item in listViewGames.Items)
-                item.Selected = false;
-            listViewGames.EndUpdate();
-            LoadGames();
-
         }
     }
 }
