@@ -1952,6 +1952,9 @@ namespace com.clusterrr.hakchi_gui
         {
             switch (e.KeyCode)
             {
+                case Keys.F4:
+                    explorerToolStripMenuItem_Click(sender, e);
+                    break;
                 case Keys.A:
                     if (e.Modifiers == Keys.Control)
                     {
