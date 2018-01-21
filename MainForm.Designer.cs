@@ -37,6 +37,8 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.addPresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.synchronizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -145,6 +147,8 @@
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.openFileDialogNes = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.explorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripSeparator();
             this.downloadBoxArtForSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedGamesBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -161,8 +165,6 @@
             this.exportFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.timerShowSelected = new System.Windows.Forms.Timer(this.components);
             this.buttonExport = new System.Windows.Forms.Button();
-            this.exportGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxThumbnail)).BeginInit();
@@ -228,6 +230,17 @@
             // 
             this.deletePresetToolStripMenuItem.Name = "deletePresetToolStripMenuItem";
             resources.ApplyResources(this.deletePresetToolStripMenuItem, "deletePresetToolStripMenuItem");
+            // 
+            // toolStripMenuItem13
+            // 
+            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
+            resources.ApplyResources(this.toolStripMenuItem13, "toolStripMenuItem13");
+            // 
+            // exportGamesToolStripMenuItem
+            // 
+            this.exportGamesToolStripMenuItem.Name = "exportGamesToolStripMenuItem";
+            resources.ApplyResources(this.exportGamesToolStripMenuItem, "exportGamesToolStripMenuItem");
+            this.exportGamesToolStripMenuItem.Click += new System.EventHandler(this.buttonExport_Click);
             // 
             // synchronizeToolStripMenuItem
             // 
@@ -870,7 +883,6 @@
             // 
             // pictureBoxArt
             // 
-            this.pictureBoxArt.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.no_box_art;
             resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
@@ -998,6 +1010,8 @@
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.explorerToolStripMenuItem,
+            this.toolStripMenuItem14,
             this.downloadBoxArtForSelectedGamesToolStripMenuItem,
             this.deleteSelectedGamesBoxArtToolStripMenuItem,
             this.compressSelectedGamesToolStripMenuItem,
@@ -1005,6 +1019,17 @@
             this.deleteSelectedGamesToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
             resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
+            // 
+            // explorerToolStripMenuItem
+            // 
+            this.explorerToolStripMenuItem.Name = "explorerToolStripMenuItem";
+            resources.ApplyResources(this.explorerToolStripMenuItem, "explorerToolStripMenuItem");
+            this.explorerToolStripMenuItem.Click += new System.EventHandler(this.explorerToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem14
+            // 
+            this.toolStripMenuItem14.Name = "toolStripMenuItem14";
+            resources.ApplyResources(this.toolStripMenuItem14, "toolStripMenuItem14");
             // 
             // downloadBoxArtForSelectedGamesToolStripMenuItem
             // 
@@ -1100,17 +1125,6 @@
             this.buttonExport.Name = "buttonExport";
             this.buttonExport.UseVisualStyleBackColor = true;
             this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
-            // 
-            // exportGamesToolStripMenuItem
-            // 
-            this.exportGamesToolStripMenuItem.Name = "exportGamesToolStripMenuItem";
-            resources.ApplyResources(this.exportGamesToolStripMenuItem, "exportGamesToolStripMenuItem");
-            this.exportGamesToolStripMenuItem.Click += new System.EventHandler(this.buttonExport_Click);
-            // 
-            // toolStripMenuItem13
-            // 
-            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            resources.ApplyResources(this.toolStripMenuItem13, "toolStripMenuItem13");
             // 
             // MainForm
             // 
@@ -1285,6 +1299,8 @@
         private System.Windows.Forms.Button buttonExport;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem13;
         private System.Windows.Forms.ToolStripMenuItem exportGamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem explorerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem14;
     }
 }
 

@@ -87,6 +87,14 @@ namespace com.clusterrr.hakchi_gui
 
                 listViewGames.ListViewItemSorter = new GamesSorter();
 
+                // initial context menu state
+                explorerToolStripMenuItem.Enabled =
+                    downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                    deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
+                    compressSelectedGamesToolStripMenuItem.Enabled =
+                    decompressSelectedGamesToolStripMenuItem.Enabled =
+                    deleteSelectedGamesToolStripMenuItem.Enabled = false;
+
                 // Little tweak for easy translation
                 var tbl = textBoxName.Left;
                 textBoxName.Left = labelName.Left + labelName.Width;
@@ -621,6 +629,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void listViewGames_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
+            explorerToolStripMenuItem.Enabled = (listViewGames.SelectedItems.Count == 1);
             downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
                 deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
                 compressSelectedGamesToolStripMenuItem.Enabled =
@@ -628,10 +637,10 @@ namespace com.clusterrr.hakchi_gui
                 deleteSelectedGamesToolStripMenuItem.Enabled =
                 (listViewGames.SelectedItems.Count >= 1);
 
-            timerShowSelected.Enabled = true;
             if(!e.IsSelected)
                 (e.Item.Tag as NesMiniApplication).Save();
 
+            timerShowSelected.Enabled = true;
         }
 
         private void timerShowSelected_Tick(object sender, EventArgs e)
@@ -1862,6 +1871,29 @@ namespace com.clusterrr.hakchi_gui
             return workerForm.Start() == DialogResult.OK;
         }
 
+
+        private void explorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var sel = listViewGames.SelectedItems;
+            if (sel.Count != 1) return;
+
+            try
+            {
+                string path = (sel[0].Tag as NesMiniApplication).GamePath;
+                new Process()
+                {
+                    StartInfo = new ProcessStartInfo()
+                    {
+                        FileName = path
+                    }
+                }.Start();
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+            }
+        }
+
         private void downloadBoxArtForSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (GroupTaskWithSelected(WorkerForm.Tasks.DownloadCovers))
@@ -1872,8 +1904,9 @@ namespace com.clusterrr.hakchi_gui
 
         private void deleteSelectedGamesBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (GroupTaskWithSelected(WorkerForm.Tasks.DeleteCovers))
-                MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //if (GroupTaskWithSelected(WorkerForm.Tasks.DeleteCovers))
+            //    MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            GroupTaskWithSelected(WorkerForm.Tasks.DeleteCovers);
             ShowSelected();
             timerCalculateGames.Enabled = true;
         }

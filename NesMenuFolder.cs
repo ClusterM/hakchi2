@@ -209,7 +209,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public long Save(string path)
+        public long Save(string path, string mediaGamePath = null, string profilePath = null)
         {
             Directory.CreateDirectory(path);
             var ConfigPath = Path.Combine(path, Code + ".desktop");
@@ -239,7 +239,7 @@ namespace com.clusterrr.hakchi_gui
                  "[Desktop Entry]\n" +
                  "Type=Application\n" +
                  "Exec=/bin/chmenu {1:D3} {8}\n" +
-                 "Path=/var/lib/clover/profiles/0/FOLDER\n" +
+                 "Path={10}/FOLDER\n" +
                  "Name={2}\n" +
                  "Icon={9}/{0}/{0}.png\n\n" +
                  "[X-CLOVER Game]\n" +
@@ -253,9 +253,17 @@ namespace com.clusterrr.hakchi_gui
                  "SortRawTitle={5}\n" +
                  "SortRawPublisher={6}\n" +
                  "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
-                 Code, ChildIndex, Name ?? Code, Players, ReleaseDate,
-                 prefix + (Name ?? Code).ToLower(), (Publisher ?? "").ToUpper(),
-                 Simultaneous, Initial, NesMiniApplication.GamesCloverPath)
+                    Code,
+                    ChildIndex,
+                    Name ?? Code,
+                    Players,
+                    ReleaseDate,
+                    prefix + (Name ?? Code).ToLower(),
+                    (Publisher ?? "").ToUpper(),
+                    Simultaneous,
+                    Initial,
+                    mediaGamePath ?? NesMiniApplication.GamesCloverPath,
+                    profilePath ?? "/var/lib/clover/profiles/0")
                  );
             Image.Save(IconPath, ImageFormat.Png);
             ImageThumbnail.Save(ThumnnailIconPath, ImageFormat.Png);

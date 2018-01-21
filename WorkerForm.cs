@@ -1073,16 +1073,12 @@ namespace com.clusterrr.hakchi_gui
             // export games directory!
             tempGamesDirectory = exportDirectory;
             Directory.CreateDirectory(tempGamesDirectory);
-
-            // check if directory exists and is populated, ask confirmation to delete
             bool directoryNotEmpty = (Directory.GetDirectories(tempGamesDirectory).Length > 0);
             if (directoryNotEmpty && MessageBox.Show(string.Format(Resources.PermanentlyDeleteQ, tempGamesDirectory), Resources.FolderNotEmpty, MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Program.PersistentDeleteDirectory(tempGamesDirectory, true);
                 directoryNotEmpty = false;
             }
-            progress += 5;
-            SetProgress(progress, maxProgress);
             if (directoryNotEmpty)
             {
                 SetStatus(Resources.Aborting);
@@ -1094,6 +1090,8 @@ namespace com.clusterrr.hakchi_gui
                 throw new Exception(Resources.FolderNotEmpty);
             }
             Directory.CreateDirectory(tempGamesDirectory);
+            progress += 5;
+            SetProgress(progress, maxProgress);
 
             SetStatus(Resources.BuildingMenu);
             Dictionary<string, string> originalGames = new Dictionary<string, string>();
@@ -1418,8 +1416,19 @@ namespace com.clusterrr.hakchi_gui
                     var game = element as NesMiniApplication;
                     var gameSize = game.Size();
                     Debug.WriteLine(string.Format("Processing {0} ('{1}'), size: {2}KB", game.Code, game.Name, gameSize / 1024));
-                    //var gameCopy = game.CopyTo(targetDirectory);
-                    var gameCopy = game.CopyTo(targetDirectory, (linkRelativeGames ? $"{relativeGamesPath}/{game.Code}" : null)); // linked games
+                    NesMiniApplication gameCopy;
+                    if (linkRelativeGames)
+                    {   // linked export
+                        gameCopy = game.CopyTo(targetDirectory, true, (relativeGamesPath + "/" + game.Code), ("/var/saves/" + game.Code));
+                    }
+                    else if (exportGames)
+                    {   // standard export
+                        gameCopy = game.CopyTo(targetDirectory, false, ("/var/games/" + game.Code), ("/var/saves/" + game.Code));
+                    }
+                    else
+                    {   // sync/upload to snes mini
+                        gameCopy = game.CopyTo(targetDirectory);
+                    }
                     stats.TotalSize += gameSize;
                     stats.TransferSize += gameSize;
                     stats.TotalGames++;
@@ -1463,7 +1472,15 @@ namespace com.clusterrr.hakchi_gui
                     }
                     folder.ChildIndex = stats.allMenus.IndexOf(folder.ChildMenuCollection);
                     var folderDir = Path.Combine(targetDirectory, folder.Code);
-                    var folderSize = folder.Save(folderDir);
+                    long folderSize;
+                    if (exportGames)
+                    {
+                        folderSize = folder.Save(folderDir, "/var/games", "/var/saves");
+                    }
+                    else
+                    {
+                        folderSize = folder.Save(folderDir);
+                    }
                     stats.TotalSize += folderSize;
                     stats.TransferSize += folderSize;
 
@@ -1748,6 +1765,7 @@ namespace com.clusterrr.hakchi_gui
             foreach (NesMiniApplication game in Games)
             {
                 SetStatus(string.Format(Resources.Removing, game.Name));
+                game.Save();
                 Directory.Delete(game.GamePath, true);
                 SetProgress(++i, Games.Count);
             }

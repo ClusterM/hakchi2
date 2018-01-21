@@ -998,22 +998,36 @@ namespace com.clusterrr.hakchi_gui
                 prefixCode);
         }
 
-        public NesMiniApplication CopyTo(string path, string mediaGamePath = null)
+        public NesMiniApplication CopyTo(string path, bool linkedGame = false, string mediaGamePath = null, string profilePath = null)
         {
             var targetDir = Path.Combine(path, code);
 
-            // if mediaGamePath is supplied, creates a linked game
-            if (mediaGamePath != null)
+            if (linkedGame)
             {
                 Directory.CreateDirectory(targetDir);
+            }
+            else
+            {
+                DirectoryCopy(GamePath, targetDir, true);
+            }
+
+            if (mediaGamePath != null || profilePath != null)
+            {
                 string desktopFile = File.ReadAllText($"{GamePath}\\{code}.desktop");
-                // modified regex to only match when matching complete path (not within a longer path)
-                desktopFile = Regex.Replace(desktopFile, $"(([\\s=])(/usr/share/games/(nes/kachikachi/)?)|([\\s=])(/var/games/)){code}", "$2$5" + mediaGamePath);
+                if (mediaGamePath != null)
+                {
+                    // modified regex to only match when matching complete path (not within a longer path)
+                    desktopFile = Regex.Replace(desktopFile, $"(([\\s=])(/usr/share/games/(nes/kachikachi/)?)|([\\s=])(/var/games/)){code}", "$2$5" + mediaGamePath);
+                }
+                if (profilePath != null)
+                {
+                    // match regular profile
+                    desktopFile = Regex.Replace(desktopFile, @"^(Path=.*)$", "Path=" + profilePath, RegexOptions.Multiline);
+                }
                 File.WriteAllText(Path.Combine(targetDir, $"{code}.desktop"), desktopFile);
                 return FromDirectory(targetDir);
             }
 
-            DirectoryCopy(GamePath, targetDir, true);
             return FromDirectory(targetDir);
         }
 
