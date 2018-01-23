@@ -880,6 +880,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (Directory.Exists(tempDirectory))
                     Program.PersistentDeleteDirectory(tempDirectory);
+                Directory.CreateDirectory(tempDirectory);
                 Directory.CreateDirectory(tempGamesDirectory);
             }
             catch (Exception ex)
@@ -1416,7 +1417,7 @@ namespace com.clusterrr.hakchi_gui
                 targetDirectory = tempGamesDirectory;
             else
                 targetDirectory = Path.Combine(tempGamesDirectory, string.Format("{0:D3}", menuIndex));
-            string relativeOriginalGamesPath = Path.GetDirectoryName(relativeGamesPath).Replace("\\", "/") + "/games_originals";
+            string relativeOriginalGamesPath = linkRelativeGames ? (Path.GetDirectoryName(relativeGamesPath).Replace("\\", "/") + "/games_originals") : string.Empty;
             foreach (var element in menuCollection)
             {
                 if (element is NesMiniApplication)
