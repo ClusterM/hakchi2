@@ -32,12 +32,14 @@ namespace com.clusterrr.hakchi_gui
             Memboot,
             UploadGames,
             DownloadCovers,
+            ScanCovers,
             DeleteCovers,
             AddGames,
             CompressGames,
             DecompressGames,
             DeleteGames,
-            UpdateLocalCache
+            UpdateLocalCache,
+            SyncOriginalGames
         };
         public Tasks Task;
 
@@ -327,6 +329,9 @@ namespace com.clusterrr.hakchi_gui
                     case Tasks.AddGames:
                         AddGames(GamesToAdd);
                         break;
+                    case Tasks.ScanCovers:
+                        ScanCovers();
+                        break;
                     case Tasks.DownloadCovers:
                         DownloadCovers();
                         break;
@@ -344,6 +349,9 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case Tasks.UpdateLocalCache:
                         UpdateLocalCache();
+                        break;
+                    case Tasks.SyncOriginalGames:
+                        SyncOriginalGames();
                         break;
                 }
                 if (DialogResult == DialogResult.None)
@@ -1408,6 +1416,7 @@ namespace com.clusterrr.hakchi_gui
                 targetDirectory = tempGamesDirectory;
             else
                 targetDirectory = Path.Combine(tempGamesDirectory, string.Format("{0:D3}", menuIndex));
+            string relativeOriginalGamesPath = Path.GetDirectoryName(relativeGamesPath).Replace("\\", "/") + "/games_originals";
             foreach (var element in menuCollection)
             {
                 if (element is NesMiniApplication)
@@ -1419,11 +1428,19 @@ namespace com.clusterrr.hakchi_gui
                     NesMiniApplication gameCopy;
                     if (linkRelativeGames)
                     {   // linked export
-                        gameCopy = game.CopyTo(targetDirectory, true, (relativeGamesPath + "/" + game.Code), ("/var/saves/" + game.Code));
+                        gameCopy = game.CopyTo(
+                            targetDirectory,
+                            true,
+                            ((game.IsOriginalGame ? relativeOriginalGamesPath : relativeGamesPath) + "/" + game.Code),
+                            ("/var/saves/" + game.Code));
                     }
                     else if (exportGames)
                     {   // standard export
-                        gameCopy = game.CopyTo(targetDirectory, false, ("/var/games/" + game.Code), ("/var/saves/" + game.Code));
+                        gameCopy = game.CopyTo(
+                            targetDirectory,
+                            false,
+                            ("/var/games/" + game.Code),
+                            ("/var/saves/" + game.Code));
                     }
                     else
                     {   // sync/upload to snes mini
@@ -1674,6 +1691,32 @@ namespace com.clusterrr.hakchi_gui
             return apps; // Added games/apps
         }
 
+        void ScanCovers()
+        {
+            if (Games == null) return;
+
+            SetStatus(Resources.ScanningCovers);
+            int i = 0;
+            foreach (NesMiniApplication game in Games)
+            {
+                uint crc32 = 0;
+                string gameFile = game.GameFilePath;
+                if (!game.IsOriginalGame && gameFile != null && File.Exists(gameFile))
+                {
+                    bool wasCompressed = game.DecompressPossible().Count() > 0;
+                    if (wasCompressed)
+                        game.Decompress();
+                    gameFile = game.GameFilePath;
+                    byte[] rawRomData = File.ReadAllBytes(gameFile);
+                    crc32 = NesMiniApplication.CRC32(rawRomData);
+                    if (wasCompressed)
+                        game.Compress();
+                }
+                game.FindCover(Path.GetFileName(gameFile), null, crc32, game.Name);
+                SetProgress(++i, Games.Count);
+            }
+        }
+
         void DownloadCovers()
         {
             if (Games == null) return;
@@ -1765,7 +1808,7 @@ namespace com.clusterrr.hakchi_gui
             foreach (NesMiniApplication game in Games)
             {
                 SetStatus(string.Format(Resources.Removing, game.Name));
-                game.Save();
+                game.Deleting = true;
                 Directory.Delete(game.GamePath, true);
                 SetProgress(++i, Games.Count);
             }
@@ -1831,6 +1874,67 @@ namespace com.clusterrr.hakchi_gui
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 DialogResult = DialogResult.Abort;
+            }
+        }
+
+        void SyncOriginalGames()
+        {
+            string desktopEntriesArchiveFile = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "desktop_entries.7z");
+            string originalGamesPath = Path.Combine(Program.BaseDirectoryExternal, "games_originals");
+            var selected = new List<string>();
+            selected.AddRange(ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
+
+            if (!Directory.Exists(originalGamesPath))
+                Directory.CreateDirectory(originalGamesPath);
+
+            if (!File.Exists(desktopEntriesArchiveFile))
+                throw new FileLoadException("desktop_entries.7z data file was deleted, cannot sync original games.");
+
+            SetStatus(string.Format(Resources.ResettingOriginalGames));
+
+            SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+            using (var szExtractor = new SevenZipExtractor(desktopEntriesArchiveFile))
+            {
+
+                int i = 0;
+                foreach (var f in szExtractor.ArchiveFileNames)
+                {
+                    var code = Path.GetFileNameWithoutExtension(f);
+                    var query = NesMiniApplication.DefaultGames.Where(g => g.Code == code);
+                    if (query.Count() != 1)
+                        continue;
+
+                    var ext = Path.GetExtension(f).ToLower();
+                    if (ext != ".desktop") // sanity check
+                        throw new FileLoadException($"invalid file \"{f}\" found in desktop_entries.7z data file.");
+
+                    string path = Path.Combine(originalGamesPath, code);
+                    string outputFile = Path.Combine(path, code + ".desktop");
+                    bool exists = File.Exists(outputFile);
+
+                    // create new game directory
+                    if (exists) Program.PersistentDeleteDirectory(path);
+                    Directory.CreateDirectory(path);
+
+                    // extract .desktop file from archive
+                    using (var o = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
+                    {
+                        szExtractor.ExtractFile(f, o);
+                        selected.Add(code);
+                        o.Flush();
+                    }
+
+                    // create game temporarily to perform cover search
+                    Debug.WriteLine(string.Format("Resetting game \"{0}\".", query.Single().Name));
+                    var game = NesMiniApplication.FromDirectory(path);
+                    game.FindCover(code + ".desktop", null, 0, query.Single().Name);
+                    game.Save();
+
+                    SetProgress(i++, (int)NesMiniApplication.DefaultGames.Length);
+                }
+
+                // save new selected games
+                ConfigIni.SelectedGames = string.Join(";", selected.Distinct().ToArray());
             }
         }
 

@@ -685,7 +685,7 @@ namespace com.clusterrr.hakchi_gui
             }
             if (parent != null)
                 treeView.SelectedNode = parent;
-            if (needWarn)
+            if (needWarn && !ConfigIni.DisablePopups)
                 MessageBox.Show(this, Resources.FolderContent, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             buttonOk.Enabled = treeView.Nodes[0].Nodes.Count > 0;
         }
@@ -949,7 +949,8 @@ namespace com.clusterrr.hakchi_gui
                 }
                 foreach (var game in oldCollection)
                     unsorted.ChildMenuCollection.Add(game);
-                MessageBox.Show(this, Resources.NewGamesUnsorted, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (!ConfigIni.DisablePopups)
+                    MessageBox.Show(this, Resources.NewGamesUnsorted, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             DrawTree();
         }

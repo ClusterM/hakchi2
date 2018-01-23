@@ -89,6 +89,7 @@ namespace com.clusterrr.hakchi_gui
 
                 // initial context menu state
                 explorerToolStripMenuItem.Enabled =
+                    scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
                     downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
                     deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
                     compressSelectedGamesToolStripMenuItem.Enabled =
@@ -227,6 +228,7 @@ namespace com.clusterrr.hakchi_gui
             upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
             compressGamesToolStripMenuItem.Checked = ConfigIni.Compress;
             compressBoxArtToolStripMenuItem.Checked = ConfigIni.CompressCover;
+            disableHakchi2PopupsToolStripMenuItem.Checked = ConfigIni.DisablePopups;
 
             // Folders mods
             disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
@@ -290,73 +292,6 @@ namespace com.clusterrr.hakchi_gui
             }
             else
                 Debug.WriteLine("local original games cache in sync.");
-        }
-
-        void SyncOriginalGames(bool forceReset = false)
-        {
-            string desktopEntriesArchiveFile = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "desktop_entries.7z");
-            string originalGamesPath = Path.Combine(Program.BaseDirectoryExternal, "games_originals");
-            var selected = new List<string>();
-            selected.AddRange(ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
-
-            try
-            {
-                if (!Directory.Exists(originalGamesPath))
-                    Directory.CreateDirectory(originalGamesPath);
-
-                if (!File.Exists(desktopEntriesArchiveFile))
-                    throw new FileLoadException("desktop_entries.7z data file was deleted, cannot sync original games.");
-
-                SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
-                using (var szExtractor = new SevenZipExtractor(desktopEntriesArchiveFile))
-                {
-                    foreach (var f in szExtractor.ArchiveFileNames)
-                    {
-                        var code = Path.GetFileNameWithoutExtension(f);
-                        var query = NesMiniApplication.DefaultGames.Where(g => g.Code == code);
-                        if (query.Count() != 1)
-                            continue;
-
-                        var ext = Path.GetExtension(f).ToLower();
-                        if (ext != ".desktop") // sanity check
-                            throw new FileLoadException("invalid file found in desktop_entries.7z data file.");
-
-                        string path = Path.Combine(originalGamesPath, code);
-                        string outputFile = Path.Combine(path, code + ".desktop");
-                        bool exists = File.Exists(outputFile);
-
-                        // delete if forced
-                        if (forceReset && exists)
-                            Program.PersistentDeleteDirectory(path);
-
-                        // create new game directory
-                        Directory.CreateDirectory(path);
-                        if (!exists || forceReset)
-                        {
-                            // extract .desktop file from archive
-                            using (var o = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
-                            {
-                                szExtractor.ExtractFile(f, o);
-                                selected.Add(code);
-                                o.Flush();
-                            }
-
-                            // create game temporarily to perform cover search
-                            Debug.WriteLine(string.Format("Resetting game \"{0}\".", query.Single().Name));
-                            var game = NesMiniApplication.FromDirectory(path);
-                            game.FindCover(code + ".desktop", null, 0, query.Single().Name);
-                            game.Save();
-                        }
-                    }
-
-                    // save new selected games
-                    ConfigIni.SelectedGames = string.Join(";", selected.Distinct().ToArray());
-                }
-            }
-            catch(Exception ex)
-            {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-            }
         }
 
         public void LoadGames()
@@ -631,6 +566,7 @@ namespace com.clusterrr.hakchi_gui
         {
             explorerToolStripMenuItem.Enabled = (listViewGames.SelectedItems.Count == 1);
             downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
                 deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
                 compressSelectedGamesToolStripMenuItem.Enabled =
                 decompressSelectedGamesToolStripMenuItem.Enabled =
@@ -948,7 +884,8 @@ namespace com.clusterrr.hakchi_gui
             if (kernel == DialogResult.Yes) // Message for new user
                 MessageBox.Show(Resources.DoneYouCanUpload + "\r\n" + Resources.PressOkToContinue, Resources.Congratulations, MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (UploadGames())
-                MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (!ConfigIni.DisablePopups)
+                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void buttonExport_Click(object sender, EventArgs e)
@@ -961,7 +898,8 @@ namespace com.clusterrr.hakchi_gui
                 return;
             }
             if (UploadGames(true))
-                MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (!ConfigIni.DisablePopups)
+                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         bool DoKernelDump()
@@ -1430,7 +1368,14 @@ namespace com.clusterrr.hakchi_gui
             if (MessageBox.Show(Resources.ResetOriginalGamesQ, Resources.Default30games, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 == DialogResult.Yes)
             {
-                SyncOriginalGames(true);
+                var workerForm = new WorkerForm(this);
+                workerForm.Text = Resources.ResettingOriginalGames;
+                workerForm.Task = WorkerForm.Tasks.SyncOriginalGames;
+
+                if (workerForm.Start() == DialogResult.OK)
+                    if (!ConfigIni.DisablePopups)
+                        MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 LoadGames();
             }
         }
@@ -1559,6 +1504,11 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.CompressCover = compressBoxArtToolStripMenuItem.Checked;
         }
 
+        private void disableHakchi2PopupsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.DisablePopups = disableHakchi2PopupsToolStripMenuItem.Checked;
+        }
+
         private void buttonShowGameGenieDatabase_Click(object sender, EventArgs e)
         {
             if (listViewGames.SelectedItems.Count != 1) return;
@@ -1601,7 +1551,8 @@ namespace com.clusterrr.hakchi_gui
                                    in form.checkedListBoxMods.CheckedItems.OfType<object>().ToArray()
                                   select m.ToString())).ToArray()))
                 {
-                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (!ConfigIni.DisablePopups)
+                        MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -1617,7 +1568,8 @@ namespace com.clusterrr.hakchi_gui
                                    in form.checkedListBoxMods.CheckedItems.OfType<object>().ToArray()
                                     select m.ToString())).ToArray()))
                 {
-                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (!ConfigIni.DisablePopups)
+                        MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -1636,7 +1588,8 @@ namespace com.clusterrr.hakchi_gui
                 if (WaitingClovershellForm.WaitForDevice(this))
                 {
                     WorkerForm.SyncConfig(ConfigIni.GetConfigDictionary(), true);
-                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (!ConfigIni.DisablePopups)
+                        MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -1845,6 +1798,9 @@ namespace com.clusterrr.hakchi_gui
             var workerForm = new WorkerForm(this);
             switch (task)
             {
+                case WorkerForm.Tasks.ScanCovers:
+                    workerForm.Text = Resources.ScanningCovers;
+                    break;
                 case WorkerForm.Tasks.DownloadCovers:
                     workerForm.Text = Resources.DownloadAllCoversTitle;
                     break;
@@ -1894,19 +1850,29 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private void scanForNewBoxArtForSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (GroupTaskWithSelected(WorkerForm.Tasks.ScanCovers))
+                if (!ConfigIni.DisablePopups)
+                    MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ShowSelected();
+            timerCalculateGames.Enabled = true;
+        }
+
         private void downloadBoxArtForSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (GroupTaskWithSelected(WorkerForm.Tasks.DownloadCovers))
-                MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (!ConfigIni.DisablePopups)
+                    MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             ShowSelected();
             timerCalculateGames.Enabled = true;
         }
 
         private void deleteSelectedGamesBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //if (GroupTaskWithSelected(WorkerForm.Tasks.DeleteCovers))
-            //    MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            GroupTaskWithSelected(WorkerForm.Tasks.DeleteCovers);
+            if (GroupTaskWithSelected(WorkerForm.Tasks.DeleteCovers))
+                if (!ConfigIni.DisablePopups)
+                    MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             ShowSelected();
             timerCalculateGames.Enabled = true;
         }
@@ -1914,7 +1880,8 @@ namespace com.clusterrr.hakchi_gui
         private void compressSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (GroupTaskWithSelected(WorkerForm.Tasks.CompressGames))
-                MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (!ConfigIni.DisablePopups)
+                    MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             ShowSelected();
             timerCalculateGames.Enabled = true;
         }
@@ -1922,7 +1889,8 @@ namespace com.clusterrr.hakchi_gui
         private void decompressSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (GroupTaskWithSelected(WorkerForm.Tasks.DecompressGames))
-                MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if(!ConfigIni.DisablePopups)
+                    MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             ShowSelected();
             timerCalculateGames.Enabled = true;
         }
@@ -1936,9 +1904,13 @@ namespace com.clusterrr.hakchi_gui
                     foreach (ListViewItem item in listViewGames.SelectedItems)
                         if (item.Tag is NesMiniApplication)
                             listViewGames.Items.Remove(item);
-                    //MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (!ConfigIni.DisablePopups)
+                        MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else LoadGames();
+                else
+                    LoadGames();
+
+                ShowSelected();
                 timerCalculateGames.Enabled = true;
             }
         }

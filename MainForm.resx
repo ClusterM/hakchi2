@@ -506,6 +506,15 @@
   <data name="compressBoxArtToolStripMenuItem.Text" xml:space="preserve">
     <value>Compress box art when adding</value>
   </data>
+  <data name="disableHakchi2PopupsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="disableHakchi2PopupsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Disable hakchi2 pop-ups</value>
+  </data>
+  <data name="toolStripMenuItem16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 6</value>
+  </data>
   <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 22</value>
   </data>
@@ -1419,34 +1428,43 @@
     <value>F4</value>
   </data>
   <data name="explorerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>283, 22</value>
   </data>
   <data name="explorerToolStripMenuItem.Text" xml:space="preserve">
     <value>Show in Windows Explorer</value>
   </data>
   <data name="toolStripMenuItem14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>266, 6</value>
+    <value>280, 6</value>
+  </data>
+  <data name="scanForNewBoxArtForSelectedGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="scanForNewBoxArtForSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Scan for new box art for selected games</value>
   </data>
   <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>283, 22</value>
   </data>
   <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Download box art for selected games</value>
   </data>
   <data name="deleteSelectedGamesBoxArtToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>283, 22</value>
   </data>
   <data name="deleteSelectedGamesBoxArtToolStripMenuItem.Text" xml:space="preserve">
     <value>Delete box art of selected games</value>
   </data>
+  <data name="toolStripMenuItem15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 6</value>
+  </data>
   <data name="compressSelectedGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>283, 22</value>
   </data>
   <data name="compressSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Compress selected games</value>
   </data>
   <data name="decompressSelectedGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>283, 22</value>
   </data>
   <data name="decompressSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Decompress selected games</value>
@@ -1455,13 +1473,13 @@
     <value>Del</value>
   </data>
   <data name="deleteSelectedGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>283, 22</value>
   </data>
   <data name="deleteSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Delete selected games</value>
   </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 142</value>
+    <value>284, 170</value>
   </data>
   <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
     <value>contextMenuStrip</value>
@@ -3282,6 +3300,12 @@
   <data name="&gt;&gt;toolStripMenuItem14.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;scanForNewBoxArtForSelectedGamesToolStripMenuItem.Name" xml:space="preserve">
+    <value>scanForNewBoxArtForSelectedGamesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;scanForNewBoxArtForSelectedGamesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;downloadBoxArtForSelectedGamesToolStripMenuItem.Name" xml:space="preserve">
     <value>downloadBoxArtForSelectedGamesToolStripMenuItem</value>
   </data>
@@ -3293,6 +3317,12 @@
   </data>
   <data name="&gt;&gt;deleteSelectedGamesBoxArtToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem15.Name" xml:space="preserve">
+    <value>toolStripMenuItem15</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;compressSelectedGamesToolStripMenuItem.Name" xml:space="preserve">
     <value>compressSelectedGamesToolStripMenuItem</value>
@@ -3359,6 +3389,18 @@
   </data>
   <data name="&gt;&gt;timerShowSelected.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;disableHakchi2PopupsToolStripMenuItem.Name" xml:space="preserve">
+    <value>disableHakchi2PopupsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;disableHakchi2PopupsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem16.Name" xml:space="preserve">
+    <value>toolStripMenuItem16</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

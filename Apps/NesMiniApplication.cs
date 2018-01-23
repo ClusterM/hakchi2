@@ -218,11 +218,39 @@ namespace com.clusterrr.hakchi_gui
         }
 
         public readonly string GamePath;
+        public string GameFilePath
+        {
+            get
+            {
+                if (!Directory.Exists(GamePath)) return null;
+                var exec = Regex.Replace(Command, "[/\\\"]", " ") + " ";
+                var files = Directory.GetFiles(GamePath, "*.*", SearchOption.TopDirectoryOnly);
+                foreach (var file in files)
+                {
+                    if (exec.Contains(" " + Path.GetFileName(file) + " "))
+                        return file;
+                }
+                return null;
+            }
+        }
+
         public readonly string ConfigPath;
         public readonly string IconPath;
         public readonly string SmallIconPath;
         protected string command;
+        protected string cloverIconPath;
         protected bool hasUnsavedChanges = true;
+        protected bool isDeleting = false;
+        public bool Deleting
+        {
+            get { return isDeleting; }
+            set
+            {
+                isDeleting = value;
+                if (isDeleting)
+                    hasUnsavedChanges = false;
+            }
+        }
 
         private string name;
         public string Name
@@ -471,6 +499,7 @@ namespace com.clusterrr.hakchi_gui
             Publisher = DefaultPublisher;
             Copyright = "hakchi2 ©2017 Alexey 'Cluster' Avdyukhin";
             Command = "";
+            cloverIconPath = "";
             SaveCount = 0;
             Status = "";
             TestId = 0;
@@ -491,6 +520,7 @@ namespace com.clusterrr.hakchi_gui
             Publisher = DefaultPublisher;
             Copyright = "hakchi2 ©2017 Alexey 'Cluster' Avdyukhin";
             Command = "";
+            cloverIconPath = "";
             Status = "";
             TestId = 0;
 
@@ -552,6 +582,9 @@ namespace com.clusterrr.hakchi_gui
                     case "testid":
                         TestId = uint.Parse(value);
                         break;
+                    case "icon":
+                        cloverIconPath = value;
+                        break;
                 }
             }
 
@@ -564,7 +597,17 @@ namespace com.clusterrr.hakchi_gui
 
         public virtual bool Save()
         {
-            if (!hasUnsavedChanges) return false;
+            // safety when deleting
+            if (isDeleting)
+                return false;
+
+            // check if a cover image might have been added to the original game directly in file system
+            if (IsOriginalGame && ((cloverIconPath.StartsWith(GamesCloverPath) && !File.Exists(IconPath)) || (!cloverIconPath.StartsWith(GamesCloverPath) && File.Exists(IconPath))))
+                hasUnsavedChanges = true;
+
+            // only save if needed
+            if (!hasUnsavedChanges)
+                return false;
             Debug.WriteLine(string.Format("Saving application \"{0}\" as {1}", Name, Code));
 
             // setup name and sort name
@@ -574,7 +617,7 @@ namespace com.clusterrr.hakchi_gui
                 SortRawTitle = SortRawTitle.Substring(4); // Sorting without "THE"
 
             // reference original icon path if no image exists for original game
-            var cloverIconPath = $"{GamesCloverPath}/{Code}/{Code}.png";
+            cloverIconPath = $"{GamesCloverPath}/{Code}/{Code}.png";
             if (IsOriginalGame && !File.Exists(IconPath))
                 cloverIconPath = "/var/lib/hakchi/squashfs" + cloverIconPath;
 
@@ -901,13 +944,14 @@ namespace com.clusterrr.hakchi_gui
         {
             var imageExtensions = new string[] { ".png", ".jpg", ".jpeg", ".bmp", ".gif" };
             var rgx = new Regex("[^a-zA-Z0-9]", RegexOptions.Compiled);
-            var sanitizedTitle = rgx.Replace(title, string.Empty).ToLower();
-            string sanitized;
+            string sanitizedTitle = rgx.Replace(title, string.Empty).ToLower();
 
             if (!string.IsNullOrEmpty(sanitizedTitle))
             {
-                int matchDistance = 0;
                 string matchFile = string.Empty;
+                string sanitized = string.Empty;
+                int matchDistance = 0;
+
                 foreach (var file in covers)
                 {
                     if (imageExtensions.Contains(Path.GetExtension(file)))
@@ -917,14 +961,17 @@ namespace com.clusterrr.hakchi_gui
                         {
                             if (distance > matchDistance)
                             {
-                                matchFile = file;
                                 matchDistance = distance;
+                                matchFile = file;
                             }
                         }
                     }
                 }
                 if (!string.IsNullOrEmpty(matchFile))
+                {
+                    Debug.WriteLine($"FuzzyCoverSearch matched \"{title}\" with \"{matchFile}\".");
                     return matchFile;
+                }
             }
             return null;
         }
@@ -1095,7 +1142,7 @@ namespace com.clusterrr.hakchi_gui
             return size;
         }
 
-        protected static uint CRC32(byte[] data)
+        public static uint CRC32(byte[] data)
         {
             uint poly = 0xedb88320;
             uint[] table = new uint[256];

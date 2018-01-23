@@ -47,6 +47,7 @@ namespace com.clusterrr.hakchi_gui
         public static string ExtraCommandLineArgumentsSnes = "";
         public static bool Compress = true;
         public static bool CompressCover = true;
+        public static bool DisablePopups = false;
         public const string ConfigDir = "config";
         public const string ConfigFile = "config.ini";
         public static bool FtpServer = false;
@@ -561,6 +562,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "compresscover":
                                     CompressCover = !value.ToLower().Equals("false");
                                     break;
+                                case "disablepopups":
+                                    DisablePopups = !value.ToLower().Equals("false");
+                                    break;
                                 case "ftpserver":
                                     FtpServer = !value.ToLower().Equals("false");
                                     break;
@@ -621,6 +625,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("MaxGamesPerFolderSuperFamicom={0}", MaxGamesPerFolderSuperFamicom));
             configLines.Add(string.Format("Compress={0}", Compress));
             configLines.Add(string.Format("CompressCover={0}", CompressCover));
+            configLines.Add(string.Format("DisablePopups={0}", DisablePopups));
             configLines.Add(string.Format("FtpServer={0}", FtpServer));
             configLines.Add(string.Format("TelnetServer={0}", TelnetServer));
             configLines.Add(string.Format("RunCount={0}", RunCount));
