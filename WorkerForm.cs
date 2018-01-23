@@ -1713,6 +1713,8 @@ namespace com.clusterrr.hakchi_gui
                     if (wasCompressed)
                         game.Compress();
                 }
+                else
+                    gameFile = game.GamePath;
                 game.FindCover(Path.GetFileName(gameFile), null, crc32, game.Name);
                 SetProgress(++i, Games.Count);
             }
