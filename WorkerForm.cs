@@ -1930,12 +1930,13 @@ namespace com.clusterrr.hakchi_gui
                     game.FindCover(code + ".desktop", null, 0, query.Single().Name);
                     game.Save();
 
-                    SetProgress(i++, (int)NesMiniApplication.DefaultGames.Length);
+                    SetProgress(++i, NesMiniApplication.DefaultGames.Length);
                 }
 
                 // save new selected games
                 ConfigIni.SelectedGames = string.Join(";", selected.Distinct().ToArray());
             }
+            Thread.Sleep(1000);
         }
 
         private void WorkerForm_FormClosing(object sender, FormClosingEventArgs e)
