@@ -339,7 +339,7 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // add games to listview
-            var gamesSorted = games.OrderBy(o => o.Name);
+            var gamesSorted = games.OrderBy(o => o.SortName);
             listViewGames.BeginUpdate();
             listViewGames.Items.Clear();
             foreach (var game in gamesSorted)
@@ -1789,7 +1789,7 @@ namespace com.clusterrr.hakchi_gui
                     return -1;
                 if (!(o2 is NesMiniApplication))
                     return 1;
-                return ((o1 as NesMiniApplication).Name.CompareTo((o2 as NesMiniApplication).Name));
+                return ((o1 as NesMiniApplication).SortName.CompareTo((o2 as NesMiniApplication).SortName));
             }
         }
 

@@ -52,6 +52,12 @@ namespace com.clusterrr.hakchi_gui
                     nameParts = new string[0];
             }
         }
+
+        public string SortName
+        {
+            get { return name; }
+        }
+
         private string[] nameParts;
         public string[] NameParts
         {

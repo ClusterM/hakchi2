@@ -76,7 +76,7 @@ namespace com.clusterrr.hakchi_gui
                 });
             }
 
-            var sorted = root.OrderBy(o => o.Name);
+            var sorted = root.OrderBy(o => o.SortName);
             var collections = new List<NesMenuCollection>();
             int i = 0;
             if (style == SplitStyle.Auto || style == SplitStyle.FoldersEqual || style == SplitStyle.PagesEqual)
@@ -108,8 +108,8 @@ namespace com.clusterrr.hakchi_gui
                 root.Clear();
                 foreach (var coll in collections)
                 {
-                    var fname = alphaNum.Replace(coll.Where(o => o is NesMiniApplication).First().Name.ToUpper(), "");
-                    var lname = alphaNum.Replace(coll.Where(o => o is NesMiniApplication).Last().Name.ToUpper(), "");
+                    var fname = alphaNum.Replace(coll.Where(o => o is NesMiniApplication).First().SortName.ToUpper(), "");
+                    var lname = alphaNum.Replace(coll.Where(o => o is NesMiniApplication).Last().SortName.ToUpper(), "");
 
                     var folder = new NesMenuFolder() { ChildMenuCollection = coll, NameParts = new string[] { fname, lname }, Position = NesMenuFolder.Priority.Right };
                     coll.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
@@ -127,8 +127,8 @@ namespace com.clusterrr.hakchi_gui
                 {
                     for (int j = i - 1; j >= 0; j--)
                     {
-                        var fname = alphaNum.Replace(collections[j].Where(o => o is NesMiniApplication).First().Name.ToUpper(), "");
-                        var lname = alphaNum.Replace(collections[j].Where(o => o is NesMiniApplication).Last().Name.ToUpper(), "");
+                        var fname = alphaNum.Replace(collections[j].Where(o => o is NesMiniApplication).First().SortName.ToUpper(), "");
+                        var lname = alphaNum.Replace(collections[j].Where(o => o is NesMiniApplication).Last().SortName.ToUpper(), "");
                         var folder = new NesMenuFolder()
                         {
                             ChildMenuCollection = collections[j],
@@ -139,8 +139,8 @@ namespace com.clusterrr.hakchi_gui
                     }
                     for (int j = i + 1; j < collections.Count; j++)
                     {
-                        var fname = alphaNum.Replace(collections[j].Where(o => o is NesMiniApplication).First().Name.ToUpper(), "");
-                        var lname = alphaNum.Replace(collections[j].Where(o => o is NesMiniApplication).Last().Name.ToUpper(), "");
+                        var fname = alphaNum.Replace(collections[j].Where(o => o is NesMiniApplication).First().SortName.ToUpper(), "");
+                        var lname = alphaNum.Replace(collections[j].Where(o => o is NesMiniApplication).Last().SortName.ToUpper(), "");
                         var folder = new NesMenuFolder()
                         {
                             ChildMenuCollection = collections[j],
@@ -161,7 +161,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var game in root)
                 {
                     if (!(game is NesMiniApplication)) continue;
-                    var letter = game.Name.Substring(0, 1).ToUpper()[0];
+                    var letter = game.SortName.Substring(0, 1).ToUpper()[0];
                     if (letter < 'A' || letter > 'Z')
                         letter = '#';
                     letters[letter].Add(game);

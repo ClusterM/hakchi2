@@ -54,7 +54,7 @@ namespace com.clusterrr.hakchi_gui
                 if (el1 is NesMenuFolder) pos1 = (int)(el1 as NesMenuFolder).Position;
                 if (el2 is NesMenuFolder) pos2 = (int)(el2 as NesMenuFolder).Position;
                 if (pos1 != pos2) return pos1.CompareTo(pos2);
-                return el1.Name.CompareTo(el2.Name);
+                return el1.SortName.CompareTo(el2.SortName);
             }
         }
 

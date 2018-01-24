@@ -17,6 +17,11 @@
             set { name = value; }
         }
 
+        public string SortName
+        {
+            get { return name; }
+        }
+
         public override string ToString()
         {
             return Name;

@@ -361,6 +361,10 @@ namespace com.clusterrr.hakchi_gui
                 sortRawTitle = value;
             }
         }
+        public string SortName
+        {
+            get { return sortRawTitle; }
+        }
 
         private bool isOriginalGame;
         public bool IsOriginalGame
