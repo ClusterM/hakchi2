@@ -21,6 +21,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class MainForm : Form
     {
+        public enum OriginalGamesPosition { AtTop = 0, AtBottom = 1, Sorted = 2 }
         public enum ConsoleType { NES = 0, Famicom = 1, SNES = 2, SuperFamicom = 3, Unknown = 255 }
         public long DefaultMaxGamesSize
         {
@@ -85,7 +86,7 @@ namespace com.clusterrr.hakchi_gui
 #endif
 ;
 
-                listViewGames.ListViewItemSorter = new GamesSorter();
+                //listViewGames.ListViewItemSorter = new GamesSorter();
 
                 // initial context menu state
                 explorerToolStripMenuItem.Enabled =
@@ -294,25 +295,46 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine("local original games cache in sync.");
         }
 
+        ListViewGroup[] lgvGroups;
         public void LoadGames()
         {
             Debug.WriteLine("Loading games");
             var selected = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             Debug.WriteLine($"{selected.Length} selected.");
 
-            // add custom games
-            Directory.CreateDirectory(NesMiniApplication.GamesDirectory);
-            var gameDirs = Directory.GetDirectories(NesMiniApplication.GamesDirectory).ToList();
-
             // add original games
-            foreach(var game in NesMiniApplication.DefaultGames)
+            var originalGames = new List<NesMiniApplication>();
+            foreach(var defaultGame in NesMiniApplication.DefaultGames)
             {
-                string path = Path.Combine(NesMiniApplication.OriginalGamesDirectory, game.Code);
-                if (Directory.Exists(path))
-                    gameDirs.Add(path);
+                string gameDir = Path.Combine(NesMiniApplication.OriginalGamesDirectory, defaultGame.Code);
+                if (Directory.Exists(gameDir))
+                {
+                    try
+                    {
+                        // Removing empty directories without errors
+                        try
+                        {
+                            var game = NesMiniApplication.FromDirectory(gameDir);
+                            originalGames.Add(game);
+                        }
+                        catch (FileNotFoundException ex) // Remove bad directories if any
+                        {
+                            Debug.WriteLine(ex.Message + ex.StackTrace);
+                            Directory.Delete(gameDir, true);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message + ex.StackTrace);
+                        MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        continue;
+                    }
+                }
             }
 
-            // instantiate Apps
+            // add custom games
+            Directory.CreateDirectory(NesMiniApplication.GamesDirectory);
+            var gameDirs = Directory.GetDirectories(NesMiniApplication.GamesDirectory);
             var games = new List<NesMiniApplication>();
             foreach (var gameDir in gameDirs)
             {
@@ -338,18 +360,59 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
-            // add games to listview
-            var gamesSorted = games.OrderBy(o => o.SortName);
+            // create groups
+            lgvGroups = new ListViewGroup[4];
+            lgvGroups[0] = new ListViewGroup("New Games", HorizontalAlignment.Center);
+            lgvGroups[1] = new ListViewGroup("Original Games", HorizontalAlignment.Center);
+            lgvGroups[2] = new ListViewGroup("Custom Games", HorizontalAlignment.Center);
+            lgvGroups[3] = new ListViewGroup("All Games", HorizontalAlignment.Center);
+
             listViewGames.BeginUpdate();
+            listViewGames.Groups.Clear();
             listViewGames.Items.Clear();
+
+            // apply games sorting
+            var gamesSorted = new List<NesMiniApplication>();
+            if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtTop)
+            {
+                gamesSorted.AddRange(originalGames.OrderBy(o => o.SortName));
+                gamesSorted.AddRange(games.OrderBy(o => o.SortName));
+                listViewGames.Groups.Add(lgvGroups[0]);
+                listViewGames.Groups.Add(lgvGroups[1]);
+                listViewGames.Groups.Add(lgvGroups[2]);
+            }
+            else if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtBottom)
+            {
+                gamesSorted.AddRange(games.OrderBy(o => o.SortName));
+                gamesSorted.AddRange(originalGames.OrderBy(o => o.SortName));
+                listViewGames.Groups.Add(lgvGroups[0]);
+                listViewGames.Groups.Add(lgvGroups[2]);
+                listViewGames.Groups.Add(lgvGroups[1]);
+            }
+            else
+            {
+                games.AddRange(originalGames);
+                gamesSorted.AddRange(games.OrderBy(o => o.SortName));
+                //listViewGames.Groups.Add(lgvGroups[0]);
+                //listViewGames.Groups.Add(lgvGroups[3]);
+            }
+
             foreach (var game in gamesSorted)
             {
                 var listViewItem = new ListViewItem(game.Name);
+                if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.Sorted)
+                {
+                    listViewItem.Group = lgvGroups[3];
+                }
+                else
+                    listViewItem.Group = game.IsOriginalGame ? lgvGroups[1] : lgvGroups[2];
                 listViewItem.Tag = game;
                 listViewItem.Checked = selected.Contains(game.Code);
+
                 listViewGames.Items.Add(listViewItem);
             }
             listViewGames.EndUpdate();
+
             RecalculateSelectedGames();
             ShowSelected();
         }
@@ -433,9 +496,9 @@ namespace com.clusterrr.hakchi_gui
                     {
                         var cols = ConfigIni.Presets[preset].Split('|');
                         ConfigIni.SelectedGames = cols[0];
-                        ConfigIni.HiddenGames = cols[1];
+                        //ConfigIni.HiddenGames = cols[1];
                         var selected = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                        var hide = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                        //var hide = ConfigIni.HiddenGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                         for (int j = 1; j < listViewGames.Items.Count; j++)
                             listViewGames.Items[j].Checked = selected.Contains((listViewGames.Items[j].Tag as NesMiniApplication).Code);
                     }));
@@ -556,7 +619,7 @@ namespace com.clusterrr.hakchi_gui
                 if (!string.IsNullOrEmpty(name))
                 {
                     SaveSelectedGames();
-                    ConfigIni.Presets[name] = ConfigIni.SelectedGames + "|" + ConfigIni.HiddenGames;
+                    ConfigIni.Presets[name] = ConfigIni.SelectedGames; // + "|" + ConfigIni.HiddenGames;
                     LoadPresets();
                 }
             }
@@ -600,8 +663,39 @@ namespace com.clusterrr.hakchi_gui
 
         private void listViewGames_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete && ((listViewGames.SelectedItems.Count > 1) || (listViewGames.SelectedItems.Count == 1 && listViewGames.SelectedItems[0].Tag is NesMiniApplication)))
-                DeleteSelectedGames();
+            switch (e.KeyCode)
+            {
+                case Keys.A:
+                    if (e.Modifiers == Keys.Control)
+                    {
+                        listViewGames.BeginUpdate();
+                        foreach (ListViewItem item in listViewGames.Items)
+                            item.Selected = true;
+                        listViewGames.EndUpdate();
+                    }
+                    break;
+                case Keys.Delete:
+                    if ((listViewGames.SelectedItems.Count > 1) || (listViewGames.SelectedItems.Count == 1 && listViewGames.SelectedItems[0].Tag is NesMiniApplication))
+                        DeleteSelectedGames();
+                    break;
+                case Keys.Space:
+                    if (listViewGames.FocusedItem == null)
+                    {
+                        bool all = true;
+                        foreach (ListViewItem item in listViewGames.SelectedItems)
+                            if (!item.Checked)
+                            {
+                                all = false;
+                                break;
+                            }
+                        foreach (ListViewItem item in listViewGames.SelectedItems)
+                        {
+                            item.Checked = !all;
+                        }
+
+                    }
+                    break;
+            }
         }
 
         private void listViewGames_MouseDown(object sender, MouseEventArgs e)
@@ -1078,6 +1172,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var newApp in newApps)
                 {
                     var item = new ListViewItem(newApp.Name);
+                    item.Group = lgvGroups[0];
                     item.Tag = newApp;
                     item.Selected = true;
                     item.Checked = true;
@@ -1927,15 +2022,6 @@ namespace com.clusterrr.hakchi_gui
                 case Keys.F4:
                     explorerToolStripMenuItem_Click(sender, e);
                     break;
-                case Keys.A:
-                    if (e.Modifiers == Keys.Control)
-                    {
-                        listViewGames.BeginUpdate();
-                        foreach (ListViewItem item in listViewGames.Items)
-                            item.Selected = true;
-                        listViewGames.EndUpdate();
-                    }
-                    break;
                 case Keys.E:
                     if (e.Modifiers == (Keys.Alt | Keys.Control))
                     {
@@ -1949,6 +2035,36 @@ namespace com.clusterrr.hakchi_gui
                     }
                     break;
             }
+        }
+
+        private void positionAtTheTopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (positionAtTheTopToolStripMenuItem.Checked) return;
+            ConfigIni.OriginalGamesPosition = OriginalGamesPosition.AtTop;
+            positionAtTheTopToolStripMenuItem.Checked = true;
+            positionAtTheBottomToolStripMenuItem.Checked = false;
+            positionSortedInListToolStripMenuItem.Checked = false;
+            LoadGames();
+        }
+
+        private void positionAtTheBottomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (positionAtTheBottomToolStripMenuItem.Checked) return;
+            ConfigIni.OriginalGamesPosition = OriginalGamesPosition.AtBottom;
+            positionAtTheTopToolStripMenuItem.Checked = false;
+            positionAtTheBottomToolStripMenuItem.Checked = true;
+            positionSortedInListToolStripMenuItem.Checked = false;
+            LoadGames();
+        }
+
+        private void positionSortedInListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (positionSortedInListToolStripMenuItem.Checked) return;
+            ConfigIni.OriginalGamesPosition = OriginalGamesPosition.Sorted;
+            positionAtTheTopToolStripMenuItem.Checked = false;
+            positionAtTheBottomToolStripMenuItem.Checked = false;
+            positionSortedInListToolStripMenuItem.Checked = true;
+            LoadGames();
         }
     }
 }
