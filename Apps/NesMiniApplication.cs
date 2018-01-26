@@ -955,13 +955,14 @@ namespace com.clusterrr.hakchi_gui
                 string matchFile = string.Empty;
                 string sanitized = string.Empty;
                 int matchDistance = 0;
+                int distance = 0;
 
                 foreach (var file in covers)
                 {
                     if (imageExtensions.Contains(Path.GetExtension(file)))
                     {
                         sanitized = rgx.Replace(Path.GetFileNameWithoutExtension(file), string.Empty).ToLower();
-                        if (MatchDistance(sanitizedTitle, sanitized, out int distance))
+                        if (MatchDistance(sanitizedTitle, sanitized, out distance))
                         {
                             if (distance > matchDistance)
                             {

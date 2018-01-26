@@ -918,7 +918,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 progress += 5;
                 SetProgress(progress, maxProgress);
-                
+
                 // prepare unit for upload
                 ShowSplashScreen();
                 UpdateRootfs();
@@ -927,17 +927,6 @@ namespace com.clusterrr.hakchi_gui
                     clovershell.ExecuteSimple($"mkdir -p {squashFsPath} && mount /dev/mapper/root-crypt {squashFsPath}", 3000, true);
 
                 // Games!
-                tempGamesDirectory = Path.Combine(tempDirectory, "games");
-                if (exportDirectory != null)
-                {
-                    tempGamesDirectory = exportDirectory;
-                }
-                Directory.CreateDirectory(tempDirectory);
-                Directory.CreateDirectory(tempGamesDirectory);
-                if (Directory.GetDirectories(tempGamesDirectory).Length > 0)
-                {
-                    throw new Exception(Resources.FolderNotEmpty);
-                }
                 Dictionary<string, string> originalGames = new Dictionary<string, string>();
                 var stats = new GamesTreeStats();
                 AddMenu(Games, originalGames, stats);
@@ -957,7 +946,7 @@ namespace com.clusterrr.hakchi_gui
                         SaveStatesSize / 1024.0 / 1024.0,
                         (NandCUsed - WrittenGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
                 }
-                
+
                 using (var gamesTar = new TarStream(tempGamesDirectory))
                 {
                     maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 20 + originalGames.Count() * 2);
@@ -970,20 +959,7 @@ namespace com.clusterrr.hakchi_gui
                         clovershell.ExecuteSimple($"[ -f \"{squashFsPath}{gamesPath}/title.fnt\" ] && [ ! -f \"{rootFsPath}{gamesPath}/title.fnt\" ] && cp -f \"{squashFsPath}{gamesPath}/title.fnt\" \"{rootFsPath}{gamesPath}\"/", 3000, false);
                         clovershell.ExecuteSimple($"[ -f \"{squashFsPath}{gamesPath}/copyright.fnt\" ] && [ ! -f \"{rootFsPath}{gamesPath}/copyright.fnt\" ] && cp -f \"{squashFsPath}{gamesPath}/copyright.fnt\" \"{rootFsPath}{gamesPath}\"/", 3000, false);
                     }
-
-                    using (var gamesTar = new TarStream(tempGamesDirectory))
-                    {
-                        maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 20 + originalGames.Count() * 2);
-                        SetProgress(progress, maxProgress);
-
-                        clovershell.ExecuteSimple(string.Format("umount {0}", gamesPath));
-                        clovershell.ExecuteSimple($"mkdir -p \"{rootFsPath}{gamesPath}\"", 3000, true);
-                        if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
-                        {
-                            clovershell.ExecuteSimple($"[ -f \"{squashFsPath}{gamesPath}/title.fnt\" ] && [ ! -f \"{rootFsPath}{gamesPath}/title.fnt\" ] && cp -f \"{squashFsPath}{gamesPath}/title.fnt\" \"{rootFsPath}{gamesPath}\"/", 3000, false);
-                            clovershell.ExecuteSimple($"[ -f \"{squashFsPath}{gamesPath}/copyright.fnt\" ] && [ ! -f \"{rootFsPath}{gamesPath}/copyright.fnt\" ] && cp -f \"{squashFsPath}{gamesPath}/copyright.fnt\" \"{rootFsPath}{gamesPath}\"/", 3000, false);
-                        }
-                        clovershell.ExecuteSimple(string.Format("rm -rf {0}{1}/CLV-* {0}{1}/??? {2}/menu", rootFsPath, gamesPath, installPath), 5000, true);
+                    clovershell.ExecuteSimple(string.Format("rm -rf {0}{1}/CLV-* {0}{1}/??? {2}/menu", rootFsPath, gamesPath, installPath), 5000, true);
 
                     if (gamesTar.Length > 0)
                     {
