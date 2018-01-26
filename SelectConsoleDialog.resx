@@ -136,7 +136,7 @@
     <value>Before we start please select your console. You can change it later using Settings menu if you want to use another console.</value>
   </data>
   <data name="labelSelectConsole.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopCenter</value>
+    <value>MiddleCenter</value>
   </data>
   <data name="&gt;&gt;labelSelectConsole.Name" xml:space="preserve">
     <value>labelSelectConsole</value>
@@ -148,10 +148,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelSelectConsole.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
+  </data>
+  <data name="buttonNes.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="buttonNes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 55</value>
+    <value>12, 105</value>
   </data>
   <data name="buttonNes.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 61</value>
@@ -172,13 +175,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonNes.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="buttonFamicom.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonFamicom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>235, 55</value>
+    <value>235, 105</value>
   </data>
   <data name="buttonFamicom.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 61</value>
@@ -199,13 +202,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonFamicom.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="buttonSnes.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonSnes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 129</value>
+    <value>12, 179</value>
   </data>
   <data name="buttonSnes.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 61</value>
@@ -226,13 +229,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonSnes.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="buttonSuperFamicom.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonSuperFamicom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>235, 129</value>
+    <value>235, 179</value>
   </data>
   <data name="buttonSuperFamicom.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 61</value>
@@ -253,6 +256,36 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonSuperFamicom.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="checkBox1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 65</value>
+  </data>
+  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 17</value>
+  </data>
+  <data name="checkBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Start with no games (skip restoring original games)</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Name" xml:space="preserve">
+    <value>checkBox1</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -262,13 +295,19 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>452, 202</value>
+    <value>452, 252</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>hakchi2</value>
+  </data>
+  <data name="&gt;&gt;timer1.Name" xml:space="preserve">
+    <value>timer1</value>
+  </data>
+  <data name="&gt;&gt;timer1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>SelectConsoleDialog</value>

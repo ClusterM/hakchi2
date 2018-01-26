@@ -42,6 +42,8 @@
             this.synchronizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
+            this.resetOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,6 +64,12 @@
             this.modulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstallModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.originalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.positionAtTheTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.positionAtTheBottomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.positionSortedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupByAppTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consoleTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,8 +77,6 @@
             this.famicomMiniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sNESMiniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.superFamicomMiniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
-            this.resetOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagesfoldersTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disablePagefoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -93,6 +99,8 @@
             this.upABStartOnSecondControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disableHakchi2PopupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripSeparator();
             this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.epilepsyProtectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,6 +108,7 @@
             this.saveSettingsToNESMiniNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveStateManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.foldersManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.FTPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFTPInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -167,8 +176,6 @@
             this.exportFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.timerShowSelected = new System.Windows.Forms.Timer(this.components);
             this.buttonExport = new System.Windows.Forms.Button();
-            this.disableHakchi2PopupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxThumbnail)).BeginInit();
@@ -183,6 +190,7 @@
             this.fileToolStripMenuItem,
             this.kernelToolStripMenuItem,
             this.modulesToolStripMenuItem,
+            this.viewToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
@@ -199,6 +207,8 @@
             this.synchronizeToolStripMenuItem,
             this.searchToolStripMenuItem,
             this.reloadGamesToolStripMenuItem,
+            this.toolStripMenuItem12,
+            this.resetOriginalGamesToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -263,6 +273,17 @@
             this.reloadGamesToolStripMenuItem.Name = "reloadGamesToolStripMenuItem";
             resources.ApplyResources(this.reloadGamesToolStripMenuItem, "reloadGamesToolStripMenuItem");
             this.reloadGamesToolStripMenuItem.Click += new System.EventHandler(this.reloadGamesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            resources.ApplyResources(this.toolStripMenuItem12, "toolStripMenuItem12");
+            // 
+            // resetOriginalGamesToolStripMenuItem
+            // 
+            this.resetOriginalGamesToolStripMenuItem.Name = "resetOriginalGamesToolStripMenuItem";
+            resources.ApplyResources(this.resetOriginalGamesToolStripMenuItem, "resetOriginalGamesToolStripMenuItem");
+            this.resetOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.resetOriginalGamesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -396,6 +417,48 @@
             resources.ApplyResources(this.uninstallModulesToolStripMenuItem, "uninstallModulesToolStripMenuItem");
             this.uninstallModulesToolStripMenuItem.Click += new System.EventHandler(this.uninstallModulesToolStripMenuItem_Click);
             // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.originalGamesToolStripMenuItem,
+            this.groupByAppTypeToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            resources.ApplyResources(this.viewToolStripMenuItem, "viewToolStripMenuItem");
+            // 
+            // originalGamesToolStripMenuItem
+            // 
+            this.originalGamesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.positionAtTheTopToolStripMenuItem,
+            this.positionAtTheBottomToolStripMenuItem,
+            this.positionSortedToolStripMenuItem});
+            this.originalGamesToolStripMenuItem.Name = "originalGamesToolStripMenuItem";
+            resources.ApplyResources(this.originalGamesToolStripMenuItem, "originalGamesToolStripMenuItem");
+            // 
+            // positionAtTheTopToolStripMenuItem
+            // 
+            this.positionAtTheTopToolStripMenuItem.Name = "positionAtTheTopToolStripMenuItem";
+            resources.ApplyResources(this.positionAtTheTopToolStripMenuItem, "positionAtTheTopToolStripMenuItem");
+            this.positionAtTheTopToolStripMenuItem.Click += new System.EventHandler(this.positionAtTheTopToolStripMenuItem_Click);
+            // 
+            // positionAtTheBottomToolStripMenuItem
+            // 
+            this.positionAtTheBottomToolStripMenuItem.Name = "positionAtTheBottomToolStripMenuItem";
+            resources.ApplyResources(this.positionAtTheBottomToolStripMenuItem, "positionAtTheBottomToolStripMenuItem");
+            this.positionAtTheBottomToolStripMenuItem.Click += new System.EventHandler(this.positionAtTheBottomToolStripMenuItem_Click);
+            // 
+            // positionSortedToolStripMenuItem
+            // 
+            this.positionSortedToolStripMenuItem.Name = "positionSortedToolStripMenuItem";
+            resources.ApplyResources(this.positionSortedToolStripMenuItem, "positionSortedToolStripMenuItem");
+            this.positionSortedToolStripMenuItem.Click += new System.EventHandler(this.positionSortedInListToolStripMenuItem_Click);
+            // 
+            // groupByAppTypeToolStripMenuItem
+            // 
+            this.groupByAppTypeToolStripMenuItem.CheckOnClick = true;
+            this.groupByAppTypeToolStripMenuItem.Name = "groupByAppTypeToolStripMenuItem";
+            resources.ApplyResources(this.groupByAppTypeToolStripMenuItem, "groupByAppTypeToolStripMenuItem");
+            this.groupByAppTypeToolStripMenuItem.Click += new System.EventHandler(this.groupByAppTypeToolStripMenuItem_Click);
+            // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -426,9 +489,7 @@
             this.nESMiniToolStripMenuItem,
             this.famicomMiniToolStripMenuItem,
             this.sNESMiniToolStripMenuItem,
-            this.superFamicomMiniToolStripMenuItem,
-            this.toolStripMenuItem12,
-            this.resetOriginalGamesToolStripMenuItem});
+            this.superFamicomMiniToolStripMenuItem});
             this.consoleTypeToolStripMenuItem.Name = "consoleTypeToolStripMenuItem";
             resources.ApplyResources(this.consoleTypeToolStripMenuItem, "consoleTypeToolStripMenuItem");
             // 
@@ -457,17 +518,6 @@
             this.superFamicomMiniToolStripMenuItem.Name = "superFamicomMiniToolStripMenuItem";
             resources.ApplyResources(this.superFamicomMiniToolStripMenuItem, "superFamicomMiniToolStripMenuItem");
             this.superFamicomMiniToolStripMenuItem.Click += new System.EventHandler(this.superFamicomMiniToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem12
-            // 
-            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            resources.ApplyResources(this.toolStripMenuItem12, "toolStripMenuItem12");
-            // 
-            // resetOriginalGamesToolStripMenuItem
-            // 
-            this.resetOriginalGamesToolStripMenuItem.Name = "resetOriginalGamesToolStripMenuItem";
-            resources.ApplyResources(this.resetOriginalGamesToolStripMenuItem, "resetOriginalGamesToolStripMenuItem");
-            this.resetOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.resetOriginalGamesToolStripMenuItem_Click);
             // 
             // pagesfoldersTypeToolStripMenuItem
             // 
@@ -640,6 +690,18 @@
             resources.ApplyResources(this.compressBoxArtToolStripMenuItem, "compressBoxArtToolStripMenuItem");
             this.compressBoxArtToolStripMenuItem.Click += new System.EventHandler(this.compressBoxArtToolStripMenuItem_Click);
             // 
+            // disableHakchi2PopupsToolStripMenuItem
+            // 
+            this.disableHakchi2PopupsToolStripMenuItem.CheckOnClick = true;
+            this.disableHakchi2PopupsToolStripMenuItem.Name = "disableHakchi2PopupsToolStripMenuItem";
+            resources.ApplyResources(this.disableHakchi2PopupsToolStripMenuItem, "disableHakchi2PopupsToolStripMenuItem");
+            this.disableHakchi2PopupsToolStripMenuItem.Click += new System.EventHandler(this.disableHakchi2PopupsToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem16
+            // 
+            this.toolStripMenuItem16.Name = "toolStripMenuItem16";
+            resources.ApplyResources(this.toolStripMenuItem16, "toolStripMenuItem16");
+            // 
             // useExtendedFontToolStripMenuItem
             // 
             this.useExtendedFontToolStripMenuItem.Checked = true;
@@ -677,6 +739,7 @@
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveStateManagerToolStripMenuItem,
+            this.foldersManagerToolStripMenuItem,
             this.toolStripMenuItem6,
             this.FTPToolStripMenuItem,
             this.openFTPInExplorerToolStripMenuItem,
@@ -693,6 +756,12 @@
             this.saveStateManagerToolStripMenuItem.Name = "saveStateManagerToolStripMenuItem";
             resources.ApplyResources(this.saveStateManagerToolStripMenuItem, "saveStateManagerToolStripMenuItem");
             this.saveStateManagerToolStripMenuItem.Click += new System.EventHandler(this.saveStateManagerToolStripMenuItem_Click);
+            // 
+            // foldersManagerToolStripMenuItem
+            // 
+            this.foldersManagerToolStripMenuItem.Name = "foldersManagerToolStripMenuItem";
+            resources.ApplyResources(this.foldersManagerToolStripMenuItem, "foldersManagerToolStripMenuItem");
+            this.foldersManagerToolStripMenuItem.Click += new System.EventHandler(this.foldersManagerToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
@@ -1136,6 +1205,7 @@
             // 
             // timerShowSelected
             // 
+            this.timerShowSelected.Interval = 50;
             this.timerShowSelected.Tick += new System.EventHandler(this.timerShowSelected_Tick);
             // 
             // buttonExport
@@ -1144,18 +1214,6 @@
             this.buttonExport.Name = "buttonExport";
             this.buttonExport.UseVisualStyleBackColor = true;
             this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
-            // 
-            // disableHakchi2PopupsToolStripMenuItem
-            // 
-            this.disableHakchi2PopupsToolStripMenuItem.CheckOnClick = true;
-            this.disableHakchi2PopupsToolStripMenuItem.Name = "disableHakchi2PopupsToolStripMenuItem";
-            resources.ApplyResources(this.disableHakchi2PopupsToolStripMenuItem, "disableHakchi2PopupsToolStripMenuItem");
-            this.disableHakchi2PopupsToolStripMenuItem.Click += new System.EventHandler(this.disableHakchi2PopupsToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem16
-            // 
-            this.toolStripMenuItem16.Name = "toolStripMenuItem16";
-            resources.ApplyResources(this.toolStripMenuItem16, "toolStripMenuItem16");
             // 
             // MainForm
             // 
@@ -1323,8 +1381,6 @@
         private System.Windows.Forms.Button buttonDefaultCover;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedGamesBoxArtToolStripMenuItem;
         private System.Windows.Forms.Timer timerShowSelected;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
-        private System.Windows.Forms.ToolStripMenuItem resetOriginalGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reloadGamesToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBoxThumbnail;
         private System.Windows.Forms.Button buttonExport;
@@ -1336,6 +1392,15 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem15;
         private System.Windows.Forms.ToolStripMenuItem disableHakchi2PopupsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem16;
+        private System.Windows.Forms.ToolStripMenuItem resetOriginalGamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem originalGamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem positionAtTheTopToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem positionAtTheBottomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem positionSortedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem groupByAppTypeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem foldersManagerToolStripMenuItem;
     }
 }
 

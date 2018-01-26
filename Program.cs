@@ -240,6 +240,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        // concatenate an arbitrary number of arrays
         public static T[] ConcatArrays<T>(params T[][] list)
         {
             var result = new T[list.Sum(a => a.Length)];
@@ -252,6 +253,7 @@ namespace com.clusterrr.hakchi_gui
             return result;
         }
 
+        // TODO: needs work to show a dialog when directory can't be deleted
         public static void PersistentDeleteDirectory(string dir, bool excludeSelf = false, uint retries = 10, bool recursing = false) // recurse is internal parameter
         {
             if (!Directory.Exists(dir))
@@ -302,5 +304,13 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
+
+        // workaround to prevent flickering with ListView controls
+        public static void DoubleBuffered(this Control control, bool enable)
+        {
+            var doubleBufferPropertyInfo = control.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
+            doubleBufferPropertyInfo.SetValue(control, enable, null);
+        }
+
     }
 }
