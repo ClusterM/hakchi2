@@ -14,7 +14,7 @@ backup_nandb(){
   if [ ! -f "$nandb_filename" ]; then
     echo "backup $nandb_filename"
     dd if=/dev/mapper/root-crypt bs=4k \
-    count=$((($(hexdump -e '1/4 "%u"' -s $((0x28)) -n 4 /dev/mapper/root-crypt)+0xfff)/0x1000)) \
+    count="$((($(hexdump -e '1/4 "%u"' -s $((0x28)) -n 4 /dev/mapper/root-crypt)+0xfff)/0x1000))" \
     > "$nandb_filename" && \
     md5sum "$nandb_filename" > "$nandb_filename.md5"
   fi

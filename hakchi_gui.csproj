@@ -1820,7 +1820,16 @@
     <Content Include="user_mods\remove_thumbnails.hmod\uninstall">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\hmods\tiny7zx-dynamic.hmod">
+    <Content Include="mods\hmods\tiny7zx.hmod">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\hmods\clovercon.hmod">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\hmods\modules-3.4.112.madmonkey.hmod">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\hmods\ntfs-3g.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="patches\0354f4b1-Dirt Racer %28Europe%29 %28En,Fr,De%29.ips">
@@ -1943,6 +1952,15 @@
     <Content Include="mods\mod_hakchi\bin\rsync">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="mods\mod_hakchi\bin\aplay">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\bin\decodepng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\etc\filesystems">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="mods\mod_hakchi\hakchi\config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2021,10 +2039,13 @@
     <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\profile">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\mod_hakchi\hakchi\script\base">
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\hakchi.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mods\mod_hakchi\hakchi\script\games">
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\init.d\S78clvcon">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_hakchi\hakchi\script\base">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="mods\mod_hakchi\hakchi\script\install">
@@ -2144,9 +2165,6 @@
     <Content Include="desktop_entries\CLV-P-VADJJ.desktop" />
     <Content Include="desktop_entries\CLV-P-VADKJ.desktop" />
     <Content Include="desktop_entries\CLV-P-VADZJ.desktop" />
-    <Content Include="mods\mod_hakchi\bin\usleep">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="data\desktop_entries.7z">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

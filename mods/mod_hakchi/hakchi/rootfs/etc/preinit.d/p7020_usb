@@ -2,14 +2,11 @@ if [ "$cfg_usb_host" != "y" ]; then
   switchToUsbDevice
 else
   switchToUsbHost
- 
-  # the usb driver needs about 3 seconds to initialize
-  sleep 3
-  
+  # the usb driver needs some time to initialize
+  sleep 1
   if [ -z "$(lsusb | grep -v "1d6b:0001")" ]; then
     switchToUsbDevice
-  else
-    checkUsbStorage
   fi
-
 fi
+
+checkExtStorage
