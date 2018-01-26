@@ -68,7 +68,6 @@ namespace com.clusterrr.hakchi_gui
         public string exportDirectory;
         public bool exportGames = false;
         public bool linkRelativeGames = false;
-        public bool nonDestructiveSync = false;
         public Dictionary<string, string> Config = null;
         public NesMenuCollection Games;
         public IEnumerable<string> hmodsInstall;
@@ -262,7 +261,7 @@ namespace com.clusterrr.hakchi_gui
             return result;
         }
 
-        public DialogResult FoldersManagerFromThread(NesMenuCollection collection)
+        DialogResult FoldersManagerFromThread(NesMenuCollection collection)
         {
             if (InvokeRequired)
             {
@@ -1966,29 +1965,23 @@ namespace com.clusterrr.hakchi_gui
                     string outputFile = Path.Combine(path, code + ".desktop");
                     bool exists = File.Exists(outputFile);
 
-                    if (exists && !nonDestructiveSync)
+                    // create new game directory
+                    if (exists) Program.PersistentDeleteDirectory(path);
+                    Directory.CreateDirectory(path);
+
+                    // extract .desktop file from archive
+                    using (var o = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
                     {
-                        Program.PersistentDeleteDirectory(path);
+                        szExtractor.ExtractFile(f, o);
+                        selected.Add(code);
+                        o.Flush();
                     }
 
-                    if (!exists || !nonDestructiveSync)
-                    {
-                        Directory.CreateDirectory(path);
-
-                        // extract .desktop file from archive
-                        using (var o = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
-                        {
-                            szExtractor.ExtractFile(f, o);
-                            selected.Add(code);
-                            o.Flush();
-                        }
-
-                        // create game temporarily to perform cover search
-                        Debug.WriteLine(string.Format("Resetting game \"{0}\".", query.Single().Name));
-                        var game = NesMiniApplication.FromDirectory(path);
-                        game.FindCover(code + ".desktop", null, 0, query.Single().Name);
-                        game.Save();
-                    }
+                    // create game temporarily to perform cover search
+                    Debug.WriteLine(string.Format("Resetting game \"{0}\".", query.Single().Name));
+                    var game = NesMiniApplication.FromDirectory(path);
+                    game.FindCover(code + ".desktop", null, 0, query.Single().Name);
+                    game.Save();
 
                     SetProgress(++i, NesMiniApplication.DefaultGames.Length);
                 }
@@ -1996,7 +1989,7 @@ namespace com.clusterrr.hakchi_gui
                 // save new selected games
                 ConfigIni.SelectedGames = string.Join(";", selected.Distinct().ToArray());
             }
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
         }
 
         private void WorkerForm_FormClosing(object sender, FormClosingEventArgs e)
