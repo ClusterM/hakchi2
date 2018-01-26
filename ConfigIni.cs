@@ -13,6 +13,7 @@ namespace com.clusterrr.hakchi_gui
         public static string SelectedGamesSnes = "";
         public static string SelectedGamesSuperFamicom = "";
         public static MainForm.OriginalGamesPosition OriginalGamesPosition = MainForm.OriginalGamesPosition.AtTop;
+        public static bool GroupGamesByAppType = false;
         //public static string HiddenGamesNes = "";
         //public static string HiddenGamesFamicom = "";
         //public static string HiddenGamesSnes = "";
@@ -462,6 +463,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "originalgamesposition":
                                     OriginalGamesPosition = (MainForm.OriginalGamesPosition)byte.Parse(value);
                                     break;
+                                case "groupgamesbyapptype":
+                                    GroupGamesByAppType = !value.ToLower().Equals("false");
+                                    break;
                                 //case "hiddengames":
                                 //    HiddenGamesNes = value;
                                 //    break;
@@ -598,6 +602,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("SelectedGamesSnes={0}", SelectedGamesSnes));
             configLines.Add(string.Format("SelectedGamesSuperFamicom={0}", SelectedGamesSuperFamicom));
             configLines.Add(string.Format("OriginalGamesPosition={0}", (byte)OriginalGamesPosition));
+            configLines.Add(string.Format("GroupGamesByAppType={0}", GroupGamesByAppType));
             //configLines.Add(string.Format("HiddenGames={0}", HiddenGamesNes));
             //configLines.Add(string.Format("HiddenGamesFamicom={0}", HiddenGamesFamicom));
             //configLines.Add(string.Format("HiddenGamesSnes={0}", HiddenGamesSnes));

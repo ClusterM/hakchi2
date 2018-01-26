@@ -771,6 +771,9 @@ This process cannot be undone!</value>
     <value>Scanning "/art" folder for box art...</value>
   </data>
   <data name="ResettingOriginalGames" xml:space="preserve">
-    <value>Resetting original games...</value>
+    <value>Restoring original games...</value>
+  </data>
+  <data name="DetectedConsole" xml:space="preserve">
+    <value>Detected Console: {0}</value>
   </data>
 </root>

@@ -37,7 +37,7 @@ namespace com.clusterrr.hakchi_gui
                 DefaultApps = new string[] {"/bin/nes"},
                 Prefix = 'I',
                 DefaultCover = Resources.blank_jp,
-                Name = "Nintendo NES/Famicom Disk System"
+                Name = "NES/Famicom Disk System"
             },
             new AppInfo
             {
@@ -55,7 +55,7 @@ namespace com.clusterrr.hakchi_gui
                 DefaultApps = new string[] { "/bin/snes", "/bin/clover-canoe-shvc-wr", "/usr/bin/clover-canoe-shvc" },
                 Prefix = 'U',
                 DefaultCover = Resources.blank_snes_us,
-                Name = "Nintendo SNES"
+                Name = "Nintendo Super NES"
             },
             new AppInfo
             {

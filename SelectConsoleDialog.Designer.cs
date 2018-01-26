@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectConsoleDialog));
             this.labelSelectConsole = new System.Windows.Forms.Label();
             this.buttonNes = new System.Windows.Forms.Button();
             this.buttonFamicom = new System.Windows.Forms.Button();
             this.buttonSnes = new System.Windows.Forms.Button();
             this.buttonSuperFamicom = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // labelSelectConsole
@@ -69,11 +72,22 @@
             this.buttonSuperFamicom.UseVisualStyleBackColor = true;
             this.buttonSuperFamicom.Click += new System.EventHandler(this.buttonSuperFamicom_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // checkBox1
+            // 
+            resources.ApplyResources(this.checkBox1, "checkBox1");
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // SelectConsoleDialog
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ControlBox = false;
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.buttonSuperFamicom);
             this.Controls.Add(this.buttonSnes);
             this.Controls.Add(this.buttonFamicom);
@@ -83,7 +97,9 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SelectConsoleDialog";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SelectConsoleDialog_FormClosed);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -94,5 +110,7 @@
         private System.Windows.Forms.Button buttonFamicom;
         private System.Windows.Forms.Button buttonSnes;
         private System.Windows.Forms.Button buttonSuperFamicom;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

@@ -40,6 +40,22 @@ namespace com.clusterrr.hakchi_gui
             }
         }
         public static ConsoleType? DetectedConnectedConsole = null;
+        public static string GetConsoleTypeName()
+        {
+            return GetConsoleTypeName(DetectedConnectedConsole);
+        }
+        public static string GetConsoleTypeName(ConsoleType? c)
+        {
+            switch (c)
+            {
+                case ConsoleType.NES: return "NES";
+                case ConsoleType.Famicom: return "Famicom";
+                case ConsoleType.SNES: return "SNES";
+                case ConsoleType.SuperFamicom: return "Super Famicom";
+            }
+            return string.Empty;
+        }
+
         public static IEnumerable<string> InternalMods;
         public static bool? DownloadCover;
         public const int MaxGamesPerFolder = 50;
@@ -87,6 +103,14 @@ namespace com.clusterrr.hakchi_gui
 ;
 
                 //listViewGames.ListViewItemSorter = new GamesSorter();
+                listViewGames.DoubleBuffered(true);
+
+                // initial view menu
+                positionAtTheTopToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtTop;
+                positionAtTheBottomToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtBottom;
+                positionSortedToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.Sorted;
+                groupByAppTypeToolStripMenuItem.Checked = ConfigIni.GroupGamesByAppType;
+                originalGamesToolStripMenuItem.Enabled = !ConfigIni.GroupGamesByAppType;
 
                 // initial context menu state
                 explorerToolStripMenuItem.Enabled =
@@ -295,7 +319,8 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine("local original games cache in sync.");
         }
 
-        ListViewGroup[] lgvGroups;
+        ListViewGroup[] lgvGroups = null;
+        Dictionary<Type, ListViewGroup> lgvAppGroups = null;
         public void LoadGames()
         {
             Debug.WriteLine("Loading games");
@@ -361,11 +386,25 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // create groups
-            lgvGroups = new ListViewGroup[4];
-            lgvGroups[0] = new ListViewGroup("New Games", HorizontalAlignment.Center);
-            lgvGroups[1] = new ListViewGroup("Original Games", HorizontalAlignment.Center);
-            lgvGroups[2] = new ListViewGroup("Custom Games", HorizontalAlignment.Center);
-            lgvGroups[3] = new ListViewGroup("All Games", HorizontalAlignment.Center);
+            if (lgvGroups == null)
+            {
+                lgvGroups = new ListViewGroup[4];
+                lgvGroups[0] = new ListViewGroup("New Games", HorizontalAlignment.Center);
+                lgvGroups[1] = new ListViewGroup("Original Games", HorizontalAlignment.Center);
+                lgvGroups[2] = new ListViewGroup("Custom Games", HorizontalAlignment.Center);
+                lgvGroups[3] = new ListViewGroup("All Games", HorizontalAlignment.Center);
+            }
+
+            if (lgvAppGroups == null)
+            {
+                var sortedApps = new SortedDictionary<string, Type>();
+                foreach (var appinfo in AppTypeCollection.ApplicationTypes)
+                    sortedApps[appinfo.Name] = appinfo.Class;
+
+                lgvAppGroups = new Dictionary<Type, ListViewGroup>();
+                foreach (var pair in sortedApps)
+                    lgvAppGroups[pair.Value] = new ListViewGroup(pair.Key, HorizontalAlignment.Center);
+            }
 
             listViewGames.BeginUpdate();
             listViewGames.Groups.Clear();
@@ -373,7 +412,14 @@ namespace com.clusterrr.hakchi_gui
 
             // apply games sorting
             var gamesSorted = new List<NesMiniApplication>();
-            if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtTop)
+            if (ConfigIni.GroupGamesByAppType)
+            {
+                games.AddRange(originalGames);
+                gamesSorted.AddRange(games.OrderBy(o => o.SortName));
+                foreach (var group in lgvAppGroups)
+                    listViewGames.Groups.Add(group.Value);
+            }
+            else if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtTop)
             {
                 gamesSorted.AddRange(originalGames.OrderBy(o => o.SortName));
                 gamesSorted.AddRange(games.OrderBy(o => o.SortName));
@@ -397,15 +443,21 @@ namespace com.clusterrr.hakchi_gui
                 //listViewGames.Groups.Add(lgvGroups[3]);
             }
 
+            // add games to ListView control
             foreach (var game in gamesSorted)
             {
                 var listViewItem = new ListViewItem(game.Name);
-                if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.Sorted)
+                if (ConfigIni.GroupGamesByAppType)
                 {
-                    listViewItem.Group = lgvGroups[3];
+                    listViewItem.Group = lgvAppGroups[AppTypeCollection.GetAppByExec(game.Command).Class];
                 }
                 else
-                    listViewItem.Group = game.IsOriginalGame ? lgvGroups[1] : lgvGroups[2];
+                {
+                    if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.Sorted)
+                        listViewItem.Group = lgvGroups[3];
+                    else
+                        listViewItem.Group = game.IsOriginalGame ? lgvGroups[1] : lgvGroups[2];
+                }
                 listViewItem.Tag = game;
                 listViewItem.Checked = selected.Contains(game.Code);
 
@@ -1458,20 +1510,27 @@ namespace com.clusterrr.hakchi_gui
             SyncConsoleType();
         }
 
+        public void ResetOriginalGames(bool nonDestructiveSync = false)
+        {
+            var workerForm = new WorkerForm(this);
+            workerForm.Text = Resources.ResettingOriginalGames;
+            workerForm.Task = WorkerForm.Tasks.SyncOriginalGames;
+            workerForm.nonDestructiveSync = nonDestructiveSync;
+
+            if (workerForm.Start() == DialogResult.OK)
+                if (!ConfigIni.DisablePopups)
+                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            LoadGames();
+        }
+
         private void resetOriginalGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(Resources.ResetOriginalGamesQ, Resources.Default30games, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 == DialogResult.Yes)
             {
-                var workerForm = new WorkerForm(this);
-                workerForm.Text = Resources.ResettingOriginalGames;
-                workerForm.Task = WorkerForm.Tasks.SyncOriginalGames;
-
-                if (workerForm.Start() == DialogResult.OK)
-                    if (!ConfigIni.DisablePopups)
-                        MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                LoadGames();
+                SaveSelectedGames();
+                ResetOriginalGames();
             }
         }
 
@@ -1503,13 +1562,10 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.RunCount++;
             if (ConfigIni.RunCount == 1)
             {
-                Application.UseWaitCursor = true;
                 ShowSelected();
-                Thread.Sleep(1000);
-                Application.UseWaitCursor = false;
                 if (ConfigIni.ConsoleType == ConsoleType.Unknown && DetectedConnectedConsole == null)
                 {
-                    new SelectConsoleDialog().ShowDialog();
+                    new SelectConsoleDialog(this).ShowDialog();
                     SyncConsoleType();
                     MessageBox.Show(this, Resources.FirstRun, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -1994,6 +2050,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (MessageBox.Show(this, Resources.DeleteSelectedGamesQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
             {
+                SaveSelectedGames();
                 if (GroupTaskWithSelected(WorkerForm.Tasks.DeleteGames))
                 {
                     foreach (ListViewItem item in listViewGames.SelectedItems)
@@ -2043,7 +2100,8 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.OriginalGamesPosition = OriginalGamesPosition.AtTop;
             positionAtTheTopToolStripMenuItem.Checked = true;
             positionAtTheBottomToolStripMenuItem.Checked = false;
-            positionSortedInListToolStripMenuItem.Checked = false;
+            positionSortedToolStripMenuItem.Checked = false;
+            SaveSelectedGames();
             LoadGames();
         }
 
@@ -2053,18 +2111,45 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.OriginalGamesPosition = OriginalGamesPosition.AtBottom;
             positionAtTheTopToolStripMenuItem.Checked = false;
             positionAtTheBottomToolStripMenuItem.Checked = true;
-            positionSortedInListToolStripMenuItem.Checked = false;
+            positionSortedToolStripMenuItem.Checked = false;
+            SaveSelectedGames();
             LoadGames();
         }
 
         private void positionSortedInListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (positionSortedInListToolStripMenuItem.Checked) return;
+            if (positionSortedToolStripMenuItem.Checked) return;
             ConfigIni.OriginalGamesPosition = OriginalGamesPosition.Sorted;
             positionAtTheTopToolStripMenuItem.Checked = false;
             positionAtTheBottomToolStripMenuItem.Checked = false;
-            positionSortedInListToolStripMenuItem.Checked = true;
+            positionSortedToolStripMenuItem.Checked = true;
+            SaveSelectedGames();
             LoadGames();
+        }
+
+        private void groupByAppTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.GroupGamesByAppType = groupByAppTypeToolStripMenuItem.Checked;
+            originalGamesToolStripMenuItem.Enabled = !ConfigIni.GroupGamesByAppType;
+            SaveSelectedGames();
+            LoadGames();
+        }
+
+        private void foldersManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveSelectedGames();
+            var workerForm = new WorkerForm(this);
+            workerForm.Games = new NesMenuCollection();
+
+            foreach (ListViewItem game in listViewGames.CheckedItems)
+            {
+                if (game.Tag is NesMiniApplication)
+                    workerForm.Games.Add(game.Tag as NesMiniApplication);
+            }
+
+            workerForm.FoldersMode = ConfigIni.FoldersMode;
+            workerForm.MaxGamesPerFolder = ConfigIni.MaxGamesPerFolder;
+            workerForm.FoldersManagerFromThread(workerForm.Games);
         }
     }
 }
