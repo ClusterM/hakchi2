@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CLV_BOARD_NAME=$(cat /etc/clover/boardtype)
+CLV_BOARD_NAME="$(cat "/etc/clover/boardtype")"
 MODULE="clvcon"
 [ -f "/lib/modules/$(uname -r)/extra/$MODULE.ko" ] || MODULE="clovercon"
 
@@ -21,7 +21,7 @@ start()
                         MODULE_PARAMS="1,-1,2,-1"                                
                         ;;                         
         esac                                       
-        modprobe "$MODULE" module_params=$MODULE_PARAMS 
+        modprobe "$MODULE" "module_params=$MODULE_PARAMS"
 }                                                      
                                                        
 stop()                                                 
