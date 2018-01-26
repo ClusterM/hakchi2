@@ -110,7 +110,8 @@ namespace com.clusterrr.hakchi_gui
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
         string selectedFile = null;
         public NesMiniApplication[] addedApplications;
-        public static int NandCTotal, NandCUsed, NandCFree, WrittenGamesSize, SaveStatesSize;
+        //public static int NandCTotal, NandCUsed, NandCFree, WrittenGamesSize, SaveStatesSize;
+        public static long StorageTotal, StorageUsed, StorageFree, WrittenGamesSize, SaveStatesSize;
         public static bool ExternalSaves = false;
         public static long ReservedMemory
         {
@@ -831,18 +832,18 @@ namespace com.clusterrr.hakchi_gui
         public static void GetMemoryStats()
         {
             var clovershell = MainForm.Clovershell;
-            var nandc = clovershell.ExecuteSimple("df /dev/nandc | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 500, true).Split('|');
+            var storage = clovershell.ExecuteSimple("df $(hakchi findGameSyncStorage) | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 500, true).Split('|');
             ExternalSaves = clovershell.ExecuteSimple("mount | grep /var/lib/clover").Trim().Length > 0;
-            WrittenGamesSize = int.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/hakchi/rootfs/usr/share/games/ && du -s /var/lib/hakchi/rootfs/usr/share/games/ | awk '{ print $1 }'", 1000, true)) * 1024;
-            SaveStatesSize = int.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/clover/profiles/0/ && du -s /var/lib/clover/profiles/0/ | awk '{ print $1 }'", 1000, true)) * 1024;
-            NandCTotal = int.Parse(nandc[0]) * 1024;
-            NandCUsed = int.Parse(nandc[1]) * 1024;
-            NandCFree = int.Parse(nandc[2]) * 1024;
-            Debug.WriteLine(string.Format("NANDC size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", NandCTotal / 1024.0 / 1024.0, NandCUsed / 1024.0 / 1024.0, NandCFree / 1024.0 / 1024.0));
+            WrittenGamesSize = long.Parse(clovershell.ExecuteSimple("du -s $(hakchi findGameSyncStorage) | awk '{ print $1 }'", 1000, true)) * 1024;
+            SaveStatesSize = long.Parse(clovershell.ExecuteSimple("du -s $(readlink /var/saves) | awk '{ print $1 }'", 1000, true)) * 1024;
+            StorageTotal = long.Parse(storage[0]) * 1024;
+            StorageUsed = long.Parse(storage[1]) * 1024;
+            StorageFree = long.Parse(storage[2]) * 1024;
+            Debug.WriteLine(string.Format("NANDC size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", StorageTotal / 1024.0 / 1024.0, StorageUsed / 1024.0 / 1024.0, StorageFree / 1024.0 / 1024.0));
             Debug.WriteLine(string.Format("Used by games: {0:F1}MB", WrittenGamesSize / 1024.0 / 1024.0));
             Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", SaveStatesSize / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (NandCUsed - WrittenGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Available for games: {0:F1}MB", (NandCFree + WrittenGamesSize) / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (StorageUsed - WrittenGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Available for games: {0:F1}MB", (StorageFree + WrittenGamesSize) / 1024.0 / 1024.0));
         }
 
         public static void ShowSplashScreen()
@@ -867,7 +868,7 @@ namespace com.clusterrr.hakchi_gui
             string gamesPath = NesMiniApplication.GamesCloverPath;
             const string rootFsPath = "/var/lib/hakchi/rootfs";
             const string installPath = "/var/lib/hakchi";
-            const string squashFsPath = "/var/lib/hakchi/squashfs";
+            const string squashFsPath = "/var/squashfs";
             int progress = 0;
             int maxProgress = 400;
             if (Games == null || Games.Count == 0)
@@ -936,15 +937,15 @@ namespace com.clusterrr.hakchi_gui
                 int startProgress = progress;
 
                 GetMemoryStats();
-                var maxGamesSize = (NandCFree + WrittenGamesSize) - ReservedMemory * 1024 * 1024;
+                var maxGamesSize = (StorageFree + WrittenGamesSize) - ReservedMemory * 1024 * 1024;
                 if (stats.TotalSize > maxGamesSize)
                 {
                     throw new Exception(string.Format(Resources.MemoryFull, stats.TotalSize / 1024 / 1024) + "\r\n\r\n" +
                         string.Format(Resources.MemoryStats.Replace("|", "\r\n"),
-                        NandCTotal / 1024.0 / 1024.0,
-                        (NandCFree + WrittenGamesSize - ReservedMemory * 1024 * 1024) / 1024 / 1024,
+                        StorageTotal / 1024.0 / 1024.0,
+                        (StorageFree + WrittenGamesSize - ReservedMemory * 1024 * 1024) / 1024 / 1024,
                         SaveStatesSize / 1024.0 / 1024.0,
-                        (NandCUsed - WrittenGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
+                        (StorageUsed - WrittenGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
                 }
 
                 using (var gamesTar = new TarStream(tempGamesDirectory))
@@ -1851,7 +1852,7 @@ namespace com.clusterrr.hakchi_gui
             var clovershell = MainForm.Clovershell;
             if (!clovershell.IsOnline) return;
 
-            string gamesCloverPath = "/var/lib/hakchi/squashfs" + NesMiniApplication.GamesCloverPath;
+            string gamesCloverPath = "/var/squashfs" + NesMiniApplication.GamesCloverPath;
             string cachePath = Path.Combine(Program.BaseDirectoryExternal, "image_cache");
             if (!Directory.Exists(cachePath))
                 Directory.CreateDirectory(cachePath);
