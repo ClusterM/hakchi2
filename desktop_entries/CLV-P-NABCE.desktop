@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NABCE/CLV-P-NABCE.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 67 --enable-armet 
+Exec=/bin/clover-kachikachi-wr /var/squashfs/usr/share/games/nes/kachikachi/CLV-P-NABCE/CLV-P-NABCE.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 67 --enable-armet 
 Path=/var/lib/clover/profiles/0//CLV-P-NABCE
 Name=GHOSTS'N GOBLINS™
-Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NABCE/CLV-P-NABCE.png
+Icon=/var/squashfs/usr/share/games/nes/kachikachi/CLV-P-NABCE/CLV-P-NABCE.png
 
 [X-CLOVER Game]
 Code=CLV-P-NABCE

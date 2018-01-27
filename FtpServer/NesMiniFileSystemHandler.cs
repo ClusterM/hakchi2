@@ -192,7 +192,7 @@ namespace mooftpserv
             List<FileSystemEntry> result = new List<FileSystemEntry>();
             try
             {
-                var lines = clovershell.ExecuteSimple("ls -lApe \"" + newPath + "\"", 1000, true)
+                var lines = clovershell.ExecuteSimple(String.Format("ls -lApe \"{0}\" || ls -lAp --full-time \"{0}\"", newPath), 1000, true)
                     .Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var line in lines)
                 {
@@ -203,8 +203,8 @@ namespace mooftpserv
                     entry.IsDirectory = entry.Name.EndsWith("/");
                     if (entry.IsDirectory) entry.Name = entry.Name.Substring(0, entry.Name.Length - 1);
                     entry.Size = long.Parse(line.Substring(29, 15).Trim());
-                    var dt = line.Substring(44, 25).Trim();
-                    entry.LastModifiedTimeUtc = DateTime.ParseExact(dt, "ddd MMM  d HH:mm:ss yyyy", CultureInfo.InvariantCulture, DateTimeStyles.AllowInnerWhite);
+                    var dt = line.Substring(44, 19).Trim();
+                    entry.LastModifiedTimeUtc = DateTime.ParseExact(dt, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AllowInnerWhite);
                     result.Add(entry);
                 }
             }

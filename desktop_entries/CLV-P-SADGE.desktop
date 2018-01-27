@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SADGE/CLV-P-SADGE.sfrom --volume 65 -rollback-snapshot-period 600 -output-dir /var/lib/clover/profiles/0/
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SADGE/CLV-P-SADGE.sfrom --volume 65 -rollback-snapshot-period 600 -output-dir /var/lib/clover/profiles/0/
 Path=/var/lib/clover/profiles/0//CLV-P-SADGE
 Name=Star Fox
-Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SADGE/CLV-P-SADGE.png
+Icon=/var/squashfs/usr/share/games/CLV-P-SADGE/CLV-P-SADGE.png
 
 [X-CLOVER Game]
 Code=CLV-P-SADGE

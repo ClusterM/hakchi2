@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SABDE/CLV-P-SABDE.sfrom --volume 37 -rollback-snapshot-period 600
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SABDE/CLV-P-SABDE.sfrom --volume 37 -rollback-snapshot-period 600
 Path=/var/lib/clover/profiles/0//CLV-P-SABDE
 Name=Super Ghouls'n Ghosts
-Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SABDE/CLV-P-SABDE.png
+Icon=/var/squashfs/usr/share/games/CLV-P-SABDE/CLV-P-SABDE.png
 
 [X-CLOVER Game]
 Code=CLV-P-SABDE

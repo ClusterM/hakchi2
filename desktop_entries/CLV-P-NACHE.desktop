@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NACHE/CLV-P-NACHE.nes  --guest-overscan-dimensions 12,8,9,11 --initial-fadein-durations 3,2 --volume 80
+Exec=/bin/clover-kachikachi-wr /var/squashfs/usr/share/games/nes/kachikachi/CLV-P-NACHE/CLV-P-NACHE.nes  --guest-overscan-dimensions 12,8,9,11 --initial-fadein-durations 3,2 --volume 80
 Path=/var/lib/clover/profiles/0//CLV-P-NACHE
 Name=DOUBLE DRAGON II: The Revenge
-Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NACHE/CLV-P-NACHE.png
+Icon=/var/squashfs/usr/share/games/nes/kachikachi/CLV-P-NACHE/CLV-P-NACHE.png
 
 [X-CLOVER Game]
 Code=CLV-P-NACHE

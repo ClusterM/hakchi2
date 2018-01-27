@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VADKJ/CLV-P-VADKJ.sfrom --volume 65 -rollback-snapshot-period 600
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-VADKJ/CLV-P-VADKJ.sfrom --volume 65 -rollback-snapshot-period 600
 Path=/var/lib/clover/profiles/0//CLV-P-VADKJ
 Name=スターフォックス2
-Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VADKJ/CLV-P-VADKJ.png
+Icon=/var/squashfs/usr/share/games/CLV-P-VADKJ/CLV-P-VADKJ.png
 
 [X-CLOVER Game]
 Code=CLV-P-VADKJ

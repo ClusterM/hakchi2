@@ -176,22 +176,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
-        public static string GamesCloverPath
-        {
-            get
-            {
-                switch (ConfigIni.ConsoleType)
-                {
-                    default:
-                    case MainForm.ConsoleType.NES:
-                    case MainForm.ConsoleType.Famicom:
-                        return "/usr/share/games/nes/kachikachi";
-                    case MainForm.ConsoleType.SNES:
-                    case MainForm.ConsoleType.SuperFamicom:
-                        return "/usr/share/games";
-                }
-            }
-        }
+        public static string GamesCloverPath = "/var/games";
 
         protected string code;
         public string Code

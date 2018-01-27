@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VAAHJ/CLV-P-VAAHJ.sfrom --volume 100 -rollback-snapshot-period 600
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-VAAHJ/CLV-P-VAAHJ.sfrom --volume 100 -rollback-snapshot-period 600
 Path=/var/lib/clover/profiles/0//CLV-P-VAAHJ
 Name=スーパーメトロイド
-Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VAAHJ/CLV-P-VAAHJ.png
+Icon=/var/squashfs/usr/share/games/CLV-P-VAAHJ/CLV-P-VAAHJ.png
 
 [X-CLOVER Game]
 Code=CLV-P-VAAHJ

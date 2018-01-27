@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NACDE/CLV-P-NACDE.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 85 --enable-armet 
+Exec=/bin/clover-kachikachi-wr /var/squashfs/usr/share/games/nes/kachikachi/CLV-P-NACDE/CLV-P-NACDE.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 85 --enable-armet 
 Path=/var/lib/clover/profiles/0//CLV-P-NACDE
 Name=TECMO BOWL
-Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NACDE/CLV-P-NACDE.png
+Icon=/var/squashfs/usr/share/games/nes/kachikachi/CLV-P-NACDE/CLV-P-NACDE.png
 
 [X-CLOVER Game]
 Code=CLV-P-NACDE

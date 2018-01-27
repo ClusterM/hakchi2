@@ -99,6 +99,7 @@
             this.upABStartOnSecondControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disableHakchi2PopupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripSeparator();
             this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -468,6 +469,7 @@
             this.cloverconHackToolStripMenuItem,
             this.compressGamesToolStripMenuItem,
             this.compressBoxArtToolStripMenuItem,
+            this.separateGamesForMultibootToolStripMenuItem,
             this.disableHakchi2PopupsToolStripMenuItem,
             this.toolStripMenuItem16,
             this.useExtendedFontToolStripMenuItem,
@@ -689,6 +691,15 @@
             this.compressBoxArtToolStripMenuItem.Name = "compressBoxArtToolStripMenuItem";
             resources.ApplyResources(this.compressBoxArtToolStripMenuItem, "compressBoxArtToolStripMenuItem");
             this.compressBoxArtToolStripMenuItem.Click += new System.EventHandler(this.compressBoxArtToolStripMenuItem_Click);
+            // 
+            // separateGamesForMultibootToolStripMenuItem
+            // 
+            this.separateGamesForMultibootToolStripMenuItem.Checked = true;
+            this.separateGamesForMultibootToolStripMenuItem.CheckOnClick = true;
+            this.separateGamesForMultibootToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.separateGamesForMultibootToolStripMenuItem.Name = "separateGamesForMultibootToolStripMenuItem";
+            resources.ApplyResources(this.separateGamesForMultibootToolStripMenuItem, "separateGamesForMultibootToolStripMenuItem");
+            this.separateGamesForMultibootToolStripMenuItem.Click += new System.EventHandler(this.separateGamesForMultibootToolStripMenuItem_Click);
             // 
             // disableHakchi2PopupsToolStripMenuItem
             // 
@@ -1401,6 +1412,7 @@
         private System.Windows.Forms.ToolStripMenuItem positionSortedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem groupByAppTypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foldersManagerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem separateGamesForMultibootToolStripMenuItem;
     }
 }
 

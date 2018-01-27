@@ -539,6 +539,12 @@
   <data name="compressBoxArtToolStripMenuItem.Text" xml:space="preserve">
     <value>Compress box art when adding</value>
   </data>
+  <data name="separateGamesForMultibootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="separateGamesForMultibootToolStripMenuItem.Text" xml:space="preserve">
+    <value>Separate games for multiboot</value>
+  </data>
   <data name="disableHakchi2PopupsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 22</value>
   </data>
@@ -3211,6 +3217,12 @@
     <value>compressBoxArtToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;compressBoxArtToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;separateGamesForMultibootToolStripMenuItem.Name" xml:space="preserve">
+    <value>separateGamesForMultibootToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;separateGamesForMultibootToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;disableHakchi2PopupsToolStripMenuItem.Name" xml:space="preserve">

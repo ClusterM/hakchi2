@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VABTJ/CLV-P-VABTJ.sfrom --volume 85 -rollback-snapshot-period 3600
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-VABTJ/CLV-P-VABTJ.sfrom --volume 85 -rollback-snapshot-period 3600
 Path=/var/lib/clover/profiles/0//CLV-P-VABTJ
 Name=ファイナルファンタジーVI
-Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VABTJ/CLV-P-VABTJ.png
+Icon=/var/squashfs/usr/share/games/CLV-P-VABTJ/CLV-P-VABTJ.png
 
 [X-CLOVER Game]
 Code=CLV-P-VABTJ

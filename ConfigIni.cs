@@ -55,6 +55,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool FtpServer = false;
         public static bool TelnetServer = false;
         public static string Language = "";
+        public static bool SeparateGameStorage = true;
 
         public static bool CustomFlashed
         {
@@ -581,6 +582,10 @@ namespace com.clusterrr.hakchi_gui
                                 case "telnetserver":
                                     TelnetServer = !value.ToLower().Equals("false");
                                     break;
+                                case "separategamestorage":
+                                    SeparateGameStorage = !value.ToLower().Equals("false");
+                                    break;
+                                    
                             }
                             break;
                         case "presets":
@@ -640,6 +645,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("DisablePopups={0}", DisablePopups));
             configLines.Add(string.Format("FtpServer={0}", FtpServer));
             configLines.Add(string.Format("TelnetServer={0}", TelnetServer));
+            configLines.Add(string.Format("SeparateGameStorage={0}", SeparateGameStorage));
             configLines.Add(string.Format("RunCount={0}", RunCount));
 
             configLines.Add("");

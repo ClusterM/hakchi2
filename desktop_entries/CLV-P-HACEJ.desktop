@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACEJ/CLV-P-HACEJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 72 --enable-armet 
+Exec=/bin/clover-kachikachi-wr /var/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACEJ/CLV-P-HACEJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 72 --enable-armet 
 Path=/var/lib/clover/profiles/0//CLV-P-HACEJ
 Name=つっぱり大相撲
-Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACEJ/CLV-P-HACEJ.png
+Icon=/var/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACEJ/CLV-P-HACEJ.png
 
 [X-CLOVER Game]
 Code=CLV-P-HACEJ

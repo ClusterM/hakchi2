@@ -287,7 +287,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 var clovershell = MainForm.Clovershell;
                 if (clovershell.IsOnline)
-                    clovershell.ExecuteSimple("reboot", 100);
+                    clovershell.ExecuteSimple("uistart", 100);
             }
             catch { }
         }
