@@ -140,7 +140,7 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(GameGearGame),
+                Class = typeof(Atari2600Game),
                 Extensions = new string[] {".a26"},
                 DefaultApps = new string[] {"/bin/a26"},
                 Prefix = 'T',
@@ -149,7 +149,7 @@ namespace com.clusterrr.hakchi_gui
             },
             new AppInfo
             {
-                Class = typeof(GameGearGame),
+                Class = typeof(ArcadeGame),
                 Extensions = new string[] {},
                 DefaultApps = new string[] {"/bin/fba", "/bin/mame", "/bin/cps2", "/bin/neogeo" },
                 Prefix = 'X',

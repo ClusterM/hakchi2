@@ -110,7 +110,7 @@ namespace com.clusterrr.hakchi_gui
                 positionAtTheBottomToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtBottom;
                 positionSortedToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.Sorted;
                 groupByAppTypeToolStripMenuItem.Checked = ConfigIni.GroupGamesByAppType;
-                originalGamesToolStripMenuItem.Enabled = !ConfigIni.GroupGamesByAppType;
+                //originalGamesToolStripMenuItem.Enabled = !ConfigIni.GroupGamesByAppType;
 
                 // initial context menu state
                 explorerToolStripMenuItem.Enabled =
@@ -327,41 +327,19 @@ namespace com.clusterrr.hakchi_gui
         {
             Debug.WriteLine("Loading games");
             var selected = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            Debug.WriteLine($"{selected.Length} selected.");
 
-            // add original games
-            var originalGames = new List<NesMiniApplication>();
+            // list original game directories
+            var originalGameDirs = new List<string>();
             foreach(var defaultGame in NesMiniApplication.DefaultGames)
             {
                 string gameDir = Path.Combine(NesMiniApplication.OriginalGamesDirectory, defaultGame.Code);
                 if (Directory.Exists(gameDir))
-                {
-                    try
-                    {
-                        // Removing empty directories without errors
-                        try
-                        {
-                            var game = NesMiniApplication.FromDirectory(gameDir);
-                            originalGames.Add(game);
-                        }
-                        catch (FileNotFoundException ex) // Remove bad directories if any
-                        {
-                            Debug.WriteLine(ex.Message + ex.StackTrace);
-                            Directory.Delete(gameDir, true);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine(ex.Message + ex.StackTrace);
-                        MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        continue;
-                    }
-                }
+                    originalGameDirs.Add(gameDir);
             }
 
             // add custom games
             Directory.CreateDirectory(NesMiniApplication.GamesDirectory);
-            var gameDirs = Directory.GetDirectories(NesMiniApplication.GamesDirectory);
+            var gameDirs = Program.ConcatArrays(Directory.GetDirectories(NesMiniApplication.GamesDirectory), originalGameDirs.ToArray());
             var games = new List<NesMiniApplication>();
             foreach (var gameDir in gameDirs)
             {
@@ -388,27 +366,25 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // create groups
-            if (lgvGroups == null || lgvGroups.Length < 5)
+            if (lgvGroups == null)
             {
+                // standard groups
                 lgvGroups = new ListViewGroup[5];
-                lgvGroups[0] = new ListViewGroup("New Games", HorizontalAlignment.Center);
+                lgvGroups[0] = new ListViewGroup("New Apps", HorizontalAlignment.Center);
                 lgvGroups[1] = new ListViewGroup("Original Games", HorizontalAlignment.Center);
                 lgvGroups[2] = new ListViewGroup("Custom Games", HorizontalAlignment.Center);
                 lgvGroups[3] = new ListViewGroup("All Games", HorizontalAlignment.Center);
                 lgvGroups[4] = new ListViewGroup("Unknown App", HorizontalAlignment.Center);
-            }
-            if (lgvAppGroups == null)
-            {
+
+                // order by app groups
                 var sortedApps = new SortedDictionary<string, Type>();
+                lgvAppGroups = new Dictionary<Type, ListViewGroup>();
                 foreach (var appinfo in AppTypeCollection.ApplicationTypes)
                     sortedApps[appinfo.Name] = appinfo.Class;
-
-                lgvAppGroups = new Dictionary<Type, ListViewGroup>();
                 foreach (var pair in sortedApps)
                     lgvAppGroups[pair.Value] = new ListViewGroup(pair.Key, HorizontalAlignment.Center);
-            }
-            if(lgvCustomGroups == null)
-            {
+
+                // custom generated on the fly groups
                 lgvCustomGroups = new SortedDictionary<string, ListViewGroup>();
             }
 
@@ -416,83 +392,89 @@ namespace com.clusterrr.hakchi_gui
             listViewGames.Groups.Clear();
             listViewGames.Items.Clear();
 
-            // apply games sorting and add proper groups
-            var gamesSorted = new List<NesMiniApplication>();
-            if (ConfigIni.GroupGamesByAppType)
-            {
-                games.AddRange(originalGames);
-                gamesSorted.AddRange(games.OrderBy(o => o.SortName));
-                listViewGames.Groups.Add(lgvGroups[0]);
-                foreach (var group in lgvAppGroups)
-                    listViewGames.Groups.Add(group.Value);
-                listViewGames.Groups.Add(lgvGroups[4]);
-            }
-            else if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtTop)
-            {
-                gamesSorted.AddRange(originalGames.OrderBy(o => o.SortName));
-                gamesSorted.AddRange(games.OrderBy(o => o.SortName));
-                listViewGames.Groups.Add(lgvGroups[0]);
-                listViewGames.Groups.Add(lgvGroups[1]);
-                listViewGames.Groups.Add(lgvGroups[2]);
-                listViewGames.Groups.Add(lgvGroups[4]);
-            }
-            else if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtBottom)
-            {
-                gamesSorted.AddRange(games.OrderBy(o => o.SortName));
-                gamesSorted.AddRange(originalGames.OrderBy(o => o.SortName));
-                listViewGames.Groups.Add(lgvGroups[0]);
-                listViewGames.Groups.Add(lgvGroups[2]);
-                listViewGames.Groups.Add(lgvGroups[1]);
-                listViewGames.Groups.Add(lgvGroups[4]);
-            }
-            else
-            {
-                games.AddRange(originalGames);
-                gamesSorted.AddRange(games.OrderBy(o => o.SortName));
-            }
-
             // add games to ListView control
+            Regex rgx = new Regex(@"(^/bin/.*[\s$])",RegexOptions.Compiled);
+            var gamesSorted = games.OrderBy(o => o.SortName);
             foreach (var game in gamesSorted)
             {
                 var listViewItem = new ListViewItem(game.Name);
                 listViewItem.Tag = game;
                 listViewItem.Checked = selected.Contains(game.Code);
 
-                // apply group to item
-                if (ConfigIni.GroupGamesByAppType)
+                ListViewGroup group = null;
+                if (game.IsOriginalGame)
                 {
-                    var appinfo = AppTypeCollection.GetAppByExec(game.Command);
-                    if (appinfo == null || !(appinfo is AppTypeCollection.AppInfo))
-                    {
-                        string bin = game.Command.Substring(0, game.Command.IndexOf(" "));
-                        if (!string.IsNullOrEmpty(bin))
-                        {
-                            bin = bin.ToLower();
-                            if (!lgvCustomGroups.ContainsKey(bin))
-                                lgvCustomGroups.Add(bin, new ListViewGroup(bin, HorizontalAlignment.Center));
-                            listViewItem.Group = lgvCustomGroups[bin];
-                        }
-                        else
-                            listViewItem.Group = lgvGroups[4];
-                    }
-                    else
-                        listViewItem.Group = lgvAppGroups[appinfo.Class];
-                }
-                else
-                {
-                    if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.Sorted)
-                        listViewItem.Group = lgvGroups[3];
-                    else
-                        listViewItem.Group = game.IsOriginalGame ? lgvGroups[1] : lgvGroups[2];
+                    if (ConfigIni.OriginalGamesPosition != OriginalGamesPosition.Sorted)
+                        group = lgvGroups[1];
                 }
 
+                if(group == null)
+                {
+                    if (ConfigIni.GroupGamesByAppType)
+                    {
+                        var appinfo = AppTypeCollection.GetAppByExec(game.Command);
+                        if (appinfo != null)
+                            group = lgvAppGroups[appinfo.Class];
+                        else
+                        {
+                            Match match = rgx.Match(game.Command.ToLower());
+                            if (match.Success && match.Length > 0)
+                            {
+                                string app = match.ToString();
+                                if (!lgvCustomGroups.ContainsKey(app))
+                                    lgvCustomGroups.Add(app, new ListViewGroup(app, HorizontalAlignment.Center));
+                                group = lgvCustomGroups[app];
+                            }
+                            else
+                                group = lgvGroups[4];
+                        }
+                    }
+                    else
+                    {
+                        group = game.IsOriginalGame ? lgvGroups[1] : lgvGroups[2];
+                    }
+                }
+
+                listViewItem.Group = group;
                 listViewGames.Items.Add(listViewItem);
             }
 
-            // add custom groups (only now so they're sorted)
-            foreach(var group in lgvCustomGroups)
-                listViewGames.Groups.Add(group.Value);
+            // add groups in the right order
+            if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtTop)
+            {
+                listViewGames.Groups.Add(lgvGroups[0]);
+                listViewGames.Groups.Add(lgvGroups[1]);
+                if (ConfigIni.GroupGamesByAppType)
+                {
+                    foreach (var group in lgvAppGroups) listViewGames.Groups.Add(group.Value);
+                    foreach (var group in lgvCustomGroups) listViewGames.Groups.Add(group.Value);
+                }
+                else
+                    listViewGames.Groups.Add(lgvGroups[2]);
+                listViewGames.Groups.Add(lgvGroups[4]);
+            }
+            else if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtBottom)
+            {
+                listViewGames.Groups.Add(lgvGroups[0]);
+                if (ConfigIni.GroupGamesByAppType)
+                {
+                    foreach (var group in lgvAppGroups) listViewGames.Groups.Add(group.Value);
+                    foreach (var group in lgvCustomGroups) listViewGames.Groups.Add(group.Value);
+                }
+                else
+                    listViewGames.Groups.Add(lgvGroups[2]);
+                listViewGames.Groups.Add(lgvGroups[4]);
+                listViewGames.Groups.Add(lgvGroups[1]);
+            }
+            else if (ConfigIni.GroupGamesByAppType)
+            {
+                listViewGames.Groups.Add(lgvGroups[0]);
+                foreach (var group in lgvAppGroups) listViewGames.Groups.Add(group.Value);
+                foreach (var group in lgvCustomGroups) listViewGames.Groups.Add(group.Value);
+                listViewGames.Groups.Add(lgvGroups[4]);
+            }
 
+            // done!
             listViewGames.EndUpdate();
 
             // update counters
@@ -2169,7 +2151,7 @@ namespace com.clusterrr.hakchi_gui
         private void groupByAppTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.GroupGamesByAppType = groupByAppTypeToolStripMenuItem.Checked;
-            originalGamesToolStripMenuItem.Enabled = !ConfigIni.GroupGamesByAppType;
+            //originalGamesToolStripMenuItem.Enabled = !ConfigIni.GroupGamesByAppType;
             SaveSelectedGames();
             LoadGames();
         }
