@@ -322,6 +322,7 @@ namespace com.clusterrr.hakchi_gui
 
         ListViewGroup[] lgvGroups = null;
         Dictionary<Type, ListViewGroup> lgvAppGroups = null;
+        SortedDictionary<string, ListViewGroup> lgvCustomGroups = null;
         public void LoadGames()
         {
             Debug.WriteLine("Loading games");
@@ -387,15 +388,15 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // create groups
-            if (lgvGroups == null)
+            if (lgvGroups == null || lgvGroups.Length < 5)
             {
-                lgvGroups = new ListViewGroup[4];
+                lgvGroups = new ListViewGroup[5];
                 lgvGroups[0] = new ListViewGroup("New Games", HorizontalAlignment.Center);
                 lgvGroups[1] = new ListViewGroup("Original Games", HorizontalAlignment.Center);
                 lgvGroups[2] = new ListViewGroup("Custom Games", HorizontalAlignment.Center);
                 lgvGroups[3] = new ListViewGroup("All Games", HorizontalAlignment.Center);
+                lgvGroups[4] = new ListViewGroup("Unknown App", HorizontalAlignment.Center);
             }
-
             if (lgvAppGroups == null)
             {
                 var sortedApps = new SortedDictionary<string, Type>();
@@ -406,19 +407,25 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var pair in sortedApps)
                     lgvAppGroups[pair.Value] = new ListViewGroup(pair.Key, HorizontalAlignment.Center);
             }
+            if(lgvCustomGroups == null)
+            {
+                lgvCustomGroups = new SortedDictionary<string, ListViewGroup>();
+            }
 
             listViewGames.BeginUpdate();
             listViewGames.Groups.Clear();
             listViewGames.Items.Clear();
 
-            // apply games sorting
+            // apply games sorting and add proper groups
             var gamesSorted = new List<NesMiniApplication>();
             if (ConfigIni.GroupGamesByAppType)
             {
                 games.AddRange(originalGames);
                 gamesSorted.AddRange(games.OrderBy(o => o.SortName));
+                listViewGames.Groups.Add(lgvGroups[0]);
                 foreach (var group in lgvAppGroups)
                     listViewGames.Groups.Add(group.Value);
+                listViewGames.Groups.Add(lgvGroups[4]);
             }
             else if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtTop)
             {
@@ -427,6 +434,7 @@ namespace com.clusterrr.hakchi_gui
                 listViewGames.Groups.Add(lgvGroups[0]);
                 listViewGames.Groups.Add(lgvGroups[1]);
                 listViewGames.Groups.Add(lgvGroups[2]);
+                listViewGames.Groups.Add(lgvGroups[4]);
             }
             else if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtBottom)
             {
@@ -435,22 +443,40 @@ namespace com.clusterrr.hakchi_gui
                 listViewGames.Groups.Add(lgvGroups[0]);
                 listViewGames.Groups.Add(lgvGroups[2]);
                 listViewGames.Groups.Add(lgvGroups[1]);
+                listViewGames.Groups.Add(lgvGroups[4]);
             }
             else
             {
                 games.AddRange(originalGames);
                 gamesSorted.AddRange(games.OrderBy(o => o.SortName));
-                //listViewGames.Groups.Add(lgvGroups[0]);
-                //listViewGames.Groups.Add(lgvGroups[3]);
             }
 
             // add games to ListView control
             foreach (var game in gamesSorted)
             {
                 var listViewItem = new ListViewItem(game.Name);
+                listViewItem.Tag = game;
+                listViewItem.Checked = selected.Contains(game.Code);
+
+                // apply group to item
                 if (ConfigIni.GroupGamesByAppType)
                 {
-                    listViewItem.Group = lgvAppGroups[AppTypeCollection.GetAppByExec(game.Command).Class];
+                    var appinfo = AppTypeCollection.GetAppByExec(game.Command);
+                    if (appinfo == null || !(appinfo is AppTypeCollection.AppInfo))
+                    {
+                        string bin = game.Command.Substring(0, game.Command.IndexOf(" "));
+                        if (!string.IsNullOrEmpty(bin))
+                        {
+                            bin = bin.ToLower();
+                            if (!lgvCustomGroups.ContainsKey(bin))
+                                lgvCustomGroups.Add(bin, new ListViewGroup(bin, HorizontalAlignment.Center));
+                            listViewItem.Group = lgvCustomGroups[bin];
+                        }
+                        else
+                            listViewItem.Group = lgvGroups[4];
+                    }
+                    else
+                        listViewItem.Group = lgvAppGroups[appinfo.Class];
                 }
                 else
                 {
@@ -459,13 +485,17 @@ namespace com.clusterrr.hakchi_gui
                     else
                         listViewItem.Group = game.IsOriginalGame ? lgvGroups[1] : lgvGroups[2];
                 }
-                listViewItem.Tag = game;
-                listViewItem.Checked = selected.Contains(game.Code);
 
                 listViewGames.Items.Add(listViewItem);
             }
+
+            // add custom groups (only now so they're sorted)
+            foreach(var group in lgvCustomGroups)
+                listViewGames.Groups.Add(group.Value);
+
             listViewGames.EndUpdate();
 
+            // update counters
             RecalculateSelectedGames();
             ShowSelected();
         }
@@ -606,6 +636,9 @@ namespace com.clusterrr.hakchi_gui
                         ConfigIni.Language = langCodes[language];
                         SaveConfig();
                         lastConsoleType = ConsoleType.Unknown;
+                        lgvGroups = null;
+                        lgvAppGroups = null;
+                        lgvCustomGroups = null;
                         Thread.CurrentThread.CurrentUICulture = new CultureInfo(langCodes[language]);
                         this.Controls.Clear();
                         this.InitializeComponent();
