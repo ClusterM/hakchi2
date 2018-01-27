@@ -47,23 +47,25 @@ pack_install(){
     local transferpath="$1"
   fi
   transfer_path "$transferpath"
-  echo "creating uninstall for $(basename "$1" .hmod)..."
-  echo >> "$transferpath/uninstall"
-  echo "# auto-generated" >> "$transferpath/uninstall"
-  cd "$transferpath"
-  find . -type l -exec echo rm -f \"\$rootfs/{}\" + >> "$transferpath/uninstall"
-  find . -type f -exec echo rm -f \"\$rootfs/{}\" + >> "$transferpath/uninstall"
-  find . -depth -mindepth 1 -type d -exec echo rmdir \"\$rootfs/{}\" + >> "$transferpath/uninstall"
-  [ $(stat -c%s "$transferpath/uninstall") -gt 8 ] || rm -f "$transferpath/uninstall"
-  cd /
-  local unfile="$(pack_upath "$1")"
-  if [ -f "$transferpath/uninstall" ]; then
-    dos2unix -u "$transferpath/uninstall"
-    sed -i "s#rmdir #rmdir --ignore-fail-on-non-empty #" "$transferpath/uninstall"
-    mkdir -p "$installpath/hmod"
-    copy "$transferpath/uninstall" "$unfile"
-  else
-    rm -f "$unfile"
+  if ! grep -xqF "no-uninstall" "$transferpath/uninstall"; then
+    echo "creating uninstall for $(basename "$1" .hmod)..."
+    echo >> "$transferpath/uninstall"
+    echo "# auto-generated" >> "$transferpath/uninstall"
+    cd "$transferpath"
+    find . -type l -exec echo rm -f \"\$rootfs/{}\" + >> "$transferpath/uninstall"
+    find . -type f -exec echo rm -f \"\$rootfs/{}\" + >> "$transferpath/uninstall"
+    find . -depth -mindepth 1 -type d -exec echo rmdir \"\$rootfs/{}\" + >> "$transferpath/uninstall"
+    [ $(stat -c%s "$transferpath/uninstall") -gt 8 ] || rm -f "$transferpath/uninstall"
+    cd /
+    local unfile="$(pack_upath "$1")"
+    if [ -f "$transferpath/uninstall" ]; then
+      dos2unix -u "$transferpath/uninstall"
+      sed -i "s#rmdir #rmdir --ignore-fail-on-non-empty #" "$transferpath/uninstall"
+      mkdir -p "$installpath/hmod"
+      copy "$transferpath/uninstall" "$unfile"
+    else
+      rm -f "$unfile"
+    fi
   fi
   echo "package $(basename "$1" .hmod) installed"
 }

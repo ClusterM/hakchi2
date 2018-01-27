@@ -192,6 +192,8 @@ restore(){
 mount_bind(){
   if mountpoint -q "$2"; then
     umount "$2" || umount -f "$2"
+  else
+    umount "$2" 2>/dev/null
   fi
   mount -o bind "$1" "$2"
 }
@@ -279,7 +281,7 @@ findGameStorage(){
   checkGamepath "$mountpoint/media/hakchi/games/$sftype-$sfregion" && return 0
   checkGamepath "$mountpoint/media/hakchi/games/$sftype" && return 0
   checkGamepath "$mountpoint/media/hakchi/games" && return 0
-  
+
   checkGamepath "$installpath/games/$sftype-$sfregion" && return 0
   checkGamepath "$installpath/games/$sftype" && return 0
   checkGamepath "$installpath/games" && return 0
@@ -293,7 +295,10 @@ overmount_games(){
   local menu_code="$1"
   [ -z "$1" ] && menu_code="000"
   [ -z "$1" ] && [ -f "$state_file" ] && menu_code="$(cat "$state_file")"
-  containsGames "$gameStorage/$menu_code" || menu_code=""
+  if ! containsGames "$gameStorage/$menu_code"; then
+    menu_code="000"
+    containsGames "$gameStorage/$menu_code" || menu_code=""
+  fi
   echo "menu code: $menu_code"
   if containsGames "$gameStorage/$menu_code"; then
     mount_bind "$gameStorage/$menu_code" "$mountpoint/$gamepath" && \
@@ -387,32 +392,42 @@ hwmon(){
 usedBlockSpace(){
   local path="$1"
   [ -e "$path" ] || path="$rootfs"
-  local line="$(df --sync -l -B 1 "$path" | tail -n1)"
+  local line="$(df -k "$path" | tail -n1)"
   local used="$(echo "$line" | awk '{print $3}')"
   local available="$(echo "$line" | awk '{print $4}')"
   local total="$(($used+$available))"
   echo "$used $total"
 }
 
+freeBlockSpace(){
+  local path="$1"
+  [ -e "$path" ] || path="$rootfs"
+  df -k "$path" | tail -n1 | awk '{print $4}'
+}
+
 usedSpace(){
 # Warning: SLOW
   local path="$1"
   [ -e "$path" ] || path="$rootfs"
-  du -bsx "$path" | awk '{print $1}'
+  du -ksx "$path" | awk '{print $1}'
 }
 
-usedByGames(){
-  usedSpace "$(findGameSyncStorage)"
-}
-
-usedBySaves(){
-  usedSpace "$profilepath"
-}
-
-usedByMods(){
-  usedSpace "$rootfs"
-}
-
-usedByFirmware(){
-  usedSpace "$firmwarepath"
+usedBy(){
+  case "$1" in
+    games)
+      usedSpace "$(findGameSyncStorage)"
+      ;;
+    saves)
+      usedSpace "$profilepath"
+      ;;
+    mods)
+      usedSpace "$rootfs"
+      ;;
+    firmware)
+      usedSpace "$firmwarepath"
+      ;;
+    *)
+      echo "Usage: usedBy {games|saves|mods|firmware}"
+      return 1
+  esac
 }
