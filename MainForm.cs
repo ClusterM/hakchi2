@@ -972,9 +972,14 @@ namespace com.clusterrr.hakchi_gui
                 {
                     toolStripStatusLabelSize.Text = string.Format("{0:F1}MB / ???MB", stats.Size / 1024.0 / 1024.0);
                 }
+                double usagePercentage = ((double)stats.Size / (double)maxGamesSize);
+                if (usagePercentage > 1.0)
+                {
+                    usagePercentage = 1.0;
+                }
                 toolStripStatusLabelSelected.Text = stats.Count + " " + Resources.GamesSelected;
-                toolStripProgressBar.Maximum = (int)maxGamesSize;
-                toolStripProgressBar.Value = Math.Min((int)stats.Size, toolStripProgressBar.Maximum);
+                toolStripProgressBar.Maximum = int.MaxValue;
+                toolStripProgressBar.Value = Convert.ToInt32(usagePercentage * int.MaxValue);
                 toolStripStatusLabelSize.ForeColor =
                     (toolStripProgressBar.Value < toolStripProgressBar.Maximum) ?
                     SystemColors.ControlText :
