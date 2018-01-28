@@ -608,7 +608,7 @@ namespace com.clusterrr.hakchi_gui
             // reference original icon path if no image exists for original game
             cloverIconPath = $"{GamesCloverPath}/{Code}/{Code}.png";
             if (IsOriginalGame && !File.Exists(IconPath))
-                cloverIconPath = "/var/lib/hakchi/squashfs" + cloverIconPath;
+                cloverIconPath = "/var/squashfs" + cloverIconPath;
 
             // these 2 lines are only present in snes/super famicom original games
             var statusLine = "";
