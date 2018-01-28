@@ -25,7 +25,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool? Need3rdPartyEmulator;
         public static bool? NeedAutoDownloadCover;
 
-        static NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
+        public static NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
             new NesDefaultGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros.", Size = 25000 },
             new NesDefaultGame { Code = "CLV-P-NAACE",  Name = "Super Mario Bros. 3", Size = 25000 },
             new NesDefaultGame { Code = "CLV-P-NAADE",  Name = "Super Mario Bros. 2",Size = 25000 },
@@ -57,7 +57,7 @@ namespace com.clusterrr.hakchi_gui
             new NesDefaultGame { Code = "CLV-P-NACDE",  Name = "TECMO BOWL", Size =25000 },
             new NesDefaultGame { Code = "CLV-P-NACHE",  Name = "DOUBLE DRAGON II: The Revenge", Size = 25000 }
         };
-        static NesDefaultGame[] defaultFamicomGames = new NesDefaultGame[] {
+        public static NesDefaultGame[] defaultFamicomGames = new NesDefaultGame[] {
             new NesDefaultGame { Code = "CLV-P-HAAAJ",  Name = "スーパーマリオブラザーズ", Size = 25000 },
             new NesDefaultGame { Code = "CLV-P-HAACJ",  Name = "スーパーマリオブラザーズ３", Size = 25000 },
             new NesDefaultGame { Code = "CLV-P-HAADJ",  Name = "スーパーマリオＵＳＡ", Size = 25000 },
@@ -89,7 +89,7 @@ namespace com.clusterrr.hakchi_gui
             new NesDefaultGame { Code = "CLV-P-HACLJ",  Name = "ダウンタウン熱血行進曲 それゆけ大運動会", Size = 25000 },
             new NesDefaultGame { Code = "CLV-P-HACPJ",  Name = "アトランチスの謎", Size = 25000 }
         };
-        static NesDefaultGame[] defaultSnesGames = new NesDefaultGame[] {
+        public static NesDefaultGame[] defaultSnesGames = new NesDefaultGame[] {
             new NesDefaultGame { Code = "CLV-P-SAAAE",  Name = "Super Mario World", Size = 25000 },
             new NesDefaultGame { Code = "CLV-P-SAABE",  Name = "F-ZERO", Size = 25000 },
             new NesDefaultGame { Code = "CLV-P-SAAEE",  Name = "The Legend of Zelda: A Link to the Past", Size = 25000 },
@@ -112,7 +112,7 @@ namespace com.clusterrr.hakchi_gui
             new NesDefaultGame { Code = "CLV-P-SADJE",  Name = "Yoshi's Island", Size = 25000 },
             new NesDefaultGame { Code = "CLV-P-SADKE",  Name = "Star Fox 2", Size = 25000 }
         };
-        static NesDefaultGame[] defaultSuperFamicomGames = new NesDefaultGame[]
+        public static NesDefaultGame[] defaultSuperFamicomGames = new NesDefaultGame[]
         {
             new NesDefaultGame { Code = "CLV-P-VAAAJ",  Name = "スーパーマリオワールド", Size = 25000 },
             new NesDefaultGame { Code = "CLV-P-VAABJ",  Name = "F-ZERO", Size = 25000 },

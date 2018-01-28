@@ -72,7 +72,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (!checkBox1.Checked)
             {
-                parent.ResetOriginalGames(true);
+                parent.ResetOriginalGamesForAllSystems();
             }
         }
     }

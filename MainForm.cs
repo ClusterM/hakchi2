@@ -1531,7 +1531,7 @@ namespace com.clusterrr.hakchi_gui
             SyncConsoleType();
         }
 
-        public void ResetOriginalGames(bool nonDestructiveSync = false)
+        public void ResetOriginalGamesForCurrentSystem(bool nonDestructiveSync = false)
         {
             var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.ResettingOriginalGames;
@@ -1545,13 +1545,46 @@ namespace com.clusterrr.hakchi_gui
             LoadGames();
         }
 
+        public void ResetOriginalGamesForAllSystems()
+        {
+            var workerForm = new WorkerForm(this);
+            workerForm.Text = Resources.ResettingOriginalGames;
+            workerForm.Task = WorkerForm.Tasks.SyncOriginalGames;
+            workerForm.nonDestructiveSync = true;
+            workerForm.restoreAllOriginalGames = true;
+
+            if (workerForm.Start() == DialogResult.OK)
+                if (!ConfigIni.DisablePopups)
+                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            LoadGames();
+
+            // also save the selected games for each system
+            AddDefaultsToSelectedGames(NesMiniApplication.defaultNesGames, ref ConfigIni.SelectedGamesNes);
+            AddDefaultsToSelectedGames(NesMiniApplication.defaultFamicomGames, ref ConfigIni.SelectedGamesFamicom);
+            AddDefaultsToSelectedGames(NesMiniApplication.defaultSnesGames, ref ConfigIni.SelectedGamesSnes);
+            AddDefaultsToSelectedGames(NesMiniApplication.defaultSuperFamicomGames, ref ConfigIni.SelectedGamesSuperFamicom);
+        }
+
+        private void AddDefaultsToSelectedGames(NesDefaultGame[] games, ref string selectedGames)
+        {
+            var selected = new List<string>(selectedGames.Split(new char[] { ';' }));
+
+            foreach (NesDefaultGame game in games)
+            {
+                selected.Add(game.Code);
+            }
+
+            selectedGames = string.Join(";", selected.Distinct().ToArray());
+        }
+
         private void resetOriginalGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(Resources.ResetOriginalGamesQ, Resources.Default30games, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 == DialogResult.Yes)
             {
                 SaveSelectedGames();
-                ResetOriginalGames();
+                ResetOriginalGamesForCurrentSystem();
             }
         }
 

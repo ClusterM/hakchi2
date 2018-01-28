@@ -69,6 +69,7 @@ namespace com.clusterrr.hakchi_gui
         public bool exportGames = false;
         public bool linkRelativeGames = false;
         public bool nonDestructiveSync = false;
+        public bool restoreAllOriginalGames = false;
         public Dictionary<string, string> Config = null;
         public NesMenuCollection Games;
         public IEnumerable<string> hmodsInstall;
@@ -1911,6 +1912,8 @@ namespace com.clusterrr.hakchi_gui
             SetStatus(string.Format(Resources.ResettingOriginalGames));
 
             SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+            var defaultGames = this.restoreAllOriginalGames ? NesMiniApplication.AllDefaultGames : NesMiniApplication.DefaultGames;
+
             using (var szExtractor = new SevenZipExtractor(desktopEntriesArchiveFile))
             {
 
@@ -1918,7 +1921,8 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var f in szExtractor.ArchiveFileNames)
                 {
                     var code = Path.GetFileNameWithoutExtension(f);
-                    var query = NesMiniApplication.DefaultGames.Where(g => g.Code == code);
+                    var query = defaultGames.Where(g => g.Code == code);
+
                     if (query.Count() != 1)
                         continue;
 
@@ -1954,7 +1958,7 @@ namespace com.clusterrr.hakchi_gui
                         game.Save();
                     }
 
-                    SetProgress(++i, NesMiniApplication.DefaultGames.Length);
+                    SetProgress(++i, defaultGames.Length);
                 }
 
                 // save new selected games
