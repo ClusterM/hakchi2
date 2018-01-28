@@ -55,6 +55,10 @@ namespace com.clusterrr.hakchi_gui
         public static bool FtpServer = false;
         public static bool TelnetServer = false;
         public static string Language = "";
+        public static string FtpCommand = "ftp://{0}:{1}@{2}:{3}";
+        public static string FtpArguments = "";
+        public static string TelnetCommand = "telnet://{0}:{1}";
+        public static string TelnetArguments = "";
         public static bool SeparateGameStorage = true;
 
         public static bool CustomFlashed
@@ -579,8 +583,20 @@ namespace com.clusterrr.hakchi_gui
                                 case "ftpserver":
                                     FtpServer = !value.ToLower().Equals("false");
                                     break;
+                                case "ftpcommand":
+                                    FtpCommand = value;
+                                    break;
+                                case "ftparguments":
+                                    FtpArguments = value;
+                                    break;
                                 case "telnetserver":
                                     TelnetServer = !value.ToLower().Equals("false");
+                                    break;
+                                case "telnetcommand":
+                                    TelnetCommand = value;
+                                    break;
+                                case "telnetarguments":
+                                    TelnetArguments = value;
                                     break;
                                 case "separategamestorage":
                                     SeparateGameStorage = !value.ToLower().Equals("false");
@@ -644,7 +660,11 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("CompressCover={0}", CompressCover));
             configLines.Add(string.Format("DisablePopups={0}", DisablePopups));
             configLines.Add(string.Format("FtpServer={0}", FtpServer));
+            configLines.Add(string.Format("FtpCommand={0}", FtpCommand));
+            configLines.Add(string.Format("FtpArguments={0}", FtpArguments));
             configLines.Add(string.Format("TelnetServer={0}", TelnetServer));
+            configLines.Add(string.Format("TelnetCommand={0}", TelnetCommand));
+            configLines.Add(string.Format("TelnetArguments={0}", TelnetArguments));
             configLines.Add(string.Format("SeparateGameStorage={0}", SeparateGameStorage));
             configLines.Add(string.Format("RunCount={0}", RunCount));
 

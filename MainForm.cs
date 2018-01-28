@@ -1862,7 +1862,9 @@ namespace com.clusterrr.hakchi_gui
                 {
                     StartInfo = new ProcessStartInfo()
                     {
-                        FileName = "ftp://root:clover@127.0.0.1:1021/",
+                        FileName = String.Format(ConfigIni.FtpCommand, "root", "clover", "127.0.0.1", "1021"),
+                        Arguments = String.Format(ConfigIni.FtpArguments, "root", "clover", "127.0.0.1", "1021"),
+                        
                     }
                 }.Start();
             }
@@ -1881,7 +1883,8 @@ namespace com.clusterrr.hakchi_gui
                 {
                     StartInfo = new ProcessStartInfo()
                     {
-                        FileName = "telnet://127.0.0.1:1023",
+                        FileName = String.Format(ConfigIni.TelnetCommand, "127.0.0.1", "1023"),
+                        Arguments = String.Format(ConfigIni.TelnetArguments, "127.0.0.1", "1023"),
                     }
                 }.Start();
             }
