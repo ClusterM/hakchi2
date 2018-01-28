@@ -512,7 +512,7 @@ namespace com.clusterrr.hakchi_gui
                 var app = selected as NesMiniApplication;
                 groupBoxOptions.Visible = true;
                 labelID.Text = "ID: " + app.Code;
-                labelSize.Text = Resources.Size + " " + (app.Size() / 1024) + "KB";
+                labelSize.Text = $"{Resources.Size} {Shared.SizeSuffix(app.Size())}";
                 textBoxName.Text = app.Name;
                 if (app.Simultaneous && app.Players == 2)
                     radioButtonTwoSim.Checked = true;
@@ -966,11 +966,11 @@ namespace com.clusterrr.hakchi_gui
                 if (WorkerForm.StorageTotal > 0)
                 {
                     maxGamesSize = (WorkerForm.StorageFree + WorkerForm.WrittenGamesSize) - WorkerForm.ReservedMemory * 1024 * 1024;
-                    toolStripStatusLabelSize.Text = string.Format("{0:F1}MB / {1:F1}MB", stats.Size / 1024.0 / 1024.0, maxGamesSize / 1024.0 / 1024.0);
+                    toolStripStatusLabelSize.Text = string.Format("{0} / {1}", Shared.SizeSuffix(stats.Size), Shared.SizeSuffix(maxGamesSize));
                 }
                 else
                 {
-                    toolStripStatusLabelSize.Text = string.Format("{0:F1}MB / ???MB", stats.Size / 1024.0 / 1024.0);
+                    toolStripStatusLabelSize.Text = string.Format("{0} / ???MB", Shared.SizeSuffix(stats.Size));
                 }
                 double usagePercentage = ((double)stats.Size / (double)maxGamesSize);
                 if (usagePercentage > 1.0)
