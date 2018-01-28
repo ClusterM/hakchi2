@@ -1176,6 +1176,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        public static readonly string[] nonCompressibleExtensions = { ".7z", ".zip", ".hsqs", ".sh" };
         public string[] CompressPossible()
         {
             if (!Directory.Exists(GamePath)) return new string[0];
@@ -1184,9 +1185,7 @@ namespace com.clusterrr.hakchi_gui
             var files = Directory.GetFiles(GamePath, "*.*", SearchOption.TopDirectoryOnly);
             foreach (var file in files)
             {
-                if (Path.GetExtension(file).ToLower() == ".7z")
-                    continue;
-                if (Path.GetExtension(file).ToLower() == ".zip")
+                if (nonCompressibleExtensions.Contains(Path.GetExtension(file).ToLower()))
                     continue;
                 if (exec.Contains(" " + Path.GetFileName(file) + " "))
                     result.Add(file);
