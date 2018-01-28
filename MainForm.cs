@@ -1,6 +1,7 @@
 ﻿using com.clusterrr.clovershell;
 using com.clusterrr.Famicom;
 using com.clusterrr.hakchi_gui.Properties;
+using AutoUpdaterDotNET;
 using SevenZip;
 using System;
 using System.Collections;
@@ -21,6 +22,11 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// The URL for the update metadata XML file
+        /// </summary>
+        private static string UPDATE_XML_URL = "https://teamshinkansen.github.io/xml/updates/update.xml";
+
         public enum OriginalGamesPosition { AtTop = 0, AtBottom = 1, Sorted = 2 }
         public enum ConsoleType { NES = 0, Famicom = 1, SNES = 2, SuperFamicom = 3, Unknown = 255 }
         public long DefaultMaxGamesSize
@@ -92,7 +98,7 @@ namespace com.clusterrr.hakchi_gui
                 LoadPresets();
                 LoadLanguages();
                 var version = Assembly.GetExecutingAssembly().GetName().Version;
-                Text = string.Format("hakchi2 v2.21f (princess_daphie build: {0})", DateTime.Now.ToString("yyyyMMdd.HH"))
+                Text = "hakchi2 CE v1.0.0"
 #if DEBUG
  + " (debug"
 #if VERY_DEBUG
@@ -1624,12 +1630,10 @@ namespace com.clusterrr.hakchi_gui
                     MessageBox.Show(this, Resources.FirstRun, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            if (ConfigIni.RunCount == 10 && !string.IsNullOrEmpty(Resources.Donate.Trim()))
-            {
-                MessageBox.Show(this, Resources.Donate, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
 
+            // check for an update after the initial console selection / on each app start
+            AutoUpdater.Start(UPDATE_XML_URL);
+        }
 
         private void dragEnter(object sender, DragEventArgs e)
         {

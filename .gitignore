@@ -7,3 +7,5 @@ obj/
 *.pfx
 Properties/Resources*.cs
 commit.txt
+packages/**/*
+!packages/repositories.config
