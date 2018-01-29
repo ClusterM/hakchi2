@@ -1103,7 +1103,7 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress);
 
             SetStatus(Resources.UploadingOriginalGames);
-            string gameCache = Path.Combine(Program.BaseDirectoryExternal, "game_cache");
+            string gameCache = Path.Combine(Program.BaseDirectoryExternal, "games_cache");
             foreach (var originalCode in originalGames.Keys)
             {
                 string tempGamePath = Path.Combine(tempGamesDirectory, $"{originalGames[originalCode]}/{originalCode}");
@@ -1857,7 +1857,7 @@ namespace com.clusterrr.hakchi_gui
             if (!clovershell.IsOnline) return;
 
             string gamesCloverPath = clovershell.ExecuteSimple("hakchi eval 'echo \"$squashfs$gamepath\"'", 1500, true);
-            string cachePath = Path.Combine(Program.BaseDirectoryExternal, "game_cache");
+            string cachePath = Path.Combine(Program.BaseDirectoryExternal, "games_cache");
 
             try
             {
