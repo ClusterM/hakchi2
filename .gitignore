@@ -5,7 +5,6 @@ obj/
 .vs/
 *.csproj.user
 *.pfx
-Properties/Resources*.cs
 commit.txt
 packages/**/*
 !packages/repositories.config
