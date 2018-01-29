@@ -1176,7 +1176,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static readonly string[] nonCompressibleExtensions = { ".7z", ".zip", ".hsqs", ".sh" };
+        public static readonly string[] nonCompressibleExtensions = { ".7z", ".zip", ".hsqs", ".sh", ".pbp", ".chd" };
         public string[] CompressPossible()
         {
             if (!Directory.Exists(GamePath)) return new string[0];
