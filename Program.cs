@@ -249,59 +249,7 @@ namespace com.clusterrr.hakchi_gui
             }
             return result;
         }
-
-        // TODO: needs work to show a dialog when directory can't be deleted
-        public static void PersistentDeleteDirectory(string dir, bool excludeSelf = false, uint retries = 10, bool recursing = false) // recurse is internal parameter
-        {
-            if (!Directory.Exists(dir))
-                return;
-
-            string[] files = Directory.GetFiles(dir);
-            foreach (string file in files)
-            {
-                File.SetAttributes(file, FileAttributes.Normal);
-                File.Delete(file);
-            }
-
-            string[] dirs = Directory.GetDirectories(dir);
-            foreach (string d in dirs)
-                PersistentDeleteDirectory(d, false, retries, true);
-
-            if (!excludeSelf)
-            {
-                bool deleted = false;
-                uint r = retries;
-                while (r > 0)
-                {
-                    try
-                    {
-                        Directory.Delete(dir, false);
-                        deleted = true;
-                        break;
-                    }
-                    catch
-                    {
-                        Thread.Sleep(0);
-                        --r;
-                    }
-                }
-                if (!deleted)
-                    throw new IOException($"Could not delete directory \"{dir}\".");
-
-                if (!recursing)
-                {
-                    while (retries > 0)
-                    {
-                        if (!Directory.Exists(dir)) // success
-                            return;
-                        Thread.Sleep(0);
-                        --retries;
-                    }
-                    throw new IOException($"Could not confirm directory \"{dir}\" was deleted.");
-                }
-            }
-        }
-
+        
         // workaround to prevent flickering with ListView controls
         public static void DoubleBuffered(this Control control, bool enable)
         {

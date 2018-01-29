@@ -879,9 +879,11 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 if (Directory.Exists(tempDirectory))
-                    Program.PersistentDeleteDirectory(tempDirectory);
+                    Directory.Delete(tempDirectory, true);
                 Directory.CreateDirectory(tempDirectory);
+                new DirectoryInfo(tempDirectory).Refresh();
                 Directory.CreateDirectory(tempGamesDirectory);
+                new DirectoryInfo(tempGamesDirectory).Refresh();
             }
             catch (Exception ex)
             {
@@ -1078,7 +1080,7 @@ namespace com.clusterrr.hakchi_gui
             bool directoryNotEmpty = (Directory.GetDirectories(tempGamesDirectory).Length > 0);
             if (directoryNotEmpty && MessageBox.Show(string.Format(Resources.PermanentlyDeleteQ, tempGamesDirectory), Resources.FolderNotEmpty, MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                Program.PersistentDeleteDirectory(tempGamesDirectory, true);
+                Directory.Delete(tempGamesDirectory, true);
                 directoryNotEmpty = false;
             }
             if (directoryNotEmpty)
@@ -1087,11 +1089,11 @@ namespace com.clusterrr.hakchi_gui
                 DialogResult = DialogResult.Abort;
                 return;
             }
-            if (Directory.GetDirectories(tempGamesDirectory).Length > 0)
-            {
-                throw new Exception(Resources.FolderNotEmpty);
-            }
-            Directory.CreateDirectory(tempGamesDirectory);
+            if (!Directory.Exists(tempGamesDirectory))
+                Directory.CreateDirectory(tempGamesDirectory);
+            
+            new DirectoryInfo(tempGamesDirectory).Refresh();
+
             progress += 5;
             SetProgress(progress, maxProgress);
 
@@ -1956,12 +1958,13 @@ namespace com.clusterrr.hakchi_gui
 
                     if (exists && !nonDestructiveSync)
                     {
-                        Program.PersistentDeleteDirectory(path);
+                        Directory.Delete(path, true);
                     }
 
                     if (!exists || !nonDestructiveSync)
                     {
                         Directory.CreateDirectory(path);
+                        new DirectoryInfo(path).Refresh();
 
                         // extract .desktop file from archive
                         using (var o = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
