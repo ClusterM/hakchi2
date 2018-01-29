@@ -1885,7 +1885,8 @@ namespace com.clusterrr.hakchi_gui
                             Directory.CreateDirectory(gamePath);
                             using (var save = new MemoryStream())
                             {
-                                clovershell.Execute($"cd {gamesCloverPath}/{game.Code} && tar -cz *", null, save, null, 10000, true);
+                                string cmd = $"cd {gamesCloverPath}/{game.Code} && tar -cz *.desktop *.png autoplay/" + ((ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom) ? "pixelart/" : "");
+                                clovershell.Execute(cmd, null, save, null, 10000, true);
                                 save.Seek(0, SeekOrigin.Begin);
                                 using (var szExtractor = new SevenZipExtractor(save))
                                 {
@@ -1897,10 +1898,12 @@ namespace com.clusterrr.hakchi_gui
                                 }
                             }
                         }
-                        catch
+                        catch (Exception ex)
                         {
+                            Debug.WriteLine(ex.Message + ex.StackTrace);
                             if (Directory.Exists(gamePath))
                             {
+                                Debug.WriteLine($"Exception, erasing \"{gamePath}\".");
                                 Directory.Delete(gamePath, true);
                             }
                         }
