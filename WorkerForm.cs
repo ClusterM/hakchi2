@@ -879,11 +879,11 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 if (Directory.Exists(tempDirectory))
+                {
                     Directory.Delete(tempDirectory, true);
+                }
                 Directory.CreateDirectory(tempDirectory);
-                new DirectoryInfo(tempDirectory).Refresh();
                 Directory.CreateDirectory(tempGamesDirectory);
-                new DirectoryInfo(tempGamesDirectory).Refresh();
             }
             catch (Exception ex)
             {
@@ -1091,8 +1091,6 @@ namespace com.clusterrr.hakchi_gui
             }
             if (!Directory.Exists(tempGamesDirectory))
                 Directory.CreateDirectory(tempGamesDirectory);
-            
-            new DirectoryInfo(tempGamesDirectory).Refresh();
 
             progress += 5;
             SetProgress(progress, maxProgress);
@@ -1899,11 +1897,11 @@ namespace com.clusterrr.hakchi_gui
                                 }
                             }
                         }
-                        catch (Exception ex)
+                        catch
                         {
                             if (Directory.Exists(gamePath))
                             {
-                                Directory.Delete(gamePath);
+                                Directory.Delete(gamePath, true);
                             }
                         }
                     }

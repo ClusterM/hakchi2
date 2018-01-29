@@ -359,6 +359,7 @@ namespace com.clusterrr.hakchi_gui
 
         public static NesMiniApplication FromDirectory(string path, bool ignoreEmptyConfig = false)
         {
+            (new DirectoryInfo(path)).Refresh();
             var files = Directory.GetFiles(path, "*.desktop", SearchOption.TopDirectoryOnly);
             if (files.Length == 0)
                 throw new FileNotFoundException($"Invalid app folder: \"{path}\".");
