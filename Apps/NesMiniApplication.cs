@@ -808,7 +808,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (IsOriginalGame)
                     {
-                        string cachedIconPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "image_cache"), Code + ".png");
+                        string cachedIconPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "game_cache"), Path.Combine(Code, Code + ".png"));
                         if (File.Exists(cachedIconPath))
                             return LoadBitmap(cachedIconPath);
                         else
@@ -829,7 +829,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (IsOriginalGame)
                     {
-                        string cachedIconPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "image_cache"), Code + "_small.png");
+                        string cachedIconPath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "game_cache"), Path.Combine(Code, Code + "_small.png"));
                         if (File.Exists(cachedIconPath))
                             return LoadBitmap(cachedIconPath);
                     }

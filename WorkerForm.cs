@@ -1103,13 +1103,29 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress);
 
             SetStatus(Resources.UploadingOriginalGames);
+            string gameCache = Path.Combine(Program.BaseDirectoryExternal, "game_cache");
             foreach (var originalCode in originalGames.Keys)
             {
                 string tempGamePath = Path.Combine(tempGamesDirectory, $"{originalGames[originalCode]}/{originalCode}");
-                Directory.CreateDirectory(Path.Combine(tempGamePath, "autoplay"));
+                string originalGameCache = Path.Combine(gameCache, originalCode);
+                string autoplayPath = Path.Combine(originalGameCache, "autoplay");
+                string pixelartPath = Path.Combine(originalGameCache, "pixelart");
+                string exportAutoplayPath = Path.Combine(tempGamePath, "autoplay");
+                string exportPixelartPath = Path.Combine(tempGamePath, "pixelart");
+
+                if (Directory.Exists(autoplayPath))
+                {
+                    Directory.CreateDirectory(exportAutoplayPath);
+                    Shared.DirectoryCopy(autoplayPath, exportAutoplayPath, true);
+                }
+
                 if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
                 {
-                    Directory.CreateDirectory(Path.Combine(tempGamePath, "pixelart"));
+                    if (Directory.Exists(pixelartPath))
+                    {
+                        Directory.CreateDirectory(exportPixelartPath);
+                        Shared.DirectoryCopy(pixelartPath, exportPixelartPath, true);
+                    }
                 }
                 progress += 2;
                 SetProgress(progress, maxProgress);
@@ -1841,9 +1857,7 @@ namespace com.clusterrr.hakchi_gui
             if (!clovershell.IsOnline) return;
 
             string gamesCloverPath = clovershell.ExecuteSimple("hakchi eval 'echo \"$squashfs$gamepath\"'", 1500, true);
-            string cachePath = Path.Combine(Program.BaseDirectoryExternal, "image_cache");
-            if (!Directory.Exists(cachePath))
-                Directory.CreateDirectory(cachePath);
+            string cachePath = Path.Combine(Program.BaseDirectoryExternal, "game_cache");
 
             try
             {
@@ -1862,27 +1876,33 @@ namespace com.clusterrr.hakchi_gui
                 int i = 0;
                 foreach (NesDefaultGame game in Games)
                 {
-                    string iconPath = Path.Combine(cachePath, game.Code + ".png");
-                    string smIconPath = Path.Combine(cachePath, game.Code + "_small.png");
+                    string gamePath = Path.Combine(cachePath, game.Code);
 
-                    if (!File.Exists(iconPath) || !File.Exists(smIconPath))
+                    if (!Directory.Exists(gamePath))
                     {
-                        using (var save = new MemoryStream())
+                        try
                         {
-                            clovershell.Execute($"cd {gamesCloverPath}/{game.Code} && tar -cz *.png", null, save, null, 2000, true);
-                            save.Seek(0, SeekOrigin.Begin);
-                            using (var szExtractor = new SevenZipExtractor(save))
+                            Directory.CreateDirectory(gamePath);
+                            using (var save = new MemoryStream())
                             {
-                                var tar = new MemoryStream();
-                                szExtractor.ExtractFile(0, tar);
-                                tar.Seek(0, SeekOrigin.Begin);
-                                using (var szExtractorTar = new SevenZipExtractor(tar))
-                                    szExtractorTar.ExtractArchive(cachePath);
+                                clovershell.Execute($"cd {gamesCloverPath}/{game.Code} && tar -cz *", null, save, null, 10000, true);
+                                save.Seek(0, SeekOrigin.Begin);
+                                using (var szExtractor = new SevenZipExtractor(save))
+                                {
+                                    var tar = new MemoryStream();
+                                    szExtractor.ExtractFile(0, tar);
+                                    tar.Seek(0, SeekOrigin.Begin);
+                                    using (var szExtractorTar = new SevenZipExtractor(tar))
+                                        szExtractorTar.ExtractArchive(gamePath);
+                                }
                             }
                         }
-                        if(!File.Exists(iconPath) || !File.Exists(smIconPath))
+                        catch (Exception ex)
                         {
-                            throw new Exception($"updating local cache failed for game {game.Code} {game.Name}.");
+                            if (Directory.Exists(gamePath))
+                            {
+                                Directory.Delete(gamePath);
+                            }
                         }
                     }
 

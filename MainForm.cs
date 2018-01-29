@@ -303,11 +303,11 @@ namespace com.clusterrr.hakchi_gui
 
         void UpdateLocalCache()
         {
-            string cachePath = Path.Combine(Program.BaseDirectoryExternal, "image_cache");
+            string cachePath = Path.Combine(Program.BaseDirectoryExternal, "game_cache");
             var games = new NesMenuCollection();
             foreach (NesDefaultGame game in NesMiniApplication.DefaultGames)
             {
-                if (!File.Exists(Path.Combine(cachePath, game.Code + ".png")) || !File.Exists(Path.Combine(cachePath, game.Code + "_small.png")))
+                if (!Directory.Exists(Path.Combine(cachePath, game.Code)))
                     games.Add(game);
             }
 
