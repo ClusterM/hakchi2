@@ -142,7 +142,7 @@ namespace com.clusterrr.hakchi_gui
                                     Directory.Delete(dir, true);
                             }
 
-                        Debug.WriteLine("Starting, version: " + Assembly.GetExecutingAssembly().GetName().Version);
+                        Debug.WriteLine("Starting, version: " + Shared.AppDisplayVersion);
 
                         Application.EnableVisualStyles();
                         Application.SetCompatibleTextRenderingDefault(false);

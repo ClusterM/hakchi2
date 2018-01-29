@@ -1,12 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace com.clusterrr.hakchi_gui
 {
     class Shared
     {
+        public static string AppDisplayVersion
+        {
+            get
+            {
+                Version version = Assembly.GetExecutingAssembly().GetName().Version;
+                return $"{version.Major - 2}.{version.Minor}.{version.Build}.{version.Revision}";
+            }
+        }
         public static readonly string[] SizeSuffixes =
                    { "B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
         public static string SizeSuffix(Int64 value, int decimalPlaces = 1)
