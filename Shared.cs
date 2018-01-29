@@ -7,7 +7,7 @@ using System.Text;
 
 namespace com.clusterrr.hakchi_gui
 {
-    class Shared
+    static class Shared
     {
         public static string AppDisplayVersion
         {
@@ -46,6 +46,7 @@ namespace com.clusterrr.hakchi_gui
                 adjustedSize,
                 SizeSuffixes[mag]);
         }
+
         public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
             // Get the subdirectories for the specified directory.
@@ -82,6 +83,49 @@ namespace com.clusterrr.hakchi_gui
                     DirectoryCopy(subdir.FullName, temppath, copySubDirs);
                 }
             }
+        }
+
+        public static void DirectoryDeleteInside(string dirName)
+        {
+            if (!Directory.Exists(dirName)) // no error, just return
+                return;
+
+            // delete files first
+            string[] files = Directory.GetFiles(dirName);
+            foreach(string file in files)
+            {
+                File.Delete(file);
+            }
+
+            // recurse subdirs, then refresh, pause and delete (seems to prevent explorer bug in most cases)
+            string[] dirs = Directory.GetDirectories(dirName);
+            foreach(string dir in dirs)
+            {
+                DirectoryDeleteInside(dir);
+                new DirectoryInfo(dir).Refresh();
+                System.Threading.Thread.Sleep(0);
+                Directory.Delete(dir);
+            }
+        }
+
+        // concatenate an arbitrary number of arrays
+        public static T[] ConcatArrays<T>(params T[][] list)
+        {
+            var result = new T[list.Sum(a => a.Length)];
+            int offset = 0;
+            for (int x = 0; x < list.Length; x++)
+            {
+                list[x].CopyTo(result, offset);
+                offset += list[x].Length;
+            }
+            return result;
+        }
+
+        // workaround to prevent flickering with ListView controls
+        public static void DoubleBuffered(this System.Windows.Forms.Control control, bool enable)
+        {
+            var doubleBufferPropertyInfo = control.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
+            doubleBufferPropertyInfo.SetValue(control, enable, null);
         }
     }
 }

@@ -156,7 +156,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static readonly NesDefaultGame[] AllDefaultGames = Program.ConcatArrays(
+        public static readonly NesDefaultGame[] AllDefaultGames = Shared.ConcatArrays(
             defaultNesGames, defaultFamicomGames, defaultSnesGames, defaultSuperFamicomGames);
 
         public static readonly string OriginalGamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games_originals");

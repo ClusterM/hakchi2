@@ -344,7 +344,7 @@ namespace com.clusterrr.hakchi_gui
 
             // add custom games
             Directory.CreateDirectory(NesMiniApplication.GamesDirectory);
-            var gameDirs = Program.ConcatArrays(Directory.GetDirectories(NesMiniApplication.GamesDirectory), originalGameDirs.ToArray());
+            var gameDirs = Shared.ConcatArrays(Directory.GetDirectories(NesMiniApplication.GamesDirectory), originalGameDirs.ToArray());
             var games = new List<NesMiniApplication>();
             foreach (var gameDir in gameDirs)
             {

@@ -116,7 +116,7 @@ namespace com.clusterrr.hakchi_gui
                                 "art", "folder_images", "patches", "user_mods"
                             };
                             foreach (var dir in externalDirs)
-                                DirectoryCopy(Path.Combine(BaseDirectoryInternal, dir), Path.Combine(BaseDirectoryExternal, dir), true);
+                                Shared.DirectoryCopy(Path.Combine(BaseDirectoryInternal, dir), Path.Combine(BaseDirectoryExternal, dir), true);
                         }
 
                         string languagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "languages");
@@ -171,44 +171,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
-        {
-            // Get the subdirectories for the specified directory.
-            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
-
-            if (!dir.Exists)
-            {
-                throw new DirectoryNotFoundException(
-                    "Source directory does not exist or could not be found: "
-                    + sourceDirName);
-            }
-
-            DirectoryInfo[] dirs = dir.GetDirectories();
-            // If the destination directory doesn't exist, create it.
-            if (!Directory.Exists(destDirName))
-            {
-                Directory.CreateDirectory(destDirName);
-            }
-
-            // Get the files in the directory and copy them to the new location.
-            FileInfo[] files = dir.GetFiles();
-            foreach (FileInfo file in files)
-            {
-                string temppath = Path.Combine(destDirName, file.Name);
-                file.CopyTo(temppath, true);
-            }
-
-            // If copying subdirectories, copy them and their contents to new location.
-            if (copySubDirs)
-            {
-                foreach (DirectoryInfo subdir in dirs)
-                {
-                    string temppath = Path.Combine(destDirName, subdir.Name);
-                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
-                }
-            }
-        }
-
         [DllImport("Shell32.dll")]
         private static extern int SHGetKnownFolderPath([MarshalAs(UnmanagedType.LPStruct)]Guid rfid, uint dwFlags,
             IntPtr hToken, out IntPtr ppszPath);
@@ -235,26 +197,6 @@ namespace com.clusterrr.hakchi_gui
                 throw new ExternalException("Cannot get the known folder path. It may not be available on this system.",
                     result);
             }
-        }
-
-        // concatenate an arbitrary number of arrays
-        public static T[] ConcatArrays<T>(params T[][] list)
-        {
-            var result = new T[list.Sum(a => a.Length)];
-            int offset = 0;
-            for (int x = 0; x < list.Length; x++)
-            {
-                list[x].CopyTo(result, offset);
-                offset += list[x].Length;
-            }
-            return result;
-        }
-        
-        // workaround to prevent flickering with ListView controls
-        public static void DoubleBuffered(this Control control, bool enable)
-        {
-            var doubleBufferPropertyInfo = control.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
-            doubleBufferPropertyInfo.SetValue(control, enable, null);
         }
 
     }

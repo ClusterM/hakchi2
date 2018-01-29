@@ -878,10 +878,7 @@ namespace com.clusterrr.hakchi_gui
             SetStatus(Resources.CleaningUp);
             try
             {
-                if (Directory.Exists(tempDirectory))
-                {
-                    Directory.Delete(tempDirectory, true);
-                }
+                Shared.DirectoryDeleteInside(tempDirectory);
                 Directory.CreateDirectory(tempDirectory);
                 Directory.CreateDirectory(tempGamesDirectory);
             }
@@ -1080,7 +1077,7 @@ namespace com.clusterrr.hakchi_gui
             bool directoryNotEmpty = (Directory.GetDirectories(tempGamesDirectory).Length > 0);
             if (directoryNotEmpty && MessageBox.Show(string.Format(Resources.PermanentlyDeleteQ, tempGamesDirectory), Resources.FolderNotEmpty, MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                Directory.Delete(tempGamesDirectory, true);
+                Shared.DirectoryDeleteInside(tempGamesDirectory);
                 directoryNotEmpty = false;
             }
             if (directoryNotEmpty)
@@ -1883,19 +1880,25 @@ namespace com.clusterrr.hakchi_gui
                         try
                         {
                             Directory.CreateDirectory(gamePath);
-                            using (var save = new MemoryStream())
+                            using (var tar = new MemoryStream())
                             {
-                                string cmd = $"cd {gamesCloverPath}/{game.Code} && tar -cz *.desktop *.png autoplay/" + ((ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom) ? "pixelart/" : "");
-                                clovershell.Execute(cmd, null, save, null, 10000, true);
-                                save.Seek(0, SeekOrigin.Begin);
-                                using (var szExtractor = new SevenZipExtractor(save))
-                                {
-                                    var tar = new MemoryStream();
-                                    szExtractor.ExtractFile(0, tar);
-                                    tar.Seek(0, SeekOrigin.Begin);
-                                    using (var szExtractorTar = new SevenZipExtractor(tar))
-                                        szExtractorTar.ExtractArchive(gamePath);
-                                }
+                                string cmd = $"cd {gamesCloverPath}/{game.Code} && tar -c *.desktop *.png **/*";
+                                clovershell.Execute(cmd, null, tar, null, 10000, true);
+                                tar.Seek(0, SeekOrigin.Begin);
+                                using (var szExtractorTar = new SevenZipExtractor(tar))
+                                    szExtractorTar.ExtractArchive(gamePath);
+
+                                //string cmd = $"cd {gamesCloverPath}/{game.Code} && tar -cz *.desktop *.png **/*";
+                                //clovershell.Execute(cmd, null, save, null, 10000, true);
+                                //save.Seek(0, SeekOrigin.Begin);
+                                //using (var szExtractor = new SevenZipExtractor(save))
+                                //{
+                                //    var tar = new MemoryStream();
+                                //    szExtractor.ExtractFile(0, tar);
+                                //    tar.Seek(0, SeekOrigin.Begin);
+                                //    using (var szExtractorTar = new SevenZipExtractor(tar))
+                                //        szExtractorTar.ExtractArchive(gamePath);
+                                //}
                             }
                         }
                         catch (Exception ex)
