@@ -1442,12 +1442,12 @@ namespace com.clusterrr.hakchi_gui
 
         private void gitHubPageWithActualReleasesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/ClusterM/hakchi2/releases");
+            Process.Start("https://github.com/TeamShinkansen/hakchi2/releases");
         }
 
         private void fAQToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/ClusterM/hakchi2/wiki/FAQ");
+            Process.Start("https://github.com/TeamShinkansen/hakchi2/wiki/FAQ");
         }
 
         private void donateToolStripMenuItem_Click(object sender, EventArgs e)

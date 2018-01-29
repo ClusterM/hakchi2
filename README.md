@@ -1,10 +1,10 @@
-# hakchi2
+# hakchi2 CE
 
-This is a GUI for hakchi by madmonkey.
+This is a fork of hakchi2 (by ClusterM) by princess_daphie, DanTheMan827, and skogaby. The aim of this fork is to not only provide new UI features and enhancements, but also bring the core of hakchi2 up to date with the rest of the modding ecosystem (i.e. USB host support, SD support).
 
 This application can add more games (game ROMs) to your NES/SNES Classic Mini or Famicom Mini. All you need is to connect it to a Windows PC via Micro-USB cable. No soldering or disassembling required.
 
-https://github.com/ClusterM/hakchi2
+https://github.com/TeamShinkansen/hakchi2
 
 ### Features
 * Change any game settings (including command-line arguments)
@@ -19,6 +19,7 @@ https://github.com/ClusterM/hakchi2
 * Simulate the start button on the second controller (for Famicom Mini)
 * Disable seizure protection
 * Allows to install user-mods to add more features (even support for SNES/N64/Genesis/etc., music replacement, themes, etc.)
+* Allows users to expand the storage of their system (provided a USB OTG hub, or an SD breakout module)
 
 ## So you were the first to hack the NES Classic Mini?
 No! It was my Russian сomrade, madmonkey, who first published a successful hack of the the NES Classic Mini. He created the original “hakchi” tool. However, it was not very user-friendly, so I decided to create a tool which is simple to use by anyone--not only Linux users. I named it “hakchi2” because I don’t like to come up with names. So my first version was a 2.0 release :)
@@ -31,6 +32,4 @@ You don’t need to worry about it. But if you really want to know, it’s using
 
 ## What if I have another question?
 Many more commonly asked questions are answered in the FAQ:
-https://github.com/ClusterM/hakchi2/wiki/FAQ
-
-// Alexey 'Cluster' Avdyukhin ("ClusterM" on GitHub)
+https://github.com/TeamShinkansen/hakchi2/wiki/FAQ
