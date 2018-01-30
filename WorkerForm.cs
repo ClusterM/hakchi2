@@ -1891,7 +1891,7 @@ namespace com.clusterrr.hakchi_gui
                             Directory.CreateDirectory(gamePath);
                             using (var tar = new MemoryStream())
                             {
-                                string cmd = $"cd {gamesCloverPath}/{game.Code} && tar -c *.desktop *.png **/*";
+                                string cmd = $"cd {gamesCloverPath}/{game.Code} && tar -c *";
                                 clovershell.Execute(cmd, null, tar, null, 10000, true);
                                 tar.Seek(0, SeekOrigin.Begin);
                                 using (var szExtractorTar = new SevenZipExtractor(tar))
