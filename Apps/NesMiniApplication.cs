@@ -160,6 +160,7 @@ namespace com.clusterrr.hakchi_gui
             defaultNesGames, defaultFamicomGames, defaultSnesGames, defaultSuperFamicomGames);
 
         public static readonly string OriginalGamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games_originals");
+        public static readonly string OriginalGamesCacheDirectory = Path.Combine(Program.BaseDirectoryExternal, "games_cache");
         public static string GamesDirectory
         {
             get
@@ -176,7 +177,23 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
-        public static string GamesCloverPath = "/var/games";
+        public static string GamesHakchiPath = "/var/games";
+        public static string GamesSquashPath
+        {
+            get
+            {
+                switch (ConfigIni.ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        return "/usr/share/games/nes/kachikachi";
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return "/usr/share/games";
+                }
+            }
+        }
 
         protected string code;
         public string Code
@@ -449,7 +466,7 @@ namespace com.clusterrr.hakchi_gui
             game.Name = Regex.Replace(game.Name, @" ?\(.*?\)", string.Empty).Trim();
             game.Name = Regex.Replace(game.Name, @" ?\[.*?\]", string.Empty).Trim();
             game.Name = game.Name.Replace("_", " ").Replace("  ", " ").Trim();
-            game.Command = $"{application} {GamesCloverPath}/{code}/{outputFileName}";
+            game.Command = $"{application} {GamesHakchiPath}/{code}/{outputFileName}";
             if (!string.IsNullOrEmpty(args))
                 game.Command += " " + args;
             game.FindCover(inputFileName, cover, crc32);
@@ -592,7 +609,7 @@ namespace com.clusterrr.hakchi_gui
                 return false;
 
             // check if a cover image might have been added to the original game directly in file system
-            if (IsOriginalGame && ((cloverIconPath.StartsWith(GamesCloverPath) && !File.Exists(IconPath)) || (!cloverIconPath.StartsWith(GamesCloverPath) && File.Exists(IconPath))))
+            if (IsOriginalGame && ((cloverIconPath.StartsWith(GamesHakchiPath) && !File.Exists(IconPath)) || (!cloverIconPath.StartsWith(GamesHakchiPath) && File.Exists(IconPath))))
                 hasUnsavedChanges = true;
 
             // only save if needed
@@ -607,9 +624,9 @@ namespace com.clusterrr.hakchi_gui
                 SortRawTitle = SortRawTitle.Substring(4); // Sorting without "THE"
 
             // reference original icon path if no image exists for original game
-            cloverIconPath = $"{GamesCloverPath}/{Code}/{Code}.png";
+            cloverIconPath = $"{GamesHakchiPath}/{Code}/{Code}.png";
             if (IsOriginalGame && !File.Exists(IconPath))
-                cloverIconPath = "/var/squashfs" + cloverIconPath;
+                cloverIconPath = $"{GamesSquashPath}/{Code}/{Code}.png";
 
             // these 2 lines are only present in snes/super famicom original games
             var statusLine = "";
@@ -1036,7 +1053,7 @@ namespace com.clusterrr.hakchi_gui
                 prefixCode);
         }
 
-        public NesMiniApplication CopyTo(string path, bool linkedGame = false, string mediaGamePath = null, string profilePath = null)
+        public NesMiniApplication CopyTo(string path, bool linkedGame = false, string mediaGamePath = null, string profilePath = null, string iconPath = null)
         {
             var targetDir = Path.Combine(path, code);
 
@@ -1055,7 +1072,15 @@ namespace com.clusterrr.hakchi_gui
                 if (mediaGamePath != null)
                 {
                     // modified regex to only match when matching complete path (not within a longer path)
-                    desktopFile = Regex.Replace(desktopFile, $"(([\\s=])(/usr/share/games/(nes/kachikachi/)?)|([\\s=])(/var/games/)){code}", "$2$5" + mediaGamePath);
+                    desktopFile = Regex.Replace(desktopFile, $"(([\\s=])((?:/var/lib/hakchi/squashfs)?/usr/share/games/(nes/kachikachi/)?)|((?<!Icon)[\\s=])(/var/games/)){code}", "$2$5" + mediaGamePath);
+                    if (iconPath == null)
+                    {
+                        iconPath = mediaGamePath;
+                    }
+                    if (linkedGame && File.Exists(Path.Combine(GamePath, $"{code}.png")))
+                    {
+                        desktopFile = Regex.Replace(desktopFile, $"Icon=((/var/lib/hakchi/squashfs|/var/squashfs)?/usr/share/games/(nes/kachikachi/)?|/var/games/){code}", $"Icon={iconPath}");
+                    }
                 }
                 if (profilePath != null)
                 {

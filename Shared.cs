@@ -9,6 +9,7 @@ namespace com.clusterrr.hakchi_gui
 {
     static class Shared
     {
+        public const string squashFsPath = "/var/squashfs";
         public static string AppDisplayVersion
         {
             get
@@ -96,7 +97,7 @@ namespace com.clusterrr.hakchi_gui
                 SizeSuffixes[mag]);
         }
 
-        public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, bool skipExistingFiles = false)
         {
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
@@ -119,8 +120,16 @@ namespace com.clusterrr.hakchi_gui
             FileInfo[] files = dir.GetFiles();
             foreach (FileInfo file in files)
             {
-                string temppath = Path.Combine(destDirName, file.Name);
-                file.CopyTo(temppath, false);
+                string temppath = new FileInfo(Path.Combine(destDirName, file.Name)).FullName;
+                if (File.Exists(temppath) && skipExistingFiles)
+                {
+                    continue;
+                }
+                else
+                {
+                    file.CopyTo(temppath, false);
+                }
+
             }
 
             // If copying subdirectories, copy them and their contents to new location.
@@ -129,7 +138,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (DirectoryInfo subdir in dirs)
                 {
                     string temppath = Path.Combine(destDirName, subdir.Name);
-                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs, skipExistingFiles);
                 }
             }
         }

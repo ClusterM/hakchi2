@@ -1112,27 +1112,21 @@ namespace com.clusterrr.hakchi_gui
                 string exportAutoplayPath = Path.Combine(tempGamePath, "autoplay");
                 string exportPixelartPath = Path.Combine(tempGamePath, "pixelart");
 
-                if (File.Exists(exportedDesktopFilePath))
-                {
-                    var desktopFileData = File.ReadAllText(exportedDesktopFilePath);
-                    desktopFileData = Regex.Replace(desktopFileData, "([ =])(?:/var/lib/hakchi/squashfs)?(/usr/share/games/)", "$1/var/squashfs$2");
-                    File.WriteAllText(exportedDesktopFilePath, desktopFileData);
-                }
-
                 if (Directory.Exists(autoplayPath))
                 {
                     Directory.CreateDirectory(exportAutoplayPath);
-                    Shared.DirectoryCopy(autoplayPath, exportAutoplayPath, true);
+                    Shared.DirectoryCopy(autoplayPath, exportAutoplayPath, true, true);
                 }
 
-                if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
+                if (Directory.Exists(pixelartPath))
                 {
-                    if (Directory.Exists(pixelartPath))
-                    {
-                        Directory.CreateDirectory(exportPixelartPath);
-                        Shared.DirectoryCopy(pixelartPath, exportPixelartPath, true);
-                    }
+                    Directory.CreateDirectory(exportPixelartPath);
+                    Shared.DirectoryCopy(pixelartPath, exportPixelartPath, true, true);
                 }
+
+                if (Directory.Exists(originalGameCache) && !linkRelativeGames)
+                    Shared.DirectoryCopy(originalGameCache, tempGamePath, true, true);
+
                 progress += 2;
                 SetProgress(progress, maxProgress);
             };
@@ -1449,13 +1443,17 @@ namespace com.clusterrr.hakchi_gui
 
         private void AddMenu(NesMenuCollection menuCollection, Dictionary<string, string> originalGames, GamesTreeStats stats = null)
         {
+            string gamesPath = "/var/games/";
+            string savesPath = "/var/saves/";
             if (stats == null)
                 stats = new GamesTreeStats();
             if (!stats.allMenus.Contains(menuCollection))
                 stats.allMenus.Add(menuCollection);
             int menuIndex = stats.allMenus.IndexOf(menuCollection);
             string targetDirectory = Path.Combine(tempGamesDirectory, string.Format("{0:D3}", menuIndex));
-            string relativeOriginalGamesPath = linkRelativeGames ? (Path.GetDirectoryName(relativeGamesPath).Replace("\\", "/") + "/games_originals") : string.Empty;
+            
+            string gameCache = Path.Combine(Program.BaseDirectoryExternal, "games_cache");
+            string relativeOriginalGamesPath = $"/media/{NesMiniApplication.OriginalGamesCacheDirectory.Substring(3).Replace("\\", "/")}";
             foreach (var element in menuCollection)
             {
                 if (element is NesMiniApplication)
@@ -1470,16 +1468,18 @@ namespace com.clusterrr.hakchi_gui
                         gameCopy = game.CopyTo(
                             targetDirectory,
                             true,
-                            ((game.IsOriginalGame ? relativeOriginalGamesPath : relativeGamesPath) + "/" + game.Code),
-                            ("/var/saves/" + game.Code));
+                            ((game.IsOriginalGame ? (Directory.Exists(Path.Combine(gameCache, game.Code)) ? relativeOriginalGamesPath : $"{Shared.squashFsPath}{NesMiniApplication.GamesSquashPath}") : relativeGamesPath) + "/" + game.Code),
+                            (savesPath + game.Code),
+                            (game.IsOriginalGame && File.Exists(Path.Combine(game.GamePath, $"{game.Code}.png")) ? $"/media/{game.GamePath.Substring(3).Replace("\\", "/")}" : null));
                     }
                     else if (exportGames)
                     {   // standard export
+                        //gamecache
                         gameCopy = game.CopyTo(
                             targetDirectory,
                             false,
-                            ("/var/games/" + game.Code),
-                            ("/var/saves/" + game.Code));
+                            (((game.IsOriginalGame ? (Directory.Exists(Path.Combine(gameCache, game.Code)) ? gamesPath : $"{Shared.squashFsPath}{NesMiniApplication.GamesSquashPath}/") : gamesPath) + game.Code)),
+                            (savesPath + game.Code));
                     }
                     else
                     {   // sync/upload to snes mini
@@ -1873,7 +1873,7 @@ namespace com.clusterrr.hakchi_gui
                 var reply = clovershell.ExecuteSimple($"[ -d {gamesCloverPath} ] && echo YES || echo NO");
                 if (reply == "NO")
                 {
-                    gamesCloverPath = NesMiniApplication.GamesCloverPath;
+                    gamesCloverPath = NesMiniApplication.GamesHakchiPath;
                     reply = clovershell.ExecuteSimple($"[ -d {gamesCloverPath} ] && echo YES || echo NO");
                     if( reply == "NO")
                         throw new Exception("unable to update local cache. games directory not accessible.");

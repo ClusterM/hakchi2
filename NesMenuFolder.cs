@@ -268,7 +268,7 @@ namespace com.clusterrr.hakchi_gui
                     (Publisher ?? "").ToUpper(),
                     Simultaneous,
                     Initial,
-                    mediaGamePath ?? NesMiniApplication.GamesCloverPath,
+                    mediaGamePath ?? NesMiniApplication.GamesHakchiPath,
                     profilePath ?? "/var/lib/clover/profiles/0")
                  );
             Image.Save(IconPath, ImageFormat.Png);
