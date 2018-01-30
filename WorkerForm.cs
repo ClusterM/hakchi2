@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -991,8 +992,7 @@ namespace com.clusterrr.hakchi_gui
                                 $"dst=\"{gameSyncPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
                                 $"mkdir -p \"$dst\" && " +
                                 $"ln -s \"$src/autoplay/\" \"$dst/autoplay\" && " +
-                                $"ln -s \"$src/pixelart/\" \"$dst/pixelart\" && " +
-                                "echo \"OK\"";
+                                $"ln -s \"$src/pixelart/\" \"$dst/pixelart\"";
                             break;
                         case MainForm.ConsoleType.SNES:
                         case MainForm.ConsoleType.SuperFamicom:
@@ -1000,10 +1000,11 @@ namespace com.clusterrr.hakchi_gui
                                 $"src=\"{squashFsPath}{gamesPath}/{originalCode}\" && " +
                                 $"dst=\"{gameSyncPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
                                 $"mkdir -p \"$dst\" && " +
-                                $"ln -s \"$src/autoplay/\" \"$dst/autoplay\" && " +
-                                "echo \"OK\"";
+                                $"ln -s \"$src/autoplay/\" \"$dst/autoplay\"";
                             break;
                     }
+                    originalSyncCode += $" && sed -Ee 's#([ =])(/var/lib/hakchi/squashfs)?{gamesPath}/#\\1{squashFsPath}{gamesPath}/#' -i '{gameSyncPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.desktop' && " +
+                        "echo 'OK'";
                     clovershell.ExecuteSimple(originalSyncCode, 30000, true);
                     progress += 2;
                     SetProgress(progress, maxProgress);
@@ -1104,11 +1105,19 @@ namespace com.clusterrr.hakchi_gui
             foreach (var originalCode in originalGames.Keys)
             {
                 string tempGamePath = Path.Combine(tempGamesDirectory, $"{originalGames[originalCode]}/{originalCode}");
+                string exportedDesktopFilePath = Path.Combine(tempGamePath, $"{originalCode}.desktop");
                 string originalGameCache = Path.Combine(gameCache, originalCode);
                 string autoplayPath = Path.Combine(originalGameCache, "autoplay");
                 string pixelartPath = Path.Combine(originalGameCache, "pixelart");
                 string exportAutoplayPath = Path.Combine(tempGamePath, "autoplay");
                 string exportPixelartPath = Path.Combine(tempGamePath, "pixelart");
+
+                if (File.Exists(exportedDesktopFilePath))
+                {
+                    var desktopFileData = File.ReadAllText(exportedDesktopFilePath);
+                    desktopFileData = Regex.Replace(desktopFileData, "([ =])(?:/var/lib/hakchi/squashfs)?(/usr/share/games/)", "$1/var/squashfs$2");
+                    File.WriteAllText(exportedDesktopFilePath, desktopFileData);
+                }
 
                 if (Directory.Exists(autoplayPath))
                 {
