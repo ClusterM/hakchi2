@@ -169,53 +169,106 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 // Trying to autodetect console type
-                var customFirmware = Clovershell.ExecuteSimple("[ -d /var/lib/hakchi/firmware/ ] && [ -f /var/lib/hakchi/firmware/*.hsqs ] && echo YES || echo NO");
-                if (customFirmware == "NO")
+                var board = Clovershell.ExecuteSimple("cat /etc/clover/boardtype", 500, true);
+                var region = Clovershell.ExecuteSimple("cat /etc/clover/REGION", 500, true);
+                Debug.WriteLine(string.Format("Detected board: {0}", board));
+                Debug.WriteLine(string.Format("Detected region: {0}", region));
+                var c = ConfigIni.ConsoleType;
+
+                switch (board)
                 {
-                    var board = Clovershell.ExecuteSimple("cat /etc/clover/boardtype", 500, true);
-                    var region = Clovershell.ExecuteSimple("cat /etc/clover/REGION", 500, true);
-                    Debug.WriteLine(string.Format("Detected board: {0}", board));
-                    Debug.WriteLine(string.Format("Detected region: {0}", region));
-
-                    var c = ConfigIni.ConsoleType;
-                    switch (board)
-                    {
-                        default:
-                        case "dp-nes":
-                        case "dp-hvc":
-                            switch (region)
-                            {
-                                case "EUR_USA":
-                                    c = ConsoleType.NES;
-                                    break;
-                                case "JPN":
-                                    c = ConsoleType.Famicom;
-                                    break;
-                            }
-                            break;
-                        case "dp-shvc":
-                            switch (region)
-                            {
-                                case "USA":
-                                case "EUR":
-                                    c = ConsoleType.SNES;
-                                    break;
-                                case "JPN":
-                                    c = ConsoleType.SuperFamicom;
-                                    break;
-                            }
-                            break;
-                    }
-                    ConfigIni.ConsoleType = c;
-                    DetectedConnectedConsole = c;
-
-                    Invoke(new Action(SyncConsoleType));
-                    Invoke(new Action(UpdateLocalCache));
+                    default:
+                    case "dp-nes":
+                    case "dp-hvc":
+                        switch (region)
+                        {
+                            case "EUR_USA":
+                                c = ConsoleType.NES;
+                                break;
+                            case "JPN":
+                                c = ConsoleType.Famicom;
+                                break;
+                        }
+                        break;
+                    case "dp-shvc":
+                        switch (region)
+                        {
+                            case "USA":
+                            case "EUR":
+                                c = ConsoleType.SNES;
+                                break;
+                            case "JPN":
+                                c = ConsoleType.SuperFamicom;
+                                break;
+                        }
+                        break;
                 }
 
+                ConfigIni.ConsoleType = c;
                 ConfigIni.CustomFlashed = true; // Just in case of new installation
-                WorkerForm.GetMemoryStats();
-                new Thread(RecalculateSelectedGamesThread).Start();
+                DetectedConnectedConsole = c;
+
+                Invoke(new Action(SyncConsoleType));
+                bool canInteract = true;
+
+                // do minimum version checks before we try to interact with the console in any meaningful way
+                if (SystemRequiresReflash())
+                {
+                    canInteract = false;
+                    var message = "Your system's custom kernel is out of date and requires a reflash before you can use this program. Would you like to flash the custom kernel now?";
+                    var title = "Kernel out of date";
+
+                    if (MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        canInteract = FlashCustomKernel();
+
+                        if (canInteract)
+                        {
+                            MessageBox.Show(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+                else if (SystemRequiresRootfsUpdate())
+                {
+                    canInteract = false;
+                    var message = "Your system's kernel scripts are out of date and it requires a memboot before you can use this program. Would you like to memboot the custom kernel now?";
+                    var title = "Scripts out of date";
+
+                    if (MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        canInteract = MembootCustomKernel();
+
+                        if (canInteract)
+                        {
+                            MessageBox.Show(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+                else if (SystemEligibleForRootfsUpdate())
+                {
+                    var message = "Your system's kernel scripts are out of date and can be updated. Would you like to update the custom kernel scripts now?";
+                    var title = "Scripts out of date";
+
+                    if (MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        if (MembootCustomKernel())
+                        {
+                            MessageBox.Show(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+
+                if (canInteract)
+                {
+                    Invoke(new Action(UpdateLocalCache));
+                    WorkerForm.GetMemoryStats();
+                    new Thread(RecalculateSelectedGamesThread).Start();
+                }
+                else
+                {
+                    var message = "Until you install the necessary updates, you will likely experience errors while attempting to use this program. Please update to receive full compatibility.";
+                    MessageBox.Show(message, Resources.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
             {
@@ -227,6 +280,82 @@ namespace com.clusterrr.hakchi_gui
         {
             DetectedConnectedConsole = null;
             Invoke(new Action(SyncConsoleType));
+        }
+
+        private bool SystemRequiresReflash()
+        {
+            bool requiresReflash = false;
+
+            try
+            {
+                var bootVersion = Clovershell.ExecuteSimple("source /var/version && echo $bootVersion", 500, true);
+                var kernelVersion = Clovershell.ExecuteSimple("source /var/version && echo $kernelVersion", 500, true);
+                kernelVersion = kernelVersion.Substring(0, kernelVersion.LastIndexOf('.'));
+
+                if (!Shared.IsVersionGreaterOrEqual(kernelVersion, Shared.MinimumHakchiKernelVersion) ||
+                    !Shared.IsVersionGreaterOrEqual(bootVersion, Shared.MinimumHakchiBootVersion))
+                {
+                    requiresReflash = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                requiresReflash = true;
+            }
+
+            return requiresReflash;
+        }
+
+        private bool SystemRequiresRootfsUpdate()
+        {
+            bool requiresUpdate = false;
+
+            try
+            {
+                var scriptVersion = Clovershell.ExecuteSimple("source /var/version && echo $hakchiVersion", 500, true);
+                scriptVersion = scriptVersion.Substring(scriptVersion.IndexOf('v') + 1);
+                scriptVersion = scriptVersion.Substring(0, scriptVersion.LastIndexOf('('));
+
+                var scriptElems = scriptVersion.Split(new char[] { '-' });
+
+                if (!Shared.IsVersionGreaterOrEqual(scriptElems[0], Shared.MinimumHakchiScriptVersion) ||
+                    !(int.Parse(scriptElems[1]) >= int.Parse(Shared.MinimumHakchiScriptRevision)))
+                {
+                    requiresUpdate = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                requiresUpdate = true;
+            }
+
+            return requiresUpdate;
+        }
+
+        private bool SystemEligibleForRootfsUpdate()
+        {
+            bool eligibleForUpdate = false;
+
+            try
+            {
+                var scriptVersion = Clovershell.ExecuteSimple("source /var/version && echo $hakchiVersion", 500, true);
+                scriptVersion = scriptVersion.Substring(scriptVersion.IndexOf('v') + 1);
+                scriptVersion = scriptVersion.Substring(0, scriptVersion.LastIndexOf('('));
+
+                var scriptElems = scriptVersion.Split(new char[] { '-' });
+
+                if (!Shared.IsVersionGreaterOrEqual(scriptElems[0], Shared.CurrentHakchiScriptVersion) ||
+                    !(int.Parse(scriptElems[1]) >= int.Parse(Shared.CurrentHakchiScriptRevision)))
+                {
+                    eligibleForUpdate = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                eligibleForUpdate = true;
+            }
+
+            return eligibleForUpdate;
         }
 
         static ConsoleType lastConsoleType = ConsoleType.Unknown;

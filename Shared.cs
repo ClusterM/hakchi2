@@ -17,6 +17,55 @@ namespace com.clusterrr.hakchi_gui
                 return $"{version.Major - 2}.{version.Minor}.{version.Build}";
             }
         }
+
+        public static string MinimumHakchiBootVersion
+        {
+            get
+            {
+                return "1.0.1";
+            }
+        }
+        
+        public static string MinimumHakchiKernelVersion
+        {
+            get
+            {
+                return "3.4.112";
+            }
+        }
+        
+        public static string MinimumHakchiScriptVersion
+        {
+            get
+            {
+                return "1.0.3";
+            }
+        }
+        
+        public static string MinimumHakchiScriptRevision
+        {
+            get
+            {
+                return "110";
+            }
+        }
+
+        public static string CurrentHakchiScriptVersion
+        {
+            get
+            {
+                return "1.0.3";
+            }
+        }
+
+        public static string CurrentHakchiScriptRevision
+        {
+            get
+            {
+                return "110";
+            }
+        }
+
         public static readonly string[] SizeSuffixes =
                    { "B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
         public static string SizeSuffix(Int64 value, int decimalPlaces = 1)
@@ -126,6 +175,11 @@ namespace com.clusterrr.hakchi_gui
         {
             var doubleBufferPropertyInfo = control.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
             doubleBufferPropertyInfo.SetValue(control, enable, null);
+        }
+
+        public static bool IsVersionGreaterOrEqual(string given, string minimum)
+        {
+            return new Version(given).CompareTo(new Version(minimum)) > -1;
         }
     }
 }
