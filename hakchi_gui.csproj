@@ -2047,6 +2047,9 @@
     <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\pffff_config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p0000_version">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\profile">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

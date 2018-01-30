@@ -77,7 +77,7 @@ remount_root(){
 
   stopTask decodepng
   stopTask aplay
-  umount "$mountpoint"
+  umount "$mountpoint" || (mkdir -p "/var/fuckup" && mount --move "$mountpoint" "/var/fuckup")
 
   local loopfile="/var${1##$mountpoint/var}"
   [ -f "$loopfile" ] || loopfile="/media${1##$mountpoint/media}"

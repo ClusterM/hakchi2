@@ -37,37 +37,41 @@ pack_upath(){
 }
 
 pack_install(){
-  echo "installing $(basename "$1" .hmod)..."
-  if [ -f "$1" ]; then
+  local packFile="$(readlink -f "$1")"
+  local packName="$(basename "$1" .hmod)"
+  echo "installing $packName..."
+  if [ -f "$packFile" ]; then
     local transferpath="$temppath/pack"
     rm -rf "$transferpath"
     mkdir -p "$transferpath"
-    cd "$transferpath" && tar -xzf "$1"
+    cd "$transferpath" && tar -xzf "$packFile"
   else
-    local transferpath="$1"
+    local transferpath="$packFile"
   fi
   transfer_path "$transferpath"
-  if ! grep -xqF "no-uninstall" "$transferpath/uninstall"; then
-    echo "creating uninstall for $(basename "$1" .hmod)..."
-    echo >> "$transferpath/uninstall"
-    echo "# auto-generated" >> "$transferpath/uninstall"
-    cd "$transferpath"
-    find . -type l -exec echo rm -f \"\$rootfs/{}\" + >> "$transferpath/uninstall"
-    find . -type f -exec echo rm -f \"\$rootfs/{}\" + >> "$transferpath/uninstall"
-    find . -depth -mindepth 1 -type d -exec echo rmdir \"\$rootfs/{}\" + >> "$transferpath/uninstall"
-    [ $(stat -c%s "$transferpath/uninstall") -gt 8 ] || rm -f "$transferpath/uninstall"
-    cd /
-    local unfile="$(pack_upath "$1")"
-    if [ -f "$transferpath/uninstall" ]; then
-      dos2unix -u "$transferpath/uninstall"
-      sed -i "s#rmdir #rmdir --ignore-fail-on-non-empty #" "$transferpath/uninstall"
-      mkdir -p "$installpath/hmod"
-      copy "$transferpath/uninstall" "$unfile"
-    else
-      rm -f "$unfile"
-    fi
+  if grep -xqF "no-uninstall" "$transferpath/uninstall"; then
+    echo "package $packName installed"
+    return 0
   fi
-  echo "package $(basename "$1" .hmod) installed"
+  echo "creating uninstall for $packName..."
+  echo >> "$transferpath/uninstall"
+  echo "# auto-generated" >> "$transferpath/uninstall"
+  cd "$transferpath"
+  find . -type l -exec echo rm -f \"\$rootfs/{}\" + >> "$transferpath/uninstall"
+  find . -type f -exec echo rm -f \"\$rootfs/{}\" + >> "$transferpath/uninstall"
+  find . -depth -mindepth 1 -type d -exec echo rmdir \"\$rootfs/{}\" + >> "$transferpath/uninstall"
+  [ $(stat -c%s "$transferpath/uninstall") -gt 8 ] || rm -f "$transferpath/uninstall"
+  cd /
+  local unfile="$(pack_upath "$packFile")"
+  if [ -f "$transferpath/uninstall" ]; then
+    dos2unix -u "$transferpath/uninstall"
+    sed -i "s#rmdir #rmdir --ignore-fail-on-non-empty #" "$transferpath/uninstall"
+    mkdir -p "$installpath/hmod"
+    copy "$transferpath/uninstall" "$unfile"
+  else
+    rm -f "$unfile"
+  fi
+  echo "package $packName installed"
 }
 
 pack_list(){
@@ -86,10 +90,11 @@ pack_uninstall(){
   else
     local unfile="$(pack_upath "$1")"
     if [ -f "$unfile" ]; then
-      echo "uninstalling $(basename "$1" .hmod)..."
+      local packName="$(basename "$1" .hmod)"
+      echo "uninstalling $packName..."
       cd "$rootfs"
       transfer_file "$unfile"
-      echo "package $(basename "$1" .hmod) uninstalled"
+      echo "package $packName uninstalled"
     fi
   fi
   cd /

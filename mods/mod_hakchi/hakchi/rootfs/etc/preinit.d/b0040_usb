@@ -30,16 +30,25 @@ getUsbStorageIds(){
   done
 }
 
-waitForUsbDevice(){
-  [ -z "$(getUsbStorageIds)" ] && return 1
+waitForStorageDevice(){
   local blockDevice="$1"
-  local timeout=5
+  [ -z "$timeout" ] && local timeout=5
   while [ $timeout -gt 0 ] && ! [ -b "$blockDevice" ]; do
-    echo "waiting for media $timeout"
+    echo "waiting for $blockDevice $timeout"
     let timeout=timeout-1
     sleep 1
   done
   [ -b "$blockDevice" ]
+}
+
+waitForUsbDevice(){
+  [ -z "$(getUsbStorageIds)" ] && return 1
+  waitForStorageDevice ${1+"$@"}
+}
+
+waitForMmcDevice(){
+  [ -f "/key-file" ] && return 1
+  waitForStorageDevice ${1+"$@"}
 }
 
 checkStorageDevice(){
@@ -94,6 +103,7 @@ checkExtStorage(){
   local di
   local d
   local p
+  local timeout=5
   local blockDevice="/dev/sd"
   waitForUsbDevice "${blockDevice}a1"
   for di in $(seq 97 99); do
@@ -102,7 +112,9 @@ checkExtStorage(){
       checkStorageDevice "$blockDevice$d$p" && return 0
     done
   done
+  [ $timeout -gt 2 ] && timeout=2
   blockDevice="/dev/mmcblk0p"
+  waitForMmcDevice "${blockDevice}1"
   for p in $(seq 1 9); do
     checkStorageDevice "$blockDevice$p" && return 0
   done

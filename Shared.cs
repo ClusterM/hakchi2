@@ -14,7 +14,7 @@ namespace com.clusterrr.hakchi_gui
             get
             {
                 Version version = Assembly.GetExecutingAssembly().GetName().Version;
-                return $"{version.Major - 2}.{version.Minor}.{version.Build}.{version.Revision}";
+                return $"{version.Major - 2}.{version.Minor}.{version.Build}";
             }
         }
         public static readonly string[] SizeSuffixes =

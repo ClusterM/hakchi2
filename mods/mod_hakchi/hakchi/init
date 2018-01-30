@@ -6,7 +6,8 @@ init(){
   export modpath="/$modname"
   export mountpoint="/newroot"
   export temppath="/tmp"
-  echo "$modname init script version: 1.0"
+  export bootVersion="1.0.1"
+  echo "$modname init script version: $bootVersion"
 
   /bin/busybox --install -s /bin/
   mkdir -p "$temppath"
