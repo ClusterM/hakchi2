@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.clusterrr.hakchi_gui.Properties;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,11 +11,32 @@ namespace com.clusterrr.hakchi_gui
     static class Shared
     {
         public const string squashFsPath = "/var/squashfs";
+        
+        public static bool isFirstRun()
+        {
+
+            if (AppVersion > (new Version(Settings.Default.LastNonPortableVersion)))
+            {
+                Settings.Default.LastNonPortableVersion = AppVersion.ToString();
+                Settings.Default.Save();
+                return true;
+            }
+            return false;
+        }
+
+        public static Version AppVersion
+        {
+            get
+            {
+                return Assembly.GetExecutingAssembly().GetName().Version;
+            }
+        }
+
         public static string AppDisplayVersion
         {
             get
             {
-                Version version = Assembly.GetExecutingAssembly().GetName().Version;
+                Version version = AppVersion;
                 return $"{version.Major - 2}.{version.Minor}.{version.Build}";
             }
         }

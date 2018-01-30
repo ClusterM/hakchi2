@@ -43,7 +43,7 @@ namespace com.clusterrr.hakchi_gui
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
 #if DEBUG
             try
@@ -70,7 +70,8 @@ namespace com.clusterrr.hakchi_gui
             }
             Debug.AutoFlush = true;
 #endif
-
+            bool isPortable = !args.Contains("/nonportable") || args.Contains("/portable");
+            bool isFirstRun = Shared.isFirstRun();
 
             try
             {
@@ -80,7 +81,7 @@ namespace com.clusterrr.hakchi_gui
                     if (createdNew)
                     {
                         BaseDirectoryInternal = Path.GetDirectoryName(Application.ExecutablePath);
-                        if (ApplicationDeployment.IsNetworkDeployed)
+                        if (!isPortable)
                         {
                             // This is not correct way for Windows 7+...
                             BaseDirectoryExternal = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "hakchi2");
@@ -109,7 +110,7 @@ namespace com.clusterrr.hakchi_gui
 
                         // There are some folders which should be accessed by user
                         // Moving them to "My documents"
-                        if (ApplicationDeployment.IsNetworkDeployed && ApplicationDeployment.CurrentDeployment.IsFirstRun)
+                        if (!isPortable && isFirstRun)
                         {
                             var externalDirs = new string[]
                             {
@@ -129,14 +130,14 @@ namespace com.clusterrr.hakchi_gui
                             {
                                 var dir = Path.GetDirectoryName(d);
                                 Debug.WriteLine("Removing old directory: " + dir);
-                                if (ApplicationDeployment.IsNetworkDeployed)
+                                if (!isPortable)
                                 {
                                     var targetDir = Path.Combine(languagesDirectory, Path.GetFileName(dir));
                                     Directory.CreateDirectory(targetDir);
                                     var targetFile = Path.Combine(targetDir, langFileNames);
                                     if (File.Exists(targetFile))
                                         File.Delete(targetFile);
-                                    File.Move(Path.Combine(dir, langFileNames), targetFile);
+                                    File.Copy(Path.Combine(dir, langFileNames), targetFile);
                                 }
                                 else
                                     Directory.Delete(dir, true);
