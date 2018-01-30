@@ -833,14 +833,14 @@ namespace com.clusterrr.hakchi_gui
         public static void GetMemoryStats()
         {
             var clovershell = MainForm.Clovershell;
-            var storage = clovershell.ExecuteSimple("df \"$(hakchi findGameSyncStorage)\" | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 500, true).Split('|');
+            var storage = clovershell.ExecuteSimple("df \"$(hakchi findGameSyncStorage)\" | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 2000, true).Split('|');
             ExternalSaves = clovershell.ExecuteSimple("mount | grep /var/lib/clover").Trim().Length > 0;
-            WrittenGamesSize = long.Parse(clovershell.ExecuteSimple("du -s \"$(hakchi findGameSyncStorage)\" | awk '{ print $1 }'", 1000, true)) * 1024;
-            SaveStatesSize = long.Parse(clovershell.ExecuteSimple("du -s \"$(readlink /var/saves)\" | awk '{ print $1 }'", 1000, true)) * 1024;
+            WrittenGamesSize = long.Parse(clovershell.ExecuteSimple("du -s \"$(hakchi findGameSyncStorage)\" | awk '{ print $1 }'", 2000, true)) * 1024;
+            SaveStatesSize = long.Parse(clovershell.ExecuteSimple("du -s \"$(readlink /var/saves)\" | awk '{ print $1 }'", 2000, true)) * 1024;
             StorageTotal = long.Parse(storage[0]) * 1024;
             StorageUsed = long.Parse(storage[1]) * 1024;
             StorageFree = long.Parse(storage[2]) * 1024;
-            Debug.WriteLine(string.Format("NANDC size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", StorageTotal / 1024.0 / 1024.0, StorageUsed / 1024.0 / 1024.0, StorageFree / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Storage size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", StorageTotal / 1024.0 / 1024.0, StorageUsed / 1024.0 / 1024.0, StorageFree / 1024.0 / 1024.0));
             Debug.WriteLine(string.Format("Used by games: {0:F1}MB", WrittenGamesSize / 1024.0 / 1024.0));
             Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", SaveStatesSize / 1024.0 / 1024.0));
             Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (StorageUsed - WrittenGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
@@ -915,15 +915,15 @@ namespace com.clusterrr.hakchi_gui
                     DialogResult = DialogResult.Abort;
                     return;
                 }
-                string systemCode = clovershell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 1500, true).Trim();
-                gameSyncStorage = clovershell.ExecuteSimple("hakchi findGameSyncStorage", 1500, true).Trim();
+                string systemCode = clovershell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
+                gameSyncStorage = clovershell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
                 gameSyncPath = gameSyncStorage;
                 if (ConfigIni.SeparateGameStorage)
                     gameSyncPath = $"{gameSyncStorage}/{systemCode}";
 
-                gamesPath = clovershell.ExecuteSimple("hakchi get gamepath", 1500, true).Trim();
-                rootFsPath = clovershell.ExecuteSimple("hakchi get rootfs", 1500, true).Trim();
-                squashFsPath = clovershell.ExecuteSimple("hakchi get squashfs", 1500, true).Trim();
+                gamesPath = clovershell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
+                rootFsPath = clovershell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
+                squashFsPath = clovershell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
@@ -960,7 +960,7 @@ namespace com.clusterrr.hakchi_gui
                     
                     clovershell.ExecuteSimple($"rm -rf {gameSyncPath}", 5000, false);
                     if (ConfigIni.SeparateGameStorage)
-                        clovershell.ExecuteSimple("find \"$(hakchi findGameSyncStorage)/\" -maxdepth 1 | grep -vEe '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' | while read f; do rm -rf \"$f\"; done", 1500, true);
+                        clovershell.ExecuteSimple("find \"$(hakchi findGameSyncStorage)/\" -maxdepth 1 | grep -vEe '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' | while read f; do rm -rf \"$f\"; done", 2000, true);
                     clovershell.ExecuteSimple($"mkdir -p \"{gameSyncPath}\"", 3000, true);
 
                     if (gamesTar.Length > 0)
@@ -1853,7 +1853,7 @@ namespace com.clusterrr.hakchi_gui
             var clovershell = MainForm.Clovershell;
             if (!clovershell.IsOnline) return;
 
-            string gamesCloverPath = clovershell.ExecuteSimple("hakchi eval 'echo \"$squashfs$gamepath\"'", 1500, true);
+            string gamesCloverPath = clovershell.ExecuteSimple("hakchi eval 'echo \"$squashfs$gamepath\"'", 2000, true);
             string cachePath = Path.Combine(Program.BaseDirectoryExternal, "games_cache");
 
             try

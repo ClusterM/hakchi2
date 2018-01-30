@@ -632,7 +632,7 @@ namespace com.clusterrr.clovershell
             return (int)(DateTime.Now - start).TotalMilliseconds;
         }
 
-        public string ExecuteSimple(string command, int timeout = 1500, bool throwOnNonZero = false)
+        public string ExecuteSimple(string command, int timeout = 2000, bool throwOnNonZero = false)
         {
             var stdOut = new MemoryStream();
             Execute(command, null, stdOut, null, timeout, throwOnNonZero);
