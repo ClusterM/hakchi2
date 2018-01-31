@@ -71,7 +71,12 @@ namespace com.clusterrr.hakchi_gui
             Debug.AutoFlush = true;
 #endif
             bool isPortable = !args.Contains("/nonportable") || args.Contains("/portable");
-            bool isFirstRun = Shared.isFirstRun();
+            bool isFirstRun = false;
+            
+            if (!isPortable)
+            {
+                isFirstRun = Shared.isFirstRun();
+            }
 
             try
             {
