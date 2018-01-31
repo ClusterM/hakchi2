@@ -117,7 +117,7 @@ namespace com.clusterrr.hakchi_gui
                                 "art", "folder_images", "patches", "user_mods"
                             };
                             foreach (var dir in externalDirs)
-                                Shared.DirectoryCopy(Path.Combine(BaseDirectoryInternal, dir), Path.Combine(BaseDirectoryExternal, dir), true);
+                                Shared.DirectoryCopy(Path.Combine(BaseDirectoryInternal, dir), Path.Combine(BaseDirectoryExternal, dir), true, true);
                         }
 
                         string languagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "languages");
