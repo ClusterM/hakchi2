@@ -218,13 +218,13 @@ namespace com.clusterrr.hakchi_gui
                     var message = "Your system's custom kernel is out of date and requires a reflash before you can use this program. Would you like to flash the custom kernel now?";
                     var title = "Kernel out of date";
 
-                    if (MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (BackgroundThreadMessageBox(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         canInteract = FlashCustomKernel();
 
                         if (canInteract)
                         {
-                            MessageBox.Show(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -234,13 +234,13 @@ namespace com.clusterrr.hakchi_gui
                     var message = "Your system's kernel scripts are out of date and it requires a memboot before you can use this program. Would you like to memboot the custom kernel now?";
                     var title = "Scripts out of date";
 
-                    if (MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (BackgroundThreadMessageBox(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         canInteract = MembootCustomKernel();
 
                         if (canInteract)
                         {
-                            MessageBox.Show(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -249,11 +249,11 @@ namespace com.clusterrr.hakchi_gui
                     var message = "Your system's kernel scripts are out of date and can be updated. Would you like to update the custom kernel scripts now?";
                     var title = "Scripts out of date";
 
-                    if (MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (BackgroundThreadMessageBox(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         if (MembootCustomKernel())
                         {
-                            MessageBox.Show(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -267,7 +267,7 @@ namespace com.clusterrr.hakchi_gui
                 else
                 {
                     var message = "Until you install the necessary updates, you will likely experience errors while attempting to use this program. Please update to receive full compatibility.";
-                    MessageBox.Show(message, Resources.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    BackgroundThreadMessageBox(message, Resources.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -2344,6 +2344,12 @@ namespace com.clusterrr.hakchi_gui
             workerForm.FoldersMode = ConfigIni.FoldersMode;
             workerForm.MaxGamesPerFolder = ConfigIni.MaxGamesPerFolder;
             workerForm.FoldersManagerFromThread(workerForm.Games);
+        }
+
+        private DialogResult BackgroundThreadMessageBox(string text, string title, MessageBoxButtons buttons, MessageBoxIcon icon)
+        {
+            return (DialogResult)this.Invoke(new Func<DialogResult>(
+                                   () => { return MessageBox.Show(this, text, title, buttons, icon); }));
         }
     }
 }
