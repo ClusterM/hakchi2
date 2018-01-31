@@ -224,7 +224,8 @@ namespace com.clusterrr.hakchi_gui
 
                         if (canInteract)
                         {
-                            BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            BackgroundThreadMessageBox("Done! You can upload games to your NES/SNES Mini once you perform a manual reboot.", 
+                                Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -240,7 +241,8 @@ namespace com.clusterrr.hakchi_gui
 
                         if (canInteract)
                         {
-                            BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            BackgroundThreadMessageBox("Done! You can upload games to your NES/SNES Mini once you perform a manual reboot.", 
+                                Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -253,7 +255,8 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (MembootCustomKernel())
                         {
-                            BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            BackgroundThreadMessageBox("Done! You can upload games to your NES/SNES Mini once you perform a manual reboot.", 
+                                Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -1183,7 +1186,8 @@ namespace com.clusterrr.hakchi_gui
             var kernel = RequirePatchedKernel();
             if (kernel == DialogResult.No) return;
             if (kernel == DialogResult.Yes) // Message for new user
-                MessageBox.Show(Resources.DoneYouCanUpload + "\r\n" + Resources.PressOkToContinue, Resources.Congratulations, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Done! You can upload games to your NES/SNES Mini once you perform a manual reboot.\r\n" + 
+                    Resources.PressOkToContinue, Resources.Congratulations, MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (UploadGames())
                 if (!ConfigIni.DisablePopups)
                     MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1503,7 +1507,11 @@ namespace com.clusterrr.hakchi_gui
             if (MessageBox.Show(Resources.CustomKernelQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == DialogResult.Yes)
             {
-                if (FlashCustomKernel()) MessageBox.Show(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (FlashCustomKernel())
+                {
+                    MessageBox.Show("Done! You can upload games to your NES/SNES Mini once you perform a manual reboot.", 
+                        Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
