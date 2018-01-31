@@ -119,7 +119,7 @@ namespace com.clusterrr.hakchi_gui
                 SizeSuffixes[mag]);
         }
 
-        public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, bool skipExistingFiles = false)
+        public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, bool skipExistingFiles = false, bool overwriteExistingFiles = false)
         {
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
@@ -149,7 +149,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else
                 {
-                    file.CopyTo(temppath, false);
+                    file.CopyTo(temppath, overwriteExistingFiles);
                 }
 
             }
@@ -160,7 +160,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (DirectoryInfo subdir in dirs)
                 {
                     string temppath = Path.Combine(destDirName, subdir.Name);
-                    DirectoryCopy(subdir.FullName, temppath, copySubDirs, skipExistingFiles);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs, skipExistingFiles, overwriteExistingFiles);
                 }
             }
         }
