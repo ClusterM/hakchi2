@@ -17,6 +17,7 @@ using System.Resources;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using System.Net;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -1768,6 +1769,7 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // check for an update after the initial console selection / on each app start
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)4080;
             AutoUpdater.Start(UPDATE_XML_URL);
         }
 
