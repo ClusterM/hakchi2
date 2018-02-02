@@ -170,7 +170,7 @@
     <value>Argumentos extras de linha de comando</value>
   </data>
   <data name="FirstRun">
-    <value>Olá! Estou muito feliz que esteja utilizando o hakchi2. É muito simples de usar. Basta clicar em "Adicionar mais jogos", selecionar algumas ROMs, pressionar "Sincronizar" e siguir as instruções. Boa sorte!</value>
+    <value>Olá! Estou muito feliz que esteja utilizando o hakchi2. É muito simples de usar. Basta clicar em "Adicionar mais jogos", selecionar algumas ROMs, pressionar "Sincronizar" e seguir as instruções. Boa sorte!</value>
   </data>
   <data name="FlasingCustom">
     <value>Escrevendo(instalando) o kernel personalizado...</value>
