@@ -887,7 +887,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Debug.WriteLine("could not delete temp directory for UploadGames().");
                 Debug.WriteLine(ex.Message + " : " + ex.StackTrace);
-                MessageBox.Show(Resources.CannotDeleteTempFolder);
+                ShowMessage(Resources.CannotDeleteTempFolder, Resources.UploadingGames);
                 DialogResult = DialogResult.Abort;
                 return;
             }
@@ -1067,7 +1067,7 @@ namespace com.clusterrr.hakchi_gui
             relativeGamesPath = "/media/" + NesMiniApplication.GamesDirectory.Substring(3).Replace("\\", "/");
             linkRelativeGames = false;
             if (exportDrive == baseDrive)
-                linkRelativeGames = (MessageBox.Show(Resources.LinkedGamesQ, Resources.ExportGames, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+                linkRelativeGames = MessageBoxFromThread(this, Resources.LinkedGamesQ, Resources.ExportGames, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, false) == DialogResult.Yes;
 
             progress += 5;
             SetProgress(progress, maxProgress);
@@ -1076,7 +1076,7 @@ namespace com.clusterrr.hakchi_gui
             tempGamesDirectory = exportDirectory;
             Directory.CreateDirectory(tempGamesDirectory);
             bool directoryNotEmpty = (Directory.GetDirectories(tempGamesDirectory).Length > 0);
-            if (directoryNotEmpty && MessageBox.Show(string.Format(Resources.PermanentlyDeleteQ, tempGamesDirectory), Resources.FolderNotEmpty, MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (directoryNotEmpty && MessageBoxFromThread(this, string.Format(Resources.PermanentlyDeleteQ, tempGamesDirectory), Resources.FolderNotEmpty, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, false) == DialogResult.Yes)
             {
                 Shared.DirectoryDeleteInside(tempGamesDirectory);
                 directoryNotEmpty = false;
