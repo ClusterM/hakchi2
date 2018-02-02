@@ -144,7 +144,7 @@ namespace com.clusterrr.hakchi_gui
             fes1Path = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "fes1.bin");
             ubootPath = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "uboot.bin");
             zImage = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "zImage");
-#if DEBUG
+#if VERYDEBUG
             tempDirectory = Path.Combine(baseDirectoryInternal, "temp");
 #else
             tempDirectory = Path.Combine(Path.GetTempPath(), "hakchi-temp");
@@ -1339,7 +1339,7 @@ namespace com.clusterrr.hakchi_gui
             }
             
 
-            ExecuteTool("cpio.exe", string.Format("-imd --no-preserve-owner --quiet -I \"{0}\"",
+            ExecuteTool("cpio.exe", string.Format("-id --no-preserve-owner --quiet -I \"{0}\"",
                @"..\initramfs.cpio"), ramfsDirectory);
             if (!File.Exists(Path.Combine(ramfsDirectory, "init"))) // cpio.exe fails on Windows XP for some reason. But working!
                 throw new Exception("Can't unpack ramdisk 2");
