@@ -708,7 +708,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello there! I&apos;m very glad that you are using hakchi2. It&apos;s very simple to use. Just click &quot;Add more games&quot;, select some ROMs, press &quot;Synchronize&quot; and follow the instructions. Good luck!.
+        ///   Looks up a localized string similar to Hello there! I&apos;m very glad that you are using hakchi2. It&apos;s very simple to use. Just click &quot;Add more games&quot;, select some ROMs, press &quot;Synchronize&quot; to upload games to the console internal memory, or press &quot;Export&quot; to use USB HOST mode, and follow the instructions. Good luck!.
         /// </summary>
         internal static string FirstRun {
             get {
@@ -1254,7 +1254,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 9653ee5 (dirty).
+        ///   Looks up a localized string similar to 9294393 (dirty).
         /// </summary>
         internal static string gitCommit {
             get {
