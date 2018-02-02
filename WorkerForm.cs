@@ -25,6 +25,7 @@ namespace com.clusterrr.hakchi_gui
         {
             DumpKernel,
             FlashKernel,
+            FlashUboot,
             DumpNand,
             FlashNand,
             DumpNandB,
@@ -66,6 +67,7 @@ namespace com.clusterrr.hakchi_gui
         public string NandDump;
         public string Mod = null;
         public string zImage = null;
+        public string customUboot = null;
         public string exportDirectory;
         public bool exportGames = false;
         public bool linkRelativeGames = false;
@@ -313,6 +315,9 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case Tasks.FlashKernel:
                         FlashKernel();
+                        break;
+                    case Tasks.FlashUboot:
+                        FlashUboot();
                         break;
                     case Tasks.DumpNand:
                         DoNandDump();
@@ -661,6 +666,85 @@ namespace com.clusterrr.hakchi_gui
                 SetStatus(Resources.Done);
                 SetProgress(maxProgress, maxProgress);
             }
+        }
+
+        public void FlashUboot()
+        {
+            int progress = 0;
+            int maxProgress = 115;
+            if (WaitForFelFromThread() != DialogResult.OK)
+            {
+                DialogResult = DialogResult.Abort;
+                return;
+            }
+            progress += 5;
+            SetProgress(progress, maxProgress);
+
+            string ubootPath = this.ubootPath;
+            if (!string.IsNullOrEmpty(customUboot))
+                ubootPath = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), customUboot);
+            if (!File.Exists(ubootPath))
+                throw new FileNotFoundException(ubootPath);
+
+            byte[] uboot;
+            uboot = File.ReadAllBytes(ubootPath);
+            var size = CalcKernelSize(uboot);
+            if (size > uboot.Length || size > Fel.uboot_maxsize_f / 2)
+                throw new Exception(Resources.InvalidUbootSize + " " + size);
+
+            size = (size + Fel.sector_size - 1) / Fel.sector_size;
+            size = size * Fel.sector_size;
+            if (uboot.Length != size)
+            {
+                var newU = new byte[size];
+                Array.Copy(uboot, newU, uboot.Length);
+                uboot = newU;
+            }
+
+            fel.WriteFlash(Fel.uboot_base_f, uboot,
+                delegate (Fel.CurrentAction action, string command)
+                {
+                    switch (action)
+                    {
+                        case Fel.CurrentAction.RunningCommand:
+                            SetStatus(Resources.ExecutingCommand + " " + command);
+                            break;
+                        case Fel.CurrentAction.WritingMemory:
+                            SetStatus(Resources.UploadingKernel);
+                            break;
+                    }
+                    progress++;
+                    SetProgress(progress, maxProgress);
+                }
+            );
+            var r = fel.ReadFlash((UInt32)Fel.uboot_base_f, (UInt32)uboot.Length,
+                delegate (Fel.CurrentAction action, string command)
+                {
+                    switch (action)
+                    {
+                        case Fel.CurrentAction.RunningCommand:
+                            SetStatus(Resources.ExecutingCommand + " " + command);
+                            break;
+                        case Fel.CurrentAction.ReadingMemory:
+                            SetStatus(Resources.Verifying);
+                            break;
+                    }
+                    progress++;
+                    SetProgress(progress, maxProgress);
+                }
+            );
+            if (!uboot.SequenceEqual(r))
+                throw new Exception(Resources.VerifyFailed);
+
+            var shutdownCommand = "shutdown";
+            SetStatus(Resources.ExecutingCommand + " " + shutdownCommand);
+            fel.RunUbootCmd(shutdownCommand, true);
+#if !DEBUG
+            if (Directory.Exists(tempDirectory))
+                Directory.Delete(tempDirectory, true);
+#endif
+            SetStatus(Resources.Done);
+            SetProgress(maxProgress, maxProgress);
         }
 
         public void DoNandDump()

@@ -726,11 +726,38 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flashing uboot....
+        /// </summary>
+        internal static string FlashingUboot {
+            get {
+                return ResourceManager.GetString("FlashingUboot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to flash NAND-C partition image? It will replace all user data..
         /// </summary>
         internal static string FlashNandCQ {
             get {
                 return ResourceManager.GetString("FlashNandCQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to flash the NORMAL MODE uboot?.
+        /// </summary>
+        internal static string FlashUbootNormalQ {
+            get {
+                return ResourceManager.GetString("FlashUbootNormalQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to flash the SD MODE uboot?.
+        /// </summary>
+        internal static string FlashUbootSDQ {
+            get {
+                return ResourceManager.GetString("FlashUbootSDQ", resourceCulture);
             }
         }
         
@@ -1385,6 +1412,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid uboot.bin file size..
+        /// </summary>
+        internal static string InvalidUbootSize {
+            get {
+                return ResourceManager.GetString("InvalidUbootSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap it {
@@ -1920,6 +1956,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
             get {
                 object obj = ResourceManager.GetObject("ua", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uboot successfully flashed..
+        /// </summary>
+        internal static string UbootFlashed {
+            get {
+                return ResourceManager.GetString("UbootFlashed", resourceCulture);
             }
         }
         

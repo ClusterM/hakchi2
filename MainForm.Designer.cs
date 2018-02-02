@@ -48,9 +48,14 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumpKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flashUbootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.normalModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sDModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashOriginalKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashCustomKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uninstallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
+            this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.membootOriginalKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.membootPatchedKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
@@ -59,8 +64,6 @@
             this.dumpNANDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumpNANDCPartitionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashNANDCPartitionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
-            this.uninstallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstallModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -301,19 +304,12 @@
             // 
             this.kernelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dumpKernelToolStripMenuItem,
+            this.flashUbootToolStripMenuItem,
             this.flashOriginalKernelToolStripMenuItem,
             this.flashCustomKernelToolStripMenuItem,
+            this.uninstallToolStripMenuItem,
             this.toolStripMenuItem11,
-            this.membootOriginalKernelToolStripMenuItem,
-            this.membootPatchedKernelToolStripMenuItem,
-            this.toolStripMenuItem10,
-            this.dumpTheWholeNANDToolStripMenuItem,
-            this.toolFlashTheWholeNANDStripMenuItem,
-            this.dumpNANDBToolStripMenuItem,
-            this.dumpNANDCPartitionToolStripMenuItem,
-            this.flashNANDCPartitionToolStripMenuItem,
-            this.toolStripMenuItem9,
-            this.uninstallToolStripMenuItem});
+            this.advancedToolStripMenuItem});
             this.kernelToolStripMenuItem.Name = "kernelToolStripMenuItem";
             resources.ApplyResources(this.kernelToolStripMenuItem, "kernelToolStripMenuItem");
             // 
@@ -322,6 +318,26 @@
             this.dumpKernelToolStripMenuItem.Name = "dumpKernelToolStripMenuItem";
             resources.ApplyResources(this.dumpKernelToolStripMenuItem, "dumpKernelToolStripMenuItem");
             this.dumpKernelToolStripMenuItem.Click += new System.EventHandler(this.dumpKernelToolStripMenuItem_Click);
+            // 
+            // flashUbootToolStripMenuItem
+            // 
+            this.flashUbootToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.normalModeToolStripMenuItem,
+            this.sDModeToolStripMenuItem});
+            this.flashUbootToolStripMenuItem.Name = "flashUbootToolStripMenuItem";
+            resources.ApplyResources(this.flashUbootToolStripMenuItem, "flashUbootToolStripMenuItem");
+            // 
+            // normalModeToolStripMenuItem
+            // 
+            this.normalModeToolStripMenuItem.Name = "normalModeToolStripMenuItem";
+            resources.ApplyResources(this.normalModeToolStripMenuItem, "normalModeToolStripMenuItem");
+            this.normalModeToolStripMenuItem.Click += new System.EventHandler(this.normalModeToolStripMenuItem_Click);
+            // 
+            // sDModeToolStripMenuItem
+            // 
+            this.sDModeToolStripMenuItem.Name = "sDModeToolStripMenuItem";
+            resources.ApplyResources(this.sDModeToolStripMenuItem, "sDModeToolStripMenuItem");
+            this.sDModeToolStripMenuItem.Click += new System.EventHandler(this.sDModeToolStripMenuItem_Click);
             // 
             // flashOriginalKernelToolStripMenuItem
             // 
@@ -335,10 +351,30 @@
             resources.ApplyResources(this.flashCustomKernelToolStripMenuItem, "flashCustomKernelToolStripMenuItem");
             this.flashCustomKernelToolStripMenuItem.Click += new System.EventHandler(this.flashCustomKernelToolStripMenuItem_Click);
             // 
+            // uninstallToolStripMenuItem
+            // 
+            this.uninstallToolStripMenuItem.Name = "uninstallToolStripMenuItem";
+            resources.ApplyResources(this.uninstallToolStripMenuItem, "uninstallToolStripMenuItem");
+            this.uninstallToolStripMenuItem.Click += new System.EventHandler(this.uninstallToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
             resources.ApplyResources(this.toolStripMenuItem11, "toolStripMenuItem11");
+            // 
+            // advancedToolStripMenuItem
+            // 
+            this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.membootOriginalKernelToolStripMenuItem,
+            this.membootPatchedKernelToolStripMenuItem,
+            this.toolStripMenuItem10,
+            this.dumpTheWholeNANDToolStripMenuItem,
+            this.toolFlashTheWholeNANDStripMenuItem,
+            this.dumpNANDBToolStripMenuItem,
+            this.dumpNANDCPartitionToolStripMenuItem,
+            this.flashNANDCPartitionToolStripMenuItem});
+            this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
+            resources.ApplyResources(this.advancedToolStripMenuItem, "advancedToolStripMenuItem");
             // 
             // membootOriginalKernelToolStripMenuItem
             // 
@@ -386,17 +422,6 @@
             this.flashNANDCPartitionToolStripMenuItem.Name = "flashNANDCPartitionToolStripMenuItem";
             resources.ApplyResources(this.flashNANDCPartitionToolStripMenuItem, "flashNANDCPartitionToolStripMenuItem");
             this.flashNANDCPartitionToolStripMenuItem.Click += new System.EventHandler(this.flashNANDCPartitionToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem9
-            // 
-            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            resources.ApplyResources(this.toolStripMenuItem9, "toolStripMenuItem9");
-            // 
-            // uninstallToolStripMenuItem
-            // 
-            this.uninstallToolStripMenuItem.Name = "uninstallToolStripMenuItem";
-            resources.ApplyResources(this.uninstallToolStripMenuItem, "uninstallToolStripMenuItem");
-            this.uninstallToolStripMenuItem.Click += new System.EventHandler(this.uninstallToolStripMenuItem_Click);
             // 
             // modulesToolStripMenuItem
             // 
@@ -1361,18 +1386,11 @@
         private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem takeScreenshotToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dumpTheWholeNANDToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
         private System.Windows.Forms.SaveFileDialog saveDumpFileDialog;
-        private System.Windows.Forms.ToolStripMenuItem dumpNANDBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sNESMiniToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem superFamicomMiniToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem10;
-        private System.Windows.Forms.ToolStripMenuItem toolFlashTheWholeNANDStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openDumpFileDialog;
-        private System.Windows.Forms.ToolStripMenuItem membootPatchedKernelToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem11;
-        private System.Windows.Forms.ToolStripMenuItem membootOriginalKernelToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBoxCompressed;
         private System.Windows.Forms.Label labelSize;
         private System.Windows.Forms.ToolStripMenuItem compressGamesToolStripMenuItem;
@@ -1383,8 +1401,6 @@
         private System.Windows.Forms.ToolStripMenuItem decompressSelectedGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downloadBoxArtForSelectedGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dumpNANDCPartitionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem flashNANDCPartitionToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog exportFolderDialog;
         private System.Windows.Forms.ToolStripMenuItem compressBoxArtToolStripMenuItem;
         private System.Windows.Forms.Button buttonDefaultCover;
@@ -1411,6 +1427,18 @@
         private System.Windows.Forms.ToolStripMenuItem groupByAppTypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foldersManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem separateGamesForMultibootToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem flashUbootToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem normalModeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sDModeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem advancedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem membootOriginalKernelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem membootPatchedKernelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem10;
+        private System.Windows.Forms.ToolStripMenuItem dumpTheWholeNANDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolFlashTheWholeNANDStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dumpNANDBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dumpNANDCPartitionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem flashNANDCPartitionToolStripMenuItem;
     }
 }
 

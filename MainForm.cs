@@ -1285,6 +1285,24 @@ namespace com.clusterrr.hakchi_gui
             return workerForm.DialogResult == DialogResult.OK;
         }
 
+        bool FlashUboot(string customUboot = null)
+        {
+            var workerForm = new WorkerForm(this);
+            workerForm.Text = Resources.FlashingUboot;
+            workerForm.Task = WorkerForm.Tasks.FlashUboot;
+            if (!string.IsNullOrEmpty(customUboot))
+                workerForm.customUboot = customUboot;
+            workerForm.Config = null;
+            workerForm.Games = null;
+            workerForm.Start();
+            var result = workerForm.DialogResult == DialogResult.OK;
+            if (result)
+            {
+                ConfigIni.Save();
+            }
+            return result;
+        }
+
         bool FlashCustomKernel()
         {
             var workerForm = new WorkerForm(this);
@@ -1458,6 +1476,30 @@ namespace com.clusterrr.hakchi_gui
                 == System.Windows.Forms.DialogResult.Yes)
             {
                 if (DoKernelDump()) MessageBox.Show(Resources.KernelDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void normalModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(Resources.FlashUbootNormalQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                == DialogResult.Yes)
+            {
+                if (FlashUboot())
+                {
+                    MessageBox.Show(Resources.UbootFlashed, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void sDModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(Resources.FlashUbootSDQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                == DialogResult.Yes)
+            {
+                if (FlashUboot("ubootSD.bin"))
+                {
+                    MessageBox.Show(Resources.UbootFlashed, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 

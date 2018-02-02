@@ -779,4 +779,19 @@ This process cannot be undone!</value>
   <data name="VersionRevisionNotice" xml:space="preserve">
     <value>INTERNAL VERSION FOR TESTING PURPOSES ONLY</value>
   </data>
+  <data name="InvalidUbootSize" xml:space="preserve">
+    <value>Invalid uboot.bin file size.</value>
+  </data>
+  <data name="FlashingUboot" xml:space="preserve">
+    <value>Flashing uboot...</value>
+  </data>
+  <data name="FlashUbootNormalQ" xml:space="preserve">
+    <value>Do you really want to flash the NORMAL MODE uboot?</value>
+  </data>
+  <data name="FlashUbootSDQ" xml:space="preserve">
+    <value>Do you really want to flash the SD MODE uboot?</value>
+  </data>
+  <data name="UbootFlashed" xml:space="preserve">
+    <value>Uboot successfully flashed.</value>
+  </data>
 </root>
