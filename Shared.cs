@@ -50,7 +50,10 @@ namespace com.clusterrr.hakchi_gui
             get
             {
                 Version version = AppVersion;
-                return $"{version.Major - 2}.{version.Minor}.{version.Build}";
+                string v = $"{version.Major - 2}.{version.Minor}.{version.Build}";
+                if (version.Revision > 0)
+                    v += $".{version.Revision}";
+                return v;
             }
         }
 

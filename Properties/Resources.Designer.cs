@@ -1254,7 +1254,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 9294393 (dirty).
+        ///   Looks up a localized string similar to 7357a01 (dirty).
         /// </summary>
         internal static string gitCommit {
             get {
@@ -2056,6 +2056,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string Verifying {
             get {
                 return ResourceManager.GetString("Verifying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INTERNAL VERSION FOR TESTING PURPOSES ONLY.
+        /// </summary>
+        internal static string VersionRevisionNotice {
+            get {
+                return ResourceManager.GetString("VersionRevisionNotice", resourceCulture);
             }
         }
         

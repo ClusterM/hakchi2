@@ -98,7 +98,9 @@ namespace com.clusterrr.hakchi_gui
                 InternalMods = from m in Directory.GetFiles(Path.Combine(Program.BaseDirectoryInternal, "mods/hmods")) select Path.GetFileNameWithoutExtension(m);
                 LoadPresets();
                 LoadLanguages();
-                Text = $"hakchi2 CE v{Shared.AppDisplayVersion}"
+                var dv = $"hakchi2 CE v{Shared.AppDisplayVersion}";
+                if (Shared.AppVersion.Revision > 0) dv += $" ({Resources.VersionRevisionNotice})";
+                Text = dv
 #if DEBUG
  + " (debug"
 #if VERY_DEBUG

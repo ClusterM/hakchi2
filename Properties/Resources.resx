@@ -776,4 +776,7 @@ This process cannot be undone!</value>
   <data name="DetectedConsole" xml:space="preserve">
     <value>Detected Console: {0}</value>
   </data>
+  <data name="VersionRevisionNotice" xml:space="preserve">
+    <value>INTERNAL VERSION FOR TESTING PURPOSES ONLY</value>
+  </data>
 </root>
