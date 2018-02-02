@@ -1173,13 +1173,11 @@
             // 
             // timerCalculateGames
             // 
-            this.timerCalculateGames.Enabled = true;
             this.timerCalculateGames.Interval = 500;
             this.timerCalculateGames.Tick += new System.EventHandler(this.timerCalculateGames_Tick);
             // 
             // timerConnectionCheck
             // 
-            this.timerConnectionCheck.Enabled = true;
             this.timerConnectionCheck.Interval = 500;
             this.timerConnectionCheck.Tick += new System.EventHandler(this.timerConnectionCheck_Tick);
             // 

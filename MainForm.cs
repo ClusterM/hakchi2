@@ -1771,6 +1771,10 @@ namespace com.clusterrr.hakchi_gui
             // check for an update after the initial console selection / on each app start
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)4080;
             AutoUpdater.Start(UPDATE_XML_URL);
+
+            // enable timers
+            timerConnectionCheck.Enabled = true;
+            timerCalculateGames.Enabled = true;
         }
 
         private void dragEnter(object sender, DragEventArgs e)
