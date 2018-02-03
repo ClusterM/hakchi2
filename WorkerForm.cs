@@ -688,7 +688,7 @@ namespace com.clusterrr.hakchi_gui
 
             byte[] uboot;
             uboot = File.ReadAllBytes(ubootPath);
-            var size = CalcKernelSize(uboot);
+            long size = uboot.Length;
             if (size > uboot.Length || size > Fel.uboot_maxsize_f / 2)
                 throw new Exception(Resources.InvalidUbootSize + " " + size);
 
