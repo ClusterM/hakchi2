@@ -710,7 +710,7 @@ namespace com.clusterrr.hakchi_gui
                             SetStatus(Resources.ExecutingCommand + " " + command);
                             break;
                         case Fel.CurrentAction.WritingMemory:
-                            SetStatus(Resources.UploadingKernel);
+                            SetStatus(Resources.FlashingUboot);
                             break;
                     }
                     progress++;
