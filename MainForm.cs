@@ -2414,5 +2414,77 @@ namespace com.clusterrr.hakchi_gui
             return (DialogResult)this.Invoke(new Func<DialogResult>(
                                    () => { return MessageBox.Show(this, text, title, buttons, icon); }));
         }
+
+        private void changeBootImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (WaitingClovershellForm.WaitForDevice(this))
+                {
+                    using (OpenFileDialog ofdPng = new OpenFileDialog())
+                    {
+                        ofdPng.Filter = "PNG files (*.png)|*.png";
+                        if (ofdPng.ShowDialog(this) != DialogResult.OK) return;
+
+                        using (Image image = Image.FromFile(ofdPng.FileName))
+                        {
+                            if (image.Height != 720 || image.Width != 1280)
+                            {
+                                MessageBox.Show(this, String.Format(Resources.InvalidImageResolution, 1280, 720), Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+                        Clovershell.Execute("hakchi unset cfg_boot_logo; cat > \"$(hakchi get rootfs)/etc/boot.png\"", File.OpenRead(ofdPng.FileName));
+                        if (!ConfigIni.DisablePopups)
+                            MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void disableBootImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (RequirePatchedKernel() == DialogResult.No) return;
+            try
+            {
+                if (WaitingClovershellForm.WaitForDevice(this))
+                {
+                    var assembly = GetType().Assembly;
+                    Clovershell.Execute("hakchi unset cfg_boot_logo; cat > \"$(hakchi get rootfs)/etc/boot.png\"", File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "blankBoot.png")));
+                    if (!ConfigIni.DisablePopups)
+                        MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void resetDefaultBootImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (RequirePatchedKernel() == DialogResult.No) return;
+            try
+            {
+                if (WaitingClovershellForm.WaitForDevice(this))
+                {
+                    Clovershell.ExecuteSimple("hakchi unset cfg_boot_logo; rm \"$(hakchi get rootfs)/etc/boot.png\"");
+                    if (!ConfigIni.DisablePopups)
+                        MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

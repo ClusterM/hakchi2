@@ -104,6 +104,10 @@
             this.compressBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disableHakchi2PopupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disableBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetDefaultBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripSeparator();
             this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.epilepsyProtectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -495,6 +499,7 @@
             this.compressBoxArtToolStripMenuItem,
             this.separateGamesForMultibootToolStripMenuItem,
             this.disableHakchi2PopupsToolStripMenuItem,
+            this.bootImageToolStripMenuItem,
             this.toolStripMenuItem16,
             this.useExtendedFontToolStripMenuItem,
             this.epilepsyProtectionToolStripMenuItem,
@@ -731,6 +736,33 @@
             this.disableHakchi2PopupsToolStripMenuItem.Name = "disableHakchi2PopupsToolStripMenuItem";
             resources.ApplyResources(this.disableHakchi2PopupsToolStripMenuItem, "disableHakchi2PopupsToolStripMenuItem");
             this.disableHakchi2PopupsToolStripMenuItem.Click += new System.EventHandler(this.disableHakchi2PopupsToolStripMenuItem_Click);
+            // 
+            // bootImageToolStripMenuItem
+            // 
+            this.bootImageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeBootImageToolStripMenuItem,
+            this.disableBootImageToolStripMenuItem,
+            this.resetDefaultBootImageToolStripMenuItem});
+            this.bootImageToolStripMenuItem.Name = "bootImageToolStripMenuItem";
+            resources.ApplyResources(this.bootImageToolStripMenuItem, "bootImageToolStripMenuItem");
+            // 
+            // changeBootImageToolStripMenuItem
+            // 
+            this.changeBootImageToolStripMenuItem.Name = "changeBootImageToolStripMenuItem";
+            resources.ApplyResources(this.changeBootImageToolStripMenuItem, "changeBootImageToolStripMenuItem");
+            this.changeBootImageToolStripMenuItem.Click += new System.EventHandler(this.changeBootImageToolStripMenuItem_Click);
+            // 
+            // disableBootImageToolStripMenuItem
+            // 
+            this.disableBootImageToolStripMenuItem.Name = "disableBootImageToolStripMenuItem";
+            resources.ApplyResources(this.disableBootImageToolStripMenuItem, "disableBootImageToolStripMenuItem");
+            this.disableBootImageToolStripMenuItem.Click += new System.EventHandler(this.disableBootImageToolStripMenuItem_Click);
+            // 
+            // resetDefaultBootImageToolStripMenuItem
+            // 
+            this.resetDefaultBootImageToolStripMenuItem.Name = "resetDefaultBootImageToolStripMenuItem";
+            resources.ApplyResources(this.resetDefaultBootImageToolStripMenuItem, "resetDefaultBootImageToolStripMenuItem");
+            this.resetDefaultBootImageToolStripMenuItem.Click += new System.EventHandler(this.resetDefaultBootImageToolStripMenuItem_Click);
             // 
             // toolStripMenuItem16
             // 
@@ -1437,6 +1469,10 @@
         private System.Windows.Forms.ToolStripMenuItem dumpNANDBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dumpNANDCPartitionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flashNANDCPartitionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bootImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeBootImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem disableBootImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetDefaultBootImageToolStripMenuItem;
     }
 }
 

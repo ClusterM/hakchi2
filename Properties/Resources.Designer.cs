@@ -1394,6 +1394,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image resolution must be {0}x{1}.
+        /// </summary>
+        internal static string InvalidImageResolution {
+            get {
+                return ResourceManager.GetString("InvalidImageResolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid kernel header..
         /// </summary>
         internal static string InvalidKernelHeader {

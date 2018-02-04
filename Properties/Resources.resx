@@ -800,4 +800,7 @@ This process cannot be undone!</value>
   <data name="SelectRegion" xml:space="preserve">
     <value>Please select a region</value>
   </data>
+  <data name="InvalidImageResolution" xml:space="preserve">
+    <value>Image resolution must be {0}x{1}</value>
+  </data>
 </root>
