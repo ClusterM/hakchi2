@@ -1757,12 +1757,9 @@ namespace com.clusterrr.hakchi_gui
             if (ConfigIni.RunCount == 1)
             {
                 ShowSelected();
-                if (ConfigIni.ConsoleType == ConsoleType.Unknown && DetectedConnectedConsole == null)
-                {
-                    new SelectConsoleDialog(this).ShowDialog();
-                    SyncConsoleType();
-                    MessageBox.Show(this, Resources.FirstRun, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                new SelectConsoleDialog(this).ShowDialog();
+                SyncConsoleType();
+                MessageBox.Show(this, Resources.FirstRun, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             // check for an update after the initial console selection / on each app start
