@@ -11,6 +11,19 @@ namespace com.clusterrr.hakchi_gui
     static class Shared
     {
         public const string squashFsPath = "/var/squashfs";
+
+        public static string PathCombine(params string[] pathSegments)
+        {
+            if (pathSegments.Length == 1) return pathSegments[0];
+            if (pathSegments.Length < 1) throw new ArgumentOutOfRangeException("Not enough path segments");
+
+            string output = pathSegments[0];
+            for(int i = 1; i < pathSegments.Length; i++)
+            {
+                output = Path.Combine(output, pathSegments[i]);
+            }
+            return output;
+        }
         
         public static bool isFirstRun()
         {
