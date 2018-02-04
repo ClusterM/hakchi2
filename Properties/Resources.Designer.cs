@@ -1605,6 +1605,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No drive selected.
+        /// </summary>
+        internal static string NoDriveSelected {
+            get {
+                return ResourceManager.GetString("NoDriveSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No for all.
         /// </summary>
         internal static string NoForAll {
@@ -1899,6 +1908,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string SelectModsUninstall {
             get {
                 return ResourceManager.GetString("SelectModsUninstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select a region.
+        /// </summary>
+        internal static string SelectRegion {
+            get {
+                return ResourceManager.GetString("SelectRegion", resourceCulture);
             }
         }
         

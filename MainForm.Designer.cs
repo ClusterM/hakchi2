@@ -177,7 +177,6 @@
             this.openDumpFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.listViewGames = new System.Windows.Forms.ListView();
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.exportFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.timerShowSelected = new System.Windows.Forms.Timer(this.components);
             this.buttonExport = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
@@ -1401,7 +1400,6 @@
         private System.Windows.Forms.ToolStripMenuItem decompressSelectedGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downloadBoxArtForSelectedGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;
-        private System.Windows.Forms.FolderBrowserDialog exportFolderDialog;
         private System.Windows.Forms.ToolStripMenuItem compressBoxArtToolStripMenuItem;
         private System.Windows.Forms.Button buttonDefaultCover;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedGamesBoxArtToolStripMenuItem;

@@ -145,6 +145,12 @@
     <Compile Include="Apps\SmsGame.cs" />
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\NesUGame.cs" />
+    <Compile Include="ExportGamesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportGamesDialog.Designer.cs">
+      <DependentUpon>ExportGamesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -515,6 +521,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FoldersManagerForm.ro-RO.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportGamesDialog.resx">
+      <DependentUpon>ExportGamesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeAddModForm.hu-HU.resx">
       <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>

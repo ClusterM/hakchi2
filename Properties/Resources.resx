@@ -794,4 +794,10 @@ This process cannot be undone!</value>
   <data name="UbootFlashed" xml:space="preserve">
     <value>Uboot successfully flashed.</value>
   </data>
+  <data name="NoDriveSelected" xml:space="preserve">
+    <value>No drive selected</value>
+  </data>
+  <data name="SelectRegion" xml:space="preserve">
+    <value>Please select a region</value>
+  </data>
 </root>

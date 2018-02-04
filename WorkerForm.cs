@@ -1128,7 +1128,6 @@ namespace com.clusterrr.hakchi_gui
                 throw new Exception("there are no games");
 
             int progress = 0, maxProgress = 400;
-            linkRelativeGames = false;
 
             SetStatus(Resources.BuildingFolders);
             if (FoldersMode == NesMenuCollection.SplitStyle.Custom)
@@ -1147,13 +1146,7 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress);
             SetStatus(Resources.BuildingFolders);
 
-            // linked games prompt
-            string exportDrive = Path.GetPathRoot(exportDirectory).ToLower();
-            string baseDrive = Path.GetPathRoot(Program.BaseDirectoryExternal).ToLower();
             relativeGamesPath = "/media/" + NesMiniApplication.GamesDirectory.Substring(3).Replace("\\", "/");
-            linkRelativeGames = false;
-            if (exportDrive == baseDrive)
-                linkRelativeGames = MessageBoxFromThread(this, Resources.LinkedGamesQ, Resources.ExportGames, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, false) == DialogResult.Yes;
 
             progress += 5;
             SetProgress(progress, maxProgress);

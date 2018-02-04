@@ -38,6 +38,7 @@ namespace com.clusterrr.hakchi_gui
         private const uint FILE_SHARE_WRITE = 0x2;
         private const uint OPEN_EXISTING = 0x3;
         public static string BaseDirectoryInternal, BaseDirectoryExternal;
+        public static bool isPortable = false;
 
         /// <summary>
         /// The main entry point for the application.
@@ -70,7 +71,7 @@ namespace com.clusterrr.hakchi_gui
             }
             Debug.AutoFlush = true;
 #endif
-            bool isPortable = !args.Contains("/nonportable") || args.Contains("/portable");
+            isPortable = !args.Contains("/nonportable") || args.Contains("/portable");
             bool isFirstRun = false;
             
             if (!isPortable)

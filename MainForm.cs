@@ -194,6 +194,7 @@ namespace com.clusterrr.hakchi_gui
                         }
                         break;
                     case "dp-shvc":
+                        if (region != "JPN") ConfigIni.ExportRegion = region;
                         switch (region)
                         {
                             case "USA":
@@ -1348,19 +1349,31 @@ namespace com.clusterrr.hakchi_gui
 
         bool UploadGames(bool exportGames = false)
         {
-            if (exportGames && exportFolderDialog.ShowDialog() != DialogResult.OK)
-                return false;
-
             var workerForm = new WorkerForm(this);
+            if (exportGames)
+            {
+                using (ExportGamesDialog driveSelectDialog = new ExportGamesDialog())
+                {
+                    if (driveSelectDialog.ShowDialog(this) != DialogResult.OK)
+                        return false;
+
+                    workerForm.linkRelativeGames = driveSelectDialog.LinkedExport;
+                    workerForm.exportDirectory = driveSelectDialog.ExportPath;
+
+                    if (!Directory.Exists(driveSelectDialog.ExportPath))
+                        Directory.CreateDirectory(driveSelectDialog.ExportPath);
+                }
+            }
             workerForm.Text = Resources.UploadingGames;
             workerForm.Task = WorkerForm.Tasks.UploadGames;
             workerForm.Mod = "mod_hakchi";
             workerForm.Config = ConfigIni.GetConfigDictionary();
             workerForm.Games = new NesMenuCollection();
             workerForm.exportGames = exportGames;
+            if (!exportGames)
+                workerForm.linkRelativeGames = false;
             
-            if (exportGames)
-                workerForm.exportDirectory = exportFolderDialog.SelectedPath;
+            
 
             foreach (ListViewItem game in listViewGames.CheckedItems)
             {
