@@ -8,6 +8,8 @@ namespace com.clusterrr.hakchi_gui
     public class ConfigIni
     {
         public static int RunCount = 0;
+        public static string LastVersion = "0.0.0.0";
+        //public static string SelectedGames = "";
         public static string SelectedGamesNes = "";
         public static string SelectedGamesFamicom = "";
         public static string SelectedGamesSnes = "";
@@ -450,6 +452,9 @@ namespace com.clusterrr.hakchi_gui
                             param = param.ToLower();
                             switch (param)
                             {
+                                case "lastversion":
+                                    LastVersion = value;
+                                    break;
                                 case "language":
                                     Language = value;
                                     break;
@@ -617,6 +622,7 @@ namespace com.clusterrr.hakchi_gui
             Debug.WriteLine("Saving config");
             var configLines = new List<string>();
             configLines.Add("[Config]");
+            configLines.Add(string.Format("LastVersion={0}", Shared.AppDisplayVersion));
             configLines.Add(string.Format("Language={0}", Language));
             configLines.Add(string.Format("SelectedGamesNes={0}", SelectedGamesNes));
             configLines.Add(string.Format("SelectedGamesFamicom={0}", SelectedGamesFamicom));

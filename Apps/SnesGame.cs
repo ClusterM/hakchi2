@@ -149,7 +149,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                return "(snes | super nintendo)";
+                return "(snes | super nintendo | super famicom | sfc)";
             }
         }
 

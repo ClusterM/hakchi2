@@ -1754,7 +1754,7 @@ namespace com.clusterrr.hakchi_gui
         private void MainForm_Shown(object sender, EventArgs e)
         {
             ConfigIni.RunCount++;
-            if (ConfigIni.RunCount == 1)
+            if (ConfigIni.RunCount == 1 || ConfigIni.LastVersion == "0.0.0.0")
             {
                 ShowSelected();
                 new SelectConsoleDialog(this).ShowDialog();
