@@ -32,6 +32,7 @@ namespace com.clusterrr.hakchi_gui
             DumpNandC,
             FlashNandC,
             Memboot,
+            ProcessMods,
             UploadGames,
             DownloadCovers,
             ScanCovers,
@@ -340,6 +341,9 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case Tasks.Memboot:
                         Memboot();
+                        break;
+                    case Tasks.ProcessMods:
+                        ProcessMods();
                         break;
                     case Tasks.AddGames:
                         AddGames(GamesToAdd);
@@ -1306,6 +1310,62 @@ namespace com.clusterrr.hakchi_gui
             }
             screenshot.UnlockBits(data);
             return screenshot;
+        }
+
+        public void ProcessMods()
+        {
+            if (MainForm.Clovershell.IsOnline)
+            {
+                int hmodCount = hmodsInstall.Count() + 1;
+                int hmodCounter = 0;
+                if (hmodsInstall != null && hmodsInstall.Count() > 0)
+                {
+                    foreach (var hmod in hmodsInstall)
+                    {
+                        var modName = hmod + ".hmod";
+                        foreach (var dir in hmodDirectories)
+                        {
+                            string hmodHakchiPath = $"/var/lib/hakchi/transfer/{modName}/";
+                            if (Directory.Exists(Path.Combine(dir, modName)))
+                            {
+
+                                MainForm.Clovershell.ExecuteSimple($"mkdir -p '{hmodHakchiPath}'");
+                                using (var hmodTar = new TarStream(Path.Combine(dir, modName)))
+                                {
+                                    if (hmodTar.Length > 0)
+                                    {
+                                        SetStatus(Resources.UploadingGames);
+                                        MainForm.Clovershell.Execute($"tar -xvC '{hmodHakchiPath}'", hmodTar, null, null, 0, true);
+                                    }
+                                }
+                                break;
+                            }
+                            if (File.Exists(Path.Combine(dir, modName)))
+                            {
+                                MainForm.Clovershell.ExecuteSimple($"mkdir -p '{hmodHakchiPath}'");
+                                MainForm.Clovershell.Execute($"tar -xzvC '{hmodHakchiPath}'", File.OpenRead(Path.Combine(dir, modName)), null, null, 0, true);
+                                break;
+                            }
+                        }
+                        hmodCounter++;
+                        SetProgress(hmodCounter, hmodCount);
+                    }
+                }
+                if (hmodsUninstall != null && hmodsUninstall.Count() > 0)
+                {
+                    MainForm.Clovershell.ExecuteSimple("mkdir -p /var/lib/hakchi/transfer/", 2000, true);
+                    MainForm.Clovershell.Execute("cat > /var/lib/hakchi/transfer/uninstall", Shared.GenerateStreamFromString(String.Join("\n", hmodsUninstall.ToArray())), null, null, 0, true);
+                }
+                if((hmodsInstall != null && hmodsInstall.Count() > 0) || (hmodsUninstall != null && hmodsUninstall.Count() > 0))
+                {
+                    MainForm.Clovershell.ExecuteSimple("reboot");
+                    SetProgress(1, 1);
+                }
+            }
+            else
+            {
+                Memboot();
+            }
         }
 
         public void Memboot(int maxProgress = -1, int progress = 0)

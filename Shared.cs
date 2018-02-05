@@ -12,6 +12,16 @@ namespace com.clusterrr.hakchi_gui
     {
         public const string squashFsPath = "/var/squashfs";
 
+        public static Stream GenerateStreamFromString(string s)
+        {
+            MemoryStream stream = new MemoryStream();
+            StreamWriter writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
+        }
+
         public static string PathCombine(params string[] pathSegments)
         {
             if (pathSegments.Length == 1) return pathSegments[0];
