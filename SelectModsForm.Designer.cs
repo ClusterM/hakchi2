@@ -20,7 +20,7 @@
             this.checkedListBoxMods.FormattingEnabled = true;
             this.checkedListBoxMods.Location = new System.Drawing.Point(12, 12);
             this.checkedListBoxMods.Name = "checkedListBoxMods";
-            this.checkedListBoxMods.Size = new System.Drawing.Size(258, 334);
+            this.checkedListBoxMods.Size = new System.Drawing.Size(258, 379);
             this.checkedListBoxMods.Sorted = true;
             this.checkedListBoxMods.TabIndex = 0;
             this.checkedListBoxMods.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxMods_SelectedIndexChanged);
@@ -31,20 +31,21 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxReadme.Enabled = false;
+            this.textBoxReadme.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxReadme.Location = new System.Drawing.Point(276, 12);
             this.textBoxReadme.Multiline = true;
             this.textBoxReadme.Name = "textBoxReadme";
             this.textBoxReadme.ReadOnly = true;
-            this.textBoxReadme.Size = new System.Drawing.Size(271, 334);
+            this.textBoxReadme.Size = new System.Drawing.Size(552, 379);
             this.textBoxReadme.TabIndex = 1;
             // 
             // buttonOk
             // 
             this.buttonOk.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOk.Location = new System.Drawing.Point(12, 358);
+            this.buttonOk.Location = new System.Drawing.Point(12, 403);
             this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(535, 33);
+            this.buttonOk.Size = new System.Drawing.Size(816, 33);
             this.buttonOk.TabIndex = 2;
             this.buttonOk.Text = "OK";
             this.buttonOk.UseVisualStyleBackColor = true;
@@ -55,7 +56,7 @@
             this.AcceptButton = this.buttonOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(559, 401);
+            this.ClientSize = new System.Drawing.Size(840, 446);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.textBoxReadme);
             this.Controls.Add(this.checkedListBoxMods);
