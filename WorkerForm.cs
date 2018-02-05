@@ -144,8 +144,10 @@ namespace com.clusterrr.hakchi_gui
             fes1Path = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "fes1.bin");
             ubootPath = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "uboot.bin");
             zImage = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "zImage");
-#if VERYDEBUG
+#if VERY_DEBUG
+            
             tempDirectory = Path.Combine(baseDirectoryInternal, "temp");
+            Debug.WriteLine($"Using temp directory: \"{tempDirectory}\".");
 #else
             tempDirectory = Path.Combine(Path.GetTempPath(), "hakchi-temp");
 #endif
