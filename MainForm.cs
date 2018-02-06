@@ -113,22 +113,6 @@ namespace com.clusterrr.hakchi_gui
                 //listViewGames.ListViewItemSorter = new GamesSorter();
                 listViewGames.DoubleBuffered(true);
 
-                // initial view menu
-                positionAtTheTopToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtTop;
-                positionAtTheBottomToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtBottom;
-                positionSortedToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.Sorted;
-                groupByAppTypeToolStripMenuItem.Checked = ConfigIni.GroupGamesByAppType;
-                //originalGamesToolStripMenuItem.Enabled = !ConfigIni.GroupGamesByAppType;
-
-                // initial context menu state
-                explorerToolStripMenuItem.Enabled =
-                    scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
-                    downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
-                    deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
-                    compressSelectedGamesToolStripMenuItem.Enabled =
-                    decompressSelectedGamesToolStripMenuItem.Enabled =
-                    deleteSelectedGamesToolStripMenuItem.Enabled = false;
-
                 // Little tweak for easy translation
                 var tbl = textBoxName.Left;
                 textBoxName.Left = labelName.Left + labelName.Width;
@@ -393,6 +377,31 @@ namespace com.clusterrr.hakchi_gui
             compressBoxArtToolStripMenuItem.Checked = ConfigIni.CompressCover;
             separateGamesForMultibootToolStripMenuItem.Checked = ConfigIni.SeparateGameStorage;
             disableHakchi2PopupsToolStripMenuItem.Checked = ConfigIni.DisablePopups;
+
+            // sfrom tool
+            enableSFROMToolToolStripMenuItem.Checked = ConfigIni.UseSFROMTool;
+            showAdvancedOptionsSFROMToolToolStripMenuItem.Checked = ConfigIni.UseAdvancedSFROMTool;
+
+            sFROMToolToolStripMenuItem.Enabled = false;
+            if (ConfigIni.ConsoleType == ConsoleType.SNES || ConfigIni.ConsoleType == ConsoleType.SuperFamicom)
+            {
+                sFROMToolToolStripMenuItem.Enabled = true;
+                if (File.Exists(Shared.PathCombine(Program.BaseDirectoryExternal, "SFROM_Tool", "SFROM Tool.exe")))
+                {
+                    showAdvancedOptionsSFROMToolToolStripMenuItem.Enabled = enableSFROMToolToolStripMenuItem.Checked;
+                }
+                else
+                {
+                    ConfigIni.UseSFROMTool = enableSFROMToolToolStripMenuItem.Checked = false;
+                    showAdvancedOptionsSFROMToolToolStripMenuItem.Enabled = false;
+                }
+            }
+
+            // initial view menu
+            positionAtTheTopToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtTop;
+            positionAtTheBottomToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtBottom;
+            positionSortedToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.Sorted;
+            groupByAppTypeToolStripMenuItem.Checked = ConfigIni.GroupGamesByAppType;
 
             // Folders mods
             disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
@@ -1911,6 +1920,33 @@ namespace com.clusterrr.hakchi_gui
             searchForm.Left = this.Left + 200;
             searchForm.Top = this.Top + 300;
             searchForm.Show();
+        }
+
+        private void enableSFROMToolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(Shared.PathCombine(Program.BaseDirectoryExternal, "SFROM_Tool", "SFROM Tool.exe")))
+            {
+                ConfigIni.UseSFROMTool = enableSFROMToolToolStripMenuItem.Checked;
+                showAdvancedOptionsSFROMToolToolStripMenuItem.Enabled = enableSFROMToolToolStripMenuItem.Checked;
+            }
+            else
+            {
+                ConfigIni.UseSFROMTool = enableSFROMToolToolStripMenuItem.Checked = false;
+                showAdvancedOptionsSFROMToolToolStripMenuItem.Enabled = false;
+                if (MessageBox.Show(
+                    "In order to use SFROM Tool with hakchi2 CE, you need to:\n\nvisit /u/DarkAkuma's website\ndownload the latest version of his tool\ninstall the package in /sfrom_tool.\n\nDo you want to download the tool?\n\nhttp://darkakuma.z-net.us/p/sfromtool.html",
+                    "SFROM Tool",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Process.Start("http://darkakuma.z-net.us/p/sfromtool.html");
+                }
+            }
+        }
+
+        private void showAdvancedOptionsSFROMToolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.UseAdvancedSFROMTool = showAdvancedOptionsSFROMToolToolStripMenuItem.Checked;
         }
 
         private void compressGamesToolStripMenuItem_Click(object sender, EventArgs e)

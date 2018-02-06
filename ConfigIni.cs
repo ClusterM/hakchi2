@@ -49,6 +49,8 @@ namespace com.clusterrr.hakchi_gui
         public static Dictionary<string, string> Presets = new Dictionary<string, string>();
         public static string ExtraCommandLineArgumentsNes = "";
         public static string ExtraCommandLineArgumentsSnes = "";
+        public static bool UseSFROMTool = false;
+        public static bool UseAdvancedSFROMTool = false;
         public static bool Compress = true;
         public static bool CompressCover = true;
         public static bool DisablePopups = false;
@@ -578,6 +580,12 @@ namespace com.clusterrr.hakchi_gui
                                 case "foldersmodesuperfamicom":
                                     FoldersModeSuperFamicom = (NesMenuCollection.SplitStyle)byte.Parse(value);
                                     break;
+                                case "usesfromtool":
+                                    UseSFROMTool = !value.ToLower().Equals("false");
+                                    break;
+                                case "useadvancedsfromtool":
+                                    UseAdvancedSFROMTool = !value.ToLower().Equals("false");
+                                    break;
                                 case "compress":
                                     Compress = !value.ToLower().Equals("false");
                                     break;
@@ -670,6 +678,8 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("MaxGamesPerFolderFamicom={0}", MaxGamesPerFolderSuperFamicom));
             configLines.Add(string.Format("MaxGamesPerFolderSnes={0}", MaxGamesPerFolderSnes));
             configLines.Add(string.Format("MaxGamesPerFolderSuperFamicom={0}", MaxGamesPerFolderSuperFamicom));
+            configLines.Add(string.Format("UseSFROMTool={0}", UseSFROMTool));
+            configLines.Add(string.Format("UseAdvancedSFROMTool={0}", UseAdvancedSFROMTool));
             configLines.Add(string.Format("Compress={0}", Compress));
             configLines.Add(string.Format("CompressCover={0}", CompressCover));
             configLines.Add(string.Format("DisablePopups={0}", DisablePopups));
