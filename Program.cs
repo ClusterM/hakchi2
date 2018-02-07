@@ -37,7 +37,8 @@ namespace com.clusterrr.hakchi_gui
         private const uint GENERIC_WRITE = 0x40000000;
         private const uint FILE_SHARE_WRITE = 0x2;
         private const uint OPEN_EXISTING = 0x3;
-        public static string BaseDirectoryInternal, BaseDirectoryExternal;
+        public static readonly string BaseDirectoryInternal = Path.GetDirectoryName(Application.ExecutablePath);
+        public static string BaseDirectoryExternal;
         public static bool isPortable = false;
 
         /// <summary>
@@ -72,6 +73,10 @@ namespace com.clusterrr.hakchi_gui
             Debug.AutoFlush = true;
 #endif
             isPortable = !args.Contains("/nonportable") || args.Contains("/portable");
+
+            if (File.Exists(Path.Combine(BaseDirectoryInternal, "nonportable.flag")))
+                isPortable = false;
+
             bool isFirstRun = false;
             
             if (!isPortable)
@@ -86,7 +91,6 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (createdNew)
                     {
-                        BaseDirectoryInternal = Path.GetDirectoryName(Application.ExecutablePath);
                         if (!isPortable)
                         {
                             // This is not correct way for Windows 7+...
