@@ -2398,8 +2398,21 @@ namespace com.clusterrr.hakchi_gui
                         var selected = listViewGames.SelectedItems[0].Tag;
                         if (selected is SnesGame && !(selected as SnesGame).IsOriginalGame)
                         {
-                            new SnesPresetEditor(selected as SnesGame).ShowDialog();
-                            ShowSelected();
+                            string sfromtool = Shared.PathCombine(Program.BaseDirectoryExternal, "SFROM_Tool", "SFROM Tool.exe");
+                            if (ConfigIni.UseSFROMTool && File.Exists(sfromtool))
+                            {
+                                var process = new Process();
+                                process.StartInfo.CreateNoWindow = true;
+                                process.StartInfo.FileName = sfromtool;
+                                process.StartInfo.Arguments = " -ad " + (selected as NesMiniApplication).GameFilePath;
+                                process.Start();
+                                process.WaitForExit();
+                            }
+                            else
+                            {
+                                new SnesPresetEditor(selected as SnesGame).ShowDialog();
+                                ShowSelected();
+                            }
                         }
                     }
                     break;

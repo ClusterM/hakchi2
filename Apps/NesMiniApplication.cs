@@ -413,7 +413,6 @@ namespace com.clusterrr.hakchi_gui
             Image cover = DefaultCover;
             byte saveCount = 0;
             uint crc32 = CRC32(rawRomData);
-            //string outputFileName = Regex.Replace(System.IO.Path.GetFileName(inputFileName), @"[^A-Za-z0-9()!\[\]\.\-]", "_").Trim();
             string outputFileName = Regex.Replace(System.IO.Path.GetFileName(inputFileName), @"[^A-Za-z0-9\.]+", "_").Trim();
 
             // Trying to determine file type

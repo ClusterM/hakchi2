@@ -149,7 +149,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                return "(snes | super nintendo | super famicom | sfc)";
+                return "(snes | super nintendo | super famicom)";
             }
         }
 
@@ -179,30 +179,58 @@ namespace com.clusterrr.hakchi_gui
                 if (ext.ToLower() != ".sfrom") // Need to patch for canoe
                 {
                     Debug.WriteLine($"Trying to convert {inputFileName}");
-                    bool problemGame = false;
-                    MakeSfrom(ref rawRomData, ref saveCount, out problemGame);
-                    outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
-                    // Using 3rd party emulator for this ROM
-                    if (problemGame && Need3rdPartyEmulator != true)
+
+                    string sfromtool = Shared.PathCombine(Program.BaseDirectoryExternal, "SFROM_Tool", "SFROM Tool.exe");
+                    if (ConfigIni.UseSFROMTool && File.Exists(sfromtool))
                     {
-                        if (Need3rdPartyEmulator != false)
-                        {
-                            var r = WorkerForm.MessageBoxFromThread(ParentForm,
-                                string.Format(Resources.Need3rdPartyEmulator, Path.GetFileName(inputFileName)),
-                                    Resources.AreYouSure,
-                                    MessageBoxButtons.AbortRetryIgnore,
-                                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
-                            if (r == DialogResult.Abort)
-                                Need3rdPartyEmulator = true;
-                            if (r == DialogResult.Ignore)
-                                problemGame = false;
-                        }
-                        else problemGame = false;
+                        var tempPath = Path.Combine(Path.GetTempPath(), "hakchi-temp");
+                        var tempFile = Path.Combine(tempPath, "temp.sfc");
+                        var outTempFile = Path.Combine(tempPath, "temp.sfrom");
+                        if (! Directory.Exists(tempPath))
+                            Directory.CreateDirectory(tempPath);
+                        if (File.Exists(tempFile))
+                            File.Delete(tempFile);
+                        if (File.Exists(outTempFile))
+                            File.Delete(outTempFile);
+
+                        File.WriteAllBytes(tempFile, rawRomData);
+
+                        var process = new Process();
+                        process.StartInfo.CreateNoWindow = true;
+                        process.StartInfo.FileName = sfromtool;
+                        process.StartInfo.Arguments = $"-a \"{tempFile}\" \"{outTempFile}\"";
+                        process.Start();
+                        process.WaitForExit();
+
+                        rawRomData = File.ReadAllBytes(outTempFile);
                     }
-                    if (problemGame)
+                    else
                     {
-                        application = "/bin/snes";
-                        args = "";
+                        bool problemGame = false;
+                        MakeSfrom(ref rawRomData, ref saveCount, out problemGame);
+                        outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
+                        // Using 3rd party emulator for this ROM
+                        if (problemGame && Need3rdPartyEmulator != true)
+                        {
+                            if (Need3rdPartyEmulator != false)
+                            {
+                                var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                                    string.Format(Resources.Need3rdPartyEmulator, Path.GetFileName(inputFileName)),
+                                        Resources.AreYouSure,
+                                        MessageBoxButtons.AbortRetryIgnore,
+                                        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
+                                if (r == DialogResult.Abort)
+                                    Need3rdPartyEmulator = true;
+                                if (r == DialogResult.Ignore)
+                                    problemGame = false;
+                            }
+                            else problemGame = false;
+                        }
+                        if (problemGame)
+                        {
+                            application = "/bin/snes";
+                            args = "";
+                        }
                     }
                 }
             }
