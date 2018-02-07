@@ -9,7 +9,7 @@ InstallDir "$PROGRAMFILES\Team Shinkansen\Hakchi2 CE"
 
 ; Registry key to check for directory (so if you install again, it will 
 ; overwrite the old one automatically)
-InstallDirRegKey HKLM "Software\Hakchi2 CE" "Install_Dir"
+InstallDirRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "InstallLocation"
 
 ; Request application privileges for Windows Vista
 RequestExecutionLevel admin
@@ -80,11 +80,16 @@ Section "Hakchi2 CE (required)"
   FileClose $9
   
   ; Write the installation path into the registry
-  WriteRegStr HKLM "SOFTWARE\Hakchi2 CE" "Install_Dir" "$INSTDIR"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "InstallLocation" "$INSTDIR"
   
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "DisplayName" "Hakchi2 CE"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "Publisher" "Team Shinkansen"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "URLInfoAbout" "https://github.com/TeamShinkansen/hakchi2"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "HelpLink" "https://github.com/TeamShinkansen/hakchi2"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "URLUpdateInfo" "https://github.com/TeamShinkansen/hakchi2/releases"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "UninstallString" '"$INSTDIR\uninstall.exe"'
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "DisplayIcon" '"$INSTDIR\hakchi.exe"'
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "NoRepair" 1
   WriteUninstaller "uninstall.exe"
@@ -122,7 +127,6 @@ Section "Uninstall"
 
   ; Remove registry keys
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE"
-  DeleteRegKey HKLM "SOFTWARE\Hakchi2 CE"
 
   ; Remove files and directories used
   Delete "$DESKTOP\Hakchi2 CE.lnk"
