@@ -1,6 +1,9 @@
 ; The name of the installer
 Name "Hakchi2 CE"
 
+; The icon of the installer
+Icon "..\icon.ico"
+
 ; The file to write
 OutFile "Hakchi2 CE Web Installer.exe"
 
