@@ -43,7 +43,8 @@ namespace com.clusterrr.hakchi_gui
             DeleteGames,
             UpdateLocalCache,
             SyncOriginalGames,
-            ResetROMHeaders
+            ResetROMHeaders,
+            GetHmods
         };
         public Tasks Task;
 
@@ -66,6 +67,8 @@ namespace com.clusterrr.hakchi_gui
             }
         }
         //public string UBootDump;
+        public string[] HmodsToLoad;
+        public List<Hmod> LoadedHmods;
         public string NandDump;
         public string Mod = null;
         public string ModExtraFilesPath = null;
@@ -139,7 +142,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public WorkerForm(MainForm parentForm)
+        public WorkerForm(MainForm parentForm = null)
         {
             InitializeComponent();
             MainForm = parentForm;
@@ -374,6 +377,9 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case Tasks.ResetROMHeaders:
                         ResetROMHeaders();
+                        break;
+                    case Tasks.GetHmods:
+                        GetHmods();
                         break;
                 }
                 if (DialogResult == DialogResult.None)
@@ -2198,6 +2204,22 @@ namespace com.clusterrr.hakchi_gui
                 ConfigIni.SelectedGames = string.Join(";", selected.Distinct().ToArray());
             }
             Thread.Sleep(500);
+        }
+
+        void GetHmods()
+        {
+            LoadedHmods = new List<Hmod>();
+            if (HmodsToLoad == null) return;
+            SetStatus(Properties.Resources.LoadingHmods);
+            int progress = 0;
+
+            foreach(string mod in HmodsToLoad)
+            {
+                LoadedHmods.Add(new Hmod(mod));
+                progress++;
+                SetProgress(progress, HmodsToLoad.Length);
+            }
+            SetProgress(1, 1);
         }
 
         private void WorkerForm_FormClosing(object sender, FormClosingEventArgs e)

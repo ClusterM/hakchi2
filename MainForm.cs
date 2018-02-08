@@ -2079,9 +2079,12 @@ namespace com.clusterrr.hakchi_gui
             form.Text = Resources.SelectModsInstall;
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (InstallMods(((from m
-                                   in form.checkedListBoxMods.CheckedItems.OfType<object>().ToArray()
-                                  select m.ToString())).ToArray()))
+                List<string> hmods = new List<string>();
+                foreach (ListViewItem item in form.listViewHmods.CheckedItems)
+                {
+                    hmods.Add(((Hmod)item.Tag).RawName);
+                }
+                if (InstallMods(hmods.ToArray()))
                 {
                     if (!ConfigIni.DisablePopups)
                         MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -2096,9 +2099,12 @@ namespace com.clusterrr.hakchi_gui
             form.Text = Resources.SelectModsUninstall;
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (UninstallMods(((from m
-                                   in form.checkedListBoxMods.CheckedItems.OfType<object>().ToArray()
-                                    select m.ToString())).ToArray()))
+                List<string> hmods = new List<string>();
+                foreach (ListViewItem item in form.listViewHmods.CheckedItems)
+                {
+                    hmods.Add(((Hmod)item.Tag).RawName);
+                }
+                if (UninstallMods(hmods.ToArray()))
                 {
                     if (!ConfigIni.DisablePopups)
                         MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);

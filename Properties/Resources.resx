@@ -813,12 +813,31 @@ This process cannot be undone!</value>
     <value>Skipping {0}</value>
   </data>
   <data name="DownloadSfromTool" xml:space="preserve">
-    <value>In order to use SFROM Tool with hakchi2 CE, you need to:\n\nvisit /u/DarkAkuma's website\ndownload the latest version of his tool\ninstall the package in /sfrom_tool.\n\nDo you want to download the tool?\n\nhttp://darkakuma.z-net.us/p/sfromtool.html</value>
+    <value>In order to use SFROM Tool with hakchi2 CE, you need to:
+visit /u/DarkAkuma's website
+download the latest version of his tool
+install the package in /sfrom_tool.
+
+Do you want to download the tool?
+
+http://darkakuma.z-net.us/p/sfromtool.html</value>
   </data>
   <data name="SfromTool" xml:space="preserve">
     <value>SFROM Tool</value>
   </data>
   <data name="noboxart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\noboxart.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="readmeTemplateCSS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\readmeTemplate.css;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="readmeTemplateHTML" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\readmeTemplate.html;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="LoadingHmods" xml:space="preserve">
+    <value>Loading mods...</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
   </data>
 </root>

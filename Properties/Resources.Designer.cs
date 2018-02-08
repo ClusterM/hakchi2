@@ -1486,6 +1486,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading mods....
+        /// </summary>
+        internal static string LoadingHmods {
+            get {
+                return ResourceManager.GetString("LoadingHmods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HOME Menu.
         /// </summary>
         internal static string MainMenu {
@@ -1778,6 +1787,38 @@ namespace com.clusterrr.hakchi_gui.Properties {
             get {
                 object obj = ResourceManager.GetObject("pt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to body {
+        ///    position: absolute;
+        ///    top: 0;
+        ///    left: 0;
+        ///    right: 0;
+        ///    bottom: 0;
+        ///    overflow: scroll;
+        ///}.
+        /// </summary>
+        internal static string readmeTemplateCSS {
+            get {
+                return ResourceManager.GetString("readmeTemplateCSS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;html&gt;
+        ///    &lt;head&gt;
+        ///        &lt;style type=&quot;text/css&quot;&gt;{0}&lt;/style&gt;
+        ///    &lt;/head&gt;
+        ///    &lt;body&gt;
+        ///        &lt;div id=&quot;content&quot;&gt;&lt;pre&gt;{1}&lt;/pre&gt;&lt;/div&gt;
+        ///    &lt;/body&gt;
+        ///&lt;/html&gt;.
+        /// </summary>
+        internal static string readmeTemplateHTML {
+            get {
+                return ResourceManager.GetString("readmeTemplateHTML", resourceCulture);
             }
         }
         
@@ -2091,6 +2132,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string UninstallQ2 {
             get {
                 return ResourceManager.GetString("UninstallQ2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        internal static string Unknown {
+            get {
+                return ResourceManager.GetString("Unknown", resourceCulture);
             }
         }
         

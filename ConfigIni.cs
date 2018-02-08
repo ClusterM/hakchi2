@@ -66,6 +66,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool SeparateGameStorage = true;
         public static string ExportRegion = "";
         public static string MembootUboot = "ubootSD.bin";
+        public static HmodListSort hmodListSort = HmodListSort.Category;
 
         public static bool CustomFlashed
         {
@@ -622,7 +623,18 @@ namespace com.clusterrr.hakchi_gui
                                 case "membootuboot":
                                     MembootUboot = value;
                                     break;
+                                case "hmodlistsort":
+                                    switch (int.Parse(value))
+                                    {
+                                        case (int)(HmodListSort.Category):
+                                            hmodListSort = HmodListSort.Category;
+                                            break;
 
+                                        case (int)(HmodListSort.Creator):
+                                            hmodListSort = HmodListSort.Creator;
+                                            break;
+                                    }
+                                    break;
                             }
                             break;
                         case "presets":
@@ -693,6 +705,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("ExportRegion={0}", ExportRegion));
             configLines.Add(string.Format("RunCount={0}", RunCount));
             configLines.Add(string.Format("MembootUboot={0}", MembootUboot));
+            configLines.Add(string.Format("hmodListSort={0}", (int)hmodListSort));
 
             configLines.Add("");
             configLines.Add("[Presets]");
