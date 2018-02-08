@@ -41,7 +41,8 @@ namespace com.clusterrr.hakchi_gui
             DecompressGames,
             DeleteGames,
             UpdateLocalCache,
-            SyncOriginalGames
+            SyncOriginalGames,
+            ResetROMHeaders
         };
         public Tasks Task;
 
@@ -366,6 +367,9 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case Tasks.SyncOriginalGames:
                         SyncOriginalGames();
+                        break;
+                    case Tasks.ResetROMHeaders:
+                        ResetROMHeaders();
                         break;
                 }
                 if (DialogResult == DialogResult.None)
@@ -1937,6 +1941,33 @@ namespace com.clusterrr.hakchi_gui
                 SetStatus(string.Format(Resources.Removing, game.Name));
                 game.Deleting = true;
                 Directory.Delete(game.GamePath, true);
+                SetProgress(++i, Games.Count);
+            }
+        }
+
+        void ResetROMHeaders()
+        {
+            if (Games == null) return;
+
+            int i = 0;
+            foreach (NesMiniApplication game in Games)
+            {
+                if (game is SnesGame && !(game as SnesGame).IsOriginalGame)
+                {
+                    SetStatus(string.Format(Resources.ResettingHeader, game.Name));
+                    bool wasCompressed = game.DecompressPossible().Length > 0;
+                    if (wasCompressed)
+                        game.Decompress();
+                    SfromToolWrapper.ResetSFROM(game.GameFilePath);
+                    if (wasCompressed)
+                        game.Compress();
+                }
+                else
+                {
+                    SetStatus(string.Format(Resources.Skipping, game.Name));
+                    Thread.Sleep(1);
+                }
+
                 SetProgress(++i, Games.Count);
             }
         }

@@ -219,13 +219,13 @@
     <value>Dump kernel</value>
   </data>
   <data name="normalModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>148, 22</value>
   </data>
   <data name="normalModeToolStripMenuItem.Text" xml:space="preserve">
     <value>Normal mode</value>
   </data>
   <data name="sDModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>148, 22</value>
   </data>
   <data name="sDModeToolStripMenuItem.Text" xml:space="preserve">
     <value>SD mode</value>
@@ -555,16 +555,16 @@
     <value>Controller hacks</value>
   </data>
   <data name="enableSFROMToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="enableSFROMToolToolStripMenuItem.Text" xml:space="preserve">
     <value>Enable</value>
   </data>
-  <data name="showAdvancedOptionsSFROMToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 22</value>
+  <data name="usePCMPatchWhenAvailableToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 22</value>
   </data>
-  <data name="showAdvancedOptionsSFROMToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Show advanced options</value>
+  <data name="usePCMPatchWhenAvailableToolStripMenuItem.Text" xml:space="preserve">
+    <value>Use PCM patch when available</value>
   </data>
   <data name="sFROMToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 22</value>
@@ -1616,8 +1616,35 @@
   <data name="deleteSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Delete selected games</value>
   </data>
+  <data name="toolStripMenuItem17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 6</value>
+  </data>
+  <data name="editROMHeaderToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+E</value>
+  </data>
+  <data name="editROMHeaderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="editROMHeaderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Edit SFROM header</value>
+  </data>
+  <data name="toolStripMenuItem9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 6</value>
+  </data>
+  <data name="resetROMHeaderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="resetROMHeaderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Reset SFROM header for selected games</value>
+  </data>
+  <data name="sFROMToolToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="sFROMToolToolStripMenuItem1.Text" xml:space="preserve">
+    <value>SFROM Tool</value>
+  </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 170</value>
+    <value>284, 198</value>
   </data>
   <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
     <value>contextMenuStrip</value>
@@ -1626,7 +1653,7 @@
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <metadata name="openFileDialogImage.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1202, 17</value>
+    <value>1059, 15</value>
   </metadata>
   <data name="openFileDialogImage.Filter" xml:space="preserve">
     <value>Images (*.bmp;*.png;*.jpg;*.jpeg;*.gif)|*.bmp;*.png;*.jpg;*.jpeg;*.gif|All files|*.*</value>
@@ -1665,7 +1692,7 @@
     <value>771, 17</value>
   </metadata>
   <metadata name="timerConnectionCheck.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 98</value>
+    <value>1210, 15</value>
   </metadata>
   <metadata name="saveDumpFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -1719,7 +1746,7 @@
     <value>922, 17</value>
   </metadata>
   <metadata name="timerShowSelected.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1062, 17</value>
+    <value>919, 15</value>
   </metadata>
   <data name="buttonExport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -3342,10 +3369,10 @@
   <data name="&gt;&gt;enableSFROMToolToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;showAdvancedOptionsSFROMToolToolStripMenuItem.Name" xml:space="preserve">
-    <value>showAdvancedOptionsSFROMToolToolStripMenuItem</value>
+  <data name="&gt;&gt;usePCMPatchWhenAvailableToolStripMenuItem.Name" xml:space="preserve">
+    <value>usePCMPatchWhenAvailableToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;showAdvancedOptionsSFROMToolToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;usePCMPatchWhenAvailableToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;compressGamesToolStripMenuItem.Name" xml:space="preserve">
@@ -3370,6 +3397,30 @@
     <value>disableHakchi2PopupsToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;disableHakchi2PopupsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bootImageToolStripMenuItem.Name" xml:space="preserve">
+    <value>bootImageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;bootImageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;changeBootImageToolStripMenuItem.Name" xml:space="preserve">
+    <value>changeBootImageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;changeBootImageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;disableBootImageToolStripMenuItem.Name" xml:space="preserve">
+    <value>disableBootImageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;disableBootImageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;resetDefaultBootImageToolStripMenuItem.Name" xml:space="preserve">
+    <value>resetDefaultBootImageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;resetDefaultBootImageToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem16.Name" xml:space="preserve">
@@ -3586,6 +3637,36 @@
     <value>deleteSelectedGamesToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;deleteSelectedGamesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem17.Name" xml:space="preserve">
+    <value>toolStripMenuItem17</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sFROMToolToolStripMenuItem1.Name" xml:space="preserve">
+    <value>sFROMToolToolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;sFROMToolToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;editROMHeaderToolStripMenuItem.Name" xml:space="preserve">
+    <value>editROMHeaderToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;editROMHeaderToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem9.Name" xml:space="preserve">
+    <value>toolStripMenuItem9</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;resetROMHeaderToolStripMenuItem.Name" xml:space="preserve">
+    <value>resetROMHeaderToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;resetROMHeaderToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;openFileDialogImage.Name" xml:space="preserve">

@@ -149,7 +149,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                return "(snes | super nintendo | super famicom)";
+                return "(snes | super nintendo)";
             }
         }
 
@@ -161,6 +161,19 @@ namespace com.clusterrr.hakchi_gui
         public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref byte saveCount, ref uint crc32)
         {
             var ext = Path.GetExtension(inputFileName);
+            if (inputFileName.Contains("(E)") || inputFileName.Contains("(J)"))
+                cover = Resources.blank_snes_eu_jp;
+
+            // already in sfrom?
+            if (ext.ToLower() == ".sfrom")
+            {
+                Debug.WriteLine("ROM is already in SFROM format, no conversion needed");
+                application = "/bin/clover-canoe-shvc-wr -rom";
+                args = DefaultCanoeArgs;
+                return true;
+            }
+
+            // header removal
             if ((ext.ToLower() == ".smc") && ((rawRomData.Length % 1024) != 0))
             {
                 Debug.WriteLine("Removing SMC header");
@@ -169,69 +182,56 @@ namespace com.clusterrr.hakchi_gui
                 rawRomData = stripped;
                 crc32 = CRC32(rawRomData);
             }
+
+            // check if we can use sfrom tool
+            if (ConfigIni.UseSFROMTool && SfromToolWrapper.IsInstalled)
+            {
+                Debug.WriteLine($"Trying to convert {inputFileName} with SFROM Tool");
+                if (SfromToolWrapper.ConvertROMtoSFROM(ref rawRomData))
+                {
+                    outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
+                    application = "/bin/clover-canoe-shvc-wr -rom";
+                    args = DefaultCanoeArgs;
+                    return true;
+                }
+
+                Debug.WriteLine("SFROM Tool conversion cancelled, importing game as is");
+                application = "/bin/snes";
+                return true;
+            }
+
+            // fallback method, with patching
             FindPatch(ref rawRomData, inputFileName, crc32);
-            if (inputFileName.Contains("(E)") || inputFileName.Contains("(J)"))
-                cover = Resources.blank_snes_eu_jp;
             if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
             {
                 application = "/bin/clover-canoe-shvc-wr -rom";
                 args = DefaultCanoeArgs;
-                if (ext.ToLower() != ".sfrom") // Need to patch for canoe
+                Debug.WriteLine($"Trying to convert {inputFileName}");
+                bool problemGame = false;
+                MakeSfrom(ref rawRomData, ref saveCount, out problemGame);
+                outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
+
+                // Using 3rd party emulator for this ROM
+                if (problemGame && Need3rdPartyEmulator != true)
                 {
-                    Debug.WriteLine($"Trying to convert {inputFileName}");
-
-                    string sfromtool = Shared.PathCombine(Program.BaseDirectoryExternal, "SFROM_Tool", "SFROM Tool.exe");
-                    if (ConfigIni.UseSFROMTool && File.Exists(sfromtool))
+                    if (Need3rdPartyEmulator != false)
                     {
-                        var tempPath = Path.Combine(Path.GetTempPath(), "hakchi-temp");
-                        var tempFile = Path.Combine(tempPath, "temp.sfc");
-                        var outTempFile = Path.Combine(tempPath, "temp.sfrom");
-                        if (! Directory.Exists(tempPath))
-                            Directory.CreateDirectory(tempPath);
-                        if (File.Exists(tempFile))
-                            File.Delete(tempFile);
-                        if (File.Exists(outTempFile))
-                            File.Delete(outTempFile);
-
-                        File.WriteAllBytes(tempFile, rawRomData);
-
-                        var process = new Process();
-                        process.StartInfo.CreateNoWindow = true;
-                        process.StartInfo.FileName = sfromtool;
-                        process.StartInfo.Arguments = $"-a \"{tempFile}\" \"{outTempFile}\"";
-                        process.Start();
-                        process.WaitForExit();
-
-                        rawRomData = File.ReadAllBytes(outTempFile);
+                        var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                            string.Format(Resources.Need3rdPartyEmulator, Path.GetFileName(inputFileName)),
+                                Resources.AreYouSure,
+                                MessageBoxButtons.AbortRetryIgnore,
+                                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
+                        if (r == DialogResult.Abort)
+                            Need3rdPartyEmulator = true;
+                        if (r == DialogResult.Ignore)
+                            problemGame = false;
                     }
-                    else
-                    {
-                        bool problemGame = false;
-                        MakeSfrom(ref rawRomData, ref saveCount, out problemGame);
-                        outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
-                        // Using 3rd party emulator for this ROM
-                        if (problemGame && Need3rdPartyEmulator != true)
-                        {
-                            if (Need3rdPartyEmulator != false)
-                            {
-                                var r = WorkerForm.MessageBoxFromThread(ParentForm,
-                                    string.Format(Resources.Need3rdPartyEmulator, Path.GetFileName(inputFileName)),
-                                        Resources.AreYouSure,
-                                        MessageBoxButtons.AbortRetryIgnore,
-                                        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
-                                if (r == DialogResult.Abort)
-                                    Need3rdPartyEmulator = true;
-                                if (r == DialogResult.Ignore)
-                                    problemGame = false;
-                            }
-                            else problemGame = false;
-                        }
-                        if (problemGame)
-                        {
-                            application = "/bin/snes";
-                            args = "";
-                        }
-                    }
+                    else problemGame = false;
+                }
+                if (problemGame)
+                {
+                    application = "/bin/snes";
+                    args = "";
                 }
             }
             else

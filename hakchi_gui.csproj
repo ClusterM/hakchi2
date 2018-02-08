@@ -145,6 +145,7 @@
     <Compile Include="Apps\SmsGame.cs" />
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\NesUGame.cs" />
+    <Compile Include="SfromToolWrapper.cs" />
     <Compile Include="ExportGamesDialog.cs">
       <SubType>Form</SubType>
     </Compile>

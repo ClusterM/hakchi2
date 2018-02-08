@@ -1281,7 +1281,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 7357a01 (dirty).
+        ///   Looks up a localized string similar to d9ea3ce (dirty).
         /// </summary>
         internal static string gitCommit {
             get {
@@ -1828,6 +1828,33 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to reset/repair selected games&apos; SFROM headers?.
+        /// </summary>
+        internal static string ResetROMHeaderSelectedGamesQ {
+            get {
+                return ResourceManager.GetString("ResetROMHeaderSelectedGamesQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resetting SFROM header in {0}.
+        /// </summary>
+        internal static string ResettingHeader {
+            get {
+                return ResourceManager.GetString("ResettingHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resetting SFROM headers....
+        /// </summary>
+        internal static string ResettingHeaders {
+            get {
+                return ResourceManager.GetString("ResettingHeaders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restoring original games....
         /// </summary>
         internal static string ResettingOriginalGames {
@@ -1954,6 +1981,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
             get {
                 object obj = ResourceManager.GetObject("sk", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skipping {0}.
+        /// </summary>
+        internal static string Skipping {
+            get {
+                return ResourceManager.GetString("Skipping", resourceCulture);
             }
         }
         

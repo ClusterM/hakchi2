@@ -103,7 +103,7 @@
             this.upABStartOnSecondControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sFROMToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableSFROMToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showAdvancedOptionsSFROMToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usePCMPatchWhenAvailableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -177,6 +177,11 @@
             this.compressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decompressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripSeparator();
+            this.sFROMToolToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.editROMHeaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
+            this.resetROMHeaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
             this.buttonStart = new System.Windows.Forms.Button();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
@@ -719,7 +724,7 @@
             // 
             this.sFROMToolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.enableSFROMToolToolStripMenuItem,
-            this.showAdvancedOptionsSFROMToolToolStripMenuItem});
+            this.usePCMPatchWhenAvailableToolStripMenuItem});
             this.sFROMToolToolStripMenuItem.Name = "sFROMToolToolStripMenuItem";
             resources.ApplyResources(this.sFROMToolToolStripMenuItem, "sFROMToolToolStripMenuItem");
             // 
@@ -730,12 +735,12 @@
             resources.ApplyResources(this.enableSFROMToolToolStripMenuItem, "enableSFROMToolToolStripMenuItem");
             this.enableSFROMToolToolStripMenuItem.Click += new System.EventHandler(this.enableSFROMToolToolStripMenuItem_Click);
             // 
-            // showAdvancedOptionsSFROMToolToolStripMenuItem
+            // usePCMPatchWhenAvailableToolStripMenuItem
             // 
-            this.showAdvancedOptionsSFROMToolToolStripMenuItem.CheckOnClick = true;
-            this.showAdvancedOptionsSFROMToolToolStripMenuItem.Name = "showAdvancedOptionsSFROMToolToolStripMenuItem";
-            resources.ApplyResources(this.showAdvancedOptionsSFROMToolToolStripMenuItem, "showAdvancedOptionsSFROMToolToolStripMenuItem");
-            this.showAdvancedOptionsSFROMToolToolStripMenuItem.Click += new System.EventHandler(this.showAdvancedOptionsSFROMToolToolStripMenuItem_Click);
+            this.usePCMPatchWhenAvailableToolStripMenuItem.CheckOnClick = true;
+            this.usePCMPatchWhenAvailableToolStripMenuItem.Name = "usePCMPatchWhenAvailableToolStripMenuItem";
+            resources.ApplyResources(this.usePCMPatchWhenAvailableToolStripMenuItem, "usePCMPatchWhenAvailableToolStripMenuItem");
+            this.usePCMPatchWhenAvailableToolStripMenuItem.Click += new System.EventHandler(this.usePCMPatchWhenAvailableToolStripMenuItem_Click);
             // 
             // compressGamesToolStripMenuItem
             // 
@@ -1194,7 +1199,9 @@
             this.toolStripMenuItem15,
             this.compressSelectedGamesToolStripMenuItem,
             this.decompressSelectedGamesToolStripMenuItem,
-            this.deleteSelectedGamesToolStripMenuItem});
+            this.deleteSelectedGamesToolStripMenuItem,
+            this.toolStripMenuItem17,
+            this.sFROMToolToolStripMenuItem1});
             this.contextMenuStrip.Name = "contextMenuStrip";
             resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             // 
@@ -1249,6 +1256,37 @@
             resources.ApplyResources(this.deleteSelectedGamesToolStripMenuItem, "deleteSelectedGamesToolStripMenuItem");
             this.deleteSelectedGamesToolStripMenuItem.Name = "deleteSelectedGamesToolStripMenuItem";
             this.deleteSelectedGamesToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedGamesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem17
+            // 
+            this.toolStripMenuItem17.Name = "toolStripMenuItem17";
+            resources.ApplyResources(this.toolStripMenuItem17, "toolStripMenuItem17");
+            // 
+            // sFROMToolToolStripMenuItem1
+            // 
+            this.sFROMToolToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editROMHeaderToolStripMenuItem,
+            this.toolStripMenuItem9,
+            this.resetROMHeaderToolStripMenuItem});
+            this.sFROMToolToolStripMenuItem1.Name = "sFROMToolToolStripMenuItem1";
+            resources.ApplyResources(this.sFROMToolToolStripMenuItem1, "sFROMToolToolStripMenuItem1");
+            // 
+            // editROMHeaderToolStripMenuItem
+            // 
+            this.editROMHeaderToolStripMenuItem.Name = "editROMHeaderToolStripMenuItem";
+            resources.ApplyResources(this.editROMHeaderToolStripMenuItem, "editROMHeaderToolStripMenuItem");
+            this.editROMHeaderToolStripMenuItem.Click += new System.EventHandler(this.editROMHeaderToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem9
+            // 
+            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            resources.ApplyResources(this.toolStripMenuItem9, "toolStripMenuItem9");
+            // 
+            // resetROMHeaderToolStripMenuItem
+            // 
+            this.resetROMHeaderToolStripMenuItem.Name = "resetROMHeaderToolStripMenuItem";
+            resources.ApplyResources(this.resetROMHeaderToolStripMenuItem, "resetROMHeaderToolStripMenuItem");
+            this.resetROMHeaderToolStripMenuItem.Click += new System.EventHandler(this.resetROMHeaderToolStripMenuItem_Click);
             // 
             // openFileDialogImage
             // 
@@ -1491,6 +1529,8 @@
         private System.Windows.Forms.ToolStripMenuItem groupByAppTypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foldersManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem separateGamesForMultibootToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sFROMToolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem enableSFROMToolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flashUbootToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem normalModeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sDModeToolStripMenuItem;
@@ -1508,9 +1548,12 @@
         private System.Windows.Forms.ToolStripMenuItem disableBootImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetDefaultBootImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sFROMToolToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem enableSFROMToolToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem showAdvancedOptionsSFROMToolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usePCMPatchWhenAvailableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sFROMToolToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem editROMHeaderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
+        private System.Windows.Forms.ToolStripMenuItem resetROMHeaderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem17;
     }
 }
 

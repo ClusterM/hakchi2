@@ -380,22 +380,23 @@ namespace com.clusterrr.hakchi_gui
 
             // sfrom tool
             enableSFROMToolToolStripMenuItem.Checked = ConfigIni.UseSFROMTool;
-            showAdvancedOptionsSFROMToolToolStripMenuItem.Checked = ConfigIni.UseAdvancedSFROMTool;
+            usePCMPatchWhenAvailableToolStripMenuItem.Checked = ConfigIni.UsePCMPatch;
 
             sFROMToolToolStripMenuItem.Enabled = false;
             if (ConfigIni.ConsoleType == ConsoleType.SNES || ConfigIni.ConsoleType == ConsoleType.SuperFamicom)
             {
                 sFROMToolToolStripMenuItem.Enabled = true;
-                if (File.Exists(Shared.PathCombine(Program.BaseDirectoryExternal, "SFROM_Tool", "SFROM Tool.exe")))
+                if (SfromToolWrapper.IsInstalled)
                 {
-                    showAdvancedOptionsSFROMToolToolStripMenuItem.Enabled = enableSFROMToolToolStripMenuItem.Checked;
+                    usePCMPatchWhenAvailableToolStripMenuItem.Enabled = enableSFROMToolToolStripMenuItem.Checked;
                 }
                 else
                 {
                     ConfigIni.UseSFROMTool = enableSFROMToolToolStripMenuItem.Checked = false;
-                    showAdvancedOptionsSFROMToolToolStripMenuItem.Enabled = false;
+                    usePCMPatchWhenAvailableToolStripMenuItem.Enabled = false;
                 }
             }
+            sFROMToolToolStripMenuItem1.Enabled = ConfigIni.UseSFROMTool && SfromToolWrapper.IsInstalled;
 
             // initial view menu
             positionAtTheTopToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtTop;
@@ -842,16 +843,34 @@ namespace com.clusterrr.hakchi_gui
 
         private void listViewGames_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            explorerToolStripMenuItem.Enabled = (listViewGames.SelectedItems.Count == 1);
+            int c = listViewGames.SelectedItems.Count;
+
+            resetROMHeaderToolStripMenuItem.Enabled = false;
+            if ( c == 1) {
+                explorerToolStripMenuItem.Enabled = true;
+                editROMHeaderToolStripMenuItem.Enabled =
+                    resetROMHeaderToolStripMenuItem.Enabled =
+                        e.Item.Tag is SnesGame && !(e.Item.Tag as SnesGame).IsOriginalGame;
+            }
+            else
+            {
+                explorerToolStripMenuItem.Enabled = false;
+                editROMHeaderToolStripMenuItem.Enabled = false;
+            }
+
+            if (c > 1)
+                resetROMHeaderToolStripMenuItem.Enabled = true;
+
+            sFROMToolToolStripMenuItem1.Enabled = ConfigIni.UseSFROMTool && (editROMHeaderToolStripMenuItem.Enabled || resetROMHeaderToolStripMenuItem.Enabled);
+
             downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
                 scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
                 deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
                 compressSelectedGamesToolStripMenuItem.Enabled =
                 decompressSelectedGamesToolStripMenuItem.Enabled =
-                deleteSelectedGamesToolStripMenuItem.Enabled =
-                (listViewGames.SelectedItems.Count >= 1);
+                deleteSelectedGamesToolStripMenuItem.Enabled = (c >= 1);
 
-            if(!e.IsSelected)
+            if (!e.IsSelected)
                 (e.Item.Tag as NesMiniApplication).Save();
 
             timerShowSelected.Enabled = true;
@@ -1924,15 +1943,16 @@ namespace com.clusterrr.hakchi_gui
 
         private void enableSFROMToolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (File.Exists(Shared.PathCombine(Program.BaseDirectoryExternal, "SFROM_Tool", "SFROM Tool.exe")))
+            if (SfromToolWrapper.IsInstalled)
             {
                 ConfigIni.UseSFROMTool = enableSFROMToolToolStripMenuItem.Checked;
-                showAdvancedOptionsSFROMToolToolStripMenuItem.Enabled = enableSFROMToolToolStripMenuItem.Checked;
+                usePCMPatchWhenAvailableToolStripMenuItem.Enabled = enableSFROMToolToolStripMenuItem.Checked;
             }
             else
             {
                 ConfigIni.UseSFROMTool = enableSFROMToolToolStripMenuItem.Checked = false;
-                showAdvancedOptionsSFROMToolToolStripMenuItem.Enabled = false;
+                usePCMPatchWhenAvailableToolStripMenuItem.Enabled = false;
+
                 if (MessageBox.Show(
                     "In order to use SFROM Tool with hakchi2 CE, you need to:\n\nvisit /u/DarkAkuma's website\ndownload the latest version of his tool\ninstall the package in /sfrom_tool.\n\nDo you want to download the tool?\n\nhttp://darkakuma.z-net.us/p/sfromtool.html",
                     "SFROM Tool",
@@ -1942,11 +1962,13 @@ namespace com.clusterrr.hakchi_gui
                     Process.Start("http://darkakuma.z-net.us/p/sfromtool.html");
                 }
             }
+
+            sFROMToolToolStripMenuItem1.Enabled = ConfigIni.UseSFROMTool && SfromToolWrapper.IsInstalled;
         }
 
-        private void showAdvancedOptionsSFROMToolToolStripMenuItem_Click(object sender, EventArgs e)
+        private void usePCMPatchWhenAvailableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigIni.UseAdvancedSFROMTool = showAdvancedOptionsSFROMToolToolStripMenuItem.Checked;
+            ConfigIni.UsePCMPatch = usePCMPatchWhenAvailableToolStripMenuItem.Checked;
         }
 
         private void compressGamesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2279,6 +2301,9 @@ namespace com.clusterrr.hakchi_gui
                 case WorkerForm.Tasks.DeleteGames:
                     workerForm.Text = Resources.RemovingGames;
                     break;
+                case WorkerForm.Tasks.ResetROMHeaders:
+                    workerForm.Text = Resources.ResettingHeaders;
+                    break;
             }
             workerForm.Task = task;
             workerForm.Games = new NesMenuCollection();
@@ -2384,6 +2409,43 @@ namespace com.clusterrr.hakchi_gui
             DeleteSelectedGames();
         }
 
+        private void editROMHeaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listViewGames.SelectedItems.Count != 1) return;
+            var selected = listViewGames.SelectedItems[0].Tag;
+            if (selected is SnesGame && !(selected as SnesGame).IsOriginalGame)
+            {
+                SnesGame game = selected as SnesGame;
+                if (ConfigIni.UseSFROMTool && SfromToolWrapper.IsInstalled)
+                {
+                    bool wasCompressed = game.DecompressPossible().Length > 0;
+                    if (wasCompressed)
+                        game.Decompress();
+                    SfromToolWrapper.EditSFROM(game.GameFilePath);
+                    if (wasCompressed)
+                        game.Compress();
+                }
+                else
+                {
+                    new SnesPresetEditor(game).ShowDialog();
+                }
+                ShowSelected();
+            }
+        }
+
+        private void resetROMHeaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this, Resources.ResetROMHeaderSelectedGamesQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
+            {
+                SaveSelectedGames();
+                if (GroupTaskWithSelected(WorkerForm.Tasks.ResetROMHeaders))
+                {
+                    if (!ConfigIni.DisablePopups)
+                        MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -2394,26 +2456,7 @@ namespace com.clusterrr.hakchi_gui
                 case Keys.E:
                     if (e.Modifiers == (Keys.Alt | Keys.Control))
                     {
-                        if (listViewGames.SelectedItems.Count != 1) return;
-                        var selected = listViewGames.SelectedItems[0].Tag;
-                        if (selected is SnesGame && !(selected as SnesGame).IsOriginalGame)
-                        {
-                            string sfromtool = Shared.PathCombine(Program.BaseDirectoryExternal, "SFROM_Tool", "SFROM Tool.exe");
-                            if (ConfigIni.UseSFROMTool && File.Exists(sfromtool))
-                            {
-                                var process = new Process();
-                                process.StartInfo.CreateNoWindow = true;
-                                process.StartInfo.FileName = sfromtool;
-                                process.StartInfo.Arguments = " -ad " + (selected as NesMiniApplication).GameFilePath;
-                                process.Start();
-                                process.WaitForExit();
-                            }
-                            else
-                            {
-                                new SnesPresetEditor(selected as SnesGame).ShowDialog();
-                                ShowSelected();
-                            }
-                        }
+                        editROMHeaderToolStripMenuItem_Click(sender, e);
                     }
                     break;
             }
@@ -2455,7 +2498,6 @@ namespace com.clusterrr.hakchi_gui
         private void groupByAppTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.GroupGamesByAppType = groupByAppTypeToolStripMenuItem.Checked;
-            //originalGamesToolStripMenuItem.Enabled = !ConfigIni.GroupGamesByAppType;
             SaveSelectedGames();
             LoadGames();
         }

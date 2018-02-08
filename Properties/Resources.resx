@@ -803,4 +803,16 @@ This process cannot be undone!</value>
   <data name="InvalidImageResolution" xml:space="preserve">
     <value>Image resolution must be {0}x{1}</value>
   </data>
+  <data name="ResetROMHeaderSelectedGamesQ" xml:space="preserve">
+    <value>Are you sure you want to reset/repair selected games' SFROM headers?</value>
+  </data>
+  <data name="ResettingHeader" xml:space="preserve">
+    <value>Resetting SFROM header in {0}</value>
+  </data>
+  <data name="ResettingHeaders" xml:space="preserve">
+    <value>Resetting SFROM headers...</value>
+  </data>
+  <data name="Skipping" xml:space="preserve">
+    <value>Skipping {0}</value>
+  </data>
 </root>
