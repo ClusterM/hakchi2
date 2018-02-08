@@ -598,6 +598,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In order to use SFROM Tool with hakchi2 CE, you need to:\n\nvisit /u/DarkAkuma&apos;s website\ndownload the latest version of his tool\ninstall the package in /sfrom_tool.\n\nDo you want to download the tool?\n\nhttp://darkakuma.z-net.us/p/sfromtool.html.
+        /// </summary>
+        internal static string DownloadSfromTool {
+            get {
+                return ResourceManager.GetString("DownloadSfromTool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to cancel the current operation?.
         /// </summary>
         internal static string DoYouWantCancel {
@@ -1281,7 +1290,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to d9ea3ce (dirty).
+        ///   Looks up a localized string similar to 17850e4 (dirty).
         /// </summary>
         internal static string gitCommit {
             get {
@@ -1953,6 +1962,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string SelectRegion {
             get {
                 return ResourceManager.GetString("SelectRegion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SFROM Tool.
+        /// </summary>
+        internal static string SfromTool {
+            get {
+                return ResourceManager.GetString("SfromTool", resourceCulture);
             }
         }
         

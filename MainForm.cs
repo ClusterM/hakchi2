@@ -835,7 +835,7 @@ namespace com.clusterrr.hakchi_gui
                 if (!string.IsNullOrEmpty(name))
                 {
                     SaveSelectedGames();
-                    ConfigIni.Presets[name] = ConfigIni.SelectedGames; // + "|" + ConfigIni.HiddenGames;
+                    ConfigIni.Presets[name] = ConfigIni.SelectedGames;
                     LoadPresets();
                 }
             }
@@ -845,30 +845,48 @@ namespace com.clusterrr.hakchi_gui
         {
             int c = listViewGames.SelectedItems.Count;
 
-            resetROMHeaderToolStripMenuItem.Enabled = false;
-            if ( c == 1) {
-                explorerToolStripMenuItem.Enabled = true;
-                editROMHeaderToolStripMenuItem.Enabled =
-                    resetROMHeaderToolStripMenuItem.Enabled =
-                        e.Item.Tag is SnesGame && !(e.Item.Tag as SnesGame).IsOriginalGame;
+            if (c == 0)
+            {
+                explorerToolStripMenuItem.Enabled = 
+                    downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                    scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                    deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
+                    compressSelectedGamesToolStripMenuItem.Enabled =
+                    decompressSelectedGamesToolStripMenuItem.Enabled =
+                    deleteSelectedGamesToolStripMenuItem.Enabled =
+                    sFROMToolToolStripMenuItem1.Enabled = false;
+            }
+            else if (c == 1)
+            {
+                var item = listViewGames.SelectedItems[0];
+
+                explorerToolStripMenuItem.Enabled =
+                    downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                    scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                    deleteSelectedGamesBoxArtToolStripMenuItem.Enabled = true;
+
+                compressSelectedGamesToolStripMenuItem.Enabled =
+                    decompressSelectedGamesToolStripMenuItem.Enabled =
+                    deleteSelectedGamesToolStripMenuItem.Enabled = !(item.Tag as NesMiniApplication).IsOriginalGame;
+                
+                sFROMToolToolStripMenuItem1.Enabled =
+                    editROMHeaderToolStripMenuItem.Enabled =
+                    resetROMHeaderToolStripMenuItem.Enabled = item.Tag is SnesGame && !(item.Tag as SnesGame).IsOriginalGame;
             }
             else
             {
-                explorerToolStripMenuItem.Enabled = false;
-                editROMHeaderToolStripMenuItem.Enabled = false;
+                explorerToolStripMenuItem.Enabled =
+                    editROMHeaderToolStripMenuItem.Enabled = false;
+
+                downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                    scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                    deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
+                    compressSelectedGamesToolStripMenuItem.Enabled =
+                    decompressSelectedGamesToolStripMenuItem.Enabled =
+                    deleteSelectedGamesToolStripMenuItem.Enabled =
+                    sFROMToolToolStripMenuItem1.Enabled =
+                    resetROMHeaderToolStripMenuItem.Enabled = true;
             }
-
-            if (c > 1)
-                resetROMHeaderToolStripMenuItem.Enabled = true;
-
-            sFROMToolToolStripMenuItem1.Enabled = ConfigIni.UseSFROMTool && (editROMHeaderToolStripMenuItem.Enabled || resetROMHeaderToolStripMenuItem.Enabled);
-
-            downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
-                scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
-                deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
-                compressSelectedGamesToolStripMenuItem.Enabled =
-                decompressSelectedGamesToolStripMenuItem.Enabled =
-                deleteSelectedGamesToolStripMenuItem.Enabled = (c >= 1);
 
             if (!e.IsSelected)
                 (e.Item.Tag as NesMiniApplication).Save();
@@ -1953,14 +1971,8 @@ namespace com.clusterrr.hakchi_gui
                 ConfigIni.UseSFROMTool = enableSFROMToolToolStripMenuItem.Checked = false;
                 usePCMPatchWhenAvailableToolStripMenuItem.Enabled = false;
 
-                if (MessageBox.Show(
-                    "In order to use SFROM Tool with hakchi2 CE, you need to:\n\nvisit /u/DarkAkuma's website\ndownload the latest version of his tool\ninstall the package in /sfrom_tool.\n\nDo you want to download the tool?\n\nhttp://darkakuma.z-net.us/p/sfromtool.html",
-                    "SFROM Tool",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question) == DialogResult.Yes)
-                {
+                if (MessageBox.Show(Resources.DownloadSfromTool, Resources.SfromTool, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     Process.Start("http://darkakuma.z-net.us/p/sfromtool.html");
-                }
             }
 
             sFROMToolToolStripMenuItem1.Enabled = ConfigIni.UseSFROMTool && SfromToolWrapper.IsInstalled;
@@ -2391,7 +2403,7 @@ namespace com.clusterrr.hakchi_gui
                 if (GroupTaskWithSelected(WorkerForm.Tasks.DeleteGames))
                 {
                     foreach (ListViewItem item in listViewGames.SelectedItems)
-                        if (item.Tag is NesMiniApplication)
+                        if (item.Tag is NesMiniApplication && !(item.Tag as NesMiniApplication).IsOriginalGame)
                             listViewGames.Items.Remove(item);
                     if (!ConfigIni.DisablePopups)
                         MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);

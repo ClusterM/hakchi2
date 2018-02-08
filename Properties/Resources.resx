@@ -815,4 +815,10 @@ This process cannot be undone!</value>
   <data name="Skipping" xml:space="preserve">
     <value>Skipping {0}</value>
   </data>
+  <data name="DownloadSfromTool" xml:space="preserve">
+    <value>In order to use SFROM Tool with hakchi2 CE, you need to:\n\nvisit /u/DarkAkuma's website\ndownload the latest version of his tool\ninstall the package in /sfrom_tool.\n\nDo you want to download the tool?\n\nhttp://darkakuma.z-net.us/p/sfromtool.html</value>
+  </data>
+  <data name="SfromTool" xml:space="preserve">
+    <value>SFROM Tool</value>
+  </data>
 </root>

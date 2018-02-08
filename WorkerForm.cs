@@ -1914,9 +1914,17 @@ namespace com.clusterrr.hakchi_gui
             int i = 0;
             foreach (NesMiniApplication game in Games)
             {
-                SetStatus(string.Format(Resources.Compressing, game.Name));
-                game.Compress();
-                SetProgress(++i, Games.Count);
+                if (!game.IsOriginalGame)
+                {
+                    SetStatus(string.Format(Resources.Compressing, game.Name));
+                    game.Compress();
+                    SetProgress(++i, Games.Count);
+                }
+                else
+                {
+                    SetStatus(string.Format(Resources.Skipping, game.Name));
+                    Thread.Sleep(1);
+                }
             }
         }
 
@@ -1926,9 +1934,17 @@ namespace com.clusterrr.hakchi_gui
             int i = 0;
             foreach (NesMiniApplication game in Games)
             {
-                SetStatus(string.Format(Resources.Decompressing, game.Name));
-                game.Decompress();
-                SetProgress(++i, Games.Count);
+                if (!game.IsOriginalGame)
+                {
+                    SetStatus(string.Format(Resources.Decompressing, game.Name));
+                    game.Decompress();
+                    SetProgress(++i, Games.Count);
+                }
+                else
+                {
+                    SetStatus(string.Format(Resources.Skipping, game.Name));
+                    Thread.Sleep(1);
+                }
             }
         }
 
@@ -1938,10 +1954,18 @@ namespace com.clusterrr.hakchi_gui
             int i = 0;
             foreach (NesMiniApplication game in Games)
             {
-                SetStatus(string.Format(Resources.Removing, game.Name));
-                game.Deleting = true;
-                Directory.Delete(game.GamePath, true);
-                SetProgress(++i, Games.Count);
+                if (!game.IsOriginalGame)
+                {
+                    SetStatus(string.Format(Resources.Removing, game.Name));
+                    game.Deleting = true;
+                    Directory.Delete(game.GamePath, true);
+                    SetProgress(++i, Games.Count);
+                }
+                else
+                {
+                    SetStatus(string.Format(Resources.Skipping, game.Name));
+                    Thread.Sleep(1);
+                }
             }
         }
 
