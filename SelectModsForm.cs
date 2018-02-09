@@ -19,25 +19,25 @@ namespace com.clusterrr.hakchi_gui
     {
         public string Checksum;
         public DateTime LastModified;
-        public string[] dataKeys;
-        public string[] dataValues;
-        [XmlIgnore] public Dictionary<string, string> ReadmeData
+        public string[][] ReadmeData;
+        public Dictionary<string, string> getReadmeDictionary()
         {
-            get
-            {
-                Dictionary<string, string> data = new Dictionary<string, string>();
-                for (int i = 0; i < dataKeys.Length; i++)
+            Dictionary<string, string> data = new Dictionary<string, string>();
+                foreach (string[] item in ReadmeData)
                 {
-                    data.Add(dataKeys[i], dataValues[i]);
+                    data.Add(item[0], item[1]);
                 }
                 return data;
-            }
         }
 
         public ReadmeCache(Dictionary<string, string> ReadmeData, string Checksum, DateTime LastModified)
         {
-            dataKeys = ReadmeData.Keys.ToArray();
-            dataValues = ReadmeData.Values.ToArray();
+            List<string[]> list = new List<string[]>();
+            foreach (string key in ReadmeData.Keys)
+            {
+                list.Add(new string[] { key, ReadmeData[key] });
+            }
+            this.ReadmeData = list.ToArray();
             this.Checksum = Checksum;
             this.LastModified = LastModified;
         }
@@ -123,7 +123,7 @@ namespace com.clusterrr.hakchi_gui
                             if (cache.LastModified == info.LastWriteTimeUtc)
                             {
                                 skipExtraction = true;
-                                readmeData = cache.ReadmeData;
+                                readmeData = cache.getReadmeDictionary();
                             }
                         } catch(Exception ex) { }
                     }
@@ -166,7 +166,7 @@ namespace com.clusterrr.hakchi_gui
                         {
                             ReadmeCache cache;
                             cache = XMLSerialization.DeserializeXMLFileToObject<ReadmeCache>(cacheFile);
-                            readmeData = cache.ReadmeData;
+                            readmeData = cache.getReadmeDictionary();
                         }
                         catch (Exception ex) { }
                     }
