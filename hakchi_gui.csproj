@@ -110,6 +110,9 @@
       <HintPath>packages\Costura.Fody.1.6.2\lib\portable-net+sl+win+wpa+wp\Costura.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="nQuant.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\nQuant.1.0.3\lib\net20\nQuant.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -166,17 +169,6 @@
     <Compile Include="GameGenie\GameGenieFormatException.cs" />
     <Compile Include="GameGenie\GameGenieNotFoundException.cs" />
     <Compile Include="GameGenie\GameGeniePatcherSnes.cs" />
-    <Compile Include="nQuant.Core\Box.cs" />
-    <Compile Include="nQuant.Core\ColorMoment.cs" />
-    <Compile Include="nQuant.Core\CubeCut.cs" />
-    <Compile Include="nQuant.Core\ImageBuffer.cs" />
-    <Compile Include="nQuant.Core\IWuQuantizer.cs" />
-    <Compile Include="nQuant.Core\PaletteColorHistory.cs" />
-    <Compile Include="nQuant.Core\PaletteLookup.cs" />
-    <Compile Include="nQuant.Core\Pixel.cs" />
-    <Compile Include="nQuant.Core\QuantizationException.cs" />
-    <Compile Include="nQuant.Core\WuQuantizer.cs" />
-    <Compile Include="nQuant.Core\WuQuantizerBase.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
