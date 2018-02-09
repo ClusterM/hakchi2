@@ -10,10 +10,38 @@ using System.Windows.Forms;
 using CommonMark;
 using System.Drawing;
 using System.Diagnostics;
+using System.Xml.Serialization;
+using System.Xml;
 
 namespace com.clusterrr.hakchi_gui
 {
+    public struct ReadmeCache
+    {
+        public string Checksum;
+        public DateTime LastModified;
+        public string[] dataKeys;
+        public string[] dataValues;
+        [XmlIgnore] public Dictionary<string, string> ReadmeData
+        {
+            get
+            {
+                Dictionary<string, string> data = new Dictionary<string, string>();
+                for (int i = 0; i < dataKeys.Length; i++)
+                {
+                    data.Add(dataKeys[i], dataValues[i]);
+                }
+                return data;
+            }
+        }
 
+        public ReadmeCache(Dictionary<string, string> ReadmeData, string Checksum, DateTime LastModified)
+        {
+            dataKeys = ReadmeData.Keys.ToArray();
+            dataValues = ReadmeData.Values.ToArray();
+            this.Checksum = Checksum;
+            this.LastModified = LastModified;
+        }
+    }
     public struct HmodReadme
     {
         public readonly Dictionary<string, string> frontMatter;
@@ -56,6 +84,9 @@ namespace com.clusterrr.hakchi_gui
 
             string[] readmeFiles = new string[] { "readme.txt", "readme.md", "readme" };
             string usermodsDirectory = Path.Combine(Program.BaseDirectoryExternal, "user_mods");
+            string cacheDir = Shared.PathCombine(Program.BaseDirectoryExternal, "user_mods", "readme_cache");
+            string cacheFile = Path.Combine(cacheDir, $"{mod}.xml");
+
 
             Dictionary<string, string> readmeData = new Dictionary<string, string>();
 
@@ -79,24 +110,65 @@ namespace com.clusterrr.hakchi_gui
                 {
                     isFile = true;
                     HmodPath = dir;
-                    SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
-                    using (var szExtractor = new SevenZipExtractor(dir))
+
+                    ReadmeCache cache;
+                    FileInfo info = new FileInfo(dir);
+                    
+                    bool skipExtraction = false;
+                    if (File.Exists(cacheFile))
                     {
-                        var tar = new MemoryStream();
-                        szExtractor.ExtractFile(0, tar);
-                        tar.Seek(0, SeekOrigin.Begin);
-                        using (var szExtractorTar = new SevenZipExtractor(tar))
+                        try
                         {
-                            foreach (var f in szExtractorTar.ArchiveFileNames)
+                            cache = XMLSerialization.DeserializeXMLFileToObject<ReadmeCache>(cacheFile);
+                            if (cache.LastModified == info.LastWriteTimeUtc)
                             {
-                                if (readmeFiles.Contains(f.ToLower()))
+                                skipExtraction = true;
+                                readmeData = cache.ReadmeData;
+                            }
+                        } catch(Exception ex) { }
+                    }
+
+
+                    if (!skipExtraction)
+                    {
+                        SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+                        using (var szExtractor = new SevenZipExtractor(dir))
+                        {
+                            var tar = new MemoryStream();
+                            szExtractor.ExtractFile(0, tar);
+                            tar.Seek(0, SeekOrigin.Begin);
+                            using (var szExtractorTar = new SevenZipExtractor(tar))
+                            {
+                                foreach (var f in szExtractorTar.ArchiveFileNames)
                                 {
-                                    var o = new MemoryStream();
-                                    szExtractorTar.ExtractFile(f, o);
-                                    readmeData.Add(f.ToLower(), Encoding.UTF8.GetString(o.ToArray()));
+                                    if (readmeFiles.Contains(f.ToLower()))
+                                    {
+                                        var o = new MemoryStream();
+                                        szExtractorTar.ExtractFile(f, o);
+                                        readmeData.Add(f.ToLower(), Encoding.UTF8.GetString(o.ToArray()));
+                                    }
                                 }
                             }
                         }
+                        cache = new ReadmeCache(readmeData, "", info.LastWriteTimeUtc);
+
+                        if (!Directory.Exists(cacheDir))
+                            Directory.CreateDirectory(cacheDir);
+
+                        File.WriteAllText(cacheFile, cache.Serialize());
+                    }
+                }
+                else
+                {
+                    if (File.Exists(cacheFile))
+                    {
+                        try
+                        {
+                            ReadmeCache cache;
+                            cache = XMLSerialization.DeserializeXMLFileToObject<ReadmeCache>(cacheFile);
+                            readmeData = cache.ReadmeData;
+                        }
+                        catch (Exception ex) { }
                     }
                 }
             }
@@ -234,7 +306,8 @@ namespace com.clusterrr.hakchi_gui
                     group = new ListViewGroup(groupName, HorizontalAlignment.Center);
                     listGroups.Add(groupName.ToLower(), group);
                 }
-                ListViewItem item = new ListViewItem(hmod.Name);
+                ListViewItem item = new ListViewItem(new String[] { hmod.Name, hmod.Creator });
+                item.SubItems.Add(hmod.Creator);
                 item.Tag = hmod;
                 item.Group = group;
                 listViewHmods.Items.Add(item);

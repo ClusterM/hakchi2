@@ -513,6 +513,7 @@
     <Compile Include="WorkerForm.Designer.cs">
       <DependentUpon>WorkerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="XMLSerialization.cs" />
     <EmbeddedResource Include="FoldersManagerForm.hu-HU.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
