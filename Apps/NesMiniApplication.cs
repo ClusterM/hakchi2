@@ -699,30 +699,27 @@ namespace com.clusterrr.hakchi_gui
                 new Rectangle(0, 0, outImage.Width, outImage.Height);
             using (Graphics gr = Graphics.FromImage(outImage))
             {
-                gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
                 gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                gr.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
                 // Fix first line and column alpha shit
-                using (ImageAttributes wrapMode = new ImageAttributes())
+                using (ImageAttributes ia = new ImageAttributes())
                 {
-                    wrapMode.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY);
-                    gr.DrawImage(inImage, outRect, 0, 0, inImage.Width, inImage.Height, GraphicsUnit.Pixel, wrapMode);
+                    ia.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY); 
+                    gr.DrawImage(inImage, outRect, 0, 0, inImage.Width, inImage.Height, GraphicsUnit.Pixel, ia);
                 }
                 gr.Flush();
-                if (quantize)
-                    Quantize(ref outImage);
-
-                outImage.Save(outPath, ImageFormat.Png);
             }
+            if (quantize)
+                Quantize(ref outImage);
+            outImage.Save(outPath, ImageFormat.Png);
             outImage.Dispose();
         }
 
         private void ProcessImageFile(string inPath, string outPath, int targetWidth, int targetHeight, bool enforceHeight, bool upscale, bool quantize)
         {
             if (String.IsNullOrEmpty(inPath) || !File.Exists(inPath)) // failsafe
-            {
-                Debug.WriteLine($"ProcessImageFile: Image file \"{inPath}\" doesn't exist.");
-                return;
-            }
+                throw new FileNotFoundException($"Image file \"{inPath}\" doesn't exist.");
 
             // load image
             Bitmap inImage = LoadBitmap(inPath);
@@ -875,7 +872,6 @@ namespace com.clusterrr.hakchi_gui
                 Bitmap quantized = (Bitmap)quantizer.QuantizeImage(img);
                 img.Dispose();
                 img = quantized;
-                Debug.WriteLine("an image has been compressed using nQuant.");
             }
             catch (nQuant.QuantizationException q)
             {
