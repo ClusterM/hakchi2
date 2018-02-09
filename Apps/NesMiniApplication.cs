@@ -672,10 +672,15 @@ namespace com.clusterrr.hakchi_gui
             return Name;
         }
 
-        private void ProcessImage(Image inImage, string outPath, int targetWidth, int targetHeight, bool quantize)
+        private void ProcessImage(Image inImage, string outPath, int targetWidth, int targetHeight, bool enforceHeight, bool upscale, bool quantize)
         {
             int X, Y;
-            if ((double)inImage.Width / (double)inImage.Height > (double)targetWidth / (double)targetHeight)
+            if (!upscale && inImage.Width <= targetWidth && inImage.Height <= targetHeight)
+            {
+                X = inImage.Width;
+                Y = inImage.Height;
+            }
+            else if ((double)inImage.Width / (double)inImage.Height > (double)targetWidth / (double)targetHeight)
             {
                 X = targetWidth;
                 Y = (int)Math.Round((double)targetWidth * (double)inImage.Height / (double)inImage.Width);
@@ -688,7 +693,10 @@ namespace com.clusterrr.hakchi_gui
                 Y = targetHeight;
             }
 
-            Bitmap outImage = new Bitmap(X, Y);
+            Bitmap outImage = new Bitmap(X, enforceHeight ? targetHeight : Y);
+            Rectangle outRect = (enforceHeight && Y < targetHeight) ?
+                new Rectangle(0, (int)((double)(targetHeight - Y) / 2), outImage.Width, Y) :
+                new Rectangle(0, 0, outImage.Width, outImage.Height);
             using (Graphics gr = Graphics.FromImage(outImage))
             {
                 gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
@@ -697,7 +705,7 @@ namespace com.clusterrr.hakchi_gui
                 using (ImageAttributes wrapMode = new ImageAttributes())
                 {
                     wrapMode.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY);
-                    gr.DrawImage(inImage, new Rectangle(0, 0, outImage.Width, outImage.Height), 0, 0, inImage.Width, inImage.Height, GraphicsUnit.Pixel, wrapMode);
+                    gr.DrawImage(inImage, outRect, 0, 0, inImage.Width, inImage.Height, GraphicsUnit.Pixel, wrapMode);
                 }
                 gr.Flush();
                 if (quantize)
@@ -708,7 +716,7 @@ namespace com.clusterrr.hakchi_gui
             outImage.Dispose();
         }
 
-        private void ProcessImageFile(string inPath, string outPath, int targetWidth, int targetHeight, bool quantize)
+        private void ProcessImageFile(string inPath, string outPath, int targetWidth, int targetHeight, bool enforceHeight, bool upscale, bool quantize)
         {
             if (String.IsNullOrEmpty(inPath) || !File.Exists(inPath)) // failsafe
             {
@@ -716,13 +724,14 @@ namespace com.clusterrr.hakchi_gui
                 return;
             }
 
+            // load image
+            Bitmap inImage = LoadBitmap(inPath);
+
             // only file type candidate for direct copy is ".png"
             if (Path.GetExtension(inPath).ToLower() == ".png")
             {
                 // if file is exactly the right aspect ratio, copy it
-                Bitmap inImage = LoadBitmap(inPath);
-                var pix = new PixelFormat[] { PixelFormat.Format1bppIndexed, PixelFormat.Format4bppIndexed, PixelFormat.Format8bppIndexed };
-                if ((!quantize || pix.Contains(inImage.PixelFormat)) &&
+                if (!quantize && (!enforceHeight || inImage.Height == targetHeight) &&
                     ((inImage.Height == targetHeight && inImage.Width <= targetWidth) ||
                      (inImage.Width == targetWidth && inImage.Height <= targetHeight)))
                 {
@@ -733,7 +742,7 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // any other case, fully process image
-            ProcessImage(LoadBitmap(inPath), outPath, targetWidth, targetHeight, quantize);
+            ProcessImage(inImage, outPath, targetWidth, targetHeight, enforceHeight, upscale, quantize);
         }
 
         private void SetImage(Image img, bool EightBitCompression = false)
@@ -746,12 +755,12 @@ namespace com.clusterrr.hakchi_gui
                 maxX = 228;
                 maxY = 204;
             }
-            ProcessImage(img, IconPath, maxX, maxY, EightBitCompression);
+            ProcessImage(img, IconPath, maxX, maxY, false, true, EightBitCompression);
 
             // thumbnail image ratio
             maxX = 40;
             maxY = 40;
-            ProcessImage(img, SmallIconPath, maxX, maxY, EightBitCompression);
+            ProcessImage(img, SmallIconPath, maxX, maxY, true, false, EightBitCompression);
         }
 
         public void SetImageFile(string path, bool EightBitCompression = false)
@@ -764,7 +773,7 @@ namespace com.clusterrr.hakchi_gui
                 maxX = 228;
                 maxY = 204;
             }
-            ProcessImageFile(path, IconPath, maxX, maxY, EightBitCompression);
+            ProcessImageFile(path, IconPath, maxX, maxY, false, true, EightBitCompression);
 
             // check if a small image file might have accompanied the source image
             string thumbnailPath = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path) + "_small" + Path.GetExtension(path));
@@ -782,7 +791,7 @@ namespace com.clusterrr.hakchi_gui
         public void SetThumbnailFile(string path, bool EightBitCompression = false)
         {
             // thumbnail image ratio
-            ProcessImageFile(path, SmallIconPath, 40, 40, EightBitCompression);
+            ProcessImageFile(path, SmallIconPath, 40, 40, true, false, EightBitCompression);
         }
 
         public Image Image
