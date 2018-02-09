@@ -53,7 +53,7 @@ namespace com.clusterrr.hakchi_gui
             this.rawReadme = readme;
             Dictionary<string, string> output = new Dictionary<string, string>();
             Match match = Regex.Match(readme, "^(?:-{3,}[\\r\\n]+(.*?)[\\r\\n]*-{3,})?[\\r\\n\\t\\s]*(.*)[\\r\\n\\t\\s]*$", RegexOptions.Singleline);
-            this.readme = match.Groups[2].Value;
+            this.readme = match.Groups[2].Value.Trim();
             MatchCollection matches = Regex.Matches(match.Groups[1].Value, "^[\\s\\t]*([^:]+)[\\s\\t]*:[\\s\\t]*(.*?)[\\s\\t]*$", RegexOptions.Multiline);
             foreach (Match fmMatch in matches)
             {
