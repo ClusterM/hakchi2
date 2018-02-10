@@ -229,6 +229,11 @@ namespace com.clusterrr.hakchi_gui
             DrawSplitTree(NesMenuCollection.SplitStyle.Original_FoldersAlphabetic_FoldersEqual);
         }
 
+        private void buttonFoldersApp_Click(object sender, EventArgs e)
+        {
+            DrawSplitTree(NesMenuCollection.SplitStyle.FoldersGroupByApp);
+        }
+
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             ShowSelected();
@@ -261,16 +266,10 @@ namespace com.clusterrr.hakchi_gui
                 if (node != null && node.Tag is NesMiniApplication)
                 {
                     var game = node.Tag as NesMiniApplication;
-                    //pictureBoxArt.Image = NesMiniApplication.LoadBitmap(game.IconPath);
                     pictureBoxArt.Image = game.Image;
                     groupBoxArt.Enabled = true;
                     listViewContent.Enabled = false;
                 }
-                //else //if (e.Node.Tag is NesDefaultGame)
-                //{
-                //    pictureBoxArt.Image = null;
-                //    groupBoxArt.Enabled = false;
-                //}
                 listViewContent.Enabled = false;
                 groupBoxSplitModes.Enabled = false;
                 pictureBoxArt.Cursor = Cursors.Default;

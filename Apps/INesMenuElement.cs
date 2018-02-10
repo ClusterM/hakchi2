@@ -6,5 +6,6 @@ namespace com.clusterrr.hakchi_gui
         string Code { get; }
         string Name { get; set; }
         string SortName { get; }
+        System.Type App { get; }
     }
 }

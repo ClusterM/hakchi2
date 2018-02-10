@@ -22,6 +22,11 @@
             get { return name; }
         }
 
+        public System.Type App
+        {
+            get { return typeof(NesDefaultGame); }
+        }
+
         public override string ToString()
         {
             return Name;

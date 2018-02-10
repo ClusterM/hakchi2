@@ -24,6 +24,7 @@ namespace com.clusterrr.hakchi_gui
             Original_FoldersAlphabetic_FoldersEqual = 9,
             FoldersAlphabetic_PagesEqual = 10,
             Original_FoldersAlphabetic_PagesEqual = 11,
+            FoldersGroupByApp = 12,
             Custom = 99
         }
 
@@ -40,7 +41,6 @@ namespace com.clusterrr.hakchi_gui
                 case SplitStyle.Original_FoldersEqual:
                 case SplitStyle.Original_PagesEqual:
                     style--;
-                    //originalCount = this.Where(o => o is NesDefaultGame).Count();
                     originalCount = this.Where(o => (o is NesMiniApplication) && (o as NesMiniApplication).IsOriginalGame).Count();
                     if (originalCount > 0)
                         originalToRoot = true;
@@ -62,11 +62,9 @@ namespace com.clusterrr.hakchi_gui
             else
             {
                 root = new NesMenuCollection();
-                //root.AddRange(this.Where(o => !(o is NesDefaultGame)));
                 root.AddRange(this.Where(o => (o is NesMiniApplication) && !(o as NesMiniApplication).IsOriginalGame));
                 if (root.Count == 0)
                     return;
-                //this.RemoveAll(o => !(o is NesDefaultGame));
                 this.RemoveAll(o => (o is NesMiniApplication) && !(o as NesMiniApplication).IsOriginalGame);
                 this.Add(new NesMenuFolder()
                 {
@@ -187,6 +185,35 @@ namespace com.clusterrr.hakchi_gui
                             folder.ChildMenuCollection.Split(SplitStyle.FoldersEqual, maxElements);
                             folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
                         }
+                        root.Add(folder);
+                    }
+            }
+            else if (style == SplitStyle.FoldersGroupByApp )
+            {
+                var apps = new Dictionary<Type, NesMenuCollection>();
+                foreach(var appinfo in AppTypeCollection.ApplicationTypes)
+                {
+                    apps[appinfo.Class] = new NesMenuCollection();
+                }
+                apps[typeof(NesMiniApplication)] = new NesMenuCollection();
+                foreach (var game in root)
+                {
+                    if (!(game is NesMiniApplication)) continue;
+                    Type appclass = game.App;
+                    if (apps.ContainsKey(appclass))
+                        apps[appclass].Add(game);
+                    else
+                        apps[typeof(NesMiniApplication)].Add(game);
+                }
+
+                root.Clear();
+                foreach(var app in apps)
+                    if(app.Value.Count > 0)
+                    {
+                        string folderImageId = "folder";
+                        var folder = new NesMenuFolder() { ChildMenuCollection = app.Value, Name = AppTypeCollection.GetAppByClass(app.Key).Name, Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
+                        folder.ChildMenuCollection.Split(SplitStyle.FoldersEqual, maxElements);
+                        folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
                         root.Add(folder);
                     }
             }

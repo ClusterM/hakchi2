@@ -367,6 +367,10 @@ namespace com.clusterrr.hakchi_gui
         {
             get { return sortRawTitle; }
         }
+        public System.Type App
+        {
+            get { return GetType(); }
+        }
 
         private bool isOriginalGame;
         public bool IsOriginalGame

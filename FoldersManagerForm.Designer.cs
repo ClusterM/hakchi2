@@ -57,6 +57,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
+            this.buttonFoldersApp = new System.Windows.Forms.Button();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
@@ -194,6 +195,7 @@
             // groupBoxSplitModes
             // 
             resources.ApplyResources(this.groupBoxSplitModes, "groupBoxSplitModes");
+            this.groupBoxSplitModes.Controls.Add(this.buttonFoldersApp);
             this.groupBoxSplitModes.Controls.Add(this.buttonNoFoldersOriginal);
             this.groupBoxSplitModes.Controls.Add(this.buttonNoFolders);
             this.groupBoxSplitModes.Controls.Add(this.buttonFoldersLetters);
@@ -254,9 +256,8 @@
             // 
             // pictureBoxArt
             // 
-            this.pictureBoxArt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxArt.Cursor = System.Windows.Forms.Cursors.Hand;
             resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
+            this.pictureBoxArt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
             this.pictureBoxArt.Click += new System.EventHandler(this.pictureBoxArt_Click);
@@ -336,6 +337,13 @@
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
+            // buttonFoldersApp
+            // 
+            resources.ApplyResources(this.buttonFoldersApp, "buttonFoldersApp");
+            this.buttonFoldersApp.Name = "buttonFoldersApp";
+            this.buttonFoldersApp.UseVisualStyleBackColor = true;
+            this.buttonFoldersApp.Click += new System.EventHandler(this.buttonFoldersApp_Click);
+            // 
             // FoldersManagerForm
             // 
             resources.ApplyResources(this, "$this");
@@ -387,5 +395,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItemSep;
         private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
+        private System.Windows.Forms.Button buttonFoldersApp;
     }
 }

@@ -7,8 +7,6 @@ namespace com.clusterrr.hakchi_gui
 {
     static class AppTypeCollection
     {
-        //public delegate NesMiniApplication 
-
         public class AppInfo
         {
             public Type Class;
@@ -21,6 +19,15 @@ namespace com.clusterrr.hakchi_gui
 
         public static AppInfo[] ApplicationTypes = new AppInfo[]
         {
+            new AppInfo
+            {
+                Class = typeof(NesMiniApplication),
+                Extensions = new string[] {},
+                DefaultApps = new string[] {/bin/retroarch},
+                Prefix = '0',
+                DefaultCover = Resources.blank_app,
+                Name = "Unknown App"
+            },
             new AppInfo
             {
                 Class = typeof(NesGame),
