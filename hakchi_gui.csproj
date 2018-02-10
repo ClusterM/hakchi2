@@ -550,6 +550,9 @@
     <Content Include="data\ubootSD.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="data\zImageMemboot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="FodyWeavers.xml" />
     <Content Include="folder_images\cps.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

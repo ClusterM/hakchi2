@@ -1340,6 +1340,7 @@ namespace com.clusterrr.hakchi_gui
             var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.Membooting;
             workerForm.Task = WorkerForm.Tasks.Memboot;
+            workerForm.zImage = Shared.PathCombine(Program.BaseDirectoryInternal, "data", "zImageMemboot");
             workerForm.Mod = "mod_hakchi";
             workerForm.Config = null;
             workerForm.Games = null;
@@ -1451,6 +1452,7 @@ namespace com.clusterrr.hakchi_gui
             var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.Uninstalling;
             workerForm.Task = WorkerForm.Tasks.Memboot;
+            workerForm.zImage = Shared.PathCombine(Program.BaseDirectoryInternal, "data", "zImageMemboot");
             workerForm.Mod = "mod_uninstall";
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
@@ -1461,6 +1463,7 @@ namespace com.clusterrr.hakchi_gui
             var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.InstallingMods;
             workerForm.Task = WorkerForm.Tasks.Memboot;
+            workerForm.zImage = Shared.PathCombine(Program.BaseDirectoryInternal, "data", "zImageMemboot");
             workerForm.Mod = "mod_hakchi";
             workerForm.hmodsInstall = new List<string>(mods);
             workerForm.Start();
@@ -1472,6 +1475,7 @@ namespace com.clusterrr.hakchi_gui
             var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.UninstallingMods;
             workerForm.Task = WorkerForm.Tasks.Memboot;
+            workerForm.zImage = Shared.PathCombine(Program.BaseDirectoryInternal, "data", "zImageMemboot");
             workerForm.Mod = "mod_hakchi";
             workerForm.hmodsUninstall = new List<string>(mods);
             workerForm.Start();
