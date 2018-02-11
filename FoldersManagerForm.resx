@@ -140,7 +140,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAD0
-        IwAAAk1TRnQBSQFMAgEBJgEAASwBAQEsAQEBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        IwAAAk1TRnQBSQFMAgEBJgEAAUQBAQFEAQEBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAAaADAAEBAQABCAYAASgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -396,10 +396,10 @@
     <value>Top, Right</value>
   </data>
   <data name="buttonNewFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>459, 243</value>
+    <value>459, 242</value>
   </data>
   <data name="buttonNewFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 21</value>
+    <value>100, 22</value>
   </data>
   <data name="buttonNewFolder.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -450,10 +450,10 @@
     <value>NoControl</value>
   </data>
   <data name="buttonFoldersApp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 141</value>
+    <value>13, 182</value>
   </data>
   <data name="buttonFoldersApp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 34</value>
+    <value>226, 34</value>
   </data>
   <data name="buttonFoldersApp.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -480,7 +480,7 @@
     <value>129, 22</value>
   </data>
   <data name="buttonNoFoldersOriginal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
+    <value>110, 74</value>
   </data>
   <data name="buttonNoFoldersOriginal.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -507,7 +507,7 @@
     <value>13, 22</value>
   </data>
   <data name="buttonNoFolders.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 34</value>
+    <value>110, 74</value>
   </data>
   <data name="buttonNoFolders.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -531,10 +531,10 @@
     <value>NoControl</value>
   </data>
   <data name="buttonFoldersLetters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 101</value>
+    <value>13, 142</value>
   </data>
   <data name="buttonFoldersLetters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 34</value>
+    <value>226, 34</value>
   </data>
   <data name="buttonFoldersLetters.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -554,68 +554,14 @@
   <data name="&gt;&gt;buttonFoldersLetters.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="buttonFoldersEquallyOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="buttonFoldersEquallyOriginal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 88</value>
-  </data>
-  <data name="buttonFoldersEquallyOriginal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
-  </data>
-  <data name="buttonFoldersEquallyOriginal.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="buttonFoldersEquallyOriginal.Text" xml:space="preserve">
-    <value>Original games -&gt; Split equally</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEquallyOriginal.Name" xml:space="preserve">
-    <value>buttonFoldersEquallyOriginal</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEquallyOriginal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEquallyOriginal.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersEquallyOriginal.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="buttonFoldersLettersOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="buttonFoldersLettersOriginal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 154</value>
-  </data>
-  <data name="buttonFoldersLettersOriginal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 60</value>
-  </data>
-  <data name="buttonFoldersLettersOriginal.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="buttonFoldersLettersOriginal.Text" xml:space="preserve">
-    <value>Original games -&gt; Split by first letter</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLettersOriginal.Name" xml:space="preserve">
-    <value>buttonFoldersLettersOriginal</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLettersOriginal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLettersOriginal.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonFoldersLettersOriginal.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="buttonFoldersEqually.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonFoldersEqually.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 62</value>
+    <value>13, 102</value>
   </data>
   <data name="buttonFoldersEqually.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 34</value>
+    <value>226, 34</value>
   </data>
   <data name="buttonFoldersEqually.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -633,7 +579,7 @@
     <value>groupBoxSplitModes</value>
   </data>
   <data name="&gt;&gt;buttonFoldersEqually.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="groupBoxSplitModes.Location" type="System.Drawing.Point, System.Drawing">
     <value>305, 12</value>

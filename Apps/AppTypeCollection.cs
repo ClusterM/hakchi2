@@ -21,15 +21,6 @@ namespace com.clusterrr.hakchi_gui
         {
             new AppInfo
             {
-                Class = typeof(NesMiniApplication),
-                Extensions = new string[] {},
-                DefaultApps = new string[] {/bin/retroarch},
-                Prefix = '0',
-                DefaultCover = Resources.blank_app,
-                Name = "Unknown App"
-            },
-            new AppInfo
-            {
                 Class = typeof(NesGame),
                 Extensions = new string[] {".nes"},
                 DefaultApps = new string[] { "/bin/nes", "/bin/clover-kachikachi-wr", "/usr/bin/clover-kachikachi" },
@@ -162,6 +153,15 @@ namespace com.clusterrr.hakchi_gui
                 Prefix = 'X',
                 DefaultCover = Resources.blank_arcade,
                 Name = "Arcade System"
+            },
+            new AppInfo
+            {
+                Class = typeof(NesMiniApplication),
+                Extensions = new string[] {},
+                DefaultApps = new string[] {"/bin/retroarch"},
+                Prefix = '0',
+                DefaultCover = Resources.blank_app,
+                Name = "Unknown App"
             },
         };
 

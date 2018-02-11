@@ -642,14 +642,17 @@ namespace com.clusterrr.hakchi_gui
                 labelID.Text = "ID: ";
                 labelSize.Text = Resources.Size;
                 textBoxName.Text = "";
+                textBoxSortName.Text = "";
                 radioButtonOne.Checked = true;
                 radioButtonTwo.Checked = false;
                 radioButtonTwoSim.Checked = false;
                 maskedTextBoxReleaseDate.Text = "";
                 textBoxPublisher.Text = "";
                 textBoxArguments.Text = "";
-                pictureBoxArt.Image = null;
+                numericUpDownSaveCount.Value = 0;
+                pictureBoxArt.Image = Resources.noboxart;
                 pictureBoxThumbnail.Image = null;
+                pictureBoxThumbnail.Visible = false;
                 buttonShowGameGenieDatabase.Enabled = textBoxGameGenie.Enabled = false;
                 textBoxGameGenie.Text = "";
                 checkBoxCompressed.Enabled = false;
@@ -662,6 +665,7 @@ namespace com.clusterrr.hakchi_gui
                 labelID.Text = "ID: " + app.Code;
                 labelSize.Text = $"{Resources.Size} {Shared.SizeSuffix(app.Size())}";
                 textBoxName.Text = app.Name;
+                textBoxSortName.Text = app.SortRawTitle;
                 if (app.Simultaneous && app.Players == 2)
                     radioButtonTwoSim.Checked = true;
                 else if (app.Players == 2)
@@ -671,8 +675,10 @@ namespace com.clusterrr.hakchi_gui
                 maskedTextBoxReleaseDate.Text = app.ReleaseDate;
                 textBoxPublisher.Text = app.Publisher;
                 textBoxArguments.Text = app.Command;
+                numericUpDownSaveCount.Value = app.SaveCount;
                 pictureBoxArt.Image = app.Image;
                 pictureBoxThumbnail.Image = app.Thumbnail;
+                pictureBoxThumbnail.Visible = true;
                 buttonShowGameGenieDatabase.Enabled = app is NesGame; //ISupportsGameGenie;
                 textBoxGameGenie.Enabled = app is ISupportsGameGenie;
                 textBoxGameGenie.Text = (app is ISupportsGameGenie) ? (app as NesMiniApplication).GameGenie : "";
@@ -1034,7 +1040,24 @@ namespace com.clusterrr.hakchi_gui
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesMiniApplication)) return;
             var game = (selected as NesMiniApplication);
-            selectedItem.Text = game.Name = textBoxName.Text;
+            if (selectedItem.Text != textBoxName.Text)
+            {
+                var newSortName = textBoxName.Text.ToLower();
+                if (newSortName.StartsWith("the "))
+                    newSortName = newSortName.Substring(4); // Sorting without "THE"
+                selectedItem.Text = game.Name = textBoxName.Text;
+                textBoxSortName.Text = newSortName;
+            }
+        }
+
+        private void textBoxSortName_TextChanged(object sender, EventArgs e)
+        {
+            if (listViewGames.SelectedItems.Count != 1) return;
+            var selectedItem = listViewGames.SelectedItems[0];
+            var selected = listViewGames.SelectedItems[0].Tag;
+            if (selected == null || !(selected is NesMiniApplication)) return;
+            var game = (selected as NesMiniApplication);
+            game.SortRawTitle = textBoxSortName.Text = textBoxSortName.Text.ToLower();
         }
 
         private void radioButtonOne_CheckedChanged(object sender, EventArgs e)
@@ -1054,6 +1077,19 @@ namespace com.clusterrr.hakchi_gui
             if (selected == null || !(selected is NesMiniApplication)) return;
             var game = (selected as NesMiniApplication);
             game.Publisher = textBoxPublisher.Text.ToUpper();
+        }
+
+        private void numericUpDownSaveCount_ValueChanged(object sender, EventArgs e)
+        {
+            if (listViewGames.SelectedItems.Count != 1) return;
+            var selected = listViewGames.SelectedItems[0].Tag;
+            if (selected == null || !(selected is NesMiniApplication)) return;
+            var game = (selected as NesMiniApplication);
+            if (numericUpDownSaveCount.Value < 0)
+                numericUpDownSaveCount.Value = 0;
+            if (numericUpDownSaveCount.Value > 3)
+                numericUpDownSaveCount.Value = 3;
+            game.SaveCount = decimal.ToByte(numericUpDownSaveCount.Value);
         }
 
         private void textBoxArguments_TextChanged(object sender, EventArgs e)

@@ -1611,6 +1611,9 @@ namespace com.clusterrr.hakchi_gui
                 if (element is NesMenuFolder)
                 {
                     var folder = element as NesMenuFolder;
+                    if (folder.Name == Resources.FolderNameTrashBin)
+                        continue; // skip recycle bin!
+
                     if (!stats.allMenus.Contains(folder.ChildMenuCollection))
                     {
                         stats.allMenus.Add(folder.ChildMenuCollection);
@@ -1629,14 +1632,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     stats.TotalSize += folderSize;
                     stats.TransferSize += folderSize;
-
                 }
-                //if (element is NesDefaultGame)
-                //{
-                //    var game = element as NesDefaultGame;
-                //    stats.TotalSize += game.Size;
-                //    originalGames[game.Code] = menuIndex == 0 ? "." : string.Format("{0:D3}", menuIndex);
-                //}
             }
         }
 

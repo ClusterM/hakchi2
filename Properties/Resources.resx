@@ -764,9 +764,6 @@
 
 This process cannot be undone!</value>
   </data>
-  <data name="no_box_art" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\no_box_art.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ScanningCovers" xml:space="preserve">
     <value>Scanning "/art" folder for box art...</value>
   </data>
@@ -820,5 +817,8 @@ This process cannot be undone!</value>
   </data>
   <data name="SfromTool" xml:space="preserve">
     <value>SFROM Tool</value>
+  </data>
+  <data name="noboxart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\noboxart.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

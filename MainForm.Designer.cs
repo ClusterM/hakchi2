@@ -134,31 +134,6 @@
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBoxOptions = new System.Windows.Forms.GroupBox();
-            this.pictureBoxThumbnail = new System.Windows.Forms.PictureBox();
-            this.buttonDefaultCover = new System.Windows.Forms.Button();
-            this.labelSize = new System.Windows.Forms.Label();
-            this.checkBoxCompressed = new System.Windows.Forms.CheckBox();
-            this.buttonShowGameGenieDatabase = new System.Windows.Forms.Button();
-            this.maskedTextBoxReleaseDate = new System.Windows.Forms.MaskedTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxGameGenie = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.radioButtonTwoSim = new System.Windows.Forms.RadioButton();
-            this.buttonGoogle = new System.Windows.Forms.Button();
-            this.buttonBrowseImage = new System.Windows.Forms.Button();
-            this.pictureBoxArt = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxArguments = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBoxPublisher = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.radioButtonTwo = new System.Windows.Forms.RadioButton();
-            this.radioButtonOne = new System.Windows.Forms.RadioButton();
-            this.textBoxName = new System.Windows.Forms.TextBox();
-            this.labelName = new System.Windows.Forms.Label();
-            this.labelID = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonAddGames = new System.Windows.Forms.Button();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -192,12 +167,42 @@
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timerShowSelected = new System.Windows.Forms.Timer(this.components);
             this.buttonExport = new System.Windows.Forms.Button();
+            this.labelID = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.radioButtonOne = new System.Windows.Forms.RadioButton();
+            this.radioButtonTwo = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxPublisher = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxArguments = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pictureBoxArt = new System.Windows.Forms.PictureBox();
+            this.buttonBrowseImage = new System.Windows.Forms.Button();
+            this.buttonGoogle = new System.Windows.Forms.Button();
+            this.radioButtonTwoSim = new System.Windows.Forms.RadioButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxGameGenie = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.maskedTextBoxReleaseDate = new System.Windows.Forms.MaskedTextBox();
+            this.buttonShowGameGenieDatabase = new System.Windows.Forms.Button();
+            this.checkBoxCompressed = new System.Windows.Forms.CheckBox();
+            this.labelSize = new System.Windows.Forms.Label();
+            this.buttonDefaultCover = new System.Windows.Forms.Button();
+            this.pictureBoxThumbnail = new System.Windows.Forms.PictureBox();
+            this.labelSortName = new System.Windows.Forms.Label();
+            this.textBoxSortName = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.numericUpDownSaveCount = new System.Windows.Forms.NumericUpDown();
+            this.groupBoxOptions = new System.Windows.Forms.GroupBox();
             this.menuStrip.SuspendLayout();
-            this.groupBoxOptions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxThumbnail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxThumbnail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSaveCount)).BeginInit();
+            this.groupBoxOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -950,185 +955,6 @@
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // groupBoxOptions
-            // 
-            resources.ApplyResources(this.groupBoxOptions, "groupBoxOptions");
-            this.groupBoxOptions.Controls.Add(this.pictureBoxThumbnail);
-            this.groupBoxOptions.Controls.Add(this.buttonDefaultCover);
-            this.groupBoxOptions.Controls.Add(this.labelSize);
-            this.groupBoxOptions.Controls.Add(this.checkBoxCompressed);
-            this.groupBoxOptions.Controls.Add(this.buttonShowGameGenieDatabase);
-            this.groupBoxOptions.Controls.Add(this.maskedTextBoxReleaseDate);
-            this.groupBoxOptions.Controls.Add(this.label1);
-            this.groupBoxOptions.Controls.Add(this.textBoxGameGenie);
-            this.groupBoxOptions.Controls.Add(this.label7);
-            this.groupBoxOptions.Controls.Add(this.label6);
-            this.groupBoxOptions.Controls.Add(this.radioButtonTwoSim);
-            this.groupBoxOptions.Controls.Add(this.buttonGoogle);
-            this.groupBoxOptions.Controls.Add(this.buttonBrowseImage);
-            this.groupBoxOptions.Controls.Add(this.pictureBoxArt);
-            this.groupBoxOptions.Controls.Add(this.label4);
-            this.groupBoxOptions.Controls.Add(this.textBoxArguments);
-            this.groupBoxOptions.Controls.Add(this.label3);
-            this.groupBoxOptions.Controls.Add(this.textBoxPublisher);
-            this.groupBoxOptions.Controls.Add(this.label2);
-            this.groupBoxOptions.Controls.Add(this.radioButtonTwo);
-            this.groupBoxOptions.Controls.Add(this.radioButtonOne);
-            this.groupBoxOptions.Controls.Add(this.textBoxName);
-            this.groupBoxOptions.Controls.Add(this.labelName);
-            this.groupBoxOptions.Controls.Add(this.labelID);
-            this.groupBoxOptions.Name = "groupBoxOptions";
-            this.groupBoxOptions.TabStop = false;
-            // 
-            // pictureBoxThumbnail
-            // 
-            resources.ApplyResources(this.pictureBoxThumbnail, "pictureBoxThumbnail");
-            this.pictureBoxThumbnail.Name = "pictureBoxThumbnail";
-            this.pictureBoxThumbnail.TabStop = false;
-            this.pictureBoxThumbnail.Click += new System.EventHandler(this.pictureBoxThumbnail_Click);
-            // 
-            // buttonDefaultCover
-            // 
-            resources.ApplyResources(this.buttonDefaultCover, "buttonDefaultCover");
-            this.buttonDefaultCover.Name = "buttonDefaultCover";
-            this.buttonDefaultCover.UseVisualStyleBackColor = true;
-            this.buttonDefaultCover.Click += new System.EventHandler(this.buttonDefaultCover_Click);
-            // 
-            // labelSize
-            // 
-            resources.ApplyResources(this.labelSize, "labelSize");
-            this.labelSize.Name = "labelSize";
-            // 
-            // checkBoxCompressed
-            // 
-            resources.ApplyResources(this.checkBoxCompressed, "checkBoxCompressed");
-            this.checkBoxCompressed.Name = "checkBoxCompressed";
-            this.checkBoxCompressed.UseVisualStyleBackColor = true;
-            this.checkBoxCompressed.Click += new System.EventHandler(this.checkBoxCompressed_CheckedChanged);
-            // 
-            // buttonShowGameGenieDatabase
-            // 
-            resources.ApplyResources(this.buttonShowGameGenieDatabase, "buttonShowGameGenieDatabase");
-            this.buttonShowGameGenieDatabase.Name = "buttonShowGameGenieDatabase";
-            this.buttonShowGameGenieDatabase.UseVisualStyleBackColor = true;
-            this.buttonShowGameGenieDatabase.Click += new System.EventHandler(this.buttonShowGameGenieDatabase_Click);
-            // 
-            // maskedTextBoxReleaseDate
-            // 
-            resources.ApplyResources(this.maskedTextBoxReleaseDate, "maskedTextBoxReleaseDate");
-            this.maskedTextBoxReleaseDate.Name = "maskedTextBoxReleaseDate";
-            this.maskedTextBoxReleaseDate.TextChanged += new System.EventHandler(this.maskedTextBoxReleaseDate_TextChanged);
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // textBoxGameGenie
-            // 
-            resources.ApplyResources(this.textBoxGameGenie, "textBoxGameGenie");
-            this.textBoxGameGenie.Name = "textBoxGameGenie";
-            this.textBoxGameGenie.TextChanged += new System.EventHandler(this.textBoxGameGenie_TextChanged);
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            // 
-            // radioButtonTwoSim
-            // 
-            resources.ApplyResources(this.radioButtonTwoSim, "radioButtonTwoSim");
-            this.radioButtonTwoSim.Name = "radioButtonTwoSim";
-            this.radioButtonTwoSim.TabStop = true;
-            this.radioButtonTwoSim.UseVisualStyleBackColor = true;
-            this.radioButtonTwoSim.CheckedChanged += new System.EventHandler(this.radioButtonOne_CheckedChanged);
-            // 
-            // buttonGoogle
-            // 
-            resources.ApplyResources(this.buttonGoogle, "buttonGoogle");
-            this.buttonGoogle.Name = "buttonGoogle";
-            this.buttonGoogle.UseVisualStyleBackColor = true;
-            this.buttonGoogle.Click += new System.EventHandler(this.buttonGoogle_Click);
-            // 
-            // buttonBrowseImage
-            // 
-            resources.ApplyResources(this.buttonBrowseImage, "buttonBrowseImage");
-            this.buttonBrowseImage.Name = "buttonBrowseImage";
-            this.buttonBrowseImage.UseVisualStyleBackColor = true;
-            this.buttonBrowseImage.Click += new System.EventHandler(this.buttonBrowseImage_Click);
-            // 
-            // pictureBoxArt
-            // 
-            resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
-            this.pictureBoxArt.Name = "pictureBoxArt";
-            this.pictureBoxArt.TabStop = false;
-            this.pictureBoxArt.Click += new System.EventHandler(this.buttonBrowseImage_Click);
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            // 
-            // textBoxArguments
-            // 
-            resources.ApplyResources(this.textBoxArguments, "textBoxArguments");
-            this.textBoxArguments.Name = "textBoxArguments";
-            this.textBoxArguments.TextChanged += new System.EventHandler(this.textBoxArguments_TextChanged);
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            // 
-            // textBoxPublisher
-            // 
-            resources.ApplyResources(this.textBoxPublisher, "textBoxPublisher");
-            this.textBoxPublisher.Name = "textBoxPublisher";
-            this.textBoxPublisher.TextChanged += new System.EventHandler(this.textBoxPublisher_TextChanged);
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            // 
-            // radioButtonTwo
-            // 
-            resources.ApplyResources(this.radioButtonTwo, "radioButtonTwo");
-            this.radioButtonTwo.Name = "radioButtonTwo";
-            this.radioButtonTwo.TabStop = true;
-            this.radioButtonTwo.UseVisualStyleBackColor = true;
-            this.radioButtonTwo.CheckedChanged += new System.EventHandler(this.radioButtonOne_CheckedChanged);
-            // 
-            // radioButtonOne
-            // 
-            resources.ApplyResources(this.radioButtonOne, "radioButtonOne");
-            this.radioButtonOne.Checked = true;
-            this.radioButtonOne.Name = "radioButtonOne";
-            this.radioButtonOne.TabStop = true;
-            this.radioButtonOne.UseVisualStyleBackColor = true;
-            this.radioButtonOne.CheckedChanged += new System.EventHandler(this.radioButtonOne_CheckedChanged);
-            // 
-            // textBoxName
-            // 
-            resources.ApplyResources(this.textBoxName, "textBoxName");
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
-            // 
-            // labelName
-            // 
-            resources.ApplyResources(this.labelName, "labelName");
-            this.labelName.Name = "labelName";
-            // 
-            // labelID
-            // 
-            resources.ApplyResources(this.labelID, "labelID");
-            this.labelID.Name = "labelID";
-            // 
             // label5
             // 
             resources.ApplyResources(this.label5, "label5");
@@ -1352,6 +1178,212 @@
             this.buttonExport.UseVisualStyleBackColor = true;
             this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
             // 
+            // labelID
+            // 
+            resources.ApplyResources(this.labelID, "labelID");
+            this.labelID.Name = "labelID";
+            // 
+            // labelName
+            // 
+            resources.ApplyResources(this.labelName, "labelName");
+            this.labelName.Name = "labelName";
+            // 
+            // textBoxName
+            // 
+            resources.ApplyResources(this.textBoxName, "textBoxName");
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
+            // 
+            // radioButtonOne
+            // 
+            resources.ApplyResources(this.radioButtonOne, "radioButtonOne");
+            this.radioButtonOne.Checked = true;
+            this.radioButtonOne.Name = "radioButtonOne";
+            this.radioButtonOne.TabStop = true;
+            this.radioButtonOne.UseVisualStyleBackColor = true;
+            this.radioButtonOne.CheckedChanged += new System.EventHandler(this.radioButtonOne_CheckedChanged);
+            // 
+            // radioButtonTwo
+            // 
+            resources.ApplyResources(this.radioButtonTwo, "radioButtonTwo");
+            this.radioButtonTwo.Name = "radioButtonTwo";
+            this.radioButtonTwo.TabStop = true;
+            this.radioButtonTwo.UseVisualStyleBackColor = true;
+            this.radioButtonTwo.CheckedChanged += new System.EventHandler(this.radioButtonOne_CheckedChanged);
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // textBoxPublisher
+            // 
+            resources.ApplyResources(this.textBoxPublisher, "textBoxPublisher");
+            this.textBoxPublisher.Name = "textBoxPublisher";
+            this.textBoxPublisher.TextChanged += new System.EventHandler(this.textBoxPublisher_TextChanged);
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // textBoxArguments
+            // 
+            resources.ApplyResources(this.textBoxArguments, "textBoxArguments");
+            this.textBoxArguments.Name = "textBoxArguments";
+            this.textBoxArguments.TextChanged += new System.EventHandler(this.textBoxArguments_TextChanged);
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // pictureBoxArt
+            // 
+            resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
+            this.pictureBoxArt.Name = "pictureBoxArt";
+            this.pictureBoxArt.TabStop = false;
+            this.pictureBoxArt.Click += new System.EventHandler(this.buttonBrowseImage_Click);
+            // 
+            // buttonBrowseImage
+            // 
+            resources.ApplyResources(this.buttonBrowseImage, "buttonBrowseImage");
+            this.buttonBrowseImage.Name = "buttonBrowseImage";
+            this.buttonBrowseImage.UseVisualStyleBackColor = true;
+            this.buttonBrowseImage.Click += new System.EventHandler(this.buttonBrowseImage_Click);
+            // 
+            // buttonGoogle
+            // 
+            resources.ApplyResources(this.buttonGoogle, "buttonGoogle");
+            this.buttonGoogle.Name = "buttonGoogle";
+            this.buttonGoogle.UseVisualStyleBackColor = true;
+            this.buttonGoogle.Click += new System.EventHandler(this.buttonGoogle_Click);
+            // 
+            // radioButtonTwoSim
+            // 
+            resources.ApplyResources(this.radioButtonTwoSim, "radioButtonTwoSim");
+            this.radioButtonTwoSim.Name = "radioButtonTwoSim";
+            this.radioButtonTwoSim.TabStop = true;
+            this.radioButtonTwoSim.UseVisualStyleBackColor = true;
+            this.radioButtonTwoSim.CheckedChanged += new System.EventHandler(this.radioButtonOne_CheckedChanged);
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // textBoxGameGenie
+            // 
+            resources.ApplyResources(this.textBoxGameGenie, "textBoxGameGenie");
+            this.textBoxGameGenie.Name = "textBoxGameGenie";
+            this.textBoxGameGenie.TextChanged += new System.EventHandler(this.textBoxGameGenie_TextChanged);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // maskedTextBoxReleaseDate
+            // 
+            resources.ApplyResources(this.maskedTextBoxReleaseDate, "maskedTextBoxReleaseDate");
+            this.maskedTextBoxReleaseDate.Name = "maskedTextBoxReleaseDate";
+            this.maskedTextBoxReleaseDate.TextChanged += new System.EventHandler(this.maskedTextBoxReleaseDate_TextChanged);
+            // 
+            // buttonShowGameGenieDatabase
+            // 
+            resources.ApplyResources(this.buttonShowGameGenieDatabase, "buttonShowGameGenieDatabase");
+            this.buttonShowGameGenieDatabase.Name = "buttonShowGameGenieDatabase";
+            this.buttonShowGameGenieDatabase.UseVisualStyleBackColor = true;
+            this.buttonShowGameGenieDatabase.Click += new System.EventHandler(this.buttonShowGameGenieDatabase_Click);
+            // 
+            // checkBoxCompressed
+            // 
+            resources.ApplyResources(this.checkBoxCompressed, "checkBoxCompressed");
+            this.checkBoxCompressed.Name = "checkBoxCompressed";
+            this.checkBoxCompressed.UseVisualStyleBackColor = true;
+            this.checkBoxCompressed.Click += new System.EventHandler(this.checkBoxCompressed_CheckedChanged);
+            // 
+            // labelSize
+            // 
+            resources.ApplyResources(this.labelSize, "labelSize");
+            this.labelSize.Name = "labelSize";
+            // 
+            // buttonDefaultCover
+            // 
+            resources.ApplyResources(this.buttonDefaultCover, "buttonDefaultCover");
+            this.buttonDefaultCover.Name = "buttonDefaultCover";
+            this.buttonDefaultCover.UseVisualStyleBackColor = true;
+            this.buttonDefaultCover.Click += new System.EventHandler(this.buttonDefaultCover_Click);
+            // 
+            // pictureBoxThumbnail
+            // 
+            this.pictureBoxThumbnail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.pictureBoxThumbnail, "pictureBoxThumbnail");
+            this.pictureBoxThumbnail.Name = "pictureBoxThumbnail";
+            this.pictureBoxThumbnail.TabStop = false;
+            this.pictureBoxThumbnail.Click += new System.EventHandler(this.pictureBoxThumbnail_Click);
+            // 
+            // labelSortName
+            // 
+            resources.ApplyResources(this.labelSortName, "labelSortName");
+            this.labelSortName.Name = "labelSortName";
+            // 
+            // textBoxSortName
+            // 
+            resources.ApplyResources(this.textBoxSortName, "textBoxSortName");
+            this.textBoxSortName.Name = "textBoxSortName";
+            this.textBoxSortName.TextChanged += new System.EventHandler(this.textBoxSortName_TextChanged);
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // numericUpDownSaveCount
+            // 
+            resources.ApplyResources(this.numericUpDownSaveCount, "numericUpDownSaveCount");
+            this.numericUpDownSaveCount.Name = "numericUpDownSaveCount";
+            this.numericUpDownSaveCount.ValueChanged += new System.EventHandler(this.numericUpDownSaveCount_ValueChanged);
+            // 
+            // groupBoxOptions
+            // 
+            resources.ApplyResources(this.groupBoxOptions, "groupBoxOptions");
+            this.groupBoxOptions.Controls.Add(this.numericUpDownSaveCount);
+            this.groupBoxOptions.Controls.Add(this.label8);
+            this.groupBoxOptions.Controls.Add(this.textBoxSortName);
+            this.groupBoxOptions.Controls.Add(this.labelSortName);
+            this.groupBoxOptions.Controls.Add(this.pictureBoxThumbnail);
+            this.groupBoxOptions.Controls.Add(this.buttonDefaultCover);
+            this.groupBoxOptions.Controls.Add(this.labelSize);
+            this.groupBoxOptions.Controls.Add(this.checkBoxCompressed);
+            this.groupBoxOptions.Controls.Add(this.buttonShowGameGenieDatabase);
+            this.groupBoxOptions.Controls.Add(this.maskedTextBoxReleaseDate);
+            this.groupBoxOptions.Controls.Add(this.label1);
+            this.groupBoxOptions.Controls.Add(this.textBoxGameGenie);
+            this.groupBoxOptions.Controls.Add(this.label7);
+            this.groupBoxOptions.Controls.Add(this.label6);
+            this.groupBoxOptions.Controls.Add(this.radioButtonTwoSim);
+            this.groupBoxOptions.Controls.Add(this.buttonGoogle);
+            this.groupBoxOptions.Controls.Add(this.buttonBrowseImage);
+            this.groupBoxOptions.Controls.Add(this.pictureBoxArt);
+            this.groupBoxOptions.Controls.Add(this.label4);
+            this.groupBoxOptions.Controls.Add(this.textBoxArguments);
+            this.groupBoxOptions.Controls.Add(this.label3);
+            this.groupBoxOptions.Controls.Add(this.textBoxPublisher);
+            this.groupBoxOptions.Controls.Add(this.label2);
+            this.groupBoxOptions.Controls.Add(this.radioButtonTwo);
+            this.groupBoxOptions.Controls.Add(this.radioButtonOne);
+            this.groupBoxOptions.Controls.Add(this.textBoxName);
+            this.groupBoxOptions.Controls.Add(this.labelName);
+            this.groupBoxOptions.Controls.Add(this.labelID);
+            this.groupBoxOptions.Name = "groupBoxOptions";
+            this.groupBoxOptions.TabStop = false;
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1378,13 +1410,14 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            this.groupBoxOptions.ResumeLayout(false);
-            this.groupBoxOptions.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxThumbnail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.contextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxThumbnail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSaveCount)).EndInit();
+            this.groupBoxOptions.ResumeLayout(false);
+            this.groupBoxOptions.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1396,22 +1429,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addMoreGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBoxOptions;
-        private System.Windows.Forms.RadioButton radioButtonTwo;
-        private System.Windows.Forms.RadioButton radioButtonOne;
-        private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.Label labelID;
-        private System.Windows.Forms.TextBox textBoxPublisher;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBoxReleaseDate;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxArguments;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox pictureBoxArt;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button buttonGoogle;
-        private System.Windows.Forms.Button buttonBrowseImage;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonAddGames;
         private System.Windows.Forms.StatusStrip statusStrip;
@@ -1424,8 +1441,6 @@
         private System.Windows.Forms.ToolStripMenuItem dumpKernelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flashCustomKernelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flashOriginalKernelToolStripMenuItem;
-        private System.Windows.Forms.RadioButton radioButtonTwoSim;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.Timer timerCalculateGames;
         private System.Windows.Forms.ToolStripMenuItem uninstallToolStripMenuItem;
@@ -1439,8 +1454,6 @@
         private System.Windows.Forms.ToolStripMenuItem deletePresetToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
-        private System.Windows.Forms.TextBox textBoxGameGenie;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ToolStripMenuItem epilepsyProtectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cloverconHackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetUsingCombinationOfButtonsToolStripMenuItem;
@@ -1458,7 +1471,6 @@
         private System.Windows.Forms.ToolStripMenuItem automaticOriginalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foldersSplitByFirstLetterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customToolStripMenuItem;
-        private System.Windows.Forms.Button buttonShowGameGenieDatabase;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem pagesOriginalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foldersOriginalToolStripMenuItem;
@@ -1494,8 +1506,6 @@
         private System.Windows.Forms.ToolStripMenuItem superFamicomMiniToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openDumpFileDialog;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem11;
-        private System.Windows.Forms.CheckBox checkBoxCompressed;
-        private System.Windows.Forms.Label labelSize;
         private System.Windows.Forms.ToolStripMenuItem compressGamesToolStripMenuItem;
         internal System.Windows.Forms.ListView listViewGames;
         private System.Windows.Forms.ColumnHeader gameName;
@@ -1505,11 +1515,9 @@
         private System.Windows.Forms.ToolStripMenuItem downloadBoxArtForSelectedGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem compressBoxArtToolStripMenuItem;
-        private System.Windows.Forms.Button buttonDefaultCover;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedGamesBoxArtToolStripMenuItem;
         private System.Windows.Forms.Timer timerShowSelected;
         private System.Windows.Forms.ToolStripMenuItem reloadGamesToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pictureBoxThumbnail;
         private System.Windows.Forms.Button buttonExport;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem13;
         private System.Windows.Forms.ToolStripMenuItem exportGamesToolStripMenuItem;
@@ -1554,6 +1562,35 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
         private System.Windows.Forms.ToolStripMenuItem resetROMHeaderToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem17;
+        private System.Windows.Forms.Label labelID;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.RadioButton radioButtonOne;
+        private System.Windows.Forms.RadioButton radioButtonTwo;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxPublisher;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxArguments;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pictureBoxArt;
+        private System.Windows.Forms.Button buttonBrowseImage;
+        private System.Windows.Forms.Button buttonGoogle;
+        private System.Windows.Forms.RadioButton radioButtonTwoSim;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBoxGameGenie;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxReleaseDate;
+        private System.Windows.Forms.Button buttonShowGameGenieDatabase;
+        private System.Windows.Forms.CheckBox checkBoxCompressed;
+        private System.Windows.Forms.Label labelSize;
+        private System.Windows.Forms.Button buttonDefaultCover;
+        private System.Windows.Forms.PictureBox pictureBoxThumbnail;
+        private System.Windows.Forms.Label labelSortName;
+        private System.Windows.Forms.TextBox textBoxSortName;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown numericUpDownSaveCount;
+        private System.Windows.Forms.GroupBox groupBoxOptions;
     }
 }
 

@@ -367,10 +367,6 @@ namespace com.clusterrr.hakchi_gui
         {
             get { return sortRawTitle; }
         }
-        public System.Type App
-        {
-            get { return GetType(); }
-        }
 
         private bool isOriginalGame;
         public bool IsOriginalGame
@@ -501,6 +497,8 @@ namespace com.clusterrr.hakchi_gui
 
         protected NesMiniApplication()
         {
+            Name = "";
+            SortRawTitle = "";
             GamePath = null;
             ConfigPath = null;
             Players = 1;
@@ -521,6 +519,7 @@ namespace com.clusterrr.hakchi_gui
             GamePath = path;
             code = System.IO.Path.GetFileName(path);
             Name = Code;
+            SortRawTitle = "";
             ConfigPath = System.IO.Path.Combine(path, Code + ".desktop");
             IconPath = System.IO.Path.Combine(path, Code + ".png");
             SmallIconPath = System.IO.Path.Combine(path, Code + "_small.png");
@@ -622,9 +621,13 @@ namespace com.clusterrr.hakchi_gui
 
             // setup name and sort name
             Name = Regex.Replace(Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
-            SortRawTitle = Name.ToLower();
-            if (SortRawTitle.StartsWith("the "))
-                SortRawTitle = SortRawTitle.Substring(4); // Sorting without "THE"
+            SortRawTitle = Regex.Replace(SortRawTitle, @"'(\d)", @"`$1");
+            if (string.IsNullOrEmpty(SortRawTitle))
+            {
+                SortRawTitle = Name.ToLower();
+                if (SortRawTitle.StartsWith("the "))
+                    SortRawTitle = SortRawTitle.Substring(4); // Sorting without "THE"
+            }
 
             // reference original icon path if no image exists for original game
             cloverIconPath = $"{GamesHakchiPath}/{Code}/{Code}.png";
@@ -703,7 +706,7 @@ namespace com.clusterrr.hakchi_gui
                 new Rectangle(0, 0, outImage.Width, outImage.Height);
             using (Graphics gr = Graphics.FromImage(outImage))
             {
-                gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
+                gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                 gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
                 gr.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
                 // Fix first line and column alpha shit

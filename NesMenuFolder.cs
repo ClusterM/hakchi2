@@ -58,11 +58,6 @@ namespace com.clusterrr.hakchi_gui
             get { return name; }
         }
 
-        public System.Type App
-        {
-            get { return typeof(NesMenuFolder); }
-        }
-
         private string[] nameParts;
         public string[] NameParts
         {

@@ -547,7 +547,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="FodyWeavers.xml" />
-    <EmbeddedResource Include="images\no_box_art.png" />
     <Content Include="data\blankBoot.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -791,6 +790,7 @@
     <Content Include="folder_images\retropie_zxspectrum.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="images\noboxart.png" />
     <Content Include="tools\xz.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

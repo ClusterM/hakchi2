@@ -1290,7 +1290,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 17850e4 (dirty).
+        ///   Looks up a localized string similar to 3100c02 (dirty).
         /// </summary>
         internal static string gitCommit {
             get {
@@ -1615,9 +1615,9 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap no_box_art {
+        internal static System.Drawing.Bitmap noboxart {
             get {
-                object obj = ResourceManager.GetObject("no_box_art", resourceCulture);
+                object obj = ResourceManager.GetObject("noboxart", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

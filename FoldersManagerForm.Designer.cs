@@ -38,11 +38,10 @@
             this.buttonNewFolder = new System.Windows.Forms.Button();
             this.listViewContent = new System.Windows.Forms.ListView();
             this.groupBoxSplitModes = new System.Windows.Forms.GroupBox();
+            this.buttonFoldersApp = new System.Windows.Forms.Button();
             this.buttonNoFoldersOriginal = new System.Windows.Forms.Button();
             this.buttonNoFolders = new System.Windows.Forms.Button();
             this.buttonFoldersLetters = new System.Windows.Forms.Button();
-            this.buttonFoldersEquallyOriginal = new System.Windows.Forms.Button();
-            this.buttonFoldersLettersOriginal = new System.Windows.Forms.Button();
             this.buttonFoldersEqually = new System.Windows.Forms.Button();
             this.groupBoxArt = new System.Windows.Forms.GroupBox();
             this.pictureBoxArt = new System.Windows.Forms.PictureBox();
@@ -57,7 +56,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
-            this.buttonFoldersApp = new System.Windows.Forms.Button();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
@@ -199,11 +197,16 @@
             this.groupBoxSplitModes.Controls.Add(this.buttonNoFoldersOriginal);
             this.groupBoxSplitModes.Controls.Add(this.buttonNoFolders);
             this.groupBoxSplitModes.Controls.Add(this.buttonFoldersLetters);
-            this.groupBoxSplitModes.Controls.Add(this.buttonFoldersEquallyOriginal);
-            this.groupBoxSplitModes.Controls.Add(this.buttonFoldersLettersOriginal);
             this.groupBoxSplitModes.Controls.Add(this.buttonFoldersEqually);
             this.groupBoxSplitModes.Name = "groupBoxSplitModes";
             this.groupBoxSplitModes.TabStop = false;
+            // 
+            // buttonFoldersApp
+            // 
+            resources.ApplyResources(this.buttonFoldersApp, "buttonFoldersApp");
+            this.buttonFoldersApp.Name = "buttonFoldersApp";
+            this.buttonFoldersApp.UseVisualStyleBackColor = true;
+            this.buttonFoldersApp.Click += new System.EventHandler(this.buttonFoldersApp_Click);
             // 
             // buttonNoFoldersOriginal
             // 
@@ -225,20 +228,6 @@
             this.buttonFoldersLetters.Name = "buttonFoldersLetters";
             this.buttonFoldersLetters.UseVisualStyleBackColor = true;
             this.buttonFoldersLetters.Click += new System.EventHandler(this.buttonFoldersLetters_Click);
-            // 
-            // buttonFoldersEquallyOriginal
-            // 
-            resources.ApplyResources(this.buttonFoldersEquallyOriginal, "buttonFoldersEquallyOriginal");
-            this.buttonFoldersEquallyOriginal.Name = "buttonFoldersEquallyOriginal";
-            this.buttonFoldersEquallyOriginal.UseVisualStyleBackColor = true;
-            this.buttonFoldersEquallyOriginal.Click += new System.EventHandler(this.buttonFoldersEquallyOriginal_Click);
-            // 
-            // buttonFoldersLettersOriginal
-            // 
-            resources.ApplyResources(this.buttonFoldersLettersOriginal, "buttonFoldersLettersOriginal");
-            this.buttonFoldersLettersOriginal.Name = "buttonFoldersLettersOriginal";
-            this.buttonFoldersLettersOriginal.UseVisualStyleBackColor = true;
-            this.buttonFoldersLettersOriginal.Click += new System.EventHandler(this.buttonFoldersLettersOriginal_Click);
             // 
             // buttonFoldersEqually
             // 
@@ -337,13 +326,6 @@
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
-            // buttonFoldersApp
-            // 
-            resources.ApplyResources(this.buttonFoldersApp, "buttonFoldersApp");
-            this.buttonFoldersApp.Name = "buttonFoldersApp";
-            this.buttonFoldersApp.UseVisualStyleBackColor = true;
-            this.buttonFoldersApp.Click += new System.EventHandler(this.buttonFoldersApp_Click);
-            // 
             // FoldersManagerForm
             // 
             resources.ApplyResources(this, "$this");
@@ -380,8 +362,6 @@
         private System.Windows.Forms.Button buttonNoFoldersOriginal;
         private System.Windows.Forms.Button buttonNoFolders;
         private System.Windows.Forms.Button buttonFoldersLetters;
-        private System.Windows.Forms.Button buttonFoldersEquallyOriginal;
-        private System.Windows.Forms.Button buttonFoldersLettersOriginal;
         private System.Windows.Forms.Button buttonFoldersEqually;
         private System.Windows.Forms.ListView listViewContent;
         private System.Windows.Forms.Label labelElementCount;

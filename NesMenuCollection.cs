@@ -188,22 +188,35 @@ namespace com.clusterrr.hakchi_gui
                         root.Add(folder);
                     }
             }
-            else if (style == SplitStyle.FoldersGroupByApp )
+            else if (style == SplitStyle.FoldersGroupByApp)
             {
                 var apps = new Dictionary<Type, NesMenuCollection>();
-                foreach(var appinfo in AppTypeCollection.ApplicationTypes)
-                {
-                    apps[appinfo.Class] = new NesMenuCollection();
-                }
-                apps[typeof(NesMiniApplication)] = new NesMenuCollection();
+                var customApps = new Dictionary<string, NesMenuCollection>();
+                foreach(var appInfo in AppTypeCollection.ApplicationTypes)
+                    apps[appInfo.Class] = new NesMenuCollection();
+
+                Regex rgx = new Regex(@"(^/bin/.*[\s$])", RegexOptions.Compiled); 
                 foreach (var game in root)
                 {
                     if (!(game is NesMiniApplication)) continue;
-                    Type appclass = game.App;
-                    if (apps.ContainsKey(appclass))
-                        apps[appclass].Add(game);
+                    NesMiniApplication app = game as NesMiniApplication;
+
+                    AppTypeCollection.AppInfo ai = AppTypeCollection.GetAppByExec(app.Command);
+                    if (ai != null)
+                        apps[ai.Class].Add(game);
                     else
-                        apps[typeof(NesMiniApplication)].Add(game);
+                    {
+                        Match match = rgx.Match(app.Command.ToLower());
+                        if (match.Success && match.Length > 0)
+                        {
+                            string appBin = match.ToString();
+                            if (!customApps.ContainsKey(appBin))
+                                customApps.Add(appBin, new NesMenuCollection());
+                            customApps[appBin].Add(game);
+                        }
+                        else
+                            apps[typeof(NesMiniApplication)].Add(game);
+                    }
                 }
 
                 root.Clear();
@@ -212,7 +225,16 @@ namespace com.clusterrr.hakchi_gui
                     {
                         string folderImageId = "folder";
                         var folder = new NesMenuFolder() { ChildMenuCollection = app.Value, Name = AppTypeCollection.GetAppByClass(app.Key).Name, Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
-                        folder.ChildMenuCollection.Split(SplitStyle.FoldersEqual, maxElements);
+                        //folder.ChildMenuCollection.Split(SplitStyle.FoldersEqual, maxElements);
+                        folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
+                        root.Add(folder);
+                    }
+                foreach (var app in customApps)
+                    if (app.Value.Count > 0)
+                    {
+                        string folderImageId = "folder";
+                        var folder = new NesMenuFolder() { ChildMenuCollection = app.Value, Name = app.Key, Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
+                        //folder.ChildMenuCollection.Split(SplitStyle.FoldersEqual, maxElements);
                         folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
                         root.Add(folder);
                     }
