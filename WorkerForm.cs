@@ -144,8 +144,8 @@ namespace com.clusterrr.hakchi_gui
             baseDirectoryInternal = Program.BaseDirectoryInternal;
             baseDirectoryExternal = Program.BaseDirectoryExternal;
             fes1Path = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "fes1.bin");
-            ubootPath = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "uboot.bin");
             zImage = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "zImage");
+            ubootPath = Shared.PathCombine(baseDirectoryInternal, "data", ConfigIni.MembootUboot);
 #if VERY_DEBUG
             
             tempDirectory = Path.Combine(baseDirectoryInternal, "temp");

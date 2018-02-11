@@ -63,6 +63,7 @@ namespace com.clusterrr.hakchi_gui
         public static string TelnetArguments = "";
         public static bool SeparateGameStorage = true;
         public static string ExportRegion = "";
+        public static string MembootUboot = "ubootSD.bin";
 
         public static bool CustomFlashed
         {
@@ -610,6 +611,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "exportregion":
                                     ExportRegion = value;
                                     break;
+                                case "membootuboot":
+                                    MembootUboot = value;
+                                    break;
 
                             }
                             break;
@@ -678,6 +682,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("SeparateGameStorage={0}", SeparateGameStorage));
             configLines.Add(string.Format("ExportRegion={0}", ExportRegion));
             configLines.Add(string.Format("RunCount={0}", RunCount));
+            configLines.Add(string.Format("MembootUboot={0}", MembootUboot));
 
             configLines.Add("");
             configLines.Add("[Presets]");

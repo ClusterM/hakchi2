@@ -1501,7 +1501,7 @@ namespace com.clusterrr.hakchi_gui
             if (MessageBox.Show(Resources.FlashUbootNormalQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == DialogResult.Yes)
             {
-                if (FlashUboot())
+                if (FlashUboot("uboot.bin"))
                 {
                     MessageBox.Show(Resources.UbootFlashed, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
