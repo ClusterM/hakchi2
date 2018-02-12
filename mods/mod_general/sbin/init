@@ -1,0 +1,29 @@
+#!/bin/sh
+CONFIGFS="/sys/devices/virtual/android_usb/android0"
+VENDOR_ID="1f3a"
+PRODUCT_ID="efe8"
+
+/bin/mount -t proc proc /proc
+/bin/mount -t sysfs sys /sys
+/bin/busybox --install -s /bin/
+
+ln -s /proc/self/fd /dev/fd
+ln -s /proc/self/fd/0 /dev/stdin
+ln -s /proc/self/fd/1 /dev/stdout
+ln -s /proc/self/fd/2 /dev/stderr
+ln -s /proc/kcore /dev/core
+mkdir /dev/pts /dev/shm
+mount -t devpts -o gid=4,mode=620 none /dev/pts
+mount -t tmpfs none /dev/shm
+
+echo   "0"           > "$CONFIGFS/enable"
+echo   "$VENDOR_ID"  > "$CONFIGFS/idVendor"
+echo   "$PRODUCT_ID" > "$CONFIGFS/idProduct"
+echo   "clover"      > "$CONFIGFS/functions"
+echo   "1"           > "$CONFIGFS/enable"
+
+/bin/clovershell --daemon
+
+while true; do
+  getty -ni 115200 ttyS0 -l /bin/login
+done
