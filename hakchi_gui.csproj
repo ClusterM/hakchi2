@@ -798,6 +798,9 @@
     <None Include="images\noboxart.png" />
     <Content Include="readmeTemplate.css" />
     <Content Include="readmeTemplate.html" />
+    <Content Include="sfrom_tool\README.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="tools\xz.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
