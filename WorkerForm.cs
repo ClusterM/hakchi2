@@ -2223,7 +2223,8 @@ namespace com.clusterrr.hakchi_gui
                 }
 
                 // save new selected games
-                ConfigIni.SelectedGames = string.Join(";", selected.Distinct().ToArray());
+                if (!this.restoreAllOriginalGames)
+                    ConfigIni.SelectedGames = string.Join(";", selected.Distinct().ToArray());
             }
             Thread.Sleep(500);
         }

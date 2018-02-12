@@ -1855,13 +1855,13 @@ namespace com.clusterrr.hakchi_gui
                 if (!ConfigIni.DisablePopups)
                     MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            LoadGames();
-
             // also save the selected games for each system
             AddDefaultsToSelectedGames(NesMiniApplication.defaultNesGames, ref ConfigIni.SelectedGamesNes);
             AddDefaultsToSelectedGames(NesMiniApplication.defaultFamicomGames, ref ConfigIni.SelectedGamesFamicom);
             AddDefaultsToSelectedGames(NesMiniApplication.defaultSnesGames, ref ConfigIni.SelectedGamesSnes);
             AddDefaultsToSelectedGames(NesMiniApplication.defaultSuperFamicomGames, ref ConfigIni.SelectedGamesSuperFamicom);
+
+            LoadGames();
         }
 
         private void AddDefaultsToSelectedGames(NesDefaultGame[] games, ref string selectedGames)
