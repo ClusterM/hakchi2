@@ -53,6 +53,7 @@
             this.sDModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashOriginalKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashCustomKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -310,6 +311,7 @@
             this.flashUbootToolStripMenuItem,
             this.flashOriginalKernelToolStripMenuItem,
             this.flashCustomKernelToolStripMenuItem,
+            this.resetToolStripMenuItem,
             this.uninstallToolStripMenuItem,
             this.toolStripMenuItem11,
             this.advancedToolStripMenuItem});
@@ -353,6 +355,12 @@
             this.flashCustomKernelToolStripMenuItem.Name = "flashCustomKernelToolStripMenuItem";
             resources.ApplyResources(this.flashCustomKernelToolStripMenuItem, "flashCustomKernelToolStripMenuItem");
             this.flashCustomKernelToolStripMenuItem.Click += new System.EventHandler(this.flashCustomKernelToolStripMenuItem_Click);
+            // 
+            // resetToolStripMenuItem
+            // 
+            this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
+            resources.ApplyResources(this.resetToolStripMenuItem, "resetToolStripMenuItem");
+            this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
             // 
             // uninstallToolStripMenuItem
             // 
@@ -1473,6 +1481,7 @@
         private System.Windows.Forms.ToolStripMenuItem changeBootImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem disableBootImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetDefaultBootImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
     }
 }
 

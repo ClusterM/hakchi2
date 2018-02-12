@@ -1323,6 +1323,21 @@ namespace com.clusterrr.hakchi_gui
             return result;
         }
 
+        bool ResetHakchi()
+        {
+            var workerForm = new WorkerForm(this);
+            workerForm.Text = Resources.Membooting;
+            workerForm.Task = WorkerForm.Tasks.Memboot;
+            workerForm.zImage = Shared.PathCombine(Program.BaseDirectoryInternal, "data", "zImageMemboot");
+            workerForm.Mod = "mod_hakchi";
+            workerForm.hmodsInstall = new List<string>(InternalMods);
+            workerForm.ModExtraFilesPath = Shared.PathCombine(Program.BaseDirectoryInternal, "mods", "mod_reset");
+            workerForm.Config = null;
+            workerForm.Games = null;
+            workerForm.Start();
+            return workerForm.DialogResult == DialogResult.OK;
+        }
+
         bool MembootOriginalKernel()
         {
             var workerForm = new WorkerForm(this);
@@ -1335,13 +1350,13 @@ namespace com.clusterrr.hakchi_gui
             return workerForm.DialogResult == DialogResult.OK;
         }
 
-        bool MembootCustomKernel()
+        bool MembootCustomKernel(string mod = "mod_hakchi")
         {
             var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.Membooting;
             workerForm.Task = WorkerForm.Tasks.Memboot;
             workerForm.zImage = Shared.PathCombine(Program.BaseDirectoryInternal, "data", "zImageMemboot");
-            workerForm.Mod = "mod_hakchi";
+            workerForm.Mod = mod;
             workerForm.Config = null;
             workerForm.Games = null;
             workerForm.Start();
@@ -2490,5 +2505,10 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (RequireKernelDump() == DialogResult.No) return;
+            ResetHakchi();
+        }
     }
 }

@@ -66,6 +66,7 @@ namespace com.clusterrr.hakchi_gui
         //public string UBootDump;
         public string NandDump;
         public string Mod = null;
+        public string ModExtraFilesPath = null;
         public string zImage = null;
         public string customUboot = null;
         public string exportDirectory;
@@ -1432,6 +1433,12 @@ namespace com.clusterrr.hakchi_gui
             if (Directory.Exists(hakchiDirectory))
                 Directory.Delete(hakchiDirectory, true);
             NesMiniApplication.DirectoryCopy(Path.Combine(modsDirectory, Mod), ramfsDirectory, true);
+
+            if (!string.IsNullOrEmpty(ModExtraFilesPath) && Directory.Exists(ModExtraFilesPath))
+            {
+                NesMiniApplication.DirectoryCopy(ModExtraFilesPath, ramfsDirectory, true);
+            }
+
             var ramfsFiles = Directory.GetFiles(ramfsDirectory, "*.*", SearchOption.AllDirectories);
             foreach (var file in ramfsFiles)
             {

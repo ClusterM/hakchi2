@@ -1,0 +1,3 @@
+echo "uninstalling $modname..."
+rm -rf "$installpath"
+mod_install
