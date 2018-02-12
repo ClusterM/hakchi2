@@ -716,23 +716,8 @@ namespace com.clusterrr.hakchi_gui
                 uboot = newU;
             }
 
-            fel.WriteFlash(Fel.uboot_base_f, uboot,
-                delegate (Fel.CurrentAction action, string command)
-                {
-                    switch (action)
-                    {
-                        case Fel.CurrentAction.RunningCommand:
-                            SetStatus(Resources.ExecutingCommand + " " + command);
-                            break;
-                        case Fel.CurrentAction.WritingMemory:
-                            SetStatus(Resources.FlashingUboot);
-                            break;
-                    }
-                    progress++;
-                    SetProgress(progress, maxProgress);
-                }
-            );
-            var r = fel.ReadFlash((UInt32)Fel.uboot_base_f, (UInt32)uboot.Length,
+            // Read the current uboot from nand and return the function if it matches what we were going to flash
+            byte[] r = fel.ReadFlash((UInt32)Fel.uboot_base_f, (UInt32)uboot.Length,
                 delegate (Fel.CurrentAction action, string command)
                 {
                     switch (action)
@@ -749,7 +734,43 @@ namespace com.clusterrr.hakchi_gui
                 }
             );
             if (!uboot.SequenceEqual(r))
-                throw new Exception(Resources.VerifyFailed);
+            {
+                // Flash the new uboot
+                fel.WriteFlash(Fel.uboot_base_f, uboot,
+                    delegate (Fel.CurrentAction action, string command)
+                    {
+                        switch (action)
+                        {
+                            case Fel.CurrentAction.RunningCommand:
+                                SetStatus(Resources.ExecutingCommand + " " + command);
+                                break;
+                            case Fel.CurrentAction.WritingMemory:
+                                SetStatus(Resources.FlashingUboot);
+                                break;
+                        }
+                        progress++;
+                        SetProgress(progress, maxProgress);
+                    }
+                );
+                r = fel.ReadFlash((UInt32)Fel.uboot_base_f, (UInt32)uboot.Length,
+                    delegate (Fel.CurrentAction action, string command)
+                    {
+                        switch (action)
+                        {
+                            case Fel.CurrentAction.RunningCommand:
+                                SetStatus(Resources.ExecutingCommand + " " + command);
+                                break;
+                            case Fel.CurrentAction.ReadingMemory:
+                                SetStatus(Resources.Verifying);
+                                break;
+                        }
+                        progress++;
+                        SetProgress(progress, maxProgress);
+                    }
+                );
+                if (!uboot.SequenceEqual(r))
+                    throw new Exception(Resources.VerifyFailed);
+            }
 
             var shutdownCommand = "shutdown";
             SetStatus(Resources.ExecutingCommand + " " + shutdownCommand);
