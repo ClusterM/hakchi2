@@ -1322,6 +1322,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (MainForm.Clovershell.IsOnline)
             {
+                MainForm.Clovershell.ExecuteSimple("uistop");
                 int hmodCount = hmodsInstall.Count() + 1;
                 int hmodCounter = 0;
                 if (hmodsInstall != null && hmodsInstall.Count() > 0)
@@ -1331,7 +1332,7 @@ namespace com.clusterrr.hakchi_gui
                         var modName = hmod + ".hmod";
                         foreach (var dir in hmodDirectories)
                         {
-                            string hmodHakchiPath = $"/var/lib/hakchi/transfer/{modName}/";
+                            string hmodHakchiPath = $"/tmp/hmods/{modName}/";
                             if (Directory.Exists(Path.Combine(dir, modName)))
                             {
 
@@ -1364,7 +1365,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 if((hmodsInstall != null && hmodsInstall.Count() > 0) || (hmodsUninstall != null && hmodsUninstall.Count() > 0))
                 {
-                    MainForm.Clovershell.ExecuteSimple("reboot");
+                    MainForm.Clovershell.ExecuteSimple("hakchi packs_install /tmp/hmods/; reboot");
                     SetProgress(1, 1);
                 }
             }
