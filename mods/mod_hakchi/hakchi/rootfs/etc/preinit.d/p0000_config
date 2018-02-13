@@ -1,3 +1,6 @@
 cfg_boot_stock='n'
+cfg_disable_armet='y'
 cfg_firmware='auto'
-cfg_usb_host='n'
+cfg_nes_extra_args=''
+cfg_snes_extra_args=''
+cfg_usb_host='y'

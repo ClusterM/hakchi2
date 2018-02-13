@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NAANE/CLV-P-NAANE.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 5,2 --volume 75 --enable-armet 
+Exec=/bin/clover-kachikachi-wr /var/squashfs/usr/share/games/nes/kachikachi/CLV-P-NAANE/CLV-P-NAANE.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 5,2 --volume 75 --enable-armet 
 Path=/var/lib/clover/profiles/0//CLV-P-NAANE
 Name=The Legend of Zelda
-Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-NAANE/CLV-P-NAANE.png
+Icon=/var/squashfs/usr/share/games/nes/kachikachi/CLV-P-NAANE/CLV-P-NAANE.png
 
 [X-CLOVER Game]
 Code=CLV-P-NAANE

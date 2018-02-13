@@ -1037,6 +1037,12 @@
             // 
             resources.ApplyResources(this.gameName, "gameName");
             // 
+            // exportFolderDialog
+            // 
+            resources.ApplyResources(this.exportFolderDialog, "exportFolderDialog");
+            this.exportFolderDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            this.exportFolderDialog.ShowNewFolderButton = false;
+            // 
             // MainForm
             // 
             this.AllowDrop = true;

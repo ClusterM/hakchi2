@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SADKE/CLV-P-SADKE.sfrom --volume 65 -rollback-snapshot-period 600
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SADKE/CLV-P-SADKE.sfrom --volume 65 -rollback-snapshot-period 600
 Path=/var/lib/clover/profiles/0//CLV-P-SADKE
 Name=Star Fox 2
-Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SADKE/CLV-P-SADKE.png
+Icon=/var/squashfs/usr/share/games/CLV-P-SADKE/CLV-P-SADKE.png
 
 [X-CLOVER Game]
 Code=CLV-P-SADKE

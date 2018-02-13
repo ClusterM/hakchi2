@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -23,6 +24,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool? NeedPatch;
         public static bool? Need3rdPartyEmulator;
         public static bool? NeedAutoDownloadCover;
+        const int MaxCompressSize = 10 * 1024;
 
         public static string GamesDirectory
         {
@@ -196,7 +198,8 @@ namespace com.clusterrr.hakchi_gui
             Image cover = DefaultCover;
             byte saveCount = 0;
             uint crc32 = CRC32(rawRomData);
-            string outputFileName = Regex.Replace(System.IO.Path.GetFileName(inputFileName), @"[^A-Za-z0-9()!\[\]\.\-]", "_").Trim();
+            string outputFileName = Regex.Replace(System.IO.Path.GetFileName(inputFileName), @" ?\(.*?\)| ?\[.*?\]", "").Trim();
+            outputFileName = Regex.Replace(outputFileName, @"[^A-Za-z0-9!\.]+", "_");
 
             // Trying to determine file type
             var appinfo = AppTypeCollection.GetAppByExtension(extension);
@@ -586,7 +589,7 @@ namespace com.clusterrr.hakchi_gui
             return FromDirectory(targetDir);
         }
 
-        internal static long DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        internal static long DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, string[] skipFiles = null)
         {
             long size = 0;
             // Get the subdirectories for the specified directory.
@@ -610,6 +613,8 @@ namespace com.clusterrr.hakchi_gui
             FileInfo[] files = dir.GetFiles();
             foreach (FileInfo file in files)
             {
+                if (skipFiles != null && skipFiles.Contains(file.Name))
+                    continue;
                 string temppath = System.IO.Path.Combine(destDirName, file.Name);
                 size += file.CopyTo(temppath, true).Length;
             }
@@ -620,7 +625,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (DirectoryInfo subdir in dirs)
                 {
                     string temppath = System.IO.Path.Combine(destDirName, subdir.Name);
-                    size += DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                    size += DirectoryCopy(subdir.FullName, temppath, copySubDirs, skipFiles);
                 }
             }
             return size;
@@ -700,11 +705,13 @@ namespace com.clusterrr.hakchi_gui
             var result = new List<string>();
             var exec = Regex.Replace(Command, "[/\\\"]", " ") + " ";
             var files = Directory.GetFiles(GamePath, "*.*", SearchOption.TopDirectoryOnly);
+            var ignoreExtensions = new string[] { ".7z", ".zip", ".hsqs", ".sh" };
             foreach (var file in files)
             {
-                if (Path.GetExtension(file).ToLower() == ".7z")
+                var a = from i in ignoreExtensions select i;
+                if (ignoreExtensions.Contains(Path.GetExtension(file).ToLower()))
                     continue;
-                if (Path.GetExtension(file).ToLower() == ".zip")
+                if (new FileInfo(file).Length > MaxCompressSize)
                     continue;
                 if (exec.Contains(" " + Path.GetFileName(file) + " "))
                     result.Add(file);
@@ -737,7 +744,7 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine("Compressing " + filename);
                 compressor.CompressFiles(archName, filename);
                 File.Delete(filename);
-                Command = Command.Replace(System.IO.Path.GetFileName(filename), System.IO.Path.GetFileName(archName));
+                Command = Command.Replace(Path.GetFileName(filename), Path.GetFileName(archName));
             }
         }
 

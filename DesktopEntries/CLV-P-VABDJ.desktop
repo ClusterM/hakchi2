@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-VABDJ/CLV-P-VABDJ.sfrom --volume 37 -rollback-snapshot-period 600
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-VABDJ/CLV-P-VABDJ.sfrom --volume 37 -rollback-snapshot-period 600
 Path=/var/lib/clover/profiles/0//CLV-P-VABDJ
 Name=超魔界村
-Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-VABDJ/CLV-P-VABDJ.png
+Icon=/var/squashfs/usr/share/games/CLV-P-VABDJ/CLV-P-VABDJ.png
 
 [X-CLOVER Game]
 Code=CLV-P-VABDJ

@@ -86,7 +86,7 @@ namespace com.clusterrr.hakchi_gui
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
         string selectedFile = null;
         public NesMiniApplication[] addedApplications;
-        public static int NandCTotal, NandCUsed, NandCFree, WritedGamesSize, SaveStatesSize;
+        public static long NandCTotal, NandCUsed, NandCFree, WritedGamesSize, SaveStatesSize;
         public static bool ExternalSaves = false;
         public static long ReservedMemory
         {
@@ -106,6 +106,27 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
+
+        public static string SubConsoleDirectory
+        {
+            get
+            {
+                switch (ConfigIni.ConsoleType)
+                {
+                    case MainForm.ConsoleType.NES:
+                        return "nes";
+                    case MainForm.ConsoleType.Famicom:
+                        return "nes-jpn";
+                    case MainForm.ConsoleType.SNES:
+                        return "snes";
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return "snes-jpn";
+                    default:
+                        return ".";
+                }
+            }
+        }
+
 
         public WorkerForm(MainForm parentForm)
         {
@@ -542,9 +563,12 @@ namespace com.clusterrr.hakchi_gui
             byte[] kernel;
             if (!string.IsNullOrEmpty(Mod))
             {
+                // TODO: check version
+                //#if !DEBUG
                 // Just to verify that correct console is selected
                 if (!DoKernelDump(null, maxProgress, progress))
                     return;
+                //#endif
                 progress += 80;
                 kernel = CreatePatchedKernel();
                 progress += 5;
@@ -789,17 +813,27 @@ namespace com.clusterrr.hakchi_gui
             throw new NotImplementedException();
         }
 
-        public static void GetMemoryStats()
+        public static void GetMemoryStats(string gameSyncStorage = null)
         {
+            string originalGamesPath = NesMiniApplication.GamesCloverPath;
+            const string rootFsPath = "/var/lib/hakchi/rootfs";
+
             var clovershell = MainForm.Clovershell;
-            var nandc = clovershell.ExecuteSimple("df /dev/nandc | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 500, true).Split('|');
+            if (gameSyncStorage == null) gameSyncStorage = clovershell.ExecuteSimple($"hakchi findGameSyncStorage", 3000, false);
+            var storageDevice = clovershell.ExecuteSimple("df /var/games | sed -n '2p' | awk '{print $1}'", 3000, true);
+            if (storageDevice.Equals("/dev/mapper/root-crypt")) storageDevice = "/dev/nandc";
+            var storageStats = clovershell.ExecuteSimple("df " + storageDevice + " | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 3000, true).Split('|');
+
             ExternalSaves = clovershell.ExecuteSimple("mount | grep /var/lib/clover").Trim().Length > 0;
-            WritedGamesSize = int.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/hakchi/rootfs/usr/share/games/ && du -s /var/lib/hakchi/rootfs/usr/share/games/ | awk '{ print $1 }'", 1000, true)) * 1024;
-            SaveStatesSize = int.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/clover/profiles/0/ && du -s /var/lib/clover/profiles/0/ | awk '{ print $1 }'", 1000, true)) * 1024;
-            NandCTotal = int.Parse(nandc[0]) * 1024;
-            NandCUsed = int.Parse(nandc[1]) * 1024;
-            NandCFree = int.Parse(nandc[2]) * 1024;
-            Debug.WriteLine(string.Format("NANDC size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", NandCTotal / 1024.0 / 1024.0, NandCUsed / 1024.0 / 1024.0, NandCFree / 1024.0 / 1024.0));
+            var writedGamesSizeAll = long.Parse(clovershell.ExecuteSimple($"mkdir -p {rootFsPath}{originalGamesPath} && du -s {rootFsPath}{originalGamesPath} | awk '{{ print $1 }}'", 3000, true)) * 1024;
+            if (gameSyncStorage != $"{rootFsPath}{originalGamesPath}")
+                writedGamesSizeAll += long.Parse(clovershell.ExecuteSimple($"mkdir -p {gameSyncStorage}/{SubConsoleDirectory}/ && du -s {gameSyncStorage}/{SubConsoleDirectory}/ | awk '{{ print $1 }}'", 3000, true)) * 1024;
+            WritedGamesSize = writedGamesSizeAll;
+            SaveStatesSize = long.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/clover/profiles/0/ && du -s /var/lib/clover/profiles/0/ | awk '{ print $1 }'", 3000, true)) * 1024;
+            NandCTotal = long.Parse(storageStats[0]) * 1024;
+            NandCUsed = long.Parse(storageStats[1]) * 1024;
+            NandCFree = long.Parse(storageStats[2]) * 1024;
+            Debug.WriteLine(string.Format("Storage device size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", NandCTotal / 1024.0 / 1024.0, NandCUsed / 1024.0 / 1024.0, NandCFree / 1024.0 / 1024.0));
             Debug.WriteLine(string.Format("Used by games: {0:F1}MB", WritedGamesSize / 1024.0 / 1024.0));
             Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", SaveStatesSize / 1024.0 / 1024.0));
             Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
@@ -825,10 +859,9 @@ namespace com.clusterrr.hakchi_gui
 
         public void UploadGames()
         {
-            string gamesPath = NesMiniApplication.GamesCloverPath;
+            string originalGamesPath = NesMiniApplication.GamesCloverPath;
             const string rootFsPath = "/var/lib/hakchi/rootfs";
             const string installPath = "/var/lib/hakchi";
-            const string squashFsPath = "/var/lib/hakchi/squashfs";
             int progress = 0;
             int maxProgress = 400;
             if (Games == null || Games.Count == 0)
@@ -836,7 +869,7 @@ namespace com.clusterrr.hakchi_gui
             SetStatus(Resources.BuildingFolders);
             if (FoldersMode == NesMenuCollection.SplitStyle.Custom)
             {
-                if (FoldersManagerFromThread(Games) != System.Windows.Forms.DialogResult.OK)
+                if (FoldersManagerFromThread(Games) != DialogResult.OK)
                 {
                     DialogResult = DialogResult.Abort;
                     return;
@@ -857,33 +890,22 @@ namespace com.clusterrr.hakchi_gui
                         DialogResult = DialogResult.Abort;
                         return;
                     }
+                    ShowSplashScreen();
+                    UpdateRootfs();
                 }
                 progress += 5;
                 SetProgress(progress, maxProgress);
-                if (!exportGames)
-                {
-                    ShowSplashScreen();
-                    UpdateRootfs();
-                    var squashFsMount = clovershell.ExecuteSimple($"mount | grep {squashFsPath}", 3000, false);
-                    if (string.IsNullOrEmpty(squashFsMount))
-                        clovershell.ExecuteSimple($"mkdir -p {squashFsPath} && mount /dev/mapper/root-crypt {squashFsPath}", 3000, true);
-                }
                 SetStatus(Resources.BuildingFolders);
                 if (Directory.Exists(tempDirectory))
                     Directory.Delete(tempDirectory, true);
                 Directory.CreateDirectory(tempDirectory);
                 // Games!
                 tempGamesDirectory = Path.Combine(tempDirectory, "games");
-                if (exportDirectory != null)
-                {
-                    tempGamesDirectory = exportDirectory;
-                }
+                if (exportGames)
+                    tempGamesDirectory = Path.Combine(tempGamesDirectory, SubConsoleDirectory);
                 Directory.CreateDirectory(tempDirectory);
                 Directory.CreateDirectory(tempGamesDirectory);
-                if (Directory.GetDirectories(tempGamesDirectory).Length > 0)
-                {
-                    throw new Exception(Resources.FolderNotEmpty);
-                }
+                File.WriteAllBytes(Path.Combine(tempGamesDirectory, ".repair.flag"), new byte[0]);
                 Dictionary<string, string> originalGames = new Dictionary<string, string>();
                 var stats = new GamesTreeStats();
                 AddMenu(Games, originalGames, stats);
@@ -893,7 +915,8 @@ namespace com.clusterrr.hakchi_gui
                 int startProgress = progress;
                 if (!exportGames)
                 {
-                    GetMemoryStats();
+                    var gameSyncStorage = clovershell.ExecuteSimple($"hakchi findGameSyncStorage", 3000, false);
+                    GetMemoryStats(gameSyncStorage);
                     var maxGamesSize = (NandCFree + WritedGamesSize) - ReservedMemory * 1024 * 1024;
                     if (stats.TotalSize > maxGamesSize)
                     {
@@ -908,16 +931,9 @@ namespace com.clusterrr.hakchi_gui
                     using (var gamesTar = new TarStream(tempGamesDirectory))
                     {
                         maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 20 + originalGames.Count() * 2);
-                        SetProgress(progress, maxProgress);
-
-                        clovershell.ExecuteSimple(string.Format("umount {0}", gamesPath));
-                        clovershell.ExecuteSimple($"mkdir -p \"{rootFsPath}{gamesPath}\"", 3000, true);
-                        if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
-                        {
-                            clovershell.ExecuteSimple($"[ -f \"{squashFsPath}{gamesPath}/title.fnt\" ] && [ ! -f \"{rootFsPath}{gamesPath}/title.fnt\" ] && cp -f \"{squashFsPath}{gamesPath}/title.fnt\" \"{rootFsPath}{gamesPath}\"/", 3000, false);
-                            clovershell.ExecuteSimple($"[ -f \"{squashFsPath}{gamesPath}/copyright.fnt\" ] && [ ! -f \"{rootFsPath}{gamesPath}/copyright.fnt\" ] && cp -f \"{squashFsPath}{gamesPath}/copyright.fnt\" \"{rootFsPath}{gamesPath}\"/", 3000, false);
-                        }
-                        clovershell.ExecuteSimple(string.Format("rm -rf {0}{1}/CLV-* {0}{1}/??? {2}/menu", rootFsPath, gamesPath, installPath), 5000, true);
+                        SetProgress(progress, maxProgress);                        
+                        clovershell.ExecuteSimple($"rm -rf {gameSyncStorage}/{SubConsoleDirectory} {installPath}/menu {rootFsPath}{originalGamesPath}", 5000, true);
+                        clovershell.ExecuteSimple($"mkdir -p \"{gameSyncStorage}/{SubConsoleDirectory}\"", 3000, true);
 
                         if (gamesTar.Length > 0)
                         {
@@ -926,89 +942,28 @@ namespace com.clusterrr.hakchi_gui
                                 progress = (int)(startProgress + pos / 1024 / 1024);
                                 SetProgress(progress, maxProgress);
                             };
-
                             SetStatus(Resources.UploadingGames);
-                            clovershell.Execute(string.Format("tar -xvC {0}{1}", rootFsPath, gamesPath), gamesTar, null, null, 30000, true);
+                            clovershell.Execute($"tar -xvC \"{gameSyncStorage}/{SubConsoleDirectory}\"", gamesTar, null, null, 30000, true);
                         }
                     }
                 }
 
-                SetStatus(Resources.UploadingOriginalGames);
-                // Need to make sure that squashfs if mounted
-                startProgress = progress;
-                string executablePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                string desktopEntriesPath = Path.Combine(executablePath, "DesktopEntries");
-                foreach (var originalCode in originalGames.Keys)
-                {
-                    if (exportGames)
-                    {
-                        string desktopFilePath = Path.Combine(desktopEntriesPath, $"{originalCode}.desktop");
-                        string tempGamePath = Path.Combine(tempGamesDirectory, $"{originalGames[originalCode]}/{originalCode}");
-                        Directory.CreateDirectory(Path.Combine(tempGamePath, "autoplay"));
-                        if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
-                        {
-                            Directory.CreateDirectory(Path.Combine(tempGamePath, "pixelart"));
-                        }
-                        File.Copy(desktopFilePath, Path.Combine(tempGamePath, $"{originalCode}.desktop"));
-                    }
-                    else
-                    {
-                        string originalSyncCode = "";
-                        switch (ConfigIni.ConsoleType)
-                        {
-                            case MainForm.ConsoleType.NES:
-                            case MainForm.ConsoleType.Famicom:
-                                originalSyncCode =
-                                    $"src=\"{squashFsPath}{gamesPath}/{originalCode}\" && " +
-                                    $"dst=\"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
-                                    $"mkdir -p \"$dst\" && " +
-                                    $"ln -s \"$src/{originalCode}.png\" \"$dst\" && " +
-                                    $"ln -s \"$src/{originalCode}_small.png\" \"$dst\" && " +
-                                    $"ln -s \"$src/{originalCode}.nes\" \"$dst\" && " +
-                                    $"ln -s \"$src/autoplay/\" \"$dst/autoplay\" && " +
-                                    $"ln -s \"$src/pixelart/\" \"$dst/pixelart\" && " +
-                                    $"cp \"$src/{originalCode}.desktop\" \"$dst/{originalCode}.desktop\" && " +
-                                    $"sed -i -e 's/\\/usr\\/bin\\/clover-kachikachi/\\/bin\\/clover-kachikachi-wr/g' \"$dst/{originalCode}.desktop\"";
-                                break;
-                            case MainForm.ConsoleType.SNES:
-                            case MainForm.ConsoleType.SuperFamicom:
-                                originalSyncCode =
-                                    $"src=\"{squashFsPath}{gamesPath}/{originalCode}\" && " +
-                                    $"dst=\"{rootFsPath}{gamesPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
-                                    $"mkdir -p \"$dst\" && " +
-                                    $"ln -s \"$src/{originalCode}.png\" \"$dst\" && " +
-                                    $"ln -s \"$src/{originalCode}_small.png\" \"$dst\" && " +
-                                    $"ln -s \"$src/{originalCode}.sfrom\" \"$dst\" && " +
-                                    $"ln -s \"$src/autoplay/\" \"$dst/autoplay\" && " +
-                                    $"cp \"$src/{originalCode}.desktop\" \"$dst/{originalCode}.desktop\" && " +
-                                    $"sed -i -e 's/\\/usr\\/bin\\/clover-canoe-shvc/\\/bin\\/clover-canoe-shvc-wr/g' \"$dst/{originalCode}.desktop\"";
-                                break;
-                        }
-                        clovershell.ExecuteSimple(originalSyncCode, 30000, true);
-                    }
-                    progress += 2;
-                    SetProgress(progress, maxProgress);
-                };
-
-                SetStatus(Resources.UploadingConfig);
                 if (!exportGames)
                 {
+                    SetStatus(Resources.UploadingConfig);
                     SyncConfig(Config);
                 }
+                else
+                {
+                    SetStatus("Writing games to USB drive...");
+                    Directory.CreateDirectory(exportDirectory);
+                    if (!ExecuteTool("rsync.exe", $"-ac --delete \"/{tempGamesDirectory.Replace("\\", "/").Replace(":/", "/")}\" \"/{exportDirectory.Replace("\\", "/").Replace(":/", "/")}\""))
+                        throw new Exception("Can't rsync to USB drive");
+                }
 #if !DEBUG
-                if (!exportGames && Directory.Exists(tempDirectory))
+                if (Directory.Exists(tempDirectory))
                     Directory.Delete(tempDirectory, true);
 #endif
-                if (exportGames)
-                {
-                    new Process()
-                    {
-                        StartInfo = new ProcessStartInfo()
-                        {
-                            FileName = tempGamesDirectory,
-                        }
-                    }.Start();
-                }
                 SetStatus(Resources.Done);
                 SetProgress(maxProgress, maxProgress);
             }
@@ -1038,9 +993,11 @@ namespace com.clusterrr.hakchi_gui
                 if (updateTar.Length > 0)
                 {
                     var clovershell = MainForm.Clovershell;
-                    clovershell.Execute("tar -xvC /", updateTar, null, null, 30000, true);
-                    clovershell.ExecuteSimple("chmod +x /bin/*", 3000, true);
-                    clovershell.ExecuteSimple("chmod +x /etc/init.d/*", 3000, true);
+                    clovershell.ExecuteSimple("mkdir -p /tmp/root", 3000, true);
+                    clovershell.Execute("tar -xvC /tmp/root", updateTar, null, null, 30000, true);
+                    clovershell.ExecuteSimple("chmod +x /tmp/root/bin/*", 3000, true);
+                    clovershell.ExecuteSimple("chmod +x /tmp/root/etc/init.d/*", 3000, true);
+                    clovershell.ExecuteSimple("rsync -ac /tmp/root/* /", 3000, true);
                 }
             }
         }
@@ -1126,7 +1083,7 @@ namespace com.clusterrr.hakchi_gui
 
             byte[] kernel;
             if (!string.IsNullOrEmpty(Mod))
-                kernel = CreatePatchedKernel();
+                kernel = CreatePatchedKernel(null, true);
             else
                 kernel = File.ReadAllBytes(KernelDumpPath);
             var size = CalcKernelSize(kernel);
@@ -1197,8 +1154,13 @@ namespace com.clusterrr.hakchi_gui
                 File.Copy(kernelPath ?? KernelDumpPath, tempKernelDump, true);
             if (!ExecuteTool("unpackbootimg.exe", string.Format("-i \"{0}\" -o \"{1}\"", tempKernelDump, kernelDirectory)))
                 throw new Exception("Can't unpack kernel image");
-            if (!ExecuteTool("lzop.exe", string.Format("-d \"{0}\" -o \"{1}\"",
-                Path.Combine(kernelDirectory, "kernel.img-ramdisk.gz"), initramfs_cpio)))
+            string ramdiskGz = Path.Combine(kernelDirectory, "kernel.img-ramdisk.gz");
+            byte[] output;
+            if (ExecuteTool("xz.exe", string.Format("-dc \"{0}\"",
+                ramdiskGz), out output))
+                File.WriteAllBytes(initramfs_cpio, output);
+            else if (!ExecuteTool("lzop.exe", string.Format("-d \"{0}\" -o \"{1}\"",
+                ramdiskGz, initramfs_cpio)))
                 throw new Exception("Can't unpack ramdisk");
             ExecuteTool("cpio.exe", string.Format("-imd --no-preserve-owner --quiet -I \"{0}\"",
                @"..\initramfs.cpio"), ramfsDirectory);
@@ -1206,14 +1168,15 @@ namespace com.clusterrr.hakchi_gui
                 throw new Exception("Can't unpack ramdisk 2");
         }
 
-        private byte[] CreatePatchedKernel(string kernelPath = null)
+        private byte[] CreatePatchedKernel(string kernelPath = null, bool includeExtraBinaries = false)
         {
             SetStatus(Resources.BuildingCustom);
             if (!File.Exists(Path.Combine(ramfsDirectory, "init")))
                 UnpackRamfs(kernelPath);
             if (Directory.Exists(hakchiDirectory))
                 Directory.Delete(hakchiDirectory, true);
-            NesMiniApplication.DirectoryCopy(Path.Combine(modsDirectory, Mod), ramfsDirectory, true);
+            NesMiniApplication.DirectoryCopy(Path.Combine(modsDirectory, Mod), ramfsDirectory, true,
+                includeExtraBinaries ? null : new string[] { "rsync", "usleep" }); // Remove huge files
             var ramfsFiles = Directory.GetFiles(ramfsDirectory, "*.*", SearchOption.AllDirectories);
             foreach (var file in ramfsFiles)
             {
@@ -1269,9 +1232,18 @@ namespace com.clusterrr.hakchi_gui
             var argKerneloff = File.ReadAllText(Path.Combine(kernelDirectory, "kernel.img-kerneloff")).Trim();
             var argRamdiscoff = File.ReadAllText(Path.Combine(kernelDirectory, "kernel.img-ramdiskoff")).Trim();
             var argTagsoff = File.ReadAllText(Path.Combine(kernelDirectory, "kernel.img-tagsoff")).Trim();
-            if (!ExecuteTool("lzop.exe", string.Format("--best -f -o \"{0}\" \"{1}\"",
-                ramdiskPatched, initramfs_cpioPatched)))
-                throw new Exception("Can't repack ramdisk 2");
+            byte[] output;
+            if (ExecuteTool("xz.exe", string.Format("--check=crc32 --lzma2=dict=1MiB -c \"{0}\"",
+                initramfs_cpioPatched), out output))
+            {
+                File.WriteAllBytes(ramdiskPatched, output);
+            }
+            else
+            {
+                if (!ExecuteTool("lzop.exe", string.Format("--best -f -o \"{0}\" \"{1}\"",
+                    ramdiskPatched, initramfs_cpioPatched)))
+                    throw new Exception("Can't repack ramdisk 2");
+            }
             if (!ExecuteTool("mkbootimg.exe", string.Format("--kernel \"{0}\" --ramdisk \"{1}\" --cmdline \"{2}\" --board \"{3}\" --base \"{4}\" --pagesize \"{5}\" --kernel_offset \"{6}\" --ramdisk_offset \"{7}\" --tags_offset \"{8}\" -o \"{9}\"",
                 Path.Combine(kernelDirectory, "kernel.img-zImage"), ramdiskPatched, argCmdline, argBoard, argBase, argPagesize, argKerneloff, argRamdiscoff, argTagsoff, kernelPatched)))
                 throw new Exception("Can't rebuild kernel");
@@ -1300,13 +1272,30 @@ namespace com.clusterrr.hakchi_gui
                 stats.allMenus.Add(menuCollection);
             int menuIndex = stats.allMenus.IndexOf(menuCollection);
             string targetDirectory;
-            if (menuIndex == 0)
-                targetDirectory = tempGamesDirectory;
-            else
-                targetDirectory = Path.Combine(tempGamesDirectory, string.Format("{0:D3}", menuIndex));
+            targetDirectory = Path.Combine(tempGamesDirectory, string.Format("{0:D3}", menuIndex));
             foreach (var element in menuCollection)
             {
-                if (element is NesMiniApplication)
+                if (element is NesDefaultGame)
+                {
+                    stats.TotalGames++;
+                    var game = element as NesDefaultGame;
+                    var gameSize = 25000;
+                    string desktopEntriesPath = Path.Combine(baseDirectoryInternal, "DesktopEntries");
+                    var originalCode = game.Code;
+                    var desktopFilePath = Path.Combine(desktopEntriesPath, $"{originalCode}.desktop");
+                    var targetGamePath = Path.Combine(targetDirectory, originalCode);
+                    Directory.CreateDirectory(targetGamePath);
+                    Directory.CreateDirectory(Path.Combine(targetGamePath, "autoplay"));
+                    if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
+                    {
+                        Directory.CreateDirectory(Path.Combine(targetGamePath, "pixelart"));
+                    }
+                    File.Copy(desktopFilePath, Path.Combine(targetGamePath, $"{originalCode}.desktop"));
+                    stats.TotalSize += gameSize;
+                    stats.TransferSize += gameSize;
+                    stats.TotalGames++;
+                }
+                else if (element is NesMiniApplication)
                 {
                     stats.TotalGames++;
                     var game = element as NesMiniApplication;
@@ -1360,7 +1349,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     var game = element as NesDefaultGame;
                     stats.TotalSize += game.Size;
-                    originalGames[game.Code] = menuIndex == 0 ? "." : string.Format("{0:D3}", menuIndex);
+                    originalGames[game.Code] = string.Format("{0:D3}", menuIndex);
                 }
             }
         }

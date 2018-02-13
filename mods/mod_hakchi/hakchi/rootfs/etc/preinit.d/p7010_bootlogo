@@ -1,1 +1,2 @@
 showImage "$cfg_boot_logo" || showImage "$rootfs/etc/boot.png" || showImage "$rootfs/etc/$modname.png"
+playSound "$rootfs/etc/boot.wav"

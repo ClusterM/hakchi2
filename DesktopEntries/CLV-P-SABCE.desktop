@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SABCE/CLV-P-SABCE.sfrom --volume 85 -rollback-snapshot-period 600
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SABCE/CLV-P-SABCE.sfrom --volume 85 -rollback-snapshot-period 600
 Path=/var/lib/clover/profiles/0//CLV-P-SABCE
 Name=Mega Man X
-Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SABCE/CLV-P-SABCE.png
+Icon=/var/squashfs/usr/share/games/CLV-P-SABCE/CLV-P-SABCE.png
 
 [X-CLOVER Game]
 Code=CLV-P-SABCE

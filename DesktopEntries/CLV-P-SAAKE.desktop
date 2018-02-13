@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SAAKE/CLV-P-SAAKE.sfrom --volume 85 -rollback-snapshot-period 600
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SAAKE/CLV-P-SAAKE.sfrom --volume 85 -rollback-snapshot-period 600
 Path=/var/lib/clover/profiles/0//CLV-P-SAAKE
 Name=Kirby's Dream Course
-Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SAAKE/CLV-P-SAAKE.png
+Icon=/var/squashfs/usr/share/games/CLV-P-SAAKE/CLV-P-SAAKE.png
 
 [X-CLOVER Game]
 Code=CLV-P-SAAKE

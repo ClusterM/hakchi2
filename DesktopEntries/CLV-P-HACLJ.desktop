@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACLJ/CLV-P-HACLJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 78 --enable-armet 
+Exec=/bin/clover-kachikachi-wr /var/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACLJ/CLV-P-HACLJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 78 --enable-armet 
 Path=/var/lib/clover/profiles/0//CLV-P-HACLJ
 Name=ダウンタウン熱血行進曲 それゆけ大運動会
-Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACLJ/CLV-P-HACLJ.png
+Icon=/var/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACLJ/CLV-P-HACLJ.png
 
 [X-CLOVER Game]
 Code=CLV-P-HACLJ

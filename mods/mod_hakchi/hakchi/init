@@ -6,6 +6,7 @@ init(){
   export modpath="/$modname"
   export mountpoint="/newroot"
   export temppath="/tmp"
+  echo "$modname init script version: 1.0"
 
   /bin/busybox --install -s /bin/
   mkdir -p "$temppath"
@@ -18,15 +19,15 @@ init(){
   source "$modpath/script/base"
 
   if [ -d "$modpath/transfer" ]; then
-    export cf_usb='n'
     source "$modpath/script/transfer"
   else
     mount_base
   fi
 
   if [ -f "$preinit" ]; then
+    export preinit
     PATH="$rootfs/sbin:$rootfs/usr/sbin:$rootfs/bin:$rootfs/usr/bin:$PATH"
-    "$rootfs/bin/busybox" sh -c "source "$preinit.d/b0000_defines" && source "$preinit" && preinit"
+    "$rootfs/bin/busybox" sh -c "source "$preinit" && preinit"
   else
     umount_base
   fi

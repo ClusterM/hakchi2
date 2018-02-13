@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SAAAE/CLV-P-SAAAE.sfrom --volume 100 -rollback-snapshot-period 600
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SAAAE/CLV-P-SAAAE.sfrom --volume 100 -rollback-snapshot-period 600
 Path=/var/lib/clover/profiles/0//CLV-P-SAAAE
 Name=Super Mario World
-Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SAAAE/CLV-P-SAAAE.png
+Icon=/var/squashfs/usr/share/games/CLV-P-SAAAE/CLV-P-SAAAE.png
 
 [X-CLOVER Game]
 Code=CLV-P-SAAAE

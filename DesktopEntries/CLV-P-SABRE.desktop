@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SABRE/CLV-P-SABRE.sfrom --volume 75 -rollback-snapshot-period 3600
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SABRE/CLV-P-SABRE.sfrom --volume 75 -rollback-snapshot-period 3600
 Path=/var/lib/clover/profiles/0//CLV-P-SABRE
 Name=Secret of Mana
-Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SABRE/CLV-P-SABRE.png
+Icon=/var/squashfs/usr/share/games/CLV-P-SABRE/CLV-P-SABRE.png
 
 [X-CLOVER Game]
 Code=CLV-P-SABRE

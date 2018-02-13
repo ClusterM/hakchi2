@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SAAXE/CLV-P-SAAXE.sfrom --volume 100 -rollback-snapshot-period 600
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SAAXE/CLV-P-SAAXE.sfrom --volume 100 -rollback-snapshot-period 600
 Path=/var/lib/clover/profiles/0//CLV-P-SAAXE
 Name=Super Punch-Out!!
-Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SAAXE/CLV-P-SAAXE.png
+Icon=/var/squashfs/usr/share/games/CLV-P-SAAXE/CLV-P-SAAXE.png
 
 [X-CLOVER Game]
 Code=CLV-P-SAAXE

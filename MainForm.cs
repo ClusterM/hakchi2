@@ -403,10 +403,17 @@ namespace com.clusterrr.hakchi_gui
                 maskedTextBoxReleaseDate.Text = app.ReleaseDate;
                 textBoxPublisher.Text = app.Publisher;
                 textBoxArguments.Text = app.Command;
-                if (File.Exists(app.IconPath))
-                    pictureBoxArt.Image = NesMiniApplication.LoadBitmap(app.IconPath);
-                else
-                    pictureBoxArt.Image = null;
+                try
+                {
+                    if (File.Exists(app.IconPath))
+                        pictureBoxArt.Image = NesMiniApplication.LoadBitmap(app.IconPath);
+                    else
+                        pictureBoxArt.Image = null;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Image loading error: " + ex.Message + ex.StackTrace);
+                }
                 buttonShowGameGenieDatabase.Enabled = app is NesGame; //ISupportsGameGenie;
                 textBoxGameGenie.Enabled = app is ISupportsGameGenie;
                 textBoxGameGenie.Text = (app is ISupportsGameGenie) ? (app as NesMiniApplication).GameGenie : "";
@@ -989,9 +996,9 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Config = ConfigIni.GetConfigDictionary();
             workerForm.Games = new NesMenuCollection();
             workerForm.exportGames = exportGames;
-            
+
             if (exportGames)
-                workerForm.exportDirectory = exportFolderDialog.SelectedPath;
+                workerForm.exportDirectory = Path.Combine(Path.Combine(exportFolderDialog.SelectedPath, "hakchi"), "games");
 
             bool needOriginal = false;
             foreach (ListViewItem game in listViewGames.CheckedItems)
