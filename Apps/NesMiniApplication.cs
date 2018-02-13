@@ -10,6 +10,7 @@ using System.Linq;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using com.clusterrr.util;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -377,10 +378,18 @@ namespace com.clusterrr.hakchi_gui
         public static NesMiniApplication FromDirectory(string path, bool ignoreEmptyConfig = false)
         {
             (new DirectoryInfo(path)).Refresh();
-            var files = Directory.GetFiles(path, "*.desktop", SearchOption.TopDirectoryOnly);
+            string[] files = Directory.GetFiles(path, "*.desktop", SearchOption.TopDirectoryOnly);
             if (files.Length == 0)
                 throw new FileNotFoundException($"Invalid app folder: \"{path}\".");
-            var config = File.ReadAllLines(files[0]);
+            string[] config;
+            if (TarStream.refRegex.IsMatch(files[0]))
+            {
+                config = File.ReadAllLines(File.ReadAllText(files[0]));
+            }
+            else
+            {
+                config = File.ReadAllLines(files[0]);
+            }
             foreach (var line in config)
             {
                 if (line.StartsWith("Exec="))
@@ -1064,7 +1073,7 @@ namespace com.clusterrr.hakchi_gui
                 prefixCode);
         }
 
-        public NesMiniApplication CopyTo(string path, bool linkedGame = false, string mediaGamePath = null, string profilePath = null, string iconPath = null)
+        public NesMiniApplication CopyTo(string path, bool linkedGame = false, string mediaGamePath = null, string profilePath = null, string iconPath = null, bool pseudoLinks = false)
         {
             var targetDir = Path.Combine(path, code);
 
@@ -1074,12 +1083,16 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                DirectoryCopy(GamePath, targetDir, true);
+                DirectoryCopy(GamePath, targetDir, true, pseudoLinks && !(this is ISupportsGameGenie && File.Exists(this.GameGeniePath)));
             }
+
+            string desktopFile = File.ReadAllText($"{GamePath}\\{code}.desktop");
+            string targetDesktopFilePath = Path.Combine(targetDir, $"{code}.desktop");
+            if (File.Exists($"{targetDesktopFilePath}.tarstreamref"))
+                File.Delete($"{targetDesktopFilePath}.tarstreamref");
 
             if (mediaGamePath != null || profilePath != null)
             {
-                string desktopFile = File.ReadAllText($"{GamePath}\\{code}.desktop");
                 if (mediaGamePath != null)
                 {
                     // modified regex to only match when matching complete path (not within a longer path)
@@ -1098,14 +1111,15 @@ namespace com.clusterrr.hakchi_gui
                     // match regular profile
                     desktopFile = Regex.Replace(desktopFile, @"^(Path=.*)$", "Path=" + profilePath, RegexOptions.Multiline);
                 }
-                File.WriteAllText(Path.Combine(targetDir, $"{code}.desktop"), desktopFile);
+
+                File.WriteAllText(targetDesktopFilePath, desktopFile);
                 return FromDirectory(targetDir);
             }
-
+            File.WriteAllText(targetDesktopFilePath, desktopFile);
             return FromDirectory(targetDir);
         }
 
-        internal static long DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        internal static long DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, bool pseudoLinks = false)
         {
             long size = 0;
             // Get the subdirectories for the specified directory.
@@ -1130,7 +1144,15 @@ namespace com.clusterrr.hakchi_gui
             foreach (FileInfo file in files)
             {
                 string temppath = System.IO.Path.Combine(destDirName, file.Name);
-                size += file.CopyTo(temppath, true).Length;
+                size += file.Length;
+                if (pseudoLinks)
+                {
+                    File.WriteAllText($"{temppath}.tarstreamref", file.FullName);
+                }
+                else
+                {
+                    file.CopyTo(temppath, true);
+                }
             }
 
             // If copying subdirectories, copy them and their contents to new location.
@@ -1139,7 +1161,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (DirectoryInfo subdir in dirs)
                 {
                     string temppath = System.IO.Path.Combine(destDirName, subdir.Name);
-                    size += DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                    size += DirectoryCopy(subdir.FullName, temppath, copySubDirs, pseudoLinks);
                 }
             }
             return size;

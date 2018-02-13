@@ -1076,7 +1076,7 @@ namespace com.clusterrr.hakchi_gui
 
                 clovershell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
 
-                using (var gamesTar = new TarStream(tempGamesDirectory))
+                using (var gamesTar = new TarStream(tempGamesDirectory, null, null))
                 {
                     maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 20 + originalGames.Count() * 2);
                     SetProgress(progress, maxProgress);
@@ -1661,7 +1661,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     else
                     {   // sync/upload to snes mini
-                        gameCopy = game.CopyTo(targetDirectory);
+                        gameCopy = game.CopyTo(targetDirectory, false, null, null, null, true);
                     }
                     stats.TotalSize += gameSize;
                     stats.TransferSize += gameSize;

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace com.clusterrr.util
 {
@@ -19,6 +20,7 @@ namespace com.clusterrr.util
         long currentEntryLength = 0;
         Stream currentFile = null;
         byte[] currentHeader;
+        public static Regex refRegex = new Regex("\\.tarstreamref$");
 
         public delegate void OnProgressDelegate(long Position, long Length);
         public event OnProgressDelegate OnReadProgress = delegate { };
@@ -135,7 +137,14 @@ namespace com.clusterrr.util
                 if (skipFiles != null && skipFiles.Contains(Path.GetFileName(f)))
                     continue;
                 entries.Add(f);
-                var size = new FileInfo(f).Length;
+                long size = 0;
+                if (refRegex.IsMatch(f))
+                {
+                    size = new FileInfo(File.ReadAllText(f)).Length;
+                } else
+                {
+                    size = new FileInfo(f).Length;
+                }
                 if (size % 512 != 0)
                     size += 512 - (size % 512);
                 totalSize += 512 + size;
@@ -208,7 +217,13 @@ namespace com.clusterrr.util
                     currentEntryLength = 512;
                     var header = new TarHeader();
                     if (entries[currentEntry] != LongLinkFlag)
+                    {
                         header.FileName = entries[currentEntry].Substring(rootDirectory.Length + 1).Replace(@"\", "/");
+                        if (refRegex.IsMatch(entries[currentEntry]))
+                        {
+                            header.FileName = refRegex.Replace(header.FileName, string.Empty);
+                        }
+                    }
                     if (currentFile != null)
                     {
                         currentFile.Dispose();
@@ -234,14 +249,19 @@ namespace com.clusterrr.util
                     }
                     else if (!header.FileName.EndsWith("/")) // It's a file!
                     {
-                        currentFile = new FileStream(entries[currentEntry], FileMode.Open);
+                        string currentFilePath = entries[currentEntry];
+                        if (refRegex.IsMatch(entries[currentEntry]))
+                            currentFilePath = File.ReadAllText(entries[currentEntry]);
+
+                        currentFile = new FileStream(currentFilePath, FileMode.Open);
+
                         header.FileMode = "0100644";
                         currentEntryLength += currentFile.Length;
                         if (currentFile.Length % 512 != 0)
                             currentEntryLength += 512 - (currentFile.Length % 512);
                         header.FileSize = Convert.ToString(currentFile.Length, 8).PadLeft(11, '0');
                         header.LastModificationTime = Convert.ToString(
-                            (long)new FileInfo(entries[currentEntry]).LastWriteTimeUtc.Subtract(new DateTime(1970, 1, 1)).TotalSeconds
+                            (long)new FileInfo(currentFilePath).LastWriteTimeUtc.Subtract(new DateTime(1970, 1, 1)).TotalSeconds
                             , 8).PadLeft(11, '0');
                         header.FileType = '0';
                     }
