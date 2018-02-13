@@ -1,0 +1,8 @@
+display_name = "Test RetroLuxury"
+authors = "Team Libretro"
+corename = "Test RetroLuxury"
+categories = "Tech demo"
+license = "Zlib"
+permissions = ""
+display_version = "v1"
+supports_no_game = "true"

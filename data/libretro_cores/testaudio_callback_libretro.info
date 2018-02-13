@@ -1,0 +1,8 @@
+display_name = "TestAudio Callback"
+authors = "Team Libretro"
+corename = "TestAudio Callback"
+categories = "Tech demo"
+license = "MIT"
+permissions = ""
+display_version = "v1"
+supports_no_game = "true"

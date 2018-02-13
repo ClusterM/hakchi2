@@ -128,7 +128,10 @@ namespace com.clusterrr.hakchi_gui
                 MessageBoxManager.Cancel = Resources.NoForAll;
                 MessageBoxManager.Abort = Resources.YesForAll;
 
-                var extensions = new List<string>() { "*.new", "*.unf", "*.unif", ".*fds", "*.desktop", "*.zip", "*.7z", "*.rar" };
+                // Apptypes
+                LibRetroCollection.Load();
+
+                var extensions = new List<string>() { "*.new", "*.unf", "*.unif", "*.fds", "*.desktop", "*.zip", "*.7z", "*.rar" };
                 foreach (var app in AppTypeCollection.ApplicationTypes)
                     foreach (var ext in app.Extensions)
                         if (!extensions.Contains("*" + ext))

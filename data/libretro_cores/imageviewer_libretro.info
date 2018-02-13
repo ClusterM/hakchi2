@@ -1,0 +1,7 @@
+display_name = "Imageviewer"
+authors = "Team Libretro"
+supported_extensions = "jpg|jpeg|png|bmp|psd|tga|gif|hdr|pic|ppm|pgm"
+corename = "Imageviewer"
+categories = "Images"
+permissions = ""
+supports_no_game = "false"
