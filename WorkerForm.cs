@@ -113,14 +113,11 @@ namespace com.clusterrr.hakchi_gui
         readonly string transferDirectory;
         string tempGamesDirectory;
         string relativeGamesPath;
-        //string originalGamesConfigDirectory;
-        //string hiddenPath;
         Dictionary<MainForm.ConsoleType, string[]> correctKernels = new Dictionary<MainForm.ConsoleType, string[]>();
         Dictionary<MainForm.ConsoleType, string[]> correctKeys = new Dictionary<MainForm.ConsoleType, string[]>();
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
         string selectedFile = null;
         public NesMiniApplication[] addedApplications;
-        //public static int NandCTotal, NandCUsed, NandCFree, WrittenGamesSize, SaveStatesSize;
         public static long StorageTotal, StorageUsed, StorageFree, WrittenGamesSize, SaveStatesSize;
         public static bool ExternalSaves = false;
         public static long ReservedMemory
@@ -1422,7 +1419,7 @@ namespace com.clusterrr.hakchi_gui
                                 {
                                     if (hmodTar.Length > 0)
                                     {
-                                        SetStatus(Resources.UploadingGames);
+                                        SetStatus(Resources.InstallingMods);
                                         MainForm.Clovershell.Execute($"tar -xvC '{hmodHakchiPath}'", hmodTar, null, null, 0, true);
                                     }
                                 }

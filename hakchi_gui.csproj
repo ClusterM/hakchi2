@@ -1247,6 +1247,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="images\noboxart.png" />
+    <Content Include="images\blank_dos.png" />
     <Content Include="readmeTemplate.css" />
     <Content Include="readmeTemplate.html" />
     <Content Include="retroarch-whitelist.txt" />

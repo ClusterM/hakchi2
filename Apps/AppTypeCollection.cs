@@ -20,7 +20,7 @@ namespace com.clusterrr.hakchi_gui
             public bool Unknown = false;
         }
 
-        public static AppInfo UnknownApplicationType = new AppInfo
+        public static readonly AppInfo UnknownApplicationType = new AppInfo
         {
             Name = "Unknown System",
             LegacyName = "NesMiniApplication",
@@ -31,6 +31,18 @@ namespace com.clusterrr.hakchi_gui
             DefaultCover = Resources.blank_app,
             GoogleSuffix = "game",
             Unknown = true
+        };
+
+        public static readonly AppInfo GenericLibretroApplicationType = new AppInfo
+        {
+            Name = "Libretro System",
+            LegacyName = "LibretroGame",
+            Class = typeof(LibretroGame),
+            Extensions = new string[] { },
+            DefaultApps = new string[] { },
+            Prefix = 'L',
+            DefaultCover = Resources.blank_app,
+            GoogleSuffix = "game"
         };
 
         public static AppInfo[] ApplicationTypes = new AppInfo[]
@@ -49,7 +61,7 @@ namespace com.clusterrr.hakchi_gui
             new AppInfo
             {
                 Name = "Nintendo - Nintendo Entertainment System",
-                LegacyName = "NesGame",
+                LegacyName = "UNesGame",
                 Class = typeof(NesGame),
                 Extensions = new string[] {"unf", "unif" },
                 DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "/bin/nes" },
@@ -208,10 +220,18 @@ namespace com.clusterrr.hakchi_gui
                 Extensions = new string[] {"exe", "com", "bat", "conf" },
                 DefaultApps = new string[] {},
                 Prefix = 'O',
-                DefaultCover = Resources.blank_app,
+                DefaultCover = Resources.blank_dos,
                 GoogleSuffix = "(dos | dosbox)"
             }
         };
+
+        public static AppInfo GetAppByLegacyName(string name)
+        {
+            foreach (var app in ApplicationTypes)
+                if (name.ToLower() == app.LegacyName.ToLower())
+                    return app;
+            return UnknownApplicationType;
+        }
 
         public static AppInfo GetAppByExtension(string extension)
         {

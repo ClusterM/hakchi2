@@ -177,6 +177,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blank_dos {
+            get {
+                object obj = ResourceManager.GetObject("blank_dos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blank_fds {
             get {
                 object obj = ResourceManager.GetObject("blank_fds", resourceCulture);

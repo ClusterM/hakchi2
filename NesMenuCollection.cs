@@ -190,10 +190,10 @@ namespace com.clusterrr.hakchi_gui
             }
             else if (style == SplitStyle.FoldersGroupByApp)
             {
-                var apps = new Dictionary<Type, NesMenuCollection>();
+                var apps = new Dictionary<string, NesMenuCollection>();
                 var customApps = new Dictionary<string, NesMenuCollection>();
                 foreach(var appInfo in AppTypeCollection.ApplicationTypes)
-                    apps[appInfo.Class] = new NesMenuCollection();
+                    apps[appInfo.LegacyName] = new NesMenuCollection();
 
                 Regex rgx = new Regex(@"(^/bin/.*[\s$])", RegexOptions.Compiled); 
                 foreach (var game in root)
@@ -202,8 +202,8 @@ namespace com.clusterrr.hakchi_gui
                     NesMiniApplication app = game as NesMiniApplication;
 
                     AppTypeCollection.AppInfo ai = AppTypeCollection.GetAppByExec(app.Command);
-                    if (ai != null)
-                        apps[ai.Class].Add(game);
+                    if (!ai.Unknown)
+                        apps[ai.LegacyName].Add(game);
                     else
                     {
                         Match match = rgx.Match(app.Command.ToLower());
@@ -215,7 +215,7 @@ namespace com.clusterrr.hakchi_gui
                             customApps[appBin].Add(game);
                         }
                         else
-                            apps[typeof(NesMiniApplication)].Add(game);
+                            apps[AppTypeCollection.UnknownApplicationType.LegacyName].Add(game);
                     }
                 }
 
@@ -224,7 +224,7 @@ namespace com.clusterrr.hakchi_gui
                     if(app.Value.Count > 0)
                     {
                         string folderImageId = "folder";
-                        var folder = new NesMenuFolder() { ChildMenuCollection = app.Value, Name = AppTypeCollection.GetAppByClass(app.Key).Name, Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
+                        var folder = new NesMenuFolder() { ChildMenuCollection = app.Value, Name = AppTypeCollection.GetAppByLegacyName(app.Key).Name, Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
                         //folder.ChildMenuCollection.Split(SplitStyle.FoldersEqual, maxElements);
                         folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
                         root.Add(folder);

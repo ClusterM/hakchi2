@@ -47,7 +47,7 @@ namespace com.clusterrr.hakchi_gui
         private static CoreInfo Canoe = new CoreInfo("clover-canoe-shvc-wr")
         {
             Name = "Canoe",
-            DisplayName = "Nintendo Canoe",
+            DisplayName = "Nintendo - Super Nintendo Entertainment System (Canoe)",
             SupportedExtensions = new string[] { "sfrom", "smc", "sfc" },
             Systems = new string[] { "Nintendo - Super Nintendo Entertainment System" },
             Kind = CoreKind.BuiltIn
@@ -55,7 +55,7 @@ namespace com.clusterrr.hakchi_gui
         private static readonly CoreInfo Kachikachi = new CoreInfo("clover-kachikachi-wr")
         {
             Name = "Kachikachi",
-            DisplayName = "Nintendo Kachikachi",
+            DisplayName = "Nintendo - Nintendo Entertainment System (Kachikachi)",
             SupportedExtensions = new string[] { "nes", "fds" },
             Systems = new string[] { "Nintendo - Nintendo Entertainment System", "Nintendo - Family Computer Disk System" },
             Kind = CoreKind.BuiltIn
