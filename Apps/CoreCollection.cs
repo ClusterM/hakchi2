@@ -11,11 +11,12 @@ using System.Threading;
 
 namespace com.clusterrr.hakchi_gui
 {
-    static class LibRetroCollection
+    static class CoreCollection
     {
         private const string WHITELIST_UPDATE_URL = "https://teamshinkansen.github.io/retroarch-whitelist.txt";
         private static readonly string WHITELIST_FILENAME = Shared.PathCombine(Program.BaseDirectoryExternal, "config", "retroarch_whitelist.txt");
 
+        public enum CoreKind { Unknown, BuiltIn, Retroarch };
         public class CoreInfo
         {
             public readonly string Bin;
@@ -23,6 +24,7 @@ namespace com.clusterrr.hakchi_gui
             public string DisplayName = string.Empty;
             public string[] SupportedExtensions = null;
             public string[] Systems = null;
+            public CoreKind Kind = CoreKind.Unknown;
             public CoreInfo(string bin)
             {
                 Bin = bin;
@@ -40,16 +42,28 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private static Dictionary<string, CoreInfo> cores = new Dictionary<string, CoreInfo>();
-#if DEBUG
+        private static CoreInfo Canoe = new CoreInfo("clover-canoe-shvc-wr")
+        {
+            Name = "Canoe",
+            DisplayName = "Nintendo Canoe",
+            SupportedExtensions = new string[] { "sfrom", "smc", "sfc" },
+            Systems = new string[] { "Nintendo - Super Nintendo Entertainment System" },
+            Kind = CoreKind.BuiltIn
+        };
+        private static readonly CoreInfo Kachikachi = new CoreInfo("clover-kachikachi-wr")
+        {
+            Name = "Kachikachi",
+            DisplayName = "Nintendo Kachikachi",
+            SupportedExtensions = new string[] { "nes", "fds" },
+            Systems = new string[] { "Nintendo - Nintendo Entertainment System", "Nintendo - Family Computer Disk System" },
+            Kind = CoreKind.BuiltIn
+        };
+
+        private static Dictionary<string, CoreInfo>
+            cores = new Dictionary<string, CoreInfo>();
         private static SortedDictionary<string, List<CoreInfo>>
             extIndex = new SortedDictionary<string, List<CoreInfo>>(),
             systemIndex = new SortedDictionary<string, List<CoreInfo>>();
-#else
-        private static Dictionary<string, List<CoreInfo>>
-            extIndex = new Dictionary<string, List<CoreInfo>>(),
-            systemIndex = new Dictionary<string, List<CoreInfo>>();
-#endif
 
         private static void UpdateWhitelist()
         {
@@ -85,7 +99,7 @@ namespace com.clusterrr.hakchi_gui
                         continue;
 
                     var core = new CoreInfo(bin);
-                    var systems = new List<string>();
+                    string system = null;
                     foreach (Match mm in matches)
                     {
                         if (mm.Success)
@@ -99,23 +113,26 @@ namespace com.clusterrr.hakchi_gui
                                     core.DisplayName = mm.Groups[2].ToString();
                                     break;
                                 case "systemname":
-                                    systems.Add(mm.Groups[2].ToString());
+                                    system = mm.Groups[2].ToString();
                                     break;
                                 case "supported_extensions":
                                     core.SupportedExtensions = mm.Groups[2].ToString().Split('|');
                                     break;
                                 case "database":
-                                    systems.AddRange(mm.Groups[2].ToString().Split('|'));
+                                    core.Systems = mm.Groups[2].ToString().Split('|');
                                     break;
                             }
                         }
                     }
-                    if (systems.Count > 0)
-                        core.Systems = systems.ToArray();
+                    if (core.Systems == null && system != null)
+                        core.Systems = new string[] { system };
+                    core.Kind = CoreKind.Retroarch;
                     cores[bin] = core;
                 }
             }
-            new Thread(LibRetroCollection.UpdateWhitelist).Start();
+            cores.Add(Canoe.Bin, Canoe);
+            cores.Add(Kachikachi.Bin, Kachikachi);
+            new Thread(CoreCollection.UpdateWhitelist).Start();
 
             Debug.WriteLine("Building libretro core cross index");
             foreach (var c in cores)
@@ -141,6 +158,8 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
             }
+
+            DebugWrite();
         }
 
         public static void DebugWrite() {

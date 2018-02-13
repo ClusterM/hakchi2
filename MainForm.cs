@@ -129,7 +129,7 @@ namespace com.clusterrr.hakchi_gui
                 MessageBoxManager.Abort = Resources.YesForAll;
 
                 // Apptypes
-                LibRetroCollection.Load();
+                CoreCollection.Load();
 
                 var extensions = new List<string>() { "*.new", "*.unf", "*.unif", "*.fds", "*.desktop", "*.zip", "*.7z", "*.rar" };
                 foreach (var app in AppTypeCollection.ApplicationTypes)
