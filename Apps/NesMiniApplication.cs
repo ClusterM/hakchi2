@@ -16,7 +16,6 @@ namespace com.clusterrr.hakchi_gui
 {
     public class NesMiniApplication : INesMenuElement
     {
-        internal const string DefaultApp = "/bin/path-to-your-app";
         const string DefaultReleaseDate = "1900-01-01";
         const string DefaultPublisher = "UNKNOWN";
         public const char DefaultPrefix = 'Z';
@@ -156,28 +155,14 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
-
-        public static readonly NesDefaultGame[] AllDefaultGames = Shared.ConcatArrays(
-            defaultNesGames, defaultFamicomGames, defaultSnesGames, defaultSuperFamicomGames);
+        public static NesDefaultGame[] AllDefaultGames
+        {
+            get { return Shared.ConcatArrays(defaultNesGames, defaultFamicomGames, defaultSnesGames, defaultSuperFamicomGames); }
+        }
 
         public static readonly string OriginalGamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games_originals");
         public static readonly string OriginalGamesCacheDirectory = Path.Combine(Program.BaseDirectoryExternal, "games_cache");
-        public static string GamesDirectory
-        {
-            get
-            {
-                switch (ConfigIni.ConsoleType)
-                {
-                    default:
-                    case MainForm.ConsoleType.NES:
-                    case MainForm.ConsoleType.Famicom:
-                        return System.IO.Path.Combine(Program.BaseDirectoryExternal, "games");
-                    case MainForm.ConsoleType.SNES:
-                    case MainForm.ConsoleType.SuperFamicom:
-                        return System.IO.Path.Combine(Program.BaseDirectoryExternal, "games_snes");
-                }
-            }
-        }
+        public static readonly string GamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games");
         public static string GamesHakchiPath = "/var/games";
         public static string GamesSquashPath
         {
@@ -196,16 +181,17 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        protected AppTypeCollection.AppInfo appInfo;
+        public AppTypeCollection.AppInfo AppInfo
+        {
+            get { return appInfo; }
+        }
+
         protected string code;
         public string Code
         {
             get { return code; }
         }
-        public virtual string GoogleSuffix
-        {
-            get { return "game"; }
-        }
-
 
         public const string GameGenieFileName = "gamegenie.txt";
         public string GameGeniePath { private set; get; }
@@ -417,7 +403,7 @@ namespace com.clusterrr.hakchi_gui
             if (originalFileName == null) // Original file name from archive
                 originalFileName = System.IO.Path.GetFileName(inputFileName);
             char prefix = DefaultPrefix;
-            string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : DefaultApp;
+            string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : ""; // DefaultApp;
             string args = null;
             Image cover = DefaultCover;
             byte saveCount = 0;

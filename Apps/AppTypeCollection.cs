@@ -5,184 +5,225 @@ using System.Text.RegularExpressions;
 
 namespace com.clusterrr.hakchi_gui
 {
-    static class AppTypeCollection
+    static public class AppTypeCollection
     {
         public class AppInfo
         {
+            public string Name; // CoreInfo.Systems
+            public string LegacyName;
             public Type Class;
             public string[] Extensions;
-            public string[] DefaultApps;
+            public string[] DefaultApps; // CoreInfo.Bin
             public char Prefix;
             public Image DefaultCover;
-            public string Name;
+            public string GoogleSuffix;
+            public bool Unknown = false;
         }
+
+        public static AppInfo UnknownApplicationType = new AppInfo
+        {
+            Name = "Unknown System",
+            LegacyName = "NesMiniApplication",
+            Class = typeof(NesMiniApplication),
+            Extensions = new string[] { },
+            DefaultApps = new string[] { },
+            Prefix = 'Z',
+            DefaultCover = Resources.blank_app,
+            GoogleSuffix = "game",
+            Unknown = true
+        };
 
         public static AppInfo[] ApplicationTypes = new AppInfo[]
         {
             new AppInfo
             {
+                Name = "Nintendo - Nintendo Entertainment System",
+                LegacyName = "NesGame",
                 Class = typeof(NesGame),
-                Extensions = new string[] {".nes"},
-                DefaultApps = new string[] { "/bin/nes", "/bin/clover-kachikachi-wr", "/usr/bin/clover-kachikachi" },
+                Extensions = new string[] {"nes" },
+                DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "/bin/nes" },
                 Prefix = 'H',
                 DefaultCover = Resources.blank_nes,
-                Name = "Nintendo NES"
+                GoogleSuffix = "(nes | famicom)"
             },
             new AppInfo
             {
-                Class = typeof(NesUGame),
-                Extensions = new string[] {".unf", ".unif", ".nes", ".fds" },
-                DefaultApps = new string[] {"/bin/nes"},
+                Name = "Nintendo - Nintendo Entertainment System",
+                LegacyName = "NesGame",
+                Class = typeof(NesGame),
+                Extensions = new string[] {"unf", "unif" },
+                DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "/bin/nes" },
                 Prefix = 'I',
                 DefaultCover = Resources.blank_jp,
-                Name = "NES/Famicom Disk System"
+                GoogleSuffix = "(fds | nes | famicom)"
             },
             new AppInfo
             {
+                Name = "Nintendo - Family Computer Disk System",
+                LegacyName = "FdsGame",
                 Class = typeof(FdsGame),
-                Extensions = new string[] {".fds"},
-                DefaultApps = new string[] { "/bin/nes", "/bin/clover-kachikachi-wr", "/usr/bin/clover-kachikachi" },
+                Extensions = new string[] {"fds" },
+                DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "/bin/nes" },
                 Prefix = 'D',
                 DefaultCover = Resources.blank_fds,
-                Name = "Famicom Disk System"
+                GoogleSuffix = "(fds | nes | famicom)"
             },
             new AppInfo
             {
+                Name = "Nintendo - Super Nintendo Entertainment System",
+                LegacyName = "SnesGame",
                 Class = typeof(SnesGame),
-                Extensions = new string[] { ".sfc", ".smc", ".sfrom" },
-                DefaultApps = new string[] { "/bin/snes", "/bin/clover-canoe-shvc-wr", "/usr/bin/clover-canoe-shvc" },
+                Extensions = new string[] {"sfrom","smc","sfc" },
+                DefaultApps = new string[] {"/bin/clover-canoe-shvc-wr", "/bin/snes" },
                 Prefix = 'U',
                 DefaultCover = Resources.blank_snes_us,
-                Name = "Nintendo Super NES"
+                GoogleSuffix = "(snes | super nintendo)"
             },
             new AppInfo
             {
-                Class = typeof(N64Game),
-                Extensions = new string[] { ".n64", ".z64", ".v64" },
-                DefaultApps = new string[] {"/bin/n64"},
+                Name = "Nintendo - Nintendo 64",
+                LegacyName = "N64Game",
+                Class = typeof(LibretroGame),
+                Extensions = new string[] {"n64", "z64", "v64" },
+                DefaultApps = new string[] {"/bin/n64" },
                 Prefix = '6',
                 DefaultCover = Resources.blank_n64,
-                Name = "Nintendo 64"
+                GoogleSuffix = "nintendo 64"
             },
             new AppInfo
             {
-                Class = typeof(SmsGame),
-                Extensions = new string[] { ".sms" },
-                DefaultApps = new string[] {"/bin/sms"},
+                Name = "Sega - Master System - Mark III",
+                LegacyName = "SmsGame",
+                Class = typeof(LibretroGame),
+                Extensions = new string[] {"sms" },
+                DefaultApps = new string[] {"/bin/sms" },
                 Prefix = 'M',
                 DefaultCover = Resources.blank_sms,
-                Name = "SEGA Master System"
+                GoogleSuffix = "(sms | sega master system)"
             },
             new AppInfo
             {
-                Class = typeof(GenesisGame),
-                Extensions = new string[] { ".gen", ".md", ".smd" },
-                DefaultApps = new string[] {"/bin/md"},
+                Name = "Sega - Mega Drive - Genesis",
+                LegacyName = "GenesisGame",
+                Class = typeof(LibretroGame),
+                Extensions = new string[] {"gen", "md", "smd" },
+                DefaultApps = new string[] {"/bin/md" },
                 Prefix = 'G',
                 DefaultCover = Resources.blank_genesis,
-                Name = "SEGA Genesis"
+                GoogleSuffix = "(genesis | mega drive)"
             },
             new AppInfo
             {
-                Class = typeof(Sega32XGame),
-                Extensions = new string[] { ".32x" },
-                DefaultApps = new string[] {"/bin/32x"},
+                Name = "Sega - 32X",
+                LegacyName = "Sega32XGame",
+                Class = typeof(LibretroGame),
+                Extensions = new string[] {"32x" },
+                DefaultApps = new string[] {"/bin/32x" },
                 Prefix = '3',
                 DefaultCover = Resources.blank_32x,
-                Name = "SEGA 32X"
+                GoogleSuffix = "sega 32x"
             },
             new AppInfo
             {
-                Class = typeof(GbGame),
-                Extensions = new string[] { ".gb" },
-                DefaultApps = new string[] {"/bin/gb"},
+                Name = "Nintendo - Game Boy",
+                LegacyName = "GbGame",
+                Class = typeof(LibretroGame),
+                Extensions = new string[] {"gb" },
+                DefaultApps = new string[] {"/bin/gb" },
                 Prefix = 'B',
                 DefaultCover = Resources.blank_gb,
-                Name = "Nintendo Game Boy"
+                GoogleSuffix = "(gameboy | game boy)"
             },
             new AppInfo
             {
-                Class = typeof(GbcGame),
-                Extensions = new string[] {".gbc"},
-                DefaultApps = new string[] {"/bin/gbc"},
+                Name = "Nintendo - Game Boy Color",
+                LegacyName = "GbcGame",
+                Class = typeof(LibretroGame),
+                Extensions = new string[] {"gbc" },
+                DefaultApps = new string[] {"/bin/gbc" },
                 Prefix = 'C',
                 DefaultCover = Resources.blank_gbc,
-                Name = "Nintendo Game Boy Color"
+                GoogleSuffix = "(gameboy | game boy)"
             },
             new AppInfo
             {
-                Class = typeof(GbaGame),
-                Extensions = new string[] {".gba"},
-                DefaultApps = new string[] {"/bin/gba"},
+                Name = "Nintendo - Game Boy Advance",
+                LegacyName = "GbaGame",
+                Class = typeof(LibretroGame),
+                Extensions = new string[] {"gba" },
+                DefaultApps = new string[] {"/bin/gba" },
                 Prefix = 'A',
                 DefaultCover = Resources.blank_gba,
-                Name = "Nintendo Game Boy Advance"
+                GoogleSuffix = "gba"
             },
             new AppInfo
             {
-                Class = typeof(PceGame),
-                Extensions = new string[] {".pce"},
-                DefaultApps = new string[] {"/bin/pce"},
+                Name = "NEC - PC Engine - TurboGrafx 16",
+                LegacyName = "PceGame",
+                Class = typeof(LibretroGame),
+                Extensions = new string[] {"pce" },
+                DefaultApps = new string[] {"/bin/pce" },
                 Prefix = 'E',
                 DefaultCover = Resources.blank_pce,
-                Name = "NEC Turbo Grafx 16"
+                GoogleSuffix = "(pce | pc engine | turbografx 16)"
             },
             new AppInfo
             {
-                Class = typeof(GameGearGame),
-                Extensions = new string[] {".gg"},
-                DefaultApps = new string[] {"/bin/gg"},
+                Name = "Sega - Game Gear",
+                LegacyName = "GameGearGame",
+                Class = typeof(LibretroGame),
+                Extensions = new string[] {"gg" },
+                DefaultApps = new string[] {"/bin/gg" },
                 Prefix = 'R',
                 DefaultCover = Resources.blank_gg,
-                Name = "SEGA Game Gear"
+                GoogleSuffix = "game gear"
             },
             new AppInfo
             {
-                Class = typeof(Atari2600Game),
-                Extensions = new string[] {".a26"},
-                DefaultApps = new string[] {"/bin/a26"},
+                Name = "Atari - 2600",
+                LegacyName = "Atari2600Game",
+                Class = typeof(LibretroGame),
+                Extensions = new string[] {"a26" },
+                DefaultApps = new string[] {"/bin/a26" },
                 Prefix = 'T',
                 DefaultCover = Resources.blank_2600,
-                Name = "ATARI 2600"
+                GoogleSuffix = "atari 2600"
             },
             new AppInfo
             {
-                Class = typeof(ArcadeGame),
-                Extensions = new string[] {},
-                DefaultApps = new string[] {"/bin/fba", "/bin/mame", "/bin/cps2", "/bin/neogeo" },
+                Name = "NEC - PC Engine SuperGrafx",
+                LegacyName = "PceGame",
+                Class = typeof(LibretroGame),
+                Extensions = new string[] {"sgx" },
+                DefaultApps = new string[] {},
                 Prefix = 'X',
-                DefaultCover = Resources.blank_arcade,
-                Name = "Arcade System"
+                DefaultCover = Resources.blank_pce,
+                GoogleSuffix = "(pce | pc engine | supergrafx 16)"
             },
             new AppInfo
             {
-                Class = typeof(NesMiniApplication),
-                Extensions = new string[] {},
-                DefaultApps = new string[] {"/bin/retroarch"},
-                Prefix = '0',
+                Name = "DOS",
+                LegacyName = "DosGame",
+                Class = typeof(LibretroGame),
+                Extensions = new string[] {"exe", "com", "bat", "conf" },
+                DefaultApps = new string[] {},
+                Prefix = 'O',
                 DefaultCover = Resources.blank_app,
-                Name = "Unknown App"
-            },
+                GoogleSuffix = "(dos | dosbox)"
+            }
         };
-
-        public static AppInfo GetAppByClass(Type t)
-        {
-            foreach(var app in ApplicationTypes)
-                if (app.Class == t) return app;
-            return null;
-        }
 
         public static AppInfo GetAppByExtension(string extension)
         {
             foreach (var app in ApplicationTypes)
                 if (Array.IndexOf(app.Extensions, extension) >= 0)
                     return app;
-            return null;
+            return UnknownApplicationType;
         }
 
         public static AppInfo GetAppByExec(string exec)
         {
-            exec = Regex.Replace(exec, "['\\\"]|(\\.7z)", " ")+" ";
+            exec = Regex.Replace(exec, "['\\\"]|(\\.7z)", " ") + " ";
             foreach (var app in ApplicationTypes)
                 foreach (var cmd in app.DefaultApps)
                     if (exec.StartsWith(cmd + " "))
@@ -191,11 +232,11 @@ namespace com.clusterrr.hakchi_gui
                             return app;
                         foreach (var ext in app.Extensions)
                         {
-                            if (exec.Contains(ext + " "))
+                            if (exec.Contains("." + ext + " "))
                                 return app;
                         }
                     }
-            return null;
+            return UnknownApplicationType;
         }
     }
 }

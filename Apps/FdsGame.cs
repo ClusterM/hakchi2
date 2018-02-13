@@ -8,15 +8,6 @@ namespace com.clusterrr.hakchi_gui
     public class FdsGame : NesMiniApplication
     {
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet --fds-auto-disk-side-switch-on-keypress";
-        const char Prefix = 'D';
-
-        public override string GoogleSuffix
-        {
-            get
-            {
-                return "(fds | nes | famicom)";
-            }
-        }
 
         public FdsGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)

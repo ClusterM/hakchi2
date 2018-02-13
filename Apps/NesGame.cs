@@ -22,14 +22,6 @@ namespace com.clusterrr.hakchi_gui
 
         private static byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10, 86, 87, 184 };
 
-        public override string GoogleSuffix
-        {
-            get
-            {
-                return "(nes | famicom)";
-            }
-        }
-
         public NesGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {

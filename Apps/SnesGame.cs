@@ -145,14 +145,6 @@ namespace com.clusterrr.hakchi_gui
 
         private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
 
-        public override string GoogleSuffix
-        {
-            get
-            {
-                return "(snes | super nintendo)";
-            }
-        }
-
         public SnesGame(string path, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {

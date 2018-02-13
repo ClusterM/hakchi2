@@ -8,13 +8,15 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using Newtonsoft.Json;
 
 namespace com.clusterrr.hakchi_gui
 {
     static class CoreCollection
     {
         private const string WHITELIST_UPDATE_URL = "https://teamshinkansen.github.io/retroarch-whitelist.txt";
-        private static readonly string WHITELIST_FILENAME = Shared.PathCombine(Program.BaseDirectoryExternal, "config", "retroarch_whitelist.txt");
+        private static readonly string WhiteListFilename = Shared.PathCombine(Program.BaseDirectoryExternal, "config", "retroarch_whitelist.txt");
+        private static readonly string CollectionFilename = Shared.PathCombine(Program.BaseDirectoryExternal, "config", "cores.json");
 
         public enum CoreKind { Unknown, BuiltIn, Retroarch };
         public class CoreInfo
@@ -73,7 +75,7 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine("Downloading whitelist file, URL: " + WHITELIST_UPDATE_URL);
                 string whitelist = client.DownloadString(WHITELIST_UPDATE_URL);
                 if (!string.IsNullOrEmpty(whitelist))
-                    File.WriteAllText(WHITELIST_FILENAME, whitelist);
+                    File.WriteAllText(WhiteListFilename, whitelist);
             }
             catch { }
         }
@@ -81,7 +83,7 @@ namespace com.clusterrr.hakchi_gui
         public static void Load()
         {
             Debug.WriteLine("Loading libretro core info files");
-            var whiteList = File.Exists(WHITELIST_FILENAME) ? File.ReadAllLines(WHITELIST_FILENAME) : Resources.retroarch_whitelist.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var whiteList = File.Exists(WhiteListFilename) ? File.ReadAllLines(WhiteListFilename) : Resources.retroarch_whitelist.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             var regex = new Regex("(^[^\\s]+)\\s+=\\s+\"?([^\"\\r\\n]*)\"?", RegexOptions.Multiline | RegexOptions.Compiled);
             var infoFiles = Directory.GetFiles(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "libretro_cores"), "*.info");
             foreach (var file in infoFiles)
@@ -163,29 +165,7 @@ namespace com.clusterrr.hakchi_gui
         }
 
         public static void DebugWrite() {
-            Debug.WriteLine("Extensions Index:");
-            foreach (var i in extIndex)
-            {
-                Debug.Write(i.Key + ": ");
-                var coreList = i.Value;
-                foreach (var c in coreList)
-                {
-                    Debug.Write(c.Bin + ", ");
-                }
-                Debug.WriteLine("");
-            }
-
-            Debug.WriteLine("Systems Index:");
-            foreach (var i in systemIndex)
-            {
-                Debug.Write(i.Key + ": ");
-                var coreList = i.Value;
-                foreach (var c in coreList)
-                {
-                    Debug.Write(c.Bin + ", ");
-                }
-                Debug.WriteLine("");
-            }
+            File.WriteAllText(CollectionFilename, JsonConvert.SerializeObject(cores, Formatting.Indented));
         }
 
         public static CoreInfo GetCore(string bin)
@@ -198,7 +178,7 @@ namespace com.clusterrr.hakchi_gui
             return extIndex.ContainsKey(ext) ? extIndex[ext] : null;
         }
 
-        public static IEnumerable<CoreInfo> GetCoresFromName(string name)
+        public static IEnumerable<CoreInfo> GetCoresFromSystem(string name)
         {
             return systemIndex.ContainsKey(name) ? systemIndex[name] : null;
         }

@@ -132,7 +132,16 @@ namespace com.clusterrr.hakchi_gui
         {
             if (nesElement == null || nesElement is NesMenuFolder || nesElement is NesMenuCollection)
                 return 12;
-            
+
+            if (nesElement is FdsGame)
+                return 10;
+            if (nesElement is NesGame)
+                return 28;
+            if (nesElement is NesDefaultGame)
+                return 30;
+            if (nesElement is SnesGame)
+                return 36;
+            /*
             if (nesElement is Sega32XGame)
                 return 0;
             if (nesElement is Atari2600Game)
@@ -141,8 +150,6 @@ namespace com.clusterrr.hakchi_gui
                 return 6;
             if (nesElement is NesUGame)
                 return 8;
-            if (nesElement is FdsGame)
-                return 10;
             if (nesElement is GbGame)
                 return 14;
             if (nesElement is GbaGame)
@@ -155,16 +162,11 @@ namespace com.clusterrr.hakchi_gui
                 return 22;
             if (nesElement is N64Game)
                 return 24;
-            if (nesElement is NesGame)
-                return 28;
-            if (nesElement is NesDefaultGame)
-                return 30;
             if (nesElement is PceGame)
                 return 32;
             if (nesElement is SmsGame)
                 return 34;
-            if (nesElement is SnesGame)
-                return 36;
+            */
             
             return 4;
         }

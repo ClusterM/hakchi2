@@ -125,7 +125,7 @@ namespace com.clusterrr.hakchi_gui
                                 skipExtraction = true;
                                 readmeData = cache.getReadmeDictionary();
                             }
-                        } catch(Exception ex) { }
+                        } catch { }
                     }
 
 
@@ -168,7 +168,7 @@ namespace com.clusterrr.hakchi_gui
                             cache = XMLSerialization.DeserializeXMLFileToObject<ReadmeCache>(cacheFile);
                             readmeData = cache.getReadmeDictionary();
                         }
-                        catch (Exception ex) { }
+                        catch { }
                     }
                 }
             }

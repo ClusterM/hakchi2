@@ -142,22 +142,11 @@
     </Compile>
     <Compile Include="ApplicationFileInfo.cs" />
     <Compile Include="Apps\AppTypeCollection.cs" />
-    <Compile Include="Apps\ArcadeGame.cs" />
-    <Compile Include="Apps\Atari2600Game.cs" />
     <Compile Include="Apps\ICloverAutofill.cs" />
     <Compile Include="Apps\ISupportsGameGenie.cs" />
-    <Compile Include="Apps\CoresCollection.cs" />
-    <Compile Include="Apps\Sega32XGame.cs" />
-    <Compile Include="Apps\GenesisGame.cs" />
-    <Compile Include="Apps\PceGame.cs" />
-    <Compile Include="Apps\GbaGame.cs" />
-    <Compile Include="Apps\GbcGame.cs" />
-    <Compile Include="Apps\GbGame.cs" />
-    <Compile Include="Apps\N64Game.cs" />
-    <Compile Include="Apps\GameGearGame.cs" />
-    <Compile Include="Apps\SmsGame.cs" />
+    <Compile Include="Apps\CoreCollection.cs" />
+    <Compile Include="Apps\LibretroGame.cs" />
     <Compile Include="Apps\SnesGame.cs" />
-    <Compile Include="Apps\NesUGame.cs" />
     <Compile Include="SfromToolWrapper.cs" />
     <Compile Include="ExportGamesDialog.cs">
       <SubType>Form</SubType>
@@ -382,7 +371,7 @@
     <Compile Include="SelectModsForm.Designer.cs">
       <DependentUpon>SelectModsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NesDefaultGame.cs" />
+    <Compile Include="Apps\NesDefaultGame.cs" />
     <Compile Include="FelLib\AWFELMessage.cs" />
     <Compile Include="FelLib\AWFELStandardRequest.cs" />
     <Compile Include="FelLib\AWFELStatusResponse.cs" />
@@ -409,8 +398,8 @@
     </Compile>
     <Compile Include="Apps\FdsGame.cs" />
     <Compile Include="NesMenuCollection.cs" />
-    <Compile Include="NesMenuFolder.cs" />
-    <Compile Include="NesFile.cs" />
+    <Compile Include="Apps\NesMenuFolder.cs" />
+    <Compile Include="Apps\NesFile.cs" />
     <Compile Include="Apps\NesGame.cs" />
     <Compile Include="Apps\NesMiniApplication.cs" />
     <Compile Include="Program.cs" />
@@ -614,9 +603,6 @@
     <None Include="data\libretro_cores\citra_libretro.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="data\libretro_cores\configure">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="data\libretro_cores\craft_libretro.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -726,9 +712,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="data\libretro_cores\lutro_libretro.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\Makefile">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="data\libretro_cores\mame2000_libretro.info">
