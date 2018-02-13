@@ -19,8 +19,6 @@ namespace com.clusterrr.hakchi_gui
     {
         const string DefaultReleaseDate = "1900-01-01";
         const string DefaultPublisher = "UNKNOWN";
-        public const char DefaultPrefix = 'Z';
-        public static Image DefaultCover = Resources.blank_app;
         public static Form ParentForm;
         public static bool? NeedPatch;
         public static bool? Need3rdPartyEmulator;
@@ -403,10 +401,10 @@ namespace com.clusterrr.hakchi_gui
                 rawRomData = File.ReadAllBytes(inputFileName); // If not, reading file
             if (originalFileName == null) // Original file name from archive
                 originalFileName = System.IO.Path.GetFileName(inputFileName);
-            char prefix = DefaultPrefix;
+            char prefix = AppTypeCollection.UnknownApplicationType.Prefix;
             string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : ""; // DefaultApp;
             string args = null;
-            Image cover = DefaultCover;
+            Image cover = AppTypeCollection.UnknownApplicationType.DefaultCover;
             byte saveCount = 0;
             uint crc32 = CRC32(rawRomData);
             string outputFileName = Regex.Replace(System.IO.Path.GetFileName(inputFileName), @"[^A-Za-z0-9\.]+", "_").Trim();
@@ -837,7 +835,7 @@ namespace com.clusterrr.hakchi_gui
                         if (File.Exists(cachedIconPath))
                             return LoadBitmap(cachedIconPath);
                         else
-                            return DefaultCover;
+                            return AppInfo.DefaultCover;
                     }
                     return null;
                 }
