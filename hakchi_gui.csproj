@@ -520,6 +520,9 @@
     <Content Include="folder_images\cps.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="tools\cygpopt-0.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="tools\rsync.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

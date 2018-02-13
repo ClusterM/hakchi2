@@ -957,7 +957,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     SetStatus("Writing games to USB drive...");
                     Directory.CreateDirectory(exportDirectory);
-                    if (!ExecuteTool("rsync.exe", $"-ac --delete \"/{tempGamesDirectory.Replace("\\", "/").Replace(":/", "/")}\" \"/{exportDirectory.Replace("\\", "/").Replace(":/", "/")}\""))
+                    if (!ExecuteTool("rsync.exe", $"-ac --delete --exclude=title.fnt \"{cygwinPath(tempGamesDirectory)}\" \"{cygwinPath(exportDirectory)}\""))
                         throw new Exception("Can't rsync to USB drive");
                 }
 #if !DEBUG
@@ -1264,7 +1264,7 @@ namespace com.clusterrr.hakchi_gui
             public long TransferSize = 0;
         }
 
-        private void AddMenu(NesMenuCollection menuCollection, Dictionary<string, string> originalGames, GamesTreeStats stats = null)
+        private void AddMenu(NesMenuCollection menuCollection, Dictionary<string, string> originalGames, GamesTreeStats stats = null, string syncPath = null)
         {
             if (stats == null)
                 stats = new GamesTreeStats();
@@ -1285,12 +1285,21 @@ namespace com.clusterrr.hakchi_gui
                     var desktopFilePath = Path.Combine(desktopEntriesPath, $"{originalCode}.desktop");
                     var targetGamePath = Path.Combine(targetDirectory, originalCode);
                     Directory.CreateDirectory(targetGamePath);
+                    if (exportGames) // Copy back to reduce repeative original games repair
+                    {
+                        var realTargetGamePath = Path.Combine(Path.Combine(Path.Combine(exportDirectory, SubConsoleDirectory), string.Format("{0:D3}", menuIndex)), originalCode);
+                        if (Directory.Exists(realTargetGamePath))
+                        {
+                            if (!ExecuteTool("rsync.exe", $"-ac --delete \"{cygwinPath(realTargetGamePath)}\" \"{cygwinPath(targetDirectory)}\""))
+                                throw new Exception("Can't rsync to USB drive");
+                        }
+                    }
                     Directory.CreateDirectory(Path.Combine(targetGamePath, "autoplay"));
                     if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
                     {
                         Directory.CreateDirectory(Path.Combine(targetGamePath, "pixelart"));
                     }
-                    File.Copy(desktopFilePath, Path.Combine(targetGamePath, $"{originalCode}.desktop"));
+                    File.Copy(desktopFilePath, Path.Combine(targetGamePath, $"{originalCode}.desktop"), true);
                     stats.TotalSize += gameSize;
                     stats.TransferSize += gameSize;
                     stats.TotalGames++;
@@ -1413,7 +1422,7 @@ namespace com.clusterrr.hakchi_gui
 
 
         bool YesForAllPatches = false;
-        public ICollection<NesMiniApplication> AddGames(IEnumerable<string> files, Form parentForm = null)
+        public ICollection<NesMiniApplication> AddGames(IEnumerable<string> files)
         {
             var apps = new List<NesMiniApplication>();
             addedApplications = null;
@@ -1631,6 +1640,11 @@ namespace com.clusterrr.hakchi_gui
                 TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.NoProgress);
                 TaskbarProgress.SetValue(this, 0, 1);
             }
+        }
+
+        string cygwinPath(string path)
+        {
+            return ("/cygdrive/" + path.Replace("\\", "/").Replace(":/", "/"));
         }
     }
 }
