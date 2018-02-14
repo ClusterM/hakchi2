@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="ApplicationFileInfo.cs" />
     <Compile Include="Apps\AppTypeCollection.cs" />
+    <Compile Include="Apps\DesktopFile.cs" />
     <Compile Include="Apps\ICloverAutofill.cs" />
     <Compile Include="Apps\ISupportsGameGenie.cs" />
     <Compile Include="Apps\CoreCollection.cs" />
