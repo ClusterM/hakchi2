@@ -147,6 +147,7 @@
     <Compile Include="Apps\ISupportsGameGenie.cs" />
     <Compile Include="Apps\CoreCollection.cs" />
     <Compile Include="Apps\LibretroGame.cs" />
+    <Compile Include="Apps\NesApplication.cs" />
     <Compile Include="Apps\NesMenuElementBase.cs" />
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="SfromToolWrapper.cs" />
@@ -403,7 +404,6 @@
     <Compile Include="Apps\NesMenuFolder.cs" />
     <Compile Include="Apps\NesFile.cs" />
     <Compile Include="Apps\NesGame.cs" />
-    <Compile Include="Apps\NesMiniApplication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchForm.cs">

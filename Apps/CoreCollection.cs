@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace com.clusterrr.hakchi_gui
 {
-    static class CoreCollection
+    public static class CoreCollection
     {
         private const string WHITELIST_UPDATE_URL = "https://teamshinkansen.github.io/retroarch-whitelist.txt";
         private static readonly string WhiteListFilename = Shared.PathCombine(Program.BaseDirectoryExternal, "config", "retroarch_whitelist.txt");
@@ -48,7 +48,7 @@ namespace com.clusterrr.hakchi_gui
         {
             Name = "Canoe",
             DisplayName = "Nintendo - Super Nintendo Entertainment System (Canoe)",
-            SupportedExtensions = new string[] { "sfrom", "smc", "sfc" },
+            SupportedExtensions = new string[] { ".sfrom", ".smc", ".sfc" },
             Systems = new string[] { "Nintendo - Super Nintendo Entertainment System" },
             Kind = CoreKind.BuiltIn
         };
@@ -56,7 +56,7 @@ namespace com.clusterrr.hakchi_gui
         {
             Name = "Kachikachi",
             DisplayName = "Nintendo - Nintendo Entertainment System (Kachikachi)",
-            SupportedExtensions = new string[] { "nes", "fds" },
+            SupportedExtensions = new string[] { ".nes", ".fds" },
             Systems = new string[] { "Nintendo - Nintendo Entertainment System", "Nintendo - Family Computer Disk System" },
             Kind = CoreKind.BuiltIn
         };
@@ -119,6 +119,8 @@ namespace com.clusterrr.hakchi_gui
                                     break;
                                 case "supported_extensions":
                                     core.SupportedExtensions = mm.Groups[2].ToString().Split('|');
+                                    for (var i = 0; i < core.SupportedExtensions.Length; ++i)
+                                        core.SupportedExtensions[i] = "." + core.SupportedExtensions[i];
                                     break;
                                 case "database":
                                     core.Systems = mm.Groups[2].ToString().Split('|');

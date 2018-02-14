@@ -5,15 +5,15 @@ using System.Text.RegularExpressions;
 
 namespace com.clusterrr.hakchi_gui
 {
-    static public class AppTypeCollection
+    public static class AppTypeCollection
     {
         public class AppInfo
         {
-            public string Name; // CoreInfo.Systems
+            public string Name; // valid matches CoreInfo.Systems
             public string LegacyName;
             public Type Class;
             public string[] Extensions;
-            public string[] DefaultApps; // CoreInfo.Bin
+            public string[] DefaultApps;
             public char Prefix;
             public Image DefaultCover;
             public string GoogleSuffix;
@@ -23,8 +23,8 @@ namespace com.clusterrr.hakchi_gui
         public static readonly AppInfo UnknownApplicationType = new AppInfo
         {
             Name = "Unknown System",
-            LegacyName = "NesMiniApplication",
-            Class = typeof(NesMiniApplication),
+            LegacyName = "NesApplication",
+            Class = typeof(NesApplication),
             Extensions = new string[] { },
             DefaultApps = new string[] { },
             Prefix = 'Z',
@@ -52,7 +52,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "Nintendo - Nintendo Entertainment System",
                 LegacyName = "NesGame",
                 Class = typeof(NesGame),
-                Extensions = new string[] {"nes" },
+                Extensions = new string[] {".nes" },
                 DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "/bin/nes" },
                 Prefix = 'H',
                 DefaultCover = Resources.blank_nes,
@@ -63,7 +63,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "Nintendo - Nintendo Entertainment System",
                 LegacyName = "UNesGame",
                 Class = typeof(NesGame),
-                Extensions = new string[] {"unf", "unif" },
+                Extensions = new string[] {".unf", ".unif" },
                 DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "/bin/nes" },
                 Prefix = 'I',
                 DefaultCover = Resources.blank_jp,
@@ -74,7 +74,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "Nintendo - Family Computer Disk System",
                 LegacyName = "FdsGame",
                 Class = typeof(FdsGame),
-                Extensions = new string[] {"fds" },
+                Extensions = new string[] {".fds" },
                 DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "/bin/nes" },
                 Prefix = 'D',
                 DefaultCover = Resources.blank_fds,
@@ -85,7 +85,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "Nintendo - Super Nintendo Entertainment System",
                 LegacyName = "SnesGame",
                 Class = typeof(SnesGame),
-                Extensions = new string[] {"sfrom","smc","sfc" },
+                Extensions = new string[] {".sfrom",".smc",".sfc" },
                 DefaultApps = new string[] {"/bin/clover-canoe-shvc-wr", "/bin/snes" },
                 Prefix = 'U',
                 DefaultCover = Resources.blank_snes_us,
@@ -96,7 +96,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "Nintendo - Nintendo 64",
                 LegacyName = "N64Game",
                 Class = typeof(LibretroGame),
-                Extensions = new string[] {"n64", "z64", "v64" },
+                Extensions = new string[] {".n64", ".z64", ".v64" },
                 DefaultApps = new string[] {"/bin/n64" },
                 Prefix = '6',
                 DefaultCover = Resources.blank_n64,
@@ -107,7 +107,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "Sega - Master System - Mark III",
                 LegacyName = "SmsGame",
                 Class = typeof(LibretroGame),
-                Extensions = new string[] {"sms" },
+                Extensions = new string[] {".sms" },
                 DefaultApps = new string[] {"/bin/sms" },
                 Prefix = 'M',
                 DefaultCover = Resources.blank_sms,
@@ -118,7 +118,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "Sega - Mega Drive - Genesis",
                 LegacyName = "GenesisGame",
                 Class = typeof(LibretroGame),
-                Extensions = new string[] {"gen", "md", "smd" },
+                Extensions = new string[] {".gen", ".md", ".smd" },
                 DefaultApps = new string[] {"/bin/md" },
                 Prefix = 'G',
                 DefaultCover = Resources.blank_genesis,
@@ -129,7 +129,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "Sega - 32X",
                 LegacyName = "Sega32XGame",
                 Class = typeof(LibretroGame),
-                Extensions = new string[] {"32x" },
+                Extensions = new string[] {".32x" },
                 DefaultApps = new string[] {"/bin/32x" },
                 Prefix = '3',
                 DefaultCover = Resources.blank_32x,
@@ -140,7 +140,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "Nintendo - Game Boy",
                 LegacyName = "GbGame",
                 Class = typeof(LibretroGame),
-                Extensions = new string[] {"gb" },
+                Extensions = new string[] {".gb" },
                 DefaultApps = new string[] {"/bin/gb" },
                 Prefix = 'B',
                 DefaultCover = Resources.blank_gb,
@@ -151,7 +151,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "Nintendo - Game Boy Color",
                 LegacyName = "GbcGame",
                 Class = typeof(LibretroGame),
-                Extensions = new string[] {"gbc" },
+                Extensions = new string[] {".gbc" },
                 DefaultApps = new string[] {"/bin/gbc" },
                 Prefix = 'C',
                 DefaultCover = Resources.blank_gbc,
@@ -162,7 +162,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "Nintendo - Game Boy Advance",
                 LegacyName = "GbaGame",
                 Class = typeof(LibretroGame),
-                Extensions = new string[] {"gba" },
+                Extensions = new string[] {".gba" },
                 DefaultApps = new string[] {"/bin/gba" },
                 Prefix = 'A',
                 DefaultCover = Resources.blank_gba,
@@ -173,7 +173,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "NEC - PC Engine - TurboGrafx 16",
                 LegacyName = "PceGame",
                 Class = typeof(LibretroGame),
-                Extensions = new string[] {"pce" },
+                Extensions = new string[] {".pce" },
                 DefaultApps = new string[] {"/bin/pce" },
                 Prefix = 'E',
                 DefaultCover = Resources.blank_pce,
@@ -184,7 +184,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "Sega - Game Gear",
                 LegacyName = "GameGearGame",
                 Class = typeof(LibretroGame),
-                Extensions = new string[] {"gg" },
+                Extensions = new string[] {".gg" },
                 DefaultApps = new string[] {"/bin/gg" },
                 Prefix = 'R',
                 DefaultCover = Resources.blank_gg,
@@ -195,7 +195,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "Atari - 2600",
                 LegacyName = "Atari2600Game",
                 Class = typeof(LibretroGame),
-                Extensions = new string[] {"a26" },
+                Extensions = new string[] {".a26" },
                 DefaultApps = new string[] {"/bin/a26" },
                 Prefix = 'T',
                 DefaultCover = Resources.blank_2600,
@@ -206,7 +206,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "NEC - PC Engine SuperGrafx",
                 LegacyName = "PceGame",
                 Class = typeof(LibretroGame),
-                Extensions = new string[] {"sgx" },
+                Extensions = new string[] {".sgx" },
                 DefaultApps = new string[] {},
                 Prefix = 'X',
                 DefaultCover = Resources.blank_pce,
@@ -217,7 +217,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "DOS",
                 LegacyName = "DosGame",
                 Class = typeof(LibretroGame),
-                Extensions = new string[] {"exe", "com", "bat", "conf" },
+                Extensions = new string[] {".exe", ".com", ".bat", ".conf" },
                 DefaultApps = new string[] {},
                 Prefix = 'O',
                 DefaultCover = Resources.blank_dos,
@@ -252,7 +252,7 @@ namespace com.clusterrr.hakchi_gui
                             return app;
                         foreach (var ext in app.Extensions)
                         {
-                            if (exec.Contains("." + ext + " "))
+                            if (exec.Contains(ext + " "))
                                 return app;
                         }
                     }

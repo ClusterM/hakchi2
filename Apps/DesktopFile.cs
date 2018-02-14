@@ -7,7 +7,7 @@ using System.Text;
 
 namespace com.clusterrr.hakchi_gui
 {
-    class DesktopFile : INesMenuElement
+    public class DesktopFile : INesMenuElement
     {
         private string type = "Application";
         public string Type
@@ -26,18 +26,21 @@ namespace com.clusterrr.hakchi_gui
             }
             set
             {
-                exec = value;
-                bin = string.Empty;
-                if (!string.IsNullOrEmpty(exec))
+                if (exec != value)
                 {
-                    args = exec.Split(' ');
-                    if (args.Length > 0)
+                    exec = value;
+                    bin = string.Empty;
+                    if (!string.IsNullOrEmpty(exec))
                     {
-                        bin = args[0];
-                        args = args.Skip(1).ToArray();
+                        args = exec.Split(' ');
+                        if (args.Length > 0)
+                        {
+                            bin = args[0];
+                            args = args.Skip(1).ToArray();
+                        }
                     }
+                    hasUnsavedChanges = true;
                 }
-                touch();
             }
         }
         public string Bin
@@ -45,9 +48,13 @@ namespace com.clusterrr.hakchi_gui
             get { return bin; }
             set
             {
-                if (!string.IsNullOrEmpty(bin)) exec.Replace(bin, value);
-                bin = value;
-                touch();
+                if (bin != value)
+                {
+                    if (!string.IsNullOrEmpty(bin))
+                        exec.Replace(bin, value);
+                    bin = value;
+                    hasUnsavedChanges = true;
+                }
             }
         }
         public string[] Args
@@ -61,10 +68,11 @@ namespace com.clusterrr.hakchi_gui
             get { return savePath; }
             set
             {
-                savePath = string.Empty;
-                if (!string.IsNullOrEmpty(value))
-                    savePath = Regex.Replace(value, "CLV-.-[A-Z]{5}", "").Replace("//", "/");
-                touch();
+                if (savePath != value)
+                {
+                    savePath = value;
+                    hasUnsavedChanges = true;
+                }
             }
         }
 
@@ -74,8 +82,11 @@ namespace com.clusterrr.hakchi_gui
             get { return name; }
             set
             {
-                name = value;
-                touch();
+                if (name != value)
+                {
+                    name = value;
+                    hasUnsavedChanges = true;
+                }
             }
         }
 
@@ -86,14 +97,11 @@ namespace com.clusterrr.hakchi_gui
             get { return iconPath; }
             set
             {
-                iconPath = string.Empty;
-                iconFilename = string.Empty;
-                if (!string.IsNullOrEmpty(value))
+                if (iconPath != value)
                 {
-                    iconPath = Regex.Replace(value, "CLV-.-[A-Z]{5}\\/CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)", "").Replace("//", "/");
-                    iconFilename = Regex.Match(value, "CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)").ToString();
+                    iconPath = value;
+                    hasUnsavedChanges = true;
                 }
-                touch();
             }
         }
         public string IconFilename
@@ -101,8 +109,11 @@ namespace com.clusterrr.hakchi_gui
             get { return iconFilename; }
             set
             {
-                iconFilename = value;
-                touch();
+                if (iconFilename != value)
+                {
+                    iconFilename = value;
+                    hasUnsavedChanges = true;
+                }
             }
         }
 
@@ -110,35 +121,70 @@ namespace com.clusterrr.hakchi_gui
         public string Code
         {
             get { return code; }
-            set { Code = value; touch(); }
+            set
+            {
+                if (code != value)
+                {
+                    code = value;
+                    hasUnsavedChanges = true;
+                }
+            }
         }
 
         private byte testId = 0;
         public byte TestId
         {
             get { return testId; }
-            set { testId = value; touch(); }
+            set
+            {
+                if (testId != value)
+                {
+                    testId = value;
+                    hasUnsavedChanges = true;
+                }
+            }
         }
 
         private string status = string.Empty;
         public string Status
         {
             get { return status; }
-            set { status = value; touch(); }
+            set
+            {
+                if (status != value)
+                {
+                    status = value;
+                    hasUnsavedChanges = true;
+                }
+            }
         }
 
         private byte players = 1;
         public byte Players
         {
             get { return players; }
-            set { players = value; touch(); }
+            set
+            {
+                if (players != value)
+                {
+                    players = value;
+                    hasUnsavedChanges = true;
+                }
+            }
         }
 
         private bool simultaneous = false;
         public bool Simultaneous
         {
             get { return simultaneous; }
-            set { simultaneous = value; touch(); }
+            set
+            {
+                if (simultaneous != value)
+                {
+                    simultaneous = value;
+                    hasUnsavedChanges = true;
+                }
+            }
         }
 
         private DateTime releaseDate = DateTime.Parse("1900-01-01");
@@ -150,8 +196,11 @@ namespace com.clusterrr.hakchi_gui
             }
             set
             {
-                releaseDate = DateTime.Parse(value);
-                touch();
+                if (releaseDate != DateTime.Parse(value))
+                {
+                    releaseDate = DateTime.Parse(value);
+                    hasUnsavedChanges = true;
+                }
             }
         }
 
@@ -159,7 +208,14 @@ namespace com.clusterrr.hakchi_gui
         public byte SaveCount
         {
             get { return saveCount; }
-            set { saveCount = value; touch(); }
+            set
+            {
+                if (saveCount != value)
+                {
+                    saveCount = value;
+                    hasUnsavedChanges = true;
+                }
+            }
         }
 
         private string sortRawTitle = string.Empty;
@@ -168,8 +224,11 @@ namespace com.clusterrr.hakchi_gui
             get { return sortRawTitle; }
             set
             {
-                sortRawTitle = value;
-                touch();
+                if (sortRawTitle != value)
+                {
+                    sortRawTitle = value;
+                    hasUnsavedChanges = true;
+                }
             }
         }
 
@@ -177,24 +236,39 @@ namespace com.clusterrr.hakchi_gui
         public string Publisher
         {
             get { return sortRawPublisher; }
-            set { sortRawPublisher = value; touch(); }
+            set
+            {
+                if (sortRawPublisher != value)
+                {
+                    sortRawPublisher = value;
+                    hasUnsavedChanges = true;
+                }
+            }
         }
 
         private string copyright = "hakchi2 CE ©2017";
         public string Copyright
         {
             get { return copyright; }
-            set { copyright = value; touch(); }
+            set
+            {
+                if (copyright != value)
+                {
+                    copyright = value;
+                    hasUnsavedChanges = true;
+                }
+            }
         }
 
         private bool hasUnsavedChanges = false;
-        private void touch()
-        {
-            hasUnsavedChanges = true;
-        }
 
         private string currentFilePath = null;
-        public bool LoadFile(string configPath)
+        public string CurrentFilePath
+        {
+            get;
+        }
+
+        public bool Load(string configPath)
         {
             if (!File.Exists(configPath)) throw new FileNotFoundException();
             currentFilePath = configPath;
@@ -207,7 +281,7 @@ namespace com.clusterrr.hakchi_gui
                     continue;
                 var param = line.Substring(0, pos).Trim().ToLower();
                 var value = line.Substring(pos + 1).Trim();
-                if (param.Length <= 0 || value.Length <= 0)
+                if (param.Length <= 0)
                     continue;
 
                 switch (param)
@@ -216,13 +290,27 @@ namespace com.clusterrr.hakchi_gui
                         Exec = value;
                         break;
                     case "path":
-                        SavePath = value;
+                        if (string.IsNullOrEmpty(value))
+                            SavePath = string.Empty;
+                        else
+                            SavePath = Regex.Replace(value, "CLV-.-[A-Z]{5}", "").Replace("//", "/");
                         break;
                     case "name":
                         Name = value;
                         break;
                     case "icon":
-                        IconPath = value;
+                        if (string.IsNullOrEmpty(value))
+                        {
+                            IconPath = string.Empty;
+                            IconFilename = string.Empty;
+                        }
+                        else
+                        {
+                            Match m = Regex.Match(value, "CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)");
+
+                            IconPath = Regex.Replace(value, "CLV-.-[A-Z]{5}\\/CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)", "").Replace("//", "/");
+                            IconFilename = m.Success ? m.ToString() : string.Empty;
+                        }
                         break;
                     case "code":
                         Code = value;
@@ -261,33 +349,38 @@ namespace com.clusterrr.hakchi_gui
             return true;
         }
 
-        public void SaveFile(string configPath = null, bool snesExtraFields = false)
+        public void CopyTo(string configPath, bool snesExtraFields = false, bool omitSavePathCode = false)
+        {
+            File.WriteAllText(configPath,
+                $"[Desktop Entry]\n" +
+                $"Type={this.type}\n" +
+                $"Exec={this.exec}\n" +
+                $"Path={this.savePath}{(omitSavePathCode ? "" : this.code)}\n" +
+                $"Name={this.name ?? this.code}\n" +
+                $"Icon={this.iconPath}{this.code}/{this.iconFilename}\n\n" +
+                $"[X-CLOVER Game]\n" +
+                $"Code={this.code}\n" +
+                $"TestID={this.testId}\n" +
+                (snesExtraFields ? $"Status={this.status}\n" : "") +
+                $"ID=0\n" +
+                $"Players={this.players}\n" +
+                $"Simultaneous={(this.simultaneous ? 1 : 0)}\n" +
+                $"ReleaseDate={this.releaseDate.ToString("yyyy-MM-dd")}\n" +
+                $"SaveCount={this.saveCount}\n" +
+                $"SortRawTitle={this.sortRawTitle}\n" +
+                $"SortRawPublisher={this.sortRawPublisher.ToUpper()}\n" +
+                $"Copyright={this.copyright}\n" +
+                (snesExtraFields ? $"MyPlayDemoTime=45\n" : ""));
+        }
+
+        public void Save(string configPath = null, bool snesExtraFields = false, bool omitSavePathCode = false)
         {
             if (configPath == null) configPath = currentFilePath;
             currentFilePath = configPath;
 
             if (hasUnsavedChanges)
             {
-                File.WriteAllText(currentFilePath,
-                    $"[Desktop Entry]\n" +
-                    $"Type={this.type}\n" +
-                    $"Exec={this.exec}\n" +
-                    $"Path={this.savePath}{this.code}\n" +
-                    $"Name={this.name ?? this.code}\n" +
-                    $"Icon={this.iconPath}{this.code}/{this.iconFilename}\n\n" +
-                    $"[X-CLOVER Game]\n" +
-                    $"Code={this.code}\n" +
-                    $"TestID={this.testId}\n" +
-                    (snesExtraFields ? $"Status={this.status}\n" : "") +
-                    $"ID=0\n" +
-                    $"Players={this.players}\n" +
-                    $"Simultaneous={(this.simultaneous ? 1 : 0)}\n" +
-                    $"ReleaseDate={this.releaseDate.ToString("yyyy-MM-dd")}\n" +
-                    $"SaveCount={this.saveCount}\n" +
-                    $"SortRawTitle={this.sortRawTitle}\n" +
-                    $"SortRawPublisher={this.sortRawPublisher.ToUpper()}\n" +
-                    $"Copyright={this.copyright}\n" +
-                    (snesExtraFields ? $"MyPlayDemoTime=45\n" : ""));
+                CopyTo(currentFilePath, snesExtraFields, omitSavePathCode);
                 hasUnsavedChanges = false;
             }
         }
