@@ -183,22 +183,46 @@ namespace com.clusterrr.hakchi_gui
             return new NesMiniApplication(path, ignoreEmptyConfig);
         }
 
+        public static NesMiniApplication CreateEmptyApp()
+        {
+            char prefix = 'X';
+            uint crc32;
+            string code;
+            string gamePath;
+            do
+            {
+                crc32 = (uint)new Random().Next();
+                code = GenerateCode(crc32, prefix);
+                gamePath = Path.Combine(GamesDirectory, code);
+            } while (Directory.Exists(gamePath));
+            Directory.CreateDirectory(gamePath);
+            var game = new NesMiniApplication(gamePath, true);
+            game.Name = "New app";
+            game.Image = DefaultCover;
+            game.Command = "enter some command here";
+            game.SaveCount = 0;
+            game.Save();
+
+            var app = FromDirectory(gamePath);
+            return app;
+        }
+
         public static NesMiniApplication Import(string inputFileName, string originalFileName = null, byte[] rawRomData = null)
         {
-            var extension = System.IO.Path.GetExtension(inputFileName).ToLower();
+            var extension = Path.GetExtension(inputFileName).ToLower();
             if (extension == ".desktop")
                 return ImportApp(inputFileName);
             if (rawRomData == null) // Maybe it's already extracted data?
                 rawRomData = File.ReadAllBytes(inputFileName); // If not, reading file
             if (originalFileName == null) // Original file name from archive
-                originalFileName = System.IO.Path.GetFileName(inputFileName);
+                originalFileName = Path.GetFileName(inputFileName);
             char prefix = DefaultPrefix;
             string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : DefaultApp;
             string args = null;
             Image cover = DefaultCover;
             byte saveCount = 0;
             uint crc32 = CRC32(rawRomData);
-            string outputFileName = Regex.Replace(System.IO.Path.GetFileName(inputFileName), @" ?\(.*?\)| ?\[.*?\]", "").Trim();
+            string outputFileName = Regex.Replace(Path.GetFileName(inputFileName), @" ?\(.*?\)| ?\[.*?\]", "").Trim();
             outputFileName = Regex.Replace(outputFileName, @"[^A-Za-z0-9!\.]+", "_");
 
             // Trying to determine file type

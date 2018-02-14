@@ -143,6 +143,8 @@
             this.compressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decompressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
+            this.createCustomCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
             this.buttonStart = new System.Windows.Forms.Button();
             this.groupBoxDefaultGames = new System.Windows.Forms.GroupBox();
@@ -154,6 +156,7 @@
             this.listViewGames = new System.Windows.Forms.ListView();
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.exportFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.openSelectedGamesFolderInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -815,7 +818,6 @@
             resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
-            this.pictureBoxArt.Click += new System.EventHandler(this.pictureBoxArt_Click);
             // 
             // label4
             // 
@@ -874,7 +876,9 @@
             // labelID
             // 
             resources.ApplyResources(this.labelID, "labelID");
+            this.labelID.Cursor = System.Windows.Forms.Cursors.Hand;
             this.labelID.Name = "labelID";
+            this.labelID.Click += new System.EventHandler(this.openSelectedGamesFolderInExplorerToolStripMenuItem_Click);
             // 
             // label5
             // 
@@ -941,7 +945,10 @@
             this.downloadBoxArtForSelectedGamesToolStripMenuItem,
             this.compressSelectedGamesToolStripMenuItem,
             this.decompressSelectedGamesToolStripMenuItem,
-            this.deleteSelectedGamesToolStripMenuItem});
+            this.openSelectedGamesFolderInExplorerToolStripMenuItem,
+            this.deleteSelectedGamesToolStripMenuItem,
+            this.toolStripMenuItem12,
+            this.createCustomCommandToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
             resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             // 
@@ -968,6 +975,17 @@
             this.deleteSelectedGamesToolStripMenuItem.Name = "deleteSelectedGamesToolStripMenuItem";
             resources.ApplyResources(this.deleteSelectedGamesToolStripMenuItem, "deleteSelectedGamesToolStripMenuItem");
             this.deleteSelectedGamesToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedGamesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            resources.ApplyResources(this.toolStripMenuItem12, "toolStripMenuItem12");
+            // 
+            // createCustomCommandToolStripMenuItem
+            // 
+            this.createCustomCommandToolStripMenuItem.Name = "createCustomCommandToolStripMenuItem";
+            resources.ApplyResources(this.createCustomCommandToolStripMenuItem, "createCustomCommandToolStripMenuItem");
+            this.createCustomCommandToolStripMenuItem.Click += new System.EventHandler(this.createCustomCommandToolStripMenuItem_Click);
             // 
             // openFileDialogImage
             // 
@@ -1042,6 +1060,12 @@
             resources.ApplyResources(this.exportFolderDialog, "exportFolderDialog");
             this.exportFolderDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
             this.exportFolderDialog.ShowNewFolderButton = false;
+            // 
+            // openSelectedGamesFolderInExplorerToolStripMenuItem
+            // 
+            this.openSelectedGamesFolderInExplorerToolStripMenuItem.Name = "openSelectedGamesFolderInExplorerToolStripMenuItem";
+            resources.ApplyResources(this.openSelectedGamesFolderInExplorerToolStripMenuItem, "openSelectedGamesFolderInExplorerToolStripMenuItem");
+            this.openSelectedGamesFolderInExplorerToolStripMenuItem.Click += new System.EventHandler(this.openSelectedGamesFolderInExplorerToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1207,6 +1231,9 @@
         private System.Windows.Forms.ToolStripMenuItem dumpNANDCPartitionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flashNANDCPartitionToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog exportFolderDialog;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
+        private System.Windows.Forms.ToolStripMenuItem createCustomCommandToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openSelectedGamesFolderInExplorerToolStripMenuItem;
     }
 }
 

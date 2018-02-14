@@ -1,5 +1,4 @@
 ﻿using com.clusterrr.clovershell;
-using com.clusterrr.Famicom;
 using com.clusterrr.hakchi_gui.Properties;
 using SevenZip;
 using System;
@@ -1901,6 +1900,8 @@ namespace com.clusterrr.hakchi_gui
                     decompressSelectedGamesToolStripMenuItem.Enabled =
                     deleteSelectedGamesToolStripMenuItem.Enabled =
                     (listViewGames.SelectedItems.Count > 1) || (listViewGames.SelectedItems.Count == 1 && listViewGames.SelectedItems[0].Tag is NesMiniApplication);
+                openSelectedGamesFolderInExplorerToolStripMenuItem.Enabled =
+                    (listViewGames.SelectedItems.Count == 1 && listViewGames.SelectedItems[0].Tag is NesMiniApplication);
                 contextMenuStrip.Show(sender as Control, e.X, e.Y);
             }
         }
@@ -1922,9 +1923,59 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void pictureBoxArt_Click(object sender, EventArgs e)
+        private void createCustomCommandToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            try
+            {
+                var newApp = NesMiniApplication.CreateEmptyApp();
+                var item = new ListViewItem(newApp.Name);
+                item.Tag = newApp;
+                item.Selected = true;
+                item.Checked = true;
+                listViewGames.Items.Add(item);
+                // Schedule recalculation
+                timerCalculateGames.Enabled = false;
+                timerCalculateGames.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void openSelectedInExplorer()
+        {
+            try
+            {
+                object selected = null;
+                var selectedAll = listViewGames.SelectedItems;
+                if (selectedAll.Count == 1)
+                    selected = selectedAll[0].Tag;
+                else
+                    return;
+                if (selected is NesMiniApplication)
+                {
+                    var app = selected as NesMiniApplication;
+                    new Process()
+                    {
+                        StartInfo = new ProcessStartInfo()
+                        {
+                            FileName = app.GamePath
+                        }
+                    }.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        private void openSelectedGamesFolderInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openSelectedInExplorer();
         }
     }
 }
