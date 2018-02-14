@@ -631,10 +631,13 @@ namespace com.clusterrr.hakchi_gui
             return size;
         }
 
-        public long Size(string path = null)
+        public long Size()
         {
-            if (path == null)
-                path = GamePath;
+            return DirectorySize(GamePath);
+        }
+
+        public static long DirectorySize(string path)
+        {
             long size = 0;
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(path);
@@ -650,7 +653,7 @@ namespace com.clusterrr.hakchi_gui
             }
             foreach (DirectoryInfo subdir in dirs)
             {
-                size += Size(subdir.FullName);
+                size += DirectorySize(subdir.FullName);
             }
             return size;
         }

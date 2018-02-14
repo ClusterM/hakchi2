@@ -930,8 +930,9 @@ namespace com.clusterrr.hakchi_gui
 
                     using (var gamesTar = new TarStream(tempGamesDirectory))
                     {
-                        maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 20 + originalGames.Count() * 2);
-                        SetProgress(progress, maxProgress);                        
+                        SetStatus(Resources.UploadingGames);
+                        maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 20);
+                        SetProgress(progress, maxProgress);
                         clovershell.ExecuteSimple($"rm -rf {gameSyncStorage}/{SubConsoleDirectory} {installPath}/menu {rootFsPath}{originalGamesPath}", 5000, true);
                         clovershell.ExecuteSimple($"mkdir -p \"{gameSyncStorage}/{SubConsoleDirectory}\"", 3000, true);
 
@@ -942,23 +943,48 @@ namespace com.clusterrr.hakchi_gui
                                 progress = (int)(startProgress + pos / 1024 / 1024);
                                 SetProgress(progress, maxProgress);
                             };
-                            SetStatus(Resources.UploadingGames);
                             clovershell.Execute($"tar -xvC \"{gameSyncStorage}/{SubConsoleDirectory}\"", gamesTar, null, null, 30000, true);
                         }
                     }
-                }
 
-                if (!exportGames)
-                {
                     SetStatus(Resources.UploadingConfig);
                     SyncConfig(Config);
                 }
-                else
+                else // exportGames = true
                 {
                     SetStatus("Writing games to USB drive...");
+                    maxProgress = (int)(stats.TotalSize / 1024 / 1024 + 20);
+                    SetProgress(progress, maxProgress);
                     Directory.CreateDirectory(exportDirectory);
-                    if (!ExecuteTool("rsync.exe", $"-ac --delete --exclude=title.fnt \"{cygwinPath(tempGamesDirectory)}\" \"{cygwinPath(exportDirectory)}\""))
-                        throw new Exception("Can't rsync to USB drive");
+                    string lastDirectory = null;
+                    long pos = 0;
+                    if (!ExecuteTool("rsync.exe", $"-ac --delete --progress --exclude=title.fnt --exclude=copyright.fnt \"{cygwinPath(tempGamesDirectory)}\" \"{cygwinPath(exportDirectory)}\"",
+                        null, false, delegate (string line)
+                        {
+                            if (line.EndsWith("/"))
+                            {
+                                SetStatus("Writing games to USB drive... " + line.Replace("/", "\\"));
+                                if (!line.StartsWith("deleting"))
+                                {
+                                    if (lastDirectory != null && !line.StartsWith(lastDirectory)) // Previous directory transfered
+                                    {
+                                        try
+                                        {
+                                            pos += NesMiniApplication.DirectorySize(Path.Combine(Path.Combine(tempGamesDirectory, ".."), line.Replace("/", "\\")));
+                                            progress = (int)(startProgress + pos / 1024 / 1024);
+                                            SetProgress(progress, maxProgress);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            Debug.WriteLine("Error: " + ex.Message + ex.StackTrace);
+                                        }
+                                    }
+                                    lastDirectory = line;
+                                }
+                            }
+                            Debug.WriteLine("rsync output: " + line);
+                        })
+                    ) throw new Exception("Can't rsync to USB drive");
                 }
 #if !DEBUG
                 if (Directory.Exists(tempDirectory))
@@ -1261,7 +1287,6 @@ namespace com.clusterrr.hakchi_gui
             public List<NesMenuCollection> allMenus = new List<NesMenuCollection>();
             public int TotalGames = 0;
             public long TotalSize = 0;
-            public long TransferSize = 0;
         }
 
         private void AddMenu(NesMenuCollection menuCollection, Dictionary<string, string> originalGames, GamesTreeStats stats = null, string syncPath = null)
@@ -1279,7 +1304,6 @@ namespace com.clusterrr.hakchi_gui
                 {
                     stats.TotalGames++;
                     var game = element as NesDefaultGame;
-                    var gameSize = 25000;
                     string desktopEntriesPath = Path.Combine(baseDirectoryInternal, "DesktopEntries");
                     var originalCode = game.Code;
                     var desktopFilePath = Path.Combine(desktopEntriesPath, $"{originalCode}.desktop");
@@ -1300,8 +1324,8 @@ namespace com.clusterrr.hakchi_gui
                         Directory.CreateDirectory(Path.Combine(targetGamePath, "pixelart"));
                     }
                     File.Copy(desktopFilePath, Path.Combine(targetGamePath, $"{originalCode}.desktop"), true);
+                    var gameSize = NesMiniApplication.DirectorySize(targetGamePath);
                     stats.TotalSize += gameSize;
-                    stats.TransferSize += gameSize;
                     stats.TotalGames++;
                 }
                 else if (element is NesMiniApplication)
@@ -1312,7 +1336,6 @@ namespace com.clusterrr.hakchi_gui
                     Debug.WriteLine(string.Format("Processing {0} ('{1}'), size: {2}KB", game.Code, game.Name, gameSize / 1024));
                     var gameCopy = game.CopyTo(targetDirectory);
                     stats.TotalSize += gameSize;
-                    stats.TransferSize += gameSize;
                     stats.TotalGames++;
                     try
                     {
@@ -1351,7 +1374,6 @@ namespace com.clusterrr.hakchi_gui
                     var folderDir = Path.Combine(targetDirectory, folder.Code);
                     var folderSize = folder.Save(folderDir);
                     stats.TotalSize += folderSize;
-                    stats.TransferSize += folderSize;
 
                 }
                 if (element is NesDefaultGame)
@@ -1363,13 +1385,13 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private bool ExecuteTool(string tool, string args, string directory = null, bool external = false)
+        private bool ExecuteTool(string tool, string args, string directory = null, bool external = false, Action<string> onLineOutput = null)
         {
             byte[] output;
-            return ExecuteTool(tool, args, out output, directory, external);
+            return ExecuteTool(tool, args, out output, directory, external, onLineOutput);
         }
 
-        private bool ExecuteTool(string tool, string args, out byte[] output, string directory = null, bool external = false)
+        private bool ExecuteTool(string tool, string args, out byte[] output, string directory = null, bool external = false, Action<string> onLineOutput = null)
         {
             var process = new Process();
             var appDirectory = baseDirectoryInternal;
@@ -1389,11 +1411,38 @@ namespace com.clusterrr.hakchi_gui
             Debug.WriteLine("Executing: " + fileName);
             Debug.WriteLine("Arguments: " + args);
             Debug.WriteLine("Directory: " + directory);
+            var outputStr = new StringBuilder();
+            var errorStr = new StringBuilder();
             process.Start();
-            string outputStr = process.StandardOutput.ReadToEnd();
-            string errorStr = process.StandardError.ReadToEnd();
+            if (onLineOutput != null)
+            {
+                var line = new StringBuilder();
+                while (!process.StandardOutput.EndOfStream)
+                {
+                    var b = process.StandardOutput.Read();
+                    if (b >= 0)
+                    {
+                        if ((char)b != '\n' && (char)b != '\r')
+                        {
+                            line.Append((char)b);
+                        }
+                        else
+                        {
+                            if (line.Length > 0)
+                                onLineOutput(line.ToString());
+                            line.Length = 0;
+                        }
+                        outputStr.Append((char)b);
+                    }
+                }
+                if (line.Length > 0)
+                    onLineOutput(line.ToString());
+            }
             process.WaitForExit();
-            output = Encoding.GetEncoding(866).GetBytes(outputStr);
+            outputStr.Append(process.StandardOutput.ReadToEnd());
+            errorStr.Append(process.StandardError.ReadToEnd());
+
+            output = Encoding.GetEncoding(866).GetBytes(outputStr.ToString());
             Debug.WriteLineIf(outputStr.Length > 0 && outputStr.Length < 300, "Output:\r\n" + outputStr);
             Debug.WriteLineIf(errorStr.Length > 0, "Errors:\r\n" + errorStr);
             Debug.WriteLine("Exit code: " + process.ExitCode);
