@@ -1,4 +1,5 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
+using com.clusterrr.util;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -237,6 +238,63 @@ namespace com.clusterrr.hakchi_gui
         public static bool IsVersionGreaterOrEqual(string given, string minimum)
         {
             return new Version(given).CompareTo(new Version(minimum)) > -1;
+        }
+
+        public static HashSet<ApplicationFileInfo> GetApplicationFileInfoForDirectory(string rootDirectory, bool recursive = true)
+        {
+            var fileInfoSet = new HashSet<ApplicationFileInfo>();
+            var filepaths = Directory.GetFiles(rootDirectory, "*", recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
+
+            foreach (string path in filepaths)
+            {
+                // follow through on tarstreamref files
+                string pathToRead = path;
+                bool isRefFile = false;
+
+                if (TarStream.refRegex.IsMatch(path))
+                {
+                    pathToRead = File.ReadAllText(path);
+                    isRefFile = true;
+                }
+
+                // make the filepath match what we'd get back from the console
+                string canonicalPath = "." + path.Remove(0, rootDirectory.Length).Replace("\\", "/").Replace(".tarstreamref", "");
+                FileInfo f = new FileInfo(pathToRead);
+                fileInfoSet.Add(new ApplicationFileInfo(canonicalPath, f.Length, f.LastWriteTimeUtc, isRefFile));
+            }
+
+            return fileInfoSet;
+        }
+
+        public static HashSet<ApplicationFileInfo> GetApplicationFileInfoFromConsoleOutput(string output)
+        {
+            var fileInfoSet = new HashSet<ApplicationFileInfo>();
+            string[] consoleFileEntries = output.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string path in consoleFileEntries)
+            {
+                string[] elems = path.Split(new char[] { ' ' }, 3);
+                long filesize = long.Parse(elems[1]);
+                DateTime lastWriteTime = DateTime.Parse(elems[2]);
+                fileInfoSet.Add(new ApplicationFileInfo(elems[0], filesize, lastWriteTime, false));
+            }
+
+            return fileInfoSet;
+        }
+
+        public static string GetRemoteGameSyncPath()
+        {
+            var clovershell = MainForm.Clovershell;
+            string gameSyncStorage = clovershell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
+            string gameSyncPath = gameSyncStorage;
+
+            if (ConfigIni.SeparateGameStorage)
+            {
+                string systemCode = clovershell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
+                gameSyncPath = $"{gameSyncStorage}/{systemCode}";
+            }
+
+            return gameSyncPath;
         }
     }
 }

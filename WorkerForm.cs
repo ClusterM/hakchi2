@@ -1038,12 +1038,8 @@ namespace com.clusterrr.hakchi_gui
                     DialogResult = DialogResult.Abort;
                     return;
                 }
-                string systemCode = clovershell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
-                gameSyncStorage = clovershell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
-                gameSyncPath = gameSyncStorage;
-                if (ConfigIni.SeparateGameStorage)
-                    gameSyncPath = $"{gameSyncStorage}/{systemCode}";
 
+                gameSyncPath = Shared.GetRemoteGameSyncPath();
                 gamesPath = clovershell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
                 rootFsPath = clovershell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
                 squashFsPath = clovershell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
@@ -1074,18 +1070,29 @@ namespace com.clusterrr.hakchi_gui
                         (StorageUsed - WrittenGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
                 }
 
-                clovershell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
+                // Determine which games need to actually be transferred (differential updates):
+                // Get the list of local files, timestamps, and sizes
+                HashSet<ApplicationFileInfo> localGameSet = Shared.GetApplicationFileInfoForDirectory(tempGamesDirectory);
 
+                // Get the remote list of files, timestamps, and sizes
+                string gamesOnDevice = clovershell.ExecuteSimple($"cd \"{gameSyncPath}\"; find . -type f -exec sh -c \"stat \\\"{{}}\\\" -c \\\"%n %s %y\\\"\" \\;", 60000, true);
+                HashSet<ApplicationFileInfo> remoteGameSet = Shared.GetApplicationFileInfoFromConsoleOutput(gamesOnDevice);
+
+                // Delete any remote files that aren't present locally
+                var remoteGamesToDelete = remoteGameSet.Except(localGameSet);
+                DeleteRemoteApplicationFiles(remoteGamesToDelete);
+
+                // Delete any local files that are already present on the remote
+                var localGamesToDelete = localGameSet.Intersect(remoteGameSet);
+                DeleteLocalApplicationFilesFromDirectory(localGamesToDelete, tempGamesDirectory);
+
+                // Now transfer whatever games are remaining in the temp directory
+                clovershell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
                 using (var gamesTar = new TarStream(tempGamesDirectory, null, null))
                 {
                     maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 20 + originalGames.Count() * 2);
                     SetProgress(progress, maxProgress);
                     
-                    clovershell.ExecuteSimple($"rm -rf {gameSyncPath}", 5000, false);
-                    if (ConfigIni.SeparateGameStorage)
-                        clovershell.ExecuteSimple("find \"$(hakchi findGameSyncStorage)/\" -maxdepth 1 | grep -vEe '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' | while read f; do rm -rf \"$f\"; done", 2000, true);
-                    clovershell.ExecuteSimple($"mkdir -p \"{gameSyncPath}\"", 3000, true);
-
                     if (gamesTar.Length > 0)
                     {
                         gamesTar.OnReadProgress += delegate (long pos, long len)
@@ -1099,6 +1106,10 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
 
+                // Finally, delete any empty directories we may have left during the differential sync
+                clovershell.ExecuteSimple($"for f in $(find {gameSyncPath} -type d -mindepth 1 -maxdepth 2); do {{ ls -1 $f | grep -v pixelart | grep -v autoplay " +
+                    "| wc -l | { read wc; test $wc -eq 0 && rm -rf $f; } } ; done", 60000);
+
                 SetStatus(Resources.UploadingOriginalGames);
                 // Need to make sure that squashfs if mounted
                 startProgress = progress;
@@ -1111,20 +1122,21 @@ namespace com.clusterrr.hakchi_gui
                         case MainForm.ConsoleType.Famicom:
                             originalSyncCode =
                                 $"src=\"{squashFsPath}{gamesPath}/{originalCode}\" && " +
-                                $"dst=\"{gameSyncPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
+                                $"dst=\"{gameSyncPath}/{originalGames[originalCode]}/{originalCode}\" && " +
                                 $"mkdir -p \"$dst\" && " +
-                                $"ln -s \"$src/autoplay/\" \"$dst/autoplay\" && " +
-                                $"ln -s \"$src/pixelart/\" \"$dst/pixelart\"";
+                                $"([ -e \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\") && " +
+                                $"([ -e \"$dst/pixelart\" ] || ln -s \"$src/pixelart\" \"$dst/\")";
                             break;
                         case MainForm.ConsoleType.SNES:
                         case MainForm.ConsoleType.SuperFamicom:
                             originalSyncCode =
                                 $"src=\"{squashFsPath}{gamesPath}/{originalCode}\" && " +
-                                $"dst=\"{gameSyncPath}/{originalGames[originalCode]}/{originalCode}/\" && " +
+                                $"dst=\"{gameSyncPath}/{originalGames[originalCode]}/{originalCode}\" && " +
                                 $"mkdir -p \"$dst\" && " +
-                                $"ln -s \"$src/autoplay/\" \"$dst/autoplay\"";
+                                $"([ -e \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\")";
                             break;
                     }
+
                     originalSyncCode += $" && sed -Ee 's#([ =])(/var/lib/hakchi/squashfs)?{gamesPath}/#\\1{squashFsPath}{gamesPath}/#' -i '{gameSyncPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.desktop' && " +
                         "echo 'OK'";
                     clovershell.ExecuteSimple(originalSyncCode, 30000, true);
@@ -1155,6 +1167,53 @@ namespace com.clusterrr.hakchi_gui
                         clovershell.ExecuteSimple("hakchi overmount_games; uistart", 100);
                 }
                 catch { }
+            }
+        }
+
+        private void DeleteRemoteApplicationFiles(IEnumerable<ApplicationFileInfo> filesToDelete)
+        {
+            var clovershell = MainForm.Clovershell;
+            string syncPath = Shared.GetRemoteGameSyncPath();
+            MemoryStream commandBuilder = new MemoryStream();
+
+            string data = $"#!/bin/sh\ncd \"{syncPath}\"\n";
+            commandBuilder.Write(Encoding.UTF8.GetBytes(data), 0, data.Length);
+
+            foreach (ApplicationFileInfo appInfo in filesToDelete)
+            {
+                data = $"rm \"{appInfo.Filepath}\"\n";
+                commandBuilder.Write(Encoding.UTF8.GetBytes(data), 0, data.Length);
+            }
+
+            try
+            {
+                clovershell.Execute("cat > /tmp/cleanup.sh", commandBuilder, null, null, 5000, true);
+                clovershell.ExecuteSimple("chmod +x /tmp/cleanup.sh && /tmp/cleanup.sh", 60000, true);
+            }
+            finally
+            {
+                clovershell.ExecuteSimple("rm /tmp/cleanup.sh");
+            }
+        }
+
+        private void DeleteLocalApplicationFilesFromDirectory(IEnumerable<ApplicationFileInfo> filesToDelete, string rootDirectory)
+        {
+            foreach (ApplicationFileInfo appInfo in filesToDelete)
+            {
+                string filepath = rootDirectory + appInfo.Filepath.Substring(1).Replace('/', '\\');
+                if (appInfo.IsTarStreamRefFile)
+                {
+                    filepath += ".tarstreamref";
+                }
+
+                File.Delete(filepath);
+
+                // determine if the folder is empty now -- if so, delete the folder also
+                string directory = Path.GetDirectoryName(filepath);
+                if (new DirectoryInfo(directory).GetFiles().Length == 0)
+                {
+                    Directory.Delete(directory);
+                }
             }
         }
 

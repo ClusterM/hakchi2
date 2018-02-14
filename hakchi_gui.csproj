@@ -136,6 +136,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="ApplicationFileInfo.cs" />
     <Compile Include="Apps\AppTypeCollection.cs" />
     <Compile Include="Apps\ArcadeGame.cs" />
     <Compile Include="Apps\Atari2600Game.cs" />
