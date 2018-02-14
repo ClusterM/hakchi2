@@ -147,6 +147,7 @@
     <Compile Include="Apps\ISupportsGameGenie.cs" />
     <Compile Include="Apps\CoreCollection.cs" />
     <Compile Include="Apps\LibretroGame.cs" />
+    <Compile Include="Apps\NesMenuElementBase.cs" />
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="SfromToolWrapper.cs" />
     <Compile Include="ExportGamesDialog.cs">
