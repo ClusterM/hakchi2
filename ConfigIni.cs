@@ -617,8 +617,12 @@ namespace com.clusterrr.hakchi_gui
             File.WriteAllLines(fileName, configLines.ToArray());
         }
 
-        public static Dictionary<string, string> GetConfigDictionary()
+        public static Dictionary<string, string> GetConfigDictionary(MainForm.ConsoleType? consoleType = null)
         {
+            MainForm.ConsoleType oldConsoleType = ConsoleType;
+            if (consoleType != null && consoleType != MainForm.ConsoleType.Unknown)
+                ConsoleType = consoleType ?? MainForm.ConsoleType.Unknown;
+
             var config = new Dictionary<string, string>();
             config["clovercon_home_combination"] = ConfigIni.ResetHack ? string.Format("0x{0:X4}", ConfigIni.ResetCombination) : "0x7FFF";
             config["clovercon_autofire"] = ConfigIni.AutofireHack ? "1" : "0";
@@ -630,6 +634,8 @@ namespace com.clusterrr.hakchi_gui
                 config["nes_extra_args"] = ConfigIni.ExtraCommandLineArguments;
             if ((ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom))
                 config["snes_extra_args"] = ConfigIni.ExtraCommandLineArguments;
+
+            ConsoleType = oldConsoleType;
             return config;
         }
     }

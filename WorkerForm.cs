@@ -88,24 +88,7 @@ namespace com.clusterrr.hakchi_gui
         public NesMiniApplication[] addedApplications;
         public static long NandCTotal, NandCUsed, NandCFree, WritedGamesSize, SaveStatesSize;
         public static bool ExternalSaves = false;
-        public static long ReservedMemory
-        {
-            get
-            {
-                if (ExternalSaves)
-                    return 5;
-                switch (ConfigIni.ConsoleType)
-                {
-                    default:
-                    case MainForm.ConsoleType.NES:
-                    case MainForm.ConsoleType.Famicom:
-                        return 10;
-                    case MainForm.ConsoleType.SNES:
-                    case MainForm.ConsoleType.SuperFamicom:
-                        return 30;
-                }
-            }
-        }
+        public const long ReservedMemory = 30;
 
         public static string SubConsoleDirectory
         {
@@ -808,36 +791,42 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void File_OnProgress(long Position, long Length)
-        {
-            throw new NotImplementedException();
-        }
-
         public static void GetMemoryStats(string gameSyncStorage = null)
         {
-            string originalGamesPath = NesMiniApplication.GamesCloverPath;
-            const string rootFsPath = "/var/lib/hakchi/rootfs";
+            try
+            {
+                string originalGamesPath = NesMiniApplication.GamesCloverPath;
+                const string rootFsPath = "/var/lib/hakchi/rootfs";
 
-            var clovershell = MainForm.Clovershell;
-            if (gameSyncStorage == null) gameSyncStorage = clovershell.ExecuteSimple($"hakchi findGameSyncStorage", 3000, false);
-            var storageDevice = clovershell.ExecuteSimple("df /var/games | sed -n '2p' | awk '{print $1}'", 3000, true);
-            if (storageDevice.Equals("/dev/mapper/root-crypt")) storageDevice = "/dev/nandc";
-            var storageStats = clovershell.ExecuteSimple("df " + storageDevice + " | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 3000, true).Split('|');
+                var clovershell = MainForm.Clovershell;
+                if (gameSyncStorage == null) gameSyncStorage = clovershell.ExecuteSimple($"hakchi findGameSyncStorage", 3000, true);
+                var storageDevice = clovershell.ExecuteSimple($"df {gameSyncStorage} | sed -n '2p' | awk '{{print $1}}'", 3000, true);
+                var storageStats = clovershell.ExecuteSimple($"df {storageDevice} | tail -n 1 | awk '{{ print $2 \" | \" $3 \" | \" $4 }}'", 3000, true).Split('|');
 
-            ExternalSaves = clovershell.ExecuteSimple("mount | grep /var/lib/clover").Trim().Length > 0;
-            var writedGamesSizeAll = long.Parse(clovershell.ExecuteSimple($"mkdir -p {rootFsPath}{originalGamesPath} && du -s {rootFsPath}{originalGamesPath} | awk '{{ print $1 }}'", 3000, true)) * 1024;
-            if (gameSyncStorage != $"{rootFsPath}{originalGamesPath}")
-                writedGamesSizeAll += long.Parse(clovershell.ExecuteSimple($"mkdir -p {gameSyncStorage}/{SubConsoleDirectory}/ && du -s {gameSyncStorage}/{SubConsoleDirectory}/ | awk '{{ print $1 }}'", 3000, true)) * 1024;
-            WritedGamesSize = writedGamesSizeAll;
-            SaveStatesSize = long.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/clover/profiles/0/ && du -s /var/lib/clover/profiles/0/ | awk '{ print $1 }'", 3000, true)) * 1024;
-            NandCTotal = long.Parse(storageStats[0]) * 1024;
-            NandCUsed = long.Parse(storageStats[1]) * 1024;
-            NandCFree = long.Parse(storageStats[2]) * 1024;
-            Debug.WriteLine(string.Format("Storage device size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", NandCTotal / 1024.0 / 1024.0, NandCUsed / 1024.0 / 1024.0, NandCFree / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Used by games: {0:F1}MB", WritedGamesSize / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", SaveStatesSize / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Available for games: {0:F1}MB", (NandCFree + WritedGamesSize) / 1024.0 / 1024.0));
+                ExternalSaves = clovershell.ExecuteSimple("mount | grep /var/lib/clover").Trim().Length > 0;
+                var writedGamesSizeAll = long.Parse(clovershell.ExecuteSimple($"mkdir -p {rootFsPath}{originalGamesPath} && du -s {rootFsPath}{originalGamesPath} | awk '{{ print $1 }}'", 3000, true)) * 1024;
+                if (gameSyncStorage != $"{rootFsPath}{originalGamesPath}")
+                    writedGamesSizeAll += long.Parse(clovershell.ExecuteSimple($"mkdir -p {gameSyncStorage}/{SubConsoleDirectory}/ && du -s {gameSyncStorage}/{SubConsoleDirectory}/ | awk '{{ print $1 }}'", 3000, true)) * 1024;
+                WritedGamesSize = writedGamesSizeAll;
+                SaveStatesSize = long.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/clover/profiles/0/ && du -s /var/lib/clover/profiles/0/ | awk '{ print $1 }'", 3000, true)) * 1024;
+                NandCTotal = long.Parse(storageStats[0]) * 1024;
+                NandCUsed = long.Parse(storageStats[1]) * 1024;
+                NandCFree = long.Parse(storageStats[2]) * 1024;
+                Debug.WriteLine(string.Format("Storage device size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", NandCTotal / 1024.0 / 1024.0, NandCUsed / 1024.0 / 1024.0, NandCFree / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by games: {0:F1}MB", WritedGamesSize / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", SaveStatesSize / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Available for games: {0:F1}MB", (NandCFree + WritedGamesSize) / 1024.0 / 1024.0));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error: " + ex.Message + ex.StackTrace);
+                NandCTotal = -1;
+                NandCUsed = -1;
+                NandCFree = -1;
+                WritedGamesSize = -1;
+                SaveStatesSize = -1;
+            }
         }
 
         public static void ShowSplashScreen()
@@ -917,15 +906,18 @@ namespace com.clusterrr.hakchi_gui
                 {
                     var gameSyncStorage = clovershell.ExecuteSimple($"hakchi findGameSyncStorage", 3000, false);
                     GetMemoryStats(gameSyncStorage);
-                    var maxGamesSize = (NandCFree + WritedGamesSize) - ReservedMemory * 1024 * 1024;
-                    if (stats.TotalSize > maxGamesSize)
+                    if (NandCFree >= 0)
                     {
-                        throw new Exception(string.Format(Resources.MemoryFull, stats.TotalSize / 1024 / 1024) + "\r\n\r\n" +
-                            string.Format(Resources.MemoryStats.Replace("|", "\r\n"),
-                            NandCTotal / 1024.0 / 1024.0,
-                            (NandCFree + WritedGamesSize - ReservedMemory * 1024 * 1024) / 1024 / 1024,
-                            SaveStatesSize / 1024.0 / 1024.0,
-                            (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
+                        var maxGamesSize = (NandCFree + WritedGamesSize) - ReservedMemory * 1024 * 1024;
+                        if (stats.TotalSize > maxGamesSize)
+                        {
+                            throw new Exception(string.Format(Resources.MemoryFull, stats.TotalSize / 1024 / 1024) + "\r\n\r\n" +
+                                string.Format(Resources.MemoryStats.Replace("|", "\r\n"),
+                                NandCTotal / 1024.0 / 1024.0,
+                                (NandCFree + WritedGamesSize - ReservedMemory * 1024 * 1024) / 1024 / 1024,
+                                SaveStatesSize / 1024.0 / 1024.0,
+                                (NandCUsed - WritedGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
+                        }
                     }
 
                     using (var gamesTar = new TarStream(tempGamesDirectory))
@@ -948,11 +940,11 @@ namespace com.clusterrr.hakchi_gui
                     }
 
                     SetStatus(Resources.UploadingConfig);
-                    SyncConfig(Config);
+                    SyncConfig();
                 }
                 else // exportGames = true
                 {
-                    SetStatus("Writing games to USB drive...");
+                    SetStatus("Writing games to USB drive..."); // TODO: Add translation
                     maxProgress = (int)(stats.TotalSize / 1024 / 1024 + 20);
                     SetProgress(progress, maxProgress);
                     Directory.CreateDirectory(exportDirectory);
@@ -963,7 +955,7 @@ namespace com.clusterrr.hakchi_gui
                         {
                             if (line.EndsWith("/"))
                             {
-                                SetStatus("Writing games to USB drive... " + line.Replace("/", "\\"));
+                                SetStatus("Writing games to USB drive... " + line.Replace("/", "\\")); // TODO: Add translation
                                 if (!line.StartsWith("deleting"))
                                 {
                                     if (lastDirectory != null && !line.StartsWith(lastDirectory)) // Previous directory transfered
@@ -1028,23 +1020,34 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static void SyncConfig(Dictionary<string, string> Config, bool reboot = false)
+        public static void SyncConfig(bool reboot = false)
+        {
+            bool dumb;
+            MainForm.ConsoleType realConsoleType;
+            SyncConfig(out dumb, out realConsoleType, reboot);
+        }
+
+        public static void SyncConfig(out bool customFirmware, out MainForm.ConsoleType realConsoleType, bool reboot = false)
         {
             var clovershell = MainForm.Clovershell;
             const string configPath = "/etc/preinit.d/p0000_config";
 
+            realConsoleType = GetRealConsoleType();
+            customFirmware = realConsoleType != ConfigIni.ConsoleType;
+            var config = ConfigIni.GetConfigDictionary(realConsoleType);
             // Writing config
-            var config = new MemoryStream();
-            if (Config != null && Config.Count > 0)
+            var configStream = new MemoryStream();
+            if (config != null && config.Count > 0)
             {
-                foreach (var key in Config.Keys)
+                foreach (var key in config.Keys)
                 {
-                    var data = Encoding.UTF8.GetBytes(string.Format("cfg_{0}='{1}'\n", key, Config[key].Replace(@"'", @"\'")));
-                    config.Write(data, 0, data.Length);
+                    var data = Encoding.UTF8.GetBytes(string.Format("cfg_{0}='{1}'\n", key, config[key].Replace(@"'", @"\'")));
+                    configStream.Write(data, 0, data.Length);
                 }
             }
-            clovershell.Execute($"cat >> {configPath}", config, null, null, 3000, true);
-            config.Dispose();
+            clovershell.Execute($"cat >> {configPath}", configStream, null, null, 3000, true);
+            configStream.Dispose();
+
             if (reboot)
             {
                 try
@@ -1053,6 +1056,56 @@ namespace com.clusterrr.hakchi_gui
                 }
                 catch { }
             }
+        }
+
+        public static MainForm.ConsoleType GetRealConsoleType() // Retreives real console type
+        {
+            var clovershell = MainForm.Clovershell;
+            var customFirmwareLoaded = clovershell.ExecuteSimple("hakchi currentFirmware") != "_nand_";
+            string board, region;
+            if (!customFirmwareLoaded)
+            {
+                board = clovershell.ExecuteSimple("cat /etc/clover/boardtype", 3000, true);
+                region = clovershell.ExecuteSimple("cat /etc/clover/REGION", 3000, true);
+            }
+            else
+            {
+                clovershell.ExecuteSimple("cryptsetup open /dev/nandb root-crypt --readonly --type plain --cipher aes-xts-plain --key-file /etc/key-file", 3000);
+                clovershell.ExecuteSimple("mkdir -p /var/squashfs-original", 3000, true);
+                clovershell.ExecuteSimple("mount /dev/mapper/root-crypt /var/squashfs-original", 3000, true);
+                board = clovershell.ExecuteSimple("cat /var/squashfs-original/etc/clover/boardtype", 3000, true);
+                region = clovershell.ExecuteSimple("cat /var/squashfs-original/etc/clover/REGION", 3000, true);
+                clovershell.ExecuteSimple("umount /var/squashfs-original", 3000, true);
+                clovershell.ExecuteSimple("rm -rf /var/squashfs-original", 3000, true);
+                clovershell.ExecuteSimple("cryptsetup close root-crypt", 3000, true);
+            }
+            Debug.WriteLine(string.Format("Detected board: {0}", board));
+            Debug.WriteLine(string.Format("Detected region: {0}", region));
+            switch (board)
+            {
+                default:
+                case "dp-nes":
+                case "dp-hvc":
+                    switch (region)
+                    {
+                        case "EUR_USA":
+                            return MainForm.ConsoleType.NES;
+                        case "JPN":
+                            return MainForm.ConsoleType.Famicom;
+                    }
+                    break;
+                case "dp-shvc":
+                    switch (region)
+                    {
+                        case "USA":
+                        case "EUR":
+                            return MainForm.ConsoleType.SNES;
+                        case "JPN":
+                            return MainForm.ConsoleType.SuperFamicom;
+                    }
+                    break;
+            }
+            return MainForm.ConsoleType.Unknown;
         }
 
         public static Image TakeScreenshot()

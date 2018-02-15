@@ -182,18 +182,6 @@ namespace com.clusterrr.hakchi_gui
                 InternalMods = from m in Directory.GetFiles(Path.Combine(Program.BaseDirectoryInternal, "mods/hmods")) select Path.GetFileNameWithoutExtension(m);
                 LoadPresets();
                 LoadLanguages();
-                var version = Assembly.GetExecutingAssembly().GetName().Version;
-                Text = string.Format("hakchi2 - v{0}.{1:D2}{2}", version.Major, version.Build, (version.Revision < 10) ?
-                    ("rc" + version.Revision.ToString()) : (version.Revision > 20 ? ((char)('a' + (version.Revision - 20) / 10)).ToString() : ""))
-#if DEBUG
- + " (debug version"
-#if VERY_DEBUG
- + ", very verbose mode"
-#endif
- + ")"
-#endif
-;
-
                 listViewGames.ListViewItemSorter = new GamesSorter();
 
                 // Little tweak for easy translation
@@ -234,71 +222,47 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        void SetWindowTitle()
+        {
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            Text = string.Format("hakchi2 - v{0}.{1:D2}{2}", version.Major, version.Build, (version.Revision < 10) ?
+                ("rc" + version.Revision.ToString()) : (version.Revision > 20 ? ((char)('a' + (version.Revision - 20) / 10)).ToString() : ""))
+#if DEBUG
+                + " (debug version"
+#if VERY_DEBUG
+                + ", very verbose mode"
+#endif
+                + ")"
+#endif
+                + " - " + GetConsoleName();
+        }
+
+        public string GetConsoleName(ConsoleType? consoleType = null)
+        {
+            if (consoleType == null || consoleType == ConsoleType.Unknown)
+                consoleType = ConfigIni.ConsoleType;
+            switch (consoleType ?? ConsoleType.Unknown)
+            {
+                case ConsoleType.NES:
+                    return nESMiniToolStripMenuItem.Text;
+                case ConsoleType.Famicom:
+                    return famicomMiniToolStripMenuItem.Text;
+                case ConsoleType.SNES:
+                    return sNESMiniToolStripMenuItem.Text;
+                case ConsoleType.SuperFamicom:
+                    return superFamicomMiniToolStripMenuItem.Text;
+                default:
+                    return "unknown console";
+            }
+        }
+
         void Clovershell_OnConnected()
         {
             try
             {
-                // Trying to autodetect console type
-                var customFirmware = Clovershell.ExecuteSimple("[ -d /var/lib/hakchi/firmware/ ] && [ -f /var/lib/hakchi/firmware/*.hsqs ] && echo YES || echo NO");
-                if (customFirmware == "NO")
-                {
-                    var board = Clovershell.ExecuteSimple("cat /etc/clover/boardtype", 500, true);
-                    var region = Clovershell.ExecuteSimple("cat /etc/clover/REGION", 500, true);
-                    Debug.WriteLine(string.Format("Detected board: {0}", board));
-                    Debug.WriteLine(string.Format("Detected region: {0}", region));
-                    switch (board)
-                    {
-                        default:
-                        case "dp-nes":
-                        case "dp-hvc":
-                            switch (region)
-                            {
-                                case "EUR_USA":
-                                    ConfigIni.ConsoleType = ConsoleType.NES;
-                                    break;
-                                case "JPN":
-                                    ConfigIni.ConsoleType = ConsoleType.Famicom;
-                                    break;
-                            }
-                            break;
-                        case "dp-shvc":
-                            switch (region)
-                            {
-                                case "USA":
-                                case "EUR":
-                                    ConfigIni.ConsoleType = ConsoleType.SNES;
-                                    break;
-                                case "JPN":
-                                    ConfigIni.ConsoleType = ConsoleType.SuperFamicom;
-                                    break;
-                            }
-                            break;
-                    }
-                    Invoke(new Action(SyncConsoleType));
-                }
-
                 ConfigIni.CustomFlashed = true; // Just in case of new installation
-
                 WorkerForm.GetMemoryStats();
                 new Thread(RecalculateSelectedGamesThread).Start();
-
-                /*
-                // It's good idea to sync time... or not?
-                // Requesting autoshutdown state
-                var autoshutdown = Clovershell.ExecuteSimple("cat /var/lib/clover/profiles/0/shutdown.txt");
-                // Disable automatic shutdown
-                if (autoshutdown != "0")
-                {
-                    Clovershell.ExecuteSimple("echo -n 0 > /var/lib/clover/profiles/0/shutdown.txt");
-                    Thread.Sleep(1500);
-                }
-                // Setting actual time for file transfer operations
-                Clovershell.ExecuteSimple(string.Format("date -s \"{0:yyyy-MM-dd HH:mm:ss}\"", DateTime.UtcNow));
-                // Restoring automatic shutdown
-                if (autoshutdown != "0")
-                    Clovershell.ExecuteSimple(string.Format("echo -n {0} > /var/lib/clover/profiles/0/shutdown.txt", autoshutdown));
-                */
-                // It was bad idea
             }
             catch (Exception ex)
             {
@@ -1362,6 +1326,7 @@ namespace com.clusterrr.hakchi_gui
 
             LoadHidden();
             LoadGames();
+            SetWindowTitle();
             lastConsoleType = ConfigIni.ConsoleType;
         }
 
@@ -1607,8 +1572,15 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (WaitingClovershellForm.WaitForDevice(this))
                 {
-                    WorkerForm.SyncConfig(ConfigIni.GetConfigDictionary(), true);
-                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    bool customFirmware;
+                    ConsoleType realConsoleType;
+                    WorkerForm.SyncConfig(out customFirmware, out realConsoleType, true);
+                    if (!customFirmware)
+                        MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else // TODO: Add translation
+                        MessageBox.Show(string.Format("Config saved. Please note that configuration for real console ({0}) was used, not for selected console ({1}).",
+                            GetConsoleName(realConsoleType), GetConsoleName(ConfigIni.ConsoleType)),
+                            Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -1879,7 +1851,6 @@ namespace com.clusterrr.hakchi_gui
                     foreach (ListViewItem item in listViewGames.SelectedItems)
                         if (item.Tag is NesMiniApplication)
                             listViewGames.Items.Remove(item);
-                    //MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else LoadGames();
                 timerCalculateGames.Enabled = true;
@@ -1972,7 +1943,7 @@ namespace com.clusterrr.hakchi_gui
                 MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
         private void openSelectedGamesFolderInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openSelectedInExplorer();
