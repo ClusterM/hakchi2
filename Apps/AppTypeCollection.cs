@@ -33,7 +33,7 @@ namespace com.clusterrr.hakchi_gui
             Unknown = true
         };
 
-        public static readonly AppInfo GenericLibretroApplicationType = new AppInfo
+        public static readonly AppInfo LibretroApplicationType = new AppInfo
         {
             Name = "Libretro System",
             LegacyName = "LibretroGame",
@@ -53,7 +53,7 @@ namespace com.clusterrr.hakchi_gui
                 LegacyName = "NesGame",
                 Class = typeof(NesGame),
                 Extensions = new string[] {".nes" },
-                DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "/bin/nes" },
+                DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "usr/bin/clover-kachikachi", "/bin/nes" },
                 Prefix = 'H',
                 DefaultCover = Resources.blank_nes,
                 GoogleSuffix = "(nes | famicom)"
@@ -64,7 +64,7 @@ namespace com.clusterrr.hakchi_gui
                 LegacyName = "UNesGame",
                 Class = typeof(NesGame),
                 Extensions = new string[] {".unf", ".unif" },
-                DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "/bin/nes" },
+                DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "usr/bin/clover-kachikachi", "/bin/nes" },
                 Prefix = 'I',
                 DefaultCover = Resources.blank_jp,
                 GoogleSuffix = "(fds | nes | famicom)"
@@ -75,7 +75,7 @@ namespace com.clusterrr.hakchi_gui
                 LegacyName = "FdsGame",
                 Class = typeof(FdsGame),
                 Extensions = new string[] {".fds" },
-                DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "/bin/nes" },
+                DefaultApps = new string[] {"/bin/clover-kachikachi-wr", "usr/bin/clover-kachikachi", "/bin/nes" },
                 Prefix = 'D',
                 DefaultCover = Resources.blank_fds,
                 GoogleSuffix = "(fds | nes | famicom)"
@@ -86,7 +86,7 @@ namespace com.clusterrr.hakchi_gui
                 LegacyName = "SnesGame",
                 Class = typeof(SnesGame),
                 Extensions = new string[] {".sfrom",".smc",".sfc" },
-                DefaultApps = new string[] {"/bin/clover-canoe-shvc-wr", "/bin/snes" },
+                DefaultApps = new string[] {"/bin/clover-canoe-shvc-wr", "usr/bin/clover-canoe-shvc", "/bin/snes" },
                 Prefix = 'U',
                 DefaultCover = Resources.blank_snes_us,
                 GoogleSuffix = "(snes | super nintendo)"

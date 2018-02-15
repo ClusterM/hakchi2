@@ -7,7 +7,7 @@ using System.Text;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public class DesktopFile : INesMenuElement
+    public class DesktopFile : INesMenuElement, ICloneable
     {
         private string type = "Application";
         public string Type
@@ -260,14 +260,13 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private bool hasUnsavedChanges = false;
-
         private string currentFilePath = null;
         public string CurrentFilePath
         {
             get;
         }
 
+        private bool hasUnsavedChanges = false;
         public bool Load(string configPath)
         {
             if (!File.Exists(configPath)) throw new FileNotFoundException();
@@ -349,7 +348,7 @@ namespace com.clusterrr.hakchi_gui
             return true;
         }
 
-        public void CopyTo(string configPath, bool snesExtraFields = false, bool omitSavePathCode = false)
+        public void SaveTo(string configPath, bool snesExtraFields = false, bool omitSavePathCode = false)
         {
             File.WriteAllText(configPath,
                 $"[Desktop Entry]\n" +
@@ -380,9 +379,14 @@ namespace com.clusterrr.hakchi_gui
 
             if (hasUnsavedChanges)
             {
-                CopyTo(currentFilePath, snesExtraFields, omitSavePathCode);
+                SaveTo(currentFilePath, snesExtraFields, omitSavePathCode);
                 hasUnsavedChanges = false;
             }
+        }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
     }
 }
