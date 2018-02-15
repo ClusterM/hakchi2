@@ -159,6 +159,7 @@ namespace com.clusterrr.hakchi_gui
         {
             InitializeComponent();
             FormInitialize();
+
             Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
             Clovershell.OnConnected += Clovershell_OnConnected;
 
@@ -260,9 +261,10 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                ConfigIni.CustomFlashed = true; // Just in case of new installation
                 WorkerForm.GetMemoryStats();
                 new Thread(RecalculateSelectedGamesThread).Start();
+                if (WorkerForm.GetRealConsoleType() == ConfigIni.ConsoleType)
+                    ConfigIni.CustomFlashed = true; // Just in case of new installation
             }
             catch (Exception ex)
             {
@@ -1237,6 +1239,11 @@ namespace com.clusterrr.hakchi_gui
         {
             ConfigIni.FcStart = upABStartOnSecondControllerToolStripMenuItem.Checked;
         }
+        
+        private void enableUSBHostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.UsbHost = enableUSBHostToolStripMenuItem.Checked;
+        }
 
         private void selectButtonCombinationToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1270,8 +1277,8 @@ namespace com.clusterrr.hakchi_gui
             famicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.Famicom;
             sNESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.SNES;
             superFamicomMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.SuperFamicom;
-            epilepsyProtectionToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.NES || ConfigIni.ConsoleType == ConsoleType.Famicom;
-            useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.NES || ConfigIni.ConsoleType == ConsoleType.Famicom;
+            //epilepsyProtectionToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.NES || ConfigIni.ConsoleType == ConsoleType.Famicom;
+            //useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.NES || ConfigIni.ConsoleType == ConsoleType.Famicom;
             upABStartOnSecondControllerToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.Famicom;
 
             // Some settnigs
@@ -1282,6 +1289,7 @@ namespace com.clusterrr.hakchi_gui
             useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.AutofireXYHack && useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled;
             upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
             compressGamesToolStripMenuItem.Checked = ConfigIni.Compress;
+            enableUSBHostToolStripMenuItem.Checked = ConfigIni.UsbHost;
 
             // Folders mods
             disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.FoldersMode == 0;
