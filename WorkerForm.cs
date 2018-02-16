@@ -1075,7 +1075,7 @@ namespace com.clusterrr.hakchi_gui
                 HashSet<ApplicationFileInfo> localGameSet = Shared.GetApplicationFileInfoForDirectory(tempGamesDirectory);
 
                 // Get the remote list of files, timestamps, and sizes
-                string gamesOnDevice = clovershell.ExecuteSimple($"cd \"{gameSyncPath}\"; find . -type f -exec sh -c \"stat \\\"{{}}\\\" -c \\\"%n %s %y\\\"\" \\;", 60000, true);
+                string gamesOnDevice = clovershell.ExecuteSimple($"mkdir -p \"{gameSyncPath}\"; cd \"{gameSyncPath}\"; find . -type f -exec sh -c \"stat \\\"{{}}\\\" -c \\\"%n %s %y\\\"\" \\;", 60000, true);
                 HashSet<ApplicationFileInfo> remoteGameSet = Shared.GetApplicationFileInfoFromConsoleOutput(gamesOnDevice);
 
                 // Delete any remote files that aren't present locally
@@ -1102,13 +1102,13 @@ namespace com.clusterrr.hakchi_gui
                         };
 
                         SetStatus(Resources.UploadingGames);
-                        clovershell.Execute($"tar -xvC {gameSyncPath}", gamesTar, null, null, 30000, true);
+                        clovershell.Execute($"tar -xvC \"{gameSyncPath}\"", gamesTar, null, null, 30000, true);
                     }
                 }
 
                 // Finally, delete any empty directories we may have left during the differential sync
-                clovershell.ExecuteSimple($"for f in $(find {gameSyncPath} -type d -mindepth 1 -maxdepth 2); do {{ ls -1 $f | grep -v pixelart | grep -v autoplay " +
-                    "| wc -l | { read wc; test $wc -eq 0 && rm -rf $f; } } ; done", 60000);
+                clovershell.ExecuteSimple($"for f in $(find \"{gameSyncPath}\" -type d -mindepth 1 -maxdepth 2); do {{ ls -1 \"$f\" | grep -v pixelart | grep -v autoplay " +
+                    "| wc -l | { read wc; test $wc -eq 0 && rm -rf \"$f\"; } } ; done", 60000);
 
                 SetStatus(Resources.UploadingOriginalGames);
                 // Need to make sure that squashfs if mounted
