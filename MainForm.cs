@@ -1307,19 +1307,7 @@ namespace com.clusterrr.hakchi_gui
             return workerForm.DialogResult == DialogResult.OK;
         }
 
-        bool DoNandDump()
-        {
-            saveDumpFileDialog.FileName = "nand.bin";
-            saveDumpFileDialog.DefaultExt = "bin";
-            if (saveDumpFileDialog.ShowDialog() != DialogResult.OK)
-                return false;
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.DumpingNand;
-            workerForm.Task = WorkerForm.Tasks.DumpNand;
-            workerForm.NandDump = saveDumpFileDialog.FileName;
-            workerForm.Start();
-            return workerForm.DialogResult == DialogResult.OK;
-        }
+        
 
         bool DoNandFlash()
         {
@@ -1335,44 +1323,77 @@ namespace com.clusterrr.hakchi_gui
             return workerForm.DialogResult == DialogResult.OK;
         }
 
-        bool DoNandBDump()
+        bool DumpDialog(FileAccess type, string FileName, string FileExt, out string DumpFileName)
         {
-            saveDumpFileDialog.FileName = "nandb.hsqs";
-            saveDumpFileDialog.DefaultExt = "hsqs";
-            if (saveDumpFileDialog.ShowDialog() != DialogResult.OK)
-                return false;
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.DumpingNand;
-            workerForm.Task = WorkerForm.Tasks.DumpNandB;
-            workerForm.NandDump = saveDumpFileDialog.FileName;
-            workerForm.Start();
-            return workerForm.DialogResult == DialogResult.OK;
+            DumpFileName = null;
+            switch (type)
+            {
+                case FileAccess.Read:
+                    openDumpFileDialog.FileName = FileName;
+                    openDumpFileDialog.DefaultExt = FileExt;
+                    if (openDumpFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        DumpFileName = openDumpFileDialog.FileName;
+                        return true;
+                    }
+                    return false;
+
+                case FileAccess.Write:
+                    saveDumpFileDialog.FileName = FileName;
+                    saveDumpFileDialog.DefaultExt = FileExt;
+                    if (saveDumpFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        DumpFileName = saveDumpFileDialog.FileName;
+                        return true;
+                    }
+                    return false;
+
+                default:
+                    throw new ArgumentOutOfRangeException("type");
+            }
         }
 
-        bool DoNandCDump()
+        bool DoNand(WorkerForm.Tasks task)
         {
-            saveDumpFileDialog.FileName = "nandc.hsqs";
-            saveDumpFileDialog.DefaultExt = "hsqs";
-            if (saveDumpFileDialog.ShowDialog() != DialogResult.OK)
-                return false;
+            
             var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.DumpingNand;
-            workerForm.Task = WorkerForm.Tasks.DumpNandC;
-            workerForm.NandDump = saveDumpFileDialog.FileName;
-            workerForm.Start();
-            return workerForm.DialogResult == DialogResult.OK;
-        }
+            string dumpFilename = null;
+            switch (task)
+            {
+                case WorkerForm.Tasks.DumpNand:
+                    workerForm.Text = Resources.DumpingNand;
+                    if (!DumpDialog(FileAccess.Write, "nand.bin", "bin", out dumpFilename)) return false;
+                    break;
 
-        bool DoNandCFlash()
-        {
-            openDumpFileDialog.FileName = "nandc.hsqs";
-            openDumpFileDialog.DefaultExt = "hsqs";
-            if (openDumpFileDialog.ShowDialog() != DialogResult.OK)
-                return false;
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.FlashingNand;
-            workerForm.Task = WorkerForm.Tasks.FlashNandC;
-            workerForm.NandDump = openDumpFileDialog.FileName;
+                case WorkerForm.Tasks.DumpNandB:
+                    workerForm.Text = Resources.DumpingNand;
+                    if (!DumpDialog(FileAccess.Write, "nandb.hsqs", "hsqs", out dumpFilename)) return false;
+                    break;
+
+                case WorkerForm.Tasks.FlashNandB:
+                    workerForm.Text = Resources.FlashingNand;
+                    if (!DumpDialog(FileAccess.Read, "nandb.hsqs", "hsqs", out dumpFilename)) return false;
+                    break;
+
+                case WorkerForm.Tasks.DumpNandC:
+                    workerForm.Text = Resources.DumpingNand;
+                    if (!DumpDialog(FileAccess.Write, "nandc.hsqs", "hsqs", out dumpFilename)) return false;
+                    break;
+
+                case WorkerForm.Tasks.FlashNandC:
+                    workerForm.Text = Resources.FlashingNand;
+                    if (!DumpDialog(FileAccess.Read, "nandc.hsqs", "hsqs", out dumpFilename)) return false;
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException("task");
+            }
+            workerForm.NandDump = dumpFilename;
+            workerForm.Task = task;
+            workerForm.zImage = Shared.PathCombine(Program.BaseDirectoryInternal, "data", "zImageMemboot");
+            workerForm.Mod = "mod_general";
+            workerForm.Config = null;
+            workerForm.Games = null;
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
         }
@@ -1429,7 +1450,7 @@ namespace com.clusterrr.hakchi_gui
                 workerForm.hmodsInstall = new List<string>(InternalMods);
 
             if (!String.IsNullOrEmpty(extraFiles))
-                workerForm.ModExtraFilesPath = Shared.PathCombine(Program.BaseDirectoryInternal, "mods", extraFiles);
+                workerForm.ModExtraFilesPaths = new string[] { Shared.PathCombine(Program.BaseDirectoryInternal, "mods", extraFiles) };
 
             workerForm.Config = null;
             workerForm.Games = null;
@@ -1641,7 +1662,8 @@ namespace com.clusterrr.hakchi_gui
 
         private void dumpTheWholeNANDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DoNandDump()) MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (DoNand(WorkerForm.Tasks.DumpNand))
+                MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void toolFlashTheWholeNANDStripMenuItem_Click(object sender, EventArgs e)
@@ -1657,14 +1679,22 @@ namespace com.clusterrr.hakchi_gui
         private void dumpNANDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (RequirePatchedKernel() == DialogResult.No) return;
-            if (DoNandBDump())
+            if (DoNand(WorkerForm.Tasks.DumpNandB))
                 MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        private void flashNANDBPartitionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (RequirePatchedKernel() == DialogResult.No) return;
+            if (DoNand(WorkerForm.Tasks.FlashNandB))
+                MessageBox.Show(Resources.NandFlashed, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void dumpNANDCPartitionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (RequirePatchedKernel() == DialogResult.No) return;
-            if (DoNandCDump())
+            if (DoNand(WorkerForm.Tasks.DumpNandC))
                 MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -1674,7 +1704,7 @@ namespace com.clusterrr.hakchi_gui
                 == DialogResult.Yes)
             {
                 if (RequirePatchedKernel() == DialogResult.No) return;
-                if (DoNandCFlash())
+                if (DoNand(WorkerForm.Tasks.FlashNandC))
                     MessageBox.Show(Resources.NandFlashed, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -2709,6 +2739,5 @@ namespace com.clusterrr.hakchi_gui
             }
 
         }
-
     }
 }

@@ -921,4 +921,10 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   <data name="UninstallNote" xml:space="preserve">
     <value>Done. Wait until the power LED goes out. You can now flash the original kernel if you want to restore the unit to factory settings. Otherwise you can flash custom firmware again to restore hakchi functionality.</value>
   </data>
+  <data name="ImageTooLarge" xml:space="preserve">
+    <value>The image is too large</value>
+  </data>
+  <data name="InvalidHsqs" xml:space="preserve">
+    <value>Invalid hsqs image</value>
+  </data>
 </root>

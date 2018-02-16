@@ -1474,6 +1474,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The image is too large.
+        /// </summary>
+        internal static string ImageTooLarge {
+            get {
+                return ResourceManager.GetString("ImageTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please input a preset name for the current games selection..
         /// </summary>
         internal static string InputPreset {
@@ -1497,6 +1506,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string InvalidConsoleSelected {
             get {
                 return ResourceManager.GetString("InvalidConsoleSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid hsqs image.
+        /// </summary>
+        internal static string InvalidHsqs {
+            get {
+                return ResourceManager.GetString("InvalidHsqs", resourceCulture);
             }
         }
         

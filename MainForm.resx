@@ -306,6 +306,12 @@
   <data name="dumpNANDBToolStripMenuItem.Text" xml:space="preserve">
     <value>Dump decrypted NAND-B partition</value>
   </data>
+  <data name="flashNANDBPartitionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 22</value>
+  </data>
+  <data name="flashNANDBPartitionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Flash decrypted NAND-B partition</value>
+  </data>
   <data name="dumpNANDCPartitionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
@@ -2247,6 +2253,12 @@
     <value>dumpNANDBToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;dumpNANDBToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flashNANDBPartitionToolStripMenuItem.Name" xml:space="preserve">
+    <value>flashNANDBPartitionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;flashNANDBPartitionToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dumpNANDCPartitionToolStripMenuItem.Name" xml:space="preserve">

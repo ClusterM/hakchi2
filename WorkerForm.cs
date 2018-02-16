@@ -45,7 +45,8 @@ namespace com.clusterrr.hakchi_gui
             UpdateLocalCache,
             SyncOriginalGames,
             ResetROMHeaders,
-            GetHmods
+            GetHmods,
+            FlashNandB
         };
         public Tasks Task;
 
@@ -73,7 +74,7 @@ namespace com.clusterrr.hakchi_gui
         public List<Hmod> LoadedHmods;
         public string NandDump;
         public string Mod = null;
-        public string ModExtraFilesPath = null;
+        public string[] ModExtraFilesPaths = null;
         public string zImage = null;
         public string customUboot = null;
         public string exportDirectory;
@@ -324,16 +325,15 @@ namespace com.clusterrr.hakchi_gui
                     case Tasks.FlashUboot:
                         FlashUboot();
                         break;
-                    case Tasks.DumpNand:
-                        DoNandDump();
-                        break;
                     case Tasks.FlashNand:
                         DoNandFlash();
                         break;
+                    case Tasks.DumpNand:
                     case Tasks.DumpNandB:
+                    case Tasks.FlashNandB:
                     case Tasks.DumpNandC:
                     case Tasks.FlashNandC:
-                        DoPartitionDump(Task);
+                        ProcessNand(Task);
                         break;
                     case Tasks.UploadGames:
                         if (exportGames)
@@ -406,6 +406,8 @@ namespace com.clusterrr.hakchi_gui
                 GC.Collect();
             }
         }
+
+
 
         void SetStatus(string status)
         {
@@ -811,43 +813,6 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(maxProgress, maxProgress);
         }
 
-        public void DoNandDump()
-        {
-            int progress = 0;
-            const int maxProgress = 8373;
-            if (WaitForFelFromThread() != DialogResult.OK)
-            {
-                DialogResult = DialogResult.Abort;
-                return;
-            }
-            progress += 5;
-            SetProgress(progress, maxProgress);
-
-            SetStatus(Resources.DumpingNand);
-            var kernel = fel.ReadFlash(0, Fel.sector_size * 0x1000,
-                delegate (Fel.CurrentAction action, string command)
-                {
-                    switch (action)
-                    {
-                        case Fel.CurrentAction.RunningCommand:
-                            SetStatus(Resources.ExecutingCommand + " " + command);
-                            break;
-                        case Fel.CurrentAction.ReadingMemory:
-                            SetStatus(Resources.DumpingNand);
-                            break;
-                    }
-                    progress++;
-                    SetProgress(progress, maxProgress);
-                }
-            );
-
-            SetProgress(maxProgress, maxProgress);
-            SetStatus(Resources.Done);
-
-            Directory.CreateDirectory(Path.GetDirectoryName(NandDump));
-            File.WriteAllBytes(NandDump, kernel);
-        }
-
         public void DoNandFlash()
         {
             int progress = 0;
@@ -889,90 +854,133 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(maxProgress, maxProgress);
         }
 
-        public void DoPartitionDump(Tasks task)
+        public void ProcessNand(Tasks task)
         {
             int progress = 0;
             int maxProgress = 500;
             var clovershell = MainForm.Clovershell;
+            bool error = false;
+            Exception errorException = new Exception();
             try
             {
-                if (WaitForClovershellFromThread() != DialogResult.OK)
+                if (task == Tasks.FlashNandB)
                 {
-                    DialogResult = DialogResult.Abort;
-                    return;
+                    FileInfo hsqsInfo = new FileInfo(NandDump);
+                    using (FileStream fStream = new FileStream(NandDump, FileMode.Open))
+                    {
+                        fStream.Seek(0, SeekOrigin.Begin);
+
+                        byte[] hsqsMagic = new byte[] { 0x68, 0x73, 0x71, 0x73 };
+                        byte[] fileMagic = new byte[4];
+
+                        fStream.Read(fileMagic, 0, 4);
+                        fStream.Seek(0, SeekOrigin.Begin);
+                        fStream.Close();
+
+                        if (!fileMagic.SequenceEqual(hsqsMagic)) throw new Exception(Properties.Resources.InvalidHsqs);
+                    }
                 }
+
+                Memboot();
+                if (DialogResult == DialogResult.Abort) return;
+                Thread.Sleep(2000);
+
+                if (WaitForClovershellFromThread() == DialogResult.Abort) return;
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
                 hakchi.ShowSplashScreen();
-                clovershell.ExecuteSimple("sync");
 
-                var partitionSize = 300 * 1024;
-                try
+                long partitionSize = 300 * 1024 * 1024;
+                if (task == Tasks.DumpNand || task == Tasks.DumpNandB || task == Tasks.FlashNandB)
+                    clovershell.Execute("cat > /bin/sntool; chmod +x /bin/sntool", File.OpenRead(Shared.PathCombine(toolsDirectory, "arm", "sntool.static")), throwOnNonZero: true);
+
+                switch (task)
                 {
+                    case Tasks.DumpNandB:
+                    case Tasks.FlashNandB:
+                        clovershell.ExecuteSimple("rm /key-file");
+                        clovershell.ExecuteSimple("cd /; sntool sunxi_flash ramdisk | cpio -iu \"key-file\"", throwOnNonZero: true);
+                        clovershell.ExecuteSimple("cryptsetup open /dev/nandb root-crypt --type plain --cipher aes-xts-plain --key-file /key-file", 2000, true);
+
+                        if (task == Tasks.DumpNandB)
+                            partitionSize = long.Parse(clovershell.ExecuteSimple("echo $((($(hexdump -e '1/4 \"%u\"' -s $((0x28)) -n 4 /dev/mapper/root-crypt)+0xfff)/0x1000))", throwOnNonZero: true).Trim()) * 4 * 1024;
+
+                        if (task == Tasks.FlashNandB)
+                            partitionSize = long.Parse(clovershell.ExecuteSimple("blockdev --getsize64 /dev/mapper/root-crypt", throwOnNonZero: true));
+
+                        break;
+
+                    case Tasks.DumpNandC:
+                    case Tasks.FlashNandC:
+                        partitionSize = long.Parse(clovershell.ExecuteSimple("blockdev --getsize64 /dev/nandc", throwOnNonZero: true));
+                        break;
+
+                    case Tasks.DumpNand:
+                        partitionSize = 536870912;
+                        break;
+                }
+
+                FileMode mode = FileMode.Create;
+
+                if (task == Tasks.FlashNandC || task == Tasks.FlashNandB)
+                    mode = FileMode.Open;
+
+                SetStatus(mode == FileMode.Open ? Resources.FlashingNand : Resources.DumpingNand);
+                using (var file = new TrackableFileStream(NandDump, mode))
+                {
+                    if (mode == FileMode.Open && file.Length > partitionSize)
+                        throw new Exception(Resources.ImageTooLarge);
+
+                    file.OnProgress += delegate (long Position, long Length)
+                    {
+                        SetProgress((int)Position, (int)partitionSize);
+                    };
                     switch (task)
                     {
                         case Tasks.DumpNandB:
-                            partitionSize = int.Parse(clovershell.ExecuteSimple("echo $((($(hexdump -e '1/4 \"%u\"' -s $((0x28)) -n 4 /dev/mapper/root-crypt)+0xfff)/0x1000))").Trim()) * 4;
+                            clovershell.Execute($"dd if=/dev/mapper/root-crypt bs=4K count={(partitionSize / 1024) / 4 }", null, file, throwOnNonZero: true);
                             break;
-                        case Tasks.DumpNandC:
-                        case Tasks.FlashNandC:
-                            partitionSize = int.Parse(clovershell.ExecuteSimple("df /dev/nandc | tail -n 1 | awk '{ print $2 }'"));
-                            break;
-                    }
-                }
-                catch { }
-                maxProgress = 5 + (int)Math.Ceiling(partitionSize / 1024.0 * 1.05);
-                SetProgress(progress, maxProgress);
 
-                if (task != Tasks.FlashNandC)
-                {
-                    SetStatus(Resources.DumpingNand);
-                    using (var file = new TrackableFileStream(NandDump, FileMode.Create))
-                    {
-                        file.OnProgress += delegate (long Position, long Length)
-                        {
-                            progress = (int)(5 + Position / 1024 / 1024);
-                            SetProgress(progress, maxProgress);
-                        };
-                        switch (task)
-                        {
-                            case Tasks.DumpNandB:
-                                clovershell.Execute($"dd if=/dev/mapper/root-crypt bs=4K count={partitionSize / 4}", null, file);
-                                break;
-                            case Tasks.DumpNandC:
-                                clovershell.Execute("dd if=/dev/nandc", null, file);
-                                break;
-                        }
-                        file.Close();
+                        case Tasks.FlashNandB:
+                            clovershell.Execute("dd of=/dev/mapper/root-crypt bs=128K", file, throwOnNonZero: true);
+                            clovershell.Execute("cryptsetup close root-crypt", throwOnNonZero: true);
+                            break;
+
+                        case Tasks.DumpNandC:
+                            clovershell.Execute("dd if=/dev/nandc", null, file, throwOnNonZero: true);
+                            break;
+
+                        case Tasks.FlashNandC:
+                            clovershell.Execute("dd of=/dev/nandc bs=128K", file, throwOnNonZero: true);
+                            break;
+
+                        case Tasks.DumpNand:
+                            clovershell.Execute("sntool sunxi_flash phy_read 0 1000", null, file, throwOnNonZero: true);
+                            break;
                     }
-                }
-                else
-                {
-                    SetStatus(Resources.FlashingNand);
-                    using (var file = new TrackableFileStream(NandDump, FileMode.Open))
-                    {
-                        file.OnProgress += delegate (long Position, long Length)
-                        {
-                            progress = (int)(5 + Position / 1024 / 1024);
-                            SetProgress(progress, maxProgress);
-                        };
-                        clovershell.Execute("dd of=/dev/nandc", file);
-                        file.Close();
-                    }
+                    file.Close();
                 }
 
                 SetStatus(Resources.Done);
                 SetProgress(maxProgress, maxProgress);
+            }
+            catch(Exception ex)
+            {
+                error = true;
+                errorException = ex;
             }
             finally
             {
                 try
                 {
                     if (clovershell.IsOnline)
-                        clovershell.ExecuteSimple("reboot", 100);
+                        clovershell.ExecuteSimple("sync; umount -ar; reboot -f", 100);
                 }
                 catch { }
+
+                if (error)
+                    throw errorException;
             }
         }
 
@@ -1617,9 +1625,15 @@ namespace com.clusterrr.hakchi_gui
             }
             Shared.DirectoryCopy(Path.Combine(modsDirectory, Mod), ramfsDirectory, true, false, true, false);
 
-            if (!string.IsNullOrEmpty(ModExtraFilesPath) && Directory.Exists(ModExtraFilesPath))
+            if(ModExtraFilesPaths != null)
             {
-                Shared.DirectoryCopy(ModExtraFilesPath, ramfsDirectory, true, false, true, false);
+                foreach (string ModExtraFilesPath in ModExtraFilesPaths)
+                {
+                    if (!string.IsNullOrEmpty(ModExtraFilesPath) && Directory.Exists(ModExtraFilesPath))
+                    {
+                        Shared.DirectoryCopy(ModExtraFilesPath, ramfsDirectory, true, false, true, false);
+                    }
+                }
             }
 
             var ramfsFiles = Directory.GetFiles(ramfsDirectory, "*.*", SearchOption.AllDirectories);

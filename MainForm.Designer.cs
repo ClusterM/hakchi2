@@ -64,6 +64,7 @@
             this.dumpTheWholeNANDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolFlashTheWholeNANDStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumpNANDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flashNANDBPartitionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumpNANDCPartitionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashNANDCPartitionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -418,6 +419,7 @@
             this.dumpTheWholeNANDToolStripMenuItem,
             this.toolFlashTheWholeNANDStripMenuItem,
             this.dumpNANDBToolStripMenuItem,
+            this.flashNANDBPartitionToolStripMenuItem,
             this.dumpNANDCPartitionToolStripMenuItem,
             this.flashNANDCPartitionToolStripMenuItem,
             this.formatNANDCToolStripMenuItem});
@@ -458,6 +460,12 @@
             this.dumpNANDBToolStripMenuItem.Name = "dumpNANDBToolStripMenuItem";
             resources.ApplyResources(this.dumpNANDBToolStripMenuItem, "dumpNANDBToolStripMenuItem");
             this.dumpNANDBToolStripMenuItem.Click += new System.EventHandler(this.dumpNANDBToolStripMenuItem_Click);
+            // 
+            // flashNANDBPartitionToolStripMenuItem
+            // 
+            this.flashNANDBPartitionToolStripMenuItem.Name = "flashNANDBPartitionToolStripMenuItem";
+            resources.ApplyResources(this.flashNANDBPartitionToolStripMenuItem, "flashNANDBPartitionToolStripMenuItem");
+            this.flashNANDBPartitionToolStripMenuItem.Click += new System.EventHandler(this.flashNANDBPartitionToolStripMenuItem_Click);
             // 
             // dumpNANDCPartitionToolStripMenuItem
             // 
@@ -1755,6 +1763,7 @@
         private System.Windows.Forms.ToolStripMenuItem kachikachiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem canoeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem retroarchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem flashNANDBPartitionToolStripMenuItem;
     }
 }
 
