@@ -12,7 +12,37 @@ namespace com.clusterrr.hakchi_gui
 {
     static class Shared
     {
-        public const string squashFsPath = "/var/squashfs";
+        public const string SquashFsPath = "/var/squashfs";
+
+        public static uint CRC32(byte[] data)
+        {
+            uint poly = 0xedb88320;
+            uint[] table = new uint[256];
+            uint temp = 0;
+            for (uint i = 0; i < table.Length; ++i)
+            {
+                temp = i;
+                for (int j = 8; j > 0; --j)
+                {
+                    if ((temp & 1) == 1)
+                    {
+                        temp = (uint)((temp >> 1) ^ poly);
+                    }
+                    else
+                    {
+                        temp >>= 1;
+                    }
+                }
+                table[i] = temp;
+            }
+            uint crc = 0xffffffff;
+            for (int i = 0; i < data.Length; ++i)
+            {
+                byte index = (byte)(((crc) & 0xff) ^ data[i]);
+                crc = (uint)((crc >> 8) ^ table[index]);
+            }
+            return ~crc;
+        }
 
         public static Stream GenerateStreamFromString(string s)
         {
@@ -177,7 +207,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else
                 {
-                    file.CopyTo(temppath, overwriteExistingFiles);
+                    file.CopyTo(temppath, overwriteExistingFiles); // TODO : redundant
                 }
 
             }

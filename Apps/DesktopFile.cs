@@ -62,15 +62,15 @@ namespace com.clusterrr.hakchi_gui
             get { return args; }
         }
 
-        private string savePath = string.Empty;
-        public string SavePath
+        private string profilePath = string.Empty;
+        public string ProfilePath
         {
-            get { return savePath; }
+            get { return profilePath; }
             set
             {
-                if (savePath != value)
+                if (profilePath != value)
                 {
-                    savePath = value;
+                    profilePath = value;
                     hasUnsavedChanges = true;
                 }
             }
@@ -246,7 +246,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private string copyright = "hakchi2 CE ©2017";
+        private string copyright = "hakchi2 CE ©2018";
         public string Copyright
         {
             get { return copyright; }
@@ -290,9 +290,9 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case "path":
                         if (string.IsNullOrEmpty(value))
-                            SavePath = string.Empty;
+                            ProfilePath = string.Empty;
                         else
-                            SavePath = Regex.Replace(value, "CLV-.-[A-Z]{5}", "").Replace("//", "/");
+                            ProfilePath = Regex.Replace(value, "\\/CLV-.-[A-Z]{5}", "").Replace("//", "/");
                         break;
                     case "name":
                         Name = value;
@@ -305,9 +305,9 @@ namespace com.clusterrr.hakchi_gui
                         }
                         else
                         {
-                            Match m = Regex.Match(value, "CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)");
+                            IconPath = Regex.Replace(value, "\\/CLV-.-[A-Z]{5}\\/CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)", "").Replace("//", "/");
 
-                            IconPath = Regex.Replace(value, "CLV-.-[A-Z]{5}\\/CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)", "").Replace("//", "/");
+                            Match m = Regex.Match(value, "CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)");
                             IconFilename = m.Success ? m.ToString() : string.Empty;
                         }
                         break;
@@ -348,15 +348,15 @@ namespace com.clusterrr.hakchi_gui
             return true;
         }
 
-        public void SaveTo(string configPath, bool snesExtraFields = false, bool omitSavePathCode = false)
+        public void SaveTo(string configPath, bool snesExtraFields = false, bool omitProfilePathCode = false)
         {
             File.WriteAllText(configPath,
                 $"[Desktop Entry]\n" +
                 $"Type={this.type}\n" +
                 $"Exec={this.exec}\n" +
-                $"Path={this.savePath}{(omitSavePathCode ? "" : this.code)}\n" +
+                $"Path={this.profilePath}{(omitProfilePathCode ? "" : "/" + this.code)}\n" +
                 $"Name={this.name ?? this.code}\n" +
-                $"Icon={this.iconPath}{this.code}/{this.iconFilename}\n\n" +
+                $"Icon={this.iconPath}/{this.code}/{this.iconFilename}\n\n" +
                 $"[X-CLOVER Game]\n" +
                 $"Code={this.code}\n" +
                 $"TestID={this.testId}\n" +
@@ -372,14 +372,14 @@ namespace com.clusterrr.hakchi_gui
                 (snesExtraFields ? $"MyPlayDemoTime=45\n" : ""));
         }
 
-        public void Save(string configPath = null, bool snesExtraFields = false, bool omitSavePathCode = false)
+        public void Save(string configPath = null, bool snesExtraFields = false, bool omitProfilePathCode = false)
         {
             if (configPath == null) configPath = currentFilePath;
             currentFilePath = configPath;
 
             if (hasUnsavedChanges)
             {
-                SaveTo(currentFilePath, snesExtraFields, omitSavePathCode);
+                SaveTo(currentFilePath, snesExtraFields, omitProfilePathCode);
                 hasUnsavedChanges = false;
             }
         }

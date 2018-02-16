@@ -74,6 +74,46 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        public virtual bool Save()
+        {
+            return false;
+        }
+
+        public virtual Image Image
+        {
+            set
+            {
+                if (value == null)
+                {
+                    if (File.Exists(iconPath))
+                    {
+                        try
+                        {
+                            File.Delete(iconPath);
+                            File.Delete(smallIconPath);
+                        }
+                        catch { }
+                    }
+                }
+                else
+                {
+                    SetImage(value, ConfigIni.CompressCover);
+                }
+            }
+            get
+            {
+                return File.Exists(iconPath) ? Image.FromFile(iconPath) : null;
+            }
+        }
+
+        public virtual Image Thumbnail
+        {
+            get
+            {
+                return File.Exists(smallIconPath) ? Image.FromFile(smallIconPath) : null;
+            }
+        }
+
         private static void ProcessImage(Image inImage, string outPath, int targetWidth, int targetHeight, bool enforceHeight, bool upscale, bool quantize)
         {
             int X, Y;
@@ -143,7 +183,7 @@ namespace com.clusterrr.hakchi_gui
             ProcessImage(inImage, outPath, targetWidth, targetHeight, enforceHeight, upscale, quantize);
         }
 
-        private void SetImage(Image img, bool EightBitCompression = false)
+        protected void SetImage(Image img, bool EightBitCompression = false)
         {
             // full-size image ratio
             int maxX = 204;
@@ -186,41 +226,6 @@ namespace com.clusterrr.hakchi_gui
         {
             // thumbnail image ratio
             ProcessImageFile(path, smallIconPath, 40, 40, true, false, EightBitCompression);
-        }
-
-        public Image Image
-        {
-            set
-            {
-                if (value == null)
-                {
-                    if (File.Exists(iconPath))
-                    {
-                        try
-                        {
-                            File.Delete(iconPath);
-                            File.Delete(smallIconPath);
-                        }
-                        catch { }
-                    }
-                }
-                else
-                {
-                    SetImage(value, ConfigIni.CompressCover);
-                }
-            }
-            get
-            {
-                return File.Exists(iconPath) ? Image.FromFile(iconPath) : null;
-            }
-        }
-
-        public Image Thumbnail
-        {
-            get
-            {
-                return File.Exists(smallIconPath) ? Image.FromFile(smallIconPath) : null;
-            }
         }
 
         private static void Quantize(ref Bitmap img)

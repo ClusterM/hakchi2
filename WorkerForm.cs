@@ -117,7 +117,7 @@ namespace com.clusterrr.hakchi_gui
         Dictionary<MainForm.ConsoleType, string[]> correctKeys = new Dictionary<MainForm.ConsoleType, string[]>();
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
         string selectedFile = null;
-        public NesMiniApplication[] addedApplications;
+        public NesApplication[] addedApplications;
         public static long StorageTotal, StorageUsed, StorageFree, WrittenGamesSize, SaveStatesSize;
         public static bool ExternalSaves = false;
         public static long ReservedMemory
