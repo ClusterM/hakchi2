@@ -53,6 +53,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool UsbHostFamicom = false;
         public static bool UsbHostSnes = false;
         public static bool UsbHostSuperFamicom = false;
+        public static bool AlwaysWriteToUSB = false;
 
         public static bool CustomFlashed
         {
@@ -600,6 +601,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "usbhostsuperfamicom":
                                     UsbHostSuperFamicom = !value.ToLower().Equals("false");
                                     break;
+                                case "alwayswritetousb":
+                                    AlwaysWriteToUSB = !value.ToLower().Equals("false");
+                                    break;
                             }
                             break;
                         case "presets":
@@ -658,6 +662,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("FtpServer={0}", FtpServer));
             configLines.Add(string.Format("TelnetServer={0}", TelnetServer));
             configLines.Add(string.Format("RunCount={0}", RunCount));
+            configLines.Add(string.Format("AlwaysWriteToUSB={0}", AlwaysWriteToUSB));
 
             configLines.Add("");
             configLines.Add("[Presets]");

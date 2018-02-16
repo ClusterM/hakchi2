@@ -1,5 +1,4 @@
-﻿using com.clusterrr.Famicom;
-using com.clusterrr.FelLib;
+﻿using com.clusterrr.FelLib;
 using com.clusterrr.hakchi_gui.Properties;
 using com.clusterrr.util;
 using SevenZip;
@@ -11,7 +10,6 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -944,7 +942,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else // exportGames = true
                 {
-                    SetStatus("Writing games to USB drive..."); // TODO: Add translation
+                    SetStatus(Resources.WritingUSB);
                     maxProgress = (int)(stats.TotalSize / 1024 / 1024 + 20);
                     SetProgress(progress, maxProgress);
                     Directory.CreateDirectory(exportDirectory);
@@ -955,7 +953,7 @@ namespace com.clusterrr.hakchi_gui
                         {
                             if (line.EndsWith("/"))
                             {
-                                SetStatus("Writing games to USB drive... " + line.Replace("/", "\\")); // TODO: Add translation
+                                SetStatus(Resources.WritingUSB + " " + line.Replace("/", "\\"));
                                 if (!line.StartsWith("deleting"))
                                 {
                                     if (lastDirectory != null && !line.StartsWith(lastDirectory)) // Previous directory transfered
@@ -1470,30 +1468,39 @@ namespace com.clusterrr.hakchi_gui
             if (onLineOutput != null)
             {
                 var line = new StringBuilder();
-                while (!process.StandardOutput.EndOfStream)
+                while (!process.HasExited || !process.StandardOutput.EndOfStream || !process.StandardError.EndOfStream)
                 {
-                    var b = process.StandardOutput.Read();
-                    if (b >= 0)
+                    while (!process.StandardOutput.EndOfStream)
                     {
-                        if ((char)b != '\n' && (char)b != '\r')
+                        var b = process.StandardOutput.Read();
+                        if (b >= 0)
                         {
-                            line.Append((char)b);
+                            if ((char)b != '\n' && (char)b != '\r')
+                            {
+                                line.Append((char)b);
+                            }
+                            else
+                            {
+                                if (line.Length > 0)
+                                    onLineOutput(line.ToString());
+                                line.Length = 0;
+                            }
+                            outputStr.Append((char)b);
                         }
-                        else
-                        {
-                            if (line.Length > 0)
-                                onLineOutput(line.ToString());
-                            line.Length = 0;
-                        }
-                        outputStr.Append((char)b);
                     }
+                    if (!process.StandardError.EndOfStream)
+                        errorStr.Append(process.StandardError.ReadToEnd());
+                    Thread.Sleep(100);
                 }
                 if (line.Length > 0)
                     onLineOutput(line.ToString());
             }
-            process.WaitForExit();
-            outputStr.Append(process.StandardOutput.ReadToEnd());
-            errorStr.Append(process.StandardError.ReadToEnd());
+            else
+            {
+                process.WaitForExit();
+                outputStr.Append(process.StandardOutput.ReadToEnd());
+                errorStr.Append(process.StandardError.ReadToEnd());
+            }
 
             output = Encoding.GetEncoding(866).GetBytes(outputStr.ToString());
             Debug.WriteLineIf(outputStr.Length > 0 && outputStr.Length < 300, "Output:\r\n" + outputStr);
