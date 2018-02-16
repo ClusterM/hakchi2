@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -269,14 +270,12 @@ namespace com.clusterrr.hakchi_gui
         public static HashSet<ApplicationFileInfo> GetApplicationFileInfoFromConsoleOutput(string output)
         {
             var fileInfoSet = new HashSet<ApplicationFileInfo>();
-            string[] consoleFileEntries = output.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-            foreach (string path in consoleFileEntries)
+            foreach (Match infoMatch in Regex.Matches(output, "^(.*?) (\\d+) (\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?)?$", RegexOptions.Multiline))
             {
-                string[] elems = path.Split(new char[] { ' ' }, 3);
-                long filesize = long.Parse(elems[1]);
-                DateTime lastWriteTime = DateTime.Parse(elems[2]);
-                fileInfoSet.Add(new ApplicationFileInfo(elems[0], filesize, lastWriteTime, false));
+                long filesize = long.Parse(infoMatch.Groups[2].Value);
+                DateTime lastWriteTime = DateTime.Parse(infoMatch.Groups[3].Value);
+                fileInfoSet.Add(new ApplicationFileInfo(infoMatch.Groups[1].Value, filesize, lastWriteTime, false));
             }
 
             return fileInfoSet;
