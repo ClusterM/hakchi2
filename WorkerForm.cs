@@ -1445,7 +1445,14 @@ namespace com.clusterrr.hakchi_gui
                 }
                 if((hmodsInstall != null && hmodsInstall.Count() > 0) || (hmodsUninstall != null && hmodsUninstall.Count() > 0))
                 {
-                    MainForm.Clovershell.ExecuteSimple("hakchi packs_install /tmp/hmods/; reboot");
+                    MainForm.Clovershell.ExecuteSimple("hakchi packs_install /tmp/hmods/");
+
+                    try
+                    {
+                        MainForm.Clovershell.ExecuteSimple("reboot");
+                    }
+                    catch { }
+
                     SetProgress(1, 1);
                 }
             }
