@@ -1076,7 +1076,7 @@ namespace com.clusterrr.hakchi_gui
                 HashSet<ApplicationFileInfo> localGameSet = Shared.GetApplicationFileInfoForDirectory(tempGamesDirectory);
 
                 // Get the remote list of files, timestamps, and sizes
-                string gamesOnDevice = clovershell.ExecuteSimple($"mkdir -p \"{gameSyncPath}\"; cd \"{gameSyncPath}\"; find . -type f -exec sh -c \"stat \\\"{{}}\\\" -c \\\"%n %s %y\\\"\" \\;", 60000, true);
+                string gamesOnDevice = clovershell.ExecuteSimple($"mkdir -p \"{gameSyncPath}\"; cd \"{gameSyncPath}\"; find . -type f -exec sh -c \"stat \\\"{{}}\\\" -c \\\"%n %s %y\\\"\" \\;", 0, true);
                 HashSet<ApplicationFileInfo> remoteGameSet = Shared.GetApplicationFileInfoFromConsoleOutput(gamesOnDevice);
 
                 // Delete any remote files that aren't present locally
@@ -1109,7 +1109,7 @@ namespace com.clusterrr.hakchi_gui
 
                 // Finally, delete any empty directories we may have left during the differential sync
                 clovershell.ExecuteSimple($"for f in $(find \"{gameSyncPath}\" -type d -mindepth 1 -maxdepth 2); do {{ ls -1 \"$f\" | grep -v pixelart | grep -v autoplay " +
-                    "| wc -l | { read wc; test $wc -eq 0 && rm -rf \"$f\"; } } ; done", 60000);
+                    "| wc -l | { read wc; test $wc -eq 0 && rm -rf \"$f\"; } } ; done", 0);
 
                 SetStatus(Resources.UploadingOriginalGames);
                 // Need to make sure that squashfs if mounted
@@ -1189,7 +1189,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 clovershell.Execute("cat > /tmp/cleanup.sh", commandBuilder, null, null, 5000, true);
-                clovershell.ExecuteSimple("chmod +x /tmp/cleanup.sh && /tmp/cleanup.sh", 60000, true);
+                clovershell.ExecuteSimple("chmod +x /tmp/cleanup.sh && /tmp/cleanup.sh", 0, true);
             }
             finally
             {
@@ -1446,7 +1446,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 if((hmodsInstall != null && hmodsInstall.Count() > 0) || (hmodsUninstall != null && hmodsUninstall.Count() > 0))
                 {
-                    MainForm.Clovershell.ExecuteSimple("hakchi packs_install /tmp/hmods/");
+                    MainForm.Clovershell.ExecuteSimple("hakchi packs_install /tmp/hmods/", 0);
 
                     try
                     {
