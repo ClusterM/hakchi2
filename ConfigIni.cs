@@ -53,6 +53,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool UsePCMPatch = false;
         public static bool Compress = true;
         public static bool CompressCover = true;
+        public static bool CenterThumbnail = false;
         public static bool DisablePopups = false;
         public const string ConfigDir = "config";
         public const string ConfigFile = "config.ini";
@@ -593,6 +594,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "compresscover":
                                     CompressCover = !value.ToLower().Equals("false");
                                     break;
+                                case "centerthumbnail":
+                                    CenterThumbnail = !value.ToLower().Equals("false");
+                                    break;
                                 case "disablepopups":
                                     DisablePopups = !value.ToLower().Equals("false");
                                     break;
@@ -694,6 +698,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("UsePCMPatch={0}", UsePCMPatch));
             configLines.Add(string.Format("Compress={0}", Compress));
             configLines.Add(string.Format("CompressCover={0}", CompressCover));
+            configLines.Add(string.Format("CenterThumbnail={0}", CenterThumbnail));
             configLines.Add(string.Format("DisablePopups={0}", DisablePopups));
             configLines.Add(string.Format("FtpServer={0}", FtpServer));
             configLines.Add(string.Format("FtpCommand={0}", FtpCommand));

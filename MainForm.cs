@@ -375,6 +375,7 @@ namespace com.clusterrr.hakchi_gui
             upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
             compressGamesToolStripMenuItem.Checked = ConfigIni.Compress;
             compressBoxArtToolStripMenuItem.Checked = ConfigIni.CompressCover;
+            centerBoxArtThumbnailToolStripMenuItem.Checked = ConfigIni.CenterThumbnail;
             separateGamesForMultibootToolStripMenuItem.Checked = ConfigIni.SeparateGameStorage;
             disableHakchi2PopupsToolStripMenuItem.Checked = ConfigIni.DisablePopups;
 
@@ -2029,6 +2030,11 @@ namespace com.clusterrr.hakchi_gui
         private void compressBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.CompressCover = compressBoxArtToolStripMenuItem.Checked;
+        }
+
+        private void centerBoxArtThumbnailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.CenterThumbnail = centerBoxArtThumbnailToolStripMenuItem.Checked;
         }
 
         private void separateGamesForMultibootToolStripMenuItem_Click(object sender, EventArgs e)

@@ -196,6 +196,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numericUpDownSaveCount = new System.Windows.Forms.NumericUpDown();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.centerBoxArtThumbnailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -519,11 +520,12 @@
             this.sFROMToolToolStripMenuItem,
             this.compressGamesToolStripMenuItem,
             this.compressBoxArtToolStripMenuItem,
-            this.separateGamesForMultibootToolStripMenuItem,
+            this.centerBoxArtThumbnailToolStripMenuItem,
             this.disableHakchi2PopupsToolStripMenuItem,
-            this.bootImageToolStripMenuItem,
             this.toolStripMenuItem16,
+            this.separateGamesForMultibootToolStripMenuItem,
             this.useExtendedFontToolStripMenuItem,
+            this.bootImageToolStripMenuItem,
             this.epilepsyProtectionToolStripMenuItem,
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem,
             this.toolStripMenuItem5,
@@ -1384,6 +1386,13 @@
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
             // 
+            // centerBoxArtThumbnailToolStripMenuItem
+            // 
+            this.centerBoxArtThumbnailToolStripMenuItem.CheckOnClick = true;
+            this.centerBoxArtThumbnailToolStripMenuItem.Name = "centerBoxArtThumbnailToolStripMenuItem";
+            resources.ApplyResources(this.centerBoxArtThumbnailToolStripMenuItem, "centerBoxArtThumbnailToolStripMenuItem");
+            this.centerBoxArtThumbnailToolStripMenuItem.Click += new System.EventHandler(this.centerBoxArtThumbnailToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1591,6 +1600,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown numericUpDownSaveCount;
         private System.Windows.Forms.GroupBox groupBoxOptions;
+        private System.Windows.Forms.ToolStripMenuItem centerBoxArtThumbnailToolStripMenuItem;
     }
 }
 

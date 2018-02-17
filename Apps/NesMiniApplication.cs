@@ -773,7 +773,7 @@ namespace com.clusterrr.hakchi_gui
             // thumbnail image ratio
             maxX = 40;
             maxY = 40;
-            ProcessImage(img, SmallIconPath, maxX, maxY, true, false, EightBitCompression);
+            ProcessImage(img, SmallIconPath, maxX, maxY, ConfigIni.CenterThumbnail, false, EightBitCompression);
         }
 
         public void SetImageFile(string path, bool EightBitCompression = false)
@@ -804,7 +804,7 @@ namespace com.clusterrr.hakchi_gui
         public void SetThumbnailFile(string path, bool EightBitCompression = false)
         {
             // thumbnail image ratio
-            ProcessImageFile(path, SmallIconPath, 40, 40, true, false, EightBitCompression);
+            ProcessImageFile(path, SmallIconPath, 40, 40, ConfigIni.CenterThumbnail, false, EightBitCompression);
         }
 
         public Image Image
