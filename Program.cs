@@ -124,7 +124,7 @@ namespace com.clusterrr.hakchi_gui
                         {
                             var externalDirs = new string[]
                             {
-                                "art", "folder_images", "patches", "user_mods"
+                                "art", "folder_images", "patches", "user_mods", "sfrom_tool"
                             };
                             foreach (var dir in externalDirs)
                                 Shared.DirectoryCopy(Path.Combine(BaseDirectoryInternal, dir), Path.Combine(BaseDirectoryExternal, dir), true, false, true);
