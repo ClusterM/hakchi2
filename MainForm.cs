@@ -2602,11 +2602,7 @@ namespace com.clusterrr.hakchi_gui
                         }
 
                         Clovershell.Execute("hakchi unset cfg_boot_logo; cat > \"$(hakchi get rootfs)/etc/boot.png\"", File.OpenRead(ofdPng.FileName));
-
-                        if (Clovershell.ExecuteSimple("[[ -d /media/hakchi/ ]] && echo extpresent").Equals("extpresent"))
-                        {
-                            Clovershell.Execute("cat > \"/media/hakchi/boot.png\"", File.OpenRead(ofdPng.FileName));
-                        }
+                        Clovershell.Execute("[[ -d /media/hakchi/ ]] && cat > \"/media/hakchi/boot.png\"", File.OpenRead(ofdPng.FileName));
 
                         if (!ConfigIni.DisablePopups)
                             MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -2630,11 +2626,7 @@ namespace com.clusterrr.hakchi_gui
                     var assembly = GetType().Assembly;
 
                     Clovershell.Execute("hakchi unset cfg_boot_logo; cat > \"$(hakchi get rootfs)/etc/boot.png\"", File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "blankBoot.png")));
-
-                    if (Clovershell.ExecuteSimple("[[ -d /media/hakchi/ ]] && echo extpresent").Equals("extpresent"))
-                    {
-                        Clovershell.Execute("cat > \"/media/hakchi/boot.png\"", File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "blankBoot.png")));
-                    }
+                    Clovershell.Execute("[[ -d /media/hakchi/ ]] && cat > \"/media/hakchi/boot.png\"", File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "blankBoot.png")));
 
                     if (!ConfigIni.DisablePopups)
                         MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
