@@ -875,10 +875,10 @@ namespace com.clusterrr.hakchi_gui
                 compressSelectedGamesToolStripMenuItem.Enabled =
                     decompressSelectedGamesToolStripMenuItem.Enabled =
                     deleteSelectedGamesToolStripMenuItem.Enabled = !(item.Tag as NesMiniApplication).IsOriginalGame;
-                
+
                 sFROMToolToolStripMenuItem1.Enabled =
                     editROMHeaderToolStripMenuItem.Enabled =
-                    resetROMHeaderToolStripMenuItem.Enabled = item.Tag is SnesGame && !(item.Tag as SnesGame).IsOriginalGame;
+                    resetROMHeaderToolStripMenuItem.Enabled = (item.Tag is SnesGame && !(item.Tag as SnesGame).IsOriginalGame && (item.Tag as SnesGame).GameFilePath.EndsWith(".sfrom"));
             }
             else
             {

@@ -184,7 +184,11 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // check if we can use sfrom tool
-            if (ConfigIni.UseSFROMTool && SfromToolWrapper.IsInstalled)
+            bool convertedSuccessfully = false;
+            bool isSnesSystem = ConfigIni.ConsoleType == MainForm.ConsoleType.SNES ||
+                    ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom;
+
+            if (isSnesSystem && ConfigIni.UseSFROMTool && SfromToolWrapper.IsInstalled)
             {
                 Debug.WriteLine($"Trying to convert {inputFileName} with SFROM Tool");
                 if (SfromToolWrapper.ConvertROMtoSFROM(ref rawRomData))
@@ -192,51 +196,55 @@ namespace com.clusterrr.hakchi_gui
                     outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
                     application = "/bin/clover-canoe-shvc-wr -rom";
                     args = DefaultCanoeArgs;
-                    return true;
+                    convertedSuccessfully = true;
                 }
-
-                Debug.WriteLine("SFROM Tool conversion cancelled, importing game as is");
-                application = "/bin/snes";
-                return true;
+                else
+                {
+                    Debug.WriteLine("SFROM Tool conversion failed, attempting the built-in SFROM conversion");
+                    convertedSuccessfully = false;
+                }
             }
 
-            // fallback method, with patching
-            FindPatch(ref rawRomData, inputFileName, crc32);
-            if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
+            if (!convertedSuccessfully)
             {
-                application = "/bin/clover-canoe-shvc-wr -rom";
-                args = DefaultCanoeArgs;
-                Debug.WriteLine($"Trying to convert {inputFileName}");
-                bool problemGame = false;
-                MakeSfrom(ref rawRomData, ref saveCount, out problemGame);
-                outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
-
-                // Using 3rd party emulator for this ROM
-                if (problemGame && Need3rdPartyEmulator != true)
+                // fallback method, with patching
+                FindPatch(ref rawRomData, inputFileName, crc32);
+                if (isSnesSystem)
                 {
-                    if (Need3rdPartyEmulator != false)
+                    application = "/bin/clover-canoe-shvc-wr -rom";
+                    args = DefaultCanoeArgs;
+                    Debug.WriteLine($"Trying to convert {inputFileName}");
+                    bool problemGame = false;
+                    MakeSfrom(ref rawRomData, ref saveCount, out problemGame);
+                    outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
+
+                    // Using 3rd party emulator for this ROM
+                    if (problemGame && Need3rdPartyEmulator != true)
                     {
-                        var r = WorkerForm.MessageBoxFromThread(ParentForm,
-                            string.Format(Resources.Need3rdPartyEmulator, Path.GetFileName(inputFileName)),
-                                Resources.AreYouSure,
-                                MessageBoxButtons.AbortRetryIgnore,
-                                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
-                        if (r == DialogResult.Abort)
-                            Need3rdPartyEmulator = true;
-                        if (r == DialogResult.Ignore)
-                            problemGame = false;
+                        if (Need3rdPartyEmulator != false)
+                        {
+                            var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                                string.Format(Resources.Need3rdPartyEmulator, Path.GetFileName(inputFileName)),
+                                    Resources.AreYouSure,
+                                    MessageBoxButtons.AbortRetryIgnore,
+                                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
+                            if (r == DialogResult.Abort)
+                                Need3rdPartyEmulator = true;
+                            if (r == DialogResult.Ignore)
+                                problemGame = false;
+                        }
+                        else problemGame = false;
                     }
-                    else problemGame = false;
+                    if (problemGame)
+                    {
+                        application = "/bin/snes";
+                        args = "";
+                    }
                 }
-                if (problemGame)
+                else
                 {
                     application = "/bin/snes";
-                    args = "";
                 }
-            }
-            else
-            {
-                application = "/bin/snes";
             }
 
             return true;
