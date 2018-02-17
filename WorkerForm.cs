@@ -885,7 +885,7 @@ namespace com.clusterrr.hakchi_gui
                     switch (task)
                     {
                         case Tasks.DumpNandB:
-                            partitionSize = int.Parse(clovershell.ExecuteSimple("df /dev/mapper/root-crypt | tail -n 1 | awk '{ print $2 }'"));
+                            partitionSize = int.Parse(clovershell.ExecuteSimple("echo $((($(hexdump -e '1/4 \"%u\"' -s $((0x28)) -n 4 /dev/mapper/root-crypt)+0xfff)/0x1000))").Trim()) * 4;
                             break;
                         case Tasks.DumpNandC:
                         case Tasks.FlashNandC:
@@ -910,7 +910,7 @@ namespace com.clusterrr.hakchi_gui
                         switch (task)
                         {
                             case Tasks.DumpNandB:
-                                clovershell.Execute("dd if=/dev/mapper/root-crypt", null, file);
+                                clovershell.Execute($"dd if=/dev/mapper/root-crypt bs=4K count={partitionSize / 4}", null, file);
                                 break;
                             case Tasks.DumpNandC:
                                 clovershell.Execute("dd if=/dev/nandc", null, file);
