@@ -73,11 +73,6 @@ Section "Hakchi2 CE (required)"
   ZipDLL::extractall "hakchi2-ce-release.zip" "$INSTDIR"
   Delete "hakchi2-ce-release.zip"
 
-  ; Create a debuglog.txt file writable to all users
-  FileOpen $9 "debuglog.txt" w
-  FileClose $9
-  AccessControl::GrantOnFile "$INSTDIR\debuglog.txt" "(BU)" "GenericRead + GenericWrite"
-
   ; Create nonportable.flag
   FileOpen $9 "nonportable.flag" w
   FileClose $9
@@ -106,6 +101,7 @@ Section "Hakchi2 CE (required)"
     Abort
 
   InstallEnd:
+  AccessControl::GrantOnFile "$INSTDIR\" "(BU)" "GenericRead + GenericWrite"
   
 SectionEnd
 
