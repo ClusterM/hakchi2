@@ -667,6 +667,7 @@ namespace com.clusterrr.hakchi_gui
             hmodsInstall = hmods;
             if (hmodsInstall != null && hmodsInstall.Count() > 0)
             {
+                zImage = Shared.PathCombine(Program.BaseDirectoryInternal, "data", "zImageMemboot");
                 Memboot(maxProgress, progress); // Lets install some mods                
             }
             else
