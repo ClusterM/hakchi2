@@ -2009,7 +2009,7 @@ namespace com.clusterrr.hakchi_gui
                 ConfigIni.UseSFROMTool = enableSFROMToolToolStripMenuItem.Checked = false;
                 usePCMPatchWhenAvailableToolStripMenuItem.Enabled = false;
 
-                if (MessageBox.Show(Resources.DownloadSfromTool, Resources.SfromTool, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(string.Format(Resources.DownloadSfromTool, Program.BaseDirectoryExternal), Resources.SfromTool, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     Process.Start("http://darkakuma.z-net.us/p/sfromtool.html");
             }
 

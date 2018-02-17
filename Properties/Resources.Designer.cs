@@ -19,7 +19,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -598,7 +598,14 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In order to use SFROM Tool with hakchi2 CE, you need to:\n\nvisit /u/DarkAkuma&apos;s website\ndownload the latest version of his tool\ninstall the package in /sfrom_tool.\n\nDo you want to download the tool?\n\nhttp://darkakuma.z-net.us/p/sfromtool.html.
+        ///   Looks up a localized string similar to In order to use SFROM Tool with hakchi2 CE, you need to:
+        ///Visit /u/DarkAkuma&apos;s website
+        ///Download the latest version of his tool
+        ///Install the package in {0}\sfrom_tool
+        ///
+        ///Do you want to download the tool?
+        ///
+        ///http://darkakuma.z-net.us/p/sfromtool.html.
         /// </summary>
         internal static string DownloadSfromTool {
             get {
@@ -1290,7 +1297,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3100c02 (dirty).
+        ///   Looks up a localized string similar to 6ea61d4 (dirty).
         /// </summary>
         internal static string gitCommit {
             get {
@@ -1791,14 +1798,11 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to body {
-        ///    position: absolute;
-        ///    top: 0;
-        ///    left: 0;
-        ///    right: 0;
-        ///    bottom: 0;
-        ///    overflow: scroll;
-        ///}.
+        ///   Looks up a localized string similar to /*!
+        /// * Bootstrap v3.3.7 (http://getbootstrap.com)
+        /// * Copyright 2011-2016 Twitter, Inc.
+        /// * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+        /// *//*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:b [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string readmeTemplateCSS {
             get {
@@ -1811,8 +1815,8 @@ namespace com.clusterrr.hakchi_gui.Properties {
         ///    &lt;head&gt;
         ///        &lt;style type=&quot;text/css&quot;&gt;{0}&lt;/style&gt;
         ///    &lt;/head&gt;
-        ///    &lt;body&gt;
-        ///        &lt;div id=&quot;content&quot;&gt;&lt;pre&gt;{1}&lt;/pre&gt;&lt;/div&gt;
+        ///    &lt;body style=&quot;background-color: {3}&quot;&gt;
+        ///        &lt;div id=&quot;content&quot;&gt;&lt;h1 id=&quot;title&quot;&gt;{1}&lt;/h1&gt;{2}&lt;/div&gt;
         ///    &lt;/body&gt;
         ///&lt;/html&gt;.
         /// </summary>

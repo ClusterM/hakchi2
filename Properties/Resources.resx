@@ -814,9 +814,9 @@ This process cannot be undone!</value>
   </data>
   <data name="DownloadSfromTool" xml:space="preserve">
     <value>In order to use SFROM Tool with hakchi2 CE, you need to:
-visit /u/DarkAkuma's website
-download the latest version of his tool
-install the package in /sfrom_tool.
+Visit /u/DarkAkuma's website
+Download the latest version of his tool
+Install the package in {0}\sfrom_tool
 
 Do you want to download the tool?
 
