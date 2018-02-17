@@ -610,7 +610,7 @@ namespace com.clusterrr.hakchi_gui
                 if (!DoKernelDump(null, maxProgress, progress))
                     return;
                 progress += 80;
-                kernel = CreatePatchedKernel();
+                kernel = CreatePatchedKernel(null, new string[] { Path.Combine("bin", "rsync") });
                 progress += 5;
                 SetProgress(progress, maxProgress);
             }
@@ -1584,7 +1584,7 @@ namespace com.clusterrr.hakchi_gui
                 throw new Exception("Can't unpack ramdisk 2");
         }
 
-        private byte[] CreatePatchedKernel(string kernelPath = null)
+        private byte[] CreatePatchedKernel(string kernelPath = null, string[] excludedFiles = null)
         {
             SetStatus(Resources.BuildingCustom);
             if (!File.Exists(Path.Combine(ramfsDirectory, "init")))
@@ -1640,6 +1640,17 @@ namespace com.clusterrr.hakchi_gui
             // Custom zImage
             if (!string.IsNullOrEmpty(zImage))
                 File.Copy(zImage, Path.Combine(kernelDirectory, "kernel.img-zImage"), true);
+
+            // Delete any excluded files
+            if(excludedFiles != null && excludedFiles.Length > 0)
+            {
+                foreach (string file in excludedFiles)
+                {
+                    string filePath = Path.Combine(ramfsDirectory, file);
+                    if (File.Exists(filePath))
+                        File.Delete(filePath);
+                }
+            }
 
             // Building image
             byte[] ramdisk;
