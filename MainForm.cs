@@ -286,7 +286,7 @@ namespace com.clusterrr.hakchi_gui
                     requiresReflash = true;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 requiresReflash = true;
             }
@@ -312,7 +312,7 @@ namespace com.clusterrr.hakchi_gui
                     requiresUpdate = true;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 requiresUpdate = true;
             }
@@ -338,7 +338,7 @@ namespace com.clusterrr.hakchi_gui
                     eligibleForUpdate = true;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 eligibleForUpdate = true;
             }
@@ -851,6 +851,8 @@ namespace com.clusterrr.hakchi_gui
         private void listViewGames_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             int c = listViewGames.SelectedItems.Count;
+            ListViewItem item = c == 1 ? listViewGames.SelectedItems[0] : null;
+            if (item != null && item.Tag is NesMiniApplication && (item.Tag as NesMiniApplication).Deleting) c = 0;
 
             if (c == 0)
             {
@@ -865,8 +867,6 @@ namespace com.clusterrr.hakchi_gui
             }
             else if (c == 1)
             {
-                var item = listViewGames.SelectedItems[0];
-
                 explorerToolStripMenuItem.Enabled =
                     downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
                     scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
@@ -878,7 +878,10 @@ namespace com.clusterrr.hakchi_gui
 
                 sFROMToolToolStripMenuItem1.Enabled =
                     editROMHeaderToolStripMenuItem.Enabled =
-                    resetROMHeaderToolStripMenuItem.Enabled = (item.Tag is SnesGame && !(item.Tag as SnesGame).IsOriginalGame && (item.Tag as SnesGame).GameFilePath.EndsWith(".sfrom"));
+                    resetROMHeaderToolStripMenuItem.Enabled =
+                        (item.Tag is SnesGame &&
+                        !(item.Tag as SnesGame).IsOriginalGame &&
+                        (item.Tag as SnesGame).GameFilePath.ToLower().Contains(".sfrom"));
             }
             else
             {
@@ -2452,9 +2455,11 @@ namespace com.clusterrr.hakchi_gui
                 SaveSelectedGames();
                 if (GroupTaskWithSelected(WorkerForm.Tasks.DeleteGames))
                 {
+                    listViewGames.BeginUpdate();
                     foreach (ListViewItem item in listViewGames.SelectedItems)
                         if (item.Tag is NesMiniApplication && !(item.Tag as NesMiniApplication).IsOriginalGame)
                             listViewGames.Items.Remove(item);
+                    listViewGames.EndUpdate();
                     if (!ConfigIni.DisablePopups)
                         MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
