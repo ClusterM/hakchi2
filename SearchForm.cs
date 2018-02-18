@@ -18,7 +18,7 @@ namespace com.clusterrr.hakchi_gui
             if (textBoxSearch.Text.Length > 0)
             {
                 for (int i = 1; i < mainForm.listViewGames.Items.Count; i++)
-                    if ((mainForm.listViewGames.Items[i].Tag as NesMiniApplication).Name.
+                    if ((mainForm.listViewGames.Items[i].Tag as NesApplication).Name.
                             ToLower().StartsWith(textBoxSearch.Text.ToLower()))
                     {
                         for (int j = 1; j < mainForm.listViewGames.Items.Count; j++)

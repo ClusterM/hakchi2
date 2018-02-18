@@ -265,9 +265,9 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                if (node != null && node.Tag is NesMiniApplication)
+                if (node != null && node.Tag is NesApplication)
                 {
-                    var game = node.Tag as NesMiniApplication;
+                    var game = node.Tag as NesApplication;
                     pictureBoxArt.Image = game.Image;
                     groupBoxArt.Enabled = true;
                     listViewContent.Enabled = false;
@@ -529,7 +529,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (destinationNode == null)
                 destinationNode = treeView.Nodes[0]; // Root
-            if (destinationNode.Tag is NesMiniApplication || destinationNode.Tag is NesDefaultGame)
+            if (destinationNode.Tag is NesApplication || destinationNode.Tag is NesDefaultGame)
                 destinationNode = destinationNode.Parent;
             foreach (var newNode in newNodes)
             {
@@ -869,7 +869,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 for (int i = 1; i < mainForm.listViewGames.Items.Count; i++)
                 {
-                    if (deletedGames.Contains(mainForm.listViewGames.Items[i].Tag as NesMiniApplication))
+                    if (deletedGames.Contains(mainForm.listViewGames.Items[i].Tag as NesApplication))
                         mainForm.listViewGames.Items[i].Checked = false;
                 }
                 ConfigIni.Save();
@@ -908,22 +908,14 @@ namespace com.clusterrr.hakchi_gui
                     element.AppendChild(subElement);
                     NodeToXml(xml, subElement, child);
                 }
-                else if (child.Tag is NesMiniApplication)
+                else if (child.Tag is NesApplication)
                 {
                     var subElement = xml.CreateElement("Game");
-                    var game = child.Tag as NesMiniApplication;
+                    var game = child.Tag as NesApplication;
                     subElement.SetAttribute("code", game.Code);
                     subElement.SetAttribute("name", game.Name);
                     element.AppendChild(subElement);
                 }
-                //else if (child.Tag is NesDefaultGame)
-                //{
-                //    var subElement = xml.CreateElement("OriginalGame");
-                //    var game = child.Tag as NesDefaultGame;
-                //    subElement.SetAttribute("code", game.Code);
-                //    subElement.SetAttribute("name", game.Name);
-                //    element.AppendChild(subElement);
-                //}
             }
         }
         void XmlToTree(string xmlString)
@@ -973,7 +965,7 @@ namespace com.clusterrr.hakchi_gui
                     case "Game":
                     //case "OriginalGame":
                         var code = element.Attributes["code"].Value;
-                        var games = from n in rootMenuCollection where ((n is NesMiniApplication/* || n is NesDefaultGame*/) && (n.Code == code)) select n;
+                        var games = from n in rootMenuCollection where ((n is NesApplication/* || n is NesDefaultGame*/) && (n.Code == code)) select n;
                         if (games.Count() > 0)
                         {
                             var game = games.First();

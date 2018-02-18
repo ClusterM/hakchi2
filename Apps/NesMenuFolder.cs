@@ -7,18 +7,21 @@ using System.Resources;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public class NesMenuFolder : INesMenuElement
+    public class NesMenuFolder : NesMenuElementBase
     {
         static Random rnd = new Random();
         static ResourceManager rm = Resources.ResourceManager;
         public static readonly string FolderImagesDirectory = Path.Combine(Program.BaseDirectoryExternal, "folder_images");
 
         private int childIndex = 0;
-
         public int ChildIndex
         {
             get { return childIndex; }
-            set { childIndex = value; }
+            set
+            {
+                childIndex = value;
+                desktop.Code = string.Format("CLV-S-{0:D5}", childIndex);
+            }
         }
 
         public enum Priority
@@ -31,57 +34,33 @@ namespace com.clusterrr.hakchi_gui
         }
         private Priority position;
 
-        public string Code
+        public override string SortName
         {
-            get { return string.Format("CLV-S-{0:D5}", childIndex); }
+            get { return desktop.Name; }
         }
-        private string name = null;
 
-        public string Name
+        public string[] NameParts
         {
             get
             {
-                return name;
+                if( string.IsNullOrEmpty(desktop.Name))
+                {
+                    return new string[0];
+                }
+                else
+                {
+                    return new string[] { desktop.Name };
+                }
             }
             set
             {
-                name = value;
-                if (!string.IsNullOrEmpty(name))
-                    nameParts = new string[] { name };
-                else
-                    nameParts = new string[0];
-            }
-        }
-
-        public string SortName
-        {
-            get { return name; }
-        }
-
-        private string[] nameParts;
-        public string[] NameParts
-        {
-            get { return nameParts; }
-            set
-            {
-                nameParts = value;
-                if (value != null)
-                    name = string.Join(" - ", nameParts);
-                else
-                    name = null;
+                desktop.Name = value != null ? string.Join(" - ", value) : string.Empty;
             }
         }
         public NesMenuCollection ChildMenuCollection = new NesMenuCollection();
-        public string Initial = "";
-        private Image image;
-        private string imageId;
+        public string Initial = string.Empty;
 
-        byte Players = 2;
-        byte Simultaneous = 1;
-        string ReleaseDate = "0000-00-00";
-        string Publisher = new String('!', 10);
-
-        // It's workaround for sorting
+        // Workaround for sorting
         public Priority Position
         {
             set
@@ -91,34 +70,34 @@ namespace com.clusterrr.hakchi_gui
                 switch (position)
                 {
                     case Priority.Leftmost:
-                        Players = 2;
-                        Simultaneous = 1;
-                        ReleaseDate = "0000-00-00";
-                        Publisher = new String((char)1, 10);
+                        desktop.Players = 2;
+                        desktop.Simultaneous = true;
+                        desktop.ReleaseDate = "0000-00-00";
+                        desktop.Publisher = new String((char)1, 10);
                         break;
                     case Priority.Left:
-                        Players = 2;
-                        Simultaneous = 1;
-                        ReleaseDate = "1111-11-11";
-                        Publisher = new String((char)2, 10);
+                        desktop.Players = 2;
+                        desktop.Simultaneous = true;
+                        desktop.ReleaseDate = "1111-11-11";
+                        desktop.Publisher = new String((char)2, 10);
                         break;
                     case Priority.Right:
-                        Players = 1;
-                        Simultaneous = 0;
-                        ReleaseDate = "7777-77-77";
-                        Publisher = new String('Z', 9) + "X";
+                        desktop.Players = 1;
+                        desktop.Simultaneous = false;
+                        desktop.ReleaseDate = "7777-77-77";
+                        desktop.Publisher = new String('Z', 9) + "X";
                         break;
                     case Priority.Rightmost:
-                        Players = 1;
-                        Simultaneous = 0;
-                        ReleaseDate = "8888-88-88";
-                        Publisher = new String('Z', 9) + "Y";
+                        desktop.Players = 1;
+                        desktop.Simultaneous = false;
+                        desktop.ReleaseDate = "8888-88-88";
+                        desktop.Publisher = new String('Z', 9) + "Y";
                         break;
                     case Priority.Back:
-                        Players = 1;
-                        Simultaneous = 0;
-                        ReleaseDate = "9999-99-99";
-                        Publisher = new String('Z', 10);
+                        desktop.Players = 1;
+                        desktop.Simultaneous = false;
+                        desktop.ReleaseDate = "9999-99-99";
+                        desktop.Publisher = new String('Z', 10);
                         break;
                 }
             }
@@ -129,98 +108,73 @@ namespace com.clusterrr.hakchi_gui
         }
 
         public NesMenuFolder(string name = "Folder", string imageId = "folder")
+            : base()
         {
-            Name = name;
+            desktop.Name = name;
             Position = Priority.Right;
             ImageId = imageId;
+            desktop.Players = 2;
+            desktop.Simultaneous = true;
+            desktop.ReleaseDate = "0000-00-00";
+            desktop.Publisher = new String('!', 10);
         }
 
-        public Image Image
-        {
-            set
-            {
-                if (value == null)
-                    ImageId = "folder";
-                else
-                {
-                    image = Image;
-                    imageId = null;
-                }
-            }
-            get
-            {
-                Bitmap outImage;
-                Graphics gr;
-                if (image == null)
-                    ImageId = "folder";
-                // Just keep aspect ratio
-                int maxX = 204;
-                int maxY = 204;
-                if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
-                {
-                    maxX = 228;
-                    maxY = 204;
-                }
-                if (image.Width <= maxX && image.Height <= maxY) // Do not upscale
-                    return image;
-                if ((double)image.Width / (double)image.Height > (double)maxX / (double)maxY)
-                    outImage = new Bitmap(maxX, (int)((double)maxX * (double)image.Height / (double)image.Width));
-                else
-                    outImage = new Bitmap((int)(maxY * (double)image.Width / (double)image.Height), maxY);
-                gr = Graphics.FromImage(outImage);
-                gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
-                                    new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
-                gr.Flush();
-                return outImage;
-            }
-        }
-
-        public Image ImageThumbnail
+        public override Image Image
         {
             get
             {
-                Bitmap outImage;
-                Graphics gr;
-                if (image == null)
-                    ImageId = "folder";
-                // Just keep aspect ratio
-                const int maxX = 40;
-                const int maxY = 40;
-                if (image.Width <= maxX && image.Height <= maxY) // Do not upscale
-                    return image;
-                if ((double)image.Width / (double)image.Height > (double)maxX / (double)maxY)
-                    outImage = new Bitmap(maxX, (int)((double)maxX * (double)image.Height / (double)image.Width));
-                else
-                    outImage = new Bitmap((int)(maxY * (double)image.Width / (double)image.Height), maxY);
-                gr = Graphics.FromImage(outImage);
-                gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
-                                    new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
-                gr.Flush();
-                return outImage;
+                var filePath = Path.Combine(FolderImagesDirectory, imageId + ".png");
+                if (File.Exists(filePath))
+                {
+                    return Image.FromFile(filePath);
+                }
+                else if (rm.GetObject(imageId) != null)
+                {
+                    return (Image)rm.GetObject(imageId);
+                }
+                return null;
             }
         }
 
+        public override Image Thumbnail
+        {
+            get
+            {
+                return Image;
+            }
+        }
+
+        private string imageId;
         public string ImageId
         {
             get { return imageId; }
             set
             {
-                var folderImagesDirectory = Path.Combine(Program.BaseDirectoryExternal, "folder_images");
-                var filePath = Path.Combine(folderImagesDirectory, value + ".png");
-                if (File.Exists(filePath))
-                    image = NesMiniApplication.LoadBitmap(filePath);
+                var filePath = Path.Combine(FolderImagesDirectory, value + ".png");
+                if (File.Exists(filePath) || rm.GetObject(value) != null)
+                {
+                    imageId = value;
+                }
                 else
-                    image = (Image)rm.GetObject(value);
-                imageId = value;
+                {
+                    throw new FileNotFoundException($"Folder image id \"{imageId}\" is invalid. No corresponding file or resource exists.");
+                }
             }
         }
 
-        public long Save(string path, string mediaGamePath = null, string profilePath = null)
+        public void SetOutputPath(string path)
         {
-            Directory.CreateDirectory(path);
-            var ConfigPath = Path.Combine(path, Code + ".desktop");
-            var IconPath = Path.Combine(path, Code + ".png");
-            var ThumnnailIconPath = Path.Combine(path, Code + "_small.png");
+            basePath = path;
+            iconPath = Path.Combine(path, desktop.Code + ".png");
+            smallIconPath = Path.Combine(path, desktop.Code + "_small.png");
+        }
+
+        public override bool Save()
+        {
+            if (string.IsNullOrEmpty(basePath))
+                return false;
+
+            Directory.CreateDirectory(basePath);
             char prefix;
             switch (position)
             {
@@ -241,44 +195,18 @@ namespace com.clusterrr.hakchi_gui
                     prefix = 'Я';
                     break;
             }
-            File.WriteAllText(ConfigPath, string.Format(
-                 "[Desktop Entry]\n" +
-                 "Type=Application\n" +
-                 "Exec=/bin/chmenu {1:D3} {8}\n" +
-                 "Path={10}/FOLDER\n" +
-                 "Name={2}\n" +
-                 "Icon={9}/{0}/{0}.png\n\n" +
-                 "[X-CLOVER Game]\n" +
-                 "Code={0}\n" +
-                 "TestID=777\n" +
-                 "ID=0\n" +
-                 "Players={3}\n" +
-                 "Simultaneous={7}\n" +
-                 "ReleaseDate={4}\n" +
-                 "SaveCount=0\n" +
-                 "SortRawTitle={5}\n" +
-                 "SortRawPublisher={6}\n" +
-                 "Copyright=hakchi2 ©2017 Alexey 'Cluster' Avdyukhin\n",
-                    Code,
-                    ChildIndex,
-                    Name ?? Code,
-                    Players,
-                    ReleaseDate,
-                    prefix + (Name ?? Code).ToLower(),
-                    (Publisher ?? "").ToUpper(),
-                    Simultaneous,
-                    Initial,
-                    mediaGamePath ?? NesMiniApplication.GamesHakchiPath,
-                    profilePath ?? "/var/lib/clover/profiles/0")
-                 );
-            Image.Save(IconPath, ImageFormat.Png);
-            ImageThumbnail.Save(ThumnnailIconPath, ImageFormat.Png);
-            return new FileInfo(ConfigPath).Length + new FileInfo(IconPath).Length + new FileInfo(ThumnnailIconPath).Length;
-        }
+            desktop.Exec = string.Format("/bin/chmenu {0:D3} {1}", childIndex, NesApplication.GamesHakchiPath);
+            desktop.ProfilePath = NesApplication.GamesHakchiProfilePath + "/FOLDER";
+            desktop.IconPath = NesApplication.GamesHakchiPath;
+            desktop.IconFilename = desktop.Code + ".png";
+            desktop.TestId = 777;
+            desktop.SortName = prefix + (desktop.Name ?? desktop.Code).ToLower();
+            desktop.Save(Path.Combine(basePath, desktop.Code + ".desktop"), false, true);
 
-        public override string ToString()
-        {
-            return Name ?? Code;
+            var filePath = Path.Combine(FolderImagesDirectory, ImageId + ".png");
+            ProcessImageFile(filePath, iconPath, 204, 204, true, false, false);
+            ProcessImageFile(filePath, smallIconPath, 40, 40, true, false, false);
+            return true;
         }
     }
 }

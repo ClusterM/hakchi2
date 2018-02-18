@@ -131,8 +131,8 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private byte testId = 0;
-        public byte TestId
+        private int testId = 0;
+        public int TestId
         {
             get { return testId; }
             set
@@ -272,76 +272,83 @@ namespace com.clusterrr.hakchi_gui
             if (!File.Exists(configPath)) throw new FileNotFoundException();
             currentFilePath = configPath;
 
-            string[] configLines = File.ReadAllLines(currentFilePath);
-            foreach (string line in configLines)
+            try
             {
-                int pos = line.IndexOf('=');
-                if (pos <= 0)
-                    continue;
-                var param = line.Substring(0, pos).Trim().ToLower();
-                var value = line.Substring(pos + 1).Trim();
-                if (param.Length <= 0)
-                    continue;
-
-                switch (param)
+                string[] configLines = File.ReadAllLines(currentFilePath);
+                foreach (string line in configLines)
                 {
-                    case "exec":
-                        Exec = value;
-                        break;
-                    case "path":
-                        if (string.IsNullOrEmpty(value))
-                            ProfilePath = string.Empty;
-                        else
-                            ProfilePath = Regex.Replace(value, "\\/CLV-.-[A-Z]{5}", "").Replace("//", "/");
-                        break;
-                    case "name":
-                        Name = value;
-                        break;
-                    case "icon":
-                        if (string.IsNullOrEmpty(value))
-                        {
-                            IconPath = string.Empty;
-                            IconFilename = string.Empty;
-                        }
-                        else
-                        {
-                            IconPath = Regex.Replace(value, "\\/CLV-.-[A-Z]{5}\\/CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)", "").Replace("//", "/");
+                    int pos = line.IndexOf('=');
+                    if (pos <= 0)
+                        continue;
+                    var param = line.Substring(0, pos).Trim().ToLower();
+                    var value = line.Substring(pos + 1).Trim();
+                    if (param.Length <= 0)
+                        continue;
 
-                            Match m = Regex.Match(value, "CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)");
-                            IconFilename = m.Success ? m.ToString() : string.Empty;
-                        }
-                        break;
-                    case "code":
-                        Code = value;
-                        break;
-                    case "testid":
-                        TestId = byte.Parse(value);
-                        break;
-                    case "status":
-                        Status = value;
-                        break;
-                    case "players":
-                        Players = byte.Parse(value);
-                        break;
-                    case "simultaneous":
-                        Simultaneous = bool.Parse(value);
-                        break;
-                    case "releasedate":
-                        ReleaseDate = value;
-                        break;
-                    case "savecount":
-                        SaveCount = byte.Parse(value);
-                        break;
-                    case "sortrawtitle":
-                        SortName = value;
-                        break;
-                    case "sortrawpublisher":
-                        Publisher = value;
-                        break;
-                    case "copyright":
-                        Copyright = value;
-                        break;
+                    switch (param)
+                    {
+                        case "exec":
+                            Exec = value;
+                            break;
+                        case "path":
+                            if (string.IsNullOrEmpty(value))
+                                ProfilePath = string.Empty;
+                            else
+                                ProfilePath = Regex.Replace(value, "\\/CLV-.-[A-Z]{5}", "").Replace("//", "/");
+                            break;
+                        case "name":
+                            Name = value;
+                            break;
+                        case "icon":
+                            if (string.IsNullOrEmpty(value))
+                            {
+                                IconPath = string.Empty;
+                                IconFilename = string.Empty;
+                            }
+                            else
+                            {
+                                IconPath = Regex.Replace(value, "\\/CLV-.-[A-Z]{5}\\/CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)", "").Replace("//", "/");
+
+                                Match m = Regex.Match(value, "CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)");
+                                IconFilename = m.Success ? m.ToString() : string.Empty;
+                            }
+                            break;
+                        case "code":
+                            Code = value;
+                            break;
+                        case "testid":
+                            TestId = int.Parse(value);
+                            break;
+                        case "status":
+                            Status = value;
+                            break;
+                        case "players":
+                            Players = byte.Parse(value);
+                            break;
+                        case "simultaneous":
+                            Simultaneous = (bool)(int.Parse(value) != 0);
+                            break;
+                        case "releasedate":
+                            ReleaseDate = value;
+                            break;
+                        case "savecount":
+                            SaveCount = byte.Parse(value);
+                            break;
+                        case "sortrawtitle":
+                            SortName = value;
+                            break;
+                        case "sortrawpublisher":
+                            Publisher = value;
+                            break;
+                        case "copyright":
+                            Copyright = value;
+                            break;
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception: " + ex);
             }
 
             hasUnsavedChanges = false;
@@ -379,6 +386,7 @@ namespace com.clusterrr.hakchi_gui
 
             if (hasUnsavedChanges)
             {
+                System.Diagnostics.Debug.WriteLine(string.Format("Saving application \"{0}\" as {1}", name, code));
                 SaveTo(currentFilePath, snesExtraFields, omitProfilePathCode);
                 hasUnsavedChanges = false;
             }

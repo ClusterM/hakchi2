@@ -2,6 +2,7 @@
 using com.clusterrr.util;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -13,6 +14,16 @@ namespace com.clusterrr.hakchi_gui
     static class Shared
     {
         public const string SquashFsPath = "/var/squashfs";
+
+        public static Bitmap LoadBitmapCopy(string path)
+        {
+            Bitmap bmp;
+            using (var img = Image.FromFile(path))
+            {
+                bmp = new Bitmap(img);
+            }
+            return bmp;
+        }
 
         public static uint CRC32(byte[] data)
         {
@@ -244,6 +255,29 @@ namespace com.clusterrr.hakchi_gui
                 System.Threading.Thread.Sleep(0);
                 Directory.Delete(dir);
             }
+        }
+
+        public static long DirectorySize(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                throw new ArgumentNullException($"Null path cannot be used with this method.");
+
+            long size = 0;
+            DirectoryInfo dir = new DirectoryInfo(path);
+            if (!dir.Exists)
+                return 0;
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                size += file.Length;
+            }
+            foreach (DirectoryInfo subdir in dirs)
+            {
+                size += DirectorySize(subdir.FullName);
+            }
+            return size;
         }
 
         // concatenate an arbitrary number of arrays

@@ -8,11 +8,11 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class GameGenieCodeForm : Form
     {
-        private readonly NesMiniApplication FGame;
+        private readonly NesApplication FGame;
         private GameGenieDataBase FGameGenieDataBase;
         private List<string> OtherCodes;
 
-        public GameGenieCodeForm(NesMiniApplication AGame)
+        public GameGenieCodeForm(NesApplication AGame)
         {
             InitializeComponent();
             FGame = AGame;
@@ -26,7 +26,7 @@ namespace com.clusterrr.hakchi_gui
             checkedListBoxGameCode.Items.Clear();
 
             var lCodeSorted = FGameGenieDataBase.GameCodes.OrderBy(o => o.Description);
-            var lSelectedCode = (FGame as NesMiniApplication).GameGenie.ToUpper().Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
+            var lSelectedCode = (FGame as NesApplication).GameGenie.ToUpper().Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var code in lCodeSorted)
                 checkedListBoxGameCode.Items.Add(code, lSelectedCode.Contains(code.Code.ToUpper().Trim()));
@@ -46,7 +46,7 @@ namespace com.clusterrr.hakchi_gui
             foreach (GameGenieCode code in checkedListBoxGameCode.CheckedItems)
                 selected.Add(code.Code);
             selected.AddRange(OtherCodes);
-            (FGame as NesMiniApplication).GameGenie = string.Join(",", selected.ToArray());
+            (FGame as NesApplication).GameGenie = string.Join(",", selected.ToArray());
         }
 
         private void buttonOk_Click(object sender, EventArgs e)

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public class FdsGame : NesMiniApplication
+    public class FdsGame : NesApplication
     {
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet --fds-auto-disk-side-switch-on-keypress";
 
@@ -22,7 +22,7 @@ namespace com.clusterrr.hakchi_gui
                 var fdsDataNoHeader = new byte[rawRomData.Length - 0x10];
                 Array.Copy(rawRomData, 0x10, fdsDataNoHeader, 0, fdsDataNoHeader.Length);
                 rawRomData = fdsDataNoHeader;
-                crc32 = CRC32(rawRomData);
+                crc32 = Shared.CRC32(rawRomData);
                 // Try to find patch again, using new CRC
                 FindPatch(ref rawRomData, inputFileName,  crc32);
             }

@@ -8,9 +8,9 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class GameGenieCodeAddModForm : Form
     {
-        readonly NesMiniApplication FGame = null;
+        readonly NesApplication FGame = null;
 
-        public GameGenieCodeAddModForm(NesMiniApplication game)
+        public GameGenieCodeAddModForm(NesApplication game)
         {
             InitializeComponent();
             FGame = game;
@@ -52,8 +52,8 @@ namespace com.clusterrr.hakchi_gui
                 try
                 {
                     FGame.CopyTo(tmpPath);
-                    var lGame = NesMiniApplication.FromDirectory(tmpPath);
-                    (lGame as NesMiniApplication).GameGenie = textBoxCode.Text;
+                    var lGame = NesApplication.FromDirectory(tmpPath);
+                    (lGame as NesApplication).GameGenie = textBoxCode.Text;
                     lGame.Save();
                     (lGame as ISupportsGameGenie).ApplyGameGenie();
                 }

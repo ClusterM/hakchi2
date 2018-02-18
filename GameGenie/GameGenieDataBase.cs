@@ -67,7 +67,7 @@ namespace com.clusterrr.hakchi_gui
         private List<GameGenieCode> FGameCodes = null;
         private string originalDatabasePath = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "GameGenieDB.xml");
         private string userDatabasePath = Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "GameGenieDB.xml");
-        private NesMiniApplication FGame = null;
+        private NesApplication FGame = null;
         private bool FModified = false;
 
         private XmlNode GameNode
@@ -131,7 +131,7 @@ namespace com.clusterrr.hakchi_gui
 
         }
 
-        public GameGenieDataBase(NesMiniApplication AGame)
+        public GameGenieDataBase(NesApplication AGame)
         {
             //DataBasePath = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "GameGenieDB.xml");
             FGame = AGame;

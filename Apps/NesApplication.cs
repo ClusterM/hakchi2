@@ -1543,6 +1543,7 @@ namespace com.clusterrr.hakchi_gui
         public bool IsDeleting
         {
             get { return isDeleting; }
+            set { isDeleting = value; }
         }
 
         public static NesApplication FromDirectory(string path, bool ignoreEmptyConfig = false)
@@ -1639,18 +1640,23 @@ namespace com.clusterrr.hakchi_gui
             Directory.CreateDirectory(gamePath);
             File.WriteAllBytes(romPath, rawRomData);
 
-            var desktop = new DesktopFile();
+            var game = new NesApplication(gamePath, true);
             var name = Path.GetFileNameWithoutExtension(inputFileName);
             name = Regex.Replace(name, @" ?\(.*?\)", string.Empty).Trim();
             name = Regex.Replace(name, @" ?\[.*?\]", string.Empty).Trim();
-            desktop.Name = name.Replace("_", " ").Replace("  ", " ").Trim();
-            desktop.Exec = $"{application} {GamesHakchiPath}/{code}/{outputFileName} {args}";
-            desktop.SaveCount = saveCount;
-            desktop.Save(Path.Combine(gamePath, code + ".desktop"));
+            game.desktop.Name = name.Replace("_", " ").Replace("  ", " ").Trim();
+            game.desktop.Exec = $"{application} {GamesHakchiPath}/{code}/{outputFileName} {args}";
+            game.desktop.ProfilePath = GamesHakchiProfilePath;
+            game.desktop.IconPath = GamesHakchiPath;
+            game.desktop.Code = code;
+            game.desktop.SaveCount = saveCount;
+            game.Save();
 
-            var game = NesApplication.FromDirectory(gamePath);
+            game = NesApplication.FromDirectory(gamePath);
             if (game is ICloverAutofill)
                 (game as ICloverAutofill).TryAutofill(crc32);
+            Debug.WriteLine("Icon: " + game.iconPath);
+            Debug.WriteLine("Small Icon: " + game.smallIconPath);
             game.FindCover(inputFileName, cover, crc32);
 
             if (ConfigIni.Compress)
@@ -1702,8 +1708,6 @@ namespace com.clusterrr.hakchi_gui
             if (IsDeleting)
                 return false;
 
-            Debug.WriteLine(string.Format("Saving application \"{0}\" as {1}", Name, Code));
-
             // fix potentially problematic name and sort name
             desktop.Name = Regex.Replace(desktop.Name, @"'(\d)", @"`$1"); // Apostrophe + any number in game name crashes whole system. What. The. Fuck?
             desktop.SortName = Regex.Replace(desktop.SortName, @"'(\d)", @"`$1");
@@ -1741,7 +1745,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     else
                     {
-                        base.Image = AppInfo.DefaultCover;
+                        SetImage(AppInfo.DefaultCover, false);
                     }
                 }
                 else
@@ -1756,7 +1760,7 @@ namespace com.clusterrr.hakchi_gui
                 if (IsOriginalGame && i == null)
                 {
                     string cachedIconPath = Shared.PathCombine(OriginalGamesCacheDirectory, Code, Code + ".png");
-                    return File.Exists(cachedIconPath) ? Image.FromFile(cachedIconPath) : AppInfo.DefaultCover;
+                    return File.Exists(cachedIconPath) ? Shared.LoadBitmapCopy(cachedIconPath) : AppInfo.DefaultCover;
                 }
                 return i;
             }
@@ -1945,10 +1949,15 @@ namespace com.clusterrr.hakchi_gui
                 prefixCode);
         }
 
-        public enum CopyMode { Standard, Export, LinkedExport }
-        public NesApplication CopyTo(string path, CopyMode copyMode)
+        public enum CopyMode { Standard, Sync, Export, LinkedExport }
+        public NesApplication CopyTo(string path, CopyMode copyMode = CopyMode.Standard)
         {
             var targetDir = Path.Combine(path, desktop.Code);
+            if (copyMode == CopyMode.Standard)
+            {
+                Shared.DirectoryCopy(basePath, targetDir, true, false, true);
+                return FromDirectory(targetDir);
+            }
 
             string relativeGamesPath = MediaHakchiPath + GamesDirectory.Substring(2).Replace("\\", "/");
             string relativeOriginalGamesPath = MediaHakchiPath + OriginalGamesCacheDirectory.Substring(2).Replace("\\", "/");
@@ -1959,7 +1968,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 switch (copyMode)
                 {
-                    case CopyMode.Standard:
+                    case CopyMode.Sync:
                         mediaGamePath = Shared.SquashFsPath + GamesSquashPath;
                         iconPath = File.Exists(this.iconPath) ? GamesHakchiPath : Shared.SquashFsPath + GamesSquashPath;
                         break;
@@ -1987,7 +1996,7 @@ namespace com.clusterrr.hakchi_gui
             // copy to new target
             switch (copyMode)
             {
-                case CopyMode.Standard:
+                case CopyMode.Sync:
                     Shared.DirectoryCopy(basePath, targetDir, true, false, true);
                     break;
 
@@ -2029,30 +2038,6 @@ namespace com.clusterrr.hakchi_gui
 
             // return new app
             return FromDirectory(targetDir);
-        }
-
-        public long Size(string path = null)
-        {
-            if (path == null)
-                path = basePath;
-            long size = 0;
-            // Get the subdirectories for the specified directory.
-            DirectoryInfo dir = new DirectoryInfo(path);
-
-            if (!dir.Exists)
-                return 0;
-
-            DirectoryInfo[] dirs = dir.GetDirectories();
-            FileInfo[] files = dir.GetFiles();
-            foreach (FileInfo file in files)
-            {
-                size += file.Length;
-            }
-            foreach (DirectoryInfo subdir in dirs)
-            {
-                size += Size(subdir.FullName);
-            }
-            return size;
         }
 
         public static readonly string[] nonCompressibleExtensions = { ".7z", ".zip", ".hsqs", ".sh", ".pbp", ".chd" };

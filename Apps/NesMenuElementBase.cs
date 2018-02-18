@@ -14,17 +14,21 @@ namespace com.clusterrr.hakchi_gui
     public class NesMenuElementBase : INesMenuElement
     {
         protected DesktopFile desktop = new DesktopFile();
+        public DesktopFile Desktop
+        {
+            get { return desktop; }
+        }
 
-        public string Code
+        public virtual string Code
         {
             get { return desktop.Code; }
         }
-        public string Name
+        public virtual string Name
         {
             get { return desktop.Name; }
             set { desktop.Name = value; }
         }
-        public string SortName
+        public virtual string SortName
         {
             get { return desktop.SortName; }
         }
@@ -38,6 +42,14 @@ namespace com.clusterrr.hakchi_gui
         protected string iconPath;
         protected string smallIconPath;
 
+        public virtual string BasePath
+        {
+            get
+            {
+                return basePath;
+            }
+        }
+
         protected NesMenuElementBase()
         {
             basePath = string.Empty;
@@ -49,7 +61,8 @@ namespace com.clusterrr.hakchi_gui
         {
             basePath = path;
             string code = Path.GetFileName(basePath);
-            string configPath = $"{basePath}/{code}.desktop";
+            string configPath = Path.Combine(basePath, code + ".desktop");
+
             if (File.Exists(configPath))
             {
                 desktop.Load(configPath);
@@ -79,6 +92,16 @@ namespace com.clusterrr.hakchi_gui
             return false;
         }
 
+        public virtual long Size()
+        {
+            try
+            {
+                return Shared.DirectorySize(basePath);
+            }
+            catch { }
+            return 0;
+        }
+
         public virtual Image Image
         {
             set
@@ -102,7 +125,7 @@ namespace com.clusterrr.hakchi_gui
             }
             get
             {
-                return File.Exists(iconPath) ? Image.FromFile(iconPath) : null;
+                return File.Exists(iconPath) ? Shared.LoadBitmapCopy(iconPath) : null;
             }
         }
 
@@ -110,11 +133,11 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                return File.Exists(smallIconPath) ? Image.FromFile(smallIconPath) : null;
+                return File.Exists(smallIconPath) ? Shared.LoadBitmapCopy(smallIconPath) : null;
             }
         }
 
-        private static void ProcessImage(Image inImage, string outPath, int targetWidth, int targetHeight, bool enforceHeight, bool upscale, bool quantize)
+        protected static void ProcessImage(Image inImage, string outPath, int targetWidth, int targetHeight, bool enforceHeight, bool upscale, bool quantize)
         {
             int X, Y;
             if (!upscale && inImage.Width <= targetWidth && inImage.Height <= targetHeight)
@@ -157,7 +180,7 @@ namespace com.clusterrr.hakchi_gui
             outImage.Dispose();
         }
 
-        private static void ProcessImageFile(string inPath, string outPath, int targetWidth, int targetHeight, bool enforceHeight, bool upscale, bool quantize)
+        protected static void ProcessImageFile(string inPath, string outPath, int targetWidth, int targetHeight, bool enforceHeight, bool upscale, bool quantize)
         {
             if (String.IsNullOrEmpty(inPath) || !File.Exists(inPath)) // failsafe
                 throw new FileNotFoundException($"Image file \"{inPath}\" doesn't exist.");
