@@ -855,7 +855,7 @@ namespace com.clusterrr.hakchi_gui
         {
             int c = listViewGames.SelectedItems.Count;
             ListViewItem item = c == 1 ? listViewGames.SelectedItems[0] : null;
-            if (item != null && item.Tag is NesMiniApplication && (item.Tag as NesMiniApplication).Deleting) c = 0;
+            if (item != null && item.Tag is NesApplication && (item.Tag as NesApplication).IsDeleting) c = 0;
 
             if (c == 0)
             {

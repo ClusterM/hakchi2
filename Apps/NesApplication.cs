@@ -1,4 +1,5 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
+using com.clusterrr.util;
 using SevenZip;
 using System;
 using System.Collections;
@@ -251,7 +252,7 @@ namespace com.clusterrr.hakchi_gui
         public static NesApplication FromDirectory(string path, bool ignoreEmptyConfig = false)
         {
             (new DirectoryInfo(path)).Refresh();
-            var files = Directory.GetFiles(path, "*.desktop", SearchOption.TopDirectoryOnly);
+            string[] files = Directory.GetFiles(path, "*.desktop", SearchOption.TopDirectoryOnly);
             if (files.Length == 0)
                 throw new FileNotFoundException($"Invalid application folder: \"{path}\".");
 

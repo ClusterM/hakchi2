@@ -17,7 +17,7 @@ namespace com.clusterrr.hakchi_gui
 
         private string exec = string.Empty;
         private string bin = string.Empty;
-        private string[] args = null;
+        private string[] args = new string[0];
         public string Exec
         {
             get
@@ -386,6 +386,9 @@ namespace com.clusterrr.hakchi_gui
 
             if (hasUnsavedChanges)
             {
+                if (currentFilePath == null)
+                    throw new FileLoadException("No path give to save application " + name);
+
                 System.Diagnostics.Debug.WriteLine(string.Format("Saving application \"{0}\" as {1}", name, code));
                 SaveTo(currentFilePath, snesExtraFields, omitProfilePathCode);
                 hasUnsavedChanges = false;
@@ -394,7 +397,25 @@ namespace com.clusterrr.hakchi_gui
 
         public object Clone()
         {
-            return MemberwiseClone();
+            var newObject = new DesktopFile
+            {
+                Exec = string.Copy(exec),
+                profilePath = string.Copy(profilePath),
+                name = string.Copy(name),
+                iconPath = string.Copy(iconPath),
+                iconFilename = string.Copy(iconFilename),
+                code = string.Copy(code),
+                testId = testId,
+                status = string.Copy(status),
+                players = players,
+                simultaneous = simultaneous,
+                releaseDate = releaseDate,
+                saveCount = saveCount,
+                sortRawTitle = string.Copy(sortRawTitle),
+                sortRawPublisher = string.Copy(sortRawPublisher),
+                copyright = string.Copy(copyright)
+            };
+            return newObject;
         }
     }
 }

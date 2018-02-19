@@ -1070,11 +1070,11 @@ namespace com.clusterrr.hakchi_gui
 
                 // Determine which games need to actually be transferred (differential updates):
                 // Get the list of local files, timestamps, and sizes
-                HashSet<ApplicationFileInfo> localGameSet = Shared.GetApplicationFileInfoForDirectory(tempGamesDirectory);
+                HashSet<ApplicationFileInfo> localGameSet = ApplicationFileInfo.GetApplicationFileInfoForDirectory(tempGamesDirectory);
 
                 // Get the remote list of files, timestamps, and sizes
                 string gamesOnDevice = clovershell.ExecuteSimple($"mkdir -p \"{gameSyncPath}\"; cd \"{gameSyncPath}\"; find . -type f -exec sh -c \"stat \\\"{{}}\\\" -c \\\"%n %s %y\\\"\" \\;", 0, true);
-                HashSet<ApplicationFileInfo> remoteGameSet = Shared.GetApplicationFileInfoFromConsoleOutput(gamesOnDevice);
+                HashSet<ApplicationFileInfo> remoteGameSet = ApplicationFileInfo.GetApplicationFileInfoFromConsoleOutput(gamesOnDevice);
 
                 // Delete any remote files that aren't present locally
                 var remoteGamesToDelete = remoteGameSet.Except(localGameSet);
@@ -1135,8 +1135,8 @@ namespace com.clusterrr.hakchi_gui
                             break;
                     }
 
-                    originalSyncCode += $" && sed -Ee 's#([ =])(/var/lib/hakchi/squashfs)?{gamesPath}/#\\1{squashFsPath}{gamesPath}/#' -i '{gameSyncPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.desktop' && " +
-                        "echo 'OK'";
+                    //originalSyncCode += $" && sed -Ee 's#([ =])(/var/lib/hakchi/squashfs)?{gamesPath}/#\\1{squashFsPath}{gamesPath}/#' -i '{gameSyncPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.desktop' && " +
+                    //    "echo 'OK'";
                     clovershell.ExecuteSimple(originalSyncCode, 30000, true);
                     progress += 2;
                     SetProgress(progress, maxProgress);
@@ -1758,8 +1758,8 @@ namespace com.clusterrr.hakchi_gui
                     }
 
                     // legacy
-                    if (game.IsOriginalGame)
-                        originalGames[game.Code] = $"{menuIndex:D3}";
+                    if (gameCopy.IsOriginalGame)
+                        originalGames[gameCopy.Code] = $"{menuIndex:D3}";
                 }
                 if (element is NesMenuFolder)
                 {
