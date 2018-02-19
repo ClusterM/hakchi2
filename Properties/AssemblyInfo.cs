@@ -7,7 +7,7 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("hakchi2")]
-[assembly: AssemblyDescription("Based on hakchi by madmonkey.\r\n\r\nTranslators:\r\nBritish English: Jhynjhiruu Rekrap\r\nFrench: Ac_K, Xavier M-M, JumpmanFR\r\nSpanish of Spain: Naiki (https://twitter.com/___naiki___)\r\nSpanish of Argentina: KNTRO\r\nGerman: Peamur\r\nItalian: student\r\nCatalan: Truchen\r\nDutch: Mark Dekker - Mad Mega\r\nSlovak: Patrik Žec aka PATWIST\r\nGerman: Peamur\r\nGreek: Miltos Arpazopoulos\r\nFinnish: Luoti-Lasse\r\nBulgarian: Jelmer de Groot\r\nChinese: 九五二七\r\nUkrainian: Пестренко Олекса\r\n\r\nSpecial thanks:\r\nmadmonkey and pcm720 for great help with everything.\r\nxsnake for Japanese font.\r\nPete Batard/Akeo for Zadig.\r\npbatard for libwdi.\r\nThomas Bleeker for WinUSBNet lib.\r\nbootgod for cartridge database.\r\nMarkovtsev Vadim for SevenZipSharp lib.\r\nNeoRame for Graphics.\r\nNhakin for Game Genie database.\r\nmooware for mooftpserv.\r\nNintendo for my childhood.\r\n\r\nMy site: http://clusterrr.com\r\nEmail: clusterrr@clusterrr.com\r\nPayPal for donations: clusterrr@clusterrr.com")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexey 'Cluster' Avdyukhin")]
 [assembly: AssemblyProduct("hakchi2")]
