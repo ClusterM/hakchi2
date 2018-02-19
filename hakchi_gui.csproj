@@ -2382,6 +2382,9 @@
     <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\pleasewait.fb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="mods\mod_hakchi\hakchi\rootfs\etc\preinit.d\p0000_version">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\app.manifest" />
     <Content Include="user_mods\snes_custom_filters.hmod\canoe-custom-filters">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

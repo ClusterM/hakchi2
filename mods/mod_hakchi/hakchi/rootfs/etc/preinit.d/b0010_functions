@@ -77,7 +77,7 @@ remount_root(){
 
   stopTask decodepng
   stopTask aplay
-  umount "$mountpoint"
+  umount "$mountpoint" || (mkdir -p "/var/fuckup" && mount --move "$mountpoint" "/var/fuckup")
 
   local loopfile="/var${1##$mountpoint/var}"
   [ -f "$loopfile" ] || loopfile="/media${1##$mountpoint/media}"
@@ -254,8 +254,8 @@ softwareCheck(){
 repair_fonts(){
   if [ "$sftype" == "nes" ]; then
     mkdir -p "$1" || return 1
-    [ ! -f "$1/title.fnt" ] && copy "$squashfs$gamepath/title.fnt" "$1/"
-    [ ! -f "$1/copyright.fnt" ] && copy "$squashfs$gamepath/copyright.fnt" "$1/"
+    [ ! -f "$1/title.fnt" ] && (copy "$rootfs$gamepath/title.fnt" "$1/" || copy "$squashfs$gamepath/title.fnt" "$1/")
+    [ ! -f "$1/copyright.fnt" ] && (copy "$rootfs$gamepath/copyright.fnt" "$1/" || copy "$squashfs$gamepath/copyright.fnt" "$1/")
   fi
 }
 
@@ -335,7 +335,10 @@ overmount_games(){
   local menu_code="$1"
   [ -z "$1" ] && menu_code="000"
   [ -z "$1" ] && [ -f "$state_file" ] && menu_code="$(cat "$state_file")"
-  containsGames "$gameStorage/$menu_code" || menu_code=""
+  if ! containsGames "$gameStorage/$menu_code"; then
+    menu_code="000"
+    containsGames "$gameStorage/$menu_code" || menu_code=""
+  fi
   echo "menu code: $menu_code"
   if containsGames "$gameStorage/$menu_code"; then
     mount_bind "$gameStorage/$menu_code" "$mountpoint/$gamepath" && \

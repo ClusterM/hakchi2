@@ -13,7 +13,7 @@ while true; do
   fi
   if [ -f "$exec_flag" ]; then
     usleep 100000
-    source "$exec_flag"
+    sh "$exec_flag"
     rm -f "$exec_flag"
   fi
   usleep 200000

@@ -4,7 +4,7 @@ else
   switchToUsbHost
   # the usb driver needs some time to initialize
   sleep 1
-  if [ -z "$(lsusb | grep -v "1d6b:0001")" ]; then
+  if [ -z "$(lsusb | grep -v "1d6b:")" ]; then
     switchToUsbDevice
   fi
 fi

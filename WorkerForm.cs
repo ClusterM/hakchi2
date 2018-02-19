@@ -1465,42 +1465,33 @@ namespace com.clusterrr.hakchi_gui
             var outputStr = new StringBuilder();
             var errorStr = new StringBuilder();
             process.Start();
-            if (onLineOutput != null)
+            var line = new StringBuilder();
+            while (!process.HasExited || !process.StandardOutput.EndOfStream || !process.StandardError.EndOfStream)
             {
-                var line = new StringBuilder();
-                while (!process.HasExited || !process.StandardOutput.EndOfStream || !process.StandardError.EndOfStream)
+                while (!process.StandardOutput.EndOfStream)
                 {
-                    while (!process.StandardOutput.EndOfStream)
+                    var b = process.StandardOutput.Read();
+                    if (b >= 0)
                     {
-                        var b = process.StandardOutput.Read();
-                        if (b >= 0)
+                        if ((char)b != '\n' && (char)b != '\r')
                         {
-                            if ((char)b != '\n' && (char)b != '\r')
-                            {
-                                line.Append((char)b);
-                            }
-                            else
-                            {
-                                if (line.Length > 0)
-                                    onLineOutput(line.ToString());
-                                line.Length = 0;
-                            }
-                            outputStr.Append((char)b);
+                            line.Append((char)b);
                         }
+                        else
+                        {
+                            if (onLineOutput != null && line.Length > 0)
+                                onLineOutput(line.ToString());
+                            line.Length = 0;
+                        }
+                        outputStr.Append((char)b);
                     }
-                    if (!process.StandardError.EndOfStream)
-                        errorStr.Append(process.StandardError.ReadToEnd());
-                    Thread.Sleep(100);
                 }
-                if (line.Length > 0)
-                    onLineOutput(line.ToString());
+                if (!process.StandardError.EndOfStream)
+                    errorStr.Append(process.StandardError.ReadToEnd());
+                Thread.Sleep(100);
             }
-            else
-            {
-                process.WaitForExit();
-                outputStr.Append(process.StandardOutput.ReadToEnd());
-                errorStr.Append(process.StandardError.ReadToEnd());
-            }
+            if (onLineOutput != null && line.Length > 0)
+                onLineOutput(line.ToString());
 
             output = Encoding.GetEncoding(866).GetBytes(outputStr.ToString());
             Debug.WriteLineIf(outputStr.Length > 0 && outputStr.Length < 300, "Output:\r\n" + outputStr);

@@ -1,5 +1,4 @@
-null::sysinit:/bin/mount -t proc proc /proc
-null::sysinit:/bin/mount -t usbfs none /proc/bus/usb
+null::sysinit:/bin/mount -t usbfs usbfs /proc/bus/usb
 null::sysinit:/bin/mkdir -p /dev/pts /dev/shm
 null::sysinit:/bin/mount -a
 null::sysinit:/bin/mkdir -p /var/cache /var/lock /var/log /var/spool
