@@ -24,7 +24,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool? NeedPatch;
         public static bool? Need3rdPartyEmulator;
         public static bool? NeedAutoDownloadCover;
-        const int MaxCompressSize = 10 * 1024;
+        const int MaxCompressSize = 10 * 1024 * 1024;
 
         public static string GamesDirectory
         {
@@ -262,11 +262,11 @@ namespace com.clusterrr.hakchi_gui
             {
                 var files = Directory.GetFiles(gamePath, "*.*", SearchOption.AllDirectories);
                 foreach (var f in files)
-                try
-                {
+                    try
+                    {
                         File.Delete(f);
-                }
-                catch { }
+                    }
+                    catch { }
             }
             Directory.CreateDirectory(gamePath);
             File.WriteAllBytes(romPath, rawRomData);
@@ -384,7 +384,7 @@ namespace com.clusterrr.hakchi_gui
             var sortRawTitle = Name.ToLower();
             if (sortRawTitle.StartsWith("the "))
                 sortRawTitle = sortRawTitle.Substring(4); // Sorting without "THE"
-            File.WriteAllText(ConfigPath, 
+            File.WriteAllText(ConfigPath,
                 $"[Desktop Entry]\n" +
                 $"Type=Application\n" +
                 $"Exec={command}\n" +
@@ -514,14 +514,14 @@ namespace com.clusterrr.hakchi_gui
                     if (File.Exists(imagePath))
                         cover = LoadBitmap(imagePath);
                 }
-                if( cover == null )
+                if (cover == null)
                 {
                     // do a bidirectional search on sanitized filenames to allow minor variance in filenames, also allows subdirectories
                     Regex rgx = new Regex("[^a-zA-Z0-9]", RegexOptions.Compiled);
                     var sanitizedName = rgx.Replace(name, string.Empty).ToLower();
 
                     var covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
-                    foreach(var file in covers)
+                    foreach (var file in covers)
                     {
                         var sanitized = rgx.Replace(System.IO.Path.GetFileNameWithoutExtension(file), "").ToLower();
                         if (sanitizedName.StartsWith(sanitized) || sanitized.StartsWith(sanitizedName))
