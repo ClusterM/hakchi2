@@ -137,11 +137,40 @@ namespace com.clusterrr.hakchi_gui
                 return 10;
             if (nesElement is NesGame)
                 return 28;
-            if (nesElement is NesDefaultGame)
-                return 30;
             if (nesElement is SnesGame)
                 return 36;
+            if (nesElement is NesApplication)
+            {
+                var legacyName = (nesElement as NesApplication).AppInfo.LegacyName;
+                switch (legacyName)
+                {
+                    case "Sega32XGame":
+                        return 0;
+                    case "Atari2600Game":
+                        return 2;
+                    case "NesUGame":
+                        return 8;
+                    case "GbGame":
+                        return 14;
+                    case "GbaGame":
+                        return 16;
+                    case "GbcGame":
+                        return 18;
+                    case "GenesisGame":
+                        return 20;
+                    case "GameGearGame":
+                        return 22;
+                    case "N64Game":
+                        return 24;
+                    case "PceGame":
+                        return 32;
+                    case "SmsGame":
+                        return 34;
+                }
+            }
             /*
+            if (nesElement is NesDefaultGame)
+                return 30;
             if (nesElement is Sega32XGame)
                 return 0;
             if (nesElement is Atari2600Game)
@@ -167,7 +196,7 @@ namespace com.clusterrr.hakchi_gui
             if (nesElement is SmsGame)
                 return 34;
             */
-            
+
             return 4;
         }
 
@@ -276,6 +305,12 @@ namespace com.clusterrr.hakchi_gui
                 groupBoxSplitModes.Enabled = false;
                 pictureBoxArt.Cursor = Cursors.Default;
             }
+
+            if (pictureBoxArt.Image != null)
+            {
+                pictureBoxArt.SizeMode = (pictureBoxArt.Image.Width > 204 || pictureBoxArt.Image.Height > 204) ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.CenterImage;
+            }
+
             ShowFolderStats();
         }
 
@@ -842,7 +877,7 @@ namespace com.clusterrr.hakchi_gui
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     folder.ImageId = form.listBox.SelectedItem.ToString();
-                    pictureBoxArt.Image = folder.Image;
+                    ShowSelected();
                 }
             }
         }

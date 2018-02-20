@@ -30,6 +30,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 buttonOk.Enabled = true;
                 pictureBoxArt.Image = Image.FromFile(Path.Combine(NesMenuFolder.FolderImagesDirectory, listBox.SelectedItems[0] + ".png"));
+                pictureBoxArt.SizeMode = (pictureBoxArt.Image.Width > 204 || pictureBoxArt.Image.Height > 204) ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.CenterImage;
             }
             else
             {

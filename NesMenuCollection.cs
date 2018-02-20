@@ -195,7 +195,6 @@ namespace com.clusterrr.hakchi_gui
                 foreach(var appInfo in AppTypeCollection.ApplicationTypes)
                     apps[appInfo.LegacyName] = new NesMenuCollection();
 
-                Regex rgx = new Regex(@"(^/bin/.*[\s$])", RegexOptions.Compiled); 
                 foreach (var game in root)
                 {
                     if (!(game is NesApplication)) continue;
@@ -206,13 +205,11 @@ namespace com.clusterrr.hakchi_gui
                         apps[ai.LegacyName].Add(game);
                     else
                     {
-                        Match match = rgx.Match(app.Desktop.Exec.ToLower());
-                        if (match.Success && match.Length > 0)
+                        if(!string.IsNullOrEmpty(app.Desktop.Bin))
                         {
-                            string appBin = match.ToString();
-                            if (!customApps.ContainsKey(appBin))
-                                customApps.Add(appBin, new NesMenuCollection());
-                            customApps[appBin].Add(game);
+                            if (!customApps.ContainsKey(app.Desktop.Bin))
+                                customApps.Add(app.Desktop.Bin, new NesMenuCollection());
+                            customApps[app.Desktop.Bin].Add(game);
                         }
                         else
                             apps[AppTypeCollection.UnknownApplicationType.LegacyName].Add(game);
