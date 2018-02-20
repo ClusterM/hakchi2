@@ -147,6 +147,8 @@
             // 
             this.checkLinked.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkLinked.AutoSize = true;
+            this.checkLinked.Checked = true;
+            this.checkLinked.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkLinked.Enabled = false;
             this.checkLinked.Location = new System.Drawing.Point(204, 76);
             this.checkLinked.Name = "checkLinked";

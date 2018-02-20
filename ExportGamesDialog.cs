@@ -141,7 +141,7 @@ namespace com.clusterrr.hakchi_gui
                     ExportPath = Shared.PathCombine(SelectedDrive.RootDirectory.FullName, "hakchi", "games");
                 }
 
-                LinkedExport = checkLinked.Checked;
+                LinkedExport = checkLinked.Enabled && checkLinked.Checked;
 
                 DialogResult = DialogResult.OK;
                 this.Close();
@@ -159,7 +159,6 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                checkLinked.Checked = false;
                 checkLinked.Enabled = false;
             }
         }
