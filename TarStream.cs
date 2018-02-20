@@ -20,7 +20,13 @@ namespace com.clusterrr.util
         long currentEntryLength = 0;
         Stream currentFile = null;
         byte[] currentHeader;
+        public const string refExt = ".tarstreamref";
         public static Regex refRegex = new Regex("\\.tarstreamref$");
+
+        public static string refFileGet(string fileName)
+        {
+            return refRegex.IsMatch(fileName) ? File.ReadAllText(fileName) : fileName;
+        }
 
         public delegate void OnProgressDelegate(long Position, long Length);
         public event OnProgressDelegate OnReadProgress = delegate { };
@@ -324,5 +330,6 @@ namespace com.clusterrr.util
         {
             throw new NotImplementedException();
         }
+
     }
 }

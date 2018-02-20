@@ -17,7 +17,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public class NesApplication : NesMenuElementBase
     {
-        public const uint MaxCompress = 10 * 1024 * 1024;
+        public const uint MaxCompress = 16 * 1024 * 1024; // 16 megabytes
 
         public static Form ParentForm;
         public static bool? NeedPatch;
@@ -263,7 +263,7 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // read .desktop file and guess app type
-            var config = File.ReadAllLines(files[0]);
+            string[] config = File.ReadAllLines(TarStream.refFileGet(files[0]));
             foreach (var line in config)
             {
                 if (line.StartsWith("Exec="))
@@ -376,7 +376,7 @@ namespace com.clusterrr.hakchi_gui
                 throw new FileNotFoundException($"Invalid application file \"{filename}\"");
             var code = Path.GetFileNameWithoutExtension(filename).ToUpper();
             var targetDir = Path.Combine(GamesDirectory, code);
-            Shared.DirectoryCopy(Path.GetDirectoryName(filename), targetDir, true, false, true);
+            Shared.DirectoryCopy(Path.GetDirectoryName(filename), targetDir, true, false, true, false);
             return FromDirectory(targetDir);
         }
 
@@ -653,12 +653,12 @@ namespace com.clusterrr.hakchi_gui
         }
 
         public enum CopyMode { Standard, Sync, Export, LinkedExport }
-        public NesApplication CopyTo(string path, CopyMode copyMode = CopyMode.Standard)
+        public NesApplication CopyTo(string path, CopyMode copyMode = CopyMode.Standard, bool pseudoLinks = false)
         {
             var targetDir = Path.Combine(path, desktop.Code);
             if (copyMode == CopyMode.Standard)
             {
-                Shared.DirectoryCopy(basePath, targetDir, true, false, true);
+                Shared.DirectoryCopy(basePath, targetDir, true, false, true, false);
                 return FromDirectory(targetDir);
             }
 
@@ -700,14 +700,16 @@ namespace com.clusterrr.hakchi_gui
             switch (copyMode)
             {
                 case CopyMode.Sync:
-                    Shared.DirectoryCopy(basePath, targetDir, true, false, true);
+                    Shared.DirectoryCopy(basePath, targetDir, true, false, true,
+                        pseudoLinks && !(this is ISupportsGameGenie && File.Exists(this.GameGeniePath)),
+                        new string[] {desktop.Code + ".desktop"});
                     break;
 
                 case CopyMode.Export:
-                    Shared.DirectoryCopy(basePath, targetDir, true, false, true);
+                    Shared.DirectoryCopy(basePath, targetDir, true, false, true, false);
                     if (Directory.Exists(Path.Combine(OriginalGamesCacheDirectory, desktop.Code)))
                     {
-                        Shared.DirectoryCopy(Path.Combine(OriginalGamesCacheDirectory, desktop.Code), targetDir, true, true);
+                        Shared.DirectoryCopy(Path.Combine(OriginalGamesCacheDirectory, desktop.Code), targetDir, true, true, false, false);
                     }
                     break;
 
@@ -715,11 +717,13 @@ namespace com.clusterrr.hakchi_gui
                     Directory.CreateDirectory(targetDir);
                     if (Directory.Exists(Shared.PathCombine(OriginalGamesCacheDirectory, desktop.Code, "autoplay")))
                     {
-                        Shared.DirectoryCopy(Shared.PathCombine(OriginalGamesCacheDirectory, desktop.Code, "autoplay"), Path.Combine(targetDir, "autoplay"), true, true);
+                        Shared.DirectoryCopy(Shared.PathCombine(OriginalGamesCacheDirectory, desktop.Code, "autoplay"),
+                            Path.Combine(targetDir, "autoplay"), true, false, true, false);
                     }
                     if (Directory.Exists(Shared.PathCombine(OriginalGamesCacheDirectory, desktop.Code, "pixelart")))
                     {
-                        Shared.DirectoryCopy(Shared.PathCombine(OriginalGamesCacheDirectory, desktop.Code, "pixelart"), Path.Combine(targetDir, "pixelart"), true, true);
+                        Shared.DirectoryCopy(Shared.PathCombine(OriginalGamesCacheDirectory, desktop.Code, "pixelart"),
+                            Path.Combine(targetDir, "pixelart"), true, false, true, false);
                     }
                     break;
             }

@@ -9,6 +9,15 @@ namespace com.clusterrr.hakchi_gui
 {
     public class DesktopFile : INesMenuElement, ICloneable
     {
+        private void setIf<T>(T newValue, ref T field)
+        {
+            if (!EqualityComparer<T>.Default.Equals(newValue, field))
+            {
+                field = newValue;
+                hasUnsavedChanges = true;
+            }
+        }
+
         private string type = "Application";
         public string Type
         {
@@ -66,28 +75,14 @@ namespace com.clusterrr.hakchi_gui
         public string ProfilePath
         {
             get { return profilePath; }
-            set
-            {
-                if (profilePath != value)
-                {
-                    profilePath = value;
-                    hasUnsavedChanges = true;
-                }
-            }
+            set { setIf(value, ref profilePath); }
         }
 
         private string name = string.Empty;
         public string Name
         {
             get { return name; }
-            set
-            {
-                if (name != value)
-                {
-                    name = value;
-                    hasUnsavedChanges = true;
-                }
-            }
+            set { setIf(value, ref name); }
         }
 
         private string iconPath = string.Empty;
@@ -95,169 +90,82 @@ namespace com.clusterrr.hakchi_gui
         public string IconPath
         {
             get { return iconPath; }
-            set
-            {
-                if (iconPath != value)
-                {
-                    iconPath = value;
-                    hasUnsavedChanges = true;
-                }
-            }
+            set { setIf(value, ref iconPath); }
         }
         public string IconFilename
         {
             get { return iconFilename; }
-            set
-            {
-                if (iconFilename != value)
-                {
-                    iconFilename = value;
-                    hasUnsavedChanges = true;
-                }
-            }
+            set { setIf(value, ref iconFilename); }
         }
 
         private string code = string.Empty;
         public string Code
         {
             get { return code; }
-            set
-            {
-                if (code != value)
-                {
-                    code = value;
-                    hasUnsavedChanges = true;
-                }
-            }
+            set { setIf(value, ref code); }
         }
 
         private int testId = 0;
         public int TestId
         {
             get { return testId; }
-            set
-            {
-                if (testId != value)
-                {
-                    testId = value;
-                    hasUnsavedChanges = true;
-                }
-            }
+            set { setIf(value, ref testId); }
         }
 
         private string status = string.Empty;
         public string Status
         {
             get { return status; }
-            set
-            {
-                if (status != value)
-                {
-                    status = value;
-                    hasUnsavedChanges = true;
-                }
-            }
+            set { setIf(value, ref status); }
         }
 
         private byte players = 1;
         public byte Players
         {
             get { return players; }
-            set
-            {
-                if (players != value)
-                {
-                    players = value;
-                    hasUnsavedChanges = true;
-                }
-            }
+            set { setIf(value, ref players); }
         }
 
         private bool simultaneous = false;
         public bool Simultaneous
         {
             get { return simultaneous; }
-            set
-            {
-                if (simultaneous != value)
-                {
-                    simultaneous = value;
-                    hasUnsavedChanges = true;
-                }
-            }
+            set { setIf(value, ref simultaneous); }
         }
 
-        private DateTime releaseDate = DateTime.Parse("1900-01-01");
+        private string releaseDate = "1900-01-01";
         public string ReleaseDate
         {
-            get
-            {
-                return releaseDate.ToString("yyyy-MM-dd");
-            }
-            set
-            {
-                if (releaseDate != DateTime.Parse(value))
-                {
-                    releaseDate = DateTime.Parse(value);
-                    hasUnsavedChanges = true;
-                }
-            }
+            get { return releaseDate; }
+            set { setIf(value, ref releaseDate); }
         }
 
         private byte saveCount = 0;
         public byte SaveCount
         {
             get { return saveCount; }
-            set
-            {
-                if (saveCount != value)
-                {
-                    saveCount = value;
-                    hasUnsavedChanges = true;
-                }
-            }
+            set { setIf(value, ref saveCount); }
         }
 
         private string sortRawTitle = string.Empty;
         public string SortName
         {
             get { return sortRawTitle; }
-            set
-            {
-                if (sortRawTitle != value)
-                {
-                    sortRawTitle = value;
-                    hasUnsavedChanges = true;
-                }
-            }
+            set { setIf(value, ref sortRawTitle); }
         }
 
         private string sortRawPublisher = "UNKNOWN";
         public string Publisher
         {
             get { return sortRawPublisher; }
-            set
-            {
-                if (sortRawPublisher != value)
-                {
-                    sortRawPublisher = value;
-                    hasUnsavedChanges = true;
-                }
-            }
+            set { setIf(value, ref sortRawPublisher); }
         }
 
         private string copyright = "hakchi2 CE ©2018";
         public string Copyright
         {
             get { return copyright; }
-            set
-            {
-                if (copyright != value)
-                {
-                    copyright = value;
-                    hasUnsavedChanges = true;
-                }
-            }
+            set { setIf(value, ref copyright); }
         }
 
         private string currentFilePath = null;
@@ -308,7 +216,6 @@ namespace com.clusterrr.hakchi_gui
                             else
                             {
                                 IconPath = Regex.Replace(value, "\\/CLV-.-[A-Z]{5}\\/CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)", "").Replace("//", "/");
-
                                 Match m = Regex.Match(value, "CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)");
                                 IconFilename = m.Success ? m.ToString() : string.Empty;
                             }
@@ -371,7 +278,7 @@ namespace com.clusterrr.hakchi_gui
                 $"ID=0\n" +
                 $"Players={this.players}\n" +
                 $"Simultaneous={(this.simultaneous ? 1 : 0)}\n" +
-                $"ReleaseDate={this.releaseDate.ToString("yyyy-MM-dd")}\n" +
+                $"ReleaseDate={this.releaseDate}\n" +
                 $"SaveCount={this.saveCount}\n" +
                 $"SortRawTitle={this.sortRawTitle}\n" +
                 $"SortRawPublisher={this.sortRawPublisher.ToUpper()}\n" +
@@ -409,7 +316,7 @@ namespace com.clusterrr.hakchi_gui
                 status = string.Copy(status),
                 players = players,
                 simultaneous = simultaneous,
-                releaseDate = releaseDate,
+                releaseDate = string.Copy(releaseDate),
                 saveCount = saveCount,
                 sortRawTitle = string.Copy(sortRawTitle),
                 sortRawPublisher = string.Copy(sortRawPublisher),

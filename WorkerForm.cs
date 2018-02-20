@@ -1590,11 +1590,11 @@ namespace com.clusterrr.hakchi_gui
                 UnpackRamfs(kernelPath);
             if (Directory.Exists(hakchiDirectory))
                 Directory.Delete(hakchiDirectory, true);
-            Shared.DirectoryCopy(Path.Combine(modsDirectory, Mod), ramfsDirectory, true);
+            Shared.DirectoryCopy(Path.Combine(modsDirectory, Mod), ramfsDirectory, true, false, true, false);
 
             if (!string.IsNullOrEmpty(ModExtraFilesPath) && Directory.Exists(ModExtraFilesPath))
             {
-                Shared.DirectoryCopy(ModExtraFilesPath, ramfsDirectory, true);
+                Shared.DirectoryCopy(ModExtraFilesPath, ramfsDirectory, true, false, true, false);
             }
 
             var ramfsFiles = Directory.GetFiles(ramfsDirectory, "*.*", SearchOption.AllDirectories);
@@ -1616,7 +1616,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (Directory.Exists(Path.Combine(dir, modName)))
                         {
-                            Shared.DirectoryCopy(Path.Combine(dir, modName), Path.Combine(tempHmodsDirectory, modName), true);
+                            Shared.DirectoryCopy(Path.Combine(dir, modName), Path.Combine(tempHmodsDirectory, modName), true, false, true, false);
                             break;
                         }
                         if (File.Exists(Path.Combine(dir, modName)))
@@ -1726,7 +1726,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     else
                     {   // sync/upload to snes mini
-                        gameCopy = game.CopyTo(targetDirectory, NesApplication.CopyMode.Sync);
+                        gameCopy = game.CopyTo(targetDirectory, NesApplication.CopyMode.Sync, true);
                     }
                     stats.TotalSize += gameSize;
                     stats.TransferSize += gameSize;

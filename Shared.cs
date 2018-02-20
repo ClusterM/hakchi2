@@ -188,39 +188,38 @@ namespace com.clusterrr.hakchi_gui
                 SizeSuffixes[mag]);
         }
 
-        public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, bool skipExistingFiles = false, bool overwriteExistingFiles = false)
+        public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, bool skipExistingFiles, bool overwriteExistingFiles, bool pseudoLinks, string[] skipFiles = null)
         {
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
 
             if (!dir.Exists)
-            {
-                throw new DirectoryNotFoundException(
-                    "Source directory does not exist or could not be found: "
-                    + sourceDirName);
-            }
+                throw new DirectoryNotFoundException("Source directory does not exist or could not be found: " + sourceDirName);
 
             DirectoryInfo[] dirs = dir.GetDirectories();
             // If the destination directory doesn't exist, create it.
             if (!Directory.Exists(destDirName))
-            {
                 Directory.CreateDirectory(destDirName);
-            }
 
             // Get the files in the directory and copy them to the new location.
             FileInfo[] files = dir.GetFiles();
             foreach (FileInfo file in files)
             {
-                string temppath = new FileInfo(Path.Combine(destDirName, file.Name)).FullName;
-                if (File.Exists(temppath) && skipExistingFiles)
-                {
+                if (skipFiles != null && skipFiles.Contains(Path.GetFileName(file.Name)))
+                    continue; // same behavior as TarStream
+
+                string tempPath = new FileInfo(Path.Combine(destDirName, file.Name)).FullName;
+                if (skipExistingFiles && File.Exists(tempPath))
                     continue;
+
+                if (pseudoLinks)
+                {
+                    File.WriteAllText(tempPath + TarStream.refExt, file.FullName);
                 }
                 else
                 {
-                    file.CopyTo(temppath, overwriteExistingFiles); // TODO : redundant
+                    file.CopyTo(tempPath, overwriteExistingFiles);
                 }
-
             }
 
             // If copying subdirectories, copy them and their contents to new location.
@@ -229,7 +228,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (DirectoryInfo subdir in dirs)
                 {
                     string temppath = Path.Combine(destDirName, subdir.Name);
-                    DirectoryCopy(subdir.FullName, temppath, copySubDirs, skipExistingFiles, overwriteExistingFiles);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs, skipExistingFiles, overwriteExistingFiles, pseudoLinks, skipFiles);
                 }
             }
         }
