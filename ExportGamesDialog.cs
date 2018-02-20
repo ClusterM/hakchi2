@@ -49,7 +49,7 @@ namespace com.clusterrr.hakchi_gui
 
             foreach (DriveInfo drive in allDrives)
             {
-                if (drive.IsReady == false || drive.DriveType == DriveType.Network || drive.AvailableFreeSpace == 0) continue;
+                if (drive.IsReady == false || drive.AvailableFreeSpace == 0) continue;
                 comboDriveLetters.Items.Add(new DriveLetterItem(drive));
             }
 
