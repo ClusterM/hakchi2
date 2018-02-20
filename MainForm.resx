@@ -121,12 +121,6 @@
     <value>315, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="centerBoxArtThumbnailToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 22</value>
-  </data>
-  <data name="centerBoxArtThumbnailToolStripMenuItem.Text" xml:space="preserve">
-    <value>Center box art thumbnail</value>
-  </data>
   <data name="addMoreGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 22</value>
   </data>
@@ -349,22 +343,28 @@
     <value>&amp;Modules</value>
   </data>
   <data name="positionAtTheTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>182, 22</value>
   </data>
   <data name="positionAtTheTopToolStripMenuItem.Text" xml:space="preserve">
     <value>At the top</value>
   </data>
   <data name="positionAtTheBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>182, 22</value>
   </data>
   <data name="positionAtTheBottomToolStripMenuItem.Text" xml:space="preserve">
     <value>At the bottom</value>
   </data>
   <data name="positionSortedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>182, 22</value>
   </data>
   <data name="positionSortedToolStripMenuItem.Text" xml:space="preserve">
     <value>Sorted</value>
+  </data>
+  <data name="positionHiddenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="positionHiddenToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hidden (Unselected)</value>
   </data>
   <data name="originalGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 22</value>
@@ -593,17 +593,32 @@
   <data name="compressBoxArtToolStripMenuItem.Text" xml:space="preserve">
     <value>Compress box art when adding</value>
   </data>
-  <data name="separateGamesForMultibootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="centerBoxArtThumbnailToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 22</value>
   </data>
-  <data name="separateGamesForMultibootToolStripMenuItem.Text" xml:space="preserve">
-    <value>Separate games for multiboot</value>
+  <data name="centerBoxArtThumbnailToolStripMenuItem.Text" xml:space="preserve">
+    <value>Center box art thumbnail</value>
   </data>
   <data name="disableHakchi2PopupsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 22</value>
   </data>
   <data name="disableHakchi2PopupsToolStripMenuItem.Text" xml:space="preserve">
     <value>Disable hakchi2 pop-ups</value>
+  </data>
+  <data name="toolStripMenuItem16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 6</value>
+  </data>
+  <data name="separateGamesForMultibootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="separateGamesForMultibootToolStripMenuItem.Text" xml:space="preserve">
+    <value>Separate games for multiboot</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
+    <value>Use extended font</value>
   </data>
   <data name="changeBootImageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 22</value>
@@ -628,15 +643,6 @@
   </data>
   <data name="bootImageToolStripMenuItem.Text" xml:space="preserve">
     <value>Boot splash</value>
-  </data>
-  <data name="toolStripMenuItem16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>324, 6</value>
-  </data>
-  <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 22</value>
-  </data>
-  <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
-    <value>Use extended font</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 22</value>
@@ -3321,6 +3327,12 @@
   <data name="&gt;&gt;positionSortedToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;positionHiddenToolStripMenuItem.Name" xml:space="preserve">
+    <value>positionHiddenToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;positionHiddenToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;groupByAppTypeToolStripMenuItem.Name" xml:space="preserve">
     <value>groupByAppTypeToolStripMenuItem</value>
   </data>
@@ -3519,16 +3531,34 @@
   <data name="&gt;&gt;compressBoxArtToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;separateGamesForMultibootToolStripMenuItem.Name" xml:space="preserve">
-    <value>separateGamesForMultibootToolStripMenuItem</value>
+  <data name="&gt;&gt;centerBoxArtThumbnailToolStripMenuItem.Name" xml:space="preserve">
+    <value>centerBoxArtThumbnailToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;separateGamesForMultibootToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;centerBoxArtThumbnailToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;disableHakchi2PopupsToolStripMenuItem.Name" xml:space="preserve">
     <value>disableHakchi2PopupsToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;disableHakchi2PopupsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem16.Name" xml:space="preserve">
+    <value>toolStripMenuItem16</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;separateGamesForMultibootToolStripMenuItem.Name" xml:space="preserve">
+    <value>separateGamesForMultibootToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;separateGamesForMultibootToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;useExtendedFontToolStripMenuItem.Name" xml:space="preserve">
+    <value>useExtendedFontToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;useExtendedFontToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;bootImageToolStripMenuItem.Name" xml:space="preserve">
@@ -3553,18 +3583,6 @@
     <value>resetDefaultBootImageToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;resetDefaultBootImageToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem16.Name" xml:space="preserve">
-    <value>toolStripMenuItem16</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem16.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;useExtendedFontToolStripMenuItem.Name" xml:space="preserve">
-    <value>useExtendedFontToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;useExtendedFontToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;epilepsyProtectionToolStripMenuItem.Name" xml:space="preserve">
@@ -3842,12 +3860,6 @@
   </data>
   <data name="&gt;&gt;timerShowSelected.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;centerBoxArtThumbnailToolStripMenuItem.Name" xml:space="preserve">
-    <value>centerBoxArtThumbnailToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;centerBoxArtThumbnailToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

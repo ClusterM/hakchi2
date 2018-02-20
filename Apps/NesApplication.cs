@@ -161,7 +161,22 @@ namespace com.clusterrr.hakchi_gui
 
         public static readonly string OriginalGamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games_originals");
         public static readonly string OriginalGamesCacheDirectory = Path.Combine(Program.BaseDirectoryExternal, "games_cache");
-        public static readonly string GamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games");
+        public static string GamesDirectory
+        {
+            get
+            {
+                switch (ConfigIni.ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        return Path.Combine(Program.BaseDirectoryExternal, "games");
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return Path.Combine(Program.BaseDirectoryExternal, "games_snes");
+                }
+            }
+        }
         public static string MediaHakchiPath = "/media";
         public static string GamesHakchiPath = "/var/games";
         public static string GamesHakchiProfilePath = "/var/saves";

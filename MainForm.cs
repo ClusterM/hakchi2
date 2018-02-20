@@ -28,7 +28,7 @@ namespace com.clusterrr.hakchi_gui
         /// </summary>
         private static string UPDATE_XML_URL = "https://teamshinkansen.github.io/xml/updates/update.xml";
 
-        public enum OriginalGamesPosition { AtTop = 0, AtBottom = 1, Sorted = 2 }
+        public enum OriginalGamesPosition { AtTop = 0, AtBottom = 1, Sorted = 2, Hidden = 3 }
         public enum ConsoleType { NES = 0, Famicom = 1, SNES = 2, SuperFamicom = 3, Unknown = 255 }
         public long DefaultMaxGamesSize
         {
@@ -549,9 +549,12 @@ namespace com.clusterrr.hakchi_gui
             var gamesSorted = games.OrderBy(o => o.SortName);
             foreach (var game in gamesSorted)
             {
+                if (ConfigIni.OriginalGamesPosition == OriginalGamesPosition.Hidden && game.IsOriginalGame)
+                    continue;
+
                 var listViewItem = new ListViewItem(game.Name);
                 listViewItem.Tag = game;
-                listViewItem.Checked = selected.Contains(game.Code);
+                listViewItem.Checked = selected.Contains(game.Code) || ConfigIni.HiddenGames.Contains(game.Code);
 
                 ListViewGroup group = null;
                 if (game.IsOriginalGame)
@@ -803,12 +806,19 @@ namespace com.clusterrr.hakchi_gui
         private void SaveSelectedGames()
         {
             var selected = new List<string>();
+            var hiddenSelected = new List<string>();
             foreach (ListViewItem game in listViewGames.CheckedItems)
             {
                 if (game.Tag is NesApplication)
+                {
                     selected.Add((game.Tag as NesApplication).Code);
+                    if ((game.Tag as NesApplication).IsOriginalGame)
+                        hiddenSelected.Add((game.Tag as NesApplication).Code);
+                }
             }
             ConfigIni.SelectedGames = string.Join(";", selected.ToArray());
+            if (ConfigIni.OriginalGamesPosition != OriginalGamesPosition.Hidden)
+                ConfigIni.HiddenGames = string.Join(";", hiddenSelected.ToArray());
         }
 
         private void SaveConfig()
@@ -2535,33 +2545,52 @@ namespace com.clusterrr.hakchi_gui
         private void positionAtTheTopToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (positionAtTheTopToolStripMenuItem.Checked) return;
+            SaveSelectedGames();
+
             ConfigIni.OriginalGamesPosition = OriginalGamesPosition.AtTop;
             positionAtTheTopToolStripMenuItem.Checked = true;
             positionAtTheBottomToolStripMenuItem.Checked = false;
             positionSortedToolStripMenuItem.Checked = false;
-            SaveSelectedGames();
+            positionHiddenToolStripMenuItem.Checked = false;
             LoadGames();
         }
 
         private void positionAtTheBottomToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (positionAtTheBottomToolStripMenuItem.Checked) return;
+            SaveSelectedGames();
+
             ConfigIni.OriginalGamesPosition = OriginalGamesPosition.AtBottom;
             positionAtTheTopToolStripMenuItem.Checked = false;
             positionAtTheBottomToolStripMenuItem.Checked = true;
             positionSortedToolStripMenuItem.Checked = false;
-            SaveSelectedGames();
+            positionHiddenToolStripMenuItem.Checked = false;
             LoadGames();
         }
 
         private void positionSortedInListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (positionSortedToolStripMenuItem.Checked) return;
+            SaveSelectedGames();
+
             ConfigIni.OriginalGamesPosition = OriginalGamesPosition.Sorted;
             positionAtTheTopToolStripMenuItem.Checked = false;
             positionAtTheBottomToolStripMenuItem.Checked = false;
             positionSortedToolStripMenuItem.Checked = true;
+            positionHiddenToolStripMenuItem.Checked = false;
+            LoadGames();
+        }
+
+        private void positionHiddenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (positionHiddenToolStripMenuItem.Checked) return;
             SaveSelectedGames();
+
+            ConfigIni.OriginalGamesPosition = OriginalGamesPosition.Hidden;
+            positionAtTheTopToolStripMenuItem.Checked = false;
+            positionAtTheBottomToolStripMenuItem.Checked = false;
+            positionSortedToolStripMenuItem.Checked = false;
+            positionHiddenToolStripMenuItem.Checked = true;
             LoadGames();
         }
 

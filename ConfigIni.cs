@@ -9,17 +9,16 @@ namespace com.clusterrr.hakchi_gui
     {
         public static int RunCount = 0;
         public static string LastVersion = "0.0.0.0";
-        //public static string SelectedGames = "";
         public static string SelectedGamesNes = "";
         public static string SelectedGamesFamicom = "";
         public static string SelectedGamesSnes = "";
         public static string SelectedGamesSuperFamicom = "";
         public static MainForm.OriginalGamesPosition OriginalGamesPosition = MainForm.OriginalGamesPosition.AtTop;
         public static bool GroupGamesByAppType = false;
-        //public static string HiddenGamesNes = "";
-        //public static string HiddenGamesFamicom = "";
-        //public static string HiddenGamesSnes = "";
-        //public static string HiddenGamesSuperFamicom = "";
+        public static string HiddenGamesNes = "";
+        public static string HiddenGamesFamicom = "";
+        public static string HiddenGamesSnes = "";
+        public static string HiddenGamesSuperFamicom = "";
         public static bool CustomFlashedNes = false;
         public static bool CustomFlashedFamicom = false;
         public static bool CustomFlashedSnes = false;
@@ -145,7 +144,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        /*
         public static string HiddenGames
         {
             get
@@ -183,7 +181,6 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
-        */
 
         public static byte MaxGamesPerFolder
         {
@@ -482,18 +479,18 @@ namespace com.clusterrr.hakchi_gui
                                 case "groupgamesbyapptype":
                                     GroupGamesByAppType = !value.ToLower().Equals("false");
                                     break;
-                                //case "hiddengames":
-                                //    HiddenGamesNes = value;
-                                //    break;
-                                //case "hiddengamesfamicom":
-                                //    HiddenGamesFamicom = value;
-                                //    break;
-                                //case "hiddengamessnes":
-                                //    HiddenGamesSnes = value;
-                                //    break;
-                                //case "hiddengamessuperfamicom":
-                                //    HiddenGamesSuperFamicom = value;
-                                //    break;
+                                case "hiddengames":
+                                    HiddenGamesNes = value;
+                                    break;
+                                case "hiddengamesfamicom":
+                                    HiddenGamesFamicom = value;
+                                    break;
+                                case "hiddengamessnes":
+                                    HiddenGamesSnes = value;
+                                    break;
+                                case "hiddengamessuperfamicom":
+                                    HiddenGamesSuperFamicom = value;
+                                    break;
                                 case "customflashednes":
                                     CustomFlashedNes = !value.ToLower().Equals("false");
                                     break;
@@ -662,10 +659,10 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("SelectedGamesSuperFamicom={0}", SelectedGamesSuperFamicom));
             configLines.Add(string.Format("OriginalGamesPosition={0}", (byte)OriginalGamesPosition));
             configLines.Add(string.Format("GroupGamesByAppType={0}", GroupGamesByAppType));
-            //configLines.Add(string.Format("HiddenGames={0}", HiddenGamesNes));
-            //configLines.Add(string.Format("HiddenGamesFamicom={0}", HiddenGamesFamicom));
-            //configLines.Add(string.Format("HiddenGamesSnes={0}", HiddenGamesSnes));
-            //configLines.Add(string.Format("HiddenGamesSuperFamicom={0}", HiddenGamesSuperFamicom));
+            configLines.Add(string.Format("HiddenGames={0}", HiddenGamesNes));
+            configLines.Add(string.Format("HiddenGamesFamicom={0}", HiddenGamesFamicom));
+            configLines.Add(string.Format("HiddenGamesSnes={0}", HiddenGamesSnes));
+            configLines.Add(string.Format("HiddenGamesSuperFamicom={0}", HiddenGamesSuperFamicom));
             configLines.Add(string.Format("CustomFlashedNes={0}", CustomFlashedNes));
             configLines.Add(string.Format("CustomFlashedFamicom={0}", CustomFlashedFamicom));
             configLines.Add(string.Format("CustomFlashedSnes={0}", CustomFlashedSnes));

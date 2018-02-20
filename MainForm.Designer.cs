@@ -73,6 +73,7 @@
             this.positionAtTheTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.positionAtTheBottomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.positionSortedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.positionHiddenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupByAppTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -106,14 +107,15 @@
             this.usePCMPatchWhenAvailableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.centerBoxArtThumbnailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disableHakchi2PopupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripSeparator();
+            this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disableBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetDefaultBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripSeparator();
-            this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.epilepsyProtectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
@@ -196,7 +198,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numericUpDownSaveCount = new System.Windows.Forms.NumericUpDown();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
-            this.centerBoxArtThumbnailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -481,7 +482,8 @@
             this.originalGamesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.positionAtTheTopToolStripMenuItem,
             this.positionAtTheBottomToolStripMenuItem,
-            this.positionSortedToolStripMenuItem});
+            this.positionSortedToolStripMenuItem,
+            this.positionHiddenToolStripMenuItem});
             this.originalGamesToolStripMenuItem.Name = "originalGamesToolStripMenuItem";
             resources.ApplyResources(this.originalGamesToolStripMenuItem, "originalGamesToolStripMenuItem");
             // 
@@ -502,6 +504,12 @@
             this.positionSortedToolStripMenuItem.Name = "positionSortedToolStripMenuItem";
             resources.ApplyResources(this.positionSortedToolStripMenuItem, "positionSortedToolStripMenuItem");
             this.positionSortedToolStripMenuItem.Click += new System.EventHandler(this.positionSortedInListToolStripMenuItem_Click);
+            // 
+            // positionHiddenToolStripMenuItem
+            // 
+            this.positionHiddenToolStripMenuItem.Name = "positionHiddenToolStripMenuItem";
+            resources.ApplyResources(this.positionHiddenToolStripMenuItem, "positionHiddenToolStripMenuItem");
+            this.positionHiddenToolStripMenuItem.Click += new System.EventHandler(this.positionHiddenToolStripMenuItem_Click);
             // 
             // groupByAppTypeToolStripMenuItem
             // 
@@ -767,6 +775,25 @@
             resources.ApplyResources(this.compressBoxArtToolStripMenuItem, "compressBoxArtToolStripMenuItem");
             this.compressBoxArtToolStripMenuItem.Click += new System.EventHandler(this.compressBoxArtToolStripMenuItem_Click);
             // 
+            // centerBoxArtThumbnailToolStripMenuItem
+            // 
+            this.centerBoxArtThumbnailToolStripMenuItem.CheckOnClick = true;
+            this.centerBoxArtThumbnailToolStripMenuItem.Name = "centerBoxArtThumbnailToolStripMenuItem";
+            resources.ApplyResources(this.centerBoxArtThumbnailToolStripMenuItem, "centerBoxArtThumbnailToolStripMenuItem");
+            this.centerBoxArtThumbnailToolStripMenuItem.Click += new System.EventHandler(this.centerBoxArtThumbnailToolStripMenuItem_Click);
+            // 
+            // disableHakchi2PopupsToolStripMenuItem
+            // 
+            this.disableHakchi2PopupsToolStripMenuItem.CheckOnClick = true;
+            this.disableHakchi2PopupsToolStripMenuItem.Name = "disableHakchi2PopupsToolStripMenuItem";
+            resources.ApplyResources(this.disableHakchi2PopupsToolStripMenuItem, "disableHakchi2PopupsToolStripMenuItem");
+            this.disableHakchi2PopupsToolStripMenuItem.Click += new System.EventHandler(this.disableHakchi2PopupsToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem16
+            // 
+            this.toolStripMenuItem16.Name = "toolStripMenuItem16";
+            resources.ApplyResources(this.toolStripMenuItem16, "toolStripMenuItem16");
+            // 
             // separateGamesForMultibootToolStripMenuItem
             // 
             this.separateGamesForMultibootToolStripMenuItem.Checked = true;
@@ -776,12 +803,14 @@
             resources.ApplyResources(this.separateGamesForMultibootToolStripMenuItem, "separateGamesForMultibootToolStripMenuItem");
             this.separateGamesForMultibootToolStripMenuItem.Click += new System.EventHandler(this.separateGamesForMultibootToolStripMenuItem_Click);
             // 
-            // disableHakchi2PopupsToolStripMenuItem
+            // useExtendedFontToolStripMenuItem
             // 
-            this.disableHakchi2PopupsToolStripMenuItem.CheckOnClick = true;
-            this.disableHakchi2PopupsToolStripMenuItem.Name = "disableHakchi2PopupsToolStripMenuItem";
-            resources.ApplyResources(this.disableHakchi2PopupsToolStripMenuItem, "disableHakchi2PopupsToolStripMenuItem");
-            this.disableHakchi2PopupsToolStripMenuItem.Click += new System.EventHandler(this.disableHakchi2PopupsToolStripMenuItem_Click);
+            this.useExtendedFontToolStripMenuItem.Checked = true;
+            this.useExtendedFontToolStripMenuItem.CheckOnClick = true;
+            this.useExtendedFontToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.useExtendedFontToolStripMenuItem.Name = "useExtendedFontToolStripMenuItem";
+            resources.ApplyResources(this.useExtendedFontToolStripMenuItem, "useExtendedFontToolStripMenuItem");
+            this.useExtendedFontToolStripMenuItem.Click += new System.EventHandler(this.useExtendedFontToolStripMenuItem_Click);
             // 
             // bootImageToolStripMenuItem
             // 
@@ -809,20 +838,6 @@
             this.resetDefaultBootImageToolStripMenuItem.Name = "resetDefaultBootImageToolStripMenuItem";
             resources.ApplyResources(this.resetDefaultBootImageToolStripMenuItem, "resetDefaultBootImageToolStripMenuItem");
             this.resetDefaultBootImageToolStripMenuItem.Click += new System.EventHandler(this.resetDefaultBootImageToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem16
-            // 
-            this.toolStripMenuItem16.Name = "toolStripMenuItem16";
-            resources.ApplyResources(this.toolStripMenuItem16, "toolStripMenuItem16");
-            // 
-            // useExtendedFontToolStripMenuItem
-            // 
-            this.useExtendedFontToolStripMenuItem.Checked = true;
-            this.useExtendedFontToolStripMenuItem.CheckOnClick = true;
-            this.useExtendedFontToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.useExtendedFontToolStripMenuItem.Name = "useExtendedFontToolStripMenuItem";
-            resources.ApplyResources(this.useExtendedFontToolStripMenuItem, "useExtendedFontToolStripMenuItem");
-            this.useExtendedFontToolStripMenuItem.Click += new System.EventHandler(this.useExtendedFontToolStripMenuItem_Click);
             // 
             // epilepsyProtectionToolStripMenuItem
             // 
@@ -1386,13 +1401,6 @@
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
             // 
-            // centerBoxArtThumbnailToolStripMenuItem
-            // 
-            this.centerBoxArtThumbnailToolStripMenuItem.CheckOnClick = true;
-            this.centerBoxArtThumbnailToolStripMenuItem.Name = "centerBoxArtThumbnailToolStripMenuItem";
-            resources.ApplyResources(this.centerBoxArtThumbnailToolStripMenuItem, "centerBoxArtThumbnailToolStripMenuItem");
-            this.centerBoxArtThumbnailToolStripMenuItem.Click += new System.EventHandler(this.centerBoxArtThumbnailToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1601,6 +1609,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDownSaveCount;
         private System.Windows.Forms.GroupBox groupBoxOptions;
         private System.Windows.Forms.ToolStripMenuItem centerBoxArtThumbnailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem positionHiddenToolStripMenuItem;
     }
 }
 
