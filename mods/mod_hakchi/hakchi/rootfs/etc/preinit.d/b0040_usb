@@ -1,50 +1,82 @@
 disableUsbDevice(){
   #disable usb
+  [ -f "/sys/devices/sunxi_usb/usb_role" ] || return 1
   echo 0 > "/sys/devices/sunxi_usb/usb_role"
 }
 
 switchToUsbDevice(){
+  [ -f "/sys/devices/sunxi_usb/usb_role" ] || return 1
   disableUsbDevice
-
   # enable device mode
   echo 2 > "/sys/devices/sunxi_usb/usb_role"
-
   # make sure the usb gadgets are disabled
   echo 0 > "/sys/devices/virtual/android_usb/android0/enable"
 }
 
 switchToUsbHost(){
+  [ -f "/sys/devices/sunxi_usb/usb_role" ] || return 1
   # make sure the usb gadgets are disabled
+  [ -f "/sys/devices/virtual/android_usb/android0/enable" ] && \
   echo 0 > "/sys/devices/virtual/android_usb/android0/enable"
-
   disableUsbDevice
-
   # enable host mode
   echo 1 > "/sys/devices/sunxi_usb/usb_role"
 }
 
-checkUsbStorage(){
-  local disk="/dev/sda1"
+getUsbStorageIds(){
+  find "/dev/bus/usb" -type c | while read device
+  do
+    hexdump -n 1 -s 32 "$device" -C | grep -e '^00000020  08' && echo "$device"
+  done
+}
 
-  local timeout=5
-  while [ $timeout -gt 0 ] && ! [ -b "$disk" ]; do
-    echo "waiting for media $timeout"
+waitForStorageDevice(){
+  local blockDevice="$1"
+  [ -z "$timeout" ] && local timeout=5
+  while [ $timeout -gt 0 ] && ! [ -b "$blockDevice" ]; do
+    echo "waiting for $blockDevice $timeout"
     let timeout=timeout-1
     sleep 1
   done
+  [ -b "$blockDevice" ]
+}
 
-  [ -b "$disk" ] || return 1
+waitForUsbDevice(){
+  [ -z "$(getUsbStorageIds)" ] && return 1
+  waitForStorageDevice ${1+"$@"}
+}
+
+waitForMmcDevice(){
+  [ -f "/key-file" ] && return 1
+  waitForStorageDevice ${1+"$@"}
+}
+
+checkStorageDevice(){
+  local blockDevice="$1"
+  [ -b "$blockDevice" ] || return 1
 
   local ro="defaults,nosuid,nodev,noatime,ro"
   local rw="defaults,nosuid,nodev,noatime,rw"
-  mount -o $ro "$disk" "$mountpoint/media" || return 1
-
   local saves="$modname/saves"
-  
-  if [ -d "$mountpoint/media/$saves" ] || [ -d "$mountpoint/media/$modname/transfer" ] || [ "$cfg_usb_rw" == "y" ]; then
-    mount -o remount,$rw "$disk"
+
+  if ! [ "$cfg_usb_rw" == "y" ]; then
+    mount -o $ro "$blockDevice" "$mountpoint/media" || return 1
   fi
-  [ -d "$mountpoint/media/$saves" ] && mount_bind "$mountpoint/media/$saves" "$mountpoint/var/lib/clover/profiles/0"
+
+  local need_repair=""
+  [ -d "$mountpoint/media/$games" ] && ! [ -z "$(find $mountpoint/media/$games -name .repair.flag -maxdepth 2)" ] && need_repair=y
+
+  if [ -d "$mountpoint/media/$saves" ] || [ -d "$mountpoint/media/$modname/transfer" ] || [ "$cfg_usb_rw" == "y" ] || [ "$need_repair" == "y" ]; then
+    umount "$mountpoint/media" 2>/dev/null
+    mount -o $rw "$blockDevice" "$mountpoint/media" || return 1
+  fi
+
+  if ! [ -d "$mountpoint/media/$modname" ]; then
+    umount "$mountpoint/media"
+    return 1
+  fi
+
+  [ -d "$mountpoint/media/$saves" ] && mount_bind "$mountpoint/media/$saves" "$mountpoint$profilepath"
 
   local bootlogo0="boot.png"
   local bootlogo1="$mountpoint/media/$modname/$bootlogo0"
@@ -54,26 +86,40 @@ checkUsbStorage(){
     showImage "$bootlogo2"
     cfg_boot_logo=''
   else
-    [ -f "$bootlogo2" ] && rm "$bootlogo2" && source "$preinit.d/p7010_bootlogo"
+    [ -f "$bootlogo2" ] && rm -f "$bootlogo2" && source "$preinit.d/p7010_bootlogo"
   fi
-  
+
+  local bootsound0="boot.wav"
+  local bootsound1="$mountpoint/media/$modname/$bootsound0"
+  local bootsound2="$rootfs/etc/$bootsound0"
+  if [ -f "$bootsound1" ]; then
+    [ -f "$bootsound2" ] || playSound "$bootsound1"
+    rsync -ac "$bootsound1" "$bootsound2"
+  else
+    rm -f "$bootsound2"
+  fi
+
   return 0
 }
 
-checkUsbGamepath(){
-  local disk="/dev/sda1"
-  [ -b "$disk" ] || return 1
-
-  local games="$modname/games"
-  if containsGames "$mountpoint/media/$games"; then
-    if ! mkdir -p "$rootfs$gamepath"; then
-      rm -rf "$rootfs$gamepath"
-      mkdir -p "$rootfs$gamepath" || return 1
-    fi
-    mount_bind "$mountpoint/media/$games" "$rootfs$gamepath"
-    return 0
-  else
-    echo "no romz found at: $disk:/$games"
-    return 1
-  fi
+checkExtStorage(){
+  local di
+  local d
+  local p
+  local timeout=5
+  local blockDevice="/dev/sd"
+  waitForUsbDevice "${blockDevice}a1"
+  for di in $(seq 97 99); do
+    d="$(printf "\\$(printf %o $di)\n")"
+    for p in $(seq 1 9); do
+      checkStorageDevice "$blockDevice$d$p" && return 0
+    done
+  done
+  [ $timeout -gt 2 ] && timeout=2
+  blockDevice="/dev/mmcblk0p"
+  waitForMmcDevice "${blockDevice}1"
+  for p in $(seq 1 9); do
+    checkStorageDevice "$blockDevice$p" && return 0
+  done
+  return 1
 }

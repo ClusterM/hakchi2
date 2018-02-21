@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-kachikachi-wr /var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACPJ/CLV-P-HACPJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 68 --enable-armet 
+Exec=/bin/clover-kachikachi-wr /var/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACPJ/CLV-P-HACPJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 68 --enable-armet 
 Path=/var/lib/clover/profiles/0//CLV-P-HACPJ
 Name=アトランチスの謎
-Icon=/var/lib/hakchi/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACPJ/CLV-P-HACPJ.png
+Icon=/var/squashfs/usr/share/games/nes/kachikachi/CLV-P-HACPJ/CLV-P-HACPJ.png
 
 [X-CLOVER Game]
 Code=CLV-P-HACPJ

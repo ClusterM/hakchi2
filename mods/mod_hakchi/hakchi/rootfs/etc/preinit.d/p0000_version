@@ -1,0 +1,18 @@
+createVersionFile(){
+  [ -d "$mountpoint/var" ] || return 1
+  local vfile="$mountpoint/var/version"
+  local hakchiVersion="[master]v1.0.3-110(7f31082)"
+  local kernelVersion="$(uname -r)"
+  [ -z "$bootVersion" ] && local bootVersion="v1.0.0"
+  echo "# $(uname -a)" > "$vfile"
+  set | grep -F Version | sort >> "$vfile"
+}
+
+loadVersionFile(){
+  [ -d "$mountpoint/var" ] || return 1
+  local vfile="$mountpoint/var/version"
+  [ -f "$vfile" ] || return 1
+  source "$vfile"
+}
+
+createVersionFile

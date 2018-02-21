@@ -721,10 +721,19 @@
   <data name="TooManyPerFolder" xml:space="preserve">
     <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
-  <data name="FolderNotEmpty" xml:space="preserve">
-    <value>The selected folder isn't empty</value>
-  </data>
   <data name="gitCommit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\commit.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="ConfigSavedNote" xml:space="preserve">
+    <value>Config saved. Please note that configuration for the real console ({0}) was used, not for selected console ({1}).</value>
+  </data>
+  <data name="Syncronize" xml:space="preserve">
+    <value>Synchronize selected games with NES/SNES Mini</value>
+  </data>
+  <data name="SyncronizeUSB" xml:space="preserve">
+    <value>Synchronize selected games with USB drive</value>
+  </data>
+  <data name="WritingUSB" xml:space="preserve">
+    <value>Writing games to the USB drive...</value>
   </data>
 </root>

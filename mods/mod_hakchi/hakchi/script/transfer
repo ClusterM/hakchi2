@@ -68,5 +68,6 @@ transfer_path "$transferpath"
 echo
 
 save_config
-[ "$cf_shutdown" != "y" ] || shutdown
+[ "$cf_shutdown" == "y" ] && shutdown
+[ "$cf_shutdown" == "r" ] && reboot
 echo

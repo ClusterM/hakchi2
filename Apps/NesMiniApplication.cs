@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -23,6 +24,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool? NeedPatch;
         public static bool? Need3rdPartyEmulator;
         public static bool? NeedAutoDownloadCover;
+        const int MaxCompressSize = 10 * 1024 * 1024;
 
         public static string GamesDirectory
         {
@@ -181,22 +183,47 @@ namespace com.clusterrr.hakchi_gui
             return new NesMiniApplication(path, ignoreEmptyConfig);
         }
 
+        public static NesMiniApplication CreateEmptyApp()
+        {
+            char prefix = 'X';
+            uint crc32;
+            string code;
+            string gamePath;
+            do
+            {
+                crc32 = (uint)new Random().Next();
+                code = GenerateCode(crc32, prefix);
+                gamePath = Path.Combine(GamesDirectory, code);
+            } while (Directory.Exists(gamePath));
+            Directory.CreateDirectory(gamePath);
+            var game = new NesMiniApplication(gamePath, true);
+            game.Name = "New app";
+            game.Image = DefaultCover;
+            game.Command = "enter some command here";
+            game.SaveCount = 0;
+            game.Save();
+
+            var app = FromDirectory(gamePath);
+            return app;
+        }
+
         public static NesMiniApplication Import(string inputFileName, string originalFileName = null, byte[] rawRomData = null)
         {
-            var extension = System.IO.Path.GetExtension(inputFileName).ToLower();
+            var extension = Path.GetExtension(inputFileName).ToLower();
             if (extension == ".desktop")
                 return ImportApp(inputFileName);
             if (rawRomData == null) // Maybe it's already extracted data?
                 rawRomData = File.ReadAllBytes(inputFileName); // If not, reading file
             if (originalFileName == null) // Original file name from archive
-                originalFileName = System.IO.Path.GetFileName(inputFileName);
+                originalFileName = Path.GetFileName(inputFileName);
             char prefix = DefaultPrefix;
             string application = extension.Length > 2 ? ("/bin/" + extension.Substring(1)) : DefaultApp;
             string args = null;
             Image cover = DefaultCover;
             byte saveCount = 0;
             uint crc32 = CRC32(rawRomData);
-            string outputFileName = Regex.Replace(System.IO.Path.GetFileName(inputFileName), @"[^A-Za-z0-9()!\[\]\.\-]", "_").Trim();
+            string outputFileName = Regex.Replace(Path.GetFileName(inputFileName), @" ?\(.*?\)| ?\[.*?\]", "").Trim();
+            outputFileName = Regex.Replace(outputFileName, @"[^A-Za-z0-9!\.]+", "_");
 
             // Trying to determine file type
             var appinfo = AppTypeCollection.GetAppByExtension(extension);
@@ -235,11 +262,11 @@ namespace com.clusterrr.hakchi_gui
             {
                 var files = Directory.GetFiles(gamePath, "*.*", SearchOption.AllDirectories);
                 foreach (var f in files)
-                try
-                {
+                    try
+                    {
                         File.Delete(f);
-                }
-                catch { }
+                    }
+                    catch { }
             }
             Directory.CreateDirectory(gamePath);
             File.WriteAllBytes(romPath, rawRomData);
@@ -357,7 +384,7 @@ namespace com.clusterrr.hakchi_gui
             var sortRawTitle = Name.ToLower();
             if (sortRawTitle.StartsWith("the "))
                 sortRawTitle = sortRawTitle.Substring(4); // Sorting without "THE"
-            File.WriteAllText(ConfigPath, 
+            File.WriteAllText(ConfigPath,
                 $"[Desktop Entry]\n" +
                 $"Type=Application\n" +
                 $"Exec={command}\n" +
@@ -487,14 +514,14 @@ namespace com.clusterrr.hakchi_gui
                     if (File.Exists(imagePath))
                         cover = LoadBitmap(imagePath);
                 }
-                if( cover == null )
+                if (cover == null)
                 {
                     // do a bidirectional search on sanitized filenames to allow minor variance in filenames, also allows subdirectories
                     Regex rgx = new Regex("[^a-zA-Z0-9]", RegexOptions.Compiled);
                     var sanitizedName = rgx.Replace(name, string.Empty).ToLower();
 
                     var covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
-                    foreach(var file in covers)
+                    foreach (var file in covers)
                     {
                         var sanitized = rgx.Replace(System.IO.Path.GetFileNameWithoutExtension(file), "").ToLower();
                         if (sanitizedName.StartsWith(sanitized) || sanitized.StartsWith(sanitizedName))
@@ -586,7 +613,7 @@ namespace com.clusterrr.hakchi_gui
             return FromDirectory(targetDir);
         }
 
-        internal static long DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        internal static long DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, string[] skipFiles = null)
         {
             long size = 0;
             // Get the subdirectories for the specified directory.
@@ -610,6 +637,8 @@ namespace com.clusterrr.hakchi_gui
             FileInfo[] files = dir.GetFiles();
             foreach (FileInfo file in files)
             {
+                if (skipFiles != null && skipFiles.Contains(file.Name))
+                    continue;
                 string temppath = System.IO.Path.Combine(destDirName, file.Name);
                 size += file.CopyTo(temppath, true).Length;
             }
@@ -620,16 +649,19 @@ namespace com.clusterrr.hakchi_gui
                 foreach (DirectoryInfo subdir in dirs)
                 {
                     string temppath = System.IO.Path.Combine(destDirName, subdir.Name);
-                    size += DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                    size += DirectoryCopy(subdir.FullName, temppath, copySubDirs, skipFiles);
                 }
             }
             return size;
         }
 
-        public long Size(string path = null)
+        public long Size()
         {
-            if (path == null)
-                path = GamePath;
+            return DirectorySize(GamePath);
+        }
+
+        public static long DirectorySize(string path)
+        {
             long size = 0;
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(path);
@@ -645,7 +677,7 @@ namespace com.clusterrr.hakchi_gui
             }
             foreach (DirectoryInfo subdir in dirs)
             {
-                size += Size(subdir.FullName);
+                size += DirectorySize(subdir.FullName);
             }
             return size;
         }
@@ -700,11 +732,13 @@ namespace com.clusterrr.hakchi_gui
             var result = new List<string>();
             var exec = Regex.Replace(Command, "[/\\\"]", " ") + " ";
             var files = Directory.GetFiles(GamePath, "*.*", SearchOption.TopDirectoryOnly);
+            var ignoreExtensions = new string[] { ".7z", ".zip", ".hsqs", ".sh" };
             foreach (var file in files)
             {
-                if (Path.GetExtension(file).ToLower() == ".7z")
+                var a = from i in ignoreExtensions select i;
+                if (ignoreExtensions.Contains(Path.GetExtension(file).ToLower()))
                     continue;
-                if (Path.GetExtension(file).ToLower() == ".zip")
+                if (new FileInfo(file).Length > MaxCompressSize)
                     continue;
                 if (exec.Contains(" " + Path.GetFileName(file) + " "))
                     result.Add(file);
@@ -737,7 +771,7 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine("Compressing " + filename);
                 compressor.CompressFiles(archName, filename);
                 File.Delete(filename);
-                Command = Command.Replace(System.IO.Path.GetFileName(filename), System.IO.Path.GetFileName(archName));
+                Command = Command.Replace(Path.GetFileName(filename), Path.GetFileName(archName));
             }
         }
 

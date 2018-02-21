@@ -2,12 +2,5 @@
 mod_repair_etc
 
 softwareCheck
-checkUsbGamepath
 
-if [ ! -d "$mountpoint/lib/modules/$(uname -r)" ]; then
-  if [ -d "$rootfs/lib/modules/$(uname -r)" ]; then
-    overmount "/lib/modules"
-  else
-    echo "no modules for loaded kernel $(uname -r)"
-  fi
-fi
+overmountModules

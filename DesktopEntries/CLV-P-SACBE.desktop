@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/clover-canoe-shvc-wr -rom /var/lib/hakchi/squashfs/usr/share/games/CLV-P-SACBE/CLV-P-SACBE.sfrom --volume 85 -rollback-snapshot-period 600
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SACBE/CLV-P-SACBE.sfrom --volume 85 -rollback-snapshot-period 600
 Path=/var/lib/clover/profiles/0//CLV-P-SACBE
 Name=Super Castlevania IV
-Icon=/var/lib/hakchi/squashfs/usr/share/games/CLV-P-SACBE/CLV-P-SACBE.png
+Icon=/var/squashfs/usr/share/games/CLV-P-SACBE/CLV-P-SACBE.png
 
 [X-CLOVER Game]
 Code=CLV-P-SACBE

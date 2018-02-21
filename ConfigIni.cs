@@ -49,6 +49,11 @@ namespace com.clusterrr.hakchi_gui
         public static bool FtpServer = false;
         public static bool TelnetServer = false;
         public static string Language = "";
+        public static bool UsbHostNes = false;
+        public static bool UsbHostFamicom = false;
+        public static bool UsbHostSnes = false;
+        public static bool UsbHostSuperFamicom = false;
+        public static bool AlwaysWriteToUSB = false;
 
         public static bool CustomFlashed
         {
@@ -400,6 +405,44 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        public static bool UsbHost
+        {
+            get
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                        return UsbHostNes;
+                    case MainForm.ConsoleType.Famicom:
+                        return UsbHostFamicom;
+                    case MainForm.ConsoleType.SNES:
+                        return UsbHostSnes;
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return UsbHostSuperFamicom;
+                }
+            }
+            set
+            {
+                switch (ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                        UsbHostNes = value;
+                        break;
+                    case MainForm.ConsoleType.Famicom:
+                        UsbHostFamicom = value;
+                        break;
+                    case MainForm.ConsoleType.SNES:
+                        UsbHostSnes = value;
+                        break;
+                    case MainForm.ConsoleType.SuperFamicom:
+                        UsbHostSuperFamicom = value;
+                        break;
+                }
+            }
+        }
+
         public static void Load()
         {
             Debug.WriteLine("Loading config");
@@ -546,8 +589,20 @@ namespace com.clusterrr.hakchi_gui
                                 case "ftpserver":
                                     FtpServer = !value.ToLower().Equals("false");
                                     break;
-                                case "telnetserver":
-                                    TelnetServer = !value.ToLower().Equals("false");
+                                case "usbhostnes":
+                                    UsbHostNes = !value.ToLower().Equals("false");
+                                    break;
+                                case "usbhostfamicom":
+                                    UsbHostFamicom = !value.ToLower().Equals("false");
+                                    break;
+                                case "usbhostsnes":
+                                    UsbHostSnes = !value.ToLower().Equals("false");
+                                    break;
+                                case "usbhostsuperfamicom":
+                                    UsbHostSuperFamicom = !value.ToLower().Equals("false");
+                                    break;
+                                case "alwayswritetousb":
+                                    AlwaysWriteToUSB = !value.ToLower().Equals("false");
                                     break;
                             }
                             break;
@@ -589,6 +644,10 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("AntiArmetLevel={0}", AntiArmetLevel));
             configLines.Add(string.Format("ConsoleType={0}", (byte)ConsoleType));
             configLines.Add(string.Format("FcStart={0}", FcStart));
+            configLines.Add(string.Format("UsbHostNes={0}", UsbHostNes));
+            configLines.Add(string.Format("UsbHostFamicom={0}", UsbHostFamicom));
+            configLines.Add(string.Format("UsbHostSuperFamicom={0}", UsbHostSuperFamicom));
+            configLines.Add(string.Format("UsbHostSnes={0}", UsbHostSnes));
             configLines.Add(string.Format("ExtraCommandLineArguments={0}", ExtraCommandLineArgumentsNes));
             configLines.Add(string.Format("ExtraCommandLineArgumentsSnes={0}", ExtraCommandLineArgumentsSnes));
             configLines.Add(string.Format("FoldersMode={0}", (byte)FoldersModeNes));
@@ -603,6 +662,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("FtpServer={0}", FtpServer));
             configLines.Add(string.Format("TelnetServer={0}", TelnetServer));
             configLines.Add(string.Format("RunCount={0}", RunCount));
+            configLines.Add(string.Format("AlwaysWriteToUSB={0}", AlwaysWriteToUSB));
 
             configLines.Add("");
             configLines.Add("[Presets]");
@@ -617,19 +677,24 @@ namespace com.clusterrr.hakchi_gui
             File.WriteAllLines(fileName, configLines.ToArray());
         }
 
-        public static Dictionary<string, string> GetConfigDictionary()
+        public static Dictionary<string, string> GetConfigDictionary(MainForm.ConsoleType? consoleType = null)
         {
+            MainForm.ConsoleType oldConsoleType = ConsoleType;
+            if (consoleType != null && consoleType != MainForm.ConsoleType.Unknown)
+                ConsoleType = consoleType ?? MainForm.ConsoleType.Unknown;
+
             var config = new Dictionary<string, string>();
             config["clovercon_home_combination"] = ConfigIni.ResetHack ? string.Format("0x{0:X4}", ConfigIni.ResetCombination) : "0x7FFF";
             config["clovercon_autofire"] = ConfigIni.AutofireHack ? "1" : "0";
-            config["clovercon_autofire_xy"] = ConfigIni.AutofireXYHack && (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom) ? "1" : "0";
+            config["clovercon_autofire_xy"] = ConfigIni.AutofireXYHack /*&& (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)*/ ? "1" : "0";
             config["clovercon_fc_start"] = ConfigIni.FcStart && (ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom) ? "1" : "0";
             config["fontfix_enabled"] = ConfigIni.UseFont ? "y" : "n";
-            config["disable_armet"] = (ConfigIni.AntiArmetLevel > 0 && (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)) ? "y" : "n";
-            if ((ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom))
-                config["nes_extra_args"] = ConfigIni.ExtraCommandLineArguments;
-            if ((ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom))
-                config["snes_extra_args"] = ConfigIni.ExtraCommandLineArguments;
+            config["disable_armet"] = ConfigIni.AntiArmetLevel > 0 /*&& (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)*/ ? "y" : "n";
+            config["nes_extra_args"] = ExtraCommandLineArgumentsNes;
+            config["snes_extra_args"] = ExtraCommandLineArgumentsSnes;
+            config["usb_host"] = ConfigIni.UsbHost ? "y" : "n";
+
+            ConsoleType = oldConsoleType;
             return config;
         }
     }

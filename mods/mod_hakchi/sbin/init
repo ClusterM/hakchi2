@@ -34,6 +34,6 @@ fi
 [ -f "/hakchi/init" ] && sh "/hakchi/init"
 
 /bin/mount --move /dev /newroot/dev
-/bin/umount /proc
-/bin/umount /sys
+/bin/mount --move /proc /newroot/proc
+/bin/mount --move /sys /newroot/sys
 exec /sbin/switch_root /newroot /sbin/init
