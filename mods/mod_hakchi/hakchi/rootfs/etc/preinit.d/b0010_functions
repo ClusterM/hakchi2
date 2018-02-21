@@ -254,8 +254,8 @@ softwareCheck(){
 repair_fonts(){
   if [ "$sftype" == "nes" ]; then
     mkdir -p "$1" || return 1
-    [ ! -f "$1/title.fnt" ] && (copy "$rootfs$gamepath/title.fnt" "$1/" || copy "$squashfs$gamepath/title.fnt" "$1/")
-    [ ! -f "$1/copyright.fnt" ] && (copy "$rootfs$gamepath/copyright.fnt" "$1/" || copy "$squashfs$gamepath/copyright.fnt" "$1/")
+    copy "$rootfs$gamepath/title.fnt" "$1/" || copy "$squashfs$gamepath/title.fnt" "$1/"
+    copy "$rootfs$gamepath/copyright.fnt" "$1/" || copy "$squashfs$gamepath/copyright.fnt" "$1/"
   fi
 }
 

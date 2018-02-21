@@ -31,7 +31,7 @@ namespace com.clusterrr.hakchi_gui
             new AppInfo
             {
                 Class = typeof(NesUGame),
-                Extensions = new string[] {".unf", ".unif", ".nes", ".fds" },
+                Extensions = new string[] {".unf", ".unif", ".nes" },
                 DefaultApps = new string[] {"/bin/nes"},
                 Prefix = 'I',
                 DefaultCover = Resources.blank_jp

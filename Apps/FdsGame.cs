@@ -23,7 +23,7 @@ namespace com.clusterrr.hakchi_gui
         {
         }
 
-        public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref uint crc32)
+        public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref byte saveCount, ref uint crc32)
         {
             FindPatch(ref rawRomData, inputFileName, crc32);
             if (Encoding.ASCII.GetString(rawRomData, 0, 3) == "FDS") // header? cut it!

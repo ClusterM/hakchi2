@@ -61,10 +61,10 @@ namespace com.clusterrr.hakchi_gui
             else
             {
                 root = new NesMenuCollection();
-                root.AddRange(this.Where(o => !(o is NesDefaultGame)));
+                root.AddRange(this.Where(o => !(o is NesDefaultGame || o.GetType() == typeof(NesMiniApplication))));
                 if (root.Count == 0)
                     return;
-                this.RemoveAll(o => !(o is NesDefaultGame));
+                this.RemoveAll(o => root.Contains(o));
                 this.Add(new NesMenuFolder()
                 {
                     Name = Resources.FolderNameMoreGames,

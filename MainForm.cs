@@ -174,7 +174,7 @@ namespace com.clusterrr.hakchi_gui
             if (ConfigIni.TelnetServer)
                 Clovershell.ShellEnabled = shellToolStripMenuItem.Checked = true;
             alwaysWriteGamesToUSBDriveToolStripMenuItem.Checked = ConfigIni.AlwaysWriteToUSB;
-            buttonStart.Text = (Control.ModifierKeys == Keys.Shift) ^ ConfigIni.AlwaysWriteToUSB ? Resources.SyncronizeUSB : Resources.Syncronize;
+            buttonStart.Text = (Control.ModifierKeys == Keys.Shift) || ConfigIni.AlwaysWriteToUSB ? Resources.SyncronizeUSB : Resources.Syncronize;
         }
 
         void FormInitialize()
@@ -794,6 +794,7 @@ namespace com.clusterrr.hakchi_gui
         DialogResult RequirePatchedKernel()
         {
             if (ConfigIni.CustomFlashed) return DialogResult.OK; // OK - already flashed
+            if (Clovershell.IsOnline) return DialogResult.OK; // OK - maybe not flashed but it's online
             if (MessageBox.Show(Resources.CustomWarning, Resources.CustomKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                     == System.Windows.Forms.DialogResult.Yes)
             {
@@ -807,7 +808,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            bool exportGames = (Control.ModifierKeys == Keys.Shift) ^ ConfigIni.AlwaysWriteToUSB;
+            bool exportGames = (Control.ModifierKeys == Keys.Shift) || ConfigIni.AlwaysWriteToUSB;
             SaveConfig();
 
             var stats = RecalculateSelectedGames();
@@ -1250,7 +1251,7 @@ namespace com.clusterrr.hakchi_gui
         private void alwaysWriteGamesToUSBDriveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.AlwaysWriteToUSB = alwaysWriteGamesToUSBDriveToolStripMenuItem.Checked;
-            buttonStart.Text = (Control.ModifierKeys == Keys.Shift) ^ ConfigIni.AlwaysWriteToUSB ? Resources.SyncronizeUSB : Resources.Syncronize;
+            buttonStart.Text = (Control.ModifierKeys == Keys.Shift) || ConfigIni.AlwaysWriteToUSB ? Resources.SyncronizeUSB : Resources.Syncronize;
         }
 
         private void selectButtonCombinationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1902,7 +1903,7 @@ namespace com.clusterrr.hakchi_gui
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ShiftKey)
-                buttonStart.Text = !ConfigIni.AlwaysWriteToUSB ? Resources.SyncronizeUSB : Resources.Syncronize;
+                buttonStart.Text = Resources.SyncronizeUSB;
             if (listViewGames.SelectedItems.Count != 1) return;
             var selected = listViewGames.SelectedItems[0].Tag;
             if ((e.KeyCode == Keys.E) && (e.Modifiers == (Keys.Alt | Keys.Control)) && (selected is SnesGame))
@@ -1920,7 +1921,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_Activated(object sender, EventArgs e)
         {
-            buttonStart.Text = (Control.ModifierKeys == Keys.Shift) ^ ConfigIni.AlwaysWriteToUSB ? Resources.SyncronizeUSB : Resources.Syncronize;
+            buttonStart.Text = (Control.ModifierKeys == Keys.Shift) || ConfigIni.AlwaysWriteToUSB ? Resources.SyncronizeUSB : Resources.Syncronize;
         }
 
         private void createCustomCommandToolStripMenuItem_Click(object sender, EventArgs e)

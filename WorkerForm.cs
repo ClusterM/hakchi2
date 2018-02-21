@@ -491,7 +491,7 @@ namespace com.clusterrr.hakchi_gui
                 if (matchedKeys.Count() > 0)
                 {
                     if (!matchedKeys.Contains(ConfigIni.ConsoleType))
-                        throw new Exception(Resources.InvalidConsoleSelected + " " + matchedKernels.First());
+                        throw new Exception(Resources.InvalidConsoleSelected + " " + matchedKeys.First());
                 }
                 else throw new Exception("Unknown key, unknown console");
 
