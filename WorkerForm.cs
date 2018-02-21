@@ -18,7 +18,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class WorkerForm : Form
     {
-        public enum Tasks { DumpKernel, FlashKernel, DumpNand, FlashNand, DumpNandB, DumpNandC, FlashNandC, Memboot, UploadGames, DownloadCovers, AddGames, CompressGames, DecompressGames, DeleteGames };
+        public enum Tasks { DumpKernel, FlashKernel, DumpNand, FlashNand, DumpNandB, DumpNandC, FlashNandC, Memboot, UploadGames, DownloadCovers, AddGames, LoadGames, CompressGames, DecompressGames, DeleteGames };
         public Tasks Task;
         //public string UBootDump;
         public static string KernelDumpPath
@@ -77,8 +77,6 @@ namespace com.clusterrr.hakchi_gui
         readonly string argumentsFilePath;
         readonly string transferDirectory;
         string tempGamesDirectory;
-        //string originalGamesConfigDirectory;
-        //string hiddenPath;
         Dictionary<MainForm.ConsoleType, string[]> correctKernels = new Dictionary<MainForm.ConsoleType, string[]>();
         Dictionary<MainForm.ConsoleType, string[]> correctKeys = new Dictionary<MainForm.ConsoleType, string[]>();
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
@@ -306,6 +304,9 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case Tasks.AddGames:
                         AddGames(GamesToAdd);
+                        break;
+                    case Tasks.LoadGames:
+                        LoadGames();
                         break;
                     case Tasks.DownloadCovers:
                         DownloadCovers();
@@ -1641,6 +1642,65 @@ namespace com.clusterrr.hakchi_gui
             }
             addedApplications = apps.ToArray();
             return apps; // Added games/apps
+        }
+
+        void LoadGames()
+        {
+            SetStatus(Resources.PleaseWait);
+            var selected = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+            MainForm.Invoke(new Action(delegate ()
+            {
+                MainForm.listViewGames.Items.Clear();
+            }));
+            var games = new List<ListViewItem>();
+            var listViewItem = new ListViewItem(Resources.Default30games);
+            listViewItem.Tag = "default";
+            listViewItem.Checked = selected.Contains("default");
+            games.Add(listViewItem);
+
+            Directory.CreateDirectory(NesMiniApplication.GamesDirectory);
+            var gameDirs = Directory.GetDirectories(NesMiniApplication.GamesDirectory);
+            int progress = 0;
+            var maxProgress = gameDirs.Length;
+            foreach (var gameDir in gameDirs)
+            {
+                try
+                {
+                    // Removing empty directories without errors
+                    try
+                    {
+                        var game = NesMiniApplication.FromDirectory(gameDir);
+                        listViewItem = new ListViewItem(game.Name);
+                        listViewItem.Tag = game;
+                        listViewItem.Checked = selected.Contains(game.Code);
+                        games.Add(listViewItem);
+                    }
+                    catch (FileNotFoundException ex) // Remove bad directories if any
+                    {
+                        Debug.WriteLine(ex.Message + ex.StackTrace);
+                        Directory.Delete(gameDir, true);
+                    }
+                }
+                catch (ThreadAbortException) { }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message + ex.StackTrace);
+                    MainForm.Invoke(new Action(delegate ()
+                    {
+                        MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }));
+                    continue;
+                }
+                progress++;
+                if (progress % 30 == 0)
+                    SetProgress(progress, maxProgress);
+            }
+            SetProgress(maxProgress, maxProgress);
+            MainForm.Invoke(new Action(delegate ()
+            {
+                MainForm.listViewGames.Items.AddRange(games.ToArray());
+            }));
         }
 
         void DownloadCovers()

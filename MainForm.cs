@@ -158,7 +158,6 @@ namespace com.clusterrr.hakchi_gui
         public MainForm()
         {
             InitializeComponent();
-            FormInitialize();
 
             Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
             Clovershell.OnConnected += Clovershell_OnConnected;
@@ -173,8 +172,11 @@ namespace com.clusterrr.hakchi_gui
                 FTPToolStripMenuItem_Click(null, null);
             if (ConfigIni.TelnetServer)
                 Clovershell.ShellEnabled = shellToolStripMenuItem.Checked = true;
-            alwaysWriteGamesToUSBDriveToolStripMenuItem.Checked = ConfigIni.AlwaysWriteToUSB;
-            buttonStart.Text = (Control.ModifierKeys == Keys.Shift) || ConfigIni.AlwaysWriteToUSB ? Resources.SyncronizeUSB : Resources.Syncronize;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            FormInitialize();
         }
 
         void FormInitialize()
@@ -217,6 +219,8 @@ namespace com.clusterrr.hakchi_gui
 
                 openFTPInExplorerToolStripMenuItem.Enabled = FTPToolStripMenuItem.Checked = ConfigIni.FtpServer;
                 openTelnetToolStripMenuItem.Enabled = shellToolStripMenuItem.Checked = ConfigIni.TelnetServer;
+                alwaysWriteGamesToUSBDriveToolStripMenuItem.Checked = ConfigIni.AlwaysWriteToUSB;
+                buttonStart.Text = (Control.ModifierKeys == Keys.Shift) || ConfigIni.AlwaysWriteToUSB ? Resources.SyncronizeUSB : Resources.Syncronize;
             }
             catch (Exception ex)
             {
@@ -276,50 +280,14 @@ namespace com.clusterrr.hakchi_gui
 
         public void LoadGames()
         {
-            Debug.WriteLine("Loading games");
-            var selected = ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            Directory.CreateDirectory(NesMiniApplication.GamesDirectory);
-            var gameDirs = Directory.GetDirectories(NesMiniApplication.GamesDirectory);
-            var games = new List<NesMiniApplication>();
-            foreach (var gameDir in gameDirs)
-            {
-                try
-                {
-                    // Removing empty directories without errors
-                    try
-                    {
-                        var game = NesMiniApplication.FromDirectory(gameDir);
-                        games.Add(game);
-                    }
-                    catch (FileNotFoundException ex) // Remove bad directories if any
-                    {
-                        Debug.WriteLine(ex.Message + ex.StackTrace);
-                        Directory.Delete(gameDir, true);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message + ex.StackTrace);
-                    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    continue;
-                }
-            }
-
-            var gamesSorted = games.OrderBy(o => o.Name);
-            listViewGames.Items.Clear();
-            var listViewItem = new ListViewItem(Resources.Default30games);
-            listViewItem.Tag = "default";
-            listViewItem.Checked = selected.Contains("default");
-            listViewGames.Items.Add(listViewItem);
-            foreach (var game in gamesSorted)
-            {
-                listViewItem = new ListViewItem(game.Name);
-                listViewItem.Tag = game;
-                listViewItem.Checked = selected.Contains(game.Code);
-                listViewGames.Items.Add(listViewItem);
-            }
+            var workerForm = new WorkerForm(this);
+            workerForm.Text = Resources.LoadingGames;
+            workerForm.Task = WorkerForm.Tasks.LoadGames;
+            workerForm.Start();
             RecalculateSelectedGames();
             ShowSelected();
+            if (workerForm.DialogResult != DialogResult.OK)
+                Close();
         }
 
         public void ShowSelected()
@@ -1242,7 +1210,7 @@ namespace com.clusterrr.hakchi_gui
         {
             ConfigIni.FcStart = upABStartOnSecondControllerToolStripMenuItem.Checked;
         }
-        
+
         private void enableUSBHostToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.UsbHost = enableUSBHostToolStripMenuItem.Checked;
@@ -1578,6 +1546,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void timerConnectionCheck_Tick(object sender, EventArgs e)
         {
+            if (Clovershell == null) return;
             toolStripStatusConnectionIcon.Image = Clovershell.IsOnline ? Resources.green : Resources.red;
             toolStripStatusConnectionIcon.ToolTipText = Clovershell.IsOnline ? "Online" : "Offline";
         }
