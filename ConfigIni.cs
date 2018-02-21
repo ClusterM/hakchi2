@@ -575,7 +575,7 @@ namespace com.clusterrr.hakchi_gui
                                     FoldersModeNes = (NesMenuCollection.SplitStyle)byte.Parse(value);
                                     break;
                                 case "foldersmodefamicom":
-                                    FoldersModeSuperFamicom = (NesMenuCollection.SplitStyle)byte.Parse(value);
+                                    FoldersModeFamicom = (NesMenuCollection.SplitStyle)byte.Parse(value);
                                     break;
                                 case "foldersmodesnes":
                                     FoldersModeSnes = (NesMenuCollection.SplitStyle)byte.Parse(value);
