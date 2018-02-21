@@ -798,7 +798,17 @@ namespace com.clusterrr.hakchi_gui
                 const string rootFsPath = "/var/lib/hakchi/rootfs";
 
                 var clovershell = MainForm.Clovershell;
-                if (gameSyncStorage == null) gameSyncStorage = clovershell.ExecuteSimple($"hakchi findGameSyncStorage", 3000, true);
+                if (gameSyncStorage == null)
+                {
+                    try
+                    {
+                        gameSyncStorage = clovershell.ExecuteSimple($"hakchi findGameSyncStorage", 3000, true);
+                    }
+                    catch
+                    {
+                        gameSyncStorage = rootFsPath + originalGamesPath;
+                    }
+                }
                 var storageDevice = clovershell.ExecuteSimple($"df {gameSyncStorage} | sed -n '2p' | awk '{{print $1}}'", 3000, true);
                 var storageStats = clovershell.ExecuteSimple($"df {storageDevice} | tail -n 1 | awk '{{ print $2 \" | \" $3 \" | \" $4 }}'", 3000, true).Split('|');
 

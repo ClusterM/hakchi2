@@ -55,5 +55,6 @@ script_init(){
 
 preinit(){
   source_base
+  mount_base
   source_parts "$preinit.d/p????_*"
 }
