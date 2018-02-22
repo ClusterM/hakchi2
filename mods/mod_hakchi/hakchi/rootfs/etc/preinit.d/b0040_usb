@@ -65,7 +65,7 @@ checkStorageDevice(){
   fi
 
   local need_repair=""
-  [ -d "$mountpoint/media/$games" ] && ! [ -z "$(find $mountpoint/media/$games -name .repair.flag -maxdepth 2)" ] && need_repair=y
+  [ -d "$mountpoint/media/$modname/games" ] && ! [ -z "$(find $mountpoint/media/$modname/games -name .repair.flag -maxdepth 2)" ] && need_repair=y
 
   if [ -d "$mountpoint/media/$saves" ] || [ -d "$mountpoint/media/$modname/transfer" ] || [ "$cfg_usb_rw" == "y" ] || [ "$need_repair" == "y" ]; then
     umount "$mountpoint/media" 2>/dev/null

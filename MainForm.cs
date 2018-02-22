@@ -1902,6 +1902,8 @@ namespace com.clusterrr.hakchi_gui
                 item.Tag = newApp;
                 item.Selected = true;
                 item.Checked = true;
+                foreach (ListViewItem i in listViewGames.Items)
+                    i.Selected = false;
                 listViewGames.Items.Add(item);
                 // Schedule recalculation
                 timerCalculateGames.Enabled = false;

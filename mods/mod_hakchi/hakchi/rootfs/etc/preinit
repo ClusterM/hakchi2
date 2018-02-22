@@ -55,6 +55,6 @@ script_init(){
 
 preinit(){
   source_base
-  mount_base
+  mountSquash # for backward compatibility
   source_parts "$preinit.d/p????_*"
 }

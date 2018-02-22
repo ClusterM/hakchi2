@@ -971,7 +971,7 @@ namespace com.clusterrr.hakchi_gui
                                     {
                                         try
                                         {
-                                            pos += NesMiniApplication.DirectorySize(Path.Combine(Path.Combine(tempGamesDirectory, ".."), line.Replace("/", "\\")));
+                                            pos += NesMiniApplication.DirectorySize(Path.Combine(Path.Combine(tempGamesDirectory, ".."), lastDirectory.Replace("/", "\\")));
                                             progress = (int)(startProgress + pos / 1024 / 1024);
                                             SetProgress(progress, maxProgress);
                                         }
