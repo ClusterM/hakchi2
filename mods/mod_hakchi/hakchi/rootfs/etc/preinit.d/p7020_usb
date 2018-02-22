@@ -1,4 +1,4 @@
-if [ "$cfg_usb_host" != "y" ]; then
+if [ "$cfg_usb_host" != "y" ] || [ ! -z "$(lsusb | grep "1d6b:0002")" ]; then
   switchToUsbDevice
 else
   switchToUsbHost
