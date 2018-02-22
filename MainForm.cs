@@ -42,6 +42,7 @@ namespace com.clusterrr.hakchi_gui
         public static ClovershellConnection Clovershell;
         mooftpserv.Server ftpServer;
         public static bool? DownloadCover;
+        CountResult stats = new CountResult();
 
         static NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
             new NesDefaultGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros.", Size = 25000 },
@@ -667,7 +668,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                var stats = RecalculateSelectedGames();
+                stats = RecalculateSelectedGames();
                 showStats(stats);
             }
             catch
@@ -716,7 +717,8 @@ namespace com.clusterrr.hakchi_gui
                     return;
                 }
                 var maxGamesSize = DefaultMaxGamesSize * 1024 * 1024;
-                if (WorkerForm.NandCTotal > 0)
+                var usb = (Control.ModifierKeys == Keys.Shift) || ConfigIni.AlwaysWriteToUSB;
+                if (WorkerForm.NandCTotal > 0 && !usb)
                 {
                     maxGamesSize = (WorkerForm.NandCFree + WorkerForm.WritedGamesSize) - WorkerForm.ReservedMemory * 1024 * 1024;
                     toolStripStatusLabelSize.Text = string.Format("{0:F1}MB / {1:F1}MB", stats.Size / 1024.0 / 1024.0, maxGamesSize / 1024.0 / 1024.0);
@@ -727,9 +729,9 @@ namespace com.clusterrr.hakchi_gui
                 }
                 toolStripStatusLabelSelected.Text = stats.Count + " " + Resources.GamesSelected;
                 toolStripProgressBar.Maximum = (int)maxGamesSize;
-                toolStripProgressBar.Value = Math.Min((int)stats.Size, toolStripProgressBar.Maximum);
+                toolStripProgressBar.Value = !usb ? Math.Min((int)stats.Size, toolStripProgressBar.Maximum) : 0;
                 toolStripStatusLabelSize.ForeColor =
-                    (toolStripProgressBar.Value < toolStripProgressBar.Maximum) ?
+                    ((toolStripProgressBar.Value < toolStripProgressBar.Maximum) || usb) ?
                     SystemColors.ControlText :
                     Color.Red;
             }
@@ -1219,6 +1221,7 @@ namespace com.clusterrr.hakchi_gui
         private void alwaysWriteGamesToUSBDriveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.AlwaysWriteToUSB = alwaysWriteGamesToUSBDriveToolStripMenuItem.Checked;
+            showStats(stats);
             buttonStart.Text = (Control.ModifierKeys == Keys.Shift) || ConfigIni.AlwaysWriteToUSB ? Resources.SyncronizeUSB : Resources.Syncronize;
         }
 
@@ -1872,7 +1875,10 @@ namespace com.clusterrr.hakchi_gui
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ShiftKey)
+            {
                 buttonStart.Text = Resources.SyncronizeUSB;
+                showStats(stats);
+            }
             if (listViewGames.SelectedItems.Count != 1) return;
             var selected = listViewGames.SelectedItems[0].Tag;
             if ((e.KeyCode == Keys.E) && (e.Modifiers == (Keys.Alt | Keys.Control)) && (selected is SnesGame))
@@ -1885,7 +1891,10 @@ namespace com.clusterrr.hakchi_gui
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ShiftKey)
+            {
                 buttonStart.Text = ConfigIni.AlwaysWriteToUSB ? Resources.SyncronizeUSB : Resources.Syncronize;
+                showStats(stats);
+            }
         }
 
         private void MainForm_Activated(object sender, EventArgs e)

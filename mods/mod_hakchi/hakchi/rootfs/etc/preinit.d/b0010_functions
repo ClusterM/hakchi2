@@ -254,14 +254,15 @@ softwareCheck(){
 repair_fonts(){
   if [ "$sftype" == "nes" ]; then
     mkdir -p "$1" || return 1    
+    [ -w "$1" ] || return 1
     ( [ $cfg_fontfix_enabled == "y" ] && copy "$rootfs/usr/share/fonts/title.fnt" "$1/" ) || copy "$rootfs$gamepath/title.fnt" "$1/" || copy "$squashfs$gamepath/title.fnt" "$1/"
     copy "$squashfs$gamepath/copyright.fnt" "$1/"
   fi
 }
 
 repair_games(){
-  [ -w "$1" ] || return 0
   [ -f "$1/.repair.flag" ] || return 0
+  [ -w "$1" ] || return 1
   cat "$rootfs/etc/pleasewait.fb" | gunzip -c - > "/dev/fb0"
   echo repairing games...
   local usesymlink=''

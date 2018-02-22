@@ -19,6 +19,10 @@ save_config
 [ "$(currentFirmware)" == "$firmware" ] && exit 0
 [ "$(currentFirmware)" == "auto" ] && exit 0 #?
 
+state_path="/var/saves/$modname"
+state_file="$state_path/menu"
+rm -f $state_file
+
 echo "changing firmware to: $firmware"
 reboot
 exit 0
