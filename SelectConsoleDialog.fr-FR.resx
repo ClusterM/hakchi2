@@ -71,6 +71,6 @@
     <value>Super Famicom (Japon)</value>
   </data>
   <data name="labelSelectConsole.Text">
-    <value>Veuillez sélectionner votre console avant de commencer. Vous pourrez changer de console plus tard dans le menu Paramètres.</value>
+    <value>Pour commencer, veuillez sélectionner votre console. Vous pourrez changer ce réglage ultérieurement dans le menu Paramètres, si vous souhaitez utiliser une autre console.</value>
   </data>
 </root>

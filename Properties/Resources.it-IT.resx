@@ -85,6 +85,9 @@
   <data name="CompressingGames">
     <value>Compressione dei giochi in corso...</value>
   </data>
+  <data name="ConfigSavedNote">
+    <value>Configurazione salvata. Notare che è stata utilizzata la configurazione per la console reale ({0}) , non quella per la console selezionata ({1}).</value>
+  </data>
   <data name="Congratulations">
     <value>Congratulazioni!</value>
   </data>
@@ -152,7 +155,7 @@
     <value>Vuoi fare il dump del kernel?</value>
   </data>
   <data name="DumpingKernel">
-    <value>Sto facendo il dump del kernel...</value>
+    <value>Sto eseguendo il dump del kernel...</value>
   </data>
   <data name="DumpingNand">
     <value>Dump della NAND in corso...</value>
@@ -376,6 +379,12 @@
   <data name="SizeOfSaves">
     <value>Dimensione dei punti di sospensione selezionati:</value>
   </data>
+  <data name="Syncronize">
+    <value>Sincronizza i giochi selezionati con il NES/SNES Mini</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>Sincronizzare i giochi selezionati con la periferica USB</value>
+  </data>
   <data name="TooManyPerFolder">
     <value>Attenzione! Non è consigliato inserire così tanti giochi in una singola cartella.</value>
   </data>
@@ -426,6 +435,9 @@
   </data>
   <data name="Wow">
     <value>Bene!</value>
+  </data>
+  <data name="WritingUSB">
+    <value>Sto salvando i giochi nella periferica USB...</value>
   </data>
   <data name="Yes">
     <value>Si</value>

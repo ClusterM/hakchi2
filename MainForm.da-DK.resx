@@ -253,6 +253,9 @@
   <data name="FTPToolStripMenuItem.Text">
     <value>FTP server on ftp://root:clover@127.0.0.1:1021</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Always write games to USB drive</value>
+  </data>
   <data name="checkBoxCompressed.Text">
     <value>Compress</value>
   </data>
@@ -261,6 +264,9 @@
   </data>
   <data name="compressSelectedGamesToolStripMenuItem.Text">
     <value>Compress selected games</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Create custom command</value>
   </data>
   <data name="decompressSelectedGamesToolStripMenuItem.Text">
     <value>Decompress selected games</value>
@@ -285,6 +291,12 @@
   </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Dump the whole NAND flash</value>
+  </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>Enable USB host</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Select your USB drive</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ</value>
@@ -318,6 +330,9 @@
   </data>
   <data name="openFileDialogNes.Title">
     <value>Select games</value>
+  </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Open selected game's folder in explorer</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Open Telnet client</value>

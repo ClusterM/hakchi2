@@ -70,6 +70,9 @@
   <data name="addPresetToolStripMenuItem.Text">
     <value>Aggiungi preset</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Salva sempre i giochi nella periferica USB</value>
+  </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>Giochi originali in root -&gt; Automaticamente in sottocartelle</value>
   </data>
@@ -102,6 +105,9 @@
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Tipo di console</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Crea comando personalizzato</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>Personalizzato - mostra ogni volta il Gestore Cartelle</value>
@@ -148,11 +154,17 @@
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Usa "Select+A/B" per abilitare l'autofire su A/B</value>
   </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>Abilita USB host</value>
+  </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>Disabilita protezione epilessia</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Esci</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Seleziona il dispositivo USB</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ (domande frequenti)</value>
@@ -258,6 +270,9 @@
   </data>
   <data name="openFileDialogNes.Title">
     <value>Seleziona i giochi</value>
+  </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Apri la cartella dei giochi selezionati nell'explorer di Windows</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Apri client Telnet</value>

@@ -85,6 +85,9 @@
   <data name="CompressingGames">
     <value>Comprimiendo juegos…</value>
   </data>
+  <data name="ConfigSavedNote">
+    <value>Configuración guardada. Por favor, tené en cuenta que se usó la configuración para la consola real ({0}), no para la seleccionada ({1}).</value>
+  </data>
   <data name="Congratulations">
     <value>¡Felicitaciones!</value>
   </data>
@@ -171,6 +174,12 @@
   </data>
   <data name="FirstRun">
     <value>¡Hola, che! Estoy muy contento de que estés usando hakchi2. Es muy fácil de usar. Simplemente hacé clic en "Agregar más juegos", seleccioná algunas ROMs, presioná el botón para sincronizar y seguí las instrucciones. ¡Éxitos!</value>
+  </data>
+  <data name="FlashNandCQ">
+    <value>¿Querés flashear la imagen de la partición NAND-C? Esto reemplazará todos los datos de usuario.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Flasheando memoria NAND…</value>
   </data>
   <data name="FlasingCustom">
     <value>Flasheando kernel personalizado…</value>
@@ -286,6 +295,9 @@
   <data name="NandDumped">
     <value>El volcado de la memoria NAND se hizo exitosamente.</value>
   </data>
+  <data name="NandFlashed">
+    <value>Memoria NAND flasheada.</value>
+  </data>
   <data name="Need3rdPartyEmulator">
     <value>Epa, parece que "{0}" no va funcionar correctamente con el emulador original. ¿Querés usar el emulador de un tercero para este juego (necesita estar instalado)?</value>
   </data>
@@ -315,6 +327,9 @@
   </data>
   <data name="NotFound">
     <value>No encontrado:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>no recomendado</value>
   </data>
   <data name="OriginalKernelQ">
     <value>¿Querés flashear el kernel original?</value>
@@ -364,6 +379,15 @@
   <data name="SizeOfSaves">
     <value>Tamaño de los puntos de suspensión seleccionados:</value>
   </data>
+  <data name="Syncronize">
+    <value>Sinc. juegos selec. con la NES/SNES Classic Edition</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>Sincronizar juegos seleccionados con la unidad USB</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>¡Advertencia! No es recomendado guardar tantos juegos por carpeta.</value>
+  </data>
   <data name="UninstallFactoryNote">
     <value>No te olvidés de realizar un restablecimiento predeterminado si querés borrar todos los puntos de suspensión.</value>
   </data>
@@ -412,25 +436,13 @@
   <data name="Wow">
     <value>¡Esa!</value>
   </data>
+  <data name="WritingUSB">
+    <value>Escribiendo juegos a la unidad USB…</value>
+  </data>
   <data name="Yes">
     <value>Sí</value>
   </data>
   <data name="YesForAll">
     <value>"Sí" a todo</value>
-  </data>
-  <data name="FlashNandCQ">
-    <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
-  </data>
-  <data name="FlashingNand">
-    <value>Flashing NAND memory...</value>
-  </data>
-  <data name="NandFlashed">
-    <value>NAND memory flashed.</value>
-  </data>
-  <data name="NotRecommended">
-    <value>not recommended</value>
-  </data>
-  <data name="TooManyPerFolder">
-    <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
 </root>

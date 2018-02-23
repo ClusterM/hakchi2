@@ -65,10 +65,13 @@
     <value>Sobre...</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>Adicionar mais &amp; jogos</value>
+    <value>Adicionar mais &amp;jogos</value>
   </data>
   <data name="addPresetToolStripMenuItem.Text">
-    <value>Adicionar predefinido</value>
+    <value>Adicionar predefinições</value>
+  </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Escreve sempre os jogos na USB</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>Jogos originais na raiz -&gt; Automático na subpasta</value>
@@ -85,41 +88,78 @@
   <data name="buttonStart.Text">
     <value>Sincronizar jogos selecionados com NES/SNES Mini</value>
   </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Comprimir</value>
+  </data>
   <data name="cloverconHackToolStripMenuItem.Text">
-    <value>Controlador hacks</value>
+    <value>Hacks do comando</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Comprimir jogos não-NES (para modulação de emulador adicional)</value>
   </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Comprimir jogos ao adicionar</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Comprimir jogos selecionados</value>
+  </data>
   <data name="consoleTypeToolStripMenuItem.Text">
-    <value>Tipo de console</value>
+    <value>Tipo de consola</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Criar comando personalizado</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>Personalizado - mostra o Gerenciador de pastas sempre</value>
+    <value>Personalizado - mostra sempre o Gerenciador de Pastas</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Descompactar jogos selecionados</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
-    <value>Excluir jogo</value>
+    <value>Remover jogo</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
-    <value>Excluir predefinição</value>
+    <value>Remover predefinição</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Eliminar jogos selecionados</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
-    <value>Desativar página / pastas</value>
+    <value>Desativar página/pastas</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Doar</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Baixar box art para jogos selecionados</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Baixe a caixa de arte para todos os jogos</value>
+    <value>Descarregar as capas de todos os jogos</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Dump kernel (despejo)</value>
+    <value>Descarregar kernel (dump)</value>
+  </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Descarregue (Dump) descifrado partição do NAND-B
+</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Descarregue todo o NAND flash</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
-    <value>Use "Selecionar + A / B" para ativar o autofire em A / B</value>
+    <value>Use "Select+A/B" para ativar autofire em A/B</value>
+  </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>Ativar host USB</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>Desativar a proteção contra epilepsia</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
-    <value>&amp;Saída</value>
+    <value>&amp;Sair</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Selecione sua unidade USB</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>Perguntas frequentes (FAQ)</value>
@@ -128,10 +168,13 @@
     <value>&amp;Ficheiro</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Escreve o custom Kernal</value>
+    <value>Escrever kernel customizado (flash)</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Partição Flash NAND-C (apenas especialistas!)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Flash(escreve) original kernel</value>
+    <value>Escrever kernel original (flash)</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
     <value>Jogos originais na raiz -&gt; Pastas, dividir jogos igualmente</value>
@@ -146,13 +189,13 @@
     <value>Pastas, dividir jogos igualmente</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>Página GitHub com lançamentos reais</value>
+    <value>Página GitHub com lançamentos atuais</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>Argumentos de linha de comando globais (somente especialistas!)</value>
+    <value>Argumentos de linha de comandos globais (utilizadores avançados!)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>Você pode ocultar alguns jogos</value>
+    <value>Pode ocultar alguns jogos originais</value>
   </data>
   <data name="groupBoxOptions.Text">
     <value>Opções de jogo</value>
@@ -164,7 +207,7 @@
     <value>Instalar módulos extras</value>
   </data>
   <data name="kernelToolStripMenuItem.Text">
-    <value>&amp;Kernal</value>
+    <value>&amp;Kernel</value>
   </data>
   <data name="label1.Text">
     <value>Data de lançamento (AAAA-MM-DD):</value>
@@ -173,10 +216,10 @@
     <value>Editor:</value>
   </data>
   <data name="label3.Text">
-    <value>Argumentos da linha de comando (somente para usuários avançados):</value>
+    <value>Argumentos de linha de comandos (só para utilizadores avançados!):</value>
   </data>
   <data name="label4.Text">
-    <value>Arte da caixa:</value>
+    <value>Capa do jogo:</value>
   </data>
   <data name="label5.Text">
     <value>Selecione jogos:</value>
@@ -190,14 +233,26 @@
   <data name="labelName.Text">
     <value>Nome:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Tamanho:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
-    <value>Língua</value>
+    <value>Idioma</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
-    <value>Máximo de jogos por página / pasta</value>
+    <value>Máximo de jogos por página/pasta</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Inicializar o kernel original da RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Boot patch kernel da RAM</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Módulos</value>
+  </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (EUA/Europa)</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Abrir cliente de FTP</value>
@@ -207,6 +262,9 @@
   </data>
   <data name="openFileDialogNes.Title">
     <value>Selecionar jogos</value>
+  </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Abra a pasta do jogo selecionado no explorer</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Abrir cliente Telnet</value>
@@ -218,7 +276,7 @@
     <value>Páginas, dividir jogos igualmente</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>Estrutura de páginas / pastas</value>
+    <value>Estrutura de páginas/pastas</value>
   </data>
   <data name="presetsToolStripMenuItem.Text">
     <value>Predefinições de seleção</value>
@@ -233,13 +291,20 @@
     <value>Dois jogadores, simultaneamente</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>Use a combinação de botões para</value>
+    <value>Usar combinação de botões para reiniciar</value>
+  </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (EUA/Europa)</value>
+  </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Selecione o nome do arquivo de despejo 
+</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Salvar configurações no NES/SNES Mini agora</value>
+    <value>Guardar configurações na NES/SNES Mini agora</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Gerente de Save-State</value>
+    <value>Gerenciador de "Save-State"</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
     <value>Pesquisa</value>
@@ -256,11 +321,17 @@
   <data name="shellToolStripMenuItem.Text">
     <value>Servidor Telnet no telnet: //127.0.0.1: 1023 (login: root)</value>
   </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japão)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Sincronizar</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
-    <value>Tirar captura de tela</value>
+    <value>Captura de ecrã</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Deslize toda a NAND (apenas especialistas!)</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Ferramentas</value>
@@ -272,40 +343,16 @@
     <value>Desinstalar</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
-    <value>Desmarque todos</value>
+    <value>Desmarcar todos</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>Up + A + B = Start no 2º controlador</value>
+    <value>"Up+A+B = Start" no 2º comando</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Usar fonte estendida</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
-    <value>Use X / Y no Controlador Clássico como autofire A / B</value>
-  </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
-  </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
-  </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
-  </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump decrypted NAND-B partition</value>
+    <value>Use X/Y no comando "Classic" como autofire A/B</value>
   </data>
   <data name="dumpNANDCPartitionToolStripMenuItem.Text">
     <value>Dump NAND-C partition</value>
@@ -313,37 +360,7 @@
   <data name="dumpNANDCPartitionToolStripMenuItem.Title">
     <value>Select dump filename</value>
   </data>
-  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dump the whole NAND flash</value>
-  </data>
   <data name="famicomMiniToolStripMenuItem.Text">
     <value>Famicom (Japan)</value>
-  </data>
-  <data name="flashNANDCPartitionToolStripMenuItem.Text">
-    <value>Flash NAND-C partition (experts only!)</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Size:</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="nESMiniToolStripMenuItem.Text">
-    <value>NES (USA/Europe)</value>
-  </data>
-  <data name="sNESMiniToolStripMenuItem.Text">
-    <value>SNES (USA/Europe)</value>
-  </data>
-  <data name="saveDumpFileDialog.Title">
-    <value>Select dump filename</value>
-  </data>
-  <data name="superFamicomMiniToolStripMenuItem.Text">
-    <value>Super Famicom (Japan)</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>

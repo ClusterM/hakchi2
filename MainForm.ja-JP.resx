@@ -70,6 +70,9 @@
   <data name="addPresetToolStripMenuItem.Text">
     <value>プリセットを作成</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>常にUSBドライブにゲームを書き込む</value>
+  </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>プリインストールされたゲームをルートに配置 -&gt; 自動でサブフォルダーに配置</value>
   </data>
@@ -99,6 +102,9 @@
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>コンソールタイプ</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>カスタムコマンドを作成</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>カスタム - フォルダーマネージャーを毎回表示</value>
@@ -144,6 +150,9 @@
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>"Select+A/B"で連射モード(A,Bボタン)</value>
+  </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>USBホストを有効にする</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>てんかん予防を無効化(原色表示)</value>
@@ -256,6 +265,9 @@
   <data name="openFileDialogNes.Title">
     <value>ゲームを選択</value>
   </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>選択されたゲームのフォルダーをエクスプローラーで開く</value>
+  </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Telnetクライアントを開く</value>
   </data>
@@ -345,5 +357,8 @@
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Compress non-NES games (for additional emulator mod)</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Select your USB drive</value>
   </data>
 </root>

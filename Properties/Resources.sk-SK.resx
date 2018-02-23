@@ -79,8 +79,20 @@
   <data name="BuildingFolders">
     <value>Vytvára sa štruktúra priečinkov</value>
   </data>
+  <data name="Compressing">
+    <value>Kompresia {0} ...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Komprimovanie hier...</value>
+  </data>
+  <data name="ConfigSavedNote">
+    <value>Konfigurácia bola uložená. Vedzte, že bola použíta konfigurácia pre skutočnú konzolu ({0}) a nie pre vybranú konzolu ({1}).</value>
+  </data>
   <data name="Congratulations">
     <value>Gratulujeme!</value>
+  </data>
+  <data name="Cover">
+    <value>Obal hry</value>
   </data>
   <data name="CustomKernel">
     <value>Vlastný kernel</value>
@@ -90,6 +102,12 @@
   </data>
   <data name="CustomWarning">
     <value>Teraz potrebujete flashnúť vlastný kernel do NES/SNES Mini. Je to potrebné urobiť iba raz. Chcete pokračovať?</value>
+  </data>
+  <data name="Decompressing">
+    <value>Dekomprimovanie {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Dekomprimovanie hier...</value>
   </data>
   <data name="Default30games">
     <value>Originálnych xx hier</value>
@@ -109,6 +127,9 @@
   <data name="DeleteSavesQ">
     <value>Naozaj chcete odstrániť tieto uložené pozície hier?</value>
   </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Vymazať vybrané hry?</value>
+  </data>
   <data name="DoYouWantCancel">
     <value>Chcete zrušiť aktuálnu operáciu?</value>
   </data>
@@ -127,11 +148,17 @@
   <data name="DownloadAllCoversTitle">
     <value>Stiahnutie obalu pre všetky hry (Skúsim štastie!)</value>
   </data>
+  <data name="DownloadCoverQ">
+    <value>Chcete skúsiť stiahnuť obal hry pre "{0}"?</value>
+  </data>
   <data name="DumpKernelQ">
     <value>Chcete zálohovať kernel?</value>
   </data>
   <data name="DumpingKernel">
     <value>Zálohovanie kernelu...</value>
+  </data>
+  <data name="DumpingNand">
+    <value>Zálohovanie NAND...</value>
   </data>
   <data name="Error">
     <value>Chyba</value>
@@ -147,6 +174,12 @@
   </data>
   <data name="FirstRun">
     <value>Ahoj! Som veľmi rád že používate hakchi2. Je veľmi jednoduchý na používanie. Stačí kliknúť na tlačidlo "Pridať viac hier", vybrať niektoré hry, stlačiť tlačidlo "Synchronizovať" a postupovať podľa pokynov. Veľa štastia!</value>
+  </data>
+  <data name="FlashNandCQ">
+    <value>Chcete flashnúť obraz NAND-C partície? Nahradí do všetky používateľské údaje.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Flashovanie NAND pamäte...</value>
   </data>
   <data name="FlasingCustom">
     <value>Flashovanie vlastného kernelu...</value>
@@ -220,6 +253,9 @@
   <data name="InstallingMods">
     <value>Inštalácia modulov...</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>Vybraná zlá konzola! Zistená konzola:</value>
+  </data>
   <data name="InvalidKernelHeader">
     <value>Neplatný header kernelu.</value>
   </data>
@@ -244,11 +280,23 @@
   <data name="MapperNotSupported">
     <value>Prepáčte, "{0}" používa mapper #{1} ale tento mapper nie je podporovaný NES Mini a hru pravdepodobne nebude možné spustiť pomocou predvoleného emulátora. Ale mala by fungovať s použitím iného modulu emulátora. Chcete pridať túto hru?</value>
   </data>
+  <data name="Membooting">
+    <value>Spúštanie pôvodného jadra z pamäte RAM...</value>
+  </data>
   <data name="MemoryFull">
     <value>Prepáčte, je tu {0}MBytov hier, je to príliš veľa.</value>
   </data>
   <data name="MemoryStats">
     <value>Celková zapisovateľná pamäť: {0:F1}MBytov|Dostupná pamäť pre hry: {1:F1}MBytov|Použitá save: {2:F1}MBytov|Použitá inými súbormi: {3:F1}MBytov</value>
+  </data>
+  <data name="NandDumped">
+    <value>NAND pamäť bola úspene zálohovaná.</value>
+  </data>
+  <data name="NandFlashed">
+    <value>NAND pamäť bola úspene flashnutá.</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Ups, vyzerá to že "{0}" nebude fungovať správne s originálnym emulátorom. Chcete použiť emulátor tretej strany (je potrebné ho nainštalovať) pre túto hru?</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>Nové hry sú presunuté do zložky "Nezatriedené".</value>
@@ -277,6 +325,9 @@
   <data name="NotFound">
     <value>Nenájdené:</value>
   </data>
+  <data name="NotRecommended">
+    <value>neodporúča sa</value>
+  </data>
   <data name="OriginalKernelQ">
     <value>Chcete flashnúť originálny kernel?</value>
   </data>
@@ -294,6 +345,12 @@
   </data>
   <data name="PressOkToContinue">
     <value>Pokračujte stlačením OK.</value>
+  </data>
+  <data name="Removing">
+    <value>Odstraňovanie {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Odstraňovanie hier...</value>
   </data>
   <data name="ReplaceKernelQ">
     <value>Už máte zálohovaný kernel. Ak NAOZAJ chcete nahradiť zálohu vášho kernelu a NAOZAJ rozumiete čo robíte, odstráňte priečinok "hakchi2/dump".</value>
@@ -313,8 +370,20 @@
   <data name="SelectModsUninstall">
     <value>Vyberte moduly, ktoré chcete odstrániť z NES/SNES Mini</value>
   </data>
+  <data name="Size">
+    <value>Veľkosť:</value>
+  </data>
   <data name="SizeOfSaves">
     <value>Veľkosť vybraných uložených pozícií:</value>
+  </data>
+  <data name="Syncronize">
+    <value>Synchronizovať vybrané hry s NES/SNES Mini</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>Synchronizovať vybrané hry s USB zariadením</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Pozor! Neodporúča sa ukladať toľko veľa hier na jednu zložku.</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>Nezabudnite vykonať obnovenie továrenského nastavenia, ak chcete odstrániť všetky uložené pozície v hrách.</value>
@@ -364,73 +433,16 @@
   <data name="Wow">
     <value>Wow</value>
   </data>
+  <data name="WritingUSB">
+    <value>Zapisovanie hier na USB zariadenie...</value>
+  </data>
   <data name="Yes">
     <value>Áno</value>
   </data>
   <data name="YesForAll">
     <value>Áno pre všetky</value>
   </data>
-  <data name="Compressing">
-    <value>Compressing {0}...</value>
-  </data>
-  <data name="CompressingGames">
-    <value>Compressing games...</value>
-  </data>
-  <data name="Cover">
-    <value>Box art</value>
-  </data>
-  <data name="Decompressing">
-    <value>Decompressing {0}...</value>
-  </data>
-  <data name="DecompressingGames">
-    <value>Decompressing games...</value>
-  </data>
-  <data name="DeleteSelectedGamesQ">
-    <value>Delete selected game(s)?</value>
-  </data>
-  <data name="DownloadCoverQ">
-    <value>Do you want to try to download box art for "{0}"?</value>
-  </data>
-  <data name="DumpingNand">
-    <value>Dumping NAND...</value>
-  </data>
-  <data name="FlashNandCQ">
-    <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
-  </data>
-  <data name="FlashingNand">
-    <value>Flashing NAND memory...</value>
-  </data>
   <data name="FolderContent">
     <value>Deleted content will be moved to the Recycle Bin. You can delete this folder permanently or move the games to other folders.</value>
-  </data>
-  <data name="InvalidConsoleSelected">
-    <value>Invalid console selected! Detected console:</value>
-  </data>
-  <data name="Membooting">
-    <value>Booting the kernel from RAM...</value>
-  </data>
-  <data name="NandDumped">
-    <value>NAND memory is dumped successfully.</value>
-  </data>
-  <data name="NandFlashed">
-    <value>NAND memory flashed.</value>
-  </data>
-  <data name="Need3rdPartyEmulator">
-    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
-  </data>
-  <data name="NotRecommended">
-    <value>not recommended</value>
-  </data>
-  <data name="Removing">
-    <value>Removing {0}...</value>
-  </data>
-  <data name="RemovingGames">
-    <value>Removing games...</value>
-  </data>
-  <data name="Size">
-    <value>Size:</value>
-  </data>
-  <data name="TooManyPerFolder">
-    <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
 </root>

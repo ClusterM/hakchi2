@@ -58,158 +58,359 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddingGames">
+    <value>Proceasare jocuri, te rog să aștepți...</value>
+  </data>
+  <data name="AllFiles">
+    <value>Toate fișierele</value>
+  </data>
+  <data name="AreYouSure">
+    <value>Ești sigur?</value>
+  </data>
+  <data name="AutofillResult">
+    <value>Date completate automat pentru {0} jocuri.</value>
+  </data>
+  <data name="BuildingCustom">
+    <value>Creare imagine kernel personalizată...</value>
+  </data>
+  <data name="BuildingFolders">
+    <value>Creare structură de directoare...</value>
+  </data>
+  <data name="Compressing">
+    <value>Comprimare {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Comprimare jocuri...</value>
+  </data>
+  <data name="Congratulations">
+    <value>Felicitări!</value>
+  </data>
+  <data name="Cover">
+    <value>Copertă</value>
+  </data>
+  <data name="CustomKernel">
+    <value>Kernel personalizat</value>
+  </data>
+  <data name="CustomKernelQ">
+    <value>Vrei să instalezi kernelul personalizat?</value>
+  </data>
+  <data name="CustomWarning">
+    <value>Este necesară instalarea kernelului personalizat pe NES/SNES Mini. Este necesar de făcut o singură dată.</value>
+  </data>
+  <data name="Decompressing">
+    <value>Decomprimare {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Decomprimare jocuri...</value>
+  </data>
+  <data name="Default30games">
+    <value>Jocuri originale</value>
+  </data>
+  <data name="DeleteElement">
+    <value>Ești sigur că vrei să stergi "{0}"?</value>
+  </data>
+  <data name="DeleteElements">
+    <value>Ești sigur că vrei să ștergi {0} elemente?</value>
+  </data>
+  <data name="DeleteGame">
+    <value>Ești sigur că vrei să ștergi jocul "{0}"?</value>
+  </data>
+  <data name="DeletePreset">
+    <value>Ești sigur că vrei să ștergi lista personalizată "{0}"?</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Ștergi jocurile selectate?</value>
+  </data>
+  <data name="DoYouWantCancel">
+    <value>Vrei să oprești operațiunea actuală?</value>
+  </data>
+  <data name="DoYouWantToContinue">
+    <value>Dorești să continui?</value>
+  </data>
+  <data name="Donate">
+    <value>Dacă îți place, îmi poți trimite o donație. Găsești informația de PayPal în fereastra "Despre program".</value>
+  </data>
+  <data name="Done">
+    <value>Gata!</value>
+  </data>
+  <data name="DoneYouCanUpload">
+    <value>Gata! Acuma poți încărca noi jocuri pe NES/SNES Mini</value>
+  </data>
+  <data name="DownloadAllCoversTitle">
+    <value>Descărcare coperte (Mă simt norocos)</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>Vrei să descarci copertă pentru "{0}"?</value>
+  </data>
+  <data name="DumpKernelQ">
+    <value>Vrei să salvezi kernelul (backup)?</value>
+  </data>
+  <data name="DumpingKernel">
+    <value>Salvare kernel...</value>
+  </data>
+  <data name="DumpingNand">
+    <value>Salvare NAND...</value>
+  </data>
+  <data name="Error">
+    <value>Eroare</value>
+  </data>
+  <data name="ExecutingCommand">
+    <value>Executare comandă:</value>
+  </data>
+  <data name="ExtraArgsInfo">
+    <value>Este posibilă adăugarea de parametri de linie comandă globale. Acestea vor fi folosite la toate jocurile.</value>
+  </data>
+  <data name="FirstRun">
+    <value>Salut! Mă bucur mult că folosești hakchi2. Este foarte ușor de folosit. Trebuie doar să dai clic pe "Adăugare jocuri" apoi "Sincronizare" și urmează instrucțiunile afișate pe ecran. Baftă!</value>
+  </data>
+  <data name="FlashNandCQ">
+    <value>Ești sigur că vrei să suprascrii partiția NAND-C? Toate datele personale vor suprascrise.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Suprascriere memorie NAND...</value>
+  </data>
+  <data name="FlasingCustom">
+    <value>Instalare kernel personalizat...</value>
+  </data>
+  <data name="FlasingOriginal">
+    <value>Instalare kernel original...</value>
+  </data>
+  <data name="FolderContent">
+    <value>Conținutul șters va fi mutat în coșul de reciclare. Poți șterge acest director permanent sau muta jocurile într-un alt director.</value>
+  </data>
+  <data name="FolderNameBack">
+    <value>Înapoi</value>
+  </data>
+  <data name="FolderNameMoreGames">
+    <value>Mai multe jocuri...</value>
+  </data>
   <data name="FolderNameNewFolder">
     <value>Director nou</value>
+  </data>
+  <data name="FolderNameOriginalGames">
+    <value>Jocuri originale</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Coș de reciclare</value>
   </data>
-  <data name="AddingGames">
-    <value>Processing games, please wait...</value>
+  <data name="FolderNameUnsorted">
+    <value>Nesortat</value>
   </data>
-  <data name="AllFiles">
-    <value>All files</value>
+  <data name="FolderStatistics">
+    <value>Directorul"{0}" conține {1} elemente.</value>
   </data>
-  <data name="AreYouSure">
-    <value>Are you sure?</value>
+  <data name="FoldersSaveQ">
+    <value>Vrei să salvezi această structură de directoare?</value>
   </data>
-  <data name="AutofillResult">
-    <value>Data automatically filled for {0} game(s).</value>
+  <data name="GGDescriptionEmpty">
+    <value>Descriere obligatorie!</value>
+  </data>
+  <data name="GamesAndApps">
+    <value>Jocuri și aplicații</value>
+  </data>
+  <data name="GamesSelected">
+    <value>jocuri selectate</value>
+  </data>
+  <data name="GooglingFor">
+    <value>Căutare pe Google</value>
+  </data>
+  <data name="Hello">
+    <value>Salut!</value>
+  </data>
+  <data name="Images">
+    <value>Imagini</value>
+  </data>
+  <data name="InputPreset">
+    <value>Te rog să dai un nume pentru selecția curentă de jocuri.</value>
+  </data>
+  <data name="InstallingMods">
+    <value>Instalare module...</value>
+  </data>
+  <data name="InvalidConsoleSelected">
+    <value>Selectare consolă invalidă! Consola detectată:</value>
+  </data>
+  <data name="InvalidKernelHeader">
+    <value>Antetul kernelului este invalid.</value>
+  </data>
+  <data name="InvalidKernelSize">
+    <value>Dimensiunea kernelului este invalidă:</value>
+  </data>
+  <data name="KernelDumped">
+    <value>Kernelul original a fost salvat in directorul "hakchi2/dump". Ai grijă să nu-l pierzi!</value>
+  </data>
+  <data name="LoadingGames">
+    <value>Încărcare jocuri...</value>
+  </data>
+  <data name="MD5Failed">
+    <value>Suma de contol MD5 al kernelului este necunoscută:</value>
+  </data>
+  <data name="MD5Failed2">
+    <value>Kernelul este patchuit deja sau este o revizie necunoscută. Te rog să-mi trimiți mesajul acesta (press Ctrl+C). Continuă pe propriul risc.</value>
+  </data>
+  <data name="MainMenu">
+    <value>Meniu principal</value>
+  </data>
+  <data name="MapperNotSupported">
+    <value>Ups, jocul "{0}" folosește mapper #{1}, dar acesta nu este suportat de NES Mini, iar jocul probabil că nu va porni cu emulatorul de fabrică. Însă este posibil să ruleze jocul daca un alt modul de emulator este instalat. Vrei să adaugi acest joc?</value>
+  </data>
+  <data name="Membooting">
+    <value>Încărcare kernel din RAM...</value>
+  </data>
+  <data name="MemoryFull">
+    <value>Scuze, sunt {0}MBytes de jocuri, acesta e prea mult.</value>
+  </data>
+  <data name="MemoryStats">
+    <value>Memoria totală disponibilă {0:F1}MBytes|Disponibil pentru jocuri: {1:F1}MBytes|Folosit de salvări: {2:F1}MBytes|Folosit de alte fișiere: {3:F1}MBytes</value>
+  </data>
+  <data name="NandDumped">
+    <value>NAND salvat cu succes.</value>
+  </data>
+  <data name="NandFlashed">
+    <value>Memorie NAND încărcată.</value>
+  </data>
+  <data name="NewGamesUnsorted">
+    <value>Noile jocuri vor fi adăugate în directorul Unsorted</value>
+  </data>
+  <data name="NewPreset">
+    <value>Nouă listă personalizată de jocuri</value>
+  </data>
+  <data name="No">
+    <value>Nu</value>
+  </data>
+  <data name="NoForAll">
+    <value>Nu, pentru tot</value>
+  </data>
+  <data name="NoKernel">
+    <value>Kernelul salvat nu poate fi găsit</value>
+  </data>
+  <data name="NoKernelYouNeed">
+    <value>Kernelul salvat nu poate fi găsit. Întâi trebuie să salvezi kernelul.</value>
+  </data>
+  <data name="NotFound">
+    <value>Nu a fost găsit:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>nerecomandat</value>
+  </data>
+  <data name="OriginalKernelQ">
+    <value>Dorești să încarci kernelul original?</value>
+  </data>
+  <data name="PatchAvailable">
+    <value>Patch disponibil</value>
+  </data>
+  <data name="PatchQ">
+    <value>Patch disponibil pentru "{0}". Vrei să-l aplici?</value>
+  </data>
+  <data name="PleaseTryAgainUSB">
+    <value>Dacă problema persistă incearcă un alt port USB sau alt cablu.</value>
+  </data>
+  <data name="PleaseWait">
+    <value>Te rog așteaptă...</value>
+  </data>
+  <data name="PressOkToContinue">
+    <value>Apasă OK pentru continuare.</value>
+  </data>
+  <data name="Removing">
+    <value>Ștergere {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Ștergere jocuri...</value>
+  </data>
+  <data name="ReplaceKernelQ">
+    <value>Kernel dump existent. *</value>
+  </data>
+  <data name="SelectAtLeast">
+    <value>Selectează cel puțin un joc</value>
+  </data>
+  <data name="SelectAtLeastTwo">
+    <value>Selectează cel puțin două butoane.</value>
+  </data>
+  <data name="SelectModsInstall">
+    <value>Selectează modulele care vrei să le instalezi pe NES/SNES Mini</value>
+  </data>
+  <data name="SelectModsUninstall">
+    <value>Selectează modulele care vrei să le dezinstalezi de pe NES/SNES Mini</value>
+  </data>
+  <data name="Size">
+    <value>Dimensiune:</value>
+  </data>
+  <data name="Syncronize">
+    <value>Sincronizarea jocurilor selectate cu NES/SNES Mini</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>Sincronizarea jocurilor selectate cu unitate USB</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Atenție! Nu se recomandă un număr așa mare de jocuri per director.</value>
+  </data>
+  <data name="UninstallFactoryNote">
+    <value>Nu uita să faci o resetare din fabrică dacă vrei să ștergi toate punctele de suspendare.</value>
+  </data>
+  <data name="UninstallQ1">
+    <value>Ești sigur că vrei ca toate urmele lui hakchi2 să fie șterse si NES/SNES Mini să fie întors la starea lui originală?</value>
+  </data>
+  <data name="UninstallQ2">
+    <value>Gata. Așteaptă puțin până se stinge power LED-ul. Apoi o să fie necesară încărcarea kernelului original. Vrei să încarci kernelul original acum?</value>
+  </data>
+  <data name="Uninstalling">
+    <value>Dezinstalare...</value>
+  </data>
+  <data name="UninstallingMods">
+    <value>Dezinstalare module...</value>
+  </data>
+  <data name="UnknownGame">
+    <value>Joc necunoscut</value>
+  </data>
+  <data name="UploadingConfig">
+    <value>Încărcare nou config...</value>
+  </data>
+  <data name="UploadingFes1">
+    <value>Încarcare și rulare FES-1...</value>
+  </data>
+  <data name="UploadingGames">
+    <value>Încărcare jocuri...</value>
+  </data>
+  <data name="UploadingKernel">
+    <value>Încărcare kernel...</value>
+  </data>
+  <data name="UploadingOriginalGames">
+    <value>Procesarea jocurilor originale...</value>
+  </data>
+  <data name="VerifyFailed">
+    <value>Verificare eșuată :O Acesta nu este ok.</value>
+  </data>
+  <data name="Verifying">
+    <value>Verificare...</value>
+  </data>
+  <data name="WaitingForDevice">
+    <value>Așteptare după dispozitiv...</value>
+  </data>
+  <data name="Warning">
+    <value>Atenție!</value>
+  </data>
+  <data name="Wow">
+    <value>Wow</value>
+  </data>
+  <data name="WritingUSB">
+    <value>Scriere jocuri pe unitate USB</value>
+  </data>
+  <data name="Yes">
+    <value>Da</value>
+  </data>
+  <data name="YesForAll">
+    <value>Da, pentru tot</value>
   </data>
   <data name="AutofireHelp1">
     <value>Hold Select+A/B for a second to enable/disable autofire A/B.</value>
   </data>
-  <data name="BuildingCustom">
-    <value>Building the custom kernel image...</value>
-  </data>
-  <data name="BuildingFolders">
-    <value>Building the folder structure...</value>
-  </data>
-  <data name="Compressing">
-    <value>Compressing {0}...</value>
-  </data>
-  <data name="CompressingGames">
-    <value>Compressing games...</value>
-  </data>
-  <data name="Congratulations">
-    <value>Congratulations!</value>
-  </data>
-  <data name="Cover">
-    <value>Box art</value>
-  </data>
-  <data name="CustomKernel">
-    <value>Custom kernel</value>
-  </data>
-  <data name="CustomKernelQ">
-    <value>Do you want to flash the custom kernel?</value>
-  </data>
-  <data name="CustomWarning">
-    <value>You need to flash the custom kernel to your NES/SNES Mini. This is only required once. Do you want to continue?</value>
-  </data>
-  <data name="Decompressing">
-    <value>Decompressing {0}...</value>
-  </data>
-  <data name="DecompressingGames">
-    <value>Decompressing games...</value>
-  </data>
-  <data name="Default30games">
-    <value>Original games</value>
-  </data>
-  <data name="DeleteElement">
-    <value>Do you really want to delete "{0}"?</value>
-  </data>
-  <data name="DeleteElements">
-    <value>Do you really want to delete {0} elements?</value>
-  </data>
-  <data name="DeleteGame">
-    <value>Do you really want to delete "{0}" game?</value>
-  </data>
-  <data name="DeletePreset">
-    <value>Do you really want to delete the "{0}" preset?</value>
+  <data name="ConfigSavedNote">
+    <value>Config saved. Please note that configuration for the real console ({0}) was used, not for selected console ({1}).</value>
   </data>
   <data name="DeleteSavesQ">
     <value>Do you really want to delete those save-states?</value>
   </data>
-  <data name="DeleteSelectedGamesQ">
-    <value>Delete selected game(s)?</value>
-  </data>
-  <data name="DoYouWantCancel">
-    <value>Do you want to cancel the current operation?</value>
-  </data>
-  <data name="DoYouWantToContinue">
-    <value>Do you want to continue?</value>
-  </data>
-  <data name="Donate">
-    <value>If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
-  </data>
-  <data name="Done">
-    <value>Done!</value>
-  </data>
-  <data name="DoneYouCanUpload">
-    <value>Done! You can upload games to your NES/SNES Mini now.</value>
-  </data>
-  <data name="DownloadAllCoversTitle">
-    <value>Downloading box art (I'm feeling lucky!)</value>
-  </data>
-  <data name="DownloadCoverQ">
-    <value>Do you want to try to download box art for "{0}"?</value>
-  </data>
-  <data name="DumpKernelQ">
-    <value>Do you want to dump the kernel?</value>
-  </data>
-  <data name="DumpingKernel">
-    <value>Dumping kernel...</value>
-  </data>
-  <data name="DumpingNand">
-    <value>Dumping NAND...</value>
-  </data>
-  <data name="Error">
-    <value>Error</value>
-  </data>
-  <data name="ExecutingCommand">
-    <value>Executing command:</value>
-  </data>
-  <data name="ExtraArgsInfo">
-    <value>You can add global command-line arguments which will be appended to all games including the original. This is only for experts!</value>
-  </data>
   <data name="ExtraArgsTitle">
     <value>Extra command-line arguments</value>
-  </data>
-  <data name="FirstRun">
-    <value>Hello there! I'm very glad that you are using hakchi2. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>
-  </data>
-  <data name="FlashNandCQ">
-    <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
-  </data>
-  <data name="FlashingNand">
-    <value>Flashing NAND memory...</value>
-  </data>
-  <data name="FlasingCustom">
-    <value>Flashing custom kernel...</value>
-  </data>
-  <data name="FlasingOriginal">
-    <value>Flashing original kernel...</value>
-  </data>
-  <data name="FolderContent">
-    <value>Deleted content will be moved to the Recycle Bin. You can delete this folder permanently or move the games to other folders.</value>
-  </data>
-  <data name="FolderNameBack">
-    <value>Back</value>
-  </data>
-  <data name="FolderNameMoreGames">
-    <value>More games...</value>
-  </data>
-  <data name="FolderNameOriginalGames">
-    <value>Original games</value>
-  </data>
-  <data name="FolderNameUnsorted">
-    <value>Unsorted</value>
-  </data>
-  <data name="FolderStatistics">
-    <value>Folder "{0}" contains {1} elements.</value>
-  </data>
-  <data name="FoldersSaveQ">
-    <value>Do you want to save this folder structure?</value>
   </data>
   <data name="FourScreenNotSupported">
     <value>Sorry, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES/SNES Mini. The game will probably not start. But it should work if other emulator's module installed. Do you want to add this game anyway?</value>
@@ -223,214 +424,25 @@
   <data name="GGCodeExists">
     <value>This code already exists. Do you want to edit it?</value>
   </data>
-  <data name="GGDescriptionEmpty">
-    <value>You must enter a description!</value>
-  </data>
   <data name="GameGenieFormatError">
     <value>Invalid Game Genie code "{0}" for game "{1}".</value>
   </data>
   <data name="GameGenieNotFound">
     <value>Can't apply Game Genie code "{0}" to game "{1}" - value not found. Maybe this code is for another game?</value>
   </data>
-  <data name="GamesAndApps">
-    <value>Games and apps</value>
-  </data>
-  <data name="GamesSelected">
-    <value>game(s) selected</value>
-  </data>
-  <data name="GooglingFor">
-    <value>Googling for</value>
-  </data>
-  <data name="Hello">
-    <value>Hello</value>
-  </data>
-  <data name="Images">
-    <value>Images</value>
-  </data>
-  <data name="InputPreset">
-    <value>Please input a preset name for the current games selection.</value>
-  </data>
-  <data name="InstallingMods">
-    <value>Installing mods...</value>
-  </data>
-  <data name="InvalidConsoleSelected">
-    <value>Invalid console selected! Detected console:</value>
-  </data>
-  <data name="InvalidKernelHeader">
-    <value>Invalid kernel header.</value>
-  </data>
-  <data name="InvalidKernelSize">
-    <value>Invalid kernel size:</value>
-  </data>
-  <data name="KernelDumped">
-    <value>Your original kernel is saved in the "hakchi2/dump" folder. Do not lose it.</value>
-  </data>
-  <data name="LoadingGames">
-    <value>Loading games...</value>
-  </data>
-  <data name="MD5Failed">
-    <value>Kernel dumped but the MD5 checksum is unknown:</value>
-  </data>
-  <data name="MD5Failed2">
-    <value>The kernel is already patched or it's an unknown revision. Please send this message to me (press Ctrl+C). Continue at your own risk.</value>
-  </data>
-  <data name="MainMenu">
-    <value>HOME Menu</value>
-  </data>
-  <data name="MapperNotSupported">
-    <value>Oops, "{0}" uses mapper #{1} but this mapper is not supported by the NES Mini and the game will probably not start with the default emulator. But it should work if other emulator's module installed. Do you want to add this game?</value>
-  </data>
-  <data name="Membooting">
-    <value>Booting the kernel from RAM...</value>
-  </data>
-  <data name="MemoryFull">
-    <value>Sorry, there are {0}MBytes of games, it's too much.</value>
-  </data>
-  <data name="MemoryStats">
-    <value>Total writable memory size: {0:F1}MBytes|Available memory for games: {1:F1}MBytes|Used by saves: {2:F1}MBytes|Used by other files: {3:F1}MBytes</value>
-  </data>
-  <data name="NandDumped">
-    <value>NAND memory is dumped successfully.</value>
-  </data>
-  <data name="NandFlashed">
-    <value>NAND memory flashed.</value>
-  </data>
   <data name="Need3rdPartyEmulator">
     <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
-  </data>
-  <data name="NewGamesUnsorted">
-    <value>New games are moved to the "Unsorted" folder.</value>
-  </data>
-  <data name="NewPreset">
-    <value>New selection preset</value>
-  </data>
-  <data name="No">
-    <value>No</value>
-  </data>
-  <data name="NoForAll">
-    <value>No for all</value>
-  </data>
-  <data name="NoKernel">
-    <value>No kernel dump found</value>
   </data>
   <data name="NoKernelWarning">
     <value>First, dump the kernel image of your NES/SNES Mini. You only need to do this once. Do you want to continue?</value>
   </data>
-  <data name="NoKernelYouNeed">
-    <value>No kernel dump found. You need to dump the kernel first.</value>
-  </data>
   <data name="NoTelnet">
     <value>Can't start Telnet client, seems like it's disabled. You need to enable it first, you can do it in "Control Panel" -&gt; "Programs" -&gt; "Turn Windows features on or off".</value>
-  </data>
-  <data name="NotFound">
-    <value>Not found:</value>
-  </data>
-  <data name="NotRecommended">
-    <value>not recommended</value>
-  </data>
-  <data name="OriginalKernelQ">
-    <value>Do you want to flash the original kernel?</value>
-  </data>
-  <data name="PatchAvailable">
-    <value>Patch available</value>
-  </data>
-  <data name="PatchQ">
-    <value>There is patch for "{0}". Do you want to patch this game?</value>
-  </data>
-  <data name="PleaseTryAgainUSB">
-    <value>If this problem persists, try using another USB port or cable.</value>
-  </data>
-  <data name="PleaseWait">
-    <value>Please wait...</value>
-  </data>
-  <data name="PressOkToContinue">
-    <value>Press OK to continue.</value>
-  </data>
-  <data name="Removing">
-    <value>Removing {0}...</value>
-  </data>
-  <data name="RemovingGames">
-    <value>Removing games...</value>
-  </data>
-  <data name="ReplaceKernelQ">
-    <value>You already have the kernel dump. If you REALLY want to replace the backup of your kernel and you REALLY understand what you are doing, delete the "hakchi2/dump" folder manually.</value>
   </data>
   <data name="SavesFlterName">
     <value>NES/SNES Mini save-state backups</value>
   </data>
-  <data name="SelectAtLeast">
-    <value>Select at least one game.</value>
-  </data>
-  <data name="SelectAtLeastTwo">
-    <value>Select at least two buttons.</value>
-  </data>
-  <data name="SelectModsInstall">
-    <value>Select the modules to install on your NES/SNES Mini</value>
-  </data>
-  <data name="SelectModsUninstall">
-    <value>Select the modules to remove from your NES/SNES Mini</value>
-  </data>
-  <data name="Size">
-    <value>Size:</value>
-  </data>
   <data name="SizeOfSaves">
     <value>Size of selected save-states:</value>
-  </data>
-  <data name="TooManyPerFolder">
-    <value>Warning! It's not recommended to store so many games per folder.</value>
-  </data>
-  <data name="UninstallFactoryNote">
-    <value>Don't forget to perform a factory reset if you want to delete all Suspend Points.</value>
-  </data>
-  <data name="UninstallQ1">
-    <value>Do you really want to remove all traces of hakchi2 and return your NES/SNES Mini to its original state?</value>
-  </data>
-  <data name="UninstallQ2">
-    <value>Done. Wait until the power LED goes out. You also need to flash the original kernel. Do you want to flash the original kernel now?</value>
-  </data>
-  <data name="Uninstalling">
-    <value>Uninstalling...</value>
-  </data>
-  <data name="UninstallingMods">
-    <value>Uninstalling mods...</value>
-  </data>
-  <data name="UnknownGame">
-    <value>Unknown game</value>
-  </data>
-  <data name="UploadingConfig">
-    <value>Uploading new config...</value>
-  </data>
-  <data name="UploadingFes1">
-    <value>Uploading and running FES-1...</value>
-  </data>
-  <data name="UploadingGames">
-    <value>Uploading games...</value>
-  </data>
-  <data name="UploadingKernel">
-    <value>Uploading the kernel...</value>
-  </data>
-  <data name="UploadingOriginalGames">
-    <value>Processing original games...</value>
-  </data>
-  <data name="VerifyFailed">
-    <value>Verify failed :O This is not good.</value>
-  </data>
-  <data name="Verifying">
-    <value>Verifying...</value>
-  </data>
-  <data name="WaitingForDevice">
-    <value>Waiting for the device...</value>
-  </data>
-  <data name="Warning">
-    <value>Warning!</value>
-  </data>
-  <data name="Wow">
-    <value>Wow</value>
-  </data>
-  <data name="Yes">
-    <value>Yes</value>
-  </data>
-  <data name="YesForAll">
-    <value>Yes for all</value>
   </data>
 </root>

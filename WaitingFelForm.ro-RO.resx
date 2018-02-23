@@ -59,27 +59,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Waiting for your NES/SNES Mini...</value>
+    <value>Așteptare după NES/SNES Mini...</value>
   </data>
   <data name="buttonDriver.Text">
-    <value>Install driver</value>
+    <value>Instalare driver</value>
   </data>
   <data name="label1.Text">
-    <value>Please do the following steps:</value>
+    <value>Te rog să urmărești următorii pași:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Make sure the POWER button on your NES/SNES Mini is switched off.</value>
+    <value>1. Verifică dacă butonul POWER pe NES/SNES Mini e pe poziția oprit</value>
   </data>
   <data name="label3.Text">
-    <value>2. (Re)connect your NES/SNES Mini to the PC via USB cable.</value>
+    <value>2. (Re)conectează consola NES/SNES Mini la PC folosind cablul USB.</value>
   </data>
   <data name="label4.Text">
-    <value>3. Hold the RESET button and turn on the POWER switch.</value>
+    <value>3. Tine apăsat butonul RESET, apoi mută butonul POWER în poziția pornit.</value>
   </data>
   <data name="label5.Text">
-    <value>4. After few seconds release the RESET button, the POWER LED should not be on.</value>
+    <value>4. După câteva secunde eliberează butonul RESET, POWER LED nu trebuie să stea aprins.</value>
   </data>
   <data name="label6.Text">
-    <value>5. Install driver if it's not installed yet:</value>
+    <value>5. Instalează driverul dacă nu este instalat încă:</value>
   </data>
 </root>

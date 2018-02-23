@@ -376,6 +376,9 @@
   <data name="SizeOfSaves">
     <value>Valittujen tallennusten koko:</value>
   </data>
+  <data name="Syncronize">
+    <value>Synkronoi valitut pelit NES/SNES Minin kanssa</value>
+  </data>
   <data name="TooManyPerFolder">
     <value>Varoitus! Kansioon ei ole suositeltavaa tallentaa näin montaa peliä.</value>
   </data>
@@ -432,5 +435,14 @@
   </data>
   <data name="YesForAll">
     <value>Kyllä kaikkiin</value>
+  </data>
+  <data name="ConfigSavedNote">
+    <value>Config saved. Please note that configuration for the real console ({0}) was used, not for selected console ({1}).</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>Synchronize selected games with USB drive</value>
+  </data>
+  <data name="WritingUSB">
+    <value>Writing games to the USB drive...</value>
   </data>
 </root>

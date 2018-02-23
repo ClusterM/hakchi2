@@ -18,7 +18,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                switch(ConfigIni.ConsoleType)
+                switch (ConfigIni.ConsoleType)
                 {
                     default:
                     case MainForm.ConsoleType.NES:
@@ -132,7 +132,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (nesElement == null || nesElement is NesMenuFolder || nesElement is NesMenuCollection)
                 return 12;
-            
+
             if (nesElement is Sega32XGame)
                 return 0;
             if (nesElement is Atari2600Game)
@@ -165,7 +165,7 @@ namespace com.clusterrr.hakchi_gui
                 return 34;
             if (nesElement is SnesGame)
                 return 36;
-            
+
             return 4;
         }
 
@@ -467,7 +467,7 @@ namespace com.clusterrr.hakchi_gui
                 deleteElements(new TreeNode[] { treeView.SelectedNode });
             else
                 if ((sender as ToolStripMenuItem).Tag is ListView)
-                    deleteElements(from i in listViewContent.SelectedItems.Cast<ListViewItem>().ToArray() select i.Tag as TreeNode);
+                deleteElements(from i in listViewContent.SelectedItems.Cast<ListViewItem>().ToArray() select i.Tag as TreeNode);
         }
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -475,7 +475,7 @@ namespace com.clusterrr.hakchi_gui
                 cutElements(new TreeNode[] { treeView.SelectedNode });
             else
                 if ((sender as ToolStripMenuItem).Tag is ListView)
-                    cutElements(from i in listViewContent.SelectedItems.Cast<ListViewItem>().ToArray() select i.Tag as TreeNode);
+                cutElements(from i in listViewContent.SelectedItems.Cast<ListViewItem>().ToArray() select i.Tag as TreeNode);
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -531,7 +531,7 @@ namespace com.clusterrr.hakchi_gui
                 destinationNode = destinationNode.Parent;
             foreach (var newNode in newNodes)
             {
-                if (!destinationNode.FullPath.StartsWith(newNode.FullPath) && (destinationNode != newNode.Parent))
+                if (!destinationNode.FullPath.StartsWith(newNode.FullPath + '\\') && (destinationNode != newNode.Parent))
                 {
                     Debug.WriteLine(string.Format("Drag: {0}->{1}", newNode, destinationNode));
                     if (newNode.Parent.Tag is NesMenuFolder)
@@ -564,7 +564,7 @@ namespace com.clusterrr.hakchi_gui
             ShowFolderStats();
             return true;
         }
-        
+
         void newFolder(TreeNode parent = null)
         {
             var newFolder = new NesMenuFolder(Resources.FolderNameNewFolder);

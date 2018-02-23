@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Gem Genie kodlista</value>
+    <value>Game Genie kodlista</value>
   </data>
   <data name="addToolStripMenuItem.Text">
     <value>Lägg till</value>
@@ -74,7 +74,7 @@
     <value>Importera</value>
   </data>
   <data name="editToolStripMenuItem.Text">
-    <value>Editera</value>
+    <value>Redigera</value>
   </data>
   <data name="removeToolStripMenuItem.Text">
     <value>Ta bort</value>

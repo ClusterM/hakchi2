@@ -65,16 +65,16 @@
     <value>Annuler</value>
   </data>
   <data name="buttonFoldersEqually.Text">
-    <value>Scinder uniformément</value>
+    <value>Répartir uniformément</value>
   </data>
   <data name="buttonFoldersEquallyOriginal.Text">
-    <value>Jeux d’origine -&gt; Scinder uniformément</value>
+    <value>Jeux d'origine -&gt; Répartir uniformément</value>
   </data>
   <data name="buttonFoldersLetters.Text">
-    <value>Scinder en fonction de la première lettre</value>
+    <value>Répartir en fonction de la première lettre</value>
   </data>
   <data name="buttonFoldersLettersOriginal.Text">
-    <value>Jeux d’origine -&gt; Scinder en fonction de la première lettre</value>
+    <value>Jeux d'origine -&gt; Répartir en fonction de la première lettre</value>
   </data>
   <data name="buttonNewFolder.Text">
     <value>Nouveau dossier</value>
@@ -83,7 +83,7 @@
     <value>Aucun dossier</value>
   </data>
   <data name="buttonNoFoldersOriginal.Text">
-    <value>Jeux d’origine -&gt; Autres jeux</value>
+    <value>Jeux d'origine -&gt; Autres jeux</value>
   </data>
   <data name="comboBoxPosition.Items">
     <value>Le plus à gauche</value>

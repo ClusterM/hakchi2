@@ -85,6 +85,9 @@
   <data name="CompressingGames">
     <value>Сжимаем игры...</value>
   </data>
+  <data name="ConfigSavedNote">
+    <value>Конфигурация сохранена. Обратите внимание, что была использована конфигурация для реальной консоли ({0}), а не для выбранной консоли ({1}).</value>
+  </data>
   <data name="Congratulations">
     <value>Поздравляем!</value>
   </data>
@@ -376,6 +379,12 @@
   <data name="SizeOfSaves">
     <value>Размер выбранных сохранений:</value>
   </data>
+  <data name="Syncronize">
+    <value>Синхронизировать список игр с NES/SNES Mini</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>Синхронизировать выбранные игры с USB диском</value>
+  </data>
   <data name="TooManyPerFolder">
     <value>Внимание! Не рекомендуется делать так много игр на папку.</value>
   </data>
@@ -426,6 +435,9 @@
   </data>
   <data name="Wow">
     <value>Ура</value>
+  </data>
+  <data name="WritingUSB">
+    <value>Пишем игры на USB диск...</value>
   </data>
   <data name="Yes">
     <value>Да</value>

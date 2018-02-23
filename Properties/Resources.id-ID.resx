@@ -80,10 +80,13 @@
     <value>Membangun Folders Structure...</value>
   </data>
   <data name="Compressing">
-    <value>Mengkompres {0}...</value>
+    <value>Mengompres {0}...</value>
   </data>
   <data name="CompressingGames">
-    <value>Mengkompres game...</value>
+    <value>Mengompres game...</value>
+  </data>
+  <data name="ConfigSavedNote">
+    <value>Konfigurasi tersimpan. Ingatlah bahwa konfigurasi untuk konsol asli ({0}) yang digunakan, bukan untuk konsol terpilih ({1}).</value>
   </data>
   <data name="Congratulations">
     <value>Selamat!</value>
@@ -374,10 +377,16 @@
     <value>Ukuran:</value>
   </data>
   <data name="SizeOfSaves">
-    <value>Ukuran Save State yang dipilih</value>
+    <value>Ukuran Save State yang dipilih:</value>
+  </data>
+  <data name="Syncronize">
+    <value>Sinkronkan game-game terpilih dengan NES/SNES Mini</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>Sinkronkan game terpilih dengan drive USB</value>
   </data>
   <data name="TooManyPerFolder">
-    <value>Peringatan! Disarankan untuk tidak menyimpan terlalu banyak game di dalam setiap folder.</value>
+    <value>Perhatian! Disarankan untuk tidak menyimpan terlalu banyak game di dalam setiap folder.</value>
   </data>
   <data name="UninstallFactoryNote">
     <value>Jangan lupa untuk melakukan Factory Reset jika Anda ingin menghapus semua Suspend Point.</value>
@@ -422,10 +431,13 @@
     <value>Menunggu perangkat...</value>
   </data>
   <data name="Warning">
-    <value>Peringatan!</value>
+    <value>Perhatian!</value>
   </data>
   <data name="Wow">
     <value>Yay!</value>
+  </data>
+  <data name="WritingUSB">
+    <value>Menulis game ke drive USB...</value>
   </data>
   <data name="Yes">
     <value>Ya</value>

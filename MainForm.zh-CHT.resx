@@ -283,6 +283,9 @@
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>使用 X鍵 或 Y鍵 當作傳統控制器的 自動連發 A鍵 或 B鍵</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Always write games to USB drive</value>
+  </data>
   <data name="checkBoxCompressed.Text">
     <value>Compress</value>
   </data>
@@ -291,6 +294,9 @@
   </data>
   <data name="compressSelectedGamesToolStripMenuItem.Text">
     <value>Compress selected games</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Create custom command</value>
   </data>
   <data name="decompressSelectedGamesToolStripMenuItem.Text">
     <value>Decompress selected games</value>
@@ -316,6 +322,12 @@
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
     <value>Dump the whole NAND flash</value>
   </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>Enable USB host</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Select your USB drive</value>
+  </data>
   <data name="famicomMiniToolStripMenuItem.Text">
     <value>Famicom (Japan)</value>
   </data>
@@ -333,6 +345,9 @@
   </data>
   <data name="nESMiniToolStripMenuItem.Text">
     <value>NES (USA/Europe)</value>
+  </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Open selected game's folder in explorer</value>
   </data>
   <data name="sNESMiniToolStripMenuItem.Text">
     <value>SNES (USA/Europe)</value>

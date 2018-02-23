@@ -65,21 +65,21 @@
     <value>Installera drivrutin</value>
   </data>
   <data name="label1.Text">
-    <value>Vänligen följ stegen nedan:</value>
+    <value>Vänligen följ dessa instruktioner:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Se till att POWER-knappen på din NES/SNES Mini är avstängd.</value>
+    <value>1. Se till att POWER-reglaget på din NES/SNES Mini står på "OFF"</value>
   </data>
   <data name="label3.Text">
-    <value>2. (Åter)anslut din NES/SNES Mini till PCn via USB kabeln.</value>
+    <value>2. (Åter)anslut din NES/SNES Mini till datorn via USB kabeln.</value>
   </data>
   <data name="label4.Text">
-    <value>3. Håll RESET knappen intryckt och tryck på POWER knappen.</value>
+    <value>3. Håll RESET knappen intryckt och starta konsolen med hjälp av POWER-reglaget.</value>
   </data>
   <data name="label5.Text">
-    <value>4. Släpp RESET knappen efter 5 sekunder, POWER LEDen skall inte lysa.</value>
+    <value>4. Släpp RESET-knappen efter några sekunder, LED-lampan ska inte lysa.</value>
   </data>
   <data name="label6.Text">
-    <value>5. Installera drivrutin om den inte är installerad än:</value>
+    <value>5. Installera drivrutin om den inte redan är installerad:</value>
   </data>
 </root>

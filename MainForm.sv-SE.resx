@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FTPToolStripMenuItem.Text">
-    <value>FTP server på ftp://root:clover@127.0.0.1:1021</value>
+    <value>FTP-server ftp://root:clover@127.0.0.1:1021</value>
   </data>
   <data name="aboutToolStripMenuItem.Text">
     <value>Om…</value>
@@ -69,6 +69,9 @@
   </data>
   <data name="addPresetToolStripMenuItem.Text">
     <value>Lägg till förinställning</value>
+  </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Installera alltid spel till USB-enheten</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>Originalspel i roten -&gt; Automatisk i undermappar</value>
@@ -83,19 +86,34 @@
     <value>Bläddra</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Synkronisera vöada spel med NES/SNES Mini</value>
+    <value>Synkronisera valda spel med NES/SNES Mini</value>
+  </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Komprimera</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
-    <value>Handkontroll hack</value>
+    <value>Handkontroll-hack</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Komprimera icke-NES spel (för ytterligare emulatormod)</value>
   </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Komprimera spel som addas</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Komprimera valda spel</value>
+  </data>
   <data name="consoleTypeToolStripMenuItem.Text">
-    <value>Konsoll typ</value>
+    <value>Konsolltyp</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Skapa anpassat kommando</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>Anpassad - visa mapphanteraren varje gång</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Dekomprimera valda spel</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Ta bort spel</value>
@@ -103,8 +121,17 @@
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Ta bort förinställning</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Ta bort valda spel</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Inaktivera sidor/mappar</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Donera</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Ladda ner omslagsbilder för valda spel</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Ladda ner omslagsbild för alla spel</value>
@@ -112,26 +139,41 @@
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Dumpa kärnan</value>
   </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Dumpa dekrypterad NAND-B partition.</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Dumpa hela NAND-flash</value>
+  </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Använd "Select+A/B" för att aktivera autofire på A/B</value>
+  </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>Aktivera USB-värd</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>Inaktivera epilepsiskydd</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
-    <value>Avsluta</value>
+    <value>&amp;Avsluta</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Välj USB-enhet</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
-    <value>FAQ</value>
+    <value>Frågor och svar</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
-    <value>&amp;Arkiv</value>
+    <value>&amp;Fil</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Flasha anpassad kärna</value>
   </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Flasha NAND-partition (bara för experter!)</value>
+  </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Flasha originalkärna</value>
+    <value>Flasha originalkärnan</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
     <value>Originalspel i roten -&gt; Mappar, fördela spelen jämnt</value>
@@ -149,10 +191,10 @@
     <value>GitHub sida med aktuella utgåvor</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>Globala kommandoradsargument (endast experter!)</value>
+    <value>Globala kommandoradsinställningar (bara för experter!)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>Du kan dölja vissa standardspel</value>
+    <value>Du kan dölja vissa originalspel</value>
   </data>
   <data name="groupBoxOptions.Text">
     <value>Spelalternativ</value>
@@ -173,7 +215,7 @@
     <value>Utgivare:</value>
   </data>
   <data name="label3.Text">
-    <value>Kommandoradsargument (endast experter!)</value>
+    <value>Kommandoradsinställning (endast experter!)</value>
   </data>
   <data name="label4.Text">
     <value>Omslagsbild:</value>
@@ -190,17 +232,29 @@
   <data name="labelName.Text">
     <value>Namn:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Storlek:</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
     <value>Språk</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
-    <value>Maximalt antal spel per sida/mapp</value>
+    <value>Max antal spel per sida/mapp</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Starta originalkärnan ifrån RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Starta patchad kärna ifrån RAM</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Moduler</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Europa)</value>
+  </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
-    <value>Öppna FTP klienten</value>
+    <value>Öppna FTP-klienten</value>
   </data>
   <data name="openFileDialogImage.Title">
     <value>Välj omslagsbild för spel</value>
@@ -208,8 +262,11 @@
   <data name="openFileDialogNes.Title">
     <value>Välj spel</value>
   </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Öppna mappen till valt spel</value>
+  </data>
   <data name="openTelnetToolStripMenuItem.Text">
-    <value>Öppna Telnet klienten</value>
+    <value>Öppna Telnet-klienten</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
     <value>Originalspel i roten -&gt; Sidor, fördela spelen jämnt</value>
@@ -218,7 +275,7 @@
     <value>Sidor, fördela spelen jämnt</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>Sidor/Mapp struktur</value>
+    <value>Sidor/Mapp-struktur</value>
   </data>
   <data name="presetsToolStripMenuItem.Text">
     <value>Valinställningar</value>
@@ -235,11 +292,17 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Använd knappkombinationen för reset</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Europa)</value>
+  </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Välj namn på dumpfil.</value>
+  </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Spara inställningarna till NES/SNES Mini nu</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Save-State hanterare</value>
+    <value>Save-State-hanteraren</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
     <value>Sök</value>
@@ -254,13 +317,19 @@
     <value>&amp;Inställningar</value>
   </data>
   <data name="shellToolStripMenuItem.Text">
-    <value>Telnet server på telnet://127.0.0.1:1023 (login:root)</value>
+    <value>Telnet-server på telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japan)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Synkronisera</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
     <value>Ta skärmdump</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Flasha hela NAND (bara för experter!)</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Verktyg</value>
@@ -281,31 +350,7 @@
     <value>Använd utökad typsnitt</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
-    <value>Använd X/Y på Classic Controller som autofire A/B</value>
-  </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
-  </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
-  </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
-  </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump decrypted NAND-B partition</value>
+    <value>Använd X/Y på handkontrollen som autofire A/B</value>
   </data>
   <data name="dumpNANDCPartitionToolStripMenuItem.Text">
     <value>Dump NAND-C partition</value>
@@ -313,37 +358,7 @@
   <data name="dumpNANDCPartitionToolStripMenuItem.Title">
     <value>Select dump filename</value>
   </data>
-  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dump the whole NAND flash</value>
-  </data>
   <data name="famicomMiniToolStripMenuItem.Text">
     <value>Famicom (Japan)</value>
-  </data>
-  <data name="flashNANDCPartitionToolStripMenuItem.Text">
-    <value>Flash NAND-C partition (experts only!)</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Size:</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="nESMiniToolStripMenuItem.Text">
-    <value>NES (USA/Europe)</value>
-  </data>
-  <data name="sNESMiniToolStripMenuItem.Text">
-    <value>SNES (USA/Europe)</value>
-  </data>
-  <data name="saveDumpFileDialog.Title">
-    <value>Select dump filename</value>
-  </data>
-  <data name="superFamicomMiniToolStripMenuItem.Text">
-    <value>Super Famicom (Japan)</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
   </data>
 </root>

@@ -59,21 +59,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Waiting for your NES/SNES Mini...</value>
+    <value>Așteptare după NES/SNES Mini...</value>
   </data>
   <data name="buttonDriver.Text">
-    <value>Install driver</value>
+    <value>Instalare driver</value>
   </data>
   <data name="label1.Text">
-    <value>Please do the following steps:</value>
+    <value>Te rog să urmărești următorii pași:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Connect your NES/SNES Mini to the PC via USB cable.</value>
+    <value>1. Conectează NES/SNES Mini la PC folosind un cablu USB.</value>
   </data>
   <data name="label3.Text">
-    <value>2. Turn it on.</value>
+    <value>2. Porneste-l!</value>
   </data>
   <data name="label6.Text">
-    <value>3. Install driver if it's not installed yet:</value>
+    <value>3. Instalează driver-ul dacă nu este instalat încă:</value>
   </data>
 </root>

@@ -58,22 +58,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="$this.Text">
+    <value>Várakozás a NES/SNES Mini-re ...</value>
+  </data>
   <data name="buttonDriver.Text">
     <value>Illesztőprogam telepítése</value>
   </data>
+  <data name="label1.Text">
+    <value>Kérlek tedd a következőket:</value>
+  </data>
   <data name="label2.Text">
-    <value>1. Csatlakoztassa a NES-SNES Mini-t a számítógéphez USB kábelen keresztül</value>
+    <value>1. Csatlakoztasd a NES-SNES Mini-t a számítógéphez USB kábelen keresztül</value>
   </data>
   <data name="label3.Text">
-    <value>2. Kapcsolja be!</value>
-  </data>
-  <data name="$this.Text">
-    <value>Waiting for your NES/SNES Mini...</value>
-  </data>
-  <data name="label1.Text">
-    <value>Please do the following steps:</value>
+    <value>2. Kapcsold be!</value>
   </data>
   <data name="label6.Text">
-    <value>3. Install driver if it's not installed yet:</value>
+    <value>3. Telepítsd az illesztőprogramot ha még nincs telepítve:</value>
   </data>
 </root>

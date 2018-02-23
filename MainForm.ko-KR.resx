@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FTPToolStripMenuItem.Text">
+    <value>FTP 서버: ftp://root:clover@127.0.0.1:1021</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text">
+    <value>About...</value>
+  </data>
+  <data name="addMoreGamesToolStripMenuItem.Text">
+    <value>&amp;다른 게임을 추가</value>
+  </data>
+  <data name="addPresetToolStripMenuItem.Text">
+    <value>사전 설정을 만들기</value>
+  </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>항상 USB 드라이브에 게임을 저장해 주세요.</value>
+  </data>
+  <data name="automaticOriginalToolStripMenuItem.Text">
+    <value>오리지널 게임을 루트에 -&gt; 자동으로 하위 폴더에 배치</value>
+  </data>
+  <data name="automaticToolStripMenuItem.Text">
+    <value>자동</value>
+  </data>
+  <data name="buttonAddGames.Text">
+    <value>게임 추가 하기</value>
+  </data>
+  <data name="buttonBrowseImage.Text">
+    <value>참조</value>
+  </data>
+  <data name="buttonStart.Text">
+    <value>선택된 게임들은 NES/SNES Mini 와 동기화</value>
+  </data>
+  <data name="checkBoxCompressed.Text">
+    <value>압축</value>
+  </data>
+  <data name="cloverconHackToolStripMenuItem.Text">
+    <value>컨트롤러 핵</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>게임 추가시 압축 하기</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>선택항목 압축 하기</value>
+  </data>
+  <data name="consoleTypeToolStripMenuItem.Text">
+    <value>콘솔 타입</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>커스텀 명령어 생성 하기.</value>
+  </data>
+  <data name="customToolStripMenuItem.Text">
+    <value>사용자 정의 - 폴더 관리자를 매번 표시</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>선택항목 압축 풀기</value>
+  </data>
+  <data name="deleteGameToolStripMenuItem.Text">
+    <value>게임을 삭제</value>
+  </data>
+  <data name="deletePresetToolStripMenuItem.Text">
+    <value>사전 설정 삭제</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>선택항목 삭제</value>
+  </data>
+  <data name="disablePagefoldersToolStripMenuItem.Text">
+    <value>페이지 / 폴더를 비활성화</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>후원하기</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>선택항목 박스 아트 다운로드 하기</value>
+  </data>
+  <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
+    <value>모든 게임의 박스 아트를 다운로드</value>
+  </data>
+  <data name="dumpKernelToolStripMenuItem.Text">
+    <value>커널 덤프하기</value>
+  </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>NAND-B 파티션 복호화 및 추출 하기</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>NAND flash 추출 하기</value>
+  </data>
+  <data name="enableAutofireToolStripMenuItem.Text">
+    <value>Select-A / B연사 모드 (A, B 버튼)</value>
+  </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>USB 호스트 활성화.</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Text">
+    <value>뇌전증 예방 경고의 비활성화 (원색 표시)</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text">
+    <value>&amp;종료</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text">
+    <value>FAQ</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text">
+    <value>&amp;파일</value>
+  </data>
+  <data name="flashCustomKernelToolStripMenuItem.Text">
+    <value>커스텀 커널 설치</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>NAND-C 파티션 덮어 씌우기 (상급자 전용!)</value>
+  </data>
+  <data name="flashOriginalKernelToolStripMenuItem.Text">
+    <value>원본 커널로 되돌리기</value>
+  </data>
+  <data name="foldersOriginalToolStripMenuItem.Text">
+    <value>오리지널 게임을 루트에 -&gt; 폴더와 게임을 균등하게 분배</value>
+  </data>
+  <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
+    <value>오리지널 게임 을 루트에 -&gt; 폴더는 첫문자순으로 분배</value>
+  </data>
+  <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
+    <value>첫번째 글자순으로 폴더 정렬</value>
+  </data>
+  <data name="foldersToolStripMenuItem.Text">
+    <value>폴더, 게임 분배를 균등하게</value>
+  </data>
+  <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
+    <value>GitHub 페이지 방문해 최신 자료 확인 하기</value>
+  </data>
+  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
+    <value>글로벌 명령 줄 인수 (상급자 전용)</value>
+  </data>
+  <data name="groupBoxDefaultGames.Text">
+    <value>오리지널 게임을 숨길 수 있습니다</value>
+  </data>
+  <data name="groupBoxOptions.Text">
+    <value>게임 옵션</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text">
+    <value>&amp;도움말</value>
+  </data>
+  <data name="installModulesToolStripMenuItem.Text">
+    <value>추가 모듈 설치하기</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Text">
+    <value>&amp;커널</value>
+  </data>
+  <data name="label1.Text">
+    <value>발매 일 (YYYY-MM-DD):</value>
+  </data>
+  <data name="label2.Text">
+    <value>게시자 :</value>
+  </data>
+  <data name="label3.Text">
+    <value>커맨드 라인 (상급 사용자 전용!):</value>
+  </data>
+  <data name="label4.Text">
+    <value>박스 아트:</value>
+  </data>
+  <data name="label5.Text">
+    <value>게임 선택:</value>
+  </data>
+  <data name="label6.Text">
+    <value>최대 플레이어:</value>
+  </data>
+  <data name="label7.Text">
+    <value>게임 지니 코드 (쉼표로 구분) :</value>
+  </data>
+  <data name="labelName.Text">
+    <value>제목:</value>
+  </data>
+  <data name="labelSize.Text">
+    <value>용량:</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text">
+    <value>언어</value>
+  </data>
+  <data name="maximumGamesPerFolderToolStripMenuItem.Text">
+    <value>페이지 당 최대 게임 수</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>램에서 순정 커널 부팅 하기</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>램에서 변조 커널 부팅 하기</value>
+  </data>
+  <data name="modulesToolStripMenuItem.Text">
+    <value>&amp;모듈</value>
+  </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>닌텐도 (북미/유럽)</value>
+  </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text">
+    <value>FTP 클라이언트 실행</value>
+  </data>
+  <data name="openFileDialogImage.Title">
+    <value>게임용 박스 아트 선택</value>
+  </data>
+  <data name="openFileDialogNes.Title">
+    <value>게임 선택</value>
+  </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>탐색기에서 선택된 게임의 폴더 열기.</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text">
+    <value>텔넷 클라이언트 실행</value>
+  </data>
+  <data name="pagesOriginalToolStripMenuItem.Text">
+    <value>오리지널 게임을 루트에 -&gt; 페이지와, 게임을 균일하게 분배</value>
+  </data>
+  <data name="pagesToolStripMenuItem.Text">
+    <value>페이지와 게임을 분배</value>
+  </data>
+  <data name="pagesfoldersTypeToolStripMenuItem.Text">
+    <value>페이지 / 폴더 구조</value>
+  </data>
+  <data name="presetsToolStripMenuItem.Text">
+    <value>사전 설정 선택</value>
+  </data>
+  <data name="radioButtonOne.Text">
+    <value>1인용</value>
+  </data>
+  <data name="radioButtonTwo.Text">
+    <value>2인용, (동시 아님)</value>
+  </data>
+  <data name="radioButtonTwoSim.Text">
+    <value>2인용 (동시에)</value>
+  </data>
+  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
+    <value>패드 버튼 콤보로 리셋 하기</value>
+  </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>슈퍼닌텐도 (북미/유럽)</value>
+  </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>덤프 파일 이름을 선택하세요.</value>
+  </data>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
+    <value>설정을 NES/SNES Mini 에 저장 및 적용 하기..</value>
+  </data>
+  <data name="saveStateManagerToolStripMenuItem.Text">
+    <value>일시정지 지점 매니져</value>
+  </data>
+  <data name="searchToolStripMenuItem.Text">
+    <value>검색</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Text">
+    <value>모두 선택</value>
+  </data>
+  <data name="selectButtonCombinationToolStripMenuItem.Text">
+    <value>리셋 버튼 콤보 설정</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text">
+    <value>&amp;설정</value>
+  </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>텔넷 서버: telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>슈퍼 패미콤 (일본)</value>
+  </data>
+  <data name="synchronizeToolStripMenuItem.Text">
+    <value>동기화</value>
+  </data>
+  <data name="takeScreenshotToolStripMenuItem.Text">
+    <value>스크린샷 찍기</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>NAND를 덮어 씌우기 (상급자 전용!)</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text">
+    <value>&amp;도구</value>
+  </data>
+  <data name="uninstallModulesToolStripMenuItem.Text">
+    <value>확장 모듈을 삭제</value>
+  </data>
+  <data name="uninstallToolStripMenuItem.Text">
+    <value>삭제</value>
+  </data>
+  <data name="unselectAllToolStripMenuItem.Text">
+    <value>모두 선택 해제</value>
+  </data>
+  <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
+    <value>Up+A+B = Start / 2번째 컨트롤러</value>
+  </data>
+  <data name="useExtendedFontToolStripMenuItem.Text">
+    <value>확장 글꼴 사용 하기</value>
+  </data>
+  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
+    <value>클래식 컨트롤러에서 X/Y 버튼으로 A/B 연사 하기</value>
+  </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
+    <value>Compress non-NES games (for additional emulator mod)</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Dump NAND-C partition</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Select dump filename</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Select your USB drive</value>
+  </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Japan)</value>
+  </data>
+</root>

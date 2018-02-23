@@ -85,6 +85,9 @@
   <data name="CompressingGames">
     <value>Spellen aan het comprimeren...</value>
   </data>
+  <data name="ConfigSavedNote">
+    <value>Configuratie opgeslagen. Let wel op dat de configuratie van de echte console ({0}) gebruikt is en niet de geselecteerde ({1}).</value>
+  </data>
   <data name="Congratulations">
     <value>Gefeliciteerd!</value>
   </data>
@@ -376,6 +379,12 @@
   <data name="SizeOfSaves">
     <value>De grootte van de geselecteerde onderbrekingspunten:</value>
   </data>
+  <data name="Syncronize">
+    <value>Synchroniseer de geselecteerde spellen met de NES/SNES Mini</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>Synchroniseer de geselecteerde spellen met het USB station</value>
+  </data>
   <data name="TooManyPerFolder">
     <value>Waarschuwing! Het is niet aanbevolen om zoveel spellen in 1 map te hebben.</value>
   </data>
@@ -426,6 +435,9 @@
   </data>
   <data name="Wow">
     <value>Wauw</value>
+  </data>
+  <data name="WritingUSB">
+    <value>Spellen naar het USB station aan het schrijven...</value>
   </data>
   <data name="Yes">
     <value>Ja</value>

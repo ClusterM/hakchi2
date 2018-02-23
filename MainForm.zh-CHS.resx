@@ -70,6 +70,9 @@
   <data name="addPresetToolStripMenuItem.Text">
     <value>添加预设组</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>总是向U盘写入游戏</value>
+  </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>原版内置游戏在根目录 -&gt; 自动分配到文件夹</value>
   </data>
@@ -102,6 +105,9 @@
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>主机型号</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>创建自定义命令</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>自定义 - 每次均显示文件夹管理器</value>
@@ -148,11 +154,17 @@
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>用“Select + A或B”打开A/B键连发</value>
   </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>打开USB主控</value>
+  </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>禁用癫痫保护</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>退出(&amp;E)</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>请选择U盘</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>常见问答</value>
@@ -258,6 +270,9 @@
   </data>
   <data name="openFileDialogNes.Title">
     <value>选择游戏</value>
+  </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>在资源管理器中打开选中的游戏所在的文件夹</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>打开Telnet客户端</value>

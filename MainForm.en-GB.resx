@@ -70,6 +70,9 @@
   <data name="addPresetToolStripMenuItem.Text">
     <value>Add preset</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Always write games to the USB drive</value>
+  </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>Original games in root -&gt; Split automatically in subfolder</value>
   </data>
@@ -102,6 +105,9 @@
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Console type</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Create custom command</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>Custom - show Folder Manager every time</value>
@@ -148,11 +154,17 @@
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Use "Select + A/B" to enable autofire on A/B</value>
   </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>Enable USB host</value>
+  </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>Disable epilepsy protection</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Exit</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Select your USB drive</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ</value>
@@ -162,6 +174,9 @@
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Flash custom kernel</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Flash NAND-C partition (experts only!)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Flash factory kernel</value>
@@ -241,6 +256,9 @@
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Modules</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (Europe/USA)</value>
+  </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Open FTP client</value>
   </data>
@@ -249,6 +267,9 @@
   </data>
   <data name="openFileDialogNes.Title">
     <value>Select games</value>
+  </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Open selected game's folder in Explorer</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Open Telnet client</value>
@@ -277,6 +298,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Reset with a button combination</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (Europe/USA)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>Select dump filename</value>
   </data>
@@ -300,6 +324,9 @@
   </data>
   <data name="shellToolStripMenuItem.Text">
     <value>Telnet server at telnet://127.0.0.1:1023 (login: root)</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japan)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Synchronise</value>
@@ -333,17 +360,5 @@
   </data>
   <data name="famicomMiniToolStripMenuItem.Text">
     <value>Famicom (Japan)</value>
-  </data>
-  <data name="flashNANDCPartitionToolStripMenuItem.Text">
-    <value>Flash NAND-C partition (experts only!)</value>
-  </data>
-  <data name="nESMiniToolStripMenuItem.Text">
-    <value>NES (USA/Europe)</value>
-  </data>
-  <data name="sNESMiniToolStripMenuItem.Text">
-    <value>SNES (USA/Europe)</value>
-  </data>
-  <data name="superFamicomMiniToolStripMenuItem.Text">
-    <value>Super Famicom (Japan)</value>
   </data>
 </root>

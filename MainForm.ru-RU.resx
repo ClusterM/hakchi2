@@ -70,6 +70,9 @@
   <data name="addPresetToolStripMenuItem.Text">
     <value>Добавить пресет</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Всегда написывать игры на USB диск</value>
+  </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>Оригинальные игры в корне -&gt; Автоматически в подпапке</value>
   </data>
@@ -102,6 +105,9 @@
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Тип консоли</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Создать произвольную команду</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>Настроить вручную - показывать менеджер папок перед загрузкой</value>
@@ -148,11 +154,17 @@
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Использовать "Select+A/B" для включения турбо кнопок</value>
   </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>Включить USB host</value>
+  </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>Выключить защиту от приступов эпилепсии</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Выйти</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Выбери ваш USB диск</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ (Вопросы и ответы)</value>
@@ -258,6 +270,9 @@
   </data>
   <data name="openFileDialogNes.Title">
     <value>Выберите игры</value>
+  </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Открыть выбранную игру в проводнике</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Открыть Telnet клиент</value>

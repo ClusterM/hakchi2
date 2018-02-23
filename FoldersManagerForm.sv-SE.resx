@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Mapphanterare</value>
+    <value>Mapphanteraren</value>
   </data>
   <data name="buttonCancel.Text">
     <value>Avbryt</value>
@@ -71,7 +71,7 @@
     <value>Originalspel -&gt; Jämnt fördelat</value>
   </data>
   <data name="buttonFoldersLetters.Text">
-    <value>Födelat på första bokstaven</value>
+    <value>Fördelat på första bokstaven</value>
   </data>
   <data name="buttonFoldersLettersOriginal.Text">
     <value>Originalspel -&gt; Fördelat efter första bokstaven</value>
@@ -83,7 +83,19 @@
     <value>Inga mappar</value>
   </data>
   <data name="buttonNoFoldersOriginal.Text">
-    <value>Originalspel -&gt; Andra spel</value>
+    <value>Originalspel -&gt; Övriga spel</value>
+  </data>
+  <data name="comboBoxPosition.Items">
+    <value>Längst till vänster</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>Till vänster om spelen</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>Till höger om spelen</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>Längst till höger</value>
   </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Klipp ut</value>
@@ -108,18 +120,6 @@
   </data>
   <data name="renameToolStripMenuItem.Text">
     <value>Döp om mapp</value>
-  </data>
-  <data name="comboBoxPosition.Items">
-    <value>Leftmost</value>
-  </data>
-  <data name="comboBoxPosition.Items1">
-    <value>Left to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items2">
-    <value>Right to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items3">
-    <value>Rightmost</value>
   </data>
   <data name="labelElementCount.Text">
     <value>Folder statistics</value>

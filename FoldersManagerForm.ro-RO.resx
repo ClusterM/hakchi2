@@ -64,14 +64,53 @@
   <data name="buttonCancel.Text">
     <value>Anulare</value>
   </data>
+  <data name="buttonFoldersEqually.Text">
+    <value>Împărțire egală</value>
+  </data>
+  <data name="buttonFoldersEquallyOriginal.Text">
+    <value>Jocuri originale -&gt; Împărțire egală</value>
+  </data>
+  <data name="buttonFoldersLetters.Text">
+    <value>Împărțire după prima literă</value>
+  </data>
+  <data name="buttonFoldersLettersOriginal.Text">
+    <value>Jocuri originale -&gt; Împărțire după prima literă</value>
+  </data>
   <data name="buttonNewFolder.Text">
     <value>Director nou</value>
+  </data>
+  <data name="buttonNoFolders.Text">
+    <value>Fără directoare</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Text">
+    <value>Jocuri originale -&gt; Alte jocuri</value>
+  </data>
+  <data name="comboBoxPosition.Items">
+    <value>Cel mai de stânga</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>În stânga jocurilor</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>În dreapta jocurilor</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>Cel mai de dreapta</value>
   </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Tăiere</value>
   </data>
   <data name="deleteToolStripMenuItem.Text">
     <value>Ștergere</value>
+  </data>
+  <data name="groupBoxArt.Text">
+    <value>Icon meniu</value>
+  </data>
+  <data name="groupBoxSplitModes.Text">
+    <value>Structură automată de directoare</value>
+  </data>
+  <data name="labelPosition.Text">
+    <value>Prioritatea pozițiilor directoarelor:</value>
   </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Creare director nou</value>
@@ -82,46 +121,7 @@
   <data name="renameToolStripMenuItem.Text">
     <value>Redenumire director</value>
   </data>
-  <data name="buttonFoldersEqually.Text">
-    <value>Split equally</value>
-  </data>
-  <data name="buttonFoldersEquallyOriginal.Text">
-    <value>Original games -&gt; Split equally</value>
-  </data>
-  <data name="buttonFoldersLetters.Text">
-    <value>Split by first letter</value>
-  </data>
-  <data name="buttonFoldersLettersOriginal.Text">
-    <value>Original games -&gt; Split by first letter</value>
-  </data>
-  <data name="buttonNoFolders.Text">
-    <value>No folders</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.Text">
-    <value>Original games -&gt; Other games</value>
-  </data>
-  <data name="comboBoxPosition.Items">
-    <value>Leftmost</value>
-  </data>
-  <data name="comboBoxPosition.Items1">
-    <value>Left to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items2">
-    <value>Right to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items3">
-    <value>Rightmost</value>
-  </data>
-  <data name="groupBoxArt.Text">
-    <value>Menu icon</value>
-  </data>
-  <data name="groupBoxSplitModes.Text">
-    <value>Create folders structure automatically</value>
-  </data>
   <data name="labelElementCount.Text">
     <value>Folder statistics</value>
-  </data>
-  <data name="labelPosition.Text">
-    <value>Folder position priority:</value>
   </data>
 </root>

@@ -70,6 +70,9 @@
   <data name="addPresetToolStripMenuItem.Text">
     <value>Preset hinzufügen</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Spiele immer auf dieses USB-Laufwerk schreiben</value>
+  </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>Original Spiele in Root -&gt; automatisch in Unterordner</value>
   </data>
@@ -102,6 +105,9 @@
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Konsolentyp</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Benutzerdefinierten Befehl erstellen</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>Benutzerdefiniert - Ordner Manager jedes mal anzeigen</value>
@@ -143,16 +149,22 @@
     <value>Wo soll der gesicherte Dump gespeichert werden</value>
   </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Die ganze NAND-Speicher auslesen.</value>
+    <value>Die ganze NAND-Speicher auslesen</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Benutze "Select+A/B", um Autofeuer für A/B zu aktivieren</value>
+  </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>Aktiviere USB-Host</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>Epilepsieschutz deaktivieren</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Beenden</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Wähle dein USB-Laufwerk</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>Fragen und Antworten</value>
@@ -162,6 +174,9 @@
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Flashe benutzerdefinierten Kernel</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>NAND-C Partition flashen (nur für Fortgeschrittene!)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Original Kernel flashen</value>
@@ -241,6 +256,9 @@
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Module</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Europa)</value>
+  </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>FTP-Client öffnen</value>
   </data>
@@ -249,6 +267,9 @@
   </data>
   <data name="openFileDialogNes.Title">
     <value>Spiele auswählen</value>
+  </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Den Ordner des gewählten Spiels im Explorer öffnen</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Telnet-Client öffnen</value>
@@ -275,10 +296,13 @@
     <value>Zwei Spieler, gleichzeitig</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>Benutze Tastenkombination für Zurücksetzen</value>
+    <value>Benutze Tastenkombination fürs Zurücksetzen</value>
+  </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Europa)</value>
   </data>
   <data name="saveDumpFileDialog.Title">
-    <value>Wo soll der gesicherte Dump gespeichert werden</value>
+    <value>Wo soll der gesicherte Dump gespeichert werden?</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Einstellungen in NES/SNES Mini jetzt speichern</value>
@@ -300,6 +324,9 @@
   </data>
   <data name="shellToolStripMenuItem.Text">
     <value>Telnet Server auf telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japan)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Synchronisieren</value>
@@ -333,17 +360,5 @@
   </data>
   <data name="famicomMiniToolStripMenuItem.Text">
     <value>Famicom (Japan)</value>
-  </data>
-  <data name="flashNANDCPartitionToolStripMenuItem.Text">
-    <value>Flash NAND-C partition (experts only!)</value>
-  </data>
-  <data name="nESMiniToolStripMenuItem.Text">
-    <value>NES (USA/Europe)</value>
-  </data>
-  <data name="sNESMiniToolStripMenuItem.Text">
-    <value>SNES (USA/Europe)</value>
-  </data>
-  <data name="superFamicomMiniToolStripMenuItem.Text">
-    <value>Super Famicom (Japan)</value>
   </data>
 </root>

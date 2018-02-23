@@ -319,6 +319,9 @@
   <data name="SizeOfSaves">
     <value>選擇快速存檔的大小 :</value>
   </data>
+  <data name="Syncronize">
+    <value>開始同步處理所選遊戲至迷你紅白機</value>
+  </data>
   <data name="UninstallFactoryNote">
     <value>如果您想要刪除所有快速存檔，別忘了執行重設為原廠值</value>
   </data>
@@ -379,6 +382,9 @@
   <data name="CompressingGames">
     <value>Compressing games...</value>
   </data>
+  <data name="ConfigSavedNote">
+    <value>Config saved. Please note that configuration for the real console ({0}) was used, not for selected console ({1}).</value>
+  </data>
   <data name="Cover">
     <value>Box art</value>
   </data>
@@ -430,7 +436,13 @@
   <data name="Size">
     <value>Size:</value>
   </data>
+  <data name="SyncronizeUSB">
+    <value>Synchronize selected games with USB drive</value>
+  </data>
   <data name="TooManyPerFolder">
     <value>Warning! It's not recommended to store so many games per folder.</value>
+  </data>
+  <data name="WritingUSB">
+    <value>Writing games to the USB drive...</value>
   </data>
 </root>

@@ -85,6 +85,9 @@
   <data name="CompressingGames">
     <value>Compactando jogos...</value>
   </data>
+  <data name="ConfigSavedNote">
+    <value>Configuração salvada. Por favor, note que a configuração foi salvada para o console real ({0}), não para o console selecionado ({1}).</value>
+  </data>
   <data name="Congratulations">
     <value>Parabéns!</value>
   </data>
@@ -171,6 +174,9 @@
   </data>
   <data name="FirstRun">
     <value>Olá! Estou muito feliz que esteja utilizando o hakchi2. É muito simples de usar. Basta clicar em "Adicionar mais jogos", selecionar algumas ROMs, pressionar "Sincronizar" e siguir as instruções. Boa sorte!</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Escrevendo memória NAND...</value>
   </data>
   <data name="FlasingCustom">
     <value>Escrevendo(instalando) o kernel personalizado...</value>
@@ -286,6 +292,9 @@
   <data name="NandDumped">
     <value>Memória NAND obtida com sucesso.</value>
   </data>
+  <data name="NandFlashed">
+    <value>Deseja escrever a imagem da partição NAND-C? Está opção irá subistituir todos os dados do usuários.</value>
+  </data>
   <data name="Need3rdPartyEmulator">
     <value>Oops, parece que "{0}" não está funcionando corretamente com o emulador original. Você deseja usar um emulador de terceiros para este jogo (ele precisa ser instalado)?</value>
   </data>
@@ -315,6 +324,9 @@
   </data>
   <data name="NotFound">
     <value>Não encontrado:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>não recomendado</value>
   </data>
   <data name="OriginalKernelQ">
     <value>Deseja escrever o kernel original?</value>
@@ -364,6 +376,15 @@
   <data name="SizeOfSaves">
     <value>Tamanho dos save-states selecionados:</value>
   </data>
+  <data name="Syncronize">
+    <value>Sincronizar jogos selecionados com NES/SNES Mini</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>Sincronizar os jogos selecionados com a unidade USB</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Atenção! Não é recomendado armazenar muitos jogos na mesma pasta.</value>
+  </data>
   <data name="UninstallFactoryNote">
     <value>Não esqueça de redefinir seu console para os padrões de fábrica caso deseje excluir todos os Suspend Points.</value>
   </data>
@@ -412,6 +433,9 @@
   <data name="Wow">
     <value>Uau</value>
   </data>
+  <data name="WritingUSB">
+    <value>Escrevendo os jogos na unidade USB...</value>
+  </data>
   <data name="Yes">
     <value>Sim</value>
   </data>
@@ -420,17 +444,5 @@
   </data>
   <data name="FlashNandCQ">
     <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
-  </data>
-  <data name="FlashingNand">
-    <value>Flashing NAND memory...</value>
-  </data>
-  <data name="NandFlashed">
-    <value>NAND memory flashed.</value>
-  </data>
-  <data name="NotRecommended">
-    <value>not recommended</value>
-  </data>
-  <data name="TooManyPerFolder">
-    <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
 </root>

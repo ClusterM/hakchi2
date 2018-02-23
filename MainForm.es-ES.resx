@@ -70,6 +70,9 @@
   <data name="addPresetToolStripMenuItem.Text">
     <value>Añadir lista</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Escribir siempre los juegos en la unidad USB</value>
+  </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>Juegos originales en Root -&gt; Automático en subcarpeta</value>
   </data>
@@ -102,6 +105,9 @@
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Tipo de consola</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Crear comando personalizado</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>Personalizado - muestra la gestión de las carpetas todo el tiempo</value>
@@ -148,11 +154,17 @@
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Pulsa "Select+A/B" para activar Autofire en A/B</value>
   </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>Activar USB host</value>
+  </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>Desactivar protección contra la epilepsia</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Salir</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Selecciona una unidad USB</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ (Preguntas frecuentes)</value>
@@ -258,6 +270,9 @@
   </data>
   <data name="openFileDialogNes.Title">
     <value>Selecciona juegos de NES u otro emulador</value>
+  </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Abrir la carpeta de los juegos seleccionados en el explorador de archivos</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Abrir cliente Telnet</value>

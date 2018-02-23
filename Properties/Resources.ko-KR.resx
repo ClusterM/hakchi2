@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddingGames">
+    <value>게임 처리중, 기다려 주십시오...</value>
+  </data>
+  <data name="AllFiles">
+    <value>모든 파일</value>
+  </data>
+  <data name="AreYouSure">
+    <value>확실 합니까?</value>
+  </data>
+  <data name="AutofillResult">
+    <value>데이터가 {0} 게임에 자동으로 채워 졌습니다.</value>
+  </data>
+  <data name="AutofireHelp1">
+    <value>Select+A/B 을 꾹 눌러 A/B 연사를 활성화/비활성화 합니다.</value>
+  </data>
+  <data name="BuildingCustom">
+    <value>커스텀 커널 이미지 생성중...</value>
+  </data>
+  <data name="BuildingFolders">
+    <value>폴더 구조 생성중...</value>
+  </data>
+  <data name="Compressing">
+    <value>압축중 {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>게임 압축중...</value>
+  </data>
+  <data name="ConfigSavedNote">
+    <value>설정이 저장되었습니다, 참고로 선택된 기기 ({1}) 가 아닌, 실기 ({0}) 의 설정이 사용 되었습니다.</value>
+  </data>
+  <data name="Congratulations">
+    <value>축하합니다!</value>
+  </data>
+  <data name="Cover">
+    <value>박스 아트</value>
+  </data>
+  <data name="CustomKernel">
+    <value>커스텀 커널</value>
+  </data>
+  <data name="CustomKernelQ">
+    <value>커스텀 커널을 설치 하시겠습니까?</value>
+  </data>
+  <data name="CustomWarning">
+    <value>커스텀 커널을 NES/SNES Mini에 설치 하셔야 합니다.초기에 딱 한번만 하시면 됩니다, 계속 진행 하시겠습니까?</value>
+  </data>
+  <data name="Decompressing">
+    <value>압축 해제중 {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>게임 압축 해제중...</value>
+  </data>
+  <data name="Default30games">
+    <value>오리지널 게임</value>
+  </data>
+  <data name="DeleteElement">
+    <value>{0}을(를) 정말 삭제 하시겠습니까?</value>
+  </data>
+  <data name="DeleteElements">
+    <value>{0} 요소를 삭제 하시겠습니까?</value>
+  </data>
+  <data name="DeleteGame">
+    <value>{0} 게임을 정말 삭제 하시겠습니까?</value>
+  </data>
+  <data name="DeletePreset">
+    <value>{0} 사전 설정을 정말 삭제 합니까?</value>
+  </data>
+  <data name="DeleteSavesQ">
+    <value>일시정지 지점 백업을 삭제 합니까?</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>선택 항목 삭제 하시겠습니까?</value>
+  </data>
+  <data name="DoYouWantCancel">
+    <value>현재 작업을 취소 하시겠습니까?</value>
+  </data>
+  <data name="DoYouWantToContinue">
+    <value>계속 진행 합니까?</value>
+  </data>
+  <data name="Donate">
+    <value>소소한 후원 부탁 드립니다."About" 탭의 PayPal 링크를 통해 부탁 드려요.</value>
+  </data>
+  <data name="Done">
+    <value>완료!</value>
+  </data>
+  <data name="DoneYouCanUpload">
+    <value>완료! NES/SNES Mini 에 이제 게임을 마음껏 넣으실수 있습니다.</value>
+  </data>
+  <data name="DownloadAllCoversTitle">
+    <value>박스 아트를 다운로드 합니다.</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>{0}의 박스아트를 다운로드 하시겠습니까?</value>
+  </data>
+  <data name="DumpKernelQ">
+    <value>커널을 덤프 하시겠습니까?</value>
+  </data>
+  <data name="DumpingKernel">
+    <value>커널 덤프중...</value>
+  </data>
+  <data name="DumpingNand">
+    <value>NAND 추출중...</value>
+  </data>
+  <data name="Error">
+    <value>에러</value>
+  </data>
+  <data name="ExecutingCommand">
+    <value>실행 명령:</value>
+  </data>
+  <data name="ExtraArgsInfo">
+    <value>글로벌 명령 줄 인수을 모든 게임에 적용 하실수 있습니다. (상급자 분들에게만 권장!)</value>
+  </data>
+  <data name="ExtraArgsTitle">
+    <value>추가 글로벌 명령 줄 인수</value>
+  </data>
+  <data name="FirstRun">
+    <value>안녕하세요! hakchi2를 이용 해 주셔서 정말 기쁘네요. 사용방법은 정말 쉽습니다. "게임 추가 하기" 를 눌러서 ROM을 선택 하시고, "동기화"를 눌러서 설명을 따라 주세요. 굳럭!</value>
+  </data>
+  <data name="FlashNandCQ">
+    <value>NAND-C 파티션 이미지를 덮어 씌우겠습니까? 모든 유저 데이터가 덮어 씌워집니다.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>NAND 메모리 덮는중...</value>
+  </data>
+  <data name="FlasingCustom">
+    <value>커스텀 커널 설치중...</value>
+  </data>
+  <data name="FlasingOriginal">
+    <value>순정 커널 설치중...</value>
+  </data>
+  <data name="FolderContent">
+    <value>삭제된 컨텐트들은 휴지통으로 옮겨집니다. 영구 삭제 또는 다른 폴더로 옮기셔도 됩니다.</value>
+  </data>
+  <data name="FolderNameBack">
+    <value>뒤로</value>
+  </data>
+  <data name="FolderNameMoreGames">
+    <value>더 많은 게임...</value>
+  </data>
+  <data name="FolderNameNewFolder">
+    <value>새 폴더</value>
+  </data>
+  <data name="FolderNameOriginalGames">
+    <value>오리지널 게임</value>
+  </data>
+  <data name="FolderNameTrashBin">
+    <value>휴지통</value>
+  </data>
+  <data name="FolderNameUnsorted">
+    <value>정렬 안됨</value>
+  </data>
+  <data name="FolderStatistics">
+    <value>{0} 폴더는 {1} 요소가 있습니다.</value>
+  </data>
+  <data name="FoldersSaveQ">
+    <value>이 폴더 구조를 저장 하시겠습니까?</value>
+  </data>
+  <data name="FourScreenNotSupported">
+    <value>죄송합니다, {0} 은(는) 4분할 화면 모드를 사용합니다.(카트리지 자체에 추가 VRAM 메모리가 존재), 이 기능은 현재 NES/SNES Mini에서 지원 되지 않습니다. 기본 상태로는 게임이 기동하지 않지만, 추가 모듈을 설치하면 가능 합니다. 우선 게임을 추가 하시겠습니까?</value>
+  </data>
+  <data name="GGCodeDelete">
+    <value>{0} 코드를 삭제 합니까?</value>
+  </data>
+  <data name="GGCodeEmpty">
+    <value>코드를 입력 하셔야 합니다.</value>
+  </data>
+  <data name="GGCodeExists">
+    <value>코드가 이미 존재 합니다. 수정 하시겠습니까?</value>
+  </data>
+  <data name="GGDescriptionEmpty">
+    <value>설명을 입력 하셔야 합니다!</value>
+  </data>
+  <data name="GameGenieFormatError">
+    <value>잘못된 게임 지니 코드 "{0}" 가 "{1}"에 적용.</value>
+  </data>
+  <data name="GameGenieNotFound">
+    <value>게임 지니 코드 "{0}" "{1}"에 적용 할수 없습니다 - 수치를 찾을 수 없음. 아마도 다른 게임용 코드인것 같네요?</value>
+  </data>
+  <data name="GamesAndApps">
+    <value>게임 과 어플</value>
+  </data>
+  <data name="GamesSelected">
+    <value>선택된 게임들</value>
+  </data>
+  <data name="GooglingFor">
+    <value>구글 검색</value>
+  </data>
+  <data name="Hello">
+    <value>안녕하세요</value>
+  </data>
+  <data name="Images">
+    <value>이미지</value>
+  </data>
+  <data name="InputPreset">
+    <value>현재 선택된 게임의 사전 설정 이름을 지정 해 주세요.</value>
+  </data>
+  <data name="InstallingMods">
+    <value>모드 설치중...</value>
+  </data>
+  <data name="InvalidConsoleSelected">
+    <value>잘못된 콘솔기종이 지정 되었습니다. 감지된 콘솔 기종:</value>
+  </data>
+  <data name="InvalidKernelHeader">
+    <value>잘못된 커널 헤더.</value>
+  </data>
+  <data name="InvalidKernelSize">
+    <value>잘못된 커널 사이즈:</value>
+  </data>
+  <data name="KernelDumped">
+    <value>순정 커널이 "hakchi2/dump" 폴더에 저장 되었습니다. 잃어 버리지 마세요.</value>
+  </data>
+  <data name="LoadingGames">
+    <value>게임 로드중...</value>
+  </data>
+  <data name="MD5Failed">
+    <value>커널은 덤프되었지만 MD5 체크섬이 알려지지 않은 수치 입니다:</value>
+  </data>
+  <data name="MD5Failed2">
+    <value>커널이 이미 변조가 되었거나, 알려지지 않은 버젼 입니다.이 메세지를 제게 보내시고 (Ctrl+C를 눌러주세요). 위험감수 하며 계속 진행 하기.</value>
+  </data>
+  <data name="MainMenu">
+    <value>HOME 메뉴</value>
+  </data>
+  <data name="MapperNotSupported">
+    <value>헐, "{0}" 은(는) 맵퍼를 사용합니다. #{1} 하지만 이 맵퍼는 NES Mini 에서 지원 되지 않습니다. 기본 에뮬레이터로는 정상 작동 되지 않을겁니다. 하지만 다른 에뮬레이터 모듈이 설치되어 있으면 실행 가능합니다. 이 게임을 추가 하시겠습니까?</value>
+  </data>
+  <data name="Membooting">
+    <value>램에서 커널을 부팅 하기...</value>
+  </data>
+  <data name="MemoryFull">
+    <value>죄송합니다, {0}MBytes 용량의 게임이네요. 용량이 너무 큽니다.</value>
+  </data>
+  <data name="MemoryStats">
+    <value>최종 기록 가능 메모리 용량: {0:F1}MBytes|게임저장에 사용 가능한 용량: {1:F1}MBytes|세이브로 사용된 용량: {2:F1}MBytes|기타파일로 소모된 용량: {3:F1}MBytes</value>
+  </data>
+  <data name="NandDumped">
+    <value>NAND 메모리가 성공적으로 추출 되었습니다.</value>
+  </data>
+  <data name="NandFlashed">
+    <value>NAND 메모리가 기록 되었습니다</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>얼레, "{0}"은(는) 아무래도 순정 에뮬레이터로는 실행 불가 일듯 하네요. 서드 파티 에뮬레이터 (추가 모듈 설치 필요)를 사용 하시겠습니까?</value>
+  </data>
+  <data name="NewGamesUnsorted">
+    <value>새 게임을 "정렬 안됨" 폴더로 옮겼습니다.</value>
+  </data>
+  <data name="NewPreset">
+    <value>새로운 사전 설정</value>
+  </data>
+  <data name="No">
+    <value>아니오</value>
+  </data>
+  <data name="NoForAll">
+    <value>모두 아니오</value>
+  </data>
+  <data name="NoKernel">
+    <value>커널 덤프가 없습니다.</value>
+  </data>
+  <data name="NoKernelWarning">
+    <value>우선, NES/SNES Mini 커널 이미지를 덤프하세요. 딱 한번만 하시면 됩니다. 계속 진행 하시겠습니까?</value>
+  </data>
+  <data name="NoKernelYouNeed">
+    <value>커널 덤프가 없습니다. 커널을 먼저 덤프 해 주세요.</value>
+  </data>
+  <data name="NoTelnet">
+    <value>텔넷 클라이언트를 실행 할수 없습니다, 비활성화 되어 있는 텔넷 클라이언트를 먼저 활성화 시켜 주세요."제어판"에서 -&gt; "프로그램"선택후 -&gt; "Windows 기능 켜기/끄기".</value>
+  </data>
+  <data name="NotFound">
+    <value>검색 실패:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>추천하지 않습니다</value>
+  </data>
+  <data name="OriginalKernelQ">
+    <value>순정 커널로 복원 하시겠습니까?</value>
+  </data>
+  <data name="PatchAvailable">
+    <value>패치가 이용 가능 합니다.</value>
+  </data>
+  <data name="PatchQ">
+    <value>{0}의 패치가 존재 합니다. 이 게임을 패치 하시겠습니까?</value>
+  </data>
+  <data name="PleaseTryAgainUSB">
+    <value>이 문제가 지속될 경우, 다른 USB 포트나 케이블을 사용 해 주세요.</value>
+  </data>
+  <data name="PleaseWait">
+    <value>잠시만 기다려주십시오...</value>
+  </data>
+  <data name="PressOkToContinue">
+    <value>OK 를 눌러 진행 해 주세요.</value>
+  </data>
+  <data name="Removing">
+    <value>삭제중 {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>게임 삭제중...</value>
+  </data>
+  <data name="ReplaceKernelQ">
+    <value>커널 덤프가 이미 존재합니다. 본인이 정말 확실히 이 작업을 이해 하시고 기존 백업을 덮어 씌우시려면 "hackchi2/dump" 폴더를 수동으로 삭제 해 주세요 (기존 꺼 는 따로 저장 추천).</value>
+  </data>
+  <data name="SavesFlterName">
+    <value>NES/SNES Mini 일시정지 지점 백업</value>
+  </data>
+  <data name="SelectAtLeast">
+    <value>적어도 게임 1개는 선택 해 주세요.</value>
+  </data>
+  <data name="SelectAtLeastTwo">
+    <value>적어도 버튼 2개를 선택 해 주세요.</value>
+  </data>
+  <data name="SelectModsInstall">
+    <value>선택된 모듈을 NES/SNES Mini에 설치 합니다.</value>
+  </data>
+  <data name="SelectModsUninstall">
+    <value>선택된 모듈을 NES/SNES Mini에서 삭제 합니다.</value>
+  </data>
+  <data name="Size">
+    <value>용량:</value>
+  </data>
+  <data name="SizeOfSaves">
+    <value>선택된 일시정지 지점의 용량:</value>
+  </data>
+  <data name="Syncronize">
+    <value>선택된 게임들은 NES/SNES Mini 와 동기화</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>USB 드라이브에 선택된 게임을 동기화 하기.</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>경고! 폴더 한개당 게임 과다 저장은 추천하지 않습니다.</value>
+  </data>
+  <data name="UninstallFactoryNote">
+    <value>모든 일시정지 지점을 삭제 하시려면 공장 초기화를 잊지 말아 주세요.</value>
+  </data>
+  <data name="UninstallQ1">
+    <value>Hakchi2의 모든 흔적을 지우고 NES/SNES Mini를 순정 상태로 복원 하시겠습니까?</value>
+  </data>
+  <data name="UninstallQ2">
+    <value>완료. 전원 LED가 나갈떄 까지 기다려 주세요. 그리고 순정 커널을 설치 하셔야 합니다. 지금 순정 커널을 설치 하시겠습니까?</value>
+  </data>
+  <data name="Uninstalling">
+    <value>삭제중...</value>
+  </data>
+  <data name="UninstallingMods">
+    <value>모드 삭제중...</value>
+  </data>
+  <data name="UnknownGame">
+    <value>미확인 게임</value>
+  </data>
+  <data name="UploadingConfig">
+    <value>새로운 설정 업로드중...</value>
+  </data>
+  <data name="UploadingFes1">
+    <value>FES-1을 업로드 및 실행 중...</value>
+  </data>
+  <data name="UploadingGames">
+    <value>게임 업로드중...</value>
+  </data>
+  <data name="UploadingKernel">
+    <value>커널 업로드중...</value>
+  </data>
+  <data name="UploadingOriginalGames">
+    <value>오리지널 게임 처리중...</value>
+  </data>
+  <data name="VerifyFailed">
+    <value>검증 실패 :음 좋지 않군요.</value>
+  </data>
+  <data name="Verifying">
+    <value>검증 중...</value>
+  </data>
+  <data name="WaitingForDevice">
+    <value>기기 응답 대기중...</value>
+  </data>
+  <data name="Warning">
+    <value>경고!</value>
+  </data>
+  <data name="Wow">
+    <value>ㅎㄷㄷ</value>
+  </data>
+  <data name="WritingUSB">
+    <value>USB 드라이브에 게임 저장 중.</value>
+  </data>
+  <data name="Yes">
+    <value>예</value>
+  </data>
+  <data name="YesForAll">
+    <value>모두 예</value>
+  </data>
+</root>

@@ -65,21 +65,21 @@
     <value>Installer le pilote</value>
   </data>
   <data name="label1.Text">
-    <value>Merci de suivre les étapes suivantes :</value>
+    <value>Veuillez suivre les étapes suivantes :</value>
   </data>
   <data name="label2.Text">
-    <value>1. Vérifiez que le bouton POWER de la NES/SNES Mini n’est pas enfoncé.</value>
+    <value>1. Vérifiez que le bouton POWER de la NES/SNES Mini n'est pas enfoncé.</value>
   </data>
   <data name="label3.Text">
-    <value>2. (Re)connectez la NES/SNES Mini au PC à l’aide du cable USB.</value>
+    <value>2. (Re)connectez la NES/SNES Mini au PC à l'aide du cable USB.</value>
   </data>
   <data name="label4.Text">
     <value>3. Maintenez le bouton RESET enfoncé et poussez le bouton POWER.</value>
   </data>
   <data name="label5.Text">
-    <value>4. Après quelques secondes relâchez le bouton RESET, le témoin d’alimentation doit être éteint.</value>
+    <value>4. Après quelques secondes relâchez le bouton RESET, le témoin d'alimentation doit être éteint.</value>
   </data>
   <data name="label6.Text">
-    <value>5. Installez le pilote s’il n’est pas encore installé :</value>
+    <value>5. Installez le pilote s'il n'est pas encore installé :</value>
   </data>
 </root>

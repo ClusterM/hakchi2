@@ -68,10 +68,10 @@
     <value>Execute as seguintes etapas:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Ligue o seu NES/SNES Mini ao PC através do cabo USB.</value>
+    <value>1. Conecte a sua NES/SNES Mini ao PC através do cabo USB.</value>
   </data>
   <data name="label3.Text">
-    <value>2. Ligue-o.</value>
+    <value>2. Ligue-a.</value>
   </data>
   <data name="label6.Text">
     <value>3. Instale o driver se ainda não estiver instalado:</value>

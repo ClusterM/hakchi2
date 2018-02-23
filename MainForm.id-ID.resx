@@ -70,6 +70,9 @@
   <data name="addPresetToolStripMenuItem.Text">
     <value>Tambahkan pra-atur</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Selalu menulis game ke drive USB</value>
+  </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>Game orisinal di root -&gt; Otomatis di dalam sub-folder</value>
   </data>
@@ -102,6 +105,9 @@
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Tipe konsol</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Membuat perintah custom</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>Custom - selalu perlihatkan Folders Manager</value>
@@ -148,11 +154,17 @@
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Tekan "Select+A/B" untuk mengaktifkan autofire pada A/B</value>
   </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>Mengaktifkan USB Host</value>
+  </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>Nonaktifkan proteksi epilepsi</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Keluar</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Pilih drive USB anda</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ</value>
@@ -185,7 +197,7 @@
     <value>Folder, bagi game secara sama</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>Halaman GitHub berikut perilisan aktual</value>
+    <value>Laman GitHub berikut perilisan aktual</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
     <value>Global command-line arguments (khusus ahli!)</value>
@@ -259,6 +271,9 @@
   <data name="openFileDialogNes.Title">
     <value>Pilih game</value>
   </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Buka game terpilih di explorer</value>
+  </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Buka klien Telnet</value>
   </data>
@@ -284,7 +299,7 @@
     <value>Dua player, bersamaan</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>Gunakan kombinasi tombol untuk me-reset</value>
+    <value>Gunakan kombinasi tombol untuk mereset</value>
   </data>
   <data name="sNESMiniToolStripMenuItem.Text">
     <value>SNES (AS/Eropa)</value>
@@ -326,7 +341,7 @@
     <value>Flash seluruh NAND (khusus ahli!)</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
-    <value>&amp;Tools</value>
+    <value>&amp;Sarana</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
     <value>Copot modul ekstra</value>

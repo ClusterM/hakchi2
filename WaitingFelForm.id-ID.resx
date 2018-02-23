@@ -80,6 +80,6 @@
     <value>4. Setelah beberapa detik, lepas tombol RESET. Saat ini harusnya lampu LED pada tombol POWER tidak menyala.</value>
   </data>
   <data name="label6.Text">
-    <value>5. Instal driver jika belum menginstalnya:</value>
+    <value>5. Instal driver jika belum terinstal:</value>
   </data>
 </root>

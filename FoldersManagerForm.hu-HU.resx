@@ -64,8 +64,38 @@
   <data name="buttonCancel.Text">
     <value>Mégse</value>
   </data>
+  <data name="buttonFoldersEqually.Text">
+    <value>Egyenlő elosztás</value>
+  </data>
+  <data name="buttonFoldersEquallyOriginal.Text">
+    <value>Gyári játékok -&gt; Egyenlő elosztás</value>
+  </data>
+  <data name="buttonFoldersLetters.Text">
+    <value>Kezdőbetű szerinti elosztás</value>
+  </data>
+  <data name="buttonFoldersLettersOriginal.Text">
+    <value>Gyári játékok -&gt; Kezdőbetű szerinti elosztás</value>
+  </data>
   <data name="buttonNewFolder.Text">
     <value>Új mappa</value>
+  </data>
+  <data name="buttonNoFolders.Text">
+    <value>Mappák nélkül</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Text">
+    <value>Gyári játékok -&gt; Más játékok</value>
+  </data>
+  <data name="comboBoxPosition.Items">
+    <value>Legbaloldalibb</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>A játékok bal oldalán</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>A játékok jobb oldalán</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>Legjobboldalibb</value>
   </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Kivágás</value>
@@ -90,36 +120,6 @@
   </data>
   <data name="renameToolStripMenuItem.Text">
     <value>Mappa átnevezése</value>
-  </data>
-  <data name="buttonFoldersEqually.Text">
-    <value>Split equally</value>
-  </data>
-  <data name="buttonFoldersEquallyOriginal.Text">
-    <value>Original games -&gt; Split equally</value>
-  </data>
-  <data name="buttonFoldersLetters.Text">
-    <value>Split by first letter</value>
-  </data>
-  <data name="buttonFoldersLettersOriginal.Text">
-    <value>Original games -&gt; Split by first letter</value>
-  </data>
-  <data name="buttonNoFolders.Text">
-    <value>No folders</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.Text">
-    <value>Original games -&gt; Other games</value>
-  </data>
-  <data name="comboBoxPosition.Items">
-    <value>Leftmost</value>
-  </data>
-  <data name="comboBoxPosition.Items1">
-    <value>Left to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items2">
-    <value>Right to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items3">
-    <value>Rightmost</value>
   </data>
   <data name="labelElementCount.Text">
     <value>Folder statistics</value>

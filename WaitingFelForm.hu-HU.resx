@@ -58,28 +58,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="$this.Text">
+    <value>Várakozás a NES/SNES Mini-re ...</value>
+  </data>
   <data name="buttonDriver.Text">
     <value>Illesztőprogam telepítése</value>
   </data>
-  <data name="$this.Text">
-    <value>Waiting for your NES/SNES Mini...</value>
-  </data>
   <data name="label1.Text">
-    <value>Please do the following steps:</value>
+    <value>Kérlek tedd a következőket:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Make sure the POWER button on your NES/SNES Mini is switched off.</value>
+    <value>1. Ellenőrízd hogy a POWER gomb ki van kapcsolva a NES/SNES Mini-n</value>
   </data>
   <data name="label3.Text">
-    <value>2. (Re)connect your NES/SNES Mini to the PC via USB cable.</value>
+    <value>2. Csatlakoztasd a NES/SNES Mini-t a számítógéphez USB kébelen keresztül</value>
   </data>
   <data name="label4.Text">
-    <value>3. Hold the RESET button and turn on the POWER switch.</value>
+    <value>3. Tarts lenyomva a RESET gombot es nyomd meg a POWER gombot</value>
   </data>
   <data name="label5.Text">
-    <value>4. After few seconds release the RESET button, the POWER LED should not be on.</value>
+    <value>4. Néhány másodperc elteltével engedd el a RESET gombot, a POWER LED-nek nem kell égnie</value>
   </data>
   <data name="label6.Text">
-    <value>5. Install driver if it's not installed yet:</value>
+    <value>5. Telepítsd az illesztőprogramot ha még nincs telepítve:</value>
   </data>
 </root>

@@ -70,6 +70,9 @@
   <data name="addPresetToolStripMenuItem.Text">
     <value>Adicionar lista personalizada de jogo</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Sempre escrever os jogos para a unidade USB</value>
+  </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>Jogos originais na raiz -&gt; Automático em subpasta</value>
   </data>
@@ -99,6 +102,9 @@
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Tipo de console</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Criar comando personalizado</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>Personalizado - Sempre mostrar o Gerenciador de Pastas</value>
@@ -145,11 +151,17 @@
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Use "Select+A/B" para ativar o autofire em A/B</value>
   </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>Ativar host USB</value>
+  </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>Desativar proteção contra epilepsia</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Sair</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Selecione sua unidade USB</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>Perguntas frequentes (FAQ)</value>
@@ -159,6 +171,9 @@
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Escrever/Instalar Kernel personalizado</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Escrever partição NAND-C (somente usuários avançados!)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Escrever/Instalar kernel original</value>
@@ -238,6 +253,9 @@
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Módulos</value>
   </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (EUA/Europa)</value>
+  </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Abrir cliente FTP</value>
   </data>
@@ -246,6 +264,9 @@
   </data>
   <data name="openFileDialogNes.Title">
     <value>Selecionar jogos</value>
+  </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Abrir a pasta de jogos selecionados no explorador de arquivos</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Abrir cliente Telnet</value>
@@ -274,6 +295,9 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Usar combinação de botões para resetar</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (EUA/Europa)</value>
+  </data>
   <data name="saveDumpFileDialog.Title">
     <value>Selecionar o nome do arquivo da cópia de segurança obtida</value>
   </data>
@@ -297,6 +321,9 @@
   </data>
   <data name="shellToolStripMenuItem.Text">
     <value>Servidor Telnet em telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japão)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Sincronizar</value>
@@ -333,17 +360,5 @@
   </data>
   <data name="famicomMiniToolStripMenuItem.Text">
     <value>Famicom (Japan)</value>
-  </data>
-  <data name="flashNANDCPartitionToolStripMenuItem.Text">
-    <value>Flash NAND-C partition (experts only!)</value>
-  </data>
-  <data name="nESMiniToolStripMenuItem.Text">
-    <value>NES (USA/Europe)</value>
-  </data>
-  <data name="sNESMiniToolStripMenuItem.Text">
-    <value>SNES (USA/Europe)</value>
-  </data>
-  <data name="superFamicomMiniToolStripMenuItem.Text">
-    <value>Super Famicom (Japan)</value>
   </data>
 </root>

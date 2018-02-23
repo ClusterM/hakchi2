@@ -328,6 +328,18 @@
   <data name="useExtendedFontToolStripMenuItem.Text">
     <value>Użyj rozszerzonej czcionki</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Always write games to USB drive</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Create custom command</value>
+  </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>Enable USB host</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Select your USB drive</value>
+  </data>
   <data name="famicomMiniToolStripMenuItem.Text">
     <value>Famicom (Japan)</value>
   </data>
@@ -336,6 +348,9 @@
   </data>
   <data name="nESMiniToolStripMenuItem.Text">
     <value>NES (USA/Europe)</value>
+  </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Open selected game's folder in explorer</value>
   </data>
   <data name="sNESMiniToolStripMenuItem.Text">
     <value>SNES (USA/Europe)</value>

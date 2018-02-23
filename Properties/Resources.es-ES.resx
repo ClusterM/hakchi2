@@ -85,6 +85,9 @@
   <data name="CompressingGames">
     <value>Comprimiendo juegos...</value>
   </data>
+  <data name="ConfigSavedNote">
+    <value>Configuración guardada. Ten en cuenta que se ha usado la configuración de la consola real ({0}), no de la consola seleccionada ({1})</value>
+  </data>
   <data name="Congratulations">
     <value>¡Enhorabuena!</value>
   </data>
@@ -376,6 +379,12 @@
   <data name="SizeOfSaves">
     <value>Tamaño total de los puntos de suspensión seleccionados:</value>
   </data>
+  <data name="Syncronize">
+    <value>Sincronizar los juegos seleccionados con NES/SNES Mini</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>Sincronizar los juegos seleccionados con la unidad USB</value>
+  </data>
   <data name="TooManyPerFolder">
     <value>¡Atención! No es recomendable añadir tantos juegos por carpeta</value>
   </data>
@@ -426,6 +435,9 @@
   </data>
   <data name="Wow">
     <value>¡Bien!</value>
+  </data>
+  <data name="WritingUSB">
+    <value>Escribiendo juegos en la unidad USB...</value>
   </data>
   <data name="Yes">
     <value>Sí</value>

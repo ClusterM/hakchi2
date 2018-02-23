@@ -65,13 +65,13 @@
     <value>Installera drivrutin</value>
   </data>
   <data name="label1.Text">
-    <value>Vänligen följ stegen nedan:</value>
+    <value>Vänligen följ dessa instruktioner:</value>
   </data>
   <data name="label2.Text">
-    <value>1. Anslut din NES/SNES Mini till PCn via USB kabel.</value>
+    <value>1. Anslut din NES/SNES Mini till datorn via USB-kabeln.</value>
   </data>
   <data name="label3.Text">
-    <value>2. Tryck på power knappen</value>
+    <value>2. Starta konsolen</value>
   </data>
   <data name="label6.Text">
     <value>3. Installera drivrutin om den inte är installerad än:</value>

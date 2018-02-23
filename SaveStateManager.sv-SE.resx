@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>Save-State hanterare</value>
+    <value>Save-State-hanteraren</value>
   </data>
   <data name="buttonDelete.Text">
     <value>Radera valda</value>
@@ -74,7 +74,7 @@
     <value>Kod</value>
   </data>
   <data name="colFlags.Text">
-    <value>Minnesplatser</value>
+    <value>Lagringsplats</value>
   </data>
   <data name="colName.Text">
     <value>Namn</value>

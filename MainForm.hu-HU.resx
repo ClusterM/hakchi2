@@ -64,8 +64,17 @@
   <data name="aboutToolStripMenuItem.Text">
     <value>A programról...</value>
   </data>
+  <data name="addMoreGamesToolStripMenuItem.Text">
+    <value>További &amp;játékok hozzáadása</value>
+  </data>
   <data name="addPresetToolStripMenuItem.Text">
-    <value>Beállítás létrehozása</value>
+    <value>Egyéni lista létrehozása</value>
+  </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Mindig USB meghajtóra töltse a játékokat</value>
+  </data>
+  <data name="automaticOriginalToolStripMenuItem.Text">
+    <value>Gyári játékok fő mappába -&gt; Automatikus alkönyvtárak</value>
   </data>
   <data name="automaticToolStripMenuItem.Text">
     <value>Automatikus</value>
@@ -77,7 +86,7 @@
     <value>Böngészés</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Törölt játékok szinkronizálása NES-SNES Mini-vel</value>
+    <value>Kijelölt játékok szinkronizálása NES-SNES Mini-vel</value>
   </data>
   <data name="checkBoxCompressed.Text">
     <value>Tömörítés</value>
@@ -88,17 +97,38 @@
   <data name="compressGamesToolStripMenuItem.Text">
     <value>Játékok tömörítése hozzáadáskor</value>
   </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Kiválasztott játékok tömörítése</value>
+  </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Konzol típus</value>
   </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Saját parancs létrehozása</value>
+  </data>
+  <data name="customToolStripMenuItem.Text">
+    <value>Egyéni - Mapa Kezelő minen esetben</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Kiválasztott játékok kicsomagolása</value>
+  </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Játék törlése</value>
+  </data>
+  <data name="deletePresetToolStripMenuItem.Text">
+    <value>Egyéni lista törlése</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Kiválasztott játékok törlése</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Oldalak/mappák kikapcsolása</value>
   </data>
   <data name="donateToolStripMenuItem.Text">
-    <value>Donáció</value>
+    <value>Adomány</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Borítókép letöltése az összes kijelölt játékhoz</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Bortítókep letöltése összes játékhoz</value>
@@ -106,23 +136,62 @@
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Kernel mentése</value>
   </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Dekódolt NAND-B partíció mentése</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Teljes NAND flash memória mentése</value>
+  </data>
+  <data name="enableAutofireToolStripMenuItem.Text">
+    <value>"Select+A/B" használata automatikuis tüzelés beckapcsolásához az A/B gombokkal</value>
+  </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>USB meghajtó engedélyezése</value>
+  </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>Epilepszia védelem kikapcsolása</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Kilépés</value>
   </data>
+  <data name="exportFolderDialog.Description">
+    <value>USB meghajtó kiválasztása</value>
+  </data>
   <data name="fAQToolStripMenuItem.Text">
-    <value>GYÍK</value>
+    <value>GYÍK (FAQ)</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text">
+    <value>&amp;Fájl</value>
+  </data>
+  <data name="flashCustomKernelToolStripMenuItem.Text">
+    <value>Egyéni kernel telepítése</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>NAND-C partíció felülírása (kizárólag szakértőknek!)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Eredeti (gyári) kernel telepítése</value>
+  </data>
+  <data name="foldersOriginalToolStripMenuItem.Text">
+    <value>Gyári játékok fő mappába -&gt; Mappák, egyenlő elosztással</value>
+  </data>
+  <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
+    <value>Gyári játékok fő mappába -&gt; Mappák, kezdőbetű szerinti elosztás</value>
+  </data>
+  <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
+    <value>Mappák, kezdőbetű szerinti elosztás</value>
+  </data>
+  <data name="foldersToolStripMenuItem.Text">
+    <value>Mappák, egyenlő elosztással</value>
+  </data>
+  <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
+    <value>A legújabb kiadás GitHub oldala</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
     <value>Globális parancssor paraméterek (kizárólag szakértőknek!)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>Gyári játékok kiválasztása</value>
+    <value>Egyes gyári játékok elrejthetőek</value>
   </data>
   <data name="groupBoxOptions.Text">
     <value>Játék opciók</value>
@@ -132,6 +201,9 @@
   </data>
   <data name="installModulesToolStripMenuItem.Text">
     <value>Extra modulok telepítése</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Text">
+    <value>&amp;Kernel</value>
   </data>
   <data name="label1.Text">
     <value>Megjelenés időpontja (ÉÉÉÉ-HH-NN)</value>
@@ -169,8 +241,14 @@
   <data name="membootOriginalKernelToolStripMenuItem.Text">
     <value>Gyári kernel betöltése RAM-ból</value>
   </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Javított kernel betöltése RAM-ból</value>
+  </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Modulok</value>
+  </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (USA/Európa)</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>FTP kliens megnyitása</value>
@@ -181,8 +259,23 @@
   <data name="openFileDialogNes.Title">
     <value>Játékok kiválasztása</value>
   </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Kiválasztott játék mappájának megnyitása Intézőben</value>
+  </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Telnet kliens megnyitása</value>
+  </data>
+  <data name="pagesOriginalToolStripMenuItem.Text">
+    <value>Gyári játékok fő mappába -&gt; Oldalak, egyenlő elosztással</value>
+  </data>
+  <data name="pagesToolStripMenuItem.Text">
+    <value>Oldalak, egyenlő elosztással</value>
+  </data>
+  <data name="pagesfoldersTypeToolStripMenuItem.Text">
+    <value>Oldalak/mappák struktúrája</value>
+  </data>
+  <data name="presetsToolStripMenuItem.Text">
+    <value>Egyénileg kiválasztott listák</value>
   </data>
   <data name="radioButtonOne.Text">
     <value>Egy játékos</value>
@@ -195,6 +288,12 @@
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Gomb-kombináció használata reset-hez</value>
+  </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (USA/Európa)</value>
+  </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Lementett fájl nevének kiválasztása</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Beallítások mentése a NES/SNES Mini-re</value>
@@ -214,11 +313,20 @@
   <data name="settingsToolStripMenuItem.Text">
     <value>&amp;Beállítások</value>
   </data>
+  <data name="shellToolStripMenuItem.Text">
+    <value>Telnet szerver itt: telnet//127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Japán)</value>
+  </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Szinkronizálás</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
     <value>Képernyőkép létrehozása</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
+    <value>Teljes NAND felülírása (kizárólag szakértőknek!)</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
     <value>&amp;Eszközök</value>
@@ -235,35 +343,14 @@
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
     <value>"Fel+A+B = Start" a másodlagos vezérlőn</value>
   </data>
-  <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>Add more &amp;games</value>
+  <data name="useExtendedFontToolStripMenuItem.Text">
+    <value>Bővített betűtípus használata</value>
   </data>
-  <data name="automaticOriginalToolStripMenuItem.Text">
-    <value>Original games in root -&gt; Automatic in subfolder</value>
+  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
+    <value>X/Y használata a Classic Controller-en A/B automatikus tüzeléshez</value>
   </data>
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Compress non-NES games (for additional emulator mod)</value>
-  </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
-  </data>
-  <data name="customToolStripMenuItem.Text">
-    <value>Custom - show Folders Manager every time</value>
-  </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
-  </data>
-  <data name="deletePresetToolStripMenuItem.Text">
-    <value>Delete preset</value>
-  </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump decrypted NAND-B partition</value>
   </data>
   <data name="dumpNANDCPartitionToolStripMenuItem.Text">
     <value>Dump NAND-C partition</value>
@@ -271,79 +358,7 @@
   <data name="dumpNANDCPartitionToolStripMenuItem.Title">
     <value>Select dump filename</value>
   </data>
-  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dump the whole NAND flash</value>
-  </data>
-  <data name="enableAutofireToolStripMenuItem.Text">
-    <value>Use "Select+A/B" to enable autofire on A/B</value>
-  </data>
   <data name="famicomMiniToolStripMenuItem.Text">
     <value>Famicom (Japan)</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text">
-    <value>&amp;File</value>
-  </data>
-  <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Flash custom kernel</value>
-  </data>
-  <data name="flashNANDCPartitionToolStripMenuItem.Text">
-    <value>Flash NAND-C partition (experts only!)</value>
-  </data>
-  <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>Original games in root -&gt; Folders, split games equally</value>
-  </data>
-  <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Original games in root -&gt; Folders, split by first letter</value>
-  </data>
-  <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>Folders, split by first letter</value>
-  </data>
-  <data name="foldersToolStripMenuItem.Text">
-    <value>Folders, split games equally</value>
-  </data>
-  <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>GitHub page with actual releases</value>
-  </data>
-  <data name="kernelToolStripMenuItem.Text">
-    <value>&amp;Kernel</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="nESMiniToolStripMenuItem.Text">
-    <value>NES (USA/Europe)</value>
-  </data>
-  <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>Original games in root -&gt; Pages, split games equally</value>
-  </data>
-  <data name="pagesToolStripMenuItem.Text">
-    <value>Pages, split games equally</value>
-  </data>
-  <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>Pages/folders structure</value>
-  </data>
-  <data name="presetsToolStripMenuItem.Text">
-    <value>Selection presets</value>
-  </data>
-  <data name="sNESMiniToolStripMenuItem.Text">
-    <value>SNES (USA/Europe)</value>
-  </data>
-  <data name="saveDumpFileDialog.Title">
-    <value>Select dump filename</value>
-  </data>
-  <data name="shellToolStripMenuItem.Text">
-    <value>Telnet server on telnet://127.0.0.1:1023 (login:root)</value>
-  </data>
-  <data name="superFamicomMiniToolStripMenuItem.Text">
-    <value>Super Famicom (Japan)</value>
-  </data>
-  <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flash the whole NAND (experts only!)</value>
-  </data>
-  <data name="useExtendedFontToolStripMenuItem.Text">
-    <value>Use extended font</value>
-  </data>
-  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
-    <value>Use X/Y on Classic Controller as autofire A/B</value>
   </data>
 </root>

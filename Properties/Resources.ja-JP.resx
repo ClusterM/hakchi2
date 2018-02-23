@@ -85,6 +85,9 @@
   <data name="CompressingGames">
     <value>ゲームを圧縮しています...</value>
   </data>
+  <data name="ConfigSavedNote">
+    <value>設定が保存されました。 選択したコンソール（{1}）ではなく、実際のコンソール（{0}）の設定が使用されていることに注意してください。</value>
+  </data>
   <data name="Congratulations">
     <value>おめでとう!</value>
   </data>
@@ -376,6 +379,12 @@
   <data name="SizeOfSaves">
     <value>選択したステートセーブのサイズ:</value>
   </data>
+  <data name="Syncronize">
+    <value>選択されたファイルを NES/SNES ミニ へ同期</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>選択されたゲームをUSBドライブに同期</value>
+  </data>
   <data name="TooManyPerFolder">
     <value>警告! 1つのフォルダに対し沢山のゲームを収納することは非推奨です。</value>
   </data>
@@ -426,6 +435,9 @@
   </data>
   <data name="Wow">
     <value>ワォ！</value>
+  </data>
+  <data name="WritingUSB">
+    <value>USBドライブにゲームを書き込んでいます...</value>
   </data>
   <data name="Yes">
     <value>はい</value>

@@ -364,6 +364,9 @@
   <data name="SizeOfSaves">
     <value>Μέγεθος επιλεγμένων σημείων:</value>
   </data>
+  <data name="Syncronize">
+    <value>Συγχρονισμός επιλεγμένων παιχνιδιών με το NES/SNES Mini</value>
+  </data>
   <data name="UninstallFactoryNote">
     <value>Μην ξεχάσετε να κάνετε μια επαναφορά εργοστασιακών ρυθμίσεων αν θέλετε να διαγράψετε όλα τα αποθηκευμένα σημεία.</value>
   </data>
@@ -418,6 +421,9 @@
   <data name="YesForAll">
     <value>Ναι σε όλα</value>
   </data>
+  <data name="ConfigSavedNote">
+    <value>Config saved. Please note that configuration for the real console ({0}) was used, not for selected console ({1}).</value>
+  </data>
   <data name="FlashNandCQ">
     <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
   </data>
@@ -430,7 +436,13 @@
   <data name="NotRecommended">
     <value>not recommended</value>
   </data>
+  <data name="SyncronizeUSB">
+    <value>Synchronize selected games with USB drive</value>
+  </data>
   <data name="TooManyPerFolder">
     <value>Warning! It's not recommended to store so many games per folder.</value>
+  </data>
+  <data name="WritingUSB">
+    <value>Writing games to the USB drive...</value>
   </data>
 </root>

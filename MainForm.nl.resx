@@ -70,6 +70,9 @@
   <data name="addPresetToolStripMenuItem.Text">
     <value>Voeg een preset toe</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Altijd spellen naar het USB station schrijven</value>
+  </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>De originele spellen in de root -&gt; Automatisch in de submap</value>
   </data>
@@ -102,6 +105,9 @@
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Console type</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Creëer aangepast commando</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>Aangepast – laat de Mappen Manager elke keer zien</value>
@@ -148,11 +154,17 @@
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Gebruik “Select+A/B” om autofire te gebruiken op A/B</value>
   </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>USB host aanzetten</value>
+  </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>Zet de epilepsie beveiliging uit</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Afsluiten</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Selecteer je USB station</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ (Veel Gestelde Vragen)</value>
@@ -258,6 +270,9 @@
   </data>
   <data name="openFileDialogNes.Title">
     <value>Geselecteerde spellen:</value>
+  </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Open de geselecteerde map met spellen in verkenner</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Open Telnet client</value>

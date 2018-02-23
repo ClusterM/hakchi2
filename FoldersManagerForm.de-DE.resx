@@ -85,6 +85,18 @@
   <data name="buttonNoFoldersOriginal.Text">
     <value>Originale Spiele -&gt; Andere Spiele</value>
   </data>
+  <data name="comboBoxPosition.Items">
+    <value>Ganz links</value>
+  </data>
+  <data name="comboBoxPosition.Items1">
+    <value>Links neben den Spielen</value>
+  </data>
+  <data name="comboBoxPosition.Items2">
+    <value>Rechts neben den Spielen</value>
+  </data>
+  <data name="comboBoxPosition.Items3">
+    <value>Ganz rechts</value>
+  </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Ausschneiden</value>
   </data>
@@ -111,17 +123,5 @@
   </data>
   <data name="renameToolStripMenuItem.Text">
     <value>Ordner umbenennen</value>
-  </data>
-  <data name="comboBoxPosition.Items">
-    <value>Leftmost</value>
-  </data>
-  <data name="comboBoxPosition.Items1">
-    <value>Left to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items2">
-    <value>Right to the games</value>
-  </data>
-  <data name="comboBoxPosition.Items3">
-    <value>Rightmost</value>
   </data>
 </root>

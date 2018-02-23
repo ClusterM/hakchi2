@@ -85,6 +85,9 @@
   <data name="CompressingGames">
     <value>正在压缩游戏...</value>
   </data>
+  <data name="ConfigSavedNote">
+    <value>配置已保存。请注意正在使用的是真实主机（{0}）的配置，而不是当前选中的主机（{1}）。</value>
+  </data>
   <data name="Congratulations">
     <value>恭喜!</value>
   </data>
@@ -376,6 +379,12 @@
   <data name="SizeOfSaves">
     <value>选中的即时存档大小:</value>
   </data>
+  <data name="Syncronize">
+    <value>将选中的游戏同步到迷你红白机</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>将选中的游戏同步到U盘</value>
+  </data>
   <data name="TooManyPerFolder">
     <value>警告！不建议在单个文件夹中存储这么多的游戏。</value>
   </data>
@@ -426,6 +435,9 @@
   </data>
   <data name="Wow">
     <value>太棒了</value>
+  </data>
+  <data name="WritingUSB">
+    <value>正在向U盘写入游戏...</value>
   </data>
   <data name="Yes">
     <value>是</value>

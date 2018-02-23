@@ -85,8 +85,14 @@
   <data name="CompressingGames">
     <value>Komprimiere Spiele...</value>
   </data>
+  <data name="ConfigSavedNote">
+    <value>Konfiguration gespeichert. Bitte beachte, dass die Konfiguration für die echte Konsole ({0}) genutzt wurde, nicht für die ausgewählte Konsole ({1)}!</value>
+  </data>
   <data name="Congratulations">
     <value>Gratuliere!</value>
+  </data>
+  <data name="Cover">
+    <value>Spielecovers</value>
   </data>
   <data name="CustomKernel">
     <value>Benutzerdefinierter Kernel</value>
@@ -137,10 +143,13 @@
     <value>Fertig!</value>
   </data>
   <data name="DoneYouCanUpload">
-    <value>Fertig! Du kannst nun Spiele auf dein NES/SNES Mini laden.</value>
+    <value>Fertig! Du kannst nun Spiele auf dein NES/SNES Mini übertragen.</value>
   </data>
   <data name="DownloadAllCoversTitle">
     <value>Downloade Covers für alle Spiele (Ich fühle mich glücklich!)</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>Möchtest du versuchen, den Spielcover für "{0}" herunterzuladen?</value>
   </data>
   <data name="DumpKernelQ">
     <value>Möchtest du den Kernel sichern?</value>
@@ -165,6 +174,12 @@
   </data>
   <data name="FirstRun">
     <value>Hallo! Ich bin sehr froh, dass Du hakchi2 verwendest. Es ist sehr einfach zu bedienen. Klicke auf "Mehr Spiele hinzufügen", wähle ein paar ROMs, drücke "Synchronisieren" und folge den Anweisungen. Viel Glück!</value>
+  </data>
+  <data name="FlashNandCQ">
+    <value>Möchtest du das NAND-C Partitionsabbild flashen? Dies wird alle Nutzerdaten ersetzen.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>NAND Speicher wird geflasht...</value>
   </data>
   <data name="FlasingCustom">
     <value>Flashe benutzerdefinierten Kernel...</value>
@@ -280,6 +295,12 @@
   <data name="NandDumped">
     <value>NAND-Speicher erfolgreich ausgelesen.</value>
   </data>
+  <data name="NandFlashed">
+    <value>NAND Speicher wurde geflasht</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Oh, es scheint als würde "{0}" nicht richtig mit dem originalen Emulator laufen. Möchtest du stattdessen einen anderen Emulator vom Drittanbieter verwenden (dieser muss installiert sein)?</value>
+  </data>
   <data name="NewGamesUnsorted">
     <value>Neue Spiele sind im Ordner "Unsortiert".</value>
   </data>
@@ -306,6 +327,9 @@
   </data>
   <data name="NotFound">
     <value>Nicht gefunden:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>Nicht empfohlen</value>
   </data>
   <data name="OriginalKernelQ">
     <value>Möchtest du den originalen Kernel flashen?</value>
@@ -355,6 +379,15 @@
   <data name="SizeOfSaves">
     <value>Größe der gewählten Speicherstände:</value>
   </data>
+  <data name="Syncronize">
+    <value>Synchronisiere gewählte Spiele mit NES/SNES Mini</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>Synchronisiere die ausgewählten Spiele mit einem USB-Laufwerk</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Warnung! Es wird nicht empfohlen, so viele Spiele in ein Verzeichnis zu speichern!</value>
+  </data>
   <data name="UninstallFactoryNote">
     <value>Vergesse nicht, auf Werkeinstellung zurückzusetzen, wenn du alle Speicherstände löschen möchtest.</value>
   </data>
@@ -403,34 +436,13 @@
   <data name="Wow">
     <value>Hurra</value>
   </data>
+  <data name="WritingUSB">
+    <value>Schreibe Spiele auf das USB-Laufwerk...</value>
+  </data>
   <data name="Yes">
     <value>Ja</value>
   </data>
   <data name="YesForAll">
     <value>Ja für alle</value>
-  </data>
-  <data name="Cover">
-    <value>Box art</value>
-  </data>
-  <data name="DownloadCoverQ">
-    <value>Do you want to try to download box art for "{0}"?</value>
-  </data>
-  <data name="FlashNandCQ">
-    <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
-  </data>
-  <data name="FlashingNand">
-    <value>Flashing NAND memory...</value>
-  </data>
-  <data name="NandFlashed">
-    <value>NAND memory flashed.</value>
-  </data>
-  <data name="Need3rdPartyEmulator">
-    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
-  </data>
-  <data name="NotRecommended">
-    <value>not recommended</value>
-  </data>
-  <data name="TooManyPerFolder">
-    <value>Warning! It's not recommended to store so many games per folder.</value>
   </data>
 </root>

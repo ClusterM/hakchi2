@@ -86,7 +86,7 @@
     <value>Game orisinal -&gt; Game lainnya</value>
   </data>
   <data name="comboBoxPosition.Items">
-    <value>Paling kiri</value>
+    <value>Paling kiri (2P)</value>
   </data>
   <data name="comboBoxPosition.Items1">
     <value>Sebelah kiri game</value>
@@ -95,7 +95,7 @@
     <value>Sebelah kanan game</value>
   </data>
   <data name="comboBoxPosition.Items3">
-    <value>Paling kanan</value>
+    <value>Paling kanan (1P)</value>
   </data>
   <data name="cutToolStripMenuItem.Text">
     <value>Potong</value>
@@ -116,7 +116,7 @@
     <value>Buat folder baru</value>
   </data>
   <data name="pasteToolStripMenuItem.Text">
-    <value>Tempel</value>
+    <value>Rekat</value>
   </data>
   <data name="renameToolStripMenuItem.Text">
     <value>Namai ulang folder</value>
