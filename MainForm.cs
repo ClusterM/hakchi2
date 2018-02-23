@@ -1973,28 +1973,43 @@ namespace com.clusterrr.hakchi_gui
             // Two blank lines for format of output file, probably could be done neater
             defaultGameList.Add("");
             defaultGameList.Add("");
-            defaultGameList.ForEach(i => Debug.WriteLine(i));
+            //defaultGameList.ForEach(i => Debug.WriteLine(i));
 
             // Save the custom games we have selected
             var customGameList = new List<string>();
             customGameList.Add("[Custom Games]");
             foreach (ListViewItem customGame in listViewGames.CheckedItems)
             {
+                // Ignore original games from listViewGames
                 if (customGame.Index > 0)
-                    // Ignore original games from listViewGames
                 {
-                    customGameList.Add(customGame.ToString());
+                    string customGameToAdd = customGame.Text;
+                    customGameList.Add(customGameToAdd);
                 }
- 
-            }
-            customGameList.ForEach(i => Debug.WriteLine(i));
 
-            /*
-            var configFullDir = Path.Combine(Program.BaseDirectoryExternal, ConfigDir);
-            var fileName = Path.Combine(configFullDir, ConfigFile);
-            Directory.CreateDirectory(configFullDir);
-            File.WriteAllLines(fileName, gameList.ToArray());
-            */
+            }
+            //customGameList.ForEach(i => Debug.WriteLine(i));
+
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+            saveFileDialog1.ShowDialog();
+
+            if (saveFileDialog1.FileName != "")
+            {
+                try
+                {
+                    StreamWriter sw = new StreamWriter(saveFileDialog1.FileName);
+                    defaultGameList.ForEach(i => sw.WriteLine(i));
+                    customGameList.ForEach(i => sw.WriteLine(i));
+                    sw.Close();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Exception: " + e.Message);
+                }
+            }
         }
 
         private void saveSelectedGamesToTextFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2003,3 +2018,4 @@ namespace com.clusterrr.hakchi_gui
         }
     }
 }
+
