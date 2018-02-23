@@ -160,6 +160,8 @@
             this.listViewGames = new System.Windows.Forms.ListView();
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.exportFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.saveSelectedGamesToTextFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -652,7 +654,9 @@
             this.shellToolStripMenuItem,
             this.openTelnetToolStripMenuItem,
             this.toolStripMenuItem8,
-            this.takeScreenshotToolStripMenuItem});
+            this.takeScreenshotToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.saveSelectedGamesToTextFileToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
             // 
@@ -1092,6 +1096,17 @@
             this.exportFolderDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
             this.exportFolderDialog.ShowNewFolderButton = false;
             // 
+            // saveSelectedGamesToTextFileToolStripMenuItem
+            // 
+            this.saveSelectedGamesToTextFileToolStripMenuItem.Name = "saveSelectedGamesToTextFileToolStripMenuItem";
+            resources.ApplyResources(this.saveSelectedGamesToTextFileToolStripMenuItem, "saveSelectedGamesToTextFileToolStripMenuItem");
+            this.saveSelectedGamesToTextFileToolStripMenuItem.Click += new System.EventHandler(this.saveSelectedGamesToTextFileToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1265,6 +1280,8 @@
         private System.Windows.Forms.ToolStripMenuItem enableUSBHostToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem13;
         private System.Windows.Forms.ToolStripMenuItem alwaysWriteGamesToUSBDriveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem saveSelectedGamesToTextFileToolStripMenuItem;
     }
 }
 

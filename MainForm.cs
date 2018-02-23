@@ -1958,5 +1958,29 @@ namespace com.clusterrr.hakchi_gui
         {
             openSelectedInExplorer();
         }
+
+        private void saveSelectedGamesToTextFile()
+        {
+            Debug.WriteLine("Saving game list");
+            var gameList = new List<string>();
+            gameList.Add("[Default Games]");
+            foreach (NesDefaultGame defaultGame in checkedListBoxDefaultGames.CheckedItems)
+            {
+                gameList.Add(defaultGame.ToString());
+            }
+            gameList.ForEach(i => Debug.WriteLine(i));
+
+            /*
+            var configFullDir = Path.Combine(Program.BaseDirectoryExternal, ConfigDir);
+            var fileName = Path.Combine(configFullDir, ConfigFile);
+            Directory.CreateDirectory(configFullDir);
+            File.WriteAllLines(fileName, gameList.ToArray());
+            */
+        }
+
+        private void saveSelectedGamesToTextFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveSelectedGamesToTextFile();
+        }
     }
 }
