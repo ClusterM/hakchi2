@@ -197,19 +197,34 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        protected AppTypeCollection.AppInfo appInfo = AppTypeCollection.UnknownApplicationType;
-        public AppTypeCollection.AppInfo AppInfo
-        {
-            get { return appInfo; }
-        }
-
         public class AppMetadata
         {
-            public AppTypeCollection.AppInfo AppInfo = null;
-            public CoreCollection.CoreInfo Core = null;
             public string System = string.Empty;
+            public string Core = string.Empty;
             public string OriginalFilename = string.Empty;
             public uint OriginalCrc32 = 0;
+            public AppTypeCollection.AppInfo AppInfo
+            {
+                get
+                {
+                    if (!string.IsNullOrEmpty(System))
+                    {
+                        return AppTypeCollection.GetAppBySystem(System);
+                    }
+                    return AppTypeCollection.UnknownApp;
+                }
+            }
+            public CoreCollection.CoreInfo CoreInfo
+            {
+                get
+                {
+                    if (!string.IsNullOrEmpty(Core))
+                    {
+                        return CoreCollection.GetCore(Core);
+                    }
+                    return null;
+                }
+            }
         }
         public AppMetadata Metadata = new AppMetadata();
 
@@ -269,31 +284,43 @@ namespace com.clusterrr.hakchi_gui
             (new DirectoryInfo(path)).Refresh();
             string[] files = Directory.GetFiles(path, "*.desktop", SearchOption.TopDirectoryOnly);
             if (files.Length == 0)
-                throw new FileNotFoundException($"Invalid application folder: \"{path}\".");
+            {
+                if (!ignoreEmptyConfig)
+                    throw new FileNotFoundException($"Invalid application folder: \"{path}\".");
+                return new NesApplication(path, true);
+            }
 
-            // look for the new metadata
+            // let's find the AppInfo entry for current application
+            AppTypeCollection.AppInfo appInfo = null;
+
+            // look for the new metadata file
             if (File.Exists(Path.Combine(path, "metadata.json")))
             {
-                // TODO read metadata and use it to create more precise app
-            }
-
-            // read .desktop file and guess app type
-            string[] config = File.ReadAllLines(TarStream.refFileGet(files[0]));
-            foreach (var line in config)
-            {
-                if (line.StartsWith("Exec="))
+                AppMetadata metadata = (AppMetadata)JsonConvert.DeserializeObject(File.ReadAllText(Path.Combine(path, "metadata.json")));
+                if (metadata.System != null && CoreCollection.Systems.Contains(metadata.System))
                 {
-                    string exec = line.Substring(5);
-                    var app = AppTypeCollection.GetAppByExec(exec);
-                    if (!app.Unknown)
-                    {
-                        var constructor = app.Class.GetConstructor(new Type[] { typeof(string), typeof(bool) });
-                        return (NesApplication)constructor.Invoke(new object[] { path, ignoreEmptyConfig });
-                    }
-                    break;
+                    appInfo = AppTypeCollection.GetAppBySystem(metadata.System); // guaranteed to at least return UnknownApp
                 }
             }
-            return new NesApplication(path, ignoreEmptyConfig);
+
+            // fallback to reading .desktop file and guess app type if no metadata match
+            if (appInfo == null)
+            {
+                string[] config = File.ReadAllLines(TarStream.refFileGet(files[0]));
+                foreach (var line in config)
+                {
+                    if (line.ToLower().StartsWith("exec="))
+                    {
+                        string exec = line.Substring(5);
+                        appInfo = AppTypeCollection.GetAppByExec(exec); // guaranteed to at least return UnknownApp
+                        break;
+                    }
+                }
+            }
+
+            // construct and return new object
+            var constructor = appInfo.Class.GetConstructor(new Type[] { typeof(string), typeof(bool) });
+            return (NesApplication)constructor.Invoke(new object[] { path, ignoreEmptyConfig });
         }
 
         public static NesApplication Import(string inputFileName, string originalFileName = null, byte[] rawRomData = null)
@@ -307,20 +334,37 @@ namespace com.clusterrr.hakchi_gui
             if (originalFileName == null) // Original file name from archive
                 originalFileName = Path.GetFileName(inputFileName);
 
-            // start building some file type info
-            AppTypeCollection.AppInfo appInfo = AppTypeCollection.GetAppByExtension(ext);
-            char prefix = appInfo.Prefix;
+            // try to autodetect app type
+            IEnumerable<string> systems = CoreCollection.GetSystemsFromExtension(ext);
+            AppTypeCollection.AppInfo appInfo = AppTypeCollection.UnknownApp;
+            foreach (var system in systems)
+            {
+                var app = AppTypeCollection.GetAppBySystem(system);
+                if (!app.Unknown)
+                {
+                    Debug.WriteLine("Import Detected App: " + app.Name);
+                    appInfo = app;
+                    break;
+                }
+            }
+            CoreCollection.CoreInfo coreInfo = string.IsNullOrEmpty(appInfo.DefaultCore) ? null : CoreCollection.GetCore(appInfo.DefaultCore);
+
             string application = ext.Length > 2 ? ("/bin/" + ext.Substring(1)) : "";
+            char prefix = appInfo.Prefix;
             string args = string.Empty;
             byte saveCount = 0;
             Image cover = appInfo.DefaultCover;
             uint crc32 = rawRomData != null ? Shared.CRC32(rawRomData) : 0;
             string outputFileName = Regex.Replace(Path.GetFileName(inputFileName), @"[^A-Za-z0-9\.]+", "_").Trim();
+            if (coreInfo != null)
+            {
+                Debug.WriteLine("Import Detected Core: " + coreInfo.DisplayName);
+                application = coreInfo.QualifiedBin;
+            }
 
             bool patched = false;
             if (!appInfo.Unknown)
             {
-                application = appInfo.DefaultApps[0];
                 var patch = appInfo.Class.GetMethod("Patch");
                 if (patch != null)
                 {
@@ -342,10 +386,8 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // find ips patches if applicable
-            if (!patched)
+            if (!patched && rawRomData != null)
                 FindPatch(ref rawRomData, inputFileName, crc32);
-
-            // TODO : Make method that creates new app instead of using this discombobulated method
 
             // create directory and rom file
             var code = GenerateCode(crc32, prefix);
@@ -370,11 +412,11 @@ namespace com.clusterrr.hakchi_gui
             game.desktop.SaveCount = saveCount;
             game.Save();
 
+            // TODO : Save Metadata
+
             game = NesApplication.FromDirectory(gamePath);
             if (game is ICloverAutofill)
                 (game as ICloverAutofill).TryAutofill(crc32);
-            Debug.WriteLine("Icon: " + game.iconPath);
-            Debug.WriteLine("Small Icon: " + game.smallIconPath);
             game.FindCover(inputFileName, cover, crc32);
 
             if (ConfigIni.Compress)
@@ -463,7 +505,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     else
                     {
-                        SetImage(AppInfo.DefaultCover, false);
+                        SetImage(AppTypeCollection.GetAppBySystem(Metadata.System).DefaultCover, false);
                     }
                 }
                 else
@@ -478,7 +520,7 @@ namespace com.clusterrr.hakchi_gui
                 if (IsOriginalGame && i == null)
                 {
                     string cachedIconPath = Shared.PathCombine(OriginalGamesCacheDirectory, Code, Code + ".png");
-                    return File.Exists(cachedIconPath) ? Shared.LoadBitmapCopy(cachedIconPath) : AppInfo.DefaultCover;
+                    return File.Exists(cachedIconPath) ? Shared.LoadBitmapCopy(cachedIconPath) : AppTypeCollection.GetAppBySystem(Metadata.System).DefaultCover;
                 }
                 return i;
             }
@@ -492,7 +534,7 @@ namespace com.clusterrr.hakchi_gui
                 if (IsOriginalGame && i == null)
                 {
                     string cachedIconPath = Shared.PathCombine(OriginalGamesCacheDirectory, Code, Code + "_small.png");
-                    return File.Exists(cachedIconPath) ? Image.FromFile(cachedIconPath) : AppInfo.DefaultCover;
+                    return File.Exists(cachedIconPath) ? Image.FromFile(cachedIconPath) : AppTypeCollection.GetAppBySystem(Metadata.System).DefaultCover;
                 }
                 return i;
             }

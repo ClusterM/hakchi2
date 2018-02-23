@@ -26,7 +26,7 @@ namespace com.clusterrr.hakchi_gui
             : base(path, ignoreEmptyConfig)
         {
         }
-        
+
         public static bool Patch(string inputFileName, ref byte[] rawRomData, ref char prefix, ref string application, ref string outputFileName, ref string args, ref Image cover, ref byte saveCount, ref uint crc32)
         {
             // Try to patch before mapper check, maybe it will patch mapper

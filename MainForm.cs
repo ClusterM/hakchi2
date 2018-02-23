@@ -132,10 +132,9 @@ namespace com.clusterrr.hakchi_gui
                 CoreCollection.Load();
 
                 var extensions = new List<string>() { "*.new", "*.unf", "*.unif", "*.fds", "*.desktop", "*.zip", "*.7z", "*.rar" };
-                foreach (var app in AppTypeCollection.ApplicationTypes)
-                    foreach (var ext in app.Extensions)
-                        if (!extensions.Contains("*" + ext))
-                            extensions.Add("*" + ext);
+                foreach (var ext in CoreCollection.Extensions)
+                    if (!extensions.Contains("*" + ext))
+                        extensions.Add("*" + ext);
                 openFileDialogNes.Filter = Resources.GamesAndApps + "|" + string.Join(";", extensions.ToArray()) + "|" + Resources.AllFiles + "|*.*";
 
                 // Loading games database in background
@@ -473,7 +472,7 @@ namespace com.clusterrr.hakchi_gui
         }
 
         ListViewGroup[] lgvGroups = null;
-        Dictionary<Type, ListViewGroup> lgvAppGroups = null;
+        Dictionary<string, ListViewGroup> lgvAppGroups = null;
         SortedDictionary<string, ListViewGroup> lgvCustomGroups = null;
         public void LoadGames()
         {
@@ -513,7 +512,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     Debug.WriteLine(ex.Message + ex.StackTrace);
                     MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    continue;
+                    break;
                 }
             }
 
@@ -529,12 +528,12 @@ namespace com.clusterrr.hakchi_gui
                 lgvGroups[4] = new ListViewGroup("Unknown App", HorizontalAlignment.Center);
 
                 // order by app groups
-                var sortedApps = new SortedDictionary<string, Type>();
-                lgvAppGroups = new Dictionary<Type, ListViewGroup>();
-                foreach (var appinfo in AppTypeCollection.ApplicationTypes)
-                    sortedApps[appinfo.Name] = appinfo.Class;
+                var sortedApps = new SortedDictionary<string, AppTypeCollection.AppInfo>();
+                lgvAppGroups = new Dictionary<string, ListViewGroup>();
+                foreach (var appinfo in AppTypeCollection.Apps)
+                    sortedApps[appinfo.Name] = appinfo;
                 foreach (var pair in sortedApps)
-                    lgvAppGroups[pair.Value] = new ListViewGroup(pair.Key, HorizontalAlignment.Center);
+                    lgvAppGroups[pair.Key] = new ListViewGroup(pair.Key, HorizontalAlignment.Center);
 
                 // custom generated on the fly groups
                 lgvCustomGroups = new SortedDictionary<string, ListViewGroup>();
@@ -567,9 +566,9 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (ConfigIni.GroupGamesByAppType)
                     {
-                        var appinfo = game.AppInfo;
-                        if (appinfo != null)
-                            group = lgvAppGroups[appinfo.Class];
+                        var appinfo = game.Metadata.AppInfo;
+                        if (!appinfo.Unknown)
+                            group = lgvAppGroups[appinfo.Name];
                         else
                         {
                             Match match = rgx.Match(game.Desktop.Exec.ToLower());
@@ -1487,8 +1486,12 @@ namespace com.clusterrr.hakchi_gui
             workerForm.exportGames = exportGames;
             if (!exportGames)
                 workerForm.linkRelativeGames = false;
-            
-            
+
+            using (SelectCoreDialog selectCoreDialog = new SelectCoreDialog())
+            {
+                if (selectCoreDialog.ShowDialog(this) != DialogResult.OK)
+                    return false;
+            }
 
             foreach (ListViewItem game in listViewGames.CheckedItems)
             {

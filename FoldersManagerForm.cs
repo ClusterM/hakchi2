@@ -141,30 +141,28 @@ namespace com.clusterrr.hakchi_gui
                 return 36;
             if (nesElement is NesApplication)
             {
-                var legacyName = (nesElement as NesApplication).AppInfo.LegacyName;
-                switch (legacyName)
+                var system = (nesElement as NesApplication).Metadata.AppInfo.Name;
+                switch (system)
                 {
-                    case "Sega32XGame":
+                    case "Sega - 32X":
                         return 0;
-                    case "Atari2600Game":
+                    case "Atari - 2600":
                         return 2;
-                    case "NesUGame":
-                        return 8;
-                    case "GbGame":
+                    case "Nintendo - Game Boy":
                         return 14;
-                    case "GbaGame":
+                    case "Nintendo - Game Boy Advance":
                         return 16;
-                    case "GbcGame":
+                    case "Nintendo - Game Boy Color":
                         return 18;
-                    case "GenesisGame":
+                    case "Sega - Mega Drive - Genesis":
                         return 20;
-                    case "GameGearGame":
+                    case "Sega - Game Gear":
                         return 22;
-                    case "N64Game":
+                    case "Nintendo - Nintendo 64":
                         return 24;
-                    case "PceGame":
+                    case "NEC - PC Engine - TurboGrafx 16":
                         return 32;
-                    case "SmsGame":
+                    case "Sega - Master System - Mark III":
                         return 34;
                 }
             }

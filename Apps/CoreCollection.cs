@@ -18,7 +18,7 @@ namespace com.clusterrr.hakchi_gui
         private static readonly string WhiteListFilename = Shared.PathCombine(Program.BaseDirectoryExternal, "config", "retroarch_whitelist.txt");
         private static readonly string CollectionFilename = Shared.PathCombine(Program.BaseDirectoryExternal, "config", "cores.json");
 
-        public enum CoreKind { Unknown, BuiltIn, Retroarch };
+        public enum CoreKind { Unknown, BuiltIn, Libretro };
         public class CoreInfo
         {
             public readonly string Bin;
@@ -30,6 +30,19 @@ namespace com.clusterrr.hakchi_gui
             public CoreInfo(string bin)
             {
                 Bin = bin;
+            }
+            public string QualifiedBin
+            {
+                get
+                {
+                    switch (Kind) {
+                        case CoreKind.Libretro:
+                            return $"/bin/libretro/{Bin}";
+                        case CoreKind.BuiltIn:
+                            return $"/bin/{Bin}";
+                    }
+                    return Bin;
+                }
             }
             public void DebugWrite()
             {
@@ -44,7 +57,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private static CoreInfo Canoe = new CoreInfo("clover-canoe-shvc-wr")
+        private static CoreInfo Canoe = new CoreInfo("clover-canoe-shvc-wr --rom")
         {
             Name = "Canoe",
             DisplayName = "Nintendo - Super Nintendo Entertainment System (Canoe)",
@@ -61,11 +74,9 @@ namespace com.clusterrr.hakchi_gui
             Kind = CoreKind.BuiltIn
         };
 
-        private static Dictionary<string, CoreInfo>
-            cores = new Dictionary<string, CoreInfo>();
-        private static SortedDictionary<string, List<CoreInfo>>
-            extIndex = new SortedDictionary<string, List<CoreInfo>>(),
-            systemIndex = new SortedDictionary<string, List<CoreInfo>>();
+        private static Dictionary<string, CoreInfo> cores = new Dictionary<string, CoreInfo>();
+        private static SortedDictionary<string, List<CoreInfo>> extIndex = new SortedDictionary<string, List<CoreInfo>>();
+        private static SortedDictionary<string, List<CoreInfo>> systemIndex = new SortedDictionary<string, List<CoreInfo>>();
 
         private static void UpdateWhitelist()
         {
@@ -82,6 +93,12 @@ namespace com.clusterrr.hakchi_gui
 
         public static void Load()
         {
+            // clear and add default cores
+            cores.Clear();
+            cores.Add(Canoe.Bin, Canoe);
+            cores.Add(Kachikachi.Bin, Kachikachi);
+
+            // load info files
             Debug.WriteLine("Loading libretro core info files");
             var whiteList = File.Exists(WhiteListFilename) ? File.ReadAllLines(WhiteListFilename) : Resources.retroarch_whitelist.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             var regex = new Regex("(^[^\\s]+)\\s+=\\s+\"?([^\"\\r\\n]*)\"?", RegexOptions.Multiline | RegexOptions.Compiled);
@@ -130,14 +147,13 @@ namespace com.clusterrr.hakchi_gui
                     }
                     if (core.Systems == null && system != null)
                         core.Systems = new string[] { system };
-                    core.Kind = CoreKind.Retroarch;
+                    core.Kind = CoreKind.Libretro;
                     cores[bin] = core;
                 }
             }
-            cores.Add(Canoe.Bin, Canoe);
-            cores.Add(Kachikachi.Bin, Kachikachi);
             new Thread(CoreCollection.UpdateWhitelist).Start();
 
+            // cross indexing
             Debug.WriteLine("Building libretro core cross index");
             foreach (var c in cores)
             {
@@ -166,8 +182,25 @@ namespace com.clusterrr.hakchi_gui
             DebugWrite();
         }
 
-        public static void DebugWrite() {
+        public static void DebugWrite()
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(CollectionFilename));
             File.WriteAllText(CollectionFilename, JsonConvert.SerializeObject(cores, Formatting.Indented));
+        }
+
+        public static string[] Cores
+        {
+            get { return cores.Keys.ToArray(); }
+        }
+
+        public static string[] Extensions
+        {
+            get { return extIndex.Keys.ToArray(); }
+        }
+
+        public static string[] Systems
+        {
+            get { return systemIndex.Keys.ToArray(); }
         }
 
         public static CoreInfo GetCore(string bin)
@@ -183,6 +216,22 @@ namespace com.clusterrr.hakchi_gui
         public static IEnumerable<CoreInfo> GetCoresFromSystem(string name)
         {
             return systemIndex.ContainsKey(name) ? systemIndex[name] : null;
+        }
+
+        public static IEnumerable<string> GetSystemsFromExtension(string ext)
+        {
+            var systems = new List<string>();
+            var cores = GetCoresFromExtension(ext);
+            if (cores != null)
+            {
+                foreach(var core in cores)
+                {
+                    if (core.Systems != null)
+                        foreach(var system in core.Systems)
+                            systems.Add(system);
+                }
+            }
+            return systems.Distinct();
         }
 
         public static bool IsCoreValid(string bin, string ext)

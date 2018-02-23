@@ -150,6 +150,12 @@
     <Compile Include="Apps\NesApplication.cs" />
     <Compile Include="Apps\NesMenuElementBase.cs" />
     <Compile Include="Apps\SnesGame.cs" />
+    <Compile Include="SelectCoreDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectCoreDialog.Designer.cs">
+      <DependentUpon>SelectCoreDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="SfromToolWrapper.cs" />
     <Compile Include="ExportGamesDialog.cs">
       <SubType>Form</SubType>
@@ -1914,6 +1920,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectIconForm.ro-RO.resx">
       <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectCoreDialog.resx">
+      <DependentUpon>SelectCoreDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectNesButtonsForm.hu-HU.resx">
       <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>

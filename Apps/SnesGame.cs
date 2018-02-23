@@ -701,9 +701,12 @@ namespace com.clusterrr.hakchi_gui
                 desktop.Players = gameinfo.Players;
                 desktop.Simultaneous = gameinfo.Simultaneous;
                 if (!string.IsNullOrEmpty(gameinfo.ReleaseDate))
-                    desktop.ReleaseDate = gameinfo.ReleaseDate;
-                //if (ReleaseDate.Length == 4) ReleaseDate += "-01";
-                //if (ReleaseDate.Length == 7) ReleaseDate += "-01";
+                {
+                    string releaseDate = gameinfo.ReleaseDate;
+                    if (releaseDate.Length == 4) releaseDate += "-01";
+                    if (releaseDate.Length == 7) releaseDate += "-01";
+                    desktop.ReleaseDate = releaseDate;
+                }
                 if (!string.IsNullOrEmpty(gameinfo.Publisher))
                     desktop.Publisher = gameinfo.Publisher.ToUpper();
 

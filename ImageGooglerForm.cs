@@ -33,7 +33,7 @@ namespace com.clusterrr.hakchi_gui
         public static string[] GetImageUrls(NesApplication app)
         {
             string query = app.Name ?? "";
-            query += " " + app.AppInfo.GoogleSuffix + " (box|cover) art";
+            query += " " + app.Metadata.AppInfo.GoogleSuffix + " (box|cover) art";
             var url = string.Format("https://www.google.com/search?q={0}&source=lnms&tbm=isch", HttpUtility.UrlEncode(query));
             Debug.WriteLine("Web request: " + url);
             var request = WebRequest.Create(url);

@@ -117,7 +117,8 @@ namespace com.clusterrr.hakchi_gui
         Dictionary<MainForm.ConsoleType, string[]> correctKeys = new Dictionary<MainForm.ConsoleType, string[]>();
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
         string selectedFile = null;
-        public NesApplication[] addedApplications;
+        public List<NesApplication> addedApplications = new List<NesApplication>();
+        public int totalFiles = 0;
         public static long StorageTotal, StorageUsed, StorageFree, WrittenGamesSize, SaveStatesSize;
         public static bool ExternalSaves = false;
         public static long ReservedMemory
@@ -674,7 +675,13 @@ namespace com.clusterrr.hakchi_gui
                 fel.RunUbootCmd(shutdownCommand, true);
 #if !DEBUG
                 if (Directory.Exists(tempDirectory))
-                    Directory.Delete(tempDirectory, true);
+                {
+                    try
+                    {
+                        Directory.Delete(tempDirectory, true);
+                    }
+                    catch { }
+                }
 #endif
                 SetStatus(Resources.Done);
                 SetProgress(maxProgress, maxProgress);
@@ -774,8 +781,14 @@ namespace com.clusterrr.hakchi_gui
             SetStatus(Resources.ExecutingCommand + " " + shutdownCommand);
             fel.RunUbootCmd(shutdownCommand, true);
 #if !DEBUG
-            if (Directory.Exists(tempDirectory))
-                Directory.Delete(tempDirectory, true);
+                if (Directory.Exists(tempDirectory))
+                {
+                    try
+                    {
+                        Directory.Delete(tempDirectory, true);
+                    }
+                    catch { }
+                }
 #endif
             SetStatus(Resources.Done);
             SetProgress(maxProgress, maxProgress);
@@ -1260,7 +1273,9 @@ namespace com.clusterrr.hakchi_gui
                 return;
             }
             if (!Directory.Exists(tempGamesDirectory))
+            {
                 Directory.CreateDirectory(tempGamesDirectory);
+            }
 
             progress += 5;
             SetProgress(progress, maxProgress);
@@ -1271,39 +1286,6 @@ namespace com.clusterrr.hakchi_gui
             AddMenu(Games, originalGames, stats);
             progress += 5;
             SetProgress(progress, maxProgress);
-
-            /*
-            SetStatus(Resources.UploadingOriginalGames);
-            string gameCache = Path.Combine(Program.BaseDirectoryExternal, "games_cache");
-            foreach (var originalCode in originalGames.Keys)
-            {
-                string tempGamePath = Path.Combine(tempGamesDirectory, $"{originalGames[originalCode]}/{originalCode}");
-                string exportedDesktopFilePath = Path.Combine(tempGamePath, $"{originalCode}.desktop");
-                string originalGameCache = Path.Combine(gameCache, originalCode);
-                string autoplayPath = Path.Combine(originalGameCache, "autoplay");
-                string pixelartPath = Path.Combine(originalGameCache, "pixelart");
-                string exportAutoplayPath = Path.Combine(tempGamePath, "autoplay");
-                string exportPixelartPath = Path.Combine(tempGamePath, "pixelart");
-
-                if (Directory.Exists(autoplayPath))
-                {
-                    Directory.CreateDirectory(exportAutoplayPath);
-                    Shared.DirectoryCopy(autoplayPath, exportAutoplayPath, true, true);
-                }
-
-                if (Directory.Exists(pixelartPath))
-                {
-                    Directory.CreateDirectory(exportPixelartPath);
-                    Shared.DirectoryCopy(pixelartPath, exportPixelartPath, true, true);
-                }
-
-                if (Directory.Exists(originalGameCache) && !linkRelativeGames)
-                    Shared.DirectoryCopy(originalGameCache, tempGamePath, true, true);
-
-                progress += 2;
-                SetProgress(progress, maxProgress);
-            };
-            */
 
             // show resulting games directory
             new Process()
@@ -1535,8 +1517,13 @@ namespace com.clusterrr.hakchi_gui
                     break;
             }
 #if !DEBUG
-            if (Directory.Exists(tempDirectory))
-                Directory.Delete(tempDirectory, true);
+            if (Directory.Exists(tempDirectory)){
+                try
+                {
+                    Directory.Delete(tempDirectory, true);
+                }
+                catch {}
+            }
 #endif
             SetStatus(Resources.Done);
             SetProgress(maxProgress, maxProgress);
@@ -1682,8 +1669,14 @@ namespace com.clusterrr.hakchi_gui
 
             var result = File.ReadAllBytes(kernelPatched);
 #if !DEBUG
-            if (Directory.Exists(tempDirectory))
-                Directory.Delete(tempDirectory, true);
+                if (Directory.Exists(tempDirectory))
+                {
+                    try
+                    {
+                        Directory.Delete(tempDirectory, true);
+                    }
+                    catch { }
+                }
 #endif
             return result;
         }
@@ -1848,7 +1841,132 @@ namespace com.clusterrr.hakchi_gui
             return pages * page_size;
         }
 
+        bool YesForAllPatches = false;
+        int addedGamesCount = 0; // on totalFiles
+        public int AddGames(IEnumerable<string> files, Form parentForm = null)
+        {
+            if(totalFiles == 0) // static presets
+            {
+                NesApplication.ParentForm = this;
+                NesApplication.NeedPatch = null;
+                NesApplication.Need3rdPartyEmulator = null;
+                NesGame.IgnoreMapper = null;
+                SnesGame.NeedAutoDownloadCover = null;
+            }
 
+            SetStatus(Resources.AddingGames);
+            int count = 0;
+            totalFiles += files.Count();
+            foreach (var sourceFileName in files)
+            {
+                NesApplication app = null;
+                try
+                {
+                    var fileName = sourceFileName;
+                    var ext = Path.GetExtension(sourceFileName).ToLower();
+                    byte[] rawData = null;
+                    string tmp = null;
+                    if (ext == ".7z" || ext == ".zip" || ext == ".rar")
+                    {
+                        SevenZipExtractor.SetLibraryPath(Path.Combine(baseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+                        using (var szExtractor = new SevenZipExtractor(sourceFileName))
+                        {
+                            var filesInArchive = new List<string>();
+                            var gameFilesInArchive = new List<string>();
+                            foreach (var f in szExtractor.ArchiveFileNames)
+                            {
+                                var e = Path.GetExtension(f).ToLower();
+                                if (e == ".desktop" || CoreCollection.Extensions.Contains(e))
+                                    gameFilesInArchive.Add(f);
+                                filesInArchive.Add(f);
+                            }
+                            if (gameFilesInArchive.Count == 1) // Only one known file (or app)
+                            {
+                                fileName = gameFilesInArchive[0];
+                            }
+                            else if (gameFilesInArchive.Count > 1) // Many known files, need to select
+                            {
+                                var r = SelectFileFromThread(gameFilesInArchive.ToArray());
+                                if (r == DialogResult.OK)
+                                    fileName = selectedFile;
+                                else if (r == DialogResult.Ignore)
+                                    fileName = sourceFileName;
+                                else continue;
+                            }
+                            else if (filesInArchive.Count == 1) // No known files but only one another file
+                            {
+                                fileName = filesInArchive[0];
+                            }
+                            else // Need to select
+                            {
+                                var r = SelectFileFromThread(filesInArchive.ToArray());
+                                if (r == DialogResult.OK)
+                                    fileName = selectedFile;
+                                else if (r == DialogResult.Ignore)
+                                    fileName = sourceFileName;
+                                else continue;
+                            }
+                            if (fileName != sourceFileName)
+                            {
+                                var o = new MemoryStream();
+                                if (Path.GetExtension(fileName).ToLower() == ".desktop" // App in archive, need the whole directory
+                                    || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName) + ".jpg") // Or it has cover in archive
+                                    || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName) + ".png")
+                                    || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName) + ".ips") // Or IPS file
+                                    )
+                                {
+                                    tmp = Path.Combine(Path.GetTempPath(), fileName);
+                                    Directory.CreateDirectory(tmp);
+                                    szExtractor.ExtractArchive(tmp);
+                                    fileName = Path.Combine(tmp, fileName);
+                                }
+                                else
+                                {
+                                    szExtractor.ExtractFile(fileName, o);
+                                    rawData = new byte[o.Length];
+                                    o.Seek(0, SeekOrigin.Begin);
+                                    o.Read(rawData, 0, (int)o.Length);
+                                }
+                            }
+                        }
+                    }
+                    app = NesApplication.Import(fileName, sourceFileName, rawData);
+
+                    var lGameGeniePath = Path.Combine(Path.GetDirectoryName(fileName), Path.GetFileNameWithoutExtension(fileName) + ".xml");
+                    if (File.Exists(lGameGeniePath))
+                    {
+                        GameGenieDataBase lGameGenieDataBase = new GameGenieDataBase(app);
+                        lGameGenieDataBase.ImportCodes(lGameGeniePath, true);
+                        lGameGenieDataBase.Save();
+                    }
+
+                    if (!string.IsNullOrEmpty(tmp) && Directory.Exists(tmp)) Directory.Delete(tmp, true);
+                    if (app != null)
+                        ConfigIni.SelectedGames += ";" + app.Code;
+                }
+                catch (Exception ex)
+                {
+                    if (ex is ThreadAbortException) return -1;
+                    if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                    {
+                        Debug.WriteLine(ex.InnerException.Message + ex.InnerException.StackTrace);
+                        ShowError(ex.InnerException, true, Path.GetFileName(sourceFileName));
+                    }
+                    else
+                    {
+                        Debug.WriteLine(ex.Message + ex.StackTrace);
+                        ShowError(ex, true, Path.GetFileName(sourceFileName));
+                    }
+                }
+                if (app != null)
+                    addedApplications.Add(app);
+                ++count;
+                SetProgress(++addedGamesCount, totalFiles);
+            }
+            return count;
+        }
+
+        /*
         bool YesForAllPatches = false;
         public ICollection<NesApplication> AddGames(IEnumerable<string> files, Form parentForm = null)
         {
@@ -1970,6 +2088,7 @@ namespace com.clusterrr.hakchi_gui
             addedApplications = apps.ToArray();
             return apps; // Added games/apps
         }
+        */
 
         void ScanCovers()
         {
