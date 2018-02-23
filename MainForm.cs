@@ -170,7 +170,10 @@ namespace com.clusterrr.hakchi_gui
             ftpServer.LocalPort = 1021;
 
             if (ConfigIni.FtpServer)
+            {
+                openFTPInExplorerToolStripMenuItem.Enabled = FTPToolStripMenuItem.Checked = true;
                 FTPToolStripMenuItem_Click(null, null);
+            }
             if (ConfigIni.TelnetServer)
                 Clovershell.ShellEnabled = shellToolStripMenuItem.Checked = true;
         }

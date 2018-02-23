@@ -586,6 +586,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "compress":
                                     Compress = !value.ToLower().Equals("false");
                                     break;
+                                case "telnetserver":
+                                    TelnetServer = !value.ToLower().Equals("false");
+                                    break;
                                 case "ftpserver":
                                     FtpServer = !value.ToLower().Equals("false");
                                     break;
