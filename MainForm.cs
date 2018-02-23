@@ -1962,13 +1962,32 @@ namespace com.clusterrr.hakchi_gui
         private void saveSelectedGamesToTextFile()
         {
             Debug.WriteLine("Saving game list");
-            var gameList = new List<string>();
-            gameList.Add("[Default Games]");
+
+            // Save the default games we have selected
+            var defaultGameList = new List<string>();
+            defaultGameList.Add("[Default Games]");
             foreach (NesDefaultGame defaultGame in checkedListBoxDefaultGames.CheckedItems)
             {
-                gameList.Add(defaultGame.ToString());
+                defaultGameList.Add(defaultGame.ToString());
             }
-            gameList.ForEach(i => Debug.WriteLine(i));
+            // Two blank lines for format of output file, probably could be done neater
+            defaultGameList.Add("");
+            defaultGameList.Add("");
+            defaultGameList.ForEach(i => Debug.WriteLine(i));
+
+            // Save the custom games we have selected
+            var customGameList = new List<string>();
+            customGameList.Add("[Custom Games]");
+            foreach (ListViewItem customGame in listViewGames.CheckedItems)
+            {
+                if (customGame.Index > 0)
+                    // Ignore original games from listViewGames
+                {
+                    customGameList.Add(customGame.ToString());
+                }
+ 
+            }
+            customGameList.ForEach(i => Debug.WriteLine(i));
 
             /*
             var configFullDir = Path.Combine(Program.BaseDirectoryExternal, ConfigDir);
