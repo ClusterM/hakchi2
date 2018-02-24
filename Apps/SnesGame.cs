@@ -145,8 +145,8 @@ namespace com.clusterrr.hakchi_gui
 
         private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
 
-        public SnesGame(string path, bool ignoreEmptyConfig = false)
-            : base(path, ignoreEmptyConfig)
+        public SnesGame(string path, AppMetadata metadata = null, bool ignoreEmptyConfig = false)
+            : base(path, metadata, ignoreEmptyConfig)
         {
         }
 

@@ -16,7 +16,7 @@ namespace com.clusterrr.hakchi_gui
     {
         private const string WHITELIST_UPDATE_URL = "https://teamshinkansen.github.io/retroarch-whitelist.txt";
         private static readonly string WhiteListFilename = Shared.PathCombine(Program.BaseDirectoryExternal, "config", "retroarch_whitelist.txt");
-        private static readonly string CollectionFilename = Shared.PathCombine(Program.BaseDirectoryExternal, "config", "cores.json");
+        private static readonly string CollectionFilename = Shared.PathCombine(Program.BaseDirectoryExternal, "config", "cores{0}.json");
 
         public enum CoreKind { Unknown, BuiltIn, Libretro };
         public class CoreInfo
@@ -57,7 +57,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private static CoreInfo Canoe = new CoreInfo("clover-canoe-shvc-wr --rom")
+        private static CoreInfo Canoe = new CoreInfo("clover-canoe-shvc-wr -rom")
         {
             Name = "Canoe",
             DisplayName = "Nintendo - Super Nintendo Entertainment System (Canoe)",
@@ -93,6 +93,12 @@ namespace com.clusterrr.hakchi_gui
 
         public static void Load()
         {
+            // try to load from cache
+            if (Deserialize())
+            {
+                return;
+            }
+
             // clear and add default cores
             cores.Clear();
             cores.Add(Canoe.Bin, Canoe);
@@ -179,13 +185,8 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
-            DebugWrite();
-        }
-
-        public static void DebugWrite()
-        {
-            Directory.CreateDirectory(Path.GetDirectoryName(CollectionFilename));
-            File.WriteAllText(CollectionFilename, JsonConvert.SerializeObject(cores, Formatting.Indented));
+            // save cache
+            Serialize();
         }
 
         public static string[] Cores
@@ -240,6 +241,90 @@ namespace com.clusterrr.hakchi_gui
                 return false;
             if (!cores[bin].SupportedExtensions.Contains(ext))
                 return false;
+            return true;
+        }
+
+        public static bool Serialize()
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(CollectionFilename));
+                File.WriteAllText(string.Format(CollectionFilename, string.Empty), JsonConvert.SerializeObject(cores, Formatting.Indented));
+                StringBuilder builder = new StringBuilder("{\n");
+                foreach (var pair in extIndex)
+                {
+                    string line = "\t\"" + pair.Key + "\": [ \"" + string.Join("\", \"", pair.Value.Select(c => c.Bin).ToArray()) + "\" ],";
+                    builder.AppendLine(line);
+                }
+                builder.Append("}\n");
+                File.WriteAllText(string.Format(CollectionFilename, "_ext"), builder.ToString());
+
+                builder = new StringBuilder("{\n");
+                foreach (var pair in systemIndex)
+                {
+                    string line = "\t\"" + pair.Key + "\": [ \"" + string.Join("\", \"", pair.Value.Select(c => c.Bin).ToArray()) + "\" ],";
+                    builder.AppendLine(line);
+                }
+                builder.Append("}\n");
+                File.WriteAllText(string.Format(CollectionFilename, "_systems"), builder.ToString());
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ": ", ex.StackTrace);
+                return false;
+            }
+            return true;
+        }
+
+        public static bool Deserialize()
+        {
+            try
+            {
+                if (!File.Exists(string.Format(CollectionFilename, string.Empty)))
+                    return false;
+                var fileInfo = new FileInfo(string.Format(CollectionFilename, string.Empty));
+                if (fileInfo.LastWriteTimeUtc < DateTime.UtcNow.AddDays(-1))
+                    return false;
+
+                // load cores
+                cores = JsonConvert.DeserializeObject<Dictionary<string, CoreInfo>>(File.ReadAllText(string.Format(CollectionFilename, string.Empty)));
+
+                // load extensions index
+                var indexStrings = JsonConvert.DeserializeObject<Dictionary<string, IEnumerable<string>>>(File.ReadAllText(string.Format(CollectionFilename, "_ext")));
+                extIndex.Clear();
+                foreach(var pair in indexStrings)
+                {
+                    var list = new List<CoreInfo>();
+                    foreach(var core in pair.Value)
+                    {
+                        list.Add(cores[core]);
+                    }
+                    extIndex[pair.Key] = list;
+                }
+
+                // load systems index
+                indexStrings = JsonConvert.DeserializeObject<Dictionary<string, IEnumerable<string>>>(File.ReadAllText(string.Format(CollectionFilename, "_systems")));
+                systemIndex.Clear();
+                foreach (var pair in indexStrings)
+                {
+                    var list = new List<CoreInfo>();
+                    foreach (var core in pair.Value)
+                    {
+                        list.Add(cores[core]);
+                    }
+                    systemIndex[pair.Key] = list;
+                }
+
+                Debug.WriteLine("CoreCollection indexes loaded from cache.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ": ", ex.StackTrace);
+                cores.Clear();
+                extIndex.Clear();
+                systemIndex.Clear();
+                return false;
+            }
             return true;
         }
     }

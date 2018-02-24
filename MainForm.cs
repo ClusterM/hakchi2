@@ -544,7 +544,7 @@ namespace com.clusterrr.hakchi_gui
             listViewGames.Items.Clear();
 
             // add games to ListView control
-            Regex rgx = new Regex(@"(^/bin/.*[\s$])",RegexOptions.Compiled);
+            Regex rgx = new Regex(@"(^/bin/[^\s]*)",RegexOptions.Compiled);
             var gamesSorted = games.OrderBy(o => o.SortName);
             foreach (var game in gamesSorted)
             {
@@ -1486,12 +1486,6 @@ namespace com.clusterrr.hakchi_gui
             workerForm.exportGames = exportGames;
             if (!exportGames)
                 workerForm.linkRelativeGames = false;
-
-            using (SelectCoreDialog selectCoreDialog = new SelectCoreDialog())
-            {
-                if (selectCoreDialog.ShowDialog(this) != DialogResult.OK)
-                    return false;
-            }
 
             foreach (ListViewItem game in listViewGames.CheckedItems)
             {
@@ -2710,6 +2704,17 @@ namespace com.clusterrr.hakchi_gui
         {
             if (RequireKernelDump() == DialogResult.No) return;
             ResetHakchi();
+        }
+
+        private void textBoxArguments_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                using (SelectCoreDialog selectCoreDialog = new SelectCoreDialog())
+                {
+                    bool result = selectCoreDialog.ShowDialog(this) != DialogResult.OK;
+                }
+            }
         }
     }
 }

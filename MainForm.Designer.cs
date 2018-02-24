@@ -1249,6 +1249,7 @@
             resources.ApplyResources(this.textBoxArguments, "textBoxArguments");
             this.textBoxArguments.Name = "textBoxArguments";
             this.textBoxArguments.TextChanged += new System.EventHandler(this.textBoxArguments_TextChanged);
+            this.textBoxArguments.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBoxArguments_MouseDown);
             // 
             // label4
             // 

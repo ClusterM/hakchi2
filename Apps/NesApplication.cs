@@ -203,6 +203,7 @@ namespace com.clusterrr.hakchi_gui
             public string Core = string.Empty;
             public string OriginalFilename = string.Empty;
             public uint OriginalCrc32 = 0;
+            [JsonIgnore]
             public AppTypeCollection.AppInfo AppInfo
             {
                 get
@@ -214,6 +215,7 @@ namespace com.clusterrr.hakchi_gui
                     return AppTypeCollection.UnknownApp;
                 }
             }
+            [JsonIgnore]
             public CoreCollection.CoreInfo CoreInfo
             {
                 get
@@ -226,7 +228,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
-        public AppMetadata Metadata = new AppMetadata();
+        public AppMetadata Metadata;
 
         public const string GameGenieFileName = "gamegenie.txt";
         public string GameGeniePath { private set; get; }
@@ -287,24 +289,32 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (!ignoreEmptyConfig)
                     throw new FileNotFoundException($"Invalid application folder: \"{path}\".");
-                return new NesApplication(path, true);
+                return new NesApplication(path, null, true);
             }
 
             // let's find the AppInfo entry for current application
-            AppTypeCollection.AppInfo appInfo = null;
+            AppMetadata metadata = null;
 
             // look for the new metadata file
             if (File.Exists(Path.Combine(path, "metadata.json")))
             {
-                AppMetadata metadata = (AppMetadata)JsonConvert.DeserializeObject(File.ReadAllText(Path.Combine(path, "metadata.json")));
-                if (metadata.System != null && CoreCollection.Systems.Contains(metadata.System))
+                try
                 {
-                    appInfo = AppTypeCollection.GetAppBySystem(metadata.System); // guaranteed to at least return UnknownApp
+                    metadata = (AppMetadata)JsonConvert.DeserializeObject(File.ReadAllText(Path.Combine(path, "metadata.json")));
                 }
+                catch
+                {
+                    metadata = null;
+                }
+            }
+            if (metadata == null)
+            {
+                metadata = new AppMetadata();
             }
 
             // fallback to reading .desktop file and guess app type if no metadata match
-            if (appInfo == null)
+            AppTypeCollection.AppInfo appInfo = null;
+            if (string.IsNullOrEmpty(metadata.System) || !CoreCollection.Systems.Contains(metadata.System))
             {
                 string[] config = File.ReadAllLines(TarStream.refFileGet(files[0]));
                 foreach (var line in config)
@@ -313,14 +323,22 @@ namespace com.clusterrr.hakchi_gui
                     {
                         string exec = line.Substring(5);
                         appInfo = AppTypeCollection.GetAppByExec(exec); // guaranteed to at least return UnknownApp
-                        break;
+                        if (!appInfo.Unknown)
+                        {
+                            metadata.System = appInfo.Name;
+                            break;
+                        }
                     }
                 }
             }
-
+            if (appInfo == null)
+            { 
+                appInfo = metadata.AppInfo; // guaranteed to at least return UnknownApp
+            }
+            
             // construct and return new object
-            var constructor = appInfo.Class.GetConstructor(new Type[] { typeof(string), typeof(bool) });
-            return (NesApplication)constructor.Invoke(new object[] { path, ignoreEmptyConfig });
+            var constructor = appInfo.Class.GetConstructor(new Type[] { typeof(string), typeof(AppMetadata), typeof(bool) });
+            return (NesApplication)constructor.Invoke(new object[] { path, metadata, ignoreEmptyConfig });
         }
 
         public static NesApplication Import(string inputFileName, string originalFileName = null, byte[] rawRomData = null)
@@ -347,20 +365,24 @@ namespace com.clusterrr.hakchi_gui
                     break;
                 }
             }
-            CoreCollection.CoreInfo coreInfo = string.IsNullOrEmpty(appInfo.DefaultCore) ? null : CoreCollection.GetCore(appInfo.DefaultCore);
 
-            string application = ext.Length > 2 ? ("/bin/" + ext.Substring(1)) : "";
-            char prefix = appInfo.Prefix;
-            string args = string.Empty;
-            byte saveCount = 0;
-            Image cover = appInfo.DefaultCover;
-            uint crc32 = rawRomData != null ? Shared.CRC32(rawRomData) : 0;
-            string outputFileName = Regex.Replace(Path.GetFileName(inputFileName), @"[^A-Za-z0-9\.]+", "_").Trim();
+            CoreCollection.CoreInfo coreInfo = string.IsNullOrEmpty(appInfo.DefaultCore) ? null : CoreCollection.GetCore(appInfo.DefaultCore);
+            string application;
             if (coreInfo != null)
             {
                 Debug.WriteLine("Import Detected Core: " + coreInfo.DisplayName);
                 application = coreInfo.QualifiedBin;
             }
+            else
+            {
+                application = ext.Length > 2 ? ("/bin/" + ext.Substring(1)) : "";
+            }
+            string args = string.Empty;
+            char prefix = appInfo.Prefix;
+            byte saveCount = 0;
+            Image cover = appInfo.DefaultCover;
+            uint crc32 = rawRomData != null ? Shared.CRC32(rawRomData) : 0;
+            string outputFileName = Regex.Replace(Path.GetFileName(inputFileName), @"[^A-Za-z0-9\.]+", "_").Trim();
 
             bool patched = false;
             if (!appInfo.Unknown)
@@ -400,7 +422,8 @@ namespace com.clusterrr.hakchi_gui
             Directory.CreateDirectory(gamePath);
             File.WriteAllBytes(romPath, rawRomData);
 
-            var game = new NesApplication(gamePath, true);
+            // save desktop file
+            var game = new NesApplication(gamePath, null, true);
             var name = Path.GetFileNameWithoutExtension(inputFileName);
             name = Regex.Replace(name, @" ?\(.*?\)", string.Empty).Trim();
             name = Regex.Replace(name, @" ?\[.*?\]", string.Empty).Trim();
@@ -412,8 +435,15 @@ namespace com.clusterrr.hakchi_gui
             game.desktop.SaveCount = saveCount;
             game.Save();
 
-            // TODO : Save Metadata
+            // save metadata file
+            var metadata = new AppMetadata();
+            metadata.System = appInfo.Unknown ? string.Empty : appInfo.Name;
+            metadata.Core = coreInfo == null ? string.Empty : coreInfo.Name;
+            metadata.OriginalFilename = originalFileName;
+            metadata.OriginalCrc32 = crc32;
+            File.WriteAllText(Path.Combine(romPath, "metadata.json"), JsonConvert.SerializeObject(metadata, Formatting.Indented));
 
+            // recreate game object and finalize
             game = NesApplication.FromDirectory(gamePath);
             if (game is ICloverAutofill)
                 (game as ICloverAutofill).TryAutofill(crc32);
@@ -439,13 +469,16 @@ namespace com.clusterrr.hakchi_gui
 
         protected NesApplication() : base()
         {
+            Metadata = new AppMetadata();
             isOriginalGame = false;
             isDeleting = false;
         }
 
-        protected NesApplication(string path, bool ignoreEmptyConfig = false)
+        protected NesApplication(string path, AppMetadata metadata = null, bool ignoreEmptyConfig = false)
             : base(path, ignoreEmptyConfig)
         {
+            Metadata = metadata ?? new AppMetadata();
+
             isOriginalGame = false;
             isDeleting = false;
             foreach (var og in DefaultGames)

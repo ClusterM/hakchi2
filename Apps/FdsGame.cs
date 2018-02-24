@@ -9,8 +9,8 @@ namespace com.clusterrr.hakchi_gui
     {
         const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet --fds-auto-disk-side-switch-on-keypress";
 
-        public FdsGame(string path, bool ignoreEmptyConfig = false)
-            : base(path, ignoreEmptyConfig)
+        public FdsGame(string path, AppMetadata metadata = null, bool ignoreEmptyConfig = false)
+            : base(path, metadata, ignoreEmptyConfig)
         {
         }
 
