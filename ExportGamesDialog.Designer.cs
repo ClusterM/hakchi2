@@ -156,6 +156,7 @@
             this.checkLinked.TabIndex = 6;
             this.checkLinked.Text = "Linked export";
             this.checkLinked.UseVisualStyleBackColor = true;
+            this.checkLinked.CheckedChanged += new System.EventHandler(this.checkLinked_CheckedChanged);
             // 
             // ExportGamesDialog
             // 

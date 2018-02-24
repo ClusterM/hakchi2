@@ -80,6 +80,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
             }
+            checkLinked.Checked = ConfigIni.ExportLinked;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -166,6 +167,11 @@ namespace com.clusterrr.hakchi_gui
         private void Region_CheckedChanged(object sender, EventArgs e)
         {
             if(((RadioButton)sender).Checked) ConfigIni.ExportRegion = ((RadioButton)sender).Text;
+        }
+
+        private void checkLinked_CheckedChanged(object sender, EventArgs e)
+        {
+            ConfigIni.ExportLinked = ((CheckBox)sender).Checked;
         }
     }
 }
