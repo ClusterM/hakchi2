@@ -1265,6 +1265,9 @@
     <Content Include="tools\xz.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="mods\hmods\dtm_font_remount_1_10_18.hmod">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="user_mods\extra_space.hmod\readme.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -2460,9 +2463,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="mods\hmods\copyleft.hmod">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mods\hmods\fontfix.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="mods\mod_uninstall\bin\busybox">
