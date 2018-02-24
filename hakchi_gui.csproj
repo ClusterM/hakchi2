@@ -1265,9 +1265,9 @@
     <Content Include="tools\xz.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="mods\hmods\dtm_font_remount_1_10_18.hmod">
+    <Content Include="mods\hmods\font_remount-0352cb4.hmod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="user_mods\extra_space.hmod\readme.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

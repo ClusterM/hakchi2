@@ -286,6 +286,8 @@ namespace com.clusterrr.hakchi_gui
                 if (fileInfo.LastWriteTimeUtc < DateTime.UtcNow.AddDays(-1))
                     return false;
 
+                Debug.Write("CoreCollection loading indexes from cache: ");
+
                 // load cores
                 cores = JsonConvert.DeserializeObject<Dictionary<string, CoreInfo>>(File.ReadAllText(string.Format(CollectionFilename, string.Empty)));
 
@@ -315,7 +317,7 @@ namespace com.clusterrr.hakchi_gui
                     systemIndex[pair.Key] = list;
                 }
 
-                Debug.WriteLine("CoreCollection indexes loaded from cache.");
+                Debug.WriteLine("Done!");
             }
             catch (Exception ex)
             {
