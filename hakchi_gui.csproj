@@ -150,6 +150,7 @@
     <Compile Include="Apps\NesApplication.cs" />
     <Compile Include="Apps\NesMenuElementBase.cs" />
     <Compile Include="Apps\SnesGame.cs" />
+    <Compile Include="Apps\UnknownGame.cs" />
     <Compile Include="SelectCoreDialog.cs">
       <SubType>Form</SubType>
     </Compile>

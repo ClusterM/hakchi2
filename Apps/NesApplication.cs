@@ -227,6 +227,14 @@ namespace com.clusterrr.hakchi_gui
                     return null;
                 }
             }
+            public static AppMetadata Load(string filename)
+            {
+                return JsonConvert.DeserializeObject<AppMetadata>(File.ReadAllText(filename));
+            }
+            public void Save(string filename)
+            {
+                File.WriteAllText(filename, JsonConvert.SerializeObject(this, Formatting.Indented));
+            }
         }
         public AppMetadata Metadata;
 
@@ -300,7 +308,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 try
                 {
-                    metadata = (AppMetadata)JsonConvert.DeserializeObject(File.ReadAllText(Path.Combine(path, "metadata.json")));
+                    metadata = AppMetadata.Load(Path.Combine(path, "metadata.json"));
                 }
                 catch
                 {
@@ -314,7 +322,7 @@ namespace com.clusterrr.hakchi_gui
 
             // fallback to reading .desktop file and guess app type if no metadata match
             AppTypeCollection.AppInfo appInfo = null;
-            if (string.IsNullOrEmpty(metadata.System) || !CoreCollection.Systems.Contains(metadata.System))
+            if (string.IsNullOrEmpty(metadata.System) || metadata.System.Length == 0 || !CoreCollection.Systems.Contains(metadata.System))
             {
                 string[] config = File.ReadAllLines(TarStream.refFileGet(files[0]));
                 foreach (var line in config)
@@ -335,7 +343,7 @@ namespace com.clusterrr.hakchi_gui
             { 
                 appInfo = metadata.AppInfo; // guaranteed to at least return UnknownApp
             }
-            
+
             // construct and return new object
             var constructor = appInfo.Class.GetConstructor(new Type[] { typeof(string), typeof(AppMetadata), typeof(bool) });
             return (NesApplication)constructor.Invoke(new object[] { path, metadata, ignoreEmptyConfig });
@@ -441,7 +449,7 @@ namespace com.clusterrr.hakchi_gui
             metadata.Core = coreInfo == null ? string.Empty : coreInfo.Name;
             metadata.OriginalFilename = originalFileName;
             metadata.OriginalCrc32 = crc32;
-            File.WriteAllText(Path.Combine(romPath, "metadata.json"), JsonConvert.SerializeObject(metadata, Formatting.Indented));
+            metadata.Save(Path.Combine(gamePath, "metadata.json"));
 
             // recreate game object and finalize
             game = NesApplication.FromDirectory(gamePath);
@@ -523,6 +531,11 @@ namespace com.clusterrr.hakchi_gui
                 File.Delete(GameGeniePath);
 
             return true;
+        }
+
+        public void SaveMetadata()
+        {
+            Metadata.Save($"{basePath}/metadata.json");
         }
 
         public override Image Image

@@ -55,6 +55,10 @@ namespace com.clusterrr.hakchi_gui
                     Debug.WriteLine("Systems: " + string.Join(", ", Systems));
                 Debug.WriteLine("");
             }
+            public override string ToString()
+            {
+                return Name;
+            }
         }
 
         private static CoreInfo Canoe = new CoreInfo("clover-canoe-shvc-wr -rom")

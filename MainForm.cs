@@ -62,6 +62,7 @@ namespace com.clusterrr.hakchi_gui
             }
             return string.Empty;
         }
+        public static string TitleTemplate;
 
         public static IEnumerable<string> InternalMods;
         public static bool? DownloadCover;
@@ -94,21 +95,23 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
+                // define title template
+                TitleTemplate = $"hakchi2 CE v{Shared.AppDisplayVersion}";
+                if (Shared.AppVersion.Revision > 0)
+                    TitleTemplate += " (" + Resources.VersionRevisionNotice + ")";
+#if DEBUG
+                TitleTemplate += " (debug)";
+#endif
+#if VERY_DEBUG
+                TitleTemplate += " (very verbose mode)";
+#endif
+                Text = TitleTemplate;
+
+                // prepare controls
                 SyncConsoleType();
                 InternalMods = from m in Directory.GetFiles(Path.Combine(Program.BaseDirectoryInternal, "mods/hmods")) select Path.GetFileNameWithoutExtension(m);
                 LoadPresets();
                 LoadLanguages();
-                var dv = $"hakchi2 CE v{Shared.AppDisplayVersion}";
-                if (Shared.AppVersion.Revision > 0) dv += $" ({Resources.VersionRevisionNotice})";
-                Text = dv
-#if DEBUG
- + " (debug"
-#if VERY_DEBUG
- + ", very verbose mode"
-#endif
- + ")"
-#endif
-;
 
                 //listViewGames.ListViewItemSorter = new GamesSorter();
                 listViewGames.DoubleBuffered(true);
@@ -358,6 +361,10 @@ namespace com.clusterrr.hakchi_gui
 
             if (ConfigIni.ConsoleType == lastConsoleType || ConfigIni.ConsoleType == ConsoleType.Unknown)
                 return;
+
+            // title bar
+            string newTitle = TitleTemplate + " - " + GetConsoleTypeName(ConfigIni.ConsoleType);
+            this.Text = newTitle;
 
             // Console type and some settings
             nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.NES;
@@ -1512,6 +1519,22 @@ namespace com.clusterrr.hakchi_gui
 
             if (addedApps != null)
             {
+                var unknownApps = new List<NesApplication>();
+                foreach(var app in addedApps)
+                {
+                    if (app.Metadata.AppInfo.Unknown)
+                        unknownApps.Add(app);
+                }
+                if (unknownApps.Count() > 0)
+                {
+                    using (SelectCoreDialog selectCoreDialog = new SelectCoreDialog())
+                    {
+                        selectCoreDialog.Games.AddRange(unknownApps);
+                        bool result = selectCoreDialog.ShowDialog(this) != DialogResult.OK;
+                    }
+                }
+
+                listViewGames.BeginUpdate();
                 foreach (ListViewItem item in listViewGames.Items)
                     item.Selected = false;
                 // Add games, only new ones
@@ -1531,6 +1554,7 @@ namespace com.clusterrr.hakchi_gui
                     item.Checked = true;
                     listViewGames.Items.Add(item);
                 }
+                listViewGames.EndUpdate();
             }
             else
             {
@@ -2712,8 +2736,23 @@ namespace com.clusterrr.hakchi_gui
             {
                 using (SelectCoreDialog selectCoreDialog = new SelectCoreDialog())
                 {
-                    bool result = selectCoreDialog.ShowDialog(this) != DialogResult.OK;
+                    var games = new List<NesApplication>();
+                    foreach(ListViewItem item in listViewGames.Items)
+                    {
+                        games.Add(item.Tag as NesApplication);
+                        item.Selected = false;
+                    }
+                    selectCoreDialog.Games.AddRange(games);
+                    if( selectCoreDialog.ShowDialog(this) == DialogResult.OK)
+                    {
+                        foreach(var game in games)
+                        {
+                            game.Save();
+                            game.SaveMetadata();
+                        }
+                    }
                 }
+                LoadGames();
             }
         }
     }

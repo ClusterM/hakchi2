@@ -40,7 +40,7 @@ namespace com.clusterrr.hakchi_gui
         public static readonly AppInfo UnknownApp = new AppInfo
         {
             Name = "Unknown System",
-            Class = typeof(NesApplication),
+            Class = typeof(UnknownGame),
             DefaultCore = string.Empty,
             LegacyApps = new string[] { },
             Prefix = 'Z',
@@ -65,7 +65,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Name = "Nintendo - Family Computer Disk System",
                 Class = typeof(FdsGame),
-                DefaultCore = "Kachikachi",
+                DefaultCore = "clover-kachikachi-wr",
                 LegacyApps = new string[] {"/bin/fds", "/bin/clover-kachikachi-wr", "/usr/bin/clover-kachikachi" },
                 Prefix = 'D',
                 DefaultCover = Resources.blank_fds,
@@ -75,7 +75,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Name = "Nintendo - Super Nintendo Entertainment System",
                 Class = typeof(SnesGame),
-                DefaultCore = "Canoe",
+                DefaultCore = "clover-canoe-shvc-wr -rom",
                 LegacyApps = new string[] {"/bin/snes", "/bin/clover-canoe-shvc-wr", "/usr/bin/clover-canoe-shvc" },
                 Prefix = 'U',
                 DefaultCover = Resources.blank_snes_us,

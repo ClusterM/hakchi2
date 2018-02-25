@@ -60,7 +60,7 @@ namespace com.clusterrr.hakchi_gui
                 if (bin != value)
                 {
                     if (!string.IsNullOrEmpty(bin))
-                        exec.Replace(bin, value);
+                        exec = exec.Replace(bin, value);
                     bin = value;
                     hasUnsavedChanges = true;
                 }
