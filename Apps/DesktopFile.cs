@@ -41,12 +41,14 @@ namespace com.clusterrr.hakchi_gui
                     bin = string.Empty;
                     if (!string.IsNullOrEmpty(exec))
                     {
-                        args = exec.Split(' ');
-                        if (args.Length > 0)
+                        string tmp_exec = string.Copy(exec);
+                        Match m = Regex.Match(tmp_exec, @"^[^\s]+(?:\s-rom)?");
+                        if (m.Success)
                         {
-                            bin = args[0];
-                            args = args.Skip(1).ToArray();
+                            bin = m.Value;
+                            tmp_exec = tmp_exec.Replace(bin, string.Empty);
                         }
+                        args = tmp_exec.Length > 0 ? tmp_exec.Split(' ') : new string[0];
                     }
                     hasUnsavedChanges = true;
                 }

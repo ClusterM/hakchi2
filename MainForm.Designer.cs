@@ -198,6 +198,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numericUpDownSaveCount = new System.Windows.Forms.NumericUpDown();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.selectEmulationCoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -1044,7 +1045,8 @@
             this.decompressSelectedGamesToolStripMenuItem,
             this.deleteSelectedGamesToolStripMenuItem,
             this.toolStripMenuItem17,
-            this.sFROMToolToolStripMenuItem1});
+            this.sFROMToolToolStripMenuItem1,
+            this.selectEmulationCoreToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
             resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             // 
@@ -1249,7 +1251,6 @@
             resources.ApplyResources(this.textBoxArguments, "textBoxArguments");
             this.textBoxArguments.Name = "textBoxArguments";
             this.textBoxArguments.TextChanged += new System.EventHandler(this.textBoxArguments_TextChanged);
-            this.textBoxArguments.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBoxArguments_MouseDown);
             // 
             // label4
             // 
@@ -1401,6 +1402,12 @@
             this.groupBoxOptions.Controls.Add(this.labelID);
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
+            // 
+            // selectEmulationCoreToolStripMenuItem
+            // 
+            this.selectEmulationCoreToolStripMenuItem.Name = "selectEmulationCoreToolStripMenuItem";
+            resources.ApplyResources(this.selectEmulationCoreToolStripMenuItem, "selectEmulationCoreToolStripMenuItem");
+            this.selectEmulationCoreToolStripMenuItem.Click += new System.EventHandler(this.selectEmulationCoreToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1611,6 +1618,7 @@
         private System.Windows.Forms.GroupBox groupBoxOptions;
         private System.Windows.Forms.ToolStripMenuItem centerBoxArtThumbnailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem positionHiddenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectEmulationCoreToolStripMenuItem;
     }
 }
 

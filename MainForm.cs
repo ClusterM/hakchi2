@@ -882,7 +882,8 @@ namespace com.clusterrr.hakchi_gui
                     compressSelectedGamesToolStripMenuItem.Enabled =
                     decompressSelectedGamesToolStripMenuItem.Enabled =
                     deleteSelectedGamesToolStripMenuItem.Enabled =
-                    sFROMToolToolStripMenuItem1.Enabled = false;
+                    sFROMToolToolStripMenuItem1.Enabled =
+                    selectEmulationCoreToolStripMenuItem.Enabled = false;
             }
             else if (c == 1)
             {
@@ -893,7 +894,8 @@ namespace com.clusterrr.hakchi_gui
 
                 compressSelectedGamesToolStripMenuItem.Enabled =
                     decompressSelectedGamesToolStripMenuItem.Enabled =
-                    deleteSelectedGamesToolStripMenuItem.Enabled = !(item.Tag as NesApplication).IsOriginalGame;
+                    deleteSelectedGamesToolStripMenuItem.Enabled = 
+                    selectEmulationCoreToolStripMenuItem.Enabled = !(item.Tag as NesApplication).IsOriginalGame;
                 
                 sFROMToolToolStripMenuItem1.Enabled =
                     editROMHeaderToolStripMenuItem.Enabled =
@@ -914,7 +916,8 @@ namespace com.clusterrr.hakchi_gui
                     decompressSelectedGamesToolStripMenuItem.Enabled =
                     deleteSelectedGamesToolStripMenuItem.Enabled =
                     sFROMToolToolStripMenuItem1.Enabled =
-                    resetROMHeaderToolStripMenuItem.Enabled = true;
+                    resetROMHeaderToolStripMenuItem.Enabled = 
+                    selectEmulationCoreToolStripMenuItem.Enabled = true;
             }
 
             if (!e.IsSelected)
@@ -2730,30 +2733,34 @@ namespace com.clusterrr.hakchi_gui
             ResetHakchi();
         }
 
-        private void textBoxArguments_MouseDown(object sender, MouseEventArgs e)
+        private void selectEmulationCoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if (listViewGames.SelectedItems.Count == 0)
+                return;
+
+            using (SelectCoreDialog selectCoreDialog = new SelectCoreDialog())
             {
-                using (SelectCoreDialog selectCoreDialog = new SelectCoreDialog())
+                foreach (ListViewItem item in listViewGames.SelectedItems)
                 {
-                    var games = new List<NesApplication>();
-                    foreach(ListViewItem item in listViewGames.Items)
+                    if (!(item.Tag as NesApplication).IsOriginalGame)
                     {
-                        games.Add(item.Tag as NesApplication);
+                        selectCoreDialog.Games.Add(item.Tag as NesApplication);
                         item.Selected = false;
                     }
-                    selectCoreDialog.Games.AddRange(games);
-                    if( selectCoreDialog.ShowDialog(this) == DialogResult.OK)
+                }
+                if (selectCoreDialog.Games.Count == 0)
+                    return;
+
+                if (selectCoreDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    foreach (var game in selectCoreDialog.Games)
                     {
-                        foreach(var game in games)
-                        {
-                            game.Save();
-                            game.SaveMetadata();
-                        }
+                        game.Save();
+                        game.SaveMetadata();
                     }
                 }
-                LoadGames();
             }
+            LoadGames();
         }
     }
 }

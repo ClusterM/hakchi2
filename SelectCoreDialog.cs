@@ -73,14 +73,6 @@ namespace com.clusterrr.hakchi_gui
             ShowSelected();
         }
 
-        private void buttonDiscard_Click(object sender, EventArgs e)
-        {
-            if( MessageBox.Show("Are you sure you want to discard changes?", "Discard changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-            {
-                Close();
-            }
-        }
-
         private void listBoxSystem_SelectedIndexChanged(object sender, EventArgs e)
         {
             var item = (string)listBoxSystem.SelectedItem;
@@ -179,9 +171,14 @@ namespace com.clusterrr.hakchi_gui
             Close();
         }
 
+        private void buttonDiscard_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         private void SelectCoreDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to discard changes?", "Discard changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
+            if (DialogResult != DialogResult.OK && MessageBox.Show("Are you sure you want to discard changes?", "Discard changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
             {
                 e.Cancel = true;
             }
