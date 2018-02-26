@@ -23,7 +23,10 @@ namespace com.clusterrr.hakchi_gui
             foreach(var game in Games)
             {
                 var core = CoreCollection.GetCore(game.Metadata.Core);
-                var item = new ListViewItem(new string[] { game.Name, Path.GetExtension(game.GameFilePath), game.Metadata.System, core == null ? string.Empty : core.Name });
+                var filename = Path.GetFileName(game.GameFilePath);
+                if (filename.EndsWith(".7z"))
+                    filename = filename.Substring(0, filename.Length - 3);
+                var item = new ListViewItem(new string[] { game.Name, Path.GetExtension(filename), game.Metadata.System, core == null ? string.Empty : core.Name });
                 item.Tag = game;
                 listViewGames.Items.Add(item);
             }
@@ -263,9 +266,11 @@ namespace com.clusterrr.hakchi_gui
         {
             if (buttonApply.Enabled)
             {
-                if (MessageBox.Show("Do you want to apply your pending changes?", "Apply changes", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
+                var result = MessageBox.Show("Do you want to apply your pending changes?", "Apply changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3);
+                if (result == DialogResult.Cancel)
                     return;
-                buttonApply_Click(sender, e);
+                if (result == DialogResult.Yes)
+                    buttonApply_Click(sender, e);
             }
 
             DialogResult = DialogResult.OK;

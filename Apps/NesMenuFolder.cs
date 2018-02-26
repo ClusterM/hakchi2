@@ -49,7 +49,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else
                 {
-                    return new string[] { desktop.Name };
+                    return desktop.Name.Split(new string[] { " - " }, StringSplitOptions.RemoveEmptyEntries);
                 }
             }
             set
