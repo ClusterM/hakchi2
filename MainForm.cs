@@ -107,14 +107,17 @@ namespace com.clusterrr.hakchi_gui
 #endif
                 Text = TitleTemplate;
 
-                // prepare controls
-                SyncConsoleType();
+                // prepare collections
                 InternalMods = from m in Directory.GetFiles(Path.Combine(Program.BaseDirectoryInternal, "mods/hmods")) select Path.GetFileNameWithoutExtension(m);
                 LoadPresets();
                 LoadLanguages();
+                CoreCollection.Load();
 
                 //listViewGames.ListViewItemSorter = new GamesSorter();
                 listViewGames.DoubleBuffered(true);
+
+                // prepare controls
+                SyncConsoleType();
 
                 // Little tweak for easy translation
                 var tbl = textBoxName.Left;
@@ -130,9 +133,6 @@ namespace com.clusterrr.hakchi_gui
                 MessageBoxManager.No = MessageBoxManager.Ignore = Resources.No;
                 MessageBoxManager.Cancel = Resources.NoForAll;
                 MessageBoxManager.Abort = Resources.YesForAll;
-
-                // Apptypes
-                CoreCollection.Load();
 
                 var extensions = new List<string>() { "*.new", "*.unf", "*.unif", "*.fds", "*.desktop", "*.zip", "*.7z", "*.rar" };
                 foreach (var ext in CoreCollection.Extensions)
@@ -412,6 +412,7 @@ namespace com.clusterrr.hakchi_gui
             positionAtTheTopToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtTop;
             positionAtTheBottomToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.AtBottom;
             positionSortedToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.Sorted;
+            positionHiddenToolStripMenuItem.Checked = ConfigIni.OriginalGamesPosition == OriginalGamesPosition.Hidden;
             groupByAppTypeToolStripMenuItem.Checked = ConfigIni.GroupGamesByAppType;
 
             // Folders mods
@@ -479,7 +480,7 @@ namespace com.clusterrr.hakchi_gui
         }
 
         ListViewGroup[] lgvGroups = null;
-        Dictionary<string, ListViewGroup> lgvAppGroups = null;
+        SortedDictionary<string, ListViewGroup> lgvAppGroups = null;
         SortedDictionary<string, ListViewGroup> lgvCustomGroups = null;
         public void LoadGames()
         {
@@ -535,12 +536,11 @@ namespace com.clusterrr.hakchi_gui
                 lgvGroups[4] = new ListViewGroup("Unknown App", HorizontalAlignment.Center);
 
                 // order by app groups
-                var sortedApps = new SortedDictionary<string, AppTypeCollection.AppInfo>();
-                lgvAppGroups = new Dictionary<string, ListViewGroup>();
-                foreach (var appinfo in AppTypeCollection.Apps)
-                    sortedApps[appinfo.Name] = appinfo;
-                foreach (var pair in sortedApps)
-                    lgvAppGroups[pair.Key] = new ListViewGroup(pair.Key, HorizontalAlignment.Center);
+                lgvAppGroups = new SortedDictionary<string, ListViewGroup>();
+                foreach (var system in CoreCollection.Systems)
+                {
+                    lgvAppGroups[system] = new ListViewGroup(system, HorizontalAlignment.Center);
+                }
 
                 // custom generated on the fly groups
                 lgvCustomGroups = new SortedDictionary<string, ListViewGroup>();
@@ -551,7 +551,6 @@ namespace com.clusterrr.hakchi_gui
             listViewGames.Items.Clear();
 
             // add games to ListView control
-            Regex rgx = new Regex(@"(^/bin/[^\s]*)",RegexOptions.Compiled);
             var gamesSorted = games.OrderBy(o => o.SortName);
             foreach (var game in gamesSorted)
             {
@@ -575,19 +574,26 @@ namespace com.clusterrr.hakchi_gui
                     {
                         var appinfo = game.Metadata.AppInfo;
                         if (!appinfo.Unknown)
+                        {
                             group = lgvAppGroups[appinfo.Name];
+                        }
+                        else if (!string.IsNullOrEmpty(game.Metadata.System) && lgvAppGroups.ContainsKey(game.Metadata.System))
+                        {
+                            group = lgvAppGroups[game.Metadata.System];
+                        }
                         else
                         {
-                            Match match = rgx.Match(game.Desktop.Exec.ToLower());
-                            if (match.Success && match.Length > 0)
+                            if (game.Desktop.Bin.Trim().Length == 0)
                             {
-                                string app = match.ToString();
+                                group = lgvGroups[4];
+                            }
+                            else
+                            {
+                                string app = game.Desktop.Bin.Trim();
                                 if (!lgvCustomGroups.ContainsKey(app))
                                     lgvCustomGroups.Add(app, new ListViewGroup(app, HorizontalAlignment.Center));
                                 group = lgvCustomGroups[app];
                             }
-                            else
-                                group = lgvGroups[4];
                         }
                     }
                     else
@@ -2738,6 +2744,7 @@ namespace com.clusterrr.hakchi_gui
             if (listViewGames.SelectedItems.Count == 0)
                 return;
 
+            SaveSelectedGames();
             using (SelectCoreDialog selectCoreDialog = new SelectCoreDialog())
             {
                 foreach (ListViewItem item in listViewGames.SelectedItems)
@@ -2753,6 +2760,7 @@ namespace com.clusterrr.hakchi_gui
 
                 if (selectCoreDialog.ShowDialog(this) == DialogResult.OK)
                 {
+                    // save changes if dialog was exited with "apply" button
                     foreach (var game in selectCoreDialog.Games)
                     {
                         game.Save();

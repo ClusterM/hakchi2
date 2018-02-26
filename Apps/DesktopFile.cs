@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Text;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -42,13 +40,17 @@ namespace com.clusterrr.hakchi_gui
                     if (!string.IsNullOrEmpty(exec))
                     {
                         string tmp_exec = string.Copy(exec);
-                        Match m = Regex.Match(tmp_exec, @"^[^\s]+(?:\s-rom)?");
+                        Match m = Regex.Match(tmp_exec, @"^[^\s]+(?:\s+-rom)*");
                         if (m.Success)
                         {
                             bin = m.Value;
-                            tmp_exec = tmp_exec.Replace(bin, string.Empty);
+                            tmp_exec = tmp_exec.Replace(bin, "");
                         }
-                        args = tmp_exec.Length > 0 ? tmp_exec.Split(' ') : new string[0];
+                        args = tmp_exec.Length > 0 ? tmp_exec.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries) : new string[0];
+                    }
+                    else
+                    {
+                        args = new string[0];
                     }
                     hasUnsavedChanges = true;
                 }

@@ -192,8 +192,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 var apps = new Dictionary<string, NesMenuCollection>();
                 var customApps = new Dictionary<string, NesMenuCollection>();
-                foreach(var appInfo in AppTypeCollection.Apps)
-                    apps[appInfo.Name] = new NesMenuCollection();
+                foreach(var system in CoreCollection.Systems)
+                    apps[system] = new NesMenuCollection();
 
                 foreach (var game in root)
                 {
@@ -203,6 +203,10 @@ namespace com.clusterrr.hakchi_gui
                     AppTypeCollection.AppInfo ai = app.Metadata.AppInfo;
                     if (!ai.Unknown)
                         apps[ai.Name].Add(game);
+                    else if (!string.IsNullOrEmpty(app.Metadata.System) && CoreCollection.Systems.Contains(app.Metadata.System))
+                    {
+                        apps[app.Metadata.System].Add(game);
+                    }
                     else
                     {
                         if(!string.IsNullOrEmpty(app.Desktop.Bin))

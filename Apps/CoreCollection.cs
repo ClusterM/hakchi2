@@ -22,6 +22,7 @@ namespace com.clusterrr.hakchi_gui
         public class CoreInfo
         {
             public readonly string Bin;
+            public string DefaultArgs = string.Empty;
             public string Name = string.Empty;
             public string DisplayName = string.Empty;
             public string[] SupportedExtensions = null;
@@ -63,6 +64,7 @@ namespace com.clusterrr.hakchi_gui
 
         private static CoreInfo Canoe = new CoreInfo("clover-canoe-shvc-wr -rom")
         {
+            DefaultArgs = "--volume 100 -rollback-snapshot-period 600",
             Name = "Canoe",
             DisplayName = "Nintendo - Super Nintendo Entertainment System (Canoe)",
             SupportedExtensions = new string[] { ".sfrom", ".smc", ".sfc" },
@@ -71,6 +73,7 @@ namespace com.clusterrr.hakchi_gui
         };
         private static readonly CoreInfo Kachikachi = new CoreInfo("clover-kachikachi-wr")
         {
+            DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet",
             Name = "Kachikachi",
             DisplayName = "Nintendo - Nintendo Entertainment System (Kachikachi)",
             SupportedExtensions = new string[] { ".nes", ".fds" },

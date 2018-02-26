@@ -76,7 +76,7 @@ namespace com.clusterrr.hakchi_gui
                 Name = "Nintendo - Super Nintendo Entertainment System",
                 Class = typeof(SnesGame),
                 DefaultCore = "clover-canoe-shvc-wr -rom",
-                LegacyApps = new string[] {"/bin/snes", "/bin/clover-canoe-shvc-wr", "/usr/bin/clover-canoe-shvc" },
+                LegacyApps = new string[] {"/bin/snes", "/bin/clover-canoe-shvc-wr -rom", "/usr/bin/clover-canoe-shvc -rom" },
                 Prefix = 'U',
                 DefaultCover = Resources.blank_snes_us,
                 GoogleSuffix = "(snes | super nintendo)"

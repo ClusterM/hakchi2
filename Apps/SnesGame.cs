@@ -182,7 +182,7 @@ namespace com.clusterrr.hakchi_gui
 
             if (isSnesSystem && ConfigIni.UseSFROMTool && SfromToolWrapper.IsInstalled)
             {
-                Debug.WriteLine($"Trying to convert {inputFileName} with SFROM Tool");
+                Debug.WriteLine($"Convert with SFROM Tool: {inputFileName}");
                 if (SfromToolWrapper.ConvertROMtoSFROM(ref rawRomData))
                 {
                     outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
