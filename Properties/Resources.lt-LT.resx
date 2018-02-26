@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddingGames">
+    <value>Apdorojami žaidimai prašome palaukti...</value>
+  </data>
+  <data name="AllFiles">
+    <value>Visi failai</value>
+  </data>
+  <data name="AreYouSure">
+    <value>Ar esate įsitikinę ?</value>
+  </data>
+  <data name="AutofillResult">
+    <value>Informacija automatiškai priskirta {0} žaidimui(-ams).</value>
+  </data>
+  <data name="AutofireHelp1">
+    <value>Laikykite Select+A/B sekundę kad įjungti/išjungti "autofire" mygtukams A/B.</value>
+  </data>
+  <data name="BuildingCustom">
+    <value>Sukuriamas pakeisto branduolio atvaizdas...</value>
+  </data>
+  <data name="BuildingFolders">
+    <value>Sudaroma papkių struktūra...</value>
+  </data>
+  <data name="Compressing">
+    <value>Suspaudžiama {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Suspaudžiami žaidimai...</value>
+  </data>
+  <data name="Congratulations">
+    <value>Sveikiname!</value>
+  </data>
+  <data name="Cover">
+    <value>Viršelis</value>
+  </data>
+  <data name="CustomKernel">
+    <value>Pakeistas branduolys</value>
+  </data>
+  <data name="CustomKernelQ">
+    <value>Ar norite įrašyti pakeistą branduolį ?</value>
+  </data>
+  <data name="CustomWarning">
+    <value>Jums reikia įrašyti pakeistą branduolį į NES/SNES Mini. Tai atlikti reikia tik vieną kartą. Ar norite tęsti ?</value>
+  </data>
+  <data name="Decompressing">
+    <value>Atspaužiama {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Atspaudžiami žaidimai...</value>
+  </data>
+  <data name="Default30games">
+    <value>Originalūs žaidimai</value>
+  </data>
+  <data name="DeleteElement">
+    <value>Ar norite ištrinti "{0}"?</value>
+  </data>
+  <data name="DeleteElements">
+    <value>Ar tikrai norite ištrinti {0} elementus?</value>
+  </data>
+  <data name="DeleteGame">
+    <value>Ar tikrai norite ištrinti "{0}" žaidimą ?</value>
+  </data>
+  <data name="DeletePreset">
+    <value>Ar tikrai norite ištrinti "{0}" išankstines nuostatas ?</value>
+  </data>
+  <data name="DeleteSavesQ">
+    <value>Ar tikrai norite ištrinti šiuos saugos taškus?</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Ištrinti pasirinktą(-us) žaidimą(-us)?</value>
+  </data>
+  <data name="DoYouWantCancel">
+    <value>Ar norite atšaukti dabartinę operaciją ?</value>
+  </data>
+  <data name="DoYouWantToContinue">
+    <value>Ar norite tęsti?</value>
+  </data>
+  <data name="Donate">
+    <value>Jeigu jums patinka programa galite paaukoti. Mano PayPal galite rasti "Apie" skiltyje.</value>
+  </data>
+  <data name="Done">
+    <value>Atlikta!</value>
+  </data>
+  <data name="DoneYouCanUpload">
+    <value>Atlikta! Dabar galite įkelti žaidimus į NES/SNES Mini.</value>
+  </data>
+  <data name="DownloadAllCoversTitle">
+    <value>Atsiunčiami viršėliai (Man sekasi!)</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>Ar norite pabandyti atsiųsti viršelį žaidimui "{0}"?</value>
+  </data>
+  <data name="DumpKernelQ">
+    <value>Ar norite nukopijuoti branduolį ?</value>
+  </data>
+  <data name="DumpingKernel">
+    <value>Kopijuojamas branduolys...</value>
+  </data>
+  <data name="DumpingNand">
+    <value>Kopijuojamas NAND...</value>
+  </data>
+  <data name="Error">
+    <value>Klaida</value>
+  </data>
+  <data name="ExecutingCommand">
+    <value>Atliekama komanda:</value>
+  </data>
+  <data name="ExtraArgsInfo">
+    <value>Galite pridėti globalų komandinės eilutės argumentą kuries bus priskirti visiems žaidimams, įskaitant ir originalius. Tik ekspertams!</value>
+  </data>
+  <data name="ExtraArgsTitle">
+    <value>Papildomi komandinės eilutės argumentai</value>
+  </data>
+  <data name="FirstRun">
+    <value>Sveiki! Labai džiaugiuosi, kad naudojate hakchi2. Tai labai lengva. Tiesiog paspauskite "Pridėti daugiau žaidimų", pasirinkite ROM failus, paspauskite "Sinchronizuoti" Ir sekite instrukcijas. Sėkmės !</value>
+  </data>
+  <data name="FlashNandCQ">
+    <value>Ar norite įrašyti NAND-C particijos atvaizdą? Tai pakeis visą naudotojo informaciją.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Įrašoma NAND atmintis...</value>
+  </data>
+  <data name="FlasingCustom">
+    <value>Įrašomas pakeistas branduolys...</value>
+  </data>
+  <data name="FlasingOriginal">
+    <value>Įrašomas originalus branduolys...</value>
+  </data>
+  <data name="FolderContent">
+    <value>Ištrintas turinys bus perkeltas į šiukšliadėžę. Galite ištrinti šį aplanką visam laikui arba perkelti žaidimus į kitus aplankus.</value>
+  </data>
+  <data name="FolderNameBack">
+    <value>Atgal</value>
+  </data>
+  <data name="FolderNameMoreGames">
+    <value>Daugiau žaidimų...</value>
+  </data>
+  <data name="FolderNameNewFolder">
+    <value>Naujas aplankas</value>
+  </data>
+  <data name="FolderNameOriginalGames">
+    <value>Originalūs žaidimai</value>
+  </data>
+  <data name="FolderNameTrashBin">
+    <value>Šiukšliadėžė</value>
+  </data>
+  <data name="FolderNameUnsorted">
+    <value>Nesurūšiuota</value>
+  </data>
+  <data name="FolderStatistics">
+    <value>Papkėje "{0}" yra {1} elementai.</value>
+  </data>
+  <data name="FoldersSaveQ">
+    <value>Ar norite išsaugoti šią aplankų struktūrą ?</value>
+  </data>
+  <data name="FourScreenNotSupported">
+    <value>Atleiskite, {0} naudoja keturių ekranų rėžimą (i.e.žaidimas turi daugiau VRAM atminties kartridže), ir ši funkcija NES/SNES Mini nėra palaikoma. Žaidimas greičiausiai neveiks. Bet turėtu veikti jeigu įdiegti kiti emuliacijos moduliai. Ar visvien norite įkelti šį žaidimą?</value>
+  </data>
+  <data name="GGCodeDelete">
+    <value>Ar norite ištrinti "{0}" kodą ?</value>
+  </data>
+  <data name="GGCodeEmpty">
+    <value>Privalote įvesti kodą !</value>
+  </data>
+  <data name="GGCodeExists">
+    <value>Šis kodas jau yra. Ar norite jį pakeisti ?</value>
+  </data>
+  <data name="GGDescriptionEmpty">
+    <value>Privalote įvesti aprašymą!</value>
+  </data>
+  <data name="GameGenieFormatError">
+    <value>Netinkamas Game Genie kodas "{0}" žaidimui "{1}".</value>
+  </data>
+  <data name="GameGenieNotFound">
+    <value>Negalime pritaikyti Game Genie kodo "{0}" žaidimui "{1}" - reikšmė nerasta. Gal šis kodas skirtas kitam žaidimui ?</value>
+  </data>
+  <data name="GamesAndApps">
+    <value>Žaidimai ir programos</value>
+  </data>
+  <data name="GamesSelected">
+    <value>žaidimas(-ai) pasirinkti</value>
+  </data>
+  <data name="GooglingFor">
+    <value>"Googlinama"</value>
+  </data>
+  <data name="Hello">
+    <value>Sveiki</value>
+  </data>
+  <data name="Images">
+    <value>Vaizdai</value>
+  </data>
+  <data name="InputPreset">
+    <value>Įveskite išankstinių nuostatų pavadinimą šiam žaidimų pasirinkimui.</value>
+  </data>
+  <data name="InstallingMods">
+    <value>Įdiegiamos modifikacijos...</value>
+  </data>
+  <data name="InvalidConsoleSelected">
+    <value>Pasirinkta netinkama konsolė! Atrasta konsolė:</value>
+  </data>
+  <data name="InvalidKernelHeader">
+    <value>Netinkama branduolio antraštė.</value>
+  </data>
+  <data name="InvalidKernelSize">
+    <value>Netinkamas branduolio dydis:</value>
+  </data>
+  <data name="KernelDumped">
+    <value>Jūsų originalus branduolys išsaugotas "hakchi2/dump" aplanke. Nepamekite jo.</value>
+  </data>
+  <data name="LoadingGames">
+    <value>Užkraunami žaidimai...</value>
+  </data>
+  <data name="MD5Failed">
+    <value>Branduolys nukopijuotas, bet MD5 kontrolinė suma nežinoma:</value>
+  </data>
+  <data name="MD5Failed2">
+    <value>Branduolys jau pakeistas arba tai nežinoma jo revizija. Prašau atsiųsti šį pranešimą man (paspauskite Ctrl+C). Tęsiant jūs prisiimate visą riziką.</value>
+  </data>
+  <data name="MainMenu">
+    <value>NAMŲ meniu</value>
+  </data>
+  <data name="MapperNotSupported">
+    <value>Ups, "{0}" naudoja "mapper" #{1} bet šis "mapper" nėra palaikomas NES Mini ir žaidimas greičiausiai neveiks su įprastu emuliatoriumi, bet turėtu veikti įdiegus papildomą emuliatoriaus modulį. Ar norite pridėti šį žaidimą ?</value>
+  </data>
+  <data name="Membooting">
+    <value>Paleidžiamas branduolys iš RAM...</value>
+  </data>
+  <data name="MemoryFull">
+    <value>Atleiskite, {0}Mbaitai žaidimų svorio yra per daug.</value>
+  </data>
+  <data name="MemoryStats">
+    <value>Visa atmintis į kurią galima įrašyti: {0:F1}Mbaitai|Atmintis skirta žaidimams: {1:F1}Mbaitai|Užimta išsaugojimų: {2:F1}Mbaitai|Užimta kitų failų: {3:F1}Mbaitai</value>
+  </data>
+  <data name="NandDumped">
+    <value>NAND atmintis sėkmingai nukopijuota.</value>
+  </data>
+  <data name="NandFlashed">
+    <value>NAND atmintis įrašyta.</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Ups, atrodo, kad "{0}" neveiks su originaliu emuliatoriumi. Ar norite naudoti kitą emuliatorių šiam žaidimui (jis turės būti įrašytas)?</value>
+  </data>
+  <data name="NewGamesUnsorted">
+    <value>Nauji žaidimai perkelti į "Nesuskirstyta" papkę.</value>
+  </data>
+  <data name="NewPreset">
+    <value>Dabar pasirinkite išankstinę nuostatą.</value>
+  </data>
+  <data name="No">
+    <value>Ne</value>
+  </data>
+  <data name="NoForAll">
+    <value>Ne visiems</value>
+  </data>
+  <data name="NoKernel">
+    <value>Branduolio kopija nerasta</value>
+  </data>
+  <data name="NoKernelWarning">
+    <value>Pirmiausia nukopijuokite savo NES/SNES Mini branduolio atvaizdą. Tai reikia atlikti tik kartą. Ar norite tęsti ?</value>
+  </data>
+  <data name="NoKernelYouNeed">
+    <value>Branduolio kopija nerasta. Pirmiausia turite nukopijuoti branduolį.</value>
+  </data>
+  <data name="NoTelnet">
+    <value>Negaliu atidaryti Telnet kliento, atrodo kad jis išjungtas. Jums pirmiausia reikia jį ijungti, tai atlikti galite "Valdymo skydas" -&gt; "Programos" -&gt; "Įjunkite arba išjunkite Windows funkcijas".</value>
+  </data>
+  <data name="NotFound">
+    <value>Nerasta:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>nerekomenduojama</value>
+  </data>
+  <data name="OriginalKernelQ">
+    <value>Ar norite įrašyti originalų branduolį ?</value>
+  </data>
+  <data name="PatchAvailable">
+    <value>Galimas įskiepis.</value>
+  </data>
+  <data name="PatchQ">
+    <value>Galimas įskiepis "{0}". Ar norite jį pritaikyti šiam žaidimui ?</value>
+  </data>
+  <data name="PleaseTryAgainUSB">
+    <value>Jeigu problema neišsispręs pabandykite kitą USB lizdą ar kabelį.</value>
+  </data>
+  <data name="PleaseWait">
+    <value>Palaukite...</value>
+  </data>
+  <data name="PressOkToContinue">
+    <value>Paspauskite GERAI norint tęsti.</value>
+  </data>
+  <data name="Removing">
+    <value>Ištrinama {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Ištrinami žaidimai...</value>
+  </data>
+  <data name="ReplaceKernelQ">
+    <value>Jūs jau turite branduolio kopiją. If you REALLY want to replace the backup of your kernel and you REALLY understand what you are doing, delete the "hakchi2/dump" folder manually.</value>
+  </data>
+  <data name="SavesFlterName">
+    <value>NES/SNES Mini saugos taškų kopija</value>
+  </data>
+  <data name="SelectAtLeast">
+    <value>Pasirinkite bent vieną žaidimą.</value>
+  </data>
+  <data name="SelectAtLeastTwo">
+    <value>Pasirinkite bent du mygtukus</value>
+  </data>
+  <data name="SelectModsInstall">
+    <value>Pasirinkite modulius kuriuos norite įdiegti į NES/SNES Mini</value>
+  </data>
+  <data name="SelectModsUninstall">
+    <value>Pasirinkite modulius kuriuos norite ištrinti iš NES/SNES Mini</value>
+  </data>
+  <data name="Size">
+    <value>Dydis:</value>
+  </data>
+  <data name="SizeOfSaves">
+    <value>Pasirinktų saugos taškų dydis:</value>
+  </data>
+  <data name="Syncronize">
+    <value>Sinchronizuoti pasirinktus žaidimus su NES/SNES Mini</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>Sinchronizuoti pasirinktus žaidimus su USB atmintine</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Perspėjimas! Nerekomenduojame tokio kiekio žaidimų talpinti į vieną aplanką.</value>
+  </data>
+  <data name="UninstallFactoryNote">
+    <value>Nepamirškite atlikti gamyklinių nustatymų atkurimo jeigu norite ištrinti visus Sulaikymo taškus.</value>
+  </data>
+  <data name="UninstallQ1">
+    <value>Ar tikrai norite ištrinti visus hakchi2 pėdsakus ir grąžinti NES/SNES Mini į originalią būseną?</value>
+  </data>
+  <data name="UninstallQ2">
+    <value>Baigta. Palaukite kol įjungimo šviesa išsijungs. Taip pat turite įdiegti originalų branduolį. Ar norite įdiegti originalų branduolį dabar ?</value>
+  </data>
+  <data name="Uninstalling">
+    <value>Pašalinama...</value>
+  </data>
+  <data name="UninstallingMods">
+    <value>Ištrinamos modifikacijos...</value>
+  </data>
+  <data name="UnknownGame">
+    <value>Nežinomas žaidimas</value>
+  </data>
+  <data name="UploadingConfig">
+    <value>Įkeliama nauja konfigūracija...</value>
+  </data>
+  <data name="UploadingFes1">
+    <value>Įkeliamas ir paleidžiamas FES-1...</value>
+  </data>
+  <data name="UploadingGames">
+    <value>Įkeliami žaidimai...</value>
+  </data>
+  <data name="UploadingKernel">
+    <value>Įkeliamas branduolys...</value>
+  </data>
+  <data name="UploadingOriginalGames">
+    <value>Apdorojami originalūs žaidimai...</value>
+  </data>
+  <data name="VerifyFailed">
+    <value>Patikra nepavyko :O tai nera gerai.</value>
+  </data>
+  <data name="Verifying">
+    <value>Tikrinama...</value>
+  </data>
+  <data name="WaitingForDevice">
+    <value>Laukiama įrenginio...</value>
+  </data>
+  <data name="Warning">
+    <value>Perspėjimas!</value>
+  </data>
+  <data name="Wow">
+    <value>Vau</value>
+  </data>
+  <data name="WritingUSB">
+    <value>Įrašomi žaidimai į USB atmintinę...</value>
+  </data>
+  <data name="Yes">
+    <value>Taip</value>
+  </data>
+  <data name="YesForAll">
+    <value>Taip visiems</value>
+  </data>
+  <data name="ConfigSavedNote">
+    <value>Config saved. Please note that configuration for the real console ({0}) was used, not for selected console ({1}).</value>
+  </data>
+</root>

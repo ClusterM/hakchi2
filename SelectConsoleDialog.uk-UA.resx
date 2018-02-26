@@ -58,19 +58,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="buttonFamicom.Text">
-    <value>Famicom (Japan)</value>
-  </data>
   <data name="buttonNes.Text">
-    <value>NES (USA/Europe)</value>
+    <value>NES (Американка/Європейка)</value>
   </data>
   <data name="buttonSnes.Text">
-    <value>SNES (USA/Europe)</value>
+    <value>SNES (Американка/Європейка)</value>
   </data>
   <data name="buttonSuperFamicom.Text">
-    <value>Super Famicom (Japan)</value>
+    <value>Super Famicom (Японка)</value>
   </data>
   <data name="labelSelectConsole.Text">
-    <value>Before we start please select your console. You can change it later using Settings menu if you want to use another console.</value>
+    <value>Спочатку виберіть вашу консоль. Це налаштування можна пізніше змінити в меню, якщо у вас буде інша консоль, або навіть декілька консолей відразу.</value>
+  </data>
+  <data name="buttonFamicom.Text">
+    <value>Famicom (Japan)</value>
   </data>
 </root>

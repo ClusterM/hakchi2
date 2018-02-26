@@ -59,306 +59,306 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FTPToolStripMenuItem.Text">
-    <value>Servidor FTP en ftp://root:clover@127.0.0.1:1021</value>
+    <value>FTP serveris ftp://root:clover@127.0.0.1:1021</value>
   </data>
   <data name="aboutToolStripMenuItem.Text">
-    <value>Sobre...</value>
+    <value>Apie...</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text">
-    <value>Afegir més &amp;jocs</value>
+    <value>Pridėti daugiau &amp;žaidimų</value>
   </data>
   <data name="addPresetToolStripMenuItem.Text">
-    <value>Afegir llista</value>
+    <value>Pridėti derinį</value>
   </data>
   <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
-    <value>Escriure sempre jocs en la unitat USB</value>
+    <value>Visuomet rašyti žaidimus į USB atmintinę</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
-    <value>Jocs originals en Root -&gt; Automàtic en subcarpeta</value>
+    <value>Originalūs žaidimai pradžioje -&gt; Poaplankiuose automatiškai</value>
   </data>
   <data name="automaticToolStripMenuItem.Text">
-    <value>Automàtic</value>
+    <value>Automatinis</value>
   </data>
   <data name="buttonAddGames.Text">
-    <value>Afegir més jocs</value>
+    <value>Pridėti daugiau žaidimų</value>
   </data>
   <data name="buttonBrowseImage.Text">
-    <value>Cercar</value>
+    <value>Naršyti</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Sincronitzar els jocs seleccionats amb la NES/SNES Mini</value>
+    <value>Sinchronizuoti pasirinktus žaidimus su NES/SNES Mini</value>
   </data>
   <data name="checkBoxCompressed.Text">
-    <value>Comprimir</value>
+    <value>Suspausti žaidimus kai įkeliama</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
-    <value>Ajuda/dreceres per als comandaments</value>
-  </data>
-  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
-    <value>Comprimir jocs que no siguin de NES (Per a emuladors addicionals)</value>
+    <value>Žaidimų pulto laužimai</value>
   </data>
   <data name="compressGamesToolStripMenuItem.Text">
-    <value>Comprimir els jocs a l'hora d'afegir-los</value>
+    <value>Suspausti žaidimus kai įkeliama</value>
   </data>
   <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Comprimir els jocs seleccionats</value>
+    <value>Suspausti pasirinktus žaidimus</value>
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
-    <value>Tipus de consola</value>
+    <value>Konsolės tipas</value>
   </data>
   <data name="createCustomCommandToolStripMenuItem.Text">
-    <value>Crear comandament personalitzat</value>
+    <value>Sukurti komandą</value>
   </data>
   <data name="customToolStripMenuItem.Text">
-    <value>Personalitzat -mostra la gestió de les carpetes tot el temps</value>
+    <value>Keičiamas - rodyti Aplankų tvarkyklę kiekvieną kartą</value>
   </data>
   <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Descomprimir els jocs seleccionats</value>
+    <value>Nebespausti pasirinktų žaidimų</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
-    <value>Eliminar joc</value>
+    <value>Ištrinti žaidimą</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text">
-    <value>Eliminar llista</value>
+    <value>Ištrinti derinį</value>
   </data>
   <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Eliminar els jocs seleccionats</value>
+    <value>Ištrinti pasirinktus žaidimus</value>
   </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
-    <value>Desactivar pàgines/carpetes</value>
+    <value>Išjungti puslapius/aplankus</value>
   </data>
   <data name="donateToolStripMenuItem.Text">
-    <value>Fer una donació</value>
+    <value>Paaukoti</value>
   </data>
   <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Baixar una caràtula per als jocs seleccionats</value>
+    <value>Atsiųsti viršelius pasirinktiems žaidimams</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
-    <value>Descarregar caràtules per a tots els jocs</value>
+    <value>Atsiųsti viršėlius visiems žaidimams</value>
   </data>
   <data name="dumpKernelToolStripMenuItem.Text">
-    <value>Bolcar kernel</value>
+    <value>Nukopijuoti branduolį</value>
   </data>
   <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Bolcar la partició NAND-B desencriptada</value>
-  </data>
-  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
-    <value>Bolcar la partició NAND-C desencriptada</value>
-  </data>
-  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
-    <value>Selecciona el nom de l'arxiu de bolcat</value>
+    <value>Nukopijuoti iššifruotą NAND-B particiją</value>
   </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Bolcar tota la NAND</value>
+    <value>Nukopijuoti visą NAND atmintį</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text">
-    <value>Prem "Select+A/B" per activar el "Autofire" en A/B</value>
+    <value>"Select+A/B" norint įjungti "autofire" mygtukams A/B</value>
   </data>
   <data name="enableUSBHostToolStripMenuItem.Text">
-    <value>Habilitar USB HOST</value>
+    <value>Įgalinti USB įrenginį</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
-    <value>Desactivar protecció contra la epilèpsia</value>
+    <value>Išjungti epilepsijos apsaugą</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
-    <value>&amp;Sortir</value>
-  </data>
-  <data name="exportFolderDialog.Description">
-    <value>Seleciona la unitat USB</value>
+    <value>&amp;Išeiti</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
-    <value>FAQ (Preguntes freqüents)</value>
-  </data>
-  <data name="famicomMiniToolStripMenuItem.Text">
-    <value>Famicom (Japó)</value>
+    <value>DUK</value>
   </data>
   <data name="fileToolStripMenuItem.Text">
-    <value>Arxiu</value>
+    <value>&amp;Failas</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
-    <value>Flashetjar custom kernel</value>
+    <value>Įdiegti pakeistą branduolį</value>
   </data>
   <data name="flashNANDCPartitionToolStripMenuItem.Text">
-    <value>Partició flash NAND-C (Només usuaris avançats)</value>
+    <value>Įrašyti NAND-C particiją (tik ekspertams!)</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
-    <value>Flashetjar kernel original</value>
+    <value>Įrašyti originalų branduolį</value>
   </data>
   <data name="foldersOriginalToolStripMenuItem.Text">
-    <value>Jocs originals en Root -&gt; Carpetes, organitzar jocs per igual</value>
+    <value>Originalūs žaidimai pradžioje -&gt; Aplankuose, žaidimai suskirstyti po lygiai</value>
   </data>
   <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text">
-    <value>Jocs originals en Root -&gt; Carpetes, organitzar jocs per primera lletra</value>
+    <value>Originalūs žaidimai pradžioje -&gt; Aplankuose, suskirstyti pagal pirmą raidę</value>
   </data>
   <data name="foldersSplitByFirstLetterToolStripMenuItem.Text">
-    <value>Carpetes, dividir per la primera lletra</value>
+    <value>Aplankai, suskirstyti pagal pirmą raidę</value>
   </data>
   <data name="foldersToolStripMenuItem.Text">
-    <value>Carpetes. organitzar jocs per igual</value>
+    <value>Aplankai, suskirstyti po lygiai</value>
   </data>
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text">
-    <value>GitHub: Pàgina amb les versions actuals</value>
+    <value>"GitHub" puslapis su leidimais</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text">
-    <value>Línia de comandament global (Només per a usuaris avançats)</value>
+    <value>Globalūs komandinės eilutės argumentai (tik ekspertams!)</value>
   </data>
   <data name="groupBoxDefaultGames.Text">
-    <value>Pots ocultar alguns jocs predeterminats</value>
+    <value>Galite paslėpti kaikuriuos numatytuosius žaidimus</value>
   </data>
   <data name="groupBoxOptions.Text">
-    <value>Opcions de joc</value>
+    <value>Žaidimo nustatymai</value>
   </data>
   <data name="helpToolStripMenuItem.Text">
-    <value>&amp;Ajuda</value>
+    <value>&amp;Pagalba</value>
   </data>
   <data name="installModulesToolStripMenuItem.Text">
-    <value>Instal·lar mòduls extres</value>
+    <value>Įdiegti papildomus modulius</value>
   </data>
   <data name="kernelToolStripMenuItem.Text">
-    <value>&amp;Kernel</value>
+    <value>&amp;Branduolys</value>
   </data>
   <data name="label1.Text">
-    <value>Data de llançament (AAAA-MM-DD)</value>
+    <value>Išleidimo data (YYYY-MM-DD):</value>
   </data>
   <data name="label2.Text">
-    <value>Editor:</value>
+    <value>Leidėjas:</value>
   </data>
   <data name="label3.Text">
-    <value>Línia de comandament (Només usuaris avançats)</value>
+    <value>Komandinė eilutė (tik patyrusiems naudotojams!):</value>
   </data>
   <data name="label4.Text">
-    <value>Caràtula</value>
+    <value>Viršelis:</value>
   </data>
   <data name="label5.Text">
-    <value>Seleccionar jocs:</value>
+    <value>Pasirinkite žaidimus:</value>
   </data>
   <data name="label6.Text">
-    <value>Nombre de jugadors:</value>
+    <value>Didžiausias žaidėjų skaičius:</value>
   </data>
   <data name="label7.Text">
-    <value>Codis Game Genie (separats per comes):</value>
+    <value>Game Genie kodai (atskirti kableliu):</value>
   </data>
   <data name="labelName.Text">
-    <value>Nom:</value>
+    <value>Pavadinimas:</value>
   </data>
   <data name="labelSize.Text">
-    <value>Tamany:</value>
+    <value>Dydis:</value>
   </data>
   <data name="languageToolStripMenuItem.Text">
-    <value>Idioma</value>
+    <value>Kalba</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
-    <value>Nombre de jocs per pàgina/carpeta</value>
+    <value>Maksimalus žaidimų kiekis puslapyje/papkėje</value>
   </data>
   <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Iniciar el kernel original des de la RAM</value>
+    <value>Paleisti originalų branduolį iš RAM</value>
   </data>
   <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Iniciar el kernel modificat des de la RAM</value>
+    <value>Paleisti pakeistą branduolį iš RAM</value>
   </data>
   <data name="modulesToolStripMenuItem.Text">
-    <value>&amp;Mòduls</value>
+    <value>&amp;Moduliai</value>
   </data>
   <data name="nESMiniToolStripMenuItem.Text">
-    <value>NES (USA/Europa)</value>
+    <value>NES (JAV/Europa)</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
-    <value>Obrir client FTP</value>
+    <value>Atidaryti FTP klientą</value>
   </data>
   <data name="openFileDialogImage.Title">
-    <value>Seleccioneu una caràtula per al joc</value>
+    <value>Pasirinkite žaidimo viršelį</value>
   </data>
   <data name="openFileDialogNes.Title">
-    <value>Selecciona jocs</value>
+    <value>Pairinkite žaidimus</value>
   </data>
   <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
-    <value>Obrir els jocs seleccionats a la carpeta de l'explorador</value>
+    <value>Atidaryti pasirinktą žaidimų aplanką naršyklėje</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
-    <value>Obrir client Telnet</value>
+    <value>Atidaryti Telnet klientą</value>
   </data>
   <data name="pagesOriginalToolStripMenuItem.Text">
-    <value>Jocs originals en Root -&gt; Pàgines, dividir els jocs per igual</value>
+    <value>Originalųs žaidimai pradžioje -&gt; Puslapiuose, žaidimai suskirstyti po lygiai</value>
   </data>
   <data name="pagesToolStripMenuItem.Text">
-    <value>Pàgines, organitzar jocs per igual</value>
+    <value>Puslapiai, žaidimai suskirstyti po lygiai</value>
   </data>
   <data name="pagesfoldersTypeToolStripMenuItem.Text">
-    <value>Pàgines/estructura de les carpetes</value>
+    <value>Puslapių/Papkių strūktura</value>
   </data>
   <data name="presetsToolStripMenuItem.Text">
-    <value>Seleccionar llista</value>
+    <value>Pasirinkimo išankstiniai nustatymai</value>
   </data>
   <data name="radioButtonOne.Text">
-    <value>Un jugador</value>
+    <value>Vienas žaidėjas</value>
   </data>
   <data name="radioButtonTwo.Text">
-    <value>Dos jugadors, no simultanis</value>
+    <value>Du žaidėjai atskirai</value>
   </data>
   <data name="radioButtonTwoSim.Text">
-    <value>Dos jugadors, simultàniament</value>
+    <value>Du žaidėjai vienu metu</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
-    <value>Utilitzar combinació de botons per a Reset</value>
+    <value>Mygtuku kombinacija paleidimui išnaujo</value>
   </data>
   <data name="sNESMiniToolStripMenuItem.Text">
-    <value>SNES (USA/Europa)</value>
+    <value>SNES (JAV/Europa)</value>
   </data>
   <data name="saveDumpFileDialog.Title">
-    <value>Selecciona el nom de l'arxiu de bolcat</value>
+    <value>Pasirinkite kopijos failo pavadinimą</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
-    <value>Guardar opcions a la NES/SNES Mini ara</value>
+    <value>Išsaugoti nustatymus į NES/SNES Mini dabar</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text">
-    <value>Gestió dels punts de suspensió</value>
+    <value>Saugos taškų tvarkyklė</value>
   </data>
   <data name="searchToolStripMenuItem.Text">
-    <value>Cercar</value>
+    <value>Paieška</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text">
-    <value>Seleccionar tot</value>
+    <value>Pažymėti visus</value>
   </data>
   <data name="selectButtonCombinationToolStripMenuItem.Text">
-    <value>Selecciona una combinació de botons per a Reset</value>
+    <value>Pasirinkite paleidimo iš naujo mygtukų kombinaciją</value>
   </data>
   <data name="settingsToolStripMenuItem.Text">
-    <value>&amp;Opcions</value>
+    <value>&amp;Nustatymai</value>
   </data>
   <data name="shellToolStripMenuItem.Text">
-    <value>Servidor Telnet en telnet://127.0.0.1:1023 (login:root)</value>
+    <value>Telnet serveris telnet://127.0.0.1:1023 (prisijungimas:root)</value>
   </data>
   <data name="superFamicomMiniToolStripMenuItem.Text">
-    <value>Super Famicom (Japó)</value>
+    <value>Super Famicom (Japonija)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
-    <value>Sincronitzar</value>
+    <value>Sinchronizuoti</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text">
-    <value>Fer una captura de pantalla</value>
+    <value>Padaryti ekrano atvaizdą</value>
   </data>
   <data name="toolFlashTheWholeNANDStripMenuItem.Text">
-    <value>Flashetjar tota la NAND (Només per a usuaris avançats)</value>
+    <value>Įrašyti visą NAND (tik ekspertams!)</value>
   </data>
   <data name="toolsToolStripMenuItem.Text">
-    <value>&amp;Eines</value>
+    <value>Meniu elementas pagrindiniame lange</value>
   </data>
   <data name="uninstallModulesToolStripMenuItem.Text">
-    <value>Desinstalar mòduls extres</value>
+    <value>Ištrinti papildomus modulius</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text">
-    <value>Desinstalar mòduls extres</value>
+    <value>Ištrinti</value>
   </data>
   <data name="unselectAllToolStripMenuItem.Text">
-    <value>Deseleccionar tot</value>
+    <value>Atžymėti visus</value>
   </data>
   <data name="upABStartOnSecondControllerToolStripMenuItem.Text">
-    <value>"Amunt+A+B = Start" en el 2n comandament</value>
+    <value>"Up+A+B = Start" antrajame žaidimų pulte</value>
   </data>
   <data name="useExtendedFontToolStripMenuItem.Text">
-    <value>Utilitzar font estesa</value>
+    <value>Naudoti išplėstinį šriftą</value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
-    <value>Utilitza X/Y en el comandament Wii Classic Controller com "Autofire" A/B</value>
+    <value>X/Y naudojimas "Classic" žaidimų pulte kaip "autofire" A/B</value>
+  </data>
+  <data name="compressGamesIfPossibleToolStripMenuItem.Text">
+    <value>Compress non-NES games (for additional emulator mod)</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text">
+    <value>Dump NAND-C partition</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Title">
+    <value>Select dump filename</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Select your USB drive</value>
+  </data>
+  <data name="famicomMiniToolStripMenuItem.Text">
+    <value>Famicom (Japan)</value>
   </data>
 </root>

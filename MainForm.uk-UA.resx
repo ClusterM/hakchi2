@@ -70,6 +70,9 @@
   <data name="addPresetToolStripMenuItem.Text">
     <value>Додати пресет</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Завжди записувати ігри на USB диск</value>
+  </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>Оригінальні ігри в корені -&gt; Автоматично в папці</value>
   </data>
@@ -83,7 +86,10 @@
     <value>Вибрати</value>
   </data>
   <data name="buttonStart.Text">
-    <value>Скачать обложки для всех игр NES/SNES Mini</value>
+    <value>Синхронізувати обкладинки для всіх игор NES/SNES Mini</value>
+  </data>
+  <data name="checkBoxCompressed.Text">
+    <value>Стискати</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text">
     <value>Хаки контролера</value>
@@ -91,11 +97,23 @@
   <data name="compressGamesIfPossibleToolStripMenuItem.Text">
     <value>Стискати не-NES ігри (для додаткового емулятора)</value>
   </data>
+  <data name="compressGamesToolStripMenuItem.Text">
+    <value>Стискати ігри при додаванні</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text">
+    <value>Стиснути обрані ігри</value>
+  </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Тип консолі</value>
   </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Створити довільну команду</value>
+  </data>
   <data name="customToolStripMenuItem.Text">
     <value>Налаштувати вручну - показувати менеджер папок перед завантаженням</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text">
+    <value>Розпакувати обрані ігри</value>
   </data>
   <data name="deleteGameToolStripMenuItem.Text">
     <value>Видалити гру</value>
@@ -103,8 +121,17 @@
   <data name="deletePresetToolStripMenuItem.Text">
     <value>Видалити пресет</value>
   </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text">
+    <value>Видалити обрані ігри</value>
+  </data>
   <data name="disablePagefoldersToolStripMenuItem.Text">
     <value>Без папок</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text">
+    <value>Підтримати проект</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
+    <value>Завантажити обкладинки для обраних ігор</value>
   </data>
   <data name="downloadCoversForAllGamesToolStripMenuItem.Text">
     <value>Завантажити обкладинки для всіх ігор</value>
@@ -112,14 +139,26 @@
   <data name="dumpKernelToolStripMenuItem.Text">
     <value>Здампити ядро</value>
   </data>
+  <data name="dumpNANDBToolStripMenuItem.Text">
+    <value>Прочитати розшифрований NAND-B розділ</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
+    <value>Прочитати всю NAND-пам’ять</value>
+  </data>
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Використовувати "Select + A/B" для включення турбо кнопок</value>
+  </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>Ввімкнути USB host</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>Вимкнути захист від нападів епілепсії</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Вийти</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Виберіть ваш USB диск</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ (Питання і відповіді)</value>
@@ -129,6 +168,9 @@
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text">
     <value>Прошити модифіковане ядро</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text">
+    <value>Записати NAND-C розділ</value>
   </data>
   <data name="flashOriginalKernelToolStripMenuItem.Text">
     <value>Прошити оригінальне ядро</value>
@@ -190,14 +232,26 @@
   <data name="labelName.Text">
     <value>Назва:</value>
   </data>
+  <data name="labelSize.Text">
+    <value>Розмір</value>
+  </data>
   <data name="languageToolStripMenuItem.Text">
     <value>Мова</value>
   </data>
   <data name="maximumGamesPerFolderToolStripMenuItem.Text">
     <value>Максимум ігор на сторінці</value>
   </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text">
+    <value>Запустити оригінальне ядро із RAM</value>
+  </data>
+  <data name="membootPatchedKernelToolStripMenuItem.Text">
+    <value>Запустити модифіковане ядро із RAM</value>
+  </data>
   <data name="modulesToolStripMenuItem.Text">
     <value>&amp;Модулі</value>
+  </data>
+  <data name="nESMiniToolStripMenuItem.Text">
+    <value>NES (Американка/Європейка)</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text">
     <value>Відкрити FTP клієнт</value>
@@ -207,6 +261,9 @@
   </data>
   <data name="openFileDialogNes.Title">
     <value>Виберіть ігри</value>
+  </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Відкрити обрану гру в провіднику</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Відкрити Telnet клієнт</value>
@@ -235,6 +292,12 @@
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text">
     <value>Використовувати комбінацію кнопок для виходу в меню</value>
   </data>
+  <data name="sNESMiniToolStripMenuItem.Text">
+    <value>SNES (Американка/Європейка)</value>
+  </data>
+  <data name="saveDumpFileDialog.Title">
+    <value>Виберіть ім’я файлу образу</value>
+  </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text">
     <value>Зберегти налаштування у NES/SNES Mini зараз</value>
   </data>
@@ -255,6 +318,9 @@
   </data>
   <data name="shellToolStripMenuItem.Text">
     <value>Telnet сервер на telnet://127.0.0.1:1023 (login:root)</value>
+  </data>
+  <data name="superFamicomMiniToolStripMenuItem.Text">
+    <value>Super Famicom (Японка)</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text">
     <value>Синхронізація</value>
@@ -283,80 +349,14 @@
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Використовувати X/Y на Classic Controller як турбо A/B</value>
   </data>
-  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
-    <value>Always write games to USB drive</value>
-  </data>
-  <data name="checkBoxCompressed.Text">
-    <value>Compress</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text">
-    <value>Compress games when adding</value>
-  </data>
-  <data name="compressSelectedGamesToolStripMenuItem.Text">
-    <value>Compress selected games</value>
-  </data>
-  <data name="createCustomCommandToolStripMenuItem.Text">
-    <value>Create custom command</value>
-  </data>
-  <data name="decompressSelectedGamesToolStripMenuItem.Text">
-    <value>Decompress selected games</value>
-  </data>
-  <data name="deleteSelectedGamesToolStripMenuItem.Text">
-    <value>Delete selected games</value>
-  </data>
-  <data name="donateToolStripMenuItem.Text">
-    <value>Donate</value>
-  </data>
-  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text">
-    <value>Download box art for selected games</value>
-  </data>
-  <data name="dumpNANDBToolStripMenuItem.Text">
-    <value>Dump decrypted NAND-B partition</value>
-  </data>
   <data name="dumpNANDCPartitionToolStripMenuItem.Text">
     <value>Dump NAND-C partition</value>
   </data>
   <data name="dumpNANDCPartitionToolStripMenuItem.Title">
     <value>Select dump filename</value>
   </data>
-  <data name="dumpTheWholeNANDToolStripMenuItem.Text">
-    <value>Dump the whole NAND flash</value>
-  </data>
-  <data name="enableUSBHostToolStripMenuItem.Text">
-    <value>Enable USB host</value>
-  </data>
-  <data name="exportFolderDialog.Description">
-    <value>Select your USB drive</value>
-  </data>
   <data name="famicomMiniToolStripMenuItem.Text">
     <value>Famicom (Japan)</value>
-  </data>
-  <data name="flashNANDCPartitionToolStripMenuItem.Text">
-    <value>Flash NAND-C partition (experts only!)</value>
-  </data>
-  <data name="labelSize.Text">
-    <value>Size:</value>
-  </data>
-  <data name="membootOriginalKernelToolStripMenuItem.Text">
-    <value>Boot original kernel from RAM</value>
-  </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text">
-    <value>Boot patched kernel from RAM</value>
-  </data>
-  <data name="nESMiniToolStripMenuItem.Text">
-    <value>NES (USA/Europe)</value>
-  </data>
-  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
-    <value>Open selected game's folder in explorer</value>
-  </data>
-  <data name="sNESMiniToolStripMenuItem.Text">
-    <value>SNES (USA/Europe)</value>
-  </data>
-  <data name="saveDumpFileDialog.Title">
-    <value>Select dump filename</value>
-  </data>
-  <data name="superFamicomMiniToolStripMenuItem.Text">
-    <value>Super Famicom (Japan)</value>
   </data>
   <data name="toolFlashTheWholeNANDStripMenuItem.Text">
     <value>Flash the whole NAND (experts only!)</value>

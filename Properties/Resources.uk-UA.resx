@@ -71,46 +71,67 @@
     <value>Дані автоматично заповнені для {0} ігор.</value>
   </data>
   <data name="AutofireHelp1">
-    <value>Затисніть Select + A/B на секунду, щоб включити турбо на кнопках A/B.</value>
+    <value>Затисніть Select + A/B на секунду, щоб ввімкнути турбо на кнопках A/B.</value>
   </data>
   <data name="BuildingCustom">
-    <value>Патчим ядро...</value>
+    <value>Патчимо ядро...</value>
   </data>
   <data name="BuildingFolders">
     <value>Будуємо дерево папок...</value>
   </data>
+  <data name="Compressing">
+    <value>Стискаємо {0}...</value>
+  </data>
+  <data name="CompressingGames">
+    <value>Стискаємо ігри...</value>
+  </data>
+  <data name="ConfigSavedNote">
+    <value>Конфигурація збережена. Зверніть увагу, що була використана конфігурація для реальної консолі ({0}), а не для обраної консолі ({1}).</value>
+  </data>
   <data name="Congratulations">
     <value>Вітаємо!</value>
+  </data>
+  <data name="Cover">
+    <value>Обкладинки</value>
   </data>
   <data name="CustomKernel">
     <value>Модифіковане ядро</value>
   </data>
   <data name="CustomKernelQ">
-    <value>Хочете прошити модифікований образ ядра?</value>
+    <value>Бажаєте прошити модифікований образ ядра?</value>
   </data>
   <data name="CustomWarning">
     <value>Тепер необхідно встановити модифіковане ядро на NES/SNES Mini. Цю процедуру теж потрібно виконати тільки один раз. Продовжити?</value>
   </data>
+  <data name="Decompressing">
+    <value>Розпаковуємо {0}...</value>
+  </data>
+  <data name="DecompressingGames">
+    <value>Розпаковуємо ігри...</value>
+  </data>
   <data name="Default30games">
-    <value>Оригінальні xx ігор</value>
+    <value>Оригінальні ігри</value>
   </data>
   <data name="DeleteElement">
-    <value>Ви дійсно хочете видалити "{0}"?</value>
+    <value>Ви дійсно бажаєте видалити "{0}"?</value>
   </data>
   <data name="DeleteElements">
-    <value>Ви дійсно хочете видалити {0} елементів?</value>
+    <value>Ви дійсно бажаєте видалити {0} елементів?</value>
   </data>
   <data name="DeleteGame">
-    <value>Ви дійсно хочете видалити гру "{0}"?</value>
+    <value>Ви дійсно бажаєте видалити гру "{0}"?</value>
   </data>
   <data name="DeletePreset">
-    <value>Ви дійсно хочете видалити пресет "{0}"?</value>
+    <value>Ви дійсно бажаєте видалити пресет "{0}"?</value>
   </data>
   <data name="DeleteSavesQ">
-    <value>Ви дійсно хочете видалити ці збереження?</value>
+    <value>Ви дійсно бажаєте видалити ці збереження?</value>
+  </data>
+  <data name="DeleteSelectedGamesQ">
+    <value>Видалити обрані ігри?</value>
   </data>
   <data name="DoYouWantCancel">
-    <value>Хочете скасувати поточну операцію?</value>
+    <value>Бажаєте скасувати поточну операцію?</value>
   </data>
   <data name="DoYouWantToContinue">
     <value>Продовжити?</value>
@@ -122,13 +143,19 @@
     <value>Готово! Тепер можна завантажувати свої ігри в NES/SNES Mini.</value>
   </data>
   <data name="DownloadAllCoversTitle">
-    <value>Качаємо обкладинки дляусіх ігор (Мені пощастить!)</value>
+    <value>Качаємо обкладинки для ігор (Мені пощастить!)</value>
+  </data>
+  <data name="DownloadCoverQ">
+    <value>Бажаєте спробувати скачати обкладинку для гри "{0}"?</value>
   </data>
   <data name="DumpKernelQ">
     <value>Здампити образ ядра NES/SNES Mini?</value>
   </data>
   <data name="DumpingKernel">
     <value>Читаємо образ ядра...</value>
+  </data>
+  <data name="DumpingNand">
+    <value>Читаємо NAND-пам’ять...</value>
   </data>
   <data name="Error">
     <value>Помилка</value>
@@ -137,13 +164,19 @@
     <value>Виконуємо команду:</value>
   </data>
   <data name="ExtraArgsInfo">
-    <value>Ви можете задати глобальні параметри командного рядка, які будуть додані до усіх ігор, включаючи оригінальні. Тільки для експертів!</value>
+    <value>Ви можете задати глобальні параметри командного рядка, які будуть додані до усіх ігор, включно з оригінальними. Тільки для експертів!</value>
   </data>
   <data name="ExtraArgsTitle">
     <value>Глобальні параметри командного рядка</value>
   </data>
   <data name="FirstRun">
-    <value>Привіт! Я дуже радий, що ви користуєтеся моєю програмою. Її дуже просто користуватись: натисніть кнопку "Додати ігор", виберіть ROMи, потім натисніть"Синхронізувати" і дотримуйтесь інструкцій. Успіхів!</value>
+    <value>Привіт! Я дуже радий, що ви користуєтеся моєю програмою. Це дуже просто: натисніть кнопку "Додати ігор", виберіть ROMи, потім натисніть"Синхронізувати" і дотримуйтесь інструкцій. Успіхів!</value>
+  </data>
+  <data name="FlashNandCQ">
+    <value>Бажаєте записати образ NAND-C розділу? Це перезапише всі дані користувача.</value>
+  </data>
+  <data name="FlashingNand">
+    <value>Записуємо NAND-пам’ять...</value>
   </data>
   <data name="FlasingCustom">
     <value>Прошиваємо модифіковане ядро...</value>
@@ -152,7 +185,7 @@
     <value>Прошиваємо оригінальне ядро...</value>
   </data>
   <data name="FolderContent">
-    <value>Контент буде переміщений в папку "Кошик". Ви можете видалити її назовсім або перемістити гри в інші директорії.</value>
+    <value>Контент буде переміщений в папку "Кошик". Ви можете видалити її назовсім або перемістити ігри в інші директорії.</value>
   </data>
   <data name="FolderNameBack">
     <value>Назад</value>
@@ -164,7 +197,7 @@
     <value>Нова папка</value>
   </data>
   <data name="FolderNameOriginalGames">
-    <value>Оригінальні xx ігор</value>
+    <value>Оригінальні ігри</value>
   </data>
   <data name="FolderNameTrashBin">
     <value>Кошик</value>
@@ -182,7 +215,7 @@
     <value>На жаль, {0} використовує four-screen режим (тобто це рідкісний випадок, коли у гри в картриджі розширена відеопам'ять), а NES/SNES Mini його не підтримує, і гра швидше за все не запуститься на стандартному емуляторі. Але вона повинна запрацювати, якщо встановлено модуль з іншим емулятором. Додати цю гру?</value>
   </data>
   <data name="GGCodeDelete">
-    <value>Ви дійсно хочете видалити код "{0}"?</value>
+    <value>Ви дійсно бажаєте видалити код "{0}"?</value>
   </data>
   <data name="GGCodeEmpty">
     <value>Ви повинні ввести код!</value>
@@ -220,6 +253,9 @@
   <data name="InstallingMods">
     <value>Встановлюємо модулі...</value>
   </data>
+  <data name="InvalidConsoleSelected">
+    <value>Невірно вибрана консоль. Знайдена консоль:</value>
+  </data>
   <data name="InvalidKernelHeader">
     <value>Некоректний заголовок образу ядра.</value>
   </data>
@@ -233,7 +269,7 @@
     <value>Завантажуємо ігри...</value>
   </data>
   <data name="MD5Failed">
-    <value>Образ ядра здамплен, але MD5 некоректний:</value>
+    <value>Образ ядра здамплено, але MD5 некоректний:</value>
   </data>
   <data name="MD5Failed2">
     <value>Можливо, ядро вже модифіковано, або нам ще невідома така версія. Надішліть це повідомлення автору програми (натисніть Ctrl + C). Продовжуйте на свій страх і ризик.</value>
@@ -242,13 +278,25 @@
     <value>Головне меню</value>
   </data>
   <data name="MapperNotSupported">
-    <value>Нажаль, "{0}" використовує маппер #{1}, а NES Mini його, мабуть, не підтримує, і гра, швидше за все, не запуститься на стандартному емумуляторі. Але вона повинна заробити, якщо встановлений модуль з іншим емулятором. Додати цю игру?</value>
+    <value>Нажаль, "{0}" використовує маппер #{1}, а NES Mini його, мабуть, не підтримує, і гра, швидше за все, не запуститься на стандартному емумуляторі. Але вона повинна запрацювати, якщо встановлений модуль з іншим емулятором. Додати цю игру?</value>
+  </data>
+  <data name="Membooting">
+    <value>Запускаємо ядро з RAM</value>
   </data>
   <data name="MemoryFull">
     <value>Вибачте, дуже вже багато ігор, на {0} МБайт, NES/SNES Mini таке не подужає.</value>
   </data>
   <data name="MemoryStats">
     <value>Всього можна перезаписувати пам'яті: {0:F1}МБайт|Доступно для ігор: {1:F1}МБайт|Використовується збереженнями: {2:F1}МБайт|Використовується іншими файлами: {3:F1}МБайт</value>
+  </data>
+  <data name="NandDumped">
+    <value>NAND-пам’ять успішно прочитана</value>
+  </data>
+  <data name="NandFlashed">
+    <value>NAND-пам’ять записана.</value>
+  </data>
+  <data name="Need3rdPartyEmulator">
+    <value>Нажаль гра "{0}", скоріше за все, буде некоректно працювати на оригінальному емуляторі. Бажаєте використати сторонній емулятор для цієї гри (він має бути встановлений окремо)?</value>
   </data>
   <data name="NewGamesUnsorted">
     <value>Нові ігри поміщені в папку "Невідсортовані".</value>
@@ -266,16 +314,19 @@
     <value>Не вдалося знайти образ ядра</value>
   </data>
   <data name="NoKernelWarning">
-    <value>Перш за все, необхідно здампити образ ядра NES/SNES Mini. Цю процедуру потрібно зробити лише один раз. Продовжити?</value>
+    <value>Спочатку необхідно здампити образ ядра NES/SNES Mini. Цю процедуру потрібно зробити лише один раз. Продовжити?</value>
   </data>
   <data name="NoKernelYouNeed">
-    <value>Не найден образ ядра NES/SNES Mini. Сначала необходимо его сдампить.</value>
+    <value>Не знайдено образ ядра NES/SNES Mini. Спочатку необхідно його здампити.</value>
   </data>
   <data name="NoTelnet">
     <value>Не можу відкрити Telnet клієнт. Схоже, що він вимкнений. Увімкніть його в "Панели управління" -&gt; "Програми і компоненти" -&gt; "Компоненти Windows".</value>
   </data>
   <data name="NotFound">
     <value>Не знайдено:</value>
+  </data>
+  <data name="NotRecommended">
+    <value>не рекомендується</value>
   </data>
   <data name="OriginalKernelQ">
     <value>Прошити оригінальний образ ядра?</value>
@@ -284,19 +335,25 @@
     <value>Доступний патч</value>
   </data>
   <data name="PatchQ">
-    <value>Для файлу "{0}" доступний патч. Хочете його застосувати?</value>
+    <value>Для файлу "{0}" доступний патч. Бажаєте його застосувати?</value>
   </data>
   <data name="PleaseTryAgainUSB">
     <value>Якщо проблема повторюється, спробуйте інший USB порт або інший USB кабель.</value>
   </data>
   <data name="PleaseWait">
-    <value>Будь ласка зачекайте...</value>
+    <value>Будь ласка, зачекайте...</value>
   </data>
   <data name="PressOkToContinue">
     <value>Натисніть OK для продовження.</value>
   </data>
+  <data name="Removing">
+    <value>Видаляємо {0}...</value>
+  </data>
+  <data name="RemovingGames">
+    <value>Видаляємо ігри...</value>
+  </data>
   <data name="ReplaceKernelQ">
-    <value>Вже існує збережений образ ядра. Якщо ви ДІЙСНО хочете замінити оригінальну копію ядра і СПРАВДІ розумієте, що робите, видаліть папку "hakchi2 \ dump" вручну.</value>
+    <value>Вже існує збережений образ ядра. Якщо ви ДІЙСНО бажаєте замінити оригінальну копію ядра і СПРАВДІ розумієте, що робите, видаліть папку "hakchi2 \ dump" вручну.</value>
   </data>
   <data name="SavesFlterName">
     <value>Збереження NES/SNES Mini</value>
@@ -313,23 +370,32 @@
   <data name="SelectModsUninstall">
     <value>Виберіть модулі, які потрібно видалити з NES/SNES Mini</value>
   </data>
+  <data name="Size">
+    <value>Розмір</value>
+  </data>
   <data name="SizeOfSaves">
     <value>Розмір обраних збережень:</value>
   </data>
   <data name="Syncronize">
-    <value>Скачать обложки для всех игр NES/SNES Mini</value>
+    <value>Синхронізувати обкладинки для всіх игор NES/SNES Mini</value>
+  </data>
+  <data name="SyncronizeUSB">
+    <value>Синхронізувати обрані ігри з USB диском</value>
+  </data>
+  <data name="TooManyPerFolder">
+    <value>Увага! Не рекомендується робити так багато ігор на папку.</value>
   </data>
   <data name="UninstallFactoryNote">
-    <value>Усе. Не забудьте також зробити скидання до заводських налаштувань, якщо хочете видалити збереження ігор.</value>
+    <value>Все. Не забудьте також зробити скидання до заводських налаштувань, якщо хочете видалити збереження ігор.</value>
   </data>
   <data name="UninstallQ1">
-    <value>Ви дійсно хочете видалити всі файли hakchi2 з вашої NES/SNES Mini і повернути її в незайманий стан?</value>
+    <value>Ви дійсно бажаєте видалити всі файли hakchi2 з вашої NES/SNES Mini і повернути її в незайманий стан?</value>
   </data>
   <data name="UninstallQ2">
     <value>Готово. Тільки почекайте, поки згасне світлодіод. І ще необхідно прошити назад оригінальне ядро. Зробити це зараз?</value>
   </data>
   <data name="Uninstalling">
-    <value>Удаляемся...</value>
+    <value>Видаляємось...</value>
   </data>
   <data name="UninstallingMods">
     <value>Видаляємо модулі...</value>
@@ -338,10 +404,10 @@
     <value>Невідома гра</value>
   </data>
   <data name="UploadingConfig">
-    <value>Оновлюємо настройки...</value>
+    <value>Оновлюємо налаштування...</value>
   </data>
   <data name="UploadingFes1">
-    <value>Завантажуємо і виконуємо fes1...</value>
+    <value>Завантажуємо і виконуємо FES-1...</value>
   </data>
   <data name="UploadingGames">
     <value>Завантажуємо ігри...</value>
@@ -367,82 +433,16 @@
   <data name="Wow">
     <value>Ура</value>
   </data>
+  <data name="WritingUSB">
+    <value>Пишемо ігри на USB диск...</value>
+  </data>
   <data name="Yes">
     <value>Так</value>
   </data>
   <data name="YesForAll">
     <value>Так для усіх</value>
   </data>
-  <data name="Compressing">
-    <value>Compressing {0}...</value>
-  </data>
-  <data name="CompressingGames">
-    <value>Compressing games...</value>
-  </data>
-  <data name="ConfigSavedNote">
-    <value>Config saved. Please note that configuration for the real console ({0}) was used, not for selected console ({1}).</value>
-  </data>
-  <data name="Cover">
-    <value>Box art</value>
-  </data>
-  <data name="Decompressing">
-    <value>Decompressing {0}...</value>
-  </data>
-  <data name="DecompressingGames">
-    <value>Decompressing games...</value>
-  </data>
-  <data name="DeleteSelectedGamesQ">
-    <value>Delete selected game(s)?</value>
-  </data>
   <data name="Donate">
     <value>If you like it, you can donate to me. You can find my PayPal in the "About" box.</value>
-  </data>
-  <data name="DownloadCoverQ">
-    <value>Do you want to try to download box art for "{0}"?</value>
-  </data>
-  <data name="DumpingNand">
-    <value>Dumping NAND...</value>
-  </data>
-  <data name="FlashNandCQ">
-    <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
-  </data>
-  <data name="FlashingNand">
-    <value>Flashing NAND memory...</value>
-  </data>
-  <data name="InvalidConsoleSelected">
-    <value>Invalid console selected! Detected console:</value>
-  </data>
-  <data name="Membooting">
-    <value>Booting the kernel from RAM...</value>
-  </data>
-  <data name="NandDumped">
-    <value>NAND memory is dumped successfully.</value>
-  </data>
-  <data name="NandFlashed">
-    <value>NAND memory flashed.</value>
-  </data>
-  <data name="Need3rdPartyEmulator">
-    <value>Oops, it seems like "{0}" is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?</value>
-  </data>
-  <data name="NotRecommended">
-    <value>not recommended</value>
-  </data>
-  <data name="Removing">
-    <value>Removing {0}...</value>
-  </data>
-  <data name="RemovingGames">
-    <value>Removing games...</value>
-  </data>
-  <data name="Size">
-    <value>Size:</value>
-  </data>
-  <data name="SyncronizeUSB">
-    <value>Synchronize selected games with USB drive</value>
-  </data>
-  <data name="TooManyPerFolder">
-    <value>Warning! It's not recommended to store so many games per folder.</value>
-  </data>
-  <data name="WritingUSB">
-    <value>Writing games to the USB drive...</value>
   </data>
 </root>

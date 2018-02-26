@@ -71,7 +71,7 @@
     <value>Добавить пресет</value>
   </data>
   <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
-    <value>Всегда написывать игры на USB диск</value>
+    <value>Всегда записывать игры на USB диск</value>
   </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>Оригинальные игры в корне -&gt; Автоматически в подпапке</value>
@@ -164,7 +164,7 @@
     <value>&amp;Выйти</value>
   </data>
   <data name="exportFolderDialog.Description">
-    <value>Выбери ваш USB диск</value>
+    <value>Выберите ваш USB диск</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>FAQ (Вопросы и ответы)</value>
