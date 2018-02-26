@@ -44,6 +44,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.buttonApply = new System.Windows.Forms.Button();
             this.resetCheckBox = new System.Windows.Forms.CheckBox();
+            this.showAllSystemsCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // buttonAccept
@@ -51,7 +52,7 @@
             this.buttonAccept.Location = new System.Drawing.Point(579, 334);
             this.buttonAccept.Name = "buttonAccept";
             this.buttonAccept.Size = new System.Drawing.Size(72, 23);
-            this.buttonAccept.TabIndex = 7;
+            this.buttonAccept.TabIndex = 9;
             this.buttonAccept.Text = "Accept";
             this.buttonAccept.UseVisualStyleBackColor = true;
             this.buttonAccept.Click += new System.EventHandler(this.buttonAccept_Click);
@@ -61,7 +62,7 @@
             this.buttonDiscard.Location = new System.Drawing.Point(658, 334);
             this.buttonDiscard.Name = "buttonDiscard";
             this.buttonDiscard.Size = new System.Drawing.Size(65, 23);
-            this.buttonDiscard.TabIndex = 8;
+            this.buttonDiscard.TabIndex = 10;
             this.buttonDiscard.Text = "Discard";
             this.buttonDiscard.UseVisualStyleBackColor = true;
             this.buttonDiscard.Click += new System.EventHandler(this.buttonDiscard_Click);
@@ -149,7 +150,7 @@
             this.listBoxCore.Location = new System.Drawing.Point(448, 194);
             this.listBoxCore.Name = "listBoxCore";
             this.listBoxCore.Size = new System.Drawing.Size(275, 95);
-            this.listBoxCore.TabIndex = 3;
+            this.listBoxCore.TabIndex = 4;
             this.listBoxCore.SelectedIndexChanged += new System.EventHandler(this.listBoxCore_SelectedIndexChanged);
             // 
             // commandTextBox
@@ -157,7 +158,7 @@
             this.commandTextBox.Location = new System.Drawing.Point(12, 308);
             this.commandTextBox.Name = "commandTextBox";
             this.commandTextBox.Size = new System.Drawing.Size(711, 20);
-            this.commandTextBox.TabIndex = 4;
+            this.commandTextBox.TabIndex = 6;
             this.commandTextBox.Enter += new System.EventHandler(this.commandTextBox_Enter);
             // 
             // label4
@@ -166,7 +167,7 @@
             this.label4.Location = new System.Drawing.Point(12, 292);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(201, 13);
-            this.label4.TabIndex = 9;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Command line (for advanced users only!):";
             // 
             // buttonApply
@@ -174,7 +175,7 @@
             this.buttonApply.Location = new System.Drawing.Point(12, 334);
             this.buttonApply.Name = "buttonApply";
             this.buttonApply.Size = new System.Drawing.Size(75, 23);
-            this.buttonApply.TabIndex = 5;
+            this.buttonApply.TabIndex = 7;
             this.buttonApply.Text = "Apply";
             this.buttonApply.UseVisualStyleBackColor = true;
             this.buttonApply.Click += new System.EventHandler(this.buttonApply_Click);
@@ -187,16 +188,29 @@
             this.resetCheckBox.Location = new System.Drawing.Point(93, 338);
             this.resetCheckBox.Name = "resetCheckBox";
             this.resetCheckBox.Size = new System.Drawing.Size(174, 17);
-            this.resetCheckBox.TabIndex = 6;
+            this.resetCheckBox.TabIndex = 8;
             this.resetCheckBox.Text = "Also reset to default parameters";
             this.resetCheckBox.UseVisualStyleBackColor = true;
             this.resetCheckBox.CheckedChanged += new System.EventHandler(this.resetCheckBox_CheckedChanged);
+            // 
+            // showAllSystemsCheckBox
+            // 
+            this.showAllSystemsCheckBox.AutoSize = true;
+            this.showAllSystemsCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.showAllSystemsCheckBox.Location = new System.Drawing.Point(655, 10);
+            this.showAllSystemsCheckBox.Name = "showAllSystemsCheckBox";
+            this.showAllSystemsCheckBox.Size = new System.Drawing.Size(67, 17);
+            this.showAllSystemsCheckBox.TabIndex = 3;
+            this.showAllSystemsCheckBox.Text = "Show All";
+            this.showAllSystemsCheckBox.UseVisualStyleBackColor = true;
+            this.showAllSystemsCheckBox.CheckedChanged += new System.EventHandler(this.showAllSystemsCheckBox_CheckedChanged);
             // 
             // SelectCoreDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 366);
+            this.Controls.Add(this.showAllSystemsCheckBox);
             this.Controls.Add(this.resetCheckBox);
             this.Controls.Add(this.buttonApply);
             this.Controls.Add(this.label4);
@@ -241,5 +255,6 @@
         private System.Windows.Forms.ColumnHeader systemColumnHeader;
         private System.Windows.Forms.ColumnHeader coreColumnHeader;
         private System.Windows.Forms.CheckBox resetCheckBox;
+        private System.Windows.Forms.CheckBox showAllSystemsCheckBox;
     }
 }

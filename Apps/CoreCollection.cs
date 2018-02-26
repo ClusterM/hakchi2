@@ -196,9 +196,9 @@ namespace com.clusterrr.hakchi_gui
             Serialize();
         }
 
-        public static string[] Cores
+        public static IEnumerable<CoreInfo> Cores
         {
-            get { return cores.Keys.ToArray(); }
+            get { return cores.Values; }
         }
 
         public static string[] Extensions

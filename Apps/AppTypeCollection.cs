@@ -55,7 +55,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Name = "Nintendo - Nintendo Entertainment System",
                 Class = typeof(NesGame),
-                DefaultCore = "Kachikachi",
+                DefaultCore = "clover-kachikachi-wr",
                 LegacyApps = new string[] {"/bin/nes", "/bin/clover-kachikachi-wr", "/usr/bin/clover-kachikachi" },
                 Prefix = 'H',
                 DefaultCover = Resources.blank_nes,
@@ -205,10 +205,9 @@ namespace com.clusterrr.hakchi_gui
 
         public static AppInfo GetAppBySystem(string sys)
         {
-            sys = sys.ToLower();
             foreach(var app in Apps)
             {
-                if(sys == app.Name.ToLower())
+                if(sys.ToLower() == app.Name.ToLower())
                 {
                     return app;
                 }

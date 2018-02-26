@@ -22,7 +22,8 @@ namespace com.clusterrr.hakchi_gui
             listViewGames.Items.Clear();
             foreach(var game in Games)
             {
-                var item = new ListViewItem(new string[] { game.Name, Path.GetExtension(game.GameFilePath), game.Metadata.System, game.Metadata.Core });
+                var core = CoreCollection.GetCore(game.Metadata.Core);
+                var item = new ListViewItem(new string[] { game.Name, Path.GetExtension(game.GameFilePath), game.Metadata.System, core == null ? string.Empty : core.Name });
                 item.Tag = game;
                 listViewGames.Items.Add(item);
             }
@@ -30,43 +31,38 @@ namespace com.clusterrr.hakchi_gui
 
         private void fillSystems()
         {
+            listBoxSystem.BeginUpdate();
             listBoxSystem.Items.Clear();
             listBoxSystem.Items.Add("Unassigned");
-            foreach(var system in CoreCollection.Systems)
+            var collection = showAllSystemsCheckBox.Checked || firstSelected == null ? CoreCollection.Systems : CoreCollection.GetSystemsFromExtension(firstSelected.SubItems[1].Text.ToLower()).ToArray();
+            foreach (var system in collection)
             {
                 listBoxSystem.Items.Add(system);
             }
+            listBoxSystem.Enabled = true;
+            listBoxSystem.EndUpdate();
         }
 
         private void fillCores(string system)
         {
+            listBoxCore.BeginUpdate();
             listBoxCore.Items.Clear();
-            if (!string.IsNullOrEmpty(system))
+            var collection = string.IsNullOrEmpty(system) ? CoreCollection.Cores : CoreCollection.GetCoresFromSystem(system);
+            if (collection != null)
             {
-                var cores = CoreCollection.GetCoresFromSystem(system);
-                if (cores == null)
+                foreach (var core in collection)
                 {
-                    var bins = CoreCollection.Cores;
-                    foreach (var bin in bins)
-                    {
-                        listBoxCore.Items.Add(CoreCollection.GetCore(bin));
-                    }
+                    listBoxCore.Items.Add(core);
                 }
-                else
-                    foreach (var core in cores)
-                    {
-                        listBoxCore.Items.Add(core);
-                    }
-                listBoxCore.SelectedIndex = 0;
             }
-            listBoxCore.Enabled = !string.IsNullOrEmpty(system);
+            listBoxCore.Enabled = true;
+            listBoxCore.EndUpdate();
         }
 
         public SelectCoreDialog()
         {
             InitializeComponent();
             listViewGames.DoubleBuffered(true);
-            fillSystems();
             DialogResult = DialogResult.Abort;
         }
 
@@ -78,9 +74,28 @@ namespace com.clusterrr.hakchi_gui
 
         private void listBoxSystem_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var item = (string)listBoxSystem.SelectedItem;
             listBoxCore.ClearSelected();
-            fillCores(item);
+            listBoxCore.Items.Clear();
+
+            var system = (string)listBoxSystem.SelectedItem;
+            if (system != null)
+            {
+                fillCores(system == "Unassigned" ? string.Empty : system);
+
+                if (firstSelected != null)
+                {
+                    var game = firstSelected.Tag as NesApplication;
+                    var core = string.IsNullOrEmpty(game.Metadata.Core) ? AppTypeCollection.GetAppBySystem(system).DefaultCore : game.Metadata.Core;
+                    for (int i = 0; i < listBoxCore.Items.Count; ++i)
+                    {
+                        if ((listBoxCore.Items[i] as CoreCollection.CoreInfo).Bin == core)
+                        {
+                            listBoxCore.SetSelected(i, true);
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         private void listBoxCore_SelectedIndexChanged(object sender, EventArgs e)
@@ -98,6 +113,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private ListViewItem firstSelected = null;
         private void ShowSelected()
         {
             var items = listViewGames.SelectedItems;
@@ -110,15 +126,15 @@ namespace com.clusterrr.hakchi_gui
                 commandTextBox.Enabled = false;
                 buttonApply.Enabled = false;
                 resetCheckBox.Enabled = false;
+                firstSelected = null;
             }
             else
             {
-                listBoxSystem.Enabled = true;
-
                 if(items.Count == 1)
                 {
-                    var item = items[0];
+                    var item = firstSelected = items[0];
                     var game = item.Tag as NesApplication;
+                    fillSystems();
                     if (!string.IsNullOrEmpty(game.Metadata.System))
                     {
                         listBoxSystem.ClearSelected();
@@ -143,6 +159,7 @@ namespace com.clusterrr.hakchi_gui
                         }
                     }
                     buttonApply.Enabled = false;
+
                 }
                 else
                 {
@@ -210,6 +227,8 @@ namespace com.clusterrr.hakchi_gui
         {
             var core = (CoreCollection.CoreInfo)listBoxCore.SelectedItem;
             string system = (string)listBoxSystem.SelectedItem;
+            if (system == "Unassigned")
+                system = string.Empty;
             string newCommand = commandTextBox.Text;
             foreach(ListViewItem item in listViewGames.SelectedItems)
             {
@@ -222,6 +241,22 @@ namespace com.clusterrr.hakchi_gui
                 game.Desktop.Exec = newCommand.Replace("{rom}", game.Desktop.Args[0]).Replace("{args}", string.Join(" ", game.Desktop.Args.Skip(1).ToArray())).Trim();
             }
             buttonApply.Enabled = false;
+        }
+
+        private void resetCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowCommand();
+        }
+
+        private void commandTextBox_Enter(object sender, EventArgs e)
+        {
+            buttonApply.Enabled = true;
+        }
+
+        private void showAllSystemsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            fillSystems();
+            ShowSelected();
         }
 
         private void buttonAccept_Click(object sender, EventArgs e)
@@ -248,16 +283,6 @@ namespace com.clusterrr.hakchi_gui
             {
                 e.Cancel = true;
             }
-        }
-
-        private void resetCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            ShowCommand();
-        }
-
-        private void commandTextBox_Enter(object sender, EventArgs e)
-        {
-            buttonApply.Enabled = true;
         }
 
         private ColumnHeader SortingColumn = null;

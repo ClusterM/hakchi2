@@ -446,7 +446,7 @@ namespace com.clusterrr.hakchi_gui
             // save metadata file
             var metadata = new AppMetadata();
             metadata.System = appInfo.Unknown ? string.Empty : appInfo.Name;
-            metadata.Core = coreInfo == null ? string.Empty : coreInfo.Name;
+            metadata.Core = coreInfo == null ? string.Empty : coreInfo.Bin;
             metadata.OriginalFilename = originalFileName;
             metadata.OriginalCrc32 = crc32;
             metadata.Save(Path.Combine(gamePath, "metadata.json"));
