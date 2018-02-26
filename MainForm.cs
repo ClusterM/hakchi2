@@ -898,11 +898,11 @@ namespace com.clusterrr.hakchi_gui
                     scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
                     deleteSelectedGamesBoxArtToolStripMenuItem.Enabled = true;
 
-                compressSelectedGamesToolStripMenuItem.Enabled =
-                    decompressSelectedGamesToolStripMenuItem.Enabled =
-                    deleteSelectedGamesToolStripMenuItem.Enabled = 
+                deleteSelectedGamesToolStripMenuItem.Enabled = 
                     selectEmulationCoreToolStripMenuItem.Enabled = !(item.Tag as NesApplication).IsOriginalGame;
-                
+                compressSelectedGamesToolStripMenuItem.Enabled = (item.Tag as NesApplication).CompressPossible().Count() > 0;
+                decompressSelectedGamesToolStripMenuItem.Enabled = (item.Tag as NesApplication).DecompressPossible().Count() > 0;
+
                 sFROMToolToolStripMenuItem1.Enabled =
                     editROMHeaderToolStripMenuItem.Enabled =
                     resetROMHeaderToolStripMenuItem.Enabled =

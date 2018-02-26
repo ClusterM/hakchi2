@@ -389,35 +389,39 @@ namespace com.clusterrr.hakchi_gui
             char prefix = appInfo.Prefix;
             byte saveCount = 0;
             Image cover = appInfo.DefaultCover;
-            uint crc32 = rawRomData != null ? Shared.CRC32(rawRomData) : 0;
+            uint crc32 = rawRomData != null ? Shared.CRC32(rawRomData) : Shared.CRC32(new FileStream(inputFileName, FileMode.Open, FileAccess.Read));
             string outputFileName = Regex.Replace(Path.GetFileName(inputFileName), @"[^A-Za-z0-9\.]+", "_").Trim();
 
-            bool patched = false;
-            if (!appInfo.Unknown)
+            // only attempt patching if file is reasonable and fits in memory
+            if (rawRomData != null)
             {
-                var patch = appInfo.Class.GetMethod("Patch");
-                if (patch != null)
+                bool patched = false;
+                if (!appInfo.Unknown)
                 {
-                    object[] values = new object[] { inputFileName, rawRomData, prefix, application, outputFileName, args, cover, saveCount, crc32 };
-                    var result = (bool)patch.Invoke(null, values);
-                    if (!result)
-                        return null;
+                    var patch = appInfo.Class.GetMethod("Patch");
+                    if (patch != null)
+                    {
+                        object[] values = new object[] { inputFileName, rawRomData, prefix, application, outputFileName, args, cover, saveCount, crc32 };
+                        var result = (bool)patch.Invoke(null, values);
+                        if (!result)
+                            return null;
 
-                    rawRomData = (byte[])values[1];
-                    prefix = (char)values[2];
-                    application = (string)values[3];
-                    outputFileName = (string)values[4];
-                    args = (string)values[5];
-                    cover = (Image)values[6];
-                    saveCount = (byte)values[7];
-                    crc32 = (uint)values[8];
-                    patched = true;
+                        rawRomData = (byte[])values[1];
+                        prefix = (char)values[2];
+                        application = (string)values[3];
+                        outputFileName = (string)values[4];
+                        args = (string)values[5];
+                        cover = (Image)values[6];
+                        saveCount = (byte)values[7];
+                        crc32 = (uint)values[8];
+                        patched = true;
+                    }
                 }
-            }
 
-            // find ips patches if applicable
-            if (!patched && rawRomData != null)
-                FindPatch(ref rawRomData, inputFileName, crc32);
+                // find ips patches if applicable
+                if (!patched)
+                    FindPatch(ref rawRomData, inputFileName, crc32);
+            }
 
             // create directory and rom file
             var code = GenerateCode(crc32, prefix);
@@ -428,7 +432,14 @@ namespace com.clusterrr.hakchi_gui
                 Shared.DirectoryDeleteInside(gamePath);
             }
             Directory.CreateDirectory(gamePath);
-            File.WriteAllBytes(romPath, rawRomData);
+            if (rawRomData != null)
+            {
+                File.WriteAllBytes(romPath, rawRomData);
+            }
+            else
+            {
+                File.Copy(inputFileName, romPath);
+            }
 
             // save desktop file
             var game = new NesApplication(gamePath, null, true);

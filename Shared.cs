@@ -55,6 +55,49 @@ namespace com.clusterrr.hakchi_gui
             return ~crc;
         }
 
+        public static uint CRC32(FileStream stream)
+        {
+            uint poly = 0xedb88320;
+            uint[] table = new uint[256];
+            uint temp = 0;
+            for (uint i = 0; i < table.Length; ++i)
+            {
+                temp = i;
+                for (int j = 8; j > 0; --j)
+                {
+                    if ((temp & 1) == 1)
+                    {
+                        temp = (uint)((temp >> 1) ^ poly);
+                    }
+                    else
+                    {
+                        temp >>= 1;
+                    }
+                }
+                table[i] = temp;
+            }
+
+            long bytesToRead = stream.Length;
+            int bytesRead = 0;
+            int bufferSize = 1048576;
+            byte[] buffer = new byte[bufferSize];
+
+            uint crc = 0xffffffff;
+            while (bytesToRead > 0)
+            {
+                int chunk = bytesToRead < bufferSize ? (int)bytesToRead : bufferSize;
+                int n = stream.Read(buffer, 0, chunk);
+                for (int i = 0; i < n; ++i)
+                {
+                    byte index = (byte)(((crc) & 0xff) ^ buffer[i]);
+                    crc = (uint)((crc >> 8) ^ table[index]);
+                }
+                bytesToRead -= n;
+                bytesRead += n;
+            }
+            return ~crc;
+        }
+
         public static Stream GenerateStreamFromString(string s)
         {
             MemoryStream stream = new MemoryStream();
