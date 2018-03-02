@@ -51,6 +51,7 @@ namespace com.clusterrr.hakchi_gui
             listBoxCore.BeginUpdate();
             listBoxCore.Items.Clear();
             var collection = string.IsNullOrEmpty(system) ? CoreCollection.Cores : CoreCollection.GetCoresFromSystem(system);
+            //var collection = firstSelected == null ? CoreCollection.Cores : CoreCollection.GetCoresFromExtension(firstSelected.SubItems[1].Text.ToLower()).ToArray();
             if (collection != null)
             {
                 foreach (var core in collection)
@@ -240,7 +241,7 @@ namespace com.clusterrr.hakchi_gui
 
                 var game = item.Tag as NesApplication;
                 game.Metadata.System = system;
-                game.Metadata.Core = core.Name;
+                game.Metadata.Core = core.Bin;
                 game.Desktop.Exec = newCommand.Replace("{rom}", game.Desktop.Args[0]).Replace("{args}", string.Join(" ", game.Desktop.Args.Skip(1).ToArray())).Trim();
             }
             buttonApply.Enabled = false;
@@ -284,7 +285,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void SelectCoreDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (DialogResult != DialogResult.OK && MessageBox.Show("Are you sure you want to discard changes?", "Discard changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
+            if (buttonApply.Enabled && DialogResult != DialogResult.OK && MessageBox.Show("Are you sure you want to discard changes?", "Discard changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
             {
                 e.Cancel = true;
             }

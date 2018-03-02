@@ -146,10 +146,14 @@ namespace com.clusterrr.hakchi_gui
             get
             {
                 Version version = AppVersion;
-                string v = $"{version.Major - 2}.{version.Minor}.{version.Build}";
                 if (version.Revision > 0)
-                    v += $".{version.Revision}";
-                return v;
+                {
+                    return $"{version.Major - 2}.{version.Minor + 1}.0RC{version.Revision}";
+                }
+                else
+                {
+                    return $"{version.Major - 2}.{version.Minor}.{version.Build}";
+                }
             }
         }
 

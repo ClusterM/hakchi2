@@ -32,13 +32,14 @@ namespace com.clusterrr.hakchi_gui
             {
                 Bin = bin;
             }
+            [JsonIgnore]
             public string QualifiedBin
             {
                 get
                 {
                     switch (Kind) {
                         case CoreKind.Libretro:
-                            return $"/bin/libretro/{Bin}";
+                            return $"/bin/{Bin}";
                         case CoreKind.BuiltIn:
                             return $"/bin/{Bin}";
                     }
@@ -95,7 +96,10 @@ namespace com.clusterrr.hakchi_gui
                 if (!string.IsNullOrEmpty(whitelist))
                     File.WriteAllText(WhiteListFilename, whitelist);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+            }
         }
 
         public static void Load()
@@ -216,6 +220,19 @@ namespace com.clusterrr.hakchi_gui
             return cores.ContainsKey(bin) ? cores[bin] : null;
         }
 
+        public static CoreInfo GetCoreFromExec(string exec)
+        {
+            exec = exec.ToLower().Trim();
+            foreach(var core in cores)
+            {
+                if (exec.StartsWith(core.Value.QualifiedBin))
+                {
+                    return core.Value;
+                }
+            }
+            return null;
+        }
+
         public static IEnumerable<CoreInfo> GetCoresFromExtension(string ext)
         {
             return extIndex.ContainsKey(ext) ? extIndex[ext] : null;
@@ -240,6 +257,22 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
             return systems.Distinct();
+        }
+
+        public static IEnumerable<string> GetExtensionsFromSystem(string system)
+        {
+            var extensions = new List<string>();
+            var cores = GetCoresFromSystem(system);
+            if (cores != null)
+            {
+                foreach (var core in cores)
+                {
+                    if (core.SupportedExtensions != null)
+                        foreach (var ext in core.SupportedExtensions)
+                            extensions.Add(ext);
+                }
+            }
+            return extensions.Distinct();
         }
 
         public static bool IsCoreValid(string bin, string ext)
@@ -275,7 +308,7 @@ namespace com.clusterrr.hakchi_gui
                 builder.Append("}\n");
                 File.WriteAllText(string.Format(CollectionFilename, "_systems"), builder.ToString());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ": ", ex.StackTrace);
                 return false;

@@ -38,7 +38,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch
             {
-                application = "/bin/nes";
+                //application = "/bin/nes";
                 return true;
             }
             crc32 = nesFile.CRC32;
@@ -57,7 +57,7 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                application = "/bin/nes";
+                //application = "/bin/nes";
             }
 
             //if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk

@@ -203,8 +203,6 @@ namespace com.clusterrr.hakchi_gui
                 FindPatch(ref rawRomData, inputFileName, crc32);
                 if (isSnesSystem)
                 {
-                    application = "/bin/clover-canoe-shvc-wr -rom";
-                    args = DefaultCanoeArgs;
                     Debug.WriteLine($"Trying to convert {inputFileName}");
                     bool problemGame = false;
                     MakeSfrom(ref rawRomData, ref saveCount, out problemGame);
@@ -229,13 +227,18 @@ namespace com.clusterrr.hakchi_gui
                     }
                     if (problemGame)
                     {
-                        application = "/bin/snes";
-                        args = "";
+                        //application = "/bin/snes";
+                        //args = "";
+                    }
+                    else
+                    {
+                        application = "/bin/clover-canoe-shvc-wr -rom";
+                        args = DefaultCanoeArgs;
                     }
                 }
                 else
                 {
-                    application = "/bin/snes";
+                    //application = "/bin/snes";
                 }
             }
 

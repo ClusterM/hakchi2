@@ -155,6 +155,7 @@ namespace com.clusterrr.hakchi_gui
 
                         Debug.WriteLine("Starting, version: " + Shared.AppDisplayVersion);
 
+                        System.Net.ServicePointManager.SecurityProtocol = (System.Net.SecurityProtocolType)4080; // set default security protocol
                         Application.EnableVisualStyles();
                         Application.SetCompatibleTextRenderingDefault(false);
                         Application.Run(new MainForm());

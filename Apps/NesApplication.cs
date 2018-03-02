@@ -204,15 +204,34 @@ namespace com.clusterrr.hakchi_gui
             public string OriginalFilename = string.Empty;
             public uint OriginalCrc32 = 0;
             [JsonIgnore]
+            private AppTypeCollection.AppInfo appInfo = null;
+            [JsonIgnore]
             public AppTypeCollection.AppInfo AppInfo
             {
                 get
                 {
-                    if (!string.IsNullOrEmpty(System))
+                    if (appInfo != null)
+                        return appInfo;
+                    if (string.IsNullOrEmpty(System))
+                        return AppTypeCollection.UnknownApp;
+                    appInfo = AppTypeCollection.GetAppBySystem(System);
+                    if (appInfo.Unknown)
                     {
-                        return AppTypeCollection.GetAppBySystem(System);
+                        appInfo = new AppTypeCollection.AppInfo()
+                        {
+                            Name = System,
+                            Class = typeof(LibretroGame),
+                            DefaultCore = Core,
+                            LegacyApps = new string[] { },
+                            Extensions = new string[] { },
+                            Prefix = AppTypeCollection.GetAvailablePrefix(System),
+                            DefaultCover = Resources.blank_app,
+                            GoogleSuffix = "game"
+                        };
+                        if (CoreCollection.GetCore(Core) == null || !CoreCollection.Systems.Contains(System))
+                            appInfo.Unknown = true;
                     }
-                    return AppTypeCollection.UnknownApp;
+                    return appInfo;
                 }
             }
             [JsonIgnore]
@@ -349,6 +368,7 @@ namespace com.clusterrr.hakchi_gui
             return (NesApplication)constructor.Invoke(new object[] { path, metadata, ignoreEmptyConfig });
         }
 
+        private static string[] systemsBlacklist = Resources.retroarch_systems_blacklist.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
         public static NesApplication Import(string inputFileName, string originalFileName = null, byte[] rawRomData = null)
         {
             var ext = Path.GetExtension(inputFileName).ToLower();
@@ -361,32 +381,55 @@ namespace com.clusterrr.hakchi_gui
                 originalFileName = Path.GetFileName(inputFileName);
 
             // try to autodetect app type
-            IEnumerable<string> systems = CoreCollection.GetSystemsFromExtension(ext);
-            AppTypeCollection.AppInfo appInfo = AppTypeCollection.UnknownApp;
-            foreach (var system in systems)
+            AppTypeCollection.AppInfo appInfo = AppTypeCollection.GetAppByExtension(ext);
+            if (appInfo.Unknown)
             {
-                var app = AppTypeCollection.GetAppBySystem(system);
-                if (!app.Unknown)
+                IEnumerable<string> systems = CoreCollection.GetSystemsFromExtension(ext).Except(systemsBlacklist);
+                if(systems.Count() == 1)
                 {
-                    Debug.WriteLine("Import Detected App: " + app.Name);
-                    appInfo = app;
-                    break;
+                    var system = systems.First();
+                    appInfo = AppTypeCollection.GetAppBySystem(system);
+                    if (appInfo.Unknown)
+                    {
+                        appInfo = new AppTypeCollection.AppInfo()
+                        {
+                            Name = system,
+                            Class = typeof(LibretroGame),
+                            DefaultCore = CoreCollection.GetCoresFromSystem(system).First().Bin,
+                            LegacyApps = new string[] { },
+                            Extensions = new string[] { },
+                            Prefix = AppTypeCollection.GetAvailablePrefix(system),
+                            DefaultCover = Resources.blank_app,
+                            GoogleSuffix = "game",
+                            Unknown = false
+                        };
+                    }
                 }
             }
 
             CoreCollection.CoreInfo coreInfo = string.IsNullOrEmpty(appInfo.DefaultCore) ? null : CoreCollection.GetCore(appInfo.DefaultCore);
             string application;
+            string args;
+            char prefix;
             if (coreInfo != null)
             {
                 Debug.WriteLine("Import Detected Core: " + coreInfo.DisplayName);
                 application = coreInfo.QualifiedBin;
+                args = coreInfo.DefaultArgs;
             }
             else
             {
                 application = ext.Length > 2 ? ("/bin/" + ext.Substring(1)) : "";
+                args = string.Empty;
             }
-            string args = string.Empty;
-            char prefix = appInfo.Prefix;
+            if (appInfo.Unknown && appInfo.Prefix == 'Z' && !string.IsNullOrEmpty(ext))
+            {
+                prefix = AppTypeCollection.GetAvailablePrefix(ext);
+            }
+            else
+            {
+                prefix = appInfo.Prefix;
+            }
             byte saveCount = 0;
             Image cover = appInfo.DefaultCover;
             uint crc32 = rawRomData != null ? Shared.CRC32(rawRomData) : Shared.CRC32(new FileStream(inputFileName, FileMode.Open, FileAccess.Read));
@@ -415,6 +458,13 @@ namespace com.clusterrr.hakchi_gui
                         saveCount = (byte)values[7];
                         crc32 = (uint)values[8];
                         patched = true;
+
+                        CoreCollection.CoreInfo newCoreInfo = CoreCollection.GetCoreFromExec(application);
+                        if (newCoreInfo != coreInfo)
+                        {
+                            Debug.WriteLine("Patching override core: " + newCoreInfo.Name);
+                            coreInfo = newCoreInfo;
+                        }
                     }
                 }
 
@@ -458,7 +508,7 @@ namespace com.clusterrr.hakchi_gui
             var metadata = new AppMetadata();
             metadata.System = appInfo.Unknown ? string.Empty : appInfo.Name;
             metadata.Core = coreInfo == null ? string.Empty : coreInfo.Bin;
-            metadata.OriginalFilename = originalFileName;
+            metadata.OriginalFilename = Path.GetFileName(originalFileName);
             metadata.OriginalCrc32 = crc32;
             metadata.Save(Path.Combine(gamePath, "metadata.json"));
 

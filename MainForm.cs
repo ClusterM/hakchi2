@@ -97,13 +97,13 @@ namespace com.clusterrr.hakchi_gui
             {
                 // define title template
                 TitleTemplate = $"hakchi2 CE v{Shared.AppDisplayVersion}";
-                if (Shared.AppVersion.Revision > 0)
-                    TitleTemplate += " (" + Resources.VersionRevisionNotice + ")";
+                //if (Shared.AppVersion.Revision > 0)
+                    //TitleTemplate += " (" + Resources.VersionRevisionNotice + ")";
 #if DEBUG
-                TitleTemplate += " (debug)";
+                TitleTemplate += " (Debug)";
 #endif
 #if VERY_DEBUG
-                TitleTemplate += " (very verbose mode)";
+                TitleTemplate += " (Very verbose mode)";
 #endif
                 Text = TitleTemplate;
 
@@ -1539,7 +1539,15 @@ namespace com.clusterrr.hakchi_gui
                     using (SelectCoreDialog selectCoreDialog = new SelectCoreDialog())
                     {
                         selectCoreDialog.Games.AddRange(unknownApps);
-                        bool result = selectCoreDialog.ShowDialog(this) != DialogResult.OK;
+                        DialogResult result = selectCoreDialog.ShowDialog(this);
+                        if (result == DialogResult.OK)
+                        {
+                            foreach(var app in unknownApps)
+                            {
+                                app.Save();
+                                app.SaveMetadata();
+                            }
+                        }
                     }
                 }
 
@@ -1968,7 +1976,6 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // check for an update after the initial console selection / on each app start
-            ServicePointManager.SecurityProtocol = (SecurityProtocolType)4080;
             AutoUpdater.Start(UPDATE_XML_URL);
 
             // enable timers

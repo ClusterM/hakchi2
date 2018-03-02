@@ -159,6 +159,7 @@
             this.editROMHeaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
             this.resetROMHeaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectEmulationCoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
             this.buttonStart = new System.Windows.Forms.Button();
             this.timerCalculateGames = new System.Windows.Forms.Timer(this.components);
@@ -198,7 +199,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numericUpDownSaveCount = new System.Windows.Forms.NumericUpDown();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
-            this.selectEmulationCoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addCustomAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -232,6 +233,7 @@
             this.searchToolStripMenuItem,
             this.reloadGamesToolStripMenuItem,
             this.toolStripMenuItem12,
+            this.addCustomAppToolStripMenuItem,
             this.resetOriginalGamesToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
@@ -1133,6 +1135,12 @@
             resources.ApplyResources(this.resetROMHeaderToolStripMenuItem, "resetROMHeaderToolStripMenuItem");
             this.resetROMHeaderToolStripMenuItem.Click += new System.EventHandler(this.resetROMHeaderToolStripMenuItem_Click);
             // 
+            // selectEmulationCoreToolStripMenuItem
+            // 
+            this.selectEmulationCoreToolStripMenuItem.Name = "selectEmulationCoreToolStripMenuItem";
+            resources.ApplyResources(this.selectEmulationCoreToolStripMenuItem, "selectEmulationCoreToolStripMenuItem");
+            this.selectEmulationCoreToolStripMenuItem.Click += new System.EventHandler(this.selectEmulationCoreToolStripMenuItem_Click);
+            // 
             // openFileDialogImage
             // 
             resources.ApplyResources(this.openFileDialogImage, "openFileDialogImage");
@@ -1403,11 +1411,10 @@
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
             // 
-            // selectEmulationCoreToolStripMenuItem
+            // addCustomAppToolStripMenuItem
             // 
-            this.selectEmulationCoreToolStripMenuItem.Name = "selectEmulationCoreToolStripMenuItem";
-            resources.ApplyResources(this.selectEmulationCoreToolStripMenuItem, "selectEmulationCoreToolStripMenuItem");
-            this.selectEmulationCoreToolStripMenuItem.Click += new System.EventHandler(this.selectEmulationCoreToolStripMenuItem_Click);
+            this.addCustomAppToolStripMenuItem.Name = "addCustomAppToolStripMenuItem";
+            resources.ApplyResources(this.addCustomAppToolStripMenuItem, "addCustomAppToolStripMenuItem");
             // 
             // MainForm
             // 
@@ -1619,6 +1626,7 @@
         private System.Windows.Forms.ToolStripMenuItem centerBoxArtThumbnailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem positionHiddenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectEmulationCoreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addCustomAppToolStripMenuItem;
     }
 }
 

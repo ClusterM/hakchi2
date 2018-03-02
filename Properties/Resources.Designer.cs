@@ -19,7 +19,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -1307,7 +1307,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 6ea61d4 (dirty).
+        ///   Looks up a localized string similar to de21c27 (dirty).
         /// </summary>
         internal static string gitCommit {
             get {
@@ -1924,6 +1924,25 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string ResettingOriginalGames {
             get {
                 return ResourceManager.GetString("ResettingOriginalGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bandai - WonderSwan Color
+        ///Microsoft - MSX2
+        ///NEC - PC Engine CD - TurboGrafx-CD
+        ///Nintendo - Game Boy Advance (e-Cards)
+        ///Nintendo - Nintendo 64DD
+        ///Nintendo - Sufami Turbo
+        ///Nintendo - Super Nintendo Entertainment System Hacks
+        ///Sega - PICO
+        ///Sinclair - ZX Spectrum +3
+        ///SNK - Neo Geo Pocket Color
+        ///.
+        /// </summary>
+        internal static string retroarch_systems_blacklist {
+            get {
+                return ResourceManager.GetString("retroarch_systems_blacklist", resourceCulture);
             }
         }
         
