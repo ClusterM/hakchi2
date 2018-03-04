@@ -60,8 +60,9 @@ namespace com.clusterrr.hakchi_gui
                 WorkerForm.ShowSplashScreen();
                 var listSavesScript =
                      "#!/bin/sh\n" +
-                     "savespath=/var/lib/clover/profiles/0\n" +
-                     "find $savespath -mindepth 1 -maxdepth 1 -type d -name \"CLV-*\" | sed 's#.*/##' | while read code ; do\n" +
+                     "savespath=/var/saves\n" +
+                     "gamestorage=$(hakchi findGameSyncStorage)\n" +
+                     "find -L $savespath -mindepth 1 -maxdepth 1 -type d -name \"CLV-*\" | sed 's#.*/##' | while read code ; do\n" +
                      "  flags=F\n" +
                      "  [ -f $savespath/$code/save.sram ] && flags=${flags}-S\n" +
                      "  [ -f $savespath/$code/cartridge.sram ] && [ $(wc -c <$savespath/$code/cartridge.sram) -gt 20 ] && flags=${flags}-S\n" +
@@ -75,7 +76,7 @@ namespace com.clusterrr.hakchi_gui
                      "  [ -d $savespath/$code/suspendpoint4 ] && flags=${flags}-4\n" +
                      "  if [ \"$flags\" != \"F\" ]; then\n" +
                      "    size=$(du -d 0 $savespath/$code | awk '{ print $1 }')\n" +
-                     "    name=$(find /var/lib -type f -name \"$code.desktop\" -exec cat {} + | sed -n 's/Name=\\(.*\\)/\\1/p' | head -n 1)\n" +
+                     "    name=$(find -L \"$gamestorage\" -type f -name \"$code.desktop\" -exec cat {} + | sed -n 's/Name=\\(.*\\)/\\1/p' | head -n 1)\n" +
                      "    [ -z \"$name\" ] && name=UNKNOWN\n" +
                      "    echo $code $size $flags $name\n" +
                      "    unset flags\n" +

@@ -966,19 +966,81 @@ namespace com.clusterrr.hakchi_gui
 
         public static void GetMemoryStats()
         {
+            try
+            {
+                var clovershell = MainForm.Clovershell;
+                var storage = clovershell.ExecuteSimple("df \"$(hakchi findGameSyncStorage)\" | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 2000, true).Split('|');
+                ExternalSaves = clovershell.ExecuteSimple("mount | grep /var/lib/clover").Trim().Length > 0;
+                WrittenGamesSize = long.Parse(clovershell.ExecuteSimple("du -s \"$(hakchi findGameSyncStorage)\" | awk '{ print $1 }'", 2000, true)) * 1024;
+                SaveStatesSize = long.Parse(clovershell.ExecuteSimple("du -s \"$(readlink /var/saves)\" | awk '{ print $1 }'", 2000, true)) * 1024;
+                StorageTotal = long.Parse(storage[0]) * 1024;
+                StorageUsed = long.Parse(storage[1]) * 1024;
+                StorageFree = long.Parse(storage[2]) * 1024;
+                Debug.WriteLine(string.Format("Storage size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", StorageTotal / 1024.0 / 1024.0, StorageUsed / 1024.0 / 1024.0, StorageFree / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by games: {0:F1}MB", WrittenGamesSize / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", SaveStatesSize / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (StorageUsed - WrittenGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Available for games: {0:F1}MB", (StorageFree + WrittenGamesSize) / 1024.0 / 1024.0));
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("Error: " + ex.Message + ex.StackTrace);
+                StorageTotal = -1;
+                StorageUsed = -1;
+                StorageFree = -1;
+                WrittenGamesSize = -1;
+                SaveStatesSize = -1;
+            }
+        }
+
+        public static MainForm.ConsoleType GetRealConsoleType() // Retreives real console type
+        {
             var clovershell = MainForm.Clovershell;
-            var storage = clovershell.ExecuteSimple("df \"$(hakchi findGameSyncStorage)\" | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 2000, true).Split('|');
-            ExternalSaves = clovershell.ExecuteSimple("mount | grep /var/lib/clover").Trim().Length > 0;
-            WrittenGamesSize = long.Parse(clovershell.ExecuteSimple("du -s \"$(hakchi findGameSyncStorage)\" | awk '{ print $1 }'", 2000, true)) * 1024;
-            SaveStatesSize = long.Parse(clovershell.ExecuteSimple("du -s \"$(readlink /var/saves)\" | awk '{ print $1 }'", 2000, true)) * 1024;
-            StorageTotal = long.Parse(storage[0]) * 1024;
-            StorageUsed = long.Parse(storage[1]) * 1024;
-            StorageFree = long.Parse(storage[2]) * 1024;
-            Debug.WriteLine(string.Format("Storage size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", StorageTotal / 1024.0 / 1024.0, StorageUsed / 1024.0 / 1024.0, StorageFree / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Used by games: {0:F1}MB", WrittenGamesSize / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", SaveStatesSize / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (StorageUsed - WrittenGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Available for games: {0:F1}MB", (StorageFree + WrittenGamesSize) / 1024.0 / 1024.0));
+            var customFirmwareLoaded = clovershell.ExecuteSimple("hakchi currentFirmware") != "_nand_";
+            string board, region;
+            if (!customFirmwareLoaded)
+            {
+                board = clovershell.ExecuteSimple("cat /etc/clover/boardtype", 3000, true);
+                region = clovershell.ExecuteSimple("cat /etc/clover/REGION", 3000, true);
+            }
+            else
+            {
+                clovershell.ExecuteSimple("cryptsetup open /dev/nandb root-crypt --readonly --type plain --cipher aes-xts-plain --key-file /etc/key-file", 3000);
+                clovershell.ExecuteSimple("mkdir -p /var/squashfs-original", 3000, true);
+                clovershell.ExecuteSimple("mount /dev/mapper/root-crypt /var/squashfs-original", 3000, true);
+                board = clovershell.ExecuteSimple("cat /var/squashfs-original/etc/clover/boardtype", 3000, true);
+                region = clovershell.ExecuteSimple("cat /var/squashfs-original/etc/clover/REGION", 3000, true);
+                clovershell.ExecuteSimple("umount /var/squashfs-original", 3000, true);
+                clovershell.ExecuteSimple("rm -rf /var/squashfs-original", 3000, true);
+                clovershell.ExecuteSimple("cryptsetup close root-crypt", 3000, true);
+            }
+            Debug.WriteLine(string.Format("Detected board: {0}", board));
+            Debug.WriteLine(string.Format("Detected region: {0}", region));
+            switch (board)
+            {
+                default:
+                case "dp-nes":
+                case "dp-hvc":
+                    switch (region)
+                    {
+                        case "EUR_USA":
+                            return MainForm.ConsoleType.NES;
+                        case "JPN":
+                            return MainForm.ConsoleType.Famicom;
+                    }
+                    break;
+                case "dp-shvc":
+                    switch (region)
+                    {
+                        case "USA":
+                        case "EUR":
+                            return MainForm.ConsoleType.SNES;
+                        case "JPN":
+                            return MainForm.ConsoleType.SuperFamicom;
+                    }
+                    break;
+            }
+            return MainForm.ConsoleType.Unknown;
         }
 
         public static void ShowSplashScreen()
@@ -1000,7 +1062,6 @@ namespace com.clusterrr.hakchi_gui
             string gamesPath;
             string rootFsPath;
             string squashFsPath;
-            string gameSyncStorage;
             string gameSyncPath;
             int progress = 0;
             int maxProgress = 400;

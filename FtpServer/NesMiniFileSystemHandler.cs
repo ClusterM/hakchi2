@@ -192,26 +192,25 @@ namespace mooftpserv
             List<FileSystemEntry> result = new List<FileSystemEntry>();
             try
             {
-                var lines = clovershell.ExecuteSimple(String.Format("ls -lApe \"{0}\" || ls -lAp --full-time \"{0}\"", newPath), 1000, true)
+                var lines = clovershell.ExecuteSimple("ls -lAp \"" + newPath + "\"", 1000, true)
                     .Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var line in lines)
                 {
                     if (line.StartsWith("total")) continue;
                     FileSystemEntry entry = new FileSystemEntry();
                     entry.Mode = line.Substring(0, 13).Trim();
-                    entry.Name = line.Substring(69).Trim();
+                    entry.Name = line.Substring(57).Trim();
                     entry.IsDirectory = entry.Name.EndsWith("/");
                     if (entry.IsDirectory) entry.Name = entry.Name.Substring(0, entry.Name.Length - 1);
-                    entry.Size = long.Parse(line.Substring(29, 15).Trim());
+                    entry.Size = long.Parse(line.Substring(34, 9).Trim());
+                    var dt = line.Substring(44, 12).Trim();
                     try
                     {
-                        var dt = line.Substring(44, 19).Trim();
-                        entry.LastModifiedTimeUtc = DateTime.ParseExact(dt, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AllowInnerWhite);
+                        entry.LastModifiedTimeUtc = DateTime.ParseExact(dt, "MMM  d HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.AllowInnerWhite);
                     }
-                    catch
+                    catch (FormatException)
                     {
-                        var dt = line.Substring(44, 25).Trim();
-                        entry.LastModifiedTimeUtc = DateTime.ParseExact(dt, "ddd MMM d HH:mm:ss yyyy", CultureInfo.InvariantCulture, DateTimeStyles.AllowInnerWhite);
+                        entry.LastModifiedTimeUtc = DateTime.ParseExact(dt, "MMM  d yyyy", CultureInfo.InvariantCulture, DateTimeStyles.AllowInnerWhite);
                     }
                     result.Add(entry);
                 }
