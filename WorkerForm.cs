@@ -1758,9 +1758,10 @@ namespace com.clusterrr.hakchi_gui
                 stats.allMenus.Add(menuCollection);
             int menuIndex = stats.allMenus.IndexOf(menuCollection);
             string targetDirectory = Path.Combine(tempGamesDirectory, string.Format("{0:D3}", menuIndex));
-            
-            string gameCache = Path.Combine(Program.BaseDirectoryExternal, "games_cache");
-            string relativeOriginalGamesPath = $"/media/{NesApplication.OriginalGamesCacheDirectory.Substring(3).Replace("\\", "/")}";
+
+            //string gameCache = Path.Combine(Program.BaseDirectoryExternal, "games_cache");
+            //string relativeOriginalGamesPath = $"/media/{NesApplication.OriginalGamesCacheDirectory.Substring(3).Replace("\\", "/")}";
+            NesApplication.GamesHakchiSyncPath = Shared.GetRemoteGameSyncPath();
             foreach (var element in menuCollection)
             {
                 if (element is NesApplication)
@@ -1780,7 +1781,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     else
                     {   // sync/upload to snes mini
-                        gameCopy = game.CopyTo(targetDirectory, NesApplication.CopyMode.Sync, true);
+                        gameCopy = game.CopyTo(targetDirectory, NesApplication.CopyMode.LinkedSync, true);
                     }
                     stats.TotalSize += gameSize;
                     stats.TransferSize += gameSize;

@@ -127,17 +127,23 @@
   <data name="addMoreGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Add more &amp;games</value>
   </data>
+  <data name="addCustomAppToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="addCustomAppToolStripMenuItem.Text" xml:space="preserve">
+    <value>Add custom &amp;app</value>
+  </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 6</value>
+    <value>139, 6</value>
   </data>
   <data name="addPresetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>142, 22</value>
   </data>
   <data name="addPresetToolStripMenuItem.Text" xml:space="preserve">
     <value>Add preset</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>142, 22</value>
   </data>
   <data name="deletePresetToolStripMenuItem.Text" xml:space="preserve">
     <value>Delete preset</value>
@@ -190,12 +196,6 @@
   </data>
   <data name="toolStripMenuItem12.Size" type="System.Drawing.Size, System.Drawing">
     <value>191, 6</value>
-  </data>
-  <data name="addCustomAppToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
-  </data>
-  <data name="addCustomAppToolStripMenuItem.Text" xml:space="preserve">
-    <value>Add custom app</value>
   </data>
   <data name="resetOriginalGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 22</value>
@@ -3099,6 +3099,12 @@
   <data name="&gt;&gt;addMoreGamesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;addCustomAppToolStripMenuItem.Name" xml:space="preserve">
+    <value>addCustomAppToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;addCustomAppToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;presetsToolStripMenuItem.Name" xml:space="preserve">
     <value>presetsToolStripMenuItem</value>
   </data>
@@ -3878,12 +3884,6 @@
   </data>
   <data name="&gt;&gt;timerShowSelected.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;addCustomAppToolStripMenuItem.Name" xml:space="preserve">
-    <value>addCustomAppToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;addCustomAppToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

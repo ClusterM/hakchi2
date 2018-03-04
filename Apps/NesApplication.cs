@@ -196,6 +196,10 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
+        public static string GamesHakchiSyncPath // /var/lib/hakchi/games/console-region
+        {
+            get; set;
+        }
 
         public class AppMetadata
         {
@@ -536,6 +540,31 @@ namespace com.clusterrr.hakchi_gui
             return FromDirectory(targetDir);
         }
 
+        public static NesApplication CreateEmptyApp(string path, string name)
+        {
+            // create directory and rom file
+            var code = Path.GetFileName(path);
+            if (Directory.Exists(path))
+            {
+                Shared.DirectoryDeleteInside(path);
+            }
+            Directory.CreateDirectory(path);
+
+            // save desktop file
+            var game = new NesApplication(path, null, true);
+            name = Regex.Replace(name, @" ?\(.*?\)", string.Empty).Trim();
+            name = Regex.Replace(name, @" ?\[.*?\]", string.Empty).Trim();
+            game.desktop.Name = name.Replace("_", " ").Replace("  ", " ").Trim();
+            game.desktop.Exec = "/bin/enter-custom-command-here";
+            game.desktop.ProfilePath = GamesHakchiProfilePath;
+            game.desktop.IconPath = GamesHakchiPath;
+            game.desktop.Code = code;
+            game.desktop.SaveCount = 0;
+            game.Save();
+
+            return NesApplication.FromDirectory(path);
+        }
+
         protected NesApplication() : base()
         {
             Metadata = new AppMetadata();
@@ -805,7 +834,7 @@ namespace com.clusterrr.hakchi_gui
             return false;
         }
 
-        protected static string GenerateCode(uint crc32, char prefixCode)
+        public static string GenerateCode(uint crc32, char prefixCode)
         {
             return string.Format("CLV-{5}-{0}{1}{2}{3}{4}",
                 (char)('A' + (crc32 % 26)),
@@ -816,7 +845,7 @@ namespace com.clusterrr.hakchi_gui
                 prefixCode);
         }
 
-        public enum CopyMode { Standard, Sync, Export, LinkedExport }
+        public enum CopyMode { Standard, Sync, LinkedSync, Export, LinkedExport }
         public NesApplication CopyTo(string path, CopyMode copyMode = CopyMode.Standard, bool pseudoLinks = false)
         {
             var targetDir = Path.Combine(path, desktop.Code);
@@ -829,6 +858,10 @@ namespace com.clusterrr.hakchi_gui
             string relativeGamesPath = MediaHakchiPath + GamesDirectory.Substring(2).Replace("\\", "/");
             string relativeOriginalGamesPath = MediaHakchiPath + OriginalGamesCacheDirectory.Substring(2).Replace("\\", "/");
 
+            // new feature: linked sync paths
+            string relativeGamesStoragePath = GamesHakchiSyncPath + "/.storage";
+            string relativeTargetDir = Shared.PathCombine(Path.GetDirectoryName(path), ".storage", desktop.Code);
+
             // handle all 3 different sync scenarios (with original or custom games)
             string mediaGamePath = null, profilePath = null, iconPath = null;
             if (IsOriginalGame)
@@ -838,6 +871,10 @@ namespace com.clusterrr.hakchi_gui
                     case CopyMode.Sync:
                         mediaGamePath = Shared.SquashFsPath + GamesSquashPath;
                         iconPath = File.Exists(this.iconPath) ? GamesHakchiPath : Shared.SquashFsPath + GamesSquashPath;
+                        break;
+                    case CopyMode.LinkedSync:
+                        mediaGamePath = Shared.SquashFsPath + GamesSquashPath;
+                        iconPath = File.Exists(this.iconPath) ? relativeGamesStoragePath : Shared.SquashFsPath + GamesSquashPath;
                         break;
                     case CopyMode.Export:
                         mediaGamePath = Directory.Exists(Path.Combine(OriginalGamesCacheDirectory, desktop.Code)) ? GamesHakchiPath : Shared.SquashFsPath + GamesSquashPath;
@@ -851,22 +888,39 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                mediaGamePath = iconPath = (copyMode == CopyMode.LinkedExport ? relativeGamesPath : GamesHakchiPath);
+                switch (copyMode)
+                {
+                    case CopyMode.Sync:
+                        mediaGamePath = iconPath = GamesHakchiPath;
+                        break;
+                    case CopyMode.LinkedSync:
+                        mediaGamePath = iconPath = relativeGamesStoragePath;
+                        break;
+                    case CopyMode.Export:
+                        mediaGamePath = iconPath = GamesHakchiPath;
+                        break;
+                    case CopyMode.LinkedExport:
+                        mediaGamePath = iconPath = relativeGamesPath;
+                        break;
+                }
             }
             profilePath = GamesHakchiProfilePath;
 
-            // debug stuff
-            Debug.WriteLine($"Copying game \"{desktop.Name}\" into \"{path}\"");
-            Debug.WriteLine($"mediaGamePath: {mediaGamePath}");
-            Debug.WriteLine($"iconPath: {iconPath}");
-
             // copy to new target
+            Debug.WriteLine($"Copying game \"{desktop.Name}\" into \"{path}\"");
             switch (copyMode)
             {
                 case CopyMode.Sync:
                     Shared.DirectoryCopy(basePath, targetDir, true, false, true,
                         pseudoLinks && !(this is ISupportsGameGenie && File.Exists(this.GameGeniePath)),
                         new string[] {desktop.Code + ".desktop"});
+                    break;
+
+                case CopyMode.LinkedSync:
+                    Directory.CreateDirectory(targetDir);
+                    Shared.DirectoryCopy(basePath, relativeTargetDir, true, false, true,
+                        pseudoLinks && !(this is ISupportsGameGenie && File.Exists(this.GameGeniePath)),
+                        new string[] { desktop.Code + ".desktop" });
                     break;
 
                 case CopyMode.Export:

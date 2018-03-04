@@ -247,6 +247,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach(var app in Apps)
                     pre.Add(app.Prefix);
                 Prefixes = pre.Distinct().ToArray();
+                Array.Sort(Prefixes);
             }
 
             foreach (var l in src.ToCharArray())

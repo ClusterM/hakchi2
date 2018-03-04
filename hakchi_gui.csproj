@@ -151,6 +151,12 @@
     <Compile Include="Apps\NesMenuElementBase.cs" />
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\UnknownGame.cs" />
+    <Compile Include="NewCustomGameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewCustomGameForm.Designer.cs">
+      <DependentUpon>NewCustomGameForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectCoreDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1359,6 +1365,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.ro-RO.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewCustomGameForm.resx">
+      <DependentUpon>NewCustomGameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.hu-HU.resx" />
     <EmbeddedResource Include="Properties\Resources.ja-JP.resx" />

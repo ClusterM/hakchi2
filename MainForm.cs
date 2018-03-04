@@ -160,46 +160,11 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                // Trying to autodetect console type
-                var board = Clovershell.ExecuteSimple("cat /etc/clover/boardtype", 500, true);
-                var region = Clovershell.ExecuteSimple("cat /etc/clover/REGION", 500, true);
-                Debug.WriteLine(string.Format("Detected board: {0}", board));
-                Debug.WriteLine(string.Format("Detected region: {0}", region));
-                var c = ConfigIni.ConsoleType;
-
-                switch (board)
-                {
-                    default:
-                    case "dp-nes":
-                    case "dp-hvc":
-                        switch (region)
-                        {
-                            case "EUR_USA":
-                                c = ConsoleType.NES;
-                                break;
-                            case "JPN":
-                                c = ConsoleType.Famicom;
-                                break;
-                        }
-                        break;
-                    case "dp-shvc":
-                        if (region != "JPN") ConfigIni.ExportRegion = region;
-                        switch (region)
-                        {
-                            case "USA":
-                            case "EUR":
-                                c = ConsoleType.SNES;
-                                break;
-                            case "JPN":
-                                c = ConsoleType.SuperFamicom;
-                                break;
-                        }
-                        break;
-                }
-
-                ConfigIni.ConsoleType = c;
                 ConfigIni.CustomFlashed = true; // Just in case of new installation
+
+                var c = WorkerForm.GetRealConsoleType();
                 DetectedConnectedConsole = c;
+                ConfigIni.ConsoleType = c;
 
                 Invoke(new Action(SyncConsoleType));
                 bool canInteract = true;
@@ -1539,15 +1504,7 @@ namespace com.clusterrr.hakchi_gui
                     using (SelectCoreDialog selectCoreDialog = new SelectCoreDialog())
                     {
                         selectCoreDialog.Games.AddRange(unknownApps);
-                        DialogResult result = selectCoreDialog.ShowDialog(this);
-                        if (result == DialogResult.OK)
-                        {
-                            foreach(var app in unknownApps)
-                            {
-                                app.Save();
-                                app.SaveMetadata();
-                            }
-                        }
+                        selectCoreDialog.ShowDialog(this);
                     }
                 }
 
@@ -2765,17 +2722,25 @@ namespace com.clusterrr.hakchi_gui
                 if (selectCoreDialog.Games.Count == 0)
                     return;
 
-                if (selectCoreDialog.ShowDialog(this) == DialogResult.OK)
-                {
-                    // save changes if dialog was exited with "apply" button
-                    foreach (var game in selectCoreDialog.Games)
-                    {
-                        game.Save();
-                        game.SaveMetadata();
-                    }
-                }
+                selectCoreDialog.ShowDialog(this);
             }
             LoadGames();
+        }
+
+        private void addCustomAppToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (NewCustomGameForm customGameForm = new NewCustomGameForm())
+            {
+                if (customGameForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    var item = new ListViewItem(customGameForm.NewApp.Name);
+                    item.Group = lgvGroups[0];
+                    item.Tag = customGameForm.NewApp;
+                    item.Selected = true;
+                    item.Checked = true;
+                    listViewGames.Items.Add(item);
+                }
+            }
         }
     }
 }

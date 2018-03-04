@@ -33,6 +33,7 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addMoreGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addCustomAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.presetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.addPresetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -199,7 +200,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numericUpDownSaveCount = new System.Windows.Forms.NumericUpDown();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
-            this.addCustomAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -226,6 +226,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addMoreGamesToolStripMenuItem,
+            this.addCustomAppToolStripMenuItem,
             this.presetsToolStripMenuItem,
             this.toolStripMenuItem13,
             this.exportGamesToolStripMenuItem,
@@ -233,7 +234,6 @@
             this.searchToolStripMenuItem,
             this.reloadGamesToolStripMenuItem,
             this.toolStripMenuItem12,
-            this.addCustomAppToolStripMenuItem,
             this.resetOriginalGamesToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
@@ -245,6 +245,12 @@
             this.addMoreGamesToolStripMenuItem.Name = "addMoreGamesToolStripMenuItem";
             resources.ApplyResources(this.addMoreGamesToolStripMenuItem, "addMoreGamesToolStripMenuItem");
             this.addMoreGamesToolStripMenuItem.Click += new System.EventHandler(this.buttonAddGames_Click);
+            // 
+            // addCustomAppToolStripMenuItem
+            // 
+            this.addCustomAppToolStripMenuItem.Name = "addCustomAppToolStripMenuItem";
+            resources.ApplyResources(this.addCustomAppToolStripMenuItem, "addCustomAppToolStripMenuItem");
+            this.addCustomAppToolStripMenuItem.Click += new System.EventHandler(this.addCustomAppToolStripMenuItem_Click);
             // 
             // presetsToolStripMenuItem
             // 
@@ -1410,11 +1416,6 @@
             this.groupBoxOptions.Controls.Add(this.labelID);
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
-            // 
-            // addCustomAppToolStripMenuItem
-            // 
-            this.addCustomAppToolStripMenuItem.Name = "addCustomAppToolStripMenuItem";
-            resources.ApplyResources(this.addCustomAppToolStripMenuItem, "addCustomAppToolStripMenuItem");
             // 
             // MainForm
             // 

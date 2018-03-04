@@ -24,11 +24,14 @@ namespace com.clusterrr.hakchi_gui
             {
                 var core = CoreCollection.GetCore(game.Metadata.Core);
                 var filename = Path.GetFileName(game.GameFilePath);
-                if (filename.EndsWith(".7z"))
-                    filename = filename.Substring(0, filename.Length - 3);
-                var item = new ListViewItem(new string[] { game.Name, Path.GetExtension(filename), game.Metadata.System, core == null ? string.Empty : core.Name });
-                item.Tag = game;
-                listViewGames.Items.Add(item);
+                if (!string.IsNullOrEmpty(filename))
+                {
+                    if (filename.EndsWith(".7z"))
+                        filename = filename.Substring(0, filename.Length - 3);
+                    var item = new ListViewItem(new string[] { game.Name, Path.GetExtension(filename), game.Metadata.System, core == null ? string.Empty : core.Name });
+                    item.Tag = game;
+                    listViewGames.Items.Add(item);
+                }
             }
         }
 
@@ -272,6 +275,13 @@ namespace com.clusterrr.hakchi_gui
                     return;
                 if (result == DialogResult.Yes)
                     buttonApply_Click(sender, e);
+            }
+
+            // save game changes
+            foreach (var game in Games)
+            {
+                game.Save();
+                game.SaveMetadata();
             }
 
             DialogResult = DialogResult.OK;
