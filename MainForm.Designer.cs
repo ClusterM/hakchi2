@@ -113,11 +113,8 @@
             this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripSeparator();
             this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.disableBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetDefaultBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.epilepsyProtectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useLinkedSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.saveSettingsToNESMiniNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -200,6 +197,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numericUpDownSaveCount = new System.Windows.Forms.NumericUpDown();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.bootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disableBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetDefaultBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -542,8 +543,8 @@
             this.toolStripMenuItem16,
             this.separateGamesForMultibootToolStripMenuItem,
             this.useExtendedFontToolStripMenuItem,
-            this.bootImageToolStripMenuItem,
             this.epilepsyProtectionToolStripMenuItem,
+            this.useLinkedSyncToolStripMenuItem,
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem,
             this.toolStripMenuItem5,
             this.saveSettingsToNESMiniNowToolStripMenuItem});
@@ -821,39 +822,19 @@
             resources.ApplyResources(this.useExtendedFontToolStripMenuItem, "useExtendedFontToolStripMenuItem");
             this.useExtendedFontToolStripMenuItem.Click += new System.EventHandler(this.useExtendedFontToolStripMenuItem_Click);
             // 
-            // bootImageToolStripMenuItem
-            // 
-            this.bootImageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeBootImageToolStripMenuItem,
-            this.disableBootImageToolStripMenuItem,
-            this.resetDefaultBootImageToolStripMenuItem});
-            this.bootImageToolStripMenuItem.Name = "bootImageToolStripMenuItem";
-            resources.ApplyResources(this.bootImageToolStripMenuItem, "bootImageToolStripMenuItem");
-            // 
-            // changeBootImageToolStripMenuItem
-            // 
-            this.changeBootImageToolStripMenuItem.Name = "changeBootImageToolStripMenuItem";
-            resources.ApplyResources(this.changeBootImageToolStripMenuItem, "changeBootImageToolStripMenuItem");
-            this.changeBootImageToolStripMenuItem.Click += new System.EventHandler(this.changeBootImageToolStripMenuItem_Click);
-            // 
-            // disableBootImageToolStripMenuItem
-            // 
-            this.disableBootImageToolStripMenuItem.Name = "disableBootImageToolStripMenuItem";
-            resources.ApplyResources(this.disableBootImageToolStripMenuItem, "disableBootImageToolStripMenuItem");
-            this.disableBootImageToolStripMenuItem.Click += new System.EventHandler(this.disableBootImageToolStripMenuItem_Click);
-            // 
-            // resetDefaultBootImageToolStripMenuItem
-            // 
-            this.resetDefaultBootImageToolStripMenuItem.Name = "resetDefaultBootImageToolStripMenuItem";
-            resources.ApplyResources(this.resetDefaultBootImageToolStripMenuItem, "resetDefaultBootImageToolStripMenuItem");
-            this.resetDefaultBootImageToolStripMenuItem.Click += new System.EventHandler(this.resetDefaultBootImageToolStripMenuItem_Click);
-            // 
             // epilepsyProtectionToolStripMenuItem
             // 
             this.epilepsyProtectionToolStripMenuItem.CheckOnClick = true;
             this.epilepsyProtectionToolStripMenuItem.Name = "epilepsyProtectionToolStripMenuItem";
             resources.ApplyResources(this.epilepsyProtectionToolStripMenuItem, "epilepsyProtectionToolStripMenuItem");
             this.epilepsyProtectionToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemArmet_Click);
+            // 
+            // useLinkedSyncToolStripMenuItem
+            // 
+            this.useLinkedSyncToolStripMenuItem.CheckOnClick = true;
+            this.useLinkedSyncToolStripMenuItem.Name = "useLinkedSyncToolStripMenuItem";
+            resources.ApplyResources(this.useLinkedSyncToolStripMenuItem, "useLinkedSyncToolStripMenuItem");
+            this.useLinkedSyncToolStripMenuItem.Click += new System.EventHandler(this.useLinkedSyncToolStripMenuItem_Click);
             // 
             // globalCommandLineArgumentsexpertsOnluToolStripMenuItem
             // 
@@ -884,6 +865,7 @@
             this.shellToolStripMenuItem,
             this.openTelnetToolStripMenuItem,
             this.toolStripMenuItem8,
+            this.bootImageToolStripMenuItem,
             this.takeScreenshotToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
@@ -1226,6 +1208,7 @@
             resources.ApplyResources(this.textBoxName, "textBoxName");
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
+            this.textBoxName.Leave += new System.EventHandler(this.textBoxName_Leave);
             // 
             // radioButtonOne
             // 
@@ -1417,6 +1400,33 @@
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
             // 
+            // bootImageToolStripMenuItem
+            // 
+            this.bootImageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeBootImageToolStripMenuItem,
+            this.disableBootImageToolStripMenuItem,
+            this.resetDefaultBootImageToolStripMenuItem});
+            this.bootImageToolStripMenuItem.Name = "bootImageToolStripMenuItem";
+            resources.ApplyResources(this.bootImageToolStripMenuItem, "bootImageToolStripMenuItem");
+            // 
+            // changeBootImageToolStripMenuItem
+            // 
+            this.changeBootImageToolStripMenuItem.Name = "changeBootImageToolStripMenuItem";
+            resources.ApplyResources(this.changeBootImageToolStripMenuItem, "changeBootImageToolStripMenuItem");
+            this.changeBootImageToolStripMenuItem.Click += new System.EventHandler(this.changeBootImageToolStripMenuItem_Click);
+            // 
+            // disableBootImageToolStripMenuItem
+            // 
+            this.disableBootImageToolStripMenuItem.Name = "disableBootImageToolStripMenuItem";
+            resources.ApplyResources(this.disableBootImageToolStripMenuItem, "disableBootImageToolStripMenuItem");
+            this.disableBootImageToolStripMenuItem.Click += new System.EventHandler(this.disableBootImageToolStripMenuItem_Click);
+            // 
+            // resetDefaultBootImageToolStripMenuItem
+            // 
+            this.resetDefaultBootImageToolStripMenuItem.Name = "resetDefaultBootImageToolStripMenuItem";
+            resources.ApplyResources(this.resetDefaultBootImageToolStripMenuItem, "resetDefaultBootImageToolStripMenuItem");
+            this.resetDefaultBootImageToolStripMenuItem.Click += new System.EventHandler(this.resetDefaultBootImageToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1584,10 +1594,6 @@
         private System.Windows.Forms.ToolStripMenuItem dumpNANDBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dumpNANDCPartitionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flashNANDCPartitionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bootImageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changeBootImageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem disableBootImageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem resetDefaultBootImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usePCMPatchWhenAvailableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sFROMToolToolStripMenuItem1;
@@ -1628,6 +1634,11 @@
         private System.Windows.Forms.ToolStripMenuItem positionHiddenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectEmulationCoreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addCustomAppToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem useLinkedSyncToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bootImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeBootImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem disableBootImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetDefaultBootImageToolStripMenuItem;
     }
 }
 

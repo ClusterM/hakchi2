@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.clusterrr.hakchi_gui.Properties;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,7 +40,7 @@ namespace com.clusterrr.hakchi_gui
         {
             listBoxSystem.BeginUpdate();
             listBoxSystem.Items.Clear();
-            listBoxSystem.Items.Add("Unassigned");
+            listBoxSystem.Items.Add(Resources.Unassigned);
             var collection = showAllSystemsCheckBox.Checked || firstSelected == null ? CoreCollection.Systems : CoreCollection.GetSystemsFromExtension(firstSelected.SubItems[1].Text.ToLower()).ToArray();
             foreach (var system in collection)
             {
@@ -87,7 +88,7 @@ namespace com.clusterrr.hakchi_gui
             var system = (string)listBoxSystem.SelectedItem;
             if (system != null)
             {
-                fillCores(system == "Unassigned" ? string.Empty : system);
+                fillCores(system == Resources.Unassigned ? string.Empty : system);
 
                 if (firstSelected != null)
                 {
@@ -234,7 +235,7 @@ namespace com.clusterrr.hakchi_gui
         {
             var core = (CoreCollection.CoreInfo)listBoxCore.SelectedItem;
             string system = (string)listBoxSystem.SelectedItem;
-            if (system == "Unassigned")
+            if (system == Resources.Unassigned)
                 system = string.Empty;
             string newCommand = commandTextBox.Text;
             foreach(ListViewItem item in listViewGames.SelectedItems)
@@ -270,7 +271,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (buttonApply.Enabled)
             {
-                var result = MessageBox.Show("Do you want to apply your pending changes?", "Apply changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3);
+                var result = MessageBox.Show(Resources.ApplyChangesQ, Resources.ApplyChanges, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3);
                 if (result == DialogResult.Cancel)
                     return;
                 if (result == DialogResult.Yes)
@@ -295,7 +296,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void SelectCoreDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (buttonApply.Enabled && DialogResult != DialogResult.OK && MessageBox.Show("Are you sure you want to discard changes?", "Discard changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
+            if (buttonApply.Enabled && DialogResult != DialogResult.OK && MessageBox.Show(Resources.DiscardChangesQ, Resources.DiscardChanges, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
             {
                 e.Cancel = true;
             }

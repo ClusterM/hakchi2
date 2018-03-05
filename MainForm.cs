@@ -113,7 +113,7 @@ namespace com.clusterrr.hakchi_gui
                 LoadLanguages();
                 CoreCollection.Load();
 
-                //listViewGames.ListViewItemSorter = new GamesSorter();
+                listViewGames.ListViewItemSorter = new GamesSorter();
                 listViewGames.DoubleBuffered(true);
 
                 // prepare controls
@@ -173,10 +173,7 @@ namespace com.clusterrr.hakchi_gui
                 if (SystemRequiresReflash())
                 {
                     canInteract = false;
-                    var message = "Your system's custom kernel is out of date and requires a reflash before you can use this program. Would you like to flash the custom kernel now?";
-                    var title = "Kernel out of date";
-
-                    if (BackgroundThreadMessageBox(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (BackgroundThreadMessageBox(Resources.SystemRequiresReflash, Resources.OutdatedKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         canInteract = FlashCustomKernel();
 
@@ -189,10 +186,7 @@ namespace com.clusterrr.hakchi_gui
                 else if (SystemRequiresRootfsUpdate())
                 {
                     canInteract = false;
-                    var message = "Your system's kernel scripts are out of date and it requires a memboot before you can use this program. Would you like to memboot the custom kernel now?";
-                    var title = "Scripts out of date";
-
-                    if (BackgroundThreadMessageBox(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (BackgroundThreadMessageBox(Resources.SystemRequiresRootfsUpdate, Resources.OutdatedScripts, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         canInteract = MembootCustomKernel();
 
@@ -204,10 +198,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else if (SystemEligibleForRootfsUpdate())
                 {
-                    var message = "Your system's kernel scripts are out of date and can be updated. Would you like to update the custom kernel scripts now?";
-                    var title = "Scripts out of date";
-
-                    if (BackgroundThreadMessageBox(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (BackgroundThreadMessageBox(Resources.SystemEligibleForRootfsUpdate, Resources.OutdatedScripts, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         if (MembootCustomKernel())
                         {
@@ -224,8 +215,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else
                 {
-                    var message = "Until you install the necessary updates, you will likely experience errors while attempting to use this program. Please update to receive full compatibility.";
-                    BackgroundThreadMessageBox(message, Resources.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    BackgroundThreadMessageBox(Resources.PleaseUpdate, Resources.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -352,6 +342,7 @@ namespace com.clusterrr.hakchi_gui
             centerBoxArtThumbnailToolStripMenuItem.Checked = ConfigIni.CenterThumbnail;
             separateGamesForMultibootToolStripMenuItem.Checked = ConfigIni.SeparateGameStorage;
             disableHakchi2PopupsToolStripMenuItem.Checked = ConfigIni.DisablePopups;
+            useLinkedSyncToolStripMenuItem.Checked = ConfigIni.SyncLinked;
 
             // sfrom tool
             enableSFROMToolToolStripMenuItem.Checked = ConfigIni.UseSFROMTool;
@@ -494,11 +485,11 @@ namespace com.clusterrr.hakchi_gui
             {
                 // standard groups
                 lgvGroups = new ListViewGroup[5];
-                lgvGroups[0] = new ListViewGroup("New Apps", HorizontalAlignment.Center);
-                lgvGroups[1] = new ListViewGroup("Original Games", HorizontalAlignment.Center);
-                lgvGroups[2] = new ListViewGroup("Custom Games", HorizontalAlignment.Center);
-                lgvGroups[3] = new ListViewGroup("All Games", HorizontalAlignment.Center);
-                lgvGroups[4] = new ListViewGroup("Unknown App", HorizontalAlignment.Center);
+                lgvGroups[0] = new ListViewGroup(Resources.ListCategoryNew, HorizontalAlignment.Center);
+                lgvGroups[1] = new ListViewGroup(Resources.ListCategoryOriginal, HorizontalAlignment.Center);
+                lgvGroups[2] = new ListViewGroup(Resources.ListCategoryCustom, HorizontalAlignment.Center);
+                lgvGroups[3] = new ListViewGroup(Resources.ListCategoryAll, HorizontalAlignment.Center);
+                lgvGroups[4] = new ListViewGroup(Resources.ListCategoryUnknown, HorizontalAlignment.Center);
 
                 // order by app groups
                 lgvAppGroups = new SortedDictionary<string, ListViewGroup>();
@@ -1045,6 +1036,11 @@ namespace com.clusterrr.hakchi_gui
                 selectedItem.Text = game.Name = textBoxName.Text;
                 textBoxSortName.Text = newSortName;
             }
+        }
+
+        private void textBoxName_Leave(object sender, EventArgs e)
+        {
+            listViewGames.Sort();
         }
 
         private void textBoxSortName_TextChanged(object sender, EventArgs e)
@@ -2055,6 +2051,11 @@ namespace com.clusterrr.hakchi_gui
         private void disableHakchi2PopupsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.DisablePopups = disableHakchi2PopupsToolStripMenuItem.Checked;
+        }
+
+        private void useLinkedSyncToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.SyncLinked = useLinkedSyncToolStripMenuItem.Checked;
         }
 
         private void buttonShowGameGenieDatabase_Click(object sender, EventArgs e)

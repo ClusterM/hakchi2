@@ -626,35 +626,17 @@
   <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
     <value>Use extended font</value>
   </data>
-  <data name="changeBootImageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 22</value>
-  </data>
-  <data name="changeBootImageToolStripMenuItem.Text" xml:space="preserve">
-    <value>Change boot splash</value>
-  </data>
-  <data name="disableBootImageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 22</value>
-  </data>
-  <data name="disableBootImageToolStripMenuItem.Text" xml:space="preserve">
-    <value>Disable boot splash</value>
-  </data>
-  <data name="resetDefaultBootImageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 22</value>
-  </data>
-  <data name="resetDefaultBootImageToolStripMenuItem.Text" xml:space="preserve">
-    <value>Reset to default</value>
-  </data>
-  <data name="bootImageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 22</value>
-  </data>
-  <data name="bootImageToolStripMenuItem.Text" xml:space="preserve">
-    <value>Boot splash</value>
-  </data>
   <data name="epilepsyProtectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 22</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
     <value>Disable epilepsy protection</value>
+  </data>
+  <data name="useLinkedSyncToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="useLinkedSyncToolStripMenuItem.Text" xml:space="preserve">
+    <value>Use linked sync (experimental) (recommended)</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 22</value>
@@ -730,6 +712,30 @@
   </data>
   <data name="toolStripMenuItem8.Size" type="System.Drawing.Size, System.Drawing">
     <value>328, 6</value>
+  </data>
+  <data name="changeBootImageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 22</value>
+  </data>
+  <data name="changeBootImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Change boot splash</value>
+  </data>
+  <data name="disableBootImageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 22</value>
+  </data>
+  <data name="disableBootImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Disable boot splash</value>
+  </data>
+  <data name="resetDefaultBootImageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 22</value>
+  </data>
+  <data name="resetDefaultBootImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Reset to default</value>
+  </data>
+  <data name="bootImageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>331, 22</value>
+  </data>
+  <data name="bootImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Boot splash</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>331, 22</value>
@@ -3579,34 +3585,16 @@
   <data name="&gt;&gt;useExtendedFontToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;bootImageToolStripMenuItem.Name" xml:space="preserve">
-    <value>bootImageToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;bootImageToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;changeBootImageToolStripMenuItem.Name" xml:space="preserve">
-    <value>changeBootImageToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;changeBootImageToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;disableBootImageToolStripMenuItem.Name" xml:space="preserve">
-    <value>disableBootImageToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;disableBootImageToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;resetDefaultBootImageToolStripMenuItem.Name" xml:space="preserve">
-    <value>resetDefaultBootImageToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;resetDefaultBootImageToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;epilepsyProtectionToolStripMenuItem.Name" xml:space="preserve">
     <value>epilepsyProtectionToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;epilepsyProtectionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;useLinkedSyncToolStripMenuItem.Name" xml:space="preserve">
+    <value>useLinkedSyncToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;useLinkedSyncToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Name" xml:space="preserve">
@@ -3884,6 +3872,30 @@
   </data>
   <data name="&gt;&gt;timerShowSelected.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bootImageToolStripMenuItem.Name" xml:space="preserve">
+    <value>bootImageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;bootImageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;changeBootImageToolStripMenuItem.Name" xml:space="preserve">
+    <value>changeBootImageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;changeBootImageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;disableBootImageToolStripMenuItem.Name" xml:space="preserve">
+    <value>disableBootImageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;disableBootImageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;resetDefaultBootImageToolStripMenuItem.Name" xml:space="preserve">
+    <value>resetDefaultBootImageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;resetDefaultBootImageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

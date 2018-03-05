@@ -65,6 +65,7 @@ namespace com.clusterrr.hakchi_gui
         public static string TelnetArguments = "";
         public static bool SeparateGameStorage = true;
         public static bool ExportLinked = true;
+        public static bool SyncLinked = false;
         public static string ExportRegion = "";
         public static string MembootUboot = "ubootSD.bin";
         public static HmodListSort hmodListSort = HmodListSort.Category;
@@ -622,6 +623,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "exportlinked":
                                     ExportLinked = !value.ToLower().Equals("false");
                                     break;
+                                case "synclinked":
+                                    SyncLinked = !value.ToLower().Equals("false");
+                                    break;
                                 case "exportregion":
                                     ExportRegion = value;
                                     break;
@@ -709,6 +713,7 @@ namespace com.clusterrr.hakchi_gui
             configLines.Add(string.Format("TelnetArguments={0}", TelnetArguments));
             configLines.Add(string.Format("SeparateGameStorage={0}", SeparateGameStorage));
             configLines.Add(string.Format("ExportLinked={0}", ExportLinked));
+            configLines.Add(string.Format("SyncLinked={0}", SyncLinked));
             configLines.Add(string.Format("ExportRegion={0}", ExportRegion));
             configLines.Add(string.Format("RunCount={0}", RunCount));
             configLines.Add(string.Format("MembootUboot={0}", MembootUboot));

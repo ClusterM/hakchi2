@@ -542,7 +542,13 @@ namespace com.clusterrr.hakchi_gui
                 UnpackRamfs(kernelDumpTemp);
                 var key = File.ReadAllBytes(Path.Combine(ramfsDirectory, "key-file"));
                 if (dumpPath == null)
-                    Directory.Delete(tempDirectory, true);
+                {
+                    try
+                    {
+                        Directory.Delete(tempDirectory, true);
+                    }
+                    catch { }
+                }
                 // I don't want to store keyfile inside my code, so I'll store MD5 of it
                 var keymd5 = System.Security.Cryptography.MD5.Create();
                 var keyhash = BitConverter.ToString(md5.ComputeHash(key)).Replace("-", "").ToLower();
@@ -598,7 +604,9 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress);
 
             if (Directory.Exists(tempDirectory))
-                Directory.Delete(tempDirectory, true);
+            {
+                Shared.DirectoryDeleteInside(tempDirectory);
+            }
             Directory.CreateDirectory(tempDirectory);
 
             byte[] kernel;
@@ -1111,24 +1119,36 @@ namespace com.clusterrr.hakchi_gui
                     return;
                 }
 
+                SetStatus(Resources.AddingGames);
+
                 gameSyncPath = Shared.GetRemoteGameSyncPath();
                 gamesPath = clovershell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
                 rootFsPath = clovershell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
                 squashFsPath = clovershell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
+
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
                 // prepare unit for upload
                 ShowSplashScreen();
 
-                // Games!
-                Dictionary<string, string> originalGames = new Dictionary<string, string>();
-                var stats = new GamesTreeStats();
-                AddMenu(Games, originalGames, stats);
+                // delete non-multiboot path if there are leftovers and we are now using multiboot
+                if (ConfigIni.SeparateGameStorage)
+                {
+                    SetStatus(Resources.CleaningUp);
+                    clovershell.ExecuteSimple("find \"$(hakchi findGameSyncStorage)/\" -maxdepth 1 | grep -vEe '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' | while read f; do rm -rf \"$f\"; done", 0, true);
+                }
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
-                int startProgress = progress;
+                // Games!
+                SetStatus(Resources.BuildingMenu);
+                Dictionary<string, string> originalGames = new Dictionary<string, string>();
+                var stats = new GamesTreeStats();
+                AddMenu(Games, originalGames, stats);
+
+                progress += 35;
+                SetProgress(progress, maxProgress);
 
                 GetMemoryStats();
                 var maxGamesSize = (StorageFree + WrittenGamesSize) - ReservedMemory * 1024 * 1024;
@@ -1141,6 +1161,11 @@ namespace com.clusterrr.hakchi_gui
                         SaveStatesSize / 1024.0 / 1024.0,
                         (StorageUsed - WrittenGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
                 }
+
+                SetStatus(Resources.CalculatingDiff);
+
+                progress += 5;
+                SetProgress(progress, maxProgress);
 
                 // Determine which games need to actually be transferred (differential updates):
                 // Get the list of local files, timestamps, and sizes
@@ -1159,10 +1184,11 @@ namespace com.clusterrr.hakchi_gui
                 DeleteLocalApplicationFilesFromDirectory(localGamesToDelete, tempGamesDirectory);
 
                 // Now transfer whatever games are remaining in the temp directory
+                int startProgress = progress;
                 clovershell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
                 using (var gamesTar = new TarStream(tempGamesDirectory, null, null))
                 {
-                    maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 20 + originalGames.Count() * 2);
+                    maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 55 + originalGames.Count() * 2);
                     SetProgress(progress, maxProgress);
                     
                     if (gamesTar.Length > 0)
@@ -1179,11 +1205,11 @@ namespace com.clusterrr.hakchi_gui
                 }
 
                 // Finally, delete any empty directories we may have left during the differential sync
+                SetStatus(Resources.CleaningUp);
                 clovershell.ExecuteSimple($"for f in $(find \"{gameSyncPath}\" -type d -mindepth 1 -maxdepth 2); do {{ ls -1 \"$f\" | grep -v pixelart | grep -v autoplay " +
                     "| wc -l | { read wc; test $wc -eq 0 && rm -rf \"$f\"; } } ; done", 0);
 
                 SetStatus(Resources.UploadingOriginalGames);
-                // Need to make sure that squashfs if mounted
                 startProgress = progress;
                 foreach (var originalCode in originalGames.Keys)
                 {
@@ -1294,7 +1320,7 @@ namespace com.clusterrr.hakchi_gui
             if (Games == null || Games.Count == 0)
                 throw new Exception("there are no games");
 
-            int progress = 0, maxProgress = 400;
+            int progress = 0, maxProgress = 50;
 
             SetStatus(Resources.BuildingFolders);
             if (FoldersMode == NesMenuCollection.SplitStyle.Custom)
@@ -1311,16 +1337,9 @@ namespace com.clusterrr.hakchi_gui
 
             progress += 5;
             SetProgress(progress, maxProgress);
-            SetStatus(Resources.BuildingFolders);
-
-            relativeGamesPath = "/media/" + NesApplication.GamesDirectory.Substring(3).Replace("\\", "/");
-
-            progress += 5;
-            SetProgress(progress, maxProgress);
 
             // export games directory!
             tempGamesDirectory = exportDirectory;
-            Directory.CreateDirectory(tempGamesDirectory);
             bool directoryNotEmpty = (Directory.GetDirectories(tempGamesDirectory).Length > 0);
             if (directoryNotEmpty && MessageBoxFromThread(this, string.Format(Resources.PermanentlyDeleteQ, tempGamesDirectory), Resources.FolderNotEmpty, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, false) == DialogResult.Yes)
             {
@@ -1345,7 +1364,7 @@ namespace com.clusterrr.hakchi_gui
             Dictionary<string, string> originalGames = new Dictionary<string, string>();
             var stats = new GamesTreeStats();
             AddMenu(Games, originalGames, stats);
-            progress += 5;
+            progress += 40;
             SetProgress(progress, maxProgress);
 
             // show resulting games directory
@@ -1450,6 +1469,7 @@ namespace com.clusterrr.hakchi_gui
                 int hmodCounter = 0;
                 if (hmodsInstall != null && hmodsInstall.Count() > 0)
                 {
+                    SetStatus(Resources.InstallingMods);
                     foreach (var hmod in hmodsInstall)
                     {
                         var modName = hmod + ".hmod";
@@ -1464,7 +1484,6 @@ namespace com.clusterrr.hakchi_gui
                                 {
                                     if (hmodTar.Length > 0)
                                     {
-                                        SetStatus(Resources.InstallingMods);
                                         MainForm.Clovershell.Execute($"tar -xvC '{hmodHakchiPath}'", hmodTar, null, null, 0, true);
                                     }
                                 }
@@ -1483,6 +1502,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 if (hmodsUninstall != null && hmodsUninstall.Count() > 0)
                 {
+                    SetStatus(Resources.UninstallingMods);
                     MainForm.Clovershell.ExecuteSimple("mkdir -p /var/lib/hakchi/transfer/", 2000, true);
                     MainForm.Clovershell.Execute("cat > /var/lib/hakchi/transfer/uninstall", Shared.GenerateStreamFromString(String.Join("\n", hmodsUninstall.ToArray())), null, null, 0, true);
                 }
@@ -1496,11 +1516,13 @@ namespace com.clusterrr.hakchi_gui
                     }
                     catch { }
 
+                    SetStatus(Resources.Done);
                     SetProgress(1, 1);
                 }
             }
             else
             {
+                SetStatus(Resources.InstallingMods);
                 Memboot();
             }
         }
@@ -1519,7 +1541,9 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress > 0 ? maxProgress : 1000);
 
             if (Directory.Exists(tempDirectory))
-                Directory.Delete(tempDirectory, true);
+            {
+                Shared.DirectoryDeleteInside(tempDirectory);
+            }
             Directory.CreateDirectory(tempDirectory);
 
             byte[] kernel;
@@ -1578,7 +1602,8 @@ namespace com.clusterrr.hakchi_gui
                     break;
             }
 #if !DEBUG
-            if (Directory.Exists(tempDirectory)){
+            if (Directory.Exists(tempDirectory))
+            {
                 try
                 {
                     Directory.Delete(tempDirectory, true);
@@ -1592,6 +1617,10 @@ namespace com.clusterrr.hakchi_gui
 
         private void UnpackRamfs(string kernelPath = null)
         {
+            if (Directory.Exists(tempDirectory))
+            {
+                Shared.DirectoryDeleteInside(tempDirectory);
+            }
             Directory.CreateDirectory(tempDirectory);
             Directory.CreateDirectory(kernelDirectory);
             Directory.CreateDirectory(ramfsDirectory);
@@ -1623,7 +1652,6 @@ namespace com.clusterrr.hakchi_gui
                 if (!ExecuteTool("lzop.exe", string.Format("-d \"{0}\" -o \"{1}\"", ramdiskPath, initramfs_cpio)))
                     throw new Exception("Can't unpack ramdisk");
             }
-            
 
             ExecuteTool("cpio.exe", string.Format("-id --no-preserve-owner --quiet -I \"{0}\"",
                @"..\initramfs.cpio"), ramfsDirectory);
@@ -1637,7 +1665,9 @@ namespace com.clusterrr.hakchi_gui
             if (!File.Exists(Path.Combine(ramfsDirectory, "init")))
                 UnpackRamfs(kernelPath);
             if (Directory.Exists(hakchiDirectory))
-                Directory.Delete(hakchiDirectory, true);
+            {
+                Shared.DirectoryDeleteInside(hakchiDirectory);
+            }
             Shared.DirectoryCopy(Path.Combine(modsDirectory, Mod), ramfsDirectory, true, false, true, false);
 
             if (!string.IsNullOrEmpty(ModExtraFilesPath) && Directory.Exists(ModExtraFilesPath))
@@ -1759,8 +1789,6 @@ namespace com.clusterrr.hakchi_gui
             int menuIndex = stats.allMenus.IndexOf(menuCollection);
             string targetDirectory = Path.Combine(tempGamesDirectory, string.Format("{0:D3}", menuIndex));
 
-            //string gameCache = Path.Combine(Program.BaseDirectoryExternal, "games_cache");
-            //string relativeOriginalGamesPath = $"/media/{NesApplication.OriginalGamesCacheDirectory.Substring(3).Replace("\\", "/")}";
             NesApplication.GamesHakchiSyncPath = Shared.GetRemoteGameSyncPath();
             foreach (var element in menuCollection)
             {
@@ -1781,7 +1809,10 @@ namespace com.clusterrr.hakchi_gui
                     }
                     else
                     {   // sync/upload to snes mini
-                        gameCopy = game.CopyTo(targetDirectory, NesApplication.CopyMode.LinkedSync, true);
+                        gameCopy = game.CopyTo(
+                            targetDirectory,
+                            ConfigIni.SyncLinked ? NesApplication.CopyMode.LinkedSync : NesApplication.CopyMode.Sync,
+                            true);
                     }
                     stats.TotalSize += gameSize;
                     stats.TransferSize += gameSize;
@@ -1830,16 +1861,9 @@ namespace com.clusterrr.hakchi_gui
                     folder.ChildIndex = stats.allMenus.IndexOf(folder.ChildMenuCollection);
                     var folderDir = Path.Combine(targetDirectory, folder.Code);
                     long folderSize;
-                    //if (exportGames)
-                    //{
-                    //    folderSize = folder.Save(folderDir, NesApplication.GamesHakchiPath, NesApplication.GamesHakchiProfilePath);
-                    //}
-                    //else
-                    //{
-                        folder.SetOutputPath(folderDir);
-                        folder.Save();
-                        folderSize = folder.Size();
-                    //}
+                    folder.SetOutputPath(folderDir);
+                    folder.Save();
+                    folderSize = folder.Size();
                     stats.TotalSize += folderSize;
                     stats.TransferSize += folderSize;
                 }
@@ -1903,7 +1927,6 @@ namespace com.clusterrr.hakchi_gui
             return pages * page_size;
         }
 
-        bool YesForAllPatches = false;
         int addedGamesCount = 0; // on totalFiles
         public int AddGames(IEnumerable<string> files, Form parentForm = null)
         {

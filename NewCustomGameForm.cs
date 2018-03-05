@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.clusterrr.hakchi_gui.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -55,12 +56,12 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else
                 {
-                    MessageBox.Show(this, "App code already exists, please use a different code!", "Duplicate app code", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show(this, Resources.CustomGameCodeAlreadyExists, Resources.NewCustomGame, MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                 }
             }
             else
             {
-                MessageBox.Show(this, "You need to enter a valid app code and name!", "Values required", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                MessageBox.Show(this, Resources.CustomGameNeedValidData, Resources.NewCustomGame, MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
 

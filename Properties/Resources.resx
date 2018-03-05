@@ -849,4 +849,64 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   <data name="retroarch_systems_blacklist" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\retroarch-systems-blacklist.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="ApplyChanges" xml:space="preserve">
+    <value>Apply changes</value>
+  </data>
+  <data name="ApplyChangesQ" xml:space="preserve">
+    <value>Do you want to apply your changes?</value>
+  </data>
+  <data name="CustomGameCodeAlreadyExists" xml:space="preserve">
+    <value>App code already exists, please use a different code!</value>
+  </data>
+  <data name="CustomGameNeedValidData" xml:space="preserve">
+    <value>You need to enter a valid app code and name!</value>
+  </data>
+  <data name="DiscardChanges" xml:space="preserve">
+    <value>Discard changes</value>
+  </data>
+  <data name="DiscardChangesQ" xml:space="preserve">
+    <value>Are you sure you want to discard your changes?</value>
+  </data>
+  <data name="ListCategoryAll" xml:space="preserve">
+    <value>All Games</value>
+  </data>
+  <data name="ListCategoryCustom" xml:space="preserve">
+    <value>Custom Games</value>
+  </data>
+  <data name="ListCategoryNew" xml:space="preserve">
+    <value>New Apps</value>
+  </data>
+  <data name="ListCategoryOriginal" xml:space="preserve">
+    <value>Original Games</value>
+  </data>
+  <data name="ListCategoryUnknown" xml:space="preserve">
+    <value>Unknown Apps</value>
+  </data>
+  <data name="NewCustomGame" xml:space="preserve">
+    <value>New custom game</value>
+  </data>
+  <data name="OutdatedKernel" xml:space="preserve">
+    <value>Kernel out of date</value>
+  </data>
+  <data name="OutdatedScripts" xml:space="preserve">
+    <value>Scripts out of date</value>
+  </data>
+  <data name="PleaseUpdate" xml:space="preserve">
+    <value>Until you install the necessary updates, you will likely experience errors while attempting to use this program. Please update to receive full compatibility.</value>
+  </data>
+  <data name="SystemEligibleForRootfsUpdate" xml:space="preserve">
+    <value>Your system's kernel scripts are out of date and can be updated. Would you like to update the custom kernel scripts now?</value>
+  </data>
+  <data name="SystemRequiresReflash" xml:space="preserve">
+    <value>Your system's custom kernel is out of date and requires a reflash before you can use this program. Would you like to flash the custom kernel now?</value>
+  </data>
+  <data name="SystemRequiresRootfsUpdate" xml:space="preserve">
+    <value>Your system's kernel scripts are out of date and it requires a memboot before you can use this program. Would you like to memboot the custom kernel now?</value>
+  </data>
+  <data name="Unassigned" xml:space="preserve">
+    <value>Unassigned</value>
+  </data>
+  <data name="CalculatingDiff" xml:space="preserve">
+    <value>Calculating differential...</value>
+  </data>
 </root>
