@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="ApplicationFileInfo.cs" />
     <Compile Include="Apps\AppTypeCollection.cs" />
+    <Compile Include="Apps\CoreCommands.cs" />
     <Compile Include="Apps\DesktopFile.cs" />
     <Compile Include="Apps\ICloverAutofill.cs" />
     <Compile Include="Apps\ISupportsGameGenie.cs" />
@@ -703,9 +704,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="data\libretro_cores\fbalpha2012_neogeo_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\fbalpha_libretro.info">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="data\libretro_cores\fb_alpha_libretro.info">

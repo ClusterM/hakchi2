@@ -128,6 +128,10 @@
             this.shellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openTelnetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
+            this.bootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disableBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetDefaultBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.takeScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -197,10 +201,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numericUpDownSaveCount = new System.Windows.Forms.NumericUpDown();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
-            this.bootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.disableBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetDefaultBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -543,8 +543,8 @@
             this.toolStripMenuItem16,
             this.separateGamesForMultibootToolStripMenuItem,
             this.useExtendedFontToolStripMenuItem,
-            this.epilepsyProtectionToolStripMenuItem,
             this.useLinkedSyncToolStripMenuItem,
+            this.epilepsyProtectionToolStripMenuItem,
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem,
             this.toolStripMenuItem5,
             this.saveSettingsToNESMiniNowToolStripMenuItem});
@@ -922,6 +922,33 @@
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
             resources.ApplyResources(this.toolStripMenuItem8, "toolStripMenuItem8");
+            // 
+            // bootImageToolStripMenuItem
+            // 
+            this.bootImageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeBootImageToolStripMenuItem,
+            this.disableBootImageToolStripMenuItem,
+            this.resetDefaultBootImageToolStripMenuItem});
+            this.bootImageToolStripMenuItem.Name = "bootImageToolStripMenuItem";
+            resources.ApplyResources(this.bootImageToolStripMenuItem, "bootImageToolStripMenuItem");
+            // 
+            // changeBootImageToolStripMenuItem
+            // 
+            this.changeBootImageToolStripMenuItem.Name = "changeBootImageToolStripMenuItem";
+            resources.ApplyResources(this.changeBootImageToolStripMenuItem, "changeBootImageToolStripMenuItem");
+            this.changeBootImageToolStripMenuItem.Click += new System.EventHandler(this.changeBootImageToolStripMenuItem_Click);
+            // 
+            // disableBootImageToolStripMenuItem
+            // 
+            this.disableBootImageToolStripMenuItem.Name = "disableBootImageToolStripMenuItem";
+            resources.ApplyResources(this.disableBootImageToolStripMenuItem, "disableBootImageToolStripMenuItem");
+            this.disableBootImageToolStripMenuItem.Click += new System.EventHandler(this.disableBootImageToolStripMenuItem_Click);
+            // 
+            // resetDefaultBootImageToolStripMenuItem
+            // 
+            this.resetDefaultBootImageToolStripMenuItem.Name = "resetDefaultBootImageToolStripMenuItem";
+            resources.ApplyResources(this.resetDefaultBootImageToolStripMenuItem, "resetDefaultBootImageToolStripMenuItem");
+            this.resetDefaultBootImageToolStripMenuItem.Click += new System.EventHandler(this.resetDefaultBootImageToolStripMenuItem_Click);
             // 
             // takeScreenshotToolStripMenuItem
             // 
@@ -1399,33 +1426,6 @@
             this.groupBoxOptions.Controls.Add(this.labelID);
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
-            // 
-            // bootImageToolStripMenuItem
-            // 
-            this.bootImageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeBootImageToolStripMenuItem,
-            this.disableBootImageToolStripMenuItem,
-            this.resetDefaultBootImageToolStripMenuItem});
-            this.bootImageToolStripMenuItem.Name = "bootImageToolStripMenuItem";
-            resources.ApplyResources(this.bootImageToolStripMenuItem, "bootImageToolStripMenuItem");
-            // 
-            // changeBootImageToolStripMenuItem
-            // 
-            this.changeBootImageToolStripMenuItem.Name = "changeBootImageToolStripMenuItem";
-            resources.ApplyResources(this.changeBootImageToolStripMenuItem, "changeBootImageToolStripMenuItem");
-            this.changeBootImageToolStripMenuItem.Click += new System.EventHandler(this.changeBootImageToolStripMenuItem_Click);
-            // 
-            // disableBootImageToolStripMenuItem
-            // 
-            this.disableBootImageToolStripMenuItem.Name = "disableBootImageToolStripMenuItem";
-            resources.ApplyResources(this.disableBootImageToolStripMenuItem, "disableBootImageToolStripMenuItem");
-            this.disableBootImageToolStripMenuItem.Click += new System.EventHandler(this.disableBootImageToolStripMenuItem_Click);
-            // 
-            // resetDefaultBootImageToolStripMenuItem
-            // 
-            this.resetDefaultBootImageToolStripMenuItem.Name = "resetDefaultBootImageToolStripMenuItem";
-            resources.ApplyResources(this.resetDefaultBootImageToolStripMenuItem, "resetDefaultBootImageToolStripMenuItem");
-            this.resetDefaultBootImageToolStripMenuItem.Click += new System.EventHandler(this.resetDefaultBootImageToolStripMenuItem_Click);
             // 
             // MainForm
             // 

@@ -39,7 +39,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     switch (Kind) {
                         case CoreKind.Libretro:
-                            return $"/bin/{Bin}";
+                            return $"/bin/" + CoreCommands.GetCommand(Bin);
                         case CoreKind.BuiltIn:
                             return $"/bin/{Bin}";
                     }

@@ -113,6 +113,7 @@ namespace com.clusterrr.hakchi_gui
                 LoadLanguages();
                 CoreCollection.Load();
 
+                // init list view control
                 listViewGames.ListViewItemSorter = new GamesSorter();
                 listViewGames.DoubleBuffered(true);
 
@@ -134,11 +135,15 @@ namespace com.clusterrr.hakchi_gui
                 MessageBoxManager.Cancel = Resources.NoForAll;
                 MessageBoxManager.Abort = Resources.YesForAll;
 
-                var extensions = new List<string>() { "*.new", "*.unf", "*.unif", "*.fds", "*.desktop", "*.zip", "*.7z", "*.rar" };
-                foreach (var ext in CoreCollection.Extensions)
-                    if (!extensions.Contains("*" + ext))
-                        extensions.Add("*" + ext);
-                openFileDialogNes.Filter = Resources.GamesAndApps + "|" + string.Join(";", extensions.ToArray()) + "|" + Resources.AllFiles + "|*.*";
+                // supported extensions in add games dialog
+                string extensions = string.Empty;
+                extensions += "All Files|*.*|Archive Files|*.zip;*.7z;*.rar|";
+                foreach(var system in CoreCollection.Systems)
+                {
+                    extensions += system + "|*" + string.Join(";*", CoreCollection.GetExtensionsFromSystem(system).ToArray()) + "|";
+                }
+                openFileDialogNes.Filter = extensions.Trim('|');
+
 
                 // Loading games database in background
                 new Thread(NesGame.LoadCache).Start();

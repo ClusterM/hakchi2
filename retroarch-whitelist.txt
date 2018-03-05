@@ -27,9 +27,6 @@ handy
 imageviewer
 lutro
 mame2000
-mame2003_standard
-mame2003_ffight
-mame2003_sys32
 mame2010
 mame2014
 mednafen_ngp
@@ -55,13 +52,7 @@ prosystem
 px68k
 fceumm
 nestopia
-fceumm
-nestopia
-fceumm
-nestopia
-fceumm
 ffmpeg
-nestopia
 snes9x2002
 snes9x2005
 snes9x2010

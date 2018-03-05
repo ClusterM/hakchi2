@@ -438,7 +438,7 @@ namespace com.clusterrr.clovershell
                     if (res != ErrorCode.Ok)
                     {
                         if (repeats >= 10) break;
-                        Debug.WriteLine("write error: " + res);
+                        //Debug.WriteLine("write error: " + res);
                         repeats++;
                         Thread.Sleep(100);
                     }
