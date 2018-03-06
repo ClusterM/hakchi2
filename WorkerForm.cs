@@ -1001,12 +1001,12 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static MainForm.ConsoleType GetRealConsoleType() // Retreives real console type
+        public static MainForm.ConsoleType GetConsoleType(bool realType = false)
         {
             var clovershell = MainForm.Clovershell;
             var customFirmwareLoaded = clovershell.ExecuteSimple("hakchi currentFirmware") != "_nand_";
             string board, region;
-            if (!customFirmwareLoaded)
+            if (!customFirmwareLoaded || !realType)
             {
                 board = clovershell.ExecuteSimple("cat /etc/clover/boardtype", 3000, true);
                 region = clovershell.ExecuteSimple("cat /etc/clover/REGION", 3000, true);

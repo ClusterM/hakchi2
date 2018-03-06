@@ -167,7 +167,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 ConfigIni.CustomFlashed = true; // Just in case of new installation
 
-                var c = WorkerForm.GetRealConsoleType();
+                var c = WorkerForm.GetConsoleType();
                 DetectedConnectedConsole = c;
                 ConfigIni.ConsoleType = c;
 
@@ -501,6 +501,13 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var system in CoreCollection.Systems)
                 {
                     lgvAppGroups[system] = new ListViewGroup(system, HorizontalAlignment.Center);
+                }
+                foreach (var appInfo in AppTypeCollection.Apps)
+                {
+                    if (!lgvAppGroups.ContainsKey(appInfo.Name))
+                    {
+                        lgvAppGroups[appInfo.Name] = new ListViewGroup(appInfo.Name, HorizontalAlignment.Center);
+                    }
                 }
 
                 // custom generated on the fly groups

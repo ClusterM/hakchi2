@@ -235,6 +235,28 @@ namespace com.clusterrr.hakchi_gui
                 DefaultCover = Resources.blank_neogeo,
                 GoogleSuffix = "neo geo"
             },
+            new AppInfo
+            {
+                Name = "SquashFS",
+                Class = typeof(UnknownGame),
+                DefaultCore = string.Empty,
+                LegacyApps = new string[] {"/bin/hsqs" },
+                Extensions = new string[] {".hsqs" },
+                Prefix = 'Z',
+                DefaultCover = Resources.blank_dos,
+                GoogleSuffix = "hsqs"
+            },
+            new AppInfo
+            {
+                Name = "Shell Script",
+                Class = typeof(UnknownGame),
+                DefaultCore = string.Empty,
+                LegacyApps = new string[] {"/bin/sh" },
+                Extensions = new string[] {".sh" },
+                Prefix = 'Z',
+                DefaultCover = Resources.blank_dos,
+                GoogleSuffix = "sh"
+            },
         };
 
         private static char[] Prefixes = null;
