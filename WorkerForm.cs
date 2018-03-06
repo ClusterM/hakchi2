@@ -2059,16 +2059,14 @@ namespace com.clusterrr.hakchi_gui
             int i = 0;
             foreach (NesApplication game in Games)
             {
-                uint crc32 = 0;
+                uint crc32 = game.Metadata.OriginalCrc32;
                 string gameFile = game.GameFilePath;
-                if (!game.IsOriginalGame && gameFile != null && File.Exists(gameFile))
+                if (crc32 == 0 && !game.IsOriginalGame && gameFile != null && File.Exists(gameFile))
                 {
                     bool wasCompressed = game.DecompressPossible().Count() > 0;
                     if (wasCompressed)
                         game.Decompress();
-                    gameFile = game.GameFilePath;
-                    byte[] rawRomData = File.ReadAllBytes(gameFile);
-                    crc32 = Shared.CRC32(rawRomData);
+                    crc32 = Shared.CRC32(File.OpenRead(gameFile));
                     if (wasCompressed)
                         game.Compress();
                 }

@@ -685,52 +685,59 @@ namespace com.clusterrr.hakchi_gui
 
             Directory.CreateDirectory(artDirectory);
 
-            // first test for crc32 match (most precise)
-            if (crc32 != 0)
+            try
             {
-                covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
-                if (covers.Length > 0 && imageExtensions.Contains(Path.GetExtension(covers[0])))
+                // first test for crc32 match (most precise)
+                if (crc32 != 0)
                 {
-                    SetImageFile(covers[0], ConfigIni.CompressCover);
-                    return true;
-                }
-            }
-
-            // test presence of image file alongside the source file, if inputFileName is fully qualified
-            if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(Path.GetDirectoryName(inputFileName)))
-            {
-                foreach (var ext in imageExtensions)
-                {
-                    var imagePath = Path.Combine(Path.GetDirectoryName(inputFileName), name + ext);
-                    if (File.Exists(imagePath))
+                    covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
+                    if (covers.Length > 0 && imageExtensions.Contains(Path.GetExtension(covers[0])))
                     {
-                        SetImageFile(imagePath, ConfigIni.CompressCover);
+                        SetImageFile(covers[0], ConfigIni.CompressCover);
+                        return true;
+                    }
+                }
+
+                // test presence of image file alongside the source file, if inputFileName is fully qualified
+                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(Path.GetDirectoryName(inputFileName)))
+                {
+                    foreach (var ext in imageExtensions)
+                    {
+                        var imagePath = Path.Combine(Path.GetDirectoryName(inputFileName), name + ext);
+                        if (File.Exists(imagePath))
+                        {
+                            SetImageFile(imagePath, ConfigIni.CompressCover);
+                            return true;
+                        }
+                    }
+                }
+
+                // first fuzzy search on inputFileName
+                covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
+                if (!string.IsNullOrEmpty(name))
+                {
+                    string imageFile = FuzzyCoverSearch(name, covers);
+                    if (!string.IsNullOrEmpty(imageFile))
+                    {
+                        SetImageFile(imageFile, ConfigIni.CompressCover);
+                        return true;
+                    }
+                }
+
+                // second fuzzy search on alternateTitle
+                if (!string.IsNullOrEmpty(alternateTitle))
+                {
+                    string imageFile = FuzzyCoverSearch(alternateTitle, covers);
+                    if (!string.IsNullOrEmpty(imageFile))
+                    {
+                        SetImageFile(imageFile, ConfigIni.CompressCover);
                         return true;
                     }
                 }
             }
-
-            // first fuzzy search on inputFileName
-            covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
-            if (!string.IsNullOrEmpty(name))
+            catch(Exception ex)
             {
-                string imageFile = FuzzyCoverSearch(name, covers);
-                if (!string.IsNullOrEmpty(imageFile))
-                {
-                    SetImageFile(imageFile, ConfigIni.CompressCover);
-                    return true;
-                }
-            }
-
-            // second fuzzy search on alternateTitle
-            if (!string.IsNullOrEmpty(alternateTitle))
-            {
-                string imageFile = FuzzyCoverSearch(alternateTitle, covers);
-                if (!string.IsNullOrEmpty(imageFile))
-                {
-                    SetImageFile(imageFile, ConfigIni.CompressCover);
-                    return true;
-                }
+                Debug.WriteLine(ex.Message + ex.StackTrace);
             }
 
             // failed to find a cover, using default cover if provided
