@@ -3,6 +3,7 @@ using com.clusterrr.util;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -23,6 +24,51 @@ namespace com.clusterrr.hakchi_gui
                 bmp = new Bitmap(img);
             }
             return bmp;
+        }
+
+        public static Bitmap ResizeImage(Image inImage, PixelFormat? pixelFormat, int targetWidth, int targetHeight, bool upscale, bool keepProportions, bool expandWidth, bool expandHeight)
+        {
+            int X, Y;
+            if (!upscale && inImage.Width <= targetWidth && inImage.Height <= targetHeight)
+            {
+                X = inImage.Width;
+                Y = inImage.Height;
+            }
+            else if (!keepProportions)
+            {
+                X = targetWidth;
+                Y = targetHeight;
+            }
+            else if ((double)inImage.Width / (double)inImage.Height > (double)targetWidth / (double)targetHeight)
+            {
+                X = targetWidth;
+                Y = (int)Math.Round((double)targetWidth * (double)inImage.Height / (double)inImage.Width);
+                if (Y % 2 == 1) ++Y;
+            }
+            else
+            {
+                X = (int)Math.Round((double)targetHeight * (double)inImage.Width / (double)inImage.Height);
+                if (X % 2 == 1) ++X;
+                Y = targetHeight;
+            }
+
+            Bitmap outImage = pixelFormat == null ?
+                new Bitmap(expandWidth ? targetWidth : X, expandHeight ? targetHeight : Y) :
+                new Bitmap(expandWidth ? targetWidth : X, expandHeight ? targetHeight : Y, (PixelFormat)pixelFormat);
+            var outRect = new Rectangle((int)((double)(outImage.Width - X) / 2), (int)((double)(outImage.Height - Y) / 2), X, Y);
+            using (Graphics gr = Graphics.FromImage(outImage))
+            {
+                gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                gr.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                using (ImageAttributes ia = new ImageAttributes())
+                {
+                    ia.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY); // Fix first line and column alpha shit
+                    gr.DrawImage(inImage, outRect, 0, 0, inImage.Width, inImage.Height, GraphicsUnit.Pixel, ia);
+                }
+                gr.Flush();
+            }
+            return outImage;
         }
 
         public static uint CRC32(byte[] data)
@@ -123,7 +169,6 @@ namespace com.clusterrr.hakchi_gui
         
         public static bool isFirstRun()
         {
-
             if (AppVersion > (new Version(Settings.Default.LastNonPortableVersion)))
             {
                 Settings.Default.LastNonPortableVersion = AppVersion.ToString();

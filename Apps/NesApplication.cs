@@ -712,6 +712,10 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
 
+                // if a system named subdirectory exists, use it
+                if (!string.IsNullOrEmpty(Metadata.System) && Directory.Exists(Path.Combine(artDirectory, Metadata.System)))
+                    artDirectory = Path.Combine(artDirectory, Metadata.System);
+
                 // first fuzzy search on inputFileName
                 covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
                 if (!string.IsNullOrEmpty(name))

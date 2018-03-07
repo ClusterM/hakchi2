@@ -164,6 +164,12 @@
     <Compile Include="SelectCoreDialog.Designer.cs">
       <DependentUpon>SelectCoreDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectSystemDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectSystemDialog.Designer.cs">
+      <DependentUpon>SelectSystemDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="SfromToolWrapper.cs" />
     <Compile Include="ExportGamesDialog.cs">
       <SubType>Form</SubType>
@@ -2298,6 +2304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectIconForm.ru-RU.resx">
       <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectSystemDialog.resx">
+      <DependentUpon>SelectSystemDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SnesPresetEditor.resx">
       <DependentUpon>SnesPresetEditor.cs</DependentUpon>

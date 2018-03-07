@@ -137,50 +137,16 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        protected static void ProcessImage(Image inImage, string outPath, int targetWidth, int targetHeight, bool enforceHeight, bool upscale, bool quantize)
+        protected static void ProcessImage(Image inImage, string outPath, int targetWidth, int targetHeight, bool expandHeight, bool upscale, bool quantize)
         {
-            int X, Y;
-            if (!upscale && inImage.Width <= targetWidth && inImage.Height <= targetHeight)
-            {
-                X = inImage.Width;
-                Y = inImage.Height;
-            }
-            else if ((double)inImage.Width / (double)inImage.Height > (double)targetWidth / (double)targetHeight)
-            {
-                X = targetWidth;
-                Y = (int)Math.Round((double)targetWidth * (double)inImage.Height / (double)inImage.Width);
-                if (Y % 2 == 1) ++Y;
-            }
-            else
-            {
-                X = (int)Math.Round((double)targetHeight * (double)inImage.Width / (double)inImage.Height);
-                if (X % 2 == 1) ++X;
-                Y = targetHeight;
-            }
-
-            Bitmap outImage = new Bitmap(X, enforceHeight ? targetHeight : Y);
-            Rectangle outRect = (enforceHeight && Y < targetHeight) ?
-                new Rectangle(0, (int)((double)(targetHeight - Y) / 2), outImage.Width, Y) :
-                new Rectangle(0, 0, outImage.Width, outImage.Height);
-            using (Graphics gr = Graphics.FromImage(outImage))
-            {
-                gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                gr.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                using (ImageAttributes ia = new ImageAttributes())
-                {
-                    ia.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY); // Fix first line and column alpha shit
-                    gr.DrawImage(inImage, outRect, 0, 0, inImage.Width, inImage.Height, GraphicsUnit.Pixel, ia);
-                }
-                gr.Flush();
-            }
+            var outImage = Shared.ResizeImage(inImage, null, targetWidth, targetHeight, upscale, true, false, expandHeight);
             if (quantize)
                 Quantize(ref outImage);
             outImage.Save(outPath, ImageFormat.Png);
             outImage.Dispose();
         }
 
-        protected static void ProcessImageFile(string inPath, string outPath, int targetWidth, int targetHeight, bool enforceHeight, bool upscale, bool quantize)
+        protected static void ProcessImageFile(string inPath, string outPath, int targetWidth, int targetHeight, bool expandHeight, bool upscale, bool quantize)
         {
             if (String.IsNullOrEmpty(inPath) || !File.Exists(inPath)) // failsafe
                 throw new FileNotFoundException($"Image file \"{inPath}\" doesn't exist.");
@@ -192,7 +158,7 @@ namespace com.clusterrr.hakchi_gui
             if (Path.GetExtension(inPath).ToLower() == ".png")
             {
                 // if file is exactly the right aspect ratio, copy it
-                if (!quantize && (!enforceHeight || inImage.Height == targetHeight) &&
+                if (!quantize && (!expandHeight || inImage.Height == targetHeight) &&
                     ((inImage.Height == targetHeight && inImage.Width <= targetWidth) ||
                      (inImage.Width == targetWidth && inImage.Height <= targetHeight)))
                 {
@@ -203,7 +169,7 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // any other case, fully process image
-            ProcessImage(inImage, outPath, targetWidth, targetHeight, enforceHeight, upscale, quantize);
+            ProcessImage(inImage, outPath, targetWidth, targetHeight, expandHeight, upscale, quantize);
         }
 
         protected void SetImage(Image img, bool EightBitCompression = false)

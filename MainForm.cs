@@ -2639,23 +2639,31 @@ namespace com.clusterrr.hakchi_gui
                 {
                     using (OpenFileDialog ofdPng = new OpenFileDialog())
                     {
-                        ofdPng.Filter = "PNG files (*.png)|*.png";
+                        ofdPng.Filter = "Image files|*.bmp;*.gif;*.jpg;*.png;*.tif";
                         if (ofdPng.ShowDialog(this) != DialogResult.OK) return;
 
-                        using (Image image = Image.FromFile(ofdPng.FileName))
+                        string imageFile = ofdPng.FileName;
+                        using (Image image = Image.FromFile(imageFile))
                         {
-                            if (image.Height != 720 || image.Width != 1280)
+                            if (Path.GetExtension(imageFile) != ".png" || image.Height != 720 || image.Width != 1280)
                             {
-                                MessageBox.Show(this, String.Format(Resources.InvalidImageResolution, 1280, 720), Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
+                                var outImage = Shared.ResizeImage(image, PixelFormat.Format24bppRgb, 1280, 720, true, false, true, true);
+                                imageFile = Shared.PathCombine(Path.GetTempPath(), "hakchi-temp", "tempBootImage.png");
+                                try
+                                {
+                                    Directory.CreateDirectory(Path.GetDirectoryName(imageFile));
+                                    File.Delete(imageFile);
+                                }
+                                catch { }
+                                outImage.Save(imageFile, ImageFormat.Png);
                             }
                         }
 
-                        Clovershell.Execute("hakchi unset cfg_boot_logo; cat > \"$(hakchi get rootfs)/etc/boot.png\"", File.OpenRead(ofdPng.FileName));
+                        Clovershell.Execute("hakchi unset cfg_boot_logo; cat > \"$(hakchi get rootfs)/etc/boot.png\"", File.OpenRead(imageFile));
                         bool usbHost = Clovershell.ExecuteSimple("if [ -d /media/hakchi/ ]; then echo 1; else echo 0; fi;").Equals("1");
                         if (usbHost)
                         {
-                            Clovershell.Execute("cat > \"/media/hakchi/boot.png\"", File.OpenRead(ofdPng.FileName));
+                            Clovershell.Execute("cat > \"/media/hakchi/boot.png\"", File.OpenRead(imageFile));
                         }
 
                         if (!ConfigIni.DisablePopups)
@@ -2761,6 +2769,14 @@ namespace com.clusterrr.hakchi_gui
                     item.Checked = true;
                     listViewGames.Items.Add(item);
                 }
+            }
+        }
+
+        private void prepareArtDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var selectSystemDialog = new SelectSystemDialog())
+            {
+                selectSystemDialog.ShowDialog();
             }
         }
     }

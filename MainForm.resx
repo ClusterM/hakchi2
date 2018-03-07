@@ -743,6 +743,15 @@
   <data name="takeScreenshotToolStripMenuItem.Text" xml:space="preserve">
     <value>Take screenshot</value>
   </data>
+  <data name="toolStripMenuItem18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>328, 6</value>
+  </data>
+  <data name="prepareArtDirectoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>331, 22</value>
+  </data>
+  <data name="prepareArtDirectoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Prepare art directory...</value>
+  </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 20</value>
   </data>
@@ -3585,16 +3594,16 @@
   <data name="&gt;&gt;useExtendedFontToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;epilepsyProtectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>epilepsyProtectionToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;epilepsyProtectionToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;useLinkedSyncToolStripMenuItem.Name" xml:space="preserve">
     <value>useLinkedSyncToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;useLinkedSyncToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;epilepsyProtectionToolStripMenuItem.Name" xml:space="preserve">
+    <value>epilepsyProtectionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;epilepsyProtectionToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Name" xml:space="preserve">
@@ -3896,6 +3905,18 @@
   </data>
   <data name="&gt;&gt;timerShowSelected.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;prepareArtDirectoryToolStripMenuItem.Name" xml:space="preserve">
+    <value>prepareArtDirectoryToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;prepareArtDirectoryToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem18.Name" xml:space="preserve">
+    <value>toolStripMenuItem18</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

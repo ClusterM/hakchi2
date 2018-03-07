@@ -113,8 +113,8 @@
             this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripSeparator();
             this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.epilepsyProtectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useLinkedSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.epilepsyProtectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.saveSettingsToNESMiniNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -201,6 +201,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numericUpDownSaveCount = new System.Windows.Forms.NumericUpDown();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.prepareArtDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -822,19 +824,19 @@
             resources.ApplyResources(this.useExtendedFontToolStripMenuItem, "useExtendedFontToolStripMenuItem");
             this.useExtendedFontToolStripMenuItem.Click += new System.EventHandler(this.useExtendedFontToolStripMenuItem_Click);
             // 
-            // epilepsyProtectionToolStripMenuItem
-            // 
-            this.epilepsyProtectionToolStripMenuItem.CheckOnClick = true;
-            this.epilepsyProtectionToolStripMenuItem.Name = "epilepsyProtectionToolStripMenuItem";
-            resources.ApplyResources(this.epilepsyProtectionToolStripMenuItem, "epilepsyProtectionToolStripMenuItem");
-            this.epilepsyProtectionToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemArmet_Click);
-            // 
             // useLinkedSyncToolStripMenuItem
             // 
             this.useLinkedSyncToolStripMenuItem.CheckOnClick = true;
             this.useLinkedSyncToolStripMenuItem.Name = "useLinkedSyncToolStripMenuItem";
             resources.ApplyResources(this.useLinkedSyncToolStripMenuItem, "useLinkedSyncToolStripMenuItem");
             this.useLinkedSyncToolStripMenuItem.Click += new System.EventHandler(this.useLinkedSyncToolStripMenuItem_Click);
+            // 
+            // epilepsyProtectionToolStripMenuItem
+            // 
+            this.epilepsyProtectionToolStripMenuItem.CheckOnClick = true;
+            this.epilepsyProtectionToolStripMenuItem.Name = "epilepsyProtectionToolStripMenuItem";
+            resources.ApplyResources(this.epilepsyProtectionToolStripMenuItem, "epilepsyProtectionToolStripMenuItem");
+            this.epilepsyProtectionToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemArmet_Click);
             // 
             // globalCommandLineArgumentsexpertsOnluToolStripMenuItem
             // 
@@ -866,7 +868,9 @@
             this.openTelnetToolStripMenuItem,
             this.toolStripMenuItem8,
             this.bootImageToolStripMenuItem,
-            this.takeScreenshotToolStripMenuItem});
+            this.takeScreenshotToolStripMenuItem,
+            this.toolStripMenuItem18,
+            this.prepareArtDirectoryToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
             // 
@@ -1427,6 +1431,17 @@
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
             // 
+            // prepareArtDirectoryToolStripMenuItem
+            // 
+            this.prepareArtDirectoryToolStripMenuItem.Name = "prepareArtDirectoryToolStripMenuItem";
+            resources.ApplyResources(this.prepareArtDirectoryToolStripMenuItem, "prepareArtDirectoryToolStripMenuItem");
+            this.prepareArtDirectoryToolStripMenuItem.Click += new System.EventHandler(this.prepareArtDirectoryToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem18
+            // 
+            this.toolStripMenuItem18.Name = "toolStripMenuItem18";
+            resources.ApplyResources(this.toolStripMenuItem18, "toolStripMenuItem18");
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1639,6 +1654,8 @@
         private System.Windows.Forms.ToolStripMenuItem changeBootImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem disableBootImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetDefaultBootImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem18;
+        private System.Windows.Forms.ToolStripMenuItem prepareArtDirectoryToolStripMenuItem;
     }
 }
 
