@@ -909,4 +909,7 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   <data name="CalculatingDiff" xml:space="preserve">
     <value>Calculating differential...</value>
   </data>
+  <data name="FormatNandCQ" xml:space="preserve">
+    <value>Do you want to format NAND-C? It will erase all user data.</value>
+  </data>
 </root>

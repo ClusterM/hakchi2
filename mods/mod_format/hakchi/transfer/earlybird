@@ -1,0 +1,8 @@
+format_base(){
+  umount_base
+  yes | mke2fs -t ext4 -L data -b 4K -E stripe-width=32 -O ^huge_file,^metadata_csum /dev/nandc
+  rm /bin/mke2fs
+  mount_base
+  mod_install
+}
+format_base

@@ -203,6 +203,7 @@
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
             this.prepareArtDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripSeparator();
+            this.formatNANDCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -410,7 +411,8 @@
             this.toolFlashTheWholeNANDStripMenuItem,
             this.dumpNANDBToolStripMenuItem,
             this.dumpNANDCPartitionToolStripMenuItem,
-            this.flashNANDCPartitionToolStripMenuItem});
+            this.flashNANDCPartitionToolStripMenuItem,
+            this.formatNANDCToolStripMenuItem});
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
             resources.ApplyResources(this.advancedToolStripMenuItem, "advancedToolStripMenuItem");
             // 
@@ -1442,6 +1444,12 @@
             this.toolStripMenuItem18.Name = "toolStripMenuItem18";
             resources.ApplyResources(this.toolStripMenuItem18, "toolStripMenuItem18");
             // 
+            // formatNANDCToolStripMenuItem
+            // 
+            this.formatNANDCToolStripMenuItem.Name = "formatNANDCToolStripMenuItem";
+            resources.ApplyResources(this.formatNANDCToolStripMenuItem, "formatNANDCToolStripMenuItem");
+            this.formatNANDCToolStripMenuItem.Click += new System.EventHandler(this.formatNANDCToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1656,6 +1664,7 @@
         private System.Windows.Forms.ToolStripMenuItem resetDefaultBootImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem18;
         private System.Windows.Forms.ToolStripMenuItem prepareArtDirectoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem formatNANDCToolStripMenuItem;
     }
 }
 

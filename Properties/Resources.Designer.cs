@@ -1249,6 +1249,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to format NAND-C? It will erase all user data..
+        /// </summary>
+        internal static string FormatNandCQ {
+            get {
+                return ResourceManager.GetString("FormatNandCQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Oops, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator&apos;s module installed. Do you want to add this game anyway?.
         /// </summary>
         internal static string FourScreenNotSupported {

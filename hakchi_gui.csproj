@@ -210,6 +210,12 @@
     <None Include="folder_images\retropie_snes_classic.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="mods\mod_format\bin\mke2fs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_format\hakchi\transfer\earlybird">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="mods\mod_general\etc\group">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
