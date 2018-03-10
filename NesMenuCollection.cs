@@ -190,10 +190,14 @@ namespace com.clusterrr.hakchi_gui
             }
             else if (style == SplitStyle.FoldersGroupByApp)
             {
-                var apps = new Dictionary<string, NesMenuCollection>();
+                var apps = new SortedDictionary<string, NesMenuCollection>();
                 var customApps = new Dictionary<string, NesMenuCollection>();
                 foreach(var system in CoreCollection.Systems)
                     apps[system] = new NesMenuCollection();
+                foreach(var ai in AppTypeCollection.Apps)
+                    if (!apps.ContainsKey(ai.Name))
+                        apps[ai.Name] = new NesMenuCollection();
+                apps[AppTypeCollection.UnknownApp.Name] = new NesMenuCollection();
 
                 foreach (var game in root)
                 {
@@ -201,9 +205,9 @@ namespace com.clusterrr.hakchi_gui
                     NesApplication app = game as NesApplication;
 
                     AppTypeCollection.AppInfo ai = app.Metadata.AppInfo;
-                    if (!ai.Unknown)
+                    if (!ai.Unknown && apps.ContainsKey(ai.Name))
                         apps[ai.Name].Add(game);
-                    else if (!string.IsNullOrEmpty(app.Metadata.System) && CoreCollection.Systems.Contains(app.Metadata.System))
+                    else if (!string.IsNullOrEmpty(app.Metadata.System) && apps.ContainsKey(app.Metadata.System))
                     {
                         apps[app.Metadata.System].Add(game);
                     }

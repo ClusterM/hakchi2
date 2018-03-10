@@ -113,7 +113,7 @@
             this.MinimizeBox = false;
             this.Name = "SelectSystemDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Select Systems";
+            this.Text = "Prepare art folders";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1379,7 +1379,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5025636 (dirty).
+        ///   Looks up a localized string similar to 84c7b6b (dirty).
         /// </summary>
         internal static string gitCommit {
             get {
@@ -2129,9 +2129,6 @@ namespace com.clusterrr.hakchi_gui.Properties {
         ///imageviewer
         ///lutro
         ///mame2000
-        ///mame2003_standard
-        ///mame2003_ffight
-        ///mame2003_sys32
         ///mame2010
         ///mame2014
         ///mednafen_ngp
@@ -2148,7 +2145,13 @@ namespace com.clusterrr.hakchi_gui.Properties {
         ///nxengine
         ///o2em
         ///pcsx_rearmed_neon
-        ///picod [rest of string was truncated]&quot;;.
+        ///picodrive
+        ///pocketcdg
+        ///pokemini
+        ///ppsspp
+        ///prboom
+        ///prosystem
+        ///p [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string retroarch_whitelist {
             get {
@@ -2186,7 +2189,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scanning &quot;/art&quot; folder for box art....
+        ///   Looks up a localized string similar to Scanning box art for {0}.
+        /// </summary>
+        internal static string ScanningCover {
+            get {
+                return ResourceManager.GetString("ScanningCover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scanning art folder for box art....
         /// </summary>
         internal static string ScanningCovers {
             get {

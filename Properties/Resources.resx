@@ -765,7 +765,7 @@
 This process cannot be undone!</value>
   </data>
   <data name="ScanningCovers" xml:space="preserve">
-    <value>Scanning "/art" folder for box art...</value>
+    <value>Scanning art folder for box art...</value>
   </data>
   <data name="ResettingOriginalGames" xml:space="preserve">
     <value>Restoring original games...</value>
@@ -911,5 +911,8 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   </data>
   <data name="FormatNandCQ" xml:space="preserve">
     <value>Do you want to format NAND-C? It will erase all user data.</value>
+  </data>
+  <data name="ScanningCover" xml:space="preserve">
+    <value>Scanning box art for {0}</value>
   </data>
 </root>

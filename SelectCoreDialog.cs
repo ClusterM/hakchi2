@@ -70,7 +70,6 @@ namespace com.clusterrr.hakchi_gui
         public SelectCoreDialog()
         {
             InitializeComponent();
-            listViewGames.DoubleBuffered(true);
             DialogResult = DialogResult.Abort;
         }
 

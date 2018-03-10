@@ -224,7 +224,7 @@ namespace com.clusterrr.hakchi_gui
                         appInfo = new AppTypeCollection.AppInfo()
                         {
                             Name = System,
-                            Class = typeof(LibretroGame),
+                            Class = typeof(UnknownGame),
                             DefaultCore = Core,
                             LegacyApps = new string[] { },
                             Extensions = new string[] { },
@@ -232,8 +232,8 @@ namespace com.clusterrr.hakchi_gui
                             DefaultCover = Resources.blank_app,
                             GoogleSuffix = "game"
                         };
-                        if (CoreCollection.GetCore(Core) == null || !CoreCollection.Systems.Contains(System))
-                            appInfo.Unknown = true;
+                        //if (CoreCollection.GetCore(Core) == null || !CoreCollection.Systems.Contains(System))
+                        //    appInfo.Unknown = true;
                     }
                     return appInfo;
                 }
@@ -310,6 +310,16 @@ namespace com.clusterrr.hakchi_gui
         {
             get { return isDeleting; }
             set { isDeleting = value; }
+        }
+
+        private Dictionary<string, bool> coverArtMatches = null;
+        public Dictionary<string, bool> CoverArtMatches
+        {
+            get { return coverArtMatches; }
+        }
+        public bool ImpreciseCoverArtMatches
+        {
+            get { return coverArtMatches == null || coverArtMatches.Count == 0 ? false : coverArtMatches.Count > 1 || coverArtMatches.First().Value; }
         }
 
         public static NesApplication FromDirectory(string path, bool ignoreEmptyConfig = false)
@@ -512,7 +522,7 @@ namespace com.clusterrr.hakchi_gui
             var metadata = new AppMetadata();
             metadata.System = appInfo.Unknown ? string.Empty : appInfo.Name;
             metadata.Core = coreInfo == null ? string.Empty : coreInfo.Bin;
-            metadata.OriginalFilename = Path.GetFileName(originalFileName);
+            metadata.OriginalFilename = Path.GetFileName(inputFileName);
             metadata.OriginalCrc32 = crc32;
             metadata.Save(Path.Combine(gamePath, "metadata.json"));
 
@@ -679,33 +689,37 @@ namespace com.clusterrr.hakchi_gui
         public bool FindCover(string inputFileName, Image defaultCover, uint crc32 = 0, string alternateTitle = null)
         {
             var artDirectory = Path.Combine(Program.BaseDirectoryExternal, "art");
-            var imageExtensions = new string[] { ".png", ".jpg", ".jpeg", ".bmp", ".gif" };
-            var name = Path.GetFileNameWithoutExtension(inputFileName);
-            string[] covers;
+            var imageExtensions = new string[] { ".png", ".jpg", ".jpeg", ".bmp", ".gif", ".tif", ".tiff" };
+            var filename = Path.GetFileNameWithoutExtension(inputFileName);
 
             Directory.CreateDirectory(artDirectory);
-
             try
             {
+                // init accessor
+                coverArtMatches = new Dictionary<string, bool>();
+
                 // first test for crc32 match (most precise)
+                string[] covers;
                 if (crc32 != 0)
                 {
                     covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
                     if (covers.Length > 0 && imageExtensions.Contains(Path.GetExtension(covers[0])))
                     {
+                        coverArtMatches.Add(covers[0], false);
                         SetImageFile(covers[0], ConfigIni.CompressCover);
                         return true;
                     }
                 }
 
                 // test presence of image file alongside the source file, if inputFileName is fully qualified
-                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(Path.GetDirectoryName(inputFileName)))
+                if (!string.IsNullOrEmpty(filename) && !string.IsNullOrEmpty(Path.GetDirectoryName(inputFileName)))
                 {
                     foreach (var ext in imageExtensions)
                     {
-                        var imagePath = Path.Combine(Path.GetDirectoryName(inputFileName), name + ext);
+                        var imagePath = Path.Combine(Path.GetDirectoryName(inputFileName), filename + ext);
                         if (File.Exists(imagePath))
                         {
+                            coverArtMatches.Add(imagePath, false);
                             SetImageFile(imagePath, ConfigIni.CompressCover);
                             return true;
                         }
@@ -718,28 +732,56 @@ namespace com.clusterrr.hakchi_gui
 
                 // first fuzzy search on inputFileName
                 covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
-                if (!string.IsNullOrEmpty(name))
+                if (!string.IsNullOrEmpty(filename))
                 {
-                    string imageFile = FuzzyCoverSearch(name, covers);
-                    if (!string.IsNullOrEmpty(imageFile))
-                    {
-                        SetImageFile(imageFile, ConfigIni.CompressCover);
-                        return true;
-                    }
+                    var findResults = FindCoverMatch(filename, covers);
+                    if (findResults != null)
+                        foreach (var f in findResults)
+                            if (!coverArtMatches.ContainsKey(f.Key) || f.Value == false)
+                                coverArtMatches[f.Key] = f.Value;
                 }
 
                 // second fuzzy search on alternateTitle
                 if (!string.IsNullOrEmpty(alternateTitle))
                 {
-                    string imageFile = FuzzyCoverSearch(alternateTitle, covers);
-                    if (!string.IsNullOrEmpty(imageFile))
+                    var findResults = FindCoverMatch(alternateTitle, covers, true);
+                    if (findResults != null)
+                        foreach (var f in findResults)
+                            if (!coverArtMatches.ContainsKey(f.Key) || f.Value == false)
+                                coverArtMatches[f.Key] = f.Value;
+                }
+
+                if (coverArtMatches.Count > 0)
+                {
+                    Debug.WriteLine($"FindCover results for {Name}:");
+                    foreach(var cover in coverArtMatches)
                     {
-                        SetImageFile(imageFile, ConfigIni.CompressCover);
+                        Debug.WriteLine(Path.GetFileName(cover.Key) + (cover.Value ? " (partial)" : " (precise)"));
+                    }
+
+                    string preciseMatch = string.Empty;
+                    foreach(var cover in coverArtMatches)
+                    {
+                        if (cover.Value == false)
+                        {
+                            if (string.IsNullOrEmpty(preciseMatch))
+                                preciseMatch = cover.Key;
+                            else
+                            {
+                                preciseMatch = string.Empty;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(preciseMatch))
+                    {
+                        SetImageFile(preciseMatch, ConfigIni.CompressCover);
                         return true;
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
             }
@@ -750,53 +792,129 @@ namespace com.clusterrr.hakchi_gui
             return false;
         }
 
-        private static string FuzzyCoverSearch(string title, string[] covers)
+        private static IEnumerable<KeyValuePair<string, bool>> FindCoverMatch(string name, string[] covers, bool stripCodes = false)
         {
-            var imageExtensions = new string[] { ".png", ".jpg", ".jpeg", ".bmp", ".gif" };
-            var rgx = new Regex("[^a-zA-Z0-9]", RegexOptions.Compiled);
-            string sanitizedTitle = rgx.Replace(title, string.Empty).ToLower();
+            var imageExtensions = new string[] { ".png", ".jpg", ".jpeg", ".bmp", ".gif", ".tif", ".tiff" };
+            var regexStripCodes = new Regex(@"\s?\(.*?\)|\s?\[.*?\]", RegexOptions.Compiled);
+            var regexSanitize = new Regex(@"[^a-zA-Z0-9\&]", RegexOptions.Compiled);
+            var regexTrim = new Regex(@"\s+", RegexOptions.Compiled);
 
-            if (!string.IsNullOrEmpty(sanitizedTitle))
+            name = regexTrim.Replace(" " + regexSanitize.Replace(name, " ").ToLower() + " ", " ");
+
+            if (!string.IsNullOrEmpty(name))
             {
-                string matchFile = string.Empty;
-                string sanitized = string.Empty;
-                int matchDistance = 0;
-                int distance = 0;
+                // build word list, with exceptions
+                List<string[]> words = new List<string[]>();
+                foreach(string word in name.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    if (word == "&" || word == "and")
+                    {
+                        words.Add(new string[] { "&", "and" });
+                    }
+                    else if (word == "the")
+                    {
+                        words.Add(new string[] { "the", string.Empty });
+                    }
+                    else if (Regex.IsMatch(@"^[0-9]{1,2}$", word))
+                    {
+                        words.Add(new string[] { word, Shared.IntegerToRoman(int.Parse(word)).ToLower() });
+                    }
+                    else if (Regex.IsMatch(@"^[ivx]+$", word))
+                    {
+                        words.Add(new string[] { word, Shared.RomanToInteger(word).ToString() });
+                    }
+                    else
+                    {
+                        words.Add(new string[] { word });
+                    }
+                }
 
+                // scan files and compile results (precise and partial)
+                var results = new List<KeyValuePair<string, bool>>();
                 foreach (var file in covers)
                 {
-                    if (imageExtensions.Contains(Path.GetExtension(file)))
+                    if (imageExtensions.Contains(Path.GetExtension(file).ToLower()))
                     {
-                        sanitized = rgx.Replace(Path.GetFileNameWithoutExtension(file), string.Empty).ToLower();
-                        if (MatchDistance(sanitizedTitle, sanitized, out distance))
+                        string sanitized = Path.GetFileNameWithoutExtension(file);
+                        if (stripCodes)
                         {
-                            if (distance > matchDistance)
-                            {
-                                matchDistance = distance;
-                                matchFile = file;
-                            }
+                            sanitized = regexStripCodes.Replace(sanitized, "");
+                        }
+                        sanitized = regexTrim.Replace(" " + regexSanitize.Replace(sanitized, " ").ToLower() + " ", " ");
+
+                        PuzzleMatch(words, sanitized, out bool match, out bool partial);
+                        if (match)
+                        {
+                            results.Add(new KeyValuePair<string, bool>(file, partial));
                         }
                     }
                 }
-                if (!string.IsNullOrEmpty(matchFile))
-                {
-                    Debug.WriteLine($"FuzzyCoverSearch matched \"{title}\" with \"{matchFile}\".");
-                    return matchFile;
-                }
+
+                return results;
             }
+
             return null;
         }
 
-        private static bool MatchDistance(string a, string b, out int distance)
+        private static void PuzzleMatch(List<string[]> pieces, string puzzle, out bool match, out bool partial)
         {
-            int maxLength = Math.Min(a.Length, b.Length);
-            distance = 0;
-            for (int c = 0; c < maxLength; ++c)
-                if (a[c] == b[c])
-                    ++distance;
+            match = false;
+            partial = false;
+
+            var regexIteration = new Regex(@"\s[ivx]+\s|[0-9]{1,2}", RegexOptions.Compiled);
+            if (pieces.Count == 0)
+            {
+                if(puzzle.Trim().Length == 0)
+                {
+                    match = true;
+                    partial = false;
+                }
                 else
-                    break;
-            return (distance == maxLength);
+                {
+                    if (!regexIteration.IsMatch(puzzle))
+                    {
+                        match = true;
+                        partial = true;
+                    }
+                }
+                return;
+            }
+            else if (puzzle.Trim().Length == 0)
+            {
+                string words = string.Empty;
+                pieces.ForEach(delegate (string[] p) { words += " " + string.Join(" ", p); });
+                words += " ";
+                if (!regexIteration.IsMatch(words))
+                {
+                    match = true;
+                    partial = true;
+                }
+                return;
+            }
+
+            var piece = pieces.First();
+            foreach(var alt in piece)
+            {
+                if (string.IsNullOrEmpty(alt))
+                {
+                    PuzzleMatch(pieces.Skip(1).ToList(), string.Copy(puzzle), out match, out partial);
+                }
+                else
+                {
+                    int position = 0;
+                    while (position < puzzle.Length && position != -1 && !match)
+                    {
+                        position = puzzle.IndexOf(alt, position);
+                        if (position != -1)
+                        {
+                            var remainingPieces = pieces.Skip(1).ToList();
+                            var remainingPuzzle = puzzle.Remove(position++, alt.Length);
+                            PuzzleMatch(remainingPieces, remainingPuzzle, out match, out partial);
+                        }
+                    }
+                }
+                if (match) break;
+            }
         }
 
         protected static bool FindPatch(ref byte[] rawRomData, string inputFileName, uint crc32 = 0)

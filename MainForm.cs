@@ -46,10 +46,11 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
-        public static ConsoleType? DetectedConnectedConsole = null;
+        public static ConsoleType? DetectedRunningConsole = null;
+        public static ConsoleType? DetectedBaseConsole = null;
         public static string GetConsoleTypeName()
         {
-            return GetConsoleTypeName(DetectedConnectedConsole);
+            return GetConsoleTypeName(DetectedRunningConsole);
         }
         public static string GetConsoleTypeName(ConsoleType? c)
         {
@@ -166,10 +167,10 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 ConfigIni.CustomFlashed = true; // Just in case of new installation
-
-                var c = WorkerForm.GetConsoleType();
-                DetectedConnectedConsole = c;
-                ConfigIni.ConsoleType = c;
+                if (WorkerForm.GetConsoleType(out DetectedRunningConsole, out DetectedBaseConsole))
+                {
+                    ConfigIni.ConsoleType = DetectedRunningConsole ?? ConfigIni.ConsoleType;
+                }
 
                 Invoke(new Action(SyncConsoleType));
                 bool canInteract = true;
@@ -231,7 +232,8 @@ namespace com.clusterrr.hakchi_gui
 
         void Clovershell_OnDisconnected()
         {
-            DetectedConnectedConsole = null;
+            DetectedRunningConsole = null;
+            DetectedBaseConsole = null;
             Invoke(new Action(SyncConsoleType));
         }
 
@@ -314,17 +316,24 @@ namespace com.clusterrr.hakchi_gui
         static ConsoleType lastConsoleType = ConsoleType.Unknown;
         public void SyncConsoleType()
         {
+            // prevent switching console type when a running console is detected
             nESMiniToolStripMenuItem.Enabled =
                 famicomMiniToolStripMenuItem.Enabled =
                 sNESMiniToolStripMenuItem.Enabled =
-                superFamicomMiniToolStripMenuItem.Enabled = (DetectedConnectedConsole == null);
-
-            if (ConfigIni.ConsoleType == lastConsoleType || ConfigIni.ConsoleType == ConsoleType.Unknown)
-                return;
+                superFamicomMiniToolStripMenuItem.Enabled = (DetectedRunningConsole == null);
 
             // title bar
-            string newTitle = TitleTemplate + " - " + GetConsoleTypeName(ConfigIni.ConsoleType);
-            this.Text = newTitle;
+            if (ConfigIni.ConsoleType != ConsoleType.Unknown)
+            {
+                string newTitle = TitleTemplate + " - " + GetConsoleTypeName(ConfigIni.ConsoleType);
+                if (DetectedRunningConsole != DetectedBaseConsole)
+                    newTitle += " (Custom HSQS)";
+                this.Text = newTitle;
+            }
+
+            // skip if unchanged
+            if (ConfigIni.ConsoleType == lastConsoleType || ConfigIni.ConsoleType == ConsoleType.Unknown)
+                return;
 
             // Console type and some settings
             nESMiniToolStripMenuItem.Checked = ConfigIni.ConsoleType == ConsoleType.NES;
@@ -1493,13 +1502,14 @@ namespace com.clusterrr.hakchi_gui
 
             if (addedApps != null)
             {
+                // show select core dialog if applicable
                 var unknownApps = new List<NesApplication>();
                 foreach(var app in addedApps)
                 {
                     if (app.Metadata.AppInfo.Unknown)
                         unknownApps.Add(app);
                 }
-                if (unknownApps.Count() > 0)
+                if (unknownApps.Count > 0)
                 {
                     using (SelectCoreDialog selectCoreDialog = new SelectCoreDialog())
                     {
@@ -1508,10 +1518,27 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
 
+                // show select cover dialog if applicable
+                unknownApps.Clear();
+                foreach(var app in addedApps)
+                {
+                    if (app.ImpreciseCoverArtMatches)
+                        unknownApps.Add(app);
+                }
+                if(unknownApps.Count > 0)
+                {
+                    using (SelectCoverDialog selectCoverDialog = new SelectCoverDialog())
+                    {
+                        selectCoverDialog.Games.AddRange(unknownApps);
+                        selectCoverDialog.ShowDialog(this);
+                    }
+                }
+
+                // update list view
                 listViewGames.BeginUpdate();
                 foreach (ListViewItem item in listViewGames.Items)
                     item.Selected = false;
-                // Add games, only new ones
+                // add games, only new ones
                 var newApps = addedApps.Distinct(new NesApplication.NesAppEqualityComparer());
                 var newCodes = from app in newApps select app.Code;
                 var oldAppsReplaced = from app in listViewGames.Items.Cast<ListViewItem>().ToArray()
@@ -2641,7 +2668,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     using (OpenFileDialog ofdPng = new OpenFileDialog())
                     {
-                        ofdPng.Filter = "Image files|*.bmp;*.gif;*.jpg;*.png;*.tif";
+                        ofdPng.Filter = "Image files|*.bmp;*.gif;*.jpg;*.jpeg;*.png;*.tif;*.tiff";
                         if (ofdPng.ShowDialog(this) != DialogResult.OK) return;
 
                         string imageFile = ofdPng.FileName;
@@ -2649,7 +2676,7 @@ namespace com.clusterrr.hakchi_gui
                         {
                             if (Path.GetExtension(imageFile) != ".png" || image.Height != 720 || image.Width != 1280)
                             {
-                                var outImage = Shared.ResizeImage(image, PixelFormat.Format24bppRgb, 1280, 720, true, false, true, true);
+                                var outImage = Shared.ResizeImage(image, PixelFormat.Format24bppRgb, null, 1280, 720, true, false, true, true);
                                 imageFile = Shared.PathCombine(Path.GetTempPath(), "hakchi-temp", "tempBootImage.png");
                                 try
                                 {

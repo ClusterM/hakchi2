@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectCoreDialog));
             this.buttonAccept = new System.Windows.Forms.Button();
             this.buttonDiscard = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -223,10 +224,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonDiscard);
             this.Controls.Add(this.buttonAccept);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(750, 405);
-            this.MinimumSize = new System.Drawing.Size(750, 405);
             this.Name = "SelectCoreDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Select Cores";

@@ -26,7 +26,7 @@ namespace com.clusterrr.hakchi_gui
             return bmp;
         }
 
-        public static Bitmap ResizeImage(Image inImage, PixelFormat? pixelFormat, int targetWidth, int targetHeight, bool upscale, bool keepProportions, bool expandWidth, bool expandHeight)
+        public static Bitmap ResizeImage(Image inImage, PixelFormat? pixelFormat, Color? backgroundColor, int targetWidth, int targetHeight, bool upscale, bool keepProportions, bool expandWidth, bool expandHeight)
         {
             int X, Y;
             if (!upscale && inImage.Width <= targetWidth && inImage.Height <= targetHeight)
@@ -58,6 +58,10 @@ namespace com.clusterrr.hakchi_gui
             var outRect = new Rectangle((int)((double)(outImage.Width - X) / 2), (int)((double)(outImage.Height - Y) / 2), X, Y);
             using (Graphics gr = Graphics.FromImage(outImage))
             {
+                if(backgroundColor != null)
+                {
+                    gr.Clear((Color)backgroundColor);
+                }
                 gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                 gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
                 gr.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
@@ -409,6 +413,62 @@ namespace com.clusterrr.hakchi_gui
             }
 
             return gameSyncPath;
+        }
+
+        private static string[][] RomanNumerals = new string[][]
+        {
+            new string[]{"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"}, // ones
+            new string[]{"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"}, // tens
+            new string[]{"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"}, // hundreds
+            new string[]{"", "M", "MM", "MMM"} // thousands
+        };
+
+        public static string IntegerToRoman(int number)
+        {
+
+            // split integer string into array and reverse array
+            var intArr = number.ToString().Reverse().ToArray();
+            var len = intArr.Length;
+            var romanNumeral = "";
+            var i = len;
+
+            // starting with the highest place (for 3046, it would be the thousands
+            // place, or 3), get the roman numeral representation for that place
+            // and add it to the final roman numeral string
+            while (i-- > 0)
+            {
+                romanNumeral += RomanNumerals[i][Int32.Parse(intArr[i].ToString())];
+            }
+
+            return romanNumeral;
+        }
+
+        private static Dictionary<char, int> RomanMap = new Dictionary<char, int>()
+        {
+            {'i', 1},
+            {'v', 5},
+            {'x', 10},
+            {'l', 50},
+            {'c', 100},
+            {'d', 500},
+            {'m', 1000}
+        };
+
+        public static int RomanToInteger(string roman)
+        {
+            int number = 0;
+            for (int i = 0; i < roman.Length; i++)
+            {
+                if (i + 1 < roman.Length && RomanMap[roman[i]] < RomanMap[roman[i + 1]])
+                {
+                    number -= RomanMap[roman[i]];
+                }
+                else
+                {
+                    number += RomanMap[roman[i]];
+                }
+            }
+            return number;
         }
     }
 }

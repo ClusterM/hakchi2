@@ -164,6 +164,12 @@
     <Compile Include="SelectCoreDialog.Designer.cs">
       <DependentUpon>SelectCoreDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectCoverDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectCoverDialog.Designer.cs">
+      <DependentUpon>SelectCoverDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectSystemDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1977,6 +1983,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SearchForm.zh-TW.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectCoverDialog.resx">
+      <DependentUpon>SelectCoverDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectFileForm.hu-HU.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>

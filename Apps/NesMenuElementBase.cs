@@ -139,7 +139,7 @@ namespace com.clusterrr.hakchi_gui
 
         protected static void ProcessImage(Image inImage, string outPath, int targetWidth, int targetHeight, bool expandHeight, bool upscale, bool quantize)
         {
-            var outImage = Shared.ResizeImage(inImage, null, targetWidth, targetHeight, upscale, true, false, expandHeight);
+            var outImage = Shared.ResizeImage(inImage, null, null, targetWidth, targetHeight, upscale, true, false, expandHeight);
             if (quantize)
                 Quantize(ref outImage);
             outImage.Save(outPath, ImageFormat.Png);

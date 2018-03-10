@@ -427,7 +427,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     Invoke(new Action<int, int>(SetProgress), new object[] { value, max });
                     if (value == max)
-                        Thread.Sleep(1000);
+                        Thread.Sleep(100);
                     return;
                 }
                 if (value > max) value = max;
@@ -1001,29 +1001,8 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static MainForm.ConsoleType GetConsoleType(bool realType = false)
+        public static MainForm.ConsoleType TranslateConsoleType(string board, string region)
         {
-            var clovershell = MainForm.Clovershell;
-            var customFirmwareLoaded = clovershell.ExecuteSimple("hakchi currentFirmware") != "_nand_";
-            string board, region;
-            if (!customFirmwareLoaded || !realType)
-            {
-                board = clovershell.ExecuteSimple("cat /etc/clover/boardtype", 3000, true);
-                region = clovershell.ExecuteSimple("cat /etc/clover/REGION", 3000, true);
-            }
-            else
-            {
-                clovershell.ExecuteSimple("cryptsetup open /dev/nandb root-crypt --readonly --type plain --cipher aes-xts-plain --key-file /etc/key-file", 3000);
-                clovershell.ExecuteSimple("mkdir -p /var/squashfs-original", 3000, true);
-                clovershell.ExecuteSimple("mount /dev/mapper/root-crypt /var/squashfs-original", 3000, true);
-                board = clovershell.ExecuteSimple("cat /var/squashfs-original/etc/clover/boardtype", 3000, true);
-                region = clovershell.ExecuteSimple("cat /var/squashfs-original/etc/clover/REGION", 3000, true);
-                clovershell.ExecuteSimple("umount /var/squashfs-original", 3000, true);
-                clovershell.ExecuteSimple("rm -rf /var/squashfs-original", 3000, true);
-                clovershell.ExecuteSimple("cryptsetup close root-crypt", 3000, true);
-            }
-            Debug.WriteLine(string.Format("Detected board: {0}", board));
-            Debug.WriteLine(string.Format("Detected region: {0}", region));
             switch (board)
             {
                 default:
@@ -1049,6 +1028,39 @@ namespace com.clusterrr.hakchi_gui
                     break;
             }
             return MainForm.ConsoleType.Unknown;
+        }
+
+        public static bool GetConsoleType(out MainForm.ConsoleType? runningType, out MainForm.ConsoleType? baseType)
+        {
+            runningType = null;
+            baseType = null;
+
+            var clovershell = MainForm.Clovershell;
+            if (!clovershell.IsOnline)
+                return false;
+
+            var customFirmwareLoaded = clovershell.ExecuteSimple("hakchi currentFirmware") != "_nand_";
+            string board = clovershell.ExecuteSimple("cat /etc/clover/boardtype", 3000, true);
+            string region = clovershell.ExecuteSimple("cat /etc/clover/REGION", 3000, true);
+            runningType = TranslateConsoleType(board, region);
+
+            Debug.WriteLine(string.Format("Detected board: {0}", board));
+            Debug.WriteLine(string.Format("Detected region: {0}", region));
+
+            if (customFirmwareLoaded)
+            {
+                clovershell.ExecuteSimple("cryptsetup open /dev/nandb root-crypt --readonly --type plain --cipher aes-xts-plain --key-file /etc/key-file", 3000);
+                clovershell.ExecuteSimple("mkdir -p /var/squashfs-original", 3000, true);
+                clovershell.ExecuteSimple("mount /dev/mapper/root-crypt /var/squashfs-original", 3000, true);
+                board = clovershell.ExecuteSimple("cat /var/squashfs-original/etc/clover/boardtype", 3000, true);
+                region = clovershell.ExecuteSimple("cat /var/squashfs-original/etc/clover/REGION", 3000, true);
+                clovershell.ExecuteSimple("umount /var/squashfs-original", 3000, true);
+                clovershell.ExecuteSimple("rm -rf /var/squashfs-original", 3000, true);
+                clovershell.ExecuteSimple("cryptsetup close root-crypt", 3000, true);
+            }
+            baseType = TranslateConsoleType(board, region);
+
+            return true;
         }
 
         public static void ShowSplashScreen()
@@ -2097,9 +2109,11 @@ namespace com.clusterrr.hakchi_gui
             if (Games == null) return;
 
             SetStatus(Resources.ScanningCovers);
+            var unknownApps = new List<NesApplication>();
             int i = 0;
             foreach (NesApplication game in Games)
             {
+                SetStatus(string.Format(Resources.ScanningCover, game.Name));
                 uint crc32 = game.Metadata.OriginalCrc32;
                 string gameFile = game.GameFilePath;
                 if (crc32 == 0 && !game.IsOriginalGame && gameFile != null && File.Exists(gameFile))
@@ -2113,9 +2127,24 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else
                     gameFile = game.BasePath;
-                game.FindCover(Path.GetFileName(gameFile), null, crc32, game.Name);
+                game.FindCover(game.Metadata.OriginalFilename ?? Path.GetFileName(gameFile), null, crc32, game.Name);
+                if (game.ImpreciseCoverArtMatches)
+                    unknownApps.Add(game);
                 SetProgress(++i, Games.Count);
             }
+
+            if (unknownApps.Count > 0)
+            {
+                MainForm.Invoke((MethodInvoker)delegate
+                {
+                    using (SelectCoverDialog selectCoverDialog = new SelectCoverDialog())
+                    {
+                        selectCoverDialog.Games.AddRange(unknownApps);
+                        selectCoverDialog.ShowDialog(this);
+                    }
+                });
+            }
+
         }
 
         void DownloadCovers()
