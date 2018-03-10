@@ -2121,7 +2121,7 @@ namespace com.clusterrr.hakchi_gui
                     bool wasCompressed = game.DecompressPossible().Count() > 0;
                     if (wasCompressed)
                         game.Decompress();
-                    crc32 = Shared.CRC32(File.OpenRead(gameFile));
+                    crc32 = Shared.CRC32(File.OpenRead(game.GameFilePath));
                     if (wasCompressed)
                         game.Compress();
                 }
