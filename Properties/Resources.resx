@@ -727,9 +727,6 @@
   <data name="gitCommit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\commit.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icon.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="RemovingCovers" xml:space="preserve">
     <value>Removing cover art...</value>
   </data>
@@ -914,5 +911,8 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   </data>
   <data name="ScanningCover" xml:space="preserve">
     <value>Scanning box art for {0}</value>
+  </data>
+  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon_app.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

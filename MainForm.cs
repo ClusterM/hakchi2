@@ -107,6 +107,7 @@ namespace com.clusterrr.hakchi_gui
                 TitleTemplate += " (Very verbose mode)";
 #endif
                 Text = TitleTemplate;
+                Icon = Resources.icon;
 
                 // prepare collections
                 InternalMods = from m in Directory.GetFiles(Path.Combine(Program.BaseDirectoryInternal, "mods/hmods")) select Path.GetFileNameWithoutExtension(m);

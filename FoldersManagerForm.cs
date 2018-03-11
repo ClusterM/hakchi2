@@ -63,6 +63,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 InitializeComponent();
+                Icon = Resources.icon;
                 gamesCollection = nesMenuCollection;
                 this.mainForm = mainForm;
                 if (File.Exists(FoldersXmlPath))

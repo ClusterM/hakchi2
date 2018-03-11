@@ -22,6 +22,7 @@ namespace com.clusterrr.hakchi_gui
         public SaveStateManager(Dictionary<string, string> gameNames)
         {
             InitializeComponent();
+            Icon = Resources.icon;
             labelLoading.Text = Resources.PleaseWait;
             this.gameNames = gameNames;
             openFileDialog.Filter = saveFileDialog.Filter = Resources.SavesFlterName + " (*.clvs)|*.clvs|" + Resources.AllFiles + "|*.*";

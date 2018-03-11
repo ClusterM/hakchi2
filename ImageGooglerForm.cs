@@ -24,6 +24,7 @@ namespace com.clusterrr.hakchi_gui
         public ImageGooglerForm(NesApplication app)
         {
             InitializeComponent();
+            Icon = Resources.icon;
             if (!string.IsNullOrEmpty(app.Name))
                 Text += " - " + app.Name;
             searchThread = new Thread(SearchThread);

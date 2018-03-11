@@ -24,6 +24,7 @@ namespace com.clusterrr.hakchi_gui
         public SelectSystemDialog()
         {
             InitializeComponent();
+            Icon = Resources.icon;
             fillSystems();
         }
 

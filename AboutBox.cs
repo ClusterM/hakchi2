@@ -10,6 +10,7 @@ namespace com.clusterrr.hakchi_gui
         public AboutBox()
         {
             InitializeComponent();
+            this.Icon = Resources.icon;
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
             this.labelVersion.Text = String.Format("Version {0}", Shared.AppDisplayVersion);

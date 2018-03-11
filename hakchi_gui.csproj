@@ -63,7 +63,7 @@
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>icon_app.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -95,6 +95,7 @@
   <PropertyGroup>
     <ManifestKeyFile>cluster_cert.pfx</ManifestKeyFile>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup />
@@ -1323,6 +1324,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="images\noboxart.png" />
+    <Content Include="icon_app.ico" />
+    <Content Include="icon_window.ico" />
     <Content Include="images\blank_dos.png" />
     <Content Include="readmeTemplate.css" />
     <Content Include="readmeTemplate.html" />
@@ -3288,7 +3291,6 @@
     <None Include="folder_images\README.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="icon.ico" />
     <None Include="folder_images\folder_back.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

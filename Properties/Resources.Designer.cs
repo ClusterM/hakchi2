@@ -1379,7 +1379,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 84c7b6b (dirty).
+        ///   Looks up a localized string similar to 8a10308 (dirty).
         /// </summary>
         internal static string gitCommit {
             get {
@@ -2129,6 +2129,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         ///imageviewer
         ///lutro
         ///mame2000
+        ///mame2003
         ///mame2010
         ///mame2014
         ///mednafen_ngp
@@ -2150,8 +2151,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         ///pokemini
         ///ppsspp
         ///prboom
-        ///prosystem
-        ///p [rest of string was truncated]&quot;;.
+        ///pr [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string retroarch_whitelist {
             get {

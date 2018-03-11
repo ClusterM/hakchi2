@@ -70,6 +70,7 @@ namespace com.clusterrr.hakchi_gui
         public SelectCoreDialog()
         {
             InitializeComponent();
+            Icon = Resources.icon;
             DialogResult = DialogResult.Abort;
         }
 

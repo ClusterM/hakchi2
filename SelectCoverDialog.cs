@@ -42,6 +42,7 @@ namespace com.clusterrr.hakchi_gui
         public SelectCoverDialog()
         {
             InitializeComponent();
+            Icon = Resources.icon;
             DialogResult = DialogResult.Abort;
         }
 
