@@ -224,6 +224,8 @@ namespace mooftpserv
 
         public ResultOrError<string> ListEntriesRaw(string path)
         {
+            if (path == null)
+                path = "/";
             if (path.StartsWith("-"))
                 path = ". " + path;
             string newPath = ResolvePath(path);

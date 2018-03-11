@@ -232,8 +232,6 @@ namespace com.clusterrr.hakchi_gui
                             DefaultCover = Resources.blank_app,
                             GoogleSuffix = "game"
                         };
-                        //if (CoreCollection.GetCore(Core) == null || !CoreCollection.Systems.Contains(System))
-                        //    appInfo.Unknown = true;
                     }
                     return appInfo;
                 }
@@ -662,13 +660,21 @@ namespace com.clusterrr.hakchi_gui
             }
             get
             {
-                Image i = base.Image;
-                if (IsOriginalGame && i == null)
+                try
                 {
-                    string cachedIconPath = Shared.PathCombine(OriginalGamesCacheDirectory, Code, Code + ".png");
-                    return File.Exists(cachedIconPath) ? Shared.LoadBitmapCopy(cachedIconPath) : AppTypeCollection.GetAppBySystem(Metadata.System).DefaultCover;
+                    Image i = base.Image;
+                    if (IsOriginalGame && i == null)
+                    {
+                        string cachedIconPath = Shared.PathCombine(OriginalGamesCacheDirectory, Code, Code + ".png");
+                        return File.Exists(cachedIconPath) ? Shared.LoadBitmapCopy(cachedIconPath) : AppTypeCollection.GetAppBySystem(Metadata.System).DefaultCover;
+                    }
+                    return i;
                 }
-                return i;
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Image loading error: " + ex.Message + ex.StackTrace);
+                }
+                return null;
             }
         }
 
@@ -676,13 +682,21 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                Image i = base.Thumbnail;
-                if (IsOriginalGame && i == null)
+                try
                 {
-                    string cachedIconPath = Shared.PathCombine(OriginalGamesCacheDirectory, Code, Code + "_small.png");
-                    return File.Exists(cachedIconPath) ? Image.FromFile(cachedIconPath) : AppTypeCollection.GetAppBySystem(Metadata.System).DefaultCover;
+                    Image i = base.Thumbnail;
+                    if (IsOriginalGame && i == null)
+                    {
+                        string cachedIconPath = Shared.PathCombine(OriginalGamesCacheDirectory, Code, Code + "_small.png");
+                        return File.Exists(cachedIconPath) ? Image.FromFile(cachedIconPath) : AppTypeCollection.GetAppBySystem(Metadata.System).DefaultCover;
+                    }
+                    return i;
                 }
-                return i;
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Image loading error: " + ex.Message + ex.StackTrace);
+                }
+                return null;
             }
         }
 
@@ -753,7 +767,7 @@ namespace com.clusterrr.hakchi_gui
 
                 if (coverArtMatches.Count > 0)
                 {
-                    Debug.WriteLine($"FindCover results for {Name}:");
+                    Debug.WriteLine($"FindCover fuzzy search results for {Name}:");
                     foreach(var cover in coverArtMatches)
                     {
                         Debug.WriteLine(Path.GetFileName(cover.Key) + (cover.Value ? " (partial)" : " (precise)"));
@@ -783,7 +797,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
+                Debug.WriteLine("Error trying to find cover art: " + ex.Message + ex.StackTrace);
             }
 
             // failed to find a cover, using default cover if provided

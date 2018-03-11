@@ -112,7 +112,6 @@ namespace com.clusterrr.hakchi_gui
         readonly string argumentsFilePath;
         readonly string transferDirectory;
         string tempGamesDirectory;
-        string relativeGamesPath;
         Dictionary<MainForm.ConsoleType, string[]> correctKernels = new Dictionary<MainForm.ConsoleType, string[]>();
         Dictionary<MainForm.ConsoleType, string[]> correctKeys = new Dictionary<MainForm.ConsoleType, string[]>();
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
@@ -562,7 +561,7 @@ namespace com.clusterrr.hakchi_gui
                 if (matchedKeys.Count() > 0)
                 {
                     if (!matchedKeys.Contains(ConfigIni.ConsoleType))
-                        throw new Exception(Resources.InvalidConsoleSelected + " " + matchedKernels.First());
+                        throw new Exception(Resources.InvalidConsoleSelected + " " + matchedKeys.First());
                 }
                 else throw new Exception("Unknown key, unknown console");
 
@@ -1666,9 +1665,9 @@ namespace com.clusterrr.hakchi_gui
 
         private void UnpackRamfs(string kernelPath = null)
         {
-            if (Directory.Exists(tempDirectory))
+            if (Directory.Exists(ramfsDirectory))
             {
-                Shared.DirectoryDeleteInside(tempDirectory);
+                Shared.DirectoryDeleteInside(ramfsDirectory);
             }
             Directory.CreateDirectory(tempDirectory);
             Directory.CreateDirectory(kernelDirectory);
@@ -1809,14 +1808,14 @@ namespace com.clusterrr.hakchi_gui
 
             var result = File.ReadAllBytes(kernelPatched);
 #if !DEBUG
-                if (Directory.Exists(tempDirectory))
+            if (Directory.Exists(tempDirectory))
+            {
+                try
                 {
-                    try
-                    {
-                        Directory.Delete(tempDirectory, true);
-                    }
-                    catch { }
+                    Directory.Delete(tempDirectory, true);
                 }
+                catch { }
+            }
 #endif
             return result;
         }
@@ -1919,13 +1918,13 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private bool ExecuteTool(string tool, string args, string directory = null, bool external = false)
+        private bool ExecuteTool(string tool, string args, string directory = null, bool external = false, Action<string> onLineOutput = null)
         {
             byte[] output;
-            return ExecuteTool(tool, args, out output, directory, external);
+            return ExecuteTool(tool, args, out output, directory, external, onLineOutput);
         }
 
-        private bool ExecuteTool(string tool, string args, out byte[] output, string directory = null, bool external = false)
+        private bool ExecuteTool(string tool, string args, out byte[] output, string directory = null, bool external = false, Action<string> onLineOutput = null)
         {
             var process = new Process();
             var appDirectory = baseDirectoryInternal;
@@ -1945,11 +1944,54 @@ namespace com.clusterrr.hakchi_gui
             Debug.WriteLine("Executing: " + fileName);
             Debug.WriteLine("Arguments: " + args);
             Debug.WriteLine("Directory: " + directory);
-            process.Start();
+
+            var outputStr = new StringBuilder();
+            var errorStr = new StringBuilder();
+            try
+            {
+                process.Start();
+                var line = new StringBuilder();
+                while (!process.HasExited || !process.StandardOutput.EndOfStream || !process.StandardError.EndOfStream)
+                {
+                    while (!process.StandardOutput.EndOfStream)
+                    {
+                        var b = process.StandardOutput.Read();
+                        if (b >= 0)
+                        {
+                            if ((char)b != '\n' && (char)b != '\r')
+                            {
+                                line.Append((char)b);
+                            }
+                            else
+                            {
+                                if (onLineOutput != null && line.Length > 0)
+                                    onLineOutput(line.ToString());
+                                line.Length = 0;
+                            }
+                            outputStr.Append((char)b);
+                        }
+                    }
+                    if (!process.StandardError.EndOfStream)
+                        errorStr.Append(process.StandardError.ReadToEnd());
+                    Thread.Sleep(100);
+                }
+                if (onLineOutput != null && line.Length > 0)
+                    onLineOutput(line.ToString());
+            }
+            catch (ThreadAbortException ex)
+            {
+                if (!process.HasExited) process.Kill();
+                throw ex;
+            }
+
+            output = Encoding.GetEncoding(866).GetBytes(outputStr.ToString());
+
+            /*process.Start();
             string outputStr = process.StandardOutput.ReadToEnd();
             string errorStr = process.StandardError.ReadToEnd();
             process.WaitForExit();
-            output = Encoding.GetEncoding(866).GetBytes(outputStr);
+            output = Encoding.GetEncoding(866).GetBytes(outputStr);*/
+
             Debug.WriteLineIf(outputStr.Length > 0 && outputStr.Length < 300, "Output:\r\n" + outputStr);
             Debug.WriteLineIf(errorStr.Length > 0, "Errors:\r\n" + errorStr);
             Debug.WriteLine("Exit code: " + process.ExitCode);

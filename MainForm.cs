@@ -60,10 +60,10 @@ namespace com.clusterrr.hakchi_gui
                 case ConsoleType.Famicom: return "Famicom";
                 case ConsoleType.SNES: return "SNES";
                 case ConsoleType.SuperFamicom: return "Super Famicom";
+                case ConsoleType.Unknown: return "Unkown Console";
             }
             return string.Empty;
         }
-        public static string TitleTemplate;
 
         public static IEnumerable<string> InternalMods;
         public static bool? DownloadCover;
@@ -89,24 +89,35 @@ namespace com.clusterrr.hakchi_gui
             if (ConfigIni.FtpServer)
                 FTPToolStripMenuItem_Click(null, null);
             if (ConfigIni.TelnetServer)
-                Clovershell.ShellEnabled = shellToolStripMenuItem.Checked = true;
+                shellToolStripMenuItem_Click(null, null);
+        }
+
+        void SetWindowTitle()
+        {
+            string title = $"hakchi2 CE v{Shared.AppDisplayVersion}";
+
+#if DEBUG
+            title += " (Debug)";
+#endif
+#if VERY_DEBUG
+            title += " (Very verbose mode)";
+#endif
+
+            if (ConfigIni.ConsoleType != ConsoleType.Unknown)
+            {
+                title += " - " + GetConsoleTypeName(ConfigIni.ConsoleType);
+                if (DetectedRunningConsole != DetectedBaseConsole)
+                    title += " (Custom HSQS)";
+            }
+
+            this.Text = title;
         }
 
         void FormInitialize()
         {
             try
             {
-                // define title template
-                TitleTemplate = $"hakchi2 CE v{Shared.AppDisplayVersion}";
-                //if (Shared.AppVersion.Revision > 0)
-                    //TitleTemplate += " (" + Resources.VersionRevisionNotice + ")";
-#if DEBUG
-                TitleTemplate += " (Debug)";
-#endif
-#if VERY_DEBUG
-                TitleTemplate += " (Very verbose mode)";
-#endif
-                Text = TitleTemplate;
+                // icon workaround
                 Icon = Resources.icon;
 
                 // prepare collections
@@ -145,14 +156,14 @@ namespace com.clusterrr.hakchi_gui
                     extensions += system + "|*" + string.Join(";*", CoreCollection.GetExtensionsFromSystem(system).ToArray()) + "|";
                 }
                 openFileDialogNes.Filter = extensions.Trim('|');
-
-
+                
                 // Loading games database in background
                 new Thread(NesGame.LoadCache).Start();
                 new Thread(SnesGame.LoadCache).Start();
                 // Recalculate games in background
                 new Thread(RecalculateSelectedGamesThread).Start();
 
+                // servers menu settings
                 openFTPInExplorerToolStripMenuItem.Enabled = FTPToolStripMenuItem.Checked = ConfigIni.FtpServer;
                 openTelnetToolStripMenuItem.Enabled = shellToolStripMenuItem.Checked = ConfigIni.TelnetServer;
             }
@@ -167,16 +178,21 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                ConfigIni.CustomFlashed = true; // Just in case of new installation
                 if (WorkerForm.GetConsoleType(out DetectedRunningConsole, out DetectedBaseConsole))
                 {
-                    ConfigIni.ConsoleType = DetectedRunningConsole ?? ConfigIni.ConsoleType;
+                    if (DetectedRunningConsole != null && DetectedRunningConsole != ConsoleType.Unknown)
+                    {
+                        ConfigIni.ConsoleType = (ConsoleType)DetectedRunningConsole;
+                        if (DetectedRunningConsole == DetectedBaseConsole)
+                        {
+                            ConfigIni.CustomFlashed = true; // Just in case of new installation
+                        }
+                        Invoke(new Action(SyncConsoleType));
+                    }
                 }
 
-                Invoke(new Action(SyncConsoleType));
-                bool canInteract = true;
-
                 // do minimum version checks before we try to interact with the console in any meaningful way
+                bool canInteract = true;
                 if (SystemRequiresReflash())
                 {
                     canInteract = false;
@@ -317,20 +333,13 @@ namespace com.clusterrr.hakchi_gui
         static ConsoleType lastConsoleType = ConsoleType.Unknown;
         public void SyncConsoleType()
         {
+            SetWindowTitle();
+
             // prevent switching console type when a running console is detected
             nESMiniToolStripMenuItem.Enabled =
                 famicomMiniToolStripMenuItem.Enabled =
                 sNESMiniToolStripMenuItem.Enabled =
                 superFamicomMiniToolStripMenuItem.Enabled = (DetectedRunningConsole == null);
-
-            // title bar
-            if (ConfigIni.ConsoleType != ConsoleType.Unknown)
-            {
-                string newTitle = TitleTemplate + " - " + GetConsoleTypeName(ConfigIni.ConsoleType);
-                if (DetectedRunningConsole != DetectedBaseConsole)
-                    newTitle += " (Custom HSQS)";
-                this.Text = newTitle;
-            }
 
             // skip if unchanged
             if (ConfigIni.ConsoleType == lastConsoleType || ConfigIni.ConsoleType == ConsoleType.Unknown)
@@ -1260,6 +1269,7 @@ namespace com.clusterrr.hakchi_gui
         DialogResult RequirePatchedKernel()
         {
             if (ConfigIni.CustomFlashed) return DialogResult.OK; // OK - already flashed
+            if (Clovershell.IsOnline) return DialogResult.OK; // OK - maybe not flashed but it's online
             if (MessageBox.Show(Resources.CustomWarning, Resources.CustomKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                     == System.Windows.Forms.DialogResult.Yes)
             {
@@ -2797,6 +2807,9 @@ namespace com.clusterrr.hakchi_gui
                     item.Tag = customGameForm.NewApp;
                     item.Selected = true;
                     item.Checked = true;
+
+                    foreach(ListViewItem i in listViewGames.Items)
+                        i.Selected = false;
                     listViewGames.Items.Add(item);
                 }
             }
