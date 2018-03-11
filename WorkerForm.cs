@@ -427,10 +427,15 @@ namespace com.clusterrr.hakchi_gui
                 {
                     Invoke(new Action<int, int>(SetProgress), new object[] { value, max });
                     if (value == max)
-                        Thread.Sleep(100);
+                        Thread.Sleep(250);
                     return;
                 }
-                if (value > max) value = max;
+                if (value >= max)
+                {
+                    value = max;
+                }
+                progressBar.Maximum = max + 1;
+                progressBar.Value = value + 1;
                 progressBar.Maximum = max;
                 progressBar.Value = value;
                 TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
@@ -1084,7 +1089,7 @@ namespace com.clusterrr.hakchi_gui
             string squashFsPath;
             string gameSyncPath;
             int progress = 0;
-            int maxProgress = 400;
+            int maxProgress = 100;
             if (Games == null || Games.Count == 0)
                 throw new Exception("there are no games");
 
@@ -1105,11 +1110,12 @@ namespace com.clusterrr.hakchi_gui
                 DialogResult = DialogResult.Abort;
                 return;
             }
+            SetProgress(progress += 5, maxProgress);
 
             // building folders
-            SetStatus(Resources.BuildingFolders);
             if (FoldersMode == NesMenuCollection.SplitStyle.Custom)
             {
+                SetStatus(Resources.BuildingFolders);
                 if (FoldersManagerFromThread(Games) != System.Windows.Forms.DialogResult.OK)
                 {
                     DialogResult = DialogResult.Abort;
@@ -1118,9 +1124,11 @@ namespace com.clusterrr.hakchi_gui
                 Games.AddBack();
             }
             else
+            {
+                SetStatus(Resources.BuildingMenu);
                 Games.Split(FoldersMode, MaxGamesPerFolder);
-            progress += 5;
-            SetProgress(progress, maxProgress);
+            }
+            SetProgress(progress += 5, maxProgress);
 
             var clovershell = MainForm.Clovershell;
             try
@@ -1131,15 +1139,11 @@ namespace com.clusterrr.hakchi_gui
                     return;
                 }
 
-                SetStatus(Resources.AddingGames);
-
                 gameSyncPath = Shared.GetRemoteGameSyncPath();
                 gamesPath = clovershell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
                 rootFsPath = clovershell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
                 squashFsPath = clovershell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
-
-                progress += 5;
-                SetProgress(progress, maxProgress);
+                SetProgress(progress += 5, maxProgress);
 
                 // prepare unit for upload
                 ShowSplashScreen();
@@ -1150,18 +1154,16 @@ namespace com.clusterrr.hakchi_gui
                     SetStatus(Resources.CleaningUp);
                     clovershell.ExecuteSimple("find \"$(hakchi findGameSyncStorage)/\" -maxdepth 1 | grep -vEe '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' | while read f; do rm -rf \"$f\"; done", 0, true);
                 }
-                progress += 5;
-                SetProgress(progress, maxProgress);
+                SetProgress(progress += 5, maxProgress);
 
                 // Games!
-                SetStatus(Resources.BuildingMenu);
+                SetStatus(Resources.AddingGames);
                 Dictionary<string, string> originalGames = new Dictionary<string, string>();
                 var stats = new GamesTreeStats();
                 AddMenu(Games, originalGames, stats);
+                SetProgress(progress += 15, maxProgress);
 
-                progress += 35;
-                SetProgress(progress, maxProgress);
-
+                SetStatus(Resources.CalculatingDiff);
                 GetMemoryStats();
                 var maxGamesSize = (StorageFree + WrittenGamesSize) - ReservedMemory * 1024 * 1024;
                 if (stats.TotalSize > maxGamesSize)
@@ -1173,11 +1175,7 @@ namespace com.clusterrr.hakchi_gui
                         SaveStatesSize / 1024.0 / 1024.0,
                         (StorageUsed - WrittenGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
                 }
-
-                SetStatus(Resources.CalculatingDiff);
-
-                progress += 5;
-                SetProgress(progress, maxProgress);
+                SetProgress(progress += 5, maxProgress);
 
                 // Determine which games need to actually be transferred (differential updates):
                 // Get the list of local files, timestamps, and sizes
@@ -1186,43 +1184,44 @@ namespace com.clusterrr.hakchi_gui
                 // Get the remote list of files, timestamps, and sizes
                 string gamesOnDevice = clovershell.ExecuteSimple($"mkdir -p \"{gameSyncPath}\"; cd \"{gameSyncPath}\"; find . -type f -exec sh -c \"stat \\\"{{}}\\\" -c \\\"%n %s %y\\\"\" \\;", 0, true);
                 HashSet<ApplicationFileInfo> remoteGameSet = ApplicationFileInfo.GetApplicationFileInfoFromConsoleOutput(gamesOnDevice);
+                SetProgress(progress += 5, maxProgress);
 
                 // Delete any remote files that aren't present locally
+                SetStatus(Resources.CleaningUp);
                 var remoteGamesToDelete = remoteGameSet.Except(localGameSet);
                 DeleteRemoteApplicationFiles(remoteGamesToDelete);
 
                 // Delete any local files that are already present on the remote
                 var localGamesToDelete = localGameSet.Intersect(remoteGameSet);
                 DeleteLocalApplicationFilesFromDirectory(localGamesToDelete, tempGamesDirectory);
+                SetProgress(progress += 5, maxProgress);
 
                 // Now transfer whatever games are remaining in the temp directory
+                SetStatus(Resources.UploadingGames);
                 int startProgress = progress;
                 clovershell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
                 using (var gamesTar = new TarStream(tempGamesDirectory, null, null))
                 {
-                    maxProgress = (int)(gamesTar.Length / 1024 / 1024 + 55 + originalGames.Count() * 2);
-                    SetProgress(progress, maxProgress);
-                    
+                    int currentMaxProgress = 90 - startProgress;
                     if (gamesTar.Length > 0)
                     {
                         gamesTar.OnReadProgress += delegate (long pos, long len)
                         {
-                            progress = (int)(startProgress + pos / 1024 / 1024);
+                            progress = startProgress + (int)((double)pos / len * currentMaxProgress);
                             SetProgress(progress, maxProgress);
                         };
-
-                        SetStatus(Resources.UploadingGames);
                         clovershell.Execute($"tar -xvC \"{gameSyncPath}\"", gamesTar, null, null, 30000, true);
                     }
                 }
+                SetProgress(progress = 90, maxProgress);
 
                 // Finally, delete any empty directories we may have left during the differential sync
                 SetStatus(Resources.CleaningUp);
                 clovershell.ExecuteSimple($"for f in $(find \"{gameSyncPath}\" -type d -mindepth 1 -maxdepth 2); do {{ ls -1 \"$f\" | grep -v pixelart | grep -v autoplay " +
                     "| wc -l | { read wc; test $wc -eq 0 && rm -rf \"$f\"; } } ; done", 0);
+                SetProgress(progress += 5, maxProgress);
 
                 SetStatus(Resources.UploadingOriginalGames);
-                startProgress = progress;
                 foreach (var originalCode in originalGames.Keys)
                 {
                     string originalSyncCode = "";
@@ -1247,12 +1246,9 @@ namespace com.clusterrr.hakchi_gui
                             break;
                     }
 
-                    //originalSyncCode += $" && sed -Ee 's#([ =])(/var/lib/hakchi/squashfs)?{gamesPath}/#\\1{squashFsPath}{gamesPath}/#' -i '{gameSyncPath}/{originalGames[originalCode]}/{originalCode}/{originalCode}.desktop' && " +
-                    //    "echo 'OK'";
                     clovershell.ExecuteSimple(originalSyncCode, 30000, true);
-                    progress += 2;
-                    SetProgress(progress, maxProgress);
                 };
+                SetProgress(progress += 4, maxProgress);
 
                 SetStatus(Resources.UploadingConfig);
                 SyncConfig(Config);
@@ -1334,9 +1330,9 @@ namespace com.clusterrr.hakchi_gui
 
             int progress = 0, maxProgress = 50;
 
-            SetStatus(Resources.BuildingFolders);
             if (FoldersMode == NesMenuCollection.SplitStyle.Custom)
             {
+                SetStatus(Resources.BuildingFolders);
                 if (FoldersManagerFromThread(Games) != DialogResult.OK)
                 {
                     DialogResult = DialogResult.Abort;
@@ -1345,12 +1341,14 @@ namespace com.clusterrr.hakchi_gui
                 Games.AddBack();
             }
             else
+            {
+                SetStatus(Resources.BuildingMenu);
                 Games.Split(FoldersMode, MaxGamesPerFolder);
-
-            progress += 5;
-            SetProgress(progress, maxProgress);
+            }
+            SetProgress(progress += 5, maxProgress);
 
             // export games directory!
+            SetStatus(Resources.CleaningUp);
             tempGamesDirectory = exportDirectory;
             bool directoryNotEmpty = (Directory.GetDirectories(tempGamesDirectory).Length > 0);
             if (directoryNotEmpty && MessageBoxFromThread(this, string.Format(Resources.PermanentlyDeleteQ, tempGamesDirectory), Resources.FolderNotEmpty, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, false) == DialogResult.Yes)
@@ -1368,18 +1366,16 @@ namespace com.clusterrr.hakchi_gui
             {
                 Directory.CreateDirectory(tempGamesDirectory);
             }
+            SetProgress(progress += 5, maxProgress);
 
-            progress += 5;
-            SetProgress(progress, maxProgress);
-
-            SetStatus(Resources.BuildingMenu);
+            SetStatus(Resources.AddingGames);
             Dictionary<string, string> originalGames = new Dictionary<string, string>();
             var stats = new GamesTreeStats();
             AddMenu(Games, originalGames, stats);
-            progress += 40;
-            SetProgress(progress, maxProgress);
+            SetProgress(progress += 30, maxProgress);
 
             // show resulting games directory
+            SetStatus(Resources.PleaseWait);
             new Process()
             {
                 StartInfo = new ProcessStartInfo()

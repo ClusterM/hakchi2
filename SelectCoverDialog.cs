@@ -36,7 +36,7 @@ namespace com.clusterrr.hakchi_gui
                     listViewGames.Items.Add(item);
                 }
             }
-            listViewGames.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            coverColumnHeader.Width = -2;
         }
 
         public SelectCoverDialog()
@@ -130,6 +130,7 @@ namespace com.clusterrr.hakchi_gui
                     gameItem.SubItems[4].Text = imageItem.Text;
                 }
             }
+            coverColumnHeader.Width = -2;
         }
 
         private void buttonSetDefault_Click(object sender, EventArgs e)
@@ -138,6 +139,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 listViewGames.Items[i].SubItems[4].Text = "Default / no change";
             }
+            coverColumnHeader.Width = -2;
         }
 
         private void buttonImFeelingLucky_Click(object sender, EventArgs e)
@@ -149,6 +151,7 @@ namespace com.clusterrr.hakchi_gui
                 var coverMatch = game.CoverArtMatches.First();
                 gameItem.SubItems[4].Text = Path.GetFileName(coverMatch.Key);
             }
+            coverColumnHeader.Width = -2;
         }
 
         private void buttonAccept_Click(object sender, EventArgs e)

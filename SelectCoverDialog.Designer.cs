@@ -68,27 +68,27 @@
             // nameColumnHeader
             // 
             this.nameColumnHeader.Text = "Name";
-            this.nameColumnHeader.Width = 40;
+            this.nameColumnHeader.Width = 180;
             // 
             // filenameColumnHeader
             // 
             this.filenameColumnHeader.Text = "Filename";
-            this.filenameColumnHeader.Width = 54;
+            this.filenameColumnHeader.Width = 100;
             // 
             // extColumnHeader
             // 
             this.extColumnHeader.Text = "Ext";
-            this.extColumnHeader.Width = 27;
+            this.extColumnHeader.Width = 45;
             // 
             // systemColumnHeader
             // 
             this.systemColumnHeader.Text = "System";
-            this.systemColumnHeader.Width = 46;
+            this.systemColumnHeader.Width = 160;
             // 
             // coverColumnHeader
             // 
             this.coverColumnHeader.Text = "Box art";
-            this.coverColumnHeader.Width = 539;
+            this.coverColumnHeader.Width = 50;
             // 
             // label1
             // 
