@@ -221,7 +221,7 @@ namespace com.clusterrr.hakchi_gui
 
             InitializeComponent();
 
-            switch (ConfigIni.hmodListSort)
+            switch (ConfigIni.Instance.hmodListSort)
             {
                 case HmodListSort.Category:
                     categoryToolStripMenuItem.Checked = true;
@@ -289,7 +289,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 string groupName = Properties.Resources.Unknown;
 
-                switch (ConfigIni.hmodListSort)
+                switch (ConfigIni.Instance.hmodListSort)
                 {
                     case HmodListSort.Category:
                         groupName = hmod.Category;
@@ -353,8 +353,6 @@ namespace com.clusterrr.hakchi_gui
 
         string formatReadme(ref Hmod hmod)
         {
-            
-
             string[] headingFields = { "Creator", "Version" };
             List<string> headingLines = new List<string>();
 
@@ -459,7 +457,7 @@ namespace com.clusterrr.hakchi_gui
         {
             categoryToolStripMenuItem.Checked = true;
             creatorToolStripMenuItem.Checked = false;
-            ConfigIni.hmodListSort = HmodListSort.Category;
+            ConfigIni.Instance.hmodListSort = HmodListSort.Category;
             populateList();
         }
 
@@ -467,7 +465,7 @@ namespace com.clusterrr.hakchi_gui
         {
             creatorToolStripMenuItem.Checked = true;
             categoryToolStripMenuItem.Checked = false;
-            ConfigIni.hmodListSort = HmodListSort.Creator;
+            ConfigIni.Instance.hmodListSort = HmodListSort.Creator;
             populateList();
         }
     }

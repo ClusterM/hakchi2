@@ -140,7 +140,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                switch (ConfigIni.ConsoleType)
+                switch (ConfigIni.Instance.GamesConsoleType)
                 {
                     default:
                     case MainForm.ConsoleType.NES:
@@ -165,7 +165,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                switch (ConfigIni.ConsoleType)
+                switch (ConfigIni.Instance.GamesConsoleType)
                 {
                     default:
                     case MainForm.ConsoleType.NES:
@@ -184,7 +184,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                switch (ConfigIni.ConsoleType)
+                switch (ConfigIni.Instance.ConsoleType)
                 {
                     default:
                     case MainForm.ConsoleType.NES:
@@ -530,7 +530,7 @@ namespace com.clusterrr.hakchi_gui
                 (game as ICloverAutofill).TryAutofill(crc32);
             game.FindCover(inputFileName, cover, crc32);
 
-            if (ConfigIni.Compress)
+            if (ConfigIni.Instance.Compress)
             {
                 game.Compress();
                 game.Save();
@@ -619,7 +619,7 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // save .desktop file
-            bool snesExtraFields = IsOriginalGame && (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom);
+            bool snesExtraFields = IsOriginalGame && (ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SuperFamicom);
             desktop.Save($"{basePath}/{desktop.Code}.desktop", snesExtraFields);
 
             // game genie stuff
@@ -720,7 +720,7 @@ namespace com.clusterrr.hakchi_gui
                     if (covers.Length > 0 && imageExtensions.Contains(Path.GetExtension(covers[0])))
                     {
                         coverArtMatches.Add(covers[0], false);
-                        SetImageFile(covers[0], ConfigIni.CompressCover);
+                        SetImageFile(covers[0], ConfigIni.Instance.CompressCover);
                         return true;
                     }
                 }
@@ -734,7 +734,7 @@ namespace com.clusterrr.hakchi_gui
                         if (File.Exists(imagePath))
                         {
                             coverArtMatches.Add(imagePath, false);
-                            SetImageFile(imagePath, ConfigIni.CompressCover);
+                            SetImageFile(imagePath, ConfigIni.Instance.CompressCover);
                             return true;
                         }
                     }
@@ -790,7 +790,7 @@ namespace com.clusterrr.hakchi_gui
 
                     if (!string.IsNullOrEmpty(preciseMatch))
                     {
-                        SetImageFile(preciseMatch, ConfigIni.CompressCover);
+                        SetImageFile(preciseMatch, ConfigIni.Instance.CompressCover);
                         return true;
                     }
                 }
@@ -815,7 +815,7 @@ namespace com.clusterrr.hakchi_gui
 
             name = regexTrim.Replace(" " + regexSanitize.Replace(name, " ").ToLower() + " ", " ");
 
-            if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name.Trim()))
             {
                 // build word list, with exceptions
                 List<string[]> words = new List<string[]>();

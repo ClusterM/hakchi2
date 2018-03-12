@@ -55,11 +55,11 @@ namespace com.clusterrr.hakchi_gui
 
             if(comboDriveLetters.Items.Count > 0) comboDriveLetters.SelectedIndex = 0;
 
-            if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES && ConfigIni.SeparateGameStorage)
+            if (ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SNES && ConfigIni.Instance.SeparateGameStorage)
             {
                 radioEUR.Enabled = true;
                 radioUSA.Enabled = true;
-                switch (ConfigIni.ExportRegion)
+                switch (ConfigIni.Instance.ExportRegion)
                 {
                     case "EUR":
                         radioEUR.Checked = true;
@@ -80,7 +80,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
             }
-            checkLinked.Checked = ConfigIni.ExportLinked;
+            checkLinked.Checked = ConfigIni.Instance.ExportLinked;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -99,9 +99,9 @@ namespace com.clusterrr.hakchi_gui
             {
                 SelectedDrive = ((DriveLetterItem)comboDriveLetters.SelectedItem).info;
                 string systemCode = "";
-                if (ConfigIni.SeparateGameStorage)
+                if (ConfigIni.Instance.SeparateGameStorage)
                 {
-                    switch (ConfigIni.ConsoleType)
+                    switch (ConfigIni.Instance.GamesConsoleType)
                     {
                         case MainForm.ConsoleType.Famicom:
                             systemCode = "nes-jpn";
@@ -133,7 +133,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
 
-                if (ConfigIni.SeparateGameStorage)
+                if (ConfigIni.Instance.SeparateGameStorage)
                 {
                     ExportPath = Shared.PathCombine(SelectedDrive.RootDirectory.FullName, "hakchi", "games", systemCode);
                 }
@@ -166,12 +166,12 @@ namespace com.clusterrr.hakchi_gui
 
         private void Region_CheckedChanged(object sender, EventArgs e)
         {
-            if(((RadioButton)sender).Checked) ConfigIni.ExportRegion = ((RadioButton)sender).Text;
+            if(((RadioButton)sender).Checked) ConfigIni.Instance.ExportRegion = ((RadioButton)sender).Text;
         }
 
         private void checkLinked_CheckedChanged(object sender, EventArgs e)
         {
-            ConfigIni.ExportLinked = ((CheckBox)sender).Checked;
+            ConfigIni.Instance.ExportLinked = ((CheckBox)sender).Checked;
         }
     }
 }

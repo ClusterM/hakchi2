@@ -177,10 +177,9 @@ namespace com.clusterrr.hakchi_gui
 
             // check if we can use sfrom tool
             bool convertedSuccessfully = false;
-            bool isSnesSystem = ConfigIni.ConsoleType == MainForm.ConsoleType.SNES ||
-                    ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom;
+            bool isSnesSystem = ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SuperFamicom;
 
-            if (isSnesSystem && ConfigIni.UseSFROMTool && SfromToolWrapper.IsInstalled)
+            if (isSnesSystem && ConfigIni.Instance.UseSFROMTool && SfromToolWrapper.IsInstalled)
             {
                 Debug.WriteLine($"Convert with SFROM Tool: {inputFileName}");
                 if (SfromToolWrapper.ConvertROMtoSFROM(ref rawRomData))

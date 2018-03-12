@@ -26,7 +26,7 @@ namespace com.clusterrr.hakchi_gui
                 // Try to find patch again, using new CRC
                 FindPatch(ref rawRomData, inputFileName,  crc32);
             }
-            if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
+            if (ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.NES || ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.Famicom)
             {
                 application = "/bin/clover-kachikachi-wr";
                 args = DefaultArgs;

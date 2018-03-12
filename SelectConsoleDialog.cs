@@ -25,45 +25,45 @@ namespace com.clusterrr.hakchi_gui
         private void buttonNes_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
-            if (MainForm.DetectedRunningConsole == null)
-                ConfigIni.ConsoleType = MainForm.ConsoleType.NES;
+            if (MainForm.DetectedBaseConsole == null)
+                ConfigIni.Instance.ConsoleType = MainForm.ConsoleType.NES;
             Close();
         }
 
         private void buttonFamicom_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
-            if (MainForm.DetectedRunningConsole == null)
-                ConfigIni.ConsoleType = MainForm.ConsoleType.Famicom;
+            if (MainForm.DetectedBaseConsole == null)
+                ConfigIni.Instance.ConsoleType = MainForm.ConsoleType.Famicom;
             Close();
         }
 
         private void buttonSnes_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
-            if (MainForm.DetectedRunningConsole == null)
-                ConfigIni.ConsoleType = MainForm.ConsoleType.SNES;
+            if (MainForm.DetectedBaseConsole == null)
+                ConfigIni.Instance.ConsoleType = MainForm.ConsoleType.SNES;
             Close();
         }
 
         private void buttonSuperFamicom_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
-            if (MainForm.DetectedRunningConsole == null)
-                ConfigIni.ConsoleType = MainForm.ConsoleType.SuperFamicom;
+            if (MainForm.DetectedBaseConsole == null)
+                ConfigIni.Instance.ConsoleType = MainForm.ConsoleType.SuperFamicom;
             Close();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (MainForm.DetectedRunningConsole != null)
+            if (MainForm.DetectedBaseConsole != null)
             {
                 timer1.Enabled = false;
-                labelSelectConsole.Text = string.Format(Resources.DetectedConsole, MainForm.GetConsoleTypeName());
-                buttonFamicom.Enabled = MainForm.DetectedRunningConsole == MainForm.ConsoleType.Famicom;
-                buttonNes.Enabled = MainForm.DetectedRunningConsole == MainForm.ConsoleType.NES;
-                buttonSnes.Enabled = MainForm.DetectedRunningConsole == MainForm.ConsoleType.SNES;
-                buttonSuperFamicom.Enabled = MainForm.DetectedRunningConsole == MainForm.ConsoleType.SuperFamicom;
+                labelSelectConsole.Text = string.Format(Resources.DetectedConsole, parent.GetConsoleTypeName(MainForm.DetectedBaseConsole));
+                buttonFamicom.Enabled = MainForm.DetectedBaseConsole == MainForm.ConsoleType.Famicom;
+                buttonNes.Enabled = MainForm.DetectedBaseConsole == MainForm.ConsoleType.NES;
+                buttonSnes.Enabled = MainForm.DetectedBaseConsole == MainForm.ConsoleType.SNES;
+                buttonSuperFamicom.Enabled = MainForm.DetectedBaseConsole == MainForm.ConsoleType.SuperFamicom;
             }
 
         }

@@ -18,7 +18,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                switch(ConfigIni.ConsoleType)
+                switch(ConfigIni.Instance.GamesConsoleType)
                 {
                     default:
                     case MainForm.ConsoleType.NES:
@@ -120,7 +120,7 @@ namespace com.clusterrr.hakchi_gui
             else return;
             // Collide and resplit collection
             collection.Unsplit();
-            collection.Split(splitStyle, ConfigIni.MaxGamesPerFolder);
+            collection.Split(splitStyle, ConfigIni.Instance.MaxGamesPerFolder);
             // Refill nodes with new collection
             node.Nodes.Clear();
             AddNodes(node.Nodes, collection);
@@ -133,11 +133,10 @@ namespace com.clusterrr.hakchi_gui
         {
             if (nesElement == null || nesElement is NesMenuFolder || nesElement is NesMenuCollection)
                 return 12;
-
             if (nesElement is FdsGame)
                 return 10;
             if (nesElement is NesGame)
-                return 28;
+                return (nesElement as NesGame).IsOriginalGame ? 30 : 28;
             if (nesElement is SnesGame)
                 return 36;
             if (nesElement is NesApplication)
@@ -149,6 +148,16 @@ namespace com.clusterrr.hakchi_gui
                         return 0;
                     case "Atari - 2600":
                         return 2;
+                    case "Arcade (various)":
+                    case "CP System I":
+                    case "CP System II":
+                    case "CP System III":
+                    case "FB Alpha - Arcade Games":
+                    case "MAME 2000":
+                    case "MAME 2003":
+                    case "MAME 2010":
+                    case "MAME 2014":
+                        return 6;
                     case "Nintendo - Game Boy":
                         return 14;
                     case "Nintendo - Game Boy Advance":
@@ -161,41 +170,14 @@ namespace com.clusterrr.hakchi_gui
                         return 22;
                     case "Nintendo - Nintendo 64":
                         return 24;
+                    case "Neo Geo":
+                        return 26;
                     case "NEC - PC Engine - TurboGrafx 16":
                         return 32;
                     case "Sega - Master System - Mark III":
                         return 34;
                 }
             }
-            /*
-            if (nesElement is NesDefaultGame)
-                return 30;
-            if (nesElement is Sega32XGame)
-                return 0;
-            if (nesElement is Atari2600Game)
-                return 2;
-            if (nesElement is ArcadeGame)
-                return 6;
-            if (nesElement is NesUGame)
-                return 8;
-            if (nesElement is GbGame)
-                return 14;
-            if (nesElement is GbaGame)
-                return 16;
-            if (nesElement is GbcGame)
-                return 18;
-            if (nesElement is GenesisGame)
-                return 20;
-            if (nesElement is GameGearGame)
-                return 22;
-            if (nesElement is N64Game)
-                return 24;
-            if (nesElement is PceGame)
-                return 32;
-            if (nesElement is SmsGame)
-                return 34;
-            */
-
             return 4;
         }
 
@@ -720,7 +702,7 @@ namespace com.clusterrr.hakchi_gui
             }
             if (parent != null)
                 treeView.SelectedNode = parent;
-            if (needWarn && !ConfigIni.DisablePopups)
+            if (needWarn && !ConfigIni.Instance.DisablePopups)
                 MessageBox.Show(this, Resources.FolderContent, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             buttonOk.Enabled = treeView.Nodes[0].Nodes.Count > 0;
         }
@@ -976,7 +958,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 foreach (var game in oldCollection)
                     unsorted.ChildMenuCollection.Add(game);
-                if (!ConfigIni.DisablePopups)
+                if (!ConfigIni.Instance.DisablePopups)
                     MessageBox.Show(this, Resources.NewGamesUnsorted, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             DrawTree();

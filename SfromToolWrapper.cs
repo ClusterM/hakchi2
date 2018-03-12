@@ -44,7 +44,7 @@ namespace com.clusterrr.hakchi_gui
 
             File.WriteAllBytes(tempFile, rawRomData);
             string sfromargs = string.Empty;
-            if (ConfigIni.UsePCMPatch)
+            if (ConfigIni.Instance.UsePCMPatch)
                 sfromargs += "p";
             if (!string.IsNullOrEmpty(sfromargs))
                 sfromargs = "-" + sfromargs + " ";
@@ -80,7 +80,7 @@ namespace com.clusterrr.hakchi_gui
             if (!IsInstalled) return;
 
             string sfromargs = "-d";
-            if (ConfigIni.UsePCMPatch)
+            if (ConfigIni.Instance.UsePCMPatch)
                 sfromargs += "p";
 
             var process = new Process();

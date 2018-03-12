@@ -50,7 +50,7 @@ namespace com.clusterrr.hakchi_gui
             }
             nesFile.CorrectRom();
 
-            if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
+            if (ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.NES || ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.Famicom)
             {
                 application = "/bin/clover-kachikachi-wr";
                 args = DefaultArgs;
@@ -65,7 +65,7 @@ namespace com.clusterrr.hakchi_gui
             //if (nesFile.Mapper == 95) nesFile.Mapper = 4; // Compatible with MMC3
             //if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
             if (!supportedMappers.Contains(nesFile.Mapper) && 
-                (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
+                (ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.NES || ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.Famicom)
                 && (IgnoreMapper != true))
             {
                 if (IgnoreMapper != false)
@@ -83,7 +83,7 @@ namespace com.clusterrr.hakchi_gui
                 else return false;
             }
             if ((nesFile.Mirroring == NesFile.MirroringType.FourScreenVram) &&
-                (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom) &&
+                (ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.NES || ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.Famicom) &&
                 (IgnoreMapper != true))
             {
                 var r = WorkerForm.MessageBoxFromThread(ParentForm,

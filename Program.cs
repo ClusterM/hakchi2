@@ -113,8 +113,8 @@ namespace com.clusterrr.hakchi_gui
                         ConfigIni.Load();
                         try
                         {
-                            if (!string.IsNullOrEmpty(ConfigIni.Language))
-                                Thread.CurrentThread.CurrentUICulture = new CultureInfo(ConfigIni.Language);
+                            if (!string.IsNullOrEmpty(ConfigIni.Instance.Language))
+                                Thread.CurrentThread.CurrentUICulture = new CultureInfo(ConfigIni.Instance.Language);
                         }
                         catch { }
 

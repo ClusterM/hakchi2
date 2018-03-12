@@ -166,7 +166,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if(Path.GetFileName(coverMatch.Key) == gameItem.SubItems[4].Text)
                         {
-                            game.SetImageFile(coverMatch.Key, ConfigIni.CompressCover);
+                            game.SetImageFile(coverMatch.Key, ConfigIni.Instance.CompressCover);
                             break;
                         }
                     }

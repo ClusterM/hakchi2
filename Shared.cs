@@ -406,7 +406,7 @@ namespace com.clusterrr.hakchi_gui
             string gameSyncStorage = clovershell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
             string gameSyncPath = gameSyncStorage;
 
-            if (ConfigIni.SeparateGameStorage)
+            if (ConfigIni.Instance.SeparateGameStorage)
             {
                 string systemCode = clovershell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
                 gameSyncPath = $"{gameSyncStorage}/{systemCode}";

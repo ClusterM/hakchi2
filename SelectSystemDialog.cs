@@ -71,7 +71,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
             }
-            if (!ConfigIni.DisablePopups)
+            if (!ConfigIni.Instance.DisablePopups)
                 MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
         }

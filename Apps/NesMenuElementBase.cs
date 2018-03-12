@@ -120,7 +120,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else
                 {
-                    SetImage(value, ConfigIni.CompressCover);
+                    SetImage(value, ConfigIni.Instance.CompressCover);
                 }
             }
             get
@@ -177,7 +177,7 @@ namespace com.clusterrr.hakchi_gui
             // full-size image ratio
             int maxX = 204;
             int maxY = 204;
-            if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
+            if (ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SuperFamicom)
             {
                 maxX = 228;
                 maxY = 204;
@@ -187,7 +187,7 @@ namespace com.clusterrr.hakchi_gui
             // thumbnail image ratio
             maxX = 40;
             maxY = 40;
-            ProcessImage(img, smallIconPath, maxX, maxY, ConfigIni.CenterThumbnail, false, EightBitCompression);
+            ProcessImage(img, smallIconPath, maxX, maxY, ConfigIni.Instance.CenterThumbnail, false, EightBitCompression);
         }
 
         public void SetImageFile(string path, bool EightBitCompression = false)
@@ -195,7 +195,7 @@ namespace com.clusterrr.hakchi_gui
             // full-size image ratio
             int maxX = 204;
             int maxY = 204;
-            if (ConfigIni.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.ConsoleType == MainForm.ConsoleType.SuperFamicom)
+            if (ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SuperFamicom)
             {
                 maxX = 228;
                 maxY = 204;
@@ -214,7 +214,7 @@ namespace com.clusterrr.hakchi_gui
         public void SetThumbnailFile(string path, bool EightBitCompression = false)
         {
             // thumbnail image ratio
-            ProcessImageFile(path, smallIconPath, 40, 40, ConfigIni.CenterThumbnail, false, EightBitCompression);
+            ProcessImageFile(path, smallIconPath, 40, 40, ConfigIni.Instance.CenterThumbnail, false, EightBitCompression);
         }
 
         private static void Quantize(ref Bitmap img)

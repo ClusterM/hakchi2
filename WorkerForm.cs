@@ -37,6 +37,7 @@ namespace com.clusterrr.hakchi_gui
             DownloadCovers,
             ScanCovers,
             DeleteCovers,
+            LoadGames,
             AddGames,
             CompressGames,
             DecompressGames,
@@ -52,7 +53,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                switch (ConfigIni.ConsoleType)
+                switch (ConfigIni.Instance.ConsoleType)
                 {
                     default:
                     case MainForm.ConsoleType.NES:
@@ -126,7 +127,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (ExternalSaves)
                     return 5;
-                switch (ConfigIni.ConsoleType)
+                switch (ConfigIni.Instance.ConsoleType)
                 {
                     default:
                     case MainForm.ConsoleType.NES:
@@ -148,7 +149,7 @@ namespace com.clusterrr.hakchi_gui
             baseDirectoryExternal = Program.BaseDirectoryExternal;
             fes1Path = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "fes1.bin");
             zImage = Path.Combine(Path.Combine(baseDirectoryInternal, "data"), "zImage");
-            ubootPath = Shared.PathCombine(baseDirectoryInternal, "data", ConfigIni.MembootUboot);
+            ubootPath = Shared.PathCombine(baseDirectoryInternal, "data", ConfigIni.Instance.MembootUboot);
 #if VERY_DEBUG
             
             tempDirectory = Path.Combine(baseDirectoryInternal, "temp");
@@ -305,7 +306,7 @@ namespace com.clusterrr.hakchi_gui
 
         public void StartThread()
         {
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(ConfigIni.Language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(ConfigIni.Instance.Language);
             SetProgress(0, 1);
             try
             {
@@ -344,6 +345,9 @@ namespace com.clusterrr.hakchi_gui
                         break;
                     case Tasks.ProcessMods:
                         ProcessMods();
+                        break;
+                    case Tasks.LoadGames:
+                        LoadGames();
                         break;
                     case Tasks.AddGames:
                         AddGames(GamesToAdd);
@@ -560,7 +564,7 @@ namespace com.clusterrr.hakchi_gui
                 var matchedKeys = from k in correctKeys where k.Value.Contains(keyhash) select k.Key;
                 if (matchedKeys.Count() > 0)
                 {
-                    if (!matchedKeys.Contains(ConfigIni.ConsoleType))
+                    if (!matchedKeys.Contains(ConfigIni.Instance.ConsoleType))
                         throw new Exception(Resources.InvalidConsoleSelected + " " + matchedKeys.First());
                 }
                 else throw new Exception("Unknown key, unknown console");
@@ -580,7 +584,7 @@ namespace com.clusterrr.hakchi_gui
             else
             {
                 // Lets try to autodetect console using kernel hash
-                if (!matchedKernels.Contains(ConfigIni.ConsoleType))
+                if (!matchedKernels.Contains(ConfigIni.Instance.ConsoleType))
                     throw new Exception(Resources.InvalidConsoleSelected + " " + matchedKernels.First());
             }
 
@@ -1148,7 +1152,7 @@ namespace com.clusterrr.hakchi_gui
                 ShowSplashScreen();
 
                 // delete non-multiboot path if there are leftovers and we are now using multiboot
-                if (ConfigIni.SeparateGameStorage)
+                if (ConfigIni.Instance.SeparateGameStorage)
                 {
                     SetStatus(Resources.CleaningUp);
                     clovershell.ExecuteSimple("find \"$(hakchi findGameSyncStorage)/\" -maxdepth 1 | grep -vEe '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' | while read f; do rm -rf \"$f\"; done", 0, true);
@@ -1224,7 +1228,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var originalCode in originalGames.Keys)
                 {
                     string originalSyncCode = "";
-                    switch (ConfigIni.ConsoleType)
+                    switch (ConfigIni.Instance.GamesConsoleType)
                     {
                         case MainForm.ConsoleType.NES:
                         case MainForm.ConsoleType.Famicom:
@@ -1405,23 +1409,23 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static void SyncConfig(Dictionary<string, string> Config, bool reboot = false)
+        public static void SyncConfig(Dictionary<string, string> config, bool reboot = false)
         {
             var clovershell = MainForm.Clovershell;
             const string configPath = "/etc/preinit.d/p0000_config";
 
-            // Writing config
-            var config = new MemoryStream();
-            if (Config != null && Config.Count > 0)
+            using (var stream = new MemoryStream())
             {
-                foreach (var key in Config.Keys)
+                if (config != null && config.Count > 0)
                 {
-                    var data = Encoding.UTF8.GetBytes(string.Format("cfg_{0}='{1}'\n", key, Config[key].Replace(@"'", @"\'")));
-                    config.Write(data, 0, data.Length);
+                    foreach (var key in config.Keys)
+                    {
+                        var data = Encoding.UTF8.GetBytes(string.Format("cfg_{0}='{1}'\n", key, config[key].Replace(@"'", @"\'")));
+                        stream.Write(data, 0, data.Length);
+                    }
                 }
+                clovershell.Execute($"cat >> {configPath}", stream, null, null, 3000, true);
             }
-            clovershell.Execute($"cat >> {configPath}", config, null, null, 3000, true);
-            config.Dispose();
             if (reboot)
             {
                 try
@@ -1859,7 +1863,7 @@ namespace com.clusterrr.hakchi_gui
                     {   // sync/upload to snes mini
                         gameCopy = game.CopyTo(
                             targetDirectory,
-                            ConfigIni.SyncLinked ? NesApplication.CopyMode.LinkedSync : NesApplication.CopyMode.Sync,
+                            ConfigIni.Instance.SyncLinked ? NesApplication.CopyMode.LinkedSync : NesApplication.CopyMode.Sync,
                             true);
                     }
                     stats.TotalSize += gameSize;
@@ -2018,6 +2022,11 @@ namespace com.clusterrr.hakchi_gui
             return pages * page_size;
         }
 
+        void LoadGames()
+        {
+
+        }
+
         int addedGamesCount = 0; // on totalFiles
         public int AddGames(IEnumerable<string> files, Form parentForm = null)
         {
@@ -2118,7 +2127,7 @@ namespace com.clusterrr.hakchi_gui
 
                     if (!string.IsNullOrEmpty(tmp) && Directory.Exists(tmp)) Directory.Delete(tmp, true);
                     if (app != null)
-                        ConfigIni.SelectedGames += ";" + app.Code;
+                        ConfigIni.Instance.SelectedGames.Add(app.Code);
                 }
                 catch (Exception ex)
                 {
@@ -2401,8 +2410,7 @@ namespace com.clusterrr.hakchi_gui
         {
             string desktopEntriesArchiveFile = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "desktop_entries.7z");
             string originalGamesPath = Path.Combine(Program.BaseDirectoryExternal, "games_originals");
-            var selected = new List<string>();
-            selected.AddRange(ConfigIni.SelectedGames.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
+            var selectedGames = ConfigIni.Instance.SelectedGames;
 
             if (!Directory.Exists(originalGamesPath))
                 Directory.CreateDirectory(originalGamesPath);
@@ -2449,25 +2457,24 @@ namespace com.clusterrr.hakchi_gui
                         using (var o = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
                         {
                             szExtractor.ExtractFile(f, o);
-                            selected.Add(code);
+                            if (!this.restoreAllOriginalGames && !selectedGames.Contains(code))
+                            {
+                                selectedGames.Add(code);
+                            }
                             o.Flush();
                         }
 
                         // create game temporarily to perform cover search
                         Debug.WriteLine(string.Format("Resetting game \"{0}\".", query.Single().Name));
                         var game = NesApplication.FromDirectory(path);
-                        game.FindCover(code + ".desktop", null, 0, query.Single().Name);
+                        game.FindCover(code + ".desktop", null);
                         game.Save();
                     }
 
                     SetProgress(++i, defaultGames.Length);
                 }
-
-                // save new selected games
-                if (!this.restoreAllOriginalGames)
-                    ConfigIni.SelectedGames = string.Join(";", selected.Distinct().ToArray());
             }
-            Thread.Sleep(500);
+            //Thread.Sleep(500);
         }
 
         void GetHmods()
