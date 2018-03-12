@@ -13,6 +13,7 @@ namespace com.clusterrr.hakchi_gui
         // constants
         public const string ConfigDir = "config";
         public const string ConfigFile = "config.json";
+        public const string LegacyConfigFile = "config.ini";
 
         // game collection specific settings
         private class GamesConsoleSetting
@@ -205,7 +206,10 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (!Load())
                     {
-                        instance = new ConfigIni();
+                        if (!LoadLegacy())
+                        {
+                            instance = new ConfigIni();
+                        }
                     }
                 }
                 return instance;
@@ -270,6 +274,261 @@ namespace com.clusterrr.hakchi_gui
                 config["usb_host"] = instance.UsbHost ? "y" : "n";
             }
             return config;
+        }
+
+        // legacy loading code for transition
+        public static bool LoadLegacy()
+        {
+            var fileName = Shared.PathCombine(Program.BaseDirectoryExternal, ConfigDir, LegacyConfigFile);
+            if (File.Exists(fileName))
+            {
+                try
+                {
+                    Debug.WriteLine("Loading legacy configuration file");
+                    instance = new ConfigIni();
+
+                    var configLines = File.ReadAllLines(fileName);
+                    string section = "";
+                    foreach (var line in configLines)
+                    {
+                        var l = line.Trim();
+                        if (l.StartsWith("[") && l.EndsWith("]"))
+                            section = l.Substring(1, l.Length - 2).ToLower();
+                        int pos = l.IndexOf('=');
+                        if (pos <= 0) continue;
+                        var param = l.Substring(0, pos).Trim();
+                        var value = l.Substring(pos + 1).Trim();
+                        switch (section)
+                        {
+                            case "config":
+                                param = param.ToLower();
+                                switch (param)
+                                {
+                                    case "lastversion":
+                                        instance.LastVersion = value;
+                                        break;
+                                    case "language":
+                                        instance.Language = value;
+                                        break;
+                                    case "selectedgamesnes":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.NES].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        break;
+                                    case "selectedgamesfamicom":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.Famicom].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        break;
+                                    case "selectedgamessnes":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.SNES].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        break;
+                                    case "selectedgamessuperfamicom":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.SuperFamicom].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        break;
+                                    case "originalgamesposition":
+                                        instance.OriginalGamesPosition = (MainForm.OriginalGamesPosition)byte.Parse(value);
+                                        break;
+                                    case "groupgamesbyapptype":
+                                        instance.GroupGamesByAppType = !value.ToLower().Equals("false");
+                                        break;
+                                    case "hiddengames":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.NES].HiddenGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        break;
+                                    case "hiddengamesfamicom":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.Famicom].HiddenGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        break;
+                                    case "hiddengamessnes":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.SNES].HiddenGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        break;
+                                    case "hiddengamessuperfamicom":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.SuperFamicom].HiddenGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        break;
+                                    case "customflashednes":
+                                        instance.consoleSettings[MainForm.ConsoleType.NES].CustomFlashed = !value.ToLower().Equals("false");
+                                        break;
+                                    case "customflashedfamicom":
+                                        instance.consoleSettings[MainForm.ConsoleType.Famicom].CustomFlashed = !value.ToLower().Equals("false");
+                                        break;
+                                    case "customflashedsnes":
+                                        instance.consoleSettings[MainForm.ConsoleType.SNES].CustomFlashed = !value.ToLower().Equals("false");
+                                        break;
+                                    case "customflashedsuperfamicom":
+                                        instance.consoleSettings[MainForm.ConsoleType.SuperFamicom].CustomFlashed = !value.ToLower().Equals("false");
+                                        break;
+                                    case "usefont":
+                                        instance.consoleSettings[MainForm.ConsoleType.NES].UseFont = !value.ToLower().Equals("false");
+                                        break;
+                                    case "usefontfamicom":
+                                        instance.consoleSettings[MainForm.ConsoleType.Famicom].UseFont = !value.ToLower().Equals("false");
+                                        break;
+                                    case "usefontsnes":
+                                        instance.consoleSettings[MainForm.ConsoleType.SNES].UseFont = !value.ToLower().Equals("false");
+                                        break;
+                                    case "usefontsuperfamicom":
+                                        instance.consoleSettings[MainForm.ConsoleType.SuperFamicom].UseFont = !value.ToLower().Equals("false");
+                                        break;
+                                    case "runcount":
+                                        instance.RunCount = int.Parse(value);
+                                        break;
+                                    case "antiarmetlevel":
+                                        instance.consoleSettings[MainForm.ConsoleType.NES].AntiArmetLevel = byte.Parse(value);
+                                        instance.consoleSettings[MainForm.ConsoleType.Famicom].AntiArmetLevel = byte.Parse(value);
+                                        instance.consoleSettings[MainForm.ConsoleType.SNES].AntiArmetLevel = byte.Parse(value);
+                                        instance.consoleSettings[MainForm.ConsoleType.SuperFamicom].AntiArmetLevel = byte.Parse(value);
+                                        break;
+                                    case "resethack":
+                                    case "cloverconhack":
+                                        instance.consoleSettings[MainForm.ConsoleType.NES].ResetHack = !value.ToLower().Equals("false");
+                                        instance.consoleSettings[MainForm.ConsoleType.Famicom].ResetHack = !value.ToLower().Equals("false");
+                                        break;
+                                    case "resethacksnes":
+                                        instance.consoleSettings[MainForm.ConsoleType.SNES].ResetHack = !value.ToLower().Equals("false");
+                                        instance.consoleSettings[MainForm.ConsoleType.SuperFamicom].ResetHack = !value.ToLower().Equals("false");
+                                        break;
+                                    case "autofirehack":
+                                        instance.consoleSettings[MainForm.ConsoleType.NES].AutofireHack = !value.ToLower().Equals("false");
+                                        instance.consoleSettings[MainForm.ConsoleType.Famicom].AutofireHack = !value.ToLower().Equals("false");
+                                        break;
+                                    case "autofirehacksnes":
+                                        instance.consoleSettings[MainForm.ConsoleType.SNES].AutofireHack = !value.ToLower().Equals("false");
+                                        instance.consoleSettings[MainForm.ConsoleType.SuperFamicom].AutofireHack = !value.ToLower().Equals("false");
+                                        break;
+                                    case "autofirexyhack":
+                                        instance.consoleSettings[MainForm.ConsoleType.NES].AutofireXYHack = !value.ToLower().Equals("false");
+                                        instance.consoleSettings[MainForm.ConsoleType.Famicom].AutofireXYHack = !value.ToLower().Equals("false");
+                                        instance.consoleSettings[MainForm.ConsoleType.SNES].AutofireXYHack = !value.ToLower().Equals("false");
+                                        instance.consoleSettings[MainForm.ConsoleType.SuperFamicom].AutofireXYHack = !value.ToLower().Equals("false");
+                                        break;
+                                    case "resetcombination":
+                                        instance.consoleSettings[MainForm.ConsoleType.NES].ResetCombination = uint.Parse(value);
+                                        instance.consoleSettings[MainForm.ConsoleType.Famicom].ResetCombination = uint.Parse(value);
+                                        break;
+                                    case "resetcombinationsnes":
+                                        instance.consoleSettings[MainForm.ConsoleType.SNES].ResetCombination = uint.Parse(value);
+                                        instance.consoleSettings[MainForm.ConsoleType.SuperFamicom].ResetCombination = uint.Parse(value);
+                                        break;
+                                    case "consoletype":
+                                        instance.ConsoleType = (MainForm.ConsoleType)byte.Parse(value);
+                                        break;
+                                    case "extracommandlinearguments":
+                                        instance.consoleSettings[MainForm.ConsoleType.NES].ExtraCommandLineArguments = value;
+                                        instance.consoleSettings[MainForm.ConsoleType.Famicom].ExtraCommandLineArguments = value;
+                                        break;
+                                    case "extracommandlineargumentssnes":
+                                        instance.consoleSettings[MainForm.ConsoleType.SNES].ExtraCommandLineArguments = value;
+                                        instance.consoleSettings[MainForm.ConsoleType.SuperFamicom].ExtraCommandLineArguments = value;
+                                        break;
+                                    case "fcstart":
+                                        instance.FcStart = !value.ToLower().Equals("false");
+                                        break;
+                                    case "maxgamesperfolder":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.NES].MaxGamesPerFolder = byte.Parse(value);
+                                        break;
+                                    case "maxgamesperfolderfamicom":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.Famicom].MaxGamesPerFolder = byte.Parse(value);
+                                        break;
+                                    case "maxgamesperfoldersnes":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.SNES].MaxGamesPerFolder = byte.Parse(value);
+                                        break;
+                                    case "maxgamesperfoldersuperfamicom":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.SuperFamicom].MaxGamesPerFolder = byte.Parse(value);
+                                        break;
+                                    case "foldersmode":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.NES].FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse(value);
+                                        break;
+                                    case "foldersmodefamicom":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.Famicom].FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse(value);
+                                        break;
+                                    case "foldersmodesnes":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.SNES].FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse(value);
+                                        break;
+                                    case "foldersmodesuperfamicom":
+                                        instance.gamesConsoleSettings[MainForm.ConsoleType.SuperFamicom].FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse(value);
+                                        break;
+                                    case "usesfromtool":
+                                        instance.UseSFROMTool = !value.ToLower().Equals("false");
+                                        break;
+                                    case "usepcmpatch":
+                                        instance.UsePCMPatch = !value.ToLower().Equals("false");
+                                        break;
+                                    case "compress":
+                                        instance.Compress = !value.ToLower().Equals("false");
+                                        break;
+                                    case "compresscover":
+                                        instance.CompressCover = !value.ToLower().Equals("false");
+                                        break;
+                                    case "centerthumbnail":
+                                        instance.CenterThumbnail = !value.ToLower().Equals("false");
+                                        break;
+                                    case "disablepopups":
+                                        instance.DisablePopups = !value.ToLower().Equals("false");
+                                        break;
+                                    case "ftpserver":
+                                        instance.FtpServer = !value.ToLower().Equals("false");
+                                        break;
+                                    case "usbhostnes":
+                                        instance.consoleSettings[MainForm.ConsoleType.NES].UsbHost = !value.ToLower().Equals("false");
+                                        break;
+                                    case "usbhostfamicom":
+                                        instance.consoleSettings[MainForm.ConsoleType.Famicom].UsbHost = !value.ToLower().Equals("false");
+                                        break;
+                                    case "usbhostsnes":
+                                        instance.consoleSettings[MainForm.ConsoleType.SNES].UsbHost = !value.ToLower().Equals("false");
+                                        break;
+                                    case "usbhostsuperfamicom":
+                                        instance.consoleSettings[MainForm.ConsoleType.SuperFamicom].UsbHost = !value.ToLower().Equals("false");
+                                        break;
+                                    case "ftpcommand":
+                                        instance.FtpCommand = value;
+                                        break;
+                                    case "ftparguments":
+                                        instance.FtpArguments = value;
+                                        break;
+                                    case "telnetserver":
+                                        instance.TelnetServer = !value.ToLower().Equals("false");
+                                        break;
+                                    case "telnetcommand":
+                                        instance.TelnetCommand = value;
+                                        break;
+                                    case "telnetarguments":
+                                        instance.TelnetArguments = value;
+                                        break;
+                                    case "separategamestorage":
+                                        instance.SeparateGameStorage = !value.ToLower().Equals("false");
+                                        break;
+                                    case "exportlinked":
+                                        instance.ExportLinked = !value.ToLower().Equals("false");
+                                        break;
+                                    case "synclinked":
+                                        instance.SyncLinked = !value.ToLower().Equals("false");
+                                        break;
+                                    case "exportregion":
+                                        instance.ExportRegion = value;
+                                        break;
+                                    case "membootuboot":
+                                        instance.MembootUboot = value;
+                                        break;
+                                    case "hmodlistsort":
+                                        instance.hmodListSort = (HmodListSort)byte.Parse(value);
+                                        break;
+                                }
+                                break;
+                            case "presets":
+                                instance.gamesConsoleSettings[MainForm.ConsoleType.NES].Presets[param] = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                instance.gamesConsoleSettings[MainForm.ConsoleType.Famicom].Presets[param] = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                instance.gamesConsoleSettings[MainForm.ConsoleType.SNES].Presets[param] = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                instance.gamesConsoleSettings[MainForm.ConsoleType.SuperFamicom].Presets[param] = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                break;
+                        }
+                    }
+                    // success
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Error loading legacy configuration file : " + ex.Message + ex.StackTrace);
+                    instance = null;
+                }
+            }
+            // failure
+            return false;
         }
 
     }
