@@ -276,15 +276,13 @@ namespace com.clusterrr.hakchi_gui
             set { isDeleting = value; }
         }
 
-        private Dictionary<string, bool> coverArtMatches = null;
-        public Dictionary<string, bool> CoverArtMatches
+        public IEnumerable<string> CoverArtMatches
         {
-            get { return coverArtMatches; }
-            set { if (value == null) coverArtMatches = null; }
+            get; private set;
         }
-        public bool HasImpreciseCoverArtMatches
+        public bool CoverArtMatchSuccess
         {
-            get { return (coverArtMatches == null || coverArtMatches.Count == 0) ? false : (coverArtMatches.Count > 1 || coverArtMatches.First().Value); }
+            get; private set;
         }
 
         public static NesApplication FromDirectory(string path, bool ignoreEmptyConfig = false)
@@ -419,7 +417,7 @@ namespace com.clusterrr.hakchi_gui
             byte saveCount = 0;
             Image cover = appInfo.DefaultCover;
             uint crc32 = rawRomData != null ? Shared.CRC32(rawRomData) : Shared.CRC32(new FileStream(inputFileName, FileMode.Open, FileAccess.Read));
-            string outputFileName = Regex.Replace(Path.GetFileName(inputFileName), @"[^A-Za-z0-9\.]+", "_").Trim();
+            string outputFileName = GenerateSafeFileName(Path.GetFileName(inputFileName));
 
             // only attempt patching if file is reasonable and fits in memory
             if (rawRomData != null)
@@ -480,9 +478,9 @@ namespace com.clusterrr.hakchi_gui
             // save desktop file
             var game = new NesApplication(gamePath, null, true);
             var name = Path.GetFileNameWithoutExtension(inputFileName);
-            name = Regex.Replace(name, @" ?\(.*?\)", string.Empty).Trim();
-            name = Regex.Replace(name, @" ?\[.*?\]", string.Empty).Trim();
-            game.desktop.Name = name.Replace("_", " ").Replace("  ", " ").Trim();
+            name = Regex.Replace(name, @" ?\(.*?\)| ?\[.*?\]", string.Empty);
+            name = name.Replace("_", " ").Replace("  ", " ").Trim();
+            game.desktop.Name = name;
             game.desktop.Exec = $"{application} {hakchi.GamesPath}/{code}/{outputFileName} {args}";
             game.desktop.ProfilePath = hakchi.GamesProfilePath;
             game.desktop.IconPath = hakchi.GamesPath;
@@ -502,7 +500,7 @@ namespace com.clusterrr.hakchi_gui
             game = NesApplication.FromDirectory(gamePath);
             if (game is ICloverAutofill)
                 (game as ICloverAutofill).TryAutofill(crc32);
-            game.FindCover(inputFileName, cover, crc32);
+            game.FindCover(inputFileName, cover, crc32, name);
 
             if (ConfigIni.Instance.Compress)
             {
@@ -534,8 +532,7 @@ namespace com.clusterrr.hakchi_gui
 
             // save desktop file
             var game = new NesApplication(path, null, true);
-            name = Regex.Replace(name, @" ?\(.*?\)", string.Empty).Trim();
-            name = Regex.Replace(name, @" ?\[.*?\]", string.Empty).Trim();
+            name = Regex.Replace(name, @" ?\(.*?\)| ?\[.*?\]", string.Empty).Trim();
             game.desktop.Name = name.Replace("_", " ").Replace("  ", " ").Trim();
             game.desktop.Exec = "/bin/enter-custom-command-here";
             game.desktop.ProfilePath = hakchi.GamesProfilePath;
@@ -683,8 +680,9 @@ namespace com.clusterrr.hakchi_gui
             Directory.CreateDirectory(artDirectory);
             try
             {
-                // init accessor
-                coverArtMatches = new Dictionary<string, bool>();
+                // init accessors
+                CoverArtMatches = new string[0];
+                CoverArtMatchSuccess = false;
 
                 // first test for crc32 match (most precise)
                 string[] covers;
@@ -693,9 +691,9 @@ namespace com.clusterrr.hakchi_gui
                     covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
                     if (covers.Length > 0 && imageExtensions.Contains(Path.GetExtension(covers[0])))
                     {
-                        coverArtMatches.Add(covers[0], false);
                         SetImageFile(covers[0], ConfigIni.Instance.CompressCover);
-                        return true;
+                        CoverArtMatches = new string[] { covers[0] };
+                        return CoverArtMatchSuccess = true;
                     }
                 }
 
@@ -707,9 +705,9 @@ namespace com.clusterrr.hakchi_gui
                         var imagePath = Path.Combine(Path.GetDirectoryName(inputFileName), filename + ext);
                         if (File.Exists(imagePath))
                         {
-                            coverArtMatches.Add(imagePath, false);
                             SetImageFile(imagePath, ConfigIni.Instance.CompressCover);
-                            return true;
+                            CoverArtMatches = new string[] { imagePath };
+                            return CoverArtMatchSuccess = true;
                         }
                     }
                 }
@@ -718,38 +716,17 @@ namespace com.clusterrr.hakchi_gui
                 if (!string.IsNullOrEmpty(Metadata.System) && Directory.Exists(Path.Combine(artDirectory, Metadata.System)))
                     artDirectory = Path.Combine(artDirectory, Metadata.System);
 
+                // compiled list for the two fuzzy search passes
+                var matches = new List<string>();
+
                 // first fuzzy search on inputFileName
                 covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
                 if (!string.IsNullOrEmpty(filename))
                 {
                     var findResults = FindCoverMatch(filename, covers);
-                    if (findResults != null)
-                        foreach (var f in findResults)
-                            if (!coverArtMatches.ContainsKey(f.Key) || f.Value == false)
-                                coverArtMatches[f.Key] = f.Value;
-                }
-
-                // second fuzzy search on alternateTitle
-                if (!string.IsNullOrEmpty(alternateTitle))
-                {
-                    var findResults = FindCoverMatch(alternateTitle, covers, true);
-                    if (findResults != null)
-                        foreach (var f in findResults)
-                            if (!coverArtMatches.ContainsKey(f.Key) || f.Value == false)
-                                coverArtMatches[f.Key] = f.Value;
-                }
-
-                if (coverArtMatches.Count > 0)
-                {
-                    Debug.WriteLine($"FindCover fuzzy search results for {Name}:");
-                    foreach(var cover in coverArtMatches)
-                    {
-                        Debug.WriteLine(Path.GetFileName(cover.Key) + (cover.Value ? " (partial)" : " (precise)"));
-                    }
 
                     string preciseMatch = string.Empty;
-                    foreach(var cover in coverArtMatches)
-                    {
+                    foreach (var cover in findResults)
                         if (cover.Value == false)
                         {
                             if (string.IsNullOrEmpty(preciseMatch))
@@ -760,14 +737,43 @@ namespace com.clusterrr.hakchi_gui
                                 break;
                             }
                         }
-                    }
-
+                    matches.AddRange(findResults.Select(pair => pair.Key));
                     if (!string.IsNullOrEmpty(preciseMatch))
                     {
                         SetImageFile(preciseMatch, ConfigIni.Instance.CompressCover);
-                        return true;
+                        CoverArtMatches = matches.ToArray();
+                        return CoverArtMatchSuccess = true;
                     }
                 }
+
+                // second fuzzy search on alternateTitle
+                if (!string.IsNullOrEmpty(alternateTitle))
+                {
+                    var findResults = FindCoverMatch(alternateTitle, covers, true);
+
+                    string preciseMatch = string.Empty;
+                    foreach (var cover in findResults)
+                        if (cover.Value == false)
+                        {
+                            if (string.IsNullOrEmpty(preciseMatch))
+                                preciseMatch = cover.Key;
+                            else
+                            {
+                                preciseMatch = string.Empty;
+                                break;
+                            }
+                        }
+                    matches.AddRange(findResults.Select(pair => pair.Key));
+                    if (!string.IsNullOrEmpty(preciseMatch))
+                    {
+                        SetImageFile(preciseMatch, ConfigIni.Instance.CompressCover);
+                        CoverArtMatches = matches.Distinct();
+                        return CoverArtMatchSuccess = true;
+                    }
+                }
+
+                // set accessor and remove duplicates
+                CoverArtMatches = matches.Distinct();
             }
             catch (Exception ex)
             {
@@ -777,7 +783,7 @@ namespace com.clusterrr.hakchi_gui
             // failed to find a cover, using default cover if provided
             if (defaultCover != null)
                 SetImage(defaultCover);
-            return false;
+            return CoverArtMatchSuccess = false;
         }
 
         private static IEnumerable<KeyValuePair<string, bool>> FindCoverMatch(string name, string[] covers, bool stripCodes = false)
@@ -789,7 +795,7 @@ namespace com.clusterrr.hakchi_gui
             var regexTrim = new Regex(@"\s+", RegexOptions.Compiled);
 
             name = regexTrim.Replace(" " + regexSanitize.Replace(name, " ").ToLower() + " ", " ");
-            Debug.WriteLine("FindCoverMatch: " + name);
+            //Debug.WriteLine("FindCoverMatch: " + name);
 
             if (!string.IsNullOrEmpty(name.Trim()))
             {
@@ -797,7 +803,7 @@ namespace com.clusterrr.hakchi_gui
                 List<string[]> words = new List<string[]>();
                 foreach(string word in name.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    Debug.WriteLine($"\"{word}\"");
+                    //Debug.WriteLine($"\"{word}\"");
                     if (word == "&" || word == "and") // and, & can be used interchangeably, or omitted
                     {
                         words.Add(new string[] { "&", "and", string.Empty });
@@ -848,7 +854,7 @@ namespace com.clusterrr.hakchi_gui
                 return results;
             }
 
-            return null;
+            return new Dictionary<string, bool>();
         }
 
         private static void PuzzleMatch(List<string[]> pieces, string puzzle, out bool match, out bool partial)
@@ -956,6 +962,24 @@ namespace com.clusterrr.hakchi_gui
                 return true;
             }
             return false;
+        }
+
+        public static string GenerateSafeFileName(string input)
+        {
+            string f = Path.GetFileNameWithoutExtension(input);
+            string e = Path.GetExtension(input);
+            f = Regex.Replace(f, @" ?\(.*?\)| ?\[.*?\]", string.Empty);
+            f = Regex.Replace(f, @"[^A-Za-z0-9\.\!]+", "_");
+            f = Regex.Replace(f, @"_+", "_");
+            int maxLength = 64 - ".sfrom.lzma".Length;
+            if(f.Length > maxLength) // 64 characters, leave room for longest extension: '.sfrom.lzma'
+            {
+                Debug.WriteLine($"'{f}' l:{f.Length}");
+                f = f.Substring(0, maxLength);
+                Debug.WriteLine($"'{f}' l:{f.Length}");
+            }
+            string output = f.Trim(new char[] { '_', '.' }) + e;
+            return output;
         }
 
         public static string GenerateCode(uint crc32, char prefixCode)

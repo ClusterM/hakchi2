@@ -91,16 +91,16 @@ namespace com.clusterrr.hakchi_gui
 
                 foreach (var match in game.CoverArtMatches)
                 {
-                    var item = new ListViewItem(Path.GetFileName(match.Key));
-                    if (imageIndexes.ContainsKey(match.Key))
+                    var item = new ListViewItem(Path.GetFileName(match));
+                    if (imageIndexes.ContainsKey(match))
                     {
-                        item.ImageIndex = imageIndexes[match.Key];
+                        item.ImageIndex = imageIndexes[match];
                     }
                     else
                     {
-                        var image = Shared.ResizeImage(Image.FromFile(match.Key), null, null, 114, 102, false, true, true, true);
+                        var image = Shared.ResizeImage(Image.FromFile(match), null, null, 114, 102, false, true, true, true);
                         imageList.Images.Add(image);
-                        imageIndexes.Add(match.Key, item.ImageIndex = i++);
+                        imageIndexes.Add(match, item.ImageIndex = i++);
                     }
                     listViewImages.Items.Add(item);
                 }
@@ -140,6 +140,7 @@ namespace com.clusterrr.hakchi_gui
                 listViewGames.Items[i].SubItems[4].Text = "Default / no change";
             }
             coverColumnHeader.Width = -2;
+            ShowSelected();
         }
 
         private void buttonImFeelingLucky_Click(object sender, EventArgs e)
@@ -149,9 +150,10 @@ namespace com.clusterrr.hakchi_gui
                 var gameItem = listViewGames.Items[i];
                 var game = gameItem.Tag as NesApplication;
                 var coverMatch = game.CoverArtMatches.First();
-                gameItem.SubItems[4].Text = Path.GetFileName(coverMatch.Key);
+                gameItem.SubItems[4].Text = Path.GetFileName(coverMatch);
             }
             coverColumnHeader.Width = -2;
+            ShowSelected();
         }
 
         private void buttonAccept_Click(object sender, EventArgs e)
@@ -164,10 +166,9 @@ namespace com.clusterrr.hakchi_gui
                     var game = gameItem.Tag as NesApplication;
                     foreach (var coverMatch in game.CoverArtMatches)
                     {
-                        if(Path.GetFileName(coverMatch.Key) == gameItem.SubItems[4].Text)
+                        if(Path.GetFileName(coverMatch) == gameItem.SubItems[4].Text)
                         {
-                            game.SetImageFile(coverMatch.Key, ConfigIni.Instance.CompressCover);
-                            game.CoverArtMatches = null;
+                            game.SetImageFile(coverMatch, ConfigIni.Instance.CompressCover);
                             break;
                         }
                     }

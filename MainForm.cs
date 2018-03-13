@@ -1510,7 +1510,7 @@ namespace com.clusterrr.hakchi_gui
                 unknownApps.Clear();
                 foreach(var app in addedApps)
                 {
-                    if (app.HasImpreciseCoverArtMatches)
+                    if (!app.CoverArtMatchSuccess && app.CoverArtMatches.Any())
                         unknownApps.Add(app);
                 }
                 if(unknownApps.Count > 0)

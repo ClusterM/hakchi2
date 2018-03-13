@@ -66,13 +66,16 @@ namespace com.clusterrr.hakchi_gui
 
             public override bool Equals(object obj)
             {
-                var other = obj as CoreInfo;
-                if (other == null) return false;
-                return Equals(other);
+                var core = obj as CoreInfo;
+                return Equals(core);
             }
 
             public static bool operator ==(CoreInfo a, CoreInfo b)
             {
+                if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
+                    return true;
+                if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
+                    return false;
                 return a.Equals(b);
             }
 
@@ -81,10 +84,11 @@ namespace com.clusterrr.hakchi_gui
                 return !(a == b);
             }
 
-            public bool Equals(CoreInfo obj)
+            public bool Equals(CoreInfo core)
             {
-                if (obj == null) return false;
-                return this.Bin.Equals(obj.Bin);
+                if (ReferenceEquals(core, null))
+                    return false;
+                return this.Bin.Equals(core.Bin);
             }
 
             public override int GetHashCode()

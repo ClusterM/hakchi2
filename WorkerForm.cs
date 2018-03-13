@@ -2071,7 +2071,7 @@ namespace com.clusterrr.hakchi_gui
                 else
                     gameFile = game.BasePath;
                 game.FindCover(game.Metadata.OriginalFilename ?? Path.GetFileName(gameFile), null, crc32, game.Name);
-                if (game.HasImpreciseCoverArtMatches)
+                if (!game.CoverArtMatchSuccess && game.CoverArtMatches.Any())
                     unknownApps.Add(game);
                 SetProgress(++i, Games.Count);
             }
