@@ -1532,7 +1532,7 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress < 0 ? 1000 : maxProgress);
 
             // Connecting to NES Mini
-            if (WaitForFelFromThread() != DialogResult.OK)
+            if (!MainForm.Clovershell.IsOnline && WaitForFelFromThread() != DialogResult.OK)
             {
                 DialogResult = DialogResult.Abort;
                 return;
@@ -1551,40 +1551,81 @@ namespace com.clusterrr.hakchi_gui
                 kernel = CreatePatchedKernel();
             else
                 kernel = File.ReadAllBytes(KernelDumpPath);
-            var size = CalcKernelSize(kernel);
-            if (size > kernel.Length || size > Fel.transfer_max_size)
-                throw new Exception(Resources.InvalidKernelSize + " " + size);
-            size = (size + Fel.sector_size - 1) / Fel.sector_size;
-            size = size * Fel.sector_size;
-            if (kernel.Length != size)
+
+            if (!MainForm.Clovershell.IsOnline)
             {
-                var newK = new byte[size];
-                Array.Copy(kernel, newK, kernel.Length);
-                kernel = newK;
+                var size = CalcKernelSize(kernel);
+                if (size > kernel.Length || size > Fel.transfer_max_size)
+                    throw new Exception(Resources.InvalidKernelSize + " " + size);
+                size = (size + Fel.sector_size - 1) / Fel.sector_size;
+                size = size * Fel.sector_size;
+                if (kernel.Length != size)
+                {
+                    var newK = new byte[size];
+                    Array.Copy(kernel, newK, kernel.Length);
+                    kernel = newK;
+                }
+                progress += 5;
             }
-            progress += 5;
             if (maxProgress < 0)
                 maxProgress = (int)((double)kernel.Length / (double)67000 + 50);
             SetProgress(progress, maxProgress);
 
             SetStatus(Resources.UploadingKernel);
-            fel.WriteMemory(Fel.transfer_base_m, kernel,
-                delegate (Fel.CurrentAction action, string command)
-                {
-                    switch (action)
-                    {
-                        case Fel.CurrentAction.WritingMemory:
-                            SetStatus(Resources.UploadingKernel);
-                            break;
-                    }
-                    progress++;
-                    SetProgress(progress, maxProgress);
-                }
-            );
+            if (MainForm.Clovershell.IsOnline)
+            {
+                MainForm.Clovershell.ExecuteSimple("mkdir -p /tmp/kexec/", throwOnNonZero: true);
+                MainForm.Clovershell.Execute(
+                    command: "cat > /tmp/kexec/kexec && chmod +x /tmp/kexec/kexec",
+                    stdin: File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "tools", "arm", "kexec.static")),
+                    throwOnNonZero: true
+                );
+                MainForm.Clovershell.Execute(
+                    command: "cat > /tmp/kexec/unpackbootimg && chmod +x /tmp/kexec/unpackbootimg",
+                    stdin: File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "tools", "arm", "unpackbootimg.static")),
+                    throwOnNonZero: true
+                );
 
-            var bootCommand = string.Format("boota {0:x}", Fel.transfer_base_m);
-            SetStatus(Resources.ExecutingCommand + " " + bootCommand);
-            fel.RunUbootCmd(bootCommand, true);
+                MainForm.Clovershell.ExecuteSimple("uistop");
+
+                MainForm.Clovershell.Execute(
+                    command: "cat > /tmp/kexec/boot.img; cd /tmp/kexec/; ./unpackbootimg -i boot.img",
+                    stdin: new MemoryStream(kernel, false),
+                    throwOnNonZero: true
+                );
+                MainForm.Clovershell.ExecuteSimple("cd /tmp/kexec/ && ./kexec -l -t zImage boot.img-zImage \"--command-line=$(cat boot.img-cmdline)\" --ramdisk=boot.img-ramdisk.gz --atags", 0, true);
+                MainForm.Clovershell.ExecuteSimple("cd /tmp/; umount -ar", 0);
+                try
+                {
+                    MainForm.Clovershell.ExecuteSimple("/tmp/kexec/kexec -e");
+                }
+                catch
+                {
+                    // no-op
+                }
+
+                Thread.Sleep(5000);
+            }
+            else
+            {
+                fel.WriteMemory(Fel.transfer_base_m, kernel,
+                    delegate (Fel.CurrentAction action, string command)
+                    {
+                        switch (action)
+                        {
+                            case Fel.CurrentAction.WritingMemory:
+                                SetStatus(Resources.UploadingKernel);
+                                break;
+                        }
+                        progress++;
+                        SetProgress(progress, maxProgress);
+                    }
+                );
+
+                var bootCommand = string.Format("boota {0:x}", Fel.transfer_base_m);
+                SetStatus(Resources.ExecutingCommand + " " + bootCommand);
+                fel.RunUbootCmd(bootCommand, true);
+            }
 
             // Wait some time while booting
             int waitSeconds;
