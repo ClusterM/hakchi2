@@ -45,11 +45,18 @@ namespace com.clusterrr.hakchi_gui
             {
                 if( string.IsNullOrEmpty(desktop.Name))
                 {
-                    return new string[0];
+                    return new string[2] { string.Empty, string.Empty };
                 }
                 else
                 {
-                    return desktop.Name.Split(new string[] { " - " }, StringSplitOptions.RemoveEmptyEntries);
+                    var parts = desktop.Name.Split('-');
+                    if (parts.Length < 2)
+                    {
+                        return new string[2] { string.Empty, string.Empty };
+                    }
+                    for (int i = 0; i < parts.Length; ++i)
+                        parts[i] = parts[i].Trim();
+                    return parts;
                 }
             }
             set

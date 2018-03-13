@@ -2057,22 +2057,46 @@ namespace com.clusterrr.hakchi_gui
             foreach (NesApplication game in Games)
             {
                 SetStatus(string.Format(Resources.ScanningCover, game.Name));
-                uint crc32 = game.Metadata.OriginalCrc32;
-                string gameFile = game.GameFilePath;
-                if (crc32 == 0 && !game.IsOriginalGame && gameFile != null && File.Exists(gameFile))
+                try
                 {
-                    bool wasCompressed = game.DecompressPossible().Count() > 0;
-                    if (wasCompressed)
-                        game.Decompress();
-                    crc32 = Shared.CRC32(File.OpenRead(game.GameFilePath));
-                    if (wasCompressed)
-                        game.Compress();
+                    uint crc32 = game.Metadata.OriginalCrc32;
+                    string gameFile = game.GameFilePath;
+                    if (crc32 == 0 && !game.IsOriginalGame && gameFile != null && File.Exists(gameFile))
+                    {
+                        string[] compressedFiles = game.DecompressPossible();
+                        if (compressedFiles.Length > 0 && compressedFiles.Contains(gameFile))
+                        {
+                            SevenZipExtractor.SetLibraryPath(Path.Combine(baseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+                            using (var szExtractor = new SevenZipExtractor(gameFile))
+                            {
+                                using (var o = new MemoryStream())
+                                {
+                                    foreach (var f in szExtractor.ArchiveFileNames)
+                                    {
+                                        if (Path.GetFileName(gameFile).StartsWith(Path.GetFileName(f)))
+                                        {
+                                            szExtractor.ExtractFile(f, o);
+                                            o.Seek(0, SeekOrigin.Begin);
+                                            crc32 = Shared.CRC32(o);
+                                            Debug.WriteLine(crc32);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                        gameFile = game.BasePath;
+                    game.FindCover(game.Metadata.OriginalFilename ?? Path.GetFileName(gameFile), null, crc32, game.Name);
+                    if (!game.CoverArtMatchSuccess && game.CoverArtMatches.Any())
+                        unknownApps.Add(game);
                 }
-                else
-                    gameFile = game.BasePath;
-                game.FindCover(game.Metadata.OriginalFilename ?? Path.GetFileName(gameFile), null, crc32, game.Name);
-                if (!game.CoverArtMatchSuccess && game.CoverArtMatches.Any())
-                    unknownApps.Add(game);
+                catch(Exception ex)
+                {
+                    Debug.WriteLine("Error trying to finding cover art for game " + game.Name);
+                    Debug.WriteLine(ex.Message + ex.StackTrace);
+                }
                 SetProgress(++i, Games.Count);
             }
 
@@ -2316,61 +2340,67 @@ namespace com.clusterrr.hakchi_gui
 
             SetStatus(string.Format(Resources.ResettingOriginalGames));
 
-            SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
-            var defaultGames = this.restoreAllOriginalGames ? NesApplication.AllDefaultGames : NesApplication.DefaultGames;
-
-            using (var szExtractor = new SevenZipExtractor(desktopEntriesArchiveFile))
+            try
             {
+                SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
+                var defaultGames = this.restoreAllOriginalGames ? NesApplication.AllDefaultGames : NesApplication.DefaultGames;
 
-                int i = 0;
-                foreach (var f in szExtractor.ArchiveFileNames)
+                using (var szExtractor = new SevenZipExtractor(desktopEntriesArchiveFile))
                 {
-                    var code = Path.GetFileNameWithoutExtension(f);
-                    var query = defaultGames.Where(g => g.Code == code);
-
-                    if (query.Count() != 1)
-                        continue;
-
-                    var ext = Path.GetExtension(f).ToLower();
-                    if (ext != ".desktop") // sanity check
-                        throw new FileLoadException($"invalid file \"{f}\" found in desktop_entries.7z data file.");
-
-                    string path = Path.Combine(originalGamesPath, code);
-                    string outputFile = Path.Combine(path, code + ".desktop");
-                    bool exists = File.Exists(outputFile);
-
-                    if (exists && !nonDestructiveSync)
+                    int i = 0;
+                    foreach (var f in szExtractor.ArchiveFileNames)
                     {
-                        Directory.Delete(path, true);
-                    }
+                        var code = Path.GetFileNameWithoutExtension(f);
+                        var query = defaultGames.Where(g => g.Code == code);
 
-                    if (!exists || !nonDestructiveSync)
-                    {
-                        Directory.CreateDirectory(path);
-                        new DirectoryInfo(path).Refresh();
+                        if (query.Count() != 1)
+                            continue;
 
-                        // extract .desktop file from archive
-                        using (var o = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
+                        var ext = Path.GetExtension(f).ToLower();
+                        if (ext != ".desktop") // sanity check
+                            throw new FileLoadException($"invalid file \"{f}\" found in desktop_entries.7z data file.");
+
+                        string path = Path.Combine(originalGamesPath, code);
+                        string outputFile = Path.Combine(path, code + ".desktop");
+                        bool exists = File.Exists(outputFile);
+
+                        if (exists && !nonDestructiveSync)
                         {
-                            szExtractor.ExtractFile(f, o);
-                            if (!this.restoreAllOriginalGames && !selectedGames.Contains(code))
-                            {
-                                selectedGames.Add(code);
-                            }
-                            o.Flush();
+                            Directory.Delete(path, true);
                         }
 
-                        // create game temporarily to perform cover search
-                        Debug.WriteLine(string.Format("Resetting game \"{0}\".", query.Single().Name));
-                        var game = NesApplication.FromDirectory(path);
-                        game.FindCover(code + ".desktop", null);
-                        game.Save();
-                    }
+                        if (!exists || !nonDestructiveSync)
+                        {
+                            Directory.CreateDirectory(path);
+                            new DirectoryInfo(path).Refresh();
 
-                    SetProgress(++i, defaultGames.Length);
+                            // extract .desktop file from archive
+                            using (var o = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
+                            {
+                                szExtractor.ExtractFile(f, o);
+                                if (!this.restoreAllOriginalGames && !selectedGames.Contains(code))
+                                {
+                                    selectedGames.Add(code);
+                                }
+                                o.Flush();
+                            }
+
+                            // create game temporarily to perform cover search
+                            Debug.WriteLine(string.Format("Resetting game \"{0}\".", query.Single().Name));
+                            var game = NesApplication.FromDirectory(path);
+                            game.FindCover(code + ".desktop", null);
+                            game.Save();
+                        }
+
+                        SetProgress(++i, defaultGames.Length);
+                    }
                 }
             }
-            //Thread.Sleep(500);
+            catch(Exception ex)
+            {
+                Debug.WriteLine("Error synchronizing original games " + ex.Message + ex.StackTrace);
+                MessageBoxFromThread(MainForm, Resources.ErrorRestoringAllOriginalGames, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, false);
+            }
         }
 
         void GetHmods()

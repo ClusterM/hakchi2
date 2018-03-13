@@ -1229,7 +1229,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void reloadGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveConfig();
+            SaveSelectedGames();
             listViewGames.BeginUpdate();
             foreach (ListViewItem item in listViewGames.Items)
                 item.Selected = false;
@@ -1846,19 +1846,11 @@ namespace com.clusterrr.hakchi_gui
             workerForm.restoreAllOriginalGames = true;
 
             SaveSelectedGames();
-            if (workerForm.Start() != DialogResult.OK)
-            {
-                // show error message in case of an error (should not happen but you never know)
-                MessageBox.Show(Resources.ErrorRestoringAllOriginalGames, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                // also save the selected games for each system
-                AddDefaultsToSelectedGames(NesApplication.defaultNesGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.NES));
-                AddDefaultsToSelectedGames(NesApplication.defaultFamicomGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.Famicom));
-                AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.SNES));
-                AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.SuperFamicom));
-            }
+            workerForm.Start();
+            AddDefaultsToSelectedGames(NesApplication.defaultNesGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.NES));
+            AddDefaultsToSelectedGames(NesApplication.defaultFamicomGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.Famicom));
+            AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.SNES));
+            AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.SuperFamicom));
             LoadGames();
         }
 
@@ -2503,11 +2495,12 @@ namespace com.clusterrr.hakchi_gui
             OriginalGamesPosition newPosition = (OriginalGamesPosition)byte.Parse(menuItem.Tag.ToString());
             ConfigIni.Instance.OriginalGamesPosition = newPosition;
 
-            SaveSelectedGames();
             positionAtTheTopToolStripMenuItem.Checked = newPosition == OriginalGamesPosition.AtTop;
             positionAtTheBottomToolStripMenuItem.Checked = newPosition == OriginalGamesPosition.AtBottom;
             positionSortedToolStripMenuItem.Checked = newPosition == OriginalGamesPosition.Sorted;
             positionHiddenToolStripMenuItem.Checked = newPosition == OriginalGamesPosition.Hidden;
+
+            SaveSelectedGames(positionHiddenToolStripMenuItem.Checked);
             LoadGames();
         }
 

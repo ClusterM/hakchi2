@@ -103,7 +103,7 @@ namespace com.clusterrr.hakchi_gui
             return ~crc;
         }
 
-        public static uint CRC32(FileStream stream)
+        public static uint CRC32(Stream stream)
         {
             uint poly = 0xedb88320;
             uint[] table = new uint[256];

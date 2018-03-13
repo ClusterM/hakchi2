@@ -54,7 +54,7 @@ namespace com.clusterrr.hakchi_gui
             var total = Count - originalCount;
             var partsCount = (int)Math.Ceiling((float)total / (float)maxElements);
             var perPart = (int)Math.Ceiling((float)total / (float)partsCount);
-            var alphaNum = new Regex("[^a-zA-Z0-9]");
+            var alphaNum = new Regex(@"[^\p{L}\p{Nd}0-9]", RegexOptions.Compiled); //var alphaNum = new Regex("[^a-zA-Z0-9]");
 
             NesMenuCollection root;
             if (!originalToRoot)
