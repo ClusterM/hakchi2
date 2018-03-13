@@ -262,7 +262,7 @@
     <value>New selection preset</value>
   </data>
   <data name="UninstallFactoryNote" xml:space="preserve">
-    <value>Don't forget to perform a factory reset if you want to delete all Suspend Points.</value>
+    <value>Done! Don't forget to perform a factory reset if you want to delete all Suspend Points.</value>
   </data>
   <data name="Uninstalling" xml:space="preserve">
     <value>Uninstalling...</value>
@@ -734,7 +734,7 @@
     <value>Updating local original games cache...</value>
   </data>
   <data name="ResetOriginalGamesQ" xml:space="preserve">
-    <value>Do you really want to undo all customization on original games?</value>
+    <value>Do you really want to undo all customization on original games for {0}?</value>
   </data>
   <data name="CannotDeleteTempFolder" xml:space="preserve">
     <value>Error deleting temp folder. Please try again.</value>
@@ -914,5 +914,11 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   </data>
   <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icon_app.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ErrorRestoringAllOriginalGames" xml:space="preserve">
+    <value>An error occured while restoring the original games. You can always use File -&gt; Restore original games later on to try again for the games collection you intend to use them in.</value>
+  </data>
+  <data name="UninstallNote" xml:space="preserve">
+    <value>Done. Wait until the power LED goes out. You can now flash the original kernel if you want to restore the unit to factory settings. Otherwise you can flash custom firmware again to restore hakchi functionality.</value>
   </data>
 </root>

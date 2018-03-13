@@ -21,8 +21,8 @@ namespace com.clusterrr.hakchi_gui
             foreach (var game in Games)
             {
                 var core = CoreCollection.GetCore(game.Metadata.Core);
-                var filename = Path.GetFileName(game.GameFilePath);
-                if (!string.IsNullOrEmpty(filename))
+                var filename = Path.GetFileName(game.GameFilePath) ?? string.Empty;
+                if (game.IsOriginalGame || !string.IsNullOrEmpty(filename))
                 {
                     if (filename.EndsWith(".7z"))
                         filename = filename.Substring(0, filename.Length - 3);
@@ -167,6 +167,7 @@ namespace com.clusterrr.hakchi_gui
                         if(Path.GetFileName(coverMatch.Key) == gameItem.SubItems[4].Text)
                         {
                             game.SetImageFile(coverMatch.Key, ConfigIni.Instance.CompressCover);
+                            game.CoverArtMatches = null;
                             break;
                         }
                     }

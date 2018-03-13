@@ -58,7 +58,7 @@ namespace com.clusterrr.hakchi_gui
                 }
 
                 var clovershell = MainForm.Clovershell;
-                WorkerForm.ShowSplashScreen();
+                hakchi.ShowSplashScreen();
                 var listSavesScript =
                      "#!/bin/sh\n" +
                      "savespath=/var/saves\n" +

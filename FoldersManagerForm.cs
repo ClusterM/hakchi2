@@ -18,7 +18,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                switch(ConfigIni.Instance.GamesConsoleType)
+                switch(ConfigIni.Instance.ConsoleType)
                 {
                     default:
                     case MainForm.ConsoleType.NES:

@@ -53,9 +53,10 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                switch (ConfigIni.Instance.ConsoleType)
+                switch (hakchi.DetectedConsoleType)
                 {
                     default:
+                        throw new OperationCanceledException();
                     case MainForm.ConsoleType.NES:
                         return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, "dump"), "kernel.img");
                     case MainForm.ConsoleType.Famicom:
@@ -903,7 +904,7 @@ namespace com.clusterrr.hakchi_gui
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
-                ShowSplashScreen();
+                hakchi.ShowSplashScreen();
                 clovershell.ExecuteSimple("sync");
 
                 var partitionSize = 300 * 1024;
@@ -1009,82 +1010,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static MainForm.ConsoleType TranslateConsoleType(string board, string region)
-        {
-            switch (board)
-            {
-                default:
-                case "dp-nes":
-                case "dp-hvc":
-                    switch (region)
-                    {
-                        case "EUR_USA":
-                            return MainForm.ConsoleType.NES;
-                        case "JPN":
-                            return MainForm.ConsoleType.Famicom;
-                    }
-                    break;
-                case "dp-shvc":
-                    switch (region)
-                    {
-                        case "USA":
-                        case "EUR":
-                            return MainForm.ConsoleType.SNES;
-                        case "JPN":
-                            return MainForm.ConsoleType.SuperFamicom;
-                    }
-                    break;
-            }
-            return MainForm.ConsoleType.Unknown;
-        }
-
-        public static bool GetConsoleType(out MainForm.ConsoleType? runningType, out MainForm.ConsoleType? baseType)
-        {
-            runningType = null;
-            baseType = null;
-
-            var clovershell = MainForm.Clovershell;
-            if (!clovershell.IsOnline)
-                return false;
-
-            var customFirmwareLoaded = clovershell.ExecuteSimple("hakchi currentFirmware") != "_nand_";
-            string board = clovershell.ExecuteSimple("cat /etc/clover/boardtype", 3000, true);
-            string region = clovershell.ExecuteSimple("cat /etc/clover/REGION", 3000, true);
-            runningType = TranslateConsoleType(board, region);
-
-            Debug.WriteLine(string.Format("Detected board: {0}", board));
-            Debug.WriteLine(string.Format("Detected region: {0}", region));
-
-            if (customFirmwareLoaded)
-            {
-                clovershell.ExecuteSimple("cryptsetup open /dev/nandb root-crypt --readonly --type plain --cipher aes-xts-plain --key-file /etc/key-file", 3000);
-                clovershell.ExecuteSimple("mkdir -p /var/squashfs-original", 3000, true);
-                clovershell.ExecuteSimple("mount /dev/mapper/root-crypt /var/squashfs-original", 3000, true);
-                board = clovershell.ExecuteSimple("cat /var/squashfs-original/etc/clover/boardtype", 3000, true);
-                region = clovershell.ExecuteSimple("cat /var/squashfs-original/etc/clover/REGION", 3000, true);
-                clovershell.ExecuteSimple("umount /var/squashfs-original", 3000, true);
-                clovershell.ExecuteSimple("rm -rf /var/squashfs-original", 3000, true);
-                clovershell.ExecuteSimple("cryptsetup close root-crypt", 3000, true);
-            }
-            baseType = TranslateConsoleType(board, region);
-
-            return true;
-        }
-
-        public static void ShowSplashScreen()
-        {
-            var clovershell = MainForm.Clovershell;
-            var splashScreenPath = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "splash.gz");
-            clovershell.ExecuteSimple("uistop");
-            if (File.Exists(splashScreenPath))
-            {
-                using (var splash = new FileStream(splashScreenPath, FileMode.Open))
-                {
-                    clovershell.Execute("gunzip -c - > /dev/fb0", splash, null, null, 3000);
-                }
-            }
-        }
-
         public void UploadGames()
         {
             string gamesPath;
@@ -1142,14 +1067,14 @@ namespace com.clusterrr.hakchi_gui
                     return;
                 }
 
-                gameSyncPath = Shared.GetRemoteGameSyncPath();
+                gameSyncPath = hakchi.RemoteGameSyncPath;
                 gamesPath = clovershell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
                 rootFsPath = clovershell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
                 squashFsPath = clovershell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
                 SetProgress(progress += 5, maxProgress);
 
                 // prepare unit for upload
-                ShowSplashScreen();
+                hakchi.ShowSplashScreen();
 
                 // delete non-multiboot path if there are leftovers and we are now using multiboot
                 if (ConfigIni.Instance.SeparateGameStorage)
@@ -1228,7 +1153,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var originalCode in originalGames.Keys)
                 {
                     string originalSyncCode = "";
-                    switch (ConfigIni.Instance.GamesConsoleType)
+                    switch (ConfigIni.Instance.ConsoleType)
                     {
                         case MainForm.ConsoleType.NES:
                         case MainForm.ConsoleType.Famicom:
@@ -1254,7 +1179,7 @@ namespace com.clusterrr.hakchi_gui
                 SetProgress(progress += 4, maxProgress);
 
                 SetStatus(Resources.UploadingConfig);
-                SyncConfig(Config);
+                hakchi.SyncConfig(Config);
 #if !DEBUG
                 if (Directory.Exists(tempDirectory))
                 {
@@ -1281,27 +1206,26 @@ namespace com.clusterrr.hakchi_gui
 
         private void DeleteRemoteApplicationFiles(IEnumerable<ApplicationFileInfo> filesToDelete)
         {
-            var clovershell = MainForm.Clovershell;
-            string syncPath = Shared.GetRemoteGameSyncPath();
-            MemoryStream commandBuilder = new MemoryStream();
-
-            string data = $"#!/bin/sh\ncd \"{syncPath}\"\n";
-            commandBuilder.Write(Encoding.UTF8.GetBytes(data), 0, data.Length);
-
-            foreach (ApplicationFileInfo appInfo in filesToDelete)
+            using (MemoryStream commandBuilder = new MemoryStream())
             {
-                data = $"rm \"{appInfo.Filepath}\"\n";
+                string data = $"#!/bin/sh\ncd \"{hakchi.RemoteGameSyncPath}\"\n";
                 commandBuilder.Write(Encoding.UTF8.GetBytes(data), 0, data.Length);
-            }
 
-            try
-            {
-                clovershell.Execute("cat > /tmp/cleanup.sh", commandBuilder, null, null, 5000, true);
-                clovershell.ExecuteSimple("chmod +x /tmp/cleanup.sh && /tmp/cleanup.sh", 0, true);
-            }
-            finally
-            {
-                clovershell.ExecuteSimple("rm /tmp/cleanup.sh");
+                foreach (ApplicationFileInfo appInfo in filesToDelete)
+                {
+                    data = $"rm \"{appInfo.Filepath}\"\n";
+                    commandBuilder.Write(Encoding.UTF8.GetBytes(data), 0, data.Length);
+                }
+
+                try
+                {
+                    MainForm.Clovershell.Execute("cat > /tmp/cleanup.sh", commandBuilder, null, null, 5000, true);
+                    MainForm.Clovershell.ExecuteSimple("chmod +x /tmp/cleanup.sh && /tmp/cleanup.sh", 0, true);
+                }
+                finally
+                {
+                    MainForm.Clovershell.ExecuteSimple("rm /tmp/cleanup.sh");
+                }
             }
         }
 
@@ -1406,33 +1330,6 @@ namespace com.clusterrr.hakchi_gui
                     clovershell.ExecuteSimple("chmod +x /bin/*", 3000, true);
                     clovershell.ExecuteSimple("chmod +x /etc/init.d/*", 3000, true);
                 }
-            }
-        }
-
-        public static void SyncConfig(Dictionary<string, string> config, bool reboot = false)
-        {
-            var clovershell = MainForm.Clovershell;
-            const string configPath = "/etc/preinit.d/p0000_config";
-
-            using (var stream = new MemoryStream())
-            {
-                if (config != null && config.Count > 0)
-                {
-                    foreach (var key in config.Keys)
-                    {
-                        var data = Encoding.UTF8.GetBytes(string.Format("cfg_{0}='{1}'\n", key, config[key].Replace(@"'", @"\'")));
-                        stream.Write(data, 0, data.Length);
-                    }
-                }
-                clovershell.Execute($"cat >> {configPath}", stream, null, null, 3000, true);
-            }
-            if (reboot)
-            {
-                try
-                {
-                    clovershell.ExecuteSimple("reboot", 100);
-                }
-                catch { }
             }
         }
 
@@ -1841,7 +1738,6 @@ namespace com.clusterrr.hakchi_gui
             int menuIndex = stats.allMenus.IndexOf(menuCollection);
             string targetDirectory = Path.Combine(tempGamesDirectory, string.Format("{0:D3}", menuIndex));
 
-            NesApplication.GamesHakchiSyncPath = Shared.GetRemoteGameSyncPath();
             foreach (var element in menuCollection)
             {
                 if (element is NesApplication)
@@ -2175,7 +2071,7 @@ namespace com.clusterrr.hakchi_gui
                 else
                     gameFile = game.BasePath;
                 game.FindCover(game.Metadata.OriginalFilename ?? Path.GetFileName(gameFile), null, crc32, game.Name);
-                if (game.ImpreciseCoverArtMatches)
+                if (game.HasImpreciseCoverArtMatches)
                     unknownApps.Add(game);
                 SetProgress(++i, Games.Count);
             }
@@ -2360,7 +2256,7 @@ namespace com.clusterrr.hakchi_gui
                 var reply = clovershell.ExecuteSimple($"[ -d {gamesCloverPath} ] && echo YES || echo NO");
                 if (reply == "NO")
                 {
-                    gamesCloverPath = NesApplication.GamesHakchiPath;
+                    gamesCloverPath = hakchi.GamesPath;
                     reply = clovershell.ExecuteSimple($"[ -d {gamesCloverPath} ] && echo YES || echo NO");
                     if( reply == "NO")
                         throw new Exception("unable to update local cache. games directory not accessible.");

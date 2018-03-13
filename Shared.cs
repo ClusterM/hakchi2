@@ -14,8 +14,6 @@ namespace com.clusterrr.hakchi_gui
 {
     static class Shared
     {
-        public const string SquashFsPath = "/var/squashfs";
-
         public static Bitmap LoadBitmapCopy(string path)
         {
             Bitmap bmp;
@@ -206,52 +204,9 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static string MinimumHakchiBootVersion
+        public static bool IsVersionGreaterOrEqual(string given, string minimum)
         {
-            get
-            {
-                return "1.0.1";
-            }
-        }
-        
-        public static string MinimumHakchiKernelVersion
-        {
-            get
-            {
-                return "3.4.112";
-            }
-        }
-        
-        public static string MinimumHakchiScriptVersion
-        {
-            get
-            {
-                return "1.0.3";
-            }
-        }
-        
-        public static string MinimumHakchiScriptRevision
-        {
-            get
-            {
-                return "110";
-            }
-        }
-
-        public static string CurrentHakchiScriptVersion
-        {
-            get
-            {
-                return "1.0.3";
-            }
-        }
-
-        public static string CurrentHakchiScriptRevision
-        {
-            get
-            {
-                return "110";
-            }
+            return new Version(given).CompareTo(new Version(minimum)) > -1;
         }
 
         public static readonly string[] SizeSuffixes =
@@ -393,26 +348,6 @@ namespace com.clusterrr.hakchi_gui
         {
             var doubleBufferPropertyInfo = control.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
             doubleBufferPropertyInfo.SetValue(control, enable, null);
-        }
-
-        public static bool IsVersionGreaterOrEqual(string given, string minimum)
-        {
-            return new Version(given).CompareTo(new Version(minimum)) > -1;
-        }
-
-        public static string GetRemoteGameSyncPath()
-        {
-            var clovershell = MainForm.Clovershell;
-            string gameSyncStorage = clovershell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
-            string gameSyncPath = gameSyncStorage;
-
-            if (ConfigIni.Instance.SeparateGameStorage)
-            {
-                string systemCode = clovershell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
-                gameSyncPath = $"{gameSyncStorage}/{systemCode}";
-            }
-
-            return gameSyncPath;
         }
 
         private static string[][] RomanNumerals = new string[][]

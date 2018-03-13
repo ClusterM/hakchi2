@@ -140,7 +140,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                switch (ConfigIni.Instance.GamesConsoleType)
+                switch (ConfigIni.Instance.ConsoleType)
                 {
                     default:
                     case MainForm.ConsoleType.NES:
@@ -165,7 +165,7 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                switch (ConfigIni.Instance.GamesConsoleType)
+                switch (ConfigIni.Instance.ConsoleType)
                 {
                     default:
                     case MainForm.ConsoleType.NES:
@@ -176,29 +176,6 @@ namespace com.clusterrr.hakchi_gui
                         return Path.Combine(Program.BaseDirectoryExternal, "games_snes");
                 }
             }
-        }
-        public static string MediaHakchiPath = "/media";
-        public static string GamesHakchiPath = "/var/games";
-        public static string GamesHakchiProfilePath = "/var/saves";
-        public static string GamesSquashPath
-        {
-            get
-            {
-                switch (ConfigIni.Instance.ConsoleType)
-                {
-                    default:
-                    case MainForm.ConsoleType.NES:
-                    case MainForm.ConsoleType.Famicom:
-                        return "/usr/share/games/nes/kachikachi";
-                    case MainForm.ConsoleType.SNES:
-                    case MainForm.ConsoleType.SuperFamicom:
-                        return "/usr/share/games";
-                }
-            }
-        }
-        public static string GamesHakchiSyncPath // /var/lib/hakchi/games/console-region
-        {
-            get; set;
         }
 
         public class AppMetadata
@@ -254,7 +231,7 @@ namespace com.clusterrr.hakchi_gui
             }
             public void Save(string filename)
             {
-                File.WriteAllText(filename, JsonConvert.SerializeObject(this, Formatting.Indented));
+                File.WriteAllText(filename, JsonConvert.SerializeObject(this, Formatting.Indented).Replace("\r", "") + "\n");
             }
         }
         public AppMetadata Metadata;
@@ -265,19 +242,8 @@ namespace com.clusterrr.hakchi_gui
         public string GameGenie
         {
             get { return gameGenie; }
-            set
-            {
-                //if (gameGenie != value) hasUnsavedChanges = true;
-                gameGenie = value;
-            }
+            set { gameGenie = value; }
         }
-
-        // derived from NesMenuElementBase:
-        //
-        // DesktopFile desktop
-        // string basePath
-        // string iconPath
-        // string smallIconPath
 
         public string GameFilePath
         {
@@ -314,10 +280,11 @@ namespace com.clusterrr.hakchi_gui
         public Dictionary<string, bool> CoverArtMatches
         {
             get { return coverArtMatches; }
+            set { if (value == null) coverArtMatches = null; }
         }
-        public bool ImpreciseCoverArtMatches
+        public bool HasImpreciseCoverArtMatches
         {
-            get { return coverArtMatches == null || coverArtMatches.Count == 0 ? false : coverArtMatches.Count > 1 || coverArtMatches.First().Value; }
+            get { return (coverArtMatches == null || coverArtMatches.Count == 0) ? false : (coverArtMatches.Count > 1 || coverArtMatches.First().Value); }
         }
 
         public static NesApplication FromDirectory(string path, bool ignoreEmptyConfig = false)
@@ -375,9 +342,16 @@ namespace com.clusterrr.hakchi_gui
                 appInfo = metadata.AppInfo; // guaranteed to at least return UnknownApp
             }
 
-            // construct and return new object
-            var constructor = appInfo.Class.GetConstructor(new Type[] { typeof(string), typeof(AppMetadata), typeof(bool) });
-            return (NesApplication)constructor.Invoke(new object[] { path, metadata, ignoreEmptyConfig });
+            try
+            {
+                var constructor = appInfo.Class.GetConstructor(new Type[] { typeof(string), typeof(AppMetadata), typeof(bool) });
+                return (NesApplication)constructor.Invoke(new object[] { path, metadata, ignoreEmptyConfig });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error creating app from directory {path} : " + ex.Message + ex.StackTrace);
+                return new UnknownGame(path);
+            }
         }
 
         private static string[] systemsBlacklist = Resources.retroarch_systems_blacklist.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
@@ -509,9 +483,9 @@ namespace com.clusterrr.hakchi_gui
             name = Regex.Replace(name, @" ?\(.*?\)", string.Empty).Trim();
             name = Regex.Replace(name, @" ?\[.*?\]", string.Empty).Trim();
             game.desktop.Name = name.Replace("_", " ").Replace("  ", " ").Trim();
-            game.desktop.Exec = $"{application} {GamesHakchiPath}/{code}/{outputFileName} {args}";
-            game.desktop.ProfilePath = GamesHakchiProfilePath;
-            game.desktop.IconPath = GamesHakchiPath;
+            game.desktop.Exec = $"{application} {hakchi.GamesPath}/{code}/{outputFileName} {args}";
+            game.desktop.ProfilePath = hakchi.GamesProfilePath;
+            game.desktop.IconPath = hakchi.GamesPath;
             game.desktop.Code = code;
             game.desktop.SaveCount = saveCount;
             game.Save();
@@ -564,8 +538,8 @@ namespace com.clusterrr.hakchi_gui
             name = Regex.Replace(name, @" ?\[.*?\]", string.Empty).Trim();
             game.desktop.Name = name.Replace("_", " ").Replace("  ", " ").Trim();
             game.desktop.Exec = "/bin/enter-custom-command-here";
-            game.desktop.ProfilePath = GamesHakchiProfilePath;
-            game.desktop.IconPath = GamesHakchiPath;
+            game.desktop.ProfilePath = hakchi.GamesProfilePath;
+            game.desktop.IconPath = hakchi.GamesPath;
             game.desktop.Code = code;
             game.desktop.SaveCount = 0;
             game.Save();
@@ -619,7 +593,7 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // save .desktop file
-            bool snesExtraFields = IsOriginalGame && (ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SuperFamicom);
+            bool snesExtraFields = IsOriginalGame && (ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SuperFamicom);
             desktop.Save($"{basePath}/{desktop.Code}.desktop", snesExtraFields);
 
             // game genie stuff
@@ -688,7 +662,7 @@ namespace com.clusterrr.hakchi_gui
                     if (IsOriginalGame && i == null)
                     {
                         string cachedIconPath = Shared.PathCombine(OriginalGamesCacheDirectory, Code, Code + "_small.png");
-                        return File.Exists(cachedIconPath) ? Image.FromFile(cachedIconPath) : AppTypeCollection.GetAppBySystem(Metadata.System).DefaultCover;
+                        return File.Exists(cachedIconPath) ? Image.FromFile(cachedIconPath) : Shared.ResizeImage(AppTypeCollection.GetAppBySystem(Metadata.System).DefaultCover, null, null, 40, 40, false, true, false, false);
                     }
                     return i;
                 }
@@ -810,10 +784,12 @@ namespace com.clusterrr.hakchi_gui
         {
             var imageExtensions = new string[] { ".png", ".jpg", ".jpeg", ".bmp", ".gif", ".tif", ".tiff" };
             var regexStripCodes = new Regex(@"\s?\(.*?\)|\s?\[.*?\]", RegexOptions.Compiled);
-            var regexSanitize = new Regex(@"[^a-zA-Z0-9\&]", RegexOptions.Compiled);
+            //var regexSanitize = new Regex(@"[^a-zA-Z0-9\&]", RegexOptions.Compiled);
+            var regexSanitize = new Regex(@"[^\p{L}\p{Nd}0-9\&]", RegexOptions.Compiled);
             var regexTrim = new Regex(@"\s+", RegexOptions.Compiled);
 
             name = regexTrim.Replace(" " + regexSanitize.Replace(name, " ").ToLower() + " ", " ");
+            Debug.WriteLine("FindCoverMatch: " + name);
 
             if (!string.IsNullOrEmpty(name.Trim()))
             {
@@ -821,23 +797,28 @@ namespace com.clusterrr.hakchi_gui
                 List<string[]> words = new List<string[]>();
                 foreach(string word in name.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    if (word == "&" || word == "and")
+                    Debug.WriteLine($"\"{word}\"");
+                    if (word == "&" || word == "and") // and, & can be used interchangeably, or omitted
                     {
-                        words.Add(new string[] { "&", "and" });
+                        words.Add(new string[] { "&", "and", string.Empty });
                     }
-                    else if (word == "the")
+                    else if (word == "the") // the can be omitted
                     {
                         words.Add(new string[] { "the", string.Empty });
                     }
-                    else if (Regex.IsMatch(@"^[0-9]{1,2}$", word))
+                    else if (Regex.IsMatch(word, @"^[0-9]{1,2}$")) // alternate short numbers to roman letters
                     {
                         words.Add(new string[] { word, Shared.IntegerToRoman(int.Parse(word)).ToLower() });
                     }
-                    else if (Regex.IsMatch(@"^[ivx]+$", word))
+                    else if (Regex.IsMatch(word, @"^[ivx]+$")) // alternate short roman numbers to integer
                     {
                         words.Add(new string[] { word, Shared.RomanToInteger(word).ToString() });
                     }
-                    else
+                    else if (word.Length == 1) // add an alternative to one letter words
+                    {
+                        words.Add(new string[] { word, string.Empty });
+                    }
+                    else // otherwise, just add the word
                     {
                         words.Add(new string[] { word });
                     }
@@ -998,11 +979,11 @@ namespace com.clusterrr.hakchi_gui
                 return FromDirectory(targetDir);
             }
 
-            string relativeGamesPath = MediaHakchiPath + GamesDirectory.Substring(2).Replace("\\", "/");
-            string relativeOriginalGamesPath = MediaHakchiPath + OriginalGamesCacheDirectory.Substring(2).Replace("\\", "/");
+            string relativeGamesPath = hakchi.MediaPath + GamesDirectory.Substring(2).Replace("\\", "/");
+            string relativeOriginalGamesPath = hakchi.MediaPath + OriginalGamesCacheDirectory.Substring(2).Replace("\\", "/");
 
             // new feature: linked sync paths
-            string relativeGamesStoragePath = GamesHakchiSyncPath + "/.storage";
+            string relativeGamesStoragePath = hakchi.RemoteGameSyncPath + "/.storage";
             string relativeTargetDir = Shared.PathCombine(Path.GetDirectoryName(path), ".storage", desktop.Code);
 
             // handle all 3 different sync scenarios (with original or custom games)
@@ -1012,19 +993,19 @@ namespace com.clusterrr.hakchi_gui
                 switch (copyMode)
                 {
                     case CopyMode.Sync:
-                        mediaGamePath = Shared.SquashFsPath + GamesSquashPath;
-                        iconPath = File.Exists(this.iconPath) ? GamesHakchiPath : Shared.SquashFsPath + GamesSquashPath;
+                        mediaGamePath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
+                        iconPath = File.Exists(this.iconPath) ? hakchi.GamesPath : hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
                         break;
                     case CopyMode.LinkedSync:
-                        mediaGamePath = Shared.SquashFsPath + GamesSquashPath;
-                        iconPath = File.Exists(this.iconPath) ? relativeGamesStoragePath : Shared.SquashFsPath + GamesSquashPath;
+                        mediaGamePath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
+                        iconPath = File.Exists(this.iconPath) ? relativeGamesStoragePath : hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
                         break;
                     case CopyMode.Export:
-                        mediaGamePath = Directory.Exists(Path.Combine(OriginalGamesCacheDirectory, desktop.Code)) ? GamesHakchiPath : Shared.SquashFsPath + GamesSquashPath;
-                        iconPath = File.Exists(this.iconPath) ? GamesHakchiPath : Shared.SquashFsPath + GamesSquashPath;
+                        mediaGamePath = Directory.Exists(Path.Combine(OriginalGamesCacheDirectory, desktop.Code)) ? hakchi.GamesPath : hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
+                        iconPath = File.Exists(this.iconPath) ? hakchi.GamesPath : hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
                         break;
                     case CopyMode.LinkedExport:
-                        mediaGamePath = Directory.Exists(Path.Combine(OriginalGamesCacheDirectory, desktop.Code)) ? relativeOriginalGamesPath : Shared.SquashFsPath + GamesSquashPath;
+                        mediaGamePath = Directory.Exists(Path.Combine(OriginalGamesCacheDirectory, desktop.Code)) ? relativeOriginalGamesPath : hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
                         iconPath = File.Exists(this.iconPath) ? relativeGamesPath : mediaGamePath;
                         break;
                 }
@@ -1034,20 +1015,20 @@ namespace com.clusterrr.hakchi_gui
                 switch (copyMode)
                 {
                     case CopyMode.Sync:
-                        mediaGamePath = iconPath = GamesHakchiPath;
+                        mediaGamePath = iconPath = hakchi.GamesPath;
                         break;
                     case CopyMode.LinkedSync:
                         mediaGamePath = iconPath = relativeGamesStoragePath;
                         break;
                     case CopyMode.Export:
-                        mediaGamePath = iconPath = GamesHakchiPath;
+                        mediaGamePath = iconPath = hakchi.GamesPath;
                         break;
                     case CopyMode.LinkedExport:
                         mediaGamePath = iconPath = relativeGamesPath;
                         break;
                 }
             }
-            profilePath = GamesHakchiProfilePath;
+            profilePath = hakchi.GamesProfilePath;
 
             // copy to new target
             Debug.WriteLine($"Copying game \"{desktop.Name}\" into \"{path}\"");

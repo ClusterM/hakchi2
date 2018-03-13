@@ -741,6 +741,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occured while restoring the original games. You can always use File -&gt; Restore original games later on to try again for the games collection you intend to use them in..
+        /// </summary>
+        internal static string ErrorRestoringAllOriginalGames {
+            get {
+                return ResourceManager.GetString("ErrorRestoringAllOriginalGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap es {
@@ -1379,7 +1388,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 8a10308 (dirty).
+        ///   Looks up a localized string similar to b053b61 (dirty).
         /// </summary>
         internal static string gitCommit {
             get {
@@ -2036,7 +2045,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to undo all customization on original games?.
+        ///   Looks up a localized string similar to Do you really want to undo all customization on original games for {0}?.
         /// </summary>
         internal static string ResetOriginalGamesQ {
             get {
@@ -2382,7 +2391,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Don&apos;t forget to perform a factory reset if you want to delete all Suspend Points..
+        ///   Looks up a localized string similar to Done! Don&apos;t forget to perform a factory reset if you want to delete all Suspend Points..
         /// </summary>
         internal static string UninstallFactoryNote {
             get {
@@ -2405,6 +2414,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string UninstallingMods {
             get {
                 return ResourceManager.GetString("UninstallingMods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done. Wait until the power LED goes out. You can now flash the original kernel if you want to restore the unit to factory settings. Otherwise you can flash custom firmware again to restore hakchi functionality..
+        /// </summary>
+        internal static string UninstallNote {
+            get {
+                return ResourceManager.GetString("UninstallNote", resourceCulture);
             }
         }
         

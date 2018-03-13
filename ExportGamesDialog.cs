@@ -55,7 +55,7 @@ namespace com.clusterrr.hakchi_gui
 
             if(comboDriveLetters.Items.Count > 0) comboDriveLetters.SelectedIndex = 0;
 
-            if (ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SNES && ConfigIni.Instance.SeparateGameStorage)
+            if (ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SNES && ConfigIni.Instance.SeparateGameStorage)
             {
                 radioEUR.Enabled = true;
                 radioUSA.Enabled = true;
@@ -101,7 +101,7 @@ namespace com.clusterrr.hakchi_gui
                 string systemCode = "";
                 if (ConfigIni.Instance.SeparateGameStorage)
                 {
-                    switch (ConfigIni.Instance.GamesConsoleType)
+                    switch (ConfigIni.Instance.ConsoleType)
                     {
                         case MainForm.ConsoleType.Famicom:
                             systemCode = "nes-jpn";

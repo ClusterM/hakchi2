@@ -19,7 +19,7 @@ namespace com.clusterrr.hakchi_gui
         private static readonly string CollectionFilename = Shared.PathCombine(Program.BaseDirectoryExternal, "config", "cores{0}.json");
 
         public enum CoreKind { Unknown, BuiltIn, Libretro };
-        public class CoreInfo
+        public class CoreInfo : IEquatable<CoreInfo>
         {
             public readonly string Bin;
             public string DefaultArgs = string.Empty;
@@ -61,6 +61,36 @@ namespace com.clusterrr.hakchi_gui
             {
                 return Name;
             }
+
+            // equality methods
+
+            public override bool Equals(object obj)
+            {
+                var other = obj as CoreInfo;
+                if (other == null) return false;
+                return Equals(other);
+            }
+
+            public static bool operator ==(CoreInfo a, CoreInfo b)
+            {
+                return a.Equals(b);
+            }
+
+            public static bool operator !=(CoreInfo a, CoreInfo b)
+            {
+                return !(a == b);
+            }
+
+            public bool Equals(CoreInfo obj)
+            {
+                if (obj == null) return false;
+                return this.Bin.Equals(obj.Bin);
+            }
+
+            public override int GetHashCode()
+            {
+                return this.Bin.GetHashCode();
+            }
         }
 
         private static CoreInfo Canoe = new CoreInfo("clover-canoe-shvc-wr -rom")
@@ -77,7 +107,7 @@ namespace com.clusterrr.hakchi_gui
             DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet",
             Name = "Kachikachi",
             DisplayName = "Nintendo - Nintendo Entertainment System (Kachikachi)",
-            SupportedExtensions = new string[] { ".nes", ".fds" },
+            SupportedExtensions = new string[] { ".nes", ".fds", ".qd" },
             Systems = new string[] { "Nintendo - Nintendo Entertainment System", "Nintendo - Family Computer Disk System" },
             Kind = CoreKind.BuiltIn
         };

@@ -177,7 +177,7 @@ namespace com.clusterrr.hakchi_gui
             // full-size image ratio
             int maxX = 204;
             int maxY = 204;
-            if (ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SuperFamicom)
+            if (ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SuperFamicom)
             {
                 maxX = 228;
                 maxY = 204;
@@ -195,7 +195,7 @@ namespace com.clusterrr.hakchi_gui
             // full-size image ratio
             int maxX = 204;
             int maxY = 204;
-            if (ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.GamesConsoleType == MainForm.ConsoleType.SuperFamicom)
+            if (ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SuperFamicom)
             {
                 maxX = 228;
                 maxY = 204;

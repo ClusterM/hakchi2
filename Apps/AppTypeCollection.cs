@@ -76,7 +76,7 @@ namespace com.clusterrr.hakchi_gui
                 Class = typeof(FdsGame),
                 DefaultCore = "nestopia",
                 LegacyApps = new string[] {"/bin/fds", "/bin/clover-kachikachi-wr", "/usr/bin/clover-kachikachi" },
-                Extensions = new string[] {".fds" },
+                Extensions = new string[] {".fds", ".qd" },
                 Prefix = 'D',
                 DefaultCover = Resources.blank_fds,
                 GoogleSuffix = "(fds | nes | famicom)"

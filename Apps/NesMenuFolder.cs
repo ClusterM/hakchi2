@@ -195,9 +195,9 @@ namespace com.clusterrr.hakchi_gui
                     prefix = 'Я';
                     break;
             }
-            desktop.Exec = string.Format("/bin/chmenu {0:D3} {1}", childIndex, NesApplication.GamesHakchiPath);
-            desktop.ProfilePath = NesApplication.GamesHakchiProfilePath + "/FOLDER";
-            desktop.IconPath = NesApplication.GamesHakchiPath;
+            desktop.Exec = string.Format("/bin/chmenu {0:D3} {1}", childIndex, hakchi.GamesPath);
+            desktop.ProfilePath = hakchi.GamesProfilePath + "/FOLDER";
+            desktop.IconPath = hakchi.GamesPath;
             desktop.IconFilename = desktop.Code + ".png";
             desktop.TestId = 777;
             desktop.SortName = prefix + (desktop.Name ?? desktop.Code).ToLower();

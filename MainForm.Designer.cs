@@ -81,14 +81,15 @@
             this.sFROMToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableSFROMToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usePCMPatchWhenAvailableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useLinkedSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useLinkedSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.centerBoxArtThumbnailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disableHakchi2PopupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripSeparator();
             this.consoleTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.noneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nESMiniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.famicomMiniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sNESMiniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,10 +100,13 @@
             this.enableAutofireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useXYOnClassicControllerAsAutofireABToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.upABStartOnSecondControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kachikachiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.canoeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.retroarchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableUSBHostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.epilepsyProtectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.saveSettingsToNESMiniNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -547,8 +551,8 @@
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.languageToolStripMenuItem,
             this.sFROMToolToolStripMenuItem,
-            this.useLinkedSyncToolStripMenuItem,
             this.separateGamesForMultibootToolStripMenuItem,
+            this.useLinkedSyncToolStripMenuItem,
             this.compressGamesToolStripMenuItem,
             this.compressBoxArtToolStripMenuItem,
             this.centerBoxArtThumbnailToolStripMenuItem,
@@ -556,10 +560,10 @@
             this.toolStripMenuItem16,
             this.consoleTypeToolStripMenuItem,
             this.cloverconHackToolStripMenuItem,
+            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem,
             this.enableUSBHostToolStripMenuItem,
             this.useExtendedFontToolStripMenuItem,
             this.epilepsyProtectionToolStripMenuItem,
-            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem,
             this.toolStripMenuItem5,
             this.saveSettingsToNESMiniNowToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
@@ -592,15 +596,6 @@
             resources.ApplyResources(this.usePCMPatchWhenAvailableToolStripMenuItem, "usePCMPatchWhenAvailableToolStripMenuItem");
             this.usePCMPatchWhenAvailableToolStripMenuItem.Click += new System.EventHandler(this.usePCMPatchWhenAvailableToolStripMenuItem_Click);
             // 
-            // useLinkedSyncToolStripMenuItem
-            // 
-            this.useLinkedSyncToolStripMenuItem.Checked = true;
-            this.useLinkedSyncToolStripMenuItem.CheckOnClick = true;
-            this.useLinkedSyncToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.useLinkedSyncToolStripMenuItem.Name = "useLinkedSyncToolStripMenuItem";
-            resources.ApplyResources(this.useLinkedSyncToolStripMenuItem, "useLinkedSyncToolStripMenuItem");
-            this.useLinkedSyncToolStripMenuItem.Click += new System.EventHandler(this.useLinkedSyncToolStripMenuItem_Click);
-            // 
             // separateGamesForMultibootToolStripMenuItem
             // 
             this.separateGamesForMultibootToolStripMenuItem.Checked = true;
@@ -609,6 +604,15 @@
             this.separateGamesForMultibootToolStripMenuItem.Name = "separateGamesForMultibootToolStripMenuItem";
             resources.ApplyResources(this.separateGamesForMultibootToolStripMenuItem, "separateGamesForMultibootToolStripMenuItem");
             this.separateGamesForMultibootToolStripMenuItem.Click += new System.EventHandler(this.separateGamesForMultibootToolStripMenuItem_Click);
+            // 
+            // useLinkedSyncToolStripMenuItem
+            // 
+            this.useLinkedSyncToolStripMenuItem.Checked = true;
+            this.useLinkedSyncToolStripMenuItem.CheckOnClick = true;
+            this.useLinkedSyncToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.useLinkedSyncToolStripMenuItem.Name = "useLinkedSyncToolStripMenuItem";
+            resources.ApplyResources(this.useLinkedSyncToolStripMenuItem, "useLinkedSyncToolStripMenuItem");
+            this.useLinkedSyncToolStripMenuItem.Click += new System.EventHandler(this.useLinkedSyncToolStripMenuItem_Click);
             // 
             // compressGamesToolStripMenuItem
             // 
@@ -654,6 +658,7 @@
             // consoleTypeToolStripMenuItem
             // 
             this.consoleTypeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.noneToolStripMenuItem,
             this.nESMiniToolStripMenuItem,
             this.famicomMiniToolStripMenuItem,
             this.sNESMiniToolStripMenuItem,
@@ -661,31 +666,32 @@
             this.consoleTypeToolStripMenuItem.Name = "consoleTypeToolStripMenuItem";
             resources.ApplyResources(this.consoleTypeToolStripMenuItem, "consoleTypeToolStripMenuItem");
             // 
+            // noneToolStripMenuItem
+            // 
+            this.noneToolStripMenuItem.Checked = true;
+            this.noneToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            resources.ApplyResources(this.noneToolStripMenuItem, "noneToolStripMenuItem");
+            this.noneToolStripMenuItem.Name = "noneToolStripMenuItem";
+            // 
             // nESMiniToolStripMenuItem
             // 
-            this.nESMiniToolStripMenuItem.Checked = true;
-            this.nESMiniToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.nESMiniToolStripMenuItem.Name = "nESMiniToolStripMenuItem";
             resources.ApplyResources(this.nESMiniToolStripMenuItem, "nESMiniToolStripMenuItem");
-            this.nESMiniToolStripMenuItem.Click += new System.EventHandler(this.nESMiniToolStripMenuItem_Click);
+            this.nESMiniToolStripMenuItem.Name = "nESMiniToolStripMenuItem";
             // 
             // famicomMiniToolStripMenuItem
             // 
-            this.famicomMiniToolStripMenuItem.Name = "famicomMiniToolStripMenuItem";
             resources.ApplyResources(this.famicomMiniToolStripMenuItem, "famicomMiniToolStripMenuItem");
-            this.famicomMiniToolStripMenuItem.Click += new System.EventHandler(this.famicomMiniToolStripMenuItem_Click);
+            this.famicomMiniToolStripMenuItem.Name = "famicomMiniToolStripMenuItem";
             // 
             // sNESMiniToolStripMenuItem
             // 
-            this.sNESMiniToolStripMenuItem.Name = "sNESMiniToolStripMenuItem";
             resources.ApplyResources(this.sNESMiniToolStripMenuItem, "sNESMiniToolStripMenuItem");
-            this.sNESMiniToolStripMenuItem.Click += new System.EventHandler(this.sNESMiniToolStripMenuItem_Click);
+            this.sNESMiniToolStripMenuItem.Name = "sNESMiniToolStripMenuItem";
             // 
             // superFamicomMiniToolStripMenuItem
             // 
-            this.superFamicomMiniToolStripMenuItem.Name = "superFamicomMiniToolStripMenuItem";
             resources.ApplyResources(this.superFamicomMiniToolStripMenuItem, "superFamicomMiniToolStripMenuItem");
-            this.superFamicomMiniToolStripMenuItem.Click += new System.EventHandler(this.superFamicomMiniToolStripMenuItem_Click);
+            this.superFamicomMiniToolStripMenuItem.Name = "superFamicomMiniToolStripMenuItem";
             // 
             // cloverconHackToolStripMenuItem
             // 
@@ -734,6 +740,36 @@
             resources.ApplyResources(this.upABStartOnSecondControllerToolStripMenuItem, "upABStartOnSecondControllerToolStripMenuItem");
             this.upABStartOnSecondControllerToolStripMenuItem.Click += new System.EventHandler(this.upABStartOnSecondControllerToolStripMenuItem_Click);
             // 
+            // globalCommandLineArgumentsexpertsOnluToolStripMenuItem
+            // 
+            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.kachikachiToolStripMenuItem,
+            this.canoeToolStripMenuItem,
+            this.retroarchToolStripMenuItem});
+            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Name = "globalCommandLineArgumentsexpertsOnluToolStripMenuItem";
+            resources.ApplyResources(this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem, "globalCommandLineArgumentsexpertsOnluToolStripMenuItem");
+            // 
+            // kachikachiToolStripMenuItem
+            // 
+            this.kachikachiToolStripMenuItem.Name = "kachikachiToolStripMenuItem";
+            resources.ApplyResources(this.kachikachiToolStripMenuItem, "kachikachiToolStripMenuItem");
+            this.kachikachiToolStripMenuItem.Tag = "0";
+            this.kachikachiToolStripMenuItem.Click += new System.EventHandler(this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem_Click);
+            // 
+            // canoeToolStripMenuItem
+            // 
+            this.canoeToolStripMenuItem.Name = "canoeToolStripMenuItem";
+            resources.ApplyResources(this.canoeToolStripMenuItem, "canoeToolStripMenuItem");
+            this.canoeToolStripMenuItem.Tag = "1";
+            this.canoeToolStripMenuItem.Click += new System.EventHandler(this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem_Click);
+            // 
+            // retroarchToolStripMenuItem
+            // 
+            this.retroarchToolStripMenuItem.Name = "retroarchToolStripMenuItem";
+            resources.ApplyResources(this.retroarchToolStripMenuItem, "retroarchToolStripMenuItem");
+            this.retroarchToolStripMenuItem.Tag = "2";
+            this.retroarchToolStripMenuItem.Click += new System.EventHandler(this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem_Click);
+            // 
             // enableUSBHostToolStripMenuItem
             // 
             this.enableUSBHostToolStripMenuItem.Checked = true;
@@ -760,12 +796,6 @@
             this.epilepsyProtectionToolStripMenuItem.Name = "epilepsyProtectionToolStripMenuItem";
             resources.ApplyResources(this.epilepsyProtectionToolStripMenuItem, "epilepsyProtectionToolStripMenuItem");
             this.epilepsyProtectionToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemArmet_Click);
-            // 
-            // globalCommandLineArgumentsexpertsOnluToolStripMenuItem
-            // 
-            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Name = "globalCommandLineArgumentsexpertsOnluToolStripMenuItem";
-            resources.ApplyResources(this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem, "globalCommandLineArgumentsexpertsOnluToolStripMenuItem");
-            this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Click += new System.EventHandler(this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
@@ -1723,6 +1753,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem maximumGamesPerFolderToolStripMenuItem;
         private System.Windows.Forms.ComboBox gamesConsoleComboBox;
+        private System.Windows.Forms.ToolStripMenuItem noneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kachikachiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem canoeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem retroarchToolStripMenuItem;
     }
 }
 

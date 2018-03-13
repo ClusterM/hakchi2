@@ -109,6 +109,8 @@ namespace com.clusterrr.hakchi_gui
                     var fname = alphaNum.Replace(coll.Where(o => o is NesApplication).First().SortName.ToUpper(), "");
                     var lname = alphaNum.Replace(coll.Where(o => o is NesApplication).Last().SortName.ToUpper(), "");
 
+                    System.Diagnostics.Debug.WriteLine($"fname:\"{fname}\", lname:\"{lname}\"");
+
                     var folder = new NesMenuFolder() { ChildMenuCollection = coll, NameParts = new string[] { fname, lname }, Position = NesMenuFolder.Priority.Right };
                     coll.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
                     root.Add(folder);

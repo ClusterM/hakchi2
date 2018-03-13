@@ -153,6 +153,7 @@
     <Compile Include="Apps\NesMenuElementBase.cs" />
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\UnknownGame.cs" />
+    <Compile Include="hakchi.cs" />
     <Compile Include="NewCustomGameForm.cs">
       <SubType>Form</SubType>
     </Compile>

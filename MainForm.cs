@@ -1,5 +1,4 @@
 ﻿using com.clusterrr.clovershell;
-using com.clusterrr.Famicom;
 using com.clusterrr.hakchi_gui.Properties;
 using AutoUpdaterDotNET;
 using SevenZip;
@@ -12,7 +11,6 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Resources;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -46,11 +44,9 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
-        public static ConsoleType? DetectedRunningConsole = null;
-        public static ConsoleType? DetectedBaseConsole = null;
         public string GetConsoleTypeName()
         {
-            return GetConsoleTypeName(DetectedRunningConsole);
+            return GetConsoleTypeName(hakchi.DetectedConsoleType);
         }
         public string GetConsoleTypeName(ConsoleType? c)
         {
@@ -60,7 +56,7 @@ namespace com.clusterrr.hakchi_gui
                 case ConsoleType.Famicom: return famicomMiniToolStripMenuItem.Text;
                 case ConsoleType.SNES: return sNESMiniToolStripMenuItem.Text;
                 case ConsoleType.SuperFamicom: return superFamicomMiniToolStripMenuItem.Text;
-                case ConsoleType.Unknown: return "Unkown Console";
+                case ConsoleType.Unknown: return Resources.Unknown;
             }
             return string.Empty;
         }
@@ -113,17 +109,19 @@ namespace com.clusterrr.hakchi_gui
             string title = $"hakchi2 CE v{Shared.AppDisplayVersion}";
 
 #if DEBUG
-            title += " (Debug)";
-#endif
+            title += " (Debug";
 #if VERY_DEBUG
-            title += " (Very verbose mode)";
+            title += ", very verbose mode";
 #endif
+            title += ")"
+#endif
+            ;
 
-            if (ConfigIni.Instance.ConsoleType != ConsoleType.Unknown)
+            if (hakchi.DetectedConsoleType != null)
             {
-                title += " - " + GetConsoleTypeName(ConfigIni.Instance.ConsoleType);
-                if (DetectedRunningConsole != DetectedBaseConsole)
-                    title += " (Custom HSQS)";
+                title += " - " + GetConsoleTypeName(hakchi.DetectedMountedConsoleType);
+                if (hakchi.DetectedMountedConsoleType != hakchi.DetectedConsoleType)
+                    title += " (HSQS)";
             }
 
             this.Text = title;
@@ -194,27 +192,31 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private DialogResult BackgroundThreadMessageBox(string text, string title, MessageBoxButtons buttons, MessageBoxIcon icon)
+        {
+            return (DialogResult)this.Invoke(new Func<DialogResult>(
+                                   () => { return MessageBox.Show(this, text, title, buttons, icon); }));
+        }
+
         void Clovershell_OnConnected()
         {
             try
             {
-                if (WorkerForm.GetConsoleType(out DetectedRunningConsole, out DetectedBaseConsole))
+                hakchi.Clovershell_OnConnected();
+                if (hakchi.DetectedConsoleType != null)
                 {
-                    if (DetectedRunningConsole != null && DetectedRunningConsole != ConsoleType.Unknown)
+                    if (hakchi.DetectedMountedConsoleType != null && hakchi.DetectedMountedConsoleType != ConsoleType.Unknown)
                     {
-                        ConfigIni.Instance.GamesConsoleType = (ConsoleType)DetectedRunningConsole;
-                        ConfigIni.Instance.ConsoleType = (ConsoleType)DetectedBaseConsole;
-                        if (DetectedRunningConsole == DetectedBaseConsole)
-                        {
-                            ConfigIni.Instance.CustomFlashed = true; // Just in case of new installation
-                        }
-                        Invoke(new Action(SyncConsoleType));
+                        ConfigIni.Instance.ConsoleType = (ConsoleType)hakchi.DetectedMountedConsoleType;
                     }
+                    ConfigIni.Instance.LastConnectedConsoleType = (ConsoleType)hakchi.DetectedConsoleType;
+
+                    Invoke(new Action(SyncConsoleType));
                 }
 
                 // do minimum version checks before we try to interact with the console in any meaningful way
                 bool canInteract = true;
-                if (SystemRequiresReflash())
+                if (hakchi.SystemRequiresReflash())
                 {
                     canInteract = false;
                     if (BackgroundThreadMessageBox(Resources.SystemRequiresReflash, Resources.OutdatedKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -227,7 +229,7 @@ namespace com.clusterrr.hakchi_gui
                         }
                     }
                 }
-                else if (SystemRequiresRootfsUpdate())
+                else if (hakchi.SystemRequiresRootfsUpdate())
                 {
                     canInteract = false;
                     if (BackgroundThreadMessageBox(Resources.SystemRequiresRootfsUpdate, Resources.OutdatedScripts, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -240,7 +242,7 @@ namespace com.clusterrr.hakchi_gui
                         }
                     }
                 }
-                else if (SystemEligibleForRootfsUpdate())
+                else if (hakchi.SystemEligibleForRootfsUpdate())
                 {
                     if (BackgroundThreadMessageBox(Resources.SystemEligibleForRootfsUpdate, Resources.OutdatedScripts, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
@@ -251,7 +253,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
 
-                if (canInteract)
+                if (Clovershell.IsOnline && canInteract)
                 {
                     Invoke(new Action(UpdateLocalCache));
                     WorkerForm.GetMemoryStats();
@@ -270,131 +272,48 @@ namespace com.clusterrr.hakchi_gui
 
         void Clovershell_OnDisconnected()
         {
-            ConfigIni.Instance.ConsoleType = ConsoleType.Unknown;
-            DetectedRunningConsole = null;
-            DetectedBaseConsole = null;
+            hakchi.Clovershell_OnDisconnected();
             Invoke(new Action(SyncConsoleType));
         }
 
-        private bool SystemRequiresReflash()
-        {
-            bool requiresReflash = false;
-
-            try
-            {
-                var bootVersion = Clovershell.ExecuteSimple("source /var/version && echo $bootVersion", 500, true);
-                var kernelVersion = Clovershell.ExecuteSimple("source /var/version && echo $kernelVersion", 500, true);
-                kernelVersion = kernelVersion.Substring(0, kernelVersion.LastIndexOf('.'));
-
-                if (!Shared.IsVersionGreaterOrEqual(kernelVersion, Shared.MinimumHakchiKernelVersion) ||
-                    !Shared.IsVersionGreaterOrEqual(bootVersion, Shared.MinimumHakchiBootVersion))
-                {
-                    requiresReflash = true;
-                }
-            }
-            catch
-            {
-                requiresReflash = true;
-            }
-
-            return requiresReflash;
-        }
-
-        private bool SystemRequiresRootfsUpdate()
-        {
-            bool requiresUpdate = false;
-
-            try
-            {
-                var scriptVersion = Clovershell.ExecuteSimple("source /var/version && echo $hakchiVersion", 500, true);
-                scriptVersion = scriptVersion.Substring(scriptVersion.IndexOf('v') + 1);
-                scriptVersion = scriptVersion.Substring(0, scriptVersion.LastIndexOf('('));
-
-                var scriptElems = scriptVersion.Split(new char[] { '-' });
-
-                if (!Shared.IsVersionGreaterOrEqual(scriptElems[0], Shared.MinimumHakchiScriptVersion) ||
-                    !(int.Parse(scriptElems[1]) >= int.Parse(Shared.MinimumHakchiScriptRevision)))
-                {
-                    requiresUpdate = true;
-                }
-            }
-            catch
-            {
-                requiresUpdate = true;
-            }
-
-            return requiresUpdate;
-        }
-
-        private bool SystemEligibleForRootfsUpdate()
-        {
-            bool eligibleForUpdate = false;
-
-            try
-            {
-                var scriptVersion = Clovershell.ExecuteSimple("source /var/version && echo $hakchiVersion", 500, true);
-                scriptVersion = scriptVersion.Substring(scriptVersion.IndexOf('v') + 1);
-                scriptVersion = scriptVersion.Substring(0, scriptVersion.LastIndexOf('('));
-
-                var scriptElems = scriptVersion.Split(new char[] { '-' });
-
-                if (!Shared.IsVersionGreaterOrEqual(scriptElems[0], Shared.CurrentHakchiScriptVersion) ||
-                    !(int.Parse(scriptElems[1]) >= int.Parse(Shared.CurrentHakchiScriptRevision)))
-                {
-                    eligibleForUpdate = true;
-                }
-            }
-            catch
-            {
-                eligibleForUpdate = true;
-            }
-
-            return eligibleForUpdate;
-        }
-
-        static ConsoleType lastGamesConsoleType = ConsoleType.Unknown;
+        static ConsoleType? lastConnectedConsoleType = null;
         static ConsoleType lastConsoleType = ConsoleType.Unknown;
         public void SyncConsoleType()
         {
             SetWindowTitle();
 
-            // prevent switching console type when a running console is detected
-            nESMiniToolStripMenuItem.Enabled =
-                famicomMiniToolStripMenuItem.Enabled =
-                sNESMiniToolStripMenuItem.Enabled =
-                superFamicomMiniToolStripMenuItem.Enabled = (DetectedBaseConsole == null);
-
             // skip if unchanged
-            if (ConfigIni.Instance.ConsoleType == lastConsoleType && ConfigIni.Instance.GamesConsoleType == lastGamesConsoleType)
+            if (ConfigIni.Instance.ConsoleType == lastConsoleType && hakchi.DetectedConsoleType == lastConnectedConsoleType)
                 return;
 
             // select games collection
             for (int i = 0; i < gamesConsoleComboBox.Items.Count; ++i)
             {
-                if(GetConsoleTypeName(ConfigIni.Instance.GamesConsoleType) == gamesConsoleComboBox.Items[i] as string)
+                if (GetConsoleTypeName(ConfigIni.Instance.ConsoleType) == gamesConsoleComboBox.Items[i] as string)
                 {
                     gamesConsoleComboBox.SelectedIndex = i;
                     break;
                 }
             }
 
-            // console type and some settings
-            nESMiniToolStripMenuItem.Checked = ConfigIni.Instance.ConsoleType == ConsoleType.NES;
-            famicomMiniToolStripMenuItem.Checked = ConfigIni.Instance.ConsoleType == ConsoleType.Famicom;
-            sNESMiniToolStripMenuItem.Checked = ConfigIni.Instance.ConsoleType == ConsoleType.SNES;
-            superFamicomMiniToolStripMenuItem.Checked = ConfigIni.Instance.ConsoleType == ConsoleType.SuperFamicom;
-            //epilepsyProtectionToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.NES || ConfigIni.ConsoleType == ConsoleType.Famicom;
-            //useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled = ConfigIni.ConsoleType == ConsoleType.NES || ConfigIni.ConsoleType == ConsoleType.Famicom;
-            upABStartOnSecondControllerToolStripMenuItem.Enabled = ConfigIni.Instance.ConsoleType == ConsoleType.Famicom;
+            // detected console type
+            noneToolStripMenuItem.Checked = hakchi.DetectedConsoleType == null || hakchi.DetectedConsoleType == ConsoleType.Unknown;
+            nESMiniToolStripMenuItem.Checked = hakchi.DetectedConsoleType == ConsoleType.NES;
+            famicomMiniToolStripMenuItem.Checked = hakchi.DetectedConsoleType == ConsoleType.Famicom;
+            sNESMiniToolStripMenuItem.Checked = hakchi.DetectedConsoleType == ConsoleType.SNES;
+            superFamicomMiniToolStripMenuItem.Checked = hakchi.DetectedConsoleType == ConsoleType.SuperFamicom;
 
-            // more settings
+            // console settings
             enableUSBHostToolStripMenuItem.Checked = ConfigIni.Instance.UsbHost;
             useExtendedFontToolStripMenuItem.Checked = ConfigIni.Instance.UseFont;
-            epilepsyProtectionToolStripMenuItem.Checked = ConfigIni.Instance.AntiArmetLevel > 0 && epilepsyProtectionToolStripMenuItem.Enabled;
+            epilepsyProtectionToolStripMenuItem.Checked = ConfigIni.Instance.AntiArmetLevel > 0;
             selectButtonCombinationToolStripMenuItem.Enabled = resetUsingCombinationOfButtonsToolStripMenuItem.Checked = ConfigIni.Instance.ResetHack;
             enableAutofireToolStripMenuItem.Checked = ConfigIni.Instance.AutofireHack;
-            useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.Instance.AutofireXYHack && useXYOnClassicControllerAsAutofireABToolStripMenuItem.Enabled;
+            useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.Instance.AutofireXYHack;
+            upABStartOnSecondControllerToolStripMenuItem.Enabled = hakchi.DetectedConsoleType == ConsoleType.Famicom;
             upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.Instance.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
+
+            // more settings
             compressGamesToolStripMenuItem.Checked = ConfigIni.Instance.Compress;
             compressBoxArtToolStripMenuItem.Checked = ConfigIni.Instance.CompressCover;
             centerBoxArtThumbnailToolStripMenuItem.Checked = ConfigIni.Instance.CenterThumbnail;
@@ -460,8 +379,8 @@ namespace com.clusterrr.hakchi_gui
 
             LoadPresets();
             LoadGames();
-            lastGamesConsoleType = ConfigIni.Instance.GamesConsoleType;
             lastConsoleType = ConfigIni.Instance.ConsoleType;
+            lastConnectedConsoleType = hakchi.DetectedConsoleType;
         }
 
         void UpdateLocalCache()
@@ -665,11 +584,14 @@ namespace com.clusterrr.hakchi_gui
             ShowSelected();
         }
 
+        private bool showingSelected = false;
         public void ShowSelected()
         {
             object selected = null;
             var selectedAll = listViewGames.SelectedItems;
             if (selectedAll.Count == 1) selected = selectedAll[0].Tag;
+
+            showingSelected = true;
             if (selected == null)
             {
                 groupBoxOptions.Visible = true;
@@ -734,6 +656,7 @@ namespace com.clusterrr.hakchi_gui
                     checkBoxCompressed.Checked = false;
                 }
             }
+            showingSelected = false;
         }
 
         void LoadPresets()
@@ -1099,6 +1022,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void textBoxName_TextChanged(object sender, EventArgs e)
         {
+            if (showingSelected) return;
             if (listViewGames.SelectedItems.Count != 1) return;
             var selectedItem = listViewGames.SelectedItems[0];
             var selected = listViewGames.SelectedItems[0].Tag;
@@ -1121,6 +1045,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void textBoxSortName_TextChanged(object sender, EventArgs e)
         {
+            if (showingSelected) return;
             if (listViewGames.SelectedItems.Count != 1) return;
             var selectedItem = listViewGames.SelectedItems[0];
             var selected = listViewGames.SelectedItems[0].Tag;
@@ -1131,6 +1056,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void radioButtonOne_CheckedChanged(object sender, EventArgs e)
         {
+            if (showingSelected) return;
             if (listViewGames.SelectedItems.Count != 1) return;
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesApplication)) return;
@@ -1141,6 +1067,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void textBoxPublisher_TextChanged(object sender, EventArgs e)
         {
+            if (showingSelected) return;
             if (listViewGames.SelectedItems.Count != 1) return;
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesApplication)) return;
@@ -1150,6 +1077,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void numericUpDownSaveCount_ValueChanged(object sender, EventArgs e)
         {
+            if (showingSelected) return;
             if (listViewGames.SelectedItems.Count != 1) return;
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesApplication)) return;
@@ -1163,6 +1091,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void textBoxArguments_TextChanged(object sender, EventArgs e)
         {
+            if (showingSelected) return;
             if (listViewGames.SelectedItems.Count != 1) return;
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesApplication)) return;
@@ -1172,6 +1101,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void maskedTextBoxReleaseDate_TextChanged(object sender, EventArgs e)
         {
+            if (showingSelected) return;
             if (listViewGames.SelectedItems.Count != 1) return;
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesApplication)) return;
@@ -1181,11 +1111,23 @@ namespace com.clusterrr.hakchi_gui
 
         private void textBoxGameGenie_TextChanged(object sender, EventArgs e)
         {
+            if (showingSelected) return;
             if (listViewGames.SelectedItems.Count != 1) return;
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesApplication)) return;
             var game = (selected as NesApplication);
             game.GameGenie = textBoxGameGenie.Text;
+        }
+
+        private void buttonShowGameGenieDatabase_Click(object sender, EventArgs e)
+        {
+            if (listViewGames.SelectedItems.Count != 1) return;
+            var selected = listViewGames.SelectedItems[0].Tag;
+            if (!(selected is ISupportsGameGenie)) return;
+            NesApplication nesGame = selected as NesApplication;
+            GameGenieCodeForm lFrm = new GameGenieCodeForm(nesGame);
+            if (lFrm.ShowDialog() == DialogResult.OK)
+                textBoxGameGenie.Text = (nesGame as NesApplication).GameGenie;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -1313,8 +1255,7 @@ namespace com.clusterrr.hakchi_gui
 
         DialogResult RequirePatchedKernel()
         {
-            if (ConfigIni.Instance.CustomFlashed) return DialogResult.OK; // OK - already flashed
-            if (Clovershell.IsOnline) return DialogResult.OK; // OK - maybe not flashed but it's online
+            if (Clovershell.IsOnline) return DialogResult.OK; // OK - Clovershell is online
             if (MessageBox.Show(Resources.CustomWarning, Resources.CustomKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                     == System.Windows.Forms.DialogResult.Yes)
             {
@@ -1449,10 +1390,6 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Games = null;
             workerForm.Start();
             var result = workerForm.DialogResult == DialogResult.OK;
-            if (result)
-            {
-                ConfigIni.Save();
-            }
             return result;
         }
 
@@ -1467,11 +1404,6 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Games = null;
             workerForm.Start();
             var result = workerForm.DialogResult == DialogResult.OK;
-            if (result)
-            {
-                ConfigIni.Instance.CustomFlashed = true;
-                ConfigIni.Save();
-            }
             return result;
         }
 
@@ -1578,7 +1510,7 @@ namespace com.clusterrr.hakchi_gui
                 unknownApps.Clear();
                 foreach(var app in addedApps)
                 {
-                    if (app.ImpreciseCoverArtMatches)
+                    if (app.HasImpreciseCoverArtMatches)
                         unknownApps.Add(app);
                 }
                 if(unknownApps.Count > 0)
@@ -1631,11 +1563,6 @@ namespace com.clusterrr.hakchi_gui
             workerForm.Mod = null;
             workerForm.Start();
             var result = workerForm.DialogResult == DialogResult.OK;
-            if (result)
-            {
-                ConfigIni.Instance.CustomFlashed = false;
-                ConfigIni.Save();
-            }
             return result;
         }
 
@@ -1804,7 +1731,7 @@ namespace com.clusterrr.hakchi_gui
                 == System.Windows.Forms.DialogResult.Yes)
             {
                 if (FlashOriginalKernel())
-                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Resources.UninstallFactoryNote, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1819,14 +1746,7 @@ namespace com.clusterrr.hakchi_gui
                 == System.Windows.Forms.DialogResult.Yes)
             {
                 if (Uninstall())
-                {
-                    if (ConfigIni.Instance.CustomFlashed && MessageBox.Show(Resources.UninstallQ2, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                        == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        if (FlashOriginalKernel())
-                            MessageBox.Show(Resources.UninstallFactoryNote, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
+                    MessageBox.Show(Resources.UninstallNote, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1902,38 +1822,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void nESMiniToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (nESMiniToolStripMenuItem.Checked) return;
-            SaveConfig();
-            ConfigIni.Instance.ConsoleType = ConsoleType.NES;
-            SyncConsoleType();
-        }
-
-        private void famicomMiniToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (famicomMiniToolStripMenuItem.Checked) return;
-            SaveConfig();
-            ConfigIni.Instance.ConsoleType = ConsoleType.Famicom;
-            SyncConsoleType();
-        }
-
-        private void sNESMiniToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (sNESMiniToolStripMenuItem.Checked) return;
-            SaveConfig();
-            ConfigIni.Instance.ConsoleType = ConsoleType.SNES;
-            SyncConsoleType();
-        }
-
-        private void superFamicomMiniToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (superFamicomMiniToolStripMenuItem.Checked) return;
-            SaveConfig();
-            ConfigIni.Instance.ConsoleType = ConsoleType.SuperFamicom;
-            SyncConsoleType();
-        }
-
         public void ResetOriginalGamesForCurrentSystem(bool nonDestructiveSync = false)
         {
             var workerForm = new WorkerForm(this);
@@ -1958,16 +1846,19 @@ namespace com.clusterrr.hakchi_gui
             workerForm.restoreAllOriginalGames = true;
 
             SaveSelectedGames();
-            if (workerForm.Start() == DialogResult.OK)
-                if (!ConfigIni.Instance.DisablePopups)
-                    MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            // also save the selected games for each system
-            AddDefaultsToSelectedGames(NesApplication.defaultNesGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.NES));
-            AddDefaultsToSelectedGames(NesApplication.defaultFamicomGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.Famicom));
-            AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.SNES));
-            AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.SuperFamicom));
-
+            if (workerForm.Start() != DialogResult.OK)
+            {
+                // show error message in case of an error (should not happen but you never know)
+                MessageBox.Show(Resources.ErrorRestoringAllOriginalGames, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                // also save the selected games for each system
+                AddDefaultsToSelectedGames(NesApplication.defaultNesGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.NES));
+                AddDefaultsToSelectedGames(NesApplication.defaultFamicomGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.Famicom));
+                AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.SNES));
+                AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.SuperFamicom));
+            }
             LoadGames();
         }
 
@@ -1980,7 +1871,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void resetOriginalGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Resources.ResetOriginalGamesQ, Resources.Default30games, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            if (MessageBox.Show(string.Format(Resources.ResetOriginalGamesQ, GetConsoleTypeName(ConfigIni.Instance.ConsoleType)), Resources.Default30games, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 == DialogResult.Yes)
             {
                 ResetOriginalGamesForCurrentSystem();
@@ -2002,12 +1893,15 @@ namespace com.clusterrr.hakchi_gui
 
         private void globalCommandLineArgumentsexpertsOnluToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var menuItem = sender as ToolStripMenuItem;
+            var cmdLineType = (ConfigIni.ExtraCmdLineTypes)byte.Parse(menuItem.Tag.ToString());
+
             var form = new StringInputForm();
-            form.Text = Resources.ExtraArgsTitle;
+            form.Text = Resources.ExtraArgsTitle + " (" + menuItem.Text + ")";
             form.labelComments.Text = Resources.ExtraArgsInfo;
-            form.textBox.Text = ConfigIni.Instance.ExtraCommandLineArguments;
+            form.textBox.Text = ConfigIni.Instance.ExtraCommandLineArguments[cmdLineType];
             if (form.ShowDialog() == DialogResult.OK)
-                ConfigIni.Instance.ExtraCommandLineArguments = form.textBox.Text;
+                ConfigIni.Instance.ExtraCommandLineArguments[cmdLineType] = form.textBox.Text;
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
@@ -2015,8 +1909,7 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.Instance.RunCount++;
             if (ConfigIni.Instance.RunCount == 1 || ConfigIni.Instance.LastVersion == "0.0.0.0")
             {
-                new SelectConsoleDialog(this).ShowDialog();
-                SyncConsoleType();
+                ResetOriginalGamesForAllSystems();
                 MessageBox.Show(this, Resources.FirstRun, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
@@ -2150,17 +2043,6 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.Instance.SyncLinked = useLinkedSyncToolStripMenuItem.Checked;
         }
 
-        private void buttonShowGameGenieDatabase_Click(object sender, EventArgs e)
-        {
-            if (listViewGames.SelectedItems.Count != 1) return;
-            var selected = listViewGames.SelectedItems[0].Tag;
-            if (!(selected is ISupportsGameGenie)) return;
-            NesApplication nesGame = selected as NesApplication;
-            GameGenieCodeForm lFrm = new GameGenieCodeForm(nesGame);
-            if (lFrm.ShowDialog() == DialogResult.OK)
-                textBoxGameGenie.Text = (nesGame as NesApplication).GameGenie;
-        }
-
         private void pagesModefoldersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Instance.FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse((sender as ToolStripMenuItem).Tag.ToString());
@@ -2234,7 +2116,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (WaitingClovershellForm.WaitForDevice(this))
                 {
-                    WorkerForm.SyncConfig(ConfigIni.GetConfigDictionary(), true);
+                    hakchi.SyncConfig(ConfigIni.GetConfigDictionary(), true);
                     if (!ConfigIni.Instance.DisablePopups)
                         MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -2653,12 +2535,6 @@ namespace com.clusterrr.hakchi_gui
             workerForm.FoldersManagerFromThread(workerForm.Games);
         }
 
-        private DialogResult BackgroundThreadMessageBox(string text, string title, MessageBoxButtons buttons, MessageBoxIcon icon)
-        {
-            return (DialogResult)this.Invoke(new Func<DialogResult>(
-                                   () => { return MessageBox.Show(this, text, title, buttons, icon); }));
-        }
-
         private void changeBootImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -2830,11 +2706,11 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (GetConsoleTypeName(c) == selected)
                 {
-                    if (ConfigIni.Instance.GamesConsoleType != c)
+                    if (ConfigIni.Instance.ConsoleType != c)
                     {
                         SaveSelectedGames();
 
-                        ConfigIni.Instance.GamesConsoleType = c;
+                        ConfigIni.Instance.ConsoleType = c;
                         SyncConsoleType();
                         return;
                     }
