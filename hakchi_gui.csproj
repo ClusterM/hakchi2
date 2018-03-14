@@ -224,6 +224,9 @@
     <Content Include="mods\mod_format\hakchi\transfer\earlybird">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="mods\hmods\gamepath-cleanup.hmod">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="mods\mod_general\etc\group">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1344,18 +1347,36 @@
     <None Include="tools\xz.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="mods\hmods\font_remount-0352cb4.hmod">
+    <None Include="mods\hmods\font_remount.hmod">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="patches\1c3848c0-Illusion of Gaia %28U%29 [!].ips">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="user_mods\advanced_music_hack.hmod\etc\preinit.d\bb223_advanced_music_hack">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\advanced_music_hack.hmod\etc\preinit.d\pb223_advanced_music_hack">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\advanced_music_hack.hmod\readme.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="user_mods\extra_space.hmod\readme.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="user_mods\gamepath-cleanup.hmod">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Content Include="user_mods\advanced_music_hack.hmod\usr\share\advanced_music_hack\bgm_boot.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\gamepath-cleanup.hmod\install">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\gamepath-cleanup.hmod\readme.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_mods\gamepath-cleanup.hmod\uninstall">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="user_mods\snes_custom_filters.hmod\readme.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -2619,15 +2640,6 @@
     <None Include="patches\f6898a59-James Bond Jr %28no dim%29.ips">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="user_mods\music_hack.hmod\install">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\music_hack.hmod\pb223_music_hack">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\music_hack.hmod\uninstall">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="user_mods\password.hmod\install">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -3274,12 +3286,6 @@
     <EmbeddedResource Include="images\snes-eu-jp_sm_tr.png" />
     <EmbeddedResource Include="images\snes-us_sm.png" />
     <EmbeddedResource Include="images\snes-us_sm_tr.png" />
-    <None Include="user_mods\music_hack.hmod\music.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\music_hack.hmod\readme.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="user_mods\password.hmod\readme.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -3389,7 +3395,6 @@
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>echo. &gt; NUL 2&gt; "$(ProjectDir)commit.txt"

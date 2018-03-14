@@ -194,8 +194,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numericUpDownSaveCount = new System.Windows.Forms.NumericUpDown();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
-            this.prepareArtDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripSeparator();
             this.formatNANDCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.structureButton = new System.Windows.Forms.Button();
             this.foldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);

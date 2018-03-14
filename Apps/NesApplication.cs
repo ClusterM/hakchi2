@@ -842,8 +842,8 @@ namespace com.clusterrr.hakchi_gui
                             sanitized = regexStripCodes.Replace(sanitized, "");
                         }
                         sanitized = regexTrim.Replace(" " + regexSanitize.Replace(sanitized, " ").ToLower() + " ", " ");
-
-                        PuzzleMatch(words, sanitized, out bool match, out bool partial);
+                        bool match, partial;
+                        PuzzleMatch(words, sanitized, out match, out partial);
                         if (match)
                         {
                             results.Add(new KeyValuePair<string, bool>(file, partial));
