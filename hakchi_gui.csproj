@@ -1353,10 +1353,10 @@
     <None Include="patches\1c3848c0-Illusion of Gaia %28U%29 [!].ips">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="user_mods\advanced_music_hack.hmod\etc\preinit.d\bb223_music_hack">
+    <Content Include="user_mods\advanced_music_hack.hmod\etc\preinit.d\bb223_advanced_music_hack">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="user_mods\advanced_music_hack.hmod\etc\preinit.d\pb223_music_hack">
+    <Content Include="user_mods\advanced_music_hack.hmod\etc\preinit.d\pb223_advanced_music_hack">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="user_mods\advanced_music_hack.hmod\readme.md">
