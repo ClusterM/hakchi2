@@ -203,7 +203,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 hakchi.Clovershell_OnConnected();
-                if (hakchi.DetectedConsoleType != null)
+                if (hakchi.CanInteract)
                 {
                     if (hakchi.DetectedMountedConsoleType != null && hakchi.DetectedMountedConsoleType != ConsoleType.Unknown)
                     {
@@ -212,57 +212,52 @@ namespace com.clusterrr.hakchi_gui
                     ConfigIni.Instance.LastConnectedConsoleType = (ConsoleType)hakchi.DetectedConsoleType;
 
                     Invoke(new Action(SyncConsoleType));
-                }
 
-                // do minimum version checks before we try to interact with the console in any meaningful way
-                bool canInteract = true;
-                if (hakchi.SystemRequiresReflash())
-                {
-                    canInteract = false;
-                    if (BackgroundThreadMessageBox(Resources.SystemRequiresReflash, Resources.OutdatedKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (hakchi.SystemEligibleForRootfsUpdate())
                     {
-                        canInteract = FlashCustomKernel();
-
-                        if (canInteract)
+                        if (BackgroundThreadMessageBox(Resources.SystemEligibleForRootfsUpdate, Resources.OutdatedScripts, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
-                            BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (MembootCustomKernel())
+                            {
+                                BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            return;
                         }
                     }
-                }
-                else if (hakchi.SystemRequiresRootfsUpdate())
-                {
-                    canInteract = false;
-                    if (BackgroundThreadMessageBox(Resources.SystemRequiresRootfsUpdate, Resources.OutdatedScripts, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                    {
-                        canInteract = MembootCustomKernel();
 
-                        if (canInteract)
-                        {
-                            BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                }
-                else if (hakchi.SystemEligibleForRootfsUpdate())
-                {
-                    if (BackgroundThreadMessageBox(Resources.SystemEligibleForRootfsUpdate, Resources.OutdatedScripts, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                    {
-                        if (MembootCustomKernel())
-                        {
-                            BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                }
-
-                if (Clovershell.IsOnline && canInteract)
-                {
                     Invoke(new Action(UpdateLocalCache));
                     WorkerForm.GetMemoryStats();
                     new Thread(RecalculateSelectedGamesThread).Start();
                 }
                 else
                 {
+                    if (hakchi.SystemRequiresReflash())
+                    {
+                        if (BackgroundThreadMessageBox(Resources.SystemRequiresReflash, Resources.OutdatedKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            if (FlashCustomKernel())
+                            {
+                                BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            return;
+                        }
+                    }
+                    else if (hakchi.SystemRequiresRootfsUpdate())
+                    {
+                        if (BackgroundThreadMessageBox(Resources.SystemRequiresRootfsUpdate, Resources.OutdatedScripts, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            if (MembootCustomKernel())
+                            {
+                                BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            return;
+                        }
+                    }
+
+                    // show warning message that any interaction is ill-advised
                     BackgroundThreadMessageBox(Resources.PleaseUpdate, Resources.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+
             }
             catch (Exception ex)
             {
@@ -2711,5 +2706,6 @@ namespace com.clusterrr.hakchi_gui
             }
 
         }
+
     }
 }

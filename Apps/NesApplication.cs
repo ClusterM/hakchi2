@@ -1007,7 +1007,7 @@ namespace com.clusterrr.hakchi_gui
             string relativeOriginalGamesPath = hakchi.MediaPath + OriginalGamesCacheDirectory.Substring(2).Replace("\\", "/");
 
             // new feature: linked sync paths
-            string relativeGamesStoragePath = hakchi.RemoteGameSyncPath + "/.storage";
+            string relativeGamesStoragePath = hakchi.GetRemoteGameSyncPath() + "/.storage";
             string relativeTargetDir = Shared.PathCombine(Path.GetDirectoryName(path), ".storage", desktop.Code);
 
             // handle all 3 different sync scenarios (with original or custom games)

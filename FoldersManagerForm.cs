@@ -36,6 +36,8 @@ namespace com.clusterrr.hakchi_gui
         List<INesMenuElement> deletedGames = new List<INesMenuElement>();
         NesMenuCollection gamesCollection = new NesMenuCollection();
         MainForm mainForm;
+        int pictureBoxLeft;
+
         private class NodeSorter : IComparer
         {
             public int Compare(object o1, object o2)
@@ -84,6 +86,7 @@ namespace com.clusterrr.hakchi_gui
                 comboBoxPosition.Left = labelPosition.Left + labelPosition.Width;
                 treeView.TreeViewNodeSorter = new NodeSorter();
                 listViewContent.ListViewItemSorter = new NodeSorter();
+                pictureBoxLeft = pictureBoxArt.Left;
             }
             catch (Exception ex)
             {
@@ -258,6 +261,8 @@ namespace com.clusterrr.hakchi_gui
             if (node != null && (node.Nodes.Count > 0 || node.Tag is NesMenuFolder)) // Folder or root
             {
                 pictureBoxArt.Image = (node.Tag is NesMenuFolder) ? (node.Tag as NesMenuFolder).Image : null;
+                pictureBoxArt.Width = 204;
+                pictureBoxArt.Left = pictureBoxLeft + 7;
                 groupBoxArt.Enabled = (node.Tag is NesMenuFolder);
                 groupBoxSplitModes.Enabled = true;
                 pictureBoxArt.Cursor = Cursors.Hand;
@@ -279,6 +284,8 @@ namespace com.clusterrr.hakchi_gui
                 {
                     var game = node.Tag as NesApplication;
                     pictureBoxArt.Image = game.Image;
+                    pictureBoxArt.Width = 228;
+                    pictureBoxArt.Left = pictureBoxLeft;
                     groupBoxArt.Enabled = true;
                     listViewContent.Enabled = false;
                 }

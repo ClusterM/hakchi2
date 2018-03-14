@@ -1067,7 +1067,7 @@ namespace com.clusterrr.hakchi_gui
                     return;
                 }
 
-                gameSyncPath = hakchi.RemoteGameSyncPath;
+                gameSyncPath = hakchi.GetRemoteGameSyncPath();
                 gamesPath = clovershell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
                 rootFsPath = clovershell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
                 squashFsPath = clovershell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
@@ -1077,11 +1077,8 @@ namespace com.clusterrr.hakchi_gui
                 hakchi.ShowSplashScreen();
 
                 // delete non-multiboot path if there are leftovers and we are now using multiboot
-                if (ConfigIni.Instance.SeparateGameStorage)
-                {
-                    SetStatus(Resources.CleaningUp);
-                    clovershell.ExecuteSimple("find \"$(hakchi findGameSyncStorage)/\" -maxdepth 1 | grep -vEe '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' | while read f; do rm -rf \"$f\"; done", 0, true);
-                }
+                SetStatus(Resources.CleaningUp);
+                clovershell.ExecuteSimple("find \"$(hakchi findGameSyncStorage)/\" -maxdepth 1 | grep -" + (ConfigIni.Instance.SeparateGameStorage ? "v" : "") + "Ee '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' | while read f; do rm -rf \"$f\"; done", 0, true);
                 SetProgress(progress += 5, maxProgress);
 
                 // Games!
@@ -1130,6 +1127,7 @@ namespace com.clusterrr.hakchi_gui
                 clovershell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
                 using (var gamesTar = new TarStream(tempGamesDirectory, null, null))
                 {
+                    Debug.WriteLine($"Upload size: " + Shared.SizeSuffix(gamesTar.Length));
                     int currentMaxProgress = 90 - startProgress;
                     if (gamesTar.Length > 0)
                     {
@@ -1208,7 +1206,7 @@ namespace com.clusterrr.hakchi_gui
         {
             using (MemoryStream commandBuilder = new MemoryStream())
             {
-                string data = $"#!/bin/sh\ncd \"{hakchi.RemoteGameSyncPath}\"\n";
+                string data = $"#!/bin/sh\ncd \"{hakchi.GetRemoteGameSyncPath()}\"\n";
                 commandBuilder.Write(Encoding.UTF8.GetBytes(data), 0, data.Length);
 
                 foreach (ApplicationFileInfo appInfo in filesToDelete)
