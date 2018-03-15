@@ -17,6 +17,7 @@ namespace com.clusterrr.hakchi_gui
         public static string KernelVersion { get; private set; }
         public static string ScriptVersion { get; private set; }
         public static bool CanInteract { get; private set; }
+        public static bool MinimalMemboot { get; private set; }
 
         public static string UniqueID { get; private set; }
         public static string ConfigPath { get; private set; }
@@ -113,6 +114,7 @@ namespace com.clusterrr.hakchi_gui
             UniqueID = null;
             SystemCode = null;
             CanInteract = false;
+            MinimalMemboot = false;
             BootVersion = null;
             KernelVersion = null;
             ScriptVersion = null;
@@ -129,6 +131,14 @@ namespace com.clusterrr.hakchi_gui
                 {
                     throw new IOException("Clovershell connection unexpectedly offline");
                 }
+
+                MinimalMemboot = Clovershell.Execute("stat /generalmemboot.flag &>/dev/null") == 0;
+
+                // detect unique id
+                UniqueID = Clovershell.ExecuteSimple("echo \"`devmem 0x01C23800``devmem 0x01C23804``devmem 0x01C23808``devmem 0x01C2380C`\"").Trim().Replace("0x", "");
+                Debug.WriteLine($"Detected device unique ID: {UniqueID}");
+
+                if (MinimalMemboot) return;
 
                 // detect running/mounted firmware
                 string board = Clovershell.ExecuteSimple("cat /etc/clover/boardtype", 3000, true);
@@ -168,10 +178,6 @@ namespace com.clusterrr.hakchi_gui
                     }
                     DetectedConsoleType = translateConsoleType(board, region);
 
-                    // detect unique id
-                    UniqueID = Clovershell.ExecuteSimple("echo \"`devmem 0x01C23800``devmem 0x01C23804``devmem 0x01C23808``devmem 0x01C2380C`\"").Trim().Replace("0x", "");
-                    Debug.WriteLine($"Detected device unique ID: {UniqueID}");
-
                     // detect basic paths
                     RemoteGameSyncPath = MainForm.Clovershell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
                     SystemCode = MainForm.Clovershell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
@@ -184,6 +190,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 Debug.WriteLine(ex.Message);
                 CanInteract = false;
+                MinimalMemboot = false;
             }
         }
 

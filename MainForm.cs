@@ -203,59 +203,62 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 hakchi.Clovershell_OnConnected();
-                if (hakchi.CanInteract)
+                if (!hakchi.MinimalMemboot)
                 {
-                    if (hakchi.DetectedMountedConsoleType != null && hakchi.DetectedMountedConsoleType != ConsoleType.Unknown)
+                    if (hakchi.CanInteract)
                     {
-                        ConfigIni.Instance.ConsoleType = (ConsoleType)hakchi.DetectedMountedConsoleType;
-                    }
-                    ConfigIni.Instance.LastConnectedConsoleType = (ConsoleType)hakchi.DetectedConsoleType;
-
-                    Invoke(new Action(SyncConsoleType));
-
-                    if (hakchi.SystemEligibleForRootfsUpdate())
-                    {
-                        if (BackgroundThreadMessageBox(Resources.SystemEligibleForRootfsUpdate, Resources.OutdatedScripts, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        if (hakchi.DetectedMountedConsoleType != null && hakchi.DetectedMountedConsoleType != ConsoleType.Unknown)
                         {
-                            if (MembootCustomKernel())
-                            {
-                                BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            return;
+                            ConfigIni.Instance.ConsoleType = (ConsoleType)hakchi.DetectedMountedConsoleType;
                         }
-                    }
+                        ConfigIni.Instance.LastConnectedConsoleType = (ConsoleType)hakchi.DetectedConsoleType;
 
-                    Invoke(new Action(UpdateLocalCache));
-                    WorkerForm.GetMemoryStats();
-                    new Thread(RecalculateSelectedGamesThread).Start();
-                }
-                else
-                {
-                    if (hakchi.SystemRequiresReflash())
-                    {
-                        if (BackgroundThreadMessageBox(Resources.SystemRequiresReflash, Resources.OutdatedKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                        {
-                            if (FlashCustomKernel())
-                            {
-                                BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            return;
-                        }
-                    }
-                    else if (hakchi.SystemRequiresRootfsUpdate())
-                    {
-                        if (BackgroundThreadMessageBox(Resources.SystemRequiresRootfsUpdate, Resources.OutdatedScripts, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                        {
-                            if (MembootCustomKernel())
-                            {
-                                BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            return;
-                        }
-                    }
+                        Invoke(new Action(SyncConsoleType));
 
-                    // show warning message that any interaction is ill-advised
-                    BackgroundThreadMessageBox(Resources.PleaseUpdate, Resources.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if (hakchi.SystemEligibleForRootfsUpdate())
+                        {
+                            if (BackgroundThreadMessageBox(Resources.SystemEligibleForRootfsUpdate, Resources.OutdatedScripts, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                            {
+                                if (MembootCustomKernel())
+                                {
+                                    BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                return;
+                            }
+                        }
+
+                        Invoke(new Action(UpdateLocalCache));
+                        WorkerForm.GetMemoryStats();
+                        new Thread(RecalculateSelectedGamesThread).Start();
+                    }
+                    else
+                    {
+                        if (hakchi.SystemRequiresReflash())
+                        {
+                            if (BackgroundThreadMessageBox(Resources.SystemRequiresReflash, Resources.OutdatedKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                            {
+                                if (FlashCustomKernel())
+                                {
+                                    BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                return;
+                            }
+                        }
+                        else if (hakchi.SystemRequiresRootfsUpdate())
+                        {
+                            if (BackgroundThreadMessageBox(Resources.SystemRequiresRootfsUpdate, Resources.OutdatedScripts, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                            {
+                                if (MembootCustomKernel())
+                                {
+                                    BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                return;
+                            }
+                        }
+
+                        // show warning message that any interaction is ill-advised
+                        BackgroundThreadMessageBox(Resources.PleaseUpdate, Resources.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
 
             }
