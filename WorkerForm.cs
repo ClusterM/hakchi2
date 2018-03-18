@@ -478,7 +478,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 // Unknown MD5? Hmm... Lets extract ramfs and check keyfile!
                 string kernelDumpTemp = Path.Combine(tempDirectory, "kernel.img");
-                Directory.CreateDirectory(tempDirectory);
+                if (!Directory.Exists(tempDirectory))
+                    Directory.CreateDirectory(tempDirectory);
                 File.WriteAllBytes(kernelDumpTemp, kernel);
                 UnpackRamfs(kernelDumpTemp);
                 var key = File.ReadAllBytes(Path.Combine(ramfsDirectory, "key-file"));
@@ -514,8 +515,8 @@ namespace com.clusterrr.hakchi_gui
                 if (!matchedKernels.Contains(ConfigIni.ConsoleType))
                     throw new Exception(Resources.InvalidConsoleSelected + " " + matchedKernels.First());
             }
-
-            Directory.CreateDirectory(Path.GetDirectoryName(KernelDumpPath));
+            if (!Directory.Exists(Path.GetDirectoryName(KernelDumpPath)))
+                Directory.CreateDirectory(Path.GetDirectoryName(KernelDumpPath));
             if (!File.Exists(KernelDumpPath))
                 File.WriteAllBytes(KernelDumpPath, kernel);
             if (!string.IsNullOrEmpty(dumpPath))
@@ -658,7 +659,8 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(maxProgress, maxProgress);
             SetStatus(Resources.Done);
 
-            Directory.CreateDirectory(Path.GetDirectoryName(NandDump));
+            if (!Directory.Exists(Path.GetDirectoryName(NandDump)))
+                Directory.CreateDirectory(Path.GetDirectoryName(NandDump));
             File.WriteAllBytes(NandDump, kernel);
         }
 
@@ -901,8 +903,8 @@ namespace com.clusterrr.hakchi_gui
                 tempGamesDirectory = Path.Combine(tempDirectory, "games");
                 if (exportGames)
                     tempGamesDirectory = Path.Combine(tempGamesDirectory, SubConsoleDirectory);
-                Directory.CreateDirectory(tempDirectory);
-                Directory.CreateDirectory(tempGamesDirectory);
+                if (!Directory.Exists(tempGamesDirectory))
+                    Directory.CreateDirectory(tempGamesDirectory);
                 File.WriteAllBytes(Path.Combine(tempGamesDirectory, ".repair.flag"), new byte[0]);
                 Dictionary<string, string> originalGames = new Dictionary<string, string>();
                 var stats = new GamesTreeStats();
@@ -956,7 +958,8 @@ namespace com.clusterrr.hakchi_gui
                     SetStatus(Resources.WritingUSB);
                     maxProgress = (int)(stats.TotalSize / 1024 / 1024 + 20);
                     SetProgress(progress, maxProgress);
-                    Directory.CreateDirectory(exportDirectory);
+                    if (!Directory.Exists(exportDirectory))
+                        Directory.CreateDirectory(exportDirectory);
                     string lastDirectory = null;
                     long pos = 0;
                     if (!ExecuteTool("rsync.exe", $"-ac --delete --progress --exclude=title.fnt --exclude=copyright.fnt \"{cygwinPath(tempGamesDirectory)}\" \"{cygwinPath(exportDirectory)}\"",
@@ -1234,9 +1237,12 @@ namespace com.clusterrr.hakchi_gui
 
         private void UnpackRamfs(string kernelPath = null)
         {
-            Directory.CreateDirectory(tempDirectory);
-            Directory.CreateDirectory(kernelDirectory);
-            Directory.CreateDirectory(ramfsDirectory);
+            if (!Directory.Exists(tempDirectory))
+                Directory.CreateDirectory(tempDirectory);
+            if (!Directory.Exists(kernelDirectory))
+                Directory.CreateDirectory(kernelDirectory);
+            if (!Directory.Exists(ramfsDirectory))
+                Directory.CreateDirectory(ramfsDirectory);
             string tempKernelDump = Path.Combine(tempDirectory, "kernel.img");
             if ((kernelPath ?? KernelDumpPath) != tempKernelDump)
                 File.Copy(kernelPath ?? KernelDumpPath, tempKernelDump, true);
@@ -1276,7 +1282,8 @@ namespace com.clusterrr.hakchi_gui
 
             if (hmodsInstall != null && hmodsInstall.Count() > 0)
             {
-                Directory.CreateDirectory(tempHmodsDirectory);
+                if (!Directory.Exists(tempHmodsDirectory))
+                    Directory.CreateDirectory(tempHmodsDirectory);
                 foreach (var hmod in hmodsInstall)
                 {
                     var modName = hmod + ".hmod";
@@ -1297,7 +1304,8 @@ namespace com.clusterrr.hakchi_gui
             }
             if (hmodsUninstall != null && hmodsUninstall.Count() > 0)
             {
-                Directory.CreateDirectory(tempHmodsDirectory);
+                if (!Directory.Exists(tempHmodsDirectory))
+                    Directory.CreateDirectory(tempHmodsDirectory);
                 var mods = new StringBuilder();
                 foreach (var hmod in hmodsUninstall)
                     mods.AppendFormat("{0}.hmod\n", hmod);
@@ -1370,7 +1378,8 @@ namespace com.clusterrr.hakchi_gui
                     var originalCode = game.Code;
                     var desktopFilePath = Path.Combine(desktopEntriesPath, $"{originalCode}.desktop");
                     var targetGamePath = Path.Combine(targetDirectory, originalCode);
-                    Directory.CreateDirectory(targetGamePath);
+                    if (!Directory.Exists(targetGamePath))
+                        Directory.CreateDirectory(targetGamePath);
                     if (exportGames) // Copy back to reduce repeative original games repair
                     {
                         var realTargetGamePath = Path.Combine(Path.Combine(Path.Combine(exportDirectory, SubConsoleDirectory), string.Format("{0:D3}", menuIndex)), originalCode);
@@ -1380,10 +1389,12 @@ namespace com.clusterrr.hakchi_gui
                                 throw new Exception("Can't rsync to USB drive");
                         }
                     }
-                    Directory.CreateDirectory(Path.Combine(targetGamePath, "autoplay"));
+                    if (!Directory.Exists(Path.Combine(targetGamePath, "autoplay")))
+                        Directory.CreateDirectory(Path.Combine(targetGamePath, "autoplay"));
                     if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
                     {
-                        Directory.CreateDirectory(Path.Combine(targetGamePath, "pixelart"));
+                        if (!Directory.Exists(Path.Combine(targetGamePath, "pixelart")))
+                            Directory.CreateDirectory(Path.Combine(targetGamePath, "pixelart"));
                     }
                     File.Copy(desktopFilePath, Path.Combine(targetGamePath, $"{originalCode}.desktop"), true);
                     var gameSize = NesMiniApplication.DirectorySize(targetGamePath);
@@ -1612,7 +1623,8 @@ namespace com.clusterrr.hakchi_gui
                                     )
                                 {
                                     tmp = Path.Combine(Path.GetTempPath(), fileName);
-                                    Directory.CreateDirectory(tmp);
+                                    if (!Directory.Exists(tmp))
+                                        Directory.CreateDirectory(tmp);
                                     szExtractor.ExtractArchive(tmp);
                                     fileName = Path.Combine(tmp, fileName);
                                 }
@@ -1677,7 +1689,8 @@ namespace com.clusterrr.hakchi_gui
             listViewItem.Checked = selected.Contains("default");
             games.Add(listViewItem);
 
-            Directory.CreateDirectory(NesMiniApplication.GamesDirectory);
+            if (!Directory.Exists(NesMiniApplication.GamesDirectory))
+                Directory.CreateDirectory(NesMiniApplication.GamesDirectory);
             var gameDirs = Directory.GetDirectories(NesMiniApplication.GamesDirectory);
             int progress = 0;
             var maxProgress = gameDirs.Length;

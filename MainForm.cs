@@ -1726,6 +1726,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         try
                         {
+                            Thread.Sleep(5000);
                             showProcess.WaitForExit();
                         }
                         catch { }
