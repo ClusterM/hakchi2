@@ -163,6 +163,9 @@
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Salir</value>
   </data>
+  <data name="exportFolderDialog.Description">
+    <value>Seleccioná tu unidad USB</value>
+  </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>Preguntas frecuentes</value>
   </data>
@@ -354,9 +357,6 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Usar los botones "X"/"Y" en el Classic Controller como disparo automático de "A"/"B"</value>
-  </data>
-  <data name="exportFolderDialog.Description">
-    <value>Select your USB drive</value>
   </data>
   <data name="famicomMiniToolStripMenuItem.Text">
     <value>Famicom (Japan)</value>

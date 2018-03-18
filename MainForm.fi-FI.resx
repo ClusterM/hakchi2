@@ -70,6 +70,9 @@
   <data name="addPresetToolStripMenuItem.Text">
     <value>Lisää valikoima</value>
   </data>
+  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
+    <value>Kirjoita pelit aina USB-asemalle</value>
+  </data>
   <data name="automaticOriginalToolStripMenuItem.Text">
     <value>Alkuperäiset pelit juuressa -&gt; Automaattinen alikansioissa</value>
   </data>
@@ -102,6 +105,9 @@
   </data>
   <data name="consoleTypeToolStripMenuItem.Text">
     <value>Konsolin tyyppi</value>
+  </data>
+  <data name="createCustomCommandToolStripMenuItem.Text">
+    <value>Luo oma komento</value>
   </data>
   <data name="customToolStripMenuItem.Text">
     <value>Mukautettu - näytä kansiohallinta joka kerta</value>
@@ -148,11 +154,17 @@
   <data name="enableAutofireToolStripMenuItem.Text">
     <value>Käytä "Select+A/B" A/B-automaattitulituksen aktivointiin</value>
   </data>
+  <data name="enableUSBHostToolStripMenuItem.Text">
+    <value>Ota käyttöön tuki USB-asemalle</value>
+  </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text">
     <value>Poista epilepsiasuoja</value>
   </data>
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Lopeta</value>
+  </data>
+  <data name="exportFolderDialog.Description">
+    <value>Valitse USB-asema</value>
   </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>UKK</value>
@@ -259,6 +271,9 @@
   <data name="openFileDialogNes.Title">
     <value>Valitse pelit</value>
   </data>
+  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
+    <value>Avaa valitun pelin kansio</value>
+  </data>
   <data name="openTelnetToolStripMenuItem.Text">
     <value>Avaa Telnet-asiakasohjelma</value>
   </data>
@@ -345,20 +360,5 @@
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text">
     <value>Käytä Classic Controllerin X/Y-näppäimiä A/B-automaattitulitukseen</value>
-  </data>
-  <data name="alwaysWriteGamesToUSBDriveToolStripMenuItem.Text">
-    <value>Always write games to USB drive</value>
-  </data>
-  <data name="createCustomCommandToolStripMenuItem.Text">
-    <value>Create custom command</value>
-  </data>
-  <data name="enableUSBHostToolStripMenuItem.Text">
-    <value>Enable USB host</value>
-  </data>
-  <data name="exportFolderDialog.Description">
-    <value>Select your USB drive</value>
-  </data>
-  <data name="openSelectedGamesFolderInExplorerToolStripMenuItem.Text">
-    <value>Open selected game's folder in explorer</value>
   </data>
 </root>

@@ -154,6 +154,9 @@
   <data name="exitToolStripMenuItem.Text">
     <value>&amp;Išeiti</value>
   </data>
+  <data name="exportFolderDialog.Description">
+    <value>Pasirinkite USB atmintinuką</value>
+  </data>
   <data name="fAQToolStripMenuItem.Text">
     <value>DUK</value>
   </data>
@@ -354,9 +357,6 @@
   </data>
   <data name="dumpNANDCPartitionToolStripMenuItem.Title">
     <value>Select dump filename</value>
-  </data>
-  <data name="exportFolderDialog.Description">
-    <value>Select your USB drive</value>
   </data>
   <data name="famicomMiniToolStripMenuItem.Text">
     <value>Famicom (Japan)</value>
