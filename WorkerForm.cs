@@ -226,6 +226,7 @@ namespace com.clusterrr.hakchi_gui
             TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
             return DialogResult.Abort;
         }
+
         DialogResult WaitForClovershellFromThread()
         {
             if (InvokeRequired)
@@ -395,8 +396,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-
-
         void SetStatus(string status)
         {
             if (Disposing) return;
@@ -485,7 +484,52 @@ namespace com.clusterrr.hakchi_gui
             catch { }
         }
 
-        public void FlashKernel(Stream kernel)
+        public bool DoKernelDump(string dumpPath = null, int maxProgress = 80, int progress = 0, bool shutdown = true)
+        {
+            bool returnValue = false;
+            GeneralMemboot((ClovershellConnection clovershell) =>
+            {
+                string KernelDumpPath = GetKernelDumpPath(hakchi.UniqueID);
+
+                CopySntool();
+
+                MemoryStream kernelStream = new MemoryStream();
+                clovershell.Execute("sntool sunxi_flash read_boot2", null, kernelStream, null, 0, true);
+
+                kernelStream.Seek(0, SeekOrigin.Begin);
+                byte[] header = new byte[64];
+                kernelStream.Read(header, 0, 64);
+                kernelStream.Seek(0, SeekOrigin.Begin);
+
+                var size = CalcKernelSize(header);
+                if (size == 0 || size > Fel.kernel_max_size)
+                    throw new Exception(Resources.InvalidKernelSize + " " + size);
+
+                if (kernelStream.Length > size)
+                {
+                    kernelStream.SetLength(size);
+                }
+
+                byte[] kernel = kernelStream.ToArray();
+                kernelStream.Dispose();
+
+                var md5 = System.Security.Cryptography.MD5.Create();
+                var hash = BitConverter.ToString(md5.ComputeHash(kernel)).Replace("-", "").ToLower();
+                var matchedKernels = from k in correctKernels where k.Value.Contains(hash) select k.Key;
+                if (matchedKernels.Count() > 0)
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(KernelDumpPath));
+                    if (!File.Exists(KernelDumpPath))
+                        File.WriteAllBytes(KernelDumpPath, kernel);
+                    if (!string.IsNullOrEmpty(dumpPath))
+                        File.WriteAllBytes(dumpPath, kernel);
+                    returnValue = true;
+                }
+            }, false);
+            return returnValue;
+        }
+
+        public void FlashKernel()
         {
             GeneralMemboot((ClovershellConnection clovershell) =>
             {
@@ -595,7 +639,7 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(maxProgress, maxProgress);
         }
 
-        public void GeneralMemboot(Action<clovershell.ClovershellConnection> membootAction, bool rebootAfter = true, bool skipCustom = false)
+        public void GeneralMemboot(Action<ClovershellConnection> membootAction, bool rebootAfter = true, bool skipCustom = false)
         {
             if (!hakchi.MinimalMemboot)
             {
@@ -616,14 +660,16 @@ namespace com.clusterrr.hakchi_gui
             }
 
             if (WaitForClovershellFromThread() != DialogResult.Abort)
-                membootAction(MainForm.Clovershell);
+            {
+                membootAction((ClovershellConnection)hakchi.Shell);
+            }
 
             if (rebootAfter)
             {
                 try
                 {
-                    if (MainForm.Clovershell.IsOnline)
-                        MainForm.Clovershell.ExecuteSimple("sync; umount -ar; reboot -f", 100);
+                    if (hakchi.Shell.IsOnline)
+                        hakchi.Shell.ExecuteSimple("sync; umount -ar; reboot -f", 100);
                 }
                 catch { }
             }

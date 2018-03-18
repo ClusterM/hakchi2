@@ -284,6 +284,15 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        public static void EnsureEmptyDirectory(string dirName)
+        {
+            if (Directory.Exists(dirName))
+            {
+                Shared.DirectoryDeleteInside(dirName);
+            }
+            Directory.CreateDirectory(dirName);
+        }
+
         public static void DirectoryDeleteInside(string dirName)
         {
             if (!Directory.Exists(dirName)) // no error, just return

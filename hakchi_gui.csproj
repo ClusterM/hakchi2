@@ -124,9 +124,6 @@
     <Reference Include="nQuant.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\nQuant.1.0.3\lib\net40\nQuant.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Renci.SshNet">
-      <HintPath>SSH.NET\src\Renci.SshNet.NET35\bin\Debug\Renci.SshNet.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -2861,9 +2858,6 @@
     <None Include="hakchi-nonportable.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-<<<<<<< HEAD
-    <None Include="packages.config" />
-=======
     <None Include="mods\mod_general\bin\busybox">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -2882,7 +2876,6 @@
     <None Include="mods\mod_reset\hakchi\transfer\earlybird">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
->>>>>>> cumulative work to:
     <None Include="Properties\app.manifest" />
     <None Include="user_mods\snes_custom_filters.hmod\canoe-custom-filters">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -3228,7 +3221,16 @@
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup />
+=======
+  <ItemGroup>
+    <ProjectReference Include="SSH.NET\src\Renci.SshNet\Renci.SshNet.csproj">
+      <Project>{2f5f8c90-0bd1-424f-997c-7bc6280919d1}</Project>
+      <Name>Renci.SshNet</Name>
+    </ProjectReference>
+  </ItemGroup>
+>>>>>>> compilation fixes to combine branches
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>echo. &gt; NUL 2&gt; "$(ProjectDir)commit.txt"
