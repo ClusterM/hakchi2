@@ -1,5 +1,7 @@
 ﻿using com.clusterrr.clovershell;
+using com.clusterrr.ssh;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -11,15 +13,20 @@ namespace com.clusterrr.hakchi_gui
 {
     public static class hakchi
     {
-        public static MainForm.ConsoleType? DetectedMountedConsoleType { get; private set; }
+        public static ISystemShell Shell { get; private set; }
+        public static bool Connected { get; private set; }
+        public static event OnConnectedEventHandler OnConnected = delegate { };
+        public static event OnDisconnectedEventHandler OnDisconnected = delegate { };
+
         public static MainForm.ConsoleType? DetectedConsoleType { get; private set; }
+        public static bool CustomFirmwareLoaded { get; private set; }
         public static string BootVersion { get; private set; }
         public static string KernelVersion { get; private set; }
         public static string ScriptVersion { get; private set; }
+        public static string UniqueID { get; private set; }
         public static bool CanInteract { get; private set; }
         public static bool MinimalMemboot { get; private set; }
 
-        public static string UniqueID { get; private set; }
         public static string ConfigPath { get; private set; }
         public static string RemoteGameSyncPath { get; private set; }
         public static string SystemCode { get; private set; }
@@ -27,7 +34,6 @@ namespace com.clusterrr.hakchi_gui
         public static string GamesPath { get; private set; }
         public static string GamesProfilePath { get; private set; }
         public static string SquashFsPath { get; private set; }
-
         public static string GamesSquashFsPath
         {
             get
@@ -47,6 +53,7 @@ namespace com.clusterrr.hakchi_gui
 
         public static string GetRemoteGameSyncPath(bool? separateGames = null, string overrideSystemCode = null)
         {
+            if (RemoteGameSyncPath == null) return null;
             if (separateGames == null) separateGames = ConfigIni.Instance.SeparateGameStorage;
             if ((bool)separateGames)
             {
@@ -54,27 +61,13 @@ namespace com.clusterrr.hakchi_gui
                 {
                     return $"{RemoteGameSyncPath}/{overrideSystemCode}";
                 }
-                else if(SystemCode != null)
+                else if (SystemCode != null)
                 {
                     return $"{RemoteGameSyncPath}/{SystemCode}";
                 }
                 return null;
             }
             return RemoteGameSyncPath;
-        }
-
-        static hakchi()
-        {
-            DetectedMountedConsoleType = null;
-            DetectedConsoleType = null;
-            UniqueID = null;
-            SystemCode = null;
-            RemoteGameSyncPath = "/var/lib/hakchi/games";
-            ConfigPath = "/etc/preinit.d/p0000_config";
-            MediaPath = "/media";
-            GamesPath = "/var/games";
-            GamesProfilePath = "/var/saves";
-            SquashFsPath = "/var/squashfs";
         }
 
         public static string MinimumHakchiBootVersion
@@ -107,84 +100,131 @@ namespace com.clusterrr.hakchi_gui
             get { return "110"; }
         }
 
-        public static void Clovershell_OnDisconnected()
+        static hakchi()
         {
-            DetectedMountedConsoleType = null;
-            DetectedConsoleType = null;
-            UniqueID = null;
-            SystemCode = null;
-            CanInteract = false;
-            MinimalMemboot = false;
-            BootVersion = null;
-            KernelVersion = null;
-            ScriptVersion = null;
+            Shell = null;
+            clearProperties();
         }
 
-        public static void Clovershell_OnConnected()
+        private static void clearProperties()
         {
-            // clear up values
-            Clovershell_OnDisconnected();
+            Connected = false;
+            DetectedConsoleType = null;
+            CustomFirmwareLoaded = false;
+            BootVersion = "";
+            KernelVersion = "";
+            ScriptVersion = "";
+            CanInteract = false;
+            MinimalMemboot = false;
+            UniqueID = null;
+            RemoteGameSyncPath = "/var/lib/hakchi/games";
+            SystemCode = null;
+            ConfigPath = "/etc/preinit.d/p0000_config";
+            MediaPath = "/media";
+            GamesPath = "/var/games";
+            GamesProfilePath = "/var/saves";
+            SquashFsPath = "/var/squashfs";
+        }
+
+        private static List<ISystemShell> shells = new List<ISystemShell>();
+
+        public static void Initialize()
+        {
+            if (shells.Any())
+                return;
+
+            // placeholder shell
+            shells.Add(new UnknownShell());
+            Shell = shells.First();
+
+            // clovershell (for legacy compatibility)
+            var clovershell = new ClovershellConnection() { AutoReconnect = true };
+            clovershell.OnConnected += Shell_OnConnected;
+            clovershell.OnDisconnected += Shell_OnDisconnected;
+            shells.Add(clovershell);
+
+            // new high-tech but slow SSH connection
+            var ssh = new SshClientWrapper(MainForm.AVAHI_SERVICE_NAME, 22, "root", "") { AutoReconnect = true };
+            ssh.OnConnected += Shell_OnConnected;
+            ssh.OnDisconnected += Shell_OnDisconnected;
+            shells.Add(ssh);
+
+            // start their watchers
+            clovershell.Enabled = true;
+            ssh.Enabled = true;
+        }
+
+        public static void Shutdown()
+        {
+            shells.ForEach(shell => shell.Dispose());
+            shells.Clear();
+            Shell = null;
+        }
+
+        public static void Shell_OnDisconnected()
+        {
+            // clear up used shell and reenable all
+            Shell = shells.First();
+            shells.ForEach(shell => shell.Enabled = true);
+
+            clearProperties();
+            OnDisconnected();
+        }
+
+        public static void Shell_OnConnected(ISystemShell caller)
+        {
+            // set calling shell as current used shell and disable others
+            Shell = caller;
+            shells.ForEach(shell => { if (shell != caller) shell.Enabled = false; });
             try
             {
-                var Clovershell = MainForm.Clovershell;
-                if (!Clovershell.IsOnline)
+                Connected = Shell.IsOnline;
+                if (!Shell.IsOnline)
                 {
-                    throw new IOException("Clovershell connection unexpectedly offline");
+                    throw new IOException("Shell connection should be online!");
                 }
 
-                MinimalMemboot = Clovershell.Execute("[ \"$cf_memboot\" = \"y\" ]") == 0;
+                MinimalMemboot = Shell.Execute("[ \"$cf_memboot\" = \"y\" ]") == 0;
 
                 // detect unique id
-                UniqueID = Clovershell.ExecuteSimple("echo \"`devmem 0x01C23800``devmem 0x01C23804``devmem 0x01C23808``devmem 0x01C2380C`\"").Trim().Replace("0x", "");
+                UniqueID = Shell.ExecuteSimple("echo \"`devmem 0x01C23800``devmem 0x01C23804``devmem 0x01C23808``devmem 0x01C2380C`\"").Trim().Replace("0x", "");
                 Debug.WriteLine($"Detected device unique ID: {UniqueID}");
 
                 if (MinimalMemboot) return;
 
                 // detect running/mounted firmware
-                string board = Clovershell.ExecuteSimple("cat /etc/clover/boardtype", 3000, true);
-                string region = Clovershell.ExecuteSimple("cat /etc/clover/REGION", 3000, true);
-                Debug.WriteLine(string.Format("Detected mounted board: {0}", board));
-                Debug.WriteLine(string.Format("Detected mounted region: {0}", region));
-                DetectedMountedConsoleType = translateConsoleType(board, region);
-                if (DetectedMountedConsoleType == MainForm.ConsoleType.Unknown)
+                string board = Shell.ExecuteSimple("cat /etc/clover/boardtype", 3000, true);
+                string region = Shell.ExecuteSimple("cat /etc/clover/REGION", 3000, true);
+                DetectedConsoleType = translateConsoleType(board, region);
+                if (DetectedConsoleType == MainForm.ConsoleType.Unknown)
                 {
                     throw new IOException("Unable to determine mounted firmware");
                 }
+                var customFirmwareLoaded = Shell.ExecuteSimple("hakchi currentFirmware");
+                CustomFirmwareLoaded = customFirmwareLoaded != "_nand_";
+                Debug.WriteLine(string.Format("Detected mounted board: {0}", board));
+                Debug.WriteLine(string.Format("Detected mounted region: {0}", region));
+                Debug.WriteLine(string.Format("Detected mounted firmware: {0}", customFirmwareLoaded));
 
                 // detect running versions
-                var versions = MainForm.Clovershell.ExecuteSimple("source /var/version && echo \"$bootVersion $kernelVersion $hakchiVersion\"", 500, true).Split(' ');
+                var versions = Shell.ExecuteSimple("source /var/version && echo \"$bootVersion $kernelVersion $hakchiVersion\"", 500, true).Split(' ');
                 BootVersion = versions[0];
                 KernelVersion = versions[1];
                 ScriptVersion = versions[2];
                 CanInteract = !SystemRequiresReflash() && !SystemRequiresRootfsUpdate();
 
                 // only do more interaction if safe to do so
-                if (CanInteract)
-                {
-                    // detect root firmware
-                    var customFirmwareLoaded = Clovershell.ExecuteSimple("hakchi currentFirmware") != "_nand_";
-                    if (customFirmwareLoaded)
-                    {
-                        Clovershell.ExecuteSimple("cryptsetup open /dev/nandb root-crypt --readonly --type plain --cipher aes-xts-plain --key-file /etc/key-file", 3000);
-                        Clovershell.ExecuteSimple("mkdir -p /var/squashfs-original", 3000, true);
-                        Clovershell.ExecuteSimple("mount /dev/mapper/root-crypt /var/squashfs-original", 3000, true);
-                        board = Clovershell.ExecuteSimple("cat /var/squashfs-original/etc/clover/boardtype", 3000, true);
-                        region = Clovershell.ExecuteSimple("cat /var/squashfs-original/etc/clover/REGION", 3000, true);
-                        Debug.WriteLine(string.Format("Detected system board: {0}", board));
-                        Debug.WriteLine(string.Format("Detected system region: {0}", region));
-                        Clovershell.ExecuteSimple("umount /var/squashfs-original", 3000, true);
-                        Clovershell.ExecuteSimple("rm -rf /var/squashfs-original", 3000, true);
-                        Clovershell.ExecuteSimple("cryptsetup close root-crypt", 3000, true);
-                    }
-                    DetectedConsoleType = translateConsoleType(board, region);
+                if (!CanInteract) return;
 
-                    // detect basic paths
-                    RemoteGameSyncPath = MainForm.Clovershell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
-                    SystemCode = MainForm.Clovershell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
+                // detect basic paths
+                RemoteGameSyncPath = Shell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
+                SystemCode = Shell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
 
-                    // load config
-                    ConfigIni.SetConfigDictionary(LoadConfig());
-                }
+                // load config
+                ConfigIni.SetConfigDictionary(LoadConfig());
+
+                // chain to other OnConnected events
+                OnConnected(caller);
             }
             catch (Exception ex)
             {
@@ -289,12 +329,12 @@ namespace com.clusterrr.hakchi_gui
         public static void ShowSplashScreen()
         {
             var splashScreenPath = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "splash.gz");
-            MainForm.Clovershell.ExecuteSimple("uistop");
+            Shell.ExecuteSimple("uistop");
             if (File.Exists(splashScreenPath))
             {
                 using (var splash = new FileStream(splashScreenPath, FileMode.Open))
                 {
-                    MainForm.Clovershell.Execute("gunzip -c - > /dev/fb0", splash, null, null, 3000);
+                    Shell.Execute("gunzip -c - > /dev/fb0", splash, null, null, 3000);
                 }
             }
         }
@@ -312,13 +352,13 @@ namespace com.clusterrr.hakchi_gui
                         stream.Write(data, 0, data.Length);
                     }
                 }
-                MainForm.Clovershell.Execute($"hakchi eval", stream, null, null, 3000, true);
+                Shell.Execute($"hakchi eval", stream, null, null, 3000, true);
             }
             if (reboot)
             {
                 try
                 {
-                    MainForm.Clovershell.ExecuteSimple("reboot", 100);
+                    Shell.ExecuteSimple("reboot", 100);
                 }
                 catch { }
             }
@@ -334,7 +374,7 @@ namespace com.clusterrr.hakchi_gui
                 string configFile;
                 using (var stream = new MemoryStream())
                 {
-                    MainForm.Clovershell.Execute($"cat {ConfigPath}", null, stream, null, 2000, true);
+                    Shell.Execute($"cat {ConfigPath}", null, stream, null, 2000, true);
                     configFile = Encoding.UTF8.GetString(stream.ToArray());
                 }
 
@@ -350,7 +390,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine("Error reading p0000_config file : " + ex.Message + ex.StackTrace);
                 config.Clear();

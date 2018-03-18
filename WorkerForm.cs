@@ -864,11 +864,11 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                var clovershell = MainForm.Clovershell;
-                var storage = clovershell.ExecuteSimple("df \"$(hakchi findGameSyncStorage)\" | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 2000, true).Split('|');
-                ExternalSaves = clovershell.ExecuteSimple("mount | grep /var/lib/clover").Trim().Length > 0;
-                WrittenGamesSize = long.Parse(clovershell.ExecuteSimple("du -s \"$(hakchi findGameSyncStorage)\" | awk '{ print $1 }'", 2000, true)) * 1024;
-                SaveStatesSize = long.Parse(clovershell.ExecuteSimple("du -s \"$(readlink /var/saves)\" | awk '{ print $1 }'", 2000, true)) * 1024;
+                var shell = hakchi.Shell;
+                var storage = shell.ExecuteSimple("df \"$(hakchi findGameSyncStorage)\" | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 2000, true).Split('|');
+                ExternalSaves = shell.ExecuteSimple("mount | grep /var/lib/clover").Trim().Length > 0;
+                WrittenGamesSize = long.Parse(shell.ExecuteSimple("du -s \"$(hakchi findGameSyncStorage)\" | awk '{ print $1 }'", 2000, true)) * 1024;
+                SaveStatesSize = long.Parse(shell.ExecuteSimple("du -s \"$(readlink /var/saves)\" | awk '{ print $1 }'", 2000, true)) * 1024;
                 StorageTotal = long.Parse(storage[0]) * 1024;
                 StorageUsed = long.Parse(storage[1]) * 1024;
                 StorageFree = long.Parse(storage[2]) * 1024;
@@ -937,7 +937,7 @@ namespace com.clusterrr.hakchi_gui
             }
             SetProgress(progress += 5, maxProgress);
 
-            var clovershell = MainForm.Clovershell;
+            var shell = hakchi.Shell;
             try
             {
                 if (WaitForClovershellFromThread() != DialogResult.OK)
@@ -947,9 +947,9 @@ namespace com.clusterrr.hakchi_gui
                 }
 
                 gameSyncPath = hakchi.GetRemoteGameSyncPath();
-                gamesPath = clovershell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
-                rootFsPath = clovershell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
-                squashFsPath = clovershell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
+                gamesPath = shell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
+                rootFsPath = shell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
+                squashFsPath = shell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
                 SetProgress(progress += 5, maxProgress);
 
                 // prepare unit for upload
@@ -957,7 +957,7 @@ namespace com.clusterrr.hakchi_gui
 
                 // delete non-multiboot path if there are leftovers and we are now using multiboot
                 SetStatus(Resources.CleaningUp);
-                clovershell.ExecuteSimple("find \"$(hakchi findGameSyncStorage)/\" -maxdepth 1 | grep -" + (ConfigIni.Instance.SeparateGameStorage ? "v" : "") + "Ee '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' | while read f; do rm -rf \"$f\"; done", 0, true);
+                shell.ExecuteSimple("find \"$(hakchi findGameSyncStorage)/\" -maxdepth 1 | grep -" + (ConfigIni.Instance.SeparateGameStorage ? "v" : "") + "Ee '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' | while read f; do rm -rf \"$f\"; done", 0, true);
                 SetProgress(progress += 5, maxProgress);
 
                 // Games!
@@ -986,7 +986,7 @@ namespace com.clusterrr.hakchi_gui
                 HashSet<ApplicationFileInfo> localGameSet = ApplicationFileInfo.GetApplicationFileInfoForDirectory(tempGamesDirectory);
 
                 // Get the remote list of files, timestamps, and sizes
-                string gamesOnDevice = clovershell.ExecuteSimple($"mkdir -p \"{gameSyncPath}\"; cd \"{gameSyncPath}\"; find . -type f -exec sh -c \"stat \\\"{{}}\\\" -c \\\"%n %s %y\\\"\" \\;", 0, true);
+                string gamesOnDevice = shell.ExecuteSimple($"mkdir -p \"{gameSyncPath}\"; cd \"{gameSyncPath}\"; find . -type f -exec sh -c \"stat \\\"{{}}\\\" -c \\\"%n %s %y\\\"\" \\;", 0, true);
                 HashSet<ApplicationFileInfo> remoteGameSet = ApplicationFileInfo.GetApplicationFileInfoFromConsoleOutput(gamesOnDevice);
                 SetProgress(progress += 5, maxProgress);
 
@@ -1003,7 +1003,7 @@ namespace com.clusterrr.hakchi_gui
                 // Now transfer whatever games are remaining in the temp directory
                 SetStatus(Resources.UploadingGames);
                 int startProgress = progress;
-                clovershell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
+                shell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
                 using (var gamesTar = new TarStream(tempGamesDirectory, null, null))
                 {
                     Debug.WriteLine($"Upload size: " + Shared.SizeSuffix(gamesTar.Length));
@@ -1015,14 +1015,14 @@ namespace com.clusterrr.hakchi_gui
                             progress = startProgress + (int)((double)pos / len * currentMaxProgress);
                             SetProgress(progress, maxProgress);
                         };
-                        clovershell.Execute($"tar -xvC \"{gameSyncPath}\"", gamesTar, null, null, 30000, true);
+                        shell.Execute($"tar -xvC \"{gameSyncPath}\"", gamesTar, null, null, 30000, true);
                     }
                 }
                 SetProgress(progress = 90, maxProgress);
 
                 // Finally, delete any empty directories we may have left during the differential sync
                 SetStatus(Resources.CleaningUp);
-                clovershell.ExecuteSimple($"for f in $(find \"{gameSyncPath}\" -type d -mindepth 1 -maxdepth 2); do {{ ls -1 \"$f\" | grep -v pixelart | grep -v autoplay " +
+                shell.ExecuteSimple($"for f in $(find \"{gameSyncPath}\" -type d -mindepth 1 -maxdepth 2); do {{ ls -1 \"$f\" | grep -v pixelart | grep -v autoplay " +
                     "| wc -l | { read wc; test $wc -eq 0 && rm -rf \"$f\"; } } ; done", 0);
                 SetProgress(progress += 5, maxProgress);
 
@@ -1051,7 +1051,7 @@ namespace com.clusterrr.hakchi_gui
                             break;
                     }
 
-                    clovershell.ExecuteSimple(originalSyncCode, 30000, true);
+                    shell.ExecuteSimple(originalSyncCode, 30000, true);
                 };
                 SetProgress(progress += 4, maxProgress);
 
@@ -1074,8 +1074,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 try
                 {
-                    if (clovershell.IsOnline)
-                        clovershell.ExecuteSimple("hakchi overmount_games; uistart", 100);
+                    if (shell.IsOnline)
+                        shell.ExecuteSimple("hakchi overmount_games; uistart", 100);
                 }
                 catch { }
             }
@@ -1096,12 +1096,12 @@ namespace com.clusterrr.hakchi_gui
 
                 try
                 {
-                    MainForm.Clovershell.Execute("cat > /tmp/cleanup.sh", commandBuilder, null, null, 5000, true);
-                    MainForm.Clovershell.ExecuteSimple("chmod +x /tmp/cleanup.sh && /tmp/cleanup.sh", 0, true);
+                    hakchi.Shell.Execute("cat > /tmp/cleanup.sh", commandBuilder, null, null, 5000, true);
+                    hakchi.Shell.ExecuteSimple("chmod +x /tmp/cleanup.sh && /tmp/cleanup.sh", 0, true);
                 }
                 finally
                 {
-                    MainForm.Clovershell.ExecuteSimple("rm /tmp/cleanup.sh");
+                    hakchi.Shell.ExecuteSimple("rm /tmp/cleanup.sh");
                 }
             }
         }
@@ -1191,14 +1191,31 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(maxProgress, maxProgress);
         }
 
+        public void UpdateRootfs()
+        {
+            var modPath = Path.Combine(modsDirectory, Mod);
+            var rootFsPathes = Directory.GetDirectories(modPath, "rootfs", SearchOption.AllDirectories);
+            if (rootFsPathes.Length == 0) return;
+            var rootFsPath = rootFsPathes[0];
+
+            using (var updateTar = new TarStream(rootFsPath, null, new string[] { "p0000_config" }))
+            {
+                if (updateTar.Length > 0)
+                {
+                    hakchi.Shell.Execute("tar -xvC /", updateTar, null, null, 30000, true);
+                    hakchi.Shell.ExecuteSimple("chmod +x /bin/*", 3000, true);
+                    hakchi.Shell.ExecuteSimple("chmod +x /etc/init.d/*", 3000, true);
+                }
+            }
+        }
+
         public static Image TakeScreenshot()
         {
-            var clovershell = MainForm.Clovershell;
             var screenshot = new Bitmap(1280, 720, PixelFormat.Format24bppRgb);
             var rawStream = new MemoryStream();
-            clovershell.ExecuteSimple("hakchi uipause");
-            clovershell.Execute("cat /dev/fb0", null, rawStream, null, 1000, true);
-            clovershell.ExecuteSimple("hakchi uiresume");
+            hakchi.Shell.ExecuteSimple("hakchi uipause");
+            hakchi.Shell.Execute("cat /dev/fb0", null, rawStream, null, 1000, true);
+            hakchi.Shell.ExecuteSimple("hakchi uiresume");
             var raw = rawStream.ToArray();
             BitmapData data = screenshot.LockBits(
                 new Rectangle(0, 0, screenshot.Width, screenshot.Height),
@@ -1228,9 +1245,9 @@ namespace com.clusterrr.hakchi_gui
 
         public void ProcessMods()
         {
-            if (MainForm.Clovershell.IsOnline)
+            if (hakchi.Shell.IsOnline)
             {
-                MainForm.Clovershell.ExecuteSimple("uistop");
+                hakchi.Shell.ExecuteSimple("uistop");
                 int hmodCount = hmodsInstall.Count() + 1;
                 int hmodCounter = 0;
                 if (hmodsInstall != null && hmodsInstall.Count() > 0)
@@ -1245,20 +1262,20 @@ namespace com.clusterrr.hakchi_gui
                             if (Directory.Exists(Path.Combine(dir, modName)))
                             {
 
-                                MainForm.Clovershell.ExecuteSimple($"mkdir -p '{hmodHakchiPath}'");
+                                hakchi.Shell.ExecuteSimple($"mkdir -p '{hmodHakchiPath}'");
                                 using (var hmodTar = new TarStream(Path.Combine(dir, modName)))
                                 {
                                     if (hmodTar.Length > 0)
                                     {
-                                        MainForm.Clovershell.Execute($"tar -xvC '{hmodHakchiPath}'", hmodTar, null, null, 0, true);
+                                        hakchi.Shell.Execute($"tar -xvC '{hmodHakchiPath}'", hmodTar, null, null, 0, true);
                                     }
                                 }
                                 break;
                             }
                             if (File.Exists(Path.Combine(dir, modName)))
                             {
-                                MainForm.Clovershell.ExecuteSimple($"mkdir -p '{hmodHakchiPath}'");
-                                MainForm.Clovershell.Execute($"tar -xzvC '{hmodHakchiPath}'", File.OpenRead(Path.Combine(dir, modName)), null, null, 0, true);
+                                hakchi.Shell.ExecuteSimple($"mkdir -p '{hmodHakchiPath}'");
+                                hakchi.Shell.Execute($"tar -xzvC '{hmodHakchiPath}'", File.OpenRead(Path.Combine(dir, modName)), null, null, 0, true);
                                 break;
                             }
                         }
@@ -1269,16 +1286,16 @@ namespace com.clusterrr.hakchi_gui
                 if (hmodsUninstall != null && hmodsUninstall.Count() > 0)
                 {
                     SetStatus(Resources.UninstallingMods);
-                    MainForm.Clovershell.ExecuteSimple("mkdir -p /var/lib/hakchi/transfer/", 2000, true);
-                    MainForm.Clovershell.Execute("cat > /var/lib/hakchi/transfer/uninstall", Shared.GenerateStreamFromString(String.Join("\n", hmodsUninstall.ToArray())), null, null, 0, true);
+                    hakchi.Shell.ExecuteSimple("mkdir -p /var/lib/hakchi/transfer/", 2000, true);
+                    hakchi.Shell.Execute("cat > /var/lib/hakchi/transfer/uninstall", Shared.GenerateStreamFromString(String.Join("\n", hmodsUninstall.ToArray())), null, null, 0, true);
                 }
                 if((hmodsInstall != null && hmodsInstall.Count() > 0) || (hmodsUninstall != null && hmodsUninstall.Count() > 0))
                 {
-                    MainForm.Clovershell.ExecuteSimple("hakchi packs_install /tmp/hmods/", 0);
+                    hakchi.Shell.ExecuteSimple("hakchi packs_install /tmp/hmods/", 0);
 
                     try
                     {
-                        MainForm.Clovershell.ExecuteSimple("reboot");
+                        hakchi.Shell.ExecuteSimple("reboot");
                     }
                     catch { }
 
@@ -1372,7 +1389,7 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress < 0 ? 1000 : maxProgress);
 
             // Connecting to NES Mini
-            if (!MainForm.Clovershell.IsOnline && WaitForFelFromThread() != DialogResult.OK)
+            if (!hakchi.Shell.IsOnline && WaitForFelFromThread() != DialogResult.OK)
             {
                 DialogResult = DialogResult.Abort;
                 return;
@@ -1382,7 +1399,7 @@ namespace com.clusterrr.hakchi_gui
 
             if (kernel == null) kernel = getMembootImage();
 
-            if (!MainForm.Clovershell.IsOnline)
+            if (!hakchi.Shell.IsOnline)
             {
                 var size = CalcKernelSize(kernel);
                 if (size > kernel.Length || size > Fel.transfer_max_size)
@@ -1402,32 +1419,32 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(progress, maxProgress);
 
             SetStatus(Resources.UploadingKernel);
-            if (MainForm.Clovershell.IsOnline)
+            if (hakchi.Shell.IsOnline)
             {
-                MainForm.Clovershell.ExecuteSimple("mkdir -p /tmp/kexec/", throwOnNonZero: true);
-                MainForm.Clovershell.Execute(
+                hakchi.Shell.ExecuteSimple("mkdir -p /tmp/kexec/", throwOnNonZero: true);
+                hakchi.Shell.Execute(
                     command: "cat > /tmp/kexec/kexec && chmod +x /tmp/kexec/kexec",
                     stdin: File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "tools", "arm", "kexec.static")),
                     throwOnNonZero: true
                 );
-                MainForm.Clovershell.Execute(
+                hakchi.Shell.Execute(
                     command: "cat > /tmp/kexec/unpackbootimg && chmod +x /tmp/kexec/unpackbootimg",
                     stdin: File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "tools", "arm", "unpackbootimg.static")),
                     throwOnNonZero: true
                 );
 
-                MainForm.Clovershell.ExecuteSimple("uistop");
+                hakchi.Shell.ExecuteSimple("uistop");
 
-                MainForm.Clovershell.Execute(
+                hakchi.Shell.Execute(
                     command: "cat > /tmp/kexec/boot.img; cd /tmp/kexec/; ./unpackbootimg -i boot.img",
                     stdin: new MemoryStream(kernel, false),
                     throwOnNonZero: true
                 );
-                MainForm.Clovershell.ExecuteSimple("cd /tmp/kexec/ && ./kexec -l -t zImage boot.img-zImage \"--command-line=$(cat boot.img-cmdline)\" --ramdisk=boot.img-ramdisk.gz --atags", 0, true);
-                MainForm.Clovershell.ExecuteSimple("cd /tmp/; umount -ar", 0);
+                hakchi.Shell.ExecuteSimple("cd /tmp/kexec/ && ./kexec -l -t zImage boot.img-zImage \"--command-line=$(cat boot.img-cmdline)\" --ramdisk=boot.img-ramdisk.gz --atags", 0, true);
+                hakchi.Shell.ExecuteSimple("cd /tmp/; umount -ar", 0);
                 try
                 {
-                    MainForm.Clovershell.ExecuteSimple("/tmp/kexec/kexec -e");
+                    hakchi.Shell.ExecuteSimple("/tmp/kexec/kexec -e");
                 }
                 catch
                 {
@@ -1469,7 +1486,7 @@ namespace com.clusterrr.hakchi_gui
                 Thread.Sleep(500);
                 progress++;
                 SetProgress(progress, maxProgress);
-                if (MainForm.Clovershell.IsOnline)
+                if (hakchi.Shell.IsOnline)
                     break;
             }
 
@@ -2020,21 +2037,21 @@ namespace com.clusterrr.hakchi_gui
         {
             if (Games == null) return;
 
-            var clovershell = MainForm.Clovershell;
-            if (!clovershell.IsOnline) return;
+            var shell = hakchi.Shell;
+            if (!shell.IsOnline) return;
 
-            string gamesCloverPath = clovershell.ExecuteSimple("hakchi eval 'echo \"$squashfs$gamepath\"'", 2000, true);
+            string gamesCloverPath = shell.ExecuteSimple("hakchi eval 'echo \"$squashfs$gamepath\"'", 2000, true);
             string cachePath = Path.Combine(Program.BaseDirectoryExternal, "games_cache");
 
             try
             {
                 SetStatus(string.Format(Resources.UpdatingLocalCache));
 
-                var reply = clovershell.ExecuteSimple($"[ -d {gamesCloverPath} ] && echo YES || echo NO");
+                var reply = shell.ExecuteSimple($"[ -d {gamesCloverPath} ] && echo YES || echo NO");
                 if (reply == "NO")
                 {
                     gamesCloverPath = hakchi.GamesPath;
-                    reply = clovershell.ExecuteSimple($"[ -d {gamesCloverPath} ] && echo YES || echo NO");
+                    reply = shell.ExecuteSimple($"[ -d {gamesCloverPath} ] && echo YES || echo NO");
                     if( reply == "NO")
                         throw new Exception("unable to update local cache. games directory not accessible.");
                 }
@@ -2052,7 +2069,7 @@ namespace com.clusterrr.hakchi_gui
                             using (var tar = new MemoryStream())
                             {
                                 string cmd = $"cd {gamesCloverPath}/{game.Code} && tar -c *";
-                                clovershell.Execute(cmd, null, tar, null, 10000, true);
+                                shell.Execute(cmd, null, tar, null, 10000, true);
                                 tar.Seek(0, SeekOrigin.Begin);
                                 using (var szExtractorTar = new SevenZipExtractor(tar))
                                     szExtractorTar.ExtractArchive(gamePath);

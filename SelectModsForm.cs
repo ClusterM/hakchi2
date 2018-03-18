@@ -234,9 +234,9 @@ namespace com.clusterrr.hakchi_gui
             wbReadme.Document.BackColor = this.BackColor;
             usermodsDirectory = Path.Combine(Program.BaseDirectoryExternal, "user_mods");
             var modsList = new List<string>();
-            if (loadInstalledMods && MainForm.Clovershell.IsOnline)
+            if (loadInstalledMods && hakchi.Shell.IsOnline)
             {
-                var modsstr = MainForm.Clovershell.ExecuteSimple("ls /var/lib/hakchi/hmod/uninstall-*", 2000, true);
+                var modsstr = hakchi.Shell.ExecuteSimple("ls /var/lib/hakchi/hmod/uninstall-*", 2000, true);
                 var installedMods = modsstr.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var mod in installedMods)
                 {

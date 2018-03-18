@@ -28,7 +28,7 @@ namespace com.clusterrr.hakchi_gui
 
         static bool DeviceExists()
         {
-            return MainForm.Clovershell.IsOnline;
+            return hakchi.Shell.IsOnline;
         }
 
         private void timer_Tick(object sender, EventArgs e)

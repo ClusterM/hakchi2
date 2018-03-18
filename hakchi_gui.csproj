@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>com.clusterrr.hakchi_gui</RootNamespace>
     <AssemblyName>hakchi</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NoStdLib>False</NoStdLib>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
@@ -17,6 +17,7 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
     <PublishUrl>ftp://ftp.h710140844.nichost.ru/software.clusterrr.com/docs/hakchi2/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -50,6 +51,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -61,6 +63,7 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DebugSymbols>false</DebugSymbols>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icon_app.ico</ApplicationIcon>
@@ -106,32 +109,54 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoUpdater.NET, Version=1.4.7.0, Culture=neutral, PublicKeyToken=942f95247e354701, processorArchitecture=MSIL">
-      <HintPath>packages\Autoupdater.NET.Official.1.4.7\lib\net35\AutoUpdater.NET.dll</HintPath>
+      <HintPath>packages\Autoupdater.NET.Official.1.4.7\lib\net452\AutoUpdater.NET.dll</HintPath>
     </Reference>
     <Reference Include="CommonMark, Version=0.1.0.0, Culture=neutral, PublicKeyToken=001ef8810438905d, processorArchitecture=MSIL">
-      <HintPath>packages\CommonMark.NET.0.15.1\lib\net35-client\CommonMark.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>packages\CommonMark.NET.0.15.1\lib\net45\CommonMark.dll</HintPath>
     </Reference>
     <Reference Include="Costura, Version=1.6.2.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
-      <HintPath>packages\Costura.Fody.1.6.2\lib\portable-net+sl+win+wpa+wp\Costura.dll</HintPath>
+      <HintPath>packages\Costura.Fody.1.6.2\lib\dotnet\Costura.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.11.0.1\lib\net35\Newtonsoft.Json.dll</HintPath>
+      <HintPath>packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nQuant.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\nQuant.1.0.3\lib\net20\nQuant.Core.dll</HintPath>
+      <HintPath>packages\nQuant.1.0.3\lib\net40\nQuant.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet">
+      <HintPath>SSH.NET\src\Renci.SshNet.NET35\bin\Debug\Renci.SshNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Reactive.Core, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>packages\System.Reactive.Core.3.1.1\lib\net46\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>packages\System.Reactive.Interfaces.3.1.1\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>packages\System.Reactive.Linq.3.1.1\lib\net46\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>packages\System.Reactive.PlatformServices.3.1.1\lib\net46\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>packages\System.Reactive.Windows.Threading.3.1.1\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Zeroconf, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Zeroconf.2.9.0\lib\net45\Zeroconf.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDeploymentWrapper.cs" />
@@ -154,6 +179,7 @@
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\UnknownGame.cs" />
     <Compile Include="hakchi.cs" />
+    <Compile Include="ISystemShell.cs" />
     <Compile Include="NewCustomGameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,12 +268,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="SelectConsoleDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SelectConsoleDialog.Designer.cs">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="FtpServer\NesMiniFileSystemHandler.cs" />
     <Compile Include="FtpServer\NesMiniAuthHandler.cs" />
@@ -542,6 +562,8 @@
     <Compile Include="SnesPresetEditor.Designer.cs">
       <DependentUpon>SnesPresetEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ssh\SshClientException.cs" />
+    <Compile Include="Ssh\SshClientWrapper.cs" />
     <Compile Include="StringInputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1326,6 +1348,18 @@
     <Content Include="readmeTemplate.html" />
     <Content Include="retroarch-systems-blacklist.txt" />
     <Content Include="retroarch-whitelist.txt" />
+    <None Include="mods\mod_general\generalmemboot.flag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="tools\arm\sntool.static">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="network_mods\avahi-7bbd517.hmod" />
+    <None Include="network_mods\dropbear-b5ca992.hmod" />
+    <None Include="network_mods\ftpd-e56a930.hmod" />
+    <None Include="network_mods\rndis-197ace1.hmod" />
+    <None Include="network_mods\telnetd-ca53806.hmod" />
+    <None Include="packages.config" />
     <None Include="sfrom_tool\README.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1338,12 +1372,33 @@
     <None Include="tools\arm\mke2fs.static">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="tools\rsyncpass">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\xz.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="mods\hmods\font_remount.hmod">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="patches\1c3848c0-Illusion of Gaia %28U%29 [!].ips">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="tools\cygcrypto-1.0.0.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\cygpopt-0.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\cygssp-0.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\cygz.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\rsync.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="user_mods\advanced_music_hack.hmod\etc\preinit.d\bb223_advanced_music_hack">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1428,81 +1483,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SearchForm.pt-BR.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.bg-BG.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.ca-ES.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.da-DK.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.de-DE.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.el-GR.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.en-GB.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.es-AR.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.es-ES.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.fi-FI.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.fr-FR.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.id-ID.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.it-IT.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.ja-JP.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.nl.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.pl-PL.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.pt-BR.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.pt-PT.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.ru-RU.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.sk-SK.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.sv-SE.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.uk-UA.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.zh-CHS.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.zh-CHT.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectConsoleDialog.zh-TW.resx">
-      <DependentUpon>SelectConsoleDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FoldersManagerForm.bg-BG.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
@@ -2881,7 +2861,28 @@
     <None Include="hakchi-nonportable.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+<<<<<<< HEAD
     <None Include="packages.config" />
+=======
+    <None Include="mods\mod_general\bin\busybox">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_general\bin\rsync">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_general\sbin\init">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_general\bin\clovershell">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_general\etc\passwd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="mods\mod_reset\hakchi\transfer\earlybird">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+>>>>>>> cumulative work to:
     <None Include="Properties\app.manifest" />
     <None Include="user_mods\snes_custom_filters.hmod\canoe-custom-filters">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -3139,14 +3140,44 @@
     <None Include="patches\README.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="tools\7z.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="tools\7z64.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Content Include="tools\7z.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\7z64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SevenZip\gpl.txt" />
     <Content Include="SevenZip\lgpl.txt" />
+<<<<<<< HEAD
+=======
+    <Content Include="tools\cpio.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\cyggcc_s-1.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\cygiconv-2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\cygintl-8.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\cygwin1.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\lzop.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\mkbootfs.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\mkbootimg.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tools\unpackbootimg.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+>>>>>>> cumulative work to:
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -3234,13 +3265,13 @@ git --version &amp;&amp; (
     <Copy SourceFiles="@(LanguageResourceFiles)" DestinationFolder="$(OutDir)languages\%(RecursiveDir)" SkipUnchangedFiles="true" />
     <RemoveDir Directories="$(OutDir)%(LanguageResourceFiles.RecursiveDir);" />
   </Target>
+  <Import Project="packages\Fody.2.4.6\build\Fody.targets" Condition="Exists('packages\Fody.2.4.6\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets'))" />
-    <Error Condition="!Exists('packages\Fody.2.4.2\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Fody.2.4.2\build\Fody.targets'))" />
+    <Error Condition="!Exists('packages\Fody.2.4.6\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Fody.2.4.6\build\Fody.targets'))" />
+    <Error Condition="!Exists('packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets'))" />
   </Target>
-  <Import Project="packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets" Condition="Exists('packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets')" />
-  <Import Project="packages\Fody.2.4.2\build\Fody.targets" Condition="Exists('packages\Fody.2.4.2\build\Fody.targets')" />
+  <Import Project="packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets" Condition="Exists('packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets')" />
 </Project>
