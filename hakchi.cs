@@ -132,7 +132,7 @@ namespace com.clusterrr.hakchi_gui
                     throw new IOException("Clovershell connection unexpectedly offline");
                 }
 
-                MinimalMemboot = Clovershell.Execute("stat /generalmemboot.flag &>/dev/null") == 0;
+                MinimalMemboot = Clovershell.Execute("[ \"$cf_memboot\" = \"y\" ]") == 0;
 
                 // detect unique id
                 UniqueID = Clovershell.ExecuteSimple("echo \"`devmem 0x01C23800``devmem 0x01C23804``devmem 0x01C23808``devmem 0x01C2380C`\"").Trim().Replace("0x", "");

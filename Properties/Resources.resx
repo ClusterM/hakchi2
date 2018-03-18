@@ -271,7 +271,7 @@
     <value>Do you really want to remove all traces of hakchi2 and return your NES/SNES Mini to its original state?</value>
   </data>
   <data name="UninstallQ2" xml:space="preserve">
-    <value>Done. Wait until the power LED goes out. You also need to flash the original kernel. Do you want to flash the original kernel now?</value>
+    <value>Do you want to flash the original kernel now?</value>
   </data>
   <data name="GameGenieFormatError" xml:space="preserve">
     <value>Invalid Game Genie code "{0}" for game "{1}".</value>
@@ -926,5 +926,17 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   </data>
   <data name="InvalidHsqs" xml:space="preserve">
     <value>Invalid hsqs image</value>
+  </data>
+  <data name="consoleTypeFamicom" xml:space="preserve">
+    <value>Famicom (Japan)</value>
+  </data>
+  <data name="consoleTypeNes" xml:space="preserve">
+    <value>NES (USA/Europe)</value>
+  </data>
+  <data name="consoleTypeSnes" xml:space="preserve">
+    <value>SNES (USA/Europe)</value>
+  </data>
+  <data name="consoleTypeSuperFamicom" xml:space="preserve">
+    <value>Super Famicom (Japan)</value>
   </data>
 </root>

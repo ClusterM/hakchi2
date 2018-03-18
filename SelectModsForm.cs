@@ -131,7 +131,6 @@ namespace com.clusterrr.hakchi_gui
 
                     if (!skipExtraction)
                     {
-                        SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
                         using (var szExtractor = new SevenZipExtractor(dir))
                         {
                             var tar = new MemoryStream();
@@ -409,7 +408,6 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else if (ext == ".7z" || ext == ".zip" || ext == ".rar")
                 {
-                    SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
                     using (var szExtractor = new SevenZipExtractor(file))
                     {
                         foreach (var f in szExtractor.ArchiveFileNames)

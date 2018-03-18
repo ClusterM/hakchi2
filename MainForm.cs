@@ -52,10 +52,10 @@ namespace com.clusterrr.hakchi_gui
         {
             switch (c)
             {
-                case ConsoleType.NES: return nESMiniToolStripMenuItem.Text;
-                case ConsoleType.Famicom: return famicomMiniToolStripMenuItem.Text;
-                case ConsoleType.SNES: return sNESMiniToolStripMenuItem.Text;
-                case ConsoleType.SuperFamicom: return superFamicomMiniToolStripMenuItem.Text;
+                case ConsoleType.NES: return Resources.consoleTypeNes;
+                case ConsoleType.Famicom: return Resources.consoleTypeFamicom;
+                case ConsoleType.SNES: return Resources.consoleTypeSnes;
+                case ConsoleType.SuperFamicom: return Resources.consoleTypeSuperFamicom;
                 case ConsoleType.Unknown: return Resources.Unknown;
             }
             return string.Empty;
@@ -237,7 +237,7 @@ namespace com.clusterrr.hakchi_gui
                         {
                             if (BackgroundThreadMessageBox(Resources.SystemRequiresReflash, Resources.OutdatedKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                             {
-                                if (FlashCustomKernel())
+                                if (InstallHakchi())
                                 {
                                     BackgroundThreadMessageBox(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
@@ -293,13 +293,6 @@ namespace com.clusterrr.hakchi_gui
                     break;
                 }
             }
-
-            // detected console type
-            noneToolStripMenuItem.Checked = hakchi.DetectedConsoleType == null || hakchi.DetectedConsoleType == ConsoleType.Unknown;
-            nESMiniToolStripMenuItem.Checked = hakchi.DetectedConsoleType == ConsoleType.NES;
-            famicomMiniToolStripMenuItem.Checked = hakchi.DetectedConsoleType == ConsoleType.Famicom;
-            sNESMiniToolStripMenuItem.Checked = hakchi.DetectedConsoleType == ConsoleType.SNES;
-            superFamicomMiniToolStripMenuItem.Checked = hakchi.DetectedConsoleType == ConsoleType.SuperFamicom;
 
             // console settings
             enableUSBHostToolStripMenuItem.Checked = ConfigIni.Instance.UsbHost;
@@ -1236,28 +1229,13 @@ namespace com.clusterrr.hakchi_gui
 
         }
 
-        DialogResult RequireKernelDump()
-        {
-            if (File.Exists(WorkerForm.KernelDumpPath)) return DialogResult.OK; // OK - already dumped
-                                                                                // Asking user to dump kernel
-            if (MessageBox.Show(Resources.NoKernelWarning, Resources.NoKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                == System.Windows.Forms.DialogResult.Yes)
-            {
-                if (DoKernelDump())
-                    return DialogResult.Yes; // Succesfully dumped
-                else
-                    return DialogResult.No; // Not dumped for some other reason
-            }
-            else return DialogResult.No; // Kernel dump cancelled by user
-        }
-
         DialogResult RequirePatchedKernel()
         {
             if (Clovershell.IsOnline) return DialogResult.OK; // OK - Clovershell is online
             if (MessageBox.Show(Resources.CustomWarning, Resources.CustomKernel, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                     == System.Windows.Forms.DialogResult.Yes)
             {
-                if (FlashCustomKernel())
+                if (InstallHakchi())
                     return DialogResult.Yes; // Succesfully flashed
                 else
                     return DialogResult.No; // Not flashed for some other reason
@@ -1297,17 +1275,6 @@ namespace com.clusterrr.hakchi_gui
                 if (!ConfigIni.Instance.DisablePopups)
                     MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        bool DoKernelDump()
-        {
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.DumpingKernel;
-            workerForm.Task = WorkerForm.Tasks.DumpKernel;
-            workerForm.Start();
-            return workerForm.DialogResult == DialogResult.OK;
-        }
-
-        
 
         bool DoNandFlash()
         {
@@ -1385,13 +1352,16 @@ namespace com.clusterrr.hakchi_gui
                     if (!DumpDialog(FileAccess.Read, "nandc.hsqs", "hsqs", out dumpFilename)) return false;
                     break;
 
+                case WorkerForm.Tasks.FormatNandC:
+                    workerForm.Text = Resources.Membooting;
+                    workerForm.hmodsInstall = new List<string>(InternalMods);
+                    break;
+
                 default:
                     throw new ArgumentOutOfRangeException("task");
             }
             workerForm.NandDump = dumpFilename;
             workerForm.Task = task;
-            workerForm.zImage = Shared.PathCombine(Program.BaseDirectoryInternal, "data", "zImageMemboot");
-            workerForm.Mod = "mod_general";
             workerForm.Config = null;
             workerForm.Games = null;
             workerForm.Start();
@@ -1412,12 +1382,11 @@ namespace com.clusterrr.hakchi_gui
             return result;
         }
 
-        bool FlashCustomKernel()
+        bool InstallHakchi(bool reset = false)
         {
             var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.FlasingCustom;
-            workerForm.Task = WorkerForm.Tasks.FlashKernel;
-            workerForm.Mod = "mod_hakchi";
+            workerForm.Task = (reset ? WorkerForm.Tasks.ResetHakchi : WorkerForm.Tasks.InstallHakchi);
             workerForm.hmodsInstall = new List<string>(InternalMods);
             workerForm.Config = null;
             workerForm.Games = null;
@@ -1430,27 +1399,21 @@ namespace com.clusterrr.hakchi_gui
         {
             var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.Membooting;
-            workerForm.Task = WorkerForm.Tasks.Memboot;
-            workerForm.Mod = null;
+            workerForm.Task = WorkerForm.Tasks.MembootOriginal;
             workerForm.Config = null;
             workerForm.Games = null;
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
         }
 
-        bool MembootCustomKernel(string mod = "mod_hakchi", string extraFiles = null, bool copyBaseMods = false)
+        bool MembootCustomKernel(bool copyBaseMods = false)
         {
             var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.Membooting;
             workerForm.Task = WorkerForm.Tasks.Memboot;
-            workerForm.zImage = Shared.PathCombine(Program.BaseDirectoryInternal, "data", "zImageMemboot");
-            workerForm.Mod = mod;
 
             if (copyBaseMods)
                 workerForm.hmodsInstall = new List<string>(InternalMods);
-
-            if (!String.IsNullOrEmpty(extraFiles))
-                workerForm.ModExtraFilesPaths = new string[] { Shared.PathCombine(Program.BaseDirectoryInternal, "mods", extraFiles) };
 
             workerForm.Config = null;
             workerForm.Games = null;
@@ -1477,7 +1440,6 @@ namespace com.clusterrr.hakchi_gui
             }
             workerForm.Text = Resources.UploadingGames;
             workerForm.Task = WorkerForm.Tasks.UploadGames;
-            workerForm.Mod = "mod_hakchi";
             workerForm.Config = ConfigIni.GetConfigDictionary();
             workerForm.Games = new NesMenuCollection();
             workerForm.exportGames = exportGames;
@@ -1574,24 +1536,11 @@ namespace com.clusterrr.hakchi_gui
             timerCalculateGames.Enabled = true;
         }
 
-        bool FlashOriginalKernel(bool boot = true)
-        {
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.FlasingOriginal;
-            workerForm.Task = WorkerForm.Tasks.FlashKernel;
-            workerForm.Mod = null;
-            workerForm.Start();
-            var result = workerForm.DialogResult == DialogResult.OK;
-            return result;
-        }
-
         bool Uninstall()
         {
             var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.Uninstalling;
-            workerForm.Task = WorkerForm.Tasks.Memboot;
-            workerForm.zImage = Shared.PathCombine(Program.BaseDirectoryInternal, "data", "zImageMemboot");
-            workerForm.Mod = "mod_uninstall";
+            workerForm.Task = WorkerForm.Tasks.UninstallHakchi;
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
         }
@@ -1600,9 +1549,7 @@ namespace com.clusterrr.hakchi_gui
         {
             var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.InstallingMods;
-            workerForm.zImage = Shared.PathCombine(Program.BaseDirectoryInternal, "data", "zImageMemboot");
             workerForm.Task = WorkerForm.Tasks.ProcessMods;
-            workerForm.Mod = "mod_hakchi";
             workerForm.hmodsInstall = new List<string>(mods);
             workerForm.hmodsUninstall = new List<string>();
             workerForm.Start();
@@ -1613,27 +1560,11 @@ namespace com.clusterrr.hakchi_gui
         {
             var workerForm = new WorkerForm(this);
             workerForm.Text = Resources.UninstallingMods;
-            workerForm.zImage = Shared.PathCombine(Program.BaseDirectoryInternal, "data", "zImageMemboot");
             workerForm.Task = WorkerForm.Tasks.ProcessMods;
-            workerForm.Mod = "mod_hakchi";
             workerForm.hmodsInstall = new List<string>();
             workerForm.hmodsUninstall = new List<string>(mods);
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
-        }
-
-        private void dumpKernelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (File.Exists(WorkerForm.KernelDumpPath))
-            {
-                MessageBox.Show(Resources.ReplaceKernelQ, Resources.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (MessageBox.Show(Resources.DumpKernelQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                == System.Windows.Forms.DialogResult.Yes)
-            {
-                if (DoKernelDump()) MessageBox.Show(Resources.KernelDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
 
         private void normalModeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1678,7 +1609,6 @@ namespace com.clusterrr.hakchi_gui
 
         private void dumpNANDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (RequirePatchedKernel() == DialogResult.No) return;
             if (DoNand(WorkerForm.Tasks.DumpNandB))
                 MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -1686,14 +1616,12 @@ namespace com.clusterrr.hakchi_gui
 
         private void flashNANDBPartitionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (RequirePatchedKernel() == DialogResult.No) return;
             if (DoNand(WorkerForm.Tasks.FlashNandB))
                 MessageBox.Show(Resources.NandFlashed, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void dumpNANDCPartitionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (RequirePatchedKernel() == DialogResult.No) return;
             if (DoNand(WorkerForm.Tasks.DumpNandC))
                 MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -1703,7 +1631,6 @@ namespace com.clusterrr.hakchi_gui
             if (MessageBox.Show(Resources.FlashNandCQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == DialogResult.Yes)
             {
-                if (RequirePatchedKernel() == DialogResult.No) return;
                 if (DoNand(WorkerForm.Tasks.FlashNandC))
                     MessageBox.Show(Resources.NandFlashed, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -1714,8 +1641,7 @@ namespace com.clusterrr.hakchi_gui
             if (MessageBox.Show(Resources.FormatNandCQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == DialogResult.Yes)
             {
-                if (RequireKernelDump() == DialogResult.No) return;
-                MembootCustomKernel(extraFiles: "mod_format", copyBaseMods: true);
+                DoNand(WorkerForm.Tasks.FormatNandC);
             }
         }
 
@@ -1724,7 +1650,7 @@ namespace com.clusterrr.hakchi_gui
             if (MessageBox.Show(Resources.CustomKernelQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == DialogResult.Yes)
             {
-                if (FlashCustomKernel())
+                if (InstallHakchi())
                 {
                     MessageBox.Show(Resources.DoneYouCanUpload, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -1733,43 +1659,17 @@ namespace com.clusterrr.hakchi_gui
 
         private void membootOriginalKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(WorkerForm.KernelDumpPath))
-            {
-                MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             MembootOriginalKernel();
         }
 
 
         private void membootPatchedKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (RequireKernelDump() == DialogResult.No) return;
             MembootCustomKernel();
-        }
-
-        private void flashOriginalKernelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!File.Exists(WorkerForm.KernelDumpPath))
-            {
-                MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (MessageBox.Show(Resources.OriginalKernelQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                == System.Windows.Forms.DialogResult.Yes)
-            {
-                if (FlashOriginalKernel())
-                    MessageBox.Show(Resources.UninstallFactoryNote, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
 
         private void uninstallToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(WorkerForm.KernelDumpPath))
-            {
-                MessageBox.Show(Resources.NoKernelYouNeed, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             if (MessageBox.Show(Resources.UninstallQ1, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == System.Windows.Forms.DialogResult.Yes)
             {
@@ -1975,7 +1875,6 @@ namespace com.clusterrr.hakchi_gui
                 var ext = Path.GetExtension(files[0]).ToLower();
                 if (ext == ".7z" || ext == ".zip" || ext == ".rar")
                 {
-                    SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
                     using (var szExtractor = new SevenZipExtractor(files[0]))
                     {
                         foreach (var f in szExtractor.ArchiveFileNames)
@@ -2085,7 +1984,6 @@ namespace com.clusterrr.hakchi_gui
 
         private void installModules(string[] add = null)
         {
-            if (RequireKernelDump() == DialogResult.No) return;
             var form = new SelectModsForm(false, true, add);
             form.Text = Resources.SelectModsInstall;
             if (form.ShowDialog() == DialogResult.OK)
@@ -2105,7 +2003,6 @@ namespace com.clusterrr.hakchi_gui
 
         private void uninstallModulesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (RequireKernelDump() == DialogResult.No) return;
             var form = new SelectModsForm(true, false);
             form.Text = Resources.SelectModsUninstall;
             if (form.ShowDialog() == DialogResult.OK)
@@ -2653,8 +2550,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (RequireKernelDump() == DialogResult.No) return;
-            MembootCustomKernel(extraFiles: "mod_reset", copyBaseMods: true);
+            InstallHakchi(true);
         }
 
         private void selectEmulationCoreToolStripMenuItem_Click(object sender, EventArgs e)

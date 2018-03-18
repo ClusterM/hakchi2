@@ -1,2 +1,0 @@
-source "$modpath/rootfs/etc/preinit"
-source_base "$modpath/rootfs/etc/preinit.d"

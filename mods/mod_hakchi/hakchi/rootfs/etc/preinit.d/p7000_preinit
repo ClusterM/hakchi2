@@ -1,9 +1,0 @@
-if [ "$cfg_boot_stock" == "y" ]; then
-  # load firmware if needed/present
-  source_parts "$preinit.d/p????_*firmware*"
-  # stop loading
-  umount_base 2>/dev/null
-  return 0
-fi
-
-echo "loading $modname"

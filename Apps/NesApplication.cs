@@ -1148,7 +1148,6 @@ namespace com.clusterrr.hakchi_gui
 
         public void Compress()
         {
-            SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
             foreach (var filename in CompressPossible())
             {
                 var archName = filename + ".7z";
@@ -1163,7 +1162,6 @@ namespace com.clusterrr.hakchi_gui
 
         public void Decompress()
         {
-            SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
             foreach (var filename in DecompressPossible())
             {
                 using (var szExtractor = new SevenZipExtractor(filename))

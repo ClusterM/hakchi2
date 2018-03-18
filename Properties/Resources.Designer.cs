@@ -444,6 +444,42 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Famicom (Japan).
+        /// </summary>
+        internal static string consoleTypeFamicom {
+            get {
+                return ResourceManager.GetString("consoleTypeFamicom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NES (USA/Europe).
+        /// </summary>
+        internal static string consoleTypeNes {
+            get {
+                return ResourceManager.GetString("consoleTypeNes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SNES (USA/Europe).
+        /// </summary>
+        internal static string consoleTypeSnes {
+            get {
+                return ResourceManager.GetString("consoleTypeSnes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Super Famicom (Japan).
+        /// </summary>
+        internal static string consoleTypeSuperFamicom {
+            get {
+                return ResourceManager.GetString("consoleTypeSuperFamicom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Box art.
         /// </summary>
         internal static string Cover {
@@ -1388,7 +1424,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to b053b61 (dirty).
+        ///   Looks up a localized string similar to a9d2252 (dirty).
         /// </summary>
         internal static string gitCommit {
             get {
@@ -2454,7 +2490,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done. Wait until the power LED goes out. You also need to flash the original kernel. Do you want to flash the original kernel now?.
+        ///   Looks up a localized string similar to Do you want to flash the original kernel now?.
         /// </summary>
         internal static string UninstallQ2 {
             get {
