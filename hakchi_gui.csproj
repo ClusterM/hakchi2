@@ -152,11 +152,11 @@
     <Compile Include="GameGenie\GameGenieFormatException.cs" />
     <Compile Include="GameGenie\GameGenieNotFoundException.cs" />
     <Compile Include="GameGenie\GameGeniePatcherSnes.cs" />
-    <Compile Include="LifeViewForm.cs">
+    <Compile Include="LiveViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LifeViewForm.Designer.cs">
-      <DependentUpon>LifeViewForm.cs</DependentUpon>
+    <Compile Include="LiveViewForm.Designer.cs">
+      <DependentUpon>LiveViewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SelectConsoleDialog.cs">
       <SubType>Form</SubType>
@@ -603,8 +603,8 @@
     <EmbeddedResource Include="ImageGooglerForm.pt-BR.resx">
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LifeViewForm.resx">
-      <DependentUpon>LifeViewForm.cs</DependentUpon>
+    <EmbeddedResource Include="LiveViewForm.resx">
+      <DependentUpon>LiveViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.hu-HU.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

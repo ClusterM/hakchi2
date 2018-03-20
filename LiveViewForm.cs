@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public partial class LifeViewForm : Form
+    public partial class LiveViewForm : Form
     {
         Thread screenShotThread;
 
-        public LifeViewForm()
+        public LiveViewForm()
         {
             InitializeComponent();
             screenShotThread = new Thread(screenShotLoop);

@@ -1740,7 +1740,7 @@ namespace com.clusterrr.hakchi_gui
                         }).Start();
                     } else // Shift pressed
                     {
-                        new LifeViewForm().ShowDialog();
+                        new LiveViewForm().ShowDialog();
                     }
                 }
             }
