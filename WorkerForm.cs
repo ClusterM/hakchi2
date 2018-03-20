@@ -1120,14 +1120,16 @@ namespace com.clusterrr.hakchi_gui
             return MainForm.ConsoleType.Unknown;
         }
 
-        public static Image TakeScreenshot()
+        public static Image TakeScreenshot(bool pauseUI = true)
         {
             var clovershell = MainForm.Clovershell;
             var screenshot = new Bitmap(1280, 720, PixelFormat.Format24bppRgb);
             var rawStream = new MemoryStream();
-            clovershell.ExecuteSimple("hakchi uipause");
+            if (pauseUI)
+                clovershell.ExecuteSimple("hakchi uipause");
             clovershell.Execute("cat /dev/fb0", null, rawStream, null, 1000, true);
-            clovershell.ExecuteSimple("hakchi uiresume");
+            if (pauseUI)
+                clovershell.ExecuteSimple("hakchi uiresume");
             var raw = rawStream.ToArray();
             BitmapData data = screenshot.LockBits(
                 new Rectangle(0, 0, screenshot.Width, screenshot.Height),
