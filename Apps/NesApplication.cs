@@ -184,6 +184,7 @@ namespace com.clusterrr.hakchi_gui
             public string Core = string.Empty;
             public string OriginalFilename = string.Empty;
             public uint OriginalCrc32 = 0;
+            public bool CustomCoverArt = false;
             [JsonIgnore]
             private AppTypeCollection.AppInfo appInfo = null;
             [JsonIgnore]
@@ -500,7 +501,8 @@ namespace com.clusterrr.hakchi_gui
             game = NesApplication.FromDirectory(gamePath);
             if (game is ICloverAutofill)
                 (game as ICloverAutofill).TryAutofill(crc32);
-            game.FindCover(inputFileName, cover, crc32, name);
+            if (!game.FindCover(inputFileName, crc32, name))
+                game.SetDefaultImage(cover);
 
             if (ConfigIni.Instance.Compress)
             {
@@ -622,11 +624,13 @@ namespace com.clusterrr.hakchi_gui
                     {
                         SetImage(AppTypeCollection.GetAppBySystem(Metadata.System).DefaultCover, false);
                     }
+                    Metadata.CustomCoverArt = false; SaveMetadata();
                 }
                 else
                 {
                     base.Image = value;
                     if (IsOriginalGame) Save();
+                    Metadata.CustomCoverArt = true; SaveMetadata();
                 }
             }
             get
@@ -671,7 +675,31 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public bool FindCover(string inputFileName, Image defaultCover, uint crc32 = 0, string alternateTitle = null)
+        protected override void SetImage(Image img, bool EightBitCompression = false)
+        {
+            base.SetImage(img, EightBitCompression);
+            Metadata.CustomCoverArt = true; SaveMetadata();
+        }
+
+        public override void SetImageFile(string path, bool EightBitCompression = false)
+        {
+            base.SetImageFile(path, EightBitCompression);
+            Metadata.CustomCoverArt = true; SaveMetadata();
+        }
+
+        public override void SetThumbnailFile(string path, bool EightBitCompression = false)
+        {
+            base.SetThumbnailFile(path, EightBitCompression);
+            Metadata.CustomCoverArt = true; SaveMetadata();
+        }
+
+        public void SetDefaultImage(Image img)
+        {
+            base.SetImage(img);
+            Metadata.CustomCoverArt = false; SaveMetadata();
+        }
+
+        public bool FindCover(string inputFileName, uint crc32 = 0, string alternateTitle = null)
         {
             var artDirectory = Path.Combine(Program.BaseDirectoryExternal, "art");
             var imageExtensions = new string[] { ".png", ".jpg", ".jpeg", ".bmp", ".gif", ".tif", ".tiff" };
@@ -780,9 +808,6 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine("Error trying to find cover art: " + ex.Message + ex.StackTrace);
             }
 
-            // failed to find a cover, using default cover if provided
-            if (defaultCover != null)
-                SetImage(defaultCover);
             return CoverArtMatchSuccess = false;
         }
 

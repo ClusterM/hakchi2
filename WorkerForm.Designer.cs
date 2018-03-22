@@ -46,6 +46,7 @@
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(538, 42);
             this.progressBar.TabIndex = 1;
+            this.progressBar.Value = 30;
             // 
             // WorkerForm
             // 

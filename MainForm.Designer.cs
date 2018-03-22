@@ -75,7 +75,11 @@
             this.positionAtTheBottomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.positionSortedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.positionHiddenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupByAppTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sortByToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.coreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showGamesWithoutBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sFROMToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -487,7 +491,8 @@
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.originalGamesToolStripMenuItem,
-            this.groupByAppTypeToolStripMenuItem});
+            this.sortByToolStripMenuItem,
+            this.showGamesWithoutBoxArtToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             resources.ApplyResources(this.viewToolStripMenuItem, "viewToolStripMenuItem");
             // 
@@ -529,12 +534,44 @@
             this.positionHiddenToolStripMenuItem.Tag = "3";
             this.positionHiddenToolStripMenuItem.Click += new System.EventHandler(this.originalGamesPositionToolStripMenuItem_Click);
             // 
-            // groupByAppTypeToolStripMenuItem
+            // sortByToolStripMenuItem
             // 
-            this.groupByAppTypeToolStripMenuItem.CheckOnClick = true;
-            this.groupByAppTypeToolStripMenuItem.Name = "groupByAppTypeToolStripMenuItem";
-            resources.ApplyResources(this.groupByAppTypeToolStripMenuItem, "groupByAppTypeToolStripMenuItem");
-            this.groupByAppTypeToolStripMenuItem.Click += new System.EventHandler(this.groupByAppTypeToolStripMenuItem_Click);
+            this.sortByToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nameToolStripMenuItem,
+            this.coreToolStripMenuItem,
+            this.systemToolStripMenuItem});
+            this.sortByToolStripMenuItem.Name = "sortByToolStripMenuItem";
+            resources.ApplyResources(this.sortByToolStripMenuItem, "sortByToolStripMenuItem");
+            // 
+            // nameToolStripMenuItem
+            // 
+            this.nameToolStripMenuItem.Name = "nameToolStripMenuItem";
+            resources.ApplyResources(this.nameToolStripMenuItem, "nameToolStripMenuItem");
+            this.nameToolStripMenuItem.Tag = "0";
+            this.nameToolStripMenuItem.Click += new System.EventHandler(this.sortByToolStripMenuItem_Click);
+            // 
+            // coreToolStripMenuItem
+            // 
+            this.coreToolStripMenuItem.Name = "coreToolStripMenuItem";
+            resources.ApplyResources(this.coreToolStripMenuItem, "coreToolStripMenuItem");
+            this.coreToolStripMenuItem.Tag = "1";
+            this.coreToolStripMenuItem.Click += new System.EventHandler(this.sortByToolStripMenuItem_Click);
+            // 
+            // systemToolStripMenuItem
+            // 
+            this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
+            resources.ApplyResources(this.systemToolStripMenuItem, "systemToolStripMenuItem");
+            this.systemToolStripMenuItem.Tag = "2";
+            this.systemToolStripMenuItem.Click += new System.EventHandler(this.sortByToolStripMenuItem_Click);
+            // 
+            // showGamesWithoutBoxArtToolStripMenuItem
+            // 
+            this.showGamesWithoutBoxArtToolStripMenuItem.Checked = true;
+            this.showGamesWithoutBoxArtToolStripMenuItem.CheckOnClick = true;
+            this.showGamesWithoutBoxArtToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showGamesWithoutBoxArtToolStripMenuItem.Name = "showGamesWithoutBoxArtToolStripMenuItem";
+            resources.ApplyResources(this.showGamesWithoutBoxArtToolStripMenuItem, "showGamesWithoutBoxArtToolStripMenuItem");
+            this.showGamesWithoutBoxArtToolStripMenuItem.Click += new System.EventHandler(this.showGamesWithoutBoxArtToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -1489,6 +1526,7 @@
             this.Name = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.dragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.dragEnter);
@@ -1598,7 +1636,6 @@
         private System.Windows.Forms.ToolStripMenuItem positionAtTheTopToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem positionAtTheBottomToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem positionSortedToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem groupByAppTypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foldersManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem separateGamesForMultibootToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sFROMToolToolStripMenuItem;
@@ -1685,6 +1722,11 @@
         private System.Windows.Forms.ToolStripMenuItem canoeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem retroarchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flashNANDBPartitionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sortByToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem coreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem systemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showGamesWithoutBoxArtToolStripMenuItem;
     }
 }
 

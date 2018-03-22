@@ -137,6 +137,51 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        protected virtual void SetImage(Image img, bool EightBitCompression = false)
+        {
+            // full-size image ratio
+            int maxX = 204;
+            int maxY = 204;
+            if (ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SuperFamicom)
+            {
+                maxX = 228;
+                maxY = 204;
+            }
+            ProcessImage(img, iconPath, maxX, maxY, false, true, EightBitCompression);
+
+            // thumbnail image ratio
+            maxX = 40;
+            maxY = 40;
+            ProcessImage(img, smallIconPath, maxX, maxY, ConfigIni.Instance.CenterThumbnail, false, EightBitCompression);
+        }
+
+        public virtual void SetImageFile(string path, bool EightBitCompression = false)
+        {
+            // full-size image ratio
+            int maxX = 204;
+            int maxY = 204;
+            if (ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SuperFamicom)
+            {
+                maxX = 228;
+                maxY = 204;
+            }
+            ProcessImageFile(path, iconPath, maxX, maxY, false, true, EightBitCompression);
+
+            // check if a small image file might have accompanied the source image
+            string thumbnailPath = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path) + "_small" + Path.GetExtension(path));
+            if (File.Exists(thumbnailPath))
+                path = thumbnailPath;
+
+            // set thumbnail as well
+            SetThumbnailFile(path, EightBitCompression);
+        }
+
+        public virtual void SetThumbnailFile(string path, bool EightBitCompression = false)
+        {
+            // thumbnail image ratio
+            ProcessImageFile(path, smallIconPath, 40, 40, ConfigIni.Instance.CenterThumbnail, false, EightBitCompression);
+        }
+
         protected static void ProcessImage(Image inImage, string outPath, int targetWidth, int targetHeight, bool expandHeight, bool upscale, bool quantize)
         {
             var outImage = Shared.ResizeImage(inImage, null, null, targetWidth, targetHeight, upscale, true, false, expandHeight);
@@ -170,51 +215,6 @@ namespace com.clusterrr.hakchi_gui
 
             // any other case, fully process image
             ProcessImage(inImage, outPath, targetWidth, targetHeight, expandHeight, upscale, quantize);
-        }
-
-        protected void SetImage(Image img, bool EightBitCompression = false)
-        {
-            // full-size image ratio
-            int maxX = 204;
-            int maxY = 204;
-            if (ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SuperFamicom)
-            {
-                maxX = 228;
-                maxY = 204;
-            }
-            ProcessImage(img, iconPath, maxX, maxY, false, true, EightBitCompression);
-
-            // thumbnail image ratio
-            maxX = 40;
-            maxY = 40;
-            ProcessImage(img, smallIconPath, maxX, maxY, ConfigIni.Instance.CenterThumbnail, false, EightBitCompression);
-        }
-
-        public void SetImageFile(string path, bool EightBitCompression = false)
-        {
-            // full-size image ratio
-            int maxX = 204;
-            int maxY = 204;
-            if (ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SuperFamicom)
-            {
-                maxX = 228;
-                maxY = 204;
-            }
-            ProcessImageFile(path, iconPath, maxX, maxY, false, true, EightBitCompression);
-
-            // check if a small image file might have accompanied the source image
-            string thumbnailPath = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path) + "_small" + Path.GetExtension(path));
-            if (File.Exists(thumbnailPath))
-                path = thumbnailPath;
-
-            // set thumbnail as well
-            SetThumbnailFile(path, EightBitCompression);
-        }
-
-        public void SetThumbnailFile(string path, bool EightBitCompression = false)
-        {
-            // thumbnail image ratio
-            ProcessImageFile(path, smallIconPath, 40, 40, ConfigIni.Instance.CenterThumbnail, false, EightBitCompression);
         }
 
         private static void Quantize(ref Bitmap img)

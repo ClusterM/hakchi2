@@ -30,6 +30,7 @@ namespace com.clusterrr.hakchi_gui
         public const string AVAHI_SERVICE_NAME = "_hakchi._tcp.local.";
 
         public enum OriginalGamesPosition { AtTop = 0, AtBottom = 1, Sorted = 2, Hidden = 3 }
+        public enum GamesSorting { Name = 0, Core = 1, System = 2 }
         public enum ConsoleType { NES = 0, Famicom = 1, SNES = 2, SuperFamicom = 3, Unknown = 255 }
         public long DefaultMaxGamesSize
         {
@@ -147,9 +148,6 @@ namespace com.clusterrr.hakchi_gui
                     if (c != ConsoleType.Unknown)
                         gamesConsoleComboBox.Items.Add(GetConsoleTypeName(c));
 
-                // prepare controls
-                SyncConsoleType();
-
                 // Little tweak for easy translation
                 var tbl = textBoxName.Left;
                 textBoxName.Left = labelName.Left + labelName.Width;
@@ -177,9 +175,6 @@ namespace com.clusterrr.hakchi_gui
                 // Loading games database in background
                 new Thread(NesGame.LoadCache).Start();
                 new Thread(SnesGame.LoadCache).Start();
-
-                // Recalculate games in background
-                new Thread(RecalculateSelectedGamesThread).Start();
 
                 // servers menu settings
                 FTPToolStripMenuItem.Checked = ConfigIni.Instance.FtpServer;
@@ -374,7 +369,10 @@ namespace com.clusterrr.hakchi_gui
             positionAtTheBottomToolStripMenuItem.Checked = ConfigIni.Instance.OriginalGamesPosition == OriginalGamesPosition.AtBottom;
             positionSortedToolStripMenuItem.Checked = ConfigIni.Instance.OriginalGamesPosition == OriginalGamesPosition.Sorted;
             positionHiddenToolStripMenuItem.Checked = ConfigIni.Instance.OriginalGamesPosition == OriginalGamesPosition.Hidden;
-            groupByAppTypeToolStripMenuItem.Checked = ConfigIni.Instance.GroupGamesByAppType;
+            nameToolStripMenuItem.Checked = ConfigIni.Instance.GamesSorting == GamesSorting.Name;
+            coreToolStripMenuItem.Checked = ConfigIni.Instance.GamesSorting == GamesSorting.Core;
+            systemToolStripMenuItem.Checked = ConfigIni.Instance.GamesSorting == GamesSorting.System;
+            showGamesWithoutBoxArtToolStripMenuItem.Checked = ConfigIni.Instance.ShowGamesWithoutCoverArt;
 
             // folders modes
             disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.Instance.FoldersMode == 0;
@@ -441,179 +439,17 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine("local original games cache in sync.");
         }
 
-        ListViewGroup[] lgvGroups = null;
-        SortedDictionary<string, ListViewGroup> lgvAppGroups = null;
-        SortedDictionary<string, ListViewGroup> lgvCustomGroups = null;
         public void LoadGames()
         {
-            Debug.WriteLine("Loading games");
-            var selected = ConfigIni.Instance.SelectedGames;
-
-            // list original game directories
-            var originalGameDirs = new List<string>();
-            foreach(var defaultGame in NesApplication.DefaultGames)
+            using (var tasker = new Tasks.TaskerForm(this))
             {
-                string gameDir = Path.Combine(NesApplication.OriginalGamesDirectory, defaultGame.Code);
-                if (Directory.Exists(gameDir))
-                    originalGameDirs.Add(gameDir);
+                var task = new Tasks.GameTask();
+                task.ListViewGames = listViewGames;
+                tasker.AddTask(task.LoadGames);
+                tasker.SetStatusImage(Resources.sign_down);
+                Tasks.TaskerForm.Conclusion c = tasker.Start(true);
+                Debug.WriteLine(c.ToString());
             }
-
-            // add custom games
-            Directory.CreateDirectory(NesApplication.GamesDirectory);
-            var gameDirs = Shared.ConcatArrays(Directory.GetDirectories(NesApplication.GamesDirectory), originalGameDirs.ToArray());
-            var games = new List<NesApplication>();
-            foreach (var gameDir in gameDirs)
-            {
-                try
-                {
-                    // Removing empty directories without errors
-                    try
-                    {
-                        var game = NesApplication.FromDirectory(gameDir);
-                        games.Add(game);
-                    }
-                    catch (FileNotFoundException ex) // Remove bad directories if any
-                    {
-                        Debug.WriteLine(ex.Message + ex.StackTrace);
-                        Directory.Delete(gameDir, true);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message + ex.StackTrace);
-                    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                }
-            }
-
-            // create groups
-            if (lgvGroups == null)
-            {
-                // standard groups
-                lgvGroups = new ListViewGroup[5];
-                lgvGroups[0] = new ListViewGroup(Resources.ListCategoryNew, HorizontalAlignment.Center);
-                lgvGroups[1] = new ListViewGroup(Resources.ListCategoryOriginal, HorizontalAlignment.Center);
-                lgvGroups[2] = new ListViewGroup(Resources.ListCategoryCustom, HorizontalAlignment.Center);
-                lgvGroups[3] = new ListViewGroup(Resources.ListCategoryAll, HorizontalAlignment.Center);
-                lgvGroups[4] = new ListViewGroup(Resources.ListCategoryUnknown, HorizontalAlignment.Center);
-
-                // order by app groups
-                lgvAppGroups = new SortedDictionary<string, ListViewGroup>();
-                foreach (var system in CoreCollection.Systems)
-                {
-                    lgvAppGroups[system] = new ListViewGroup(system, HorizontalAlignment.Center);
-                }
-                foreach (var appInfo in AppTypeCollection.Apps)
-                {
-                    if (!lgvAppGroups.ContainsKey(appInfo.Name))
-                    {
-                        lgvAppGroups[appInfo.Name] = new ListViewGroup(appInfo.Name, HorizontalAlignment.Center);
-                    }
-                }
-
-                // custom generated on the fly groups
-                lgvCustomGroups = new SortedDictionary<string, ListViewGroup>();
-            }
-
-            listViewGames.BeginUpdate();
-            listViewGames.Groups.Clear();
-            listViewGames.Items.Clear();
-
-            // add games to ListView control
-            var gamesSorted = games.OrderBy(o => o.SortName);
-            foreach (var game in gamesSorted)
-            {
-                if (ConfigIni.Instance.OriginalGamesPosition == OriginalGamesPosition.Hidden && game.IsOriginalGame)
-                    continue;
-
-                var listViewItem = new ListViewItem(game.Name);
-                listViewItem.Tag = game;
-                listViewItem.Checked = selected.Contains(game.Code) || ConfigIni.Instance.HiddenGames.Contains(game.Code);
-
-                ListViewGroup group = null;
-                if (game.IsOriginalGame)
-                {
-                    if (ConfigIni.Instance.OriginalGamesPosition != OriginalGamesPosition.Sorted)
-                        group = lgvGroups[1];
-                }
-
-                if(group == null)
-                {
-                    if (ConfigIni.Instance.GroupGamesByAppType)
-                    {
-                        var appinfo = game.Metadata.AppInfo;
-                        if (!appinfo.Unknown)
-                        {
-                            group = lgvAppGroups[appinfo.Name];
-                        }
-                        else if (!string.IsNullOrEmpty(game.Metadata.System) && lgvAppGroups.ContainsKey(game.Metadata.System))
-                        {
-                            group = lgvAppGroups[game.Metadata.System];
-                        }
-                        else
-                        {
-                            if (game.Desktop.Bin.Trim().Length == 0)
-                            {
-                                group = lgvGroups[4];
-                            }
-                            else
-                            {
-                                string app = game.Desktop.Bin.Trim();
-                                if (!lgvCustomGroups.ContainsKey(app))
-                                    lgvCustomGroups.Add(app, new ListViewGroup(app, HorizontalAlignment.Center));
-                                group = lgvCustomGroups[app];
-                            }
-                        }
-                    }
-                    else
-                    {
-                        group = game.IsOriginalGame ? lgvGroups[1] : lgvGroups[2];
-                    }
-                }
-
-                listViewItem.Group = group;
-                listViewGames.Items.Add(listViewItem);
-            }
-
-            // add groups in the right order
-            if (ConfigIni.Instance.OriginalGamesPosition == OriginalGamesPosition.AtTop)
-            {
-                listViewGames.Groups.Add(lgvGroups[0]);
-                listViewGames.Groups.Add(lgvGroups[1]);
-                if (ConfigIni.Instance.GroupGamesByAppType)
-                {
-                    foreach (var group in lgvAppGroups) listViewGames.Groups.Add(group.Value);
-                    foreach (var group in lgvCustomGroups) listViewGames.Groups.Add(group.Value);
-                }
-                else
-                    listViewGames.Groups.Add(lgvGroups[2]);
-                listViewGames.Groups.Add(lgvGroups[4]);
-            }
-            else if (ConfigIni.Instance.OriginalGamesPosition == OriginalGamesPosition.AtBottom)
-            {
-                listViewGames.Groups.Add(lgvGroups[0]);
-                if (ConfigIni.Instance.GroupGamesByAppType)
-                {
-                    foreach (var group in lgvAppGroups) listViewGames.Groups.Add(group.Value);
-                    foreach (var group in lgvCustomGroups) listViewGames.Groups.Add(group.Value);
-                }
-                else
-                    listViewGames.Groups.Add(lgvGroups[2]);
-                listViewGames.Groups.Add(lgvGroups[4]);
-                listViewGames.Groups.Add(lgvGroups[1]);
-            }
-            else if (ConfigIni.Instance.GroupGamesByAppType)
-            {
-                listViewGames.Groups.Add(lgvGroups[0]);
-                foreach (var group in lgvAppGroups) listViewGames.Groups.Add(group.Value);
-                foreach (var group in lgvCustomGroups) listViewGames.Groups.Add(group.Value);
-                listViewGames.Groups.Add(lgvGroups[4]);
-            }
-
-            // done!
-            listViewGames.EndUpdate();
-
-            // update counters
             RecalculateSelectedGames();
             ShowSelected();
         }
@@ -773,9 +609,9 @@ namespace com.clusterrr.hakchi_gui
                         ConfigIni.Instance.Language = langCodes[language];
                         SaveConfig();
                         lastConsoleType = ConsoleType.Unknown;
-                        lgvGroups = null;
-                        lgvAppGroups = null;
-                        lgvCustomGroups = null;
+                        //lgvGroups = null;
+                        //lgvAppGroups = null;
+                        //lgvCustomGroups = null;
                         Thread.CurrentThread.CurrentUICulture = new CultureInfo(langCodes[language]);
                         this.Controls.Clear();
                         this.InitializeComponent();
@@ -1570,7 +1406,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var newApp in newApps)
                 {
                     var item = new ListViewItem(newApp.Name);
-                    item.Group = lgvGroups[0];
+                    //item.Group = lgvGroups[0];
                     item.Tag = newApp;
                     item.Selected = true;
                     item.Checked = true;
@@ -1876,6 +1712,11 @@ namespace com.clusterrr.hakchi_gui
                 ConfigIni.Instance.ExtraCommandLineArguments[cmdLineType] = form.textBox.Text;
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            AutoUpdater.Start(UPDATE_XML_URL);
+        }
+
         private void MainForm_Shown(object sender, EventArgs e)
         {
             ConfigIni.Instance.RunCount++;
@@ -1884,9 +1725,8 @@ namespace com.clusterrr.hakchi_gui
                 ResetOriginalGamesForAllSystems();
                 MessageBox.Show(this, Resources.FirstRun, Resources.Hello, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            // check for an update after the initial console selection / on each app start
-            AutoUpdater.Start(UPDATE_XML_URL);
+            SyncConsoleType();
+            new Thread(RecalculateSelectedGamesThread).Start();
 
             // enable timers
             timerConnectionCheck.Enabled = true;
@@ -2266,6 +2106,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         try
                         {
+                            Thread.Sleep(5000);
                             showProcess.WaitForExit();
                         }
                         catch { }
@@ -2371,6 +2212,11 @@ namespace com.clusterrr.hakchi_gui
             if (GroupTaskWithSelected(WorkerForm.Tasks.ScanCovers))
                 if (!ConfigIni.Instance.DisablePopups)
                     MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (ConfigIni.Instance.ShowGamesWithoutCoverArt)
+            {
+                SaveSelectedGames();
+                LoadGames();
+            }
             ShowSelected();
             timerCalculateGames.Enabled = true;
         }
@@ -2380,6 +2226,11 @@ namespace com.clusterrr.hakchi_gui
             if (GroupTaskWithSelected(WorkerForm.Tasks.DownloadCovers))
                 if (!ConfigIni.Instance.DisablePopups)
                     MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (ConfigIni.Instance.ShowGamesWithoutCoverArt)
+            {
+                SaveSelectedGames();
+                LoadGames();
+            }
             ShowSelected();
             timerCalculateGames.Enabled = true;
         }
@@ -2389,6 +2240,11 @@ namespace com.clusterrr.hakchi_gui
             if (GroupTaskWithSelected(WorkerForm.Tasks.DeleteCovers))
                 if (!ConfigIni.Instance.DisablePopups)
                     MessageBox.Show(this, Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (ConfigIni.Instance.ShowGamesWithoutCoverArt)
+            {
+                SaveSelectedGames();
+                LoadGames();
+            }
             ShowSelected();
             timerCalculateGames.Enabled = true;
         }
@@ -2509,9 +2365,18 @@ namespace com.clusterrr.hakchi_gui
             LoadGames();
         }
 
-        private void groupByAppTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void sortByToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigIni.Instance.GroupGamesByAppType = groupByAppTypeToolStripMenuItem.Checked;
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            if (menuItem.Checked) return;
+
+            GamesSorting newSorting = (GamesSorting)byte.Parse(menuItem.Tag.ToString());
+            ConfigIni.Instance.GamesSorting = newSorting;
+
+            nameToolStripMenuItem.Checked = newSorting == GamesSorting.Name;
+            coreToolStripMenuItem.Checked = newSorting == GamesSorting.Core;
+            systemToolStripMenuItem.Checked = newSorting == GamesSorting.System;
+
             SaveSelectedGames();
             LoadGames();
         }
@@ -2664,7 +2529,7 @@ namespace com.clusterrr.hakchi_gui
                 if (customGameForm.ShowDialog(this) == DialogResult.OK)
                 {
                     var item = new ListViewItem(customGameForm.NewApp.Name);
-                    item.Group = lgvGroups[0];
+                    //item.Group = lgvGroups[0];
                     item.Tag = customGameForm.NewApp;
                     item.Selected = true;
                     item.Checked = true;
@@ -2714,6 +2579,13 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
+        }
+
+        private void showGamesWithoutBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.ShowGamesWithoutCoverArt = showGamesWithoutBoxArtToolStripMenuItem.Checked;
+            SaveSelectedGames();
+            LoadGames();
         }
     }
 }

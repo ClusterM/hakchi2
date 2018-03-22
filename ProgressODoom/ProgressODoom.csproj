@@ -1,0 +1,183 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8DD1E84B-0B03-4C0B-9B42-1E49F75E7CB1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProgressODoom</RootNamespace>
+    <AssemblyName>ProgressODoom</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AbstractProgressPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BarberPoleProgressPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BevelledGradientProgressPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BevelledProgressPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CandyCaneBackgroundPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CandyCaneProgressPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ChainedGlossPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ColorTools.cs" />
+    <Compile Include="DualProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FlatGlossPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FruityLoopsBackgroundPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FruityLoopsProgressPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GradientBackgroundPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GradientGlossPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HSV.cs" />
+    <Compile Include="IAnimatedProgressPainter.cs" />
+    <Compile Include="IGlossPainter.cs" />
+    <Compile Include="IProgressBackgroundPainter.cs" />
+    <Compile Include="IProgressBorderPainter.cs" />
+    <Compile Include="IProgressPainter.cs" />
+    <Compile Include="JavaProgressPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MetalProgressPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MiddleGlossPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PlainBackgroundPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PlainBorderPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PlainProgressPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProgressBarEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RarBackgroundPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RarBorderPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RarProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RarProgressPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RoundGlossPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StripedProgressPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StyledBorderPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WaveProgressPainter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\ProgressBarEx.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\BarberPoleProgressPainter.ico" />
+    <EmbeddedResource Include="Icons\BevelledGradientProgressPainter.ico" />
+    <EmbeddedResource Include="Icons\BevelledProgressPainter.ico" />
+    <EmbeddedResource Include="Icons\CandyCaneBackgroundPainter.ico" />
+    <EmbeddedResource Include="Icons\CandyCaneProgressPainter.ico" />
+    <EmbeddedResource Include="Icons\DualProgressBar.ico" />
+    <EmbeddedResource Include="Icons\FlatGlossPainter.ico" />
+    <EmbeddedResource Include="Icons\FruityLoopsBackgroundPainter.ico" />
+    <EmbeddedResource Include="Icons\FruityLoopsProgressPainter.ico" />
+    <EmbeddedResource Include="Icons\GradientBackgroundPainter.ico" />
+    <EmbeddedResource Include="Icons\GradientGlossPainter.ico" />
+    <EmbeddedResource Include="Icons\JavaProgressPainter.ico" />
+    <EmbeddedResource Include="Icons\MetalProgressPainter.ico" />
+    <EmbeddedResource Include="Icons\MiddleGlossPainter.ico" />
+    <EmbeddedResource Include="Icons\PlainBackgroundPainter.ico" />
+    <EmbeddedResource Include="Icons\PlainBorderPainter.ico" />
+    <EmbeddedResource Include="Icons\PlainProgressPainter.ico" />
+    <EmbeddedResource Include="Icons\RarBackgroundPainter.ico" />
+    <EmbeddedResource Include="Icons\RarBorderPainter.ico" />
+    <EmbeddedResource Include="Icons\RarProgressBar.ico" />
+    <EmbeddedResource Include="Icons\RarProgressPainter.ico" />
+    <EmbeddedResource Include="Icons\RoundGlossPainter.ico" />
+    <EmbeddedResource Include="Icons\StyledBorderPainter.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\StripedProgressPainter.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\WaveProgressPainter.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -172,7 +172,8 @@ namespace com.clusterrr.hakchi_gui
         public string TelnetCommand = "telnet://{0}:{1}";
         public string TelnetArguments = "";
         public MainForm.OriginalGamesPosition OriginalGamesPosition = MainForm.OriginalGamesPosition.AtTop;
-        public bool GroupGamesByAppType = false;
+        public MainForm.GamesSorting GamesSorting = MainForm.GamesSorting.Name;
+        public bool ShowGamesWithoutCoverArt = false;
         public bool ExportLinked = true;
         public string ExportRegion = "";
         public string MembootUboot = "ubootSD.bin";
@@ -373,12 +374,6 @@ namespace com.clusterrr.hakchi_gui
                                     case "selectedgamessuperfamicom":
                                         instance.gamesCollectionSettings[MainForm.ConsoleType.SuperFamicom].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
-                                    case "originalgamesposition":
-                                        instance.OriginalGamesPosition = (MainForm.OriginalGamesPosition)byte.Parse(value);
-                                        break;
-                                    case "groupgamesbyapptype":
-                                        instance.GroupGamesByAppType = !value.ToLower().Equals("false");
-                                        break;
                                     case "hiddengames":
                                         instance.gamesCollectionSettings[MainForm.ConsoleType.NES].HiddenGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
@@ -390,6 +385,12 @@ namespace com.clusterrr.hakchi_gui
                                         break;
                                     case "hiddengamessuperfamicom":
                                         instance.gamesCollectionSettings[MainForm.ConsoleType.SuperFamicom].HiddenGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        break;
+                                    case "originalgamesposition":
+                                        instance.OriginalGamesPosition = (MainForm.OriginalGamesPosition)byte.Parse(value);
+                                        break;
+                                    case "groupgamesbyapptype":
+                                        instance.GamesSorting = !value.ToLower().Equals("false") ? MainForm.GamesSorting.System : MainForm.GamesSorting.Name;
                                         break;
                                     case "customflashednes":
                                     case "customflashedfamicom":

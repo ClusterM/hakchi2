@@ -118,12 +118,19 @@
       <HintPath>packages\Costura.Fody.1.6.2\lib\dotnet\Costura.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nQuant.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\nQuant.1.0.3\lib\net40\nQuant.Core.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -241,6 +248,19 @@
     <None Include="folder_images\retropie_snes_classic.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <EmbeddedResource Include="images\sign-check.png" />
+    <EmbeddedResource Include="images\sign-down.png" />
+    <EmbeddedResource Include="images\sign-error.png" />
+    <EmbeddedResource Include="images\sign-info.png" />
+    <EmbeddedResource Include="images\sign-question.png" />
+    <EmbeddedResource Include="images\sign-up.png" />
+    <EmbeddedResource Include="images\sign-warning.png" />
+    <Content Include="mods\mod_format\bin\mke2fs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mods\mod_format\hakchi\transfer\earlybird">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="mods\hmods\gamepath-cleanup.hmod">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -575,7 +595,23 @@
     <Compile Include="FoldersManagerForm.Designer.cs">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tasks\GameTask.cs" />
+    <Compile Include="Tasks\KernelTask.cs" />
+    <Compile Include="Tasks\ErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\ErrorForm.Designer.cs">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\SyncTask.cs" />
+    <Compile Include="Tasks\TaskerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\TaskerForm.Designer.cs">
+      <DependentUpon>TaskerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrackableFileStream.cs" />
+    <Compile Include="TrackableStream.cs" />
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
     <Compile Include="WaitingClovershellForm.cs">
@@ -2337,6 +2373,12 @@
     <EmbeddedResource Include="FoldersManagerForm.ru-RU.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\ErrorForm.resx">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\TaskerForm.resx">
+      <DependentUpon>TaskerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.bg-BG.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -3141,36 +3183,6 @@
     </Content>
     <Content Include="SevenZip\gpl.txt" />
     <Content Include="SevenZip\lgpl.txt" />
-<<<<<<< HEAD
-=======
-    <Content Include="tools\cpio.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\cyggcc_s-1.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\cygiconv-2.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\cygintl-8.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\cygwin1.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\lzop.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\mkbootfs.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\mkbootimg.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\unpackbootimg.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
->>>>>>> cumulative work to:
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -3221,16 +3233,16 @@
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
-<<<<<<< HEAD
-  <ItemGroup />
-=======
   <ItemGroup>
+    <ProjectReference Include="ProgressODoom\ProgressODoom.csproj">
+      <Project>{8dd1e84b-0b03-4c0b-9b42-1e49f75e7cb1}</Project>
+      <Name>ProgressODoom</Name>
+    </ProjectReference>
     <ProjectReference Include="SSH.NET\src\Renci.SshNet\Renci.SshNet.csproj">
       <Project>{2f5f8c90-0bd1-424f-997c-7bc6280919d1}</Project>
       <Name>Renci.SshNet</Name>
     </ProjectReference>
   </ItemGroup>
->>>>>>> compilation fixes to combine branches
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>echo. &gt; NUL 2&gt; "$(ProjectDir)commit.txt"

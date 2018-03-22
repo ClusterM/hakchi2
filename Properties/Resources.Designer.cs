@@ -1665,6 +1665,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No custom box art.
+        /// </summary>
+        internal static string ListCategoryNoCoverArt {
+            get {
+                return ResourceManager.GetString("ListCategoryNoCoverArt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Original Games.
         /// </summary>
         internal static string ListCategoryOriginal {
@@ -2339,6 +2348,76 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string SfromTool {
             get {
                 return ResourceManager.GetString("SfromTool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_check {
+            get {
+                object obj = ResourceManager.GetObject("sign_check", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_down {
+            get {
+                object obj = ResourceManager.GetObject("sign_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_error {
+            get {
+                object obj = ResourceManager.GetObject("sign_error", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_info {
+            get {
+                object obj = ResourceManager.GetObject("sign_info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_question {
+            get {
+                object obj = ResourceManager.GetObject("sign_question", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_up {
+            get {
+                object obj = ResourceManager.GetObject("sign_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_warning {
+            get {
+                object obj = ResourceManager.GetObject("sign_warning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

@@ -373,16 +373,40 @@
     <value>Hidden (Unselected)</value>
   </data>
   <data name="originalGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>208, 22</value>
   </data>
   <data name="originalGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Original games</value>
   </data>
-  <data name="groupByAppTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+  <data name="nameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
   </data>
-  <data name="groupByAppTypeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Group by app type</value>
+  <data name="nameToolStripMenuItem.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="coreToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="coreToolStripMenuItem.Text" xml:space="preserve">
+    <value>Core</value>
+  </data>
+  <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="sortByToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="sortByToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sort by</value>
+  </data>
+  <data name="showGamesWithoutBoxArtToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="showGamesWithoutBoxArtToolStripMenuItem.Text" xml:space="preserve">
+    <value>Group games w/o box art</value>
   </data>
   <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
@@ -2294,10 +2318,34 @@
   <data name="&gt;&gt;positionHiddenToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupByAppTypeToolStripMenuItem.Name" xml:space="preserve">
-    <value>groupByAppTypeToolStripMenuItem</value>
+  <data name="&gt;&gt;sortByToolStripMenuItem.Name" xml:space="preserve">
+    <value>sortByToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;groupByAppTypeToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;sortByToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nameToolStripMenuItem.Name" xml:space="preserve">
+    <value>nameToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;nameToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;coreToolStripMenuItem.Name" xml:space="preserve">
+    <value>coreToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;coreToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;systemToolStripMenuItem.Name" xml:space="preserve">
+    <value>systemToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;systemToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;showGamesWithoutBoxArtToolStripMenuItem.Name" xml:space="preserve">
+    <value>showGamesWithoutBoxArtToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;showGamesWithoutBoxArtToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;settingsToolStripMenuItem.Name" xml:space="preserve">

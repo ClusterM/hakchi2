@@ -944,4 +944,28 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   <data name="TelnetServerOn" xml:space="preserve">
     <value>Telnet server on telnet://{0} (login:root)</value>
   </data>
+  <data name="sign_check" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-check.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_error" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-info.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_question" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-question.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ListCategoryNoCoverArt" xml:space="preserve">
+    <value>No custom box art</value>
+  </data>
 </root>
