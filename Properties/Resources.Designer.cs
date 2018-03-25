@@ -476,6 +476,11 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string consoleTypeSuperFamicom {
             get {
                 return ResourceManager.GetString("consoleTypeSuperFamicom", resourceCulture);
+        ///   Looks up a localized string similar to Copying games....
+        /// </summary>
+        internal static string CopyingGames {
+            get {
+                return ResourceManager.GetString("CopyingGames", resourceCulture);
             }
         }
         
@@ -1755,7 +1760,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, there are {0}MBytes of games, it&apos;s too much..
+        ///   Looks up a localized string similar to Sorry, there are {0}MB of games, it&apos;s too much..
         /// </summary>
         internal static string MemoryFull {
             get {
@@ -1764,11 +1769,20 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total writable memory size: {0:F1}MBytes|Available memory for games: {1:F1}MBytes|Used by saves: {2:F1}MBytes|Used by other files: {3:F1}MBytes.
+        ///   Looks up a localized string similar to Total writable memory size: {0:F1}MB|Available memory for games: {1:F1}MB|Used by saves: {2:F1}MB|Used by other files: {3:F1}MB.
         /// </summary>
         internal static string MemoryStats {
             get {
                 return ResourceManager.GetString("MemoryStats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total space available on drive: {0}.
+        /// </summary>
+        internal static string MemoryStatsExport {
+            get {
+                return ResourceManager.GetString("MemoryStatsExport", resourceCulture);
             }
         }
         
@@ -2312,6 +2326,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string SelectAtLeastTwo {
             get {
                 return ResourceManager.GetString("SelectAtLeastTwo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select export drive....
+        /// </summary>
+        internal static string SelectDrive {
+            get {
+                return ResourceManager.GetString("SelectDrive", resourceCulture);
             }
         }
         

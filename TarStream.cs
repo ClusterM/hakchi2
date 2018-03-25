@@ -1,32 +1,34 @@
-﻿using System;
+﻿using com.clusterrr.hakchi_gui;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace com.clusterrr.util
 {
     public class TarStream : Stream
     {
-        List<string> entries = new List<string>();
-        readonly string rootDirectory;
         const string LongLinkFlag = "././@LongLink";
+        readonly string rootDirectory;
+
+        private class Entry
+        {
+            public string FileName = null; // when in normal mode, files are stored in this var and are absolute
+            public ApplicationFileInfo ExtInfo = null; // when in ApplicationFileInfo mode, data is stored here, except for long link flag
+        }
+        List<Entry> entries = new List<Entry>();
+
         long totalSize = 0;
         long position = 0;
         int currentEntry = 0;
         long currentEntryPosition = 0;
         long currentEntryLength = 0;
         Stream currentFile = null;
+        bool currentFileOwned = false;
         byte[] currentHeader;
-        public const string refExt = ".tarstreamref";
-        public static Regex refRegex = new Regex("\\.tarstreamref$");
-
-        public static string refFileGet(string fileName)
-        {
-            return refRegex.IsMatch(fileName) ? File.ReadAllText(fileName) : fileName;
-        }
 
         public delegate void OnProgressDelegate(long Position, long Length);
         public event OnProgressDelegate OnReadProgress = delegate { };
@@ -94,25 +96,39 @@ namespace com.clusterrr.util
             }
         }
 
+        public TarStream(IEnumerable<ApplicationFileInfo> localGameSet, string rootDirectory = ".", string[] skipFiles = null)
+        {
+            this.rootDirectory = rootDirectory ?? string.Empty;
+            LoadApplicationFileInfo(localGameSet, skipFiles);
+            InsertLongFileLinks();
+        }
+
         public TarStream(string directory, string rootDirectory = null, string[] skipFiles = null)
         {
-            if (rootDirectory == null) rootDirectory = directory;
+            if (rootDirectory == null)
+                rootDirectory = directory;
             if (!Directory.Exists(directory))
-                throw new Exception("Directory not exists");
+                throw new Exception($"Directory doesn't exist: \"{directory}\"");
             directory = Path.GetFullPath(directory);
             if (!Directory.Exists(rootDirectory))
-                throw new Exception("Root directory not exists");
+                throw new Exception($"Root directory doesn't exist: \"{rootDirectory}\"");
             rootDirectory = Path.GetFullPath(rootDirectory); // Full path
             if (!directory.StartsWith(rootDirectory))
-                throw new Exception("Invarid root directory");
+                throw new Exception("Invalid root directory");
+            this.rootDirectory = rootDirectory;
 
             LoadDirectory(directory, skipFiles);
+            InsertLongFileLinks();
+        }
+
+        private void InsertLongFileLinks()
+        {
             for (int i = entries.Count - 1; i >= 0; i--) // Checking filenames
             {
-                var name = entries[i].Substring(rootDirectory.Length + 1).Replace(@"\", "/");
+                var name = (entries[i].FileName ?? entries[i].ExtInfo.FilePath).Substring(rootDirectory.Length + 1).Replace(@"\", "/");
                 if (name.Length > 99) // Need to create LongLink
                 {
-                    entries.Insert(i, LongLinkFlag);
+                    entries.Insert(i, new Entry() { FileName = LongLinkFlag });
                     int size = name.Length;
                     if (size % 512 != 0)
                         size += 512 - (size % 512);
@@ -121,7 +137,36 @@ namespace com.clusterrr.util
             }
             if (totalSize % 10240 != 0)
                 totalSize += (10240 - (totalSize % 10240));
-            this.rootDirectory = rootDirectory;
+        }
+
+        private void LoadApplicationFileInfo(IEnumerable<ApplicationFileInfo> localGameSet, string[] skipFiles = null)
+        {
+            // extract directories out of the filenames in game set (hashset will keep entries unique)
+            HashSet<string> directories = new HashSet<string>();
+            foreach (var afi in localGameSet)
+            {
+                if (Path.GetDirectoryName(afi.FilePath).Replace(@"\", "/").Substring(rootDirectory.Length + 1).Length > 0)
+                    directories.Add(Path.GetDirectoryName(afi.FilePath).Replace(@"\", "/").TrimEnd('/') + '/');
+            }
+
+            // add directories as separate entries (to mimick normal version)
+            foreach(var d in directories)
+            {
+                entries.Add(new Entry() { ExtInfo = new ApplicationFileInfo(d, 0, DateTime.UtcNow) });
+                totalSize += 512;
+            }
+
+            // add files as ApplicationFileInfo entries
+            foreach(var afi in localGameSet)
+            {
+                if (skipFiles != null && skipFiles.Contains(Path.GetFileName(afi.FilePath)))
+                    continue;
+                entries.Add(new Entry() { ExtInfo = afi });
+                long size = afi.FileSize;
+                if (size % 512 != 0)
+                    size += 512 - (size % 512);
+                totalSize += 512 + size;
+            }
         }
 
         private void LoadDirectory(string directory, string[] skipFiles)
@@ -133,7 +178,7 @@ namespace com.clusterrr.util
                 var dname = d;
                 if (!dname.EndsWith(@"\"))
                     dname += @"\";
-                entries.Add(dname);
+                entries.Add(new Entry() { FileName = dname });
                 totalSize += 512;
                 LoadDirectory(d, skipFiles);
             }
@@ -142,15 +187,8 @@ namespace com.clusterrr.util
             {
                 if (skipFiles != null && skipFiles.Contains(Path.GetFileName(f)))
                     continue;
-                entries.Add(f);
-                long size = 0;
-                if (refRegex.IsMatch(f))
-                {
-                    size = new FileInfo(File.ReadAllText(f)).Length;
-                } else
-                {
-                    size = new FileInfo(f).Length;
-                }
+                entries.Add(new Entry() { FileName = f });
+                long size = new FileInfo(f).Length;
                 if (size % 512 != 0)
                     size += 512 - (size % 512);
                 totalSize += 512 + size;
@@ -185,7 +223,21 @@ namespace com.clusterrr.util
             }
             set
             {
-                throw new NotImplementedException();
+                if (value != 0)
+                    throw new NotImplementedException();
+
+                position = 0;
+                currentEntry = 0;
+                currentEntryPosition = 0;
+                currentEntryLength = 0;
+                if (currentFile != null)
+                {
+                    if (currentFileOwned)
+                        currentFile.Dispose();
+                    currentFile = null;
+                    currentFileOwned = false;
+                }
+                currentHeader = null;
             }
         }
 
@@ -200,13 +252,13 @@ namespace com.clusterrr.util
                     currentEntry++;
                     currentEntryPosition = 0;
                 }
-
-                if (currentEntry >= entries.Count) // end of archive, write zeros
+                if (currentEntry >= entries.Count) // End of archive, write zeros
                 {
                     if (currentFile != null)
                     {
-                        currentFile.Dispose();
+                        if (currentFileOwned) currentFile.Dispose();
                         currentFile = null;
+                        currentFileOwned = false;
                     }
                     long l = Math.Min(count, totalSize - position);
                     var dummy = new byte[l];
@@ -222,25 +274,26 @@ namespace com.clusterrr.util
                 {
                     currentEntryLength = 512;
                     var header = new TarHeader();
-                    if (entries[currentEntry] != LongLinkFlag)
+
+                    var fileName = entries[currentEntry].FileName ?? entries[currentEntry].ExtInfo.FilePath;
+                    if (fileName != LongLinkFlag)
                     {
-                        header.FileName = entries[currentEntry].Substring(rootDirectory.Length + 1).Replace(@"\", "/");
-                        if (refRegex.IsMatch(entries[currentEntry]))
-                        {
-                            header.FileName = refRegex.Replace(header.FileName, string.Empty);
-                        }
+                        header.FileName = fileName.Substring(rootDirectory.Length + 1).Replace(@"\", "/");
                     }
+
                     if (currentFile != null)
                     {
-                        currentFile.Dispose();
+                        if (currentFileOwned) currentFile.Dispose();
                         currentFile = null;
+                        currentFileOwned = false;
                     }
-                    if (entries[currentEntry] == LongLinkFlag)
+
+                    if (fileName == LongLinkFlag)
                     {
-                        header.FileName = entries[currentEntry];
+                        header.FileName = fileName;
                         header.FileMode = "0000000";
-                        var name = entries[currentEntry+1].Substring(rootDirectory.Length + 1).Replace(@"\", "/");
-                        var nameBuff = Encoding.UTF8.GetBytes(name);
+                        fileName = (entries[currentEntry + 1].FileName ?? entries[currentEntry + 1].ExtInfo.FilePath).Substring(rootDirectory.Length + 1).Replace(@"\", "/");
+                        var nameBuff = Encoding.UTF8.GetBytes(fileName);
                         currentFile = new MemoryStream(nameBuff.Length + 1);
                         currentFile.Write(nameBuff, 0, nameBuff.Length);
                         currentFile.WriteByte(0);
@@ -251,15 +304,28 @@ namespace com.clusterrr.util
                         header.FileSize = Convert.ToString(currentFile.Length, 8).PadLeft(11, '0');
                         header.LastModificationTime = "0".PadLeft(11, '0');
                         header.FileType = 'L';
-
                     }
                     else if (!header.FileName.EndsWith("/")) // It's a file!
                     {
-                        string currentFilePath = entries[currentEntry];
-                        if (refRegex.IsMatch(entries[currentEntry]))
-                            currentFilePath = File.ReadAllText(entries[currentEntry]);
-
-                        currentFile = new FileStream(currentFilePath, FileMode.Open);
+                        string localFilePath = entries[currentEntry].FileName ?? entries[currentEntry].ExtInfo.LocalFilePath;
+                        DateTime lastWriteTimeUtc;
+                        if (localFilePath != null) // Standard file
+                        {
+                            currentFile = new FileStream(localFilePath, FileMode.Open);
+                            currentFileOwned = true;
+                            lastWriteTimeUtc = new FileInfo(localFilePath).LastWriteTimeUtc;
+                        }
+                        else // file link
+                        {
+                            currentFile = entries[currentEntry].ExtInfo.FileStream ?? new MemoryStream();
+                            try
+                            {
+                                currentFile.Position = 0;
+                            }
+                            catch { }
+                            currentFileOwned = entries[currentEntry].ExtInfo.FileStream == null;
+                            lastWriteTimeUtc = entries[currentEntry].ExtInfo.ModifiedTime;
+                        }
 
                         header.FileMode = "0100644";
                         currentEntryLength += currentFile.Length;
@@ -267,16 +333,17 @@ namespace com.clusterrr.util
                             currentEntryLength += 512 - (currentFile.Length % 512);
                         header.FileSize = Convert.ToString(currentFile.Length, 8).PadLeft(11, '0');
                         header.LastModificationTime = Convert.ToString(
-                            (long)new FileInfo(currentFilePath).LastWriteTimeUtc.Subtract(new DateTime(1970, 1, 1)).TotalSeconds
+                            (long)lastWriteTimeUtc.Subtract(new DateTime(1970, 1, 1)).TotalSeconds
                             , 8).PadLeft(11, '0');
                         header.FileType = '0';
                     }
                     else if (header.FileName.EndsWith("/")) // It's a directory...
                     {
+                        DateTime lastWriteTimeUtc = entries[currentEntry].FileName != null ? new DirectoryInfo(entries[currentEntry].FileName).LastWriteTimeUtc : DateTime.UtcNow;
                         header.FileMode = "0040755";
                         header.FileSize = "".PadLeft(11, '0');
                         header.LastModificationTime = Convert.ToString(
-                            (long)new DirectoryInfo(entries[currentEntry]).LastWriteTimeUtc.Subtract(new DateTime(1970, 1, 1)).TotalSeconds
+                            (long)lastWriteTimeUtc.Subtract(new DateTime(1970, 1, 1)).TotalSeconds
                             , 8).PadLeft(11, '0');
                         header.FileType = '5';
                     }
@@ -331,5 +398,14 @@ namespace com.clusterrr.util
             throw new NotImplementedException();
         }
 
+        public void DebugWrite()
+        {
+            foreach (var e in entries)
+            {
+                Debug.WriteLine("Filename: " + e.FileName ?? "");
+                if (e.ExtInfo != null)
+                    ApplicationFileInfo.DebugListHashSet(new List<ApplicationFileInfo>() { e.ExtInfo });
+            }
+        }
     }
 }

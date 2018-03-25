@@ -1,7 +1,8 @@
-﻿using com.clusterrr.util;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace com.clusterrr.hakchi_gui
@@ -9,70 +10,90 @@ namespace com.clusterrr.hakchi_gui
     /// <summary>
     /// Class to represent any file within the directory structure of the games/applications.
     /// </summary>
-    class ApplicationFileInfo
+    public class ApplicationFileInfo
     {
-        public string Filepath
+        public string FilePath
         { get; set; }
 
-        public long Filesize
+        public long FileSize
         { get; set; }
 
         public DateTime ModifiedTime
         { get; set; }
 
-        public bool IsTarStreamRefFile
+        public string LocalFilePath
+        { get; set; }
+
+        public Stream FileStream
         { get; set; }
 
         public ApplicationFileInfo()
         { }
 
-        public ApplicationFileInfo(string filepath, long filesize, DateTime modifiedTime, bool isTarStreamRefFile)
+        ~ApplicationFileInfo()
         {
-            this.Filepath = filepath;
-            this.Filesize = filesize;
+            if(FileStream != null)
+            {
+                FileStream.Dispose();
+                FileStream = null;
+            }
+        }
+
+        public ApplicationFileInfo(string filepath, long filesize, DateTime modifiedTime, string localfilepath = null)
+        {
+            this.FilePath = filepath;
+            this.FileSize = filesize;
             this.ModifiedTime = modifiedTime;
-            this.IsTarStreamRefFile = isTarStreamRefFile;
+            this.LocalFilePath = localfilepath;
+            this.FileStream = null;
+        }
+
+        public ApplicationFileInfo(string filepath, DateTime modifiedTime, Stream localfiledata)
+        {
+            this.FilePath = filepath;
+            this.FileSize = localfiledata.Length;
+            this.ModifiedTime = modifiedTime;
+            this.LocalFilePath = null;
+            this.FileStream = localfiledata;
         }
 
         public override bool Equals(object obj)
         {
             var info = obj as ApplicationFileInfo;
-            return info != null &&
-                   Filepath == info.Filepath &&
-                   Filesize == info.Filesize &&
-                   ModifiedTime.ToString().Equals(info.ModifiedTime.ToString());
+            var preliminaryEqual =
+                info != null &&
+                FilePath == info.FilePath &&
+                FileSize == info.FileSize;
+            // check duration and allow 2 seconds leeway (accounting for fat32)
+            return preliminaryEqual && ModifiedTime.Subtract(info.ModifiedTime).Duration() < TimeSpan.FromSeconds(2);
         }
 
         public override int GetHashCode()
         {
             var hashCode = -1706955063;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Filepath);
-            hashCode = hashCode * -1521134295 + Filesize.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ModifiedTime.ToString());
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(FilePath);
+            hashCode = hashCode * -1521134295 + FileSize.GetHashCode();
+            //hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ModifiedTime.ToString()); // don't count date in the hashcode, because i have to test with imprecision
             return hashCode;
         }
 
-        public static HashSet<ApplicationFileInfo> GetApplicationFileInfoForDirectory(string rootDirectory, bool recursive = true)
+        public static HashSet<ApplicationFileInfo> GetApplicationFileInfoForDirectory(string rootDirectory, string targetDirectory = null, bool recursive = true, string[] skipFiles = null)
         {
             var fileInfoSet = new HashSet<ApplicationFileInfo>();
             var filepaths = Directory.GetFiles(rootDirectory, "*", recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
 
+            targetDirectory = targetDirectory ?? string.Empty;
+            if (!string.IsNullOrEmpty(targetDirectory))
+                targetDirectory = "/" + targetDirectory.Trim('/');
+
             foreach (string path in filepaths)
             {
-                // follow through on tarstreamref files
-                string pathToRead = path;
-                bool isRefFile = false;
-
-                if (TarStream.refRegex.IsMatch(path))
-                {
-                    pathToRead = File.ReadAllText(path);
-                    isRefFile = true;
-                }
-
+                if (skipFiles != null && skipFiles.Contains(Path.GetFileName(path)))
+                    continue;
                 // make the filepath match what we'd get back from the console
-                string canonicalPath = "." + path.Remove(0, rootDirectory.Length).Replace("\\", "/").Replace(".tarstreamref", "");
-                FileInfo f = new FileInfo(pathToRead);
-                fileInfoSet.Add(new ApplicationFileInfo(canonicalPath, f.Length, f.LastWriteTimeUtc, isRefFile));
+                string canonicalPath = "." + targetDirectory + path.Remove(0, rootDirectory.Length).Replace("\\", "/");
+                FileInfo f = new FileInfo(path);
+                fileInfoSet.Add(new ApplicationFileInfo(canonicalPath, f.Length, f.LastWriteTimeUtc, path));
             }
 
             return fileInfoSet;
@@ -86,11 +107,50 @@ namespace com.clusterrr.hakchi_gui
             {
                 long filesize = long.Parse(infoMatch.Groups[2].Value);
                 DateTime lastWriteTime = DateTime.Parse(infoMatch.Groups[3].Value);
-                fileInfoSet.Add(new ApplicationFileInfo(infoMatch.Groups[1].Value, filesize, lastWriteTime, false));
+                fileInfoSet.Add(new ApplicationFileInfo(infoMatch.Groups[1].Value, filesize, lastWriteTime));
             }
 
             return fileInfoSet;
         }
 
+        public static void DebugListHashSet(IEnumerable<ApplicationFileInfo> localGameSet)
+        {
+            foreach(var afi in localGameSet)
+            {
+                Debug.WriteLine($"{afi.FilePath} [{afi.LocalFilePath ?? "-"}]{(afi.FileStream == null ? "" : " [stream]")} {afi.FileSize} bytes {afi.ModifiedTime.ToString()}");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Helper class for ApplicationFileInfo operations
+    /// </summary>
+    public static class ApplicationFileInfoExtensions
+    {
+        /// <summary>
+        /// Allows copying "files" from one set to another, as if they were files on a drive
+        /// </summary>
+        public static HashSet<ApplicationFileInfo> CopyFilesTo(this HashSet<ApplicationFileInfo> first, HashSet<ApplicationFileInfo> second, bool overwrite = true)
+        {
+            var result = new HashSet<ApplicationFileInfo>(first);
+            foreach (var i in second)
+            {
+                bool add = true;
+                foreach (var j in result)
+                {
+                    if (j.FilePath.Equals(i.FilePath))
+                    {
+                        if (overwrite)
+                            result.Remove(j);
+                        else
+                            add = false;
+                        break;
+                    }
+                }
+                if (add)
+                    result.Add(i);
+            }
+            return result;
+        }
     }
 }

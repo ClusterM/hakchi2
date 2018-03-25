@@ -1,5 +1,7 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -169,19 +171,9 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public void SetOutputPath(string path)
+        private DesktopFile GetAdjustedDesktopFile()
         {
-            basePath = path;
-            iconPath = Path.Combine(path, desktop.Code + ".png");
-            smallIconPath = Path.Combine(path, desktop.Code + "_small.png");
-        }
-
-        public override bool Save()
-        {
-            if (string.IsNullOrEmpty(basePath))
-                return false;
-
-            Directory.CreateDirectory(basePath);
+            var newDesktop = (DesktopFile)desktop.Clone();
             char prefix;
             switch (position)
             {
@@ -202,18 +194,65 @@ namespace com.clusterrr.hakchi_gui
                     prefix = 'Я';
                     break;
             }
-            desktop.Exec = string.Format("/bin/chmenu {0:D3} {1}", childIndex, hakchi.GamesPath);
-            desktop.ProfilePath = hakchi.GamesProfilePath + "/FOLDER";
-            desktop.IconPath = hakchi.GamesPath;
-            desktop.IconFilename = desktop.Code + ".png";
-            desktop.TestId = 777;
-            desktop.SortName = prefix + (desktop.Name ?? desktop.Code).ToLower();
-            desktop.Save(Path.Combine(basePath, desktop.Code + ".desktop"), false, true);
+            newDesktop.Exec = string.Format("/bin/chmenu {0:D3} {1}", childIndex, hakchi.GamesPath);
+            newDesktop.ProfilePath = hakchi.GamesProfilePath + "/FOLDER";
+            newDesktop.IconPath = hakchi.GamesPath;
+            newDesktop.IconFilename = desktop.Code + ".png";
+            newDesktop.TestId = 777;
+            newDesktop.SortName = prefix + (desktop.Name ?? desktop.Code).ToLower();
+            return newDesktop;
+        }
 
-            var filePath = Path.Combine(FolderImagesDirectory, ImageId + ".png");
-            ProcessImageFile(filePath, iconPath, 204, 204, true, false, false);
-            ProcessImageFile(filePath, smallIconPath, 40, 40, true, false, false);
+        public void SetOutputPath(string path)
+        {
+            basePath = path;
+            iconPath = Path.Combine(path, desktop.Code + ".png");
+            smallIconPath = Path.Combine(path, desktop.Code + "_small.png");
+        }
+
+        public override bool Save()
+        {
+            if (string.IsNullOrEmpty(basePath))
+                return false;
+
+            Directory.CreateDirectory(basePath);
+            GetAdjustedDesktopFile().Save(Path.Combine(basePath, desktop.Code + ".desktop"), false, true);
+
+            var sourcePath = Path.Combine(FolderImagesDirectory, ImageId + ".png");
+            var smallSourcePath = Path.Combine(FolderImagesDirectory, ImageId + "_small.png");
+            if (!File.Exists(smallSourcePath))
+                smallSourcePath = sourcePath;
+            ProcessImageFile(sourcePath, iconPath, 204, 204, true, false, false);
+            ProcessImageFile(smallSourcePath, smallIconPath, 40, 40, true, false, false);
             return true;
         }
+
+        private long calculatedSize = -1;
+        public override long Size()
+        {
+            return calculatedSize == -1 ? base.Size() : calculatedSize;
+        }
+
+        public NesMenuFolder CopyTo(string relativeTargetPath, HashSet<ApplicationFileInfo> localGameSet)
+        {
+            string targetDir = relativeTargetPath.Trim('/') + "/" + desktop.Code;
+
+            var desktopStream = GetAdjustedDesktopFile().SaveTo(new MemoryStream(), false, true);
+
+            var sourcePath = Path.Combine(FolderImagesDirectory, ImageId + ".png");
+            var smallSourcePath = Path.Combine(FolderImagesDirectory, ImageId + "_small.png");
+            if (!File.Exists(smallSourcePath))
+                smallSourcePath = sourcePath;
+            var iconStream = ProcessImageFileToStream(sourcePath, 204, 204, true, false, false);
+            var smallIconStream = ProcessImageFileToStream(smallSourcePath, 40, 40, true, false, false);
+
+            localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}.desktop", DateTime.UtcNow, desktopStream));
+            localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}.png", File.GetLastWriteTimeUtc(sourcePath), iconStream));
+            localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}_small.png", File.GetLastWriteTimeUtc(smallSourcePath), smallIconStream));
+
+            calculatedSize = desktopStream.Length + iconStream.Length + smallIconStream.Length;
+            return this;
+        }
+
     }
 }

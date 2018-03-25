@@ -14,11 +14,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
             pictureBox1.Image = Resources.sign_error;
         }
 
-        public static DialogResult ShowDialog(string message, string stackTrace)
+        public static DialogResult ShowDialog(string title, string message, string details)
         {
             ErrorForm form = new ErrorForm();
+            if (!string.IsNullOrEmpty(title))
+            {
+                form.Text = title;
+            }
             form.errorLabel.Text = message;
-            form.richTextBox1.Lines = stackTrace.Split(new char[] { '\r', '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+            form.richTextBox1.Lines = details.Split(new string[] { "\r\n" }, System.StringSplitOptions.None);
             form.ShowDialog();
             return DialogResult.OK;
         }
@@ -26,6 +30,17 @@ namespace com.clusterrr.hakchi_gui.Tasks
         private void buttonOK_Click(object sender, System.EventArgs e)
         {
             Close();
+        }
+
+        private void copyToClipboardToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            richTextBox1.Copy();
+            richTextBox1.DeselectAll();
+        }
+
+        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            richTextBox1.SelectAll();
         }
     }
 }

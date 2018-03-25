@@ -70,13 +70,25 @@ namespace com.clusterrr.hakchi_gui
                         break;
                 }
             }
-            if (Program.isPortable)
+            if (!string.IsNullOrEmpty(ConfigIni.Instance.ExportDrive))
+            {
+                foreach (DriveLetterItem drive in comboDriveLetters.Items)
+                {
+                    if (ConfigIni.Instance.ExportDrive == Path.GetPathRoot(drive.info.RootDirectory.FullName).ToLower())
+                    {
+                        comboDriveLetters.SelectedItem = drive;
+                        break;
+                    }
+                }
+            }
+            else if (Program.isPortable)
             {
                 foreach (DriveLetterItem drive in comboDriveLetters.Items)
                 {
                     if (baseDrive == Path.GetPathRoot(drive.info.RootDirectory.FullName).ToLower())
                     {
                         comboDriveLetters.SelectedItem = drive;
+                        break;
                     }
                 }
             }
@@ -142,6 +154,7 @@ namespace com.clusterrr.hakchi_gui
                     ExportPath = Shared.PathCombine(SelectedDrive.RootDirectory.FullName, "hakchi", "games");
                 }
 
+                ConfigIni.Instance.ExportDrive = Path.GetPathRoot(SelectedDrive.RootDirectory.FullName).ToLower();
                 LinkedExport = checkLinked.Enabled && checkLinked.Checked;
 
                 DialogResult = DialogResult.OK;

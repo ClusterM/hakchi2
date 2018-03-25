@@ -19,7 +19,7 @@ namespace com.clusterrr.hakchi_gui
         private class GamesCollectionSetting
         {
             public List<string> SelectedGames = new List<string>();
-            public List<string> HiddenGames = new List<string>();
+            public List<string> OriginalGames = new List<string>();
             public byte MaxGamesPerFolder = 30;
             public NesMenuCollection.SplitStyle FoldersMode = NesMenuCollection.SplitStyle.Original_Auto;
             public Dictionary<string, List<string>> Presets = new Dictionary<string, List<string>>();
@@ -47,9 +47,9 @@ namespace com.clusterrr.hakchi_gui
             get { return gamesCollectionSettings[consoleType].SelectedGames; }
         }
         [JsonIgnore]
-        public ICollection<string> HiddenGames
+        public ICollection<string> OriginalGames
         {
-            get { return gamesCollectionSettings[consoleType].HiddenGames; }
+            get { return gamesCollectionSettings[consoleType].OriginalGames; }
         }
         [JsonIgnore]
         public byte MaxGamesPerFolder
@@ -175,6 +175,7 @@ namespace com.clusterrr.hakchi_gui
         public MainForm.GamesSorting GamesSorting = MainForm.GamesSorting.Name;
         public bool ShowGamesWithoutCoverArt = false;
         public bool ExportLinked = true;
+        public string ExportDrive = "";
         public string ExportRegion = "";
         public string MembootUboot = "ubootSD.bin";
         public HmodListSort hmodListSort = HmodListSort.Category;
@@ -375,16 +376,16 @@ namespace com.clusterrr.hakchi_gui
                                         instance.gamesCollectionSettings[MainForm.ConsoleType.SuperFamicom].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "hiddengames":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.NES].HiddenGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[MainForm.ConsoleType.NES].OriginalGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "hiddengamesfamicom":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.Famicom].HiddenGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[MainForm.ConsoleType.Famicom].OriginalGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "hiddengamessnes":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.SNES].HiddenGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[MainForm.ConsoleType.SNES].OriginalGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "hiddengamessuperfamicom":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.SuperFamicom].HiddenGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[MainForm.ConsoleType.SuperFamicom].OriginalGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "originalgamesposition":
                                         instance.OriginalGamesPosition = (MainForm.OriginalGamesPosition)byte.Parse(value);

@@ -398,7 +398,7 @@ namespace com.clusterrr.hakchi_gui
             return config;
         }
 
-        public static bool GetInternalStorageStats(out long gamesSize, out long saveStatesSize, out long storageTotal, out long storageUsed, out long storageFree)
+        public static bool GetStorageStats(out long gamesSize, out long saveStatesSize, out long storageTotal, out long storageUsed, out long storageFree)
         {
             try
             {

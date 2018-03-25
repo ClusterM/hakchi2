@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace com.clusterrr.hakchi_gui
@@ -266,9 +267,9 @@ namespace com.clusterrr.hakchi_gui
             return true;
         }
 
-        public void SaveTo(string configPath, bool snesExtraFields = false, bool omitProfilePathCode = false)
+        public string GetConfig(bool snesExtraFields, bool omitProfilePathCode)
         {
-            File.WriteAllText(configPath,
+            string content = (
                 $"[Desktop Entry]\n" +
                 $"Type={this.type}\n" +
                 $"Exec={this.exec}\n" +
@@ -288,6 +289,22 @@ namespace com.clusterrr.hakchi_gui
                 $"SortRawPublisher={this.sortRawPublisher.ToUpper()}\n" +
                 $"Copyright={this.copyright}\n" +
                 (snesExtraFields ? $"MyPlayDemoTime=45\n" : ""));
+            return content;
+        }
+
+        public Stream SaveTo(Stream stream, bool snesExtraFields = false, bool omitProfilePathCode = false)
+        {
+            if (!stream.CanWrite)
+                throw new IOException("File stream is not writable");
+            byte[] buffer = Encoding.UTF8.GetBytes(GetConfig(snesExtraFields, omitProfilePathCode));
+            stream.Write(buffer, 0, buffer.Length);
+            stream.Position = 0;
+            return stream;
+        }
+
+        public void SaveTo(string configPath, bool snesExtraFields = false, bool omitProfilePathCode = false)
+        {
+            File.WriteAllText(configPath, GetConfig(snesExtraFields, omitProfilePathCode));
         }
 
         public void Save(string configPath = null, bool snesExtraFields = false, bool omitProfilePathCode = false)

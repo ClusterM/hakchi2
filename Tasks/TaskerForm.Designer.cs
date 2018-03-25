@@ -94,10 +94,6 @@
             this.statusPictureBox.TabIndex = 1;
             this.statusPictureBox.TabStop = false;
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // TaskerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

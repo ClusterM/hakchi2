@@ -15,28 +15,41 @@ namespace com.clusterrr.hakchi_gui.Tasks
 {
     public class KernelTask
     {
-        readonly Dictionary<MainForm.ConsoleType, string[]> correctKernels = new Dictionary<MainForm.ConsoleType, string[]>();
-        readonly Dictionary<MainForm.ConsoleType, string[]> correctKeys = new Dictionary<MainForm.ConsoleType, string[]>();
+#if VERY_DEBUG
+        public static readonly string tempDir = Path.Combine(externalDir, "temp");
+#else
+        public static readonly string tempDir = Path.GetTempPath();
+#endif
+        public static readonly string internalDir = Program.BaseDirectoryInternal;
+        public static readonly string externalDir = Program.BaseDirectoryExternal;
+        public static readonly string dataDir = Path.Combine(Program.BaseDirectoryInternal, "data");
+        public static readonly string toolsDir = Path.Combine(Program.BaseDirectoryInternal, "tools");
+        public static readonly string fes1File = Path.Combine(Program.BaseDirectoryInternal, "data", "fes1.bin");
+        public static readonly string ubootFile = Path.Combine(Program.BaseDirectoryInternal, "data", "uboot.bin");
+        public static readonly string ubootSDFile = Path.Combine(Program.BaseDirectoryInternal, "data", "ubootSD.bin");
+        public static readonly string zImageFile = Path.Combine(Program.BaseDirectoryInternal, "data", "zImage");
+
+        public static bool WaitForShell(TaskerForm tasker)
+        {
+            if (tasker.InvokeRequired)
+            {
+                return (bool)tasker.Invoke(new Func<TaskerForm, bool>(WaitForShell), new object[] { tasker });
+            }
+            TaskerForm.State prevState = tasker.SetState(TaskerForm.State.Paused);
+            tasker.SetStatus(Resources.WaitingForDevice);
+
+            bool result = WaitingClovershellForm.WaitForDevice(tasker);
+            tasker.SetState(prevState);
+            return result;
+        }
+
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;
         const long reservedMemory = 30 * 1024 * 1024;
+        readonly Dictionary<MainForm.ConsoleType, string[]> correctKernels = new Dictionary<MainForm.ConsoleType, string[]>();
+        readonly Dictionary<MainForm.ConsoleType, string[]> correctKeys = new Dictionary<MainForm.ConsoleType, string[]>();
         const UInt16 vid = 0x1F3A;
         const UInt16 pid = 0xEFE8;
         Fel fel = null;
-
-        // path contstants
-#if VERY_DEBUG
-        readonly string tempDir = Path.Combine(externalDir, "temp");
-#else
-        readonly string tempDir = Path.GetTempPath();
-#endif
-        readonly string internalDir = Program.BaseDirectoryInternal;
-        readonly string externalDir = Program.BaseDirectoryExternal;
-        readonly string dataDir = Path.Combine(Program.BaseDirectoryInternal, "data");
-        readonly string toolsDir = Path.Combine(Program.BaseDirectoryInternal, "tools");
-        readonly string fes1File = Path.Combine(Program.BaseDirectoryInternal, "data", "fes1.bin");
-        readonly string ubootFile = Path.Combine(Program.BaseDirectoryInternal, "data", "uboot.bin");
-        readonly string ubootSDFile = Path.Combine(Program.BaseDirectoryInternal, "data", "ubootSD.bin");
-        readonly string zImageFile = Path.Combine(Program.BaseDirectoryInternal, "data", "zImage");
 
         public KernelTask()
         {
@@ -96,20 +109,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return false;
         }
 
-        bool WaitForShell(TaskerForm tasker)
-        {
-            if (tasker.InvokeRequired)
-            {
-                return (bool)tasker.Invoke(new Func<TaskerForm, bool>(WaitForShell), new object[] { tasker });
-            }
-            TaskerForm.State prevState = tasker.SetState(TaskerForm.State.Paused);
-            tasker.SetStatus(Resources.WaitingForDevice);
-
-            bool result = WaitingClovershellForm.WaitForDevice(tasker);
-            tasker.SetState(prevState);
-            return result;
-        }
-        
         public TaskerForm.Conclusion DoDump(TaskerForm tasker, Object syncObject = null)
         {
             return TaskerForm.Conclusion.Success;

@@ -521,7 +521,7 @@
     <value>..\images\blank_n64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MemoryFull" xml:space="preserve">
-    <value>Sorry, there are {0}MBytes of games, it's too much.</value>
+    <value>Sorry, there are {0}MB of games, it's too much.</value>
   </data>
   <data name="green" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\green.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -551,7 +551,7 @@
     <value>..\images\blank_neogeo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MemoryStats" xml:space="preserve">
-    <value>Total writable memory size: {0:F1}MBytes|Available memory for games: {1:F1}MBytes|Used by saves: {2:F1}MBytes|Used by other files: {3:F1}MBytes</value>
+    <value>Total writable memory size: {0:F1}MB|Available memory for games: {1:F1}MB|Used by saves: {2:F1}MB|Used by other files: {3:F1}MB</value>
   </data>
   <data name="AllFiles" xml:space="preserve">
     <value>All files</value>
@@ -967,5 +967,14 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   </data>
   <data name="ListCategoryNoCoverArt" xml:space="preserve">
     <value>No custom box art</value>
+  </data>
+  <data name="CopyingGames" xml:space="preserve">
+    <value>Copying games...</value>
+  </data>
+  <data name="MemoryStatsExport" xml:space="preserve">
+    <value>Total space available on drive: {0}</value>
+  </data>
+  <data name="SelectDrive" xml:space="preserve">
+    <value>Select export drive...</value>
   </data>
 </root>

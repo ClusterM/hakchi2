@@ -712,38 +712,6 @@ namespace com.clusterrr.hakchi_gui
                 if (!string.IsNullOrEmpty(gameinfo.Publisher))
                     desktop.Publisher = gameinfo.Publisher.ToUpper();
 
-                /*
-                if (!string.IsNullOrEmpty(gameinfo.CoverUrl))
-                {
-                    if (NeedAutoDownloadCover != true)
-                    {
-                        if (NeedAutoDownloadCover != false)
-                        {
-                            var r = WorkerForm.MessageBoxFromThread(ParentForm,
-                                string.Format(Resources.DownloadCoverQ, Name),
-                                Resources.Cover,
-                                MessageBoxButtons.AbortRetryIgnore,
-                                MessageBoxIcon.Question,
-                                MessageBoxDefaultButton.Button2, true);
-                            if (r == DialogResult.Abort)
-                                NeedAutoDownloadCover = true;
-                            if (r == DialogResult.Ignore)
-                                return true;
-                        }
-                        else return true;
-                    }
-
-                    try
-                    {
-                        var cover = ImageGooglerForm.DownloadImage(gameinfo.CoverUrl);
-                        Image = cover;
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine(ex.Message + ex.StackTrace);
-                    }
-                }
-                */
                 return true;
             }
             return false;

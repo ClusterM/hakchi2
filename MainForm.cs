@@ -633,27 +633,21 @@ namespace com.clusterrr.hakchi_gui
                 english.Checked = true;
         }
 
-        private void SaveSelectedGames(bool hideOriginalGames = false)
+        private void SaveSelectedGames()
         {
             Debug.WriteLine("Saving selected games");
             var selected = ConfigIni.Instance.SelectedGames;
+            var original = ConfigIni.Instance.OriginalGames;
             selected.Clear();
-            var hiddenSelected = ConfigIni.Instance.HiddenGames;
-            if (hideOriginalGames)
-            {
-                Debug.WriteLine("Hiding original games");
-                hiddenSelected.Clear();
-            }
+            if (ConfigIni.Instance.OriginalGamesPosition != OriginalGamesPosition.Hidden)
+                original.Clear();
 
-            foreach (ListViewItem game in listViewGames.CheckedItems)
+            foreach (ListViewItem item in listViewGames.CheckedItems)
             {
-                if (game.Tag is NesApplication)
+                if (item.Tag is NesApplication)
                 {
-                    selected.Add((game.Tag as NesApplication).Code);
-                    if (hideOriginalGames && (game.Tag as NesApplication).IsOriginalGame)
-                    {
-                        hiddenSelected.Add((game.Tag as NesApplication).Code);
-                    }
+                    NesApplication game = item.Tag as NesApplication;
+                    (game.IsOriginalGame ? original : selected).Add(game.Code);
                 }
             }
         }
@@ -1125,17 +1119,12 @@ namespace com.clusterrr.hakchi_gui
         private void buttonStart_Click(object sender, EventArgs e)
         {
             SaveConfig();
-
             var stats = RecalculateSelectedGames();
             if (stats.Count == 0)
             {
                 MessageBox.Show(Resources.SelectAtLeast, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var kernel = RequirePatchedKernel();
-            if (kernel == DialogResult.No) return;
-            if (kernel == DialogResult.Yes) // Message for new user
-                MessageBox.Show(Resources.DoneYouCanUpload + "\r\n" + Resources.PressOkToContinue, Resources.Congratulations, MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (UploadGames())
                 if (!ConfigIni.Instance.DisablePopups)
                     MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1153,6 +1142,24 @@ namespace com.clusterrr.hakchi_gui
             if (UploadGames(true))
                 if (!ConfigIni.Instance.DisablePopups)
                     MessageBox.Show(Resources.Done, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        bool UploadGames(bool exportGames = false)
+        {
+            using (var tasker = new Tasks.TaskerForm(this))
+            {
+                var syncTask = new Tasks.SyncTask();
+                foreach (ListViewItem item in listViewGames.CheckedItems)
+                {
+                    if (item.Tag is NesApplication)
+                        syncTask.Games.Add(item.Tag as NesApplication);
+                }
+                tasker.AddTask(exportGames ? (Tasks.TaskerForm.TaskFunc)syncTask.ExportGames : (Tasks.TaskerForm.TaskFunc)syncTask.UploadGames);
+                tasker.SetStatusImage(Resources.sign_up);
+                Tasks.TaskerForm.Conclusion c = tasker.Start(true, 1500);
+
+                return c == Tasks.TaskerForm.Conclusion.Success;
+            }
         }
 
         bool DoKernelDump()
@@ -1305,43 +1312,6 @@ namespace com.clusterrr.hakchi_gui
 
             workerForm.Config = null;
             workerForm.Games = null;
-            workerForm.Start();
-            return workerForm.DialogResult == DialogResult.OK;
-        }
-
-        bool UploadGames(bool exportGames = false)
-        {
-            var workerForm = new WorkerForm(this);
-            if (exportGames)
-            {
-                using (ExportGamesDialog driveSelectDialog = new ExportGamesDialog())
-                {
-                    if (driveSelectDialog.ShowDialog(this) != DialogResult.OK)
-                        return false;
-
-                    workerForm.linkRelativeGames = driveSelectDialog.LinkedExport;
-                    workerForm.exportDirectory = driveSelectDialog.ExportPath;
-
-                    if (!Directory.Exists(driveSelectDialog.ExportPath))
-                        Directory.CreateDirectory(driveSelectDialog.ExportPath);
-                }
-            }
-            workerForm.Text = Resources.UploadingGames;
-            workerForm.Task = WorkerForm.Tasks.UploadGames;
-            workerForm.Config = ConfigIni.GetConfigDictionary();
-            workerForm.Games = new NesMenuCollection();
-            workerForm.exportGames = exportGames;
-            if (!exportGames)
-                workerForm.linkRelativeGames = false;
-
-            foreach (ListViewItem game in listViewGames.CheckedItems)
-            {
-                if (game.Tag is NesApplication)
-                    workerForm.Games.Add(game.Tag as NesApplication);
-            }
-
-            workerForm.FoldersMode = ConfigIni.Instance.FoldersMode;
-            workerForm.MaxGamesPerFolder = ConfigIni.Instance.MaxGamesPerFolder;
             workerForm.Start();
             return workerForm.DialogResult == DialogResult.OK;
         }
@@ -2352,16 +2322,14 @@ namespace com.clusterrr.hakchi_gui
         {
             ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
             if (menuItem.Checked) return;
+            SaveSelectedGames();
 
             OriginalGamesPosition newPosition = (OriginalGamesPosition)byte.Parse(menuItem.Tag.ToString());
             ConfigIni.Instance.OriginalGamesPosition = newPosition;
-
             positionAtTheTopToolStripMenuItem.Checked = newPosition == OriginalGamesPosition.AtTop;
             positionAtTheBottomToolStripMenuItem.Checked = newPosition == OriginalGamesPosition.AtBottom;
             positionSortedToolStripMenuItem.Checked = newPosition == OriginalGamesPosition.Sorted;
             positionHiddenToolStripMenuItem.Checked = newPosition == OriginalGamesPosition.Hidden;
-
-            SaveSelectedGames(positionHiddenToolStripMenuItem.Checked);
             LoadGames();
         }
 
@@ -2369,15 +2337,13 @@ namespace com.clusterrr.hakchi_gui
         {
             ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
             if (menuItem.Checked) return;
+            SaveSelectedGames();
 
             GamesSorting newSorting = (GamesSorting)byte.Parse(menuItem.Tag.ToString());
             ConfigIni.Instance.GamesSorting = newSorting;
-
             nameToolStripMenuItem.Checked = newSorting == GamesSorting.Name;
             coreToolStripMenuItem.Checked = newSorting == GamesSorting.Core;
             systemToolStripMenuItem.Checked = newSorting == GamesSorting.System;
-
-            SaveSelectedGames();
             LoadGames();
         }
 

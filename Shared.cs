@@ -263,14 +263,7 @@ namespace com.clusterrr.hakchi_gui
                 if (skipExistingFiles && File.Exists(tempPath))
                     continue;
 
-                if (pseudoLinks)
-                {
-                    File.WriteAllText(tempPath + TarStream.refExt, file.FullName);
-                }
-                else
-                {
-                    file.CopyTo(tempPath, overwriteExistingFiles);
-                }
+                file.CopyTo(tempPath, overwriteExistingFiles);
             }
 
             // If copying subdirectories, copy them and their contents to new location.

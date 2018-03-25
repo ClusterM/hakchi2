@@ -33,6 +33,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             tasker.SetTitle("Loading games");
             tasker.SetProgress(0, 220, TaskerForm.State.Starting, "Loading games...");
             var selected = ConfigIni.Instance.SelectedGames;
+            var original = ConfigIni.Instance.OriginalGames;
 
             // groups
             var normalGroups = new Dictionary<ViewGroup, ListViewGroup>();
@@ -118,7 +119,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
                 var listViewItem = new ListViewItem(game.Name);
                 listViewItem.Tag = game;
-                listViewItem.Checked = selected.Contains(game.Code) || ConfigIni.Instance.HiddenGames.Contains(game.Code);
+                listViewItem.Checked = selected.Contains(game.Code) || original.Contains(game.Code);
 
                 ListViewGroup group = null;
                 if (game.IsOriginalGame && ConfigIni.Instance.OriginalGamesPosition != MainForm.OriginalGamesPosition.Sorted)
@@ -222,6 +223,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
             else if (ConfigIni.Instance.ShowGamesWithoutCoverArt)
             {
+                groups.Add(normalGroups[ViewGroup.New]);
                 groups.Add(normalGroups[ViewGroup.NoCoverArt]);
                 groups.Add(normalGroups[ViewGroup.All]);
             }
@@ -232,7 +234,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return TaskerForm.Conclusion.Success;
         }
 
-        public void UpdateListView(ListView listView, ListViewItem[] items, ListViewGroup[] groups)
+        void UpdateListView(ListView listView, ListViewItem[] items, ListViewGroup[] groups)
         {
             if (listView.Disposing) return;
             if (listView.InvokeRequired)

@@ -1,9 +1,8 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
+using com.clusterrr.util;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -11,13 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using Microsoft.WindowsAPICodePack.Taskbar;
 
 namespace com.clusterrr.hakchi_gui.Tasks
 {
     public partial class TaskerForm : Form
     {
-        public enum State { Undefined, Starting, Running, Working, Paused, Error, Finishing, Done }
+        public enum State { Undefined, Starting, Running, Waiting, Paused, Error, Finishing, Done }
         public enum Conclusion { Undefined, Error, Abort, Success }
         public delegate Conclusion TaskFunc(TaskerForm tasker, Object syncObject = null);
 
@@ -54,27 +52,29 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 taskState = state;
                 if (showTaskbarProgress)
                 {
-                    var i = TaskbarManager.Instance;
                     switch (state)
                     {
                         case State.Starting:
                         case State.Finishing:
-                        case State.Working:
-                            i.SetProgressState(TaskbarProgressBarState.NoProgress, this.Handle); Thread.Sleep(20);
-                            i.SetProgressState(TaskbarProgressBarState.Indeterminate, this.Handle);
+                        case State.Waiting:
+                            if (previousState != State.Starting && previousState != State.Finishing && previousState != State.Waiting)
+                            {
+                                TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.NoProgress); Thread.Sleep(20);
+                                TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Indeterminate); // workaround to make it work
+                            }
                             break;
                         case State.Running:
-                            i.SetProgressState(TaskbarProgressBarState.Normal, this.Handle);
+                            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Normal);
                             break;
                         case State.Undefined:
                         case State.Done:
-                            i.SetProgressState(TaskbarProgressBarState.NoProgress, this.Handle);
+                            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.NoProgress);
                             break;
                         case State.Paused:
-                            i.SetProgressState(TaskbarProgressBarState.Paused, this.Handle);
+                            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Paused);
                             break;
                         case State.Error:
-                            i.SetProgressState(TaskbarProgressBarState.Error, this.Handle);
+                            TaskbarProgress.SetState(this, TaskbarProgress.TaskbarStates.Error);
                             break;
                     }
                 }
@@ -87,7 +87,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public void SetProgress(int value = -1, int maxValue = -1)
         {
             if (Disposing) return;
-            if (taskState == State.Starting || taskState == State.Finishing) return;
             try
             {
                 if (InvokeRequired)
@@ -109,9 +108,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 progressBarEx1.Value = (int)((double)value / maxValue * 512);
 
                 // if long task, also show task bar progress
-                if (showTaskbarProgress)
+                if (showTaskbarProgress && (taskState == State.Running || taskState == State.Paused || taskState == State.Error))
                 {
-                    TaskbarManager.Instance.SetProgressValue(progressBarEx1.Value, progressBarEx1.Maximum, this.Handle);
+                    TaskbarProgress.SetValue(this, progressBarEx1.Value, progressBarEx1.Maximum);
                 }
             }
             catch (InvalidOperationException) { }
@@ -172,14 +171,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     Invoke(new Action<Exception, bool>(ShowError), new object[] { ex, stop });
                     return;
                 }
-                Debug.WriteLine(ex.Message + ex.StackTrace);
+                string formattedText = ex.GetType().ToString() + "\r\n" + ex.Message + "\r\n" + ex.StackTrace;
+                Debug.WriteLine(formattedText);
 
                 State prevState = SetState(State.Error);
-                ErrorForm.ShowDialog(ex.Message, ex.StackTrace);
+                ErrorForm.ShowDialog(null, ex.Message, formattedText);
                 if (stop)
                 {
                     TaskConclusion = Conclusion.Error;
-                    SetState(State.Done);
+                    SetState(State.Undefined);
                     thread.Abort();
                 }
                 else
@@ -283,10 +283,12 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 }
 
                 // done
-                SetStatus("Done!");
-                SetProgress(1, 1);
-                if (endDelay > 0) Thread.Sleep(endDelay);
-                SetState(State.Done);
+                if (TaskConclusion == Conclusion.Success)
+                {
+                    SetProgress(1, 1, State.Done, "Done!");
+                    if (endDelay > 0)
+                        Thread.Sleep(endDelay);
+                }
             }
             catch (ThreadAbortException)
             {
@@ -308,7 +310,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 if (TaskConclusion == Conclusion.Undefined) TaskConclusion = Conclusion.Success;
                 SetState(State.Undefined);
             }
+
             this.closing = true;
+            Invoke(new Action(Close));
         }
 
         private void Tasker_Load(object sender, EventArgs e)
@@ -336,13 +340,5 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (closing)
-            {
-                timer1.Stop();
-                Close();
-            }
-        }
     }
 }

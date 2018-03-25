@@ -12,7 +12,9 @@ namespace com.clusterrr.hakchi_gui
         {
             InitializeComponent();
             listBox.Items.Clear();
-            var files = Directory.GetFiles(NesMenuFolder.FolderImagesDirectory, "*.png", SearchOption.AllDirectories);
+            var files = Directory.GetFiles(
+                NesMenuFolder.FolderImagesDirectory, "*.png", SearchOption.AllDirectories).Where(
+                file => !file.ToLower().EndsWith("_small.png"));
             listBox.Items.AddRange((from f in files select Path.GetFileNameWithoutExtension(f)).ToArray());
 
             if (selected != null)

@@ -207,7 +207,7 @@ namespace com.clusterrr.hakchi_gui
                     ((inImage.Height == targetHeight && inImage.Width <= targetWidth) ||
                      (inImage.Width == targetWidth && inImage.Height <= targetHeight)))
                 {
-                    Debug.WriteLine($"NesMenuElementBase.ProcessImageFile: \"{Path.GetFileName(inPath)}\" did not need resizing. No processing done.");
+                    Debug.WriteLine($"\"{Path.GetFileName(inPath)}\" did not need resizing, no processing done");
                     File.Copy(inPath, outPath, true);
                     return;
                 }
@@ -215,6 +215,46 @@ namespace com.clusterrr.hakchi_gui
 
             // any other case, fully process image
             ProcessImage(inImage, outPath, targetWidth, targetHeight, expandHeight, upscale, quantize);
+            File.SetLastWriteTimeUtc(outPath, File.GetLastWriteTimeUtc(inPath));
+        }
+
+        protected static Stream ProcessImageToStream(Image inImage, int targetWidth, int targetHeight, bool expandHeight, bool upscale, bool quantize)
+        {
+            var outImage = Shared.ResizeImage(inImage, null, null, targetWidth, targetHeight, upscale, true, false, expandHeight);
+            var stream = new MemoryStream();
+            if (quantize)
+                Quantize(ref outImage);
+            outImage.Save(stream, ImageFormat.Png);
+            outImage.Dispose();
+            stream.Position = 0;
+            return stream;
+        }
+
+        protected static Stream ProcessImageFileToStream(string inPath, int targetWidth, int targetHeight, bool expandHeight, bool upscale, bool quantize)
+        {
+            if (String.IsNullOrEmpty(inPath) || !File.Exists(inPath)) // failsafe
+                throw new FileNotFoundException($"Image file \"{inPath}\" doesn't exist.");
+
+            // load image
+            Bitmap inImage = new Bitmap(Image.FromFile(inPath));
+
+            // only file type candidate for direct copy is ".png"
+            if (Path.GetExtension(inPath).ToLower() == ".png")
+            {
+                // if file is exactly the right aspect ratio, copy it
+                if (!quantize && (!expandHeight || inImage.Height == targetHeight) &&
+                    ((inImage.Height == targetHeight && inImage.Width <= targetWidth) ||
+                     (inImage.Width == targetWidth && inImage.Height <= targetHeight)))
+                {
+                    Debug.WriteLine($"\"{Path.GetFileName(inPath)}\" did not need resizing, no processing done");
+                    var stream = new MemoryStream(File.ReadAllBytes(inPath));
+                    stream.Position = 0;
+                    return stream;
+                }
+            }
+
+            // any other case, fully process image
+            return ProcessImageToStream(inImage, targetWidth, targetHeight, expandHeight, upscale, quantize);
         }
 
         private static void Quantize(ref Bitmap img)
