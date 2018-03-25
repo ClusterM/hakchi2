@@ -64,8 +64,8 @@ namespace com.clusterrr.hakchi_gui
                 info != null &&
                 FilePath == info.FilePath &&
                 FileSize == info.FileSize;
-            // check duration and allow 2 seconds leeway (accounting for fat32)
-            return preliminaryEqual && ModifiedTime.Subtract(info.ModifiedTime).Duration() < TimeSpan.FromSeconds(2);
+            // check duration and allow 3 seconds leeway (accounting for fat32)
+            return preliminaryEqual && ModifiedTime.Subtract(info.ModifiedTime).Duration() < TimeSpan.FromSeconds(3);
         }
 
         public override int GetHashCode()

@@ -1442,7 +1442,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to efc7e46.
+        ///   Looks up a localized string similar to 8177f9f (dirty).
         /// </summary>
         internal static string gitCommit {
             get {
@@ -2646,6 +2646,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string UpdatingLocalCache {
             get {
                 return ResourceManager.GetString("UpdatingLocalCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload games.
+        /// </summary>
+        internal static string UploadGames {
+            get {
+                return ResourceManager.GetString("UploadGames", resourceCulture);
             }
         }
         

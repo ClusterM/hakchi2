@@ -28,6 +28,7 @@ namespace com.clusterrr.hakchi_gui
         /// The name of the service advertised by avahi on the console
         /// </summary>
         public const string AVAHI_SERVICE_NAME = "_hakchi._tcp.local.";
+        public const string NES_MINI_STATIC_IP = "10.234.137.10";
 
         public enum OriginalGamesPosition { AtTop = 0, AtBottom = 1, Sorted = 2, Hidden = 3 }
         public enum GamesSorting { Name = 0, Core = 1, System = 2 }
@@ -448,7 +449,6 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AddTask(task.LoadGames);
                 tasker.SetStatusImage(Resources.sign_down);
                 Tasks.TaskerForm.Conclusion c = tasker.Start(true);
-                Debug.WriteLine(c.ToString());
             }
             RecalculateSelectedGames();
             ShowSelected();
@@ -542,21 +542,19 @@ namespace com.clusterrr.hakchi_gui
                     delegate (object sender, EventArgs e)
                     {
                         var presetSelected = ConfigIni.Instance.Presets[preset];
-                        var selected = ConfigIni.Instance.SelectedGames;
-                        selected.Clear();
                         for (int j = 1; j < listViewGames.Items.Count; j++)
                         {
                             var code = (listViewGames.Items[j].Tag as NesApplication).Code;
                             if (presetSelected.Contains(code))
                             {
                                 listViewGames.Items[j].Checked = true;
-                                selected.Add(code);
                             }
                             else
                             {
                                 listViewGames.Items[j].Checked = false;
                             }
                         }
+                        SaveSelectedGames();
                     }));
                 deletePresetToolStripMenuItem.DropDownItems.Insert(i, new ToolStripMenuItem(preset, null,
                     delegate (object sender, EventArgs e)
@@ -609,14 +607,15 @@ namespace com.clusterrr.hakchi_gui
                         ConfigIni.Instance.Language = langCodes[language];
                         SaveConfig();
                         lastConsoleType = ConsoleType.Unknown;
-                        //lgvGroups = null;
-                        //lgvAppGroups = null;
-                        //lgvCustomGroups = null;
+
                         Thread.CurrentThread.CurrentUICulture = new CultureInfo(langCodes[language]);
+                        this.Hide();
                         this.Controls.Clear();
                         this.InitializeComponent();
-                        FormInitialize();
-                        this.Invalidate(true);
+                        this.FormInitialize();
+                        this.SyncConsoleType();
+                        this.Show();
+                        //this.Invalidate(true);
                     };
                 if (Thread.CurrentThread.CurrentUICulture.Name.ToUpper() == langCodes[language].ToUpper())
                 {
@@ -686,7 +685,8 @@ namespace com.clusterrr.hakchi_gui
                 if (!string.IsNullOrEmpty(name))
                 {
                     SaveSelectedGames();
-                    ConfigIni.Instance.Presets[name] = ConfigIni.Instance.SelectedGames.ToList();
+                    ConfigIni.Instance.Presets[name] =
+                        Shared.ConcatArrays(ConfigIni.Instance.SelectedGames.ToArray(), ConfigIni.Instance.OriginalGames.ToArray()).ToList();
                     LoadPresets();
                 }
             }

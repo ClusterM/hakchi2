@@ -978,4 +978,7 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   <data name="SelectDrive" xml:space="preserve">
     <value>Select export drive...</value>
   </data>
+  <data name="UploadGames" xml:space="preserve">
+    <value>Upload games</value>
+  </data>
 </root>

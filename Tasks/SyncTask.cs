@@ -213,6 +213,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public TaskerForm.Conclusion UploadGames(TaskerForm tasker, Object syncObject = null)
         {
             int maxProgress = 135;
+            tasker.SetTitle(Resources.UploadGames);
             if (Games == null || Games.Count == 0)
                 throw new Exception("No games to upload");
 
@@ -300,6 +301,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 ApplicationFileInfo.DebugListHashSet(localGamesToUpload);
 #endif
 
+                /*
                 // now transfer whatever games are remaining
                 tasker.SetProgress(20, maxProgress, TaskerForm.State.Running, Resources.UploadingGames);
                 shell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
@@ -309,16 +311,49 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     gamesTar.DebugWrite();
                     if (gamesTar.Length > 0)
                     {
+                        bool done = false;
                         gamesTar.OnReadProgress += delegate (long pos, long len)
                         {
-                            tasker.SetProgress(20 + (int)((double)pos / len * 100), maxProgress);
+                            if (!done) tasker.SetProgress(20 + (int)((double)pos / len * 100), maxProgress);
                         };
                         shell.Execute($"tar -xvC \"{gameSyncPath}\"", gamesTar, null, null, 0, true);
+
+                        tasker.SetState(TaskerForm.State.Finishing);
+                        done = true;
+
+#if DEBUG
                         File.Delete(Program.BaseDirectoryExternal + "\\DebugSyncOutput.tar");
                         gamesTar.Position = 0;
                         gamesTar.CopyTo(File.OpenWrite(Program.BaseDirectoryExternal + "\\DebugSyncOutput.tar"));
+#endif
                     }
                 }
+                */
+
+                tasker.SetProgress(20, maxProgress, TaskerForm.State.Running, Resources.UploadingGames);
+                shell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
+                bool uploadSuccessful = false;
+                using (var ftp = new FtpStream(localGamesToUpload))
+                {
+                    Debug.WriteLine($"Upload size: " + Shared.SizeSuffix(ftp.Length));
+                    if(ftp.Length > 0)
+                    {
+                        ftp.OnReadProgress += delegate (long pos, long len, string filename)
+                        {
+                            tasker.SetProgress(20 + (int)((double)pos / len * 100), maxProgress);
+                            tasker.SetStatus("Uploading \'" + Path.GetFileName(filename) + "\'");
+                        };
+                        if (ftp.Connect(MainForm.NES_MINI_STATIC_IP, 21, "root", ""))
+                        {
+                            ftp.Upload(gameSyncPath);
+                            uploadSuccessful = true;
+                        }
+                        tasker.SetState(TaskerForm.State.Finishing);
+                    }
+                }
+
+                if (!uploadSuccessful)
+                    return TaskerForm.Conclusion.Error;
 
                 // Finally, delete any empty directories we may have left during the differential sync
                 tasker.SetStatus(Resources.CleaningUp);
