@@ -476,6 +476,10 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string consoleTypeSuperFamicom {
             get {
                 return ResourceManager.GetString("consoleTypeSuperFamicom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copying games....
         /// </summary>
         internal static string CopyingGames {
@@ -1438,7 +1442,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to a9d2252 (dirty).
+        ///   Looks up a localized string similar to efc7e46.
         /// </summary>
         internal static string gitCommit {
             get {

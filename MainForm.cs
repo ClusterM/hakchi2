@@ -1162,15 +1162,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        bool DoKernelDump()
-        {
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.DumpingKernel;
-            workerForm.Task = WorkerForm.Tasks.DumpKernel;
-            workerForm.Start();
-            return workerForm.DialogResult == DialogResult.OK;
-        }
-
         bool DoNandFlash()
         {
             openDumpFileDialog.FileName = "nand.bin";

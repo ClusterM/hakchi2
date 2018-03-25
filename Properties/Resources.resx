@@ -938,6 +938,7 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   </data>
   <data name="consoleTypeSuperFamicom" xml:space="preserve">
     <value>Super Famicom (Japan)</value>
+  </data>
   <data name="FTPServerOn" xml:space="preserve">
     <value>FTP server on ftp://root@{0}</value>
   </data>

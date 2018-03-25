@@ -480,52 +480,7 @@ namespace com.clusterrr.hakchi_gui
             catch { }
         }
 
-        public bool DoKernelDump(string dumpPath = null, int maxProgress = 80, int progress = 0, bool shutdown = true)
-        {
-            bool returnValue = false;
-            GeneralMemboot((ClovershellConnection clovershell) =>
-            {
-                string KernelDumpPath = GetKernelDumpPath(hakchi.UniqueID);
-
-                CopySntool();
-
-                MemoryStream kernelStream = new MemoryStream();
-                clovershell.Execute("sntool sunxi_flash read_boot2", null, kernelStream, null, 0, true);
-
-                kernelStream.Seek(0, SeekOrigin.Begin);
-                byte[] header = new byte[64];
-                kernelStream.Read(header, 0, 64);
-                kernelStream.Seek(0, SeekOrigin.Begin);
-
-                var size = CalcKernelSize(header);
-                if (size == 0 || size > Fel.kernel_max_size)
-                    throw new Exception(Resources.InvalidKernelSize + " " + size);
-
-                if (kernelStream.Length > size)
-                {
-                    kernelStream.SetLength(size);
-                }
-
-                byte[] kernel = kernelStream.ToArray();
-                kernelStream.Dispose();
-
-                var md5 = System.Security.Cryptography.MD5.Create();
-                var hash = BitConverter.ToString(md5.ComputeHash(kernel)).Replace("-", "").ToLower();
-                var matchedKernels = from k in correctKernels where k.Value.Contains(hash) select k.Key;
-                if (matchedKernels.Count() > 0)
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(KernelDumpPath));
-                    if (!File.Exists(KernelDumpPath))
-                        File.WriteAllBytes(KernelDumpPath, kernel);
-                    if (!string.IsNullOrEmpty(dumpPath))
-                        File.WriteAllBytes(dumpPath, kernel);
-                    returnValue = true;
-                }
-            }, false);
-            return returnValue;
-        }
-
-        public void FlashKernel()
+        public void FlashKernel(Stream kernel)
         {
             GeneralMemboot((ClovershellConnection clovershell) =>
             {
@@ -1233,24 +1188,6 @@ namespace com.clusterrr.hakchi_gui
             }.Start();
             SetStatus(Resources.Done);
             SetProgress(maxProgress, maxProgress);
-        }
-
-        public void UpdateRootfs()
-        {
-            var modPath = Path.Combine(modsDirectory, Mod);
-            var rootFsPathes = Directory.GetDirectories(modPath, "rootfs", SearchOption.AllDirectories);
-            if (rootFsPathes.Length == 0) return;
-            var rootFsPath = rootFsPathes[0];
-
-            using (var updateTar = new TarStream(rootFsPath, null, new string[] { "p0000_config" }))
-            {
-                if (updateTar.Length > 0)
-                {
-                    hakchi.Shell.Execute("tar -xvC /", updateTar, null, null, 30000, true);
-                    hakchi.Shell.ExecuteSimple("chmod +x /bin/*", 3000, true);
-                    hakchi.Shell.ExecuteSimple("chmod +x /etc/init.d/*", 3000, true);
-                }
-            }
         }
 
         public static Image TakeScreenshot()
