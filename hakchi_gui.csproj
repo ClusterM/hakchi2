@@ -164,7 +164,7 @@
     <Compile Include="Apps\NesMenuElementBase.cs" />
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\UnknownGame.cs" />
-    <Compile Include="Ftp\FtpStream.cs" />
+    <Compile Include="Ftp\FtpWrapper.cs" />
     <Compile Include="hakchi.cs" />
     <Compile Include="ISystemShell.cs" />
     <Compile Include="NewCustomGameForm.cs">
@@ -1354,6 +1354,11 @@
     <Content Include="icon_app.ico" />
     <Content Include="icon_window.ico" />
     <Content Include="images\blank_dos.png" />
+    <Content Include="images\sign-brick.png" />
+    <Content Include="images\sign-cogs.png" />
+    <Content Include="images\sign-database.png" />
+    <Content Include="images\sign-file-picture.png" />
+    <Content Include="images\sign-keyring.png" />
     <Content Include="readmeTemplate.css" />
     <Content Include="readmeTemplate.html" />
     <Content Include="retroarch-systems-blacklist.txt" />

@@ -19,9 +19,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public enum Conclusion { Undefined, Error, Abort, Success }
         public delegate Conclusion TaskFunc(TaskerForm tasker, Object syncObject = null);
 
-        public MainForm MainForm
+        public Form HostForm
         {
             get; private set;
+        }
+
+        public Object SyncObject
+        {
+            get; set;
         }
 
         public Conclusion TaskConclusion
@@ -29,10 +34,17 @@ namespace com.clusterrr.hakchi_gui.Tasks
             get; set;
         }
 
-        // helper combined setter
+        // helper combined setters
+
         public void SetProgress(int value, int maxValue, State state, string status)
         {
             SetProgress(value, maxValue);
+            SetState(state);
+            SetStatus(status);
+        }
+
+        public void SetStatus(State state, string status)
+        {
             SetState(state);
             SetStatus(status);
         }
@@ -84,8 +96,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return State.Undefined;
         }
 
-        public void SetProgress(int value = -1, int maxValue = -1)
+        public void SetProgress(int value, int maxValue)
         {
+            if (value < 0 || maxValue < 0) return;
             if (Disposing) return;
             try
             {
@@ -94,10 +107,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     Invoke(new Action(() => { SetProgress(value, maxValue); }));
                     return;
                 }
-                // default values
-                if (value == -1) value = progressBarEx1.Value;
-                if (maxValue == -1) maxValue = progressBarEx1.Maximum;
-
                 // adjust values
                 if (value > maxValue) value = maxValue;
                 value = (doneTasks * maxValue) + value;
@@ -197,7 +206,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     return (DialogResult)Invoke(new Func<string, string, MessageBoxButtons, MessageBoxIcon, MessageBoxDefaultButton, DialogResult>(ShowMessage), new object[] { message, caption, mbButtons, mbIcon, mbDefaultButtons });
                 }
-                return MessageBox.Show(MainForm, message, caption, mbButtons, mbIcon, mbDefaultButtons);
+                return MessageBox.Show(HostForm, message, caption, mbButtons, mbIcon, mbDefaultButtons);
             }
             catch (InvalidOperationException) { }
             return DialogResult.None;
@@ -229,15 +238,24 @@ namespace com.clusterrr.hakchi_gui.Tasks
             tasks.Enqueue(task);
         }
 
+        public void AddTasks(params TaskFunc[] tasks)
+        {
+            foreach (TaskFunc task in tasks)
+            {
+                AddTask(task);
+            }
+        }
+
         public void CancelRemainingTasks()
         {
             tasks.Clear();
         }
 
-        public TaskerForm(MainForm mainForm)
+        public TaskerForm(Form form)
         {
             InitializeComponent();
-            this.MainForm = mainForm;
+            this.HostForm = form;
+            this.SyncObject = new Object();
             this.tasks = new Queue<TaskFunc>();
             this.thread = null;
         }
@@ -273,19 +291,21 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     SetTitle(currentTaskName);
 
                     // run task and assign conclusion
-                    Conclusion conclusion = currentTask(this);
+                    Conclusion conclusion = currentTask(this, SyncObject);
                     if (conclusion == Conclusion.Error || conclusion == Conclusion.Abort)
                     {
                         TaskConclusion = conclusion;
                         break;
                     }
+                    SetProgress(1, 1);
                     ++doneTasks;
+                    Thread.Sleep(250);
                 }
 
                 // done
                 if (TaskConclusion == Conclusion.Success)
                 {
-                    SetProgress(1, 1, State.Done, "Done!");
+                    SetStatus(State.Done, "Done!");
                     if (endDelay > 0)
                         Thread.Sleep(endDelay);
                 }

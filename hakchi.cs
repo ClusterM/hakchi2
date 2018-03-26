@@ -13,6 +13,11 @@ namespace com.clusterrr.hakchi_gui
 {
     public static class hakchi
     {
+        public const string AVAHI_SERVICE_NAME = "_hakchi._tcp.local.";
+        public const string STATIC_IP = "10.234.137.10";
+        public const string USERNAME = "root";
+        public const string PASSWORD = "";
+
         public static ISystemShell Shell { get; private set; }
         public static bool Connected { get; private set; }
         public static event OnConnectedEventHandler OnConnected = delegate { };
@@ -144,7 +149,7 @@ namespace com.clusterrr.hakchi_gui
             shells.Add(clovershell);
 
             // new high-tech but slow SSH connection
-            var ssh = new SshClientWrapper(MainForm.AVAHI_SERVICE_NAME, 22, "root", "") { AutoReconnect = true };
+            var ssh = new SshClientWrapper(AVAHI_SERVICE_NAME, STATIC_IP, 22, USERNAME, PASSWORD) { AutoReconnect = true };
             ssh.OnConnected += Shell_OnConnected;
             ssh.OnDisconnected += Shell_OnDisconnected;
             shells.Add(ssh);
@@ -190,7 +195,11 @@ namespace com.clusterrr.hakchi_gui
                 UniqueID = Shell.ExecuteSimple("echo \"`devmem 0x01C23800``devmem 0x01C23804``devmem 0x01C23808``devmem 0x01C2380C`\"").Trim().Replace("0x", "");
                 Debug.WriteLine($"Detected device unique ID: {UniqueID}");
 
-                if (MinimalMemboot) return;
+                if (MinimalMemboot)
+                {
+                    OnConnected(caller); // still gotta call this
+                    return;
+                }
 
                 // detect running/mounted firmware
                 string board = Shell.ExecuteSimple("cat /etc/clover/boardtype", 3000, true);

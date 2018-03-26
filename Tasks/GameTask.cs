@@ -17,6 +17,10 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             get; private set;
         }
+        public Dictionary<NesApplication, string> GamesChanged
+        {
+            get; private set;
+        }
         public ListView ListViewGames
         {
             get; set;
@@ -24,61 +28,21 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public GameTask()
         {
-            Games = new List<NesApplication>();
+            Games = null;
+            GamesChanged = null;
             ListViewGames = null;
         }
 
-        public TaskerForm.Conclusion LoadGames(TaskerForm tasker, Object syncObject = null)
+        private Dictionary<ViewGroup, ListViewGroup> normalGroups = null;
+        private SortedDictionary<string, ListViewGroup> sortedGroups = null;
+        private SortedDictionary<string, ListViewGroup> sortedCustomGroups = null;
+
+        // --- create groups
+        public TaskerForm.Conclusion CreateListViewGroups(TaskerForm tasker, Object syncObject = null)
         {
-            tasker.SetTitle("Loading games");
-            tasker.SetProgress(0, 220, TaskerForm.State.Starting, "Loading games...");
-            var selected = ConfigIni.Instance.SelectedGames;
-            var original = ConfigIni.Instance.OriginalGames;
-
-            // groups
-            var normalGroups = new Dictionary<ViewGroup, ListViewGroup>();
-            var sortedGroups = new SortedDictionary<string, ListViewGroup>();
-            var sortedCustomGroups = new SortedDictionary<string, ListViewGroup>();
-
-            // list original game directories
-            var originalGameDirs = new List<string>();
-            foreach (var defaultGame in NesApplication.DefaultGames)
-            {
-                string gameDir = Path.Combine(NesApplication.OriginalGamesDirectory, defaultGame.Code);
-                if (Directory.Exists(gameDir))
-                    originalGameDirs.Add(gameDir);
-            }
-
-            // add custom games
-            Directory.CreateDirectory(NesApplication.GamesDirectory);
-            var gameDirs = Shared.ConcatArrays(Directory.GetDirectories(NesApplication.GamesDirectory), originalGameDirs.ToArray());
-
-            tasker.SetState(TaskerForm.State.Running);
-            Games = new List<NesApplication>();
-            int i = 0;
-            foreach (var gameDir in gameDirs)
-            {
-                tasker.SetProgress((int)((double)i++ / gameDirs.Length * 100), 220);
-                try
-                {
-                    // Removing empty directories without errors
-                    try
-                    {
-                        var game = NesApplication.FromDirectory(gameDir);
-                        Games.Add(game);
-                    }
-                    catch // Remove bad directories if any
-                    {
-                        Debug.WriteLine($"Game directory \"{gameDir}\" is invalid, deleting");
-                        Directory.Delete(gameDir, true);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    tasker.ShowError(ex, true);
-                    return TaskerForm.Conclusion.Error;
-                }
-            }
+            this.normalGroups = new Dictionary<ViewGroup, ListViewGroup>();
+            this.sortedGroups = new SortedDictionary<string, ListViewGroup>();
+            this.sortedCustomGroups = new SortedDictionary<string, ListViewGroup>();
 
             // standard groups
             var h = HorizontalAlignment.Center;
@@ -100,90 +64,19 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         sortedGroups[appInfo.Name] = new ListViewGroup(appInfo.Name, h);
                     }
             }
-            else if(ConfigIni.Instance.GamesSorting == MainForm.GamesSorting.Core)
+            else if (ConfigIni.Instance.GamesSorting == MainForm.GamesSorting.Core)
             {
                 foreach (var core in CoreCollection.Cores)
                     sortedGroups[core.Bin] = new ListViewGroup(core.Name, h);
             }
+            return TaskerForm.Conclusion.Success;
+        }
 
-            // convert games to listviewitems
-            var items = new List<ListViewItem>();
-            i = 0;
-            foreach (var game in Games)
-            {
-                tasker.SetProgress((int)((double)i++ / Games.Count * 100) + 100, 220);
+        // --- assign groups to list view
+        public TaskerForm.Conclusion AssignListViewGroups(TaskerForm tasker, Object syncObject = null)
+        {
+            var sync = (LoadGamesSyncObject)syncObject;
 
-                // escape tests
-                if (ConfigIni.Instance.OriginalGamesPosition == MainForm.OriginalGamesPosition.Hidden && game.IsOriginalGame)
-                    continue;
-
-                var listViewItem = new ListViewItem(game.Name);
-                listViewItem.Tag = game;
-                listViewItem.Checked = selected.Contains(game.Code) || original.Contains(game.Code);
-
-                ListViewGroup group = null;
-                if (game.IsOriginalGame && ConfigIni.Instance.OriginalGamesPosition != MainForm.OriginalGamesPosition.Sorted)
-                {
-                    group = normalGroups[ViewGroup.Original];
-                }
-                if (group == null)
-                {
-                    AppTypeCollection.AppInfo appInfo = game.Metadata.AppInfo;
-                    switch (ConfigIni.Instance.GamesSorting)
-                    {
-                        case MainForm.GamesSorting.Name:
-                            group = game.IsOriginalGame ? normalGroups[ViewGroup.Original] : normalGroups[ViewGroup.Custom];
-                            break;
-                        case MainForm.GamesSorting.System:
-                            if (!appInfo.Unknown)
-                                group = sortedGroups[appInfo.Name];
-                            else if (!string.IsNullOrEmpty(game.Metadata.System) && sortedGroups.ContainsKey(game.Metadata.System))
-                                group = sortedGroups[game.Metadata.System];
-                            break;
-                        case MainForm.GamesSorting.Core:
-                            if (string.IsNullOrEmpty(game.Metadata.Core))
-                            {
-                                int startPos = game.Desktop.Bin.LastIndexOf('/') + 1;
-                                if (startPos > 0 && (startPos < game.Desktop.Bin.Length))
-                                {
-                                    string bin = game.Desktop.Bin.Substring(startPos).Trim();
-                                    if (sortedGroups.ContainsKey(bin))
-                                        group = sortedGroups[bin];
-                                }
-                            }
-                            else if (sortedGroups.ContainsKey(game.Metadata.Core))
-                                group = sortedGroups[game.Metadata.Core];
-                            break;
-                    }
-                }
-                if (group == null)
-                {
-                    if (game.Desktop.Bin.Trim().Length == 0)
-                        group = normalGroups[ViewGroup.Unknown];
-                    else
-                    {
-                        string bin = game.Desktop.Bin.Trim();
-                        if (!sortedCustomGroups.ContainsKey(bin))
-                            sortedCustomGroups.Add(bin, new ListViewGroup(bin, h));
-                        group = sortedCustomGroups[bin];
-                    }
-                }
-                if (ConfigIni.Instance.ShowGamesWithoutCoverArt)
-                {
-                    if (!game.Metadata.CustomCoverArt)
-                        group = normalGroups[ViewGroup.NoCoverArt];
-                    else if (ConfigIni.Instance.GamesSorting == MainForm.GamesSorting.Name)
-                    {
-                        if(ConfigIni.Instance.OriginalGamesPosition == MainForm.OriginalGamesPosition.Sorted || ConfigIni.Instance.OriginalGamesPosition == MainForm.OriginalGamesPosition.Hidden)
-                            group = normalGroups[ViewGroup.All];
-                    }
-                }
-                listViewItem.Group = group;
-                items.Add(listViewItem);
-            }
-
-            // add groups in the right order
-            tasker.SetProgress(200, 220, TaskerForm.State.Finishing, "Adding groups");
             var groups = new List<ListViewGroup>();
             if (ConfigIni.Instance.OriginalGamesPosition == MainForm.OriginalGamesPosition.AtTop)
             {
@@ -227,34 +120,215 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 groups.Add(normalGroups[ViewGroup.NoCoverArt]);
                 groups.Add(normalGroups[ViewGroup.All]);
             }
-
-            // add games to list
-            tasker.SetProgress(210, 220, TaskerForm.State.Finishing, "Adding games and groups to the list");
-            UpdateListView(ListViewGames, items.ToArray(), groups.ToArray());
+            sync.groups = groups.ToArray();
             return TaskerForm.Conclusion.Success;
         }
 
-        void UpdateListView(ListView listView, ListViewItem[] items, ListViewGroup[] groups)
+        // --- needed for updatelistview
+        private class LoadGamesSyncObject
         {
-            if (listView.Disposing) return;
-            if (listView.InvokeRequired)
+            public ListViewItem[] items;
+            public ListViewGroup[] groups;
+        }
+
+        // --- update listview ui element
+        public TaskerForm.Conclusion UpdateListView(TaskerForm tasker, Object syncObject = null)
+        {
+            if (ListViewGames.Disposing) return TaskerForm.Conclusion.Undefined;
+            if (ListViewGames.InvokeRequired)
             {
-                listView.Invoke(new Action<ListView,ListViewItem[],ListViewGroup[]>(UpdateListView), new object[] { listView, items, groups });
-                return;
+                return (TaskerForm.Conclusion)ListViewGames.Invoke(new Func<TaskerForm, Object, TaskerForm.Conclusion>(UpdateListView), new object[] { tasker, syncObject });
             }
+
+            var sync = (LoadGamesSyncObject)syncObject;
             try
             {
-                listView.BeginUpdate();
-                listView.Groups.Clear();
-                listView.Items.Clear();
-                listView.Groups.AddRange(groups);
-                listView.Items.AddRange(items);
+                ListViewGames.BeginUpdate();
+                ListViewGames.Groups.Clear();
+                ListViewGames.Items.Clear();
+                ListViewGames.Groups.AddRange(sync.groups);
+                ListViewGames.Items.AddRange(sync.items);
             }
             catch (InvalidOperationException) { }
             finally
             {
-                listView.EndUpdate();
+                ListViewGames.EndUpdate();
             }
+            return TaskerForm.Conclusion.Success;
         }
+
+        // --- scan files and create internal list
+        public TaskerForm.Conclusion LoadGamesFromFiles(TaskerForm tasker, Object syncObject = null)
+        {
+            var sync = (LoadGamesSyncObject)syncObject;
+
+            // list original game directories
+            var originalGameDirs = new List<string>();
+            foreach (var defaultGame in NesApplication.DefaultGames)
+            {
+                string gameDir = Path.Combine(NesApplication.OriginalGamesDirectory, defaultGame.Code);
+                if (Directory.Exists(gameDir))
+                    originalGameDirs.Add(gameDir);
+            }
+
+            // add custom games
+            Directory.CreateDirectory(NesApplication.GamesDirectory);
+            var gameDirs = Shared.ConcatArrays(Directory.GetDirectories(NesApplication.GamesDirectory), originalGameDirs.ToArray());
+
+            var games = new List<ListViewItem>();
+            int i = 0;
+            foreach (var gameDir in gameDirs)
+            {
+                try
+                {
+                    try
+                    {
+                        var game = NesApplication.FromDirectory(gameDir);
+                        games.Add(new ListViewItem(game.Name) { Tag = game });
+                    }
+                    catch // remove bad directories if any, no throw
+                    {
+                        Debug.WriteLine($"Game directory \"{gameDir}\" is invalid, deleting");
+                        Directory.Delete(gameDir, true);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    tasker.ShowError(ex, true);
+                    return TaskerForm.Conclusion.Error;
+                }
+            }
+            sync.items = games.ToArray();
+
+            return TaskerForm.Conclusion.Success;
+        }
+
+        // --- grab files/items from existing list
+        public TaskerForm.Conclusion LoadGamesFromList(TaskerForm tasker, Object syncObject = null)
+        {
+            var sync = (LoadGamesSyncObject)syncObject;
+
+            sync.items = new ListViewItem[ListViewGames.Items.Count];
+            ListViewGames.Items.CopyTo(sync.items, 0);
+
+            return TaskerForm.Conclusion.Success;
+        }
+
+        // --- as the title says, assigns groups to games
+        public TaskerForm.Conclusion AssignGroupsToGames(TaskerForm tasker, Object syncObject = null)
+        {
+            var sync = (LoadGamesSyncObject)syncObject;
+            var selected = ConfigIni.Instance.SelectedGames;
+            var original = ConfigIni.Instance.OriginalGames;
+
+            // assign groups to list view items
+            int i = 0;
+            foreach (var item in sync.items)
+            {
+                var game = item.Tag as NesApplication;
+
+                // escape tests
+                if (ConfigIni.Instance.OriginalGamesPosition == MainForm.OriginalGamesPosition.Hidden && game.IsOriginalGame)
+                    continue;
+
+                item.Checked = selected.Contains(game.Code) || original.Contains(game.Code);
+                ListViewGroup group = null;
+                if (game.IsOriginalGame && ConfigIni.Instance.OriginalGamesPosition != MainForm.OriginalGamesPosition.Sorted)
+                {
+                    group = normalGroups[ViewGroup.Original];
+                }
+                if (group == null)
+                {
+                    AppTypeCollection.AppInfo appInfo = game.Metadata.AppInfo;
+                    switch (ConfigIni.Instance.GamesSorting)
+                    {
+                        case MainForm.GamesSorting.Name:
+                            group = game.IsOriginalGame ? normalGroups[ViewGroup.Original] : normalGroups[ViewGroup.Custom];
+                            break;
+                        case MainForm.GamesSorting.System:
+                            if (!appInfo.Unknown)
+                                group = sortedGroups[appInfo.Name];
+                            else if (!string.IsNullOrEmpty(game.Metadata.System) && sortedGroups.ContainsKey(game.Metadata.System))
+                                group = sortedGroups[game.Metadata.System];
+                            break;
+                        case MainForm.GamesSorting.Core:
+                            if (string.IsNullOrEmpty(game.Metadata.Core))
+                            {
+                                int startPos = game.Desktop.Bin.LastIndexOf('/') + 1;
+                                if (startPos > 0 && (startPos < game.Desktop.Bin.Length))
+                                {
+                                    string bin = game.Desktop.Bin.Substring(startPos).Trim();
+                                    if (sortedGroups.ContainsKey(bin))
+                                        group = sortedGroups[bin];
+                                }
+                            }
+                            else if (sortedGroups.ContainsKey(game.Metadata.Core))
+                                group = sortedGroups[game.Metadata.Core];
+                            break;
+                    }
+                }
+                if (group == null)
+                {
+                    if (game.Desktop.Bin.Trim().Length == 0)
+                        group = normalGroups[ViewGroup.Unknown];
+                    else
+                    {
+                        string bin = game.Desktop.Bin.Trim();
+                        if (!sortedCustomGroups.ContainsKey(bin))
+                            sortedCustomGroups.Add(bin, new ListViewGroup(bin, HorizontalAlignment.Center));
+                        group = sortedCustomGroups[bin];
+                    }
+                }
+                if (ConfigIni.Instance.ShowGamesWithoutCoverArt)
+                {
+                    if (!game.Metadata.CustomCoverArt)
+                        group = normalGroups[ViewGroup.NoCoverArt];
+                    else if (ConfigIni.Instance.GamesSorting == MainForm.GamesSorting.Name)
+                    {
+                        if (ConfigIni.Instance.OriginalGamesPosition == MainForm.OriginalGamesPosition.Sorted || ConfigIni.Instance.OriginalGamesPosition == MainForm.OriginalGamesPosition.Hidden)
+                            group = normalGroups[ViewGroup.All];
+                    }
+                }
+                item.Group = group;
+            }
+
+            return TaskerForm.Conclusion.Success;
+        }
+
+        public TaskerForm.Conclusion LoadGames(TaskerForm tasker, Object syncObject = null)
+        {
+            tasker.SetTitle(Resources.LoadingGames);
+            tasker.SetState(TaskerForm.State.Running);
+            tasker.SetStatus(Resources.LoadingGames);
+
+            Thread.Sleep(250);
+
+            tasker.SyncObject = new LoadGamesSyncObject();
+            tasker.AddTasks(
+                CreateListViewGroups,
+                LoadGamesFromFiles,
+                AssignGroupsToGames,
+                AssignListViewGroups,
+                UpdateListView
+                );
+
+            return TaskerForm.Conclusion.Success;
+        }
+
+        public TaskerForm.Conclusion SetCoverArtForMultipleGames(TaskerForm tasker, Object SyncObject = null)
+        {
+            tasker.SetTitle(Resources.ApplyChanges);
+            tasker.SetProgress(0, 100, TaskerForm.State.Running, Resources.ApplyChanges);
+
+            int i = 0, max = GamesChanged.Count;
+            foreach(var pair in GamesChanged)
+            {
+                pair.Key.SetImageFile(pair.Value, ConfigIni.Instance.CompressCover);
+                tasker.SetProgress(++i, max);
+            }
+
+            return TaskerForm.Conclusion.Success;
+        }
+            
     }
 }

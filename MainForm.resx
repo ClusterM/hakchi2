@@ -240,13 +240,13 @@
     <value>149, 6</value>
   </data>
   <data name="normalModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>148, 22</value>
   </data>
   <data name="normalModeToolStripMenuItem.Text" xml:space="preserve">
     <value>Normal mode</value>
   </data>
   <data name="sDModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>148, 22</value>
   </data>
   <data name="sDModeToolStripMenuItem.Text" xml:space="preserve">
     <value>SD mode</value>
@@ -379,19 +379,19 @@
     <value>Original games</value>
   </data>
   <data name="nameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>112, 22</value>
   </data>
   <data name="nameToolStripMenuItem.Text" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="coreToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>112, 22</value>
   </data>
   <data name="coreToolStripMenuItem.Text" xml:space="preserve">
     <value>Core</value>
   </data>
   <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>112, 22</value>
   </data>
   <data name="systemToolStripMenuItem.Text" xml:space="preserve">
     <value>System</value>
@@ -2120,36 +2120,6 @@
   <data name="&gt;&gt;kernelToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;dumpKernelToolStripMenuItem.Name" xml:space="preserve">
-    <value>dumpKernelToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;dumpKernelToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;flashUbootToolStripMenuItem.Name" xml:space="preserve">
-    <value>flashUbootToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;flashUbootToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;normalModeToolStripMenuItem.Name" xml:space="preserve">
-    <value>normalModeToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;normalModeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;sDModeToolStripMenuItem.Name" xml:space="preserve">
-    <value>sDModeToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;sDModeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;flashOriginalKernelToolStripMenuItem.Name" xml:space="preserve">
-    <value>flashOriginalKernelToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;flashOriginalKernelToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;flashCustomKernelToolStripMenuItem.Name" xml:space="preserve">
     <value>flashCustomKernelToolStripMenuItem</value>
   </data>
@@ -2178,19 +2148,19 @@
     <value>flashUbootToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;flashUbootToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;normalModeToolStripMenuItem.Name" xml:space="preserve">
     <value>normalModeToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;normalModeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;sDModeToolStripMenuItem.Name" xml:space="preserve">
     <value>sDModeToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;sDModeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;advancedToolStripMenuItem.Name" xml:space="preserve">
     <value>advancedToolStripMenuItem</value>
@@ -2257,12 +2227,6 @@
   </data>
   <data name="&gt;&gt;formatNANDCToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;formatNANDCToolStripMenuItem.Name" xml:space="preserve">
-    <value>formatNANDCToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;formatNANDCToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;modulesToolStripMenuItem.Name" xml:space="preserve">
     <value>modulesToolStripMenuItem</value>

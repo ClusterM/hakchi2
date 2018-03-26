@@ -26,6 +26,8 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (filename.EndsWith(".7z"))
                         filename = filename.Substring(0, filename.Length - 3);
+                    if (filename.EndsWith(".zip"))
+                        filename = filename.Substring(0, filename.Length - 4);
                     var item = new ListViewItem(new string[] {
                         game.Name,
                         Path.GetFileNameWithoutExtension(filename),
@@ -158,22 +160,31 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonAccept_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < listViewGames.Items.Count; ++i)
+            using (var tasker = new Tasks.TaskerForm(this))
             {
-                var gameItem = listViewGames.Items[i];
-                if (gameItem.SubItems[4].Text != "Default / no change")
+                var task = new Tasks.GameTask();
+                for (int i = 0; i < listViewGames.Items.Count; ++i)
                 {
-                    var game = gameItem.Tag as NesApplication;
-                    foreach (var coverMatch in game.CoverArtMatches)
+                    var gameItem = listViewGames.Items[i];
+                    if (gameItem.SubItems[4].Text != "Default / no change")
                     {
-                        if(Path.GetFileName(coverMatch) == gameItem.SubItems[4].Text)
+                        var game = gameItem.Tag as NesApplication;
+                        foreach (var coverMatch in game.CoverArtMatches)
                         {
-                            game.SetImageFile(coverMatch, ConfigIni.Instance.CompressCover);
-                            break;
+                            if(Path.GetFileName(coverMatch) == gameItem.SubItems[4].Text)
+                            {
+                                task.GamesChanged[game] = coverMatch;
+                                break;
+                            }
                         }
                     }
                 }
+
+                tasker.AddTask(task.SetCoverArtForMultipleGames);
+                tasker.SetStatusImage(Resources.sign_file_picture);
+                var conclusion = tasker.Start(true, 1000);
             }
+
             DialogResult = DialogResult.OK;
             Close();
         }

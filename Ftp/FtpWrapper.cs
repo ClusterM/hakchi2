@@ -11,7 +11,7 @@ using System.Threading;
 
 namespace com.clusterrr.util
 {
-    public class FtpStream : IDisposable
+    public class FtpWrapper : IDisposable
     {
         public delegate void OnProgressDelegate(long Position, long Length, string filename);
         public delegate void OnFileInputErrorDelegate(string filename);
@@ -29,7 +29,7 @@ namespace com.clusterrr.util
         long totalSize;
         FluentFTP.FtpClient ftp;
 
-        public FtpStream(IEnumerable<ApplicationFileInfo> localSet, string rootDirectory = null, string[] skipFiles = null)
+        public FtpWrapper(IEnumerable<ApplicationFileInfo> localSet, string rootDirectory = null, string[] skipFiles = null)
         {
             this.localSet = localSet;
             this.rootDirectory = rootDirectory;
@@ -38,7 +38,7 @@ namespace com.clusterrr.util
             scanLocalSet();
         }
 
-        public FtpStream(string directory, string rootDirectory = null, string[] skipFiles = null)
+        public FtpWrapper(string directory, string rootDirectory = null, string[] skipFiles = null)
         {
             throw new NotImplementedException();
         }
@@ -58,6 +58,7 @@ namespace com.clusterrr.util
             {
                 ftp = new FluentFTP.FtpClient(host, port, username, password);
                 ftp.Connect();
+                ftp.TransferChunkSize = 128 * 1024;
                 return ftp.IsConnected;
             }
             catch (Exception ex)
@@ -104,13 +105,12 @@ namespace com.clusterrr.util
                     {
                         ftp.Upload(inStream, afi.FilePath, FtpExists.Overwrite, true, new Progress<double>(p =>
                         {
-                            OnReadProgress(currentPosition + (long)((p == -1 ? 0 : p) * afi.FileSize / 100), totalSize, afi.FilePath);
+                            if (p != -1)
+                                OnReadProgress(currentPosition + (long)(p * afi.FileSize / 100), totalSize, afi.FilePath);
                         }));
                         if (owned)
-                        {
                             inStream.Dispose();
-                        }
-                        //ftp.SetModifiedTime(afi.FilePath, afi.ModifiedTime, FtpDate.UTC);
+
                         command = string.Format("touch -m -t {1} {0}\n", afi.FilePath, afi.ModifiedTime.ToString("yyyyMMddHHmm.ss"));
                         commandBuilder.Write(Encoding.UTF8.GetBytes(command), 0, command.Length);
                     }
@@ -123,7 +123,7 @@ namespace com.clusterrr.util
                     OnReadProgress(currentPosition, totalSize, afi.FilePath);
                 }
 
-                // adjuste file modified times after the fact (ftpd doesn't seem to support setting dates)
+                // adjust file modified times after the fact (ftpd doesn't seem to support setting dates)
                 try
                 {
                     hakchi.Shell.Execute("cat > /tmp/modtime.sh", commandBuilder, null, null, 5000, true);

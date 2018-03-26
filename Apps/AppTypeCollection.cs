@@ -235,7 +235,7 @@ namespace com.clusterrr.hakchi_gui
                 DefaultCover = Resources.blank_neogeo,
                 GoogleSuffix = "neo geo"
             },
-            new AppInfo
+            new AppInfo // custom partial app
             {
                 Name = "SquashFS",
                 Class = typeof(UnknownGame),
@@ -246,7 +246,7 @@ namespace com.clusterrr.hakchi_gui
                 DefaultCover = Resources.blank_dos,
                 GoogleSuffix = "hsqs"
             },
-            new AppInfo
+            new AppInfo // custom partial app
             {
                 Name = "Shell Script",
                 Class = typeof(UnknownGame),

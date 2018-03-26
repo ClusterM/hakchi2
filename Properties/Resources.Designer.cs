@@ -1442,7 +1442,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 8177f9f (dirty).
+        ///   Looks up a localized string similar to ed3c7c6 (dirty).
         /// </summary>
         internal static string gitCommit {
             get {
@@ -2381,9 +2381,39 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sign_brick {
+            get {
+                object obj = ResourceManager.GetObject("sign_brick", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sign_check {
             get {
                 object obj = ResourceManager.GetObject("sign_check", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_cogs {
+            get {
+                object obj = ResourceManager.GetObject("sign_cogs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_database {
+            get {
+                object obj = ResourceManager.GetObject("sign_database", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2411,9 +2441,29 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sign_file_picture {
+            get {
+                object obj = ResourceManager.GetObject("sign_file_picture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sign_info {
             get {
                 object obj = ResourceManager.GetObject("sign_info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_keyring {
+            get {
+                object obj = ResourceManager.GetObject("sign_keyring", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2655,6 +2705,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string UploadGames {
             get {
                 return ResourceManager.GetString("UploadGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uploading {0}.
+        /// </summary>
+        internal static string Uploading {
+            get {
+                return ResourceManager.GetString("Uploading", resourceCulture);
             }
         }
         

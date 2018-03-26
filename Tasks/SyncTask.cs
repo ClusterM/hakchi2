@@ -29,7 +29,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
             try
             {
-                using (FoldersManagerForm form = new FoldersManagerForm(collection, tasker.MainForm))
+                using (FoldersManagerForm form = new FoldersManagerForm(collection, MainForm.StaticRef))
                 {
                     var prevState = tasker.SetState(TaskerForm.State.Paused);
                     if (form.ShowDialog() != DialogResult.OK)
@@ -112,7 +112,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 exportLinked ? NesApplication.CopyMode.LinkedExport : NesApplication.CopyMode.Export,
                 localGameSet,
                 stats);
-            tasker.SetProgress(15);
+            tasker.SetProgress(15, maxProgress);
 
             // check free space
             tasker.SetStatus(Resources.CalculatingDiff);
@@ -247,7 +247,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 // clean up previous directories (separate game storage vs not)
                 tasker.SetStatus(Resources.CleaningUp);
                 shell.ExecuteSimple("find \"$(hakchi findGameSyncStorage)/\" -maxdepth 1 | grep -" + (ConfigIni.Instance.SeparateGameStorage ? "v" : "") + "Ee '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' | while read f; do rm -rf \"$f\"; done", 0, true);
-                tasker.SetProgress(5);
+                tasker.SetProgress(5, maxProgress);
 
                 // generate menus and game files ready to be uploaded
                 tasker.SetStatus(Resources.AddingGames);
@@ -260,7 +260,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     ConfigIni.Instance.SyncLinked ? NesApplication.CopyMode.LinkedSync : NesApplication.CopyMode.Sync,
                     localGameSet,
                     stats);
-                tasker.SetProgress(15);
+                tasker.SetProgress(15, maxProgress);
 
                 // calculating size constraints
                 tasker.SetStatus(Resources.CalculatingDiff);
@@ -301,57 +301,68 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 ApplicationFileInfo.DebugListHashSet(localGamesToUpload);
 #endif
 
-                /*
                 // now transfer whatever games are remaining
                 tasker.SetProgress(20, maxProgress, TaskerForm.State.Running, Resources.UploadingGames);
                 shell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
-                using (var gamesTar = new TarStream(localGamesToUpload, "."))
+                bool uploadSuccessful = false;
+                if (hakchi.Shell is clovershell.ClovershellConnection) // use tar stream when detecting clovershell
                 {
-                    Debug.WriteLine($"Upload size: " + Shared.SizeSuffix(gamesTar.Length));
-                    gamesTar.DebugWrite();
-                    if (gamesTar.Length > 0)
+                    Debug.WriteLine("Clovershell detected, uploading tar file");
+                    using (var gamesTar = new TarStream(localGamesToUpload, "."))
                     {
-                        bool done = false;
-                        gamesTar.OnReadProgress += delegate (long pos, long len)
+                        Debug.WriteLine($"Upload size: " + Shared.SizeSuffix(gamesTar.Length));
+                        gamesTar.DebugWrite();
+                        if (gamesTar.Length > 0)
                         {
-                            if (!done) tasker.SetProgress(20 + (int)((double)pos / len * 100), maxProgress);
-                        };
-                        shell.Execute($"tar -xvC \"{gameSyncPath}\"", gamesTar, null, null, 0, true);
+                            bool done = false;
+                            gamesTar.OnReadProgress += delegate (long pos, long len)
+                            {
+                                if (!done) tasker.SetProgress(20 + (int)((double)pos / len * 100), maxProgress);
+                            };
+                            shell.Execute($"tar -xvC \"{gameSyncPath}\"", gamesTar, null, null, 0, true);
 
-                        tasker.SetState(TaskerForm.State.Finishing);
-                        done = true;
+                            tasker.SetState(TaskerForm.State.Finishing);
+                            uploadSuccessful = true;
+                            done = true;
 
 #if DEBUG
-                        File.Delete(Program.BaseDirectoryExternal + "\\DebugSyncOutput.tar");
-                        gamesTar.Position = 0;
-                        gamesTar.CopyTo(File.OpenWrite(Program.BaseDirectoryExternal + "\\DebugSyncOutput.tar"));
+                            File.Delete(Program.BaseDirectoryExternal + "\\DebugSyncOutput.tar");
+                            gamesTar.Position = 0;
+                            gamesTar.CopyTo(File.OpenWrite(Program.BaseDirectoryExternal + "\\DebugSyncOutput.tar"));
 #endif
-                    }
-                }
-                */
-
-                tasker.SetProgress(20, maxProgress, TaskerForm.State.Running, Resources.UploadingGames);
-                shell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
-                bool uploadSuccessful = false;
-                using (var ftp = new FtpStream(localGamesToUpload))
-                {
-                    Debug.WriteLine($"Upload size: " + Shared.SizeSuffix(ftp.Length));
-                    if(ftp.Length > 0)
-                    {
-                        ftp.OnReadProgress += delegate (long pos, long len, string filename)
-                        {
-                            tasker.SetProgress(20 + (int)((double)pos / len * 100), maxProgress);
-                            tasker.SetStatus("Uploading \'" + Path.GetFileName(filename) + "\'");
-                        };
-                        if (ftp.Connect(MainForm.NES_MINI_STATIC_IP, 21, "root", ""))
-                        {
-                            ftp.Upload(gameSyncPath);
-                            uploadSuccessful = true;
                         }
-                        tasker.SetState(TaskerForm.State.Finishing);
                     }
                 }
+                else if (hakchi.Shell is ssh.SshClientWrapper) // using ftp when detecting ssh
+                {
+                    Debug.WriteLine("SSH network shell detected, uploading through FTP");
+                    tasker.SetProgress(20, maxProgress, TaskerForm.State.Running, Resources.UploadingGames);
+                    using (var ftp = new FtpWrapper(localGamesToUpload))
+                    {
+                        Debug.WriteLine($"Upload size: " + Shared.SizeSuffix(ftp.Length));
+                        if (ftp.Length > 0)
+                        {
+                            ftp.OnReadProgress += delegate (long pos, long len, string filename)
+                            {
+                                tasker.SetProgress(20 + (int)((double)pos / len * 100), maxProgress);
+                                tasker.SetStatus(string.Format(Resources.Uploading, Path.GetFileName(filename)));
+                            };
+                            if (ftp.Connect(hakchi.STATIC_IP, 21, hakchi.USERNAME, hakchi.PASSWORD))
+                            {
+                                ftp.Upload(gameSyncPath);
+                                uploadSuccessful = true;
+                            }
+                            tasker.SetState(TaskerForm.State.Finishing);
+                        }
+                    }
 
+                }
+                else
+                {
+                    Debug.WriteLine("unknown shell detected, aborting transfer");
+                }
+
+                // don't continue if upload wasn't successful
                 if (!uploadSuccessful)
                     return TaskerForm.Conclusion.Error;
 

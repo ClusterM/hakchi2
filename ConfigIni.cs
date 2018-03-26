@@ -69,10 +69,14 @@ namespace com.clusterrr.hakchi_gui
             get { return gamesCollectionSettings[consoleType].Presets; }
         }
 
-        // special case method
+        // special case methods
         public ICollection<string> SelectedGamesForConsole(MainForm.ConsoleType c)
         {
             return (c == MainForm.ConsoleType.Unknown) ? null : gamesCollectionSettings[c].SelectedGames;
+        }
+        public ICollection<string> SelectedOriginalGamesForConsole(MainForm.ConsoleType c)
+        {
+            return (c == MainForm.ConsoleType.Unknown) ? null : gamesCollectionSettings[c].OriginalGames;
         }
 
         // base console type settings

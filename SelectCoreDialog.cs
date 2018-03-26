@@ -2,15 +2,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -29,6 +24,8 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (filename.EndsWith(".7z"))
                         filename = filename.Substring(0, filename.Length - 3);
+                    if (filename.EndsWith(".zip"))
+                        filename = filename.Substring(0, filename.Length - 4);
                     var item = new ListViewItem(new string[] { game.Name, Path.GetExtension(filename), game.Metadata.System, core == null ? string.Empty : core.Name });
                     item.Tag = game;
                     listViewGames.Items.Add(item);
@@ -36,15 +33,36 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private List<string> systemsCollection = null;
         private void fillSystems()
         {
+            if (systemsCollection == null)
+            {
+                systemsCollection = CoreCollection.Systems.ToList();
+                foreach(var appInfo in AppTypeCollection.Apps)
+                {
+                    if (!systemsCollection.Contains(appInfo.Name))
+                        systemsCollection.Add(appInfo.Name);
+                }
+                systemsCollection.Sort();
+            }
+
             listBoxSystem.BeginUpdate();
             listBoxSystem.Items.Clear();
             listBoxSystem.Items.Add(Resources.Unassigned);
-            var collection = showAllSystemsCheckBox.Checked || firstSelected == null ? CoreCollection.Systems : CoreCollection.GetSystemsFromExtension(firstSelected.SubItems[1].Text.ToLower()).ToArray();
-            foreach (var system in collection)
+            var collection = showAllSystemsCheckBox.Checked || firstSelected == null ? (IEnumerable<string>)systemsCollection : CoreCollection.GetSystemsFromExtension(firstSelected.SubItems[1].Text.ToLower()).ToArray();
+            if (collection.Any())
             {
-                listBoxSystem.Items.Add(system);
+                foreach (var system in collection)
+                    listBoxSystem.Items.Add(system);
+            }
+            else
+            {
+                var appInfo = AppTypeCollection.GetAppByExtension(firstSelected.SubItems[1].Text.ToLower());
+                if (!appInfo.Unknown)
+                {
+                    listBoxSystem.Items.Add(appInfo.Name);
+                }
             }
             listBoxSystem.Enabled = true;
             listBoxSystem.EndUpdate();
@@ -54,6 +72,7 @@ namespace com.clusterrr.hakchi_gui
         {
             listBoxCore.BeginUpdate();
             listBoxCore.Items.Clear();
+            listBoxCore.Items.Add(Resources.Unassigned);
             var collection = string.IsNullOrEmpty(system) ? CoreCollection.Cores : CoreCollection.GetCoresFromSystem(system);
             //var collection = firstSelected == null ? CoreCollection.Cores : CoreCollection.GetCoresFromExtension(firstSelected.SubItems[1].Text.ToLower()).ToArray();
             if (collection != null)
@@ -96,7 +115,11 @@ namespace com.clusterrr.hakchi_gui
                     var core = string.IsNullOrEmpty(game.Metadata.Core) ? AppTypeCollection.GetAppBySystem(system).DefaultCore : game.Metadata.Core;
                     for (int i = 0; i < listBoxCore.Items.Count; ++i)
                     {
-                        if ((listBoxCore.Items[i] as CoreCollection.CoreInfo).Bin == core)
+                        if (!(listBoxCore.Items[i] is CoreCollection.CoreInfo))
+                        {
+                            listBoxCore.SetSelected(i, true);
+                        }
+                        else if ((listBoxCore.Items[i] as CoreCollection.CoreInfo).Bin == core)
                         {
                             listBoxCore.SetSelected(i, true);
                             break;
@@ -187,7 +210,23 @@ namespace com.clusterrr.hakchi_gui
             }
 
             var core = listBoxCore.SelectedItem as CoreCollection.CoreInfo;
-            if (items.Count > 1)
+            if (core == null)
+            {
+                if (items.Count == 1)
+                {
+                    var item = items[0];
+                    var game = item.Tag as NesApplication;
+
+                    commandTextBox.Text = game.Desktop.Exec.Trim();
+                    commandTextBox.Enabled = true;
+                }
+                else
+                {
+                    commandTextBox.Text = "";
+                    commandTextBox.Enabled = false;
+                }
+            }
+            else if (items.Count > 1)
             {
                 string newCommand = core.QualifiedBin + " {rom}";
                 if (resetCheckBox.Checked)

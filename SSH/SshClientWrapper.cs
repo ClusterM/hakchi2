@@ -1,14 +1,8 @@
 ﻿using com.clusterrr.hakchi_gui;
 using Renci.SshNet;
-//using Zeroconf;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.IO.Pipes;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Net.NetworkInformation;
 using System.Threading;
 
@@ -19,14 +13,13 @@ namespace com.clusterrr.ssh
         public event OnConnectedEventHandler OnConnected = delegate { };
         public event OnDisconnectedEventHandler OnDisconnected = delegate { };
 
-        //private ZeroconfResolver.ResolverListener avahiListener;
-        //private IZeroconfHost avahiHost;
         private SshClient sshClient;
         Thread connectThread;
         private bool enabled;
         private bool hasConnected;
         private int retries;
         private string service;
+        private string ip;
         private ushort port;
         private string username;
         private string password;
@@ -41,11 +34,6 @@ namespace com.clusterrr.ssh
                 enabled = value;
                 if (value)
                 {
-                    // start listening for proper network connections
-                    //avahiListener = ZeroconfResolver.CreateListener(service);
-                    //avahiListener.ServiceFound += ZeroconfHost_OnServiceFound;
-                    //avahiListener.ServiceLost += ZeroconfHost_OnServiceLost;
-
                     // start connection watching thread
                     if (connectThread == null)
                     {
@@ -69,12 +57,6 @@ namespace com.clusterrr.ssh
                         sshClient.Dispose();
                         sshClient = null;
                     }
-                    //if (avahiListener != null)
-                    //{
-                    //    avahiListener.Dispose();
-                    //    avahiListener = null;
-                    //    avahiHost = null;
-                    //}
                 }
             }
         }
@@ -100,26 +82,6 @@ namespace com.clusterrr.ssh
                             {
                                 Connect();
                             }
-                            //if (avahiHost != null)
-                            //{
-                            //    if (Ping() != -1)
-                            //    {
-                            //        Connect();
-                            //    }
-                            //    else
-                            //    {
-                            //        if (retries++ > 30)
-                            //        {
-                            //            retries = 0;
-                            //            avahiHost = null;
-                            //        }
-                            //    }
-                            //}
-                            //else
-                            //{
-                            //    Thread.Sleep(250);
-                            //    continue;
-                            //}
                         }
                     }
                     Thread.Sleep(1000);
@@ -139,12 +101,11 @@ namespace com.clusterrr.ssh
         {
             get
             {
-                //return (avahiHost != null && sshClient != null) ? sshClient.IsConnected : false;
                 return sshClient != null && sshClient.IsConnected;
             }
         }
 
-        public ushort ShellPort
+        public ushort ShellPort // this is telnet port
         {
             get { return 23; }
         }
@@ -157,41 +118,19 @@ namespace com.clusterrr.ssh
 
         public string IPAddress
         {
-            get
-            {
-                //return avahiHost == null ? null : avahiHost.IPAddress;
-                return MainForm.NES_MINI_STATIC_IP;
-            }
+            get { return ip; }
+            private set { ip = value; }
         }
 
-//        private void ZeroconfHost_OnServiceFound(object src, IZeroconfHost host)
-//        {
-//            if (avahiHost == null && host != null)
-//            {
-//                avahiHost = host;
-//            }
-//#if DEBUG
-//            Debug.WriteLine($"Detected host: \"{host.DisplayName ?? "Unknown"}\", IP: {host.IPAddress ?? "Unknown"}");
-//#endif
-//        }
-
-//        private void ZeroconfHost_OnServiceLost(object src, IZeroconfHost host)
-//        {
-//#if VERY_DEBUG
-//            Debug.WriteLine($"Lost host: \"{host.DisplayName ?? "Unknown"}\", IP: {host.IPAddress ?? "Unknown"}");
-//#endif
-//        }
-
-        public SshClientWrapper(string serviceName, ushort port, string username, string password)
+        public SshClientWrapper(string serviceName, string ip, ushort port, string username, string password)
         {
-            //avahiListener = null;
-            //avahiHost = null;
             sshClient = null;
             connectThread = null;
             enabled = false;
             hasConnected = false;
             retries = 0;
             this.service = serviceName;
+            this.ip = ip;
             this.port = port;
             this.username = username;
             this.password = password;
@@ -207,14 +146,12 @@ namespace com.clusterrr.ssh
         {
             if (IsOnline)
                 return;
-            //if (avahiHost == null)
-            //    return;
-            //if (string.IsNullOrEmpty(avahiHost.IPAddress))
-            //    return;
+            if (string.IsNullOrEmpty(ip) || ip == "0.0.0.0")
+                return;
 
             if (sshClient == null)
             {
-                sshClient = new SshClient(MainForm.NES_MINI_STATIC_IP, port, username, password);
+                sshClient = new SshClient(ip, port, username, password);
                 sshClient.ErrorOccurred += SshClient_OnError;
             }
             if (!sshClient.IsConnected)
@@ -248,11 +185,13 @@ namespace com.clusterrr.ssh
 
         public int Ping()
         {
-            //if (avahiHost != null && !string.IsNullOrEmpty(avahiHost.IPAddress))
+            if (string.IsNullOrEmpty(ip) || ip == "0.0.0.0")
+                return -1;
+
+            try
             {
                 Ping pingSender = new Ping();
-                //PingReply reply = pingSender.Send(avahiHost.IPAddress, 100);
-                PingReply reply = pingSender.Send(MainForm.NES_MINI_STATIC_IP, 100);
+                PingReply reply = pingSender.Send(ip, 100);
                 if (reply != null && reply.Status.Equals(IPStatus.Success))
                 {
 #if DEBUG
@@ -260,6 +199,10 @@ namespace com.clusterrr.ssh
 #endif
                     return (int)reply.RoundtripTime;
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error performing ping check: " + ex.Message + "\r\n" + ex.StackTrace);
             }
             return -1;
         }

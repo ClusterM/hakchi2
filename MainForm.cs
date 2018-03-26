@@ -24,12 +24,6 @@ namespace com.clusterrr.hakchi_gui
         /// </summary>
         private static string UPDATE_XML_URL = "https://teamshinkansen.github.io/xml/updates/update.xml";
 
-        /// <summary>
-        /// The name of the service advertised by avahi on the console
-        /// </summary>
-        public const string AVAHI_SERVICE_NAME = "_hakchi._tcp.local.";
-        public const string NES_MINI_STATIC_IP = "10.234.137.10";
-
         public enum OriginalGamesPosition { AtTop = 0, AtBottom = 1, Sorted = 2, Hidden = 3 }
         public enum GamesSorting { Name = 0, Core = 1, System = 2 }
         public enum ConsoleType { NES = 0, Famicom = 1, SNES = 2, SuperFamicom = 3, Unknown = 255 }
@@ -69,8 +63,8 @@ namespace com.clusterrr.hakchi_gui
         public static IEnumerable<string> InternalMods;
         public static bool? DownloadCover;
         public const int MaxGamesPerFolder = 50;
-
         public static mooftpserv.Server FtpServer;
+        public static MainForm StaticRef;
 
         private class GamesSorter : IComparer
         {
@@ -90,6 +84,7 @@ namespace com.clusterrr.hakchi_gui
 
         public MainForm()
         {
+            StaticRef = this;
             InitializeComponent();
             FormInitialize();
 
@@ -200,9 +195,42 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
+                // enable helper servers
+                if (caller is ssh.SshClientWrapper)
+                {
+                    Invoke(new Action(delegate {
+                        changeFTPServerState(false);
+
+                        FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, (caller as ssh.SshClientWrapper).IPAddress + ":21");
+                        FTPToolStripMenuItem.Checked = ConfigIni.Instance.FtpServer;
+                        FTPToolStripMenuItem.Enabled = false;
+                        openFTPInExplorerToolStripMenuItem.Enabled = true;
+
+                        shellToolStripMenuItem.Text = string.Format(Resources.TelnetServerOn, (caller as ssh.SshClientWrapper).IPAddress + ":" + caller.ShellPort);
+                        shellToolStripMenuItem.Checked = ConfigIni.Instance.TelnetServer;
+                        shellToolStripMenuItem.Enabled = false;
+                        openTelnetToolStripMenuItem.Enabled = true;
+                    }));
+                }
+                else
+                {
+                    Invoke(new Action(delegate
+                    {
+                        FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, "127.0.0.1:21");
+                        FTPToolStripMenuItem.Enabled = true;
+                        FTPToolStripMenuItem_Click(null, null);
+
+                        shellToolStripMenuItem.Text = string.Format(Resources.TelnetServerOn, "127.0.0.1:1023");
+                        shellToolStripMenuItem.Enabled = true;
+                        shellToolStripMenuItem_Click(null, null);
+                    }));
+                }
+
+                // then skip on if in minimal memboot
                 if (hakchi.MinimalMemboot)
                     return;
 
+                // detections and updates
                 if (hakchi.CanInteract)
                 {
                     if (hakchi.DetectedConsoleType != null)
@@ -223,37 +251,6 @@ namespace com.clusterrr.hakchi_gui
                             }
                             return;
                         }
-                    }
-
-                    // enable helper servers
-                    if (caller is ssh.SshClientWrapper)
-                    {
-                        Invoke(new Action(delegate {
-                            changeFTPServerState(false);
-
-                            FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, (caller as ssh.SshClientWrapper).IPAddress + ":21");
-                            FTPToolStripMenuItem.Checked = ConfigIni.Instance.FtpServer;
-                            FTPToolStripMenuItem.Enabled = false;
-                            openFTPInExplorerToolStripMenuItem.Enabled = true;
-
-                            shellToolStripMenuItem.Text = string.Format(Resources.TelnetServerOn, (caller as ssh.SshClientWrapper).IPAddress + ":" + caller.ShellPort);
-                            shellToolStripMenuItem.Checked = ConfigIni.Instance.TelnetServer;
-                            shellToolStripMenuItem.Enabled = false;
-                            openTelnetToolStripMenuItem.Enabled = true;
-                        }));
-                    }
-                    else
-                    {
-                        Invoke(new Action(delegate
-                        {
-                            FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, "127.0.0.1:21");
-                            FTPToolStripMenuItem.Enabled = true;
-                            FTPToolStripMenuItem_Click(null, null);
-
-                            shellToolStripMenuItem.Text = string.Format(Resources.TelnetServerOn, "127.0.0.1:1023");
-                            shellToolStripMenuItem.Enabled = true;
-                            shellToolStripMenuItem_Click(null, null);
-                        }));
                     }
 
                     Invoke(new Action(UpdateLocalCache));
@@ -1364,10 +1361,17 @@ namespace com.clusterrr.hakchi_gui
                                       select app;
                 foreach (var replaced in oldAppsReplaced)
                     listViewGames.Items.Remove(replaced);
+                ListViewGroup newGroup = null;
+                for (var i = 0; i < listViewGames.Groups.Count; ++i)
+                    if (listViewGames.Groups[i].Header == Resources.ListCategoryNew)
+                    {
+                        newGroup = listViewGames.Groups[i];
+                        break;
+                    }
                 foreach (var newApp in newApps)
                 {
                     var item = new ListViewItem(newApp.Name);
-                    //item.Group = lgvGroups[0];
+                    item.Group = newGroup;
                     item.Tag = newApp;
                     item.Selected = true;
                     item.Checked = true;
@@ -1624,10 +1628,10 @@ namespace com.clusterrr.hakchi_gui
 
             SaveSelectedGames();
             workerForm.Start();
-            AddDefaultsToSelectedGames(NesApplication.defaultNesGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.NES));
-            AddDefaultsToSelectedGames(NesApplication.defaultFamicomGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.Famicom));
-            AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.SNES));
-            AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedGamesForConsole(ConsoleType.SuperFamicom));
+            AddDefaultsToSelectedGames(NesApplication.defaultNesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.NES));
+            AddDefaultsToSelectedGames(NesApplication.defaultFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.Famicom));
+            AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.SNES));
+            AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.SuperFamicom));
             LoadGames();
         }
 
@@ -1675,7 +1679,14 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            AutoUpdater.Start(UPDATE_XML_URL);
+            try
+            {
+                AutoUpdater.Start(UPDATE_XML_URL);
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("There was an error running the auto-updater: " + ex.Message + "\r\n" + ex.StackTrace);
+            }
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
