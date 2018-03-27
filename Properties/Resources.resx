@@ -521,7 +521,7 @@
     <value>..\images\blank_n64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MemoryFull" xml:space="preserve">
-    <value>Sorry, there are {0}MB of games, it's too much.</value>
+    <value>Sorry, there are {0} of games, it's too much.</value>
   </data>
   <data name="green" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\green.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -998,5 +998,8 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   </data>
   <data name="sign_keyring" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\sign-keyring.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DefaultNoChange" xml:space="preserve">
+    <value>Default / no change</value>
   </data>
 </root>

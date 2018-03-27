@@ -165,7 +165,7 @@ namespace com.clusterrr.ssh
             }
 
             Debug.WriteLine("SSH shell connected");
-#if VERY_DEBUG
+#if DEBUG
             Debug.WriteLine($"Encryption: {sshClient.ConnectionInfo.CurrentServerEncryption}");
 #endif
 

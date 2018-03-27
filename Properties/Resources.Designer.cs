@@ -580,6 +580,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default / no change.
+        /// </summary>
+        internal static string DefaultNoChange {
+            get {
+                return ResourceManager.GetString("DefaultNoChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you really want to delete &quot;{0}&quot;?.
         /// </summary>
         internal static string DeleteElement {
@@ -1442,7 +1451,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ed3c7c6 (dirty).
+        ///   Looks up a localized string similar to b4e5369 (dirty).
         /// </summary>
         internal static string gitCommit {
             get {
@@ -1764,7 +1773,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, there are {0}MB of games, it&apos;s too much..
+        ///   Looks up a localized string similar to Sorry, there are {0} of games, it&apos;s too much..
         /// </summary>
         internal static string MemoryFull {
             get {

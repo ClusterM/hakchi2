@@ -96,7 +96,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                return Shared.DirectorySize(basePath);
+                return Shared.DirectorySize(basePath, hakchi.BLOCK_SIZE);
             }
             catch { }
             return 0;

@@ -235,27 +235,27 @@ namespace com.clusterrr.hakchi_gui
                 DefaultCover = Resources.blank_neogeo,
                 GoogleSuffix = "neo geo"
             },
-            new AppInfo // custom partial app
+            new AppInfo
             {
                 Name = "SquashFS",
                 Class = typeof(UnknownGame),
-                DefaultCore = string.Empty,
+                DefaultCore = "hsqs",
                 LegacyApps = new string[] {"/bin/hsqs" },
                 Extensions = new string[] {".hsqs" },
-                Prefix = 'Z',
+                Prefix = 'L',
                 DefaultCover = Resources.blank_dos,
                 GoogleSuffix = "hsqs"
             },
-            new AppInfo // custom partial app
+            new AppInfo
             {
                 Name = "Shell Script",
                 Class = typeof(UnknownGame),
-                DefaultCore = string.Empty,
+                DefaultCore = "sh",
                 LegacyApps = new string[] {"/bin/sh" },
                 Extensions = new string[] {".sh" },
-                Prefix = 'Z',
+                Prefix = 'L',
                 DefaultCover = Resources.blank_dos,
-                GoogleSuffix = "sh"
+                GoogleSuffix = "bash script"
             },
         };
 

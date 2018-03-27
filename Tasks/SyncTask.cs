@@ -117,11 +117,19 @@ namespace com.clusterrr.hakchi_gui.Tasks
             // check free space
             tasker.SetStatus(Resources.CalculatingDiff);
             var drive = new DriveInfo(Path.GetPathRoot(exportDirectory));
-            if (stats.TotalSize > drive.AvailableFreeSpace)
+            long storageTotal = drive.TotalSize;
+            long storageUsed = Shared.DirectorySize(exportDirectory);
+            long storageFree = drive.AvailableFreeSpace;
+            long maxGamesSize = storageUsed + storageFree;
+            Debug.WriteLine($"Exporting to folder: {exportDirectory}");
+            Debug.WriteLine($"Drive: {drive.Name} ({drive.DriveFormat})");
+            Debug.WriteLine(string.Format("Storage size: {0:F1}MB, used by games: {1:F1}MB, free: {2:F1}MB", storageTotal / 1024.0 / 1024.0, storageUsed / 1024.0 / 1024.0, storageFree / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Available for games: {0:F1}MB", maxGamesSize / 1024.0 / 1024.0));
+            if (stats.TotalSize > maxGamesSize)
             {
                 throw new Exception(
-                    string.Format(Resources.MemoryFull, stats.TotalSize / 1024 / 1024) + "\r\n" +
-                    string.Format(Resources.MemoryStatsExport, Shared.SizeSuffix(drive.AvailableFreeSpace)));
+                    string.Format(Resources.MemoryFull, Shared.SizeSuffix(stats.TotalSize)) + "\r\n" +
+                    string.Format(Resources.MemoryStatsExport, Shared.SizeSuffix(maxGamesSize)));
             }
 
             // list current files on drive
@@ -145,7 +153,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             DeleteLocalApplicationFilesFromDirectory(exportDriveGamesToDelete, exportDirectory);
 
             // now transfer whatever games are remaining
-            Debug.WriteLine("Transferring files");
+            Debug.WriteLine("Exporting games: " + Shared.SizeSuffix(stats.TotalSize));
             int i = 25;
             maxProgress = 25 + localGamesToTransfer.Count();
             tasker.SetProgress(25, maxProgress, TaskerForm.State.Running, Resources.CopyingGames);
@@ -182,16 +190,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
 #if DEBUG
             using (var gamesTar = new TarStream(localGamesToTransfer, "."))
             {
-                Debug.WriteLine($"Transfer size: " + Shared.SizeSuffix(gamesTar.Length));
-                gamesTar.DebugWrite();
                 if (gamesTar.Length > 0)
                 {
-                    gamesTar.OnReadProgress += delegate (long pos, long len)
-                    {
-                        Debug.WriteLine((int)((double)pos / len * 100) + "%");
-                    };
-                    File.Delete(Program.BaseDirectoryExternal + "\\DebugSyncOutput.tar");
-                    gamesTar.CopyTo(File.OpenWrite(Program.BaseDirectoryExternal + "\\DebugSyncOutput.tar"));
+#if VERY_DEBUG
+                    gamesTar.DebugWrite();
+#endif
+                    Debug.WriteLine("Creating debug tar archive: " + Shared.SizeSuffix(gamesTar.Length));
+                    File.Delete(Path.Combine(Program.BaseDirectoryExternal, "DebugSyncOutput.tar"));
+                    gamesTar.CopyTo(File.OpenWrite(Path.Combine(Program.BaseDirectoryExternal, "DebugSyncOutput.tar")));
                 }
             }
 #endif
@@ -270,15 +276,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 long storageUsed;
                 long storageFree;
                 hakchi.GetStorageStats(out gamesSize, out saveStatesSize, out storageTotal, out storageUsed, out storageFree);
-                var maxGamesSize = (storageFree + gamesSize) - reservedMemory;
+                long maxGamesSize = (storageFree + gamesSize) - reservedMemory;
                 if (stats.TotalSize > maxGamesSize)
                 {
-                    throw new Exception(string.Format(Resources.MemoryFull, stats.TotalSize / 1024 / 1024) + "\r\n\r\n" +
+                    throw new Exception(string.Format(Resources.MemoryFull, stats.TotalSize) + "\r\n" +
                         string.Format(Resources.MemoryStats.Replace("|", "\r\n"),
-                        storageTotal / 1024.0 / 1024.0,
-                        (storageFree + gamesSize - reservedMemory) / 1024 / 1024,
-                        saveStatesSize / 1024.0 / 1024.0,
-                        (storageUsed - gamesSize - saveStatesSize) / 1024.0 / 1024.0));
+                        storageTotal / 1024 / 1024,
+                        maxGamesSize / 1024 / 1024,
+                        saveStatesSize / 1024 / 1024,
+                        (storageUsed - gamesSize - saveStatesSize) / 1024 / 1024));
                 }
 
                 // get the remote list of files, timestamps, and sizes
@@ -305,21 +311,37 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 tasker.SetProgress(20, maxProgress, TaskerForm.State.Running, Resources.UploadingGames);
                 shell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
                 bool uploadSuccessful = false;
-                if (hakchi.Shell is clovershell.ClovershellConnection) // use tar stream when detecting clovershell
+                if (ConfigIni.Instance.ForceSSHTransfers || hakchi.Shell is clovershell.ClovershellConnection) // use tar stream when detecting clovershell
                 {
-                    Debug.WriteLine("Clovershell detected, uploading tar file");
+                    Debug.WriteLine("Uploading through tar file");
                     using (var gamesTar = new TarStream(localGamesToUpload, "."))
                     {
                         Debug.WriteLine($"Upload size: " + Shared.SizeSuffix(gamesTar.Length));
+#if VERY_DEBUG
                         gamesTar.DebugWrite();
+#endif
                         if (gamesTar.Length > 0)
                         {
+                            DateTime startTime = DateTime.Now;
+                            DateTime lastTime = startTime;
                             bool done = false;
                             gamesTar.OnReadProgress += delegate (long pos, long len)
                             {
-                                if (!done) tasker.SetProgress(20 + (int)((double)pos / len * 100), maxProgress);
+                                if (!done)
+                                {
+                                    if (DateTime.Now.Subtract(lastTime).TotalMilliseconds >= 100)
+                                    {
+                                        lastTime = DateTime.Now;
+                                        double totalTime = lastTime.Subtract(startTime).TotalSeconds;
+                                        string estSpeed = ((int)(pos / totalTime / 1024)).ToString();
+                                        tasker.SetProgress(20 + (int)((double)pos / len * 100), maxProgress);
+                                        tasker.SetStatus(string.Format(Resources.Uploading, estSpeed + " kBps"));
+                                        Debug.WriteLine($"{pos} / {len} : {estSpeed}");
+                                    }
+                                }
                             };
                             shell.Execute($"tar -xvC \"{gameSyncPath}\"", gamesTar, null, null, 0, true);
+                            Debug.WriteLine("Uploaded " + (int)(gamesTar.Length / 1024) + "kb in " + DateTime.Now.Subtract(startTime).TotalSeconds + " seconds");
 
                             tasker.SetState(TaskerForm.State.Finishing);
                             uploadSuccessful = true;
@@ -335,22 +357,32 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 }
                 else if (hakchi.Shell is ssh.SshClientWrapper) // using ftp when detecting ssh
                 {
-                    Debug.WriteLine("SSH network shell detected, uploading through FTP");
+                    Debug.WriteLine("Uploading through FTP");
                     tasker.SetProgress(20, maxProgress, TaskerForm.State.Running, Resources.UploadingGames);
                     using (var ftp = new FtpWrapper(localGamesToUpload))
                     {
                         Debug.WriteLine($"Upload size: " + Shared.SizeSuffix(ftp.Length));
                         if (ftp.Length > 0)
                         {
+                            DateTime startTime = DateTime.Now;
+                            DateTime lastTime = startTime;
                             ftp.OnReadProgress += delegate (long pos, long len, string filename)
                             {
-                                tasker.SetProgress(20 + (int)((double)pos / len * 100), maxProgress);
-                                tasker.SetStatus(string.Format(Resources.Uploading, Path.GetFileName(filename)));
+                                if (DateTime.Now.Subtract(lastTime).TotalMilliseconds >= 100)
+                                {
+                                    lastTime = DateTime.Now;
+                                    double totalTime = lastTime.Subtract(startTime).TotalSeconds;
+                                    string estSpeed = ((int)(pos / totalTime / 1024)).ToString();
+                                    tasker.SetProgress(20 + (int)((double)pos / len * 100), maxProgress);
+                                    tasker.SetStatus(string.Format(Resources.Uploading, Path.GetFileName(filename) + " (" + estSpeed + " kBps)"));
+                                    Debug.WriteLine($"{pos} / {len} : {estSpeed}");
+                                }
                             };
                             if (ftp.Connect(hakchi.STATIC_IP, 21, hakchi.USERNAME, hakchi.PASSWORD))
                             {
                                 ftp.Upload(gameSyncPath);
                                 uploadSuccessful = true;
+                                Debug.WriteLine("Uploaded " + (int)(ftp.Length / 1024) + "kb in " + DateTime.Now.Subtract(startTime).TotalSeconds + " seconds");
                             }
                             tasker.SetState(TaskerForm.State.Finishing);
                         }
@@ -359,7 +391,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 }
                 else
                 {
-                    Debug.WriteLine("unknown shell detected, aborting transfer");
+                    Debug.WriteLine("Unknown shell detected, aborting transfer");
                 }
 
                 // don't continue if upload wasn't successful
@@ -438,12 +470,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 if (element is NesApplication)
                 {
-                    stats.TotalGames++;
                     var game = element as NesApplication;
-                    var gameSize = game.Size();
-                    Debug.WriteLine(string.Format("Processing {0} ('{1}'), size: {2}KB", game.Code, game.Name, gameSize / 1024));
+                    long gameSize = game.Size();
 
-                    NesApplication gameCopy = game.CopyTo(targetDirectory, localGameSet, copyMode);
+                    Debug.WriteLine(string.Format("Processing {0} ('{1}'), size: {2}KB", game.Code, game.Name, gameSize / 1024));
+                    gameSize = game.CopyTo(targetDirectory, localGameSet, copyMode);
                     stats.TotalSize += gameSize;
                     stats.TransferSize += gameSize;
                     stats.TotalGames++;
@@ -475,8 +506,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     */
 
                     // legacy
-                    if (gameCopy.IsOriginalGame)
-                        originalGames[gameCopy.Code] = $"{menuIndex:D3}";
+                    if (game.IsOriginalGame)
+                        originalGames[game.Code] = $"{menuIndex:D3}";
                 }
                 if (element is NesMenuFolder)
                 {
@@ -490,11 +521,10 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         AddMenu(folder.ChildMenuCollection, originalGames, copyMode, localGameSet, stats);
                     }
                     folder.ChildIndex = stats.allMenus.IndexOf(folder.ChildMenuCollection);
-                    NesMenuFolder folderCopy = folder.CopyTo(targetDirectory, localGameSet);
-                    long folderSize = folderCopy.Size();
+
+                    long folderSize = folder.CopyTo(targetDirectory, localGameSet);
                     stats.TotalSize += folderSize;
                     stats.TransferSize += folderSize;
-
                     Debug.WriteLine(string.Format("Processed folder {0} ('{1}'), size: {2}KB", folder.Code, folder.Name, folderSize / 1024));
                 }
             }
@@ -540,11 +570,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     Directory.Delete(directory);
                 }
             }
-        }
-
-        public static void SyncLocalApplicationFilesToDirectory(IEnumerable<ApplicationFileInfo> filesToSync)
-        {
-
         }
 
     }

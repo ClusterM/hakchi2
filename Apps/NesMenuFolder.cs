@@ -227,13 +227,14 @@ namespace com.clusterrr.hakchi_gui
             return true;
         }
 
-        private long calculatedSize = -1;
-        public override long Size()
+        public NesMenuFolder CopyTo(string path)
         {
-            return calculatedSize == -1 ? base.Size() : calculatedSize;
+            SetOutputPath(path);
+            Save();
+            return this;
         }
 
-        public NesMenuFolder CopyTo(string relativeTargetPath, HashSet<ApplicationFileInfo> localGameSet)
+        public long CopyTo(string relativeTargetPath, HashSet<ApplicationFileInfo> localGameSet)
         {
             string targetDir = relativeTargetPath.Trim('/') + "/" + desktop.Code;
 
@@ -250,8 +251,12 @@ namespace com.clusterrr.hakchi_gui
             localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}.png", File.GetLastWriteTimeUtc(sourcePath), iconStream));
             localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}_small.png", File.GetLastWriteTimeUtc(smallSourcePath), smallIconStream));
 
-            calculatedSize = desktopStream.Length + iconStream.Length + smallIconStream.Length;
-            return this;
+            long calculatedSize =
+                Shared.PadFileSize(desktopStream.Length, hakchi.BLOCK_SIZE) +
+                Shared.PadFileSize(iconStream.Length, hakchi.BLOCK_SIZE) +
+                Shared.PadFileSize(smallIconStream.Length, hakchi.BLOCK_SIZE);
+
+            return calculatedSize;
         }
 
     }

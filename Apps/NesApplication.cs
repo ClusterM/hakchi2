@@ -6,7 +6,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -609,6 +608,72 @@ namespace com.clusterrr.hakchi_gui
             Metadata.Save($"{basePath}/metadata.json");
         }
 
+        public bool Repair()
+        {
+            string bin = Desktop.Bin;
+            string path = "";
+            string filename = "";
+            string extension = "";
+            string gameFile = "";
+
+            var appInfo = Metadata.AppInfo;
+            var core = Metadata.CoreInfo;
+
+            // attempt to find game file according to exec
+            foreach (var arg in desktop.Args)
+            {
+                Match m = Regex.Match(arg, @"(^\/.*)\/(?:" + desktop.Code + @"\/)([^.]*)(.*$)"); // actual regex: /(^\/.*)\/(?:...-.-.....\/)([^.]*)(.*$)/
+                if (m.Success)
+                {
+                    path = m.Groups[1].Value;
+                    filename = m.Groups[2].Value;
+                    extension = m.Groups[3].Value;
+                    gameFile = Shared.PathCombine(basePath, filename + extension);
+                    break;
+                }
+            }
+
+            // if we didn't find a match, attempt to detect a game file
+            if (string.IsNullOrEmpty(gameFile))
+            {
+                string[] excludedFiles = new string[] {
+                    Desktop.Code + ".desktop",
+                    Desktop.Code + ".png",
+                    Desktop.Code + "_small.png",
+                    "metadata.json" };
+                var foundFiles = Directory.GetFiles(basePath, "*.*", SearchOption.TopDirectoryOnly).Where(
+                    file => !excludedFiles.Contains(Path.GetFileName(file)));
+
+                string[] compressedFiles = new string[] { ".7z", ".zip" };
+                var acceptedFiles = new List<string>();
+                foreach (var file in foundFiles)
+                {
+                    if (compressedFiles.Contains(Path.GetExtension(file)))
+                    {
+                        var extractor = new SevenZipExtractor(file);
+                        if (extractor.FilesCount == 1)
+                        {
+                            var extractedFileName = extractor.ArchiveFileNames[0];
+                            if (Path.GetFileName(file).StartsWith(extractedFileName))
+                            {
+                                if (!File.Exists(Path.Combine(this.basePath, extractedFileName)))
+                                {
+                                    extractor.ExtractArchive(this.basePath);
+                                    acceptedFiles.Add(extractedFileName);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+
+            return true;
+        }
+
         public override Image Image
         {
             set
@@ -1018,6 +1083,7 @@ namespace com.clusterrr.hakchi_gui
                 prefixCode);
         }
 
+        // --- adjusted desktop file for export/upload
         private DesktopFile GetAdjustedDesktopFile(string mediaGamePath, string iconPath, string profilePath)
         {
             DesktopFile newdesktop = (DesktopFile)desktop.Clone();
@@ -1180,37 +1246,37 @@ namespace com.clusterrr.hakchi_gui
             return new HashSet<ApplicationFileInfo>() {
                 GetDesktopApplicationFileInfo(relativeTargetPath, mediaGamePath, iconPath, hakchi.GamesProfilePath) };
         }
-        
-        public enum CopyMode { Standard, Sync, LinkedSync, Export, LinkedExport }
-        public NesApplication CopyTo(string path, HashSet<ApplicationFileInfo> localGameSet = null, CopyMode copyMode = CopyMode.Standard)
-        {
-            if (copyMode == CopyMode.Standard)
-            {
-                string targetDir = Path.Combine(path, desktop.Code);
-                Shared.DirectoryCopy(basePath, targetDir, true, false, true, false);
-                return FromDirectory(targetDir);
-            }
 
-            HashSet<ApplicationFileInfo> gameSet;
+        // --- legacy
+        public NesApplication CopyTo(string path)
+        {
+            string targetDir = Path.Combine(path, desktop.Code);
+            Shared.DirectoryCopy(basePath, targetDir, true, false, true, false);
+            return FromDirectory(targetDir);
+        }
+
+        // --- used to calculate file set when syncing/exporting
+        public enum CopyMode { Sync, LinkedSync, Export, LinkedExport }
+        public long CopyTo(string relativeTargetPath, HashSet<ApplicationFileInfo> localGameSet, CopyMode copyMode)
+        {
+            HashSet<ApplicationFileInfo> gameSet = null;
             switch (copyMode)
             {
-                default:
-                    return this;
                 case CopyMode.Sync:
-                    gameSet = CopyToSync(path);
+                    gameSet = CopyToSync(relativeTargetPath);
                     break;
                 case CopyMode.LinkedSync:
-                    gameSet = CopyToSyncLinked(path);
+                    gameSet = CopyToSyncLinked(relativeTargetPath);
                     break;
                 case CopyMode.Export:
-                    gameSet = CopyToExport(path);
+                    gameSet = CopyToExport(relativeTargetPath);
                     break;
                 case CopyMode.LinkedExport:
-                    gameSet = CopyToExportLinked(path);
+                    gameSet = CopyToExportLinked(relativeTargetPath);
                     break;
             }
             localGameSet.UnionWith(gameSet);
-            return this;
+            return gameSet.GetSize(hakchi.BLOCK_SIZE);
         }
 
         public static readonly string[] nonCompressibleExtensions = { ".7z", ".zip", "*.rar", ".hsqs", ".sh", ".pbp", ".chd" };

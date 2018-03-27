@@ -28,8 +28,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public GameTask()
         {
-            Games = null;
-            GamesChanged = null;
+            Games = new List<NesApplication>();
+            GamesChanged = new Dictionary<NesApplication, string>();
             ListViewGames = null;
         }
 

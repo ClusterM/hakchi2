@@ -154,6 +154,7 @@
     </Compile>
     <Compile Include="ApplicationFileInfo.cs" />
     <Compile Include="Apps\AppTypeCollection.cs" />
+    <Compile Include="Apps\BuiltInCores.cs" />
     <Compile Include="Apps\CoreCommands.cs" />
     <Compile Include="Apps\DesktopFile.cs" />
     <Compile Include="Apps\ICloverAutofill.cs" />

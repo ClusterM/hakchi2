@@ -33,7 +33,7 @@ namespace com.clusterrr.hakchi_gui
                         Path.GetFileNameWithoutExtension(filename),
                         Path.GetExtension(filename),
                         game.Metadata.System,
-                        "Default / no change" });
+                        Resources.DefaultNoChange });
                     item.Tag = game;
                     listViewGames.Items.Add(item);
                 }
@@ -77,7 +77,7 @@ namespace com.clusterrr.hakchi_gui
 
                 if (imageIndexes.ContainsKey(game.Metadata.AppInfo.Name))
                 {
-                    var item = new ListViewItem("Default / no change");
+                    var item = new ListViewItem(Resources.DefaultNoChange);
                     item.ImageIndex = imageIndexes[game.Metadata.AppInfo.Name];
                     listViewImages.Items.Add(item);
                 }
@@ -86,7 +86,7 @@ namespace com.clusterrr.hakchi_gui
                     var image = Shared.ResizeImage(game.Metadata.AppInfo.DefaultCover, null, listViewImages.BackColor, 114, 102, false, true, true, true);
                     imageList.Images.Add(image);
 
-                    var item = new ListViewItem("Default / no change");
+                    var item = new ListViewItem(Resources.DefaultNoChange);
                     imageIndexes.Add(game.Metadata.AppInfo.Name, item.ImageIndex = i++);
                     listViewImages.Items.Add(item);
                 }
@@ -139,7 +139,7 @@ namespace com.clusterrr.hakchi_gui
         {
             for (int i = 0; i < listViewGames.Items.Count; ++i)
             {
-                listViewGames.Items[i].SubItems[4].Text = "Default / no change";
+                listViewGames.Items[i].SubItems[4].Text = Resources.DefaultNoChange;
             }
             coverColumnHeader.Width = -2;
             ShowSelected();
@@ -166,7 +166,7 @@ namespace com.clusterrr.hakchi_gui
                 for (int i = 0; i < listViewGames.Items.Count; ++i)
                 {
                     var gameItem = listViewGames.Items[i];
-                    if (gameItem.SubItems[4].Text != "Default / no change")
+                    if (gameItem.SubItems[4].Text != Resources.DefaultNoChange)
                     {
                         var game = gameItem.Tag as NesApplication;
                         foreach (var coverMatch in game.CoverArtMatches)
@@ -200,7 +200,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 bool change = false;
                 for (int i = 0; i < listViewGames.Items.Count; ++i)
-                    if (listViewGames.Items[i].SubItems[4].Text != "Default / no change")
+                    if (listViewGames.Items[i].SubItems[4].Text != Resources.DefaultNoChange)
                     {
                         change = true;
                         break;

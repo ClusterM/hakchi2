@@ -178,6 +178,7 @@ namespace com.clusterrr.hakchi_gui
         public MainForm.OriginalGamesPosition OriginalGamesPosition = MainForm.OriginalGamesPosition.AtTop;
         public MainForm.GamesSorting GamesSorting = MainForm.GamesSorting.Name;
         public bool ShowGamesWithoutCoverArt = false;
+        public bool ForceSSHTransfers = false;
         public bool ExportLinked = true;
         public string ExportDrive = "";
         public string ExportRegion = "";

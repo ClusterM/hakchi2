@@ -32,7 +32,7 @@ namespace com.clusterrr.hakchi_gui
 
         ~ApplicationFileInfo()
         {
-            if(FileStream != null)
+            if (FileStream != null)
             {
                 FileStream.Dispose();
                 FileStream = null;
@@ -64,7 +64,7 @@ namespace com.clusterrr.hakchi_gui
                 info != null &&
                 FilePath == info.FilePath &&
                 FileSize == info.FileSize;
-            // check duration and allow 3 seconds leeway (accounting for fat32)
+            // check duration and allow 3 seconds leeway (accounting for FAT32 imprecise date/time property)
             return preliminaryEqual && ModifiedTime.Subtract(info.ModifiedTime).Duration() < TimeSpan.FromSeconds(3);
         }
 
@@ -115,10 +115,9 @@ namespace com.clusterrr.hakchi_gui
 
         public static void DebugListHashSet(IEnumerable<ApplicationFileInfo> localGameSet)
         {
-            foreach(var afi in localGameSet)
-            {
+            Debug.WriteLine("HashSet Listing:");
+            foreach (var afi in localGameSet)
                 Debug.WriteLine($"{afi.FilePath} [{afi.LocalFilePath ?? "-"}]{(afi.FileStream == null ? "" : " [stream]")} {afi.FileSize} bytes {afi.ModifiedTime.ToString()}");
-            }
         }
     }
 
@@ -128,7 +127,7 @@ namespace com.clusterrr.hakchi_gui
     public static class ApplicationFileInfoExtensions
     {
         /// <summary>
-        /// Allows copying "files" from one set to another, as if they were files on a drive
+        /// Allows copying "files" from one set into this one, as if they were files on a drive (overwrite files with same path, disregarding this hashset's conditions of modified date and size)
         /// </summary>
         public static HashSet<ApplicationFileInfo> CopyFilesTo(this HashSet<ApplicationFileInfo> first, HashSet<ApplicationFileInfo> second, bool overwrite = true)
         {
@@ -151,6 +150,19 @@ namespace com.clusterrr.hakchi_gui
                     result.Add(i);
             }
             return result;
+        }
+
+        /// <summary>
+        /// Returns cumulative size of files in the set
+        /// </summary>
+        public static long GetSize(this HashSet<ApplicationFileInfo> set, long padFileSize = -1)
+        {
+            long size = 0;
+            foreach(var afi in set)
+            {
+                size += Shared.PadFileSize(afi.FileSize, padFileSize);
+            }
+            return size;
         }
     }
 }

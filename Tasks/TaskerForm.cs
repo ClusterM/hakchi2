@@ -233,28 +233,31 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return TaskConclusion;
         }
 
-        public void AddTask(TaskFunc task)
+        public TaskerForm AddTask(TaskFunc task)
         {
             tasks.Enqueue(task);
+            return this;
         }
 
-        public void AddTasks(params TaskFunc[] tasks)
+        public TaskerForm AddTasks(params TaskFunc[] tasks)
         {
             foreach (TaskFunc task in tasks)
             {
                 AddTask(task);
             }
+            return this;
         }
 
-        public void CancelRemainingTasks()
+        public TaskerForm CancelRemainingTasks()
         {
             tasks.Clear();
+            return this;
         }
 
-        public TaskerForm(Form form)
+        public TaskerForm(Form f)
         {
             InitializeComponent();
-            this.HostForm = form;
+            this.HostForm = f;
             this.SyncObject = new Object();
             this.tasks = new Queue<TaskFunc>();
             this.thread = null;
@@ -299,10 +302,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     }
                     SetProgress(1, 1);
                     ++doneTasks;
-                    Thread.Sleep(250);
+                    Thread.Sleep(100); // artificial delay for testing TODO remove
                 }
 
                 // done
+                Debug.WriteLine(TaskConclusion.ToString());
                 if (TaskConclusion == Conclusion.Success)
                 {
                     SetStatus(State.Done, "Done!");

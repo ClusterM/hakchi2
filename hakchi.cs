@@ -17,6 +17,7 @@ namespace com.clusterrr.hakchi_gui
         public const string STATIC_IP = "10.234.137.10";
         public const string USERNAME = "root";
         public const string PASSWORD = "";
+        public const long BLOCK_SIZE = 4096;
 
         public static ISystemShell Shell { get; private set; }
         public static bool Connected { get; private set; }

@@ -85,6 +85,8 @@
             this.sFROMToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableSFROMToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usePCMPatchWhenAvailableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.developerToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.devForceSshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useLinkedSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -208,6 +210,8 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.maximumGamesPerFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
+            this.repairGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem19 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -578,6 +582,7 @@
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.languageToolStripMenuItem,
             this.sFROMToolToolStripMenuItem,
+            this.developerToolsToolStripMenuItem,
             this.separateGamesForMultibootToolStripMenuItem,
             this.useLinkedSyncToolStripMenuItem,
             this.compressGamesToolStripMenuItem,
@@ -621,6 +626,20 @@
             this.usePCMPatchWhenAvailableToolStripMenuItem.Name = "usePCMPatchWhenAvailableToolStripMenuItem";
             resources.ApplyResources(this.usePCMPatchWhenAvailableToolStripMenuItem, "usePCMPatchWhenAvailableToolStripMenuItem");
             this.usePCMPatchWhenAvailableToolStripMenuItem.Click += new System.EventHandler(this.usePCMPatchWhenAvailableToolStripMenuItem_Click);
+            // 
+            // developerToolsToolStripMenuItem
+            // 
+            this.developerToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.devForceSshToolStripMenuItem});
+            this.developerToolsToolStripMenuItem.Name = "developerToolsToolStripMenuItem";
+            resources.ApplyResources(this.developerToolsToolStripMenuItem, "developerToolsToolStripMenuItem");
+            // 
+            // devForceSshToolStripMenuItem
+            // 
+            this.devForceSshToolStripMenuItem.CheckOnClick = true;
+            this.devForceSshToolStripMenuItem.Name = "devForceSshToolStripMenuItem";
+            resources.ApplyResources(this.devForceSshToolStripMenuItem, "devForceSshToolStripMenuItem");
+            this.devForceSshToolStripMenuItem.Click += new System.EventHandler(this.devForceSshToolStripMenuItem_Click);
             // 
             // separateGamesForMultibootToolStripMenuItem
             // 
@@ -1017,6 +1036,8 @@
             this.compressSelectedGamesToolStripMenuItem,
             this.decompressSelectedGamesToolStripMenuItem,
             this.deleteSelectedGamesToolStripMenuItem,
+            this.toolStripMenuItem19,
+            this.repairGamesToolStripMenuItem,
             this.toolStripMenuItem17,
             this.sFROMToolToolStripMenuItem1,
             this.selectEmulationCoreToolStripMenuItem});
@@ -1504,6 +1525,17 @@
             this.gamesConsoleComboBox.Name = "gamesConsoleComboBox";
             this.gamesConsoleComboBox.SelectedIndexChanged += new System.EventHandler(this.gamesConsoleComboBox_SelectedIndexChanged);
             // 
+            // repairGamesToolStripMenuItem
+            // 
+            this.repairGamesToolStripMenuItem.Name = "repairGamesToolStripMenuItem";
+            resources.ApplyResources(this.repairGamesToolStripMenuItem, "repairGamesToolStripMenuItem");
+            this.repairGamesToolStripMenuItem.Click += new System.EventHandler(this.repairGamesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem19
+            // 
+            this.toolStripMenuItem19.Name = "toolStripMenuItem19";
+            resources.ApplyResources(this.toolStripMenuItem19, "toolStripMenuItem19");
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1727,6 +1759,10 @@
         private System.Windows.Forms.ToolStripMenuItem coreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem systemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showGamesWithoutBoxArtToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem developerToolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem devForceSshToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem19;
+        private System.Windows.Forms.ToolStripMenuItem repairGamesToolStripMenuItem;
     }
 }
 

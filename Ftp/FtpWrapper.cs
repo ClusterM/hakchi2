@@ -13,6 +13,8 @@ namespace com.clusterrr.util
 {
     public class FtpWrapper : IDisposable
     {
+        const int transferChunkSize = 256 * 1024;
+
         public delegate void OnProgressDelegate(long Position, long Length, string filename);
         public delegate void OnFileInputErrorDelegate(string filename);
         public event OnProgressDelegate OnReadProgress = delegate { };
@@ -58,7 +60,7 @@ namespace com.clusterrr.util
             {
                 ftp = new FluentFTP.FtpClient(host, port, username, password);
                 ftp.Connect();
-                ftp.TransferChunkSize = 128 * 1024;
+                ftp.TransferChunkSize = transferChunkSize;
                 return ftp.IsConnected;
             }
             catch (Exception ex)
@@ -122,7 +124,7 @@ namespace com.clusterrr.util
                     currentPosition += afi.FileSize;
                     OnReadProgress(currentPosition, totalSize, afi.FilePath);
                 }
-
+                
                 // adjust file modified times after the fact (ftpd doesn't seem to support setting dates)
                 try
                 {

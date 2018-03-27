@@ -188,7 +188,7 @@ namespace com.clusterrr.hakchi_gui
         private DialogResult BackgroundThreadMessageBox(string text, string title, MessageBoxButtons buttons, MessageBoxIcon icon)
         {
             return (DialogResult)this.Invoke(new Func<DialogResult>(
-                                   () => { return MessageBox.Show(this, text, title, buttons, icon); }));
+                () => { return MessageBox.Show(this, text, title, buttons, icon); }));
         }
 
         void Shell_OnConnected(ISystemShell caller)
@@ -371,6 +371,7 @@ namespace com.clusterrr.hakchi_gui
             coreToolStripMenuItem.Checked = ConfigIni.Instance.GamesSorting == GamesSorting.Core;
             systemToolStripMenuItem.Checked = ConfigIni.Instance.GamesSorting == GamesSorting.System;
             showGamesWithoutBoxArtToolStripMenuItem.Checked = ConfigIni.Instance.ShowGamesWithoutCoverArt;
+            devForceSshToolStripMenuItem.Checked = ConfigIni.Instance.ForceSSHTransfers;
 
             // folders modes
             disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.Instance.FoldersMode == 0;
@@ -2554,6 +2555,16 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.Instance.ShowGamesWithoutCoverArt = showGamesWithoutBoxArtToolStripMenuItem.Checked;
             SaveSelectedGames();
             LoadGames();
+        }
+
+        private void devForceSshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.ForceSSHTransfers = devForceSshToolStripMenuItem.Checked;
+        }
+
+        private void repairGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

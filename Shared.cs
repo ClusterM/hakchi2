@@ -309,7 +309,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static long DirectorySize(string path)
+        public static long DirectorySize(string path, long blockSize = -1)
         {
             if (string.IsNullOrEmpty(path))
                 throw new ArgumentNullException($"Null path cannot be used with this method.");
@@ -323,13 +323,18 @@ namespace com.clusterrr.hakchi_gui
             FileInfo[] files = dir.GetFiles();
             foreach (FileInfo file in files)
             {
-                size += file.Length;
+                size += PadFileSize(file.Length, blockSize);
             }
             foreach (DirectoryInfo subdir in dirs)
             {
                 size += DirectorySize(subdir.FullName);
             }
             return size;
+        }
+
+        public static long PadFileSize(long size, long blockSize = -1)
+        {
+            return blockSize == -1 ? size : (size % blockSize == 0 ? size : (((long)Math.Floor((double)size / blockSize) + 1) * blockSize));
         }
 
         // concatenate an arbitrary number of arrays

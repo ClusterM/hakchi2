@@ -43,7 +43,7 @@
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(213, 238);
+            this.buttonOK.Location = new System.Drawing.Point(258, 240);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 0;
@@ -66,7 +66,7 @@
             this.errorLabel.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.errorLabel.Location = new System.Drawing.Point(114, 18);
             this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(373, 90);
+            this.errorLabel.Size = new System.Drawing.Size(458, 90);
             this.errorLabel.TabIndex = 5;
             this.errorLabel.Text = "Error message";
             // 
@@ -84,7 +84,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(474, 116);
+            this.richTextBox1.Size = new System.Drawing.Size(558, 116);
             this.richTextBox1.TabIndex = 6;
             this.richTextBox1.Text = "";
             // 
@@ -110,21 +110,21 @@
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Location = new System.Drawing.Point(12, 114);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(476, 118);
+            this.panel1.Size = new System.Drawing.Size(560, 118);
             this.panel1.TabIndex = 7;
             // 
             // ErrorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 273);
+            this.ClientSize = new System.Drawing.Size(584, 271);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonOK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(516, 312);
+            this.MaximumSize = new System.Drawing.Size(600, 310);
             this.MinimizeBox = false;
             this.Name = "ErrorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
