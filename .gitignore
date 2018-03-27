@@ -9,3 +9,4 @@ commit.txt
 packages/**/*
 !packages/repositories.config
 Web Installer/*.exe
+ProgressODoom/bin/
