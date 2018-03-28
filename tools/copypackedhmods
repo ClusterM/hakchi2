@@ -1,0 +1,18 @@
+#!/bin/sh
+mkdir -p "$2"
+
+find "$1" -type d -name "*.hmod" -maxdepth 1 | while read hmod; do
+  modname="`basename "$hmod"`"
+  if [ ! -z "$2" ] && [ ! -z "$modname" ]; then
+    rm -rf "$2/$modname"
+    tar -czvf "$2/$modname" -C "$hmod" .
+  fi
+done
+
+find "$1" -type f -name "*.hmod" -maxdepth 1 | while read hmod; do
+  modname="`basename "$hmod"`"
+  if [ ! -z "$2" ] && [ ! -z "$modname" ]; then
+    rm -rf "$2/$modname"
+    cp "$hmod" "$2"
+  fi
+done

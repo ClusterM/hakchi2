@@ -1,0 +1,41 @@
+#!/bin/sh
+
+CONFIGFS="/sys/devices/virtual/android_usb/android0"
+VENDOR_ID="1f3a"
+PRODUCT_ID="efe8"
+
+start() {
+    echo   "0"                   > "$CONFIGFS/enable"
+    echo   "$VENDOR_ID" > "$CONFIGFS/idVendor"
+    echo   "$PRODUCT_ID"   > "$CONFIGFS/idProduct"
+    echo   "clover" > "$CONFIGFS/functions"
+    echo   "1"                   > "$CONFIGFS/enable"
+    echo   "done"
+    /bin/clovershell --daemon
+}
+
+stop() {
+    killall clovershell 
+}
+
+restart() {
+    stop
+    start
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart|reload)
+    restart
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+esac
+
+exit $?

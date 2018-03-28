@@ -239,12 +239,6 @@
     <EmbeddedResource Include="images\sign-question.png" />
     <EmbeddedResource Include="images\sign-up.png" />
     <EmbeddedResource Include="images\sign-warning.png" />
-    <None Include="mods\hmods\gamepath-cleanup.hmod">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\hmods\kernel.hmod">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -1370,7 +1364,7 @@
     <None Include="network_mods\rndis-197ace1.hmod" />
     <None Include="network_mods\telnetd-ca53806.hmod" />
     <None Include="packages.config" />
-    <None Include="sfrom_tool\README.txt">
+    <None Include="sfrom_tool\README.TXT">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="tools\arm\kexec.static">
@@ -1385,37 +1379,7 @@
     <Content Include="tools\rsyncpass">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="mods\hmods\font_remount.hmod">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="patches\1c3848c0-Illusion of Gaia %28U%29 [!].ips">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <Content Include="user_mods\advanced_music_hack.hmod\etc\preinit.d\bb223_advanced_music_hack">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="user_mods\advanced_music_hack.hmod\etc\preinit.d\pb223_advanced_music_hack">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="user_mods\advanced_music_hack.hmod\readme.md">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="user_mods\extra_space.hmod\readme.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <Content Include="user_mods\advanced_music_hack.hmod\usr\share\advanced_music_hack\bgm_boot.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="user_mods\gamepath-cleanup.hmod\install">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="user_mods\gamepath-cleanup.hmod\readme.md">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="user_mods\gamepath-cleanup.hmod\uninstall">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="user_mods\snes_custom_filters.hmod\readme.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="AboutBox.resx">
@@ -2543,12 +2507,6 @@
     <None Include="LICENSE">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="mods\hmods\clovershell.hmod">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\hmods\copyleft.hmod">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="patches\1dac6208-Snow Bros. %28U%29 [!] - NES Mini patch.ips">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -2598,42 +2556,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="patches\f6898a59-James Bond Jr %28no dim%29.ips">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\password.hmod\install">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\password.hmod\password.raw.gz">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\password.hmod\password_fail.raw.gz">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\password.hmod\password_ok.raw.gz">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\password.hmod\S810password">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\password.hmod\uninstall">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\remove_thumbnails.hmod\install">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\remove_thumbnails.hmod\uninstall">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\hmods\tiny7zx.hmod">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\hmods\clovercon.hmod">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\hmods\modules-3.4.112.madmonkey.hmod">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="mods\hmods\ntfs-3g.hmod">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="patches\0354f4b1-Dirt Racer %28Europe%29 %28En,Fr,De%29.ips">
@@ -2860,30 +2782,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Properties\app.manifest" />
-    <None Include="user_mods\snes_custom_filters.hmod\canoe-custom-filters">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\snes_custom_filters.hmod\install">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\snes_custom_filters.hmod\p8030_snes_filters">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\snes_custom_filters.hmod\uninstall">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\extra_space.hmod\etc\preinit.d\p7110_extra_space">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\extra_space.hmod\install">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\extra_space.hmod\uninstall">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\hakchi-v1.0.3-110.hmod">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -3092,13 +2990,7 @@
     <EmbeddedResource Include="images\snes-eu-jp_sm_tr.png" />
     <EmbeddedResource Include="images\snes-us_sm.png" />
     <EmbeddedResource Include="images\snes-us_sm_tr.png" />
-    <None Include="user_mods\password.hmod\readme.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="user_mods\README.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="user_mods\remove_thumbnails.hmod\readme.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="folder_images\README.txt">
@@ -3186,18 +3078,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>echo. &gt; NUL 2&gt; "$(ProjectDir)commit.txt"
-
-git --version &amp;&amp; (
-  for /f %25%25i in ('git rev-parse --short HEAD') do (
-    git diff-index --quiet HEAD -- &amp;&amp; (
-      echo|set /p="%25%25i" &gt;&gt; "$(ProjectDir)commit.txt"
-      SET ERRORLEVEL=0
-    ) || (
-      echo|set /p="%25%25i (dirty)" &gt;&gt; "$(ProjectDir)commit.txt"
-    )
-  )
-) || SET ERRORLEVEL=0</PreBuildEvent>
+    <PreBuildEvent>cd /D "$(ProjectDir)tools/" || cd "$(ProjectDir)tools/"
+"./busybox" sh -e "./copypackedhmods" "../mods/hmods" "../$(OutDir)mods/hmods"
+"./busybox" sh -e "./copypackedhmods" "../user_mods" "../$(OutDir)user_mods"
+"./busybox" sh -e "./downloadfiles" $(TargetDir)
+"./busybox" sh -e "./gitcommit" &gt; "../commit.txt"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>

@@ -1,0 +1,5 @@
+rm -f $preinitpath/p8020_copyleft
+rm -rf $rootfs/usr/share/clover-ui/resources/strings
+rm -rf $rootfs/usr/share/ui/snes-eur/resources/strings
+rm -rf $rootfs/usr/share/ui/snes-usa/resources/strings
+rm -rf $rootfs/usr/share/ui/snes-jpn/resources/strings

@@ -190,7 +190,7 @@ namespace com.clusterrr.hakchi_gui
                     throw new IOException("Shell connection should be online!");
                 }
 
-                MinimalMemboot = Shell.Execute("[ \"$cf_memboot\" = \"y\" ]") == 0;
+                MinimalMemboot = Shell.Execute("source /hakchi/config; [ \"$cf_memboot\" = \"y\" ]") == 0;
 
                 // detect unique id
                 UniqueID = Shell.ExecuteSimple("echo \"`devmem 0x01C23800``devmem 0x01C23804``devmem 0x01C23808``devmem 0x01C2380C`\"").Trim().Replace("0x", "");

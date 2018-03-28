@@ -1,0 +1,3 @@
+chmod +x "$transferpath/bin/ntfs-3g"
+ln -s ntfs-3g "$transferpath/bin/mount.ntfs"
+ln -s ntfs-3g "$transferpath/bin/mount.ntfs-3g"

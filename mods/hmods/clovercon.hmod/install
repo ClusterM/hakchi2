@@ -1,0 +1,6 @@
+cfg_clovercon_enabled='y'
+cfg_clovercon_home_combination='0x24'
+cfg_clovercon_autofire='1'
+cfg_clovercon_autofire_interval='8'
+cfg_clovercon_autofire_xy='0'
+cfg_clovercon_fc_start='0'

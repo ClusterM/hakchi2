@@ -482,12 +482,12 @@ namespace com.clusterrr.hakchi_gui
 
         public void FlashKernel(Stream kernel)
         {
-            GeneralMemboot((ClovershellConnection clovershell) =>
+            GeneralMemboot((ISystemShell shell) =>
             {
                 kernel.Seek(0, SeekOrigin.Begin);
-                clovershell.Execute("cat > /kernel.img && sntool kernel /kernel.img", kernel, null, null, 0, true);
+                shell.Execute("cat > /kernel.img && sntool kernel /kernel.img", kernel, null, null, 0, true);
 
-                if (clovershell.Execute("hakchi flashBoot2 /kernel.img") != 0)
+                if (shell.Execute("hakchi flashBoot2 /kernel.img") != 0)
                     throw new Exception(Resources.VerifyFailed);
 
             }, false);
@@ -590,7 +590,7 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(maxProgress, maxProgress);
         }
 
-        public void GeneralMemboot(Action<ClovershellConnection> membootAction, bool rebootAfter = true, bool skipCustom = false)
+        public void GeneralMemboot(Action<ISystemShell> membootAction, bool rebootAfter = true, bool skipCustom = false)
         {
             if (!hakchi.MinimalMemboot)
             {
@@ -629,7 +629,7 @@ namespace com.clusterrr.hakchi_gui
         private bool flashStockKernel()
         {
             bool returnValue = false;
-            GeneralMemboot((ClovershellConnection clovershell) =>
+            GeneralMemboot((ISystemShell shell) =>
             {
                 MemoryStream kernel;
                 if (getStockKernel(out kernel))
@@ -649,20 +649,20 @@ namespace com.clusterrr.hakchi_gui
             Tasks[] validTasks = { Tasks.InstallHakchi, Tasks.ResetHakchi, Tasks.UninstallHakchi };
             if (!validTasks.Contains(task)) throw new ArgumentOutOfRangeException("task");
 
-            GeneralMemboot((ClovershellConnection clovershell) =>
+            GeneralMemboot((ISystemShell shell) =>
             {
                 if (task == Tasks.ResetHakchi || task == Tasks.UninstallHakchi)
                 {
-                    clovershell.Execute("hakchi mount_base", null, null, null, 0, true);
-                    clovershell.Execute("rm -rf /newroot/var/lib/hakchi/");
-                    clovershell.Execute("hakchi umount_base", null, null, null, 0, true);
+                    shell.Execute("hakchi mount_base", null, null, null, 0, true);
+                    shell.Execute("rm -rf /newroot/var/lib/hakchi/");
+                    shell.Execute("hakchi umount_base", null, null, null, 0, true);
                 }
 
                 if (task == Tasks.InstallHakchi || task == Tasks.ResetHakchi)
                 {
-                    clovershell.Execute("echo \"cf_install=y\" >> /hakchi/config");
-                    clovershell.Execute("echo \"cf_update=y\" >> /hakchi/config");
-                    clovershell.Execute("mkdir -p /hakchi/transfer/");
+                    shell.Execute("echo \"cf_install=y\" >> /hakchi/config");
+                    shell.Execute("echo \"cf_update=y\" >> /hakchi/config");
+                    shell.Execute("mkdir -p /hakchi/transfer/");
 
                     // Transfer the base hmods
                     if (hmodsInstall != null && hmodsInstall.Count() > 0)
@@ -679,14 +679,14 @@ namespace com.clusterrr.hakchi_gui
                                 {
                                     if (hmodTar.Length > 0)
                                     {
-                                        clovershell.Execute($"mkdir -p '{modHakchiPath}'", null, null, null, 0, true);
-                                        clovershell.Execute($"tar -xvC '{modHakchiPath}'", hmodTar, null, null, 0, true);
+                                        shell.Execute($"mkdir -p '{modHakchiPath}'", null, null, null, 0, true);
+                                        shell.Execute($"tar -xvC '{modHakchiPath}'", hmodTar, null, null, 0, true);
                                     }
                                 }
                             }
                             if (File.Exists(modPath))
                             {
-                                clovershell.Execute($"cat > '{modHakchiPath}'", File.OpenRead(modPath), null, null, 0, true);
+                                shell.Execute($"cat > '{modHakchiPath}'", File.OpenRead(modPath), null, null, 0, true);
                             }
                         }
                     }
@@ -696,7 +696,7 @@ namespace com.clusterrr.hakchi_gui
 
                     try
                     {
-                        clovershell.Execute("boot", null, hakchiLogStream, hakchiLogStream, 0, true);
+                        shell.Execute("boot", null, hakchiLogStream, hakchiLogStream, 0, true);
                     }
                     catch { }
 
@@ -756,7 +756,7 @@ namespace com.clusterrr.hakchi_gui
                 progress += 5;
                 SetProgress(progress, maxProgress);
 
-                GeneralMemboot((ClovershellConnection clovershell) =>
+                GeneralMemboot((ISystemShell shell) =>
                 {
                     hakchi.ShowSplashScreen();
 
@@ -766,31 +766,31 @@ namespace com.clusterrr.hakchi_gui
                     {
                         case Tasks.DumpNandB:
                         case Tasks.FlashNandB:
-                            clovershell.Execute("umount /newroot");
-                            clovershell.Execute("cryptsetup close root-crypt");
-                            clovershell.ExecuteSimple("cryptsetup open /dev/nandb root-crypt --type plain --cipher aes-xts-plain --key-file /key-file", 2000, true);
+                            shell.Execute("umount /newroot");
+                            shell.Execute("cryptsetup close root-crypt");
+                            shell.ExecuteSimple("cryptsetup open /dev/nandb root-crypt --type plain --cipher aes-xts-plain --key-file /key-file", 2000, true);
 
                             if (task == Tasks.DumpNandB)
-                                partitionSize = long.Parse(clovershell.ExecuteSimple("echo $((($(hexdump -e '1/4 \"%u\"' -s $((0x28)) -n 4 /dev/mapper/root-crypt)+0xfff)/0x1000))", throwOnNonZero: true).Trim()) * 4 * 1024;
+                                partitionSize = long.Parse(shell.ExecuteSimple("echo $((($(hexdump -e '1/4 \"%u\"' -s $((0x28)) -n 4 /dev/mapper/root-crypt)+0xfff)/0x1000))", throwOnNonZero: true).Trim()) * 4 * 1024;
 
                             if (task == Tasks.FlashNandB)
-                                partitionSize = long.Parse(clovershell.ExecuteSimple("blockdev --getsize64 /dev/mapper/root-crypt", throwOnNonZero: true));
+                                partitionSize = long.Parse(shell.ExecuteSimple("blockdev --getsize64 /dev/mapper/root-crypt", throwOnNonZero: true));
 
                             break;
 
                         case Tasks.DumpNandC:
                         case Tasks.FlashNandC:
-                            partitionSize = long.Parse(clovershell.ExecuteSimple("blockdev --getsize64 /dev/nandc", throwOnNonZero: true));
+                            partitionSize = long.Parse(shell.ExecuteSimple("blockdev --getsize64 /dev/nandc", throwOnNonZero: true));
                             break;
 
                         case Tasks.DumpNand:
                             partitionSize = 536870912;
                             break;
                         case Tasks.FormatNandC:
-                            clovershell.Execute("cat > /bin/mke2fs; chmod +x /bin/mke2fs", File.OpenRead(Shared.PathCombine(baseDirectoryInternal, "tools", "arm", "mke2fs.static")), null, null, 0, true);
-                            clovershell.Execute("hakchi umount_base");
-                            clovershell.Execute("yes | mke2fs -t ext4 -L data -b 4K -E stripe-width=32 -O ^huge_file,^metadata_csum /dev/nandc", null, null, null, 0, true);
-                            clovershell.Execute("rm /bin/mke2fs");
+                            shell.Execute("cat > /bin/mke2fs; chmod +x /bin/mke2fs", File.OpenRead(Shared.PathCombine(baseDirectoryInternal, "tools", "arm", "mke2fs.static")), null, null, 0, true);
+                            shell.Execute("hakchi umount_base");
+                            shell.Execute("yes | mke2fs -t ext4 -L data -b 4K -E stripe-width=32 -O ^huge_file,^metadata_csum /dev/nandc", null, null, null, 0, true);
+                            shell.Execute("rm /bin/mke2fs");
                             handleHakchi(Tasks.InstallHakchi);
                             return;
                     }
@@ -813,24 +813,24 @@ namespace com.clusterrr.hakchi_gui
                         switch (task)
                         {
                             case Tasks.DumpNandB:
-                                clovershell.Execute($"dd if=/dev/mapper/root-crypt bs=4K count={(partitionSize / 1024) / 4 }", null, file, throwOnNonZero: true);
+                                shell.Execute($"dd if=/dev/mapper/root-crypt bs=4K count={(partitionSize / 1024) / 4 }", null, file, throwOnNonZero: true);
                                 break;
 
                             case Tasks.FlashNandB:
-                                clovershell.Execute("dd of=/dev/mapper/root-crypt bs=128K", file, throwOnNonZero: true);
-                                clovershell.Execute("cryptsetup close root-crypt", throwOnNonZero: true);
+                                shell.Execute("dd of=/dev/mapper/root-crypt bs=128K", file, throwOnNonZero: true);
+                                shell.Execute("cryptsetup close root-crypt", throwOnNonZero: true);
                                 break;
 
                             case Tasks.DumpNandC:
-                                clovershell.Execute("dd if=/dev/nandc", null, file, throwOnNonZero: true);
+                                shell.Execute("dd if=/dev/nandc", null, file, throwOnNonZero: true);
                                 break;
 
                             case Tasks.FlashNandC:
-                                clovershell.Execute("dd of=/dev/nandc bs=128K", file, throwOnNonZero: true);
+                                shell.Execute("dd of=/dev/nandc bs=128K", file, throwOnNonZero: true);
                                 break;
 
                             case Tasks.DumpNand:
-                                clovershell.Execute("sntool sunxi_flash phy_read 0 1000", null, file, throwOnNonZero: true);
+                                shell.Execute("sntool sunxi_flash phy_read 0 1000", null, file, throwOnNonZero: true);
                                 break;
                         }
                         file.Close();
@@ -1295,13 +1295,13 @@ namespace com.clusterrr.hakchi_gui
         {
             MemoryStream kernelTemp = new MemoryStream();
 
-            GeneralMemboot((ClovershellConnection clovershell) =>
+            GeneralMemboot((ISystemShell shell) =>
             {
-                bool hasNandBackup = (clovershell.Execute("[ \"$(sntool sunxi_flash phy_read 68 1 | dd status=none bs=7 count=1)\" = \"ANDROID\" ]") == 0);
+                bool hasNandBackup = (shell.Execute("[ \"$(sntool sunxi_flash phy_read 68 1 | dd status=none bs=7 count=1)\" = \"ANDROID\" ]") == 0);
 
                 if (hasNandBackup)
                 {
-                    clovershell.Execute("sntool sunxi_flash read_boot2 68 18", null, kernelTemp, null, 0, true);
+                    shell.Execute("sntool sunxi_flash read_boot2 68 18", null, kernelTemp, null, 0, true);
                 }
                 else
                 {

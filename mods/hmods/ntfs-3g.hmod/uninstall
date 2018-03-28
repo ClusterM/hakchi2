@@ -1,0 +1,2 @@
+rm -rf "$rootfs/bin/mount.ntfs"
+rm -rf "$rootfs/bin/mount.ntfs-3g"
