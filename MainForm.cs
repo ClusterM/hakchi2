@@ -1133,6 +1133,19 @@ namespace com.clusterrr.hakchi_gui
                 Tasks.MessageForm.Show(Resources.UploadGames, Resources.SelectAtLeast, Resources.sign_warning);
                 return;
             }
+            if (!hakchi.Connected)
+            {
+                Tasks.MessageForm.Show(Resources.UploadGames, Resources.PleaseConnectYourDevice, Resources.sign_warning);
+                return;
+            }
+            if (!ConfigIni.Instance.SeparateGameStorage && hakchi.DetectedConsoleType != ConfigIni.Instance.ConsoleType)
+            {
+                Tasks.MessageForm.Show(
+                    Resources.UploadGames,
+                    string.Format(Resources.CannotSyncToNonMultiBoot, GetConsoleTypeName(ConfigIni.Instance.ConsoleType), GetConsoleTypeName()),
+                    Resources.sign_database);
+                return;
+            }
             if (UploadGames())
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);

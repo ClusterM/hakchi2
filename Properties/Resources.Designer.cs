@@ -435,6 +435,18 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You cannot sync currently selected games collection with the currently detected NES/SNES mini.
+        ///
+        ///Current games collection: {0}
+        ///Current detected console: {1}.
+        /// </summary>
+        internal static string CannotSyncToNonMultiBoot {
+            get {
+                return ResourceManager.GetString("CannotSyncToNonMultiBoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cleaning up previous task....
         /// </summary>
         internal static string CleaningUp {
@@ -2103,6 +2115,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
             get {
                 object obj = ResourceManager.GetObject("pl", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please connect your NES/SNES mini in order to proceed. Note that you must also install the custom kernel, using the options in the Kernel menu..
+        /// </summary>
+        internal static string PleaseConnectYourDevice {
+            get {
+                return ResourceManager.GetString("PleaseConnectYourDevice", resourceCulture);
             }
         }
         
