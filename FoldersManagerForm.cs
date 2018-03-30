@@ -90,12 +90,8 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                var message = ex.Message;
-#if DEBUG
-                message += ex.StackTrace;
-#endif
                 Debug.WriteLine(ex.Message + ex.StackTrace);
-                MessageBox.Show(this, message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Tasks.ErrorForm.Show(null, ex.Message, ex.StackTrace);
             }
         }
 
@@ -645,16 +641,12 @@ namespace com.clusterrr.hakchi_gui
         {
             if (nodes.Count() == 1)
             {
-                if (MessageBox.Show(this, string.Format(Resources.DeleteElement, nodes.First().Text),
-                    Resources.AreYouSure, MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning) != DialogResult.Yes)
+                if (Tasks.MessageForm.Show(Resources.AreYouSure, string.Format(Resources.DeleteElement, nodes.First().Text), Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) != Tasks.MessageForm.Button.Yes)
                     return;
             }
             else
             {
-                if (MessageBox.Show(this, string.Format(Resources.DeleteElements, nodes.Count()),
-                    Resources.AreYouSure, MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning) != DialogResult.Yes)
+                if (Tasks.MessageForm.Show(Resources.AreYouSure, string.Format(Resources.DeleteElement, nodes.Count()), Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) != Tasks.MessageForm.Button.Yes)
                     return;
             }
             bool needWarn = false;
@@ -710,7 +702,9 @@ namespace com.clusterrr.hakchi_gui
             if (parent != null)
                 treeView.SelectedNode = parent;
             if (needWarn && !ConfigIni.Instance.DisablePopups)
-                MessageBox.Show(this, Resources.FolderContent, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            {
+                Tasks.MessageForm.Show(this.Text, Resources.FolderContent);
+            }
             buttonOk.Enabled = treeView.Nodes[0].Nodes.Count > 0;
         }
 
@@ -873,13 +867,13 @@ namespace com.clusterrr.hakchi_gui
         private void TreeContructorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason != CloseReason.UserClosing || DialogResult == DialogResult.OK) return;
-            var a = MessageBox.Show(this, Resources.FoldersSaveQ, this.Text, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            if (a == DialogResult.Cancel)
+            var a = Tasks.MessageForm.Show(this.Text, Resources.FoldersSaveQ, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No, Tasks.MessageForm.Button.Cancel }, Tasks.MessageForm.DefaultButton.Button3);
+            if (a == Tasks.MessageForm.Button.Cancel)
             {
                 e.Cancel = true;
                 return;
             }
-            if (a == DialogResult.Yes)
+            if (a == Tasks.MessageForm.Button.Yes)
                 SaveTree();
             DialogResult = DialogResult.Cancel;
         }
@@ -966,7 +960,7 @@ namespace com.clusterrr.hakchi_gui
                 foreach (var game in oldCollection)
                     unsorted.ChildMenuCollection.Add(game);
                 if (!ConfigIni.Instance.DisablePopups)
-                    MessageBox.Show(this, Resources.NewGamesUnsorted, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Tasks.MessageForm.Show(this.Text, Resources.NewGamesUnsorted);
             }
             DrawTree();
         }

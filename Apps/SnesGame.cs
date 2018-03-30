@@ -717,40 +717,63 @@ namespace com.clusterrr.hakchi_gui
             return false;
         }
 
-        public void ApplyGameGenie()
+        public bool ApplyGameGenie(out byte[] gameFileData)
         {
+            gameFileData = null;
             if (!string.IsNullOrEmpty(GameGenie))
             {
                 var codes = GameGenie.Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
-                var nesFiles = Directory.GetFiles(this.basePath, "*.*", SearchOption.TopDirectoryOnly);
-                foreach (var f in nesFiles)
+                string gameFilePath = GameFilePath;
+                if (gameFilePath != null)
                 {
-                    byte[] data;
-                    var ext = Path.GetExtension(f).ToLower();
-                    int offset;
-                    if (ext == ".sfrom")
+                    gameFilePath = gameFilePath.ToLower();
+                    byte[] data = null;
+                    int offset = 0;
+                    if (gameFilePath.Contains(".sfrom"))
                     {
-                        data = File.ReadAllBytes(f);
+                        data = GameFileData;
                         offset = 48;
-                    }  else if (ext == ".sfc" || ext == ".smc")
+                    }
+                    else if (gameFilePath.Contains(".sfc") || gameFilePath.Contains(".smc"))
                     {
-                        data = File.ReadAllBytes(f);
+                        data = GameFileData;
                         if ((data.Length % 1024) != 0)
                             offset = 512;
                         else
                             offset = 0;
                     }
-                    else continue;
 
-                    var rawData = new byte[data.Length - offset];
-                    Array.Copy(data, offset, rawData, 0, rawData.Length);
+                    if (data != null)
+                    {
+                        byte[] rawData = new byte[data.Length - offset];
+                        Array.Copy(data, offset, rawData, 0, rawData.Length);
 
-                    foreach (var code in codes)
-                        rawData = GameGeniePatcherSnes.Patch(rawData, code);
+                        foreach (var code in codes)
+                        {
+                            rawData = GameGeniePatcherSnes.Patch(rawData, code);
+                        }
 
-                    Array.Copy(rawData, 0, data, offset, rawData.Length);
-                    File.WriteAllBytes(f, data);                        
+                        Array.Copy(rawData, 0, data, offset, rawData.Length);
+                        gameFileData = data;
+                        return true;
+                    }
                 }
+            }
+            return false;
+        }
+
+        public void ApplyGameGenie()
+        {
+            if (GameFilePath != null)
+            {
+                bool wasCompressed = DecompressPossible().Length > 0;
+                if (wasCompressed)
+                    Decompress();
+                byte[] gameFileData;
+                ApplyGameGenie(out gameFileData);
+                File.WriteAllBytes(GameFilePath, gameFileData);
+                if (wasCompressed)
+                    Compress();
             }
         }
     }

@@ -179,10 +179,39 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        public bool ApplyGameGenie(out byte[] gameFileData)
+        {
+            gameFileData = null;
+            if (!string.IsNullOrEmpty(GameGenie))
+            {
+                var codes = GameGenie.Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string gameFilePath = GameFilePath;
+                if (gameFilePath != null)
+                {
+                    byte[] data = GameFileData;
+                    if (data != null)
+                    {
+                        var nesFile = new NesFile(data);
+                        foreach (var code in codes)
+                        {
+                            nesFile.PRG = GameGeniePatcherNes.Patch(nesFile.PRG, code.Trim());
+                        }
+                        gameFileData = nesFile.GetRaw();
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         public void ApplyGameGenie()
         {
             if (!string.IsNullOrEmpty(GameGenie))
             {
+                bool wasCompressed = DecompressPossible().Length > 0;
+                if (wasCompressed)
+                    Decompress();
+
                 var codes = GameGenie.Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
                 var nesFiles = Directory.GetFiles(this.basePath, "*.nes", SearchOption.TopDirectoryOnly);
                 foreach (var f in nesFiles)
@@ -194,6 +223,9 @@ namespace com.clusterrr.hakchi_gui
                     }
                     nesFile.Save(f);
                 }
+
+                if(wasCompressed)
+                    Compress();
             }
         }
     }

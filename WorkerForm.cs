@@ -217,9 +217,9 @@ namespace com.clusterrr.hakchi_gui
                     new object[] { owner, text, caption, buttons, icon, defaultButton, tweak });
             }
             TaskbarProgress.SetState(owner as Form, TaskbarProgress.TaskbarStates.Paused);
-            if (tweak) MessageBoxManager.Register(); // Tweak button names
+            //if (tweak) MessageBoxManager.Register(); // Tweak button names
             var result = MessageBox.Show(owner, text, caption, buttons, icon, defaultButton);
-            if (tweak) MessageBoxManager.Unregister();
+            //if (tweak) MessageBoxManager.Unregister();
             TaskbarProgress.SetState(owner as Form, TaskbarProgress.TaskbarStates.Normal);
             return result;
         }
@@ -266,10 +266,6 @@ namespace com.clusterrr.hakchi_gui
                 switch (Task)
                 {
                     case Tasks.UploadGames:
-                        if (exportGames)
-                            ExportGames();
-                        //else
-                            //UploadGames();
                         break;
                     case Tasks.AddGames:
                         AddGames(GamesToAdd);
@@ -1361,23 +1357,24 @@ namespace com.clusterrr.hakchi_gui
 
                         if (exists && !nonDestructiveSync)
                         {
-                            Directory.Delete(path, true);
+                            Shared.EnsureEmptyDirectory(path);
+                            Thread.Sleep(0);
                         }
 
                         if (!exists || !nonDestructiveSync)
                         {
                             Directory.CreateDirectory(path);
-                            new DirectoryInfo(path).Refresh();
+                            //new DirectoryInfo(path).Refresh();
 
                             // extract .desktop file from archive
                             using (var o = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
                             {
                                 szExtractor.ExtractFile(f, o);
+                                o.Flush();
                                 if (!this.restoreAllOriginalGames && !selectedGames.Contains(code))
                                 {
                                     selectedGames.Add(code);
                                 }
-                                o.Flush();
                             }
 
                             // create game temporarily to perform cover search

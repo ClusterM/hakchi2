@@ -20,19 +20,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public delegate Conclusion TaskFunc(TaskerForm tasker, Object syncObject = null);
 
         public Form HostForm
-        {
-            get; private set;
-        }
+            { get; private set; }
 
         public Object SyncObject
-        {
-            get; set;
-        }
+            { get; set; }
 
         public Conclusion TaskConclusion
-        {
-            get; set;
-        }
+            { get; set; }
 
         // helper combined setters
 
@@ -92,7 +86,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 }
                 return previousState;
             }
-            catch (InvalidOperationException) { Debug.WriteLine("InvalidOperationException"); }
+            catch (InvalidOperationException) { }
             return State.Undefined;
         }
 
@@ -184,7 +178,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 Debug.WriteLine(formattedText);
 
                 State prevState = SetState(State.Error);
-                ErrorForm.ShowDialog(null, ex.Message, formattedText);
+                ErrorForm.Show(null, ex.Message, formattedText);
                 if (stop)
                 {
                     TaskConclusion = Conclusion.Error;
@@ -197,19 +191,19 @@ namespace com.clusterrr.hakchi_gui.Tasks
             catch (InvalidOperationException) { }
         }
 
-        public DialogResult ShowMessage(string message, string caption, MessageBoxButtons mbButtons = MessageBoxButtons.OK, MessageBoxIcon mbIcon = MessageBoxIcon.Information, MessageBoxDefaultButton mbDefaultButtons = MessageBoxDefaultButton.Button1)
+        public MessageForm.Button ShowMessage(string title, string message, Image icon, MessageForm.Button[] buttons, MessageForm.DefaultButton defaultButton)
         {
-            if (Disposing) return DialogResult.None;
+            if (Disposing) return MessageForm.Button.Undefined;
             try
             {
                 if (InvokeRequired)
                 {
-                    return (DialogResult)Invoke(new Func<string, string, MessageBoxButtons, MessageBoxIcon, MessageBoxDefaultButton, DialogResult>(ShowMessage), new object[] { message, caption, mbButtons, mbIcon, mbDefaultButtons });
+                    return (MessageForm.Button)Invoke(new Func<string, string, Image, MessageForm.Button[], MessageForm.DefaultButton, MessageForm.Button>(ShowMessage), new object[] { title, message, icon, buttons, defaultButton });
                 }
-                return MessageBox.Show(HostForm, message, caption, mbButtons, mbIcon, mbDefaultButtons);
+                return MessageForm.Show(title, message, icon, buttons, defaultButton);
             }
             catch (InvalidOperationException) { }
-            return DialogResult.None;
+            return MessageForm.Button.Undefined;
         }
 
         public Conclusion Start(bool showTaskbarProgress = false, int endDelay = 0)
@@ -248,6 +242,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return this;
         }
 
+        public TaskerForm AddFinalTask(TaskFunc task)
+        {
+            if (this.finalTask != null)
+                throw new ArgumentException("A final task has already been defined");
+            this.finalTask = task;
+            return this;
+        }
+
         public TaskerForm CancelRemainingTasks()
         {
             tasks.Clear();
@@ -260,10 +262,12 @@ namespace com.clusterrr.hakchi_gui.Tasks
             this.HostForm = f;
             this.SyncObject = new Object();
             this.tasks = new Queue<TaskFunc>();
+            this.finalTask = null;
             this.thread = null;
         }
 
         private Queue<TaskFunc> tasks;
+        private TaskFunc finalTask;
         private Thread thread;
         private bool showTaskbarProgress;
         private int endDelay;
@@ -278,20 +282,26 @@ namespace com.clusterrr.hakchi_gui.Tasks
             try
             {
                 // iterate through tasks queue
+                bool firstTask = true;
                 while (tasks.Any())
                 {
                     // pop out next task
                     TaskFunc currentTask = tasks.Dequeue();
 
-                    // compute readable name
-                    string
-                        currentTaskClass = currentTask.Method.DeclaringType.ToString();
-                        currentTaskClass = currentTaskClass.Substring(currentTaskClass.LastIndexOf('.') + 1);
-                    string currentTaskName = currentTaskClass + "." + currentTask.Method.Name;
+                    if (firstTask)
+                    {
+                        firstTask = false;
 
-                    // give basic title
-                    Debug.WriteLine("Executing task: " + currentTaskName);
-                    SetTitle(currentTaskName);
+                        // compute readable name
+                        string
+                            currentTaskClass = currentTask.Method.DeclaringType.ToString();
+                            currentTaskClass = currentTaskClass.Substring(currentTaskClass.LastIndexOf('.') + 1);
+                        string currentTaskName = currentTaskClass + "." + currentTask.Method.Name;
+
+                        // give basic title
+                        Debug.WriteLine("Executing task: " + currentTaskName);
+                        SetTitle(currentTaskName);
+                    }
 
                     // run task and assign conclusion
                     Conclusion conclusion = currentTask(this, SyncObject);
@@ -302,11 +312,16 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     }
                     SetProgress(1, 1);
                     ++doneTasks;
-                    Thread.Sleep(100); // artificial delay for testing TODO remove
+                }
+
+                // final task (its conclusion is ignored)
+                if(finalTask!= null)
+                {
+                    Debug.WriteLine("Executing final task: " + finalTask.Method.Name);
+                    finalTask(this, SyncObject);
                 }
 
                 // done
-                Debug.WriteLine(TaskConclusion.ToString());
                 if (TaskConclusion == Conclusion.Success)
                 {
                     SetStatus(State.Done, "Done!");
@@ -335,6 +350,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 SetState(State.Undefined);
             }
 
+            Debug.WriteLine(TaskConclusion.ToString());
             this.closing = true;
             Invoke(new Action(Close));
         }
@@ -354,7 +370,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             if (thread != null && !closing && e.CloseReason == CloseReason.UserClosing)
             {
                 // make more checks to bypass question when appropriate
-                if(ShowMessage(Resources.DoYouWantCancel, Resources.AreYouSure,MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                if (ShowMessage(Resources.AreYouSure, Resources.DoYouWantCancel, Resources.sign_warning, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button2) == MessageForm.Button.Yes)
                 {
                     TaskConclusion = Conclusion.Abort;
                     thread.Abort();

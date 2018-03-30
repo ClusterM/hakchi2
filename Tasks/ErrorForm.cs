@@ -14,7 +14,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             pictureBox1.Image = Resources.sign_error;
         }
 
-        public static DialogResult ShowDialog(string title, string message, string details)
+        public static DialogResult Show(string title, string message, string details)
         {
             ErrorForm form = new ErrorForm();
             if (!string.IsNullOrEmpty(title))

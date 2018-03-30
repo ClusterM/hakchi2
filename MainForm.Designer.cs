@@ -157,6 +157,8 @@
             this.editROMHeaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
             this.resetROMHeaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.repairGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem19 = new System.Windows.Forms.ToolStripSeparator();
             this.selectEmulationCoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
             this.buttonStart = new System.Windows.Forms.Button();
@@ -963,8 +965,8 @@
             // 
             // donateToolStripMenuItem
             // 
-            this.donateToolStripMenuItem.Name = "donateToolStripMenuItem";
             resources.ApplyResources(this.donateToolStripMenuItem, "donateToolStripMenuItem");
+            this.donateToolStripMenuItem.Name = "donateToolStripMenuItem";
             this.donateToolStripMenuItem.Click += new System.EventHandler(this.donateToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
@@ -1044,10 +1046,10 @@
             this.compressSelectedGamesToolStripMenuItem,
             this.decompressSelectedGamesToolStripMenuItem,
             this.deleteSelectedGamesToolStripMenuItem,
-            this.toolStripMenuItem19,
-            this.repairGamesToolStripMenuItem,
             this.toolStripMenuItem17,
             this.sFROMToolToolStripMenuItem1,
+            this.repairGamesToolStripMenuItem,
+            this.toolStripMenuItem19,
             this.selectEmulationCoreToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
             resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
@@ -1145,6 +1147,17 @@
             this.resetROMHeaderToolStripMenuItem.Name = "resetROMHeaderToolStripMenuItem";
             resources.ApplyResources(this.resetROMHeaderToolStripMenuItem, "resetROMHeaderToolStripMenuItem");
             this.resetROMHeaderToolStripMenuItem.Click += new System.EventHandler(this.resetROMHeaderToolStripMenuItem_Click);
+            // 
+            // repairGamesToolStripMenuItem
+            // 
+            this.repairGamesToolStripMenuItem.Name = "repairGamesToolStripMenuItem";
+            resources.ApplyResources(this.repairGamesToolStripMenuItem, "repairGamesToolStripMenuItem");
+            this.repairGamesToolStripMenuItem.Click += new System.EventHandler(this.repairGamesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem19
+            // 
+            this.toolStripMenuItem19.Name = "toolStripMenuItem19";
+            resources.ApplyResources(this.toolStripMenuItem19, "toolStripMenuItem19");
             // 
             // selectEmulationCoreToolStripMenuItem
             // 

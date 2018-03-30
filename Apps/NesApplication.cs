@@ -238,12 +238,7 @@ namespace com.clusterrr.hakchi_gui
 
         public const string GameGenieFileName = "gamegenie.txt";
         public string GameGeniePath { private set; get; }
-        private string gameGenie = "";
-        public string GameGenie
-        {
-            get { return gameGenie; }
-            set { gameGenie = value; }
-        }
+        public string GameGenie { get; set; }
 
         public string GameFilePath
         {
@@ -257,6 +252,65 @@ namespace com.clusterrr.hakchi_gui
                         string gameFile = Path.Combine(basePath, m.Groups[2].ToString() + m.Groups[3].ToString());
                         if (File.Exists(gameFile))
                             return gameFile;
+                    }
+                }
+                return null;
+            }
+        }
+
+        public Stream GameFileStream
+        {
+            get
+            {
+                string[] compressedFiles = new string[] { ".7z", ".zip" };
+
+                string gameFilePath = GameFilePath;
+                if (gameFilePath != null)
+                {
+                    int extPos = gameFilePath.LastIndexOf('.');
+                    if (extPos > -1 && compressedFiles.Contains(gameFilePath.Substring(extPos)))
+                    {
+                        using (var extractor = new SevenZipExtractor(gameFilePath))
+                        {
+                            if (extractor.FilesCount == 1)
+                            {
+                                MemoryStream stream = new MemoryStream();
+                                extractor.ExtractFile(0, stream);
+                                return stream;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return new FileStream(gameFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+                    }
+                }
+                return null;
+            }
+        }
+
+        public byte[] GameFileData
+        {
+            get
+            {
+                Stream gameFileStream = GameFileStream;
+                if (gameFileStream != null)
+                {
+                    if (gameFileStream is MemoryStream)
+                    {
+                        byte[] buffer = ((MemoryStream)gameFileStream).ToArray();
+                        gameFileStream.Dispose();
+                        return buffer;
+                    }
+                    else
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            gameFileStream.CopyTo(ms);
+                            byte[] buffer = ms.ToArray();
+                            gameFileStream.Dispose();
+                            return buffer;
+                        }
                     }
                 }
                 return null;
@@ -352,7 +406,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private static string[] systemsBlacklist = Resources.retroarch_systems_blacklist.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
         public static NesApplication Import(string inputFileName, string originalFileName = null, byte[] rawRomData = null)
         {
             var ext = Path.GetExtension(inputFileName).ToLower();
@@ -368,7 +421,7 @@ namespace com.clusterrr.hakchi_gui
             AppTypeCollection.AppInfo appInfo = AppTypeCollection.GetAppByExtension(ext);
             if (appInfo.Unknown)
             {
-                IEnumerable<string> systems = CoreCollection.GetSystemsFromExtension(ext).Except(systemsBlacklist);
+                IEnumerable<string> systems = CoreCollection.GetSystemsFromExtension(ext).Except(SystemCollection.RedundancyList);
                 if(systems.Count() == 1)
                 {
                     var system = systems.First();
@@ -570,7 +623,7 @@ namespace com.clusterrr.hakchi_gui
 
             GameGeniePath = Path.Combine(path, GameGenieFileName);
             if (File.Exists(GameGeniePath))
-                gameGenie = File.ReadAllText(GameGeniePath);
+                GameGenie = File.ReadAllText(GameGeniePath);
         }
 
         public override bool Save()
@@ -595,8 +648,8 @@ namespace com.clusterrr.hakchi_gui
             desktop.Save($"{basePath}/{desktop.Code}.desktop", snesExtraFields);
 
             // game genie stuff
-            if (!string.IsNullOrEmpty(gameGenie))
-                File.WriteAllText(GameGeniePath, gameGenie);
+            if (!string.IsNullOrEmpty(GameGenie))
+                File.WriteAllText(GameGeniePath, GameGenie);
             else if (File.Exists(GameGeniePath))
                 File.Delete(GameGeniePath);
 
@@ -610,67 +663,144 @@ namespace com.clusterrr.hakchi_gui
 
         public bool Repair()
         {
+            if (IsOriginalGame)
+                return false;
+
+            string[] excludedFiles = new string[] {
+                    Desktop.Code + ".desktop",
+                    Desktop.Code + ".png",
+                    Desktop.Code + "_small.png",
+                    "metadata.json" };
+            string[] compressedFiles = new string[] { ".7z", ".zip" };
+
             string bin = Desktop.Bin;
+            string core = string.IsNullOrEmpty(bin) ? string.Empty : bin.Substring(bin.LastIndexOf('/') + 1);
+            string fullgamepath = "";
             string path = "";
             string filename = "";
             string extension = "";
             string gameFile = "";
 
-            var appInfo = Metadata.AppInfo;
-            var core = Metadata.CoreInfo;
-
             // attempt to find game file according to exec
-            foreach (var arg in desktop.Args)
+            for (var i = 0; i < desktop.Args.Length; ++i)
             {
+                string arg = desktop.Args[i];
                 Match m = Regex.Match(arg, @"(^\/.*)\/(?:" + desktop.Code + @"\/)([^.]*)(.*$)"); // actual regex: /(^\/.*)\/(?:...-.-.....\/)([^.]*)(.*$)/
                 if (m.Success)
                 {
+                    fullgamepath = m.Groups[0].Value;
                     path = m.Groups[1].Value;
                     filename = m.Groups[2].Value;
                     extension = m.Groups[3].Value;
                     gameFile = Shared.PathCombine(basePath, filename + extension);
+                    Debug.WriteLine($"Full game path: {fullgamepath}");
+                    Debug.WriteLine($"Found: path={path}, filename={filename}, extension={extension}, gameFile={gameFile}");
                     break;
                 }
             }
 
             // if we didn't find a match, attempt to detect a game file
-            if (string.IsNullOrEmpty(gameFile))
+            string[] foundFiles;
+            if (!string.IsNullOrEmpty(gameFile) && File.Exists(gameFile))
             {
-                string[] excludedFiles = new string[] {
-                    Desktop.Code + ".desktop",
-                    Desktop.Code + ".png",
-                    Desktop.Code + "_small.png",
-                    "metadata.json" };
-                var foundFiles = Directory.GetFiles(basePath, "*.*", SearchOption.TopDirectoryOnly).Where(
-                    file => !excludedFiles.Contains(Path.GetFileName(file)));
+                foundFiles = new string[] { gameFile };
+            }
+            else
+            {
+                foundFiles = Directory.GetFiles(basePath, "*.*", SearchOption.TopDirectoryOnly).Where(
+                    file => !excludedFiles.Contains(Path.GetFileName(file))).ToArray();
+            }
 
-                string[] compressedFiles = new string[] { ".7z", ".zip" };
-                var acceptedFiles = new List<string>();
-                foreach (var file in foundFiles)
+            Debug.WriteLine("Found files: " + string.Join(", ", foundFiles.Select(file => Path.GetFileName(file))));
+
+            List<string> acceptedFiles = new List<string>();
+            foreach (var file in foundFiles)
+            {
+                int extPos = file.LastIndexOf('.');
+                if (extPos > -1 && compressedFiles.Contains(file.Substring(extPos)))
                 {
-                    if (compressedFiles.Contains(Path.GetExtension(file)))
+                    using (var extractor = new SevenZipExtractor(file))
                     {
-                        var extractor = new SevenZipExtractor(file);
                         if (extractor.FilesCount == 1)
                         {
                             var extractedFileName = extractor.ArchiveFileNames[0];
-                            if (Path.GetFileName(file).StartsWith(extractedFileName))
+                            if (!File.Exists(Path.Combine(this.basePath, extractedFileName)))
                             {
-                                if (!File.Exists(Path.Combine(this.basePath, extractedFileName)))
-                                {
-                                    extractor.ExtractArchive(this.basePath);
-                                    acceptedFiles.Add(extractedFileName);
-                                }
+                                extractor.ExtractArchive(this.basePath);
+                                acceptedFiles.Add(Path.Combine(basePath, extractedFileName));
+                                File.Delete(file);
                             }
                         }
+                        else
+                        {
+                            acceptedFiles.Add(file);
+                        }
                     }
-                    else
-                    {
-
-                    }
+                }
+                else
+                {
+                    acceptedFiles.Add(file);
                 }
             }
 
+            Debug.WriteLine("Accepted files: " + string.Join(", ", acceptedFiles.Select(file => Path.GetFileName(file))));
+
+            string selectedFile = string.Empty;
+            if (acceptedFiles.Count == 0)
+            {
+                if (fullgamepath != "")
+                    Desktop.Exec = Desktop.Exec.Replace(fullgamepath, "").Replace("  ", " ");
+                Debug.WriteLine("No validated file found in game folder");
+                return true;
+            }
+            else if (acceptedFiles.Count == 1)
+            {
+                selectedFile = Path.GetFileName(acceptedFiles[0]);
+            }
+            else
+            {
+                ParentForm.Invoke(new Action(()=>{
+                    var form = new SelectFileForm(
+                        acceptedFiles.Select(file => Path.GetFileName(file)).ToArray(),
+                        string.Format(Resources.SelectFileFor, Desktop.Name),
+                        Resources.Abort);
+                    var result = form.ShowDialog();
+                    if (form.listBoxFiles.SelectedItem != null)
+                        selectedFile = form.listBoxFiles.SelectedItem.ToString();
+                }));
+                if (string.IsNullOrEmpty(selectedFile))
+                    return false;
+            }
+
+            string newFileName = GenerateSafeFileName(Path.GetFileNameWithoutExtension(selectedFile)) + Path.GetExtension(selectedFile);
+            if (newFileName != selectedFile)
+            {
+                if (File.Exists(Path.Combine(basePath, newFileName)))
+                    throw new IOException($"A file of the generated filename \"{newFileName}\" already exists");
+                File.Move(Path.Combine(basePath, selectedFile), Path.Combine(basePath, newFileName));
+            }
+
+            string newExec = bin;
+            if (string.IsNullOrEmpty(fullgamepath))
+            {
+                newExec += $" {hakchi.GamesPath}/{Desktop.Code}/{newFileName}";
+            }
+            for (int i = 0; i < Desktop.Args.Length; ++i)
+            {
+                if (Desktop.Args[i].Equals(fullgamepath))
+                {
+                    newExec += " " + $"{hakchi.GamesPath}/{Desktop.Code}/{newFileName}";
+                }
+                else
+                {
+                    newExec += " " + Desktop.Args[i];
+                }
+            }
+            Desktop.Exec = newExec;
+
+            if (ConfigIni.Instance.Compress)
+                Compress();
+            Save();
             return true;
         }
 
@@ -1202,6 +1332,8 @@ namespace com.clusterrr.hakchi_gui
             string originalMediaGamePath = hakchi.MediaPath + OriginalGamesCacheDirectory.Substring(2).Replace("\\", "/");
             string mediaGamePath = hakchi.MediaPath + GamesDirectory.Substring(2).Replace("\\", "/");
             string iconPath = mediaGamePath;
+
+            var gameSet = new HashSet<ApplicationFileInfo>();
             if (IsOriginalGame)
             {
                 var originalExtensions = new string[] { ".sfrom", ".qd", ".nes" };
@@ -1213,28 +1345,37 @@ namespace com.clusterrr.hakchi_gui
                         foundRom = true;
                     if (Path.GetFileName(file).Equals(desktop.Code + ".png"))
                         foundIcon = true;
-                    if (foundRom && foundIcon) break;
                 }
 
                 string originalBasePath = Path.Combine(OriginalGamesCacheDirectory, desktop.Code);
-                if (!foundRom || !foundIcon)
+                if (Directory.Exists(originalBasePath))
                 {
-                    if (Directory.Exists(originalBasePath))
+                    // handle copying or linking original games rom and icons
+                    foreach (var file in Directory.GetFiles(originalBasePath, "*"))
                     {
-                        foreach (var file in Directory.GetFiles(originalBasePath, "*"))
+                        if (!foundRom && originalExtensions.Contains(Path.GetExtension(file)))
                         {
-                            if (!foundRom && originalExtensions.Contains(Path.GetExtension(file)))
-                            {
-                                mediaGamePath = originalMediaGamePath;
-                                foundRom = true;
-                            }
-                            if (!foundIcon && Path.GetFileName(file).Equals(desktop.Code + ".png"))
-                            {
-                                iconPath = originalMediaGamePath;
-                                foundIcon = true;
-                            }
-                            if (foundRom && foundIcon) break;
+                            mediaGamePath = originalMediaGamePath;
+                            foundRom = true;
                         }
+                        if (!foundIcon && Path.GetFileName(file).Equals(desktop.Code + ".png"))
+                        {
+                            iconPath = originalMediaGamePath;
+                            foundIcon = true;
+                        }
+                        if (foundRom && foundIcon) break;
+                    }
+
+                    // copy autoplay and pixelart folders when they are in cache
+                    if (Directory.Exists(Path.Combine(originalBasePath, "autoplay")))
+                    {
+                        gameSet.UnionWith(ApplicationFileInfo.GetApplicationFileInfoForDirectory(
+                            Path.Combine(originalBasePath, "autoplay"), $"{targetDir}/autoplay"));
+                    }
+                    if (Directory.Exists(Path.Combine(originalBasePath, "pixelart")))
+                    {
+                        gameSet.UnionWith(ApplicationFileInfo.GetApplicationFileInfoForDirectory(
+                            Path.Combine(originalBasePath, "pixelart"), $"{targetDir}/pixelart"));
                     }
                 }
 
@@ -1243,8 +1384,20 @@ namespace com.clusterrr.hakchi_gui
                 if (!foundIcon)
                     iconPath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
             }
-            return new HashSet<ApplicationFileInfo>() {
-                GetDesktopApplicationFileInfo(relativeTargetPath, mediaGamePath, iconPath, hakchi.GamesProfilePath) };
+            else
+            {
+                if (File.Exists(Path.Combine(basePath, GameGenieFileName)))
+                {
+                    gameSet.Add(ApplicationFileInfo.GetApplicationFileInfo(GameFilePath, targetDir));
+                    mediaGamePath = hakchi.GamesPath;
+                }
+            }
+
+            // add adjusted desktop file
+            gameSet.Add(
+                GetDesktopApplicationFileInfo(relativeTargetPath, mediaGamePath, iconPath, hakchi.GamesProfilePath));
+
+            return gameSet;
         }
 
         // --- legacy
@@ -1280,6 +1433,7 @@ namespace com.clusterrr.hakchi_gui
         }
 
         public static readonly string[] nonCompressibleExtensions = { ".7z", ".zip", "*.rar", ".hsqs", ".sh", ".pbp", ".chd" };
+        public static readonly string[] compressedExtensions = { ".7z", ".zip" };
         public string[] CompressPossible()
         {
             if (!Directory.Exists(basePath)) return new string[0];
@@ -1303,18 +1457,22 @@ namespace com.clusterrr.hakchi_gui
             if (!Directory.Exists(basePath)) return new string[0];
             var result = new List<string>();
             var exec = Regex.Replace(desktop.Exec, "[/\\\"]", " ") + " ";
-            var files = Directory.GetFiles(basePath, "*.7z", SearchOption.TopDirectoryOnly);
+            var files = Directory.GetFiles(basePath, "*.*", SearchOption.TopDirectoryOnly);
             foreach (var file in files)
             {
-                if (exec.Contains(" " + Path.GetFileName(file) + " "))
-                    result.Add(file);
+                foreach (var e in compressedExtensions)
+                    if (file.ToLower().EndsWith(e) && exec.Contains(" " + Path.GetFileName(file) + " ") &&
+                        new SevenZipExtractor(file).FilesCount == 1)
+                    {
+                        result.Add(file);
+                        break;
+                    }
             }
             return result.ToArray();
         }
 
         public void Compress()
         {
-            SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
             foreach (var filename in CompressPossible())
             {
                 var archName = filename + ".7z";
@@ -1329,7 +1487,6 @@ namespace com.clusterrr.hakchi_gui
 
         public void Decompress()
         {
-            SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
             foreach (var filename in DecompressPossible())
             {
                 using (var szExtractor = new SevenZipExtractor(filename))
@@ -1355,117 +1512,6 @@ namespace com.clusterrr.hakchi_gui
                 return obj.Code.GetHashCode();
             }
         }
-
-
-        /*
-        public NesApplication CopyTo(string path, HashSet<ApplicationFileInfo> localGameSet = null, CopyMode copyMode = CopyMode.Standard)
-        {
-            string relativeGamesPath = hakchi.MediaPath + GamesDirectory.Substring(2).Replace("\\", "/");
-            string relativeOriginalGamesPath = hakchi.MediaPath + OriginalGamesCacheDirectory.Substring(2).Replace("\\", "/");
-
-            // new feature: linked sync paths
-            string relativeGamesStoragePath = hakchi.GetRemoteGameSyncPath() + "/.storage";
-            string relativeTargetDir = Shared.PathCombine(Path.GetDirectoryName(path), ".storage", desktop.Code);
-
-            // handle all 3 different sync scenarios (with original or custom games)
-            string mediaGamePath = null, profilePath = null, iconPath = null;
-            if (IsOriginalGame)
-            {
-                switch (copyMode)
-                {
-                    case CopyMode.Sync:
-                        mediaGamePath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
-                        iconPath = File.Exists(this.iconPath) ? hakchi.GamesPath : hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
-                        break;
-                    case CopyMode.LinkedSync:
-                        mediaGamePath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
-                        iconPath = File.Exists(this.iconPath) ? relativeGamesStoragePath : hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
-                        break;
-                    case CopyMode.Export:
-                        mediaGamePath = Directory.Exists(Path.Combine(OriginalGamesCacheDirectory, desktop.Code)) ? hakchi.GamesPath : hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
-                        iconPath = File.Exists(this.iconPath) ? hakchi.GamesPath : hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
-                        break;
-                    case CopyMode.LinkedExport:
-                        mediaGamePath = Directory.Exists(Path.Combine(OriginalGamesCacheDirectory, desktop.Code)) ? relativeOriginalGamesPath : hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
-                        iconPath = File.Exists(this.iconPath) ? relativeGamesPath : mediaGamePath;
-                        break;
-                }
-            }
-            else
-            {
-                switch (copyMode)
-                {
-                    case CopyMode.Sync:
-                        mediaGamePath = iconPath = hakchi.GamesPath;
-                        break;
-                    case CopyMode.LinkedSync:
-                        mediaGamePath = iconPath = relativeGamesStoragePath;
-                        break;
-                    case CopyMode.Export:
-                        mediaGamePath = iconPath = hakchi.GamesPath;
-                        break;
-                    case CopyMode.LinkedExport:
-                        mediaGamePath = iconPath = relativeGamesPath;
-                        break;
-                }
-            }
-            profilePath = hakchi.GamesProfilePath;
-
-            // copy to new target
-            Debug.WriteLine($"Copying game \"{desktop.Name}\" into \"{path}\"");
-            switch (copyMode)
-            {
-                case CopyMode.Sync:
-                    Shared.DirectoryCopy(basePath, targetDir, true, false, true, false, new string[] {desktop.Code + ".desktop"});
-                    break;
-
-                case CopyMode.LinkedSync:
-                    Directory.CreateDirectory(targetDir);
-                    Shared.DirectoryCopy(basePath, relativeTargetDir, true, false, true, false, new string[] { desktop.Code + ".desktop" });
-                    break;
-
-                case CopyMode.Export:
-                    Shared.DirectoryCopy(basePath, targetDir, true, false, true, false);
-                    if (Directory.Exists(Path.Combine(OriginalGamesCacheDirectory, desktop.Code)))
-                    {
-                        Shared.DirectoryCopy(Path.Combine(OriginalGamesCacheDirectory, desktop.Code), targetDir, true, true, false, false);
-                    }
-                    break;
-
-                case CopyMode.LinkedExport:
-                    Directory.CreateDirectory(targetDir);
-                    if (Directory.Exists(Shared.PathCombine(OriginalGamesCacheDirectory, desktop.Code, "autoplay")))
-                    {
-                        Shared.DirectoryCopy(Shared.PathCombine(OriginalGamesCacheDirectory, desktop.Code, "autoplay"),
-                            Path.Combine(targetDir, "autoplay"), true, false, true, false);
-                    }
-                    if (Directory.Exists(Shared.PathCombine(OriginalGamesCacheDirectory, desktop.Code, "pixelart")))
-                    {
-                        Shared.DirectoryCopy(Shared.PathCombine(OriginalGamesCacheDirectory, desktop.Code, "pixelart"),
-                            Path.Combine(targetDir, "pixelart"), true, false, true, false);
-                    }
-                    break;
-            }
-
-            // copy adjusted desktop file to target
-            DesktopFile newDesktop = (DesktopFile)desktop.Clone();
-            foreach (var arg in newDesktop.Args)
-            {
-                Match m = Regex.Match(arg, @"(^\/.*)\/(?:" + newDesktop.Code + @"\/)([^.]*)(.*$)");
-                if (m.Success)
-                {
-                    newDesktop.Exec = newDesktop.Exec.Replace(m.Groups[1].ToString(), mediaGamePath);
-                    break;
-                }
-            }
-            newDesktop.IconPath = iconPath;
-            newDesktop.ProfilePath = profilePath;
-            newDesktop.SaveTo(Path.Combine(targetDir, desktop.Code + ".desktop"));
-
-            // return new app
-            return FromDirectory(targetDir);
-        }
-        */
 
     }
 }

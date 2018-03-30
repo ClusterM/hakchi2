@@ -716,6 +716,9 @@
   <data name="fAQToolStripMenuItem.Text" xml:space="preserve">
     <value>FAQ</value>
   </data>
+  <data name="donateToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="donateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>246, 22</value>
   </data>
@@ -938,15 +941,6 @@
   <data name="deleteSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Delete selected games</value>
   </data>
-  <data name="toolStripMenuItem19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>280, 6</value>
-  </data>
-  <data name="repairGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>283, 22</value>
-  </data>
-  <data name="repairGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Attempt to repair games</value>
-  </data>
   <data name="toolStripMenuItem17.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 6</value>
   </data>
@@ -973,6 +967,15 @@
   </data>
   <data name="sFROMToolToolStripMenuItem1.Text" xml:space="preserve">
     <value>SFROM Tool</value>
+  </data>
+  <data name="repairGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="repairGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Repair games</value>
+  </data>
+  <data name="toolStripMenuItem19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 6</value>
   </data>
   <data name="selectEmulationCoreToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>283, 22</value>
@@ -2770,6 +2773,18 @@
   </data>
   <data name="&gt;&gt;resetROMHeaderToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;repairGamesToolStripMenuItem.Name" xml:space="preserve">
+    <value>repairGamesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;repairGamesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem19.Name" xml:space="preserve">
+    <value>toolStripMenuItem19</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;selectEmulationCoreToolStripMenuItem.Name" xml:space="preserve">
     <value>selectEmulationCoreToolStripMenuItem</value>

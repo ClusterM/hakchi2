@@ -113,6 +113,17 @@ namespace com.clusterrr.hakchi_gui
             return fileInfoSet;
         }
 
+        public static ApplicationFileInfo GetApplicationFileInfo(string fullPath, string targetDirectory = null)
+        {
+            targetDirectory = targetDirectory ?? string.Empty;
+            if (!string.IsNullOrEmpty(targetDirectory))
+                targetDirectory = "/" + targetDirectory.Trim('/');
+
+            string canonicalPath = "." + targetDirectory + "/" + Path.GetFileName(fullPath);
+            FileInfo f = new FileInfo(fullPath);
+            return new ApplicationFileInfo(canonicalPath, f.Length, f.LastWriteTimeUtc, fullPath);
+        }
+
         public static void DebugListHashSet(IEnumerable<ApplicationFileInfo> localGameSet)
         {
             Debug.WriteLine("HashSet Listing:");

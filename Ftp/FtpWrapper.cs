@@ -1,13 +1,11 @@
 ﻿using com.clusterrr.hakchi_gui;
 using FluentFTP;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace com.clusterrr.util
 {
@@ -113,7 +111,7 @@ namespace com.clusterrr.util
                         if (owned)
                             inStream.Dispose();
 
-                        command = string.Format("touch -m -t {1} {0}\n", afi.FilePath, afi.ModifiedTime.ToString("yyyyMMddHHmm.ss"));
+                        command = string.Format("touch -m -t {1} '{0}'\n", afi.FilePath.Replace("'", @"'\''"), afi.ModifiedTime.ToString("yyyyMMddHHmm.ss"));
                         commandBuilder.Write(Encoding.UTF8.GetBytes(command), 0, command.Length);
                     }
                     else

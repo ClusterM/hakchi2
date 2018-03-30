@@ -17,7 +17,7 @@ namespace com.clusterrr.ssh
         Thread connectThread;
         private bool enabled;
         private bool hasConnected;
-        private int retries;
+        //private int retries;
         private string service;
         private string ip;
         private ushort port;
@@ -128,7 +128,7 @@ namespace com.clusterrr.ssh
             connectThread = null;
             enabled = false;
             hasConnected = false;
-            retries = 0;
+            //retries = 0;
             this.service = serviceName;
             this.ip = ip;
             this.port = port;
