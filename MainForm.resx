@@ -213,25 +213,25 @@
     <value>&amp;File</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text" xml:space="preserve">
     <value>Install / Repair</value>
   </data>
   <data name="resetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="resetToolStripMenuItem.Text" xml:space="preserve">
     <value>Reset</value>
   </data>
   <data name="uninstallToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text" xml:space="preserve">
     <value>Uninstall</value>
   </data>
   <data name="toolStripMenuItem11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 6</value>
+    <value>177, 6</value>
   </data>
   <data name="normalModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 22</value>
@@ -246,7 +246,7 @@
     <value>SD mode</value>
   </data>
   <data name="flashUbootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="flashUbootToolStripMenuItem.Text" xml:space="preserve">
     <value>Flash uboot</value>
@@ -257,10 +257,16 @@
   <data name="membootOriginalKernelToolStripMenuItem.Text" xml:space="preserve">
     <value>Boot original kernel from RAM</value>
   </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="membootCustomKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
-  <data name="membootPatchedKernelToolStripMenuItem.Text" xml:space="preserve">
+  <data name="membootCustomKernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Boot custom kernel from RAM</value>
+  </data>
+  <data name="membootRecoveryKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 22</value>
+  </data>
+  <data name="membootRecoveryKernelToolStripMenuItem.Text" xml:space="preserve">
     <value>Boot recovery kernel from RAM</value>
   </data>
   <data name="toolStripMenuItem10.Size" type="System.Drawing.Size, System.Drawing">
@@ -313,7 +319,7 @@
     <value>Format NAND-C</value>
   </data>
   <data name="advancedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="advancedToolStripMenuItem.Text" xml:space="preserve">
     <value>Advanced</value>
@@ -975,7 +981,7 @@
     <value>Select emulation core...</value>
   </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 270</value>
+    <value>284, 248</value>
   </data>
   <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
     <value>contextMenuStrip</value>
@@ -2189,10 +2195,16 @@
   <data name="&gt;&gt;membootOriginalKernelToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;membootPatchedKernelToolStripMenuItem.Name" xml:space="preserve">
-    <value>membootPatchedKernelToolStripMenuItem</value>
+  <data name="&gt;&gt;membootCustomKernelToolStripMenuItem.Name" xml:space="preserve">
+    <value>membootCustomKernelToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;membootPatchedKernelToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;membootCustomKernelToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;membootRecoveryKernelToolStripMenuItem.Name" xml:space="preserve">
+    <value>membootRecoveryKernelToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;membootRecoveryKernelToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem10.Name" xml:space="preserve">
@@ -2717,6 +2729,18 @@
   <data name="&gt;&gt;deleteSelectedGamesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripMenuItem19.Name" xml:space="preserve">
+    <value>toolStripMenuItem19</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;repairGamesToolStripMenuItem.Name" xml:space="preserve">
+    <value>repairGamesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;repairGamesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripMenuItem17.Name" xml:space="preserve">
     <value>toolStripMenuItem17</value>
   </data>
@@ -2872,18 +2896,6 @@
   </data>
   <data name="&gt;&gt;maximumGamesPerFolderToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;repairGamesToolStripMenuItem.Name" xml:space="preserve">
-    <value>repairGamesToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;repairGamesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem19.Name" xml:space="preserve">
-    <value>toolStripMenuItem19</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem19.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

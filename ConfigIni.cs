@@ -182,7 +182,7 @@ namespace com.clusterrr.hakchi_gui
         public bool ExportLinked = true;
         public string ExportDrive = "";
         public string ExportRegion = "";
-        public string MembootUboot = "ubootSD.bin";
+        public FelLib.Fel.UbootType MembootUboot = FelLib.Fel.UbootType.SD;
         public HmodListSort hmodListSort = HmodListSort.Category;
 
         // constructor
@@ -509,7 +509,14 @@ namespace com.clusterrr.hakchi_gui
                                         instance.ExportRegion = value;
                                         break;
                                     case "membootuboot":
-                                        instance.MembootUboot = value;
+                                        if (value == "uboot.bin")
+                                        {
+                                            instance.MembootUboot = FelLib.Fel.UbootType.Normal;
+                                        }
+                                        else
+                                        {
+                                            instance.MembootUboot = FelLib.Fel.UbootType.SD;
+                                        }
                                         break;
                                     case "hmodlistsort":
                                         instance.hmodListSort = (HmodListSort)byte.Parse(value);

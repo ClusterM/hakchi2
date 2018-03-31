@@ -1,19 +1,37 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
+﻿using com.clusterrr.clovershell;
+using com.clusterrr.hakchi_gui.Properties;
+using com.clusterrr.ssh;
 using com.clusterrr.util;
+using Renci.SshNet;
+using SevenZip;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace com.clusterrr.hakchi_gui
 {
     static class Shared
     {
+        public static readonly FelLib.Fel.VidPidPair ClassicUSB = new FelLib.Fel.VidPidPair(vid: 0x1F3A, pid: 0xEFE8);
+        public static string[] hmodDirectories {
+            get
+            {
+                return new string[]
+                {
+                    Shared.PathCombine(Program.BaseDirectoryExternal, "user_mods"),
+                    Shared.PathCombine(Program.BaseDirectoryInternal, "mods", "hmods")
+                };
+            }
+        }
+
         public static Bitmap LoadBitmapCopy(string path)
         {
             Bitmap bmp;
@@ -411,6 +429,165 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
             return number;
+        }
+
+        public static UInt32 CalcKernelSize(byte[] header)
+        {
+            if (Encoding.ASCII.GetString(header, 0, 8) != "ANDROID!") throw new Exception(Resources.InvalidKernelHeader);
+            UInt32 kernel_size = (UInt32)(header[8] | (header[9] * 0x100) | (header[10] * 0x10000) | (header[11] * 0x1000000));
+            UInt32 kernel_addr = (UInt32)(header[12] | (header[13] * 0x100) | (header[14] * 0x10000) | (header[15] * 0x1000000));
+            UInt32 ramdisk_size = (UInt32)(header[16] | (header[17] * 0x100) | (header[18] * 0x10000) | (header[19] * 0x1000000));
+            UInt32 ramdisk_addr = (UInt32)(header[20] | (header[21] * 0x100) | (header[22] * 0x10000) | (header[23] * 0x1000000));
+            UInt32 second_size = (UInt32)(header[24] | (header[25] * 0x100) | (header[26] * 0x10000) | (header[27] * 0x1000000));
+            UInt32 second_addr = (UInt32)(header[28] | (header[29] * 0x100) | (header[30] * 0x10000) | (header[31] * 0x1000000));
+            UInt32 tags_addr = (UInt32)(header[32] | (header[33] * 0x100) | (header[34] * 0x10000) | (header[35] * 0x1000000));
+            UInt32 page_size = (UInt32)(header[36] | (header[37] * 0x100) | (header[38] * 0x10000) | (header[39] * 0x1000000));
+            UInt32 dt_size = (UInt32)(header[40] | (header[41] * 0x100) | (header[42] * 0x10000) | (header[43] * 0x1000000));
+            UInt32 pages = 1;
+            pages += (kernel_size + page_size - 1) / page_size;
+            pages += (ramdisk_size + page_size - 1) / page_size;
+            pages += (second_size + page_size - 1) / page_size;
+            pages += (dt_size + page_size - 1) / page_size;
+            return pages * page_size;
+        }
+
+        public static bool CheckHsqs(string nandDump)
+        {
+            FileInfo hsqsInfo = new FileInfo(nandDump);
+            using (FileStream fStream = new FileStream(nandDump, FileMode.Open))
+            {
+                fStream.Seek(0, SeekOrigin.Begin);
+
+                byte[] hsqsMagic = new byte[] { 0x68, 0x73, 0x71, 0x73 };
+                byte[] fileMagic = new byte[4];
+
+                fStream.Read(fileMagic, 0, 4);
+                fStream.Seek(0, SeekOrigin.Begin);
+                fStream.Close();
+
+                if (!fileMagic.SequenceEqual(hsqsMagic))
+                    return false;
+
+                return true;
+            }
+        }
+
+        public static MemoryStream GetMembootImage()
+        {
+            var kernelHmodStream = new MemoryStream();
+
+            using (var baseHmods = new MemoryStream(Resources.baseHmods)) {
+                using (var szExtractor = new SevenZipExtractor(baseHmods))
+                {
+                    szExtractor.ExtractFile(".\\kernel.hmod", kernelHmodStream);
+                }
+
+            }
+            using (var tar = new MemoryStream())
+            {
+                using (var szExtractor = new SevenZipExtractor(kernelHmodStream))
+                {
+                    szExtractor.ExtractFile(0, tar);
+                    tar.Seek(0, SeekOrigin.Begin);
+                    using (var szExtractorTar = new SevenZipExtractor(tar))
+                    {
+                        var o = new MemoryStream();
+                        szExtractorTar.ExtractFile("boot\\boot.img", o);
+                        return o;
+                    }
+                }
+            }
+        }
+
+        public static Dictionary<MainForm.ConsoleType, string[]> CorrectKeys()
+        {
+            Dictionary<MainForm.ConsoleType, string[]> correctKeys = new Dictionary<MainForm.ConsoleType, string[]>();
+            correctKeys[MainForm.ConsoleType.NES] =
+                correctKeys[MainForm.ConsoleType.Famicom] =
+                new string[] { "bb8f49e0ae5acc8d5f9b7fa40efbd3e7" };
+            correctKeys[MainForm.ConsoleType.SNES] =
+                correctKeys[MainForm.ConsoleType.SuperFamicom] =
+                new string[] { "c5dbb6e29ea57046579cfd50b124c9e1" };
+            return correctKeys;
+        }
+
+        public static Dictionary<MainForm.ConsoleType, string[]> CorrectKernels()
+        {
+            Dictionary<MainForm.ConsoleType, string[]> correctKernels = new Dictionary<MainForm.ConsoleType, string[]>();
+            correctKernels[MainForm.ConsoleType.NES] = new string[] {
+                "5cfdca351484e7025648abc3b20032ff",
+                "07bfb800beba6ef619c29990d14b5158",
+            };
+            correctKernels[MainForm.ConsoleType.Famicom] = new string[] {
+                "ac8144c3ea4ab32e017648ee80bdc230",  // Famicom Mini
+            };
+            correctKernels[MainForm.ConsoleType.SNES] = new string[] {
+                "d76c2a091ebe7b4614589fc6954653a5", // SNES Mini (EUR)
+                "c2b57b550f35d64d1c6ce66f9b5180ce", // SNES Mini (EUR)
+                "0f890bc78cbd9ede43b83b015ba4c022", // SNES Mini (EUR)
+                "449b711238575763c6701f5958323d48", // SNES Mini (USA)
+                "5296e64818bf2d1dbdc6b594f3eefd17", // SNES Mini (USA)
+                "228967ab1035a347caa9c880419df487", // SNES Mini (USA)
+            };
+            correctKernels[MainForm.ConsoleType.SuperFamicom] = new string[]
+            {
+                "632e179db63d9bcd42281f776a030c14", // Super Famicom Mini (JAP)
+                "c3378edfc1b96a5268a066d5fbe12d89", // Super Famicom Mini (JAP)
+            };
+            return correctKernels;
+        }
+
+        public static string EscapeShellArgument(string unquotedArgument)
+        {
+            return Regex.Replace(unquotedArgument, "[^a-zA-Z0-9]", "\\$0");
+        }
+
+        public static void SocketDownload(string server, int port, Stream outStream)
+        {
+            // Create a TcpClient.
+            TcpClient client = new TcpClient(server, port);
+
+            // Get a client stream for reading and writing.
+            NetworkStream stream = client.GetStream();
+
+            // Copy the stream data into outStream
+            stream.CopyTo(outStream);
+
+            // Close everything.
+            stream.Close();
+            client.Close();
+        }
+
+        public static int ShellPipeDownload(string command, Stream stdout, Stream stdin = null, Stream stderr = null, int timeout = 0, bool throwOnNonZero = false)
+        {
+            if (hakchi.Shell is ClovershellConnection)
+                return hakchi.Shell.Execute($"({command}) | nc -lv -s 0.0.0.0", stdin, stdout, null, timeout, throwOnNonZero);
+
+            if (stderr != null)
+                throw new ArgumentException($"stderr is not valid for this shell type: {hakchi.Shell.GetType().ToString()}");
+
+            var stdErr = new MemoryStream();
+            var downloadThread = new Thread(() =>
+            {
+                try
+                {
+                    Thread.Sleep(1000);
+                    stdErr.Seek(0, SeekOrigin.Begin);
+                    using (var sr = new StreamReader(stdErr))
+                    {
+                        var line = sr.ReadLine();
+                        var match = Regex.Match(line, "^listening on (\\d+\\.\\d+\\.\\d+\\.\\d+):(\\d+)");
+                        stdErr.Close();
+                        if (match.Success)
+                            SocketDownload(hakchi.STATIC_IP, int.Parse(match.Groups[2].Value), stdout);
+                    }
+                }
+                catch (ThreadAbortException) { }
+            });
+            downloadThread.Start();
+            int returnValue = hakchi.Shell.Execute($"({command}) | nc -lv -s 0.0.0.0", stdin, null, stdErr, timeout, throwOnNonZero);
+            downloadThread.Abort();
+            return returnValue;
         }
     }
 }

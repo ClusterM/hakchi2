@@ -57,7 +57,8 @@
             this.sDModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.membootOriginalKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.membootPatchedKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.membootCustomKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.membootRecoveryKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.dumpTheWholeNANDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolFlashTheWholeNANDStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -149,6 +150,8 @@
             this.compressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decompressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem19 = new System.Windows.Forms.ToolStripSeparator();
+            this.repairGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripSeparator();
             this.sFROMToolToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editROMHeaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -210,8 +213,6 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.maximumGamesPerFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
-            this.repairGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem19 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -400,7 +401,8 @@
             // 
             this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.membootOriginalKernelToolStripMenuItem,
-            this.membootPatchedKernelToolStripMenuItem,
+            this.membootCustomKernelToolStripMenuItem,
+            this.membootRecoveryKernelToolStripMenuItem,
             this.toolStripMenuItem10,
             this.dumpTheWholeNANDToolStripMenuItem,
             this.toolFlashTheWholeNANDStripMenuItem,
@@ -418,11 +420,17 @@
             resources.ApplyResources(this.membootOriginalKernelToolStripMenuItem, "membootOriginalKernelToolStripMenuItem");
             this.membootOriginalKernelToolStripMenuItem.Click += new System.EventHandler(this.membootOriginalKernelToolStripMenuItem_Click);
             // 
-            // membootPatchedKernelToolStripMenuItem
+            // membootCustomKernelToolStripMenuItem
             // 
-            this.membootPatchedKernelToolStripMenuItem.Name = "membootPatchedKernelToolStripMenuItem";
-            resources.ApplyResources(this.membootPatchedKernelToolStripMenuItem, "membootPatchedKernelToolStripMenuItem");
-            this.membootPatchedKernelToolStripMenuItem.Click += new System.EventHandler(this.membootPatchedKernelToolStripMenuItem_Click);
+            this.membootCustomKernelToolStripMenuItem.Name = "membootCustomKernelToolStripMenuItem";
+            resources.ApplyResources(this.membootCustomKernelToolStripMenuItem, "membootCustomKernelToolStripMenuItem");
+            this.membootCustomKernelToolStripMenuItem.Click += new System.EventHandler(this.membootCustomKernelToolStripMenuItem_Click);
+            // 
+            // membootRecoveryKernelToolStripMenuItem
+            // 
+            this.membootRecoveryKernelToolStripMenuItem.Name = "membootRecoveryKernelToolStripMenuItem";
+            resources.ApplyResources(this.membootRecoveryKernelToolStripMenuItem, "membootRecoveryKernelToolStripMenuItem");
+            this.membootRecoveryKernelToolStripMenuItem.Click += new System.EventHandler(this.membootRecoveryKernelToolStripMenuItem_Click);
             // 
             // toolStripMenuItem10
             // 
@@ -1096,6 +1104,17 @@
             this.deleteSelectedGamesToolStripMenuItem.Name = "deleteSelectedGamesToolStripMenuItem";
             this.deleteSelectedGamesToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedGamesToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem19
+            // 
+            this.toolStripMenuItem19.Name = "toolStripMenuItem19";
+            resources.ApplyResources(this.toolStripMenuItem19, "toolStripMenuItem19");
+            // 
+            // repairGamesToolStripMenuItem
+            // 
+            this.repairGamesToolStripMenuItem.Name = "repairGamesToolStripMenuItem";
+            resources.ApplyResources(this.repairGamesToolStripMenuItem, "repairGamesToolStripMenuItem");
+            this.repairGamesToolStripMenuItem.Click += new System.EventHandler(this.repairGamesToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem17
             // 
             this.toolStripMenuItem17.Name = "toolStripMenuItem17";
@@ -1525,17 +1544,6 @@
             this.gamesConsoleComboBox.Name = "gamesConsoleComboBox";
             this.gamesConsoleComboBox.SelectedIndexChanged += new System.EventHandler(this.gamesConsoleComboBox_SelectedIndexChanged);
             // 
-            // repairGamesToolStripMenuItem
-            // 
-            this.repairGamesToolStripMenuItem.Name = "repairGamesToolStripMenuItem";
-            resources.ApplyResources(this.repairGamesToolStripMenuItem, "repairGamesToolStripMenuItem");
-            this.repairGamesToolStripMenuItem.Click += new System.EventHandler(this.repairGamesToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem19
-            // 
-            this.toolStripMenuItem19.Name = "toolStripMenuItem19";
-            resources.ApplyResources(this.toolStripMenuItem19, "toolStripMenuItem19");
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1677,7 +1685,7 @@
         private System.Windows.Forms.ToolStripMenuItem sDModeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem advancedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem membootOriginalKernelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem membootPatchedKernelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem membootRecoveryKernelToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem10;
         private System.Windows.Forms.ToolStripMenuItem dumpTheWholeNANDToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolFlashTheWholeNANDStripMenuItem;
@@ -1763,6 +1771,7 @@
         private System.Windows.Forms.ToolStripMenuItem devForceSshToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem19;
         private System.Windows.Forms.ToolStripMenuItem repairGamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem membootCustomKernelToolStripMenuItem;
     }
 }
 

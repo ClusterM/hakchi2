@@ -11,6 +11,16 @@ namespace com.clusterrr.FelLib
 {
     public class Fel : IDisposable
     {
+        public enum UbootType { Normal, SD }
+        public struct VidPidPair
+        {
+            public UInt16 vid, pid;
+            public VidPidPair(UInt16 vid, UInt16 pid)
+            {
+                this.vid = vid;
+                this.pid = pid;
+            }
+        }
         public byte[] Fes1Bin;
         byte[] uBootBin;
 

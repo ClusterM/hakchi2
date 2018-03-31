@@ -1,4 +1,6 @@
 ﻿using com.clusterrr.clovershell;
+using com.clusterrr.hakchi_gui.Properties;
+using com.clusterrr.hakchi_gui.Tasks;
 using com.clusterrr.ssh;
 using System;
 using System.Collections;
@@ -336,17 +338,17 @@ namespace com.clusterrr.hakchi_gui
             return eligibleForUpdate;
         }
 
-        public static void ShowSplashScreen()
+        public static TaskerForm.Conclusion ShowSplashScreen(TaskerForm tasker, Object syncObject)
         {
-            var splashScreenPath = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "splash.gz");
+            return ShowSplashScreen() == 0 ? TaskerForm.Conclusion.Success : TaskerForm.Conclusion.Error;
+        }
+
+        public static int ShowSplashScreen()
+        {
+            var splashScreenStream = new MemoryStream(Resources.splash);
             Shell.ExecuteSimple("uistop");
-            if (File.Exists(splashScreenPath))
-            {
-                using (var splash = new FileStream(splashScreenPath, FileMode.Open))
-                {
-                    Shell.Execute("gunzip -c - > /dev/fb0", splash, null, null, 3000);
-                }
-            }
+
+            return Shell.Execute("gunzip -c - > /dev/fb0", splashScreenStream, null, null, 3000);
         }
 
         public static void SyncConfig(Dictionary<string, string> config, bool reboot = false)

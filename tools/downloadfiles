@@ -1,11 +1,17 @@
 #!/bin/sh
-
+pwd="$(pwd)"
 cd "`echo $* | sed -Ee 's#\\\\#/#g'`" || exit 1
+downloadedFileListName="downloadedFiles.txt"
+touch "$downloadedFileListName"
+downloadedFiles="$(cat "$downloadedFileListName")"
 
 download(){
   mkdir -p "`dirname "$2"`"
-  [ -f "$2" ] || (wget "$1" -O "$2" || return 1)
+  ([ ! -f "$2" ] || [ "$(echo "$downloadedFiles" | grep -x "$2 $1")" == "" ]) && ($pwd/wget.exe "$1" -O "$2" 2>/dev/null || wget "$1" -O "$2" 2>/dev/null || return 1)
+  echo "$2 $1" >> "$downloadedFileListName"
 }
 
+printf "" > "$downloadedFileListName"
+
+download "https://hakchi.net/hakchi/kernel.hmod" "mods/hmods/kernel.hmod" || exit 1
 download "https://github.com/DanTheMan827-Hakchi/font_remount.hmod/releases/download/1.2.0/font_remount-b5217ca.hmod" "mods/hmods/font_remount.hmod" || exit 1
-download "https://cdn.discordapp.com/attachments/407270553183846400/427985727016402945/kernel.hmod" "mods/hmods/kernel.hmod"

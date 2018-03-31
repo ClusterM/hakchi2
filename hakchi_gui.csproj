@@ -168,6 +168,7 @@
     <Compile Include="Ftp\FtpWrapper.cs" />
     <Compile Include="hakchi.cs" />
     <Compile Include="ISystemShell.cs" />
+    <Compile Include="MemoryStats.cs" />
     <Compile Include="NewCustomGameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +200,10 @@
     <Compile Include="ExportGamesDialog.Designer.cs">
       <DependentUpon>ExportGamesDialog.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="WorkerForm.resx">
+      <DependentUpon>WorkerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="basehmods.tar" />
     <None Include="folder_images\retropie_amiga.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -575,6 +580,9 @@
     <Compile Include="Tasks\ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tasks\MembootTasks.cs" />
+    <Compile Include="Tasks\ModTasks.cs" />
+    <Compile Include="Tasks\ShellTasks.cs" />
     <Compile Include="Tasks\SyncTask.cs" />
     <Compile Include="Tasks\TaskerForm.cs">
       <SubType>Form</SubType>
@@ -636,9 +644,7 @@
     <EmbeddedResource Include="images\flags\hu.png" />
     <EmbeddedResource Include="images\flags\jp.png" />
     <EmbeddedResource Include="images\flags\ro.png" />
-    <None Include="data\ubootSD.bin">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="data\ubootSD.bin" />
     <None Include="data\libretro_cores\2048_libretro.info">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -2464,24 +2470,15 @@
     <EmbeddedResource Include="WaitingFelForm.zh-TW.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WorkerForm.resx">
-      <DependentUpon>WorkerForm.cs</DependentUpon>
-    </EmbeddedResource>
     <Content Include="art\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="data\fes1.bin">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="data\fes1.bin" />
     <None Include="data\snescarts.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="data\splash.gz">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\uboot.bin">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="data\splash.gz" />
+    <None Include="data\uboot.bin" />
     <EmbeddedResource Include="images\flags\ar.png" />
     <EmbeddedResource Include="images\flags\bg.png" />
     <EmbeddedResource Include="images\flags\de.png" />
@@ -3079,9 +3076,10 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>cd /D "$(ProjectDir)tools/" || cd "$(ProjectDir)tools/"
-"./busybox" sh -e "./copypackedhmods" "../mods/hmods" "../$(OutDir)mods/hmods"
+"./busybox" sh -e "./downloadfiles" ../
+"./busybox" tar -cvf "../basehmods.tar" -C "../mods/hmods" "."
 "./busybox" sh -e "./copypackedhmods" "../user_mods" "../$(OutDir)user_mods"
-"./busybox" sh -e "./downloadfiles" $(TargetDir)
+
 "./busybox" sh -e "./gitcommit" &gt; "../commit.txt"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

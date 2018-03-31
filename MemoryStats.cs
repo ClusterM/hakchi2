@@ -1,0 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace com.clusterrr.hakchi_gui
+{
+    class MemoryStats
+    {
+        public bool ExternalSaves { get; private set; }
+        public long WrittenGamesSize { get; private set; }
+        public long SaveStatesSize { get; private set; }
+        public long StorageTotal { get; private set; }
+        public long StorageUsed { get; private set; }
+        public long StorageFree { get; private set; }
+        public long ReservedMemory
+        {
+            get
+            {
+                if (ExternalSaves)
+                    return 5;
+                switch (ConfigIni.Instance.ConsoleType)
+                {
+                    default:
+                    case MainForm.ConsoleType.NES:
+                    case MainForm.ConsoleType.Famicom:
+                        return 10;
+                    case MainForm.ConsoleType.SNES:
+                    case MainForm.ConsoleType.SuperFamicom:
+                        return 30;
+                }
+            }
+        }
+
+        public MemoryStats()
+        {
+            var shell = hakchi.Shell;
+            var storage = shell.ExecuteSimple("df \"$(hakchi findGameSyncStorage)\" | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 2000, true).Split('|');
+            ExternalSaves = shell.ExecuteSimple("mount | grep /var/lib/clover").Trim().Length > 0;
+            WrittenGamesSize = long.Parse(shell.ExecuteSimple("du -s \"$(hakchi findGameSyncStorage)\" | awk '{ print $1 }'", 2000, true)) * 1024;
+            SaveStatesSize = long.Parse(shell.ExecuteSimple("du -s \"$(readlink /var/saves)\" | awk '{ print $1 }'", 2000, true)) * 1024;
+            StorageTotal = long.Parse(storage[0]) * 1024;
+            StorageUsed = long.Parse(storage[1]) * 1024;
+            StorageFree = long.Parse(storage[2]) * 1024;
+
+            Debug.WriteLine(string.Format("Storage size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", StorageTotal / 1024.0 / 1024.0, StorageUsed / 1024.0 / 1024.0, StorageFree / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Used by games: {0:F1}MB", WrittenGamesSize / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", SaveStatesSize / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (StorageUsed - WrittenGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
+            Debug.WriteLine(string.Format("Available for games: {0:F1}MB", (StorageFree + WrittenGamesSize) / 1024.0 / 1024.0));
+        }
+    }
+}

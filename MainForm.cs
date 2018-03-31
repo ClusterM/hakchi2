@@ -14,6 +14,8 @@ using System.Resources;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using com.clusterrr.hakchi_gui.Tasks;
+using com.clusterrr.FelLib;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -60,7 +62,6 @@ namespace com.clusterrr.hakchi_gui
             return string.Empty;
         }
 
-        public static IEnumerable<string> InternalMods;
         public static bool? DownloadCover;
         public const int MaxGamesPerFolder = 50;
         public static mooftpserv.Server FtpServer;
@@ -131,7 +132,6 @@ namespace com.clusterrr.hakchi_gui
                 Icon = Resources.icon;
 
                 // prepare collections
-                InternalMods = from m in Directory.GetFiles(Path.Combine(Program.BaseDirectoryInternal, "mods/hmods")) select Path.GetFileNameWithoutExtension(m);
                 LoadLanguages();
                 CoreCollection.Load();
 
@@ -254,7 +254,7 @@ namespace com.clusterrr.hakchi_gui
                     }
 
                     Invoke(new Action(UpdateLocalCache));
-                    WorkerForm.GetMemoryStats();
+                    new MemoryStats();
                     new Thread(RecalculateSelectedGamesThread).Start();
                 }
                 else
@@ -1014,7 +1014,8 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 var stats = RecalculateSelectedGames();
-                showStats(stats);
+                var memoryUsage = new MemoryStats();
+                showStats(stats, memoryUsage);
             }
             catch
             {
@@ -1046,19 +1047,19 @@ namespace com.clusterrr.hakchi_gui
             }
             return stats;
         }
-        void showStats(CountResult stats)
+        void showStats(CountResult stats, MemoryStats memoryUsage)
         {
             try
             {
                 if (InvokeRequired)
                 {
-                    Invoke(new Action<CountResult>(showStats), new object[] { stats });
+                    Invoke(new Action<CountResult, MemoryStats>(showStats), new Object[] { stats, memoryUsage });
                     return;
                 }
                 var maxGamesSize = DefaultMaxGamesSize * 1024 * 1024;
-                if (WorkerForm.StorageTotal > 0)
+                if (memoryUsage.StorageTotal > 0)
                 {
-                    maxGamesSize = (WorkerForm.StorageFree + WorkerForm.WrittenGamesSize) - WorkerForm.ReservedMemory * 1024 * 1024;
+                    maxGamesSize = (memoryUsage.StorageFree + memoryUsage.WrittenGamesSize) - memoryUsage.ReservedMemory * 1024 * 1024;
                     toolStripStatusLabelSize.Text = string.Format("{0} / {1}", Shared.SizeSuffix(stats.Size), Shared.SizeSuffix(maxGamesSize));
                 }
                 else
@@ -1160,20 +1161,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        bool DoNandFlash()
-        {
-            openDumpFileDialog.FileName = "nand.bin";
-            openDumpFileDialog.DefaultExt = "bin";
-            if (openDumpFileDialog.ShowDialog() != DialogResult.OK)
-                return false;
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = "Bricking your console";
-            workerForm.Task = WorkerForm.Tasks.FlashNand;
-            workerForm.NandDump = openDumpFileDialog.FileName;
-            workerForm.Start();
-            return workerForm.DialogResult == DialogResult.OK;
-        }
-
         bool DumpDialog(FileAccess type, string FileName, string FileExt, out string DumpFileName)
         {
             DumpFileName = null;
@@ -1204,105 +1191,82 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        bool DoNand(WorkerForm.Tasks task)
+        bool DoNand(MembootTasks.NandTasks task)
         {
-            
-            var workerForm = new WorkerForm(this);
-            string dumpFilename = null;
-            switch (task)
+            using (TaskerForm tasker = new TaskerForm(this))
             {
-                case WorkerForm.Tasks.DumpNand:
-                    workerForm.Text = Resources.DumpingNand;
-                    if (!DumpDialog(FileAccess.Write, "nand.bin", "bin", out dumpFilename)) return false;
-                    break;
+                string dumpFilename = null;
+                switch (task)
+                {
+                    case MembootTasks.NandTasks.DumpNand:
+                        if (!DumpDialog(FileAccess.Write, "nand.bin", "bin", out dumpFilename))
+                            return false;
 
-                case WorkerForm.Tasks.DumpNandB:
-                    workerForm.Text = Resources.DumpingNand;
-                    if (!DumpDialog(FileAccess.Write, "nandb.hsqs", "hsqs", out dumpFilename)) return false;
-                    break;
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpNand, dumpPath: dumpFilename).Tasks);
+                        break;
 
-                case WorkerForm.Tasks.FlashNandB:
-                    workerForm.Text = Resources.FlashingNand;
-                    if (!DumpDialog(FileAccess.Read, "nandb.hsqs", "hsqs", out dumpFilename)) return false;
-                    break;
+                    case MembootTasks.NandTasks.DumpNandB:
+                        if (!DumpDialog(FileAccess.Write, "nandb.hsqs", "hsqs", out dumpFilename))
+                            return false;
 
-                case WorkerForm.Tasks.DumpNandC:
-                    workerForm.Text = Resources.DumpingNand;
-                    if (!DumpDialog(FileAccess.Write, "nandc.hsqs", "hsqs", out dumpFilename)) return false;
-                    break;
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpNandB, dumpPath: dumpFilename).Tasks);
+                        break;
 
-                case WorkerForm.Tasks.FlashNandC:
-                    workerForm.Text = Resources.FlashingNand;
-                    if (!DumpDialog(FileAccess.Read, "nandc.hsqs", "hsqs", out dumpFilename)) return false;
-                    break;
+                    case MembootTasks.NandTasks.DumpNandC:
+                        if (!DumpDialog(FileAccess.Write, "nandc.hsqs", "hsqs", out dumpFilename))
+                            return false;
 
-                case WorkerForm.Tasks.FormatNandC:
-                    workerForm.Text = Resources.Membooting;
-                    workerForm.hmodsInstall = new List<string>(InternalMods);
-                    break;
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpNandC, dumpPath: dumpFilename).Tasks);
+                        break;
 
-                default:
-                    throw new ArgumentOutOfRangeException("task");
+                    case MembootTasks.NandTasks.FlashNandB:
+                        if (!DumpDialog(FileAccess.Read, "nandb.hsqs", "hsqs", out dumpFilename))
+                            return false;
+
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashNandB, dumpPath: dumpFilename).Tasks);
+                        break;
+
+                    case MembootTasks.NandTasks.FlashNandC:
+                        if (!DumpDialog(FileAccess.Read, "nandc.hsqs", "hsqs", out dumpFilename))
+                            return false;
+
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashNandC, dumpPath: dumpFilename).Tasks);
+                        break;
+                        
+                    case MembootTasks.NandTasks.FormatNandC:
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FormatNandC).Tasks);
+                        break;
+
+                    default:
+                        throw new ArgumentOutOfRangeException("task");
+                }
+                return tasker.Start() == TaskerForm.Conclusion.Success;
             }
-            workerForm.NandDump = dumpFilename;
-            workerForm.Task = task;
-            workerForm.Config = null;
-            workerForm.Games = null;
-            workerForm.Start();
-            return workerForm.DialogResult == DialogResult.OK;
-        }
-
-        bool FlashUboot(string customUboot = null)
-        {
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.FlashingUboot;
-            workerForm.Task = WorkerForm.Tasks.FlashUboot;
-            if (!string.IsNullOrEmpty(customUboot))
-                workerForm.customUboot = customUboot;
-            workerForm.Config = null;
-            workerForm.Games = null;
-            workerForm.Start();
-            var result = workerForm.DialogResult == DialogResult.OK;
-            return result;
         }
 
         bool InstallHakchi(bool reset = false)
         {
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.FlasingCustom;
-            workerForm.Task = (reset ? WorkerForm.Tasks.ResetHakchi : WorkerForm.Tasks.InstallHakchi);
-            workerForm.hmodsInstall = new List<string>(InternalMods);
-            workerForm.Config = null;
-            workerForm.Games = null;
-            workerForm.Start();
-            var result = workerForm.DialogResult == DialogResult.OK;
-            return result;
+            using (var tasker = new TaskerForm(this))
+            {
+                if (reset)
+                {
+                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.ResetHakchi).Tasks);
+                }
+                else
+                {
+                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.InstallHakchi).Tasks);
+                }
+                return tasker.Start() == TaskerForm.Conclusion.Success;
+            }
         }
 
-        bool MembootOriginalKernel()
+        bool MembootCustomKernel()
         {
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.Membooting;
-            workerForm.Task = WorkerForm.Tasks.MembootOriginal;
-            workerForm.Config = null;
-            workerForm.Games = null;
-            workerForm.Start();
-            return workerForm.DialogResult == DialogResult.OK;
-        }
-
-        bool MembootCustomKernel(bool copyBaseMods = false)
-        {
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.Membooting;
-            workerForm.Task = WorkerForm.Tasks.Memboot;
-
-            if (copyBaseMods)
-                workerForm.hmodsInstall = new List<string>(InternalMods);
-
-            workerForm.Config = null;
-            workerForm.Games = null;
-            workerForm.Start();
-            return workerForm.DialogResult == DialogResult.OK;
+            using (var tasker = new TaskerForm(this))
+            {
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
+                return tasker.Start() == TaskerForm.Conclusion.Success;
+            }
         }
 
         void AddGames(IEnumerable<string> files)
@@ -1392,33 +1356,36 @@ namespace com.clusterrr.hakchi_gui
 
         bool Uninstall()
         {
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.Uninstalling;
-            workerForm.Task = WorkerForm.Tasks.UninstallHakchi;
-            workerForm.Start();
-            return workerForm.DialogResult == DialogResult.OK;
+            bool restoreKernel = MessageBox.Show(Resources.UninstallQ2, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
+            using (var tasker = new TaskerForm(this))
+            {
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.UninstallHakchi, restoreKernel: restoreKernel).Tasks);
+                return tasker.Start() == TaskerForm.Conclusion.Success;
+            }
         }
 
         bool InstallMods(string[] mods)
         {
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.InstallingMods;
-            workerForm.Task = WorkerForm.Tasks.ProcessMods;
-            workerForm.hmodsInstall = new List<string>(mods);
-            workerForm.hmodsUninstall = new List<string>();
-            workerForm.Start();
-            return workerForm.DialogResult == DialogResult.OK;
+            using (var tasker = new TaskerForm(this))
+            {
+                tasker.SetTitle(Resources.InstallingMods);
+                tasker.AddTask(hakchi.ShowSplashScreen);
+                tasker.AddTasks(new ModTasks(mods).Tasks);
+                tasker.AddTask(ShellTasks.Reboot);
+                return tasker.Start() == TaskerForm.Conclusion.Success;
+            }
         }
 
         bool UninstallMods(string[] mods)
         {
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.UninstallingMods;
-            workerForm.Task = WorkerForm.Tasks.ProcessMods;
-            workerForm.hmodsInstall = new List<string>();
-            workerForm.hmodsUninstall = new List<string>(mods);
-            workerForm.Start();
-            return workerForm.DialogResult == DialogResult.OK;
+            using (var tasker = new TaskerForm(this))
+            {
+                tasker.SetTitle(Resources.UninstallingMods);
+                tasker.AddTask(hakchi.ShowSplashScreen);
+                tasker.AddTasks(new ModTasks(null, mods).Tasks);
+                tasker.AddTask(ShellTasks.Reboot);
+                return tasker.Start() == TaskerForm.Conclusion.Success;
+            }
         }
 
         private void normalModeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1426,9 +1393,11 @@ namespace com.clusterrr.hakchi_gui
             if (MessageBox.Show(Resources.FlashUbootNormalQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == DialogResult.Yes)
             {
-                if (FlashUboot("uboot.bin"))
+                using (var tasker = new TaskerForm(this))
                 {
-                    MessageBox.Show(Resources.UbootFlashed, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    tasker.SetTitle(Resources.FlashingUboot);
+                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashNormalUboot).Tasks);
+                    tasker.Start();
                 }
             }
         }
@@ -1438,16 +1407,18 @@ namespace com.clusterrr.hakchi_gui
             if (MessageBox.Show(Resources.FlashUbootSDQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == DialogResult.Yes)
             {
-                if (FlashUboot("ubootSD.bin"))
+                using (var tasker = new TaskerForm(this))
                 {
-                    MessageBox.Show(Resources.UbootFlashed, Resources.Wow, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    tasker.SetTitle(Resources.FlashingUboot);
+                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashSDUboot).Tasks);
+                    tasker.Start();
                 }
             }
         }
 
         private void dumpTheWholeNANDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DoNand(WorkerForm.Tasks.DumpNand))
+            if (DoNand(MembootTasks.NandTasks.DumpNand))
                 MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -1457,26 +1428,26 @@ namespace com.clusterrr.hakchi_gui
             if (MessageBox.Show("It will brick your console. Do you want to continue?", Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == DialogResult.Yes)
             {
-                DoNandFlash();
+                throw new NotImplementedException();
             }
         }
 
         private void dumpNANDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DoNand(WorkerForm.Tasks.DumpNandB))
+            if (DoNand(MembootTasks.NandTasks.DumpNandB))
                 MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
         private void flashNANDBPartitionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DoNand(WorkerForm.Tasks.FlashNandB))
+            if (DoNand(MembootTasks.NandTasks.FlashNandB))
                 MessageBox.Show(Resources.NandFlashed, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void dumpNANDCPartitionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DoNand(WorkerForm.Tasks.DumpNandC))
+            if (DoNand(MembootTasks.NandTasks.DumpNandC))
                 MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -1485,7 +1456,7 @@ namespace com.clusterrr.hakchi_gui
             if (MessageBox.Show(Resources.FlashNandCQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == DialogResult.Yes)
             {
-                if (DoNand(WorkerForm.Tasks.FlashNandC))
+                if (DoNand(MembootTasks.NandTasks.FlashNandC))
                     MessageBox.Show(Resources.NandFlashed, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -1495,7 +1466,7 @@ namespace com.clusterrr.hakchi_gui
             if (MessageBox.Show(Resources.FormatNandCQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 == DialogResult.Yes)
             {
-                DoNand(WorkerForm.Tasks.FormatNandC);
+                DoNand(MembootTasks.NandTasks.FormatNandC);
             }
         }
 
@@ -1513,13 +1484,29 @@ namespace com.clusterrr.hakchi_gui
 
         private void membootOriginalKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MembootOriginalKernel();
+            using (var tasker = new TaskerForm(this))
+            {
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootOriginal).Tasks);
+                tasker.Start();
+            }
+        }
+        
+        private void membootCustomKernelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var tasker = new TaskerForm(this))
+            {
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
+                tasker.Start();
+            }
         }
 
-
-        private void membootPatchedKernelToolStripMenuItem_Click(object sender, EventArgs e)
+        private void membootRecoveryKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MembootCustomKernel();
+            using (var tasker = new TaskerForm(this))
+            {
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
+                tasker.Start();
+            }
         }
 
         private void uninstallToolStripMenuItem_Click(object sender, EventArgs e)

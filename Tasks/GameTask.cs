@@ -176,7 +176,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             var gameDirs = Shared.ConcatArrays(Directory.GetDirectories(NesApplication.GamesDirectory), originalGameDirs.ToArray());
 
             var games = new List<ListViewItem>();
-            int i = 0;
+
             foreach (var gameDir in gameDirs)
             {
                 try
@@ -222,7 +222,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
             var original = ConfigIni.Instance.OriginalGames;
 
             // assign groups to list view items
-            int i = 0;
             foreach (var item in sync.items)
             {
                 var game = item.Tag as NesApplication;

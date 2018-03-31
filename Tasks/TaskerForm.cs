@@ -36,7 +36,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         // helper combined setters
 
-        public void SetProgress(int value, int maxValue, State state, string status)
+        public void SetProgress(long value, long maxValue, State state, string status)
         {
             SetProgress(value, maxValue);
             SetState(state);
@@ -96,7 +96,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return State.Undefined;
         }
 
-        public void SetProgress(int value, int maxValue)
+        public void SetProgress(long value, long maxValue)
         {
             if (value < 0 || maxValue < 0) return;
             if (Disposing) return;

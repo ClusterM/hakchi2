@@ -12,6 +12,8 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Xml.Serialization;
 using System.Xml;
+using com.clusterrr.hakchi_gui.Tasks;
+using com.clusterrr.hakchi_gui.Properties;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -245,8 +247,6 @@ namespace com.clusterrr.hakchi_gui
                     while ((pos = modname.IndexOf("/")) >= 0)
                         modname = modname.Substring(pos + 1);
                     modname = modname.Substring("uninstall-".Length);
-                    if (MainForm.InternalMods.Contains(modname))
-                        continue;
                     modsList.Add(modname);
                 }
             }
@@ -263,12 +263,15 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
-            using(WorkerForm worker = new WorkerForm())
+            using(TaskerForm tasker = new TaskerForm(this))
             {
-                worker.Task = WorkerForm.Tasks.GetHmods;
-                worker.HmodsToLoad = modsList.ToArray();
-                worker.Start();
-                hmods = worker.LoadedHmods;
+                var modObject = new ModTasks.ModObject();
+                modObject.HmodsToLoad = modsList;
+                tasker.SetTitle(Resources.LoadingHmods);
+                tasker.SyncObject = modObject;
+                tasker.AddTask(ModTasks.GetHmods);
+                tasker.Start();
+                hmods = modObject.LoadedHmods;
             }
 
             populateList();

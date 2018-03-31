@@ -19,7 +19,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -139,6 +139,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string AutofireHelp1 {
             get {
                 return ResourceManager.GetString("AutofireHelp1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] baseHmods {
+            get {
+                object obj = ResourceManager.GetObject("baseHmods", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -339,6 +349,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
             get {
                 object obj = ResourceManager.GetObject("blank_snes_us", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Booting hakchi....
+        /// </summary>
+        internal static string BootingHakchi {
+            get {
+                return ResourceManager.GetString("BootingHakchi", resourceCulture);
             }
         }
         
@@ -846,6 +865,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string ExtraArgsTitle {
             get {
                 return ResourceManager.GetString("ExtraArgsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] fes1 {
+            get {
+                object obj = ResourceManager.GetObject("fes1", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -1451,7 +1480,8 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to b4e5369 (dirty).
+        ///   Looks up a localized string similar to 9278436-dirty
+        ///.
         /// </summary>
         internal static string gitCommit {
             get {
@@ -1551,6 +1581,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string InputPreset {
             get {
                 return ResourceManager.GetString("InputPreset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installing hakchi....
+        /// </summary>
+        internal static string InstallingHakchi {
+            get {
+                return ResourceManager.GetString("InstallingHakchi", resourceCulture);
             }
         }
         
@@ -2050,6 +2089,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Powering off....
+        /// </summary>
+        internal static string PoweringOff {
+            get {
+                return ResourceManager.GetString("PoweringOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Press OK to continue..
         /// </summary>
         internal static string PressOkToContinue {
@@ -2094,6 +2142,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string readmeTemplateHTML {
             get {
                 return ResourceManager.GetString("readmeTemplateHTML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rebooting....
+        /// </summary>
+        internal static string Rebooting {
+            get {
+                return ResourceManager.GetString("Rebooting", resourceCulture);
             }
         }
         
@@ -2158,6 +2215,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string ResetROMHeaderSelectedGamesQ {
             get {
                 return ResourceManager.GetString("ResetROMHeaderSelectedGamesQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resetting hakchi.
+        /// </summary>
+        internal static string ResettingHakchi {
+            get {
+                return ResourceManager.GetString("ResettingHakchi", resourceCulture);
             }
         }
         
@@ -2545,6 +2611,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] splash {
+            get {
+                object obj = ResourceManager.GetObject("splash", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your system&apos;s kernel scripts are out of date and can be updated. Would you like to update the custom kernel scripts now?.
         /// </summary>
         internal static string SystemEligibleForRootfsUpdate {
@@ -2590,6 +2666,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transferring mods....
+        /// </summary>
+        internal static string TransferringMods {
+            get {
+                return ResourceManager.GetString("TransferringMods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap tw {
@@ -2610,11 +2695,31 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] uboot {
+            get {
+                object obj = ResourceManager.GetObject("uboot", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uboot successfully flashed..
         /// </summary>
         internal static string UbootFlashed {
             get {
                 return ResourceManager.GetString("UbootFlashed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ubootSD {
+            get {
+                object obj = ResourceManager.GetObject("ubootSD", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -2642,6 +2747,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string Uninstalling {
             get {
                 return ResourceManager.GetString("Uninstalling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstalling hakchi....
+        /// </summary>
+        internal static string UninstallingHakchi {
+            get {
+                return ResourceManager.GetString("UninstallingHakchi", resourceCulture);
             }
         }
         
