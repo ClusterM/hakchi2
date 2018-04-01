@@ -233,12 +233,18 @@ namespace com.clusterrr.hakchi_gui
                     catch (GameGenieFormatException)
                     {
                         if (!AQuiet)
-                            MessageBox.Show(string.Format(Resources.GameGenieFormatError, lCurCode["genie"].InnerText, FGame.Name), Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        {
+                            Tasks.MessageForm.Show(Resources.Error, string.Format(Resources.GameGenieFormatError, lCurCode["genie"].InnerText, FGame.Name), Resources.sign_error);
+                            //MessageBox.Show(string.Format(Resources.GameGenieFormatError, lCurCode["genie"].InnerText, FGame.Name), Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     catch (GameGenieNotFoundException)
                     {
                         if (!AQuiet)
-                            MessageBox.Show(string.Format(Resources.GameGenieNotFound, lCurCode["genie"].InnerText, FGame.Name), Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        {
+                            Tasks.MessageForm.Show(Resources.Error, string.Format(Resources.GameGenieNotFound, lCurCode["genie"].InnerText, FGame.Name), Resources.sign_error);
+                            //MessageBox.Show(string.Format(Resources.GameGenieNotFound, lCurCode["genie"].InnerText, FGame.Name), Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }

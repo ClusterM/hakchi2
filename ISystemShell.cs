@@ -24,7 +24,7 @@ namespace com.clusterrr.hakchi_gui
     {
         public bool Enabled { get { return false; } set { } }
         public bool IsOnline { get { return false; } }
-        public bool ShellEnabled { get; set; }
+        public bool ShellEnabled { get { return false; } set { } }
         public ushort ShellPort { get { return 0; } }
         public void Connect() { }
         public void Disconnect() { }

@@ -310,11 +310,16 @@ namespace com.clusterrr.hakchi_gui
         {
             if (buttonApply.Enabled)
             {
-                var result = MessageBox.Show(Resources.ApplyChangesQ, Resources.ApplyChanges, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3);
-                if (result == DialogResult.Cancel)
+                var result = Tasks.MessageForm.Show(Resources.ApplyChanges, Resources.ApplyChangesQ, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No, Tasks.MessageForm.Button.Cancel }, Tasks.MessageForm.DefaultButton.Button3);
+                if (result == Tasks.MessageForm.Button.Cancel)
                     return;
-                if (result == DialogResult.Yes)
+                if (result == Tasks.MessageForm.Button.Yes)
                     buttonApply_Click(sender, e);
+                //var result = MessageBox.Show(Resources.ApplyChangesQ, Resources.ApplyChanges, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3);
+                //if (result == DialogResult.Cancel)
+                //    return;
+                //if (result == DialogResult.Yes)
+                //    buttonApply_Click(sender, e);
             }
 
             // save game changes
@@ -335,7 +340,9 @@ namespace com.clusterrr.hakchi_gui
 
         private void SelectCoreDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (buttonApply.Enabled && DialogResult != DialogResult.OK && MessageBox.Show(Resources.DiscardChangesQ, Resources.DiscardChanges, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
+            if (buttonApply.Enabled && DialogResult != DialogResult.OK &&
+                Tasks.MessageForm.Show(Resources.DiscardChanges, Resources.DiscardChangesQ, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.No)
+            //MessageBox.Show(Resources.DiscardChangesQ, Resources.DiscardChanges, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
             {
                 e.Cancel = true;
             }

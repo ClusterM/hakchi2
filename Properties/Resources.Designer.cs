@@ -2703,6 +2703,14 @@ namespace com.clusterrr.hakchi_gui.Properties {
                 return ((byte[])(obj));
             }
         }
+
+        ///   Looks up a localized string similar to Starting....
+        /// </summary>
+        internal static string Starting {
+            get {
+                return ResourceManager.GetString("Starting", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Your system&apos;s kernel scripts are out of date and can be updated. Would you like to update the custom kernel scripts now?.

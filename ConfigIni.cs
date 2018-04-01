@@ -180,6 +180,7 @@ namespace com.clusterrr.hakchi_gui
         public bool ShowGamesWithoutCoverArt = false;
         public bool ForceSSHTransfers = false;
         public bool ExportLinked = true;
+        public string SyncRegion = "";
         public string ExportDrive = "";
         public string ExportRegion = "";
         public FelLib.Fel.UbootType MembootUboot = FelLib.Fel.UbootType.SD;

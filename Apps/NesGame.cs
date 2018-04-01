@@ -70,15 +70,25 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (IgnoreMapper != false)
                 {
-                    var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                    var result = Tasks.MessageForm.Show(ParentForm, Resources.AreYouSure,
                         string.Format(Resources.MapperNotSupported, System.IO.Path.GetFileName(inputFileName), nesFile.Mapper),
-                            Resources.AreYouSure,
-                            MessageBoxButtons.AbortRetryIgnore,
-                            MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
-                    if (r == DialogResult.Abort)
+                        Resources.sign_warning,
+                        new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.YesToAll, Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No },
+                        Tasks.MessageForm.DefaultButton.Button2);
+                    if (result == Tasks.MessageForm.Button.YesToAll)
                         IgnoreMapper = true;
-                    if (r == DialogResult.Ignore)
+                    if (result == Tasks.MessageForm.Button.No)
                         return false;
+
+                    //var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                    //    string.Format(Resources.MapperNotSupported, System.IO.Path.GetFileName(inputFileName), nesFile.Mapper),
+                    //        Resources.AreYouSure,
+                    //        MessageBoxButtons.AbortRetryIgnore,
+                    //        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
+                    //if (r == DialogResult.Abort)
+                    //    IgnoreMapper = true;
+                    //if (r == DialogResult.Ignore)
+                    //    return false;
                 }
                 else return false;
             }
@@ -86,15 +96,25 @@ namespace com.clusterrr.hakchi_gui
                 (ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.Famicom) &&
                 (IgnoreMapper != true))
             {
-                var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                var result = Tasks.MessageForm.Show(ParentForm, Resources.AreYouSure,
                     string.Format(Resources.FourScreenNotSupported, System.IO.Path.GetFileName(inputFileName)),
-                        Resources.AreYouSure,
-                        MessageBoxButtons.AbortRetryIgnore,
-                        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
-                if (r == DialogResult.Abort)
+                    Resources.sign_warning,
+                    new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.YesToAll, Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No },
+                    Tasks.MessageForm.DefaultButton.Button2);
+                if (result == Tasks.MessageForm.Button.YesToAll)
                     IgnoreMapper = true;
-                if (r == DialogResult.No)
+                if (result == Tasks.MessageForm.Button.No)
                     return false;
+
+                //var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                //    string.Format(Resources.FourScreenNotSupported, System.IO.Path.GetFileName(inputFileName)),
+                //        Resources.AreYouSure,
+                //        MessageBoxButtons.AbortRetryIgnore,
+                //        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
+                //if (r == DialogResult.Abort)
+                //    IgnoreMapper = true;
+                //if (r == DialogResult.No)
+                //    return false;
             }
 
             // TODO: Make trainer check. I think that the NES Mini doesn't support it.

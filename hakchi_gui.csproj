@@ -583,6 +583,7 @@
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tasks\GameTask.cs" />
+    <Compile Include="Tasks\ITaskerView.cs" />
     <Compile Include="Tasks\KernelTask.cs" />
     <Compile Include="Tasks\ErrorForm.cs">
       <SubType>Form</SubType>
@@ -601,12 +602,15 @@
       <DependentUpon>MessageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tasks\SyncTask.cs" />
+    <Compile Include="Tasks\Tasker.cs" />
+    <Compile Include="Tasks\TaskerDebug.cs" />
     <Compile Include="Tasks\TaskerForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Tasks\TaskerForm.Designer.cs">
       <DependentUpon>TaskerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tasks\TaskerTaskbar.cs" />
     <Compile Include="TrackableFileStream.cs" />
     <Compile Include="TrackableStream.cs" />
     <Compile Include="UnsupportedFourScreenException.cs" />

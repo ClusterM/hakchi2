@@ -160,8 +160,10 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonAccept_Click(object sender, EventArgs e)
         {
-            using (var tasker = new Tasks.TaskerForm(this))
+            using (var tasker = new Tasks.Tasker(this))
             {
+                tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
+                tasker.AttachView(new Tasks.TaskerForm(tasker));
                 var task = new Tasks.GameTask();
                 for (int i = 0; i < listViewGames.Items.Count; ++i)
                 {
@@ -182,7 +184,7 @@ namespace com.clusterrr.hakchi_gui
 
                 tasker.AddTask(task.SetCoverArtForMultipleGames);
                 tasker.SetStatusImage(Resources.sign_file_picture);
-                var conclusion = tasker.Start(true, 1000);
+                var conclusion = tasker.Start();
             }
 
             DialogResult = DialogResult.OK;
@@ -205,7 +207,9 @@ namespace com.clusterrr.hakchi_gui
                         change = true;
                         break;
                     }
-                if (change && MessageBox.Show(Resources.DiscardChangesQ, Resources.DiscardChanges, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
+                if (change &&
+                    Tasks.MessageForm.Show(Resources.DiscardChanges, Resources.DiscardChangesQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.No)
+                    //MessageBox.Show(Resources.DiscardChangesQ, Resources.DiscardChanges, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
                     e.Cancel = true;
             }
         }

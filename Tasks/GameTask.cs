@@ -89,7 +89,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public TaskerForm.Conclusion AssignGroupsToGames(TaskerForm tasker, Object syncObject = null)
         {
             tasker.SetTitle(Resources.ApplyChanges);
-            tasker.SetProgress(0, 100, TaskerForm.State.Running, Resources.ApplyChanges);
+            tasker.SetProgress(0, 100, Tasker.State.Running, Resources.ApplyChanges);
 
             // assign groups to list view items
             foreach (var item in sync.items)
@@ -98,15 +98,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 tasker.SetProgress(++i, max);
             }
 
-            return TaskerForm.Conclusion.Success;
+            return Tasker.Conclusion.Success;
         }
 
-        public TaskerForm.Conclusion RepairGames(TaskerForm tasker, Object SyncObject = null)
+        public Tasker.Conclusion RepairGames(Tasker tasker, Object SyncObject = null)
         {
             tasker.SetTitle(Resources.RepairGames);
-            tasker.SetState(TaskerForm.State.Running);
+            tasker.SetState(Tasker.State.Running);
 
-            NesApplication.ParentForm = tasker;
+            NesApplication.ParentForm = tasker.HostForm;
             int i = 0, max = Games.Count;
             foreach (var game in Games)
             {
@@ -116,7 +116,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 tasker.SetProgress(++i, max);
             }
 
-            return TaskerForm.Conclusion.Success;
+            return Tasker.Conclusion.Success;
         }
     }
 }

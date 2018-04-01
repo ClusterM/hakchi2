@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.clusterrr.hakchi_gui.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -105,7 +106,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (comboDriveLetters.SelectedItem == null)
             {
-                MessageBox.Show(this, Properties.Resources.NoDriveSelected, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Tasks.MessageForm.Show(Resources.ExportGames, Resources.NoDriveSelected, Resources.sign_error);
             }
             else
             {
@@ -129,7 +130,7 @@ namespace com.clusterrr.hakchi_gui
                             if (radioUSA.Checked) systemCode += "-usa";
                             if (radioEUR.Checked == false && radioUSA.Checked == false)
                             {
-                                MessageBox.Show(this, Properties.Resources.SelectRegion, Properties.Resources.SelectRegion, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                Tasks.MessageForm.Show(Resources.ExportGames, Resources.SelectRegion, Resources.sign_error);
                                 return;
                             }
                             break;

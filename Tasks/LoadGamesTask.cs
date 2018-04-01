@@ -18,13 +18,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public Dictionary<NesApplication, string> GamesChanged
             { get; private set; }
         public ListView ListViewGames
-            { get; set; }
+            { get; private set; }
 
-        public LoadGamesTask(bool reload = false)
+        public LoadGamesTask(ListView listViewGames, bool reload = false)
         {
             this.Games = new List<NesApplication>();
             this.GamesChanged = new Dictionary<NesApplication, string>();
-            this.ListViewGames = null;
+            this.ListViewGames = listViewGames;
             this.reload = reload;
         }
 
@@ -42,12 +42,12 @@ namespace com.clusterrr.hakchi_gui.Tasks
         private SortedDictionary<string, ListViewGroup> sortedCustomGroups = null;
 
         // --- update listview ui element
-        public TaskerForm.Conclusion UpdateListView(TaskerForm tasker, Object syncObject = null)
+        public Tasker.Conclusion UpdateListView(Tasker tasker, Object syncObject = null)
         {
-            if (ListViewGames.Disposing) return TaskerForm.Conclusion.Undefined;
+            if (ListViewGames.Disposing) return Tasker.Conclusion.Undefined;
             if (ListViewGames.InvokeRequired)
             {
-                return (TaskerForm.Conclusion)ListViewGames.Invoke(new Func<TaskerForm, Object, TaskerForm.Conclusion>(UpdateListView), new object[] { tasker, syncObject });
+                return (Tasker.Conclusion)ListViewGames.Invoke(new Func<Tasker, Object, Tasker.Conclusion>(UpdateListView), new object[] { tasker, syncObject });
             }
 
             var sync = (LoadGamesSyncObject)syncObject;
@@ -64,11 +64,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 ListViewGames.EndUpdate();
             }
-            return TaskerForm.Conclusion.Success;
+            return Tasker.Conclusion.Success;
         }
 
         // --- create groups
-        public TaskerForm.Conclusion CreateListViewGroups(TaskerForm tasker, Object syncObject = null)
+        public Tasker.Conclusion CreateListViewGroups(Tasker tasker, Object syncObject = null)
         {
             this.normalGroups = new Dictionary<ViewGroup, ListViewGroup>();
             this.sortedGroups = new SortedDictionary<string, ListViewGroup>();
@@ -99,11 +99,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 foreach (var core in CoreCollection.Cores)
                     sortedGroups[core.Bin] = new ListViewGroup(core.Name, h);
             }
-            return TaskerForm.Conclusion.Success;
+            return Tasker.Conclusion.Success;
         }
 
         // --- assign groups to list view
-        public TaskerForm.Conclusion AssignListViewGroups(TaskerForm tasker, Object syncObject = null)
+        public Tasker.Conclusion AssignListViewGroups(Tasker tasker, Object syncObject = null)
         {
             var sync = (LoadGamesSyncObject)syncObject;
 
@@ -151,11 +151,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 groups.Add(normalGroups[ViewGroup.All]);
             }
             sync.groups = groups.ToArray();
-            return TaskerForm.Conclusion.Success;
+            return Tasker.Conclusion.Success;
         }
 
         // --- scan files and create internal list
-        public TaskerForm.Conclusion LoadGamesFromFiles(TaskerForm tasker, Object syncObject = null)
+        public Tasker.Conclusion LoadGamesFromFiles(Tasker tasker, Object syncObject = null)
         {
             var sync = (LoadGamesSyncObject)syncObject;
 
@@ -193,18 +193,18 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 catch (Exception ex)
                 {
                     tasker.ShowError(ex, true);
-                    return TaskerForm.Conclusion.Error;
+                    return Tasker.Conclusion.Error;
                 }
             }
             sync.items = ConfigIni.Instance.OriginalGamesPosition == MainForm.OriginalGamesPosition.Hidden ?
                 items.Where(item => !(item.Tag as NesApplication).IsOriginalGame).ToArray() :
                 items.ToArray();
 
-            return TaskerForm.Conclusion.Success;
+            return Tasker.Conclusion.Success;
         }
 
         // --- grab files/items from existing list
-        public TaskerForm.Conclusion LoadGamesFromList(TaskerForm tasker, Object syncObject = null)
+        public Tasker.Conclusion LoadGamesFromList(Tasker tasker, Object syncObject = null)
         {
             var sync = (LoadGamesSyncObject)syncObject;
 
@@ -217,11 +217,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 }
             }));
 
-            return TaskerForm.Conclusion.Success;
+            return Tasker.Conclusion.Success;
         }
 
         // --- as the title says, assigns groups to games
-        public TaskerForm.Conclusion AssignGroupsToGames(TaskerForm tasker, Object syncObject = null)
+        public Tasker.Conclusion AssignGroupsToGames(Tasker tasker, Object syncObject = null)
         {
             var sync = (LoadGamesSyncObject)syncObject;
             var selected = ConfigIni.Instance.SelectedGames;
@@ -294,41 +294,26 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 item.Group = group;
             }
 
-            return TaskerForm.Conclusion.Success;
+            return Tasker.Conclusion.Success;
         }
 
-        public TaskerForm.Conclusion LoadGames(TaskerForm tasker, Object syncObject = null)
+        public Tasker.Conclusion LoadGames(Tasker tasker, Object syncObject = null)
         {
-            tasker.SetProgress(-1, -1, TaskerForm.State.Running, Resources.LoadingGames);
+            tasker.SetProgress(-1, -1, Tasker.State.Running, Resources.LoadingGames);
             tasker.SetTitle(Resources.LoadingGames);
 
             tasker.SyncObject = new LoadGamesSyncObject();
             tasker.AddTasks(
                 CreateListViewGroups,
                 this.reload ?
-                    (TaskerForm.TaskFunc)LoadGamesFromList : 
-                    (TaskerForm.TaskFunc)LoadGamesFromFiles,
+                    (Tasker.TaskFunc)LoadGamesFromList : 
+                    (Tasker.TaskFunc)LoadGamesFromFiles,
                 AssignGroupsToGames,
                 AssignListViewGroups,
                 UpdateListView);
 
-            return TaskerForm.Conclusion.Success;
+            return Tasker.Conclusion.Success;
         }
 
-        public TaskerForm.Conclusion SetCoverArtForMultipleGames(TaskerForm tasker, Object SyncObject = null)
-        {
-            tasker.SetTitle(Resources.ApplyChanges);
-            tasker.SetProgress(0, 100, TaskerForm.State.Running, Resources.ApplyChanges);
-
-            int i = 0, max = GamesChanged.Count;
-            foreach(var pair in GamesChanged)
-            {
-                pair.Key.SetImageFile(pair.Value, ConfigIni.Instance.CompressCover);
-                tasker.SetProgress(++i, max);
-            }
-
-            return TaskerForm.Conclusion.Success;
-        }
-            
     }
 }

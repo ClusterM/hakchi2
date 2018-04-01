@@ -81,7 +81,8 @@ namespace com.clusterrr.hakchi_gui
 
                 if (lCode != null)
                 {
-                    if (MessageBox.Show(this, Resources.GGCodeExists, Resources.Warning, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    if (Tasks.MessageForm.Show(Resources.Warning, Resources.GGCodeExists, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.Yes)
+                    //if (MessageBox.Show(this, Resources.GGCodeExists, Resources.Warning, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                     {
                         lCode.Description = lForm.Description;
                         FGameGenieDataBase.ModifyCode(lCode);
@@ -116,8 +117,9 @@ namespace com.clusterrr.hakchi_gui
         {
             var i = (int)(sender as ToolStripMenuItem).Tag;
             GameGenieCode lCode = (GameGenieCode)checkedListBoxGameCode.Items[i];
-            if (MessageBox.Show(this, string.Format(Resources.GGCodeDelete, lCode.Description),
-                Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            if (Tasks.MessageForm.Show(Resources.AreYouSure, string.Format(Resources.GGCodeDelete, lCode.Description), Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.Yes)
+            //if (MessageBox.Show(this, string.Format(Resources.GGCodeDelete, lCode.Description),
+            //    Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 FGameGenieDataBase.DeleteCode(lCode);
                 checkedListBoxGameCode.Items.Remove(lCode);

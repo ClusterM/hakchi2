@@ -112,7 +112,7 @@ namespace com.clusterrr.ssh
 
         public bool ShellEnabled
         {
-            get { return true; }
+            get { return IsOnline; }
             set { }
         }
 

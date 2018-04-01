@@ -212,15 +212,25 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (Need3rdPartyEmulator != false)
                         {
-                            var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                            var result = Tasks.MessageForm.Show(ParentForm, Resources.AreYouSure,
                                 string.Format(Resources.Need3rdPartyEmulator, Path.GetFileName(inputFileName)),
-                                    Resources.AreYouSure,
-                                    MessageBoxButtons.AbortRetryIgnore,
-                                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
-                            if (r == DialogResult.Abort)
+                                Resources.sign_warning,
+                                new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.YesToAll, Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No },
+                                Tasks.MessageForm.DefaultButton.Button2);
+                            if (result == Tasks.MessageForm.Button.YesToAll)
                                 Need3rdPartyEmulator = true;
-                            if (r == DialogResult.Ignore)
+                            if (result == Tasks.MessageForm.Button.No)
                                 problemGame = false;
+
+                            //var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                            //    string.Format(Resources.Need3rdPartyEmulator, Path.GetFileName(inputFileName)),
+                            //        Resources.AreYouSure,
+                            //        MessageBoxButtons.AbortRetryIgnore,
+                            //        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
+                            //if (r == DialogResult.Abort)
+                            //    Need3rdPartyEmulator = true;
+                            //if (r == DialogResult.Ignore)
+                            //    problemGame = false;
                         }
                         else problemGame = false;
                     }

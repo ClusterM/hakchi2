@@ -21,21 +21,47 @@ namespace com.clusterrr.hakchi_gui.Tasks
             get; set;
         }
 
-        public static bool ShowFoldersManager(TaskerForm tasker, NesMenuCollection collection)
+        public static bool ShowFoldersManager(Tasker tasker, NesMenuCollection collection)
         {
-            if (tasker.Disposing) return false;
-            if (tasker.InvokeRequired)
+            if (tasker.HostForm.Disposing) return false;
+            if (tasker.HostForm.InvokeRequired)
             {
-                return (bool)tasker.Invoke(new Func<TaskerForm, NesMenuCollection, bool>(ShowFoldersManager), new object[] { tasker, collection });
+                return (bool)tasker.HostForm.Invoke(new Func<Tasker, NesMenuCollection, bool>(ShowFoldersManager), new object[] { tasker, collection });
             }
             try
             {
                 using (FoldersManagerForm form = new FoldersManagerForm(collection, MainForm.StaticRef))
                 {
-                    var prevState = tasker.SetState(TaskerForm.State.Paused);
-                    if (form.ShowDialog() != DialogResult.OK)
+                    tasker.PushState(Tasker.State.Paused);
+                    var result = form.ShowDialog() == DialogResult.OK;
+                    tasker.PopState();
+                    return result;
+                }
+            }
+            catch (InvalidOperationException) { }
+            return false;
+        }
+
+        public bool ShowExportDialog(Tasker tasker)
+        {
+            if (tasker.HostForm.Disposing) return false;
+            if (tasker.HostForm.InvokeRequired)
+            {
+                return (bool)tasker.HostForm.Invoke(new Func<Tasker, bool>(ShowExportDialog), new object[] { tasker });
+            }
+            try
+            {
+                using (ExportGamesDialog driveSelectDialog = new ExportGamesDialog())
+                {
+                    tasker.PushState(Tasker.State.Paused);
+                    var result = driveSelectDialog.ShowDialog() == DialogResult.OK;
+                    tasker.PopState();
+                    if (!result)
                         return false;
-                    tasker.SetState(prevState);
+                    this.exportLinked = driveSelectDialog.LinkedExport;
+                    this.exportDirectory = driveSelectDialog.ExportPath;
+                    if (!Directory.Exists(driveSelectDialog.ExportPath))
+                        Directory.CreateDirectory(driveSelectDialog.ExportPath);
                 }
                 return true;
             }
@@ -43,25 +69,23 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return false;
         }
 
-        public bool ShowExportDialog(TaskerForm tasker)
+        public bool ShowUploadDialog(Tasker tasker)
         {
-            if (tasker.Disposing) return false;
-            if (tasker.InvokeRequired)
+            if (tasker.HostForm.Disposing) return false;
+            if (tasker.HostForm.InvokeRequired)
             {
-                return (bool)tasker.Invoke(new Func<TaskerForm, bool>(ShowExportDialog), new object[] { tasker });
+                return (bool)tasker.HostForm.Invoke(new Func<Tasker, bool>(ShowUploadDialog), new object[] { tasker });
             }
             try
             {
-                using (ExportGamesDialog driveSelectDialog = new ExportGamesDialog())
+                using (UploadGamesDialog uploadGamesDialog = new UploadGamesDialog())
                 {
-                    var prevState = tasker.SetState(TaskerForm.State.Paused);
-                    if (driveSelectDialog.ShowDialog() != DialogResult.OK)
+                    tasker.PushState(Tasker.State.Paused);
+                    var result = uploadGamesDialog.ShowDialog() == DialogResult.OK;
+                    tasker.PopState();
+                    if (!result)
                         return false;
-                    this.exportLinked = driveSelectDialog.LinkedExport;
-                    this.exportDirectory = driveSelectDialog.ExportPath;
-                    if (!Directory.Exists(driveSelectDialog.ExportPath))
-                        Directory.CreateDirectory(driveSelectDialog.ExportPath);
-                    tasker.SetState(prevState);
+                    this.uploadPath = hakchi.GetRemoteGameSyncPath(ConfigIni.Instance.ConsoleType, ConfigIni.Instance.SyncRegion);
                 }
                 return true;
             }
@@ -77,6 +101,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             public long TransferSize = 0;
         }
 
+        private string uploadPath;
         private string exportDirectory;
         private bool exportLinked;
 
@@ -85,11 +110,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
             Games = new NesMenuCollection();
         }
 
-        public TaskerForm.Conclusion ExportGames(TaskerForm tasker, Object syncObject = null)
+        public Tasker.Conclusion ExportGames(Tasker tasker, Object syncObject = null)
         {
             int maxProgress = 100;
             tasker.SetTitle(Resources.ExportGames);
-            tasker.SetProgress(0, maxProgress, TaskerForm.State.Starting, Resources.SelectDrive);
+            tasker.SetProgress(0, maxProgress, Tasker.State.Starting, Resources.SelectDrive);
             if (Games == null || Games.Count == 0)
                 throw new Exception("No games to upload");
 
@@ -97,14 +122,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
             exportLinked = false;
             exportDirectory = string.Empty;
             if (!ShowExportDialog(tasker))
-                return TaskerForm.Conclusion.Abort;
+                return Tasker.Conclusion.Abort;
 
             // building folders
-            tasker.SetProgress(5, maxProgress, TaskerForm.State.Starting, Resources.BuildingMenu);
+            tasker.SetProgress(5, maxProgress, Tasker.State.Starting, Resources.BuildingMenu);
             if (ConfigIni.Instance.FoldersMode == NesMenuCollection.SplitStyle.Custom)
             {
                 if (!ShowFoldersManager(tasker, Games))
-                    return TaskerForm.Conclusion.Abort;
+                    return Tasker.Conclusion.Abort;
                 Games.AddBack();
             }
             else
@@ -156,7 +181,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             Debug.WriteLine("Exporting games: " + Shared.SizeSuffix(stats.TotalSize));
             int i = 25;
             maxProgress = 25 + localGamesToTransfer.Count();
-            tasker.SetProgress(25, maxProgress, TaskerForm.State.Running, Resources.CopyingGames);
+            tasker.SetProgress(25, maxProgress, Tasker.State.Running, Resources.CopyingGames);
             foreach (var afi in localGamesToTransfer)
             {
                 string path = new Uri(exportDirectory + "/" + afi.FilePath).LocalPath;
@@ -210,22 +235,27 @@ namespace com.clusterrr.hakchi_gui.Tasks
             };
             process.Start();
 
-            return TaskerForm.Conclusion.Success;
+            return Tasker.Conclusion.Success;
         }
 
-        public TaskerForm.Conclusion UploadGames(TaskerForm tasker, Object syncObject = null)
+        public Tasker.Conclusion UploadGames(Tasker tasker, Object syncObject = null)
         {
             int maxProgress = 135;
             tasker.SetTitle(Resources.UploadGames);
             if (Games == null || Games.Count == 0)
                 throw new Exception("No games to upload");
 
+            // select option and region if applicable
+            this.uploadPath = "";
+            if (!ShowUploadDialog(tasker))
+                return Tasker.Conclusion.Abort;
+
             // building folders
-            tasker.SetProgress(0, maxProgress, TaskerForm.State.Starting, Resources.BuildingMenu);
+            tasker.SetProgress(0, maxProgress, Tasker.State.Starting, Resources.BuildingMenu);
             if (ConfigIni.Instance.FoldersMode == NesMenuCollection.SplitStyle.Custom)
             {
                 if (!ShowFoldersManager(tasker, Games))
-                    return TaskerForm.Conclusion.Abort;
+                    return Tasker.Conclusion.Abort;
                 Games.AddBack();
             }
             else
@@ -237,15 +267,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 if (!KernelTask.WaitForShell(tasker))
                 {
-                    return TaskerForm.Conclusion.Abort;
+                    return Tasker.Conclusion.Abort;
                 }
                 hakchi.ShowSplashScreen();
-
-                // paths
-                string gameSyncPath = hakchi.GetRemoteGameSyncPath();
-                string gamesPath = shell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
-                string rootFsPath = shell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
-                string squashFsPath = shell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
 
                 // clean up previous directories (separate game storage vs not)
                 tasker.SetStatus(Resources.CleaningUp);
@@ -285,19 +309,19 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 }
 
                 // get the remote list of files, timestamps, and sizes
-                string gamesOnDevice = shell.ExecuteSimple($"mkdir -p \"{gameSyncPath}\"; cd \"{gameSyncPath}\"; find . -type f -exec sh -c \"stat \\\"{{}}\\\" -c \\\"%n %s %y\\\"\" \\;", 0, true);
+                string gamesOnDevice = shell.ExecuteSimple($"mkdir -p \"{this.uploadPath}\"; cd \"{this.uploadPath}\"; find . -type f -exec sh -c \"stat \\\"{{}}\\\" -c \\\"%n %s %y\\\"\" \\;", 0, true);
                 var remoteGameSet = ApplicationFileInfo.GetApplicationFileInfoFromConsoleOutput(gamesOnDevice);
 
                 // delete any remote files that aren't present locally
                 tasker.SetStatus(Resources.CleaningUp);
                 var remoteGamesToDelete = remoteGameSet.Except(localGameSet);
-                DeleteRemoteApplicationFiles(remoteGamesToDelete);
+                DeleteRemoteApplicationFiles(remoteGamesToDelete, this.uploadPath);
 
                 // only keep the local files that aren't matching on the mini
                 var localGamesToUpload = localGameSet.Except(remoteGameSet);
 
                 // now transfer whatever games are remaining
-                tasker.SetProgress(20, maxProgress, TaskerForm.State.Running, Resources.UploadingGames);
+                tasker.SetProgress(20, maxProgress, Tasker.State.Running, Resources.UploadingGames);
                 shell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
                 bool uploadSuccessful = false;
                 if (ConfigIni.Instance.ForceSSHTransfers || hakchi.Shell is clovershell.ClovershellConnection) // use tar stream when detecting clovershell
@@ -320,10 +344,10 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                     lastTime = DateTime.Now;
                                 }
                             };
-                            shell.Execute($"tar -xvC \"{gameSyncPath}\"", gamesTar, null, null, 0, true);
+                            shell.Execute($"tar -xvC \"{this.uploadPath}\"", gamesTar, null, null, 0, true);
                             Debug.WriteLine("Uploaded " + (int)(gamesTar.Length / 1024) + "kb in " + DateTime.Now.Subtract(startTime).TotalSeconds + " seconds");
 
-                            tasker.SetState(TaskerForm.State.Finishing);
+                            tasker.SetState(Tasker.State.Finishing);
                             uploadSuccessful = true;
                             done = true;
 #if DEBUG
@@ -337,7 +361,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 else if (hakchi.Shell is ssh.SshClientWrapper) // using ftp when detecting ssh
                 {
                     Debug.WriteLine("Uploading through FTP");
-                    tasker.SetProgress(20, maxProgress, TaskerForm.State.Running, Resources.UploadingGames);
+                    tasker.SetProgress(20, maxProgress, Tasker.State.Running, Resources.UploadingGames);
                     using (var ftp = new FtpWrapper(localGamesToUpload))
                     {
                         Debug.WriteLine($"Upload size: " + Shared.SizeSuffix(ftp.Length));
@@ -355,11 +379,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             };
                             if (ftp.Connect(hakchi.STATIC_IP, 21, hakchi.USERNAME, hakchi.PASSWORD))
                             {
-                                ftp.Upload(gameSyncPath);
+                                ftp.Upload(this.uploadPath);
                                 uploadSuccessful = true;
                                 Debug.WriteLine("Uploaded " + (int)(ftp.Length / 1024) + "kb in " + DateTime.Now.Subtract(startTime).TotalSeconds + " seconds");
                             }
-                            tasker.SetState(TaskerForm.State.Finishing);
+                            tasker.SetState(Tasker.State.Finishing);
                         }
                     }
                 }
@@ -370,11 +394,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
                 // don't continue if upload wasn't successful
                 if (!uploadSuccessful)
-                    return TaskerForm.Conclusion.Error;
+                    return Tasker.Conclusion.Error;
 
                 // Finally, delete any empty directories we may have left during the differential sync
                 tasker.SetStatus(Resources.CleaningUp);
-                shell.ExecuteSimple($"for f in $(find \"{gameSyncPath}\" -type d -mindepth 1 -maxdepth 2); do {{ ls -1 \"$f\" | grep -v pixelart | grep -v autoplay " +
+                shell.ExecuteSimple($"for f in $(find \"{this.uploadPath}\" -type d -mindepth 1 -maxdepth 2); do {{ ls -1 \"$f\" | grep -v pixelart | grep -v autoplay " +
                     "| wc -l | { read wc; test $wc -eq 0 && rm -rf \"$f\"; } } ; done", 0);
                 tasker.SetProgress(125, maxProgress);
 
@@ -388,22 +412,22 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         case MainForm.ConsoleType.NES:
                         case MainForm.ConsoleType.Famicom:
                             originalSyncCode =
-                                $"src=\"{squashFsPath}{gamesPath}/{originalCode}\" && " +
-                                $"dst=\"{gameSyncPath}/{originalGames[originalCode]}/{originalCode}\" && " +
+                                $"src=\"{hakchi.SquashFsPath}{hakchi.GamesPath}/{originalCode}\" && " +
+                                $"dst=\"{this.uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
                                 $"mkdir -p \"$dst\" && " +
-                                $"([ -e \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\") && " +
-                                $"([ -e \"$dst/pixelart\" ] || ln -s \"$src/pixelart\" \"$dst/\")";
+                                $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\") && " +
+                                $"([ -L \"$dst/pixelart\" ] || ln -s \"$src/pixelart\" \"$dst/\")";
                             break;
                         case MainForm.ConsoleType.SNES:
                         case MainForm.ConsoleType.SuperFamicom:
                             originalSyncCode =
-                                $"src=\"{squashFsPath}{gamesPath}/{originalCode}\" && " +
-                                $"dst=\"{gameSyncPath}/{originalGames[originalCode]}/{originalCode}\" && " +
+                                $"src=\"{hakchi.SquashFsPath}{hakchi.GamesPath}/{originalCode}\" && " +
+                                $"dst=\"{this.uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
                                 $"mkdir -p \"$dst\" && " +
-                                $"([ -e \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\")";
+                                $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\")";
                             break;
                     }
-                    shell.ExecuteSimple(originalSyncCode, 1000, true);
+                    shell.ExecuteSimple(originalSyncCode, 2000, true);
                     tasker.SetProgress(125 + (int)((double)++i / originalGames.Count * 10), maxProgress);
                 };
 
@@ -415,7 +439,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 try
                 {
                     if (shell.IsOnline)
-                        shell.ExecuteSimple("hakchi overmount_games; uistart", 100);
+                        shell.ExecuteSimple("hakchi overmount_games; uistart", 1000);
                 }
                 catch { }
             }
@@ -428,7 +452,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             catch { }
 #endif
 
-            return TaskerForm.Conclusion.Success;
+            return Tasker.Conclusion.Success;
         }
 
         private void AddMenu(NesMenuCollection menuCollection, Dictionary<string, string> originalGames, NesApplication.CopyMode copyMode, HashSet<ApplicationFileInfo> localGameSet = null, GamesTreeStats stats = null)
@@ -499,11 +523,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
         }
 
-        private static void DeleteRemoteApplicationFiles(IEnumerable<ApplicationFileInfo> filesToDelete)
+        private static void DeleteRemoteApplicationFiles(IEnumerable<ApplicationFileInfo> filesToDelete, string remoteDirectory)
         {
             using (MemoryStream commandBuilder = new MemoryStream())
             {
-                string data = $"#!/bin/sh\ncd \"{hakchi.GetRemoteGameSyncPath()}\"\n";
+                string data = $"#!/bin/sh\ncd \"{remoteDirectory}\"\n";
                 commandBuilder.Write(Encoding.UTF8.GetBytes(data), 0, data.Length);
 
                 foreach (ApplicationFileInfo appInfo in filesToDelete)

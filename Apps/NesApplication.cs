@@ -1165,16 +1165,26 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (NeedPatch != false)
                     {
-                        var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                        var result = Tasks.MessageForm.Show(ParentForm, Resources.PatchAvailable,
                             string.Format(Resources.PatchQ, Path.GetFileName(inputFileName)),
-                            Resources.PatchAvailable,
-                            MessageBoxButtons.AbortRetryIgnore,
-                            MessageBoxIcon.Question,
-                            MessageBoxDefaultButton.Button2, true);
-                        if (r == DialogResult.Abort)
+                            Resources.sign_question,
+                            new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.YesToAll, Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No },
+                            Tasks.MessageForm.DefaultButton.Button2);
+                        if (result == Tasks.MessageForm.Button.YesToAll)
                             NeedPatch = true;
-                        if (r == DialogResult.Ignore)
+                        if (result == Tasks.MessageForm.Button.No)
                             return false;
+
+                        //var r = WorkerForm.MessageBoxFromThread(ParentForm,
+                        //    string.Format(Resources.PatchQ, Path.GetFileName(inputFileName)),
+                        //    Resources.PatchAvailable,
+                        //    MessageBoxButtons.AbortRetryIgnore,
+                        //    MessageBoxIcon.Question,
+                        //    MessageBoxDefaultButton.Button2, true);
+                        //if (r == DialogResult.Abort)
+                        //    NeedPatch = true;
+                        //if (r == DialogResult.Ignore)
+                        //    return false;
                     }
                     else return false;
                 }
@@ -1268,7 +1278,7 @@ namespace com.clusterrr.hakchi_gui
             string targetDir = $"{relativeTargetPath}/{desktop.Code}";
             string targetStorageDir = $".storage/{desktop.Code}";
 
-            string mediaGamePath = hakchi.GetRemoteGameSyncPath() + "/.storage";
+            string mediaGamePath = hakchi.GetRemoteGameSyncPath(ConfigIni.Instance.ConsoleType, ConfigIni.Instance.SyncRegion) + "/.storage";
             string iconPath = mediaGamePath;
             if (IsOriginalGame)
             {

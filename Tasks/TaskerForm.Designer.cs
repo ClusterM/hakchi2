@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.statusLabel = new System.Windows.Forms.Label();
             this.progressBarEx1 = new ProgressODoom.ProgressBarEx();
             this.fruityLoopsBackgroundPainter1 = new ProgressODoom.FruityLoopsBackgroundPainter();
             this.styledBorderPainter1 = new ProgressODoom.StyledBorderPainter();
             this.fruityLoopsProgressPainter1 = new ProgressODoom.FruityLoopsProgressPainter();
             this.statusPictureBox = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.statusPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,8 +65,7 @@
             this.progressBarEx1.ShowPercentage = true;
             this.progressBarEx1.Size = new System.Drawing.Size(538, 46);
             this.progressBarEx1.TabIndex = 0;
-            this.progressBarEx1.Text = "30%";
-            this.progressBarEx1.Value = 30;
+            this.progressBarEx1.Value = 0;
             // 
             // fruityLoopsBackgroundPainter1
             // 
@@ -111,7 +108,7 @@
             this.Text = "Tasker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TaskerForm_FormClosing);
             this.Load += new System.EventHandler(this.Tasker_Load);
-            this.Shown += new System.EventHandler(this.Tasker_Shown);
+            this.Shown += new System.EventHandler(this.TaskerForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.statusPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -125,6 +122,5 @@
         private ProgressODoom.FruityLoopsProgressPainter fruityLoopsProgressPainter1;
         private ProgressODoom.StyledBorderPainter styledBorderPainter1;
         private System.Windows.Forms.PictureBox statusPictureBox;
-        private System.Windows.Forms.Timer timer1;
     }
 }

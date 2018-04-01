@@ -29,17 +29,16 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public static readonly string ubootSDFile = Path.Combine(Program.BaseDirectoryInternal, "data", "ubootSD.bin");
         public static readonly string zImageFile = Path.Combine(Program.BaseDirectoryInternal, "data", "zImage");
 
-        public static bool WaitForShell(TaskerForm tasker)
+        public static bool WaitForShell(Tasker tasker)
         {
-            if (tasker.InvokeRequired)
+            if (tasker.HostForm.InvokeRequired)
             {
-                return (bool)tasker.Invoke(new Func<TaskerForm, bool>(WaitForShell), new object[] { tasker });
+                return (bool)tasker.HostForm.Invoke(new Func<Tasker, bool>(WaitForShell), new object[] { tasker });
             }
-            TaskerForm.State prevState = tasker.SetState(TaskerForm.State.Paused);
+            tasker.PushState(Tasker.State.Paused);
             tasker.SetStatus(Resources.WaitingForDevice);
-
-            bool result = WaitingClovershellForm.WaitForDevice(tasker);
-            tasker.SetState(prevState);
+            bool result = WaitingClovershellForm.WaitForDevice(tasker.HostForm);
+            tasker.PopState();
             return result;
         }
 
@@ -81,19 +80,17 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 new string[] { "c5dbb6e29ea57046579cfd50b124c9e1" };
         }
 
-        bool WaitForFel(TaskerForm tasker)
+        bool WaitForFel(Tasker tasker)
         {
-            if (tasker.InvokeRequired)
+            if (tasker.HostForm.InvokeRequired)
             {
-                return (bool)tasker.Invoke(new Func<TaskerForm, bool>(WaitForFel), new object[]{ tasker });
+                return (bool)tasker.HostForm.Invoke(new Func<Tasker, bool>(WaitForFel), new object[]{ tasker });
             }
-            var prevState = tasker.SetState(TaskerForm.State.Paused);
+            tasker.PushState(Tasker.State.Paused);
             tasker.SetStatus(Resources.WaitingForDevice);
-
             if (fel != null) fel.Close();
-            var result = WaitingFelForm.WaitForDevice(vid, pid, tasker);
-
-            tasker.SetState(prevState);
+            var result = WaitingFelForm.WaitForDevice(vid, pid, tasker.HostForm);
+            tasker.PopState();
             if (result)
             {
                 fel = new Fel();
@@ -109,9 +106,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return false;
         }
 
-        public TaskerForm.Conclusion DoDump(TaskerForm tasker, Object syncObject = null)
+        public Tasker.Conclusion DoDump(Tasker tasker, Object syncObject = null)
         {
-            return TaskerForm.Conclusion.Success;
+            return Tasker.Conclusion.Success;
         }
     }
 }

@@ -1074,4 +1074,7 @@ Current detected console: {1}</value>
   <data name="PleaseConnectYourDevice" xml:space="preserve">
     <value>Please connect your NES/SNES mini in order to proceed. Note that you must also install the custom kernel, using the options in the Kernel menu.</value>
   </data>
+  <data name="Starting" xml:space="preserve">
+    <value>Starting...</value>
+  </data>
 </root>

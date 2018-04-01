@@ -40,6 +40,7 @@ namespace com.clusterrr.hakchi_gui
         public static string SystemCode { get; private set; }
         public static string MediaPath { get; private set; }
         public static string GamesPath { get; private set; }
+        public static string RootFsPath { get; private set; }
         public static string GamesProfilePath { get; private set; }
         public static string SquashFsPath { get; private set; }
         public static string GamesSquashFsPath
@@ -59,21 +60,53 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static string GetRemoteGameSyncPath(bool? separateGames = null, string overrideSystemCode = null)
+        public static string GetRemoteGameSyncPath(MainForm.ConsoleType consoleType, string region = null)
         {
-            if (RemoteGameSyncPath == null) return null;
-            if (separateGames == null) separateGames = ConfigIni.Instance.SeparateGameStorage;
-            if ((bool)separateGames)
+            if (RemoteGameSyncPath == null)
+                throw new NullReferenceException("No valid sync path is available");
+
+            if (ConfigIni.Instance.SeparateGameStorage)
             {
-                if (overrideSystemCode != null)
+                string systemCode = string.Empty;
+                switch (consoleType)
                 {
-                    return $"{RemoteGameSyncPath}/{overrideSystemCode}";
+                    default:
+                        throw new ArgumentException("No valid console type was given");
+                    case MainForm.ConsoleType.NES:
+                        systemCode = "nes-usa";
+                        break;
+                    case MainForm.ConsoleType.Famicom:
+                        systemCode = "nes-jpn";
+                        break;
+                    case MainForm.ConsoleType.SNES:
+                        switch (region.ToLower())
+                        {
+                            case "eur":
+                                systemCode = "snes-eur";
+                                break;
+                            case "usa":
+                                systemCode = "snes-usa";
+                                break;
+                            default:
+                                throw new ArgumentNullException("Region code is null and selected consoleType is SNES");
+                        }
+                        break;
+                    case MainForm.ConsoleType.SuperFamicom:
+                        systemCode = "snes-jpn";
+                        break;
                 }
-                else if (SystemCode != null)
-                {
-                    return $"{RemoteGameSyncPath}/{SystemCode}";
-                }
-                return null;
+                return $"{RemoteGameSyncPath}/{systemCode}";
+            }
+            return RemoteGameSyncPath;
+        }
+
+        public static string GetRemoteGameSyncPath()
+        {
+            if (RemoteGameSyncPath == null)
+                throw new NullReferenceException("No valid sync path is available");
+            if (ConfigIni.Instance.SeparateGameStorage && SystemCode != null)
+            {
+                return $"{RemoteGameSyncPath}/{SystemCode}";
             }
             return RemoteGameSyncPath;
         }
@@ -125,11 +158,12 @@ namespace com.clusterrr.hakchi_gui
             CanInteract = false;
             MinimalMemboot = false;
             UniqueID = null;
+            ConfigPath = "/etc/preinit.d/p0000_config";
             RemoteGameSyncPath = "/var/lib/hakchi/games";
             SystemCode = null;
-            ConfigPath = "/etc/preinit.d/p0000_config";
             MediaPath = "/media";
             GamesPath = "/var/games";
+            RootFsPath = "/var/lib/hakchi/rootfs";
             GamesProfilePath = "/var/saves";
             SquashFsPath = "/var/squashfs";
         }
@@ -231,6 +265,9 @@ namespace com.clusterrr.hakchi_gui
                 // detect basic paths
                 RemoteGameSyncPath = Shell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
                 SystemCode = Shell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
+                GamesPath = Shell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
+                RootFsPath = Shell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
+                SquashFsPath = Shell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
 
                 // load config
                 ConfigIni.SetConfigDictionary(LoadConfig());

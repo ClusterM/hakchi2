@@ -84,7 +84,7 @@ namespace com.clusterrr.hakchi_gui
         readonly string tempHmodsDirectory;
         readonly string argumentsFilePath;
         readonly string transferDirectory;
-        string tempGamesDirectory;
+        //string tempGamesDirectory;
         Dictionary<MainForm.ConsoleType, string[]> correctKernels = new Dictionary<MainForm.ConsoleType, string[]>();
         Dictionary<MainForm.ConsoleType, string[]> correctKeys = new Dictionary<MainForm.ConsoleType, string[]>();
         const long maxCompressedsRamfsSize = 30 * 1024 * 1024;

@@ -17,34 +17,33 @@ namespace com.clusterrr.hakchi_gui.Tasks
             EnableMenuItem(GetSystemMenu(Handle, false), SC_CLOSE, MF_BYCOMMAND | MF_DISABLED);
         }
 
-        public static Button Show(string title, string message)
+        public static Button Show(Form hostForm, string title, string message, Image icon = null, Button[] buttons = null, DefaultButton defaultButton = DefaultButton.Button1)
         {
-            return Show(title, message, Resources.sign_info);
+            if (hostForm.Disposing) return Button.Undefined;
+            if (hostForm.InvokeRequired)
+            {
+                return (Button)hostForm.Invoke(new Func<Form, string, string, Image, Button[], DefaultButton, Button>(Show), new object[] { hostForm, title, message, icon, buttons, defaultButton });
+            }
+            return Show(title, message, icon, buttons, defaultButton);
         }
 
-        public static Button Show(string title, string message, Image icon)
+        public static Button Show(string title, string message, Image icon = null, Button[] buttons = null, DefaultButton defaultButton = DefaultButton.Button1)
         {
-            return Show(title, message, icon, new Button[] { Button.OK });
-        }
-
-        public static Button Show(string title, string message, Image icon, Button[] buttons, DefaultButton defaultButton = DefaultButton.Button1)
-        {
-            if (buttons == null || buttons.Length < 1 || buttons.Length > 3)
+            if (buttons != null && (buttons.Length < 1 || buttons.Length > 3))
                 throw new ArgumentOutOfRangeException();
 
             MessageForm form = new MessageForm();
-            if (!string.IsNullOrEmpty(title))
-                form.Text = title;
+            form.Text = title ?? form.Text;
             form.messageLabel.Text = message;
-            form.pictureBox1.Image = icon;
+            form.pictureBox1.Image = icon ?? Resources.sign_info;
 
-            form.buttons = buttons;
+            form.buttons = buttons ?? new Button[] { Button.OK };
             System.Windows.Forms.Button[] formButtons = new System.Windows.Forms.Button[] { form.button1, form.button2, form.button3 };
-            for(int i = 0; i < buttons.Length; ++i)
+            for(int i = 0; i < form.buttons.Length; ++i)
             {
-                formButtons[i].Text = Resources.ResourceManager.GetString(buttons[i].ToString());
+                formButtons[i].Text = Resources.ResourceManager.GetString(form.buttons[i].ToString());
             }
-            switch (buttons.Length)
+            switch (form.buttons.Length)
             {
                 default:
                     throw new NotSupportedException();

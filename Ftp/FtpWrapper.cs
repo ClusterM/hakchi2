@@ -57,8 +57,9 @@ namespace com.clusterrr.util
             try
             {
                 ftp = new FluentFTP.FtpClient(host, port, username, password);
-                ftp.Connect();
+                ftp.EnableThreadSafeDataConnections = false;
                 ftp.TransferChunkSize = transferChunkSize;
+                ftp.Connect();
                 return ftp.IsConnected;
             }
             catch (Exception ex)
@@ -103,7 +104,7 @@ namespace com.clusterrr.util
                     }
                     if (inStream != null)
                     {
-                        ftp.Upload(inStream, afi.FilePath, FtpExists.Overwrite, true, new Progress<double>(p =>
+                        ftp.Upload(inStream, afi.FilePath, FtpExists.NoCheck, true, new Progress<double>(p =>
                         {
                             if (p != -1)
                                 OnReadProgress(currentPosition + (long)(p * afi.FileSize / 100), totalSize, afi.FilePath);
