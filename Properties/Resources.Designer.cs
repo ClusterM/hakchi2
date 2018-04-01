@@ -671,6 +671,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable auto refresh.
+        /// </summary>
+        internal static string DisableAutoRefresh {
+            get {
+                return ResourceManager.GetString("DisableAutoRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discard changes.
         /// </summary>
         internal static string DiscardChanges {
@@ -801,6 +810,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string DumpKernelQ {
             get {
                 return ResourceManager.GetString("DumpKernelQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable auto refresh.
+        /// </summary>
+        internal static string EnableAutoRefresh {
+            get {
+                return ResourceManager.GetString("EnableAutoRefresh", resourceCulture);
             }
         }
         

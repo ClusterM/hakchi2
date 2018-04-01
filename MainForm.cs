@@ -2051,31 +2051,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (WaitingClovershellForm.WaitForDevice(this))
                 {
-                    var screenshot = WorkerForm.TakeScreenshot();
-                    var screenshotPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() + ".png");
-                    screenshot.Save(screenshotPath, ImageFormat.Png);
-                    var showProcess = new Process()
-                    {
-                        StartInfo = new ProcessStartInfo()
-                        {
-                            FileName = screenshotPath
-                        }
-                    };
-                    showProcess.Start();
-                    new Thread(delegate ()
-                    {
-                        try
-                        {
-                            Thread.Sleep(5000);
-                            showProcess.WaitForExit();
-                        }
-                        catch { }
-                        try
-                        {
-                            File.Delete(screenshotPath);
-                        }
-                        catch { }
-                    }).Start();
+                    var screenForm = new ScreenshotForm();
+                    screenForm.Show();
                 }
             }
             catch (Exception ex)

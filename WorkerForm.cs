@@ -724,40 +724,6 @@ namespace com.clusterrr.hakchi_gui
             SetProgress(maxProgress, maxProgress);
         }
 
-        public static Image TakeScreenshot()
-        {
-            var screenshot = new Bitmap(1280, 720, PixelFormat.Format24bppRgb);
-            var rawStream = new MemoryStream();
-            hakchi.Shell.ExecuteSimple("hakchi uipause");
-            hakchi.Shell.Execute("cat /dev/fb0", null, rawStream, null, 1000, true);
-            hakchi.Shell.ExecuteSimple("hakchi uiresume");
-            var raw = rawStream.ToArray();
-            BitmapData data = screenshot.LockBits(
-                new Rectangle(0, 0, screenshot.Width, screenshot.Height),
-                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-
-            int rawOffset = 0;
-            unsafe
-            {
-                for (int y = 0; y < screenshot.Height; ++y)
-                {
-                    byte* row = (byte*)data.Scan0 + (y * data.Stride);
-                    int columnOffset = 0;
-                    for (int x = 0; x < screenshot.Width; ++x)
-                    {
-                        row[columnOffset] = raw[rawOffset];
-                        row[columnOffset + 1] = raw[rawOffset + 1];
-                        row[columnOffset + 2] = raw[rawOffset + 2];
-
-                        columnOffset += 3;
-                        rawOffset += 4;
-                    }
-                }
-            }
-            screenshot.UnlockBits(data);
-            return screenshot;
-        }
-
         private class GamesTreeStats
         {
             public List<NesMenuCollection> allMenus = new List<NesMenuCollection>();

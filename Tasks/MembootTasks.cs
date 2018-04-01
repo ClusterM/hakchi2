@@ -500,10 +500,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     if (mode == FileMode.Open && file.Length > partitionSize)
                         throw new Exception(Resources.ImageTooLarge);
 
-                    file.OnProgress += delegate (long Position, long Length)
-                    {
-                        tasker.SetProgress(Position, partitionSize);
-                    };
+                    if (mode == FileMode.Create)
+                        file.SetLength(partitionSize);
+
+                    file.OnProgress += tasker.SetProgress;
+
                     switch (task)
                     {
                         case NandTasks.DumpNandB:
