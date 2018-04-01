@@ -6,6 +6,7 @@ using Renci.SshNet;
 using SevenZip;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -593,13 +594,14 @@ namespace com.clusterrr.hakchi_gui
         
         public static int ShellPipe(string command, Stream stdin = null, Stream stdout = null, Stream stderr = null, int timeout = 0, bool throwOnNonZero = false)
         {
-            //if (hakchi.Shell is ClovershellConnection)
+            if (hakchi.Shell is ClovershellConnection)
                 return hakchi.Shell.Execute(command, stdin, stdout, stderr, timeout, throwOnNonZero);
 
             if (!(stderr is null))
                 throw new ArgumentException($"stderr is not valid for this connection type: {hakchi.Shell.GetType().ToString()}");
 
             var stdErr = new MemoryStream();
+            SplitterStream splitStream = new SplitterStream(stdErr).AddStreams(Program.debugStreams);
             var transferThread = new Thread(() =>
             {
                 try
@@ -611,6 +613,7 @@ namespace com.clusterrr.hakchi_gui
                         var line = sr.ReadLine();
                         var match = Regex.Match(line, "^listening on (\\d+\\.\\d+\\.\\d+\\.\\d+):(\\d+)");
                         stdErr.Close();
+                        splitStream.RemoveStream(stdErr).AddStreams(stderr);
                         if (match.Success)
                         {
                             SocketTransfer(hakchi.STATIC_IP, int.Parse(match.Groups[2].Value), stdin, stdout);
@@ -620,7 +623,7 @@ namespace com.clusterrr.hakchi_gui
                 catch (ThreadAbortException) { }
             });
             transferThread.Start();
-            int returnValue = hakchi.Shell.Execute($"nc -lv -s 0.0.0.0 -e {command}", null, null, stdErr, timeout, throwOnNonZero);
+            int returnValue = hakchi.Shell.Execute($"nc -lv -s 0.0.0.0 -e {command}", null, null, splitStream, timeout, throwOnNonZero);
             transferThread.Abort();
             return returnValue;
         }

@@ -2,6 +2,7 @@
 using com.clusterrr.hakchi_gui.Properties;
 using Microsoft.Win32.SafeHandles;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -40,6 +41,7 @@ namespace com.clusterrr.hakchi_gui
         public static readonly string BaseDirectoryInternal = Path.GetDirectoryName(Application.ExecutablePath);
         public static string BaseDirectoryExternal;
         public static bool isPortable = false;
+        public static List<Stream> debugStreams = new List<Stream>();
 
         /// <summary>
         /// The main entry point for the application.
@@ -54,17 +56,19 @@ namespace com.clusterrr.hakchi_gui
                 AllocConsole();
                 IntPtr stdHandle = CreateFile("CONOUT$", GENERIC_WRITE, FILE_SHARE_WRITE, 0, OPEN_EXISTING, 0, 0);
                 SafeFileHandle safeFileHandle = new SafeFileHandle(stdHandle, true);
-                FileStream fileStream = new FileStream(safeFileHandle, FileAccess.Write);
+                FileStream consoleFileStream = new FileStream(safeFileHandle, FileAccess.Write);
                 Encoding encoding = System.Text.Encoding.GetEncoding(MY_CODE_PAGE);
-                StreamWriter standardOutput = new StreamWriter(fileStream, encoding);
+                StreamWriter standardOutput = new StreamWriter(consoleFileStream, encoding);
                 standardOutput.AutoFlush = true;
                 Console.SetOut(standardOutput);
+                debugStreams.Add(consoleFileStream);
                 Debug.Listeners.Add(new TextWriterTraceListener(System.Console.Out));
             }
             catch { }
             try
             {
                 Stream logFile = File.Create("debuglog.txt");
+                debugStreams.Add(logFile);
                 Debug.Listeners.Add(new TextWriterTraceListener(logFile));
             }
             catch (Exception ex)

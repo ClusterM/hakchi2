@@ -94,16 +94,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 tasker.SetStatus(Resources.InstallingMods);
                 tasker.SetStatus(Resources.InstallingMods);
                 bool commandSucceeded = false;
-
-                using (var logStream = new MemoryStream())
-                {
-                    commandSucceeded = hakchi.Shell.Execute($"hakchi packs_install {Shared.EscapeShellArgument(transferPath)}", null, logStream, logStream) == 0;
-
-                    logStream.Seek(0, SeekOrigin.Begin);
-
-                    using (var sr = new StreamReader(logStream))
-                        Debug.WriteLine(sr.ReadToEnd());
-                }
+                
+                var splitStream = new SplitterStream(Program.debugStreams);
+                commandSucceeded = hakchi.Shell.Execute($"hakchi packs_install {Shared.EscapeShellArgument(transferPath)}", null, splitStream, splitStream) == 0;
 
                 return commandSucceeded ? Conclusion.Success : Conclusion.Error;
             };

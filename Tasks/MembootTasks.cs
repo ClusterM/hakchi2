@@ -179,7 +179,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 return (Conclusion)tasker.Invoke(new Func<TaskerForm, Object, Conclusion>(WaitForFelOrMembootableShell), new object[] { tasker, syncObject });
 
             tasker.SetStatus(Resources.WaitingForDevice);
-            if (hakchi.Shell.IsOnline)
+            if (hakchi.Shell.IsOnline && hakchi.Shell.Execute("[ -f /proc/atags ]") == 0)
                 return Conclusion.Success;
 
             if (!WaitingFelForm.WaitForDevice(Shared.ClassicUSB.vid, Shared.ClassicUSB.pid, tasker))
@@ -248,7 +248,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             tasker.SetStatus(Resources.UploadingKernel);
 
-            if (hakchi.Shell.IsOnline)
+            if (hakchi.Shell.IsOnline && hakchi.Shell.Execute("[ -f /proc/atags ]") == 0)
             {
                 if (hakchi.MinimalMemboot)
                     return Conclusion.Success;
@@ -376,10 +376,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
             // Continue the hakchi boot process
             tasker.SetStatus(Resources.BootingHakchi);
             MemoryStream hakchiLogStream = new MemoryStream();
+            var splitStream = new SplitterStream(hakchiLogStream).AddStreams(Program.debugStreams);
 
             try
             {
-                hakchi.Shell.Execute("boot", null, hakchiLogStream, hakchiLogStream, 0, true);
+                hakchi.Shell.Execute("boot", null, splitStream, splitStream, 0, true);
             }
             catch { }
 
@@ -480,9 +481,10 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         partitionSize = 536870912;
                         break;
                     case NandTasks.FormatNandC:
+                        var splitStream = new SplitterStream(Program.debugStreams);
                         hakchi.Shell.Execute("cat > /bin/mke2fs; chmod +x /bin/mke2fs", File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "tools", "arm", "mke2fs.static")), null, null, 0, true);
-                        hakchi.Shell.Execute("hakchi umount_base");
-                        hakchi.Shell.Execute("yes | mke2fs -t ext4 -L data -b 4K -E stripe-width=32 -O ^huge_file,^metadata_csum /dev/nandc", null, null, null, 0, true);
+                        hakchi.Shell.Execute("hakchi umount_base", null, splitStream, splitStream);
+                        hakchi.Shell.Execute("yes | mke2fs -t ext4 -L data -b 4K -E stripe-width=32 -O ^huge_file,^metadata_csum /dev/nandc", null, splitStream, splitStream, 0, true);
                         hakchi.Shell.Execute("rm /bin/mke2fs");
                         return Conclusion.Success;
                 }
@@ -558,8 +560,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
                 hakchi.Shell.Execute("cat > /uboot.bin", uboot, null, null, 0, true);
                 MemoryStream flashLog = new MemoryStream();
-                
-                if(hakchi.Shell.Execute("hakchi flashBoot2 /uboot.bin 8 5", null, flashLog) != 0)
+                var splitStream = new SplitterStream(flashLog).AddStreams(Program.debugStreams);
+                if (hakchi.Shell.Execute("hakchi flashBoot2 /uboot.bin 8 5", null, splitStream) != 0)
                 {
                     using (var sr = new StreamReader(flashLog))
                     {
