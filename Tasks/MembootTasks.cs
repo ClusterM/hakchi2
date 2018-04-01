@@ -505,24 +505,24 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     switch (task)
                     {
                         case NandTasks.DumpNandB:
-                            Shared.ShellPipeDownload($"dd if=/dev/mapper/root-crypt bs=128K count={(partitionSize / 1024) / 4 }", file, throwOnNonZero: true);
+                            Shared.ShellPipe($"dd if=/dev/mapper/root-crypt bs=128K count={(partitionSize / 1024) / 4 }", null, file, throwOnNonZero: true);
                             break;
 
                         case NandTasks.FlashNandB:
-                            hakchi.Shell.Execute("dd of=/dev/mapper/root-crypt bs=128K", file, throwOnNonZero: true);
+                            Shared.ShellPipe("dd of=/dev/mapper/root-crypt bs=128K", file, throwOnNonZero: true);
                             hakchi.Shell.Execute("cryptsetup close root-crypt", throwOnNonZero: true);
                             break;
 
                         case NandTasks.DumpNandC:
-                            Shared.ShellPipeDownload($"dd if=/dev/nandc bs=128K count={(partitionSize / 1024) / 4 }", file, throwOnNonZero: true);
+                            Shared.ShellPipe($"dd if=/dev/nandc bs=128K count={(partitionSize / 1024) / 4 }", null, file, throwOnNonZero: true);
                             break;
 
                         case NandTasks.FlashNandC:
-                            hakchi.Shell.Execute("dd of=/dev/nandc bs=128K", file, throwOnNonZero: true);
+                            Shared.ShellPipe("dd of=/dev/nandc bs=128K", file, throwOnNonZero: true);
                             break;
 
                         case NandTasks.DumpNand:
-                            Shared.ShellPipeDownload("sntool sunxi_flash phy_read 0 1000", file, throwOnNonZero: true);
+                            Shared.ShellPipe("sntool sunxi_flash phy_read 0 1000", null, file, throwOnNonZero: true);
                             break;
                     }
                     file.Close();

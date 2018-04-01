@@ -15,6 +15,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -542,32 +543,64 @@ namespace com.clusterrr.hakchi_gui
             return Regex.Replace(unquotedArgument, "[^a-zA-Z0-9]", "\\$0");
         }
 
-        public static void SocketDownload(string server, int port, Stream outStream)
+        public static void SocketTransfer(string server, int port, Stream dataStreamTo, Stream dataStreamFrom)
         {
+            if (server is null)
+                throw new ArgumentNullException("server");
+
+            if (port < 1)
+                throw new ArgumentOutOfRangeException("port");
+
+            if (dataStreamTo is null && dataStreamFrom is null)
+                throw new ArgumentNullException("dataStreamIn, dataStreamOut");
+
             // Create a TcpClient.
             TcpClient client = new TcpClient(server, port);
 
             // Get a client stream for reading and writing.
-            NetworkStream stream = client.GetStream();
+            NetworkStream socketStream = client.GetStream();
 
-            // Copy the stream data into outStream
-            stream.CopyTo(outStream);
+            // Copy the stream data into dataStream
+            Task transferFrom = null;
+            if (!(dataStreamFrom is null))
+            {
+                transferFrom = socketStream.CopyToAsync(dataStreamFrom);
+            }
+
+            // Copy dataStream into the stream data
+            Task transferTo = null;
+            if (!(dataStreamTo is null))
+            {
+                transferTo = dataStreamTo.CopyToAsync(socketStream);
+            }
+
+            // Wait for the streams to finish
+            try {
+                transferFrom.Wait();
+            }
+            catch { }
+
+            try {
+                transferTo.Wait();
+            }
+            catch { }
 
             // Close everything.
-            stream.Close();
+            socketStream.Close();
             client.Close();
         }
 
-        public static int ShellPipeDownload(string command, Stream stdout, Stream stdin = null, Stream stderr = null, int timeout = 0, bool throwOnNonZero = false)
+        
+        public static int ShellPipe(string command, Stream stdin = null, Stream stdout = null, Stream stderr = null, int timeout = 0, bool throwOnNonZero = false)
         {
-            if (hakchi.Shell is ClovershellConnection)
-                return hakchi.Shell.Execute($"({command}) | nc -lv -s 0.0.0.0", stdin, stdout, null, timeout, throwOnNonZero);
+            //if (hakchi.Shell is ClovershellConnection)
+                return hakchi.Shell.Execute(command, stdin, stdout, stderr, timeout, throwOnNonZero);
 
-            if (stderr != null)
-                throw new ArgumentException($"stderr is not valid for this shell type: {hakchi.Shell.GetType().ToString()}");
+            if (!(stderr is null))
+                throw new ArgumentException($"stderr is not valid for this connection type: {hakchi.Shell.GetType().ToString()}");
 
             var stdErr = new MemoryStream();
-            var downloadThread = new Thread(() =>
+            var transferThread = new Thread(() =>
             {
                 try
                 {
@@ -579,14 +612,16 @@ namespace com.clusterrr.hakchi_gui
                         var match = Regex.Match(line, "^listening on (\\d+\\.\\d+\\.\\d+\\.\\d+):(\\d+)");
                         stdErr.Close();
                         if (match.Success)
-                            SocketDownload(hakchi.STATIC_IP, int.Parse(match.Groups[2].Value), stdout);
+                        {
+                            SocketTransfer(hakchi.STATIC_IP, int.Parse(match.Groups[2].Value), stdin, stdout);
+                        }
                     }
                 }
                 catch (ThreadAbortException) { }
             });
-            downloadThread.Start();
-            int returnValue = hakchi.Shell.Execute($"({command}) | nc -lv -s 0.0.0.0", stdin, null, stdErr, timeout, throwOnNonZero);
-            downloadThread.Abort();
+            transferThread.Start();
+            int returnValue = hakchi.Shell.Execute($"nc -lv -s 0.0.0.0 -e {command}", null, null, stdErr, timeout, throwOnNonZero);
+            transferThread.Abort();
             return returnValue;
         }
     }
