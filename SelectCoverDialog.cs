@@ -162,8 +162,8 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var tasker = new Tasks.Tasker(this))
             {
-                tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
-                tasker.AttachView(new Tasks.TaskerForm(tasker));
+                tasker.AttachView(new Tasks.TaskerTaskbar());
+                tasker.AttachView(new Tasks.TaskerForm());
                 var task = new Tasks.GameTask();
                 for (int i = 0; i < listViewGames.Items.Count; ++i)
                 {

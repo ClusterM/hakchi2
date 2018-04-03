@@ -265,6 +265,7 @@ namespace com.clusterrr.hakchi_gui
 
             using(Tasker tasker = new Tasker(this))
             {
+                tasker.AttachView(new Tasks.TaskerForm());
                 var modObject = new ModTasks.ModObject();
                 modObject.HmodsToLoad = modsList;
                 tasker.SetTitle(Resources.LoadingHmods);

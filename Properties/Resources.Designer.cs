@@ -19,7 +19,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -1539,7 +1539,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 9278436-dirty
+        ///   Looks up a localized string similar to c2163a8-dirty
         ///.
         /// </summary>
         internal static string gitCommit {
@@ -2439,6 +2439,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Running folders manager....
+        /// </summary>
+        internal static string RunningFoldersManager {
+            get {
+                return ResourceManager.GetString("RunningFoldersManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save-state backups.
         /// </summary>
         internal static string SavesFlterName {
@@ -2723,7 +2732,8 @@ namespace com.clusterrr.hakchi_gui.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
+        /// <summary>
         ///   Looks up a localized string similar to Starting....
         /// </summary>
         internal static string Starting {

@@ -9,14 +9,19 @@ namespace com.clusterrr.hakchi_gui.Tasks
 {
     class TaskerTaskbar : ITaskerView
     {
+        public Tasker Tasker
+        {
+            get; set;
+        }
+
         public ITaskerView SetState(Tasker.State state)
         {
             if (state == taskState) return this;
             try
             {
-                if (tasker.HostForm.InvokeRequired)
+                if (Tasker.HostForm.InvokeRequired)
                 {
-                    return (ITaskerView)tasker.HostForm.Invoke(new Func<Tasker.State, ITaskerView>(SetState), new object[] { state });
+                    return (ITaskerView)Tasker.HostForm.Invoke(new Func<Tasker.State, ITaskerView>(SetState), new object[] { state });
                 }
                 switch (state)
                 {
@@ -25,23 +30,23 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     case Tasker.State.Waiting:
                         if (!(new Tasker.State[] { Tasker.State.Starting, Tasker.State.Finishing, Tasker.State.Waiting }).Contains(taskState))
                         {
-                            TaskbarProgress.SetState(tasker.HostForm, TaskbarProgress.TaskbarStates.NoProgress);
+                            TaskbarProgress.SetState(Tasker.HostForm, TaskbarProgress.TaskbarStates.NoProgress);
                             Thread.Sleep(20); // workaround to make it work
-                            TaskbarProgress.SetState(tasker.HostForm, TaskbarProgress.TaskbarStates.Indeterminate);
+                            TaskbarProgress.SetState(Tasker.HostForm, TaskbarProgress.TaskbarStates.Indeterminate);
                         }
                         break;
                     case Tasker.State.Running:
-                        TaskbarProgress.SetState(tasker.HostForm, TaskbarProgress.TaskbarStates.Normal);
+                        TaskbarProgress.SetState(Tasker.HostForm, TaskbarProgress.TaskbarStates.Normal);
                         break;
                     case Tasker.State.Undefined:
                     case Tasker.State.Done:
-                        TaskbarProgress.SetState(tasker.HostForm, TaskbarProgress.TaskbarStates.NoProgress);
+                        TaskbarProgress.SetState(Tasker.HostForm, TaskbarProgress.TaskbarStates.NoProgress);
                         break;
                     case Tasker.State.Paused:
-                        TaskbarProgress.SetState(tasker.HostForm, TaskbarProgress.TaskbarStates.Paused);
+                        TaskbarProgress.SetState(Tasker.HostForm, TaskbarProgress.TaskbarStates.Paused);
                         break;
                     case Tasker.State.Error:
-                        TaskbarProgress.SetState(tasker.HostForm, TaskbarProgress.TaskbarStates.Error);
+                        TaskbarProgress.SetState(Tasker.HostForm, TaskbarProgress.TaskbarStates.Error);
                         break;
                 }
                 taskState = state;
@@ -52,16 +57,16 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public ITaskerView SetProgress(long value, long maximum)
         {
-            if (tasker.HostForm.Disposing || value < 0 || maximum < 0) return this;
+            if (Tasker.HostForm.Disposing || value < 0 || maximum < 0) return this;
             try
             {
-                if (tasker.HostForm.InvokeRequired)
+                if (Tasker.HostForm.InvokeRequired)
                 {
-                    return (ITaskerView)tasker.HostForm.Invoke(new Func<long, long, ITaskerView>(SetProgress), new object[] { value, maximum });
+                    return (ITaskerView)Tasker.HostForm.Invoke(new Func<long, long, ITaskerView>(SetProgress), new object[] { value, maximum });
                 }
                 if ((new Tasker.State[] { Tasker.State.Running, Tasker.State.Paused, Tasker.State.Error }).Contains(taskState))
                 {
-                    TaskbarProgress.SetValue(tasker.HostForm, value, maximum);
+                    TaskbarProgress.SetValue(Tasker.HostForm, value, maximum);
                 }
             }
             catch (InvalidOperationException) { }
@@ -103,15 +108,10 @@ namespace com.clusterrr.hakchi_gui.Tasks
             get; set;
         }
 
-        private Tasker tasker
-        {
-            get; set;
-        }
-
-        public TaskerTaskbar(Tasker tasker)
+        public TaskerTaskbar(Tasker tasker = null)
         {
             this.taskState = Tasker.State.Undefined;
-            this.tasker = tasker;
+            this.Tasker = tasker;
         }
     }
 }

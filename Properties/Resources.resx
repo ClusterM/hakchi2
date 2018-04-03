@@ -1085,4 +1085,7 @@ Current detected console: {1}</value>
   <data name="RepairSelectedGamesQ" xml:space="preserve">
     <value>Are you sure you want to attempt repair selected games? (This could break some games, especially if there weren't imported by hakchi2. Only attempt on broken games.)</value>
   </data>
+  <data name="RunningFoldersManager" xml:space="preserve">
+    <value>Running folders manager...</value>
+  </data>
 </root>

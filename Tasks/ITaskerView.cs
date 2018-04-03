@@ -2,6 +2,7 @@
 {
     public interface ITaskerView
     {
+        Tasker Tasker { get; set; }
         ITaskerView SetState(Tasker.State state);
         ITaskerView SetProgress(long value, long maximum);
         void OnProgress(long value, long maximum); // prototype matching progress callback handlers

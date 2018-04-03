@@ -429,8 +429,8 @@ namespace com.clusterrr.hakchi_gui
                 {
                     var task = new Tasks.GameCacheTask();
                     task.Games = games;
-                    tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
-                    tasker.AttachView(new Tasks.TaskerForm(tasker));
+                    tasker.AttachView(new Tasks.TaskerTaskbar());
+                    tasker.AttachView(new Tasks.TaskerForm());
                     tasker.AddTask(task.UpdateLocal);
                     if (tasker.Start() == Tasks.Tasker.Conclusion.Success)
                         Debug.WriteLine("Successfully updated local original games cache.");
@@ -445,7 +445,7 @@ namespace com.clusterrr.hakchi_gui
             using (var tasker = new Tasks.Tasker(this))
             {
                 var task = new Tasks.LoadGamesTask(listViewGames, reloadFromFiles);
-                tasker.AttachView(new Tasks.TaskerForm(tasker));
+                tasker.AttachView(new Tasks.TaskerForm());
                 tasker.AddTask(task.LoadGames, 0);
                 Tasks.Tasker.Conclusion c = tasker.Start();
             }
@@ -943,6 +943,11 @@ namespace com.clusterrr.hakchi_gui
             game.Desktop.SortName = textBoxSortName.Text = textBoxSortName.Text.ToLower();
         }
 
+        private void textBoxSortName_Leave(object sender, EventArgs e)
+        {
+            listViewGames.Sort();
+        }
+
         private void radioButtonOne_CheckedChanged(object sender, EventArgs e)
         {
             if (showingSelected) return;
@@ -1017,18 +1022,6 @@ namespace com.clusterrr.hakchi_gui
             GameGenieCodeForm lFrm = new GameGenieCodeForm(nesGame);
             if (lFrm.ShowDialog() == DialogResult.OK)
                 textBoxGameGenie.Text = (nesGame as NesApplication).GameGenie;
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Debug.WriteLine("Closing main form");
-            SaveConfig();
-            FtpServer.Stop();
-            hakchi.Shutdown();
-        }
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Process.GetCurrentProcess().Kill(); // Suicide! Just easy and dirty way to kill all threads.
         }
 
         struct CountResult
@@ -1184,8 +1177,8 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var tasker = new Tasks.Tasker(this))
             {
-                tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
-                tasker.AttachView(new Tasks.TaskerForm(tasker));
+                tasker.AttachView(new Tasks.TaskerTaskbar());
+                tasker.AttachView(new Tasks.TaskerForm());
                 var syncTask = new Tasks.SyncTask();
                 foreach (ListViewItem item in listViewGames.CheckedItems)
                 {
@@ -1234,6 +1227,7 @@ namespace com.clusterrr.hakchi_gui
         {
             using (Tasker tasker = new Tasker(this))
             {
+                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 string dumpFilename = null;
                 switch (task)
                 {
@@ -1287,6 +1281,7 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var tasker = new Tasker(this))
             {
+                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 if (reset)
                 {
                     tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.ResetHakchi).Tasks);
@@ -1303,6 +1298,7 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var tasker = new Tasker(this))
             {
+                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
@@ -1312,8 +1308,8 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var tasker = new Tasks.Tasker(this))
             {
-                tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
-                tasker.AttachView(new Tasks.TaskerForm(tasker));
+                tasker.AttachView(new Tasks.TaskerTaskbar());
+                tasker.AttachView(new Tasks.TaskerForm());
                 var task = new Tasks.AddGamesTask(listViewGames, files);
                 tasker.AddTask(task.AddGames, 4);
                 tasker.AddTask(task.UpdateListView);
@@ -1336,6 +1332,7 @@ namespace com.clusterrr.hakchi_gui
             bool restoreKernel = MessageBox.Show(Resources.UninstallQ2, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
             using (var tasker = new Tasker(this))
             {
+                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.UninstallHakchi, restoreKernel: restoreKernel).Tasks);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
@@ -1345,6 +1342,7 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var tasker = new Tasker(this))
             {
+                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetTitle(Resources.InstallingMods);
                 tasker.AddTask(hakchi.ShowSplashScreen);
                 tasker.AddTasks(new ModTasks(mods).Tasks);
@@ -1357,6 +1355,7 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var tasker = new Tasker(this))
             {
+                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetTitle(Resources.UninstallingMods);
                 tasker.AddTask(hakchi.ShowSplashScreen);
                 tasker.AddTasks(new ModTasks(null, mods).Tasks);
@@ -1371,6 +1370,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 using (var tasker = new Tasker(this))
                 {
+                    tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                     tasker.SetTitle(Resources.FlashingUboot);
                     tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashNormalUboot).Tasks);
                     tasker.Start();
@@ -1384,6 +1384,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 using (var tasker = new Tasker(this))
                 {
+                    tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                     tasker.SetTitle(Resources.FlashingUboot);
                     tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashSDUboot).Tasks);
                     tasker.Start();
@@ -1458,6 +1459,7 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var tasker = new Tasker(this))
             {
+                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootOriginal).Tasks);
                 tasker.Start();
             }
@@ -1467,6 +1469,7 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var tasker = new Tasker(this))
             {
+                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
                 tasker.Start();
             }
@@ -1476,6 +1479,7 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var tasker = new Tasker(this))
             {
+                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
                 tasker.Start();
             }
@@ -1566,8 +1570,8 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var tasker = new Tasks.Tasker(this))
             {
-                tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
-                tasker.AttachView(new Tasks.TaskerForm(tasker));
+                tasker.AttachView(new Tasks.TaskerTaskbar());
+                tasker.AttachView(new Tasks.TaskerForm());
 
                 var task = new Tasks.GameTask();
                 task.ResetAllOriginalGames = false;
@@ -1588,8 +1592,8 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var tasker = new Tasks.Tasker(this))
             {
-                tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
-                tasker.AttachView(new Tasks.TaskerForm(tasker));
+                tasker.AttachView(new Tasks.TaskerTaskbar());
+                tasker.AttachView(new Tasks.TaskerForm());
 
                 var task = new Tasks.GameTask();
                 task.ResetAllOriginalGames = true;
@@ -1675,6 +1679,18 @@ namespace com.clusterrr.hakchi_gui
             // enable timers
             timerConnectionCheck.Enabled = true;
             timerCalculateGames.Enabled = true;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Debug.WriteLine("Closing main form");
+            SaveConfig();
+            FtpServer.Stop();
+            hakchi.Shutdown();
+        }
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Process.GetCurrentProcess().Kill(); // Suicide! Just easy and dirty way to kill all threads.
         }
 
         private void dragEnter(object sender, DragEventArgs e)
@@ -1805,13 +1821,6 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.Instance.UsbHost = enableUSBHostToolStripMenuItem.Checked;
         }
 
-        private void showGamesWithoutBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigIni.Instance.ShowGamesWithoutCoverArt = showGamesWithoutBoxArtToolStripMenuItem.Checked;
-            SaveSelectedGames();
-            LoadGames(false);
-        }
-
         private void devForceSshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Instance.ForceSSHTransfers = devForceSshToolStripMenuItem.Checked;
@@ -1922,7 +1931,7 @@ namespace com.clusterrr.hakchi_gui
 
         private bool changeFTPServerState()
         {
-            if (FTPToolStripMenuItem.Enabled && FTPToolStripMenuItem.Checked)
+            if (FTPToolStripMenuItem.Enabled && FTPToolStripMenuItem.Checked && hakchi.Shell.IsOnline)
             {
                 try
                 {
@@ -1969,19 +1978,17 @@ namespace com.clusterrr.hakchi_gui
 
         private void FTPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigIni.Instance.FtpServer =
-                openFTPInExplorerToolStripMenuItem.Enabled =
-                changeFTPServerState();
+            ConfigIni.Instance.FtpServer = FTPToolStripMenuItem.Checked;
+            openFTPInExplorerToolStripMenuItem.Enabled = changeFTPServerState();
         }
 
         private void shellToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                ConfigIni.Instance.TelnetServer =
-                    openTelnetToolStripMenuItem.Enabled =
-                    hakchi.Shell.ShellEnabled =
-                    shellToolStripMenuItem.Checked;
+                ConfigIni.Instance.TelnetServer = shellToolStripMenuItem.Checked;
+                hakchi.Shell.ShellEnabled = shellToolStripMenuItem.Checked;
+                openTelnetToolStripMenuItem.Enabled = hakchi.Shell.ShellEnabled;
             }
             catch (Exception ex)
             {
@@ -2124,8 +2131,8 @@ namespace com.clusterrr.hakchi_gui
             SaveSelectedGames();
             using (var tasker = new Tasks.Tasker(this))
             {
-                tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
-                tasker.AttachView(new Tasks.TaskerForm(tasker));
+                tasker.AttachView(new Tasks.TaskerTaskbar());
+                tasker.AttachView(new Tasks.TaskerForm());
                 task.Games.AddRange(listViewGames.SelectedItems.Cast<ListViewItem>()
                         .Where(item => item.Tag is NesApplication && !(item.Tag as NesApplication).IsOriginalGame)
                         .Select(item => item.Tag as NesApplication));
@@ -2286,23 +2293,24 @@ namespace com.clusterrr.hakchi_gui
             LoadGames(false);
         }
 
+        private void showGamesWithoutBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.ShowGamesWithoutCoverArt = showGamesWithoutBoxArtToolStripMenuItem.Checked;
+            SaveSelectedGames();
+            LoadGames(false);
+        }
+
         private void foldersManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*
             SaveSelectedGames();
-            var workerForm = new WorkerForm(this);
-            workerForm.Games = new NesMenuCollection();
-
-            foreach (ListViewItem game in listViewGames.CheckedItems)
+            using (var tasker = new Tasker(this))
             {
-                if (game.Tag is NesApplication)
-                    workerForm.Games.Add(game.Tag as NesApplication);
+                var task = new Tasks.SyncTask();
+                task.Games.AddRange(listViewGames.CheckedItems.OfType<ListViewItem>()
+                    .Where(item => item.Tag is NesApplication)
+                    .Select(item => item.Tag as NesApplication));
+                task.ShowFoldersManager(tasker, task.Games);
             }
-
-            workerForm.FoldersMode = ConfigIni.Instance.FoldersMode;
-            workerForm.MaxGamesPerFolder = ConfigIni.Instance.MaxGamesPerFolder;
-            workerForm.FoldersManagerFromThread(workerForm.Games);
-            */
         }
 
         private void changeBootImageToolStripMenuItem_Click(object sender, EventArgs e)

@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui.Tasks
 {
-    public class Tasker : ITaskerView, IDisposable
+    public class Tasker : IDisposable
     {
         public enum State { Undefined, Starting, Running, Waiting, Paused, Error, Finishing, Done }
         public enum Conclusion { Undefined, Error, Abort, Success }
@@ -110,13 +110,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         // ITaskerView interface
 
-        public ITaskerView SetState(Tasker.State state)
+        public Tasker SetState(Tasker.State state)
         {
             this.views.ForEach(view => view.SetState(state));
             return this;
         }
 
-        public ITaskerView SetProgress(long value, long maximum)
+        public Tasker SetProgress(long value, long maximum)
         {
             if (value == -1 || maximum == -1) return this;
 
@@ -138,32 +138,33 @@ namespace com.clusterrr.hakchi_gui.Tasks
             SetProgress(value, maximum);
         }
 
-        public ITaskerView SetTitle(string title)
+        public Tasker SetTitle(string title)
         {
+            this.titleSet = true;
             this.views.ForEach(view => view.SetTitle(title));
             return this;
         }
 
-        public ITaskerView SetStatusImage(Image image)
+        public Tasker SetStatusImage(Image image)
         {
             this.views.ForEach(view => view.SetStatusImage(image));
             return this;
         }
 
-        public ITaskerView SetStatus(string status)
+        public Tasker SetStatus(string status)
         {
             this.views.ForEach(view => view.SetStatus(status));
             return this;
         }
 
-        public ITaskerView Show()
+        public Tasker Show()
         {
             this.views.ForEach(view => view.Show());
             this.Ready = true;
             return this;
         }
 
-        public ITaskerView Close()
+        public Tasker Close()
         {
             this.views.ForEach(view => view.Close());
             return this;
@@ -277,6 +278,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public Tasker AttachView(ITaskerView view)
         {
+            if (view.Tasker == null) view.Tasker = this;
             this.views.Add(view);
             return this;
         }
@@ -312,6 +314,12 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         // create
 
+        public Tasker(Form hostForm, params ITaskerView[] views)
+            : this(hostForm)
+        {
+            AttachViews(views);
+        }
+
         public Tasker(Form hostForm)
         {
             // init public properties
@@ -327,6 +335,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             this.tasks = new Queue<Task>();
             this.finalTask = null;
             this.thread = null;
+            this.titleSet = false;
             this.doneTasks = 0;
             this.doneWeight = 0;
         }
@@ -338,6 +347,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         private Queue<Task> tasks;
         private Task finalTask;
         private Thread thread;
+        private bool titleSet;
         private int doneTasks;
         private int doneWeight;
 
@@ -354,13 +364,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     // pop out next task
                     CurrentTask = tasks.Dequeue();
+                    Debug.WriteLine("Executing task: " + CurrentTask.displayName);
 
-                    if (firstTask)
+                    // set title if not already set
+                    if (firstTask && !titleSet)
                     {
-                        Debug.WriteLine("Executing task: " + CurrentTask.displayName);
                         SetTitle(CurrentTask.displayName);
-                        firstTask = false;
                     }
+                    firstTask = false;
 
                     // run task and assign conclusion
                     Conclusion conclusion = CurrentTask.task(this, SyncObject);
@@ -426,19 +437,19 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
     public static class TaskerExtensions
     {
-        public static ITaskerView SetProgress(this ITaskerView view, long value, long maximum, Tasker.State state, string status)
+        public static Tasker SetProgress(this Tasker tasker, long value, long maximum, Tasker.State state, string status)
         {
-            view.SetProgress(value, maximum);
-            view.SetState(state);
-            view.SetStatus(status);
-            return view;
+            tasker.SetProgress(value, maximum);
+            tasker.SetState(state);
+            tasker.SetStatus(status);
+            return tasker;
         }
 
-        public static ITaskerView SetStatus(this ITaskerView view, Tasker.State state, string status)
+        public static Tasker SetStatus(this Tasker tasker, Tasker.State state, string status)
         {
-            view.SetState(state);
-            view.SetStatus(status);
-            return view;
+            tasker.SetState(state);
+            tasker.SetStatus(status);
+            return tasker;
         }
     }
 }

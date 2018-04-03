@@ -4,8 +4,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
 {
     public class TaskerDebug : ITaskerView
     {
-        public TaskerDebug()
+        public Tasker Tasker
         {
+            get; set;
         }
 
         public ITaskerView SetState(Tasker.State state)
@@ -54,5 +55,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
             Debug.WriteLine("Hiding");
             return this;
         }
+
+        public TaskerDebug()
+        {
+            Tasker = null;
+        }
+
     }
 }

@@ -584,7 +584,6 @@
     <Compile Include="Tasks\GameCacheTask.cs" />
     <Compile Include="Tasks\GameTask.cs" />
     <Compile Include="Tasks\ITaskerView.cs" />
-    <Compile Include="Tasks\KernelTask.cs" />
     <Compile Include="Tasks\ErrorForm.cs">
       <SubType>Form</SubType>
     </Compile>

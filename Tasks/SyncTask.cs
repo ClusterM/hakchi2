@@ -21,7 +21,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             get; set;
         }
 
-        public static bool ShowFoldersManager(Tasker tasker, NesMenuCollection collection)
+        public bool ShowFoldersManager(Tasker tasker, NesMenuCollection collection)
         {
             if (tasker.HostForm.Disposing) return false;
             if (tasker.HostForm.InvokeRequired)
@@ -240,6 +240,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public Tasker.Conclusion UploadGames(Tasker tasker, Object syncObject = null)
         {
+            if (!hakchi.Shell.IsOnline)
+            {
+                return Tasker.Conclusion.Error;
+            }
+
             int maxProgress = 135;
             tasker.SetTitle(Resources.UploadGames);
             if (Games == null || Games.Count == 0)
@@ -271,10 +276,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
             var shell = hakchi.Shell;
             try
             {
-                if (!KernelTask.WaitForShell(tasker))
-                {
-                    return Tasker.Conclusion.Abort;
-                }
                 hakchi.ShowSplashScreen();
 
                 // clean up previous directories (separate game storage vs not)

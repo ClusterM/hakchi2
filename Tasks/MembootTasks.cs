@@ -175,7 +175,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public Conclusion WaitForFelOrMembootableShell(Tasker tasker, Object syncObject = null)
         {
             if (tasker.HostForm.InvokeRequired)
+            {
                 return (Conclusion)tasker.HostForm.Invoke(new Func<Tasker, Object, Conclusion>(WaitForFelOrMembootableShell), new object[] { tasker, syncObject });
+            }
 
             tasker.SetStatus(Resources.WaitingForDevice);
             if (hakchi.Shell.IsOnline && hakchi.Shell.Execute("[ -f /proc/atags ]") == 0)
@@ -202,11 +204,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public Conclusion WaitForShell(Tasker tasker, Object syncObject = null)
         {
-            tasker.SetStatus(Resources.WaitingForDevice);
-            using (WaitingClovershellForm waitingForm = new WaitingClovershellForm())
             if (tasker.HostForm.InvokeRequired)
             {
-                    return (Conclusion)tasker.HostForm.Invoke(new Func<Tasker, object, Conclusion>(WaitForShell), new object[] { tasker, syncObject });
+                return (Conclusion)tasker.HostForm.Invoke(new Func<Tasker, object, Conclusion>(WaitForShell), new object[] { tasker, syncObject });
             }
             tasker.SetStatus(Resources.WaitingForDevice);
             var result = WaitingClovershellForm.WaitForDevice(tasker.HostForm);

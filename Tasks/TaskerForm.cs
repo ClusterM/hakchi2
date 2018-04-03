@@ -9,7 +9,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
     {
         public Tasker Tasker
         {
-            get; private set;
+            get; set;
         }
 
         public bool Blocking
@@ -17,7 +17,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             get; private set;
         }
 
-        public TaskerForm(Tasker tasker, bool blocking = true)
+        public TaskerForm(bool blocking = true, Tasker tasker = null)
         {
             InitializeComponent();
             this.Tasker = tasker;

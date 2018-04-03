@@ -88,6 +88,7 @@
             this.usePCMPatchWhenAvailableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.developerToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devForceSshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadTotmpforTestingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useLinkedSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,8 +151,6 @@
             this.compressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decompressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem19 = new System.Windows.Forms.ToolStripSeparator();
-            this.repairGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripSeparator();
             this.sFROMToolToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editROMHeaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -215,7 +214,6 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.maximumGamesPerFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
-            this.uploadTotmpforTestingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -652,6 +650,13 @@
             this.devForceSshToolStripMenuItem.Name = "devForceSshToolStripMenuItem";
             resources.ApplyResources(this.devForceSshToolStripMenuItem, "devForceSshToolStripMenuItem");
             this.devForceSshToolStripMenuItem.Click += new System.EventHandler(this.devForceSshToolStripMenuItem_Click);
+            // 
+            // uploadTotmpforTestingToolStripMenuItem
+            // 
+            this.uploadTotmpforTestingToolStripMenuItem.CheckOnClick = true;
+            this.uploadTotmpforTestingToolStripMenuItem.Name = "uploadTotmpforTestingToolStripMenuItem";
+            resources.ApplyResources(this.uploadTotmpforTestingToolStripMenuItem, "uploadTotmpforTestingToolStripMenuItem");
+            this.uploadTotmpforTestingToolStripMenuItem.Click += new System.EventHandler(this.uploadTotmpforTestingToolStripMenuItem_Click);
             // 
             // separateGamesForMultibootToolStripMenuItem
             // 
@@ -1108,17 +1113,6 @@
             this.deleteSelectedGamesToolStripMenuItem.Name = "deleteSelectedGamesToolStripMenuItem";
             this.deleteSelectedGamesToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedGamesToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem19
-            // 
-            this.toolStripMenuItem19.Name = "toolStripMenuItem19";
-            resources.ApplyResources(this.toolStripMenuItem19, "toolStripMenuItem19");
-            // 
-            // repairGamesToolStripMenuItem
-            // 
-            this.repairGamesToolStripMenuItem.Name = "repairGamesToolStripMenuItem";
-            resources.ApplyResources(this.repairGamesToolStripMenuItem, "repairGamesToolStripMenuItem");
-            this.repairGamesToolStripMenuItem.Click += new System.EventHandler(this.repairGamesToolStripMenuItem_Click);
-            // 
             // toolStripMenuItem17
             // 
             this.toolStripMenuItem17.Name = "toolStripMenuItem17";
@@ -1392,6 +1386,7 @@
             resources.ApplyResources(this.textBoxSortName, "textBoxSortName");
             this.textBoxSortName.Name = "textBoxSortName";
             this.textBoxSortName.TextChanged += new System.EventHandler(this.textBoxSortName_TextChanged);
+            this.textBoxSortName.Leave += new System.EventHandler(this.textBoxSortName_Leave);
             // 
             // label8
             // 
@@ -1558,13 +1553,6 @@
             resources.ApplyResources(this.gamesConsoleComboBox, "gamesConsoleComboBox");
             this.gamesConsoleComboBox.Name = "gamesConsoleComboBox";
             this.gamesConsoleComboBox.SelectedIndexChanged += new System.EventHandler(this.gamesConsoleComboBox_SelectedIndexChanged);
-            // 
-            // uploadTotmpforTestingToolStripMenuItem
-            // 
-            this.uploadTotmpforTestingToolStripMenuItem.CheckOnClick = true;
-            this.uploadTotmpforTestingToolStripMenuItem.Name = "uploadTotmpforTestingToolStripMenuItem";
-            resources.ApplyResources(this.uploadTotmpforTestingToolStripMenuItem, "uploadTotmpforTestingToolStripMenuItem");
-            this.uploadTotmpforTestingToolStripMenuItem.Click += new System.EventHandler(this.uploadTotmpforTestingToolStripMenuItem_Click);
             // 
             // MainForm
             // 
