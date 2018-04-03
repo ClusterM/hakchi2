@@ -179,6 +179,7 @@ namespace com.clusterrr.hakchi_gui
         public MainForm.GamesSorting GamesSorting = MainForm.GamesSorting.Name;
         public bool ShowGamesWithoutCoverArt = false;
         public bool ForceSSHTransfers = false;
+        public bool UploadToTmp = false;
         public bool ExportLinked = true;
         public string SyncRegion = "";
         public string ExportDrive = "";

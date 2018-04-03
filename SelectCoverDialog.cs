@@ -181,9 +181,7 @@ namespace com.clusterrr.hakchi_gui
                         }
                     }
                 }
-
                 tasker.AddTask(task.SetCoverArtForMultipleGames);
-                tasker.SetStatusImage(Resources.sign_file_picture);
                 var conclusion = tasker.Start();
             }
 

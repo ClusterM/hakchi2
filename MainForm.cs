@@ -154,12 +154,6 @@ namespace com.clusterrr.hakchi_gui
                 textBoxPublisher.Left = label2.Left + label2.Width;
                 textBoxPublisher.Width -= textBoxPublisher.Left - tbl;
 
-                // // Tweeks for message boxes
-                // MessageBoxManager.Yes = MessageBoxManager.Retry = Resources.Yes;
-                // MessageBoxManager.No = MessageBoxManager.Ignore = Resources.No;
-                // MessageBoxManager.Cancel = Resources.NoForAll;
-                // MessageBoxManager.Abort = Resources.YesForAll;
-
                 // supported extensions in add games dialog
                 string extensions = string.Empty;
                 extensions += "All Files|*.*|Archive Files|*.zip;*.7z;*.rar|";
@@ -377,6 +371,7 @@ namespace com.clusterrr.hakchi_gui
             systemToolStripMenuItem.Checked = ConfigIni.Instance.GamesSorting == GamesSorting.System;
             showGamesWithoutBoxArtToolStripMenuItem.Checked = ConfigIni.Instance.ShowGamesWithoutCoverArt;
             devForceSshToolStripMenuItem.Checked = ConfigIni.Instance.ForceSSHTransfers;
+            uploadTotmpforTestingToolStripMenuItem.Checked = ConfigIni.Instance.UploadToTmp;
 
             // folders modes
             disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.Instance.FoldersMode == 0;
@@ -430,27 +425,28 @@ namespace com.clusterrr.hakchi_gui
 
             if (games.Count > 0)
             {
-                var workerForm = new WorkerForm(this);
-                workerForm.Text = Resources.UpdatingLocalCache;
-                workerForm.Task = WorkerForm.Tasks.UpdateLocalCache;
-                workerForm.Games = games;
-
-                if (workerForm.Start() == DialogResult.OK)
-                    Debug.WriteLine("successfully updated local original games cache.");
+                using (var tasker = new Tasks.Tasker(this))
+                {
+                    var task = new Tasks.GameCacheTask();
+                    task.Games = games;
+                    tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
+                    tasker.AttachView(new Tasks.TaskerForm(tasker));
+                    tasker.AddTask(task.UpdateLocal);
+                    if (tasker.Start() == Tasks.Tasker.Conclusion.Success)
+                        Debug.WriteLine("Successfully updated local original games cache.");
+                }
             }
             else
-                Debug.WriteLine("local original games cache in sync.");
+                Debug.WriteLine("Local original games cache in sync.");
         }
 
-        public void LoadGames(bool reload = false)
+        public void LoadGames(bool reloadFromFiles = true)
         {
             using (var tasker = new Tasks.Tasker(this))
             {
-                var task = new Tasks.LoadGamesTask(listViewGames, reload);
-                tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
+                var task = new Tasks.LoadGamesTask(listViewGames, reloadFromFiles);
                 tasker.AttachView(new Tasks.TaskerForm(tasker));
                 tasker.AddTask(task.LoadGames, 0);
-                tasker.SetStatusImage(Resources.sign_down);
                 Tasks.Tasker.Conclusion c = tasker.Start();
             }
             RecalculateSelectedGames();
@@ -783,6 +779,22 @@ namespace com.clusterrr.hakchi_gui
             timerCalculateGames.Enabled = false; // We don't need to count games repetedly
         }
 
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F4:
+                    explorerToolStripMenuItem_Click(sender, e);
+                    break;
+                case Keys.E:
+                    if (e.Modifiers == (Keys.Alt | Keys.Control))
+                    {
+                        editROMHeaderToolStripMenuItem_Click(sender, e);
+                    }
+                    break;
+            }
+        }
+
         private void listViewGames_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -798,7 +810,7 @@ namespace com.clusterrr.hakchi_gui
                     break;
                 case Keys.Delete:
                     if ((listViewGames.SelectedItems.Count > 1) || (listViewGames.SelectedItems.Count == 1 && listViewGames.SelectedItems[0].Tag is NesApplication))
-                        DeleteSelectedGames();
+                        deleteSelectedGamesToolStripMenuItem_Click(null, null);
                     break;
                 case Keys.Space:
                     if (listViewGames.FocusedItem == null)
@@ -1107,11 +1119,10 @@ namespace com.clusterrr.hakchi_gui
 
         private void reloadGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveSelectedGames();
             listViewGames.BeginUpdate();
-            foreach (ListViewItem item in listViewGames.Items)
-                item.Selected = false;
+            foreach (ListViewItem item in listViewGames.Items) item.Selected = false;
             listViewGames.EndUpdate();
+            SaveConfig();
             LoadGames();
         }
 
@@ -1299,83 +1310,25 @@ namespace com.clusterrr.hakchi_gui
 
         void AddGames(IEnumerable<string> files)
         {
-            SaveConfig();
-            ICollection<NesApplication> addedApps;
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.LoadingGames;
-            workerForm.Task = WorkerForm.Tasks.AddGames;
-            workerForm.GamesToAdd = files;
-            workerForm.Start();
-            addedApps = workerForm.addedApplications;
-
-            if (addedApps != null)
+            using (var tasker = new Tasks.Tasker(this))
             {
-                // show select core dialog if applicable
-                var unknownApps = new List<NesApplication>();
-                foreach(var app in addedApps)
-                {
-                    if (app.Metadata.AppInfo.Unknown)
-                        unknownApps.Add(app);
-                }
-                if (unknownApps.Count > 0)
-                {
-                    using (SelectCoreDialog selectCoreDialog = new SelectCoreDialog())
-                    {
-                        selectCoreDialog.Games.AddRange(unknownApps);
-                        selectCoreDialog.ShowDialog(this);
-                    }
-                }
+                tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
+                tasker.AttachView(new Tasks.TaskerForm(tasker));
+                var task = new Tasks.AddGamesTask(listViewGames, files);
+                tasker.AddTask(task.AddGames, 4);
+                tasker.AddTask(task.UpdateListView);
 
-                // show select cover dialog if applicable
-                unknownApps.Clear();
-                foreach(var app in addedApps)
+                if (tasker.Start() == Tasks.Tasker.Conclusion.Success)
                 {
-                    if (!app.CoverArtMatchSuccess && app.CoverArtMatches.Any())
-                        unknownApps.Add(app);
+                    // Schedule recalculation
+                    timerCalculateGames.Enabled = false;
+                    timerCalculateGames.Enabled = true;
                 }
-                if(unknownApps.Count > 0)
+                else
                 {
-                    using (SelectCoverDialog selectCoverDialog = new SelectCoverDialog())
-                    {
-                        selectCoverDialog.Games.AddRange(unknownApps);
-                        selectCoverDialog.ShowDialog(this);
-                    }
+                    LoadGames(); // Reload all games (maybe process was terminated?)
                 }
-
-                // update list view
-                listViewGames.BeginUpdate();
-                foreach (ListViewItem item in listViewGames.Items)
-                    item.Selected = false;
-
-                // add games, only new ones
-                var newApps = addedApps.Distinct(new NesApplication.NesAppEqualityComparer());
-                var newCodes = from app in newApps select app.Code;
-                var oldAppsReplaced = from app in listViewGames.Items.Cast<ListViewItem>().ToArray()
-                                      where (app.Tag is NesApplication) && newCodes.Contains((app.Tag as NesApplication).Code)
-                                      select app;
-                foreach (var replaced in oldAppsReplaced)
-                    listViewGames.Items.Remove(replaced);
-
-                var newGroup = listViewGames.Groups.OfType<ListViewGroup>().Where(group => group.Header == Resources.ListCategoryNew).First();
-                foreach (var newApp in newApps)
-                {
-                    var item = new ListViewItem(newApp.Name);
-                    item.Group = newGroup;
-                    item.Tag = newApp;
-                    item.Selected = true;
-                    item.Checked = true;
-                    listViewGames.Items.Add(item);
-                }
-                listViewGames.EndUpdate();
             }
-            else
-            {
-                // Reload all games (maybe process was terminated?)
-                LoadGames();
-            }
-            // Schedule recalculation
-            timerCalculateGames.Enabled = false;
-            timerCalculateGames.Enabled = true;
         }
 
         bool Uninstall()
@@ -1611,34 +1564,49 @@ namespace com.clusterrr.hakchi_gui
 
         public void ResetOriginalGamesForCurrentSystem(bool nonDestructiveSync = false)
         {
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.ResettingOriginalGames;
-            workerForm.Task = WorkerForm.Tasks.SyncOriginalGames;
-            workerForm.nonDestructiveSync = nonDestructiveSync;
+            using (var tasker = new Tasks.Tasker(this))
+            {
+                tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
+                tasker.AttachView(new Tasks.TaskerForm(tasker));
 
-            SaveSelectedGames();
-            if (workerForm.Start() == DialogResult.OK)
-                if (!ConfigIni.Instance.DisablePopups)
+                var task = new Tasks.GameTask();
+                task.ResetAllOriginalGames = false;
+                task.NonDestructiveSync = nonDestructiveSync;
+                tasker.AddTask(task.SyncOriginalGames);
+
+                var conclusion = tasker.Start();
+                if (conclusion == Tasks.Tasker.Conclusion.Success && !ConfigIni.Instance.DisablePopups)
+                {
                     Tasks.MessageForm.Show(Resources.Default30games, Resources.Done, Resources.sign_check, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.OK }, Tasks.MessageForm.DefaultButton.Button1);
-
+                }
+            }
             LoadGames();
+            timerCalculateGames.Enabled = true;
         }
 
         public void ResetOriginalGamesForAllSystems()
         {
-            var workerForm = new WorkerForm(this);
-            workerForm.Text = Resources.ResettingOriginalGames;
-            workerForm.Task = WorkerForm.Tasks.SyncOriginalGames;
-            workerForm.nonDestructiveSync = true;
-            workerForm.restoreAllOriginalGames = true;
+            using (var tasker = new Tasks.Tasker(this))
+            {
+                tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
+                tasker.AttachView(new Tasks.TaskerForm(tasker));
 
-            SaveSelectedGames();
-            workerForm.Start();
-            AddDefaultsToSelectedGames(NesApplication.defaultNesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.NES));
-            AddDefaultsToSelectedGames(NesApplication.defaultFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.Famicom));
-            AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.SNES));
-            AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.SuperFamicom));
+                var task = new Tasks.GameTask();
+                task.ResetAllOriginalGames = true;
+                task.NonDestructiveSync = true;
+                tasker.AddTask(task.SyncOriginalGames);
+
+                var conclusion = tasker.Start();
+                if (conclusion == Tasks.Tasker.Conclusion.Success)
+                {
+                    AddDefaultsToSelectedGames(NesApplication.defaultNesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.NES));
+                    AddDefaultsToSelectedGames(NesApplication.defaultFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.Famicom));
+                    AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.SNES));
+                    AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.SuperFamicom));
+                }
+            }
             LoadGames();
+            timerCalculateGames.Enabled = true;
         }
 
         private void AddDefaultsToSelectedGames(NesDefaultGame[] games, ICollection<string> selectedGames)
@@ -1703,7 +1671,6 @@ namespace com.clusterrr.hakchi_gui
                 Tasks.MessageForm.Show(Resources.Hello, Resources.FirstRun);
             }
             SyncConsoleType();
-            new Thread(RecalculateSelectedGamesThread).Start();
 
             // enable timers
             timerConnectionCheck.Enabled = true;
@@ -1831,6 +1798,28 @@ namespace com.clusterrr.hakchi_gui
         private void useLinkedSyncToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Instance.SyncLinked = useLinkedSyncToolStripMenuItem.Checked;
+        }
+
+        private void enableUSBHostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.UsbHost = enableUSBHostToolStripMenuItem.Checked;
+        }
+
+        private void showGamesWithoutBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.ShowGamesWithoutCoverArt = showGamesWithoutBoxArtToolStripMenuItem.Checked;
+            SaveSelectedGames();
+            LoadGames(false);
+        }
+
+        private void devForceSshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.ForceSSHTransfers = devForceSshToolStripMenuItem.Checked;
+        }
+
+        private void uploadTotmpforTestingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.UploadToTmp = uploadTotmpforTestingToolStripMenuItem.Checked;
         }
 
         private void pagesModefoldersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2108,44 +2097,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        bool GroupTaskWithSelected(WorkerForm.Tasks task)
-        {
-            var workerForm = new WorkerForm(this);
-            switch (task)
-            {
-                case WorkerForm.Tasks.ScanCovers:
-                    workerForm.Text = Resources.ScanningCovers;
-                    break;
-                case WorkerForm.Tasks.DownloadCovers:
-                    workerForm.Text = Resources.DownloadAllCoversTitle;
-                    break;
-                case WorkerForm.Tasks.DeleteCovers:
-                    workerForm.Text = Resources.RemovingCovers;
-                    break;
-                case WorkerForm.Tasks.CompressGames:
-                    workerForm.Text = Resources.CompressingGames;
-                    break;
-                case WorkerForm.Tasks.DecompressGames:
-                    workerForm.Text = Resources.DecompressingGames;
-                    break;
-                case WorkerForm.Tasks.DeleteGames:
-                    workerForm.Text = Resources.RemovingGames;
-                    break;
-                case WorkerForm.Tasks.ResetROMHeaders:
-                    workerForm.Text = Resources.ResettingHeaders;
-                    break;
-            }
-            workerForm.Task = task;
-            workerForm.Games = new NesMenuCollection();
-            foreach (ListViewItem game in listViewGames.SelectedItems)
-            {
-                if (game.Tag is NesApplication)
-                    workerForm.Games.Add(game.Tag as NesApplication);
-            }
-            return workerForm.Start() == DialogResult.OK;
-        }
-
-
         private void explorerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var sel = listViewGames.SelectedItems;
@@ -2168,92 +2119,94 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private bool groupTaskWithSelected(Tasks.GameTask task, Tasks.Tasker.TaskFunc taskFunc)
+        {
+            SaveSelectedGames();
+            using (var tasker = new Tasks.Tasker(this))
+            {
+                tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
+                tasker.AttachView(new Tasks.TaskerForm(tasker));
+                task.Games.AddRange(listViewGames.SelectedItems.Cast<ListViewItem>()
+                        .Where(item => item.Tag is NesApplication && !(item.Tag as NesApplication).IsOriginalGame)
+                        .Select(item => item.Tag as NesApplication));
+                if (task.Games.Count > 0)
+                {
+                    tasker.AddTask(taskFunc);
+                    var conclusion = tasker.Start();
+                    ShowSelected();
+                    timerCalculateGames.Enabled = true;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void scanForNewBoxArtForSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (GroupTaskWithSelected(WorkerForm.Tasks.ScanCovers))
+            var task = new Tasks.GameTask();
+            if (groupTaskWithSelected(task, task.ScanCovers))
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
             if (ConfigIni.Instance.ShowGamesWithoutCoverArt)
-            {
-                SaveSelectedGames();
-                LoadGames(true);
-            }
-            ShowSelected();
-            timerCalculateGames.Enabled = true;
+                LoadGames(false);
         }
 
         private void downloadBoxArtForSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (GroupTaskWithSelected(WorkerForm.Tasks.DownloadCovers))
+            var task = new Tasks.GameTask();
+            if (groupTaskWithSelected(task, task.DownloadCovers))
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
             if (ConfigIni.Instance.ShowGamesWithoutCoverArt)
-            {
-                SaveSelectedGames();
-                LoadGames(true);
-            }
-            ShowSelected();
-            timerCalculateGames.Enabled = true;
+                LoadGames(false);
         }
 
         private void deleteSelectedGamesBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (GroupTaskWithSelected(WorkerForm.Tasks.DeleteCovers))
+            var task = new Tasks.GameTask();
+            if (groupTaskWithSelected(task, task.DeleteCovers))
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
             if (ConfigIni.Instance.ShowGamesWithoutCoverArt)
-            {
-                SaveSelectedGames();
-                LoadGames(true);
-            }
-            ShowSelected();
-            timerCalculateGames.Enabled = true;
+                LoadGames(false);
         }
 
         private void compressSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (GroupTaskWithSelected(WorkerForm.Tasks.CompressGames))
+            var task = new Tasks.GameTask();
+            if (groupTaskWithSelected(task, task.CompressGames))
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
-            ShowSelected();
-            timerCalculateGames.Enabled = true;
         }
 
         private void decompressSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (GroupTaskWithSelected(WorkerForm.Tasks.DecompressGames))
-                if(!ConfigIni.Instance.DisablePopups)
+            var task = new Tasks.GameTask();
+            if (groupTaskWithSelected(task, task.DecompressGames))
+                if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
-            ShowSelected();
-            timerCalculateGames.Enabled = true;
         }
 
-        private void DeleteSelectedGames()
+        private void deleteSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.DeleteSelectedGamesQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.Yes)
             {
-                SaveSelectedGames();
-                if (GroupTaskWithSelected(WorkerForm.Tasks.DeleteGames))
+                var task = new Tasks.GameTask();
+                if (groupTaskWithSelected(task, task.DeleteGames))
                 {
                     listViewGames.BeginUpdate();
                     foreach (ListViewItem item in listViewGames.SelectedItems)
                         if (item.Tag is NesApplication && !(item.Tag as NesApplication).IsOriginalGame)
                             listViewGames.Items.Remove(item);
                     listViewGames.EndUpdate();
+                    ShowSelected();
+                    RecalculateSelectedGames();
                     if (!ConfigIni.Instance.DisablePopups)
                         Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
                 }
                 else
                     LoadGames();
-
-                ShowSelected();
-                timerCalculateGames.Enabled = true;
             }
-        }
-
-        private void deleteSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DeleteSelectedGames();
         }
 
         private void editROMHeaderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2284,28 +2237,21 @@ namespace com.clusterrr.hakchi_gui
         {
             if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.ResetROMHeaderSelectedGamesQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.Yes)
             {
-                SaveSelectedGames();
-                if (GroupTaskWithSelected(WorkerForm.Tasks.ResetROMHeaders))
-                {
+                var task = new Tasks.GameTask();
+                if (groupTaskWithSelected(task, task.ResetROMHeaders))
                     if (!ConfigIni.Instance.DisablePopups)
                         Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
-                }
             }
         }
 
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        private void repairGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            switch (e.KeyCode)
+            if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.RepairSelectedGamesQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.Yes)
             {
-                case Keys.F4:
-                    explorerToolStripMenuItem_Click(sender, e);
-                    break;
-                case Keys.E:
-                    if (e.Modifiers == (Keys.Alt | Keys.Control))
-                    {
-                        editROMHeaderToolStripMenuItem_Click(sender, e);
-                    }
-                    break;
+                var task = new Tasks.GameTask();
+                if (groupTaskWithSelected(task, task.RepairGames))
+                    if (!ConfigIni.Instance.DisablePopups)
+                        Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
             }
         }
 
@@ -2316,7 +2262,7 @@ namespace com.clusterrr.hakchi_gui
             SaveSelectedGames();
 
             OriginalGamesPosition newPosition = (OriginalGamesPosition)byte.Parse(menuItem.Tag.ToString());
-            bool reload = !(newPosition == OriginalGamesPosition.Hidden || ConfigIni.Instance.OriginalGamesPosition == OriginalGamesPosition.Hidden);
+            bool reload = newPosition == OriginalGamesPosition.Hidden || ConfigIni.Instance.OriginalGamesPosition == OriginalGamesPosition.Hidden;
 
             ConfigIni.Instance.OriginalGamesPosition = newPosition;
             positionAtTheTopToolStripMenuItem.Checked = newPosition == OriginalGamesPosition.AtTop;
@@ -2337,7 +2283,7 @@ namespace com.clusterrr.hakchi_gui
             nameToolStripMenuItem.Checked = newSorting == GamesSorting.Name;
             coreToolStripMenuItem.Checked = newSorting == GamesSorting.Core;
             systemToolStripMenuItem.Checked = newSorting == GamesSorting.System;
-            LoadGames(true);
+            LoadGames(false);
         }
 
         private void foldersManagerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2517,11 +2463,6 @@ namespace com.clusterrr.hakchi_gui
             foldersContextMenuStrip.Show(ptLowerLeft);
         }
 
-        private void enableUSBHostToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigIni.Instance.UsbHost = enableUSBHostToolStripMenuItem.Checked;
-        }
-
         private void gamesConsoleComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selected = gamesConsoleComboBox.SelectedItem as string;
@@ -2540,42 +2481,6 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
-        }
-
-        private void showGamesWithoutBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigIni.Instance.ShowGamesWithoutCoverArt = showGamesWithoutBoxArtToolStripMenuItem.Checked;
-            SaveSelectedGames();
-            LoadGames(true);
-        }
-
-        private void devForceSshToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigIni.Instance.ForceSSHTransfers = devForceSshToolStripMenuItem.Checked;
-        }
-
-        private void repairGamesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (var tasker = new Tasks.Tasker(this))
-            {
-                tasker.AttachView(new Tasks.TaskerTaskbar(tasker));
-                tasker.AttachView(new Tasks.TaskerForm(tasker));
-                var task = new Tasks.GameTask();
-                foreach (ListViewItem item in listViewGames.SelectedItems)
-                {
-                    if (item.Tag is NesApplication && !(item.Tag as NesApplication).IsOriginalGame)
-                        task.Games.Add(item.Tag as NesApplication);
-                }
-                if (task.Games.Count > 0)
-                {
-                    tasker.AddTask(task.RepairGames);
-                    tasker.SetStatusImage(Resources.sign_cogs);
-                    Tasks.Tasker.Conclusion c = tasker.Start();
-                    ShowSelected();
-                    if (!ConfigIni.Instance.DisablePopups)
-                        Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
-                }
-            }
         }
     }
 }

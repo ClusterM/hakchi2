@@ -241,7 +241,9 @@
     <value>If you like this app, you can donate to me. You can find my PayPal in the "About" box.</value>
   </data>
   <data name="FirstRun" xml:space="preserve">
-    <value>Hello there! I'm very glad that you are using hakchi2. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" to upload games to the console internal memory, or press "Export" to use USB HOST mode, and follow the instructions. Good luck!</value>
+    <value>Hello there! I'm very glad that you are using hakchi2!
+
+It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" to upload games to the console internal memory, or press "Export" to use USB HOST mode, and follow the instructions. Good luck!</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>
@@ -1076,5 +1078,11 @@ Current detected console: {1}</value>
   </data>
   <data name="Starting" xml:space="preserve">
     <value>Starting...</value>
+  </data>
+  <data name="AddingGame" xml:space="preserve">
+    <value>Processing game {0}</value>
+  </data>
+  <data name="RepairSelectedGamesQ" xml:space="preserve">
+    <value>Are you sure you want to attempt repair selected games? (This could break some games, especially if there weren't imported by hakchi2. Only attempt on broken games.)</value>
   </data>
 </root>

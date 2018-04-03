@@ -250,6 +250,12 @@ namespace com.clusterrr.hakchi_gui.Tasks
             if (!ShowUploadDialog(tasker))
                 return Tasker.Conclusion.Abort;
 
+            // dev option to reduce nand wear when testing
+            if (ConfigIni.Instance.UploadToTmp)
+            {
+                this.uploadPath = "/tmp/uploadtest";
+            }
+
             // building folders
             tasker.SetProgress(0, maxProgress, Tasker.State.Starting, Resources.BuildingMenu);
             if (ConfigIni.Instance.FoldersMode == NesMenuCollection.SplitStyle.Custom)
@@ -272,8 +278,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 hakchi.ShowSplashScreen();
 
                 // clean up previous directories (separate game storage vs not)
-                tasker.SetStatus(Resources.CleaningUp);
-                shell.ExecuteSimple("find \"$(hakchi findGameSyncStorage)/\" -maxdepth 1 | grep -" + (ConfigIni.Instance.SeparateGameStorage ? "v" : "") + "Ee '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' | while read f; do rm -rf \"$f\"; done", 0, true);
+                if (!ConfigIni.Instance.UploadToTmp)
+                {
+                    tasker.SetStatus(Resources.CleaningUp);
+                    shell.ExecuteSimple("find \"" + hakchi.RemoteGameSyncPath + "/\" -maxdepth 1 | grep -" + (ConfigIni.Instance.SeparateGameStorage ? "v" : "") + "Ee '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' | while read f; do rm -rf \"$f\"; done", 0, true);
+                }
                 tasker.SetProgress(5, maxProgress);
 
                 // generate menus and game files ready to be uploaded

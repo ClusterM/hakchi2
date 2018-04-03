@@ -946,14 +946,22 @@ namespace com.clusterrr.hakchi_gui
                     {
                         using (var szExtractor = new SevenZipExtractor(sourceFileName))
                         {
-                            var filesInArchive = new List<string>();
+                            var filesInArchive = szExtractor.ArchiveFileNames.ToList(); //new List<string>();
                             var gameFilesInArchive = new List<string>();
                             foreach (var f in szExtractor.ArchiveFileNames)
                             {
                                 var e = Path.GetExtension(f).ToLower();
-                                if (e == ".desktop" || CoreCollection.Extensions.Contains(e))
+                                if (e == ".desktop")
+                                {
+                                    gameFilesInArchive.Clear();
                                     gameFilesInArchive.Add(f);
-                                filesInArchive.Add(f);
+                                    break;
+                                }
+                                else if (CoreCollection.Extensions.Contains(e))
+                                {
+                                    gameFilesInArchive.Add(f);
+                                }
+                                //filesInArchive.Add(f);
                             }
                             if (gameFilesInArchive.Count == 1) // Only one known file (or app)
                             {

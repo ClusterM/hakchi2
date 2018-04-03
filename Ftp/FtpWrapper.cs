@@ -24,6 +24,7 @@ namespace com.clusterrr.util
         }
 
         IEnumerable<ApplicationFileInfo> localSet;
+        SortedSet<string> directorySet;
         string rootDirectory;
         string[] skipFiles;
         long totalSize;
@@ -45,9 +46,13 @@ namespace com.clusterrr.util
 
         private void scanLocalSet()
         {
-            this.totalSize = 0;
+            directorySet = new SortedSet<string>();
+            totalSize = 0;
             foreach (var afi in localSet)
             {
+                if (skipFiles != null && Array.IndexOf(skipFiles, Path.GetFileName(afi.FilePath)) != -1)
+                    continue;
+                directorySet.Add(Path.GetDirectoryName(afi.FilePath).Replace("\\", "/"));
                 totalSize += afi.FileSize;
             }
         }
@@ -56,6 +61,9 @@ namespace com.clusterrr.util
         {
             try
             {
+#if !DEBUG
+                FluentFTP.FtpTrace.EnableTracing = false;
+#endif
                 ftp = new FluentFTP.FtpClient(host, port, username, password);
                 ftp.EnableThreadSafeDataConnections = false;
                 ftp.TransferChunkSize = transferChunkSize;
@@ -77,6 +85,11 @@ namespace com.clusterrr.util
             if (!string.IsNullOrEmpty(rootRemoteDirectory))
                 ftp.SetWorkingDirectory(rootRemoteDirectory);
 
+            foreach (var dir in this.directorySet)
+            {
+                ftp.CreateDirectory(dir);
+            }
+
             using (MemoryStream commandBuilder = new MemoryStream())
             {
                 string command = $"#!/bin/sh\ncd \"{rootRemoteDirectory}\"\n";
@@ -85,6 +98,9 @@ namespace com.clusterrr.util
                 long currentPosition = 0;
                 foreach (var afi in localSet)
                 {
+                    if (skipFiles != null && Array.IndexOf(skipFiles, Path.GetFileName(afi.FilePath)) != -1)
+                        continue;
+
                     Stream inStream = null;
                     bool owned = true;
                     if (!string.IsNullOrEmpty(afi.LocalFilePath))
@@ -104,7 +120,7 @@ namespace com.clusterrr.util
                     }
                     if (inStream != null)
                     {
-                        ftp.Upload(inStream, afi.FilePath, FtpExists.NoCheck, true, new Progress<double>(p =>
+                        ftp.Upload(inStream, afi.FilePath, FtpExists.NoCheck, false, new Progress<double>(p =>
                         {
                             if (p != -1)
                                 OnReadProgress(currentPosition + (long)(p * afi.FileSize / 100), totalSize, afi.FilePath);

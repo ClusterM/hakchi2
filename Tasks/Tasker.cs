@@ -118,6 +118,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public ITaskerView SetProgress(long value, long maximum)
         {
+            if (value == -1 || maximum == -1) return this;
+
             const int scale = 100;
             if (value > maximum) value = maximum;
 
@@ -178,12 +180,12 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         // message display helpers
 
-        public void ShowError(Exception ex, bool stop = false)
+        public void ShowError(Exception ex, string title = null, bool stop = false)
         {
             try
             {
                 PushState(State.Error);
-                ErrorForm.Show(HostForm, ex);
+                ErrorForm.Show(HostForm, ex, title);
                 PopState();
                 if (stop)
                 {
@@ -274,6 +276,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return this;
         }
 
+        public Tasker AttachViews(params ITaskerView[] views)
+        {
+            foreach(var view in views)
+            {
+                AttachView(view);
+            }
+            return this;
+        }
+
         // run
 
         public Conclusion Start()
@@ -288,12 +299,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
             thread = new Thread(startThread);
             thread.IsBackground = true;
             thread.SetApartmentState(ApartmentState.STA);
-
             thread.Start();
-            Show();
 
-            // clean up
-            thread = null;
+            Show();
             return TaskConclusion;
         }
 
@@ -400,6 +408,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             Debug.WriteLine($"Tasker completed all tasks, conclusion: {TaskConclusion.ToString()}");
             Close();
+            thread = null;
         }
 
         public void Dispose()

@@ -582,6 +582,8 @@
     <Compile Include="FoldersManagerForm.Designer.cs">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tasks\AddGamesTask.cs" />
+    <Compile Include="Tasks\GameCacheTask.cs" />
     <Compile Include="Tasks\GameTask.cs" />
     <Compile Include="Tasks\ITaskerView.cs" />
     <Compile Include="Tasks\KernelTask.cs" />

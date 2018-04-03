@@ -603,6 +603,8 @@ namespace com.clusterrr.hakchi_gui
             Metadata = new AppMetadata();
             isOriginalGame = false;
             isDeleting = false;
+            CoverArtMatches = new string[0];
+            CoverArtMatchSuccess = false;
         }
 
         protected NesApplication(string path, AppMetadata metadata = null, bool ignoreEmptyConfig = false)
@@ -620,6 +622,9 @@ namespace com.clusterrr.hakchi_gui
                     break;
                 }
             }
+
+            CoverArtMatches = new string[0];
+            CoverArtMatchSuccess = false;
 
             GameGeniePath = Path.Combine(path, GameGenieFileName);
             if (File.Exists(GameGeniePath))

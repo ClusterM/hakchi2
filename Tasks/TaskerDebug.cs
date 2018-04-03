@@ -4,7 +4,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 {
     public class TaskerDebug : ITaskerView
     {
-        TaskerDebug()
+        public TaskerDebug()
         {
         }
 

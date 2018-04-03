@@ -15,17 +15,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
         enum ViewGroup { New, NoCoverArt, Original, Custom, All, Unknown }
         public List<NesApplication> Games
             { get; private set; }
-        public Dictionary<NesApplication, string> GamesChanged
-            { get; private set; }
         public ListView ListViewGames
             { get; private set; }
 
-        public LoadGamesTask(ListView listViewGames, bool reload = false)
+        public LoadGamesTask(ListView listViewGames, bool reloadFromFiles)
         {
             this.Games = new List<NesApplication>();
-            this.GamesChanged = new Dictionary<NesApplication, string>();
             this.ListViewGames = listViewGames;
-            this.reload = reload;
+            this.reloadFromFiles = reloadFromFiles;
         }
 
         // --- needed for updatelistview
@@ -34,7 +31,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             public ListViewItem[] items;
             public ListViewGroup[] groups;
         }
-        private bool reload;
+        private bool reloadFromFiles;
 
         // --- groups
         private Dictionary<ViewGroup, ListViewGroup> normalGroups = null;
@@ -178,23 +175,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 try
                 {
-                    try
-                    {
-                        var game = NesApplication.FromDirectory(gameDir);
-                        items.Add(new ListViewItem(game.Name) { Tag = game });
-                    }
-                    catch // remove bad directories if any, no throw
-                    {
-                        Debug.WriteLine($"Game directory \"{gameDir}\" is invalid, deleting");
-                        Directory.Delete(gameDir, true);
-                    }
-                    tasker.SetProgress(i, gameDir.Length);
+                    var game = NesApplication.FromDirectory(gameDir);
+                    items.Add(new ListViewItem(game.Name) { Tag = game });
                 }
-                catch (Exception ex)
+                catch // remove bad directories if any, no throw
                 {
-                    tasker.ShowError(ex, true);
-                    return Tasker.Conclusion.Error;
+                    Debug.WriteLine($"Game directory \"{gameDir}\" is invalid, deleting");
+                    Directory.Delete(gameDir, true);
                 }
+                tasker.SetProgress(++i, gameDirs.Length);
             }
             sync.items = ConfigIni.Instance.OriginalGamesPosition == MainForm.OriginalGamesPosition.Hidden ?
                 items.Where(item => !(item.Tag as NesApplication).IsOriginalGame).ToArray() :
@@ -300,14 +289,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public Tasker.Conclusion LoadGames(Tasker tasker, Object syncObject = null)
         {
             tasker.SetProgress(-1, -1, Tasker.State.Running, Resources.LoadingGames);
+            tasker.SetStatusImage(Resources.sign_down);
             tasker.SetTitle(Resources.LoadingGames);
 
             tasker.SyncObject = new LoadGamesSyncObject();
             tasker.AddTasks(
                 CreateListViewGroups,
-                this.reload ?
-                    (Tasker.TaskFunc)LoadGamesFromList : 
-                    (Tasker.TaskFunc)LoadGamesFromFiles,
+                this.reloadFromFiles ?
+                    (Tasker.TaskFunc)LoadGamesFromFiles : 
+                    (Tasker.TaskFunc)LoadGamesFromList,
                 AssignGroupsToGames,
                 AssignListViewGroups,
                 UpdateListView);
