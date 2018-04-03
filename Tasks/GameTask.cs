@@ -39,72 +39,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
             GamesChanged = new Dictionary<NesApplication, string>();
         }
 
-        // --- scan files and create internal list
-        public TaskerForm.Conclusion LoadGamesFromFiles(TaskerForm tasker, Object syncObject = null)
-        {
-            var sync = (LoadGamesSyncObject)syncObject;
-
-            // list original game directories
-            var originalGameDirs = new List<string>();
-            foreach (var defaultGame in NesApplication.DefaultGames)
-            {
-                string gameDir = Path.Combine(NesApplication.OriginalGamesDirectory, defaultGame.Code);
-                if (Directory.Exists(gameDir))
-                    originalGameDirs.Add(gameDir);
-            }
-
-            // add custom games
-            Directory.CreateDirectory(NesApplication.GamesDirectory);
-            var gameDirs = Shared.ConcatArrays(Directory.GetDirectories(NesApplication.GamesDirectory), originalGameDirs.ToArray());
-
-            var games = new List<ListViewItem>();
-
-            foreach (var gameDir in gameDirs)
-            {
-                try
-                {
-                    try
-                    {
-                        var game = NesApplication.FromDirectory(gameDir);
-                        games.Add(new ListViewItem(game.Name) { Tag = game });
-                    }
-                    catch // remove bad directories if any, no throw
-                    {
-                        Debug.WriteLine($"Game directory \"{gameDir}\" is invalid, deleting");
-                        Directory.Delete(gameDir, true);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    tasker.ShowError(ex, true);
-                    return TaskerForm.Conclusion.Error;
-                }
-            }
-            sync.items = games.ToArray();
-
-            return TaskerForm.Conclusion.Success;
-        }
-
-        // --- grab files/items from existing list
-        public TaskerForm.Conclusion LoadGamesFromList(TaskerForm tasker, Object syncObject = null)
-        {
-            var sync = (LoadGamesSyncObject)syncObject;
-
-            sync.items = new ListViewItem[ListViewGames.Items.Count];
-            ListViewGames.Items.CopyTo(sync.items, 0);
-
-            return TaskerForm.Conclusion.Success;
-        }
-
-        // --- as the title says, assigns groups to games
-        public TaskerForm.Conclusion AssignGroupsToGames(TaskerForm tasker, Object syncObject = null)
+        public Tasker.Conclusion SetCoverArtForMultipleGames(Tasker tasker, Object SyncObject = null)
         {
             tasker.SetTitle(Resources.ApplyChanges);
             tasker.SetStatusImage(Resources.sign_file_picture);
             tasker.SetProgress(-1, -1, Tasker.State.Running, Resources.ApplyChanges);
 
-            // assign groups to list view items
-            foreach (var item in sync.items)
+            int i = 0, max = GamesChanged.Count;
+            foreach (var pair in GamesChanged)
             {
                 pair.Key.SetImageFile(pair.Value, ConfigIni.Instance.CompressCover);
                 tasker.SetProgress(++i, max);

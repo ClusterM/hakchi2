@@ -377,9 +377,9 @@ namespace com.clusterrr.hakchi_gui
             return eligibleForUpdate;
         }
 
-        public static TaskerForm.Conclusion ShowSplashScreen(TaskerForm tasker, Object syncObject)
+        public static Tasker.Conclusion ShowSplashScreen(Tasker tasker, Object syncObject)
         {
-            return ShowSplashScreen() == 0 ? TaskerForm.Conclusion.Success : TaskerForm.Conclusion.Error;
+            return ShowSplashScreen() == 0 ? Tasker.Conclusion.Success : Tasker.Conclusion.Error;
         }
 
         public static int ShowSplashScreen()

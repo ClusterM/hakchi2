@@ -1,16 +1,15 @@
 ﻿using com.clusterrr.FelLib;
 using com.clusterrr.hakchi_gui.Properties;
 using com.clusterrr.util;
-using SevenZip;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static com.clusterrr.hakchi_gui.Tasks.TaskerForm;
+using static com.clusterrr.hakchi_gui.Tasks.Tasker;
+using SevenZip;
 
 namespace com.clusterrr.hakchi_gui.Tasks
 {
@@ -173,16 +172,16 @@ namespace com.clusterrr.hakchi_gui.Tasks
             Tasks = taskList.ToArray();
         }
 
-        public Conclusion WaitForFelOrMembootableShell(TaskerForm tasker, Object syncObject = null)
+        public Conclusion WaitForFelOrMembootableShell(Tasker tasker, Object syncObject = null)
         {
-            if (tasker.InvokeRequired)
-                return (Conclusion)tasker.Invoke(new Func<TaskerForm, Object, Conclusion>(WaitForFelOrMembootableShell), new object[] { tasker, syncObject });
+            if (tasker.HostForm.InvokeRequired)
+                return (Conclusion)tasker.HostForm.Invoke(new Func<Tasker, Object, Conclusion>(WaitForFelOrMembootableShell), new object[] { tasker, syncObject });
 
             tasker.SetStatus(Resources.WaitingForDevice);
             if (hakchi.Shell.IsOnline && hakchi.Shell.Execute("[ -f /proc/atags ]") == 0)
                 return Conclusion.Success;
 
-            if (!WaitingFelForm.WaitForDevice(Shared.ClassicUSB.vid, Shared.ClassicUSB.pid, tasker))
+            if (!WaitingFelForm.WaitForDevice(Shared.ClassicUSB.vid, Shared.ClassicUSB.pid, tasker.HostForm))
                 return Conclusion.Abort;
 
             fel.Fes1Bin = Resources.fes1;
@@ -201,23 +200,23 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Conclusion.Success;
         }
 
-        public Conclusion WaitForShell(TaskerForm tasker, Object syncObject = null)
+        public Conclusion WaitForShell(Tasker tasker, Object syncObject = null)
         {
             tasker.SetStatus(Resources.WaitingForDevice);
             using (WaitingClovershellForm waitingForm = new WaitingClovershellForm())
-            if (tasker.InvokeRequired)
+            if (tasker.HostForm.InvokeRequired)
             {
-                    return (Conclusion)tasker.Invoke(new Func<TaskerForm, object, Conclusion>(WaitForShell), new object[] { tasker, syncObject });
+                    return (Conclusion)tasker.HostForm.Invoke(new Func<Tasker, object, Conclusion>(WaitForShell), new object[] { tasker, syncObject });
             }
             tasker.SetStatus(Resources.WaitingForDevice);
-            var result = WaitingClovershellForm.WaitForDevice(tasker);
+            var result = WaitingClovershellForm.WaitForDevice(tasker.HostForm);
             if (result)
                 return Conclusion.Success;
 
             return Conclusion.Abort;
         }
 
-        public Conclusion Memboot(TaskerForm tasker, Object syncObject = null)
+        public Conclusion Memboot(Tasker tasker, Object syncObject = null)
         {
             tasker.SetStatus(Resources.Membooting);
 
@@ -269,7 +268,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
                 TrackableStream kernelStream = new TrackableStream(kernel);
 
-                kernelStream.OnProgress += tasker.SetProgress;
+                kernelStream.OnProgress += tasker.OnProgress;
 
                 hakchi.Shell.Execute(
                     command: "cat > /tmp/kexec/boot.img; cd /tmp/kexec/; ./unpackbootimg -i boot.img",
@@ -314,7 +313,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Conclusion.Success;
         }
 
-        public Conclusion GetStockKernel(TaskerForm tasker, Object syncObject = null)
+        public Conclusion GetStockKernel(Tasker tasker, Object syncObject = null)
         {
             tasker.SetStatus(Resources.DumpingKernel);
             stockKernel = new MemoryStream();
@@ -356,7 +355,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Conclusion.Error;
         }
 
-        public Conclusion FlashStockKernel(TaskerForm tasker, Object syncObject = null)
+        public Conclusion FlashStockKernel(Tasker tasker, Object syncObject = null)
         {
             tasker.SetStatus(Resources.UploadingKernel);
             if (stockKernel == null || stockKernel.Length == 0)
@@ -371,7 +370,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Conclusion.Success;
         }
 
-        public static Conclusion BootHakchi(TaskerForm tasker, Object syncObject = null)
+        public static Conclusion BootHakchi(Tasker tasker, Object syncObject = null)
         {
             // Continue the hakchi boot process
             tasker.SetStatus(Resources.BootingHakchi);
@@ -401,7 +400,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public TaskFunc HandleHakchi(HakchiTasks task)
         {
             var instance = this;
-            return (TaskerForm tasker, Object sync) =>
+            return (Tasker tasker, Object sync) =>
             {
                 switch (task)
                 {
@@ -435,7 +434,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         
         public static TaskFunc RunCommand(string command, Stream stdin = null, Stream stdout = null, Stream stderr = null, int timeout = 0, bool throwOnNonZero = false)
         {
-            return (TaskerForm tasker, Object syncObject) =>
+            return (Tasker tasker, Object syncObject) =>
             {
                 tasker.SetStatus($"Running command: {command}");
                 hakchi.Shell.Execute(command, stdin, stdout, stderr, timeout, throwOnNonZero);
@@ -445,7 +444,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public static TaskFunc ProcessNand(string nandDump, NandTasks task)
         {
-            return (TaskerForm tasker, Object sync) =>
+            return (Tasker tasker, Object sync) =>
             {
                 NandTasks[] validTasks = { NandTasks.DumpNand, NandTasks.DumpNandB, NandTasks.DumpNandC, NandTasks.FlashNandB, NandTasks.FlashNandC, NandTasks.FormatNandC };
                 if (!validTasks.Contains(task))
@@ -503,7 +502,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     if (mode == FileMode.Create)
                         file.SetLength(partitionSize);
 
-                    file.OnProgress += tasker.SetProgress;
+                    file.OnProgress += tasker.OnProgress;
 
                     switch (task)
                     {
@@ -539,7 +538,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public static TaskFunc FlashUboot(Fel.UbootType type)
         {
-            return (TaskerForm tasker, Object syncObject) =>
+            return (Tasker tasker, Object syncObject) =>
             {
                 tasker.SetStatus(Resources.FlashingUboot);
                 TrackableStream uboot;
@@ -557,7 +556,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     throw new Exception(Resources.InvalidUbootSize + " " + uboot.Length);
                 }
 
-                uboot.OnProgress += tasker.SetProgress;
+                uboot.OnProgress += tasker.OnProgress;
 
                 hakchi.Shell.Execute("cat > /uboot.bin", uboot, null, null, 0, true);
                 MemoryStream flashLog = new MemoryStream();

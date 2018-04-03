@@ -68,6 +68,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return this;
         }
 
+        public void OnProgress(long value, long maximum)
+        {
+            SetProgress(value, maximum);
+        }
+
         public ITaskerView SetTitle(string title)
         {
             return this;

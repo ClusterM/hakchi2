@@ -191,7 +191,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 // enable helper servers
-                if (caller is ssh.SshClientWrapper)
+                if (caller is INetworkShell)
                 {
                     Invoke(new Action(delegate {
                         changeFTPServerState();
@@ -1232,7 +1232,7 @@ namespace com.clusterrr.hakchi_gui
 
         bool DoNand(MembootTasks.NandTasks task)
         {
-            using (TaskerForm tasker = new TaskerForm(this))
+            using (Tasker tasker = new Tasker(this))
             {
                 string dumpFilename = null;
                 switch (task)
@@ -1279,13 +1279,13 @@ namespace com.clusterrr.hakchi_gui
                     default:
                         throw new ArgumentOutOfRangeException("task");
                 }
-                return tasker.Start() == TaskerForm.Conclusion.Success;
+                return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
 
         bool InstallHakchi(bool reset = false)
         {
-            using (var tasker = new TaskerForm(this))
+            using (var tasker = new Tasker(this))
             {
                 if (reset)
                 {
@@ -1295,16 +1295,16 @@ namespace com.clusterrr.hakchi_gui
                 {
                     tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.InstallHakchi).Tasks);
                 }
-                return tasker.Start() == TaskerForm.Conclusion.Success;
+                return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
 
         bool MembootCustomKernel()
         {
-            using (var tasker = new TaskerForm(this))
+            using (var tasker = new Tasker(this))
             {
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
-                return tasker.Start() == TaskerForm.Conclusion.Success;
+                return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
 
@@ -1334,34 +1334,34 @@ namespace com.clusterrr.hakchi_gui
         bool Uninstall()
         {
             bool restoreKernel = MessageBox.Show(Resources.UninstallQ2, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
-            using (var tasker = new TaskerForm(this))
+            using (var tasker = new Tasker(this))
             {
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.UninstallHakchi, restoreKernel: restoreKernel).Tasks);
-                return tasker.Start() == TaskerForm.Conclusion.Success;
+                return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
 
         bool InstallMods(string[] mods)
         {
-            using (var tasker = new TaskerForm(this))
+            using (var tasker = new Tasker(this))
             {
                 tasker.SetTitle(Resources.InstallingMods);
                 tasker.AddTask(hakchi.ShowSplashScreen);
                 tasker.AddTasks(new ModTasks(mods).Tasks);
                 tasker.AddTask(ShellTasks.Reboot);
-                return tasker.Start() == TaskerForm.Conclusion.Success;
+                return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
 
         bool UninstallMods(string[] mods)
         {
-            using (var tasker = new TaskerForm(this))
+            using (var tasker = new Tasker(this))
             {
                 tasker.SetTitle(Resources.UninstallingMods);
                 tasker.AddTask(hakchi.ShowSplashScreen);
                 tasker.AddTasks(new ModTasks(null, mods).Tasks);
                 tasker.AddTask(ShellTasks.Reboot);
-                return tasker.Start() == TaskerForm.Conclusion.Success;
+                return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
 
@@ -1369,7 +1369,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.FlashUbootNormalQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.Yes)
             {
-                using (var tasker = new TaskerForm(this))
+                using (var tasker = new Tasker(this))
                 {
                     tasker.SetTitle(Resources.FlashingUboot);
                     tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashNormalUboot).Tasks);
@@ -1382,7 +1382,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.FlashUbootSDQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.Yes)
             {
-                using (var tasker = new TaskerForm(this))
+                using (var tasker = new Tasker(this))
                 {
                     tasker.SetTitle(Resources.FlashingUboot);
                     tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashSDUboot).Tasks);
@@ -1456,7 +1456,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void membootOriginalKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var tasker = new TaskerForm(this))
+            using (var tasker = new Tasker(this))
             {
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootOriginal).Tasks);
                 tasker.Start();
@@ -1465,7 +1465,7 @@ namespace com.clusterrr.hakchi_gui
         
         private void membootCustomKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var tasker = new TaskerForm(this))
+            using (var tasker = new Tasker(this))
             {
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
                 tasker.Start();
@@ -1474,7 +1474,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void membootRecoveryKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var tasker = new TaskerForm(this))
+            using (var tasker = new Tasker(this))
             {
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
                 tasker.Start();
@@ -1996,9 +1996,9 @@ namespace com.clusterrr.hakchi_gui
         private void openFTPInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string ip, port;
-            if (hakchi.Shell is ssh.SshClientWrapper)
+            if (hakchi.Shell is INetworkShell)
             {
-                ip = (hakchi.Shell as ssh.SshClientWrapper).IPAddress;
+                ip = (hakchi.Shell as INetworkShell).IPAddress;
                 port = "21";
             }
             else
@@ -2028,9 +2028,9 @@ namespace com.clusterrr.hakchi_gui
         private void openTelnetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string ip, port;
-            if (hakchi.Shell is ssh.SshClientWrapper)
+            if (hakchi.Shell is INetworkShell)
             {
-                ip = (hakchi.Shell as ssh.SshClientWrapper).IPAddress;
+                ip = (hakchi.Shell as INetworkShell).IPAddress;
                 port = hakchi.Shell.ShellPort.ToString();
             }
             else
@@ -2288,6 +2288,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void foldersManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            /*
             SaveSelectedGames();
             var workerForm = new WorkerForm(this);
             workerForm.Games = new NesMenuCollection();
@@ -2301,6 +2302,7 @@ namespace com.clusterrr.hakchi_gui
             workerForm.FoldersMode = ConfigIni.Instance.FoldersMode;
             workerForm.MaxGamesPerFolder = ConfigIni.Instance.MaxGamesPerFolder;
             workerForm.FoldersManagerFromThread(workerForm.Games);
+            */
         }
 
         private void changeBootImageToolStripMenuItem_Click(object sender, EventArgs e)

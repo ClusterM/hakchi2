@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static com.clusterrr.hakchi_gui.Tasks.TaskerForm;
+using static com.clusterrr.hakchi_gui.Tasks.Tasker;
 
 namespace com.clusterrr.hakchi_gui.Tasks
 {
@@ -44,7 +44,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public static TaskFunc TransferHmod(string transferPath, string hmod)
         {
-            return (TaskerForm tasker, Object syncObject) =>
+            return (Tasker tasker, Object syncObject) =>
             {
                 tasker.SetStatus(Resources.TransferringMods);
                 tasker.SetStatus(Resources.InstallingMods);
@@ -62,7 +62,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             {
                                 using (TrackableStream hmodStream = new TrackableStream(hmodTar))
                                 {
-                                    hmodStream.OnProgress += tasker.SetProgress;
+                                    hmodStream.OnProgress += tasker.OnProgress;
                                     
                                     hakchi.Shell.Execute($"tar -xvC {hmodHakchiPath}", hmodStream, null, null, 0, true);
 
@@ -76,7 +76,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         hakchi.Shell.ExecuteSimple($"mkdir -p {hmodHakchiPath}");
                         using (var hmodStream = new TrackableFileStream(Path.Combine(dir, modName), FileMode.Open))
                         {
-                            hmodStream.OnProgress += tasker.SetProgress;
+                            hmodStream.OnProgress += tasker.OnProgress;
 
                             hakchi.Shell.Execute($"tar -xzvC {hmodHakchiPath}", hmodStream, null, null, 0, true);
                         }
@@ -89,7 +89,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public TaskFunc InstallHmods(string transferPath = "/tmp/hmods")
         {
-            return (TaskerForm tasker, Object syncObject) =>
+            return (Tasker tasker, Object syncObject) =>
             {
                 tasker.SetStatus(Resources.InstallingMods);
                 tasker.SetStatus(Resources.InstallingMods);
@@ -105,7 +105,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public static TaskFunc UninstallHmods(string uninstallFile, string[] hmods)
         {
             string[] uninstallArray = uninstallFile.Split("/"[0]);
-            return (TaskerForm tasker, Object syncObject) =>
+            return (Tasker tasker, Object syncObject) =>
             {
                 tasker.SetStatus(Resources.UninstallingMods);
                 hakchi.Shell.ExecuteSimple($"mkdir -p {Shared.EscapeShellArgument(String.Join("/", uninstallArray.Take(uninstallArray.Length - 1)))}", 2000, true);
@@ -116,19 +116,19 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public static TaskFunc TransferBaseHmods(string transferPath = "/hakchi/transfer")
         {
-            return (TaskerForm tasker, Object syncObject) =>
+            return (Tasker tasker, Object syncObject) =>
             {
                 tasker.SetStatus(Resources.TransferringMods);
                 var escapedTransferPath = Shared.EscapeShellArgument(transferPath);
                 var hmodStream = new TrackableStream(Resources.baseHmods);
-                hmodStream.OnProgress += tasker.SetProgress;
+                hmodStream.OnProgress += tasker.OnProgress;
                 hakchi.Shell.Execute($"mkdir -p {escapedTransferPath}", null, null, null, 0, true);
                 hakchi.Shell.Execute($"tar -xvC {escapedTransferPath}", hmodStream, null, null, 0, true);
                 return Conclusion.Success;
             };
         }
 
-        public static Conclusion GetHmods(TaskerForm tasker, Object modObject)
+        public static Conclusion GetHmods(Tasker tasker, Object modObject)
         {
             if (!(modObject is ModObject)) return Conclusion.Error;
             ModObject unboxedObject = (ModObject)modObject;

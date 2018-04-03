@@ -263,7 +263,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
-            using(TaskerForm tasker = new TaskerForm(this))
+            using(Tasker tasker = new Tasker(this))
             {
                 var modObject = new ModTasks.ModObject();
                 modObject.HmodsToLoad = modsList;

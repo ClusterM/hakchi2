@@ -13,7 +13,6 @@ namespace com.clusterrr.hakchi_gui
         ushort ShellPort { get; }
         void Connect();
         void Disconnect();
-        int Ping();
         event OnConnectedEventHandler OnConnected;
         event OnDisconnectedEventHandler OnDisconnected;
         string ExecuteSimple(string command, int timeout = 2000, bool throwOnNonZero = false);
@@ -28,7 +27,6 @@ namespace com.clusterrr.hakchi_gui
         public ushort ShellPort { get { return 0; } }
         public void Connect() { }
         public void Disconnect() { }
-        public int Ping() { return -1; }
         public event OnConnectedEventHandler OnConnected = delegate { };
         public event OnDisconnectedEventHandler OnDisconnected = delegate { };
         public string ExecuteSimple(string command, int timeout = 2000, bool throwOnNonZero = false) { return string.Empty; }

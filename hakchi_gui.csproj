@@ -168,6 +168,7 @@
     <Compile Include="Apps\UnknownGame.cs" />
     <Compile Include="Ftp\FtpWrapper.cs" />
     <Compile Include="hakchi.cs" />
+    <Compile Include="INetworkShell.cs" />
     <Compile Include="ISystemShell.cs" />
     <Compile Include="MemoryStats.cs" />
     <Compile Include="NewCustomGameForm.cs">
@@ -209,9 +210,6 @@
     </Compile>
     <EmbeddedResource Include="ScreenshotForm.resx">
       <DependentUpon>ScreenshotForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WorkerForm.resx">
-      <DependentUpon>WorkerForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="basehmods.tar" />
     <None Include="folder_images\retropie_amiga.png">
@@ -634,12 +632,6 @@
     </Compile>
     <Compile Include="WaitingFelForm.Designer.cs">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WorkerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WorkerForm.Designer.cs">
-      <DependentUpon>WorkerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="XMLSerialization.cs" />
     <EmbeddedResource Include="FoldersManagerForm.hu-HU.resx">
@@ -1393,11 +1385,6 @@
     <Content Include="readmeTemplate.css" />
     <Content Include="readmeTemplate.html" />
     <Content Include="retroarch-whitelist.txt" />
-    <None Include="network_mods\avahi-7bbd517.hmod" />
-    <None Include="network_mods\dropbear-b5ca992.hmod" />
-    <None Include="network_mods\ftpd-e56a930.hmod" />
-    <None Include="network_mods\rndis-197ace1.hmod" />
-    <None Include="network_mods\telnetd-ca53806.hmod" />
     <None Include="packages.config" />
     <None Include="sfrom_tool\README.TXT">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

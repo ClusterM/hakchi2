@@ -367,7 +367,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         }
                     }
                 }
-                else if (hakchi.Shell is ssh.SshClientWrapper) // using ftp when detecting ssh
+                else if (hakchi.Shell is INetworkShell) // using ftp when detecting network
                 {
                     Debug.WriteLine("Uploading through FTP");
                     tasker.SetProgress(20, maxProgress, Tasker.State.Running, Resources.UploadingGames);

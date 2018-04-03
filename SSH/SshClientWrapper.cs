@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace com.clusterrr.ssh
 {
-    public class SshClientWrapper : ISystemShell
+    public class SshClientWrapper : ISystemShell, INetworkShell
     {
         public event OnConnectedEventHandler OnConnected = delegate { };
         public event OnDisconnectedEventHandler OnDisconnected = delegate { };
