@@ -23,7 +23,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public TaskFunc[] Tasks;
         public ModTasks(string[] hmodsInstall = null, string[] hmodsUninstall = null, bool transferOnly = false, string transferPath = "/tmp/hmods", string uninstallFile = "/var/lib/hakchi/transfer/uninstall")
         {
-
             List<TaskFunc> tasksList = new List<TaskFunc>();
 
             if(hmodsInstall != null && hmodsInstall.Length > 0)
@@ -47,7 +46,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return (Tasker tasker, Object syncObject) =>
             {
                 tasker.SetStatus(Resources.TransferringMods);
-                tasker.SetStatus(Resources.InstallingMods);
                 var modName = hmod + ".hmod";
                 foreach (var dir in Shared.hmodDirectories)
                 {
@@ -91,7 +89,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             return (Tasker tasker, Object syncObject) =>
             {
-                tasker.SetStatus(Resources.InstallingMods);
                 tasker.SetStatus(Resources.InstallingMods);
                 bool commandSucceeded = false;
                 

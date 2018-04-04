@@ -17,20 +17,20 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public static void Show(Form hostForm, Exception ex, string title = null)
         {
-            string formattedText = ex.GetType().Name + "\r\n" + ex.Message + "\r\n" + ex.StackTrace;
+            string formattedText = ex.GetType().Name + Environment.NewLine + ex.Message + Environment.NewLine + ex.StackTrace;
 #if DEBUG
             System.Diagnostics.Debug.WriteLine(formattedText);
 #endif
-            Show(hostForm, title ?? Resources.Error, ex.Message, formattedText);
+            Show(hostForm, (title ?? Resources.Error), ex.Message, formattedText);
         }
 
         public static void Show(Exception ex, string title = null)
         {
-            string formattedText = ex.GetType().Name + "\r\n" + ex.Message + "\r\n" + ex.StackTrace;
+            string formattedText = ex.GetType().Name + Environment.NewLine + ex.Message + Environment.NewLine + ex.StackTrace;
 #if DEBUG
             System.Diagnostics.Debug.WriteLine(formattedText);
 #endif
-            Show(title ?? Resources.Error, ex.Message, formattedText);
+            Show((title ?? Resources.Error), ex.Message, formattedText);
         }
 
         public static void Show(Form hostForm, string title, string message, string details)
@@ -52,7 +52,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 form.Text = title;
             }
             form.errorLabel.Text = message;
-            form.richTextBox1.Lines = details.Split(new string[] { "\r\n" }, System.StringSplitOptions.None);
+            form.richTextBox1.AppendText(details);
             form.ShowDialog();
         }
 

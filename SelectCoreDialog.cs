@@ -169,14 +169,18 @@ namespace com.clusterrr.hakchi_gui
                     if (!string.IsNullOrEmpty(game.Metadata.System))
                     {
                         listBoxSystem.ClearSelected();
+                        bool foundSystem = false;
                         for (int i = 0; i < listBoxSystem.Items.Count; ++i)
                         {
                             if (listBoxSystem.Items[i].ToString() == game.Metadata.System)
                             {
                                 listBoxSystem.SetSelected(i, true);
+                                foundSystem = true;
                                 break;
                             }
                         }
+                        if (!foundSystem)
+                            listBoxSystem.SetSelected(0, true);
                     }
                     if (!string.IsNullOrEmpty(game.Metadata.Core))
                     {
@@ -302,7 +306,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void showAllSystemsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            fillSystems();
+            //fillSystems();
             ShowSelected();
         }
 

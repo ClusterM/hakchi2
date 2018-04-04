@@ -257,6 +257,17 @@ namespace com.clusterrr.hakchi_gui
                 DefaultCover = Resources.blank_dos,
                 GoogleSuffix = "bash script"
             },
+            new AppInfo
+            {
+                Name = "Nintendo - Super Nintendo Entertainment System (MSU-1)",
+                Class = typeof(LibretroGame),
+                DefaultCore = "msu",
+                LegacyApps = new string[] {"/bin/snes9x" },
+                Extensions = new string[] {".msu" },
+                Prefix = 'U',
+                DefaultCover = Resources.blank_snes_us,
+                GoogleSuffix = "(snes | super nintendo)"
+            },
         };
 
         private static char[] Prefixes = null;

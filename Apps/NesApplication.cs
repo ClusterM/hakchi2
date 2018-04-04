@@ -681,27 +681,22 @@ namespace com.clusterrr.hakchi_gui
             string bin = Desktop.Bin;
             string core = string.IsNullOrEmpty(bin) ? string.Empty : bin.Substring(bin.LastIndexOf('/') + 1);
             string fullgamepath = "";
+            string fullfilename = "";
             string path = "";
             string filename = "";
             string extension = "";
             string gameFile = "";
 
             // attempt to find game file according to exec
-            for (var i = 0; i < desktop.Args.Length; ++i)
+            Match m = Regex.Match(Desktop.Exec, @"([^\s]*\/...\-.\-.....\/)(.+?)(?:\s\-+|\s\/|$)");
+            if (m.Success)
             {
-                string arg = desktop.Args[i];
-                Match m = Regex.Match(arg, @"(^\/.*)\/(?:" + desktop.Code + @"\/)([^.]*)(.*$)"); // actual regex: /(^\/.*)\/(?:...-.-.....\/)([^.]*)(.*$)/
-                if (m.Success)
-                {
-                    fullgamepath = m.Groups[0].Value;
-                    path = m.Groups[1].Value;
-                    filename = m.Groups[2].Value;
-                    extension = m.Groups[3].Value;
-                    gameFile = Shared.PathCombine(basePath, filename + extension);
-                    Debug.WriteLine($"Full game path: {fullgamepath}");
-                    Debug.WriteLine($"Found: path={path}, filename={filename}, extension={extension}, gameFile={gameFile}");
-                    break;
-                }
+                path = m.Groups[1].Value;
+                fullfilename = m.Groups[2].Value.Trim();
+                fullgamepath = path + fullfilename;
+                filename = Path.GetFileNameWithoutExtension(fullfilename);
+                extension = Path.GetExtension(fullfilename);
+                gameFile = Shared.PathCombine(basePath, fullfilename);
             }
 
             // if we didn't find a match, attempt to detect a game file
@@ -785,23 +780,15 @@ namespace com.clusterrr.hakchi_gui
                 File.Move(Path.Combine(basePath, selectedFile), Path.Combine(basePath, newFileName));
             }
 
-            string newExec = bin;
-            if (string.IsNullOrEmpty(fullgamepath))
+            CoreCollection.CoreInfo coreInfo = CoreCollection.GetCoreFromExec(Desktop.Exec);
+            if (coreInfo == null)
             {
-                newExec += $" {hakchi.GamesPath}/{Desktop.Code}/{newFileName}";
+                Desktop.Exec = bin + $" {hakchi.GamesPath}/{Desktop.Code}/{newFileName}";
             }
-            for (int i = 0; i < Desktop.Args.Length; ++i)
+            else
             {
-                if (Desktop.Args[i].Equals(fullgamepath))
-                {
-                    newExec += " " + $"{hakchi.GamesPath}/{Desktop.Code}/{newFileName}";
-                }
-                else
-                {
-                    newExec += " " + Desktop.Args[i];
-                }
+                Desktop.Exec = (coreInfo.QualifiedBin + $" {hakchi.GamesPath}/{Desktop.Code}/{newFileName} " + coreInfo.DefaultArgs).Trim();
             }
-            Desktop.Exec = newExec;
 
             if (ConfigIni.Instance.Compress)
                 Compress();

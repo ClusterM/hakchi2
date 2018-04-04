@@ -446,8 +446,8 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You cannot sync currently selected games collection with the currently detected NES/SNES mini.
         ///
-        ///Current games collection: {0}
-        ///Current detected console: {1}.
+        ///Current detected console: {0}
+        ///Current games collection: {1}.
         /// </summary>
         internal static string CannotSyncToNonMultiBoot {
             get {

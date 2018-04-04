@@ -181,6 +181,21 @@ namespace com.clusterrr.hakchi_gui
 
             if (isSnesSystem && ConfigIni.Instance.UseSFROMTool && SfromToolWrapper.IsInstalled)
             {
+                try
+                {
+                    SnesRomType romType;
+                    string gameTitle;
+                    SnesRomHeader romHeader = GetCorrectHeader(rawRomData, out romType, out gameTitle);
+                    if (romHeader.SramSize > 0)
+                        saveCount = 3;
+                    else
+                        saveCount = 0;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Error reading ROM header: " + ex.Message + ex.StackTrace);
+                }
+
                 Debug.WriteLine($"Convert with SFROM Tool: {inputFileName}");
                 if (SfromToolWrapper.ConvertROMtoSFROM(ref rawRomData))
                 {
@@ -221,16 +236,6 @@ namespace com.clusterrr.hakchi_gui
                                 Need3rdPartyEmulator = true;
                             if (result == Tasks.MessageForm.Button.No)
                                 problemGame = false;
-
-                            //var r = WorkerForm.MessageBoxFromThread(ParentForm,
-                            //    string.Format(Resources.Need3rdPartyEmulator, Path.GetFileName(inputFileName)),
-                            //        Resources.AreYouSure,
-                            //        MessageBoxButtons.AbortRetryIgnore,
-                            //        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
-                            //if (r == DialogResult.Abort)
-                            //    Need3rdPartyEmulator = true;
-                            //if (r == DialogResult.Ignore)
-                            //    problemGame = false;
                         }
                         else problemGame = false;
                     }

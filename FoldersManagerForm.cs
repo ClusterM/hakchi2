@@ -77,8 +77,9 @@ namespace com.clusterrr.hakchi_gui
                     catch (Exception ex)
                     {
                         Debug.WriteLine(ex.Message + ex.StackTrace);
+                        Tasks.ErrorForm.Show(mainForm, ex);
                         File.Delete(FoldersXmlPath);
-                        throw ex;
+                        return;
                     }
                 }
                 else DrawTree();
@@ -91,7 +92,7 @@ namespace com.clusterrr.hakchi_gui
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
-                Tasks.ErrorForm.Show(null, ex.Message, ex.StackTrace);
+                Tasks.ErrorForm.Show(mainForm, ex);
             }
         }
 
@@ -895,6 +896,9 @@ namespace com.clusterrr.hakchi_gui
 
         private string TreeToXml()
         {
+            if (treeView.Nodes == null || treeView.Nodes.Count == 0)
+                return "";
+
             var root = treeView.Nodes[0];
             var xml = new XmlDocument();
             var treeNode = xml.CreateElement("Tree");

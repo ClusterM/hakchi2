@@ -37,13 +37,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 get
                 {
-                    switch (Kind) {
-                        case CoreKind.Libretro:
-                            return $"/bin/" + CoreCommands.GetCommand(Bin);
-                        case CoreKind.BuiltIn:
-                            return $"/bin/{Bin}";
-                    }
-                    return Bin;
+                    return $"/bin/" + CoreCommands.GetCommand(Bin);
                 }
             }
             public void DebugWrite()

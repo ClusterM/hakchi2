@@ -250,7 +250,6 @@ namespace com.clusterrr.hakchi_gui
                     }
 
                     Invoke(new Action(UpdateLocalCache));
-                    new MemoryStats();
                     new Thread(RecalculateSelectedGamesThread).Start();
                 }
                 else
@@ -305,6 +304,7 @@ namespace com.clusterrr.hakchi_gui
                 shellToolStripMenuItem_Click(null, null);
                 openTelnetToolStripMenuItem.Enabled = false;
             }));
+            new Thread(RecalculateSelectedGamesThread).Start();
         }
 
         static ConsoleType lastConsoleType = ConsoleType.Unknown;
@@ -1034,8 +1034,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 var stats = RecalculateSelectedGames();
-                var memoryUsage = new MemoryStats();
-                showStats(stats, memoryUsage);
+                showStats(stats);
             }
             catch
             {
@@ -1067,19 +1066,19 @@ namespace com.clusterrr.hakchi_gui
             }
             return stats;
         }
-        void showStats(CountResult stats, MemoryStats memoryUsage)
+        void showStats(CountResult stats)
         {
             try
             {
                 if (InvokeRequired)
                 {
-                    Invoke(new Action<CountResult, MemoryStats>(showStats), new Object[] { stats, memoryUsage });
+                    Invoke(new Action<CountResult>(showStats), new Object[] { stats });
                     return;
                 }
                 var maxGamesSize = DefaultMaxGamesSize * 1024 * 1024;
-                if (memoryUsage.StorageTotal > 0)
+                if (MemoryStats.StorageTotal > 0)
                 {
-                    maxGamesSize = (memoryUsage.StorageFree + memoryUsage.WrittenGamesSize) - memoryUsage.ReservedMemory * 1024 * 1024;
+                    maxGamesSize = (MemoryStats.StorageFree + MemoryStats.WrittenGamesSize) - MemoryStats.ReservedMemory * 1024 * 1024;
                     toolStripStatusLabelSize.Text = string.Format("{0} / {1}", Shared.SizeSuffix(stats.Size), Shared.SizeSuffix(maxGamesSize));
                 }
                 else
@@ -1150,7 +1149,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 Tasks.MessageForm.Show(
                     Resources.UploadGames,
-                    string.Format(Resources.CannotSyncToNonMultiBoot, GetConsoleTypeName(ConfigIni.Instance.ConsoleType), GetConsoleTypeName()),
+                    string.Format(Resources.CannotSyncToNonMultiBoot,
+                        GetConsoleTypeName(), GetConsoleTypeName(ConfigIni.Instance.ConsoleType)),
                     Resources.sign_database);
                 return;
             }
@@ -1186,7 +1186,6 @@ namespace com.clusterrr.hakchi_gui
                         syncTask.Games.Add(item.Tag as NesApplication);
                 }
                 tasker.AddTask(exportGames ? (Tasks.Tasker.TaskFunc)syncTask.ExportGames : (Tasks.Tasker.TaskFunc)syncTask.UploadGames);
-                tasker.SetStatusImage(Resources.sign_up);
                 Tasks.Tasker.Conclusion c = tasker.Start();
 
                 return c == Tasks.Tasker.Conclusion.Success;
@@ -1228,6 +1227,7 @@ namespace com.clusterrr.hakchi_gui
             using (Tasker tasker = new Tasker(this))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                tasker.SetStatusImage(Resources.sign_cogs);
                 string dumpFilename = null;
                 switch (task)
                 {
@@ -1282,6 +1282,7 @@ namespace com.clusterrr.hakchi_gui
             using (var tasker = new Tasker(this))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                tasker.SetStatusImage(Resources.sign_keyring);
                 if (reset)
                 {
                     tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.ResetHakchi).Tasks);
@@ -1299,6 +1300,7 @@ namespace com.clusterrr.hakchi_gui
             using (var tasker = new Tasker(this))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                tasker.SetStatusImage(Resources.sign_keyring);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
@@ -1333,6 +1335,7 @@ namespace com.clusterrr.hakchi_gui
             using (var tasker = new Tasker(this))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                tasker.SetStatusImage(Resources.sign_trashcan);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.UninstallHakchi, restoreKernel: restoreKernel).Tasks);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
@@ -1344,6 +1347,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetTitle(Resources.InstallingMods);
+                tasker.SetStatusImage(Resources.sign_brick);
                 tasker.AddTask(hakchi.ShowSplashScreen);
                 tasker.AddTasks(new ModTasks(mods).Tasks);
                 tasker.AddTask(ShellTasks.Reboot);
@@ -1357,6 +1361,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetTitle(Resources.UninstallingMods);
+                tasker.SetStatusImage(Resources.sign_brick);
                 tasker.AddTask(hakchi.ShowSplashScreen);
                 tasker.AddTasks(new ModTasks(null, mods).Tasks);
                 tasker.AddTask(ShellTasks.Reboot);
@@ -1372,6 +1377,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                     tasker.SetTitle(Resources.FlashingUboot);
+                    tasker.SetStatusImage(Resources.sign_cogs);
                     tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashNormalUboot).Tasks);
                     tasker.Start();
                 }
@@ -1386,6 +1392,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                     tasker.SetTitle(Resources.FlashingUboot);
+                    tasker.SetStatusImage(Resources.sign_cogs);
                     tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashSDUboot).Tasks);
                     tasker.Start();
                 }
@@ -1460,6 +1467,7 @@ namespace com.clusterrr.hakchi_gui
             using (var tasker = new Tasker(this))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                tasker.SetStatusImage(Resources.sign_keyring);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootOriginal).Tasks);
                 tasker.Start();
             }
@@ -1470,6 +1478,7 @@ namespace com.clusterrr.hakchi_gui
             using (var tasker = new Tasker(this))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                tasker.SetStatusImage(Resources.sign_keyring);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
                 tasker.Start();
             }
@@ -1480,6 +1489,7 @@ namespace com.clusterrr.hakchi_gui
             using (var tasker = new Tasker(this))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                tasker.SetStatusImage(Resources.sign_keyring);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
                 tasker.Start();
             }

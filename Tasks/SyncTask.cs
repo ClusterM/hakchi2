@@ -114,6 +114,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             int maxProgress = 100;
             tasker.SetTitle(Resources.ExportGames);
+            tasker.SetStatusImage(Resources.sign_up);
             tasker.SetProgress(0, maxProgress, Tasker.State.Starting, Resources.SelectDrive);
             if (Games == null || Games.Count == 0)
                 throw new Exception("No games to upload");
@@ -240,20 +241,25 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public Tasker.Conclusion UploadGames(Tasker tasker, Object syncObject = null)
         {
+            int maxProgress = 135;
+            tasker.SetTitle(Resources.UploadGames);
+            tasker.SetState(Tasker.State.Starting);
+            tasker.SetStatusImage(Resources.sign_up);
+
             if (!hakchi.Shell.IsOnline)
             {
                 return Tasker.Conclusion.Error;
             }
 
-            int maxProgress = 135;
-            tasker.SetTitle(Resources.UploadGames);
             if (Games == null || Games.Count == 0)
                 throw new Exception("No games to upload");
 
             // select option and region if applicable
             this.uploadPath = "";
             if (!ShowUploadDialog(tasker))
+            {
                 return Tasker.Conclusion.Abort;
+            }
 
             // dev option to reduce nand wear when testing
             if (ConfigIni.Instance.UploadToTmp)
@@ -262,7 +268,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
 
             // building folders
-            tasker.SetProgress(0, maxProgress, Tasker.State.Starting, Resources.BuildingMenu);
+            tasker.SetStatus(Resources.BuildingMenu);
             if (ConfigIni.Instance.FoldersMode == NesMenuCollection.SplitStyle.Custom)
             {
                 if (!ShowFoldersManager(tasker, Games))
@@ -301,21 +307,16 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
                 // calculating size constraints
                 tasker.SetStatus(Resources.CalculatingDiff);
-                long gamesSize;
-                long saveStatesSize;
-                long storageTotal;
-                long storageUsed;
-                long storageFree;
-                hakchi.GetStorageStats(out gamesSize, out saveStatesSize, out storageTotal, out storageUsed, out storageFree);
-                long maxGamesSize = (storageFree + gamesSize) - reservedMemory;
+                MemoryStats.Refresh();
+                long maxGamesSize = (MemoryStats.StorageFree + MemoryStats.WrittenGamesSize) - reservedMemory;
                 if (stats.TotalSize > maxGamesSize)
                 {
                     throw new Exception(string.Format(Resources.MemoryFull, stats.TotalSize) + "\r\n" +
                         string.Format(Resources.MemoryStats.Replace("|", "\r\n"),
-                        storageTotal / 1024 / 1024,
+                        MemoryStats.StorageTotal / 1024 / 1024,
                         maxGamesSize / 1024 / 1024,
-                        saveStatesSize / 1024 / 1024,
-                        (storageUsed - gamesSize - saveStatesSize) / 1024 / 1024));
+                        MemoryStats.SaveStatesSize / 1024 / 1024,
+                        (MemoryStats.StorageUsed - MemoryStats.WrittenGamesSize - MemoryStats.SaveStatesSize) / 1024 / 1024));
                 }
 
                 // get the remote list of files, timestamps, and sizes

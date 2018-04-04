@@ -137,11 +137,11 @@ namespace com.clusterrr.hakchi_gui
                 {
                     return Image.FromFile(filePath);
                 }
-                else if (rm.GetObject(imageId) != null)
+                else if (imageId != null && (rm.GetObject(imageId) != null))
                 {
                     return (Image)rm.GetObject(imageId);
                 }
-                return null;
+                return (Image)rm.GetObject("folder");
             }
         }
 
@@ -160,13 +160,14 @@ namespace com.clusterrr.hakchi_gui
             set
             {
                 var filePath = Path.Combine(FolderImagesDirectory, value + ".png");
-                if (File.Exists(filePath) || rm.GetObject(value) != null)
+                if (File.Exists(filePath) || (value != null && rm.GetObject(value) != null))
                 {
                     imageId = value;
                 }
                 else
                 {
-                    throw new FileNotFoundException($"Folder image id \"{imageId}\" is invalid. No corresponding file or resource exists.");
+                    System.Diagnostics.Debug.WriteLine($"Folder image id \"{value}\" is invalid. No corresponding file or resource exists.");
+                    imageId = null;
                 }
             }
         }

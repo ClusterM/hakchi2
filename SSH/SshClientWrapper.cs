@@ -67,24 +67,35 @@ namespace com.clusterrr.ssh
             {
                 while (true)
                 {
-                    if (!IsOnline)
+                    try
                     {
-                        if (hasConnected)
+                        if (!IsOnline)
                         {
-                            Debug.WriteLine("SSH shell disconnected");
-                            hasConnected = false;
-                            OnDisconnected();
-                            continue;
-                        }
-                        else if (AutoReconnect)
-                        {
-                            if (Ping() != -1)
+                            if (hasConnected)
                             {
-                                Connect();
+                                Debug.WriteLine("SSH shell disconnected");
+                                hasConnected = false;
+                                OnDisconnected();
+                                Thread.Sleep(1000); // give it additional time to disconnect
+                            }
+                            else if (AutoReconnect)
+                            {
+                                if (Ping() != -1)
+                                {
+                                    Connect();
+                                }
                             }
                         }
+                        Thread.Sleep(1000);
                     }
-                    Thread.Sleep(1000);
+                    catch (ThreadAbortException)
+                    {
+                        return;
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine("Error during connect loop: " + ex.Message + ex.StackTrace);
+                    }
                 }
             }
             catch (ThreadAbortException)

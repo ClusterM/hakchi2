@@ -269,6 +269,7 @@ namespace com.clusterrr.hakchi_gui
                 var modObject = new ModTasks.ModObject();
                 modObject.HmodsToLoad = modsList;
                 tasker.SetTitle(Resources.LoadingHmods);
+                tasker.SetStatusImage(Resources.sign_brick);
                 tasker.SyncObject = modObject;
                 tasker.AddTask(ModTasks.GetHmods);
                 tasker.Start();
@@ -445,7 +446,6 @@ namespace com.clusterrr.hakchi_gui
         {
             if (listViewHmods.SelectedItems.Count > 0)
             {
-
                 Hmod hmod = (Hmod)(listViewHmods.SelectedItems[0].Tag);
                 showReadMe(ref hmod);
             }

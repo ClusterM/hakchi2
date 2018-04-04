@@ -41,6 +41,7 @@ namespace com.clusterrr.hakchi_gui
         public static string RemoteGameSyncPath { get; private set; }
         public static string SystemCode { get; private set; }
         public static string MediaPath { get; private set; }
+        public static string FixedGamesPath { get; private set; }
         public static string GamesPath { get; private set; }
         public static string RootFsPath { get; private set; }
         public static string GamesProfilePath { get; private set; }
@@ -164,7 +165,8 @@ namespace com.clusterrr.hakchi_gui
             RemoteGameSyncPath = "/var/lib/hakchi/games";
             SystemCode = null;
             MediaPath = "/media";
-            GamesPath = "/var/games";
+            FixedGamesPath = "/var/games";
+            GamesPath = "/usr/share/games";
             RootFsPath = "/var/lib/hakchi/rootfs";
             GamesProfilePath = "/var/saves";
             SquashFsPath = "/var/squashfs";
@@ -211,6 +213,7 @@ namespace com.clusterrr.hakchi_gui
             Shell = shells.First();
             shells.ForEach(shell => shell.Enabled = true);
 
+            MemoryStats.Clear();
             clearProperties();
             OnDisconnected();
         }
@@ -273,6 +276,9 @@ namespace com.clusterrr.hakchi_gui
 
                 // load config
                 ConfigIni.SetConfigDictionary(LoadConfig());
+
+                // calculate stats
+                MemoryStats.Refresh();
 
                 // chain to other OnConnected events
                 OnConnected(caller);
@@ -447,36 +453,6 @@ namespace com.clusterrr.hakchi_gui
                 config.Clear();
             }
             return config;
-        }
-
-        public static bool GetStorageStats(out long gamesSize, out long saveStatesSize, out long storageTotal, out long storageUsed, out long storageFree)
-        {
-            try
-            {
-                var storage = Shell.ExecuteSimple("df \"$(hakchi findGameSyncStorage)\" | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 2000, true).Split('|');
-                bool externalSaveStates = Shell.ExecuteSimple("mount | grep /var/lib/clover").Trim().Length > 0;
-                gamesSize = long.Parse(Shell.ExecuteSimple("du -s \"$(hakchi findGameSyncStorage)\" | awk '{ print $1 }'", 2000, true)) * 1024;
-                saveStatesSize = long.Parse(Shell.ExecuteSimple("du -s \"$(readlink /var/saves)\" | awk '{ print $1 }'", 2000, true)) * 1024;
-                storageTotal = long.Parse(storage[0]) * 1024;
-                storageUsed = long.Parse(storage[1]) * 1024;
-                storageFree = long.Parse(storage[2]) * 1024;
-                Debug.WriteLine(string.Format("Storage size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", storageTotal / 1024.0 / 1024.0, storageUsed / 1024.0 / 1024.0, storageFree / 1024.0 / 1024.0));
-                Debug.WriteLine(string.Format("Used by games: {0:F1}MB", gamesSize / 1024.0 / 1024.0));
-                Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", saveStatesSize / 1024.0 / 1024.0));
-                Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (storageUsed - gamesSize - saveStatesSize) / 1024.0 / 1024.0));
-                Debug.WriteLine(string.Format("Available for games: {0:F1}MB", (storageFree + gamesSize) / 1024.0 / 1024.0));
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Error: " + ex.Message + ex.StackTrace);
-                gamesSize = -1;
-                saveStatesSize = -1;
-                storageTotal = -1;
-                storageUsed = -1;
-                storageFree = -1;
-                return false;
-            }
-            return true;
         }
 
         public static Image TakeScreenshot()
