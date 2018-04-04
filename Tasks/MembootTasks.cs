@@ -41,8 +41,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
         private MemoryStream stockKernel;
 
         // Public Static variables
-        public static readonly Dictionary<MainForm.ConsoleType, string[]> correctKernels = Shared.CorrectKernels();
-        public static readonly Dictionary<MainForm.ConsoleType, string[]> correctKeys = Shared.CorrectKeys();
+        public static readonly Dictionary<hakchi.ConsoleType, string[]> correctKernels = Shared.CorrectKernels();
+        public static readonly Dictionary<hakchi.ConsoleType, string[]> correctKeys = Shared.CorrectKeys();
 
         public readonly TaskFunc[] Tasks;
 

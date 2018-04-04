@@ -25,11 +25,11 @@ namespace com.clusterrr.hakchi_gui
             public Dictionary<string, List<string>> Presets = new Dictionary<string, List<string>>();
         };
         [JsonProperty]
-        private Dictionary<MainForm.ConsoleType, GamesCollectionSetting> gamesCollectionSettings;
+        private Dictionary<hakchi.ConsoleType, GamesCollectionSetting> gamesCollectionSettings;
         [JsonProperty]
-        private MainForm.ConsoleType consoleType = MainForm.ConsoleType.NES;
+        private hakchi.ConsoleType consoleType = hakchi.ConsoleType.NES;
         [JsonIgnore]
-        public MainForm.ConsoleType ConsoleType
+        public hakchi.ConsoleType ConsoleType
         {
             get
             {
@@ -37,7 +37,7 @@ namespace com.clusterrr.hakchi_gui
             }
             set
             {
-                if (value == MainForm.ConsoleType.Unknown) throw new ArgumentException();
+                if (value == hakchi.ConsoleType.Unknown) throw new ArgumentException();
                 consoleType = value;
             }
         }
@@ -70,13 +70,13 @@ namespace com.clusterrr.hakchi_gui
         }
 
         // special case methods
-        public ICollection<string> SelectedGamesForConsole(MainForm.ConsoleType c)
+        public ICollection<string> SelectedGamesForConsole(hakchi.ConsoleType c)
         {
-            return (c == MainForm.ConsoleType.Unknown) ? null : gamesCollectionSettings[c].SelectedGames;
+            return (c == hakchi.ConsoleType.Unknown) ? null : gamesCollectionSettings[c].SelectedGames;
         }
-        public ICollection<string> SelectedOriginalGamesForConsole(MainForm.ConsoleType c)
+        public ICollection<string> SelectedOriginalGamesForConsole(hakchi.ConsoleType c)
         {
-            return (c == MainForm.ConsoleType.Unknown) ? null : gamesCollectionSettings[c].OriginalGames;
+            return (c == hakchi.ConsoleType.Unknown) ? null : gamesCollectionSettings[c].OriginalGames;
         }
 
         // base console type settings
@@ -101,7 +101,7 @@ namespace com.clusterrr.hakchi_gui
 
         [JsonProperty]
         private Dictionary<int, ConsoleSetting> consoleSettings;
-        public MainForm.ConsoleType LastConnectedConsoleType = MainForm.ConsoleType.Unknown;
+        public hakchi.ConsoleType LastConnectedConsoleType = hakchi.ConsoleType.Unknown;
 
         [JsonIgnore]
         public bool UsbHost
@@ -181,19 +181,17 @@ namespace com.clusterrr.hakchi_gui
         public bool ForceSSHTransfers = false;
         public bool UploadToTmp = false;
         public bool ExportLinked = true;
-        public string SyncRegion = "";
         public string ExportDrive = "";
-        public string ExportRegion = "";
         public FelLib.Fel.UbootType MembootUboot = FelLib.Fel.UbootType.SD;
         public HmodListSort hmodListSort = HmodListSort.Category;
 
         // constructor
         private ConfigIni()
         {
-            gamesCollectionSettings = new Dictionary<MainForm.ConsoleType, GamesCollectionSetting>();
-            foreach (MainForm.ConsoleType c in Enum.GetValues(typeof(MainForm.ConsoleType)))
+            gamesCollectionSettings = new Dictionary<hakchi.ConsoleType, GamesCollectionSetting>();
+            foreach (hakchi.ConsoleType c in Enum.GetValues(typeof(hakchi.ConsoleType)))
             {
-                if (c != MainForm.ConsoleType.Unknown)
+                if (c != hakchi.ConsoleType.Unknown)
                     gamesCollectionSettings[c] = new GamesCollectionSetting();
             };
             consoleSettings = new Dictionary<int, ConsoleSetting>()
@@ -279,7 +277,7 @@ namespace com.clusterrr.hakchi_gui
                 config["clovercon_home_combination"] = instance.ResetHack ? string.Format("0x{0:X4}", instance.ResetCombination) : "0x7FFF";
                 config["clovercon_autofire"] = instance.AutofireHack ? "1" : "0";
                 config["clovercon_autofire_xy"] = instance.AutofireXYHack ? "1" : "0";
-                config["clovercon_fc_start"] = instance.FcStart && (instance.LastConnectedConsoleType == MainForm.ConsoleType.Famicom) ? "1" : "0";
+                config["clovercon_fc_start"] = instance.FcStart && (instance.LastConnectedConsoleType == hakchi.ConsoleType.Famicom) ? "1" : "0";
                 config["fontfix_enabled"] = instance.UseFont ? "y" : "n";
                 config["disable_armet"] = instance.AntiArmetLevel > 0 ? "y" : "n";
                 config["usb_host"] = instance.UsbHost ? "y" : "n";
@@ -371,28 +369,32 @@ namespace com.clusterrr.hakchi_gui
                                         instance.Language = value;
                                         break;
                                     case "selectedgamesnes":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.NES].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.NES].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "selectedgamesfamicom":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.Famicom].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.Famicom].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "selectedgamessnes":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.SNES].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_EUR].SelectedGames =
+                                            instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_USA].SelectedGames =
+                                            value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "selectedgamessuperfamicom":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.SuperFamicom].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SuperFamicom].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "hiddengames":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.NES].OriginalGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.NES].OriginalGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "hiddengamesfamicom":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.Famicom].OriginalGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.Famicom].OriginalGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "hiddengamessnes":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.SNES].OriginalGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_EUR].OriginalGames =
+                                            instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_USA].OriginalGames =
+                                            value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "hiddengamessuperfamicom":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.SuperFamicom].OriginalGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SuperFamicom].OriginalGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "originalgamesposition":
                                         instance.OriginalGamesPosition = (MainForm.OriginalGamesPosition)byte.Parse(value);
@@ -427,7 +429,7 @@ namespace com.clusterrr.hakchi_gui
                                         instance.RunCount = int.Parse(value);
                                         break;
                                     case "consoletype":
-                                        instance.ConsoleType = (MainForm.ConsoleType)byte.Parse(value);
+                                        instance.ConsoleType = (hakchi.ConsoleType)byte.Parse(value);
                                         break;
                                     case "extracommandlinearguments":
                                         instance.consoleSettings[0].ExtraCommandLineArguments[ExtraCmdLineTypes.Kachikachi] = value;
@@ -439,28 +441,32 @@ namespace com.clusterrr.hakchi_gui
                                         instance.consoleSettings[0].FcStart = !value.ToLower().Equals("false");
                                         break;
                                     case "maxgamesperfolder":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.NES].MaxGamesPerFolder = byte.Parse(value);
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.NES].MaxGamesPerFolder = byte.Parse(value);
                                         break;
                                     case "maxgamesperfolderfamicom":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.Famicom].MaxGamesPerFolder = byte.Parse(value);
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.Famicom].MaxGamesPerFolder = byte.Parse(value);
                                         break;
                                     case "maxgamesperfoldersnes":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.SNES].MaxGamesPerFolder = byte.Parse(value);
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_EUR].MaxGamesPerFolder =
+                                            instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_USA].MaxGamesPerFolder =
+                                            byte.Parse(value);
                                         break;
                                     case "maxgamesperfoldersuperfamicom":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.SuperFamicom].MaxGamesPerFolder = byte.Parse(value);
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SuperFamicom].MaxGamesPerFolder = byte.Parse(value);
                                         break;
                                     case "foldersmode":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.NES].FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse(value);
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.NES].FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse(value);
                                         break;
                                     case "foldersmodefamicom":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.Famicom].FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse(value);
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.Famicom].FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse(value);
                                         break;
                                     case "foldersmodesnes":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.SNES].FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse(value);
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_EUR].FoldersMode =
+                                            instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_USA].FoldersMode =
+                                            (NesMenuCollection.SplitStyle)byte.Parse(value);
                                         break;
                                     case "foldersmodesuperfamicom":
-                                        instance.gamesCollectionSettings[MainForm.ConsoleType.SuperFamicom].FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse(value);
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SuperFamicom].FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse(value);
                                         break;
                                     case "usesfromtool":
                                         instance.UseSFROMTool = !value.ToLower().Equals("false");
@@ -508,7 +514,7 @@ namespace com.clusterrr.hakchi_gui
                                         instance.SyncLinked = !value.ToLower().Equals("false");
                                         break;
                                     case "exportregion":
-                                        instance.ExportRegion = value;
+                                        //instance.ExportRegion = value;
                                         break;
                                     case "membootuboot":
                                         if (value == "uboot.bin")
@@ -526,10 +532,11 @@ namespace com.clusterrr.hakchi_gui
                                 }
                                 break;
                             case "presets":
-                                instance.gamesCollectionSettings[MainForm.ConsoleType.NES].Presets[param] = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-                                instance.gamesCollectionSettings[MainForm.ConsoleType.Famicom].Presets[param] = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-                                instance.gamesCollectionSettings[MainForm.ConsoleType.SNES].Presets[param] = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-                                instance.gamesCollectionSettings[MainForm.ConsoleType.SuperFamicom].Presets[param] = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                instance.gamesCollectionSettings[hakchi.ConsoleType.NES].Presets[param] = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                instance.gamesCollectionSettings[hakchi.ConsoleType.Famicom].Presets[param] = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_EUR].Presets[param] = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_USA].Presets[param] = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                instance.gamesCollectionSettings[hakchi.ConsoleType.SuperFamicom].Presets[param] = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                 break;
                         }
                     }

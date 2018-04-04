@@ -29,36 +29,20 @@ namespace com.clusterrr.hakchi_gui
 
         public enum OriginalGamesPosition { AtTop = 0, AtBottom = 1, Sorted = 2, Hidden = 3 }
         public enum GamesSorting { Name = 0, Core = 1, System = 2 }
-        public enum ConsoleType { NES = 0, Famicom = 1, SNES = 2, SuperFamicom = 3, Unknown = 255 }
-        public long DefaultMaxGamesSize
-        {
-            get
-            {
-                switch (ConfigIni.Instance.ConsoleType)
-                {
-                    default:
-                    case ConsoleType.NES:
-                    case ConsoleType.Famicom:
-                        return 300;
-                    case ConsoleType.SNES:
-                    case ConsoleType.SuperFamicom:
-                        return 200;
-                }
-            }
-        }
         public static string GetConsoleTypeName()
         {
             return GetConsoleTypeName(hakchi.DetectedConsoleType);
         }
-        public static string GetConsoleTypeName(ConsoleType? c)
+        public static string GetConsoleTypeName(hakchi.ConsoleType? c)
         {
             switch (c)
             {
-                case ConsoleType.NES: return Resources.consoleTypeNes;
-                case ConsoleType.Famicom: return Resources.consoleTypeFamicom;
-                case ConsoleType.SNES: return Resources.consoleTypeSnes;
-                case ConsoleType.SuperFamicom: return Resources.consoleTypeSuperFamicom;
-                case ConsoleType.Unknown: return Resources.Unknown;
+                case hakchi.ConsoleType.NES: return Resources.consoleTypeNes;
+                case hakchi.ConsoleType.Famicom: return Resources.consoleTypeFamicom;
+                case hakchi.ConsoleType.SNES_EUR: return Resources.consoleTypeSnesEur;
+                case hakchi.ConsoleType.SNES_USA: return Resources.consoleTypeSnesUsa;
+                case hakchi.ConsoleType.SuperFamicom: return Resources.consoleTypeSuperFamicom;
+                case hakchi.ConsoleType.Unknown: return Resources.Unknown;
             }
             return string.Empty;
         }
@@ -141,8 +125,8 @@ namespace com.clusterrr.hakchi_gui
                 listViewGames.DoubleBuffered(true);
 
                 // fill games collections combo box
-                foreach (ConsoleType c in Enum.GetValues(typeof(ConsoleType)))
-                    if (c != ConsoleType.Unknown)
+                foreach (hakchi.ConsoleType c in Enum.GetValues(typeof(hakchi.ConsoleType)))
+                    if (c != hakchi.ConsoleType.Unknown)
                         gamesConsoleComboBox.Items.Add(GetConsoleTypeName(c));
 
                 // Little tweak for easy translation
@@ -231,9 +215,9 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (hakchi.DetectedConsoleType != null)
                     {
-                        if (hakchi.DetectedConsoleType != ConsoleType.Unknown)
-                            ConfigIni.Instance.ConsoleType = (ConsoleType)hakchi.DetectedConsoleType;
-                        ConfigIni.Instance.LastConnectedConsoleType = (ConsoleType)hakchi.DetectedConsoleType;
+                        if (hakchi.DetectedConsoleType != hakchi.ConsoleType.Unknown)
+                            ConfigIni.Instance.ConsoleType = (hakchi.ConsoleType)hakchi.DetectedConsoleType;
+                        ConfigIni.Instance.LastConnectedConsoleType = (hakchi.ConsoleType)hakchi.DetectedConsoleType;
                     }
                     Invoke(new Action(SyncConsoleType));
 
@@ -307,7 +291,7 @@ namespace com.clusterrr.hakchi_gui
             new Thread(RecalculateSelectedGamesThread).Start();
         }
 
-        static ConsoleType lastConsoleType = ConsoleType.Unknown;
+        static hakchi.ConsoleType lastConsoleType = hakchi.ConsoleType.Unknown;
         public void SyncConsoleType()
         {
             // update window title
@@ -612,7 +596,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         ConfigIni.Instance.Language = langCodes[language];
                         SaveConfig();
-                        lastConsoleType = ConsoleType.Unknown;
+                        lastConsoleType = hakchi.ConsoleType.Unknown;
 
                         Thread.CurrentThread.CurrentUICulture = new CultureInfo(langCodes[language]);
                         this.Hide();
@@ -1075,7 +1059,7 @@ namespace com.clusterrr.hakchi_gui
                     Invoke(new Action<CountResult>(showStats), new Object[] { stats });
                     return;
                 }
-                var maxGamesSize = DefaultMaxGamesSize * 1024 * 1024;
+                var maxGamesSize = MemoryStats.DefaultMaxGamesSize * 1024 * 1024;
                 if (MemoryStats.StorageTotal > 0)
                 {
                     maxGamesSize = (MemoryStats.StorageFree + MemoryStats.WrittenGamesSize) - MemoryStats.ReservedMemory * 1024 * 1024;
@@ -1557,16 +1541,17 @@ namespace com.clusterrr.hakchi_gui
             switch (ConfigIni.Instance.ConsoleType)
             {
                 default:
-                case ConsoleType.NES:
-                case ConsoleType.Famicom:
+                case hakchi.ConsoleType.NES:
+                case hakchi.ConsoleType.Famicom:
                     {
                         var form = new SelectNesButtonsForm((SelectNesButtonsForm.NesButtons)ConfigIni.Instance.ResetCombination);
                         if (form.ShowDialog() == DialogResult.OK)
                             ConfigIni.Instance.ResetCombination = (uint)form.SelectedButtons;
                     }
                     break;
-                case ConsoleType.SNES:
-                case ConsoleType.SuperFamicom:
+                case hakchi.ConsoleType.SNES_EUR:
+                case hakchi.ConsoleType.SNES_USA:
+                case hakchi.ConsoleType.SuperFamicom:
                     {
                         var form = new SelectSnesButtonsForm((SelectSnesButtonsForm.SnesButtons)ConfigIni.Instance.ResetCombination);
                         if (form.ShowDialog() == DialogResult.OK)
@@ -1613,10 +1598,11 @@ namespace com.clusterrr.hakchi_gui
                 var conclusion = tasker.Start();
                 if (conclusion == Tasks.Tasker.Conclusion.Success)
                 {
-                    AddDefaultsToSelectedGames(NesApplication.defaultNesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.NES));
-                    AddDefaultsToSelectedGames(NesApplication.defaultFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.Famicom));
-                    AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.SNES));
-                    AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(ConsoleType.SuperFamicom));
+                    AddDefaultsToSelectedGames(NesApplication.defaultNesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.NES));
+                    AddDefaultsToSelectedGames(NesApplication.defaultFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.Famicom));
+                    AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SNES_EUR));
+                    AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SNES_USA));
+                    AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SuperFamicom));
                 }
             }
             LoadGames();
@@ -2486,7 +2472,7 @@ namespace com.clusterrr.hakchi_gui
         private void gamesConsoleComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selected = gamesConsoleComboBox.SelectedItem as string;
-            foreach (ConsoleType c in Enum.GetValues(typeof(ConsoleType)))
+            foreach (hakchi.ConsoleType c in Enum.GetValues(typeof(hakchi.ConsoleType)))
             {
                 if (GetConsoleTypeName(c) == selected)
                 {

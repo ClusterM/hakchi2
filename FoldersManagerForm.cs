@@ -21,13 +21,15 @@ namespace com.clusterrr.hakchi_gui
                 switch(ConfigIni.Instance.ConsoleType)
                 {
                     default:
-                    case MainForm.ConsoleType.NES:
+                    case hakchi.ConsoleType.NES:
                         return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders.xml");
-                    case MainForm.ConsoleType.Famicom:
+                    case hakchi.ConsoleType.Famicom:
                         return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_famicom.xml");
-                    case MainForm.ConsoleType.SNES:
-                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_snes.xml");
-                    case MainForm.ConsoleType.SuperFamicom:
+                    case hakchi.ConsoleType.SNES_EUR:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_snes_eur.xml");
+                    case hakchi.ConsoleType.SNES_USA:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_snes_usa.xml");
+                    case hakchi.ConsoleType.SuperFamicom:
                         return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_super_famicom.xml");
                 }
             }

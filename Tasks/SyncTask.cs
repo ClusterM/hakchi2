@@ -85,7 +85,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     tasker.PopState();
                     if (!result)
                         return false;
-                    this.uploadPath = hakchi.GetRemoteGameSyncPath(ConfigIni.Instance.ConsoleType, ConfigIni.Instance.SyncRegion);
+                    this.uploadPath = hakchi.GetRemoteGameSyncPath(ConfigIni.Instance.ConsoleType);
                 }
                 return true;
             }
@@ -420,8 +420,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     string originalSyncCode = "";
                     switch (ConfigIni.Instance.ConsoleType)
                     {
-                        case MainForm.ConsoleType.NES:
-                        case MainForm.ConsoleType.Famicom:
+                        case hakchi.ConsoleType.NES:
+                        case hakchi.ConsoleType.Famicom:
                             originalSyncCode =
                                 $"src=\"{hakchi.SquashFsPath}{hakchi.GamesPath}/{originalCode}\" && " +
                                 $"dst=\"{this.uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
@@ -429,8 +429,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                 $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\") && " +
                                 $"([ -L \"$dst/pixelart\" ] || ln -s \"$src/pixelart\" \"$dst/\")";
                             break;
-                        case MainForm.ConsoleType.SNES:
-                        case MainForm.ConsoleType.SuperFamicom:
+                        case hakchi.ConsoleType.SNES_EUR:
+                        case hakchi.ConsoleType.SNES_USA:
+                        case hakchi.ConsoleType.SuperFamicom:
                             originalSyncCode =
                                 $"src=\"{hakchi.SquashFsPath}{hakchi.GamesPath}/{originalCode}\" && " +
                                 $"dst=\"{this.uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +

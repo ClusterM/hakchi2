@@ -24,12 +24,30 @@ namespace com.clusterrr.hakchi_gui
                 switch (ConfigIni.Instance.ConsoleType)
                 {
                     default:
-                    case MainForm.ConsoleType.NES:
-                    case MainForm.ConsoleType.Famicom:
+                    case hakchi.ConsoleType.NES:
+                    case hakchi.ConsoleType.Famicom:
                         return 10;
-                    case MainForm.ConsoleType.SNES:
-                    case MainForm.ConsoleType.SuperFamicom:
+                    case hakchi.ConsoleType.SNES_EUR:
+                    case hakchi.ConsoleType.SNES_USA:
+                    case hakchi.ConsoleType.SuperFamicom:
                         return 30;
+                }
+            }
+        }
+        public static long DefaultMaxGamesSize
+        {
+            get
+            {
+                switch (ConfigIni.Instance.ConsoleType)
+                {
+                    default:
+                    case hakchi.ConsoleType.NES:
+                    case hakchi.ConsoleType.Famicom:
+                        return 300;
+                    case hakchi.ConsoleType.SNES_EUR:
+                    case hakchi.ConsoleType.SNES_USA:
+                    case hakchi.ConsoleType.SuperFamicom:
+                        return 200;
                 }
             }
         }

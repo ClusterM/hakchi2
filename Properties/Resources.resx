@@ -1088,4 +1088,10 @@ Current games collection: {1}</value>
   <data name="RunningFoldersManager" xml:space="preserve">
     <value>Running folders manager...</value>
   </data>
+  <data name="consoleTypeSnesEur" xml:space="preserve">
+    <value>Super NES (Europe)</value>
+  </data>
+  <data name="consoleTypeSnesUsa" xml:space="preserve">
+    <value>Super NES (USA)</value>
+  </data>
 </root>

@@ -529,6 +529,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Super NES (Europe).
+        /// </summary>
+        internal static string consoleTypeSnesEur {
+            get {
+                return ResourceManager.GetString("consoleTypeSnesEur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Super NES (USA).
+        /// </summary>
+        internal static string consoleTypeSnesUsa {
+            get {
+                return ResourceManager.GetString("consoleTypeSnesUsa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Super Famicom (Japan).
         /// </summary>
         internal static string consoleTypeSuperFamicom {
@@ -1539,7 +1557,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to c2163a8-dirty
+        ///   Looks up a localized string similar to 78b70bf-dirty
         ///.
         /// </summary>
         internal static string gitCommit {

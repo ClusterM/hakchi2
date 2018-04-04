@@ -16,20 +16,10 @@ namespace com.clusterrr.hakchi_gui
         public UploadGamesDialog()
         {
             InitializeComponent();
-            if (ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SNES && ConfigIni.Instance.SeparateGameStorage)
+            if (ConfigIni.Instance.SeparateGameStorage)
             {
                 radioEUR.Enabled = true;
                 radioUSA.Enabled = true;
-                switch (ConfigIni.Instance.SyncRegion)
-                {
-                    case "EUR":
-                        radioEUR.Checked = true;
-                        break;
-
-                    case "USA":
-                        radioUSA.Checked = true;
-                        break;
-                }
             }
             labelSelectedGamesCollection.Text += MainForm.GetConsoleTypeName(ConfigIni.Instance.ConsoleType);
             checkLinked.Checked = ConfigIni.Instance.SyncLinked;
@@ -40,16 +30,6 @@ namespace com.clusterrr.hakchi_gui
         {
             if (ConfigIni.Instance.SeparateGameStorage)
             {
-                if (ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SNES)
-                {
-                    if (radioEUR.Checked) ConfigIni.Instance.SyncRegion = "EUR";
-                    if (radioUSA.Checked) ConfigIni.Instance.SyncRegion = "USA";
-                    if (radioEUR.Checked == false && radioUSA.Checked == false)
-                    {
-                        Tasks.MessageForm.Show(Resources.ExportGames, Resources.SelectRegion, Resources.sign_error);
-                        return;
-                    }
-                }
             }
             ConfigIni.Instance.SyncLinked = checkLinked.Checked;
             DialogResult = DialogResult.OK;

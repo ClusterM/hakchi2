@@ -142,13 +142,14 @@ namespace com.clusterrr.hakchi_gui
                 switch (ConfigIni.Instance.ConsoleType)
                 {
                     default:
-                    case MainForm.ConsoleType.NES:
+                    case hakchi.ConsoleType.NES:
                         return defaultNesGames;
-                    case MainForm.ConsoleType.Famicom:
+                    case hakchi.ConsoleType.Famicom:
                         return defaultFamicomGames;
-                    case MainForm.ConsoleType.SNES:
+                    case hakchi.ConsoleType.SNES_EUR:
+                    case hakchi.ConsoleType.SNES_USA:
                         return defaultSnesGames;
-                    case MainForm.ConsoleType.SuperFamicom:
+                    case hakchi.ConsoleType.SuperFamicom:
                         return defaultSuperFamicomGames;
                 }
             }
@@ -167,11 +168,12 @@ namespace com.clusterrr.hakchi_gui
                 switch (ConfigIni.Instance.ConsoleType)
                 {
                     default:
-                    case MainForm.ConsoleType.NES:
-                    case MainForm.ConsoleType.Famicom:
+                    case hakchi.ConsoleType.NES:
+                    case hakchi.ConsoleType.Famicom:
                         return Path.Combine(Program.BaseDirectoryExternal, "games");
-                    case MainForm.ConsoleType.SNES:
-                    case MainForm.ConsoleType.SuperFamicom:
+                    case hakchi.ConsoleType.SNES_EUR:
+                    case hakchi.ConsoleType.SNES_USA:
+                    case hakchi.ConsoleType.SuperFamicom:
                         return Path.Combine(Program.BaseDirectoryExternal, "games_snes");
                 }
             }
@@ -649,7 +651,10 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // save .desktop file
-            bool snesExtraFields = IsOriginalGame && (ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SNES || ConfigIni.Instance.ConsoleType == MainForm.ConsoleType.SuperFamicom);
+            bool snesExtraFields = IsOriginalGame && (
+                ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.SNES_EUR ||
+                ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.SNES_USA ||
+                ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.SuperFamicom);
             desktop.Save($"{basePath}/{desktop.Code}.desktop", snesExtraFields);
 
             // game genie stuff
@@ -1270,7 +1275,7 @@ namespace com.clusterrr.hakchi_gui
             string targetDir = $"{relativeTargetPath}/{desktop.Code}";
             string targetStorageDir = $".storage/{desktop.Code}";
 
-            string mediaGamePath = hakchi.GetRemoteGameSyncPath(ConfigIni.Instance.ConsoleType, ConfigIni.Instance.SyncRegion) + "/.storage";
+            string mediaGamePath = hakchi.GetRemoteGameSyncPath(ConfigIni.Instance.ConsoleType) + "/.storage";
             string iconPath = mediaGamePath;
             if (IsOriginalGame)
             {

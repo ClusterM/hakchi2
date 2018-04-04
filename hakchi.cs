@@ -23,12 +23,22 @@ namespace com.clusterrr.hakchi_gui
         public const string PASSWORD = "";
         public const long BLOCK_SIZE = 4096;
 
+        public enum ConsoleType
+        {
+            NES = 0,
+            Famicom = 1,
+            SNES_EUR = 2,
+            SNES_USA = 3,
+            SuperFamicom = 4,
+            Unknown = 255
+        }
+
         public static ISystemShell Shell { get; private set; }
         public static bool Connected { get; private set; }
         public static event OnConnectedEventHandler OnConnected = delegate { };
         public static event OnDisconnectedEventHandler OnDisconnected = delegate { };
 
-        public static MainForm.ConsoleType? DetectedConsoleType { get; private set; }
+        public static ConsoleType? DetectedConsoleType { get; private set; }
         public static bool CustomFirmwareLoaded { get; private set; }
         public static string BootVersion { get; private set; }
         public static string KernelVersion { get; private set; }
@@ -41,7 +51,6 @@ namespace com.clusterrr.hakchi_gui
         public static string RemoteGameSyncPath { get; private set; }
         public static string SystemCode { get; private set; }
         public static string MediaPath { get; private set; }
-        public static string FixedGamesPath { get; private set; }
         public static string GamesPath { get; private set; }
         public static string RootFsPath { get; private set; }
         public static string GamesProfilePath { get; private set; }
@@ -53,17 +62,18 @@ namespace com.clusterrr.hakchi_gui
                 switch (ConfigIni.Instance.ConsoleType)
                 {
                     default:
-                    case MainForm.ConsoleType.NES:
-                    case MainForm.ConsoleType.Famicom:
+                    case ConsoleType.NES:
+                    case ConsoleType.Famicom:
                         return "/usr/share/games/nes/kachikachi";
-                    case MainForm.ConsoleType.SNES:
-                    case MainForm.ConsoleType.SuperFamicom:
+                    case ConsoleType.SNES_USA:
+                    case ConsoleType.SNES_EUR:
+                    case ConsoleType.SuperFamicom:
                         return "/usr/share/games";
                 }
             }
         }
 
-        public static string GetRemoteGameSyncPath(MainForm.ConsoleType consoleType, string region = null)
+        public static string GetRemoteGameSyncPath(ConsoleType consoleType)
         {
             if (RemoteGameSyncPath == null)
                 throw new NullReferenceException("No valid sync path is available");
@@ -75,26 +85,19 @@ namespace com.clusterrr.hakchi_gui
                 {
                     default:
                         throw new ArgumentException("No valid console type was given");
-                    case MainForm.ConsoleType.NES:
+                    case ConsoleType.NES:
                         systemCode = "nes-usa";
                         break;
-                    case MainForm.ConsoleType.Famicom:
+                    case ConsoleType.Famicom:
                         systemCode = "nes-jpn";
                         break;
-                    case MainForm.ConsoleType.SNES:
-                        switch (region.ToLower())
-                        {
-                            case "eur":
-                                systemCode = "snes-eur";
-                                break;
-                            case "usa":
-                                systemCode = "snes-usa";
-                                break;
-                            default:
-                                throw new ArgumentNullException("Region code is null and selected consoleType is SNES");
-                        }
+                    case ConsoleType.SNES_USA:
+                        systemCode = "snes-usa";
                         break;
-                    case MainForm.ConsoleType.SuperFamicom:
+                    case ConsoleType.SNES_EUR:
+                        systemCode = "snes-eur";
+                        break;
+                    case ConsoleType.SuperFamicom:
                         systemCode = "snes-jpn";
                         break;
                 }
@@ -165,8 +168,7 @@ namespace com.clusterrr.hakchi_gui
             RemoteGameSyncPath = "/var/lib/hakchi/games";
             SystemCode = null;
             MediaPath = "/media";
-            FixedGamesPath = "/var/games";
-            GamesPath = "/usr/share/games";
+            GamesPath = "/var/games";
             RootFsPath = "/var/lib/hakchi/rootfs";
             GamesProfilePath = "/var/saves";
             SquashFsPath = "/var/squashfs";
@@ -247,7 +249,7 @@ namespace com.clusterrr.hakchi_gui
                 string board = Shell.ExecuteSimple("cat /etc/clover/boardtype", 3000, true);
                 string region = Shell.ExecuteSimple("cat /etc/clover/REGION", 3000, true);
                 DetectedConsoleType = translateConsoleType(board, region);
-                if (DetectedConsoleType == MainForm.ConsoleType.Unknown)
+                if (DetectedConsoleType == ConsoleType.Unknown)
                 {
                     throw new IOException("Unable to determine mounted firmware");
                 }
@@ -270,7 +272,7 @@ namespace com.clusterrr.hakchi_gui
                 // detect basic paths
                 RemoteGameSyncPath = Shell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
                 SystemCode = Shell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
-                GamesPath = Shell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
+                //GamesPath = Shell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
                 RootFsPath = Shell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
                 SquashFsPath = Shell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
 
@@ -291,7 +293,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private static MainForm.ConsoleType translateConsoleType(string board, string region)
+        private static ConsoleType translateConsoleType(string board, string region)
         {
             switch (board)
             {
@@ -301,23 +303,24 @@ namespace com.clusterrr.hakchi_gui
                     switch (region)
                     {
                         case "EUR_USA":
-                            return MainForm.ConsoleType.NES;
+                            return ConsoleType.NES;
                         case "JPN":
-                            return MainForm.ConsoleType.Famicom;
+                            return ConsoleType.Famicom;
                     }
                     break;
                 case "dp-shvc":
                     switch (region)
                     {
                         case "USA":
+                            return ConsoleType.SNES_USA;
                         case "EUR":
-                            return MainForm.ConsoleType.SNES;
+                            return ConsoleType.SNES_EUR;
                         case "JPN":
-                            return MainForm.ConsoleType.SuperFamicom;
+                            return ConsoleType.SuperFamicom;
                     }
                     break;
             }
-            return MainForm.ConsoleType.Unknown;
+            return ConsoleType.Unknown;
         }
 
         public static bool SystemRequiresReflash()
