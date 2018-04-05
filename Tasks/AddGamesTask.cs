@@ -147,12 +147,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     }
                     app = NesApplication.Import(fileName, sourceFileName, rawData);
 
-                    var lGameGeniePath = Path.Combine(Path.GetDirectoryName(fileName), Path.GetFileNameWithoutExtension(fileName) + ".xml");
-                    if (File.Exists(lGameGeniePath))
+                    if (app is ISupportsGameGenie && Path.GetExtension(fileName).ToLower() == ".nes")
                     {
-                        GameGenieDataBase lGameGenieDataBase = new GameGenieDataBase(app);
-                        lGameGenieDataBase.ImportCodes(lGameGeniePath, true);
-                        lGameGenieDataBase.Save();
+                        var lGameGeniePath = Path.Combine(Path.GetDirectoryName(fileName), Path.GetFileNameWithoutExtension(fileName) + ".xml");
+                        if (File.Exists(lGameGeniePath))
+                        {
+                            GameGenieDataBase lGameGenieDataBase = new GameGenieDataBase(app);
+                            lGameGenieDataBase.ImportCodes(lGameGeniePath, true);
+                            lGameGenieDataBase.Save();
+                        }
                     }
 
                     if (!string.IsNullOrEmpty(tmp) && Directory.Exists(tmp)) Directory.Delete(tmp, true);

@@ -42,6 +42,7 @@ namespace com.clusterrr.hakchi_gui
                 return true;
             }
             crc32 = nesFile.CRC32;
+
             // Also search for patch using internal CRC32
             if (!patched)
             {
@@ -50,7 +51,7 @@ namespace com.clusterrr.hakchi_gui
             }
             nesFile.CorrectRom();
 
-            if (ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.NES || ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.Famicom)
+            if (hakchi.IsNes(ConfigIni.Instance.ConsoleType))
             {
                 application = "/bin/clover-kachikachi-wr";
                 args = DefaultArgs;
@@ -64,8 +65,7 @@ namespace com.clusterrr.hakchi_gui
             //if (nesFile.Mapper == 88) nesFile.Mapper = 4; // Compatible with MMC3... sometimes
             //if (nesFile.Mapper == 95) nesFile.Mapper = 4; // Compatible with MMC3
             //if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
-            if (!supportedMappers.Contains(nesFile.Mapper) && 
-                (ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.NES || ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.Famicom)
+            if (!supportedMappers.Contains(nesFile.Mapper) &&  (hakchi.IsNes(ConfigIni.Instance.ConsoleType))
                 && (IgnoreMapper != true))
             {
                 if (IgnoreMapper != false)
@@ -79,16 +79,6 @@ namespace com.clusterrr.hakchi_gui
                         IgnoreMapper = true;
                     if (result == Tasks.MessageForm.Button.No)
                         return false;
-
-                    //var r = WorkerForm.MessageBoxFromThread(ParentForm,
-                    //    string.Format(Resources.MapperNotSupported, System.IO.Path.GetFileName(inputFileName), nesFile.Mapper),
-                    //        Resources.AreYouSure,
-                    //        MessageBoxButtons.AbortRetryIgnore,
-                    //        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
-                    //if (r == DialogResult.Abort)
-                    //    IgnoreMapper = true;
-                    //if (r == DialogResult.Ignore)
-                    //    return false;
                 }
                 else return false;
             }
@@ -105,16 +95,6 @@ namespace com.clusterrr.hakchi_gui
                     IgnoreMapper = true;
                 if (result == Tasks.MessageForm.Button.No)
                     return false;
-
-                //var r = WorkerForm.MessageBoxFromThread(ParentForm,
-                //    string.Format(Resources.FourScreenNotSupported, System.IO.Path.GetFileName(inputFileName)),
-                //        Resources.AreYouSure,
-                //        MessageBoxButtons.AbortRetryIgnore,
-                //        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, true);
-                //if (r == DialogResult.Abort)
-                //    IgnoreMapper = true;
-                //if (r == DialogResult.No)
-                //    return false;
             }
 
             // TODO: Make trainer check. I think that the NES Mini doesn't support it.

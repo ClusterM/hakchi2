@@ -177,7 +177,7 @@ namespace com.clusterrr.hakchi_gui
 
             // check if we can use sfrom tool
             bool convertedSuccessfully = false;
-            bool isSnesSystem = ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.SNES_EUR || ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.SNES_USA || ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.SuperFamicom;
+            bool isSnesSystem = hakchi.IsSnes(ConfigIni.Instance.ConsoleType);
 
             if (isSnesSystem && ConfigIni.Instance.UseSFROMTool && SfromToolWrapper.IsInstalled)
             {

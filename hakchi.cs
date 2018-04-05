@@ -23,15 +23,7 @@ namespace com.clusterrr.hakchi_gui
         public const string PASSWORD = "";
         public const long BLOCK_SIZE = 4096;
 
-        public enum ConsoleType
-        {
-            NES = 0,
-            Famicom = 1,
-            SNES_EUR = 2,
-            SNES_USA = 3,
-            SuperFamicom = 4,
-            Unknown = 255
-        }
+        public enum ConsoleType { NES = 0, Famicom = 1, SNES_EUR = 2, SNES_USA = 3, SuperFamicom = 4, Unknown = 255 }
 
         public static ISystemShell Shell { get; private set; }
         public static bool Connected { get; private set; }
@@ -71,6 +63,16 @@ namespace com.clusterrr.hakchi_gui
                         return "/usr/share/games";
                 }
             }
+        }
+
+        public static bool IsSnes(ConsoleType consoleType)
+        {
+            return (new ConsoleType[] { ConsoleType.SNES_EUR, ConsoleType.SNES_USA, ConsoleType.SuperFamicom }).Contains(consoleType);
+        }
+
+        public static bool IsNes(ConsoleType consoleType)
+        {
+            return (new ConsoleType[] { ConsoleType.Famicom, ConsoleType.NES }).Contains(consoleType);
         }
 
         public static string GetRemoteGameSyncPath(ConsoleType consoleType)
