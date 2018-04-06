@@ -1,22 +1,23 @@
 ﻿using com.clusterrr.hakchi_gui;
-using FluentFTP;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Net;
 using System.Text;
-using System.Text.RegularExpressions;
+using ArxOne.Ftp;
 
-namespace com.clusterrr.util
+namespace com.clusterrr.util.arxoneftp
 {
-    public class FtpWrapper : IDisposable
+    class FtpWrapper : IDisposable
     {
         const int transferChunkSize = 256 * 1024;
 
         public delegate void OnProgressDelegate(long Position, long Length, string filename);
         public delegate void OnFileInputErrorDelegate(string filename);
         public event OnProgressDelegate OnReadProgress = delegate { };
-        public event OnFileInputErrorDelegate OnFileInputError = delegate {};
+        public event OnFileInputErrorDelegate OnFileInputError = delegate { };
 
         public long Length
         {
@@ -28,7 +29,7 @@ namespace com.clusterrr.util
         string rootDirectory;
         string[] skipFiles;
         long totalSize;
-        FluentFTP.FtpClient ftp;
+        ArxOne.Ftp.FtpClient ftp;
 
         public FtpWrapper(IEnumerable<ApplicationFileInfo> localSet, string rootDirectory = null, string[] skipFiles = null)
         {
@@ -52,6 +53,16 @@ namespace com.clusterrr.util
             {
                 if (skipFiles != null && Array.IndexOf(skipFiles, Path.GetFileName(afi.FilePath)) != -1)
                     continue;
+
+                string targetDir = Path.GetDirectoryName(afi.FilePath).Replace("\\", "/");
+                string baseDir = ".";
+                foreach(var dir in targetDir.Split('/').Skip(1))
+                {
+                    baseDir += $"/{dir}";
+                    if (!directorySet.Contains(baseDir))
+                        directorySet.Add(baseDir);
+                }
+
                 directorySet.Add(Path.GetDirectoryName(afi.FilePath).Replace("\\", "/"));
                 totalSize += afi.FileSize;
             }
@@ -61,14 +72,8 @@ namespace com.clusterrr.util
         {
             try
             {
-#if !DEBUG
-                FluentFTP.FtpTrace.EnableTracing = false;
-#endif
-                ftp = new FluentFTP.FtpClient(host, port, username, password);
-                ftp.EnableThreadSafeDataConnections = false;
-                ftp.TransferChunkSize = transferChunkSize;
-                ftp.Connect();
-                return ftp.IsConnected;
+                ftp = new ArxOne.Ftp.FtpClient(new Uri($"ftp://{host}:{port}"), new NetworkCredential(username, password));
+                return true;
             }
             catch (Exception ex)
             {
@@ -79,15 +84,24 @@ namespace com.clusterrr.util
 
         public bool Upload(string rootRemoteDirectory = null)
         {
-            if (ftp == null || !ftp.IsConnected)
+            if (ftp == null)
                 return false;
-
-            if (!string.IsNullOrEmpty(rootRemoteDirectory))
-                ftp.SetWorkingDirectory(rootRemoteDirectory);
 
             foreach (var dir in this.directorySet)
             {
-                ftp.CreateDirectory(dir);
+                string uri = rootRemoteDirectory + "/" + dir.Substring(2);
+#if VERY_DEBUG
+                Debug.WriteLine("MKD: " + uri);
+#endif
+                try
+                {
+                    ftp.Mkd(uri);
+                }
+                catch (ArxOne.Ftp.Exceptions.FtpFileException ex)
+                {
+                    if (ex.Code != 550)
+                        Debug.WriteLine(ex.Message);
+                }
             }
 
             using (MemoryStream commandBuilder = new MemoryStream())
@@ -120,11 +134,21 @@ namespace com.clusterrr.util
                     }
                     if (inStream != null)
                     {
-                        ftp.Upload(inStream, afi.FilePath, FtpExists.NoCheck, false, new Progress<double>(p =>
+                        string uri = rootRemoteDirectory + "/" + afi.FilePath.Substring(2);
+                        using (Stream outStream = ftp.Stor(uri))
                         {
-                            if (p != -1)
-                                OnReadProgress(currentPosition + (long)(p * afi.FileSize / 100), totalSize, afi.FilePath);
-                        }));
+#if VERY_DEBUG
+                            Debug.WriteLine("STOR: " + uri);
+#endif
+                            byte[] buf = new byte[transferChunkSize];
+                            int read, totalRead = 0;
+                            while((read = inStream.Read(buf, 0, buf.Length)) > 0)
+                            {
+                                outStream.Write(buf, 0, read);
+                                totalRead += read;
+                                OnReadProgress(currentPosition + totalRead, totalSize, afi.FilePath);
+                            }
+                        }
                         if (owned)
                             inStream.Dispose();
 
@@ -139,7 +163,7 @@ namespace com.clusterrr.util
                     currentPosition += afi.FileSize;
                     OnReadProgress(currentPosition, totalSize, afi.FilePath);
                 }
-                
+
                 // adjust file modified times after the fact (ftpd doesn't seem to support setting dates)
                 try
                 {
@@ -157,10 +181,8 @@ namespace com.clusterrr.util
 
         public void Dispose()
         {
-            if(ftp != null)
+            if (ftp != null)
             {
-                if (ftp.IsConnected)
-                    ftp.Disconnect();
                 ftp.Dispose();
                 ftp = null;
             }

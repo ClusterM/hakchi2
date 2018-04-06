@@ -3,7 +3,6 @@ using com.clusterrr.hakchi_gui.Properties;
 using com.clusterrr.hakchi_gui.Tasks;
 using com.clusterrr.ssh;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -24,6 +23,22 @@ namespace com.clusterrr.hakchi_gui
         public const long BLOCK_SIZE = 4096;
 
         public enum ConsoleType { NES = 0, Famicom = 1, SNES_EUR = 2, SNES_USA = 3, SuperFamicom = 4, Unknown = 255 }
+        public static readonly Dictionary<ConsoleType, string> ConsoleTypeToSystemCode = new Dictionary<ConsoleType, string>()
+        {
+            { ConsoleType.NES, "nes-usa" },
+            { ConsoleType.Famicom, "nes-jpn" },
+            { ConsoleType.SNES_EUR, "snes-eur" },
+            { ConsoleType.SNES_USA, "snes-usa" },
+            { ConsoleType.SuperFamicom, "snes-jpn" }
+        };
+        public static readonly Dictionary<string, ConsoleType> SystemCodeToConsoleType = new Dictionary<string, ConsoleType>()
+        {
+            { "nes-usa", ConsoleType.NES },
+            { "nes-jpn", ConsoleType.Famicom  },
+            { "snes-eur", ConsoleType.SNES_EUR },
+            { "snes-usa", ConsoleType.SNES_USA },
+            { "snes-jpn", ConsoleType.SuperFamicom }
+        };
 
         public static ISystemShell Shell { get; private set; }
         public static bool Connected { get; private set; }
@@ -43,6 +58,7 @@ namespace com.clusterrr.hakchi_gui
         public static string RemoteGameSyncPath { get; private set; }
         public static string SystemCode { get; private set; }
         public static string MediaPath { get; private set; }
+        public static string OriginalGamesPath { get; private set; }
         public static string GamesPath { get; private set; }
         public static string RootFsPath { get; private set; }
         public static string GamesProfilePath { get; private set; }
@@ -75,46 +91,31 @@ namespace com.clusterrr.hakchi_gui
             return (new ConsoleType[] { ConsoleType.Famicom, ConsoleType.NES }).Contains(consoleType);
         }
 
-        public static string GetRemoteGameSyncPath(ConsoleType consoleType)
+        public static string GetDetectedRemoteGameSyncPath()
         {
             if (RemoteGameSyncPath == null)
-                throw new NullReferenceException("No valid sync path is available");
-
-            if (ConfigIni.Instance.SeparateGameStorage)
             {
-                string systemCode = string.Empty;
-                switch (consoleType)
-                {
-                    default:
-                        throw new ArgumentException("No valid console type was given");
-                    case ConsoleType.NES:
-                        systemCode = "nes-usa";
-                        break;
-                    case ConsoleType.Famicom:
-                        systemCode = "nes-jpn";
-                        break;
-                    case ConsoleType.SNES_USA:
-                        systemCode = "snes-usa";
-                        break;
-                    case ConsoleType.SNES_EUR:
-                        systemCode = "snes-eur";
-                        break;
-                    case ConsoleType.SuperFamicom:
-                        systemCode = "snes-jpn";
-                        break;
-                }
-                return $"{RemoteGameSyncPath}/{systemCode}";
+                throw new NullReferenceException("No valid sync path is available");
+            }
+            if (ConfigIni.Instance.SeparateGameStorage && SystemCode != null)
+            {
+                return $"{RemoteGameSyncPath}/{SystemCode}";
             }
             return RemoteGameSyncPath;
         }
 
-        public static string GetRemoteGameSyncPath()
+        public static string GetRemoteGameSyncPath(ConsoleType consoleType)
         {
             if (RemoteGameSyncPath == null)
-                throw new NullReferenceException("No valid sync path is available");
-            if (ConfigIni.Instance.SeparateGameStorage && SystemCode != null)
             {
-                return $"{RemoteGameSyncPath}/{SystemCode}";
+                throw new NullReferenceException("No valid sync path is available");
+            }
+
+            if (ConfigIni.Instance.SeparateGameStorage)
+            {
+                if (consoleType == ConsoleType.Unknown)
+                    throw new ArgumentException("No valid console type was given");
+                return RemoteGameSyncPath + "/" + ConsoleTypeToSystemCode[consoleType];
             }
             return RemoteGameSyncPath;
         }
@@ -170,6 +171,7 @@ namespace com.clusterrr.hakchi_gui
             RemoteGameSyncPath = "/var/lib/hakchi/games";
             SystemCode = null;
             MediaPath = "/media";
+            OriginalGamesPath = "/usr/share/games";
             GamesPath = "/var/games";
             RootFsPath = "/var/lib/hakchi/rootfs";
             GamesProfilePath = "/var/saves";
@@ -274,7 +276,7 @@ namespace com.clusterrr.hakchi_gui
                 // detect basic paths
                 RemoteGameSyncPath = Shell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
                 SystemCode = Shell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
-                //GamesPath = Shell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
+                OriginalGamesPath = Shell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
                 RootFsPath = Shell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
                 SquashFsPath = Shell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
 

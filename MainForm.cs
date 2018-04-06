@@ -15,7 +15,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using com.clusterrr.hakchi_gui.Tasks;
-using com.clusterrr.FelLib;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -232,9 +231,7 @@ namespace com.clusterrr.hakchi_gui
                             return;
                         }
                     }
-
                     Invoke(new Action(UpdateLocalCache));
-                    new Thread(RecalculateSelectedGamesThread).Start();
                 }
                 else
                 {
@@ -288,20 +285,31 @@ namespace com.clusterrr.hakchi_gui
                 shellToolStripMenuItem_Click(null, null);
                 openTelnetToolStripMenuItem.Enabled = false;
             }));
-            new Thread(RecalculateSelectedGamesThread).Start();
         }
 
+        static hakchi.ConsoleType? lastConnectedConsoleType = null;
         static hakchi.ConsoleType lastConsoleType = hakchi.ConsoleType.Unknown;
         public void SyncConsoleType()
         {
             // update window title
             SetWindowTitle();
 
+            // action when connecting a console
+            if (hakchi.DetectedConsoleType != lastConnectedConsoleType)
+            {
+                lastConnectedConsoleType = hakchi.DetectedConsoleType;
+            }
+            else if (hakchi.DetectedConsoleType != null)
+            {
+                MemoryStats.DebugDisplay();
+            }
+
             // skip if unchanged
             if (ConfigIni.Instance.ConsoleType == lastConsoleType)
+            {
+                new Thread(RecalculateSelectedGamesThread).Start();
                 return;
-
-            // update
+            }
             lastConsoleType = ConfigIni.Instance.ConsoleType;
 
             // select games collection
@@ -433,7 +441,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AddTask(task.LoadGames, 0);
                 Tasks.Tasker.Conclusion c = tasker.Start();
             }
-            RecalculateSelectedGames();
+            new Thread(RecalculateSelectedGamesThread).Start();
             ShowSelected();
         }
 
@@ -1062,7 +1070,7 @@ namespace com.clusterrr.hakchi_gui
                 var maxGamesSize = MemoryStats.DefaultMaxGamesSize * 1024 * 1024;
                 if (MemoryStats.StorageTotal > 0)
                 {
-                    maxGamesSize = (MemoryStats.StorageFree + MemoryStats.WrittenGamesSize) - MemoryStats.ReservedMemory * 1024 * 1024;
+                    maxGamesSize = MemoryStats.AvailableForGames();
                     toolStripStatusLabelSize.Text = string.Format("{0} / {1}", Shared.SizeSuffix(stats.Size), Shared.SizeSuffix(maxGamesSize));
                 }
                 else
@@ -1096,7 +1104,8 @@ namespace com.clusterrr.hakchi_gui
         private void reloadGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             listViewGames.BeginUpdate();
-            foreach (ListViewItem item in listViewGames.Items) item.Selected = false;
+            foreach (ListViewItem item in listViewGames.Items)
+                item.Selected = false;
             listViewGames.EndUpdate();
             SaveConfig();
             LoadGames();
@@ -1118,15 +1127,13 @@ namespace com.clusterrr.hakchi_gui
         private void buttonStart_Click(object sender, EventArgs e)
         {
             SaveConfig();
-            var stats = RecalculateSelectedGames();
-            if (stats.Count == 0)
+            if (listViewGames.CheckedItems.Count == 0)
             {
                 Tasks.MessageForm.Show(Resources.UploadGames, Resources.SelectAtLeast, Resources.sign_warning);
                 return;
             }
-            if (!hakchi.Connected)
+            if (RequirePatchedKernel() == DialogResult.No)
             {
-                Tasks.MessageForm.Show(Resources.UploadGames, Resources.PleaseConnectYourDevice, Resources.sign_warning);
                 return;
             }
             if (!ConfigIni.Instance.SeparateGameStorage && hakchi.DetectedConsoleType != ConfigIni.Instance.ConsoleType)
@@ -1139,8 +1146,11 @@ namespace com.clusterrr.hakchi_gui
                 return;
             }
             if (UploadGames())
+            {
+                new Thread(RecalculateSelectedGamesThread).Start();
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
+            }
         }
 
         private void buttonExport_Click(object sender, EventArgs e)
@@ -1303,7 +1313,6 @@ namespace com.clusterrr.hakchi_gui
                 if (tasker.Start() == Tasks.Tasker.Conclusion.Success)
                 {
                     // Schedule recalculation
-                    timerCalculateGames.Enabled = false;
                     timerCalculateGames.Enabled = true;
                 }
                 else
@@ -1598,11 +1607,16 @@ namespace com.clusterrr.hakchi_gui
                 var conclusion = tasker.Start();
                 if (conclusion == Tasks.Tasker.Conclusion.Success)
                 {
-                    AddDefaultsToSelectedGames(NesApplication.defaultNesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.NES));
-                    AddDefaultsToSelectedGames(NesApplication.defaultFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.Famicom));
-                    AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SNES_EUR));
-                    AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SNES_USA));
-                    AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SuperFamicom));
+                    if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.NES).Any())
+                        AddDefaultsToSelectedGames(NesApplication.defaultNesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.NES));
+                    if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.Famicom).Any())
+                        AddDefaultsToSelectedGames(NesApplication.defaultFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.Famicom));
+                    if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SNES_EUR).Any())
+                        AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SNES_EUR));
+                    if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SNES_USA).Any())
+                        AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SNES_USA));
+                    if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SuperFamicom).Any())
+                        AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SuperFamicom));
                 }
             }
             LoadGames();
@@ -1800,6 +1814,8 @@ namespace com.clusterrr.hakchi_gui
         private void separateGamesForMultibootToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Instance.SeparateGameStorage = separateGamesForMultibootToolStripMenuItem.Checked;
+            MemoryStats.DebugDisplay();
+            timerCalculateGames.Enabled = true;
         }
 
         private void disableHakchi2PopupsToolStripMenuItem_Click(object sender, EventArgs e)

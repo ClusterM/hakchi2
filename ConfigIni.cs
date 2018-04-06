@@ -346,6 +346,7 @@ namespace com.clusterrr.hakchi_gui
                     instance = new ConfigIni();
 
                     var configLines = File.ReadAllLines(fileName);
+                    List<string> list;
                     string section = "";
                     foreach (var line in configLines)
                     {
@@ -368,33 +369,41 @@ namespace com.clusterrr.hakchi_gui
                                     case "language":
                                         instance.Language = value;
                                         break;
+                                    case "selectedgames":
                                     case "selectedgamesnes":
                                         instance.gamesCollectionSettings[hakchi.ConsoleType.NES].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        if (instance.gamesCollectionSettings[hakchi.ConsoleType.Famicom].SelectedGames.Count == 0)
+                                            instance.gamesCollectionSettings[hakchi.ConsoleType.Famicom].SelectedGames = instance.gamesCollectionSettings[hakchi.ConsoleType.NES].SelectedGames.ToList();
                                         break;
                                     case "selectedgamesfamicom":
                                         instance.gamesCollectionSettings[hakchi.ConsoleType.Famicom].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "selectedgamessnes":
-                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_EUR].SelectedGames =
-                                            instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_USA].SelectedGames =
-                                            value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_EUR].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_USA].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        if (instance.gamesCollectionSettings[hakchi.ConsoleType.SuperFamicom].SelectedGames.Count == 0)
+                                            instance.gamesCollectionSettings[hakchi.ConsoleType.SuperFamicom].SelectedGames = instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_EUR].SelectedGames.ToList();
                                         break;
                                     case "selectedgamessuperfamicom":
                                         instance.gamesCollectionSettings[hakchi.ConsoleType.SuperFamicom].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
                                     case "hiddengames":
-                                        instance.gamesCollectionSettings[hakchi.ConsoleType.NES].OriginalGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        list = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.NES].OriginalGames = NesApplication.defaultNesGames.Select(game => game.Code).Where(code => !list.Contains(code)).ToList();
                                         break;
                                     case "hiddengamesfamicom":
-                                        instance.gamesCollectionSettings[hakchi.ConsoleType.Famicom].OriginalGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        list = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.Famicom].OriginalGames = NesApplication.defaultFamicomGames.Select(game => game.Code).Where(code => !list.Contains(code)).ToList();
                                         break;
                                     case "hiddengamessnes":
-                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_EUR].OriginalGames =
-                                            instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_USA].OriginalGames =
-                                            value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        list = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_EUR].OriginalGames = NesApplication.defaultSnesGames.Select(game => game.Code).Where(code => !list.Contains(code)).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_USA].OriginalGames = NesApplication.defaultSnesGames.Select(game => game.Code).Where(code => !list.Contains(code)).ToList();
                                         break;
                                     case "hiddengamessuperfamicom":
-                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SuperFamicom].OriginalGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        list = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SuperFamicom].OriginalGames =
+                                            NesApplication.defaultSuperFamicomGames.Select(game => game.Code).Where(code => !list.Contains(code)).ToList();
                                         break;
                                     case "originalgamesposition":
                                         instance.OriginalGamesPosition = (MainForm.OriginalGamesPosition)byte.Parse(value);
@@ -430,6 +439,8 @@ namespace com.clusterrr.hakchi_gui
                                         break;
                                     case "consoletype":
                                         instance.ConsoleType = (hakchi.ConsoleType)byte.Parse(value);
+                                        if (instance.ConsoleType == hakchi.ConsoleType.SNES_USA) // compensate for new 5th console type
+                                            instance.ConsoleType = hakchi.ConsoleType.SuperFamicom;
                                         break;
                                     case "extracommandlinearguments":
                                         instance.consoleSettings[0].ExtraCommandLineArguments[ExtraCmdLineTypes.Kachikachi] = value;
@@ -540,6 +551,10 @@ namespace com.clusterrr.hakchi_gui
                                 break;
                         }
                     }
+
+                    // cleanup
+                    instance.gamesCollectionSettings.ToList().ForEach(pair => pair.Value.SelectedGames.Remove("default"));
+
                     // success
                     return true;
                 }

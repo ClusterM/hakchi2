@@ -1,5 +1,6 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using com.clusterrr.util;
+using com.clusterrr.util.arxoneftp;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,7 +14,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
 {
     class SyncTask
     {
-        const long reservedMemory = 30 * 1024 * 1024;
         readonly string tempDirectory = Path.Combine(Path.GetTempPath(), "hakchi2");
 
         public NesMenuCollection Games
@@ -85,7 +85,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     tasker.PopState();
                     if (!result)
                         return false;
-                    this.uploadPath = hakchi.GetRemoteGameSyncPath(ConfigIni.Instance.ConsoleType);
+                    // this.uploadPath = hakchi.GetRemoteGameSyncPath(ConfigIni.Instance.ConsoleType);
                 }
                 return true;
             }
@@ -101,7 +101,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
             public long TransferSize = 0;
         }
 
-        private string uploadPath;
         private string exportDirectory;
         private bool exportLinked;
 
@@ -254,19 +253,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
             if (Games == null || Games.Count == 0)
                 throw new Exception("No games to upload");
 
-            // select option and region if applicable
-            this.uploadPath = "";
-            if (!ShowUploadDialog(tasker))
-            {
-                return Tasker.Conclusion.Abort;
-            }
-
-            // dev option to reduce nand wear when testing
-            if (ConfigIni.Instance.UploadToTmp)
-            {
-                this.uploadPath = "/tmp/uploadtest";
-            }
-
             // building folders
             tasker.SetStatus(Resources.BuildingMenu);
             if (ConfigIni.Instance.FoldersMode == NesMenuCollection.SplitStyle.Custom)
@@ -283,12 +269,21 @@ namespace com.clusterrr.hakchi_gui.Tasks
             try
             {
                 hakchi.ShowSplashScreen();
+                shell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
 
                 // clean up previous directories (separate game storage vs not)
-                if (!ConfigIni.Instance.UploadToTmp)
+                string uploadPath = "";
+                if (ConfigIni.Instance.UploadToTmp)
                 {
+                    uploadPath = "/tmp/upload-test";
+                }
+                else
+                {
+                    uploadPath = hakchi.GetRemoteGameSyncPath(ConfigIni.Instance.ConsoleType);
                     tasker.SetStatus(Resources.CleaningUp);
-                    shell.ExecuteSimple("find \"" + hakchi.RemoteGameSyncPath + "/\" -maxdepth 1 | grep -" + (ConfigIni.Instance.SeparateGameStorage ? "v" : "") + "Ee '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' | while read f; do rm -rf \"$f\"; done", 0, true);
+                    shell.ExecuteSimple("find \"" + hakchi.RemoteGameSyncPath + "/\" -maxdepth 1 | tail -n +2 " + 
+                        "| grep -" + (ConfigIni.Instance.SeparateGameStorage ? "v" : "") + "Ee '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' " + 
+                        "| while read f; do rm -rf \"$f\"; done", 0, true);
                 }
                 tasker.SetProgress(5, maxProgress);
 
@@ -308,34 +303,37 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 // calculating size constraints
                 tasker.SetStatus(Resources.CalculatingDiff);
                 MemoryStats.Refresh();
-                long maxGamesSize = (MemoryStats.StorageFree + MemoryStats.WrittenGamesSize) - reservedMemory;
-                if (stats.TotalSize > maxGamesSize)
+                if (stats.TotalSize > MemoryStats.AvailableForGames())
                 {
-                    throw new Exception(string.Format(Resources.MemoryFull, stats.TotalSize) + "\r\n" +
+                    throw new OutOfMemoryException(string.Format(Resources.MemoryFull, Shared.SizeSuffix(stats.TotalSize)) + "\r\n" +
                         string.Format(Resources.MemoryStats.Replace("|", "\r\n"),
-                        MemoryStats.StorageTotal / 1024 / 1024,
-                        maxGamesSize / 1024 / 1024,
-                        MemoryStats.SaveStatesSize / 1024 / 1024,
-                        (MemoryStats.StorageUsed - MemoryStats.WrittenGamesSize - MemoryStats.SaveStatesSize) / 1024 / 1024));
+                        MemoryStats.StorageTotal / 1024.0 / 1024.0,
+                        MemoryStats.AvailableForGames() / 1024.0 / 1024.0,
+                        MemoryStats.SaveStatesSize / 1024.0 / 1024.0,
+                        (MemoryStats.StorageUsed - MemoryStats.AllGamesSize - MemoryStats.SaveStatesSize) / 1024.0 / 1024.0));
                 }
 
                 // get the remote list of files, timestamps, and sizes
-                string gamesOnDevice = shell.ExecuteSimple($"mkdir -p \"{this.uploadPath}\"; cd \"{this.uploadPath}\"; find . -type f -exec sh -c \"stat \\\"{{}}\\\" -c \\\"%n %s %y\\\"\" \\;", 0, true);
+                string gamesOnDevice = shell.ExecuteSimple($"mkdir -p \"{uploadPath}\"; cd \"{uploadPath}\"; find . -type f -exec sh -c \"stat \\\"{{}}\\\" -c \\\"%n %s %y\\\"\" \\;", 0, true);
                 var remoteGameSet = ApplicationFileInfo.GetApplicationFileInfoFromConsoleOutput(gamesOnDevice);
 
                 // delete any remote files that aren't present locally
                 tasker.SetStatus(Resources.CleaningUp);
                 var remoteGamesToDelete = remoteGameSet.Except(localGameSet);
-                DeleteRemoteApplicationFiles(remoteGamesToDelete, this.uploadPath);
+                DeleteRemoteApplicationFiles(remoteGamesToDelete, uploadPath);
 
                 // only keep the local files that aren't matching on the mini
                 var localGamesToUpload = localGameSet.Except(remoteGameSet);
 
                 // now transfer whatever games are remaining
                 tasker.SetProgress(20, maxProgress, Tasker.State.Running, Resources.UploadingGames);
-                shell.ExecuteSimple("hakchi eval 'umount \"$gamepath\"'");
                 bool uploadSuccessful = false;
-                if (ConfigIni.Instance.ForceSSHTransfers || hakchi.Shell is clovershell.ClovershellConnection) // use tar stream when detecting clovershell
+                if (!localGamesToUpload.Any())
+                {
+                    Debug.WriteLine("No file to upload");
+                    uploadSuccessful = true;
+                }
+                else if (ConfigIni.Instance.ForceSSHTransfers || hakchi.Shell is clovershell.ClovershellConnection) // use tar stream when detecting clovershell
                 {
                     Debug.WriteLine("Uploading through tar file");
                     using (var gamesTar = new TarStream(localGamesToUpload, "."))
@@ -355,7 +353,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                     lastTime = DateTime.Now;
                                 }
                             };
-                            shell.Execute($"tar -xvC \"{this.uploadPath}\"", gamesTar, null, null, 0, true);
+                            shell.Execute($"tar -xvC \"{uploadPath}\"", gamesTar, null, null, 0, true);
                             Debug.WriteLine("Uploaded " + (int)(gamesTar.Length / 1024) + "kb in " + DateTime.Now.Subtract(startTime).TotalSeconds + " seconds");
 
                             tasker.SetState(Tasker.State.Finishing);
@@ -390,7 +388,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             };
                             if (ftp.Connect(hakchi.STATIC_IP, 21, hakchi.USERNAME, hakchi.PASSWORD))
                             {
-                                ftp.Upload(this.uploadPath);
+                                ftp.Upload(uploadPath);
                                 uploadSuccessful = true;
                                 Debug.WriteLine("Uploaded " + (int)(ftp.Length / 1024) + "kb in " + DateTime.Now.Subtract(startTime).TotalSeconds + " seconds");
                             }
@@ -400,16 +398,19 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 }
                 else
                 {
-                    Debug.WriteLine("Unknown shell detected, aborting transfer");
+                    Debug.WriteLine("Unknown shell detected, aborting");
                 }
 
                 // don't continue if upload wasn't successful
                 if (!uploadSuccessful)
+                {
+                    Debug.WriteLine("Something happened during transfer, cancelling");
                     return Tasker.Conclusion.Error;
+                }
 
                 // Finally, delete any empty directories we may have left during the differential sync
                 tasker.SetStatus(Resources.CleaningUp);
-                shell.ExecuteSimple($"for f in $(find \"{this.uploadPath}\" -type d -mindepth 1 -maxdepth 2); do {{ ls -1 \"$f\" | grep -v pixelart | grep -v autoplay " +
+                shell.ExecuteSimple($"for f in $(find \"{uploadPath}\" -type d -mindepth 1 -maxdepth 2); do {{ ls -1 \"$f\" | grep -v pixelart | grep -v autoplay " +
                     "| wc -l | { read wc; test $wc -eq 0 && rm -rf \"$f\"; } } ; done", 0);
                 tasker.SetProgress(125, maxProgress);
 
@@ -424,7 +425,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         case hakchi.ConsoleType.Famicom:
                             originalSyncCode =
                                 $"src=\"{hakchi.SquashFsPath}{hakchi.GamesPath}/{originalCode}\" && " +
-                                $"dst=\"{this.uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
+                                $"dst=\"{uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
                                 $"mkdir -p \"$dst\" && " +
                                 $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\") && " +
                                 $"([ -L \"$dst/pixelart\" ] || ln -s \"$src/pixelart\" \"$dst/\")";
@@ -434,7 +435,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         case hakchi.ConsoleType.SuperFamicom:
                             originalSyncCode =
                                 $"src=\"{hakchi.SquashFsPath}{hakchi.GamesPath}/{originalCode}\" && " +
-                                $"dst=\"{this.uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
+                                $"dst=\"{uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
                                 $"mkdir -p \"$dst\" && " +
                                 $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\")";
                             break;
@@ -451,7 +452,10 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 try
                 {
                     if (shell.IsOnline)
+                    {
                         shell.ExecuteSimple("hakchi overmount_games; uistart", 1000);
+                        MemoryStats.Refresh();
+                    }
                 }
                 catch { }
             }

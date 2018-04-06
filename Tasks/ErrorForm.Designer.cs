@@ -62,13 +62,14 @@
             // 
             // errorLabel
             // 
-            this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorLabel.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.errorLabel.Location = new System.Drawing.Point(114, 18);
+            this.errorLabel.Location = new System.Drawing.Point(114, 12);
             this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(458, 90);
+            this.errorLabel.Size = new System.Drawing.Size(458, 96);
             this.errorLabel.TabIndex = 5;
             this.errorLabel.Text = "Error message";
+            this.errorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // richTextBox1
             // 

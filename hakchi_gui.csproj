@@ -108,6 +108,9 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ArxOne.Ftp, Version=1.12.1.0, Culture=neutral, PublicKeyToken=da7223da01d9ab51, processorArchitecture=MSIL">
+      <HintPath>packages\ArxOne.Ftp.1.12.1\lib\net40-Client\ArxOne.Ftp.dll</HintPath>
+    </Reference>
     <Reference Include="AutoUpdater.NET, Version=1.4.7.0, Culture=neutral, PublicKeyToken=942f95247e354701, processorArchitecture=MSIL">
       <HintPath>packages\Autoupdater.NET.Official.1.4.7\lib\net452\AutoUpdater.NET.dll</HintPath>
     </Reference>
@@ -117,9 +120,6 @@
     <Reference Include="Costura, Version=1.6.2.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>packages\Costura.Fody.1.6.2\lib\dotnet\Costura.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="FluentFTP, Version=19.1.3.0, Culture=neutral, PublicKeyToken=f4af092b1d8df44f, processorArchitecture=MSIL">
-      <HintPath>packages\FluentFTP.19.1.3\lib\net45\FluentFTP.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -166,7 +166,8 @@
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\SystemCollection.cs" />
     <Compile Include="Apps\UnknownGame.cs" />
-    <Compile Include="Ftp\FtpWrapper.cs" />
+    <Compile Include="Ftp\ArxOneFtpWrapper.cs" />
+    <None Include="Ftp\FluentFtpWrapper.cs" />
     <Compile Include="hakchi.cs" />
     <Compile Include="INetworkShell.cs" />
     <Compile Include="ISystemShell.cs" />
@@ -245,13 +246,13 @@
     <None Include="folder_images\retropie_snes_classic.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="images\sign-check.png" />
-    <EmbeddedResource Include="images\sign-down.png" />
-    <EmbeddedResource Include="images\sign-error.png" />
-    <EmbeddedResource Include="images\sign-info.png" />
-    <EmbeddedResource Include="images\sign-question.png" />
-    <EmbeddedResource Include="images\sign-up.png" />
-    <EmbeddedResource Include="images\sign-warning.png" />
+    <None Include="images\sign-check.png" />
+    <None Include="images\sign-down.png" />
+    <None Include="images\sign-error.png" />
+    <None Include="images\sign-info.png" />
+    <None Include="images\sign-question.png" />
+    <None Include="images\sign-up.png" />
+    <None Include="images\sign-warning.png" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -1372,15 +1373,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="images\noboxart.png" />
+    <Content Include="folder_images\console_famicom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icon_app.ico" />
     <Content Include="icon_window.ico" />
-    <Content Include="images\blank_dos.png" />
-    <Content Include="images\sign-brick.png" />
-    <Content Include="images\sign-cogs.png" />
-    <Content Include="images\sign-database.png" />
-    <Content Include="images\sign-file-picture.png" />
-    <Content Include="images\sign-keyring.png" />
-    <EmbeddedResource Include="images\sign-trashcan.png" />
+    <None Include="images\blank_dos.png" />
+    <None Include="images\sign-brick.png" />
+    <None Include="images\sign-cogs.png" />
+    <None Include="images\sign-database.png" />
+    <None Include="images\sign-file-picture.png" />
+    <None Include="images\sign-keyring.png" />
+    <None Include="images\sign-trashcan.png" />
     <Content Include="readmeTemplate.css" />
     <Content Include="readmeTemplate.html" />
     <Content Include="retroarch-whitelist.txt" />
@@ -1388,18 +1392,18 @@
     <None Include="sfrom_tool\README.TXT">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="tools\arm\kexec.static">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\arm\unpackbootimg.static">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="tools\arm\mke2fs.static">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Include="tools\arm\kexec.static">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="tools\rsyncpass">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="tools\arm\unpackbootimg.static">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="tools\arm\mke2fs.static">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="tools\rsyncpass">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="patches\1c3848c0-Illusion of Gaia %28U%29 [!].ips">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -2690,108 +2694,108 @@
     <None Include="patches\974523ff-Terranigma %28Europe, France, Germany, Spain%29.ips">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="data\desktop_entries\CLV-P-HAAAJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HAACJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HAADJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HAAEJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HAAHJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HAAMJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HAANJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HAAPJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HAAQJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HAARJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HAASJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HAAUJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HAAWJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HAAXJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HABBJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HABCJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HABLJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HABMJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HABNJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HABQJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HABRJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HABVJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HACAJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HACBJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HACCJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HACEJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HACHJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HACJJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HACLJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-HACPJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAAAE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAACE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAADE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAAEE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAAFE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAAHE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAANE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAAPE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAAQE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAARE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAASE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAATE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAAUE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAAVE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAAWE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAAXE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NAAZE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NABBE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NABCE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NABJE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NABKE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NABME.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NABNE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NABQE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NABRE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NABVE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NABXE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NACBE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NACDE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-NACHE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SAAAE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SAABE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SAAEE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SAAFE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SAAHE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SAAJE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SAAKE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SAALE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SAAQE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SAAXE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SABCE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SABDE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SABHE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SABQE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SABRE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SABTE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SACBE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SACCE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SADGE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SADJE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-SADKE.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VAAAJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VAABJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VAAEJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VAAFJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VAAGJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VAAHJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VAALJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VAAQJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VABBJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VABCJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VABDJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VABQJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VABRJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VABTJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VACCJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VACDJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VADFJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VADGJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VADJJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VADKJ.desktop" />
-    <Content Include="data\desktop_entries\CLV-P-VADZJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HAAAJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HAACJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HAADJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HAAEJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HAAHJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HAAMJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HAANJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HAAPJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HAAQJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HAARJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HAASJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HAAUJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HAAWJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HAAXJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HABBJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HABCJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HABLJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HABMJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HABNJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HABQJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HABRJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HABVJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HACAJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HACBJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HACCJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HACEJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HACHJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HACJJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HACLJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-HACPJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAAAE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAACE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAADE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAAEE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAAFE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAAHE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAANE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAAPE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAAQE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAARE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAASE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAATE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAAUE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAAVE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAAWE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAAXE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NAAZE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NABBE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NABCE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NABJE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NABKE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NABME.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NABNE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NABQE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NABRE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NABVE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NABXE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NACBE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NACDE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-NACHE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SAAAE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SAABE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SAAEE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SAAFE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SAAHE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SAAJE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SAAKE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SAALE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SAAQE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SAAXE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SABCE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SABDE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SABHE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SABQE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SABRE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SABTE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SACBE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SACCE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SADGE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SADJE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-SADKE.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VAAAJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VAABJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VAAEJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VAAFJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VAAGJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VAAHJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VAALJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VAAQJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VABBJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VABCJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VABDJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VABQJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VABRJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VABTJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VACCJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VACDJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VADFJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VADGJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VADJJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VADKJ.desktop" />
+    <None Include="data\desktop_entries\CLV-P-VADZJ.desktop" />
     <None Include="app.config" />
     <None Include="data\desktop_entries.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2961,22 +2965,22 @@
     <EmbeddedResource Include="images\app_sm_tr.png" />
     <EmbeddedResource Include="images\arcade_sm.png" />
     <EmbeddedResource Include="images\arcade_sm_tr.png" />
-    <EmbeddedResource Include="images\blank_2600.png" />
-    <EmbeddedResource Include="images\blank_32x.png" />
-    <EmbeddedResource Include="images\blank_app.png" />
-    <EmbeddedResource Include="images\blank_arcade.png" />
-    <EmbeddedResource Include="images\blank_gb.png" />
-    <EmbeddedResource Include="images\blank_gba.png" />
-    <EmbeddedResource Include="images\blank_gbc.png" />
-    <EmbeddedResource Include="images\blank_genesis.png" />
-    <EmbeddedResource Include="images\blank_gg.png" />
-    <EmbeddedResource Include="images\blank_n64.png" />
-    <EmbeddedResource Include="images\blank_neogeo.png" />
-    <EmbeddedResource Include="images\blank_nes.png" />
-    <EmbeddedResource Include="images\blank_pce.png" />
-    <EmbeddedResource Include="images\blank_sms.png" />
-    <EmbeddedResource Include="images\blank_snes-eu-jp.png" />
-    <EmbeddedResource Include="images\blank_snes-us.png" />
+    <None Include="images\blank_2600.png" />
+    <None Include="images\blank_32x.png" />
+    <None Include="images\blank_app.png" />
+    <None Include="images\blank_arcade.png" />
+    <None Include="images\blank_gb.png" />
+    <None Include="images\blank_gba.png" />
+    <None Include="images\blank_gbc.png" />
+    <None Include="images\blank_genesis.png" />
+    <None Include="images\blank_gg.png" />
+    <None Include="images\blank_n64.png" />
+    <None Include="images\blank_neogeo.png" />
+    <None Include="images\blank_nes.png" />
+    <None Include="images\blank_pce.png" />
+    <None Include="images\blank_sms.png" />
+    <None Include="images\blank_snes-eu-jp.png" />
+    <None Include="images\blank_snes-us.png" />
     <EmbeddedResource Include="images\gba_sm.png" />
     <EmbeddedResource Include="images\gba_sm_tr.png" />
     <EmbeddedResource Include="images\gbc_sm.png" />
@@ -3017,8 +3021,8 @@
     <None Include="folder_images\folder_back.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="images\blank_fds.png" />
-    <EmbeddedResource Include="images\blank_jp.png" />
+    <None Include="images\blank_fds.png" />
+    <None Include="images\blank_jp.png" />
     <EmbeddedResource Include="images\nes_sm.png" />
     <EmbeddedResource Include="images\folder_sm.png" />
     <EmbeddedResource Include="images\gamepad.png" />
@@ -3026,12 +3030,12 @@
     <None Include="patches\README.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="tools\7z.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\7z64.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="tools\7z.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="tools\7z64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="SevenZip\gpl.txt" />
     <Content Include="SevenZip\lgpl.txt" />
   </ItemGroup>

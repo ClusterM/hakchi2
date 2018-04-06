@@ -391,7 +391,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 Debug.WriteLine("Thread aborted");
                 if (TaskConclusion == Conclusion.Undefined)
+                {
                     TaskConclusion = Conclusion.Abort;
+                }
             }
             catch (Exception ex)
             {
@@ -403,6 +405,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     ShowError(ex);
                 }
+                TaskConclusion = Conclusion.Error;
             }
             finally
             {
