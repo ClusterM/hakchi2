@@ -93,7 +93,7 @@ namespace com.clusterrr.hakchi_gui
                 },
 
                 new Action() {
-                    startingVersion = new Version("3.1.0.0"),
+                    startingVersion = new Version("3.0.0.0"),
                     targetVersion = new Version("3.1.0.5"),
                     action = new ActionFunc(() => {
                         string f = Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir, "folders_snes.xml");
