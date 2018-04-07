@@ -1527,7 +1527,10 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_keyring);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
-                tasker.Start();
+                if (tasker.Start() == Tasker.Conclusion.Success)
+                {
+                    Tasks.MessageForm.Show(Resources.Wow, Resources.RecoveryModeMessage, Resources.sign_check);
+                }
             }
         }
 
