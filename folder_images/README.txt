@@ -1,1 +1,1 @@
-Copy your folder icons set here in PNG format, up to 204x204.
+Copy your folder icons set here in PNG format, up to 204x204. It is best to create a subfolder in order to create a "folder images set" in hakchi2's interface, accessible under the "Structure" button -> "Folder images set" menu item! All files included in the set will override default images. Those will not get overwritten on update.
