@@ -1094,4 +1094,7 @@ Current games collection: {1}</value>
   <data name="consoleTypeSnesUsa" xml:space="preserve">
     <value>Super NES (USA)</value>
   </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
 </root>

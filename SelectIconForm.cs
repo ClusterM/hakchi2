@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -8,15 +10,63 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class SelectIconForm : Form
     {
+        public class IconItem
+        {
+            public string Path { get; private set; }
+            public string Name { get; private set; }
+            public IconItem(string path, string name)
+            {
+                Path = path;
+                Name = name;
+            }
+            public override string ToString()
+            {
+                return Name;
+            }
+            public override bool Equals(object obj)
+            {
+                IconItem item = obj as IconItem;
+                if (item == null)
+                    return false;
+                return Name.Equals(item.Name);
+            }
+            public override int GetHashCode()
+            {
+                return Name.GetHashCode();
+            }
+        }
+
         public SelectIconForm(string selected = null)
         {
             InitializeComponent();
             listBox.Items.Clear();
-            var files = Directory.GetFiles(
-                NesMenuFolder.FolderImagesDirectory, "*.png", SearchOption.TopDirectoryOnly).Where(
-                file => !file.ToLower().EndsWith("_small.png"));
-            listBox.Items.AddRange((from f in files select Path.GetFileNameWithoutExtension(f)).ToArray());
 
+            HashSet<IconItem> defaultImageSet = new HashSet<IconItem>();
+            foreach (var file in Directory.EnumerateFiles(NesMenuFolder.FolderImagesDirectory, "*.png", SearchOption.TopDirectoryOnly))
+            {
+                if (file.ToLower().EndsWith("_small.png"))
+                    continue;
+                defaultImageSet.Add(new IconItem(file, Path.GetFileNameWithoutExtension(file)));
+            }
+
+            HashSet<IconItem> imageSet = new HashSet<IconItem>();
+            if (!string.IsNullOrEmpty(ConfigIni.Instance.FolderImagesSet))
+            {
+                string path = Path.Combine(NesMenuFolder.FolderImagesDirectory, ConfigIni.Instance.FolderImagesSet);
+                if (Directory.Exists(path))
+                {
+                    foreach (var file in Directory.EnumerateFiles(path, "*.png", SearchOption.TopDirectoryOnly))
+                    {
+                        if (file.ToLower().EndsWith("_small.png"))
+                            continue;
+                        imageSet.Add(new IconItem(file, Path.GetFileNameWithoutExtension(file)));
+                    }
+                }
+            }
+            imageSet.UnionWith(defaultImageSet);
+
+            listBox.Items.AddRange(imageSet.ToArray());
+            listBox.Sorted = true;
             if (selected != null)
                 for (int i = 0; i < listBox.Items.Count; i++)
                     if (listBox.Items[i].ToString() == selected)
@@ -31,7 +81,7 @@ namespace com.clusterrr.hakchi_gui
             if (listBox.SelectedItems.Count > 0)
             {
                 buttonOk.Enabled = true;
-                pictureBoxArt.Image = Image.FromFile(Path.Combine(NesMenuFolder.FolderImagesDirectory, listBox.SelectedItems[0] + ".png"));
+                pictureBoxArt.Image = Image.FromFile((listBox.SelectedItem as IconItem).Path);
                 pictureBoxArt.SizeMode = (pictureBoxArt.Image.Width > 204 || pictureBoxArt.Image.Height > 204) ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.CenterImage;
             }
             else

@@ -647,6 +647,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        internal static string Default {
+            get {
+                return ResourceManager.GetString("Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Original games.
         /// </summary>
         internal static string Default30games {
@@ -1557,7 +1566,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 78b70bf-dirty
+        ///   Looks up a localized string similar to ce591ff-dirty
         ///.
         /// </summary>
         internal static string gitCommit {

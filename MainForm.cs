@@ -402,6 +402,7 @@ namespace com.clusterrr.hakchi_gui
             }
 
             LoadPresets();
+            LoadFolderImageSets();
             LoadGames();
         }
 
@@ -628,6 +629,38 @@ namespace com.clusterrr.hakchi_gui
             }
             if (!found)
                 english.Checked = true;
+        }
+
+        private void LoadFolderImageSets()
+        {
+            folderImagesSetToolStripMenuItem.DropDownItems.Clear();
+            var newItem = new ToolStripMenuItem(Resources.Default, null, delegate (object sender, EventArgs e)
+            {
+                ConfigIni.Instance.FolderImagesSet = string.Empty;
+
+                folderImagesSetToolStripMenuItem.DropDownItems.OfType<ToolStripMenuItem>().ToList().ForEach(item => item.Checked = false);
+                (sender as ToolStripMenuItem).Checked = true;
+            });
+            if (string.IsNullOrEmpty(ConfigIni.Instance.FolderImagesSet))
+                newItem.Checked = true;
+            folderImagesSetToolStripMenuItem.DropDownItems.Add(newItem);
+            folderImagesSetToolStripMenuItem.DropDownItems.Add(new ToolStripSeparator());
+
+            string imgPath = Path.Combine(Program.BaseDirectoryExternal, "folder_images");
+            foreach (var dir in Directory.GetDirectories(imgPath, "*.*", SearchOption.TopDirectoryOnly))
+            {
+                string name = Path.GetFileName(dir);
+                newItem = new ToolStripMenuItem(name, null, delegate (object sender, EventArgs e)
+                {
+                    ConfigIni.Instance.FolderImagesSet = name;
+
+                    folderImagesSetToolStripMenuItem.DropDownItems.OfType<ToolStripMenuItem>().ToList().ForEach(item => item.Checked = false);
+                    (sender as ToolStripMenuItem).Checked = true;
+                });
+                if (ConfigIni.Instance.FolderImagesSet == name)
+                    newItem.Checked = true;
+                folderImagesSetToolStripMenuItem.DropDownItems.Add(newItem);
+            }
         }
 
         private void SaveSelectedGames()
@@ -1708,6 +1741,7 @@ namespace com.clusterrr.hakchi_gui
             FtpServer.Stop();
             hakchi.Shutdown();
         }
+
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Process.GetCurrentProcess().Kill(); // Suicide! Just easy and dirty way to kill all threads.

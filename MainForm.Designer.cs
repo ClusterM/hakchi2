@@ -214,6 +214,7 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.maximumGamesPerFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
+            this.folderImagesSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -1455,6 +1456,7 @@
             this.foldersSplitByFirstLetterToolStripMenuItem,
             this.foldersSplitByFirstLetterOriginalToolStripMenuItem,
             this.toolStripMenuItem4,
+            this.folderImagesSetToolStripMenuItem,
             this.maximumGamesPerFolderToolStripMenuItem});
             this.foldersContextMenuStrip.Name = "foldersContextMenuStrip";
             resources.ApplyResources(this.foldersContextMenuStrip, "foldersContextMenuStrip");
@@ -1553,6 +1555,11 @@
             resources.ApplyResources(this.gamesConsoleComboBox, "gamesConsoleComboBox");
             this.gamesConsoleComboBox.Name = "gamesConsoleComboBox";
             this.gamesConsoleComboBox.SelectedIndexChanged += new System.EventHandler(this.gamesConsoleComboBox_SelectedIndexChanged);
+            // 
+            // folderImagesSetToolStripMenuItem
+            // 
+            resources.ApplyResources(this.folderImagesSetToolStripMenuItem, "folderImagesSetToolStripMenuItem");
+            this.folderImagesSetToolStripMenuItem.Name = "folderImagesSetToolStripMenuItem";
             // 
             // MainForm
             // 
@@ -1783,6 +1790,7 @@
         private System.Windows.Forms.ToolStripMenuItem repairGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem membootCustomKernelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uploadTotmpforTestingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem folderImagesSetToolStripMenuItem;
     }
 }
 

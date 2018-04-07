@@ -341,7 +341,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         Debug.WriteLine($"Upload size: " + Shared.SizeSuffix(gamesTar.Length));
                         if (gamesTar.Length > 0)
                         {
-                            DateTime startTime = DateTime.Now,
+                            DateTime
+                                startTime = DateTime.Now,
                                 lastTime = DateTime.Now;
                             bool done = false;
                             gamesTar.OnReadProgress += delegate (long pos, long len)
