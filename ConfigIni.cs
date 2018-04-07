@@ -254,7 +254,6 @@ namespace com.clusterrr.hakchi_gui
             if(instance != null)
             {
                 Debug.WriteLine("Saving configuration");
-                instance.LastVersion = Shared.AppVersion.ToString();
                 try
                 {
                     string configPath = Shared.PathCombine(Program.BaseDirectoryExternal, ConfigDir, ConfigFile);

@@ -1269,6 +1269,26 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap folder_sm {
+            get {
+                object obj = ResourceManager.GetObject("folder_sm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap folder_sm_tr {
+            get {
+                object obj = ResourceManager.GetObject("folder_sm_tr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap folder_t {
             get {
                 object obj = ResourceManager.GetObject("folder_t", resourceCulture);
@@ -1566,7 +1586,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ce591ff-dirty
+        ///   Looks up a localized string similar to 169e0d9
         ///.
         /// </summary>
         internal static string gitCommit {
@@ -2221,11 +2241,23 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /*!
-        /// * Bootstrap v3.3.7 (http://getbootstrap.com)
-        /// * Copyright 2011-2016 Twitter, Inc.
-        /// * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-        /// *//*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:b [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to /*! * Bootstrap v3.3.7 (http://getbootstrap.com) * Copyright 2011-2016 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE) */
+        ////*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+        ///html {
+        ///    font-family: sans-serif;
+        ///    -webkit-text-size-adjust: 100%;
+        ///    -ms-text-size-adjust: 100%
+        ///}
+        ///
+        ///body {
+        ///    margin: 0
+        ///}
+        ///
+        ///article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+        ///    display: block
+        ///}
+        ///
+        ///audio, canvas [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string readmeTemplateCSS {
             get {

@@ -104,7 +104,19 @@ namespace com.clusterrr.hakchi_gui
                             try
                             {
                                 if (!Directory.Exists(BaseDirectoryExternal))
+                                {
                                     BaseDirectoryExternal = Path.Combine(GetDocumentsLibraryPath(), "hakchi2");
+                                }
+
+                                // There are some folders which should be accessed by user
+                                // Moving them to "My documents"
+                                if (isFirstRun)
+                                {
+                                    var externalDirs = new string[]
+                                        { "art", "folder_images", "patches", "user_mods", "sfrom_tool" };
+                                    foreach (var dir in externalDirs)
+                                        Shared.DirectoryCopy(Path.Combine(BaseDirectoryInternal, dir), Path.Combine(BaseDirectoryExternal, dir), true, false, true, false);
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -114,7 +126,8 @@ namespace com.clusterrr.hakchi_gui
                         }
                         else
                             BaseDirectoryExternal = BaseDirectoryInternal;
-                        Debug.WriteLine("Base directory: " + BaseDirectoryExternal);
+
+                        Debug.WriteLine("Base directory: " + BaseDirectoryExternal + " (" + (isPortable ? "portable" : "non-portable") + " mode)");
                         ConfigIni.Load();
                         try
                         {
@@ -122,18 +135,6 @@ namespace com.clusterrr.hakchi_gui
                                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(ConfigIni.Instance.Language);
                         }
                         catch { }
-
-                        // There are some folders which should be accessed by user
-                        // Moving them to "My documents"
-                        if (!isPortable && isFirstRun)
-                        {
-                            var externalDirs = new string[]
-                            {
-                                "art", "folder_images", "patches", "user_mods", "sfrom_tool"
-                            };
-                            foreach (var dir in externalDirs)
-                                Shared.DirectoryCopy(Path.Combine(BaseDirectoryInternal, dir), Path.Combine(BaseDirectoryExternal, dir), true, false, true, false);
-                        }
 
                         string languagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "languages");
                         const string langFileNames = "hakchi.resources.dll";

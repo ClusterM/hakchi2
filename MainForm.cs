@@ -1708,7 +1708,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            try
+            try // wrap upgrade check in an exception check, to avoid past mistakes
             {
                 AutoUpdater.Start(UPDATE_XML_URL);
             }
@@ -1721,12 +1721,16 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            ConfigIni.Instance.RunCount++;
-            if (ConfigIni.Instance.RunCount == 1 || ConfigIni.Instance.LastVersion == "0.0.0.0")
+            // centralized upgrade actions system
+            new Upgrade(this).Run();
+
+            // welcome message, only run for new new users
+            if (ConfigIni.Instance.RunCount++ == 1)
             {
-                ResetOriginalGamesForAllSystems();
                 Tasks.MessageForm.Show(Resources.Hello, Resources.FirstRun);
             }
+
+            // nothing else will call this at the moment, so need to do it
             SyncConsoleType();
 
             // enable timers

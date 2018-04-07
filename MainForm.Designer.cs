@@ -212,9 +212,9 @@
             this.foldersSplitByFirstLetterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.foldersSplitByFirstLetterOriginalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.folderImagesSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maximumGamesPerFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
-            this.folderImagesSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -945,6 +945,7 @@
             // 
             // prepareArtDirectoryToolStripMenuItem
             // 
+            this.prepareArtDirectoryToolStripMenuItem.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.folder_sm;
             this.prepareArtDirectoryToolStripMenuItem.Name = "prepareArtDirectoryToolStripMenuItem";
             resources.ApplyResources(this.prepareArtDirectoryToolStripMenuItem, "prepareArtDirectoryToolStripMenuItem");
             this.prepareArtDirectoryToolStripMenuItem.Click += new System.EventHandler(this.prepareArtDirectoryToolStripMenuItem_Click);
@@ -1543,6 +1544,12 @@
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
             // 
+            // folderImagesSetToolStripMenuItem
+            // 
+            this.folderImagesSetToolStripMenuItem.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.folder_sm;
+            this.folderImagesSetToolStripMenuItem.Name = "folderImagesSetToolStripMenuItem";
+            resources.ApplyResources(this.folderImagesSetToolStripMenuItem, "folderImagesSetToolStripMenuItem");
+            // 
             // maximumGamesPerFolderToolStripMenuItem
             // 
             this.maximumGamesPerFolderToolStripMenuItem.Name = "maximumGamesPerFolderToolStripMenuItem";
@@ -1555,11 +1562,6 @@
             resources.ApplyResources(this.gamesConsoleComboBox, "gamesConsoleComboBox");
             this.gamesConsoleComboBox.Name = "gamesConsoleComboBox";
             this.gamesConsoleComboBox.SelectedIndexChanged += new System.EventHandler(this.gamesConsoleComboBox_SelectedIndexChanged);
-            // 
-            // folderImagesSetToolStripMenuItem
-            // 
-            resources.ApplyResources(this.folderImagesSetToolStripMenuItem, "folderImagesSetToolStripMenuItem");
-            this.folderImagesSetToolStripMenuItem.Name = "folderImagesSetToolStripMenuItem";
             // 
             // MainForm
             // 

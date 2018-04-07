@@ -615,6 +615,7 @@
     <Compile Include="TrackableStream.cs" />
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
+    <Compile Include="Upgrade.cs" />
     <Compile Include="UploadGamesDialog.cs">
       <SubType>Form</SubType>
     </Compile>
