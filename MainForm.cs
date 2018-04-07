@@ -1341,9 +1341,14 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetTitle(Resources.InstallingMods);
                 tasker.SetStatusImage(Resources.sign_brick);
+                if (!hakchi.Shell.IsOnline)
+                {
+                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
+                    tasker.AddTask(ShellTasks.MountBase);
+                }
                 tasker.AddTask(hakchi.ShowSplashScreen);
                 tasker.AddTasks(new ModTasks(mods).Tasks);
-                tasker.AddTask(ShellTasks.Reboot);
+                tasker.AddFinalTask(ShellTasks.Reboot);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
@@ -1355,9 +1360,14 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetTitle(Resources.UninstallingMods);
                 tasker.SetStatusImage(Resources.sign_brick);
+                if (!hakchi.Shell.IsOnline)
+                {
+                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
+                    tasker.AddTask(ShellTasks.MountBase);
+                }
                 tasker.AddTask(hakchi.ShowSplashScreen);
                 tasker.AddTasks(new ModTasks(null, mods).Tasks);
-                tasker.AddTask(ShellTasks.Reboot);
+                tasker.AddFinalTask(ShellTasks.Reboot);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
