@@ -1872,6 +1872,7 @@ namespace com.clusterrr.hakchi_gui
                 List<string> hmods = new List<string>();
                 foreach (ListViewItem item in form.listViewHmods.CheckedItems)
                 {
+                    if (((Hmod)item.Tag).isInstalled) continue;
                     hmods.Add(((Hmod)item.Tag).RawName);
                 }
                 if (InstallMods(hmods.ToArray()))

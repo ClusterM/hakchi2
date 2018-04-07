@@ -64,6 +64,8 @@
             this.listViewHmods.TabIndex = 4;
             this.listViewHmods.UseCompatibleStateImageBehavior = false;
             this.listViewHmods.View = System.Windows.Forms.View.Details;
+            this.listViewHmods.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewHmods_ItemChecked);
+            this.listViewHmods.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewHmods_ItemSelectionChanged);
             this.listViewHmods.SelectedIndexChanged += new System.EventHandler(this.listViewHmods_SelectedIndexChanged);
             // 
             // hmodName
@@ -111,7 +113,6 @@
             this.Controls.Add(this.listViewHmods);
             this.Controls.Add(this.wbReadme);
             this.Controls.Add(this.buttonOk);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(400, 300);
             this.Name = "SelectModsForm";

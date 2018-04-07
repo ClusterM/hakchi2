@@ -1,0 +1,6 @@
+unset cfg_clovercon_enabled
+unset cfg_clovercon_home_combination
+unset cfg_clovercon_autofire
+unset cfg_clovercon_autofire_interval
+unset cfg_clovercon_autofire_xy
+unset cfg_clovercon_fc_start

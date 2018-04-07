@@ -481,7 +481,7 @@ namespace com.clusterrr.hakchi_gui
             using (var baseHmods = new MemoryStream(Resources.baseHmods)) {
                 using (var szExtractor = new SevenZipExtractor(baseHmods))
                 {
-                    szExtractor.ExtractFile(".\\kernel.hmod", kernelHmodStream);
+                    szExtractor.ExtractFile(".\\hakchi.hmod", kernelHmodStream);
                 }
 
             }

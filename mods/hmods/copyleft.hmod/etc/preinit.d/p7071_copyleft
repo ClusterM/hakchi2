@@ -1,0 +1,13 @@
+copyleft_mod(){
+  local copyleft_text='THIS MODDED SYSTEM IS NOT FOR RESALE!\\n\\nThis console was modded using the free hakchi2 ce software. If you bought an already modded system, you were scammed.\\n'
+  local copyleft_cache="$mountpoint/var/copyleft"
+  
+  find "$squashfs/usr/share/" -name "strings.*" -print | while read l ; do
+    local modified_string_filename="$copyleft_cache/${l#$squashfs/usr/share/}"
+    
+    mkdir -p "$(dirname "$modified_string_filename")"
+    [ -f "$modified_string_filename" ] || sed -e "s/\"sys_copyright_games_HeadText\": \"\",/\"sys_copyright_games_HeadText\": \"$copyleft_text\",/g" "$l" > "$modified_string_filename"
+    mount_bind "$modified_string_filename" "$mountpoint/${l#$squashfs/}"
+  done
+}
+copyleft_mod

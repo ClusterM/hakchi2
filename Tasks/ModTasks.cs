@@ -16,6 +16,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
     {
         public class ModObject
         {
+            public string[] InstalledHmods = new String[] { };
             public List<Hmod> LoadedHmods = new List<Hmod>();
             public List<string> HmodsToLoad = new List<string>();
         }
@@ -137,7 +138,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             foreach (string mod in unboxedObject.HmodsToLoad)
             {
-                unboxedObject.LoadedHmods.Add(new Hmod(mod));
+                unboxedObject.LoadedHmods.Add(new Hmod(mod, unboxedObject.InstalledHmods));
                 progress++;
                 tasker.SetProgress(progress, unboxedObject.HmodsToLoad.Count);
             }

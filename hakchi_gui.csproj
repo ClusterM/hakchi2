@@ -3103,8 +3103,9 @@
     <PreBuildEvent>cd /D "$(ProjectDir)tools/" || cd "$(ProjectDir)tools/"
 "./busybox" sh -e "./downloadfiles" ../
 "./busybox" tar -cvf "../basehmods.tar" -C "../mods/hmods" "."
-"./busybox" sh -e "./copypackedhmods" "../user_mods" "../$(OutDir)user_mods"
-
+"./busybox" sh -e "./copypackedhmods" "../mods/hmods" "../$(OutDir)user_mods"
+"./busybox" rm -rf "../$(OutDir)user_mods/hakchi.hmod"
+"./busybox" cp -R "../user_mods/" "../$(OutDir)/"
 "./busybox" sh -e "./gitcommit" &gt; "../commit.txt"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
