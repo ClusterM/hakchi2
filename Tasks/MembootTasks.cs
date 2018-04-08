@@ -258,7 +258,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             if (hakchi.Shell.IsOnline && hakchi.Shell.Execute("[ -f /proc/atags ]") == 0)
             {
-                if (hakchi.MinimalMemboot)
+                if (hakchi.MinimalMemboot && stockKernel == null)
                     return Conclusion.Success;
 
                 hakchi.Shell.ExecuteSimple("mkdir -p /tmp/kexec/", throwOnNonZero: true);
