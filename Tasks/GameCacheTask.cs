@@ -25,7 +25,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public Tasker.Conclusion UpdateLocal(Tasker tasker, Object SyncObject = null)
         {
             tasker.SetTitle(Resources.UpdatingLocalCache);
-            tasker.SetStatusImage(Resources.sign_down);
+            tasker.SetStatusImage(Resources.sign_sync);
             tasker.SetProgress(-1, -1, Tasker.State.Running, Resources.UpdatingLocalCache);
 
             var shell = hakchi.Shell;

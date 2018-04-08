@@ -813,9 +813,9 @@ This process cannot be undone!</value>
   </data>
   <data name="DownloadSfromTool" xml:space="preserve">
     <value>In order to use SFROM Tool with hakchi2 CE, you need to:
-Visit /u/DarkAkuma's website
-Download the latest version of his tool
-Install the package in {0}\sfrom_tool
+- Visit /u/DarkAkuma's website
+- Download the latest version of his tool
+- Install the package in {0}\sfrom_tool
 
 Do you want to download the tool?
 
@@ -1114,5 +1114,50 @@ In order to mount your base partitions, you'll need to run the command "hakchi m
 All data will be erased and the stock kernel will be flashed.
 
 Continue?</value>
+  </data>
+  <data name="CannotProceedCannotInteract" xml:space="preserve">
+    <value>Your kernel or scripts are out of date. Please update before synchronizing games</value>
+  </data>
+  <data name="CannotProceedMinimalMemboot" xml:space="preserve">
+    <value>Your NES/SNES mini is currently in recovery state, cannot proceed</value>
+  </data>
+  <data name="FactoryResetNote" xml:space="preserve">
+    <value>Done! All traces of hakchi have been removed and your NES/SNES Mini has been reset to factory settings.</value>
+  </data>
+  <data name="NandFormatted" xml:space="preserve">
+    <value>NAND memory was successfully formatted.</value>
+  </data>
+  <data name="RecoveryKernel" xml:space="preserve">
+    <value>Recovery kernel</value>
+  </data>
+  <data name="ResetQ" xml:space="preserve">
+    <value>Are you sure you want to reset and repair hakchi2 on your NES/SNES Mini?</value>
+  </data>
+  <data name="sign_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_ban" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-ban.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_globe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-globe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_handshake" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-handshake.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_life_buoy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-life-buoy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_paper_plane" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-paper-plane.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_sync" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-sync.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UpdateComplete" xml:space="preserve">
+    <value>Update complete!</value>
   </data>
 </root>

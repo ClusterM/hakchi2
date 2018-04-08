@@ -1,5 +1,6 @@
 ---
 Name: NTFS-3G
+Category: System
 Creator: skogaby
 ---
 NTFS-3G is an open source cross-platform implementation of the Microsoft Windows NTFS file system with read-write support.

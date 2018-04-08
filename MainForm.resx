@@ -213,25 +213,25 @@
     <value>&amp;File</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text" xml:space="preserve">
     <value>Install / Repair</value>
   </data>
   <data name="resetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="resetToolStripMenuItem.Text" xml:space="preserve">
     <value>Reset</value>
   </data>
   <data name="uninstallToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text" xml:space="preserve">
     <value>Uninstall</value>
   </data>
   <data name="toolStripMenuItem11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 6</value>
+    <value>149, 6</value>
   </data>
   <data name="normalModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 22</value>
@@ -246,7 +246,7 @@
     <value>SD mode</value>
   </data>
   <data name="flashUbootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="flashUbootToolStripMenuItem.Text" xml:space="preserve">
     <value>Flash uboot</value>
@@ -323,16 +323,16 @@
   </data>
   <data name="factoryResetToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHMSURBVDhPlZNLi9NQAIVvHxRKoVCogWq1GqttUifTIUNp
-        Z0LSTKk6Iy5dNIvBhT/ChQizEHQWkdGFA+MfcCOIoPiiulRwMYIiI8W1C13cP3DMSekj7Wwa+MjNPee7
-        5IYbwatWq/kBckH8UNY0zdd1XXqeh0WgQ1dUq1XZ6/XQ7XZDtjaH9+PYvDoZ06EryuWy7HQ6IDe9Dfzq
-        t3FreyN8nobZj7dteDcmGV2hqqp0XRfXr7kYfHQgDx0cvnKCggvOE46/vBhm3984uHJ5OE9XlEolads2
-        DnaHhRF7OzY4T3bv2MdmdEWxWJSWZWHQjy7w7PEKLqgFqOdO4uVTM5J9e22DDl1RKBRk225FCsTQT+D3
-        p3UcvV+DoSmR7N9XB61WC3SFoiiy0WhgltOn8uECg/4azp5R5nJCV+RyOWmaJmZZulTFxfP5YBt5LC9p
-        czmhK7LZrKzX65jl0U5z/MpP7jXnckJXZDIZaRgGprHXl/Hn8+TL/w32vNWtRzqErkin0zzXmObgQWMs
-        j3i+34x0CF2RSqV4pjGipmt4eHcVRx+ssfzznYX7t81AmvQIXZFIJPxkMikrlQoWgQ7d8I+MxWJ+PB6X
-        i0BHCCH+A9jCyiPao0m8AAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAcxJREFUOE+Vk0uL01AAhW8fFEqhUKiBarUaq21SJ9MhQ2lnQtJMqTojLl00i8GF
+        P8KFCLMQdBaR0YUD4x9wI4ig+KK6VHAxgiIjxbULXdw/cMxJ6SPtbBr4yM0957vkhhvBq1ar+QFyQfxQ
+        1jTN13Vdep6HRaBDV1SrVdnr9dDtdkO2Nof349i8OhnToSvK5bLsdDogN70N/Oq3cWt7I3yehtmPt214
+        NyYZXaGqqnRdF9evuRh8dCAPHRy+coKCC84Tjr+8GGbf3zi4cnk4T1eUSiVp2zYOdoeFEXs7NjhPdu/Y
+        x2Z0RbFYlJZlYdCPLvDs8QouqAWo507i5VMzkn17bYMOXVEoFGTbbkUKxNBP4PendRy9X4OhKZHs31cH
+        rVYLdIWiKLLRaGCW06fy4QKD/hrOnlHmckJX5HI5aZomZlm6VMXF8/lgG3ksL2lzOaErstmsrNfrmOXR
+        TnP8yk/uNedyQldkMhlpGAamsdeX8efz5Mv/Dfa81a1HOoSuSKfTPNeY5uBBYyyPeL7fjHQIXZFKpXim
+        MaKma3h4dxVHH6yx/POdhfu3zUCa9AhdkUgk/GQyKSuVChaBDt3wj4zFYn48HpeLQEcIIf4D2MLKI9qj
+        SbwAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="factoryResetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -342,7 +342,7 @@
     <value>Factory reset</value>
   </data>
   <data name="advancedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="advancedToolStripMenuItem.Text" xml:space="preserve">
     <value>Advanced</value>
@@ -711,6 +711,12 @@
   </data>
   <data name="bootImageToolStripMenuItem.Text" xml:space="preserve">
     <value>Boot splash</value>
+  </data>
+  <data name="rebootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>331, 22</value>
+  </data>
+  <data name="rebootToolStripMenuItem.Text" xml:space="preserve">
+    <value>Reboot</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>331, 22</value>
@@ -2293,6 +2299,18 @@
   <data name="&gt;&gt;formatNANDCToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
+    <value>toolStripSeparator1</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;factoryResetToolStripMenuItem.Name" xml:space="preserve">
+    <value>factoryResetToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;factoryResetToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;modulesToolStripMenuItem.Name" xml:space="preserve">
     <value>modulesToolStripMenuItem</value>
   </data>
@@ -2947,16 +2965,10 @@
   <data name="&gt;&gt;maximumGamesPerFolderToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
-    <value>toolStripSeparator1</value>
+  <data name="&gt;&gt;rebootToolStripMenuItem.Name" xml:space="preserve">
+    <value>rebootToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;factoryResetToolStripMenuItem.Name" xml:space="preserve">
-    <value>factoryResetToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;factoryResetToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;rebootToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

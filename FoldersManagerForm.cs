@@ -644,12 +644,12 @@ namespace com.clusterrr.hakchi_gui
         {
             if (nodes.Count() == 1)
             {
-                if (Tasks.MessageForm.Show(Resources.AreYouSure, string.Format(Resources.DeleteElement, nodes.First().Text), Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) != Tasks.MessageForm.Button.Yes)
+                if (Tasks.MessageForm.Show(Resources.AreYouSure, string.Format(Resources.DeleteElement, nodes.First().Text), Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) != Tasks.MessageForm.Button.Yes)
                     return;
             }
             else
             {
-                if (Tasks.MessageForm.Show(Resources.AreYouSure, string.Format(Resources.DeleteElement, nodes.Count()), Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) != Tasks.MessageForm.Button.Yes)
+                if (Tasks.MessageForm.Show(Resources.AreYouSure, string.Format(Resources.DeleteElement, nodes.Count()), Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) != Tasks.MessageForm.Button.Yes)
                     return;
             }
             bool needWarn = false;
@@ -870,7 +870,7 @@ namespace com.clusterrr.hakchi_gui
         private void TreeContructorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason != CloseReason.UserClosing || DialogResult == DialogResult.OK) return;
-            var a = Tasks.MessageForm.Show(this.Text, Resources.FoldersSaveQ, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No, Tasks.MessageForm.Button.Cancel }, Tasks.MessageForm.DefaultButton.Button3);
+            var a = Tasks.MessageForm.Show(this.Text, Resources.FoldersSaveQ, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No, Tasks.MessageForm.Button.Cancel }, Tasks.MessageForm.DefaultButton.Button1);
             if (a == Tasks.MessageForm.Button.Cancel)
             {
                 e.Cancel = true;
@@ -988,7 +988,7 @@ namespace com.clusterrr.hakchi_gui
                     case "Game":
                     //case "OriginalGame":
                         var code = element.Attributes["code"].Value;
-                        var games = from n in rootMenuCollection where ((n is NesApplication/* || n is NesDefaultGame*/) && (n.Code == code)) select n;
+                        var games = from n in rootMenuCollection where ((n is NesApplication) && (n.Code == code)) select n;
                         if (games.Count() > 0)
                         {
                             var game = games.First();

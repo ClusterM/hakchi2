@@ -1209,7 +1209,15 @@
     <None Include="images\sign-file-picture.png" />
     <None Include="images\sign-keyring.png" />
     <None Include="images\sign-trashcan.png" />
+    <None Include="images\sign-handshake.png" />
+    <None Include="images\sign-life-buoy.png" />
     <Content Include="images\nuclear.ico" />
+    <None Include="images\sign-add.png" />
+    <None Include="images\sign-ban.png" />
+    <None Include="images\sign-delete.png" />
+    <None Include="images\sign-globe.png" />
+    <None Include="images\sign-sync.png" />
+    <None Include="images\sign-paper-plane.png" />
     <Content Include="readmeTemplate.css" />
     <Content Include="readmeTemplate.html" />
     <Content Include="retroarch-whitelist.txt" />

@@ -191,24 +191,31 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonDiscard_Click(object sender, EventArgs e)
         {
-            Close();
+            var result = Tasks.MessageForm.Show(Resources.DiscardChanges, Resources.DiscardChangesQ, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1);
+            if (result == Tasks.MessageForm.Button.Yes)
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
         }
 
         private void SelectCoverDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (DialogResult != DialogResult.OK)
             {
-                bool change = false;
-                for (int i = 0; i < listViewGames.Items.Count; ++i)
-                    if (listViewGames.Items[i].SubItems[4].Text != Resources.DefaultNoChange)
-                    {
-                        change = true;
-                        break;
-                    }
-                if (change &&
-                    Tasks.MessageForm.Show(Resources.DiscardChanges, Resources.DiscardChangesQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.No)
-                    //MessageBox.Show(Resources.DiscardChangesQ, Resources.DiscardChanges, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
+                var result = Tasks.MessageForm.Show(Resources.ApplyChanges, Resources.ApplyChangesQ, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No, Tasks.MessageForm.Button.Cancel }, Tasks.MessageForm.DefaultButton.Button1);
+                if (result == Tasks.MessageForm.Button.Cancel)
+                {
                     e.Cancel = true;
+                    return;
+                }
+                if (result == Tasks.MessageForm.Button.Yes)
+                {
+                    buttonAccept_Click(sender, e);
+                    return;
+                }
+                DialogResult = DialogResult.OK;
+                Close();
             }
         }
         

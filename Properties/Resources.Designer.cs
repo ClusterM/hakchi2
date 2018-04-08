@@ -444,6 +444,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your kernel or scripts are out of date. Please update before synchronizing games.
+        /// </summary>
+        internal static string CannotProceedCannotInteract {
+            get {
+                return ResourceManager.GetString("CannotProceedCannotInteract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your NES/SNES mini is currently in recovery state, cannot proceed.
+        /// </summary>
+        internal static string CannotProceedMinimalMemboot {
+            get {
+                return ResourceManager.GetString("CannotProceedMinimalMemboot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You cannot sync currently selected games collection with the currently detected NES/SNES mini.
         ///
         ///Current detected console: {0}
@@ -820,9 +838,9 @@ namespace com.clusterrr.hakchi_gui.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to In order to use SFROM Tool with hakchi2 CE, you need to:
-        ///Visit /u/DarkAkuma&apos;s website
-        ///Download the latest version of his tool
-        ///Install the package in {0}\sfrom_tool
+        ///- Visit /u/DarkAkuma&apos;s website
+        ///- Download the latest version of his tool
+        ///- Install the package in {0}\sfrom_tool
         ///
         ///Do you want to download the tool?
         ///
@@ -949,6 +967,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string ExtraArgsTitle {
             get {
                 return ResourceManager.GetString("ExtraArgsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done! All traces of hakchi have been removed and your NES/SNES Mini has been reset to factory settings..
+        /// </summary>
+        internal static string FactoryResetNote {
+            get {
+                return ResourceManager.GetString("FactoryResetNote", resourceCulture);
             }
         }
         
@@ -1599,7 +1626,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 169e0d9
+        ///   Looks up a localized string similar to cff4ccb-dirty
         ///.
         /// </summary>
         internal static string gitCommit {
@@ -1976,6 +2003,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NAND memory was successfully formatted..
+        /// </summary>
+        internal static string NandFormatted {
+            get {
+                return ResourceManager.GetString("NandFormatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Oops, it seems like &quot;{0}&quot; is not going not work correctly with the original emulator. Do you want to use a 3rd party emulator for this game (it needs to be installed)?.
         /// </summary>
         internal static string Need3rdPartyEmulator {
@@ -2304,6 +2340,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recovery kernel.
+        /// </summary>
+        internal static string RecoveryKernel {
+            get {
+                return ResourceManager.GetString("RecoveryKernel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your system is now in recovery mode, here you can telnet into the system to run any command you want, you can also use FTP to transfer files.
         ///
         ///In order to mount your base partitions, you&apos;ll need to run the command &quot;hakchi mount_base&quot;.
@@ -2393,6 +2438,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string ResetOriginalGamesQ {
             get {
                 return ResourceManager.GetString("ResetOriginalGamesQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to reset and repair hakchi2 on your NES/SNES Mini?.
+        /// </summary>
+        internal static string ResetQ {
+            get {
+                return ResourceManager.GetString("ResetQ", resourceCulture);
             }
         }
         
@@ -2642,6 +2696,26 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sign_add {
+            get {
+                object obj = ResourceManager.GetObject("sign_add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_ban {
+            get {
+                object obj = ResourceManager.GetObject("sign_ban", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sign_brick {
             get {
                 object obj = ResourceManager.GetObject("sign_brick", resourceCulture);
@@ -2682,6 +2756,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sign_delete {
+            get {
+                object obj = ResourceManager.GetObject("sign_delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sign_down {
             get {
                 object obj = ResourceManager.GetObject("sign_down", resourceCulture);
@@ -2712,6 +2796,26 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sign_globe {
+            get {
+                object obj = ResourceManager.GetObject("sign_globe", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_handshake {
+            get {
+                object obj = ResourceManager.GetObject("sign_handshake", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sign_info {
             get {
                 object obj = ResourceManager.GetObject("sign_info", resourceCulture);
@@ -2732,9 +2836,39 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sign_life_buoy {
+            get {
+                object obj = ResourceManager.GetObject("sign_life_buoy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_paper_plane {
+            get {
+                object obj = ResourceManager.GetObject("sign_paper_plane", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sign_question {
             get {
                 object obj = ResourceManager.GetObject("sign_question", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_sync {
+            get {
+                object obj = ResourceManager.GetObject("sign_sync", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -3015,6 +3149,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string UnknownGame {
             get {
                 return ResourceManager.GetString("UnknownGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update complete!.
+        /// </summary>
+        internal static string UpdateComplete {
+            get {
+                return ResourceManager.GetString("UpdateComplete", resourceCulture);
             }
         }
         

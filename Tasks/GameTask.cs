@@ -45,6 +45,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             tasker.SetStatusImage(Resources.sign_file_picture);
             tasker.SetProgress(-1, -1, Tasker.State.Running, Resources.ApplyChanges);
 
+            NesApplication.CachedCoverFiles = null;
             int i = 0, max = GamesChanged.Count;
             foreach (var pair in GamesChanged)
             {
@@ -136,7 +137,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public Tasker.Conclusion DownloadCovers(Tasker tasker, Object SyncObject = null)
         {
             tasker.SetTitle(Resources.DownloadAllCoversTitle);
-            tasker.SetStatusImage(Resources.sign_file_picture);
+            tasker.SetStatusImage(Resources.sign_globe);
             tasker.SetProgress(-1, -1, Tasker.State.Running, Resources.DownloadAllCoversTitle);
             int i = 0;
             foreach (NesApplication game in Games)
@@ -277,7 +278,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public Tasker.Conclusion ResetROMHeaders(Tasker tasker, Object SyncObject = null)
         {
             tasker.SetTitle(Resources.ResettingHeaders);
-            tasker.SetStatusImage(Resources.sign_cogs);
+            tasker.SetStatusImage(Resources.sign_database);
             tasker.SetProgress(-1, -1, Tasker.State.Running, Resources.ResettingHeaders);
 
             int i = 0;
@@ -308,7 +309,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public Tasker.Conclusion SyncOriginalGames(Tasker tasker, Object SyncObject = null)
         {
             tasker.SetTitle(Resources.ResettingOriginalGames);
-            tasker.SetStatusImage(Resources.sign_trashcan);
+            tasker.SetStatusImage(Resources.sign_sync);
             tasker.SetProgress(-1, -1, Tasker.State.Running, Resources.ResettingOriginalGames);
 
             string desktopEntriesArchiveFile = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "desktop_entries.7z");

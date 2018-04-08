@@ -22,6 +22,7 @@ namespace com.clusterrr.hakchi_gui
         public static bool? NeedPatch;
         public static bool? Need3rdPartyEmulator;
         public static bool? NeedAutoDownloadCover;
+        public static string[] CachedCoverFiles;
 
         public static NesDefaultGame[] defaultNesGames = new NesDefaultGame[] {
             new NesDefaultGame { Code = "CLV-P-NAAAE",  Name = "Super Mario Bros." },
@@ -905,10 +906,9 @@ namespace com.clusterrr.hakchi_gui
                 CoverArtMatchSuccess = false;
 
                 // first test for crc32 match (most precise)
-                string[] covers;
                 if (crc32 != 0)
                 {
-                    covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
+                    string[] covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
                     if (covers.Length > 0 && imageExtensions.Contains(Path.GetExtension(covers[0])))
                     {
                         SetImageFile(covers[0], ConfigIni.Instance.CompressCover);
@@ -939,11 +939,16 @@ namespace com.clusterrr.hakchi_gui
                 // compiled list for the two fuzzy search passes
                 var matches = new List<string>();
 
+                // get cover files list
+                if (CachedCoverFiles == null)
+                {
+                    CachedCoverFiles = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
+                }
+
                 // first fuzzy search on inputFileName
-                covers = Directory.GetFiles(artDirectory, "*.*", SearchOption.AllDirectories);
                 if (!string.IsNullOrEmpty(filename))
                 {
-                    var findResults = FindCoverMatch(filename, covers);
+                    var findResults = FindCoverMatch(filename, CachedCoverFiles);
 
                     string preciseMatch = string.Empty;
                     foreach (var cover in findResults)
@@ -969,7 +974,7 @@ namespace com.clusterrr.hakchi_gui
                 // second fuzzy search on alternateTitle
                 if (!string.IsNullOrEmpty(alternateTitle))
                 {
-                    var findResults = FindCoverMatch(alternateTitle, covers, true);
+                    var findResults = FindCoverMatch(alternateTitle, CachedCoverFiles, true);
 
                     string preciseMatch = string.Empty;
                     foreach (var cover in findResults)
@@ -1171,17 +1176,6 @@ namespace com.clusterrr.hakchi_gui
                             NeedPatch = true;
                         if (result == Tasks.MessageForm.Button.No)
                             return false;
-
-                        //var r = WorkerForm.MessageBoxFromThread(ParentForm,
-                        //    string.Format(Resources.PatchQ, Path.GetFileName(inputFileName)),
-                        //    Resources.PatchAvailable,
-                        //    MessageBoxButtons.AbortRetryIgnore,
-                        //    MessageBoxIcon.Question,
-                        //    MessageBoxDefaultButton.Button2, true);
-                        //if (r == DialogResult.Abort)
-                        //    NeedPatch = true;
-                        //if (r == DialogResult.Ignore)
-                        //    return false;
                     }
                     else return false;
                 }

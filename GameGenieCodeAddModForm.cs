@@ -43,7 +43,6 @@ namespace com.clusterrr.hakchi_gui
             if (string.IsNullOrEmpty(textBoxCode.Text.Trim()))
             {
                 Tasks.MessageForm.Show(Resources.Error, Resources.GGCodeEmpty, Resources.sign_error);
-                //MessageBox.Show(this, Resources.GGCodeEmpty, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -61,13 +60,11 @@ namespace com.clusterrr.hakchi_gui
                 catch (GameGenieFormatException)
                 {
                     Tasks.MessageForm.Show(Resources.Error, string.Format(Resources.GameGenieFormatError, textBoxCode.Text, FGame.Name), Resources.sign_error);
-                    //MessageBox.Show(this, string.Format(Resources.GameGenieFormatError, textBoxCode.Text, FGame.Name), Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 catch (GameGenieNotFoundException)
                 {
                     Tasks.MessageForm.Show(Resources.Error, string.Format(Resources.GameGenieNotFound, textBoxCode.Text, FGame.Name), Resources.sign_error);
-                    //MessageBox.Show(this, string.Format(Resources.GameGenieNotFound, textBoxCode.Text, FGame.Name), Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 finally
@@ -80,7 +77,6 @@ namespace com.clusterrr.hakchi_gui
             if (string.IsNullOrEmpty(textBoxDescription.Text.Trim()))
             {
                 Tasks.MessageForm.Show(Resources.Error, Resources.GGDescriptionEmpty, Resources.sign_error);
-                //MessageBox.Show(this, Resources.GGDescriptionEmpty, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             textBoxCode.Text = textBoxCode.Text.ToUpper().Trim();

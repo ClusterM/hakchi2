@@ -133,11 +133,6 @@ namespace com.clusterrr.hakchi_gui
                 try
                 {
                     Tasks.ErrorForm.Show(this, this.Text, ex.Message, ex.StackTrace);
-                    //Invoke(new Action(delegate
-                    //{
-                    //    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //    Close();
-                    //}));
                 }
                 catch { }
             }
@@ -145,9 +140,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.DeleteSavesQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) != Tasks.MessageForm.Button.Yes)
-            //if (MessageBox.Show(this, Resources.DeleteSavesQ, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-            //    != System.Windows.Forms.DialogResult.Yes)
+            if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.DeleteSavesQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) != Tasks.MessageForm.Button.Yes)
                 return;
             var savesToDelete = new List<ListViewItem>();
             foreach (ListViewItem item in listViewSaves.SelectedItems)
