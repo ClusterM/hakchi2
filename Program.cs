@@ -42,6 +42,7 @@ namespace com.clusterrr.hakchi_gui
         public static string BaseDirectoryExternal;
         public static bool isPortable = false;
         public static List<Stream> debugStreams = new List<Stream>();
+        public static MultiFormContext FormContext = new MultiFormContext();
 
         /// <summary>
         /// The main entry point for the application.
@@ -164,7 +165,11 @@ namespace com.clusterrr.hakchi_gui
                         System.Net.ServicePointManager.SecurityProtocol = (System.Net.SecurityProtocolType)4080; // set default security protocol
                         Application.EnableVisualStyles();
                         Application.SetCompatibleTextRenderingDefault(false);
-                        Application.Run(new MainForm());
+
+                        FormContext.AllFormsClosed += Process.GetCurrentProcess().Kill; // Suicide! Just easy and dirty way to kill all threads.
+
+                        FormContext.AddForm(new MainForm());
+                        Application.Run(FormContext);
                         Debug.WriteLine("Done.");
                     }
                     else

@@ -1862,11 +1862,6 @@ namespace com.clusterrr.hakchi_gui
             hakchi.Shutdown();
         }
 
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Process.GetCurrentProcess().Kill(); // Suicide! Just easy and dirty way to kill all threads.
-        }
-
         private void dragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -2204,10 +2199,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (WaitingClovershellForm.WaitForDevice(this))
                 {
-                    using (var screenForm = new ScreenshotForm())
-                    {
-                        screenForm.Show();
-                    }
+                    Program.FormContext.AddForm(new ScreenshotForm());
                 }
             }
             catch (Exception ex)

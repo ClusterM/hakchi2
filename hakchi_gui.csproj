@@ -172,6 +172,7 @@
     <Compile Include="INetworkShell.cs" />
     <Compile Include="ISystemShell.cs" />
     <Compile Include="MemoryStats.cs" />
+    <Compile Include="MultiFormContext.cs" />
     <Compile Include="NewCustomGameForm.cs">
       <SubType>Form</SubType>
     </Compile>
