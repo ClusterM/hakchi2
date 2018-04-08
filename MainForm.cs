@@ -1362,12 +1362,11 @@ namespace com.clusterrr.hakchi_gui
 
         bool Uninstall()
         {
-            bool restoreKernel = Tasks.MessageForm.Show(this, Resources.AreYouSure, Resources.UninstallQ2, Resources.sign_warning, new Tasks.MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes;
             using (var tasker = new Tasker(this))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_trashcan);
-                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.UninstallHakchi, restoreKernel: restoreKernel).Tasks);
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.UninstallHakchi, restoreKernel: true).Tasks);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
@@ -1407,6 +1406,15 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AddTasks(new ModTasks(null, mods).Tasks);
                 tasker.AddFinalTask(ShellTasks.Reboot);
                 return tasker.Start() == Tasker.Conclusion.Success;
+            }
+        }
+
+        private void uninstallToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.UninstallQ1, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.Yes)
+            {
+                if (Uninstall())
+                    Tasks.MessageForm.Show(Resources.Done, Resources.UninstallNote);
             }
         }
 
@@ -1539,12 +1547,47 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void uninstallToolStripMenuItem_Click(object sender, EventArgs e)
+        private void installModulesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.UninstallQ1, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.Yes)
+            installModules();
+        }
+
+        private void installModules(string[] add = null)
+        {
+            var form = new SelectModsForm(false, true, add);
+            form.Text = Resources.SelectModsInstall;
+            if (form.ShowDialog() == DialogResult.OK)
             {
-                if (Uninstall())
-                    Tasks.MessageForm.Show(Resources.Done, Resources.UninstallNote);
+                List<string> hmods = new List<string>();
+                foreach (ListViewItem item in form.listViewHmods.CheckedItems)
+                {
+                    if (((Hmod)item.Tag).isInstalled) continue;
+                    hmods.Add(((Hmod)item.Tag).RawName);
+                }
+                if (InstallMods(hmods.ToArray()))
+                {
+                    if (!ConfigIni.Instance.DisablePopups)
+                        Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
+                }
+            }
+        }
+
+        private void uninstallModulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new SelectModsForm(true, false);
+            form.Text = Resources.SelectModsUninstall;
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                List<string> hmods = new List<string>();
+                foreach (ListViewItem item in form.listViewHmods.CheckedItems)
+                {
+                    hmods.Add(((Hmod)item.Tag).RawName);
+                }
+                if (UninstallMods(hmods.ToArray()))
+                {
+                    if (!ConfigIni.Instance.DisablePopups)
+                        Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
+                }
             }
         }
 
@@ -1912,50 +1955,6 @@ namespace com.clusterrr.hakchi_gui
             foldersSplitByFirstLetterToolStripMenuItem.Checked = (byte)ConfigIni.Instance.FoldersMode == 8;
             foldersSplitByFirstLetterOriginalToolStripMenuItem.Checked = (byte)ConfigIni.Instance.FoldersMode == 9;
             customToolStripMenuItem.Checked = (byte)ConfigIni.Instance.FoldersMode == 99;
-        }
-
-        private void installModulesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            installModules();
-        }
-
-        private void installModules(string[] add = null)
-        {
-            var form = new SelectModsForm(false, true, add);
-            form.Text = Resources.SelectModsInstall;
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                List<string> hmods = new List<string>();
-                foreach (ListViewItem item in form.listViewHmods.CheckedItems)
-                {
-                    if (((Hmod)item.Tag).isInstalled) continue;
-                    hmods.Add(((Hmod)item.Tag).RawName);
-                }
-                if (InstallMods(hmods.ToArray()))
-                {
-                    if (!ConfigIni.Instance.DisablePopups)
-                        Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
-                }
-            }
-        }
-
-        private void uninstallModulesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = new SelectModsForm(true, false);
-            form.Text = Resources.SelectModsUninstall;
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                List<string> hmods = new List<string>();
-                foreach (ListViewItem item in form.listViewHmods.CheckedItems)
-                {
-                    hmods.Add(((Hmod)item.Tag).RawName);
-                }
-                if (UninstallMods(hmods.ToArray()))
-                {
-                    if (!ConfigIni.Instance.DisablePopups)
-                        Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
-                }
-            }
         }
 
         private void timerConnectionCheck_Tick(object sender, EventArgs e)

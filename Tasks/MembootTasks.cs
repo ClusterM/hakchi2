@@ -342,13 +342,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             if (matchedKernels.Count() > 0)
                             {
                                 stockKernel = new MemoryStream(kernelBytes);
+                                return Conclusion.Success;
                             }
                         }
                         else
                         {
                             return Conclusion.Abort;
                         }
-
                     }
                 }
             }
