@@ -74,9 +74,9 @@ namespace com.clusterrr.hakchi_gui
             FormInitialize();
 
             // setup system shell
-            hakchi.Initialize();
             hakchi.OnConnected += Shell_OnConnected;
             hakchi.OnDisconnected += Shell_OnDisconnected;
+            hakchi.Initialize();
 
             // setup ftp server for legacy system shell
             FtpServer = new mooftpserv.Server();
@@ -176,15 +176,14 @@ namespace com.clusterrr.hakchi_gui
                 // enable helper servers
                 if (caller is INetworkShell)
                 {
-                    Invoke(new Action(delegate {
+                    Invoke(new Action(delegate
+                    {
                         changeFTPServerState();
                         FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, (caller as ssh.SshClientWrapper).IPAddress + ":21");
-                        FTPToolStripMenuItem.Checked = true;
                         FTPToolStripMenuItem.Enabled = false;
                         openFTPInExplorerToolStripMenuItem.Enabled = true;
 
                         shellToolStripMenuItem.Text = string.Format(Resources.TelnetServerOn, (caller as ssh.SshClientWrapper).IPAddress + ":" + caller.ShellPort);
-                        shellToolStripMenuItem.Checked = true;
                         shellToolStripMenuItem.Enabled = false;
                         openTelnetToolStripMenuItem.Enabled = true;
                     }));
@@ -194,12 +193,10 @@ namespace com.clusterrr.hakchi_gui
                     Invoke(new Action(delegate
                     {
                         FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, "127.0.0.1:21");
-                        FTPToolStripMenuItem.Checked = ConfigIni.Instance.FtpServer;
                         FTPToolStripMenuItem.Enabled = true;
                         FTPToolStripMenuItem_Click(null, null);
 
                         shellToolStripMenuItem.Text = string.Format(Resources.TelnetServerOn, "127.0.0.1:1023");
-                        shellToolStripMenuItem.Checked = ConfigIni.Instance.TelnetServer;
                         shellToolStripMenuItem.Enabled = true;
                         shellToolStripMenuItem_Click(null, null);
                     }));
@@ -278,12 +275,10 @@ namespace com.clusterrr.hakchi_gui
                 FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, "127.0.0.1:21");
                 FTPToolStripMenuItem.Enabled = true;
                 FTPToolStripMenuItem_Click(null, null);
-                openFTPInExplorerToolStripMenuItem.Enabled = false;
 
                 shellToolStripMenuItem.Text = string.Format(Resources.TelnetServerOn, "127.0.0.1:1023");
                 shellToolStripMenuItem.Enabled = true;
                 shellToolStripMenuItem_Click(null, null);
-                openTelnetToolStripMenuItem.Enabled = false;
             }));
         }
 
@@ -1159,7 +1154,6 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            SaveConfig();
             if (listViewGames.CheckedItems.Count == 0)
             {
                 Tasks.MessageForm.Show(Resources.UploadGames, Resources.SelectAtLeast, Resources.sign_warning);
@@ -1167,6 +1161,16 @@ namespace com.clusterrr.hakchi_gui
             }
             if (RequirePatchedKernel() == DialogResult.No)
             {
+                return;
+            }
+            if (hakchi.MinimalMemboot)
+            {
+                Tasks.MessageForm.Show(Resources.UploadGames, "Your NES/SNES mini is currently in recovery state, cannot proceed", Resources.sign_warning);
+                return;
+            }
+            if (!hakchi.CanInteract)
+            {
+                Tasks.MessageForm.Show(Resources.UploadGames, "Your kernel or scripts are out of date. Please update before synchronizing games", Resources.sign_warning);
                 return;
             }
             if (!ConfigIni.Instance.SeparateGameStorage && hakchi.DetectedConsoleType != ConfigIni.Instance.ConsoleType)
@@ -1178,6 +1182,7 @@ namespace com.clusterrr.hakchi_gui
                     Resources.sign_database);
                 return;
             }
+            SaveConfig();
             if (UploadGames())
             {
                 new Thread(RecalculateSelectedGamesThread).Start();
@@ -1357,7 +1362,7 @@ namespace com.clusterrr.hakchi_gui
 
         bool Uninstall()
         {
-            bool restoreKernel = MessageBox.Show(Resources.UninstallQ2, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
+            bool restoreKernel = Tasks.MessageForm.Show(this, Resources.AreYouSure, Resources.UninstallQ2, Resources.sign_warning, new Tasks.MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes;
             using (var tasker = new Tasker(this))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
@@ -1728,7 +1733,7 @@ namespace com.clusterrr.hakchi_gui
             new Upgrade(this).Run();
 
             // welcome message, only run for new new users
-            if (ConfigIni.Instance.RunCount++ == 1)
+            if (ConfigIni.Instance.RunCount++ == 0)
             {
                 Tasks.MessageForm.Show(Resources.Hello, Resources.FirstRun);
             }
@@ -2052,7 +2057,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 ConfigIni.Instance.TelnetServer = shellToolStripMenuItem.Checked;
                 hakchi.Shell.ShellEnabled = shellToolStripMenuItem.Checked;
-                openTelnetToolStripMenuItem.Enabled = hakchi.Shell.ShellEnabled;
+                openTelnetToolStripMenuItem.Enabled = shellToolStripMenuItem.Checked && hakchi.Shell.IsOnline;
             }
             catch (Exception ex)
             {

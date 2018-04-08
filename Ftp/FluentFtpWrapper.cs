@@ -136,18 +136,9 @@ namespace com.clusterrr.util.fluentftp
                     currentPosition += afi.FileSize;
                     OnReadProgress(currentPosition, totalSize, afi.FilePath);
                 }
-                
-                // adjust file modified times after the fact (ftpd doesn't seem to support setting dates)
-                try
-                {
-                    hakchi.Shell.Execute("cat > /tmp/modtime.sh", commandBuilder, null, null, 5000, true);
-                    hakchi.Shell.ExecuteSimple("chmod +x /tmp/modtime.sh && /tmp/modtime.sh", 0, true);
-                }
-                finally
-                {
-                    hakchi.Shell.ExecuteSimple("rm /tmp/modtime.sh", 0, true);
-                }
 
+                // adjust time pointers!
+                hakchi.RunTemporaryScript(commandBuilder, "modtime.sh");
             }
             return true;
         }

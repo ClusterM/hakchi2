@@ -213,7 +213,15 @@ namespace com.clusterrr.ssh
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error performing ping check: " + ex.Message + "\r\n" + ex.StackTrace);
+                if (ex.InnerException != null)
+                {
+                    if (ex.InnerException is ThreadAbortException)
+                    {
+                        Debug.WriteLine("Ping abort (usually happens when running clovershell");
+                        return -1;
+                    }
+                }
+                Debug.WriteLine("Error performing ping: " + ex.Message + "\r\n" + ex.StackTrace);
             }
             return -1;
         }

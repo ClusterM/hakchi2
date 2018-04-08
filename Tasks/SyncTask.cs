@@ -441,7 +441,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                 $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\")";
                             break;
                     }
-                    shell.ExecuteSimple(originalSyncCode, 2000, true);
+                    shell.ExecuteSimple(originalSyncCode, 5000, true);
                     tasker.SetProgress(125 + (int)((double)++i / originalGames.Count * 10), maxProgress);
                 };
 
@@ -454,7 +454,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     if (shell.IsOnline)
                     {
-                        shell.ExecuteSimple("hakchi overmount_games; uistart", 1000);
+                        shell.ExecuteSimple("hakchi overmount_games; uistart", 2000, true);
                         MemoryStats.Refresh();
                     }
                 }
@@ -552,16 +552,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     data = $"rm \"{appInfo.FilePath}\"\n";
                     commandBuilder.Write(Encoding.UTF8.GetBytes(data), 0, data.Length);
                 }
-
-                try
-                {
-                    hakchi.Shell.Execute("cat > /tmp/cleanup.sh", commandBuilder, null, null, 5000, true);
-                    hakchi.Shell.ExecuteSimple("chmod +x /tmp/cleanup.sh && /tmp/cleanup.sh", 0, true);
-                }
-                finally
-                {
-                    hakchi.Shell.ExecuteSimple("rm /tmp/cleanup.sh");
-                }
+                hakchi.RunTemporaryScript(commandBuilder, "cleanup.sh");
             }
         }
 

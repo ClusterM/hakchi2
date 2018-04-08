@@ -215,13 +215,13 @@ namespace com.clusterrr.hakchi_gui
 
         public static void Shell_OnDisconnected()
         {
-            // clear up used shell and reenable all
             Shell = shells.First();
-            shells.ForEach(shell => shell.Enabled = true);
-
             MemoryStats.Clear();
             clearProperties();
             OnDisconnected();
+
+            // reenable all shells
+            shells.ForEach(shell => shell.Enabled = true);
         }
 
         public static void Shell_OnConnected(ISystemShell caller)
@@ -243,48 +243,46 @@ namespace com.clusterrr.hakchi_gui
                 UniqueID = Shell.ExecuteSimple("echo \"`devmem 0x01C23800``devmem 0x01C23804``devmem 0x01C23808``devmem 0x01C2380C`\"").Trim().Replace("0x", "");
                 Debug.WriteLine($"Detected device unique ID: {UniqueID}");
 
-                if (MinimalMemboot)
+                // execution stops here for a minimal memboot
+                if (!MinimalMemboot)
                 {
-                    OnConnected(caller); // still gotta call this
-                    return;
+                    // detect running/mounted firmware
+                    string board = Shell.ExecuteSimple("cat /etc/clover/boardtype", 3000, true);
+                    string region = Shell.ExecuteSimple("cat /etc/clover/REGION", 3000, true);
+                    DetectedConsoleType = translateConsoleType(board, region);
+                    if (DetectedConsoleType == ConsoleType.Unknown)
+                    {
+                        throw new IOException("Unable to determine mounted firmware");
+                    }
+                    var customFirmwareLoaded = Shell.ExecuteSimple("hakchi currentFirmware");
+                    CustomFirmwareLoaded = customFirmwareLoaded != "_nand_";
+                    Debug.WriteLine(string.Format("Detected mounted board: {0}, region: {1}, firmware: {2}", board, region, customFirmwareLoaded));
+
+                    // detect running versions
+                    var versions = Shell.ExecuteSimple("source /var/version && echo \"$bootVersion $kernelVersion $hakchiVersion\"", 500, true).Split(' ');
+                    BootVersion = versions[0];
+                    KernelVersion = versions[1];
+                    ScriptVersion = versions[2];
+                    Debug.WriteLine($"Detected versions: boot {BootVersion}, kernel {KernelVersion}, script {ScriptVersion}");
+                    CanInteract = !SystemRequiresReflash() && !SystemRequiresRootfsUpdate();
+
+                    // only do more interaction if safe to do so
+                    if (CanInteract)
+                    {
+                        // detect basic paths
+                        RemoteGameSyncPath = Shell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
+                        SystemCode = Shell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
+                        OriginalGamesPath = Shell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
+                        RootFsPath = Shell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
+                        SquashFsPath = Shell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
+
+                        // load config
+                        ConfigIni.SetConfigDictionary(LoadConfig());
+
+                        // calculate stats
+                        MemoryStats.Refresh();
+                    }
                 }
-
-                // detect running/mounted firmware
-                string board = Shell.ExecuteSimple("cat /etc/clover/boardtype", 3000, true);
-                string region = Shell.ExecuteSimple("cat /etc/clover/REGION", 3000, true);
-                DetectedConsoleType = translateConsoleType(board, region);
-                if (DetectedConsoleType == ConsoleType.Unknown)
-                {
-                    throw new IOException("Unable to determine mounted firmware");
-                }
-                var customFirmwareLoaded = Shell.ExecuteSimple("hakchi currentFirmware");
-                CustomFirmwareLoaded = customFirmwareLoaded != "_nand_";
-                Debug.WriteLine(string.Format("Detected mounted board: {0}", board));
-                Debug.WriteLine(string.Format("Detected mounted region: {0}", region));
-                Debug.WriteLine(string.Format("Detected mounted firmware: {0}", customFirmwareLoaded));
-
-                // detect running versions
-                var versions = Shell.ExecuteSimple("source /var/version && echo \"$bootVersion $kernelVersion $hakchiVersion\"", 500, true).Split(' ');
-                BootVersion = versions[0];
-                KernelVersion = versions[1];
-                ScriptVersion = versions[2];
-                CanInteract = !SystemRequiresReflash() && !SystemRequiresRootfsUpdate();
-
-                // only do more interaction if safe to do so
-                if (!CanInteract) return;
-
-                // detect basic paths
-                RemoteGameSyncPath = Shell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
-                SystemCode = Shell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
-                OriginalGamesPath = Shell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
-                RootFsPath = Shell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
-                SquashFsPath = Shell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
-
-                // load config
-                ConfigIni.SetConfigDictionary(LoadConfig());
-
-                // calculate stats
-                MemoryStats.Refresh();
 
                 // chain to other OnConnected events
                 OnConnected(caller);
@@ -351,14 +349,17 @@ namespace com.clusterrr.hakchi_gui
             bool requiresUpdate = false;
             try
             {
-                string scriptVersion = ScriptVersion.Substring(ScriptVersion.IndexOf('v') + 1);
-                scriptVersion = scriptVersion.Substring(0, scriptVersion.LastIndexOf('('));
-
-                var scriptElems = scriptVersion.Split(new char[] { '-' });
-                if (!Shared.IsVersionGreaterOrEqual(scriptElems[0], hakchi.MinimumHakchiScriptVersion) ||
-                    !(int.Parse(scriptElems[1]) >= int.Parse(hakchi.MinimumHakchiScriptRevision)))
+                Match match = Regex.Match(ScriptVersion, @"v(\d+.\d+.\d+)[\-\.](\d+)(.*)");
+                if (match.Success)
                 {
-                    requiresUpdate = true;
+                    string version = match.Groups[1].Value;
+                    string revision = match.Groups[2].Value;
+
+                    if (!Shared.IsVersionGreaterOrEqual(version, hakchi.MinimumHakchiScriptVersion) ||
+                        !(int.Parse(revision) >= int.Parse(hakchi.MinimumHakchiScriptRevision)))
+                    {
+                        requiresUpdate = true;
+                    }
                 }
             }
             catch
@@ -373,14 +374,17 @@ namespace com.clusterrr.hakchi_gui
             bool eligibleForUpdate = false;
             try
             {
-                string scriptVersion = ScriptVersion.Substring(ScriptVersion.IndexOf('v') + 1);
-                scriptVersion = scriptVersion.Substring(0, scriptVersion.LastIndexOf('('));
-
-                var scriptElems = scriptVersion.Split(new char[] { '-' });
-                if (!Shared.IsVersionGreaterOrEqual(scriptElems[0], hakchi.CurrentHakchiScriptVersion) ||
-                    !(int.Parse(scriptElems[1]) >= int.Parse(hakchi.CurrentHakchiScriptRevision)))
+                Match match = Regex.Match(ScriptVersion, @"v(\d+.\d+.\d+)[\-\.](\d+)(.*)");
+                if (match.Success)
                 {
-                    eligibleForUpdate = true;
+                    string version = match.Groups[1].Value;
+                    string revision = match.Groups[2].Value;
+
+                    if (!Shared.IsVersionGreaterOrEqual(version, hakchi.CurrentHakchiScriptVersion) ||
+                        !(int.Parse(revision) >= int.Parse(hakchi.CurrentHakchiScriptRevision)))
+                    {
+                        eligibleForUpdate = true;
+                    }
                 }
             }
             catch
@@ -401,6 +405,20 @@ namespace com.clusterrr.hakchi_gui
             Shell.ExecuteSimple("uistop");
 
             return Shell.Execute("gunzip -c - > /dev/fb0", splashScreenStream, null, null, 3000);
+        }
+
+        public static void RunTemporaryScript(Stream script, string fileName)
+        {
+            try
+            {
+                hakchi.Shell.Execute($"cat > /tmp/{fileName}", script, null, null, 5000, true);
+                hakchi.Shell.ExecuteSimple($"chmod +x /tmp/{fileName} && /tmp/{fileName}", 0, true);
+            }
+            finally
+            {
+                hakchi.Shell.ExecuteSimple($"rm /tmp/{fileName}", 5000, true);
+            }
+
         }
 
         public static void SyncConfig(Dictionary<string, string> config, bool reboot = false)
