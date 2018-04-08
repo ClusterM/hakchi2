@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -17,6 +18,8 @@ namespace com.clusterrr.hakchi_gui
         event OnDisconnectedEventHandler OnDisconnected;
         string ExecuteSimple(string command, int timeout = 2000, bool throwOnNonZero = false);
         int Execute(string command, Stream stdin = null, Stream stdout = null, Stream stderr = null, int timeout = 0, bool throwOnNonZero = false);
+        Task<string> ExecuteSimpleAsync(string command, int timeout = 2000, bool throwOnNonZero = false);
+        Task<int> ExecuteAsync(string command, Stream stdin = null, Stream stdout = null, Stream stderr = null, int timeout = 0, bool throwOnNonZero = false);
     }
 
     public class UnknownShell : ISystemShell
@@ -31,6 +34,18 @@ namespace com.clusterrr.hakchi_gui
         public event OnDisconnectedEventHandler OnDisconnected = delegate { };
         public string ExecuteSimple(string command, int timeout = 2000, bool throwOnNonZero = false) { return string.Empty; }
         public int Execute(string command, Stream stdin = null, Stream stdout = null, Stream stderr = null, int timeout = 0, bool throwOnNonZero = false) { return 255; }
+        public Task<string> ExecuteSimpleAsync(string command, int timeout = 2000, bool throwOnNonZero = false)
+        {
+            return new Task<string>(() => {
+                return string.Empty;
+            });
+        }
+        public Task<int> ExecuteAsync(string command, Stream stdin = null, Stream stdout = null, Stream stderr = null, int timeout = 0, bool throwOnNonZero = false)
+        {
+            return new Task<int>(() => {
+                return 255;
+            });
+        }
         public void Dispose() { }
     }
 

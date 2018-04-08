@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace com.clusterrr.ssh
 {
@@ -280,6 +281,22 @@ namespace com.clusterrr.ssh
 #endif
 
             return sshCommand.ExitStatus;
+        }
+
+        public Task<string> ExecuteSimpleAsync(string command, int timeout = 2000, bool throwOnNonZero = false)
+        {
+            return new Task<string>(() =>
+            {
+                return ExecuteSimple(command, timeout, throwOnNonZero);
+            });
+        }
+
+        public Task<int> ExecuteAsync(string command, Stream stdin = null, Stream stdout = null, Stream stderr = null, int timeout = 0, bool throwOnNonZero = false)
+        {
+            return new Task<int>(() =>
+            {
+                return Execute(command, stdin, stdout, stderr, timeout, throwOnNonZero);
+            });
         }
 
         private void SshClient_OnError(object src, Renci.SshNet.Common.ExceptionEventArgs args)
