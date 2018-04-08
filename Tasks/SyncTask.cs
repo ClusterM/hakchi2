@@ -425,7 +425,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         case hakchi.ConsoleType.NES:
                         case hakchi.ConsoleType.Famicom:
                             originalSyncCode =
-                                $"src=\"{hakchi.SquashFsPath}{hakchi.GamesPath}/{originalCode}\" && " +
+                                $"src=\"{hakchi.SquashFsPath}{hakchi.GamesSquashFsPath}/{originalCode}\" && " +
                                 $"dst=\"{uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
                                 $"mkdir -p \"$dst\" && " +
                                 $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\") && " +
@@ -435,7 +435,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         case hakchi.ConsoleType.SNES_USA:
                         case hakchi.ConsoleType.SuperFamicom:
                             originalSyncCode =
-                                $"src=\"{hakchi.SquashFsPath}{hakchi.GamesPath}/{originalCode}\" && " +
+                                $"src=\"{hakchi.SquashFsPath}{hakchi.GamesSquashFsPath}/{originalCode}\" && " +
                                 $"dst=\"{uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
                                 $"mkdir -p \"$dst\" && " +
                                 $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\")";
