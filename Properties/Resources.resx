@@ -1106,7 +1106,7 @@ Current games collection: {1}</value>
   <data name="RecoveryModeMessage" xml:space="preserve">
     <value>Your system is now in recovery mode, here you can telnet into the system to run any command you want, you can also use FTP to transfer files.
 
-In order to mount your base partitions, you'll need to run the command "hakchi mount_base" and after that, /newroot/ will be equivalent to what / is normally.</value>
+In order to mount your base partitions, you'll need to run the command "hakchi mount_base"</value>
   </data>
   <data name="FactoryResetQ" xml:space="preserve">
     <value>Are you sure you want to restore factory settings?

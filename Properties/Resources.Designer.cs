@@ -2306,7 +2306,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Your system is now in recovery mode, here you can telnet into the system to run any command you want, you can also use FTP to transfer files.
         ///
-        ///In order to mount your base partitions, you&apos;ll need to run the command &quot;hakchi mount_base&quot; and after that, /newroot/ will be equivalent to what / is normally..
+        ///In order to mount your base partitions, you&apos;ll need to run the command &quot;hakchi mount_base&quot;.
         /// </summary>
         internal static string RecoveryModeMessage {
             get {
