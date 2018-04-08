@@ -1254,12 +1254,13 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        bool DoNand(MembootTasks.NandTasks task)
+        bool DoNand(MembootTasks.NandTasks task, string title)
         {
             using (Tasker tasker = new Tasker(this))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_cogs);
+                tasker.SetTitle(title);
                 string dumpFilename = null;
                 switch (task)
                 {
@@ -1314,6 +1315,7 @@ namespace com.clusterrr.hakchi_gui
             using (var tasker = new Tasker(this))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                tasker.SetTitle(reset ? Resources.ResettingHakchi : Resources.InstallingHakchi);
                 tasker.SetStatusImage(Resources.sign_keyring);
                 if (reset)
                 {
@@ -1333,6 +1335,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_keyring);
+                tasker.SetTitle(Resources.Membooting);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
@@ -1366,6 +1369,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_trashcan);
+                tasker.SetTitle(Resources.UninstallingHakchi);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.UninstallHakchi).Tasks);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
@@ -1450,7 +1454,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void dumpTheWholeNANDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DoNand(MembootTasks.NandTasks.DumpNand))
+            if (DoNand(MembootTasks.NandTasks.DumpNand, ((ToolStripMenuItem)sender).Text))
                 MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -1466,20 +1470,20 @@ namespace com.clusterrr.hakchi_gui
 
         private void dumpNANDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DoNand(MembootTasks.NandTasks.DumpNandB))
+            if (DoNand(MembootTasks.NandTasks.DumpNandB, ((ToolStripMenuItem)sender).Text))
                 MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
         private void flashNANDBPartitionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DoNand(MembootTasks.NandTasks.FlashNandB))
+            if (DoNand(MembootTasks.NandTasks.FlashNandB, ((ToolStripMenuItem)sender).Text))
                 MessageBox.Show(Resources.NandFlashed, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void dumpNANDCPartitionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DoNand(MembootTasks.NandTasks.DumpNandC))
+            if (DoNand(MembootTasks.NandTasks.DumpNandC, ((ToolStripMenuItem)sender).Text))
                 MessageBox.Show(Resources.NandDumped, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -1487,7 +1491,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.FlashNandCQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.Yes)
             {
-                if (DoNand(MembootTasks.NandTasks.FlashNandC))
+                if (DoNand(MembootTasks.NandTasks.FlashNandC, ((ToolStripMenuItem)sender).Text))
                     MessageBox.Show(Resources.NandFlashed, Resources.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -1496,7 +1500,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.FormatNandCQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.Yes)
             {
-                DoNand(MembootTasks.NandTasks.FormatNandC);
+                DoNand(MembootTasks.NandTasks.FormatNandC, ((ToolStripMenuItem)sender).Text);
             }
         }
 
@@ -1517,6 +1521,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_keyring);
+                tasker.SetTitle(((ToolStripMenuItem)sender).Text);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootOriginal).Tasks);
                 tasker.Start();
             }
@@ -1528,6 +1533,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_keyring);
+                tasker.SetTitle(((ToolStripMenuItem)sender).Text);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
                 tasker.Start();
             }
@@ -1539,6 +1545,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_keyring);
+                tasker.SetTitle(((ToolStripMenuItem)sender).Text);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
                 if (tasker.Start() == Tasker.Conclusion.Success)
                 {
