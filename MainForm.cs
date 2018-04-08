@@ -1366,7 +1366,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_trashcan);
-                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.UninstallHakchi, restoreKernel: true).Tasks);
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.UninstallHakchi).Tasks);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
@@ -2559,6 +2559,21 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
+        }
+
+        private void factoryResetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(Tasks.MessageForm.Show(this, Resources.Warning, Resources.FactoryResetQ, Resources.sign_warning, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }) == MessageForm.Button.Yes)
+            {
+                using (var tasker = new Tasker(this))
+                {
+                    tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                    tasker.SetStatusImage(Resources.sign_trashcan);
+                    tasker.SetTitle(((ToolStripMenuItem)sender).Text);
+                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FactoryReset).Tasks);
+                    tasker.Start();
+                }
+            }
         }
     }
 }

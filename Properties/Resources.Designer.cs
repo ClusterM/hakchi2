@@ -953,6 +953,19 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to restore factory settings?
+        ///
+        ///All data will be erased and the stock kernel will be flashed.
+        ///
+        ///Continue?.
+        /// </summary>
+        internal static string FactoryResetQ {
+            get {
+                return ResourceManager.GetString("FactoryResetQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] fes1 {

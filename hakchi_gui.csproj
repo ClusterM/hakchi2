@@ -1209,6 +1209,7 @@
     <None Include="images\sign-file-picture.png" />
     <None Include="images\sign-keyring.png" />
     <None Include="images\sign-trashcan.png" />
+    <Content Include="images\nuclear.ico" />
     <Content Include="readmeTemplate.css" />
     <Content Include="readmeTemplate.html" />
     <Content Include="retroarch-whitelist.txt" />

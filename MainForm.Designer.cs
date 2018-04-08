@@ -215,6 +215,8 @@
             this.folderImagesSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maximumGamesPerFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.factoryResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -412,7 +414,9 @@
             this.flashNANDBPartitionToolStripMenuItem,
             this.dumpNANDCPartitionToolStripMenuItem,
             this.flashNANDCPartitionToolStripMenuItem,
-            this.formatNANDCToolStripMenuItem});
+            this.formatNANDCToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.factoryResetToolStripMenuItem});
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
             resources.ApplyResources(this.advancedToolStripMenuItem, "advancedToolStripMenuItem");
             // 
@@ -1563,6 +1567,17 @@
             this.gamesConsoleComboBox.Name = "gamesConsoleComboBox";
             this.gamesConsoleComboBox.SelectedIndexChanged += new System.EventHandler(this.gamesConsoleComboBox_SelectedIndexChanged);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            // 
+            // factoryResetToolStripMenuItem
+            // 
+            resources.ApplyResources(this.factoryResetToolStripMenuItem, "factoryResetToolStripMenuItem");
+            this.factoryResetToolStripMenuItem.Name = "factoryResetToolStripMenuItem";
+            this.factoryResetToolStripMenuItem.Click += new System.EventHandler(this.factoryResetToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1793,6 +1808,8 @@
         private System.Windows.Forms.ToolStripMenuItem membootCustomKernelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uploadTotmpforTestingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem folderImagesSetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem factoryResetToolStripMenuItem;
     }
 }
 

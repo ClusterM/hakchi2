@@ -1108,4 +1108,11 @@ Current games collection: {1}</value>
 
 In order to mount your base partitions, you'll need to run the command "hakchi mount_base" and after that, /newroot/ will be equivalent to what / is normally.</value>
   </data>
+  <data name="FactoryResetQ" xml:space="preserve">
+    <value>Are you sure you want to restore factory settings?
+
+All data will be erased and the stock kernel will be flashed.
+
+Continue?</value>
+  </data>
 </root>

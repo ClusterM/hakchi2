@@ -318,8 +318,31 @@
   <data name="formatNANDCToolStripMenuItem.Text" xml:space="preserve">
     <value>Format NAND-C</value>
   </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>273, 6</value>
+  </data>
+  <data name="factoryResetToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHMSURBVDhPlZNLi9NQAIVvHxRKoVCogWq1GqttUifTIUNp
+        Z0LSTKk6Iy5dNIvBhT/ChQizEHQWkdGFA+MfcCOIoPiiulRwMYIiI8W1C13cP3DMSekj7Wwa+MjNPee7
+        5IYbwatWq/kBckH8UNY0zdd1XXqeh0WgQ1dUq1XZ6/XQ7XZDtjaH9+PYvDoZ06EryuWy7HQ6IDe9Dfzq
+        t3FreyN8nobZj7dteDcmGV2hqqp0XRfXr7kYfHQgDx0cvnKCggvOE46/vBhm3984uHJ5OE9XlEolads2
+        DnaHhRF7OzY4T3bv2MdmdEWxWJSWZWHQjy7w7PEKLqgFqOdO4uVTM5J9e22DDl1RKBRk225FCsTQT+D3
+        p3UcvV+DoSmR7N9XB61WC3SFoiiy0WhgltOn8uECg/4azp5R5nJCV+RyOWmaJmZZulTFxfP5YBt5LC9p
+        czmhK7LZrKzX65jl0U5z/MpP7jXnckJXZDIZaRgGprHXl/Hn8+TL/w32vNWtRzqErkin0zzXmObgQWMs
+        j3i+34x0CF2RSqV4pjGipmt4eHcVRx+ssfzznYX7t81AmvQIXZFIJPxkMikrlQoWgQ7d8I+MxWJ+PB6X
+        i0BHCCH+A9jCyiPao0m8AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="factoryResetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 22</value>
+  </data>
+  <data name="factoryResetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Factory reset</value>
+  </data>
   <data name="advancedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="advancedToolStripMenuItem.Text" xml:space="preserve">
     <value>Advanced</value>
@@ -2922,6 +2945,18 @@
     <value>maximumGamesPerFolderToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;maximumGamesPerFolderToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
+    <value>toolStripSeparator1</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;factoryResetToolStripMenuItem.Name" xml:space="preserve">
+    <value>factoryResetToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;factoryResetToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
