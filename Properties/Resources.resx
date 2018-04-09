@@ -1163,4 +1163,7 @@ Continue?</value>
   <data name="SyncNonMultibootWarning" xml:space="preserve">
     <value>You have {0} of games already synchronized on your NES/SNES mini (separated for multiboot). Proceeding will erase those. Are you sure?</value>
   </data>
+  <data name="FolderNameHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
 </root>

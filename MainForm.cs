@@ -373,6 +373,11 @@ namespace com.clusterrr.hakchi_gui
                 maximumGamesPerFolderToolStripMenuItem.DropDownItems.Add(item);
             }
 
+            // back folder position
+            leftmostToolStripMenuItem.Checked = ConfigIni.Instance.BackFolderPosition == NesMenuFolder.Priority.LeftBack;
+            rightmostToolStripMenuItem.Checked = ConfigIni.Instance.BackFolderPosition == NesMenuFolder.Priority.Back;
+
+            // load lists
             LoadPresets();
             LoadFolderImageSets();
             LoadGames();
@@ -2024,6 +2029,12 @@ namespace com.clusterrr.hakchi_gui
 
         private void pagesModefoldersToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (sender == customToolStripMenuItem && customToolStripMenuItem.Checked)
+            {
+                openFoldersManager();
+                return;
+            }
+
             ConfigIni.Instance.FoldersMode = (NesMenuCollection.SplitStyle)byte.Parse((sender as ToolStripMenuItem).Tag.ToString());
             disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.Instance.FoldersMode == 0;
             automaticToolStripMenuItem.Checked = (byte)ConfigIni.Instance.FoldersMode == 2;
@@ -2450,7 +2461,7 @@ namespace com.clusterrr.hakchi_gui
             LoadGames(false);
         }
 
-        private void foldersManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openFoldersManager()
         {
             SaveSelectedGames();
             using (var tasker = new Tasker(this))
@@ -2619,6 +2630,20 @@ namespace com.clusterrr.hakchi_gui
                 }
                 catch { }
             }
+        }
+
+        private void leftmostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            leftmostToolStripMenuItem.Checked = true;
+            rightmostToolStripMenuItem.Checked = false;
+            ConfigIni.Instance.BackFolderPosition = NesMenuFolder.Priority.LeftBack;
+        }
+
+        private void rightmostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            leftmostToolStripMenuItem.Checked = false;
+            rightmostToolStripMenuItem.Checked = true;
+            ConfigIni.Instance.BackFolderPosition = NesMenuFolder.Priority.Back;
         }
     }
 }

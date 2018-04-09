@@ -112,7 +112,7 @@ namespace com.clusterrr.hakchi_gui
                     System.Diagnostics.Debug.WriteLine($"fname:\"{fname}\", lname:\"{lname}\"");
 
                     var folder = new NesMenuFolder() { ChildMenuCollection = coll, NameParts = new string[] { fname, lname }, Position = NesMenuFolder.Priority.Right };
-                    coll.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
+                    coll.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = ConfigIni.Instance.BackFolderPosition, ChildMenuCollection = root });
                     root.Add(folder);
                 }
                 TrimFolderNames(root);
@@ -177,15 +177,15 @@ namespace com.clusterrr.hakchi_gui
                         if (style == SplitStyle.FoldersAlphabetic_PagesEqual)
                         {
                             folder.ChildMenuCollection.Split(SplitStyle.PagesEqual, maxElements);
-                            folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
+                            folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = ConfigIni.Instance.BackFolderPosition, ChildMenuCollection = root });
                             foreach (NesMenuFolder f in folder.ChildMenuCollection.Where(o => o is NesMenuFolder))
                                 if (f.ChildMenuCollection != root)
-                                    f.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
+                                    f.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = ConfigIni.Instance.BackFolderPosition, ChildMenuCollection = root });
                         }
                         else if (style == SplitStyle.FoldersAlphabetic_FoldersEqual)
                         {
                             folder.ChildMenuCollection.Split(SplitStyle.FoldersEqual, maxElements);
-                            folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
+                            folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = ConfigIni.Instance.BackFolderPosition, ChildMenuCollection = root });
                         }
                         root.Add(folder);
                     }
@@ -233,7 +233,7 @@ namespace com.clusterrr.hakchi_gui
                         string folderImageId = "folder";
                         var folder = new NesMenuFolder() { ChildMenuCollection = app.Value, Name = app.Key, Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
                         //folder.ChildMenuCollection.Split(SplitStyle.FoldersEqual, maxElements);
-                        folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
+                        folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = ConfigIni.Instance.BackFolderPosition, ChildMenuCollection = root });
                         root.Add(folder);
                     }
                 foreach (var app in customApps)
@@ -242,18 +242,18 @@ namespace com.clusterrr.hakchi_gui
                         string folderImageId = "folder";
                         var folder = new NesMenuFolder() { ChildMenuCollection = app.Value, Name = app.Key, Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
                         //folder.ChildMenuCollection.Split(SplitStyle.FoldersEqual, maxElements);
-                        folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = root });
+                        folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = ConfigIni.Instance.BackFolderPosition, ChildMenuCollection = root });
                         root.Add(folder);
                     }
             }
             if (originalToRoot)
             {
                 if (style != SplitStyle.PagesEqual)
-                    root.Add(new NesMenuFolder() { Name = Resources.FolderNameOriginalGames, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = this });
+                    root.Add(new NesMenuFolder() { Name = Resources.FolderNameOriginalGames, ImageId = "folder_back", Position = ConfigIni.Instance.BackFolderPosition, ChildMenuCollection = this });
                 else
                 {
                     foreach (var collection in collections)
-                        collection.Add(new NesMenuFolder() { Name = Resources.FolderNameOriginalGames, ImageId = "folder_back", Position = NesMenuFolder.Priority.Back, ChildMenuCollection = this });
+                        collection.Add(new NesMenuFolder() { Name = Resources.FolderNameOriginalGames, ImageId = "folder_back", Position = ConfigIni.Instance.BackFolderPosition, ChildMenuCollection = this });
                 }
             }
         }
@@ -280,18 +280,31 @@ namespace com.clusterrr.hakchi_gui
 
         public void AddBack(List<NesMenuCollection> ignore = null)
         {
+            bool root = false;
             if (ignore == null)
+            {
                 ignore = new List<NesMenuCollection>();
+                root = true;
+            }
             ignore.Add(this);
+
             foreach (NesMenuFolder item in from i in this where i is NesMenuFolder select i)
             {
                 if (ignore.Contains(item.ChildMenuCollection))
                     continue;
                 var back = new NesMenuFolder(Resources.FolderNameBack, "folder_back");
-                back.Position = NesMenuFolder.Priority.Back;
+                back.Position = ConfigIni.Instance.BackFolderPosition;
                 back.ChildMenuCollection = this;
                 item.ChildMenuCollection.AddBack(ignore);
                 item.ChildMenuCollection.Add(back);
+
+                if (!root && ConfigIni.Instance.HomeFolder)
+                {
+                    var rootFolder = new NesMenuFolder(Resources.FolderNameHome, "folder_home");
+                    rootFolder.Position = ConfigIni.Instance.BackFolderPosition;
+                    rootFolder.ChildMenuCollection = ignore.First();
+                    item.ChildMenuCollection.Add(rootFolder);
+                }
             }
         }
 

@@ -84,12 +84,22 @@ namespace com.clusterrr.hakchi_gui
                         return;
                     }
                 }
-                else DrawTree();
+                else
+                {
+                    DrawTree();
+                }
                 splitContainer.Panel2MinSize = 485;
-                comboBoxPosition.Left = labelPosition.Left + labelPosition.Width;
+                comboBoxPosition.Left = labelPosition1.Left + labelPosition1.Width;
                 treeView.TreeViewNodeSorter = new NodeSorter();
                 listViewContent.ListViewItemSorter = new NodeSorter();
                 pictureBoxLeft = pictureBoxArt.Left;
+
+                switch (ConfigIni.Instance.BackFolderPosition)
+                {
+                    case NesMenuFolder.Priority.LeftBack: comboBoxBackPosition.SelectedIndex = 0; break;
+                    case NesMenuFolder.Priority.Back: comboBoxBackPosition.SelectedIndex = 1; break;
+                }
+                checkBoxAddHome.Checked = ConfigIni.Instance.HomeFolder;
             }
             catch (Exception ex)
             {
@@ -318,7 +328,7 @@ namespace com.clusterrr.hakchi_gui
             }
             if (node != null && node.Tag is NesMenuFolder) // Folder 
             {
-                labelPosition.Enabled = comboBoxPosition.Enabled = true;
+                labelPosition1.Enabled = comboBoxPosition.Enabled = true;
                 var folder = node.Tag as NesMenuFolder;
                 var position = (int)folder.Position;
                 if (position > 1) position--;
@@ -326,7 +336,7 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                labelPosition.Enabled = comboBoxPosition.Enabled = false;
+                labelPosition1.Enabled = comboBoxPosition.Enabled = false;
                 comboBoxPosition.SelectedIndex = -1;
             }
         }
@@ -892,6 +902,13 @@ namespace com.clusterrr.hakchi_gui
                     if (deletedGames.Contains(mainForm.listViewGames.Items[i].Tag as NesApplication))
                         mainForm.listViewGames.Items[i].Checked = false;
                 }
+
+                switch (comboBoxBackPosition.SelectedIndex)
+                {
+                    case 0: ConfigIni.Instance.BackFolderPosition = NesMenuFolder.Priority.LeftBack; break;
+                    case 1: ConfigIni.Instance.BackFolderPosition = NesMenuFolder.Priority.Back; break;
+                }
+                ConfigIni.Instance.HomeFolder = checkBoxAddHome.Checked;
                 ConfigIni.Save();
             }
         }

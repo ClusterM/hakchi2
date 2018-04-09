@@ -1412,6 +1412,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        internal static string FolderNameHome {
+            get {
+                return ResourceManager.GetString("FolderNameHome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to More games....
         /// </summary>
         internal static string FolderNameMoreGames {
@@ -1623,7 +1632,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 9372064-dirty
+        ///   Looks up a localized string similar to 7672c23-dirty
         ///.
         /// </summary>
         internal static string gitCommit {

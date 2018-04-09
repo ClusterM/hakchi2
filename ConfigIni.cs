@@ -22,6 +22,8 @@ namespace com.clusterrr.hakchi_gui
             public List<string> OriginalGames = new List<string>();
             public string FolderImagesSet = string.Empty;
             public byte MaxGamesPerFolder = 30;
+            public NesMenuFolder.Priority BackFolderPosition = NesMenuFolder.Priority.Back;
+            public bool HomeFolder = false;
             public NesMenuCollection.SplitStyle FoldersMode = NesMenuCollection.SplitStyle.Original_Auto;
             public Dictionary<string, List<string>> Presets = new Dictionary<string, List<string>>();
         };
@@ -53,16 +55,28 @@ namespace com.clusterrr.hakchi_gui
             get { return gamesCollectionSettings[consoleType].OriginalGames; }
         }
         [JsonIgnore]
+        public string FolderImagesSet
+        {
+            get { return gamesCollectionSettings[consoleType].FolderImagesSet; }
+            set { gamesCollectionSettings[consoleType].FolderImagesSet = value; }
+        }
+        [JsonIgnore]
         public byte MaxGamesPerFolder
         {
             get { return gamesCollectionSettings[consoleType].MaxGamesPerFolder; }
             set { gamesCollectionSettings[consoleType].MaxGamesPerFolder = value; }
         }
         [JsonIgnore]
-        public string FolderImagesSet
+        public NesMenuFolder.Priority BackFolderPosition
         {
-            get { return gamesCollectionSettings[consoleType].FolderImagesSet; }
-            set { gamesCollectionSettings[consoleType].FolderImagesSet = value; }
+            get { return gamesCollectionSettings[consoleType].BackFolderPosition; }
+            set { gamesCollectionSettings[consoleType].BackFolderPosition = value; }
+        }
+        [JsonIgnore]
+        public bool HomeFolder
+        {
+            get { return gamesCollectionSettings[consoleType].HomeFolder; }
+            set { gamesCollectionSettings[consoleType].HomeFolder = value; }
         }
         [JsonIgnore]
         public NesMenuCollection.SplitStyle FoldersMode

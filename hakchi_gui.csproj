@@ -1201,6 +1201,9 @@
     <Content Include="folder_images\console_famicom.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="folder_images\folder_home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="icon_app.ico" />
     <Content Include="icon_window.ico" />
     <None Include="images\blank_dos.png" />

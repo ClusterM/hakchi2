@@ -32,7 +32,8 @@ namespace com.clusterrr.hakchi_gui
             Left = 1,
             Right = 3,
             Rightmost = 4,
-            Back = 5
+            Back = 5,
+            LeftBack = 6
         }
         private Priority position;
 
@@ -78,17 +79,23 @@ namespace com.clusterrr.hakchi_gui
                 position = value;
                 switch (position)
                 {
-                    case Priority.Leftmost:
+                    case Priority.LeftBack:
                         desktop.Players = 2;
                         desktop.Simultaneous = true;
                         desktop.ReleaseDate = "0000-00-00";
                         desktop.Publisher = new String((char)1, 10);
                         break;
+                    case Priority.Leftmost:
+                        desktop.Players = 2;
+                        desktop.Simultaneous = true;
+                        desktop.ReleaseDate = "0001-11-11";
+                        desktop.Publisher = new String((char)2, 10);
+                        break;
                     case Priority.Left:
                         desktop.Players = 2;
                         desktop.Simultaneous = true;
-                        desktop.ReleaseDate = "1111-11-11";
-                        desktop.Publisher = new String((char)2, 10);
+                        desktop.ReleaseDate = "0002-22-22";
+                        desktop.Publisher = new String((char)3, 10);
                         break;
                     case Priority.Right:
                         desktop.Players = 1;
@@ -211,12 +218,15 @@ namespace com.clusterrr.hakchi_gui
             char prefix;
             switch (position)
             {
-                case Priority.Leftmost:
+                case Priority.LeftBack:
                     prefix = (char)1;
+                    break;
+                case Priority.Leftmost:
+                    prefix = (char)2;
                     break;
                 default:
                 case Priority.Left:
-                    prefix = (char)2;
+                    prefix = (char)3;
                     break;
                 case Priority.Right:
                     prefix = 'Э';

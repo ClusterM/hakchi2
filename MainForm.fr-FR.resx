@@ -602,11 +602,11 @@
   <data name="saveStateManagerToolStripMenuItem.Text" xml:space="preserve">
     <value>Gestionnaire des sauvegardes d’état</value>
   </data>
-  <data name="foldersManagerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="takeScreenshotToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>348, 22</value>
   </data>
-  <data name="foldersManagerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Gestionnaire des dossiers</value>
+  <data name="takeScreenshotToolStripMenuItem.Text" xml:space="preserve">
+    <value>Faire une capture d’écran</value>
   </data>
   <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
     <value>345, 6</value>
@@ -670,12 +670,6 @@
   </data>
   <data name="rebootToolStripMenuItem.Text" xml:space="preserve">
     <value>Redémarrer</value>
-  </data>
-  <data name="takeScreenshotToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>348, 22</value>
-  </data>
-  <data name="takeScreenshotToolStripMenuItem.Text" xml:space="preserve">
-    <value>Faire une capture d’écran</value>
   </data>
   <data name="toolStripMenuItem18.Size" type="System.Drawing.Size, System.Drawing">
     <value>345, 6</value>
@@ -909,7 +903,7 @@
     <value>456, 22</value>
   </data>
   <data name="customToolStripMenuItem.Text" xml:space="preserve">
-    <value>Custom - Toujours afficher le Gestionnaire de dossiers</value>
+    <value>Custom - Utiliser le gestionnaire de dossiers (Recliquer pour ouvrir)</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>453, 6</value>
