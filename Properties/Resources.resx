@@ -1068,10 +1068,7 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
     <value>Ok</value>
   </data>
   <data name="CannotSyncToNonMultiBoot" xml:space="preserve">
-    <value>You cannot sync currently selected games collection with the currently detected NES/SNES mini.
-
-Current detected console: {0}
-Current games collection: {1}</value>
+    <value>You cannot synchronize a {0} games collection onto your currently running NES/SNES Mini ({1}). Please switch to the matching games collection, or switch to using "separate games for multiboot" mode, in order to proceed.</value>
   </data>
   <data name="PleaseConnectYourDevice" xml:space="preserve">
     <value>Please connect your NES/SNES mini in order to proceed. Note that you must also install the custom kernel, using the options in the Kernel menu.</value>
@@ -1159,5 +1156,11 @@ Continue?</value>
   </data>
   <data name="UpdateComplete" xml:space="preserve">
     <value>Update complete!</value>
+  </data>
+  <data name="SyncMultibootWarning" xml:space="preserve">
+    <value>You have {0} of games already synchronized on your NES/SNES mini (non separated for multiboot). Proceeding will erase those. Are you sure?</value>
+  </data>
+  <data name="SyncNonMultibootWarning" xml:space="preserve">
+    <value>You have {0} of games already synchronized on your NES/SNES mini (separated for multiboot). Proceeding will erase those. Are you sure?</value>
   </data>
 </root>

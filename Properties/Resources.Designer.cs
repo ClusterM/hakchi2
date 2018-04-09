@@ -462,10 +462,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You cannot sync currently selected games collection with the currently detected NES/SNES mini.
-        ///
-        ///Current detected console: {0}
-        ///Current games collection: {1}.
+        ///   Looks up a localized string similar to You cannot synchronize a {0} games collection onto your currently running NES/SNES Mini ({1}). Please switch to the matching games collection, or switch to using &quot;separate games for multiboot&quot; mode, in order to proceed..
         /// </summary>
         internal static string CannotSyncToNonMultiBoot {
             get {
@@ -1626,7 +1623,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to cff4ccb-dirty
+        ///   Looks up a localized string similar to 9372064-dirty
         ///.
         /// </summary>
         internal static string gitCommit {
@@ -2956,6 +2953,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string Starting {
             get {
                 return ResourceManager.GetString("Starting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have {0} of games already synchronized on your NES/SNES mini (non separated for multiboot). Proceeding will erase those. Are you sure?.
+        /// </summary>
+        internal static string SyncMultibootWarning {
+            get {
+                return ResourceManager.GetString("SyncMultibootWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have {0} of games already synchronized on your NES/SNES mini (separated for multiboot). Proceeding will erase those. Are you sure?.
+        /// </summary>
+        internal static string SyncNonMultibootWarning {
+            get {
+                return ResourceManager.GetString("SyncNonMultibootWarning", resourceCulture);
             }
         }
         

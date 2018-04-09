@@ -12,8 +12,10 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class ScreenshotForm : Form
     {
+        private readonly string unattendedPath = Path.Combine(Program.BaseDirectoryExternal, "screenshots");
         private bool liveView;
         private string formatTitle;
+        int counter = 0;
 
         public ScreenshotForm(bool liveView = false)
         {
@@ -189,6 +191,29 @@ namespace com.clusterrr.hakchi_gui
             LoadScreenshot();
         }
 
+        private void unattendedScreenshot()
+        {
+            LoadScreenshot();
+            try
+            {
+                if (!Directory.Exists(unattendedPath))
+                {
+                    Directory.CreateDirectory(unattendedPath);
+                }
+                string fileName = Path.Combine(unattendedPath, DateTime.Now.ToString("yyyyMMdd_HHmmss") + string.Format("_{0:0000}", counter++) + ".png");
+                if (counter > 9999) counter = 0;
+                if (File.Exists(fileName))
+                {
+                    File.Delete(fileName);
+                }
+                SaveScreenshot(fileName);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error saving unattended screenshot: " + ex.Message + ex.StackTrace);
+            }
+        }
+
         private void ScreenshotForm_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Modifiers == Keys.Control && e.KeyCode == Keys.O)
@@ -210,6 +235,10 @@ namespace com.clusterrr.hakchi_gui
             else if (e.Modifiers == Keys.None && e.KeyCode == Keys.F5)
             {
                 LoadScreenshot();
+            }
+            else if (e.Modifiers == Keys.None && e.KeyCode == Keys.F11)
+            {
+                unattendedScreenshot();
             }
         }
     }
