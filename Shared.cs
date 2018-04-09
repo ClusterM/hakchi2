@@ -324,8 +324,21 @@ namespace com.clusterrr.hakchi_gui
             {
                 DirectoryDeleteInside(dir);
                 new DirectoryInfo(dir).Refresh();
-                System.Threading.Thread.Sleep(0);
+                Thread.Sleep(0);
                 Directory.Delete(dir);
+            }
+        }
+
+        public static void DirectoryDeleteEmptyDirectories(string dirName)
+        {
+            var directories = Directory.GetDirectories(dirName, "*.*", SearchOption.AllDirectories);
+            for (int i = directories.Length - 1; i > -1; --i) // backwards to catch deeper directories first
+            {
+                var dirInfo = new DirectoryInfo(directories[i]);
+                if (!dirInfo.EnumerateDirectories().Any() && !dirInfo.EnumerateFiles().Any())
+                {
+                    Directory.Delete(directories[i]);
+                }
             }
         }
 

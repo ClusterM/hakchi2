@@ -558,19 +558,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         private static void DeleteLocalApplicationFilesFromDirectory(IEnumerable<ApplicationFileInfo> filesToDelete, string rootDirectory)
         {
+            // deleting files
             foreach (ApplicationFileInfo appInfo in filesToDelete)
             {
                 string filepath = rootDirectory + appInfo.FilePath.Substring(1).Replace('/', '\\');
                 File.Delete(filepath);
-
-                // determine if the folder is empty now -- if so, delete the folder also
-                string directory = Path.GetDirectoryName(filepath);
-                var dirInfo = new DirectoryInfo(directory);
-                if (dirInfo.GetFiles().Length == 0 && dirInfo.GetDirectories().Length == 0)
-                {
-                    Directory.Delete(directory);
-                }
             }
+            Shared.DirectoryDeleteEmptyDirectories(rootDirectory);
         }
 
     }
