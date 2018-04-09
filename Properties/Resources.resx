@@ -1166,4 +1166,10 @@ Continue?</value>
   <data name="FolderNameHome" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="SaveSettings" xml:space="preserve">
+    <value>Save settings</value>
+  </data>
+  <data name="SaveStructureQ" xml:space="preserve">
+    <value>Are you sure you want to sync all your games collections' structure settings to the currently displayed settings?</value>
+  </data>
 </root>

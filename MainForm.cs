@@ -2645,5 +2645,13 @@ namespace com.clusterrr.hakchi_gui
             rightmostToolStripMenuItem.Checked = true;
             ConfigIni.Instance.BackFolderPosition = NesMenuFolder.Priority.Back;
         }
+
+        private void syncStructureForAllGamesCollectionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Tasks.MessageForm.Show(this, Resources.SaveSettings, Resources.SaveStructureQ, Resources.sign_sync, new MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }) == Tasks.MessageForm.Button.Yes)
+            {
+                ConfigIni.Instance.SyncGamesCollectionsStructureSettings();
+            }
+        }
     }
 }

@@ -1632,7 +1632,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 7672c23-dirty
+        ///   Looks up a localized string similar to 8b818fd-dirty
         ///.
         /// </summary>
         internal static string gitCommit {
@@ -2591,11 +2591,29 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save settings.
+        /// </summary>
+        internal static string SaveSettings {
+            get {
+                return ResourceManager.GetString("SaveSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save-state backups.
         /// </summary>
         internal static string SavesFlterName {
             get {
                 return ResourceManager.GetString("SavesFlterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to sync all your games collections&apos; structure settings to the currently displayed settings?.
+        /// </summary>
+        internal static string SaveStructureQ {
+            get {
+                return ResourceManager.GetString("SaveStructureQ", resourceCulture);
             }
         }
         

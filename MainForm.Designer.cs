@@ -214,12 +214,14 @@
             this.foldersSplitByFirstLetterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.foldersSplitByFirstLetterOriginalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.folderImagesSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maximumGamesPerFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
             this.backFolderButtonPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.leftmostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rightmostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.folderImagesSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem20 = new System.Windows.Forms.ToolStripSeparator();
+            this.syncStructureForAllGamesCollectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -1477,7 +1479,9 @@
             this.toolStripMenuItem4,
             this.maximumGamesPerFolderToolStripMenuItem,
             this.backFolderButtonPositionToolStripMenuItem,
-            this.folderImagesSetToolStripMenuItem});
+            this.folderImagesSetToolStripMenuItem,
+            this.toolStripMenuItem20,
+            this.syncStructureForAllGamesCollectionsToolStripMenuItem});
             this.foldersContextMenuStrip.Name = "foldersContextMenuStrip";
             resources.ApplyResources(this.foldersContextMenuStrip, "foldersContextMenuStrip");
             // 
@@ -1563,24 +1567,10 @@
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
             // 
-            // folderImagesSetToolStripMenuItem
-            // 
-            this.folderImagesSetToolStripMenuItem.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.folder_sm;
-            this.folderImagesSetToolStripMenuItem.Name = "folderImagesSetToolStripMenuItem";
-            resources.ApplyResources(this.folderImagesSetToolStripMenuItem, "folderImagesSetToolStripMenuItem");
-            // 
             // maximumGamesPerFolderToolStripMenuItem
             // 
             this.maximumGamesPerFolderToolStripMenuItem.Name = "maximumGamesPerFolderToolStripMenuItem";
             resources.ApplyResources(this.maximumGamesPerFolderToolStripMenuItem, "maximumGamesPerFolderToolStripMenuItem");
-            // 
-            // gamesConsoleComboBox
-            // 
-            this.gamesConsoleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.gamesConsoleComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.gamesConsoleComboBox, "gamesConsoleComboBox");
-            this.gamesConsoleComboBox.Name = "gamesConsoleComboBox";
-            this.gamesConsoleComboBox.SelectedIndexChanged += new System.EventHandler(this.gamesConsoleComboBox_SelectedIndexChanged);
             // 
             // backFolderButtonPositionToolStripMenuItem
             // 
@@ -1601,6 +1591,31 @@
             this.rightmostToolStripMenuItem.Name = "rightmostToolStripMenuItem";
             resources.ApplyResources(this.rightmostToolStripMenuItem, "rightmostToolStripMenuItem");
             this.rightmostToolStripMenuItem.Click += new System.EventHandler(this.rightmostToolStripMenuItem_Click);
+            // 
+            // folderImagesSetToolStripMenuItem
+            // 
+            this.folderImagesSetToolStripMenuItem.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.folder_sm;
+            this.folderImagesSetToolStripMenuItem.Name = "folderImagesSetToolStripMenuItem";
+            resources.ApplyResources(this.folderImagesSetToolStripMenuItem, "folderImagesSetToolStripMenuItem");
+            // 
+            // toolStripMenuItem20
+            // 
+            this.toolStripMenuItem20.Name = "toolStripMenuItem20";
+            resources.ApplyResources(this.toolStripMenuItem20, "toolStripMenuItem20");
+            // 
+            // syncStructureForAllGamesCollectionsToolStripMenuItem
+            // 
+            resources.ApplyResources(this.syncStructureForAllGamesCollectionsToolStripMenuItem, "syncStructureForAllGamesCollectionsToolStripMenuItem");
+            this.syncStructureForAllGamesCollectionsToolStripMenuItem.Name = "syncStructureForAllGamesCollectionsToolStripMenuItem";
+            this.syncStructureForAllGamesCollectionsToolStripMenuItem.Click += new System.EventHandler(this.syncStructureForAllGamesCollectionsToolStripMenuItem_Click);
+            // 
+            // gamesConsoleComboBox
+            // 
+            this.gamesConsoleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesConsoleComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.gamesConsoleComboBox, "gamesConsoleComboBox");
+            this.gamesConsoleComboBox.Name = "gamesConsoleComboBox";
+            this.gamesConsoleComboBox.SelectedIndexChanged += new System.EventHandler(this.gamesConsoleComboBox_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -1836,6 +1851,8 @@
         private System.Windows.Forms.ToolStripMenuItem backFolderButtonPositionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem leftmostToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rightmostToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem20;
+        private System.Windows.Forms.ToolStripMenuItem syncStructureForAllGamesCollectionsToolStripMenuItem;
     }
 }
 

@@ -62,14 +62,17 @@ namespace com.clusterrr.hakchi_gui
 
         public static void DebugDisplay()
         {
-            Debug.WriteLine(string.Format("Storage size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", StorageTotal / 1024.0 / 1024.0, StorageUsed / 1024.0 / 1024.0, StorageFree / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Used by all games: {0:F1}MB", AllGamesSize / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Used by non multi-boot games: {0:F1}MB", NonMultibootGamesSize / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Used by current games collection: {0:F1}MB", CurrentCollectionSize() / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", SaveStatesSize / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (StorageUsed - AllGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Reserved memory: {0:F1}MB", ReservedMemory / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Available for games: {0:F1}MB", AvailableForGames() / 1024.0 / 1024.0));
+            if (StorageTotal != -1 || StorageUsed != -1 || StorageFree != -1)
+            {
+                Debug.WriteLine(string.Format("Storage size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", StorageTotal / 1024.0 / 1024.0, StorageUsed / 1024.0 / 1024.0, StorageFree / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by all games: {0:F1}MB", AllGamesSize / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by non multi-boot games: {0:F1}MB", NonMultibootGamesSize / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by current games collection: {0:F1}MB", CurrentCollectionSize() / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by save-states: {0:F1}MB", SaveStatesSize / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (StorageUsed - AllGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Reserved memory: {0:F1}MB", ReservedMemory / 1024.0 / 1024.0));
+                Debug.WriteLine(string.Format("Available for games: {0:F1}MB", AvailableForGames() / 1024.0 / 1024.0));
+            }
         }
 
         public static void Refresh()
@@ -144,7 +147,7 @@ namespace com.clusterrr.hakchi_gui
                     string[] col = line.Split(new string[] { " | " }, StringSplitOptions.RemoveEmptyEntries);
                     string dir = Path.GetFileName(col[0]);
                     long size = long.Parse(col[1]) * 1024;
-                    if (Regex.IsMatch(dir, @"^[0-9]{3}$"))
+                    if (dir == ".storage" || Regex.IsMatch(dir, @"^[0-9]{3}$"))
                     {
                         NonMultibootGamesSize += size;
                     }

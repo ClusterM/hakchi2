@@ -99,6 +99,18 @@ namespace com.clusterrr.hakchi_gui
         {
             return (c == hakchi.ConsoleType.Unknown) ? null : gamesCollectionSettings[c].OriginalGames;
         }
+        public void SyncGamesCollectionsStructureSettings()
+        {
+            foreach (var pair in gamesCollectionSettings)
+            {
+                if (pair.Key == consoleType) continue;
+                pair.Value.FolderImagesSet = FolderImagesSet;
+                pair.Value.MaxGamesPerFolder = MaxGamesPerFolder;
+                pair.Value.BackFolderPosition = BackFolderPosition;
+                pair.Value.HomeFolder = HomeFolder;
+                pair.Value.FoldersMode = FoldersMode;
+            }
+        }
 
         // base console type settings
         public enum ExtraCmdLineTypes { Kachikachi = 0, Canoe = 1, Retroarch = 2 }
