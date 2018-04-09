@@ -85,7 +85,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     tasker.PopState();
                     if (!result)
                         return false;
-                    // this.uploadPath = hakchi.GetRemoteGameSyncPath(ConfigIni.Instance.ConsoleType);
                 }
                 return true;
             }
@@ -415,35 +414,50 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     "| wc -l | { read wc; test $wc -eq 0 && rm -rf \"$f\"; } } ; done", 0);
                 tasker.SetProgress(125, maxProgress);
 
-                tasker.SetStatus(Resources.UploadingOriginalGames);
-                int i = 0;
-                foreach (var originalCode in originalGames.Keys)
+                if (originalGames.Any())
                 {
-                    string originalSyncCode = "";
-                    switch (ConfigIni.Instance.ConsoleType)
+                    using (MemoryStream commandBuilder = new MemoryStream())
                     {
-                        case hakchi.ConsoleType.NES:
-                        case hakchi.ConsoleType.Famicom:
-                            originalSyncCode =
-                                $"src=\"{hakchi.SquashFsPath}{hakchi.GamesSquashFsPath}/{originalCode}\" && " +
-                                $"dst=\"{uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
-                                $"mkdir -p \"$dst\" && " +
-                                $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\") && " +
-                                $"([ -L \"$dst/pixelart\" ] || ln -s \"$src/pixelart\" \"$dst/\")";
-                            break;
-                        case hakchi.ConsoleType.SNES_EUR:
-                        case hakchi.ConsoleType.SNES_USA:
-                        case hakchi.ConsoleType.SuperFamicom:
-                            originalSyncCode =
-                                $"src=\"{hakchi.SquashFsPath}{hakchi.GamesSquashFsPath}/{originalCode}\" && " +
-                                $"dst=\"{uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
-                                $"mkdir -p \"$dst\" && " +
-                                $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\")";
-                            break;
+                        tasker.SetStatus(Resources.UploadingOriginalGames);
+
+                        string data = $"#!/bin/sh\ncd \"/tmp\"\n";
+                        commandBuilder.Write(Encoding.UTF8.GetBytes(data), 0, data.Length);
+                        int i = 0;
+                        foreach (var originalCode in originalGames.Keys)
+                        {
+                            string originalSyncCode = "";
+                            switch (ConfigIni.Instance.ConsoleType)
+                            {
+                                case hakchi.ConsoleType.NES:
+                                case hakchi.ConsoleType.Famicom:
+                                    originalSyncCode =
+                                        $"src=\"{hakchi.SquashFsPath}{hakchi.GamesSquashFsPath}/{originalCode}\" && " +
+                                        $"dst=\"{uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
+                                        $"mkdir -p \"$dst\" && " +
+                                        $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\") && " +
+                                        $"([ -L \"$dst/pixelart\" ] || ln -s \"$src/pixelart\" \"$dst/\")" +
+                                        "\n";
+                                    break;
+                                case hakchi.ConsoleType.SNES_EUR:
+                                case hakchi.ConsoleType.SNES_USA:
+                                case hakchi.ConsoleType.SuperFamicom:
+                                    originalSyncCode =
+                                        $"src=\"{hakchi.SquashFsPath}{hakchi.GamesSquashFsPath}/{originalCode}\" && " +
+                                        $"dst=\"{uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
+                                        $"mkdir -p \"$dst\" && " +
+                                        $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\")" +
+                                        "\n";
+                                    break;
+                            }
+                            commandBuilder.Write(Encoding.UTF8.GetBytes(originalSyncCode), 0, originalSyncCode.Length);
+                        }
+                        tasker.SetProgress(130, maxProgress);
+
+                        hakchi.RunTemporaryScript(commandBuilder, "originalgamessync.sh");
                     }
-                    shell.ExecuteSimple(originalSyncCode, 5000, true);
-                    tasker.SetProgress(125 + (int)((double)++i / originalGames.Count * 10), maxProgress);
-                };
+
+                    tasker.SetProgress(135, maxProgress);
+                }
 
                 tasker.SetStatus(Resources.UploadingConfig);
                 hakchi.SyncConfig(ConfigIni.GetConfigDictionary());

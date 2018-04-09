@@ -407,16 +407,16 @@ namespace com.clusterrr.hakchi_gui
             return Shell.Execute("gunzip -c - > /dev/fb0", splashScreenStream, null, null, 3000);
         }
 
-        public static void RunTemporaryScript(Stream script, string fileName)
+        public static void RunTemporaryScript(Stream script, string fileName, int timeout = 0, bool throwOnNonZero = false)
         {
             try
             {
-                hakchi.Shell.Execute($"cat > /tmp/{fileName}", script, null, null, 5000, true);
-                hakchi.Shell.ExecuteSimple($"chmod +x /tmp/{fileName} && /tmp/{fileName}", 0, true);
+                hakchi.Shell.Execute($"cat > /tmp/{fileName}", script, null, null, 5000, throwOnNonZero);
+                hakchi.Shell.ExecuteSimple($"chmod +x /tmp/{fileName} && /tmp/{fileName}", timeout, throwOnNonZero);
             }
             finally
             {
-                hakchi.Shell.ExecuteSimple($"rm /tmp/{fileName}", 5000, true);
+                hakchi.Shell.ExecuteSimple($"rm /tmp/{fileName}", 2000, throwOnNonZero);
             }
 
         }
