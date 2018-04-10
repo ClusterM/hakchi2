@@ -814,10 +814,10 @@ namespace com.clusterrr.hakchi_gui
                 var storageDevice = clovershell.ExecuteSimple($"df {gameSyncStorage} | sed -n '2p' | awk '{{print $1}}'", 3000, true);
                 var storageStats = clovershell.ExecuteSimple($"df {storageDevice} | tail -n 1 | awk '{{ print $2 \" | \" $3 \" | \" $4 }}'", 3000, true).Split('|');
 
-                ExternalSaves = clovershell.ExecuteSimple("mount | grep /var/lib/clover").Trim().Length > 0;
+                ExternalSaves = clovershell.ExecuteSimple("mount | grep /var/lib/clover").Length > 0;
                 var writedGamesSizeAll = long.Parse(clovershell.ExecuteSimple($"mkdir -p {rootFsPath}{originalGamesPath} && du -s {rootFsPath}{originalGamesPath} | awk '{{ print $1 }}'", 3000, true)) * 1024;
                 if (gameSyncStorage != $"{rootFsPath}{originalGamesPath}")
-                    writedGamesSizeAll += long.Parse(clovershell.ExecuteSimple($"mkdir -p {gameSyncStorage}/{SubConsoleDirectory}/ && du -s {gameSyncStorage}/{SubConsoleDirectory}/ | awk '{{ print $1 }}'", 3000, true)) * 1024;
+                    writedGamesSizeAll += long.Parse(clovershell.ExecuteSimple($"mkdir -p {gameSyncStorage}/{SubConsoleDirectory} && du -s {gameSyncStorage}/{SubConsoleDirectory} | awk '{{ print $1 }}'", 3000, true)) * 1024;
                 WritedGamesSize = writedGamesSizeAll;
                 SaveStatesSize = long.Parse(clovershell.ExecuteSimple("mkdir -p /var/lib/clover/profiles/0/ && du -s /var/lib/clover/profiles/0/ | awk '{ print $1 }'", 3000, true)) * 1024;
                 NandCTotal = long.Parse(storageStats[0]) * 1024;

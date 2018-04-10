@@ -1158,7 +1158,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (Uninstall())
                 {
-                    if (ConfigIni.CustomFlashed && MessageBox.Show(Resources.UninstallQ2, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                    if (/*ConfigIni.CustomFlashed &&*/ MessageBox.Show(Resources.UninstallQ2, Resources.AreYouSure, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                         == System.Windows.Forms.DialogResult.Yes)
                     {
                         if (FlashOriginalKernel())

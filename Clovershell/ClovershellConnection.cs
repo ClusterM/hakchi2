@@ -636,7 +636,10 @@ namespace com.clusterrr.clovershell
             var stdOut = new MemoryStream();
             Execute(command, null, stdOut, null, timeout, throwOnNonZero);
             var buff = stdOut.ToArray();
-            return Encoding.UTF8.GetString(buff).Trim();
+#if VERY_DEBUG
+            Debug.WriteLine($"Output for {command}: {Encoding.UTF8.GetString(buff)}");
+#endif
+            return Encoding.UTF8.GetString(buff).Trim(new char[] { ' ', '\t', '\r', '\n' });
         }
 
         public int Execute(string command, Stream stdin = null, Stream stdout = null, Stream stderr = null, int timeout = 0, bool throwOnNonZero = false)

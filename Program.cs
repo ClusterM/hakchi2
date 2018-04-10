@@ -79,7 +79,6 @@ namespace com.clusterrr.hakchi_gui
                     if (createdNew)
                     {
                         BaseDirectoryInternal = Path.GetDirectoryName(Application.ExecutablePath);
-#if CLICKONCE
                         if (ApplicationDeployment.IsNetworkDeployed)
                         {
                             // This is not correct way for Windows 7+...
@@ -97,7 +96,6 @@ namespace com.clusterrr.hakchi_gui
                             }
                         }
                         else
-#endif
                             BaseDirectoryExternal = BaseDirectoryInternal;
                         Debug.WriteLine("Base directory: " + BaseDirectoryExternal);
                         ConfigIni.Load();
@@ -110,7 +108,6 @@ namespace com.clusterrr.hakchi_gui
 
                         // There are some folders which should be accessed by user
                         // Moving them to "My documents"
-#if CLICKONCE
                         if (ApplicationDeployment.IsNetworkDeployed && ApplicationDeployment.CurrentDeployment.IsFirstRun)
                         {
                             var externalDirs = new string[]
@@ -120,7 +117,6 @@ namespace com.clusterrr.hakchi_gui
                             foreach (var dir in externalDirs)
                                 DirectoryCopy(Path.Combine(BaseDirectoryInternal, dir), Path.Combine(BaseDirectoryExternal, dir), true);
                         }
-#endif
 
                         string languagesDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "languages");
                         const string langFileNames = "hakchi.resources.dll";
@@ -132,7 +128,6 @@ namespace com.clusterrr.hakchi_gui
                             {
                                 var dir = Path.GetDirectoryName(d);
                                 Debug.WriteLine("Removing old directory: " + dir);
-#if CLICKONCE
                                 if (ApplicationDeployment.IsNetworkDeployed)
                                 {
                                     var targetDir = Path.Combine(languagesDirectory, Path.GetFileName(dir));
@@ -143,7 +138,6 @@ namespace com.clusterrr.hakchi_gui
                                     File.Move(Path.Combine(dir, langFileNames), targetFile);
                                 }
                                 else
-#endif
                                     Directory.Delete(dir, true);
                             }
 
