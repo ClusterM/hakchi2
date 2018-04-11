@@ -1187,4 +1187,7 @@ Continue?</value>
   <data name="RecoveryMode" xml:space="preserve">
     <value>Recovery mode</value>
   </data>
+  <data name="SfromToolInstalled" xml:space="preserve">
+    <value>SFROM Tool has been installed. Your games will now be converted with it. You can also drag and drop .CNP patches to add them easily.</value>
+  </data>
 </root>

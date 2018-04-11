@@ -1930,8 +1930,6 @@ namespace com.clusterrr.hakchi_gui
             var files = (string[])e.Data.GetData(DataFormats.FileDrop);
             if (files == null) return;
 
-            // Need to determine type of files
-            // Maybe it's cover art?
             if (files.Length == 1)
             {
                 var ext = Path.GetExtension(files[0]).ToLower();
@@ -1940,42 +1938,81 @@ namespace com.clusterrr.hakchi_gui
                     SetImageForSelectedGame(files[0]);
                     return;
                 }
-            }
-
-            // Maybe it's some mods?
-            bool mods = false;
-            foreach (var file in files)
-                if (Path.GetExtension(file).ToLower() == ".hmod")
-                    mods = true;
-            // Maybe it's some mods in single archive?
-            if (files.Length == 1)
-            {
-                var ext = Path.GetExtension(files[0]).ToLower();
-                if (ext == ".7z" || ext == ".zip" || ext == ".rar")
+                if (Path.GetFileName(files[0]).ToLower().StartsWith("sfrom_tool") && (ext == ".rar" || ext == ".zip" || ext == ".rar"))
                 {
                     using (var szExtractor = new SevenZipExtractor(files[0]))
                     {
+                        szExtractor.ExtractArchive(Path.Combine(Program.BaseDirectoryExternal, "sfrom_tool"));
+                    }
+                    enableSFROMToolToolStripMenuItem.Checked = true;
+                    enableSFROMToolToolStripMenuItem_Click(sender, e);
+
+                    if (SfromToolWrapper.IsInstalled)
+                    {
+                        Tasks.MessageForm.Show(this, Resources.SfromTool, Resources.SfromToolInstalled, Resources.sign_handshake);
+                    }
+                    return;
+                }
+            }
+
+            string patchesPath = Path.Combine(Program.BaseDirectoryExternal, "sfrom_tool", "patches");
+            if (!Directory.Exists(patchesPath))
+                patchesPath = null;
+
+            var filesToAdd = new List<string>();
+            var modsToInstall = new List<string>();
+            foreach (var file in files)
+            {
+                var ext = Path.GetExtension(file).ToLower();
+                if (ext == ".hmod")
+                {
+                    modsToInstall.Add(file);
+                }
+                else if (Directory.Exists(file))
+                {
+                    // nothing for now (too many potential problems)
+                }
+                else if (ext == ".7z" || ext == ".zip" || ext == ".rar")
+                {
+                    using (var szExtractor = new SevenZipExtractor(file))
+                    {
+                        bool isMod = false;
                         foreach (var f in szExtractor.ArchiveFileNames)
                             if (Path.GetExtension(f).ToLower() == ".hmod")
-                                mods = true;
+                            {
+                                modsToInstall.Add(file);
+                                isMod = true;
+                                break;
+                            }
+
+                        if (!isMod)
+                        {
+                            filesToAdd.Add(file);
+                        }
+                    }
+                }
+                else if (File.Exists(file))
+                {
+                    if (ext == ".cnp")
+                    {
+                        if (patchesPath != null)
+                            File.Copy(file, Path.Combine(patchesPath, Path.GetFileName(file)));
+                    }
+                    else
+                    {
+                        filesToAdd.Add(file);
                     }
                 }
             }
-            if (mods)
-            {
-                installModules(files);
-                return;
-            }
 
-            // All other cases - games or apps
-            var allFilesToAdd = new List<string>();
-            foreach (var file in files)
-                if (Directory.Exists(file))
-                    allFilesToAdd.AddRange(Directory.GetFiles(file, "*.*", SearchOption.AllDirectories));
-                else if (File.Exists(file))
-                    allFilesToAdd.Add(file);
-            if (allFilesToAdd.Count > 0)
-                AddGames(allFilesToAdd);
+            if (modsToInstall.Count > 0)
+            {
+                installModules(modsToInstall.ToArray());
+            }
+            if (filesToAdd.Count > 0)
+            {
+                AddGames(filesToAdd);
+            }
         }
 
         private void searchToolStripMenuItem_Click(object sender, EventArgs e)

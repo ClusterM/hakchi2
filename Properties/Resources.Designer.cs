@@ -2764,6 +2764,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SFROM Tool has been installed. Your games will now be converted with it. You can also drag and drop .CNP patches to add them easily..
+        /// </summary>
+        internal static string SfromToolInstalled {
+            get {
+                return ResourceManager.GetString("SfromToolInstalled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap sign_add {
