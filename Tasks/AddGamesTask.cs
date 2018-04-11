@@ -194,6 +194,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
             if (addedApps != null)
             {
+                tasker.SetTitle(Resources.UpdatingList);
+
                 // show select core dialog if applicable
                 var unknownApps = new List<NesApplication>();
                 foreach (var app in addedApps)
@@ -237,10 +239,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 var oldAppsReplaced = from app in listViewGames.Items.Cast<ListViewItem>().ToArray()
                                       where (app.Tag is NesApplication) && newCodes.Contains((app.Tag as NesApplication).Code)
                                       select app;
-                foreach (var replaced in oldAppsReplaced)
-                    listViewGames.Items.Remove(replaced);
 
+                int i = 0, max = newApps.Count() + oldAppsReplaced.Count();
                 var newGroup = listViewGames.Groups.OfType<ListViewGroup>().Where(group => group.Header == Resources.ListCategoryNew).First();
+                foreach (var replaced in oldAppsReplaced)
+                {
+                    listViewGames.Items.Remove(replaced);
+                    tasker.SetProgress(++i, max);
+                }
                 foreach (var newApp in newApps)
                 {
                     var item = new ListViewItem(newApp.Name);
@@ -249,6 +255,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     item.Selected = true;
                     item.Checked = true;
                     listViewGames.Items.Add(item);
+                    tasker.SetProgress(++i, max);
                 }
                 listViewGames.EndUpdate();
             }

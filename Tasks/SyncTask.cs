@@ -410,7 +410,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
                 // Finally, delete any empty directories we may have left during the differential sync
                 tasker.SetStatus(Resources.CleaningUp);
-                shell.ExecuteSimple($"for f in $(find \"{uploadPath}\" -type d -mindepth 1 -maxdepth 2); do {{ ls -1 \"$f\" | grep -v pixelart | grep -v autoplay " +
+                shell.ExecuteSimple($"for f in $(find \"{uploadPath}\" -type d -mindepth 1 -maxdepth 2); do {{ find \"$f\" -type f -mindepth 1 | grep -v pixelart | grep -v autoplay " +
                     "| wc -l | { read wc; test $wc -eq 0 && rm -rf \"$f\"; } } ; done", 0);
                 tasker.SetProgress(125, maxProgress);
 

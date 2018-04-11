@@ -922,6 +922,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error importing game &quot;{0}&quot;. Please verify that the file is valid and not corrupted..
+        /// </summary>
+        internal static string ErrorImportingGame {
+            get {
+                return ResourceManager.GetString("ErrorImportingGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occured while restoring the original games. You can always use File -&gt; Restore original games later on to try again for the games collection you intend to use them in..
         /// </summary>
         internal static string ErrorRestoringAllOriginalGames {
@@ -1733,6 +1742,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string ImageTooLarge {
             get {
                 return ResourceManager.GetString("ImageTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import games.
+        /// </summary>
+        internal static string ImportGames {
+            get {
+                return ResourceManager.GetString("ImportGames", resourceCulture);
             }
         }
         
@@ -3255,6 +3273,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string UpdateComplete {
             get {
                 return ResourceManager.GetString("UpdateComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating list....
+        /// </summary>
+        internal static string UpdatingList {
+            get {
+                return ResourceManager.GetString("UpdatingList", resourceCulture);
             }
         }
         

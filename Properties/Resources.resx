@@ -1190,4 +1190,13 @@ Continue?</value>
   <data name="SfromToolInstalled" xml:space="preserve">
     <value>SFROM Tool has been installed. Your games will now be converted with it. You can also drag and drop .CNP patches to add them easily.</value>
   </data>
+  <data name="ErrorImportingGame" xml:space="preserve">
+    <value>Error importing game "{0}". Please verify that the file is valid and not corrupted.</value>
+  </data>
+  <data name="ImportGames" xml:space="preserve">
+    <value>Import games</value>
+  </data>
+  <data name="UpdatingList" xml:space="preserve">
+    <value>Updating list...</value>
+  </data>
 </root>

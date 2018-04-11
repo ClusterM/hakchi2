@@ -302,14 +302,17 @@ namespace com.clusterrr.hakchi_gui
         public void SyncConsoleType()
         {
             // skip the rest if unchanged
-            if (ConfigIni.Instance.ConsoleType == lastConsoleType && lastConnected == hakchi.Connected)
+            if (lastConnected != hakchi.Connected)
+            {
+                MemoryStats.DebugDisplay();
+            }
+            lastConnected = hakchi.Connected;
+
+            if (lastConsoleType == ConfigIni.Instance.ConsoleType)
             {
                 return;
             }
             lastConsoleType = ConfigIni.Instance.ConsoleType;
-            lastConnected = hakchi.Connected;
-
-            MemoryStats.DebugDisplay();
 
             // select games collection
             for (int i = 0; i < gamesConsoleComboBox.Items.Count; ++i)

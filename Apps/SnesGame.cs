@@ -219,10 +219,18 @@ namespace com.clusterrr.hakchi_gui
                 {
                     Debug.WriteLine($"Trying to convert {inputFileName}");
                     bool problemGame = false;
-                    MakeSfrom(ref rawRomData, ref saveCount, out problemGame);
-                    outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
+                    try
+                    {
+                        MakeSfrom(ref rawRomData, ref saveCount, out problemGame);
+                    }
+                    catch (Exception ex)
+                    {
+                        Tasks.ErrorForm.Show(MainForm.StaticRef, Resources.ImportGames, string.Format(Resources.ErrorImportingGame, Path.GetFileName(inputFileName)), ex.Message + ex.StackTrace);
+                        return false;
+                    }
 
-                    // Using 3rd party emulator for this ROM
+                    // Using 3rd party emulator for this ROM?
+                    outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
                     if (problemGame && Need3rdPartyEmulator != true)
                     {
                         if (Need3rdPartyEmulator != false)
@@ -485,6 +493,10 @@ namespace com.clusterrr.hakchi_gui
             public static SnesRomHeader Read(byte[] buffer, int pos)
             {
                 var size = Marshal.SizeOf(typeof(SnesRomHeader));
+                if (buffer.Length < pos + size || size == 0)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
                 IntPtr ptr = Marshal.AllocHGlobal(size);
                 Marshal.Copy(buffer, pos, ptr, size);
                 var r = (SnesRomHeader)Marshal.PtrToStructure(ptr, typeof(SnesRomHeader));
