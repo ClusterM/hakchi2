@@ -324,13 +324,19 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public Conclusion GetStockKernel(Tasker tasker, Object syncObject = null)
         {
+            if (tasker.HostForm.InvokeRequired)
+                return (Conclusion)tasker.HostForm.Invoke(new Func<Tasker, Object, Conclusion>(GetStockKernel), new object[] { tasker, syncObject });
+
             tasker.SetStatus(Resources.DumpingKernel);
             stockKernel = new MemoryStream();
             bool hasNandBackup = (hakchi.Shell.Execute("[ \"$(sntool sunxi_flash phy_read 68 1 | dd status=none bs=7 count=1)\" = \"ANDROID\" ]") == 0);
 
             if (hasNandBackup)
             {
-                hakchi.Shell.Execute("sntool sunxi_flash read_boot2 68 18", null, stockKernel, null, 0, true);
+                hakchi.Shell.Execute("sntool sunxi_flash read_boot2 68", null, stockKernel, null, 0, true);
+                if(stockKernel.Length == 0)
+                    throw new Exception("Error reading backup kernel.");
+
                 return Conclusion.Success;
             }
             else
