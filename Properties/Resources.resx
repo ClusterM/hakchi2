@@ -1175,4 +1175,16 @@ Continue?</value>
   <data name="Nintendo_NES_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\nintendo-nes-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="CannotInteract" xml:space="preserve">
+    <value>Hakchi update required</value>
+  </data>
+  <data name="JustWaitForYourMini" xml:space="preserve">
+    <value>Just wait until it power cycles.</value>
+  </data>
+  <data name="MakeSureYourMiniIsConnected" xml:space="preserve">
+    <value>Make sure your NES/SNES mini is properly connected via USB cable.</value>
+  </data>
+  <data name="RecoveryMode" xml:space="preserve">
+    <value>Recovery mode</value>
+  </data>
 </root>

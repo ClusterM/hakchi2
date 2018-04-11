@@ -95,6 +95,13 @@ namespace com.clusterrr.hakchi_gui
 
         void setWindowTitle()
         {
+            if (Disposing) return;
+            if (InvokeRequired)
+            {
+                Invoke(new Action(setWindowTitle));
+                return;
+            }
+
             string title = $"hakchi2 CE v{Shared.AppDisplayVersion}";
 
 #if DEBUG
@@ -106,7 +113,18 @@ namespace com.clusterrr.hakchi_gui
 #endif
             ;
 
-            if (hakchi.DetectedConsoleType != null)
+            if (hakchi.MinimalMemboot)
+            {
+                title += " - " + Resources.RecoveryMode;
+            }
+            else if (!hakchi.CanInteract)
+            {
+                if (hakchi.Connected)
+                {
+                    title += " - " + Resources.CannotInteract;
+                }
+            }
+            else if (hakchi.DetectedConsoleType != null)
             {
                 title += " - " + GetConsoleTypeName(hakchi.DetectedConsoleType);
                 if (hakchi.CustomFirmwareLoaded) title += " (HSQS)";
@@ -119,6 +137,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
+                setWindowTitle();
 
                 // prepare collections
                 LoadLanguages();
@@ -210,8 +229,9 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                // setup shell menu items
+                // setup ui items
                 setupShellMenuItems(caller);
+                setWindowTitle();
 
                 // then skip on if in minimal memboot
                 if (hakchi.MinimalMemboot)
@@ -274,17 +294,22 @@ namespace com.clusterrr.hakchi_gui
         {
             Invoke(new Action(SyncConsoleType));
             setupShellMenuItems(hakchi.Shell);
+            setWindowTitle();
         }
 
         static hakchi.ConsoleType lastConsoleType = hakchi.ConsoleType.Unknown;
+        static bool lastConnected = false;
         public void SyncConsoleType()
         {
-            setWindowTitle();
-            MemoryStats.DebugDisplay();
-
             // skip the rest if unchanged
-            if (ConfigIni.Instance.ConsoleType == lastConsoleType) return;
+            if (ConfigIni.Instance.ConsoleType == lastConsoleType && lastConnected == hakchi.Connected)
+            {
+                return;
+            }
             lastConsoleType = ConfigIni.Instance.ConsoleType;
+            lastConnected = hakchi.Connected;
+
+            MemoryStats.DebugDisplay();
 
             // select games collection
             for (int i = 0; i < gamesConsoleComboBox.Items.Count; ++i)
@@ -305,6 +330,14 @@ namespace com.clusterrr.hakchi_gui
             useXYOnClassicControllerAsAutofireABToolStripMenuItem.Checked = ConfigIni.Instance.AutofireXYHack;
             upABStartOnSecondControllerToolStripMenuItem.Enabled = true;
             upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.Instance.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
+
+            // enable/disable options based on console being connected and can interact or not
+            enableUSBHostToolStripMenuItem.Enabled =
+                useExtendedFontToolStripMenuItem.Enabled =
+                epilepsyProtectionToolStripMenuItem.Enabled =
+                cloverconHackToolStripMenuItem.Enabled =
+                globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Enabled =
+                saveSettingsToNESMiniNowToolStripMenuItem.Enabled = (hakchi.Connected && hakchi.CanInteract);
 
             // more settings
             compressGamesToolStripMenuItem.Checked = ConfigIni.Instance.Compress;
@@ -2049,8 +2082,8 @@ namespace com.clusterrr.hakchi_gui
 
         private void timerConnectionCheck_Tick(object sender, EventArgs e)
         {
-            toolStripStatusConnectionIcon.Image = hakchi.Shell.IsOnline ? Resources.green : Resources.red;
-            toolStripStatusConnectionIcon.ToolTipText = hakchi.Shell.IsOnline ? "Online" : "Offline";
+            toolStripStatusConnectionIcon.Image = hakchi.Connected ? Resources.green : Resources.red;
+            toolStripStatusConnectionIcon.ToolTipText = hakchi.Connected ? "Online" : "Offline";
         }
 
         private void saveSettingsToNESMiniNowToolStripMenuItem_Click(object sender, EventArgs e)

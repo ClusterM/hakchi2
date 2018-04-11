@@ -14,14 +14,21 @@ namespace com.clusterrr.hakchi_gui
         public WaitingClovershellForm()
         {
             InitializeComponent();
-            buttonDriver.Left = label6.Left + label6.Width;
+            buttonDriver.Left = label3.Left + label3.Width;
             timer.Enabled = true;
         }
 
-        public static bool WaitForDevice(IWin32Window owner)
+        public static bool WaitForDevice(IWin32Window owner, bool justWaiting = false)
         {
             if (DeviceExists()) return true;
             var form = new WaitingClovershellForm();
+            if (justWaiting)
+            {
+                form.label1.Text = "1. " + Resources.MakeSureYourMiniIsConnected;
+                form.label2.Text = "2. " + Resources.JustWaitForYourMini;
+                form.label3.Enabled = false;
+                form.buttonDriver.Enabled = false;
+            }
             form.ShowDialog(owner);
             return form.DialogResult == DialogResult.OK;
         }

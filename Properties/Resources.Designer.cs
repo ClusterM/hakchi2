@@ -444,6 +444,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hakchi update required.
+        /// </summary>
+        internal static string CannotInteract {
+            get {
+                return ResourceManager.GetString("CannotInteract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your kernel or scripts are out of date. Please update before synchronizing games.
         /// </summary>
         internal static string CannotProceedCannotInteract {
@@ -1829,6 +1838,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Just wait until it power cycles..
+        /// </summary>
+        internal static string JustWaitForYourMini {
+            get {
+                return ResourceManager.GetString("JustWaitForYourMini", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your original kernel is saved in the &quot;hakchi2\dump&quot; folder. Do not lose it. .
         /// </summary>
         internal static string KernelDumped {
@@ -1924,6 +1942,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string MainMenu {
             get {
                 return ResourceManager.GetString("MainMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make sure your NES/SNES mini is properly connected via USB cable..
+        /// </summary>
+        internal static string MakeSureYourMiniIsConnected {
+            get {
+                return ResourceManager.GetString("MakeSureYourMiniIsConnected", resourceCulture);
             }
         }
         
@@ -2361,6 +2388,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string RecoveryKernel {
             get {
                 return ResourceManager.GetString("RecoveryKernel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recovery mode.
+        /// </summary>
+        internal static string RecoveryMode {
+            get {
+                return ResourceManager.GetString("RecoveryMode", resourceCulture);
             }
         }
         

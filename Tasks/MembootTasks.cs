@@ -218,7 +218,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 return (Conclusion)tasker.HostForm.Invoke(new Func<Tasker, object, Conclusion>(WaitForShell), new object[] { tasker, syncObject });
             }
             tasker.SetStatus(Resources.WaitingForDevice);
-            var result = WaitingClovershellForm.WaitForDevice(tasker.HostForm);
+            var result = WaitingClovershellForm.WaitForDevice(tasker.HostForm, true);
             if (result)
                 return Conclusion.Success;
 
