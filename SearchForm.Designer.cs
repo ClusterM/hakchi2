@@ -43,7 +43,8 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.textBoxSearch);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

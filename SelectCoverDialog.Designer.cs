@@ -181,6 +181,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewGames);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(750, 605);
             this.MinimizeBox = false;

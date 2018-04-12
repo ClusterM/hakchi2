@@ -164,7 +164,8 @@
             this.Controls.Add(this.radioEUR);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.Name = "UploadGamesDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Upload Games";

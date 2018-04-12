@@ -119,7 +119,7 @@
             this.pictureBoxController.Name = "pictureBoxController";
             this.pictureBoxController.TabStop = false;
             // 
-            // SelectButtonsForm
+            // SelectNesButtonsForm
             // 
             this.AcceptButton = this.buttonOk;
             resources.ApplyResources(this, "$this");
@@ -134,10 +134,11 @@
             this.Controls.Add(this.checkBoxSelect);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.pictureBoxController);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "SelectButtonsForm";
+            this.Name = "SelectNesButtonsForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxController)).EndInit();
             this.ResumeLayout(false);
 

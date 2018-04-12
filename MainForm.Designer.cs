@@ -1634,6 +1634,7 @@
             this.Controls.Add(this.listViewGames);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "MainForm";

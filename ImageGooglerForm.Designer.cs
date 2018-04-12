@@ -54,6 +54,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.listView);
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MinimizeBox = false;
             this.Name = "ImageGooglerForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImageGooglerForm_FormClosing);

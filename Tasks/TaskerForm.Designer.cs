@@ -99,11 +99,11 @@
             this.Controls.Add(this.statusPictureBox);
             this.Controls.Add(this.progressBarEx1);
             this.Controls.Add(this.statusLabel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TaskerForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tasker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TaskerForm_FormClosing);

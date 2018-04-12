@@ -116,7 +116,8 @@
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(455, 270);
             this.MinimizeBox = false;

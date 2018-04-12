@@ -64,7 +64,8 @@
             this.Controls.Add(this.buttonArchive);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.listBoxFiles);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MinimizeBox = false;
             this.Name = "SelectFileForm";
             this.ResumeLayout(false);

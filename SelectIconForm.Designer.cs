@@ -65,7 +65,7 @@
             this.Controls.Add(this.pictureBoxArt);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.listBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MinimizeBox = false;
             this.Name = "SelectIconForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).EndInit();

@@ -1172,4 +1172,7 @@ Continue?</value>
   <data name="SaveStructureQ" xml:space="preserve">
     <value>Are you sure you want to sync all your games collections' structure settings to the currently displayed settings?</value>
   </data>
+  <data name="Nintendo_NES_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\nintendo-nes-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

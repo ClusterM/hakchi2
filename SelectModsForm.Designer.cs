@@ -8,7 +8,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectModsForm));
             this.buttonOk = new System.Windows.Forms.Button();
             this.wbReadme = new System.Windows.Forms.WebBrowser();
             this.listViewHmods = new System.Windows.Forms.ListView();
@@ -113,7 +112,7 @@
             this.Controls.Add(this.listViewHmods);
             this.Controls.Add(this.wbReadme);
             this.Controls.Add(this.buttonOk);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MinimumSize = new System.Drawing.Size(400, 300);
             this.Name = "SelectModsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

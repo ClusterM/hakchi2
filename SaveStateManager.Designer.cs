@@ -173,6 +173,7 @@
             this.Controls.Add(this.buttonImport);
             this.Controls.Add(this.buttonExport);
             this.Controls.Add(this.labelLoading);
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.Name = "SaveStateManager";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SaveStateManager_FormClosed);
             this.contextMenuStrip.ResumeLayout(false);

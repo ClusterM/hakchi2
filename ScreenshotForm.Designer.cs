@@ -51,6 +51,7 @@ namespace com.clusterrr.hakchi_gui
             this.screenshotPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.screenshotPictureBox.BackColor = System.Drawing.Color.Black;
             this.screenshotPictureBox.ContextMenuStrip = this.screenshotContextMenuStrip;
             this.screenshotPictureBox.Location = new System.Drawing.Point(0, 0);
             this.screenshotPictureBox.Name = "screenshotPictureBox";
@@ -142,6 +143,7 @@ namespace com.clusterrr.hakchi_gui
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 480);
             this.Controls.Add(this.screenshotPictureBox);
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.Name = "ScreenshotForm";
             this.Text = "Screenshot taken on {0} at {1}";
             this.Load += new System.EventHandler(this.ScreenshotForm_Load);

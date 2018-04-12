@@ -224,6 +224,7 @@
             this.Controls.Add(this.buttonDiscard);
             this.Controls.Add(this.buttonAccept);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(750, 405);
             this.Name = "SelectCoreDialog";

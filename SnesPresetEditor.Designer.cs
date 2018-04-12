@@ -90,7 +90,8 @@
             this.Controls.Add(this.labelExtra);
             this.Controls.Add(this.textBoxPresetID);
             this.Controls.Add(this.labelPresetID);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.Name = "SnesPresetEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SNES Preset ID";

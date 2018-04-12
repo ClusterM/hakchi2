@@ -115,8 +115,6 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                // icon workaround
-                Icon = Resources.icon;
 
                 // prepare collections
                 LoadLanguages();
@@ -1865,7 +1863,7 @@ namespace com.clusterrr.hakchi_gui
             // welcome message, only run for new new users
             if (ConfigIni.Instance.RunCount++ == 0)
             {
-                Tasks.MessageForm.Show(Resources.Hello, Resources.FirstRun, Resources.sign_paper_plane);
+                Tasks.MessageForm.Show(Resources.Hello, Resources.FirstRun, Resources.Nintendo_NES_icon);
             }
 
             // nothing else will call this at the moment, so need to do it
