@@ -23,7 +23,11 @@ namespace com.clusterrr.hakchi_gui
         /// <summary>
         /// The URL for the update metadata XML file
         /// </summary>
-        private static string UPDATE_XML_URL = "https://teamshinkansen.github.io/xml/updates/update.xml";
+#if DEBUG
+        private static string UPDATE_XML_URL = "https://teamshinkansen.github.io/xml/updates/update-debug.xml";
+#else
+        private static string UPDATE_XML_URL = "https://teamshinkansen.github.io/xml/updates/update-release.xml";
+#endif
         private static string SFROM_TOOL_URL = "http://darkakuma.z-net.us/p/sfromtool.html";
 
         public enum OriginalGamesPosition { AtTop = 0, AtBottom = 1, Sorted = 2, Hidden = 3 }
