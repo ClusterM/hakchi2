@@ -213,6 +213,8 @@ namespace com.clusterrr.hakchi_gui
         public bool ShowGamesWithoutCoverArt = false;
         public bool ForceSSHTransfers = false;
         public bool UploadToTmp = false;
+        public bool DisableSSHListener = false;
+        public bool DisableClovershellListener = false;
         public bool ExportLinked = true;
         public string ExportDrive = "";
         public FelLib.Fel.UbootType MembootUboot = FelLib.Fel.UbootType.SD;

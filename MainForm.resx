@@ -496,11 +496,26 @@
   <data name="uploadTotmpforTestingToolStripMenuItem.Text" xml:space="preserve">
     <value>Upload to /tmp (for testing)</value>
   </data>
+  <data name="disableSSHlistenerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 22</value>
+  </data>
+  <data name="disableSSHlistenerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Disable SSH listener</value>
+  </data>
+  <data name="disableClovershellListenerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 22</value>
+  </data>
+  <data name="disableClovershellListenerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Disable Clovershell listener</value>
+  </data>
   <data name="developerToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>301, 22</value>
   </data>
   <data name="developerToolsToolStripMenuItem.Text" xml:space="preserve">
     <value>Developer tools</value>
+  </data>
+  <data name="developerToolsToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="separateGamesForMultibootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>301, 22</value>
@@ -2465,6 +2480,18 @@
     <value>uploadTotmpforTestingToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;uploadTotmpforTestingToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;disableSSHlistenerToolStripMenuItem.Name" xml:space="preserve">
+    <value>disableSSHlistenerToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;disableSSHlistenerToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;disableClovershellListenerToolStripMenuItem.Name" xml:space="preserve">
+    <value>disableClovershellListenerToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;disableClovershellListenerToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;separateGamesForMultibootToolStripMenuItem.Name" xml:space="preserve">

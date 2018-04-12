@@ -90,54 +90,14 @@ namespace com.clusterrr.hakchi_gui
             FtpServer.LocalPort = 1021;
 
             // setup shell menu items
-            setupShellMenuItems(null);
-        }
-
-        void setWindowTitle()
-        {
-            if (Disposing) return;
-            if (InvokeRequired)
-            {
-                Invoke(new Action(setWindowTitle));
-                return;
-            }
-
-            string title = $"hakchi2 CE v{Shared.AppDisplayVersion}";
-
-#if DEBUG
-            title += " (Debug";
-#if VERY_DEBUG
-            title += ", very verbose mode";
-#endif
-            title += ")"
-#endif
-            ;
-
-            if (hakchi.MinimalMemboot)
-            {
-                title += " - " + Resources.RecoveryMode;
-            }
-            else if (!hakchi.CanInteract)
-            {
-                if (hakchi.Connected)
-                {
-                    title += " - " + Resources.CannotInteract;
-                }
-            }
-            else if (hakchi.DetectedConsoleType != null)
-            {
-                title += " - " + GetConsoleTypeName(hakchi.DetectedConsoleType);
-                if (hakchi.CustomFirmwareLoaded) title += " (HSQS)";
-            }
-
-            this.Text = title;
+            SetupShellMenuItems(null);
         }
 
         void FormInitialize()
         {
             try
             {
-                setWindowTitle();
+                SetWindowTitle();
 
                 // prepare collections
                 LoadLanguages();
@@ -181,12 +141,52 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        void setupShellMenuItems(ISystemShell caller)
+        void SetWindowTitle()
         {
             if (Disposing) return;
             if (InvokeRequired)
             {
-                Invoke(new Action(() => { setupShellMenuItems(caller); }));
+                Invoke(new Action(SetWindowTitle));
+                return;
+            }
+
+            string title = $"hakchi2 CE v{Shared.AppDisplayVersion}";
+
+#if DEBUG
+            title += " (Debug";
+#if VERY_DEBUG
+            title += ", very verbose mode";
+#endif
+            title += ")"
+#endif
+            ;
+
+            if (hakchi.MinimalMemboot)
+            {
+                title += " - " + Resources.RecoveryMode;
+            }
+            else if (!hakchi.CanInteract)
+            {
+                if (hakchi.Connected)
+                {
+                    title += " - " + Resources.CannotInteract;
+                }
+            }
+            else if (hakchi.DetectedConsoleType != null)
+            {
+                title += " - " + GetConsoleTypeName(hakchi.DetectedConsoleType);
+                if (hakchi.CustomFirmwareLoaded) title += " (HSQS)";
+            }
+
+            this.Text = title;
+        }
+
+        void SetupShellMenuItems(ISystemShell caller)
+        {
+            if (Disposing) return;
+            if (InvokeRequired)
+            {
+                Invoke(new Action<ISystemShell>(SetupShellMenuItems), new object[] { caller });
                 return;
             }
 
@@ -229,9 +229,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                // setup ui items
-                setupShellMenuItems(caller);
-                setWindowTitle();
+                SyncConsoleSettings();
 
                 // then skip on if in minimal memboot
                 if (hakchi.MinimalMemboot)
@@ -246,7 +244,7 @@ namespace com.clusterrr.hakchi_gui
                             ConfigIni.Instance.ConsoleType = (hakchi.ConsoleType)hakchi.DetectedConsoleType;
                         ConfigIni.Instance.LastConnectedConsoleType = (hakchi.ConsoleType)hakchi.DetectedConsoleType;
                     }
-                    Invoke(new Action(SyncConsoleType));
+                    SyncConsoleType();
 
                     if (hakchi.SystemEligibleForRootfsUpdate())
                     {
@@ -257,7 +255,7 @@ namespace com.clusterrr.hakchi_gui
                             return;
                         }
                     }
-                    Invoke(new Action(UpdateLocalCache));
+                    UpdateLocalCache();
                 }
                 else
                 {
@@ -292,37 +290,38 @@ namespace com.clusterrr.hakchi_gui
 
         void Shell_OnDisconnected()
         {
-            Invoke(new Action(SyncConsoleType));
-            setupShellMenuItems(hakchi.Shell);
-            setWindowTitle();
+            SyncConsoleSettings();
+            SyncConsoleType();
         }
 
-        static hakchi.ConsoleType lastConsoleType = hakchi.ConsoleType.Unknown;
         static bool lastConnected = false;
-        public void SyncConsoleType()
+        void SyncConsoleSettings(bool force = false)
         {
-            // skip the rest if unchanged
-            if (lastConnected != hakchi.Connected)
+            if (Disposing) return;
+            if (InvokeRequired)
             {
-                MemoryStats.DebugDisplay();
+                Invoke(new Action<bool>(SyncConsoleSettings), new object[] { force });
+                return;
             }
-            lastConnected = hakchi.Connected;
 
-            if (lastConsoleType == ConfigIni.Instance.ConsoleType)
+            if (lastConnected == hakchi.Connected && !force)
             {
                 return;
             }
-            lastConsoleType = ConfigIni.Instance.ConsoleType;
+            lastConnected = hakchi.Connected;
 
-            // select games collection
-            for (int i = 0; i < gamesConsoleComboBox.Items.Count; ++i)
-            {
-                if (GetConsoleTypeName(ConfigIni.Instance.ConsoleType) == gamesConsoleComboBox.Items[i] as string)
-                {
-                    gamesConsoleComboBox.SelectedIndex = i;
-                    break;
-                }
-            }
+            // setup ui items
+            SetupShellMenuItems(hakchi.Shell);
+            SetWindowTitle();
+
+            MemoryStats.DebugDisplay();
+            timerCalculateGames.Enabled = true;
+
+            // developer settings
+            devForceSshToolStripMenuItem.Checked = ConfigIni.Instance.ForceSSHTransfers;
+            uploadTotmpforTestingToolStripMenuItem.Checked = ConfigIni.Instance.UploadToTmp;
+            disableSSHlistenerToolStripMenuItem.Checked = ConfigIni.Instance.DisableSSHListener;
+            disableClovershellListenerToolStripMenuItem.Checked = ConfigIni.Instance.DisableClovershellListener;
 
             // console settings
             enableUSBHostToolStripMenuItem.Checked = ConfigIni.Instance.UsbHost;
@@ -341,6 +340,33 @@ namespace com.clusterrr.hakchi_gui
                 cloverconHackToolStripMenuItem.Enabled =
                 globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Enabled =
                 saveSettingsToNESMiniNowToolStripMenuItem.Enabled = (hakchi.Connected && hakchi.CanInteract);
+        }
+
+        static hakchi.ConsoleType lastConsoleType = hakchi.ConsoleType.Unknown;
+        void SyncConsoleType(bool force = false)
+        {
+            if (Disposing) return;
+            if (InvokeRequired)
+            {
+                Invoke(new Action<bool>(SyncConsoleType), new object[] { force });
+                return;
+            }
+
+            if (lastConsoleType == ConfigIni.Instance.ConsoleType)
+            {
+                return;
+            }
+            lastConsoleType = ConfigIni.Instance.ConsoleType;
+
+            // select games collection
+            for (int i = 0; i < gamesConsoleComboBox.Items.Count; ++i)
+            {
+                if (GetConsoleTypeName(ConfigIni.Instance.ConsoleType) == gamesConsoleComboBox.Items[i] as string)
+                {
+                    gamesConsoleComboBox.SelectedIndex = i;
+                    break;
+                }
+            }
 
             // more settings
             compressGamesToolStripMenuItem.Checked = ConfigIni.Instance.Compress;
@@ -372,8 +398,6 @@ namespace com.clusterrr.hakchi_gui
             coreToolStripMenuItem.Checked = ConfigIni.Instance.GamesSorting == GamesSorting.Core;
             systemToolStripMenuItem.Checked = ConfigIni.Instance.GamesSorting == GamesSorting.System;
             showGamesWithoutBoxArtToolStripMenuItem.Checked = ConfigIni.Instance.ShowGamesWithoutCoverArt;
-            devForceSshToolStripMenuItem.Checked = ConfigIni.Instance.ForceSSHTransfers;
-            uploadTotmpforTestingToolStripMenuItem.Checked = ConfigIni.Instance.UploadToTmp;
 
             // folders modes
             disablePagefoldersToolStripMenuItem.Checked = (byte)ConfigIni.Instance.FoldersMode == 0;
@@ -423,6 +447,13 @@ namespace com.clusterrr.hakchi_gui
 
         void UpdateLocalCache()
         {
+            if (Disposing) return;
+            if (InvokeRequired)
+            {
+                Invoke(new Action(UpdateLocalCache));
+                return;
+            }
+
             string cachePath = Path.Combine(Program.BaseDirectoryExternal, "games_cache");
             var games = new NesMenuCollection();
             foreach (NesDefaultGame game in NesApplication.DefaultGames)
@@ -627,10 +658,9 @@ namespace com.clusterrr.hakchi_gui
                         this.Controls.Clear();
                         this.InitializeComponent();
                         this.FormInitialize();
-                        this.setupShellMenuItems(hakchi.Shell);
-                        this.SyncConsoleType();
+                        this.SyncConsoleSettings(true);
+                        this.SyncConsoleType(true);
                         this.Show();
-                        //this.Invalidate(true);
                     };
                 if (Thread.CurrentThread.CurrentUICulture.Name.ToUpper() == langCodes[language].ToUpper())
                 {
@@ -835,6 +865,10 @@ namespace com.clusterrr.hakchi_gui
                     {
                         editROMHeaderToolStripMenuItem_Click(sender, e);
                     }
+                    break;
+                case Keys.F12:
+                    if (e.Modifiers == (Keys.Control))
+                        developerToolsToolStripMenuItem.Visible = true;
                     break;
             }
         }
@@ -1907,7 +1941,8 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // nothing else will call this at the moment, so need to do it
-            SyncConsoleType();
+            SyncConsoleSettings(true);
+            SyncConsoleType(true);
 
             // enable timers
             timerConnectionCheck.Enabled = true;
@@ -2097,6 +2132,20 @@ namespace com.clusterrr.hakchi_gui
         private void uploadTotmpforTestingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Instance.UploadToTmp = uploadTotmpforTestingToolStripMenuItem.Checked;
+        }
+
+        private void disableSSHlistenerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.DisableSSHListener = disableSSHlistenerToolStripMenuItem.Checked;
+            Debug.WriteLine("Recycling system shell listeners");
+            hakchi.Initialize();
+        }
+
+        private void disableClovershellListenerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.DisableClovershellListener = disableClovershellListenerToolStripMenuItem.Checked;
+            Debug.WriteLine("Recycling system shell listeners");
+            hakchi.Initialize();
         }
 
         private void pagesModefoldersToolStripMenuItem_Click(object sender, EventArgs e)

@@ -422,7 +422,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
                         string data = $"#!/bin/sh\ncd \"/tmp\"\n";
                         commandBuilder.Write(Encoding.UTF8.GetBytes(data), 0, data.Length);
-                        int i = 0;
                         foreach (var originalCode in originalGames.Keys)
                         {
                             string originalSyncCode = "";

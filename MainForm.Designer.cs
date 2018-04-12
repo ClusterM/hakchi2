@@ -91,6 +91,8 @@
             this.developerToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devForceSshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadTotmpforTestingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disableSSHlistenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disableClovershellListenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useLinkedSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -661,7 +663,9 @@
             // 
             this.developerToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.devForceSshToolStripMenuItem,
-            this.uploadTotmpforTestingToolStripMenuItem});
+            this.uploadTotmpforTestingToolStripMenuItem,
+            this.disableSSHlistenerToolStripMenuItem,
+            this.disableClovershellListenerToolStripMenuItem});
             this.developerToolsToolStripMenuItem.Name = "developerToolsToolStripMenuItem";
             resources.ApplyResources(this.developerToolsToolStripMenuItem, "developerToolsToolStripMenuItem");
             // 
@@ -678,6 +682,20 @@
             this.uploadTotmpforTestingToolStripMenuItem.Name = "uploadTotmpforTestingToolStripMenuItem";
             resources.ApplyResources(this.uploadTotmpforTestingToolStripMenuItem, "uploadTotmpforTestingToolStripMenuItem");
             this.uploadTotmpforTestingToolStripMenuItem.Click += new System.EventHandler(this.uploadTotmpforTestingToolStripMenuItem_Click);
+            // 
+            // disableSSHlistenerToolStripMenuItem
+            // 
+            this.disableSSHlistenerToolStripMenuItem.CheckOnClick = true;
+            this.disableSSHlistenerToolStripMenuItem.Name = "disableSSHlistenerToolStripMenuItem";
+            resources.ApplyResources(this.disableSSHlistenerToolStripMenuItem, "disableSSHlistenerToolStripMenuItem");
+            this.disableSSHlistenerToolStripMenuItem.Click += new System.EventHandler(this.disableSSHlistenerToolStripMenuItem_Click);
+            // 
+            // disableClovershellListenerToolStripMenuItem
+            // 
+            this.disableClovershellListenerToolStripMenuItem.CheckOnClick = true;
+            this.disableClovershellListenerToolStripMenuItem.Name = "disableClovershellListenerToolStripMenuItem";
+            resources.ApplyResources(this.disableClovershellListenerToolStripMenuItem, "disableClovershellListenerToolStripMenuItem");
+            this.disableClovershellListenerToolStripMenuItem.Click += new System.EventHandler(this.disableClovershellListenerToolStripMenuItem_Click);
             // 
             // separateGamesForMultibootToolStripMenuItem
             // 
@@ -1854,6 +1872,8 @@
         private System.Windows.Forms.ToolStripMenuItem rightmostToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem20;
         private System.Windows.Forms.ToolStripMenuItem syncStructureForAllGamesCollectionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem disableSSHlistenerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem disableClovershellListenerToolStripMenuItem;
     }
 }
 

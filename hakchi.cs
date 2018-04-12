@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -183,27 +184,36 @@ namespace com.clusterrr.hakchi_gui
         public static void Initialize()
         {
             if (shells.Any())
-                return;
+            {
+                if (Connected)
+                    Shell_OnDisconnected();
+                Shutdown();
+                Thread.Sleep(0);
+            }
 
             // placeholder shell
             shells.Add(new UnknownShell());
             Shell = shells.First();
 
             // clovershell (for legacy compatibility)
-            var clovershell = new ClovershellConnection() { AutoReconnect = true };
-            clovershell.OnConnected += Shell_OnConnected;
-            clovershell.OnDisconnected += Shell_OnDisconnected;
-            shells.Add(clovershell);
+            if (!ConfigIni.Instance.DisableClovershellListener)
+            {
+                var clovershell = new ClovershellConnection() { AutoReconnect = true };
+                clovershell.OnConnected += Shell_OnConnected;
+                clovershell.OnDisconnected += Shell_OnDisconnected;
+                shells.Add(clovershell);
+                clovershell.Enabled = true;
+            }
 
             // new high-tech but slow SSH connection
-            var ssh = new SshClientWrapper(AVAHI_SERVICE_NAME, STATIC_IP, 22, USERNAME, PASSWORD) { AutoReconnect = true };
-            ssh.OnConnected += Shell_OnConnected;
-            ssh.OnDisconnected += Shell_OnDisconnected;
-            shells.Add(ssh);
-
-            // start their watchers
-            clovershell.Enabled = true;
-            ssh.Enabled = true;
+            if (!ConfigIni.Instance.DisableSSHListener)
+            {
+                var ssh = new SshClientWrapper(AVAHI_SERVICE_NAME, STATIC_IP, 22, USERNAME, PASSWORD) { AutoReconnect = true };
+                ssh.OnConnected += Shell_OnConnected;
+                ssh.OnDisconnected += Shell_OnDisconnected;
+                shells.Add(ssh);
+                ssh.Enabled = true;
+            }
         }
 
         public static void Shutdown()
