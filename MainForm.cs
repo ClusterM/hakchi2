@@ -322,6 +322,11 @@ namespace com.clusterrr.hakchi_gui
             uploadTotmpforTestingToolStripMenuItem.Checked = ConfigIni.Instance.UploadToTmp;
             disableSSHlistenerToolStripMenuItem.Checked = ConfigIni.Instance.DisableSSHListener;
             disableClovershellListenerToolStripMenuItem.Checked = ConfigIni.Instance.DisableClovershellListener;
+            developerToolsToolStripMenuItem.Visible =
+                devForceSshToolStripMenuItem.Checked ||
+                uploadTotmpforTestingToolStripMenuItem.Checked ||
+                disableSSHlistenerToolStripMenuItem.Checked ||
+                disableClovershellListenerToolStripMenuItem.Checked;
 
             // console settings
             enableUSBHostToolStripMenuItem.Checked = ConfigIni.Instance.UsbHost;
@@ -1215,7 +1220,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (ConfigIni.Instance.ConsoleType != c)
                     {
-                        SaveSelectedGames();
+                        SaveConfig();
 
                         ConfigIni.Instance.ConsoleType = c;
                         SyncConsoleType();
@@ -1452,7 +1457,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        void AddGames(IEnumerable<string> files)
+        public void AddGames(IEnumerable<string> files)
         {
             using (var tasker = new Tasks.Tasker(this))
             {
@@ -1486,7 +1491,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        bool InstallMods(string[] mods)
+        public bool InstallMods(string[] mods)
         {
             using (var tasker = new Tasker(this))
             {
@@ -2409,7 +2414,7 @@ namespace com.clusterrr.hakchi_gui
 
         private bool groupTaskWithSelected(Tasks.GameTask task, Tasks.Tasker.TaskFunc taskFunc)
         {
-            SaveSelectedGames();
+            SaveConfig();
             using (var tasker = new Tasks.Tasker(this))
             {
                 tasker.AttachView(new Tasks.TaskerTaskbar());
@@ -2548,7 +2553,7 @@ namespace com.clusterrr.hakchi_gui
         {
             ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
             if (menuItem.Checked) return;
-            SaveSelectedGames();
+            SaveConfig();
 
             OriginalGamesPosition newPosition = (OriginalGamesPosition)byte.Parse(menuItem.Tag.ToString());
             bool reload = newPosition == OriginalGamesPosition.Hidden || ConfigIni.Instance.OriginalGamesPosition == OriginalGamesPosition.Hidden;
@@ -2565,7 +2570,7 @@ namespace com.clusterrr.hakchi_gui
         {
             ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
             if (menuItem.Checked) return;
-            SaveSelectedGames();
+            SaveConfig();
 
             GamesSorting newSorting = (GamesSorting)byte.Parse(menuItem.Tag.ToString());
             ConfigIni.Instance.GamesSorting = newSorting;
@@ -2578,13 +2583,13 @@ namespace com.clusterrr.hakchi_gui
         private void showGamesWithoutBoxArtToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Instance.ShowGamesWithoutCoverArt = showGamesWithoutBoxArtToolStripMenuItem.Checked;
-            SaveSelectedGames();
+            SaveConfig();
             LoadGames(false);
         }
 
         private void openFoldersManager()
         {
-            SaveSelectedGames();
+            SaveConfig();
             using (var tasker = new Tasker(this))
             {
                 var task = new Tasks.SyncTask();
@@ -2693,7 +2698,7 @@ namespace com.clusterrr.hakchi_gui
             if (listViewGames.SelectedItems.Count == 0)
                 return;
 
-            SaveSelectedGames();
+            SaveConfig();
             using (SelectCoreDialog selectCoreDialog = new SelectCoreDialog())
             {
                 foreach (ListViewItem item in listViewGames.SelectedItems)
