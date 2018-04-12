@@ -2823,5 +2823,9 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private void modStoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ModStore().ShowDialog();
+        }
     }
 }

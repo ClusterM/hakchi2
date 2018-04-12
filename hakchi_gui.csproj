@@ -166,6 +166,34 @@
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\SystemCollection.cs" />
     <Compile Include="Apps\UnknownGame.cs" />
+    <Compile Include="Extensions\ModStore\ModStore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Extensions\ModStore\ModStore.designer.cs">
+      <DependentUpon>ModStore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ModStore\ModStoreAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Extensions\ModStore\ModStoreAbout.designer.cs">
+      <DependentUpon>ModStoreAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ModStore\ModStoreGame.cs" />
+    <Compile Include="Extensions\ModStore\ModStoreItem.cs" />
+    <Compile Include="Extensions\ModStore\ModStoreManager.cs" />
+    <Compile Include="Extensions\ModStore\ModStoreTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Extensions\ModStore\ModStoreTabControl.designer.cs">
+      <DependentUpon>ModStoreTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ModStore\Module.cs" />
+    <Compile Include="Extensions\ModStore\ProgressBarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Extensions\ModStore\ProgressBarForm.designer.cs">
+      <DependentUpon>ProgressBarForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ftp\ArxOneFtpWrapper.cs" />
     <None Include="Ftp\FluentFtpWrapper.cs" />
     <Compile Include="hakchi.cs" />
@@ -210,6 +238,18 @@
     <Compile Include="ExportGamesDialog.Designer.cs">
       <DependentUpon>ExportGamesDialog.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Extensions\ModStore\ModStore.resx">
+      <DependentUpon>ModStore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extensions\ModStore\ModStoreAbout.resx">
+      <DependentUpon>ModStoreAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extensions\ModStore\ModStoreTabControl.resx">
+      <DependentUpon>ModStoreTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extensions\ModStore\ProgressBarForm.resx">
+      <DependentUpon>ProgressBarForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ScreenshotForm.resx">
       <DependentUpon>ScreenshotForm.cs</DependentUpon>
     </EmbeddedResource>

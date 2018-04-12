@@ -224,6 +224,8 @@
             this.toolStripMenuItem20 = new System.Windows.Forms.ToolStripSeparator();
             this.syncStructureForAllGamesCollectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
+            this.toolStripMenuItem21 = new System.Windows.Forms.ToolStripSeparator();
+            this.modStoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -507,7 +509,9 @@
             // 
             this.modulesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.installModulesToolStripMenuItem,
-            this.uninstallModulesToolStripMenuItem});
+            this.uninstallModulesToolStripMenuItem,
+            this.toolStripMenuItem21,
+            this.modStoreToolStripMenuItem});
             this.modulesToolStripMenuItem.Name = "modulesToolStripMenuItem";
             resources.ApplyResources(this.modulesToolStripMenuItem, "modulesToolStripMenuItem");
             // 
@@ -1635,6 +1639,17 @@
             this.gamesConsoleComboBox.Name = "gamesConsoleComboBox";
             this.gamesConsoleComboBox.SelectedIndexChanged += new System.EventHandler(this.gamesConsoleComboBox_SelectedIndexChanged);
             // 
+            // toolStripMenuItem21
+            // 
+            this.toolStripMenuItem21.Name = "toolStripMenuItem21";
+            resources.ApplyResources(this.toolStripMenuItem21, "toolStripMenuItem21");
+            // 
+            // modStoreToolStripMenuItem
+            // 
+            this.modStoreToolStripMenuItem.Name = "modStoreToolStripMenuItem";
+            resources.ApplyResources(this.modStoreToolStripMenuItem, "modStoreToolStripMenuItem");
+            this.modStoreToolStripMenuItem.Click += new System.EventHandler(this.modStoreToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1874,6 +1889,8 @@
         private System.Windows.Forms.ToolStripMenuItem syncStructureForAllGamesCollectionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem disableSSHlistenerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem disableClovershellListenerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem21;
+        private System.Windows.Forms.ToolStripMenuItem modStoreToolStripMenuItem;
     }
 }
 

@@ -365,6 +365,15 @@
   <data name="uninstallModulesToolStripMenuItem.Text" xml:space="preserve">
     <value>Uninstall extra modules</value>
   </data>
+  <data name="toolStripMenuItem21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 6</value>
+  </data>
+  <data name="modStoreToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 22</value>
+  </data>
+  <data name="modStoreToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mod store</value>
+  </data>
   <data name="modulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 20</value>
   </data>
@@ -3044,6 +3053,18 @@
     <value>syncStructureForAllGamesCollectionsToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;syncStructureForAllGamesCollectionsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem21.Name" xml:space="preserve">
+    <value>toolStripMenuItem21</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem21.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modStoreToolStripMenuItem.Name" xml:space="preserve">
+    <value>modStoreToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;modStoreToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
