@@ -1650,7 +1650,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 88e7742
+        ///   Looks up a localized string similar to 5776bcd
         ///.
         /// </summary>
         internal static string gitCommit {
@@ -2032,6 +2032,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string MemoryStatsExport {
             get {
                 return ResourceManager.GetString("MemoryStatsExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap modstore_info {
+            get {
+                object obj = ResourceManager.GetObject("modstore_info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

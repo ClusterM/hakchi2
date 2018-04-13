@@ -1238,6 +1238,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="images\noboxart.png" />
+    <None Include="Extensions\ModStore\Resources\info.png" />
     <Content Include="folder_images\console_famicom.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
