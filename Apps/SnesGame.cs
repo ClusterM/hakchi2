@@ -716,7 +716,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
+                Debug.WriteLine("Probable data/snescarts.xml file corruption: " + ex.Message + ex.StackTrace);
             }
         }
 
