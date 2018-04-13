@@ -597,6 +597,7 @@ namespace com.clusterrr.hakchi_gui
             game.desktop.Code = code;
             game.desktop.SaveCount = 0;
             game.Save();
+            game.SetDefaultImage(AppTypeCollection.UnknownApp.DefaultCover);
 
             return NesApplication.FromDirectory(path);
         }

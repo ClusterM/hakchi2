@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonAccept = new System.Windows.Forms.Button();
-            this.buttonDiscard = new System.Windows.Forms.Button();
+            this.buttonClose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.listViewGames = new System.Windows.Forms.ListView();
             this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,25 +46,15 @@
             this.showAllSystemsCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // buttonAccept
+            // buttonClose
             // 
-            this.buttonAccept.Location = new System.Drawing.Point(579, 334);
-            this.buttonAccept.Name = "buttonAccept";
-            this.buttonAccept.Size = new System.Drawing.Size(72, 23);
-            this.buttonAccept.TabIndex = 9;
-            this.buttonAccept.Text = "Accept";
-            this.buttonAccept.UseVisualStyleBackColor = true;
-            this.buttonAccept.Click += new System.EventHandler(this.buttonAccept_Click);
-            // 
-            // buttonDiscard
-            // 
-            this.buttonDiscard.Location = new System.Drawing.Point(658, 334);
-            this.buttonDiscard.Name = "buttonDiscard";
-            this.buttonDiscard.Size = new System.Drawing.Size(65, 23);
-            this.buttonDiscard.TabIndex = 10;
-            this.buttonDiscard.Text = "Discard";
-            this.buttonDiscard.UseVisualStyleBackColor = true;
-            this.buttonDiscard.Click += new System.EventHandler(this.buttonDiscard_Click);
+            this.buttonClose.Location = new System.Drawing.Point(658, 334);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(65, 23);
+            this.buttonClose.TabIndex = 10;
+            this.buttonClose.Text = "Close";
+            this.buttonClose.UseVisualStyleBackColor = true;
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
             // label1
             // 
@@ -221,8 +210,7 @@
             this.Controls.Add(this.listBoxSystem);
             this.Controls.Add(this.listViewGames);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.buttonDiscard);
-            this.Controls.Add(this.buttonAccept);
+            this.Controls.Add(this.buttonClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MaximizeBox = false;
@@ -238,9 +226,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button buttonAccept;
-        private System.Windows.Forms.Button buttonDiscard;
+        private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView listViewGames;
         private System.Windows.Forms.ListBox listBoxSystem;

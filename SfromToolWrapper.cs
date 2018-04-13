@@ -10,19 +10,12 @@ namespace com.clusterrr.hakchi_gui
 {
     static class SfromToolWrapper
     {
-        static private string toolPath = null;
+        static readonly private string toolPath = Path.Combine(Program.BaseDirectoryExternal, "sfrom_tool", "SFROM Tool.exe");
         static public bool IsInstalled
         {
             get
             {
-                if (string.IsNullOrEmpty(toolPath))
-                {
-                    string[] files = Directory.GetFiles(Program.BaseDirectoryExternal, "SFROM Tool.exe", SearchOption.AllDirectories);
-                    if (files.Length == 0)
-                        return false;
-                    toolPath = files[0];
-                }
-                return true;
+                return File.Exists(toolPath);
             }
         }
 
