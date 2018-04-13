@@ -174,7 +174,6 @@
             // 
             // webBrowser1
             // 
-            this.webBrowser1.AllowNavigation = false;
             this.webBrowser1.AllowWebBrowserDrop = false;
             this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webBrowser1.IsWebBrowserContextMenuEnabled = false;
@@ -183,9 +182,11 @@
             this.webBrowser1.MinimumSize = new System.Drawing.Size(15, 16);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScriptErrorsSuppressed = true;
+            this.webBrowser1.ScrollBarsEnabled = false;
             this.webBrowser1.Size = new System.Drawing.Size(738, 382);
             this.webBrowser1.TabIndex = 0;
-            this.webBrowser1.Url = new System.Uri("https://hakchiresources.com/modstorewelcome/", System.UriKind.Absolute);
+            this.webBrowser1.Url = new System.Uri("https://hakchiresources.com/modstorewelcome/?mode=welcome", System.UriKind.Absolute);
+            this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
             // 
             // tabPage1
             // 
@@ -330,7 +331,7 @@
             this.Name = "ModStore";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ModStore";
+            this.Text = "Hakchi Mod store";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModStore_FormClosing);
             this.Load += new System.EventHandler(this.ModStore_Load);
             this.menuStrip.ResumeLayout(false);

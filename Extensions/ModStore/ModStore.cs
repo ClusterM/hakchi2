@@ -72,7 +72,7 @@ namespace com.clusterrr.hakchi_gui
         private void refreshContentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ModStore_Initialise();
-            MessageBox.Show("Refreshed Mod Store!", "Hakchi Mod Store", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Tasks.MessageForm.Show(this, this.Text, "Refreshed Mod store");
         }
 
         private void PoweredByLinkS_Click(object sender, EventArgs e)
@@ -221,12 +221,22 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            if (e.Url.ToString() == "about:blank") return;
+
+            // cancel the current event
+            e.Cancel = true;
+
+            // this opens the URL in the user's default browser
+            Process.Start(e.Url.ToString());
+        }
+
         private void ModStore_FormClosing(object sender, FormClosingEventArgs e)
         {
             config.SaveConfig();
         }
 
         #endregion
-
     }
 }

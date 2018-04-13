@@ -72,6 +72,8 @@
             this.modulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstallModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem21 = new System.Windows.Forms.ToolStripSeparator();
+            this.modStoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.originalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.positionAtTheTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -224,8 +226,6 @@
             this.toolStripMenuItem20 = new System.Windows.Forms.ToolStripSeparator();
             this.syncStructureForAllGamesCollectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
-            this.toolStripMenuItem21 = new System.Windows.Forms.ToolStripSeparator();
-            this.modStoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -526,6 +526,17 @@
             this.uninstallModulesToolStripMenuItem.Name = "uninstallModulesToolStripMenuItem";
             resources.ApplyResources(this.uninstallModulesToolStripMenuItem, "uninstallModulesToolStripMenuItem");
             this.uninstallModulesToolStripMenuItem.Click += new System.EventHandler(this.uninstallModulesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem21
+            // 
+            this.toolStripMenuItem21.Name = "toolStripMenuItem21";
+            resources.ApplyResources(this.toolStripMenuItem21, "toolStripMenuItem21");
+            // 
+            // modStoreToolStripMenuItem
+            // 
+            this.modStoreToolStripMenuItem.Name = "modStoreToolStripMenuItem";
+            resources.ApplyResources(this.modStoreToolStripMenuItem, "modStoreToolStripMenuItem");
+            this.modStoreToolStripMenuItem.Click += new System.EventHandler(this.modStoreToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -1638,17 +1649,6 @@
             resources.ApplyResources(this.gamesConsoleComboBox, "gamesConsoleComboBox");
             this.gamesConsoleComboBox.Name = "gamesConsoleComboBox";
             this.gamesConsoleComboBox.SelectedIndexChanged += new System.EventHandler(this.gamesConsoleComboBox_SelectedIndexChanged);
-            // 
-            // toolStripMenuItem21
-            // 
-            this.toolStripMenuItem21.Name = "toolStripMenuItem21";
-            resources.ApplyResources(this.toolStripMenuItem21, "toolStripMenuItem21");
-            // 
-            // modStoreToolStripMenuItem
-            // 
-            this.modStoreToolStripMenuItem.Name = "modStoreToolStripMenuItem";
-            resources.ApplyResources(this.modStoreToolStripMenuItem, "modStoreToolStripMenuItem");
-            this.modStoreToolStripMenuItem.Click += new System.EventHandler(this.modStoreToolStripMenuItem_Click);
             // 
             // MainForm
             // 

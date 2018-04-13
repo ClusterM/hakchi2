@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Threading;
 using com.clusterrr.hakchi_gui.module_library;
 
 namespace com.clusterrr.hakchi_gui
@@ -22,13 +23,13 @@ namespace com.clusterrr.hakchi_gui
         }
 
         #region GUI
+        private int loadingDescription = 0;
         private void loadModuleDescription()
         {
-            var installedModule = manager.GetInstalledModule(currentItem);
-            webBrowser1.AllowNavigation = true;
-            webBrowser1.Url = new Uri(currentItem.Description, UriKind.Absolute);
             Cursor.Current = Cursors.WaitCursor;
-
+            var installedModule = manager.GetInstalledModule(currentItem);
+            loadingDescription++;
+            webBrowser1.Navigate(new Uri(currentItem.Description, UriKind.Absolute));
             moduleDescriptionBrowser.DocumentText = String.Format("<html style='background-color:#d20014;color:#ffffff;'>" +
                                                                     "<body background='https://hakchiresources.com/wp-content/uploads/2018/04/bg-1.png' style='width:273px;'>" +
                                                                          "<span style='font-family: Arial, Helvetica, sans-serif;'>" +
@@ -43,7 +44,7 @@ namespace com.clusterrr.hakchi_gui
                                                                   currentItem.Author,
                                                                   currentItem.Version,
                                                                   (installedModule != null) ? installedModule.Version : "N/A");
-            
+
             if (installedModule != null)
             {
                 if (installedModule.Version != currentItem.Version)
@@ -82,12 +83,24 @@ namespace com.clusterrr.hakchi_gui
                 currentItem = null;
         }
 
-
-
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             Cursor.Current = Cursors.Default;
-            webBrowser1.AllowNavigation = false;
+            loadingDescription--;
+        }
+
+        private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            if (loadingDescription == 0)
+            {
+                if (e.Url.ToString() == "about:blank") return;
+
+                // cancel the current event
+                e.Cancel = true;
+
+                // this opens the URL in the user's default browser
+                System.Diagnostics.Process.Start(e.Url.ToString());
+            }
         }
         #endregion
 
