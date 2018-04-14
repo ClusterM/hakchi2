@@ -102,6 +102,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public static TaskFunc UninstallHmods(string uninstallFile, string[] hmods)
         {
+            var installPath = hakchi.Shell.ExecuteSimple("hakchi get installpath");
+            uninstallFile = $"{installPath}/transfer/uninstall";
+
             string[] uninstallArray = uninstallFile.Split("/"[0]);
             return (Tasker tasker, Object syncObject) =>
             {

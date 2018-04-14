@@ -1308,12 +1308,12 @@ namespace com.clusterrr.hakchi_gui
             }
             if (hakchi.MinimalMemboot)
             {
-                Tasks.MessageForm.Show(Resources.UploadGames, Resources.CannotProceedMinimalMemboot, Resources.sign_error);
+                Tasks.MessageForm.Show(Resources.UploadGames, Resources.CannotProceedMinimalMemboot);
                 return;
             }
             if (!hakchi.CanInteract)
             {
-                Tasks.MessageForm.Show(Resources.UploadGames, Resources.CannotProceedCannotInteract, Resources.sign_error);
+                Tasks.MessageForm.Show(Resources.UploadGames, Resources.CannotProceedCannotInteract, Resources.sign_ban);
                 return;
             }
             if (ConfigIni.Instance.SeparateGameStorage)
@@ -1562,14 +1562,26 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetTitle(Resources.UninstallingMods);
                 tasker.SetStatusImage(Resources.sign_brick);
+
+                bool membooting = false;
                 if (!hakchi.Shell.IsOnline)
                 {
                     tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
-                    tasker.AddTask(ShellTasks.MountBase);
+                    membooting = true;
                 }
-                tasker.AddTask(hakchi.ShowSplashScreen);
-                tasker.AddTasks(new ModTasks(null, mods).Tasks);
-                tasker.AddFinalTask(ShellTasks.Reboot);
+                if (membooting || (hakchi.Shell.IsOnline && hakchi.MinimalMemboot))
+                {
+                    tasker.AddTask(ShellTasks.MountBase);
+                    tasker.AddTask(hakchi.ShowSplashScreen);
+                    tasker.AddTasks(new ModTasks(null, mods).Tasks);
+                    tasker.AddFinalTask(MembootTasks.BootHakchi);
+                }
+                else
+                {
+                    tasker.AddTask(hakchi.ShowSplashScreen);
+                    tasker.AddTasks(new ModTasks(null, mods).Tasks);
+                    tasker.AddFinalTask(ShellTasks.Reboot);
+                }
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
@@ -2274,6 +2286,16 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (WaitingClovershellForm.WaitForDevice(this))
                 {
+                    if (hakchi.MinimalMemboot)
+                    {
+                        Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot);
+                        return;
+                    }
+                    if (!hakchi.CanInteract)
+                    {
+                        Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedCannotInteract, Resources.sign_ban);
+                        return;
+                    }
                     var gameNames = new Dictionary<string, string>();
                     foreach (var game in NesApplication.AllDefaultGames)
                         gameNames[game.Code] = game.Name;
@@ -2684,6 +2706,16 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (WaitingClovershellForm.WaitForDevice(this))
                 {
+                    if (hakchi.MinimalMemboot)
+                    {
+                        Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot);
+                        return;
+                    }
+                    if (!hakchi.CanInteract)
+                    {
+                        Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedCannotInteract, Resources.sign_ban);
+                        return;
+                    }
                     using (OpenFileDialog ofdPng = new OpenFileDialog())
                     {
                         ofdPng.Filter = "Image files|*.bmp;*.gif;*.jpg;*.jpeg;*.png;*.tif;*.tiff";
@@ -2731,6 +2763,16 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (WaitingClovershellForm.WaitForDevice(this))
                 {
+                    if (hakchi.MinimalMemboot)
+                    {
+                        Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot);
+                        return;
+                    }
+                    if (!hakchi.CanInteract)
+                    {
+                        Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedCannotInteract, Resources.sign_ban);
+                        return;
+                    }
                     var assembly = GetType().Assembly;
 
                     hakchi.Shell.Execute("hakchi unset cfg_boot_logo; cat > \"$(hakchi get rootfs)/etc/boot.png\"", File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "blankBoot.png")));
@@ -2755,6 +2797,16 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
+                if (hakchi.MinimalMemboot)
+                {
+                    Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot);
+                    return;
+                }
+                if (!hakchi.CanInteract)
+                {
+                    Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedCannotInteract, Resources.sign_ban);
+                    return;
+                }
                 if (WaitingClovershellForm.WaitForDevice(this))
                 {
                     hakchi.Shell.ExecuteSimple("hakchi unset cfg_boot_logo; rm \"$(hakchi get rootfs)/etc/boot.png\"");
