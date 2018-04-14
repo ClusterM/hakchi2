@@ -121,7 +121,7 @@ namespace com.clusterrr.hakchi_gui
             public byte AntiArmetLevel = 0;
             public bool AutofireHack = false;
             public bool AutofireXYHack = false;
-            public byte AutofireInterval = 12;
+            public byte AutofireInterval = 8;
             public bool FcStart = false;
             public bool ResetHack = true;
             public uint ResetCombination = (uint)(SelectNesButtonsForm.NesButtons.Down | SelectNesButtonsForm.NesButtons.Select);

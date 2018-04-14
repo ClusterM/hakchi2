@@ -1116,7 +1116,7 @@ Continue?</value>
     <value>Your kernel or scripts are out of date. Please update before synchronizing games</value>
   </data>
   <data name="CannotProceedMinimalMemboot" xml:space="preserve">
-    <value>Your NES/SNES mini is currently in recovery state, cannot proceed</value>
+    <value>Your NES/SNES Mini is currently in recovery state, cannot proceed</value>
   </data>
   <data name="FactoryResetNote" xml:space="preserve">
     <value>Done! All traces of hakchi have been removed and your NES/SNES Mini has been reset to factory settings.</value>
@@ -1158,10 +1158,10 @@ Continue?</value>
     <value>Update complete!</value>
   </data>
   <data name="SyncMultibootWarning" xml:space="preserve">
-    <value>You have {0} of games already synchronized on your NES/SNES mini (non separated for multiboot). Proceeding will erase those. Are you sure?</value>
+    <value>You have {0} of games already synchronized on your NES/SNES Mini (non separated for multiboot). Proceeding will erase those. Are you sure?</value>
   </data>
   <data name="SyncNonMultibootWarning" xml:space="preserve">
-    <value>You have {0} of games already synchronized on your NES/SNES mini (separated for multiboot). Proceeding will erase those. Are you sure?</value>
+    <value>You have {0} of games already synchronized on your NES/SNES Mini (separated for multiboot). Proceeding will erase those. Are you sure?</value>
   </data>
   <data name="FolderNameHome" xml:space="preserve">
     <value>Home</value>
@@ -1201,5 +1201,8 @@ Continue?</value>
   </data>
   <data name="modstore_info" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Extensions\ModStore\Resources\info.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CustomKernelInstalledQ" xml:space="preserve">
+    <value>Did you already flash the custom kernel on your NES/SNES Mini?</value>
   </data>
 </root>

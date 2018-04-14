@@ -462,7 +462,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your NES/SNES mini is currently in recovery state, cannot proceed.
+        ///   Looks up a localized string similar to Your NES/SNES Mini is currently in recovery state, cannot proceed.
         /// </summary>
         internal static string CannotProceedMinimalMemboot {
             get {
@@ -621,6 +621,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string CustomKernel {
             get {
                 return ResourceManager.GetString("CustomKernel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Did you already flash the custom kernel on your NES/SNES Mini?.
+        /// </summary>
+        internal static string CustomKernelInstalledQ {
+            get {
+                return ResourceManager.GetString("CustomKernelInstalledQ", resourceCulture);
             }
         }
         
@@ -1650,7 +1659,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5776bcd
+        ///   Looks up a localized string similar to 00fe989-dirty
         ///.
         /// </summary>
         internal static string gitCommit {
@@ -3067,7 +3076,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have {0} of games already synchronized on your NES/SNES mini (non separated for multiboot). Proceeding will erase those. Are you sure?.
+        ///   Looks up a localized string similar to You have {0} of games already synchronized on your NES/SNES Mini (non separated for multiboot). Proceeding will erase those. Are you sure?.
         /// </summary>
         internal static string SyncMultibootWarning {
             get {
@@ -3076,7 +3085,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have {0} of games already synchronized on your NES/SNES mini (separated for multiboot). Proceeding will erase those. Are you sure?.
+        ///   Looks up a localized string similar to You have {0} of games already synchronized on your NES/SNES Mini (separated for multiboot). Proceeding will erase those. Are you sure?.
         /// </summary>
         internal static string SyncNonMultibootWarning {
             get {

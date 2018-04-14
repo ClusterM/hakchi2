@@ -1274,20 +1274,25 @@ namespace com.clusterrr.hakchi_gui
 
         }
 
-        Tasks.MessageForm.Button RequirePatchedKernel()
+        bool RequirePatchedKernel()
         {
-            if (hakchi.Shell.IsOnline) return Tasks.MessageForm.Button.OK; // OK - Shell is online
-            if (Tasks.MessageForm.Show(this, Resources.CustomKernel, Resources.CustomWarning, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
+            if (hakchi.Connected) return true; // OK - Shell is online
+            var returnVal = Tasks.MessageForm.Show(this, Resources.CustomKernel, Resources.CustomKernelInstalledQ, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No, Tasks.MessageForm.Button.Cancel }, Tasks.MessageForm.DefaultButton.Button1);
+            if (returnVal == MessageForm.Button.Yes)
             {
-                if (InstallHakchi())
-                    return Tasks.MessageForm.Button.Yes; // Succesfully flashed
-                else
-                    return Tasks.MessageForm.Button.No; // Not flashed for some other reason
+                return WaitingClovershellForm.WaitForDevice(this);
             }
-            else
+            else if (returnVal == MessageForm.Button.No)
             {
-                return Tasks.MessageForm.Button.No;
+                if (Tasks.MessageForm.Show(this, Resources.CustomKernel, Resources.CustomWarning, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
+                {
+                    if (InstallHakchi())
+                    {
+                        return WaitingClovershellForm.WaitForDevice(this);
+                    }
+                }
             }
+            return false;
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
@@ -1297,7 +1302,7 @@ namespace com.clusterrr.hakchi_gui
                 Tasks.MessageForm.Show(Resources.UploadGames, Resources.SelectAtLeast, Resources.sign_info);
                 return;
             }
-            if (RequirePatchedKernel() == Tasks.MessageForm.Button.No)
+            if (!RequirePatchedKernel())
             {
                 return;
             }
@@ -2247,7 +2252,6 @@ namespace com.clusterrr.hakchi_gui
 
         private void saveSettingsToNESMiniNowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (RequirePatchedKernel() == Tasks.MessageForm.Button.No) return;
             try
             {
                 if (WaitingClovershellForm.WaitForDevice(this))
@@ -2266,18 +2270,28 @@ namespace com.clusterrr.hakchi_gui
 
         private void saveStateManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (RequirePatchedKernel() == Tasks.MessageForm.Button.No) return;
-            var gameNames = new Dictionary<string, string>();
-            foreach (var game in NesApplication.AllDefaultGames)
-                gameNames[game.Code] = game.Name;
-            foreach (ListViewItem item in listViewGames.Items)
+            try
             {
-                if (item.Tag is NesApplication)
-                    gameNames[(item.Tag as NesApplication).Code] = (item.Tag as NesApplication).Name;
+                if (WaitingClovershellForm.WaitForDevice(this))
+                {
+                    var gameNames = new Dictionary<string, string>();
+                    foreach (var game in NesApplication.AllDefaultGames)
+                        gameNames[game.Code] = game.Name;
+                    foreach (ListViewItem item in listViewGames.Items)
+                    {
+                        if (item.Tag is NesApplication)
+                            gameNames[(item.Tag as NesApplication).Code] = (item.Tag as NesApplication).Name;
+                    }
+                    using (var form = new SaveStateManager(gameNames))
+                    {
+                        form.ShowDialog();
+                    }
+                }
             }
-            using (var form = new SaveStateManager(gameNames))
+            catch (Exception ex)
             {
-                form.ShowDialog();
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+                Tasks.ErrorForm.Show(null, ex.Message, ex.StackTrace);
             }
         }
 
@@ -2416,7 +2430,6 @@ namespace com.clusterrr.hakchi_gui
 
         private void takeScreenshotToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (RequirePatchedKernel() == Tasks.MessageForm.Button.No) return;
             try
             {
                 if (WaitingClovershellForm.WaitForDevice(this))
