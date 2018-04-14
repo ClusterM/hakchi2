@@ -61,4 +61,7 @@
   <data name="$this.Text">
     <value>Sélectionner l’icône du dossier</value>
   </data>
+  <data name="buttonOk.Text" xml:space="preserve">
+    <value>Ok</value>
+  </data>
 </root>

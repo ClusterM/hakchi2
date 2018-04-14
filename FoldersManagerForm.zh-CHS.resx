@@ -109,9 +109,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>自动建立文件夹结构</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>文件夹位置优先级:</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>新建文件夹</value>
   </data>

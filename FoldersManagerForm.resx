@@ -140,7 +140,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAD0
-        IwAAAk1TRnQBSQFMAgEBJgEAAXQBAQF0AQEBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        IwAAAk1TRnQBSQFMAgEBJgEAAYQBAQGEAQEBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAAaADAAEBAQABCAYAASgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -336,10 +336,10 @@
     <value>Top, Right</value>
   </data>
   <data name="buttonNewFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>318, 242</value>
+    <value>449, 242</value>
   </data>
   <data name="buttonNewFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 23</value>
+    <value>110, 23</value>
   </data>
   <data name="buttonNewFolder.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -825,7 +825,7 @@
     <value>True</value>
   </data>
   <data name="labelElementCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 13</value>
+    <value>12, 12</value>
   </data>
   <data name="labelElementCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 13</value>

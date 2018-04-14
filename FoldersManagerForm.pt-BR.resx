@@ -97,9 +97,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>Criar estrutura de pastas automaticamente</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Prioridade de posição da pasta:</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Criar nova pasta</value>
   </data>

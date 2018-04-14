@@ -97,9 +97,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>Автоматично създаване на структурата на папки</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Приоритет на позицията на папката</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Създаване на нова папка</value>
   </data>

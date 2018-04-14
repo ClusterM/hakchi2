@@ -109,9 +109,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>Créer la structure des dossiers automatiquement</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Priorité de la position du dossier :</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Créer un nouveau dossier</value>
   </data>
@@ -123,5 +120,29 @@
   </data>
   <data name="labelElementCount.Text">
     <value>Folder statistics</value>
+  </data>
+  <data name="labelPosition1.Text" xml:space="preserve">
+    <value>Priorité dossier:</value>
+  </data>
+  <data name="buttonFoldersApp.Text" xml:space="preserve">
+    <value>Séparer par type d'appli</value>
+  </data>
+  <data name="comboBoxBackPosition.Items" xml:space="preserve">
+    <value>À gauche</value>
+  </data>
+  <data name="comboBoxBackPosition.Items1" xml:space="preserve">
+    <value>À droite</value>
+  </data>
+  <data name="labelPosition2.Text" xml:space="preserve">
+    <value>Position retour:</value>
+  </data>
+  <data name="deleteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Del</value>
+  </data>
+  <data name="checkBoxAddHome.Text" xml:space="preserve">
+    <value>Maison?</value>
+  </data>
+  <data name="buttonOk.Text" xml:space="preserve">
+    <value>Ok</value>
   </data>
 </root>

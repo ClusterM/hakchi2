@@ -939,7 +939,7 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
     <value>Super Famicom (Japan)</value>
   </data>
   <data name="FTPServerOn" xml:space="preserve">
-    <value>FTP server on ftp://root@{0}</value>
+    <value>FTP server on ftp://root@{0} (pass:clover)</value>
   </data>
   <data name="TelnetServerOn" xml:space="preserve">
     <value>Telnet server on telnet://{0} (login:root)</value>
@@ -1020,7 +1020,7 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
     <value>Rebooting...</value>
   </data>
   <data name="ResettingHakchi" xml:space="preserve">
-    <value>Resetting hakchi</value>
+    <value>Resetting hakchi...</value>
   </data>
   <data name="TransferringMods" xml:space="preserve">
     <value>Transferring mods...</value>
@@ -1128,7 +1128,7 @@ Continue?</value>
     <value>Recovery kernel</value>
   </data>
   <data name="ResetQ" xml:space="preserve">
-    <value>Are you sure you want to reset and repair hakchi2 on your NES/SNES Mini?</value>
+    <value>Are you sure you want to reset and repair hakchi on your NES/SNES Mini?</value>
   </data>
   <data name="sign_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\sign-add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

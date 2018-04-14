@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectCoverDialog));
             this.listViewGames = new System.Windows.Forms.ListView();
             this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.filenameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,6 +48,7 @@
             // 
             // listViewGames
             // 
+            resources.ApplyResources(this.listViewGames, "listViewGames");
             this.listViewGames.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumnHeader,
             this.filenameColumnHeader,
@@ -55,11 +57,8 @@
             this.coverColumnHeader});
             this.listViewGames.FullRowSelect = true;
             this.listViewGames.HideSelection = false;
-            this.listViewGames.Location = new System.Drawing.Point(12, 31);
             this.listViewGames.Name = "listViewGames";
             this.listViewGames.ShowGroups = false;
-            this.listViewGames.Size = new System.Drawing.Size(710, 225);
-            this.listViewGames.TabIndex = 1;
             this.listViewGames.UseCompatibleStateImageBehavior = false;
             this.listViewGames.View = System.Windows.Forms.View.Details;
             this.listViewGames.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewGames_ColumnClick);
@@ -67,111 +66,81 @@
             // 
             // nameColumnHeader
             // 
-            this.nameColumnHeader.Text = "Name";
-            this.nameColumnHeader.Width = 180;
+            resources.ApplyResources(this.nameColumnHeader, "nameColumnHeader");
             // 
             // filenameColumnHeader
             // 
-            this.filenameColumnHeader.Text = "Filename";
-            this.filenameColumnHeader.Width = 100;
+            resources.ApplyResources(this.filenameColumnHeader, "filenameColumnHeader");
             // 
             // extColumnHeader
             // 
-            this.extColumnHeader.Text = "Ext";
-            this.extColumnHeader.Width = 45;
+            resources.ApplyResources(this.extColumnHeader, "extColumnHeader");
             // 
             // systemColumnHeader
             // 
-            this.systemColumnHeader.Text = "System";
-            this.systemColumnHeader.Width = 160;
+            resources.ApplyResources(this.systemColumnHeader, "systemColumnHeader");
             // 
             // coverColumnHeader
             // 
-            this.coverColumnHeader.Text = "Box art";
-            this.coverColumnHeader.Width = 50;
+            resources.ApplyResources(this.coverColumnHeader, "coverColumnHeader");
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 12);
-            this.label1.Margin = new System.Windows.Forms.Padding(3);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(242, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Select appropriate box art for the following games:";
             // 
             // listViewImages
             // 
-            this.listViewImages.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            resources.ApplyResources(this.listViewImages, "listViewImages");
             this.listViewImages.HideSelection = false;
             this.listViewImages.LargeImageList = this.imageList;
-            this.listViewImages.Location = new System.Drawing.Point(12, 262);
             this.listViewImages.Name = "listViewImages";
-            this.listViewImages.Size = new System.Drawing.Size(710, 184);
-            this.listViewImages.TabIndex = 2;
             this.listViewImages.UseCompatibleStateImageBehavior = false;
             this.listViewImages.SelectedIndexChanged += new System.EventHandler(this.listViewImages_SelectedIndexChanged);
             // 
             // imageList
             // 
             this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imageList.ImageSize = new System.Drawing.Size(114, 102);
+            resources.ApplyResources(this.imageList, "imageList");
             this.imageList.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // buttonDiscard
             // 
-            this.buttonDiscard.Location = new System.Drawing.Point(647, 452);
+            resources.ApplyResources(this.buttonDiscard, "buttonDiscard");
             this.buttonDiscard.Name = "buttonDiscard";
-            this.buttonDiscard.Size = new System.Drawing.Size(75, 23);
-            this.buttonDiscard.TabIndex = 7;
-            this.buttonDiscard.Text = "Discard";
             this.buttonDiscard.UseVisualStyleBackColor = true;
             this.buttonDiscard.Click += new System.EventHandler(this.buttonDiscard_Click);
             // 
             // buttonSetDefault
             // 
-            this.buttonSetDefault.Location = new System.Drawing.Point(69, 452);
+            resources.ApplyResources(this.buttonSetDefault, "buttonSetDefault");
             this.buttonSetDefault.Name = "buttonSetDefault";
-            this.buttonSetDefault.Size = new System.Drawing.Size(131, 23);
-            this.buttonSetDefault.TabIndex = 4;
-            this.buttonSetDefault.Text = "&Default / no change";
             this.buttonSetDefault.UseVisualStyleBackColor = true;
             this.buttonSetDefault.Click += new System.EventHandler(this.buttonSetDefault_Click);
             // 
             // buttonImFeelingLucky
             // 
-            this.buttonImFeelingLucky.Location = new System.Drawing.Point(206, 452);
+            resources.ApplyResources(this.buttonImFeelingLucky, "buttonImFeelingLucky");
             this.buttonImFeelingLucky.Name = "buttonImFeelingLucky";
-            this.buttonImFeelingLucky.Size = new System.Drawing.Size(131, 23);
-            this.buttonImFeelingLucky.TabIndex = 5;
-            this.buttonImFeelingLucky.Text = "I\'m feeling &lucky!";
             this.buttonImFeelingLucky.UseVisualStyleBackColor = true;
             this.buttonImFeelingLucky.Click += new System.EventHandler(this.buttonImFeelingLucky_Click);
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 457);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Set all to:";
             // 
             // buttonAccept
             // 
-            this.buttonAccept.Location = new System.Drawing.Point(566, 452);
+            resources.ApplyResources(this.buttonAccept, "buttonAccept");
             this.buttonAccept.Name = "buttonAccept";
-            this.buttonAccept.Size = new System.Drawing.Size(75, 23);
-            this.buttonAccept.TabIndex = 8;
-            this.buttonAccept.Text = "Accept";
             this.buttonAccept.UseVisualStyleBackColor = true;
             this.buttonAccept.Click += new System.EventHandler(this.buttonAccept_Click);
             // 
             // SelectCoverDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 487);
             this.Controls.Add(this.buttonAccept);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonImFeelingLucky);
@@ -183,11 +152,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(750, 605);
             this.MinimizeBox = false;
             this.Name = "SelectCoverDialog";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Select Box Art";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectCoverDialog_FormClosing);
             this.Shown += new System.EventHandler(this.SelectCoverDialog_Shown);
             this.ResumeLayout(false);

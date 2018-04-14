@@ -100,9 +100,6 @@
   <data name="labelElementCount.Text">
     <value>Ordnerstatistik</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Position des Ordners:</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Neuen Ordner erstellen</value>
   </data>

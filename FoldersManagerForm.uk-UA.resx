@@ -97,9 +97,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>Створити дерево автоматично</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Позиція папки:</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Створити нову папку</value>
   </data>

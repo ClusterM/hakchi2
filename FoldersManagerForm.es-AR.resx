@@ -97,9 +97,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>Crear estructura de carpetas automáticamente</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Prioridad de posición de carpeta:</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Crear nueva carpeta</value>
   </data>

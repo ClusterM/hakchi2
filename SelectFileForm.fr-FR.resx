@@ -64,4 +64,7 @@
   <data name="buttonArchive.Text">
     <value>Importer comme archive</value>
   </data>
+  <data name="buttonOk.Text" xml:space="preserve">
+    <value>Ok</value>
+  </data>
 </root>

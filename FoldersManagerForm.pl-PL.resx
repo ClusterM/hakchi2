@@ -100,9 +100,6 @@
   <data name="labelElementCount.Text">
     <value>Statystyki folderów</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Pozycja folderów - kolejność:</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Utwórz nowy folder</value>
   </data>

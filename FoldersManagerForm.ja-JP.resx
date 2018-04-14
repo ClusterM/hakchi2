@@ -109,9 +109,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>フォルダ構造を自動で作成</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>フォルダーの優先順位:</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>新しいフォルダを作成</value>
   </data>

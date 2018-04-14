@@ -97,9 +97,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>Αυτόματη δημιουργία δομής φακέλων</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Προτεραιότητα θέσης φακέλου</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Δημιουργία νέου φακέλου</value>
   </data>

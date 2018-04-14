@@ -61,4 +61,7 @@
   <data name="$this.Text">
     <value>Définir la combinaison du bouton Reset</value>
   </data>
+  <data name="buttonOk.Text" xml:space="preserve">
+    <value>Ok</value>
+  </data>
 </root>

@@ -79,9 +79,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>Automatikus mappaszerkezet létrehozása</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Mappa pozíciójának prioritása</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Új mappa létrehozása</value>
   </data>

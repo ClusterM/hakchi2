@@ -91,4 +91,7 @@
   <data name="importToolStripMenuItem.Text">
     <value>Importer</value>
   </data>
+  <data name="labelLoading.Text" xml:space="preserve">
+    <value>Chargement, attendez...</value>
+  </data>
 </root>

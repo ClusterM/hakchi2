@@ -97,9 +97,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>自動建立資料夾結構</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>資料夾優先順序 :</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>建立新資料夾</value>
   </data>

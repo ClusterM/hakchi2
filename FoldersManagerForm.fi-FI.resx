@@ -109,9 +109,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>Luo kansiorakenne automaattisesti</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Kansion paikka:</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Luo uusi kansio</value>
   </data>

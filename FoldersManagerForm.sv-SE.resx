@@ -97,9 +97,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>Skapa mappstruktur automatiskt</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Prioritet för mappordning:</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Skapa ny mapp</value>
   </data>

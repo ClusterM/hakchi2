@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectCoreDialog));
             this.buttonClose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.listViewGames = new System.Windows.Forms.ListView();
@@ -48,23 +49,15 @@
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(658, 334);
+            resources.ApplyResources(this.buttonClose, "buttonClose");
             this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(65, 23);
-            this.buttonClose.TabIndex = 10;
-            this.buttonClose.Text = "Close";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 11);
-            this.label1.Margin = new System.Windows.Forms.Padding(3);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(287, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Select appropriate system and core for the following games:";
             // 
             // listViewGames
             // 
@@ -75,11 +68,9 @@
             this.coreColumnHeader});
             this.listViewGames.FullRowSelect = true;
             this.listViewGames.HideSelection = false;
-            this.listViewGames.Location = new System.Drawing.Point(12, 30);
+            resources.ApplyResources(this.listViewGames, "listViewGames");
             this.listViewGames.Name = "listViewGames";
             this.listViewGames.ShowGroups = false;
-            this.listViewGames.Size = new System.Drawing.Size(430, 259);
-            this.listViewGames.TabIndex = 1;
             this.listViewGames.UseCompatibleStateImageBehavior = false;
             this.listViewGames.View = System.Windows.Forms.View.Details;
             this.listViewGames.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewGames_ColumnClick);
@@ -87,118 +78,82 @@
             // 
             // nameColumnHeader
             // 
-            this.nameColumnHeader.Text = "Name";
-            this.nameColumnHeader.Width = 180;
+            resources.ApplyResources(this.nameColumnHeader, "nameColumnHeader");
             // 
             // extColumnHeader
             // 
-            this.extColumnHeader.Text = "Ext";
-            this.extColumnHeader.Width = 45;
+            resources.ApplyResources(this.extColumnHeader, "extColumnHeader");
             // 
             // systemColumnHeader
             // 
-            this.systemColumnHeader.Text = "System";
-            this.systemColumnHeader.Width = 140;
+            resources.ApplyResources(this.systemColumnHeader, "systemColumnHeader");
             // 
             // coreColumnHeader
             // 
-            this.coreColumnHeader.Text = "Core";
+            resources.ApplyResources(this.coreColumnHeader, "coreColumnHeader");
             // 
             // listBoxSystem
             // 
             this.listBoxSystem.FormattingEnabled = true;
-            this.listBoxSystem.Location = new System.Drawing.Point(448, 30);
+            resources.ApplyResources(this.listBoxSystem, "listBoxSystem");
             this.listBoxSystem.Name = "listBoxSystem";
-            this.listBoxSystem.Size = new System.Drawing.Size(274, 134);
-            this.listBoxSystem.TabIndex = 2;
             this.listBoxSystem.SelectedIndexChanged += new System.EventHandler(this.listBoxSystem_SelectedIndexChanged);
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(445, 11);
-            this.label2.Margin = new System.Windows.Forms.Padding(3);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "System:";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(445, 175);
-            this.label3.Margin = new System.Windows.Forms.Padding(3);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Core:";
             // 
             // listBoxCore
             // 
             this.listBoxCore.FormattingEnabled = true;
-            this.listBoxCore.Location = new System.Drawing.Point(448, 194);
+            resources.ApplyResources(this.listBoxCore, "listBoxCore");
             this.listBoxCore.Name = "listBoxCore";
-            this.listBoxCore.Size = new System.Drawing.Size(275, 95);
-            this.listBoxCore.TabIndex = 4;
             this.listBoxCore.SelectedIndexChanged += new System.EventHandler(this.listBoxCore_SelectedIndexChanged);
             // 
             // commandTextBox
             // 
-            this.commandTextBox.Location = new System.Drawing.Point(12, 308);
+            resources.ApplyResources(this.commandTextBox, "commandTextBox");
             this.commandTextBox.Name = "commandTextBox";
-            this.commandTextBox.Size = new System.Drawing.Size(711, 20);
-            this.commandTextBox.TabIndex = 6;
             this.commandTextBox.Enter += new System.EventHandler(this.commandTextBox_Enter);
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 292);
+            resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(201, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Command line (for advanced users only!):";
             // 
             // buttonApply
             // 
-            this.buttonApply.Location = new System.Drawing.Point(12, 334);
+            resources.ApplyResources(this.buttonApply, "buttonApply");
             this.buttonApply.Name = "buttonApply";
-            this.buttonApply.Size = new System.Drawing.Size(75, 23);
-            this.buttonApply.TabIndex = 7;
-            this.buttonApply.Text = "Apply";
             this.buttonApply.UseVisualStyleBackColor = true;
             this.buttonApply.Click += new System.EventHandler(this.buttonApply_Click);
             // 
             // resetCheckBox
             // 
-            this.resetCheckBox.AutoSize = true;
+            resources.ApplyResources(this.resetCheckBox, "resetCheckBox");
             this.resetCheckBox.Checked = true;
             this.resetCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.resetCheckBox.Location = new System.Drawing.Point(93, 338);
             this.resetCheckBox.Name = "resetCheckBox";
-            this.resetCheckBox.Size = new System.Drawing.Size(174, 17);
-            this.resetCheckBox.TabIndex = 8;
-            this.resetCheckBox.Text = "Also reset to default parameters";
             this.resetCheckBox.UseVisualStyleBackColor = true;
             this.resetCheckBox.CheckedChanged += new System.EventHandler(this.resetCheckBox_CheckedChanged);
             // 
             // showAllSystemsCheckBox
             // 
-            this.showAllSystemsCheckBox.AutoSize = true;
-            this.showAllSystemsCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.showAllSystemsCheckBox.Location = new System.Drawing.Point(655, 10);
+            resources.ApplyResources(this.showAllSystemsCheckBox, "showAllSystemsCheckBox");
             this.showAllSystemsCheckBox.Name = "showAllSystemsCheckBox";
-            this.showAllSystemsCheckBox.Size = new System.Drawing.Size(67, 17);
-            this.showAllSystemsCheckBox.TabIndex = 3;
-            this.showAllSystemsCheckBox.Text = "Show All";
             this.showAllSystemsCheckBox.UseVisualStyleBackColor = true;
             this.showAllSystemsCheckBox.CheckedChanged += new System.EventHandler(this.showAllSystemsCheckBox_CheckedChanged);
             // 
             // SelectCoreDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 366);
             this.Controls.Add(this.showAllSystemsCheckBox);
             this.Controls.Add(this.resetCheckBox);
             this.Controls.Add(this.buttonApply);
@@ -214,10 +169,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(750, 405);
             this.Name = "SelectCoreDialog";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Select Cores";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectCoreDialog_FormClosing);
             this.Shown += new System.EventHandler(this.SelectCoreDialog_Shown);
             this.ResumeLayout(false);

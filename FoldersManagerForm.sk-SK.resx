@@ -100,9 +100,6 @@
   <data name="labelElementCount.Text">
     <value>Zrušiť</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Priorita pozície priečinka:</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Vytvoriť nový priečinok</value>
   </data>

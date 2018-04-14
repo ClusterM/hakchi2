@@ -121,7 +121,4 @@
   <data name="labelElementCount.Text">
     <value>Folder statistics</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Folder position priority:</value>
-  </data>
 </root>

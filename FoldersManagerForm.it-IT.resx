@@ -109,9 +109,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>Creare la struttura delle cartelle automaticamente</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Priorità di posizione della cartella:</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Crea una nuova cartella</value>
   </data>

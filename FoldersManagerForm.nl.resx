@@ -109,9 +109,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>Creëer mappen structuur automatisch</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Prioriteit van mappen positie:</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Creëer een nieuwe map</value>
   </data>

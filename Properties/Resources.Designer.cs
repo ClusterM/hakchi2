@@ -1548,7 +1548,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FTP server on ftp://root@{0}.
+        ///   Looks up a localized string similar to FTP server on ftp://root@{0} (pass:clover).
         /// </summary>
         internal static string FTPServerOn {
             get {
@@ -1659,7 +1659,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 00fe989-dirty
+        ///   Looks up a localized string similar to 7747bcc-dirty
         ///.
         /// </summary>
         internal static string gitCommit {
@@ -2531,7 +2531,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to reset and repair hakchi2 on your NES/SNES Mini?.
+        ///   Looks up a localized string similar to Are you sure you want to reset and repair hakchi on your NES/SNES Mini?.
         /// </summary>
         internal static string ResetQ {
             get {
@@ -2549,7 +2549,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Resetting hakchi.
+        ///   Looks up a localized string similar to Resetting hakchi....
         /// </summary>
         internal static string ResettingHakchi {
             get {

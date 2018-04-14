@@ -1532,7 +1532,7 @@ namespace com.clusterrr.hakchi_gui
             using (var tasker = new Tasker(this))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
-                tasker.SetStatusImage(Resources.sign_trashcan);
+                tasker.SetStatusImage(Resources.sign_delete);
                 tasker.SetTitle(Resources.UninstallingHakchi);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.UninstallHakchi).Tasks);
                 return tasker.Start() == Tasker.Conclusion.Success;

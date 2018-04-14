@@ -109,9 +109,6 @@
   <data name="groupBoxSplitModes.Text">
     <value>Buat struktur folder secara otomatis</value>
   </data>
-  <data name="labelPosition.Text">
-    <value>Prioritas posisi folder:</value>
-  </data>
   <data name="newFolderToolStripMenuItem.Text">
     <value>Buat folder baru</value>
   </data>
