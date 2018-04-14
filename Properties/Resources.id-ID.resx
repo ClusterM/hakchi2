@@ -169,9 +169,6 @@
   <data name="ExtraArgsTitle">
     <value>Command-line arguments ekstra</value>
   </data>
-  <data name="FirstRun">
-    <value>Halo! Saya senang Anda menggunakan hakchi2. Aplikasi ini sangatlah mudah digunakan. Cukup klik "Tambah game lagi", pilih ROM, klik "Sinkronkan", kemudian ikuti saja instruksi selanjutnya. Semoga berhasil!</value>
-  </data>
   <data name="FlashNandCQ">
     <value>Apakah Anda ingin mem-flash image partisi NAND-C? Semua data pengguna akan tergantikan.</value>
   </data>
@@ -284,7 +281,7 @@
     <value>Mem-boot kernel dari RAM...</value>
   </data>
   <data name="MemoryFull">
-    <value>Maaf, jumlah game Anda saat ini adalah {0}MB, terlalu banyak untuk disimpan.</value>
+    <value>Maaf, jumlah game Anda saat ini adalah {0}, terlalu banyak untuk disimpan.</value>
   </data>
   <data name="MemoryStats">
     <value>Ukuran memori yang dapat diisi: {0:F1}MB|Memori tersedia untuk game: {1:F1}MB|Digunakan untuk save: {2:F1}MB|Digunakan oleh file lain: {3:F1}MB</value>
@@ -384,9 +381,6 @@
   </data>
   <data name="UninstallQ1">
     <value>Apakah Anda ingin menghapus semua jejak hakchi2 dan mengembalikan NES/SNES Mini Anda ke kondisi semula?</value>
-  </data>
-  <data name="UninstallQ2">
-    <value>Selesai. Tunggu sampai lampu LED tombol POWER mati. Anda juga harus mem-flash kernel orisinal. Apakah Anda ingin melakukannya sekarang?</value>
   </data>
   <data name="Uninstalling">
     <value>Mencopot...</value>

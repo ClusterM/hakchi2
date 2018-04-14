@@ -1480,7 +1480,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetTitle(reset ? Resources.ResettingHakchi : Resources.InstallingHakchi);
-                tasker.SetStatusImage(Resources.sign_keyring);
+                tasker.SetStatusImage(reset ? Resources.sign_sync : Resources.sign_keyring);
                 if (reset)
                 {
                     tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.ResetHakchi).Tasks);
@@ -1740,7 +1740,7 @@ namespace com.clusterrr.hakchi_gui
                 using (var tasker = new Tasker(this))
                 {
                     tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
-                    tasker.SetStatusImage(Resources.sign_trashcan);
+                    tasker.SetStatusImage(Resources.sign_delete);
                     tasker.SetTitle(((ToolStripMenuItem)sender).Text);
                     tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FactoryReset).Tasks);
                     if (tasker.Start() == Tasker.Conclusion.Success)

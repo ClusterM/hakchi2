@@ -145,9 +145,6 @@
   <data name="ExtraArgsTitle">
     <value>Extra argumenty príkazového riadku</value>
   </data>
-  <data name="FirstRun">
-    <value>Ahoj! Som veľmi rád že používate hakchi2. Je veľmi jednoduchý na používanie. Stačí kliknúť na tlačidlo "Pridať viac hier", vybrať niektoré hry, stlačiť tlačidlo "Synchronizovať" a postupovať podľa pokynov. Veľa štastia!</value>
-  </data>
   <data name="FlasingCustom">
     <value>Flashovanie vlastného kernelu...</value>
   </data>
@@ -245,7 +242,7 @@
     <value>Prepáčte, "{0}" používa mapper #{1} ale tento mapper nie je podporovaný NES Mini a hru pravdepodobne nebude možné spustiť pomocou predvoleného emulátora. Ale mala by fungovať s použitím iného modulu emulátora. Chcete pridať túto hru?</value>
   </data>
   <data name="MemoryFull">
-    <value>Prepáčte, je tu {0}MBytov hier, je to príliš veľa.</value>
+    <value>Prepáčte, je tu {0} hier, je to príliš veľa.</value>
   </data>
   <data name="MemoryStats">
     <value>Celková zapisovateľná pamäť: {0:F1}MBytov|Dostupná pamäť pre hry: {1:F1}MBytov|Použitá save: {2:F1}MBytov|Použitá inými súbormi: {3:F1}MBytov</value>
@@ -321,9 +318,6 @@
   </data>
   <data name="UninstallQ1">
     <value>Naozaj chcete odstrániť všetky stopy po hakchi2 a vrátiť NES/SNES Mini do pôvodného stavu?</value>
-  </data>
-  <data name="UninstallQ2">
-    <value>Dokončené. Počkajte kým prestane svietiť LED indikátor. Tiež je potrebné flashnúť originálny kernel. Chcete flashnúť originálny kernel teraz?</value>
   </data>
   <data name="Uninstalling">
     <value>Odinštalovanie...</value>

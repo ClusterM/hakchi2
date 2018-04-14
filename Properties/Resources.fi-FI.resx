@@ -169,9 +169,6 @@
   <data name="ExtraArgsTitle">
     <value>Lisäkomentoriviargumentit</value>
   </data>
-  <data name="FirstRun">
-    <value>Heipä hei! Olen iloinen, että käytät hakchi2:a. Sen käyttäminen on todella yksinkertaista. Klikkaa vain "Lisää pelejä", valitse ROMeja, paina "Synkronoi" ja seuraa ohjeita. Onnea matkaan!</value>
-  </data>
   <data name="FlashNandCQ">
     <value>Haluatko flashata NAND-C-osiokuvan? Se korvaa kaiken käyttäjädatan.</value>
   </data>
@@ -284,7 +281,7 @@
     <value>Käynnistetään ydin muistista</value>
   </data>
   <data name="MemoryFull">
-    <value>Valitettavasti {0} megatavua pelejä on liikaa.</value>
+    <value>Valitettavasti {0} pelejä on liikaa.</value>
   </data>
   <data name="MemoryStats">
     <value>Kirjoitettavan muistin kokonaismäärä: {0:F1} megatavua|Muistia tarjolla peleille: {1:F1} megatavua|Tallennukset vievät: {2:F1} megatavua|Muut tiedostot vievät: {3:F1} megatavua</value>
@@ -384,9 +381,6 @@
   </data>
   <data name="UninstallQ1">
     <value>Haluatko varmasti poistaa kaikki jäljet hakchi2:sta ja palauttaa NES/SNES Minisi alkuperäistilaan?</value>
-  </data>
-  <data name="UninstallQ2">
-    <value>Valmis! Odota, kunnes POWER-ledi sammuu. Sinun täytyy myös flashata alkuperäinen ydin. Haluatko tehdä sen nyt?</value>
   </data>
   <data name="Uninstalling">
     <value>Poistetaan asennusta...</value>

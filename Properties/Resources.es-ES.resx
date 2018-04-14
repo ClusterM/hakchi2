@@ -169,9 +169,6 @@
   <data name="ExtraArgsTitle">
     <value>Línea de comando extra</value>
   </data>
-  <data name="FirstRun">
-    <value>¡Hola! Muchas gracias por usar hakchi2. Este programa es muy fácil de usar, sólo tienes que hacer click en "Añadir más juegos", seleccionar algunas ROMs, presionar "Sincronizar los juegos seleccionados con NES/SNES Mini " y seguir las instrucciones</value>
-  </data>
   <data name="FlashNandCQ">
     <value>¿Quieres flashear la imagen de la partición NAND-C? Esta acción reemplazará todos los datos del usuario</value>
   </data>
@@ -284,7 +281,7 @@
     <value>Iniciando el kernel desde la RAM...</value>
   </data>
   <data name="MemoryFull">
-    <value>Hay {0} MB en juegos, es mucho y podría dar error al sincronizar, es recomendable liberar memoria</value>
+    <value>Hay {0} en juegos, es mucho y podría dar error al sincronizar, es recomendable liberar memoria</value>
   </data>
   <data name="MemoryStats">
     <value>Memoria total: {0:F1} MB|Disponible para juegos: {1:F1} MB|Usada por los puntos de suspensión: {2:F1} MB|Usada por otros archivos: {3:F1} MB</value>
@@ -384,9 +381,6 @@
   </data>
   <data name="UninstallQ1">
     <value>¿Quieres eliminar todos los datos de hakchi2 y dejar la NES/SNES Mini como de fábrica? (Esto no elimina los puntos de suspensión)</value>
-  </data>
-  <data name="UninstallQ2">
-    <value>Espera a que la luz del botón Power se apague. Tienes que flashear el kernel original. ¿Quieres flashear el kernel original ahora?</value>
   </data>
   <data name="Uninstalling">
     <value>Desinstalando...</value>

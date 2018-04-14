@@ -169,9 +169,6 @@
   <data name="ExtraArgsTitle">
     <value>额外的命令行参数</value>
   </data>
-  <data name="FirstRun">
-    <value>您好！感谢您使用hakchi2。本软件非常简单易用。您只需点击“添加游戏”，选择一些ROM，然后点击“开始同步”，再跟着指示进行操作就可以了。祝您好运！</value>
-  </data>
   <data name="FlashNandCQ">
     <value>确定要刷写NAND-C分区镜像吗？这样将会覆盖所有用户数据。</value>
   </data>
@@ -284,7 +281,7 @@
     <value>正在从内存启动内核...</value>
   </data>
   <data name="MemoryFull">
-    <value>对不起，游戏的大小居然有{0}MB，实在是太大了。</value>
+    <value>对不起，游戏的大小居然有{0}，实在是太大了。</value>
   </data>
   <data name="MemoryStats">
     <value>总可写入存储空间: {0:F1}MB|游戏可用存储空间: {1:F1}MB|存档占用空间: {2:F1}MB|其他文件占用空间: {3:F1}MB</value>
@@ -384,9 +381,6 @@
   </data>
   <data name="UninstallQ1">
     <value>确定要删除所有hakchi2留下的痕迹并将迷你红白机恢复到原始状态吗？</value>
-  </data>
-  <data name="UninstallQ2">
-    <value>操作完成。请等待电源指示灯熄灭。您还需要刷写原版内核镜像。现在要进行刷写吗？</value>
   </data>
   <data name="Uninstalling">
     <value>卸载...</value>

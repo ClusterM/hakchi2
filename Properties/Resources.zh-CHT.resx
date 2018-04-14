@@ -145,9 +145,6 @@
   <data name="ExtraArgsTitle">
     <value>額外的命令列參數</value>
   </data>
-  <data name="FirstRun">
-    <value>您好 ! 感謝您使用 hakchi2 ，只要按下「新增更多遊戲」，選擇遊戲ROM檔，再按下「開始同步處理」並依照指示進行動作即可。非常簡單，祝您好運 !</value>
-  </data>
   <data name="FlasingCustom">
     <value>正在覆寫自訂核心...</value>
   </data>
@@ -248,7 +245,7 @@
     <value>抱歉 , "{0}" 使用了Mapper #{1} 但迷你紅白機預設的模擬器並不支援。 但若有安裝其他模擬器擴充模組則可能可以執行。 您確定要加入這款遊戲嗎 ?</value>
   </data>
   <data name="MemoryFull">
-    <value>抱歉 , 此遊戲的檔案有 {0} MB，真的太大了...</value>
+    <value>抱歉 , 此遊戲的檔案有 {0}，真的太大了...</value>
   </data>
   <data name="MemoryStats">
     <value>總共的儲存空間大小: {0:F1}MBytes|可存放遊戲的儲存空間大小: {1:F1}MBytes|目前已使用的檔案大小: {2:F1}MBytes|其他已使用的檔案大小: {3:F1}MBytes</value>
@@ -324,9 +321,6 @@
   </data>
   <data name="UninstallQ1">
     <value>您真的要將你的迷你紅白機移除所有hakchi2內容並恢復為原廠的狀態嗎 ?</value>
-  </data>
-  <data name="UninstallQ2">
-    <value>完成！請等候電源LED指示燈熄滅。您會需要覆寫原廠核心。 您是否要現在開始覆寫原廠核心呢 ?</value>
   </data>
   <data name="Uninstalling">
     <value>解除安裝...</value>

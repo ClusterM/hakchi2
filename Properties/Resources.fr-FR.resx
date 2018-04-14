@@ -229,7 +229,9 @@
     <value>Arguments de ligne de commande supplémentaires</value>
   </data>
   <data name="FirstRun" xml:space="preserve">
-    <value>Bien le bonjour ! Je suis ravi que vous utilisiez hakchi2. Il est très simple dcutilisation. Vous n’avez qu’à cliquer sur "Ajouter plus de jeux", choisir différents ROMs, appuyer sur "Synchroniser" et suivre les instructions. Bonne chance !</value>
+    <value>Bonjour! Je suis vraiment heureux que vous utilisiez hakchi2!
+
+C'est très simple à utiliser. Cliquez sur "Ajouter des jeux", sélectionner quelques ROMS, appuyez sur "Synchroniser" pour téléverser les jeux vers la mémoire interne de la console, ou appuyez sur "Exporter" pour utiliser le mode USB HOST, puis suivez les instructions. Bonne chance!</value>
   </data>
   <data name="FlashNandCQ" xml:space="preserve">
     <value>Voulez-vous flasher l’image de la partition NAND-C ? Ceci remplacera toutes les données utilisateur.</value>
@@ -343,7 +345,7 @@
     <value>Démarrer le kernel à partir de la RAM...</value>
   </data>
   <data name="MemoryFull" xml:space="preserve">
-    <value>Désolé, il y a {0} Mo de jeux, c’est trop.</value>
+    <value>Désolé, il y a {0} de jeux, c’est trop.</value>
   </data>
   <data name="MemoryStats" xml:space="preserve">
     <value>Taille totale de la mémoire : {0:F1} Mo|Mémoire disponible pour les jeux : {1:F1} Mo|Utilisé par les sauvegardes : {2:F1} Mo|Utilisé par d’autres fichiers : {3:F1} Mo</value>
@@ -445,7 +447,7 @@
     <value>Voulez-vous vraiment supprimer toute trace de Hakchi2 et remettre votre NES/SNES Mini dans son état d’origine ?</value>
   </data>
   <data name="UninstallQ2" xml:space="preserve">
-    <value>Terminé ! Patientez jusqu’à ce que le témoin d’alimentation soit éteint. Pour compléter la désinstallation vous devez flasher le kernel d’origine. Voulez-vous le flasher maintenant ?</value>
+    <value>Voulez-vous flasher le kernel d'origine maintenant?</value>
   </data>
   <data name="Uninstalling" xml:space="preserve">
     <value>Désinstallation…</value>

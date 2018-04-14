@@ -169,9 +169,6 @@
   <data name="ExtraArgsTitle">
     <value>拡張コマンドライン引数</value>
   </data>
-  <data name="FirstRun">
-    <value>こんにちは！ hakchi2をご使用いただきありがとうございます。 使い方はとても簡単です。 「ゲームの新規追加」をクリックし、追加したいROMを選択し、「同期」を押して指示に従ってください。</value>
-  </data>
   <data name="FlashNandCQ">
     <value>NAND-Cパーティションにイメージを書き込みますか? これを行うと、すべてのユーザーデータが置き換えられます</value>
   </data>
@@ -384,9 +381,6 @@
   </data>
   <data name="UninstallQ1">
     <value>本当にhakchi2を削除してファミコン/スーファミ ミニを初期状態に戻しますか?</value>
-  </data>
-  <data name="UninstallQ2">
-    <value>完了しました。LEDランプが消灯するまで待機してください。また、オリジナルカーネルを書き込みする必要があります。今すぐ書き込みしますか?</value>
   </data>
   <data name="Uninstalling">
     <value>アンインストール中...</value>

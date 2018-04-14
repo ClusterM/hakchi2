@@ -145,9 +145,6 @@
   <data name="ExtraArgsTitle">
     <value>Argumentos adicionais de linha de comando</value>
   </data>
-  <data name="FirstRun">
-    <value>Olá! Estou muito feliz que você está usando hakchi2. É muito simples de usar. Basta clicar em "Adicionar mais jogos", selecione algumas ROMs, pressione "Sincronizar" e siga as instruções. Boa sorte!</value>
-  </data>
   <data name="FlasingCustom">
     <value>Flash(escreve) o kernel personalizado ...</value>
   </data>
@@ -248,7 +245,7 @@
     <value>Desculpe, "{0}" usa o mapper # {1}, mas esse mapper não é compatível com o NES Mini eo jogo provavelmente não começará com o emulador do nes. Mas deve funcionar se o módulo de outro emulador instalado. Você quer adicionar este jogo?</value>
   </data>
   <data name="MemoryFull">
-    <value>Desculpe, existem {0} MBytes de jogos, é demais.</value>
+    <value>Desculpe, existem {0} de jogos, é demais.</value>
   </data>
   <data name="MemoryStats">
     <value>Total Memória disponível para jogos: {1: F1} MBytes | Usado por salvamentos: {2: F1} MBytes | Utilizado por outros ficheiros: {3: F1} MBytes</value>
@@ -324,9 +321,6 @@
   </data>
   <data name="UninstallQ1">
     <value>Você realmente deseja remover todos os traços de hakchi2 e retornar o NES/SNES Mini ao seu estado original?</value>
-  </data>
-  <data name="UninstallQ2">
-    <value>Feito. Aguarde até que o LED de alimentação se apague. Você também precisa piscar o kernel original. Deseja piscar o kernel original agora?</value>
   </data>
   <data name="Uninstalling">
     <value>Desinstalando ...</value>

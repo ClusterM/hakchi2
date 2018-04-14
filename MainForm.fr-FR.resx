@@ -1019,9 +1019,6 @@
   <data name="labelID.Text" xml:space="preserve">
     <value>ID:</value>
   </data>
-  <data name="buttonGoogle.Text" xml:space="preserve">
-    <value>Google</value>
-  </data>
   <data name="structureButton.Text" xml:space="preserve">
     <value>Structure</value>
   </data>

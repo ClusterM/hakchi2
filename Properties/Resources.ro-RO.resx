@@ -175,9 +175,6 @@
   <data name="ExtraArgsTitle">
     <value>Extra command-line arguments</value>
   </data>
-  <data name="FirstRun">
-    <value>Hello there! I'm very glad that you are using hakchi2. It's very simple to use. Just click "Add more games", select some ROMs, press "Synchronize" and follow the instructions. Good luck!</value>
-  </data>
   <data name="FlashNandCQ">
     <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
   </data>
@@ -283,9 +280,6 @@
   <data name="Membooting">
     <value>Booting the kernel from RAM...</value>
   </data>
-  <data name="MemoryFull">
-    <value>Sorry, there are {0}MBytes of games, it's too much.</value>
-  </data>
   <data name="MemoryStats">
     <value>Total writable memory size: {0:F1}MBytes|Available memory for games: {1:F1}MBytes|Used by saves: {2:F1}MBytes|Used by other files: {3:F1}MBytes</value>
   </data>
@@ -384,9 +378,6 @@
   </data>
   <data name="UninstallQ1">
     <value>Do you really want to remove all traces of hakchi2 and return your NES/SNES Mini to its original state?</value>
-  </data>
-  <data name="UninstallQ2">
-    <value>Done. Wait until the power LED goes out. You also need to flash the original kernel. Do you want to flash the original kernel now?</value>
   </data>
   <data name="Uninstalling">
     <value>Uninstalling...</value>

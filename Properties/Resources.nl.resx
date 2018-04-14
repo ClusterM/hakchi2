@@ -169,9 +169,6 @@
   <data name="ExtraArgsTitle">
     <value>Extra opdracht regel commando's</value>
   </data>
-  <data name="FirstRun">
-    <value>Hallo! Ik vind het fijn dat je Hakchi2 gebruikt. Het werkt heel simpel: Klik gewoon op “Meer spellen toevoegen”, selecteer wat ROMs, druk op ”Synchroniseren” en volg de instructies. Veel plezier!</value>
-  </data>
   <data name="FlashNandCQ">
     <value>Wil je de NAND-C partitie flashen? Al je data zal overschreven worden.</value>
   </data>
@@ -284,7 +281,7 @@
     <value>Kernel aan het starten vanaf RAM...</value>
   </data>
   <data name="MemoryFull">
-    <value>Sorry, er is {0} MB aan spellen, het is te groot.</value>
+    <value>Sorry, er is {0} aan spellen, het is te groot.</value>
   </data>
   <data name="MemoryStats">
     <value>Totaal schrijfbaar geheugen: {0:F1}MB|Beschikbaar voor spellen: {1:F1}MB|Gebruikt voor savegames: {2:F1}MB|Gebruikt door overig: {3:F1}MB</value>
@@ -384,9 +381,6 @@
   </data>
   <data name="UninstallQ1">
     <value>Wil je echt alle sporen van hakchi2 verwijderen van je Mini NES en deze herstellen naar de originele staat?</value>
-  </data>
-  <data name="UninstallQ2">
-    <value>Klaar. Wacht tot de rode LED uitgaat.</value>
   </data>
   <data name="Uninstalling">
     <value>Aan het deïnstalleren...</value>

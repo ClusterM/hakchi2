@@ -163,9 +163,6 @@
   <data name="ExtraArgsTitle">
     <value>Extra argumenty linii poleceń</value>
   </data>
-  <data name="FirstRun">
-    <value>Witaj! Bardzo mi miło, że używasz mojej aplikacji. To bardzo proste. Kliknij "Dodaj więcej gier", wybierz ROMy, naciśnij "Synchronizuj" i postępuj zgodnie z instrukcjami. Powodzenia!</value>
-  </data>
   <data name="FlasingCustom">
     <value>Wgrywanie zmodyfikowanego kernela...</value>
   </data>
@@ -272,7 +269,7 @@
     <value>Bootowanie kernela z RAMu...</value>
   </data>
   <data name="MemoryFull">
-    <value>Niestety, {0}MB gier to za dużo.</value>
+    <value>Niestety, {0} gier to za dużo.</value>
   </data>
   <data name="MemoryStats">
     <value>Całkowita pamięć: {0:F1}MB|Dostępna pamięć do gier: {1:F1}MB|Używane do save'ów: {2:F1}MB|Używane - inne pliki: {3:F1}MB</value>
@@ -360,9 +357,6 @@
   </data>
   <data name="UninstallQ1">
     <value>Czy na pewno chcesz usunąć wszelkie ślady hakchi2 i przywrócić NES/SNES Mini do oryginalnego stanu?</value>
-  </data>
-  <data name="UninstallQ2">
-    <value>Gotowe. Poczekaj, aż lampka zasilania zgaśnie. Musisz również wgrać z powrotem oryginalny kernel. Czy chcesz to teraz zrobić?</value>
   </data>
   <data name="Uninstalling">
     <value>Odinstalowywanie...</value>

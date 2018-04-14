@@ -145,9 +145,6 @@
   <data name="ExtraArgsTitle">
     <value>Extra kommandoradsargument</value>
   </data>
-  <data name="FirstRun">
-    <value>Hej där! Jag är mycket glad att du använder hakchi2. Den är väldigt enkelt att använda. Klicka bara på "Lägg till fler spel", välj några ROMs, tryck på "Synkronisera" och följ instruktionerna. Lycka till!</value>
-  </data>
   <data name="FlasingCustom">
     <value>Flashar anpassad kärna…</value>
   </data>
@@ -248,7 +245,7 @@
     <value>Tyvärr, "{0}" använder mappning # {1} men den här mappningen stöds inte av NES Mini och spelet kommer förmodligen inte att starta med standardemulatorn. Men det ska fungera om en annan emulatormodul installeras. Vill du lägga till det här spelet?</value>
   </data>
   <data name="MemoryFull">
-    <value>Tyvärr, det finns {0} MBytes av spel, det är för mycket.</value>
+    <value>Tyvärr, det finns {0} av spel, det är för mycket.</value>
   </data>
   <data name="MemoryStats">
     <value>Totalt skrivbart minne: {0:F1} MBytes | Tillgängligt minne för spel: {1:F1} MBytes | Används av Save-States {2:F1} MBytes | Används av andra filer: {3:F1} MBytes</value>
@@ -324,9 +321,6 @@
   </data>
   <data name="UninstallQ1">
     <value>Vill du verkligen ta bort alla spår av hakchi2 och återställa din NES/SNES Mini till sitt ursprungliga tillstånd?</value>
-  </data>
-  <data name="UninstallQ2">
-    <value>Klart. Vänta tills LEDen släcks. Du måste också flasha originalkärnan. Vill du flasha originalkärnan nu?</value>
   </data>
   <data name="Uninstalling">
     <value>Avinstallerar…</value>

@@ -169,9 +169,6 @@
   <data name="ExtraArgsTitle">
     <value>Argumentos extra de línea de comando</value>
   </data>
-  <data name="FirstRun">
-    <value>¡Hola, che! Estoy muy contento de que estés usando hakchi2. Es muy fácil de usar. Simplemente hacé clic en "Agregar más juegos", seleccioná algunas ROMs, presioná el botón para sincronizar y seguí las instrucciones. ¡Éxitos!</value>
-  </data>
   <data name="FlasingCustom">
     <value>Flasheando kernel personalizado…</value>
   </data>
@@ -278,7 +275,7 @@
     <value>Iniciando el kernel desde la RAM…</value>
   </data>
   <data name="MemoryFull">
-    <value>Lo siento, hay {0}MB de juegos, es demasiado.</value>
+    <value>Lo siento, hay {0} de juegos, es demasiado.</value>
   </data>
   <data name="MemoryStats">
     <value>Tamaño total de memoria escribible: {0:F1}MB|Memoria disponible para juegos: {1:F1}MB|Usada por partidas guardadas: {2:F1}MB|Usada por otros archivos: {3:F1}MB</value>
@@ -369,9 +366,6 @@
   </data>
   <data name="UninstallQ1">
     <value>¿Estás seguro que querés quitar todos los rastros de hakchi2 y volver tu NES/SNES Classic Edition a su estado original?</value>
-  </data>
-  <data name="UninstallQ2">
-    <value>Esperá hasta que la luz indicadora se apague. También necesitás flashear el kernel original. ¿Querés flashearlo ahora?</value>
   </data>
   <data name="Uninstalling">
     <value>Desinstalando…</value>
