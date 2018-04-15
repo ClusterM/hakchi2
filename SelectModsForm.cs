@@ -550,5 +550,16 @@ namespace com.clusterrr.hakchi_gui
                 e.Item.Selected = false;
             }
         }
+
+        private void listViewHmods_Resize(object sender, EventArgs e)
+        {
+            listViewHmods.Columns[0].Width = 1;
+            listViewHmods.Columns[0].Width = listViewHmods.Width - 4;
+        }
+
+        private void SelectModsForm_Shown(object sender, EventArgs e)
+        {
+            listViewHmods_Resize(sender, e);
+        }
     }
 }

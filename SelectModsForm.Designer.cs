@@ -16,7 +16,12 @@
             this.groupByToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.modListMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonOk
@@ -37,28 +42,30 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.wbReadme.IsWebBrowserContextMenuEnabled = false;
-            this.wbReadme.Location = new System.Drawing.Point(276, 12);
+            this.wbReadme.Location = new System.Drawing.Point(3, -1);
             this.wbReadme.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbReadme.Name = "wbReadme";
             this.wbReadme.ScriptErrorsSuppressed = true;
             this.wbReadme.ScrollBarsEnabled = false;
-            this.wbReadme.Size = new System.Drawing.Size(552, 385);
+            this.wbReadme.Size = new System.Drawing.Size(566, 387);
             this.wbReadme.TabIndex = 3;
             this.wbReadme.Url = new System.Uri("about:blank", System.UriKind.Absolute);
             this.wbReadme.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.wbReadme_Navigating);
             // 
             // listViewHmods
             // 
-            this.listViewHmods.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.listViewHmods.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewHmods.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listViewHmods.CheckBoxes = true;
             this.listViewHmods.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.hmodName});
             this.listViewHmods.ContextMenuStrip = this.modListMenuStrip;
             this.listViewHmods.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listViewHmods.Location = new System.Drawing.Point(12, 12);
+            this.listViewHmods.Location = new System.Drawing.Point(3, 3);
             this.listViewHmods.Name = "listViewHmods";
-            this.listViewHmods.Size = new System.Drawing.Size(248, 385);
+            this.listViewHmods.Size = new System.Drawing.Size(238, 379);
             this.listViewHmods.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listViewHmods.TabIndex = 4;
             this.listViewHmods.UseCompatibleStateImageBehavior = false;
@@ -66,6 +73,7 @@
             this.listViewHmods.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewHmods_ItemChecked);
             this.listViewHmods.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewHmods_ItemSelectionChanged);
             this.listViewHmods.SelectedIndexChanged += new System.EventHandler(this.listViewHmods_SelectedIndexChanged);
+            this.listViewHmods.Resize += new System.EventHandler(this.listViewHmods_Resize);
             // 
             // hmodName
             // 
@@ -103,23 +111,46 @@
             this.creatorToolStripMenuItem.Text = "Creator";
             this.creatorToolStripMenuItem.Click += new System.EventHandler(this.creatorToolStripMenuItem_Click);
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(12, 12);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.listViewHmods);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.wbReadme);
+            this.splitContainer1.Size = new System.Drawing.Size(816, 385);
+            this.splitContainer1.SplitterDistance = 244;
+            this.splitContainer1.TabIndex = 5;
+            // 
             // SelectModsForm
             // 
             this.AcceptButton = this.buttonOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 446);
-            this.Controls.Add(this.listViewHmods);
-            this.Controls.Add(this.wbReadme);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.buttonOk);
             this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MinimumSize = new System.Drawing.Size(400, 300);
             this.Name = "SelectModsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ModsSelect";
+            this.Shown += new System.EventHandler(this.SelectModsForm_Shown);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.SelectModsForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.SelectModsForm_DragEnter);
             this.modListMenuStrip.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -135,5 +166,6 @@
         private System.Windows.Forms.ToolStripMenuItem groupByToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem categoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem creatorToolStripMenuItem;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
