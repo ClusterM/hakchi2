@@ -1550,7 +1550,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AddTask(ShellTasks.MountBase);
                 tasker.AddTask(hakchi.ShowSplashScreen);
                 tasker.AddTasks(new ModTasks(mods).Tasks);
-                tasker.AddFinalTask(MembootTasks.BootHakchi);
+                tasker.AddFinalTask(ShellTasks.Reboot); // workaround since MembootTasks.BootHakchi doesn't restore network
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
@@ -1562,26 +1562,11 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetTitle(Resources.UninstallingMods);
                 tasker.SetStatusImage(Resources.sign_brick);
-
-                bool membooting = false;
-                if (!hakchi.Shell.IsOnline)
-                {
-                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
-                    membooting = true;
-                }
-                if (membooting || (hakchi.Shell.IsOnline && hakchi.MinimalMemboot))
-                {
-                    tasker.AddTask(ShellTasks.MountBase);
-                    tasker.AddTask(hakchi.ShowSplashScreen);
-                    tasker.AddTasks(new ModTasks(null, mods).Tasks);
-                    tasker.AddFinalTask(MembootTasks.BootHakchi);
-                }
-                else
-                {
-                    tasker.AddTask(hakchi.ShowSplashScreen);
-                    tasker.AddTasks(new ModTasks(null, mods).Tasks);
-                    tasker.AddFinalTask(ShellTasks.Reboot);
-                }
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
+                tasker.AddTask(ShellTasks.MountBase);
+                tasker.AddTask(hakchi.ShowSplashScreen);
+                tasker.AddTasks(new ModTasks(null, mods).Tasks);
+                tasker.AddFinalTask(ShellTasks.Reboot); // workaround since MembootTasks.BootHakchi doesn't restore network
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
         }

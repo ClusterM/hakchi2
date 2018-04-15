@@ -36,8 +36,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         tasksList.Add(InstallHmods(transferPath));
                 }
             }
-            if (hmodsUninstall != null && hmodsUninstall.Length > 0)
-                tasksList.Add(UninstallHmods(uninstallFile, hmodsUninstall));
+            if(hmodsUninstall != null && hmodsUninstall.Length > 0)
+                foreach (string hmod in hmodsUninstall)
+                    tasksList.Add(UninstallHmod(hmod));
 
             Tasks = tasksList.ToArray();
         }
@@ -100,18 +101,17 @@ namespace com.clusterrr.hakchi_gui.Tasks
             };
         }
 
-        public static TaskFunc UninstallHmods(string uninstallFile, string[] hmods)
+        public TaskFunc UninstallHmod(string mod)
         {
-            var installPath = hakchi.Shell.ExecuteSimple("hakchi get installpath");
-            uninstallFile = $"{installPath}/transfer/uninstall";
-
-            string[] uninstallArray = uninstallFile.Split("/"[0]);
             return (Tasker tasker, Object syncObject) =>
             {
                 tasker.SetStatus(Resources.UninstallingMods);
-                hakchi.Shell.ExecuteSimple($"mkdir -p {Shared.EscapeShellArgument(String.Join("/", uninstallArray.Take(uninstallArray.Length - 1)))}", 2000, true);
-                hakchi.Shell.Execute($"cat > {Shared.EscapeShellArgument(uninstallFile)}", Shared.GenerateStreamFromString(String.Join("\n", hmods)), null, null, 0, true);
-                return Conclusion.Success;
+                bool commandSucceeded = false;
+                
+                var splitStream = new SplitterStream(Program.debugStreams);
+                commandSucceeded = hakchi.Shell.Execute($"hakchi pack_uninstall {Shared.EscapeShellArgument(mod)}", null, splitStream, splitStream) == 0;
+
+                return commandSucceeded ? Conclusion.Success : Conclusion.Error;
             };
         }
 
