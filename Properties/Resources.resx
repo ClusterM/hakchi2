@@ -1205,4 +1205,7 @@ Continue?</value>
   <data name="CustomKernelInstalledQ" xml:space="preserve">
     <value>Did you already flash the custom kernel on your NES/SNES Mini?</value>
   </data>
+  <data name="DisableUSBWarning" xml:space="preserve">
+    <value>This will disable any OTG USB device plugged into your NES/SNES Mini. Are you sure you want to disable USB-HOST?</value>
+  </data>
 </root>

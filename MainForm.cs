@@ -1550,7 +1550,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AddTask(ShellTasks.MountBase);
                 tasker.AddTask(hakchi.ShowSplashScreen);
                 tasker.AddTasks(new ModTasks(mods).Tasks);
-                tasker.AddFinalTask(ShellTasks.Reboot); // workaround since MembootTasks.BootHakchi doesn't restore network
+                tasker.AddFinalTask(MembootTasks.BootHakchi);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
@@ -1566,7 +1566,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AddTask(ShellTasks.MountBase);
                 tasker.AddTask(hakchi.ShowSplashScreen);
                 tasker.AddTasks(new ModTasks(null, mods).Tasks);
-                tasker.AddFinalTask(ShellTasks.Reboot); // workaround since MembootTasks.BootHakchi doesn't restore network
+                tasker.AddFinalTask(MembootTasks.BootHakchi);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
@@ -2171,6 +2171,14 @@ namespace com.clusterrr.hakchi_gui
 
         private void enableUSBHostToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!enableUSBHostToolStripMenuItem.Checked)
+            {
+                if (Tasks.MessageForm.Show(this, Resources.Warning, Resources.DisableUSBWarning, Resources.sign_warning, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1 ) == MessageForm.Button.No)
+                {
+                    enableUSBHostToolStripMenuItem.Checked = true;
+                    return;
+                }
+            }
             ConfigIni.Instance.UsbHost = enableUSBHostToolStripMenuItem.Checked;
         }
 

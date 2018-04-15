@@ -779,6 +779,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This will disable any OTG USB device plugged into your NES/SNES Mini. Are you sure you want to disable USB-HOST?.
+        /// </summary>
+        internal static string DisableUSBWarning {
+            get {
+                return ResourceManager.GetString("DisableUSBWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discard changes.
         /// </summary>
         internal static string DiscardChanges {
@@ -1659,7 +1668,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 7747bcc-dirty
+        ///   Looks up a localized string similar to f795325-dirty
         ///.
         /// </summary>
         internal static string gitCommit {

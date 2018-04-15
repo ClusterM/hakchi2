@@ -1,14 +1,13 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
-using com.clusterrr.util;
 using SevenZip;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 
@@ -1482,6 +1481,7 @@ namespace com.clusterrr.hakchi_gui
                 compressor.CompressionLevel = CompressionLevel.High;
                 Debug.WriteLine("Compressing " + filename);
                 compressor.CompressFiles(archName, filename);
+                Thread.Sleep(1);
                 File.Delete(filename);
                 desktop.Exec = desktop.Exec.Replace(Path.GetFileName(filename), Path.GetFileName(archName));
             }
@@ -1498,6 +1498,7 @@ namespace com.clusterrr.hakchi_gui
                     foreach (var f in szExtractor.ArchiveFileNames)
                         desktop.Exec = desktop.Exec.Replace(Path.GetFileName(filename), f);
                 }
+                Thread.Sleep(1);
                 File.Delete(filename);
             }
         }

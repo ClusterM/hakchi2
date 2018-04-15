@@ -863,4 +863,7 @@ Continuer?</value>
   <data name="CustomKernelInstalledQ" xml:space="preserve">
     <value>Avez-vous déjà flashé le kernel hakchi sur votre NES/SNES Mini?</value>
   </data>
+  <data name="DisableUSBWarning" xml:space="preserve">
+    <value>Ceci désactivera quelconque lecteur USB OTG connecé dans votre NES/SNES Mini. Êtes-vous sûr de désactiver USB-HOST?</value>
+  </data>
 </root>
