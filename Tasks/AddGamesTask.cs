@@ -229,35 +229,47 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 }
 
                 // update list view
-                listViewGames.BeginUpdate();
-                foreach (ListViewItem item in listViewGames.Items)
-                    item.Selected = false;
-
-                // add games, only new ones
-                var newApps = addedApps.Distinct(new NesApplication.NesAppEqualityComparer());
-                var newCodes = from app in newApps select app.Code;
-                var oldAppsReplaced = from app in listViewGames.Items.Cast<ListViewItem>().ToArray()
-                                      where (app.Tag is NesApplication) && newCodes.Contains((app.Tag as NesApplication).Code)
-                                      select app;
-
-                int i = 0, max = newApps.Count() + oldAppsReplaced.Count();
-                var newGroup = listViewGames.Groups.OfType<ListViewGroup>().Where(group => group.Header == Resources.ListCategoryNew).First();
-                foreach (var replaced in oldAppsReplaced)
+                try
                 {
-                    listViewGames.Items.Remove(replaced);
-                    tasker.SetProgress(++i, max);
+                    listViewGames.BeginUpdate();
+                    foreach (ListViewItem item in listViewGames.Items)
+                        item.Selected = false;
+
+                    // add games, only new ones
+                    var newApps = addedApps.Distinct(new NesApplication.NesAppEqualityComparer());
+                    var newCodes = from app in newApps select app.Code;
+                    var oldAppsReplaced = from app in listViewGames.Items.Cast<ListViewItem>().ToArray()
+                                          where (app.Tag is NesApplication) && newCodes.Contains((app.Tag as NesApplication).Code)
+                                          select app;
+
+                    // find "new apps" group
+                    ListViewGroup newGroup = null;
+                    if (listViewGames.Groups.Count > 0)
+                    {
+                        newGroup = listViewGames.Groups.OfType<ListViewGroup>().Where(group => group.Header == Resources.ListCategoryNew).FirstOrDefault();
+                    }
+
+                    int i = 0, max = newApps.Count() + oldAppsReplaced.Count();
+                    foreach (var replaced in oldAppsReplaced)
+                    {
+                        listViewGames.Items.Remove(replaced);
+                        tasker.SetProgress(++i, max);
+                    }
+                    foreach (var newApp in newApps)
+                    {
+                        var item = new ListViewItem(newApp.Name);
+                        item.Group = newGroup;
+                        item.Tag = newApp;
+                        item.Selected = true;
+                        item.Checked = true;
+                        listViewGames.Items.Add(item);
+                        tasker.SetProgress(++i, max);
+                    }
                 }
-                foreach (var newApp in newApps)
+                finally
                 {
-                    var item = new ListViewItem(newApp.Name);
-                    item.Group = newGroup;
-                    item.Tag = newApp;
-                    item.Selected = true;
-                    item.Checked = true;
-                    listViewGames.Items.Add(item);
-                    tasker.SetProgress(++i, max);
+                    listViewGames.EndUpdate();
                 }
-                listViewGames.EndUpdate();
             }
             return Tasker.Conclusion.Success;
         }
