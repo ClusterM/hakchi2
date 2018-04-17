@@ -1,0 +1,2 @@
+mount -t overlayfs -o lowerdir="$squashfs/usr/share/backgrounds",upperdir="$mountpoint/var/lib/clover/backgrounds" overlayfs "$mountpoint/var/lib/clover/backgrounds"
+
