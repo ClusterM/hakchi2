@@ -364,7 +364,7 @@
         <api_id>21170</api_id>
     </Game>
     <Game>
-        <name>Asterix & Obelix</name>
+        <name>Asterix &amp; Obelix</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
         <crc>5143E227</crc>
@@ -375,7 +375,7 @@
         <api_id>24081</api_id>
     </Game>
     <Game>
-        <name>Asterix & Obelix</name>
+        <name>Asterix &amp; Obelix</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
         <crc>B1FD41D0</crc>
@@ -848,7 +848,7 @@
         <api_id>18304</api_id>
     </Game>
     <Game>
-        <name>Bill & Ted's Excellent Game Boy Adventure</name>
+        <name>Bill &amp; Ted's Excellent Game Boy Adventure</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
         <crc>5E8F656A</crc>
@@ -2960,7 +2960,7 @@
         <api_id>21591</api_id>
     </Game>
     <Game>
-        <name>Franky, Joe & Dirk... On the Tiles</name>
+        <name>Franky, Joe &amp; Dirk... On the Tiles</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
         <crc>CAF5B372</crc>
@@ -2982,7 +2982,7 @@
         <api_id>23344</api_id>
     </Game>
     <Game>
-        <name>Game & Watch Gallery</name>
+        <name>Game &amp; Watch Gallery</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
         <crc>96ECC1E0</crc>
@@ -2993,7 +2993,7 @@
         <api_id>3186</api_id>
     </Game>
     <Game>
-        <name>Game & Watch Gallery</name>
+        <name>Game &amp; Watch Gallery</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
         <crc>99B2FE79</crc>
@@ -3004,7 +3004,7 @@
         <api_id>3186</api_id>
     </Game>
     <Game>
-        <name>Game & Watch Gallery</name>
+        <name>Game &amp; Watch Gallery</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
         <crc>9E6CDC96</crc>
@@ -3741,7 +3741,7 @@
         <api_id>20476</api_id>
     </Game>
     <Game>
-        <name>Joe & Mac</name>
+        <name>Joe &amp; Mac</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
         <crc>5DA86ED4</crc>
@@ -3774,7 +3774,7 @@
         <api_id>20481</api_id>
     </Game>
     <Game>
-        <name>Joshua & the Battle of Jericho</name>
+        <name>Joshua &amp; the Battle of Jericho</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
         <crc>E0CF879B</crc>
@@ -4720,7 +4720,7 @@
         <api_id>13103</api_id>
     </Game>
     <Game>
-        <name>Mortal Kombat & Mortal Kombat II</name>
+        <name>Mortal Kombat &amp; Mortal Kombat II</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
         <crc>55300D0A</crc>
@@ -4731,7 +4731,7 @@
         <api_id>23337</api_id>
     </Game>
     <Game>
-        <name>Mortal Kombat & Mortal Kombat II</name>
+        <name>Mortal Kombat &amp; Mortal Kombat II</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
         <crc>B1A8DFD0</crc>
@@ -5226,7 +5226,7 @@
         <api_id>21621</api_id>
     </Game>
     <Game>
-        <name>NIV Bible & the 20 Lost Levels of Joshua</name>
+        <name>NIV Bible &amp; the 20 Lost Levels of Joshua</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
         <crc>E7A26B31</crc>
@@ -8240,7 +8240,7 @@
         <api_id>21791</api_id>
     </Game>
     <Game>
-        <name>Track & Field</name>
+        <name>Track &amp; Field</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
         <crc>C0EF39F0</crc>
