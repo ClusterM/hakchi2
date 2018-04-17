@@ -108,7 +108,73 @@ namespace com.clusterrr.hakchi_gui
                         }
                         return true;
                     })
-                }
+                },
+
+                new Action() {
+                    startingVersion = new Version("3.1.0.5"),
+                    targetVersion = new Version("3.2.2.0"),
+                    action = new ActionFunc(() => {
+
+                        string i = Program.BaseDirectoryInternal;
+                        string e = Program.BaseDirectoryExternal;
+                        string[] unusedFiles = new string[]
+                        {
+                            i + "\\data\\fes1.bin",
+                            i + "\\data\\splash.gz",
+                            i + "\\data\\uboot.bin",
+                            i + "\\data\\ubootSD.bin",
+                            i + "\\data\\zImage",
+                            i + "\\data\\zImageMemboot",
+                            i + "\\tools\\cpio.exe",
+                            i + "\\tools\\cyggcc_s-1.dll",
+                            i + "\\tools\\cygiconv-2.dll",
+                            i + "\\tools\\cygintl-8.dll",
+                            i + "\\tools\\cygwin1.dll",
+                            i + "\\tools\\lzop.exe",
+                            i + "\\tools\\mkbootfs.exe",
+                            i + "\\tools\\mkbootimg.exe",
+                            i + "\\tools\\unpackbootimg.exe",
+                            i + "\\tools\\xz.exe",
+                            e + "\\user_mods\\hakchi-v1.0.3-110.hmod"
+                        };
+                        string[] unusedDirectories = new string[]
+                        {
+                            i + "\\languages\\en-GB",
+                            i + "\\mods",
+                            e + "\\user_mods\\music_hack.hmod",
+                        };
+
+                        foreach (var dir in unusedDirectories)
+                        {
+                            try
+                            {
+                                Directory.Delete(dir, true);
+                            }
+                            catch (DirectoryNotFoundException) { }
+                            catch (UnauthorizedAccessException)
+                            {
+                                Debug.WriteLine($"Could not delete directory \"{dir}\". UAC restrictions.");
+                            }
+                            catch { }
+                        }
+
+                        foreach (var file in unusedFiles)
+                        {
+                            try
+                            {
+                                File.Delete(file);
+                            }
+                            catch (FileNotFoundException) { }
+                            catch (UnauthorizedAccessException)
+                            {
+                                Debug.WriteLine($"Could not delete file \"{file}\". UAC restrictions.");
+                            }
+                            catch { }
+                        }
+
+                        return true;
+                    })
+                },
 
             });
         }

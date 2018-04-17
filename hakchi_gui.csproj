@@ -642,12 +642,6 @@
     <Compile Include="UnsupportedFourScreenException.cs" />
     <Compile Include="UnsupportedMapperException.cs" />
     <Compile Include="Upgrade.cs" />
-    <Compile Include="UploadGamesDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UploadGamesDialog.Designer.cs">
-      <DependentUpon>UploadGamesDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="WaitingClovershellForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2195,9 +2189,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tasks\TaskerForm.resx">
       <DependentUpon>TaskerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UploadGamesDialog.resx">
-      <DependentUpon>UploadGamesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.bg-BG.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>

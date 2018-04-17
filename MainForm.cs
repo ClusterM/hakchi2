@@ -2505,16 +2505,25 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private bool groupTaskWithSelected(Tasks.GameTask task, Tasks.Tasker.TaskFunc taskFunc)
+        private bool groupTaskWithSelected(Tasks.GameTask task, Tasks.Tasker.TaskFunc taskFunc, bool allowOriginalGames = true)
         {
             SaveConfig();
             using (var tasker = new Tasks.Tasker(this))
             {
                 tasker.AttachView(new Tasks.TaskerTaskbar());
                 tasker.AttachView(new Tasks.TaskerForm());
-                task.Games.AddRange(listViewGames.SelectedItems.Cast<ListViewItem>()
-                        .Where(item => item.Tag is NesApplication && !(item.Tag as NesApplication).IsOriginalGame)
-                        .Select(item => item.Tag as NesApplication));
+                if (allowOriginalGames)
+                {
+                    task.Games.AddRange(listViewGames.SelectedItems.Cast<ListViewItem>()
+                            .Where(item => item.Tag is NesApplication)
+                            .Select(item => item.Tag as NesApplication));
+                }
+                else
+                {
+                    task.Games.AddRange(listViewGames.SelectedItems.Cast<ListViewItem>()
+                            .Where(item => item.Tag is NesApplication && !(item.Tag as NesApplication).IsOriginalGame)
+                            .Select(item => item.Tag as NesApplication));
+                }
                 if (task.Games.Count > 0)
                 {
                     tasker.AddTask(taskFunc);
@@ -2561,7 +2570,7 @@ namespace com.clusterrr.hakchi_gui
         private void compressSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var task = new Tasks.GameTask();
-            if (groupTaskWithSelected(task, task.CompressGames))
+            if (groupTaskWithSelected(task, task.CompressGames, false))
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
         }
@@ -2569,7 +2578,7 @@ namespace com.clusterrr.hakchi_gui
         private void decompressSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var task = new Tasks.GameTask();
-            if (groupTaskWithSelected(task, task.DecompressGames))
+            if (groupTaskWithSelected(task, task.DecompressGames, false))
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
         }
@@ -2579,7 +2588,7 @@ namespace com.clusterrr.hakchi_gui
             if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.DeleteSelectedGamesQ, Resources.sign_delete, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
             {
                 var task = new Tasks.GameTask();
-                if (groupTaskWithSelected(task, task.DeleteGames))
+                if (groupTaskWithSelected(task, task.DeleteGames, false))
                 {
                     listViewGames.BeginUpdate();
                     foreach (ListViewItem item in listViewGames.SelectedItems)
@@ -2625,7 +2634,7 @@ namespace com.clusterrr.hakchi_gui
             if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.ResetROMHeaderSelectedGamesQ, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
             {
                 var task = new Tasks.GameTask();
-                if (groupTaskWithSelected(task, task.ResetROMHeaders))
+                if (groupTaskWithSelected(task, task.ResetROMHeaders, false))
                     if (!ConfigIni.Instance.DisablePopups)
                         Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
             }
@@ -2636,7 +2645,7 @@ namespace com.clusterrr.hakchi_gui
             if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.RepairSelectedGamesQ, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
             {
                 var task = new Tasks.GameTask();
-                if (groupTaskWithSelected(task, task.RepairGames))
+                if (groupTaskWithSelected(task, task.RepairGames, false))
                     if (!ConfigIni.Instance.DisablePopups)
                         Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
             }

@@ -69,29 +69,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return false;
         }
 
-        public bool ShowUploadDialog(Tasker tasker)
-        {
-            if (tasker.HostForm.Disposing) return false;
-            if (tasker.HostForm.InvokeRequired)
-            {
-                return (bool)tasker.HostForm.Invoke(new Func<Tasker, bool>(ShowUploadDialog), new object[] { tasker });
-            }
-            try
-            {
-                using (UploadGamesDialog uploadGamesDialog = new UploadGamesDialog())
-                {
-                    tasker.PushState(Tasker.State.Paused);
-                    var result = uploadGamesDialog.ShowDialog() == DialogResult.OK;
-                    tasker.PopState();
-                    if (!result)
-                        return false;
-                }
-                return true;
-            }
-            catch (InvalidOperationException) { }
-            return false;
-        }
-
         private class GamesTreeStats
         {
             public List<NesMenuCollection> allMenus = new List<NesMenuCollection>();
@@ -211,7 +188,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 tasker.SetProgress(++i, maxProgress);
             }
 
-#if DEBUG
+#if VERY_DEBUG
             using (var gamesTar = new TarStream(localGamesToTransfer, "."))
             {
                 if (gamesTar.Length > 0)
@@ -359,7 +336,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             tasker.SetState(Tasker.State.Finishing);
                             uploadSuccessful = true;
                             done = true;
-#if DEBUG
+#if VERY_DEBUG
                             File.Delete(Program.BaseDirectoryExternal + "\\DebugSyncOutput.tar");
                             gamesTar.Position = 0;
                             gamesTar.CopyTo(File.OpenWrite(Program.BaseDirectoryExternal + "\\DebugSyncOutput.tar"));
@@ -474,7 +451,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 catch { }
             }
 
-#if !DEBUG
+#if !VERY_DEBUG
             try
             {
                 Directory.Delete(tempDirectory, true);

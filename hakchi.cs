@@ -148,7 +148,7 @@ namespace com.clusterrr.hakchi_gui
 
         public static string CurrentHakchiScriptRevision
         {
-            get { return "110"; }
+            get { return "113"; }
         }
 
         static hakchi()
