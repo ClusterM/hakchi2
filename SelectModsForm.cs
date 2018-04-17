@@ -551,15 +551,17 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void listViewHmods_Resize(object sender, EventArgs e)
-        {
-            listViewHmods.Columns[0].Width = 1;
-            listViewHmods.Columns[0].Width = listViewHmods.Width - 4;
-        }
-
         private void SelectModsForm_Shown(object sender, EventArgs e)
         {
-            listViewHmods_Resize(sender, e);
+            splitContainer1_SplitterMoved(null, null);
+        }
+
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            listViewHmods.BeginUpdate();
+            hmodName.Width = -1;
+            hmodName.Width = listViewHmods.Width - 4 - SystemInformation.VerticalScrollBarWidth;
+            listViewHmods.EndUpdate();
         }
     }
 }

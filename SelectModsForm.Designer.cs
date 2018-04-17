@@ -73,12 +73,11 @@
             this.listViewHmods.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewHmods_ItemChecked);
             this.listViewHmods.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewHmods_ItemSelectionChanged);
             this.listViewHmods.SelectedIndexChanged += new System.EventHandler(this.listViewHmods_SelectedIndexChanged);
-            this.listViewHmods.Resize += new System.EventHandler(this.listViewHmods_Resize);
             // 
             // hmodName
             // 
             this.hmodName.Text = "";
-            this.hmodName.Width = 244;
+            this.hmodName.Width = 238;
             // 
             // modListMenuStrip
             // 
@@ -129,6 +128,7 @@
             this.splitContainer1.Size = new System.Drawing.Size(816, 385);
             this.splitContainer1.SplitterDistance = 244;
             this.splitContainer1.TabIndex = 5;
+            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // SelectModsForm
             // 
