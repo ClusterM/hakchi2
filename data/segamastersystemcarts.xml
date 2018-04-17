@@ -1,0 +1,5019 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Data>
+    <Game>
+        <name>20 em 1</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>F0F35C22</crc>
+        <date>1997-01-01</date>
+        <publisher>Tec Toy Indústria de Brinquedos S.A.</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3129-1.jpg</cover>
+        <api_id>3129</api_id>
+    </Game>
+    <Game>
+        <name>4 PAK All Action</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>A67F2A5C</crc>
+        <date>1995-01-01</date>
+        <publisher>HES</publisher>
+        <region>Australia</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/36903-1.png</cover>
+        <api_id>36903</api_id>
+    </Game>
+    <Game>
+        <name>94 Super World Cup Soccer</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>060D6A7C</crc>
+        <date>1970-01-01</date>
+        <publisher>Daou</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/41664-1.jpg</cover>
+        <api_id>41664</api_id>
+    </Game>
+    <Game>
+        <name>Ace of Aces</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>887D9F6B</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2676-1.png</cover>
+        <api_id>2676</api_id>
+    </Game>
+    <Game>
+        <name>Action Fighter</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>3658F3E0</crc>
+        <date>1986-08-17</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2677-2.jpg</cover>
+        <api_id>2677</api_id>
+    </Game>
+    <Game>
+        <name>Action Fighter</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>8418F438</crc>
+        <date>1986-08-17</date>
+        <publisher>Sega</publisher>
+        <region>Taiwan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2677-2.jpg</cover>
+        <api_id>2677</api_id>
+    </Game>
+    <Game>
+        <name>Action Fighter</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>D91B340D</crc>
+        <date>1986-08-17</date>
+        <publisher>Sega</publisher>
+        <region>Japan, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2677-2.jpg</cover>
+        <api_id>2677</api_id>
+    </Game>
+    <Game>
+        <name>Action Fighter</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>E2D765AD</crc>
+        <date>1986-08-17</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2677-2.jpg</cover>
+        <api_id>2677</api_id>
+    </Game>
+    <Game>
+        <name>Aerial Assault</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>15576613</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2679-2.jpg</cover>
+        <api_id>2679</api_id>
+    </Game>
+    <Game>
+        <name>Aerial Assault</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>ECF491CF</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2679-2.jpg</cover>
+        <api_id>2679</api_id>
+    </Game>
+    <Game>
+        <name>After Burner</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>1C951F8E</crc>
+        <date>1987-11-02</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/1613-1.jpg</cover>
+        <api_id>1613</api_id>
+    </Game>
+    <Game>
+        <name>Air Rescue</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8B43D21D</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2680-1.jpg</cover>
+        <api_id>2680</api_id>
+    </Game>
+    <Game>
+        <name>Aleste</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>D8C4165B</crc>
+        <date>1988-02-29</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/49747-1.jpg</cover>
+        <api_id>49747</api_id>
+    </Game>
+    <Game>
+        <name>Alex Kidd in Miracle World</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>17A40E29</crc>
+        <date>1986-07-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2684-1.jpg</cover>
+        <api_id>2684</api_id>
+    </Game>
+    <Game>
+        <name>Alex Kidd in Miracle World</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>AED9AAC4</crc>
+        <date>1986-07-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2684-1.jpg</cover>
+        <api_id>2684</api_id>
+    </Game>
+    <Game>
+        <name>Alex Kidd in Shinobi World</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>D2417ED7</crc>
+        <date>1990-08-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2685-1.jpg</cover>
+        <api_id>2685</api_id>
+    </Game>
+    <Game>
+        <name>Alex Kidd: BMX Trial</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>F9DBB533</crc>
+        <date>1987-11-15</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2683-1.png</cover>
+        <api_id>2683</api_id>
+    </Game>
+    <Game>
+        <name>Alex Kidd: High-Tech World</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>013C0A94</crc>
+        <date>1989-08-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/5536-1.jpg</cover>
+        <api_id>5536</api_id>
+    </Game>
+    <Game>
+        <name>Alex Kidd: The Lost Stars</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C13896D5</crc>
+        <date>1988-07-01</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/5498-1.jpg</cover>
+        <api_id>5498</api_id>
+    </Game>
+    <Game>
+        <name>ALF</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>82038AD4</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2686-2.jpg</cover>
+        <api_id>2686</api_id>
+    </Game>
+    <Game>
+        <name>Alien 3</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>B618B144</crc>
+        <date>1992-01-01</date>
+        <publisher>Arena</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2967-1.jpg</cover>
+        <api_id>2967</api_id>
+    </Game>
+    <Game>
+        <name>Alien Storm</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>7F30F793</crc>
+        <date>1991-06-28</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2687-2.jpg</cover>
+        <api_id>2687</api_id>
+    </Game>
+    <Game>
+        <name>Alien Syndrome</name>
+        <players>2</players>
+        <simultaneous>1</simultaneous>
+        <crc>4CC11DF9</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2973-1.jpg</cover>
+        <api_id>2973</api_id>
+    </Game>
+    <Game>
+        <name>Alien Syndrome</name>
+        <players>2</players>
+        <simultaneous>1</simultaneous>
+        <crc>5CBFE997</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2973-1.jpg</cover>
+        <api_id>2973</api_id>
+    </Game>
+    <Game>
+        <name>Alien Syndrome</name>
+        <players>2</players>
+        <simultaneous>1</simultaneous>
+        <crc>C148868C</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Unknown</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2973-1.jpg</cover>
+        <api_id>2973</api_id>
+    </Game>
+    <Game>
+        <name>Altered Beast</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>BBA2FE98</crc>
+        <date>1989-07-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/5244-1.jpg</cover>
+        <api_id>5244</api_id>
+    </Game>
+    <Game>
+        <name>Andre Agassi Tennis</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>F499034D</crc>
+        <date>1992-01-01</date>
+        <publisher>Lance Investments</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/1705-1.png</cover>
+        <api_id>1705</api_id>
+    </Game>
+    <Game>
+        <name>Arcade Smash Hits</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>E4163163</crc>
+        <date>1992-07-15</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2691-2.jpg</cover>
+        <api_id>2691</api_id>
+    </Game>
+    <Game>
+        <name>Argos no Juujiken</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>BAE75805</crc>
+        <date>1988-03-25</date>
+        <publisher>Salio</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/51062-1.jpg</cover>
+        <api_id>51062</api_id>
+    </Game>
+    <Game>
+        <name>Ariel: The Little Mermaid</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>F4B3A7BD</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/26105-1.png</cover>
+        <api_id>26105</api_id>
+    </Game>
+    <Game>
+        <name>Assault City</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>0BD8DA96</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/11521-1.jpg</cover>
+        <api_id>11521</api_id>
+    </Game>
+    <Game>
+        <name>Assault City</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>861B6E79</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/11521-1.jpg</cover>
+        <api_id>11521</api_id>
+    </Game>
+    <Game>
+        <name>Asterix</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>147E02FA</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2981-1.png</cover>
+        <api_id>2981</api_id>
+    </Game>
+    <Game>
+        <name>Asterix</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8C9D5BE8</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2981-1.png</cover>
+        <api_id>2981</api_id>
+    </Game>
+    <Game>
+        <name>Asterix and the Great Rescue</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>F9B7D26B</crc>
+        <date>1993-11-15</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2693-1.png</cover>
+        <api_id>2693</api_id>
+    </Game>
+    <Game>
+        <name>Asterix and the Secret Mission</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>DEF9B14E</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2694-2.jpg</cover>
+        <api_id>2694</api_id>
+    </Game>
+    <Game>
+        <name>Astro Warrior</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>299CBB74</crc>
+        <date>1986-12-14</date>
+        <publisher>Sega</publisher>
+        <region>Japan, USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2695-2.jpg</cover>
+        <api_id>2695</api_id>
+    </Game>
+    <Game>
+        <name>Astro Warrior/Pit Pot</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>69EFD483</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2696-1.jpg</cover>
+        <api_id>2696</api_id>
+    </Game>
+    <Game>
+        <name>Ayrton Senna's Super Monaco GP II</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>E890331D</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2697-2.jpg</cover>
+        <api_id>2697</api_id>
+    </Game>
+    <Game>
+        <name>Aztec Adventure</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>FF614EB3</crc>
+        <date>1987-09-20</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2698-1.jpg</cover>
+        <api_id>2698</api_id>
+    </Game>
+    <Game>
+        <name>Back to the Future Part II</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>E5FF50D8</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2699-1.png</cover>
+        <api_id>2699</api_id>
+    </Game>
+    <Game>
+        <name>Back to the Future Part III</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>2D48C1D3</crc>
+        <date>1993-01-01</date>
+        <publisher>Image Works</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2700-1.jpg</cover>
+        <api_id>2700</api_id>
+    </Game>
+    <Game>
+        <name>Baku Baku Animal</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>35D84DC2</crc>
+        <date>1998-10-15</date>
+        <publisher>Sega</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2701-2.jpg</cover>
+        <api_id>2701</api_id>
+    </Game>
+    <Game>
+        <name>Bank Panic</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>655FB1F4</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2702-1.jpg</cover>
+        <api_id>2702</api_id>
+    </Game>
+    <Game>
+        <name>Basketball Nightmare</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>0DF8597F</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2703-2.jpg</cover>
+        <api_id>2703</api_id>
+    </Game>
+    <Game>
+        <name>Batman Returns</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B154EC38</crc>
+        <date>1992-09-18</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/5245-1.jpg</cover>
+        <api_id>5245</api_id>
+    </Game>
+    <Game>
+        <name>Battle OutRun</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C19430CE</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2704-1.jpg</cover>
+        <api_id>2704</api_id>
+    </Game>
+    <Game>
+        <name>Battlemaniacs</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>1CBB7BF1</crc>
+        <date>1993-01-01</date>
+        <publisher>Virgin Interactive</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2705-1.jpg</cover>
+        <api_id>2705</api_id>
+    </Game>
+    <Game>
+        <name>Black Belt</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>DA3A2F57</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2706-2.jpg</cover>
+        <api_id>2706</api_id>
+    </Game>
+    <Game>
+        <name>Bomber Raid</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>3084CF11</crc>
+        <date>1989-02-01</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2708-1.jpg</cover>
+        <api_id>2708</api_id>
+    </Game>
+    <Game>
+        <name>Bonanza Bros</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>CAEA8002</crc>
+        <date>1991-05-16</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2709-1.png</cover>
+        <api_id>2709</api_id>
+    </Game>
+    <Game>
+        <name>Bonkers Wax Up</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B3768A7A</crc>
+        <date>1994-01-01</date>
+        <publisher>Tec Toy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2710-2.jpg</cover>
+        <api_id>2710</api_id>
+    </Game>
+    <Game>
+        <name>Bram Stoker's Dracula</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>1B10A951</crc>
+        <date>1993-01-01</date>
+        <publisher>Sony Imagesoft</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3075-1.jpg</cover>
+        <api_id>3075</api_id>
+    </Game>
+    <Game>
+        <name>Bubble Bobble</name>
+        <players>2</players>
+        <simultaneous>1</simultaneous>
+        <crc>E843BA7E</crc>
+        <date>1992-01-01</date>
+        <publisher>Taito</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2777-1.jpg</cover>
+        <api_id>2777</api_id>
+    </Game>
+    <Game>
+        <name>Buggy Run</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B0FC4577</crc>
+        <date>1994-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2711-2.jpg</cover>
+        <api_id>2711</api_id>
+    </Game>
+    <Game>
+        <name>California Games</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>AC6009A7</crc>
+        <date>1989-01-01</date>
+        <publisher>Epyx</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/7746-1.jpg</cover>
+        <api_id>7746</api_id>
+    </Game>
+    <Game>
+        <name>California Games II</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>45C50294</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Brazil, Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3080-1.png</cover>
+        <api_id>3080</api_id>
+    </Game>
+    <Game>
+        <name>California Games II</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C0E25D62</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3080-1.png</cover>
+        <api_id>3080</api_id>
+    </Game>
+    <Game>
+        <name>Captain Silver</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>2532A7CD</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2712-1.png</cover>
+        <api_id>2712</api_id>
+    </Game>
+    <Game>
+        <name>Captain Silver</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>A4852757</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2712-1.png</cover>
+        <api_id>2712</api_id>
+    </Game>
+    <Game>
+        <name>Captain Silver</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B81F6FA5</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2712-1.png</cover>
+        <api_id>2712</api_id>
+    </Game>
+    <Game>
+        <name>Casino Games</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>3CFF6E80</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2713-1.png</cover>
+        <api_id>2713</api_id>
+    </Game>
+    <Game>
+        <name>Castelo Ra-Tim-Bum</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>31FFD7C3</crc>
+        <date>1997-09-01</date>
+        <publisher>Tectoy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/27505-1.jpg</cover>
+        <api_id>27505</api_id>
+    </Game>
+    <Game>
+        <name>Castle of Illusion Starring Mickey Mouse</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>953F42E1</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3084-1.jpg</cover>
+        <api_id>3084</api_id>
+    </Game>
+    <Game>
+        <name>Castle of Illusion Starring Mickey Mouse</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B9DB4282</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3084-1.jpg</cover>
+        <api_id>3084</api_id>
+    </Game>
+    <Game>
+        <name>Castle of Illusion Starring Mickey Mouse</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>BD610939</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Unknown</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3084-1.jpg</cover>
+        <api_id>3084</api_id>
+    </Game>
+    <Game>
+        <name>Champions of Europe</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>23163A12</crc>
+        <date>1988-01-01</date>
+        <publisher>TecMagik</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2714-2.jpg</cover>
+        <api_id>2714</api_id>
+    </Game>
+    <Game>
+        <name>Championship Hockey</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>7E5839A0</crc>
+        <date>1992-01-01</date>
+        <publisher>U.S. Gold</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2715-2.jpg</cover>
+        <api_id>2715</api_id>
+    </Game>
+    <Game>
+        <name>Chapolim X Dracula: Um Duelo Assustador</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>492C7C6E</crc>
+        <date>1993-01-01</date>
+        <publisher>Tectoy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/51067-1.jpg</cover>
+        <api_id>51067</api_id>
+    </Game>
+    <Game>
+        <name>Cheese Cat-Astrophe Starring Speedy Gonzales</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>46340C41</crc>
+        <date>1995-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2716-1.png</cover>
+        <api_id>2716</api_id>
+    </Game>
+    <Game>
+        <name>Choplifter</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>16EC3575</crc>
+        <date>1986-07-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2717-1.png</cover>
+        <api_id>2717</api_id>
+    </Game>
+    <Game>
+        <name>Choplifter</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>4A21C15F</crc>
+        <date>1986-07-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2717-1.png</cover>
+        <api_id>2717</api_id>
+    </Game>
+    <Game>
+        <name>Choplifter</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>FD981232</crc>
+        <date>1986-07-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2717-1.png</cover>
+        <api_id>2717</api_id>
+    </Game>
+    <Game>
+        <name>Chuck Rock</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>DD0E2927</crc>
+        <date>1992-01-01</date>
+        <publisher>Virgin Interactive</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/11762-1.jpg</cover>
+        <api_id>11762</api_id>
+    </Game>
+    <Game>
+        <name>Chuck Rock II: Son of Chuck</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>87783C04</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2718-1.jpg</cover>
+        <api_id>2718</api_id>
+    </Game>
+    <Game>
+        <name>Chuck Rock II: Son of Chuck</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C30E690A</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2718-1.jpg</cover>
+        <api_id>2718</api_id>
+    </Game>
+    <Game>
+        <name>Cloud Master</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>E7F62E6D</crc>
+        <date>1989-07-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2719-2.jpg</cover>
+        <api_id>2719</api_id>
+    </Game>
+    <Game>
+        <name>Columns</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>3FB40043</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3085-1.jpg</cover>
+        <api_id>3085</api_id>
+    </Game>
+    <Game>
+        <name>Columns</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>665FDA92</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3085-1.jpg</cover>
+        <api_id>3085</api_id>
+    </Game>
+    <Game>
+        <name>Comical Machine Gun Joe</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>643F6BFC</crc>
+        <date>1986-04-21</date>
+        <publisher>Sega</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/26439-1.jpg</cover>
+        <api_id>26439</api_id>
+    </Game>
+    <Game>
+        <name>Comical Machine Gun Joe</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>84AD5AE4</crc>
+        <date>1986-04-21</date>
+        <publisher>Sega</publisher>
+        <region>Taiwan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/26439-1.jpg</cover>
+        <api_id>26439</api_id>
+    </Game>
+    <Game>
+        <name>Comical Machine Gun Joe</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>9D549E08</crc>
+        <date>1986-04-21</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/26439-1.jpg</cover>
+        <api_id>26439</api_id>
+    </Game>
+    <Game>
+        <name>Cool Spot</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>13AC9023</crc>
+        <date>1993-01-01</date>
+        <publisher>Virgin Interactive</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3087-2.jpg</cover>
+        <api_id>3087</api_id>
+    </Game>
+    <Game>
+        <name>Cosmic Spacehead</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>29822980</crc>
+        <date>1991-01-01</date>
+        <publisher>Codemasters</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2721-2.jpg</cover>
+        <api_id>2721</api_id>
+    </Game>
+    <Game>
+        <name>Cyborg Hunter</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>908E7524</crc>
+        <date>1988-01-01</date>
+        <publisher>Activision</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2722-1.jpg</cover>
+        <api_id>2722</api_id>
+    </Game>
+    <Game>
+        <name>Cyborg Z</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>77EFE84A</crc>
+        <date>1970-01-01</date>
+        <publisher>Zemina</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/41665-1.jpg</cover>
+        <api_id>41665</api_id>
+    </Game>
+    <Game>
+        <name>Daffy Duck in Hollywood</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>71ABEF27</crc>
+        <date>1994-02-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2724-1.jpg</cover>
+        <api_id>2724</api_id>
+    </Game>
+    <Game>
+        <name>Dallyeora Pigu-Wang</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>89B79E77</crc>
+        <date>1995-12-01</date>
+        <publisher>Gameline</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/27355-1.jpg</cover>
+        <api_id>27355</api_id>
+    </Game>
+    <Game>
+        <name>Danan: The Jungle Fighter</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>AE4A28D7</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/36019-1.jpg</cover>
+        <api_id>36019</api_id>
+    </Game>
+    <Game>
+        <name>Dead Angle</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>E2F7193E</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2727-1.png</cover>
+        <api_id>2727</api_id>
+    </Game>
+    <Game>
+        <name>Deep Duck Trouble Starring Donald Duck</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>42FC3A6E</crc>
+        <date>1993-05-11</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2728-1.png</cover>
+        <api_id>2728</api_id>
+    </Game>
+    <Game>
+        <name>Desert Speedtrap starring Road Runner and Wile E. Coyote</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B137007A</crc>
+        <date>1994-05-16</date>
+        <publisher>SEGA Enterprises Ltd.</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/18804-1.png</cover>
+        <api_id>18804</api_id>
+    </Game>
+    <Game>
+        <name>Desert Strike</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>6C1433F9</crc>
+        <date>1992-01-01</date>
+        <publisher>Domark</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2730-1.png</cover>
+        <api_id>2730</api_id>
+    </Game>
+    <Game>
+        <name>Dick Tracy</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>F6FAB48D</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3088-1.jpg</cover>
+        <api_id>3088</api_id>
+    </Game>
+    <Game>
+        <name>Dinobasher Starring Bignose the Caveman</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>EA5C3A6F</crc>
+        <date>1994-03-01</date>
+        <publisher>Codemasters</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2731-2.jpg</cover>
+        <api_id>2731</api_id>
+    </Game>
+    <Game>
+        <name>Disney's Aladdin</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C8718D40</crc>
+        <date>1994-12-31</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2867-2.jpg</cover>
+        <api_id>2867</api_id>
+    </Game>
+    <Game>
+        <name>Disney's The Jungle Book</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>695A9A15</crc>
+        <date>1993-01-01</date>
+        <publisher>Virgin Interactive</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3063-1.jpg</cover>
+        <api_id>3063</api_id>
+    </Game>
+    <Game>
+        <name>Double Dragon</name>
+        <players>2</players>
+        <simultaneous>1</simultaneous>
+        <crc>A55D89F3</crc>
+        <date>1987-07-01</date>
+        <publisher>Taito</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2883-1.jpg</cover>
+        <api_id>2883</api_id>
+    </Game>
+    <Game>
+        <name>Double Hawk</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8370F6CD</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2732-1.jpg</cover>
+        <api_id>2732</api_id>
+    </Game>
+    <Game>
+        <name>Double Hawk</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>F76D5CEE</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2732-1.jpg</cover>
+        <api_id>2732</api_id>
+    </Game>
+    <Game>
+        <name>Dr. Hello</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>16537865</crc>
+        <date>1991-06-01</date>
+        <publisher>Sis Co</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/37380-1.jpg</cover>
+        <api_id>37380</api_id>
+    </Game>
+    <Game>
+        <name>Dr. Robotnik's Mean Bean Machine</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>6C696221</crc>
+        <date>1994-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3092-1.png</cover>
+        <api_id>3092</api_id>
+    </Game>
+    <Game>
+        <name>Dragon Crystal</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>9549FCE4</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2733-1.png</cover>
+        <api_id>2733</api_id>
+    </Game>
+    <Game>
+        <name>Dragon: The Bruce Lee Story</name>
+        <players>3</players>
+        <simultaneous>0</simultaneous>
+        <crc>C88A5064</crc>
+        <date>1993-01-01</date>
+        <publisher>Acclaim Entertainment</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/1799-1.png</cover>
+        <api_id>1799</api_id>
+    </Game>
+    <Game>
+        <name>Dynamite Duke</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>07306947</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2734-1.jpg</cover>
+        <api_id>2734</api_id>
+    </Game>
+    <Game>
+        <name>Dynamite Dux</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>0E1CC1E0</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2735-1.jpg</cover>
+        <api_id>2735</api_id>
+    </Game>
+    <Game>
+        <name>Dynamite Headdy</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>7DB5B0FA</crc>
+        <date>1994-01-01</date>
+        <publisher>Tec Toy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2736-1.jpg</cover>
+        <api_id>2736</api_id>
+    </Game>
+    <Game>
+        <name>E-SWAT</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>4F20694A</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2738-2.jpg</cover>
+        <api_id>2738</api_id>
+    </Game>
+    <Game>
+        <name>E-SWAT</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>C10FCE39</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2738-2.jpg</cover>
+        <api_id>2738</api_id>
+    </Game>
+    <Game>
+        <name>E-SWAT</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>C4BB1676</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2738-2.jpg</cover>
+        <api_id>2738</api_id>
+    </Game>
+    <Game>
+        <name>E-SWAT</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>F7CA9801</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2738-2.jpg</cover>
+        <api_id>2738</api_id>
+    </Game>
+    <Game>
+        <name>E-SWAT</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>FD91CC7E</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2738-2.jpg</cover>
+        <api_id>2738</api_id>
+    </Game>
+    <Game>
+        <name>Earthworm Jim</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C4D5EFC5</crc>
+        <date>1994-01-01</date>
+        <publisher>Playmates</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2892-2.jpg</cover>
+        <api_id>2892</api_id>
+    </Game>
+    <Game>
+        <name>Ecco the Dolphin</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>6687FAB9</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2898-1.jpg</cover>
+        <api_id>2898</api_id>
+    </Game>
+    <Game>
+        <name>Ecco: The Tides of Time</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>7C28703A</crc>
+        <date>1995-01-01</date>
+        <publisher>Tec Toy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3097-2.jpg</cover>
+        <api_id>3097</api_id>
+    </Game>
+    <Game>
+        <name>Enduro Racer</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>00E73541</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2737-1.jpg</cover>
+        <api_id>2737</api_id>
+    </Game>
+    <Game>
+        <name>Enduro Racer</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>5D5C50B3</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2737-1.jpg</cover>
+        <api_id>2737</api_id>
+    </Game>
+    <Game>
+        <name>F-16 Fighter</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>EAEBF323</crc>
+        <date>1985-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2740-1.jpg</cover>
+        <api_id>2740</api_id>
+    </Game>
+    <Game>
+        <name>F-16 Fighting Falcon</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>184C23B7</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/35590-1.png</cover>
+        <api_id>35590</api_id>
+    </Game>
+    <Game>
+        <name>F-16 Fighting Falcon</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>7CE06FCE</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/35590-1.png</cover>
+        <api_id>35590</api_id>
+    </Game>
+    <Game>
+        <name>F-16 Fighting Falcon</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C4C53226</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Taiwan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/35590-1.png</cover>
+        <api_id>35590</api_id>
+    </Game>
+    <Game>
+        <name>F1</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>EC788661</crc>
+        <date>1993-01-01</date>
+        <publisher>Domark</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2739-1.png</cover>
+        <api_id>2739</api_id>
+    </Game>
+    <Game>
+        <name>Fantastic Dizzy</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B9664AE1</crc>
+        <date>1993-01-01</date>
+        <publisher>Codemasters</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2741-1.png</cover>
+        <api_id>2741</api_id>
+    </Game>
+    <Game>
+        <name>Fantasy Zone</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>0FFBCAA3</crc>
+        <date>1986-07-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3102-2.jpg</cover>
+        <api_id>3102</api_id>
+    </Game>
+    <Game>
+        <name>Fantasy Zone</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>5FD48352</crc>
+        <date>1986-07-01</date>
+        <publisher>Sega</publisher>
+        <region>Taiwan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3102-2.jpg</cover>
+        <api_id>3102</api_id>
+    </Game>
+    <Game>
+        <name>Fantasy Zone</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>65D7E4E0</crc>
+        <date>1986-07-01</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3102-2.jpg</cover>
+        <api_id>3102</api_id>
+    </Game>
+    <Game>
+        <name>Fantasy Zone</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>F46264FE</crc>
+        <date>1986-07-01</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3102-2.jpg</cover>
+        <api_id>3102</api_id>
+    </Game>
+    <Game>
+        <name>Fantasy Zone II</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B8B141F9</crc>
+        <date>1987-12-31</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2743-1.png</cover>
+        <api_id>2743</api_id>
+    </Game>
+    <Game>
+        <name>Fantasy Zone II</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C722FB42</crc>
+        <date>1987-12-31</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2743-1.png</cover>
+        <api_id>2743</api_id>
+    </Game>
+    <Game>
+        <name>Fantasy Zone: The Maze</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>D29889AD</crc>
+        <date>1987-12-27</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2742-1.jpg</cover>
+        <api_id>2742</api_id>
+    </Game>
+    <Game>
+        <name>Ferias Frustradas do Pica Pau</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>BF6C2E37</crc>
+        <date>1996-01-01</date>
+        <publisher>Tec Toy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2744-1.png</cover>
+        <api_id>2744</api_id>
+    </Game>
+    <Game>
+        <name>FIFA International Soccer</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>9BB3B5F9</crc>
+        <date>1996-01-01</date>
+        <publisher>Electronic Arts</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2745-1.jpg</cover>
+        <api_id>2745</api_id>
+    </Game>
+    <Game>
+        <name>Fire & Forget II</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>F6AD7B1D</crc>
+        <date>1990-01-01</date>
+        <publisher>Titus Software</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2746-1.jpg</cover>
+        <api_id>2746</api_id>
+    </Game>
+    <Game>
+        <name>Fire & Ice</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8B24A640</crc>
+        <date>1993-01-01</date>
+        <publisher>Tectoy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2747-1.png</cover>
+        <api_id>2747</api_id>
+    </Game>
+    <Game>
+        <name>Forgotten Worlds</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>38C53916</crc>
+        <date>1991-02-01</date>
+        <publisher>Capcom</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2748-2.jpg</cover>
+        <api_id>2748</api_id>
+    </Game>
+    <Game>
+        <name>Fushigi no Oshiro Pit Pot</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>E6795C53</crc>
+        <date>1985-12-14</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3130-1.png</cover>
+        <api_id>3130</api_id>
+    </Game>
+    <Game>
+        <name>G-LOC Air Battle</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>05CDC24E</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2798-1.png</cover>
+        <api_id>2798</api_id>
+    </Game>
+    <Game>
+        <name>Gaegujangi Kkachi</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8B40F6BF</crc>
+        <date>1993-08-21</date>
+        <publisher>HiCom</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2750-1.png</cover>
+        <api_id>2750</api_id>
+    </Game>
+    <Game>
+        <name>Gain Ground</name>
+        <players>2</players>
+        <simultaneous>1</simultaneous>
+        <crc>3EC5E627</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2751-1.jpg</cover>
+        <api_id>2751</api_id>
+    </Game>
+    <Game>
+        <name>Gain Ground</name>
+        <players>2</players>
+        <simultaneous>1</simultaneous>
+        <crc>D40D03C7</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2751-1.jpg</cover>
+        <api_id>2751</api_id>
+    </Game>
+    <Game>
+        <name>Galactic Protector</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>A6FA42D0</crc>
+        <date>1988-02-21</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2752-1.jpg</cover>
+        <api_id>2752</api_id>
+    </Game>
+    <Game>
+        <name>Galaxy Force</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>6C827520</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2753-1.png</cover>
+        <api_id>2753</api_id>
+    </Game>
+    <Game>
+        <name>Galaxy Force</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>A4AC35D8</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2753-1.png</cover>
+        <api_id>2753</api_id>
+    </Game>
+    <Game>
+        <name>Gangster Town</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>5FC74D2A</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2754-2.jpg</cover>
+        <api_id>2754</api_id>
+    </Game>
+    <Game>
+        <name>Gauntlet</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>D9190956</crc>
+        <date>1990-07-02</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2755-1.jpg</cover>
+        <api_id>2755</api_id>
+    </Game>
+    <Game>
+        <name>George Foreman's KO Boxing</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>A64898CE</crc>
+        <date>1992-01-01</date>
+        <publisher>Acclaim</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/1838-2.jpg</cover>
+        <api_id>1838</api_id>
+    </Game>
+    <Game>
+        <name>Geraldinho</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>956C416B</crc>
+        <date>1995-04-01</date>
+        <publisher>Tectoy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/32147-1.png</cover>
+        <api_id>32147</api_id>
+    </Game>
+    <Game>
+        <name>Ghost House</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>1203AFC9</crc>
+        <date>1986-04-21</date>
+        <publisher>Sega</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2791-1.jpg</cover>
+        <api_id>2791</api_id>
+    </Game>
+    <Game>
+        <name>Ghost House</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C0F3CE7E</crc>
+        <date>1986-04-21</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2791-1.jpg</cover>
+        <api_id>2791</api_id>
+    </Game>
+    <Game>
+        <name>Ghost House</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C3E7C1ED</crc>
+        <date>1986-04-21</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2791-1.jpg</cover>
+        <api_id>2791</api_id>
+    </Game>
+    <Game>
+        <name>Ghost House</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>F1F8FF2D</crc>
+        <date>1986-04-21</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2791-1.jpg</cover>
+        <api_id>2791</api_id>
+    </Game>
+    <Game>
+        <name>Ghostbusters</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>1DDC3059</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2793-1.jpg</cover>
+        <api_id>2793</api_id>
+    </Game>
+    <Game>
+        <name>Ghouls'n Ghosts</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>7A92EBA6</crc>
+        <date>1990-07-01</date>
+        <publisher>Capcom</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2795-1.jpg</cover>
+        <api_id>2795</api_id>
+    </Game>
+    <Game>
+        <name>Ghouls'n Ghosts</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>96CA6902</crc>
+        <date>1990-07-01</date>
+        <publisher>Capcom</publisher>
+        <region>Unknown</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2795-1.jpg</cover>
+        <api_id>2795</api_id>
+    </Game>
+    <Game>
+        <name>Global Defense</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>91A0FC4E</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2797-2.jpg</cover>
+        <api_id>2797</api_id>
+    </Game>
+    <Game>
+        <name>Global Defense</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B746A6F5</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2797-2.jpg</cover>
+        <api_id>2797</api_id>
+    </Game>
+    <Game>
+        <name>Gokuaku Doumei Dump Matsumoto</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>A249FA9D</crc>
+        <date>1986-07-21</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/36020-1.jpg</cover>
+        <api_id>36020</api_id>
+    </Game>
+    <Game>
+        <name>Golden Axe</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C08132FB</crc>
+        <date>1989-07-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2799-2.jpg</cover>
+        <api_id>2799</api_id>
+    </Game>
+    <Game>
+        <name>Golden Axe Warrior</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C7DED988</crc>
+        <date>1991-07-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2800-2.jpg</cover>
+        <api_id>2800</api_id>
+    </Game>
+    <Game>
+        <name>Golfamania</name>
+        <players>2</players>
+        <simultaneous>1</simultaneous>
+        <crc>48651325</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2801-1.png</cover>
+        <api_id>2801</api_id>
+    </Game>
+    <Game>
+        <name>Golfamania</name>
+        <players>2</players>
+        <simultaneous>1</simultaneous>
+        <crc>5DABFDC3</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2801-1.png</cover>
+        <api_id>2801</api_id>
+    </Game>
+    <Game>
+        <name>Golvellius: Valley of Doom</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>A51376FE</crc>
+        <date>1988-08-14</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2802-2.jpg</cover>
+        <api_id>2802</api_id>
+    </Game>
+    <Game>
+        <name>GP Rider</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>EC2DA554</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2803-1.png</cover>
+        <api_id>2803</api_id>
+    </Game>
+    <Game>
+        <name>Great Baseball</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>10ED6B57</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2804-2.jpg</cover>
+        <api_id>2804</api_id>
+    </Game>
+    <Game>
+        <name>Great Baseball</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>89E98A7C</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2804-2.jpg</cover>
+        <api_id>2804</api_id>
+    </Game>
+    <Game>
+        <name>Great Basketball</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>2AC001EB</crc>
+        <date>1987-06-01</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2806-1.jpg</cover>
+        <api_id>2806</api_id>
+    </Game>
+    <Game>
+        <name>Great Football</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>2055825F</crc>
+        <date>1987-06-01</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2808-1.jpg</cover>
+        <api_id>2808</api_id>
+    </Game>
+    <Game>
+        <name>Great Golf</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>4847BC91</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2810-1.jpg</cover>
+        <api_id>2810</api_id>
+    </Game>
+    <Game>
+        <name>Great Golf</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>5DEF1BF5</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2810-1.jpg</cover>
+        <api_id>2810</api_id>
+    </Game>
+    <Game>
+        <name>Great Golf</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>6586BD1F</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2810-1.jpg</cover>
+        <api_id>2810</api_id>
+    </Game>
+    <Game>
+        <name>Great Golf</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>98E4AE4A</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2810-1.jpg</cover>
+        <api_id>2810</api_id>
+    </Game>
+    <Game>
+        <name>Great Ice Hockey</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>0CB7E21F</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan, USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2812-3.jpg</cover>
+        <api_id>2812</api_id>
+    </Game>
+    <Game>
+        <name>Great Soccer</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>0ED170C9</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2814-1.jpg</cover>
+        <api_id>2814</api_id>
+    </Game>
+    <Game>
+        <name>Great Soccer</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>2D7FD7EF</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2814-1.jpg</cover>
+        <api_id>2814</api_id>
+    </Game>
+    <Game>
+        <name>Great Soccer</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>84665648</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Taiwan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2814-1.jpg</cover>
+        <api_id>2814</api_id>
+    </Game>
+    <Game>
+        <name>Great Volleyball</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>6819B0C0</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2816-1.jpg</cover>
+        <api_id>2816</api_id>
+    </Game>
+    <Game>
+        <name>Great Volleyball</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>8D43EA95</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2816-1.jpg</cover>
+        <api_id>2816</api_id>
+    </Game>
+    <Game>
+        <name>Hang-On</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>071B045E</crc>
+        <date>1985-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2817-1.jpg</cover>
+        <api_id>2817</api_id>
+    </Game>
+    <Game>
+        <name>Hang-On</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>5C01ADF9</crc>
+        <date>1985-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2817-1.jpg</cover>
+        <api_id>2817</api_id>
+    </Game>
+    <Game>
+        <name>Hang-On & Astro Warrior</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>1C5059F0</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2819-1.png</cover>
+        <api_id>2819</api_id>
+    </Game>
+    <Game>
+        <name>Hang-On & Safari Hunt</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>A120B77F</crc>
+        <date>1986-08-08</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2821-1.png</cover>
+        <api_id>2821</api_id>
+    </Game>
+    <Game>
+        <name>Hang-On & Safari Hunt</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>E167A561</crc>
+        <date>1986-08-08</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2821-1.png</cover>
+        <api_id>2821</api_id>
+    </Game>
+    <Game>
+        <name>Heavyweight Champ</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>FDAB876A</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega, SIMS</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/51081-1.jpg</cover>
+        <api_id>51081</api_id>
+    </Game>
+    <Game>
+        <name>Heroes of the Lance</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>CDE13FFB</crc>
+        <date>1991-01-01</date>
+        <publisher>Strategic Simulations, Inc.</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2824-1.jpg</cover>
+        <api_id>2824</api_id>
+    </Game>
+    <Game>
+        <name>High School! Kimengumi</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>9EB1AA4F</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2828-1.png</cover>
+        <api_id>2828</api_id>
+    </Game>
+    <Game>
+        <name>Hokuto no Ken</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>24F5FE8C</crc>
+        <date>1986-07-20</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/48676-1.jpg</cover>
+        <api_id>48676</api_id>
+    </Game>
+    <Game>
+        <name>Hokuto no Ken</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>C4AB363D</crc>
+        <date>1986-07-20</date>
+        <publisher>Sega</publisher>
+        <region>Taiwan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/48676-1.jpg</cover>
+        <api_id>48676</api_id>
+    </Game>
+    <Game>
+        <name>Home Alone</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C9DBF936</crc>
+        <date>1991-10-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2829-2.jpg</cover>
+        <api_id>2829</api_id>
+    </Game>
+    <Game>
+        <name>Hong Kil Dong</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8040B2FA</crc>
+        <date>1991-01-01</date>
+        <publisher>Clover</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/36021-1.jpg</cover>
+        <api_id>36021</api_id>
+    </Game>
+    <Game>
+        <name>Hook</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>9CED34A7</crc>
+        <date>1970-01-01</date>
+        <publisher>N/A</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/27540-1.jpg</cover>
+        <api_id>27540</api_id>
+    </Game>
+    <Game>
+        <name>Hoshi wo Sagashite...</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>955A009E</crc>
+        <date>1988-04-02</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2849-1.jpg</cover>
+        <api_id>2849</api_id>
+    </Game>
+    <Game>
+        <name>Impossible Mission</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>64D6AF3B</crc>
+        <date>1988-12-31</date>
+        <publisher>Epyx</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2852-1.jpg</cover>
+        <api_id>2852</api_id>
+    </Game>
+    <Game>
+        <name>Impossible Mission</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>71C4CA8F</crc>
+        <date>1988-12-31</date>
+        <publisher>Epyx</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2852-1.jpg</cover>
+        <api_id>2852</api_id>
+    </Game>
+    <Game>
+        <name>Indiana Jones and the Last Crusade</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8AEB574B</crc>
+        <date>1990-01-01</date>
+        <publisher>U.S. Gold</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2855-1.jpg</cover>
+        <api_id>2855</api_id>
+    </Game>
+    <Game>
+        <name>Indiana Jones and the Last Crusade</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>ACEC894D</crc>
+        <date>1990-01-01</date>
+        <publisher>U.S. Gold</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2855-1.jpg</cover>
+        <api_id>2855</api_id>
+    </Game>
+    <Game>
+        <name>James 'Buster' Douglas Knockout Boxing</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>6A664405</crc>
+        <date>1991-01-01</date>
+        <publisher>Taito</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/20682-1.jpg</cover>
+        <api_id>20682</api_id>
+    </Game>
+    <Game>
+        <name>James 'Buster' Douglas Knockout Boxing</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>CFB4BD7B</crc>
+        <date>1991-01-01</date>
+        <publisher>Taito</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/20682-1.jpg</cover>
+        <api_id>20682</api_id>
+    </Game>
+    <Game>
+        <name>James Bond 007: The Duel</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8D23587F</crc>
+        <date>1993-04-07</date>
+        <publisher>Domark</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2857-1.jpg</cover>
+        <api_id>2857</api_id>
+    </Game>
+    <Game>
+        <name>James Bond 007: The Duel</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8FEFF688</crc>
+        <date>1993-04-07</date>
+        <publisher>Domark</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2857-1.jpg</cover>
+        <api_id>2857</api_id>
+    </Game>
+    <Game>
+        <name>James Pond 2: Codename RoboCod</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>102D5FEA</crc>
+        <date>1991-01-01</date>
+        <publisher>U.S. Gold Ltd.</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2861-1.jpg</cover>
+        <api_id>2861</api_id>
+    </Game>
+    <Game>
+        <name>Joe Montana Football</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>0A9089E5</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2870-2.jpg</cover>
+        <api_id>2870</api_id>
+    </Game>
+    <Game>
+        <name>Jurassic Park</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>0667ED9F</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2873-2.jpg</cover>
+        <api_id>2873</api_id>
+    </Game>
+    <Game>
+        <name>Kenseiden</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>05EA5353</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2874-1.jpg</cover>
+        <api_id>2874</api_id>
+    </Game>
+    <Game>
+        <name>Kenseiden</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>516ED32E</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2874-1.jpg</cover>
+        <api_id>2874</api_id>
+    </Game>
+    <Game>
+        <name>King's Quest: Quest for the Crown</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B7FE0A9D</crc>
+        <date>1989-07-01</date>
+        <publisher>Parker Bros.</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2875-1.jpg</cover>
+        <api_id>2875</api_id>
+    </Game>
+    <Game>
+        <name>King's Quest: Quest for the Crown</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>F8D33BC4</crc>
+        <date>1989-07-01</date>
+        <publisher>Parker Bros.</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2875-1.jpg</cover>
+        <api_id>2875</api_id>
+    </Game>
+    <Game>
+        <name>Klax</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>2B435FD6</crc>
+        <date>1991-01-01</date>
+        <publisher>Tengen</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2877-1.jpg</cover>
+        <api_id>2877</api_id>
+    </Game>
+    <Game>
+        <name>Krusty's Fun House</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>64A585EB</crc>
+        <date>1992-06-01</date>
+        <publisher>Flying Edge</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2879-2.jpg</cover>
+        <api_id>2879</api_id>
+    </Game>
+    <Game>
+        <name>Kung Fu Kid</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>1E949D1F</crc>
+        <date>1987-05-17</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2439-1.jpg</cover>
+        <api_id>2439</api_id>
+    </Game>
+    <Game>
+        <name>Land of Illusion Starring Mickey Mouse</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>24E97200</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2881-1.jpg</cover>
+        <api_id>2881</api_id>
+    </Game>
+    <Game>
+        <name>Laser Ghost</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>0CA95637</crc>
+        <date>1991-12-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2882-2.jpg</cover>
+        <api_id>2882</api_id>
+    </Game>
+    <Game>
+        <name>Legend of Illusion Starring Mickey Mouse</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>6350E649</crc>
+        <date>1995-01-13</date>
+        <publisher>Tec Toy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2884-1.jpg</cover>
+        <api_id>2884</api_id>
+    </Game>
+    <Game>
+        <name>Lemmings</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>2C61ED88</crc>
+        <date>1992-11-20</date>
+        <publisher>Psygnosis</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2885-1.jpg</cover>
+        <api_id>2885</api_id>
+    </Game>
+    <Game>
+        <name>Lemmings</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>F369B2D8</crc>
+        <date>1992-11-20</date>
+        <publisher>Psygnosis</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2885-1.jpg</cover>
+        <api_id>2885</api_id>
+    </Game>
+    <Game>
+        <name>Lemmings 2</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>CF5AECCA</crc>
+        <date>1984-01-01</date>
+        <publisher>Psygnosis</publisher>
+        <region>Unknown</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/36134-1.png</cover>
+        <api_id>36134</api_id>
+    </Game>
+    <Game>
+        <name>Line of Fire</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>CB09F355</crc>
+        <date>1991-12-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2888-1.jpg</cover>
+        <api_id>2888</api_id>
+    </Game>
+    <Game>
+        <name>Lord of the Sword</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>E8511B08</crc>
+        <date>1989-04-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2889-1.jpg</cover>
+        <api_id>2889</api_id>
+    </Game>
+    <Game>
+        <name>Loretta no Shouzou</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>323F357F</crc>
+        <date>1987-02-18</date>
+        <publisher>N/A</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2891-1.jpg</cover>
+        <api_id>2891</api_id>
+    </Game>
+    <Game>
+        <name>Mahjong Sengoku Jidai</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>996B2A07</crc>
+        <date>1987-10-18</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2893-1.jpg</cover>
+        <api_id>2893</api_id>
+    </Game>
+    <Game>
+        <name>Mahjong Sengoku Jidai</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>BCFBFC67</crc>
+        <date>1987-10-18</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2893-1.jpg</cover>
+        <api_id>2893</api_id>
+    </Game>
+    <Game>
+        <name>Marble Madness</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>BF6F3E5F</crc>
+        <date>1992-01-01</date>
+        <publisher>Virgin</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2895-2.jpg</cover>
+        <api_id>2895</api_id>
+    </Game>
+    <Game>
+        <name>Marksman Shooting & Trap Shooting</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>E8EA842C</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2897-1.jpg</cover>
+        <api_id>2897</api_id>
+    </Game>
+    <Game>
+        <name>Marksman Shooting / Trap Shooting / Safari Hunt</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>E8215C2E</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2899-2.jpg</cover>
+        <api_id>2899</api_id>
+    </Game>
+    <Game>
+        <name>Master of Darkness</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>96FB4D4B</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2901-1.jpg</cover>
+        <api_id>2901</api_id>
+    </Game>
+    <Game>
+        <name>Masters of Combat</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>93141463</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2902-1.jpg</cover>
+        <api_id>2902</api_id>
+    </Game>
+    <Game>
+        <name>Maze Hunter 3-D</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>31B8040B</crc>
+        <date>1987-01-01</date>
+        <publisher>SEGA Enterprises Ltd.</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2502-1.jpg</cover>
+        <api_id>2502</api_id>
+    </Game>
+    <Game>
+        <name>Megumi Rescue</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>29BC7FAD</crc>
+        <date>1998-07-30</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2903-1.jpg</cover>
+        <api_id>2903</api_id>
+    </Game>
+    <Game>
+        <name>Mercs</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>D7416B83</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2905-2.jpg</cover>
+        <api_id>2905</api_id>
+    </Game>
+    <Game>
+        <name>Michael Jackson's Moonwalker</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>54123936</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2908-2.jpg</cover>
+        <api_id>2908</api_id>
+    </Game>
+    <Game>
+        <name>Michael Jackson's Moonwalker</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>56CC906B</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2908-2.jpg</cover>
+        <api_id>2908</api_id>
+    </Game>
+    <Game>
+        <name>Mick & Mack: Global Gladiators</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B67CEB76</crc>
+        <date>1992-01-01</date>
+        <publisher>Virgin Games</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2910-1.jpg</cover>
+        <api_id>2910</api_id>
+    </Game>
+    <Game>
+        <name>Mickey's Ultimate Challenge</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>25051DD5</crc>
+        <date>1998-12-01</date>
+        <publisher>Tec Toy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2913-1.jpg</cover>
+        <api_id>2913</api_id>
+    </Game>
+    <Game>
+        <name>Micro Machines</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>A577CE46</crc>
+        <date>1993-01-01</date>
+        <publisher>Codemasters</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2915-2.jpg</cover>
+        <api_id>2915</api_id>
+    </Game>
+    <Game>
+        <name>Miracle Warriors: Seal of the Dark Lord</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>0E333B6E</crc>
+        <date>1988-01-31</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/5500-1.jpg</cover>
+        <api_id>5500</api_id>
+    </Game>
+    <Game>
+        <name>Miracle Warriors: Seal of the Dark Lord</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>301A59AA</crc>
+        <date>1988-01-31</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/5500-1.jpg</cover>
+        <api_id>5500</api_id>
+    </Game>
+    <Game>
+        <name>Missile Defense 3-D</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>FBE5CFBB</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2919-1.jpg</cover>
+        <api_id>2919</api_id>
+    </Game>
+    <Game>
+        <name>Monica no Castelo do Dragao</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>01D67C0B</crc>
+        <date>1991-01-01</date>
+        <publisher>Tectoy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/48541-1.png</cover>
+        <api_id>48541</api_id>
+    </Game>
+    <Game>
+        <name>Monopoly</name>
+        <players>4</players>
+        <simultaneous>0</simultaneous>
+        <crc>026D94A4</crc>
+        <date>1988-07-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2921-2.jpg</cover>
+        <api_id>2921</api_id>
+    </Game>
+    <Game>
+        <name>Monopoly</name>
+        <players>4</players>
+        <simultaneous>0</simultaneous>
+        <crc>69538469</crc>
+        <date>1988-07-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2921-2.jpg</cover>
+        <api_id>2921</api_id>
+    </Game>
+    <Game>
+        <name>Monopoly</name>
+        <players>4</players>
+        <simultaneous>0</simultaneous>
+        <crc>7E9D87FC</crc>
+        <date>1988-07-01</date>
+        <publisher>Sega</publisher>
+        <region>Unknown</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2921-2.jpg</cover>
+        <api_id>2921</api_id>
+    </Game>
+    <Game>
+        <name>Montezuma's Revenge Featuring Panama Joe</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>575D0FCF</crc>
+        <date>1989-06-01</date>
+        <publisher>Parker Bros.</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2923-1.jpg</cover>
+        <api_id>2923</api_id>
+    </Game>
+    <Game>
+        <name>Montezuma's Revenge Featuring Panama Joe</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>82FDA895</crc>
+        <date>1989-06-01</date>
+        <publisher>Parker Bros.</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2923-1.jpg</cover>
+        <api_id>2923</api_id>
+    </Game>
+    <Game>
+        <name>Mortal Kombat</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>302DC686</crc>
+        <date>1993-09-13</date>
+        <publisher>Arena</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2926-1.jpg</cover>
+        <api_id>2926</api_id>
+    </Game>
+    <Game>
+        <name>Mortal Kombat 3</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>395AE757</crc>
+        <date>1996-01-01</date>
+        <publisher>Tec Toy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2928-1.jpg</cover>
+        <api_id>2928</api_id>
+    </Game>
+    <Game>
+        <name>Mortal Kombat II</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>2663BF18</crc>
+        <date>1994-01-01</date>
+        <publisher>Acclaim</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2929-1.jpg</cover>
+        <api_id>2929</api_id>
+    </Game>
+    <Game>
+        <name>Ms. Pac-man</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>3CD816C6</crc>
+        <date>1991-07-01</date>
+        <publisher>Tengen</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2932-1.jpg</cover>
+        <api_id>2932</api_id>
+    </Game>
+    <Game>
+        <name>My Hero</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>62F0C23D</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2936-2.jpg</cover>
+        <api_id>2936</api_id>
+    </Game>
+    <Game>
+        <name>NBA Jam</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>332A847D</crc>
+        <date>1994-03-04</date>
+        <publisher>Acclaim</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/41667-1.png</cover>
+        <api_id>41667</api_id>
+    </Game>
+    <Game>
+        <name>Nekkyuu Koushien</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>5B5F9106</crc>
+        <date>1988-09-09</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2940-1.jpg</cover>
+        <api_id>2940</api_id>
+    </Game>
+    <Game>
+        <name>Ninja Gaiden</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>1B1D8CC2</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2942-1.jpg</cover>
+        <api_id>2942</api_id>
+    </Game>
+    <Game>
+        <name>Ninja Gaiden</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>761E9396</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2942-1.jpg</cover>
+        <api_id>2942</api_id>
+    </Game>
+    <Game>
+        <name>Operation Wolf</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>205CAAE8</crc>
+        <date>1990-01-01</date>
+        <publisher>Taito</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2946-1.jpg</cover>
+        <api_id>2946</api_id>
+    </Game>
+    <Game>
+        <name>Out Run</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>5589D8D2</crc>
+        <date>1987-06-30</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/51084-1.jpg</cover>
+        <api_id>51084</api_id>
+    </Game>
+    <Game>
+        <name>OutRun</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>5589D8D2</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2947-1.jpg</cover>
+        <api_id>2947</api_id>
+    </Game>
+    <Game>
+        <name>OutRun 3-D</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>D6F43DDA</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2949-2.jpg</cover>
+        <api_id>2949</api_id>
+    </Game>
+    <Game>
+        <name>OutRun Europa</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>3932ADBC</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2951-1.jpg</cover>
+        <api_id>2951</api_id>
+    </Game>
+    <Game>
+        <name>Pac-Mania</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>BE57A9A5</crc>
+        <date>1991-08-01</date>
+        <publisher>Tengen</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2953-2.jpg</cover>
+        <api_id>2953</api_id>
+    </Game>
+    <Game>
+        <name>Paperboy</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>294E0759</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2956-2.jpg</cover>
+        <api_id>2956</api_id>
+    </Game>
+    <Game>
+        <name>Paperboy</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>327A0B4C</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2956-2.jpg</cover>
+        <api_id>2956</api_id>
+    </Game>
+    <Game>
+        <name>Parlour Games</name>
+        <players>4</players>
+        <simultaneous>0</simultaneous>
+        <crc>E030E66C</crc>
+        <date>1988-05-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2958-2.jpg</cover>
+        <api_id>2958</api_id>
+    </Game>
+    <Game>
+        <name>Pat Riley Basketball</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>9AEFE664</crc>
+        <date>1990-08-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2961-2.jpg</cover>
+        <api_id>2961</api_id>
+    </Game>
+    <Game>
+        <name>Penguin Land</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>F97E9875</crc>
+        <date>1985-07-01</date>
+        <publisher>Pony Canyon</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2962-1.jpg</cover>
+        <api_id>2962</api_id>
+    </Game>
+    <Game>
+        <name>PGA Tour Golf</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>95B9EA95</crc>
+        <date>1993-01-01</date>
+        <publisher>Tengen</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2964-1.jpg</cover>
+        <api_id>2964</api_id>
+    </Game>
+    <Game>
+        <name>Phantasy Star</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>00BEF1D7</crc>
+        <date>1987-12-20</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2965-1.jpg</cover>
+        <api_id>2965</api_id>
+    </Game>
+    <Game>
+        <name>Phantasy Star</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>6605D36A</crc>
+        <date>1987-12-20</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2965-1.jpg</cover>
+        <api_id>2965</api_id>
+    </Game>
+    <Game>
+        <name>Phantasy Star</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>747E83B5</crc>
+        <date>1987-12-20</date>
+        <publisher>Sega</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2965-1.jpg</cover>
+        <api_id>2965</api_id>
+    </Game>
+    <Game>
+        <name>Phantasy Star</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>75971BEF</crc>
+        <date>1987-12-20</date>
+        <publisher>Sega</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2965-1.jpg</cover>
+        <api_id>2965</api_id>
+    </Game>
+    <Game>
+        <name>Phantasy Star</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>E4A65E79</crc>
+        <date>1987-12-20</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2965-1.jpg</cover>
+        <api_id>2965</api_id>
+    </Game>
+    <Game>
+        <name>Pit-Fighter</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>AA4D4B5A</crc>
+        <date>1992-01-01</date>
+        <publisher>Domark</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2966-2.jpg</cover>
+        <api_id>2966</api_id>
+    </Game>
+    <Game>
+        <name>Pit-Fighter</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B840A446</crc>
+        <date>1992-01-01</date>
+        <publisher>Domark</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2966-2.jpg</cover>
+        <api_id>2966</api_id>
+    </Game>
+    <Game>
+        <name>Populous</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C7A1FDEF</crc>
+        <date>1991-03-01</date>
+        <publisher>TecMagik</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2968-1.jpg</cover>
+        <api_id>2968</api_id>
+    </Game>
+    <Game>
+        <name>Poseidon Wars 3-D</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>ABD48AD2</crc>
+        <date>1989-04-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2971-2.jpg</cover>
+        <api_id>2971</api_id>
+    </Game>
+    <Game>
+        <name>Power Strike</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>4077EFD9</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2972-2.jpg</cover>
+        <api_id>2972</api_id>
+    </Game>
+    <Game>
+        <name>Power Strike II</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>A109A6FE</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2974-2.jpg</cover>
+        <api_id>2974</api_id>
+    </Game>
+    <Game>
+        <name>Predator 2</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>0047B615</crc>
+        <date>1992-01-01</date>
+        <publisher>Arena</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2975-2.jpg</cover>
+        <api_id>2975</api_id>
+    </Game>
+    <Game>
+        <name>Predator 2</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>2B54C82B</crc>
+        <date>1992-01-01</date>
+        <publisher>Arena</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2975-2.jpg</cover>
+        <api_id>2975</api_id>
+    </Game>
+    <Game>
+        <name>Prince of Persia</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>7704287D</crc>
+        <date>1992-01-01</date>
+        <publisher>Domark</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2977-2.jpg</cover>
+        <api_id>2977</api_id>
+    </Game>
+    <Game>
+        <name>Pro Wrestling</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>FBDE42D3</crc>
+        <date>1986-12-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2978-2.jpg</cover>
+        <api_id>2978</api_id>
+    </Game>
+    <Game>
+        <name>Psychic World</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>5C0B1F0F</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2979-1.jpg</cover>
+        <api_id>2979</api_id>
+    </Game>
+    <Game>
+        <name>Psycho Fox</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>97993479</crc>
+        <date>1989-07-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2980-2.jpg</cover>
+        <api_id>2980</api_id>
+    </Game>
+    <Game>
+        <name>Putt & Putter</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>357D4F78</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2982-2.jpg</cover>
+        <api_id>2982</api_id>
+    </Game>
+    <Game>
+        <name>Putt & Putter</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>8167CCC4</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2982-2.jpg</cover>
+        <api_id>2982</api_id>
+    </Game>
+    <Game>
+        <name>Quartet</name>
+        <players>2</players>
+        <simultaneous>1</simultaneous>
+        <crc>E0F34FA6</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2983-2.jpg</cover>
+        <api_id>2983</api_id>
+    </Game>
+    <Game>
+        <name>Quest for the Shaven Yak Starring Ren Hoek & Stimpy</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>F42E145C</crc>
+        <date>1993-01-01</date>
+        <publisher>Tec Toy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2984-2.jpg</cover>
+        <api_id>2984</api_id>
+    </Game>
+    <Game>
+        <name>R-Type</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>0D0840D5</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Unknown</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2996-1.jpg</cover>
+        <api_id>2996</api_id>
+    </Game>
+    <Game>
+        <name>R-Type</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>BB54B6B0</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2996-1.jpg</cover>
+        <api_id>2996</api_id>
+    </Game>
+    <Game>
+        <name>R.C. Grand Prix</name>
+        <players>4</players>
+        <simultaneous>0</simultaneous>
+        <crc>54316FEA</crc>
+        <date>1989-01-01</date>
+        <publisher>Seismic</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2985-1.jpg</cover>
+        <api_id>2985</api_id>
+    </Game>
+    <Game>
+        <name>R.C. Grand Prix</name>
+        <players>4</players>
+        <simultaneous>0</simultaneous>
+        <crc>767F11B8</crc>
+        <date>1989-01-01</date>
+        <publisher>Seismic</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2985-1.jpg</cover>
+        <api_id>2985</api_id>
+    </Game>
+    <Game>
+        <name>Rainbow Islands: The Story of Bubble Bobble 2</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>00EC173A</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2986-1.jpg</cover>
+        <api_id>2986</api_id>
+    </Game>
+    <Game>
+        <name>Rambo III</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>DA5A7013</crc>
+        <date>1989-07-03</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2987-2.jpg</cover>
+        <api_id>2987</api_id>
+    </Game>
+    <Game>
+        <name>Rambo: First Blood Part II</name>
+        <players>2</players>
+        <simultaneous>1</simultaneous>
+        <crc>BBDA65F0</crc>
+        <date>1986-11-16</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/5246-1.jpg</cover>
+        <api_id>5246</api_id>
+    </Game>
+    <Game>
+        <name>Rampage</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>42FC47EE</crc>
+        <date>1988-01-01</date>
+        <publisher>Activision</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2988-2.jpg</cover>
+        <api_id>2988</api_id>
+    </Game>
+    <Game>
+        <name>Rampart</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>426E5C8A</crc>
+        <date>1991-01-01</date>
+        <publisher>Tengen</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/11522-1.jpg</cover>
+        <api_id>11522</api_id>
+    </Game>
+    <Game>
+        <name>Rastan</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C547EB1B</crc>
+        <date>1988-01-01</date>
+        <publisher>Tonka Corp</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2989-1.jpg</cover>
+        <api_id>2989</api_id>
+    </Game>
+    <Game>
+        <name>Reggie Jackson Baseball</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>6D94BB0E</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/20615-1.jpg</cover>
+        <api_id>20615</api_id>
+    </Game>
+    <Game>
+        <name>Renegade</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>3BE7F641</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2990-1.jpg</cover>
+        <api_id>2990</api_id>
+    </Game>
+    <Game>
+        <name>Rescue Mission</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>79AC8E7F</crc>
+        <date>1988-04-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2991-1.jpg</cover>
+        <api_id>2991</api_id>
+    </Game>
+    <Game>
+        <name>Road Rash</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>B876FC74</crc>
+        <date>1994-03-01</date>
+        <publisher>Electronic Arts</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2557-1.jpg</cover>
+        <api_id>2557</api_id>
+    </Game>
+    <Game>
+        <name>RoboCop 3</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>9F951756</crc>
+        <date>1993-01-01</date>
+        <publisher>Acclaim</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2993-1.jpg</cover>
+        <api_id>2993</api_id>
+    </Game>
+    <Game>
+        <name>RoboCop Versus The Terminator</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8212B754</crc>
+        <date>1994-01-01</date>
+        <publisher>Virgin Games</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2994-1.jpg</cover>
+        <api_id>2994</api_id>
+    </Game>
+    <Game>
+        <name>Rocky</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>1BCC7BE3</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2995-1.jpg</cover>
+        <api_id>2995</api_id>
+    </Game>
+    <Game>
+        <name>Running Battle</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>1FDAE719</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2997-1.jpg</cover>
+        <api_id>2997</api_id>
+    </Game>
+    <Game>
+        <name>Sagaia</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>66388128</crc>
+        <date>1992-01-01</date>
+        <publisher>Taito</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2998-1.jpg</cover>
+        <api_id>2998</api_id>
+    </Game>
+    <Game>
+        <name>Sangokushi 3</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>97D03541</crc>
+        <date>1994-11-01</date>
+        <publisher>Panda Software</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/26746-1.jpg</cover>
+        <api_id>26746</api_id>
+    </Game>
+    <Game>
+        <name>Sapo Xule vs. Os Invasores do Brejo</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>9A608327</crc>
+        <date>1995-01-01</date>
+        <publisher>Tectoy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/32148-1.jpg</cover>
+        <api_id>32148</api_id>
+    </Game>
+    <Game>
+        <name>Sapo Xule: O Mestre do Kung Fu</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>890E83E4</crc>
+        <date>1995-01-01</date>
+        <publisher>Tectoy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/32149-1.jpg</cover>
+        <api_id>32149</api_id>
+    </Game>
+    <Game>
+        <name>Sapo Xule: S.O.S Lagoa Poluida</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>7AB2946A</crc>
+        <date>1995-12-31</date>
+        <publisher>Tectoy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/29435-1.jpg</cover>
+        <api_id>29435</api_id>
+    </Game>
+    <Game>
+        <name>Satellite 7</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>16249E19</crc>
+        <date>1985-12-20</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3000-1.jpg</cover>
+        <api_id>3000</api_id>
+    </Game>
+    <Game>
+        <name>Scramble Spirits</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>9A8B28EC</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3001-2.jpg</cover>
+        <api_id>3001</api_id>
+    </Game>
+    <Game>
+        <name>Sega Chess</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>A8061AEF</crc>
+        <date>1991-08-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3003-2.jpg</cover>
+        <api_id>3003</api_id>
+    </Game>
+    <Game>
+        <name>Sega World Tournament Golf</name>
+        <players>4</players>
+        <simultaneous>0</simultaneous>
+        <crc>296879DD</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3004-2.jpg</cover>
+        <api_id>3004</api_id>
+    </Game>
+    <Game>
+        <name>Sensible Soccer</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>F8176918</crc>
+        <date>1993-01-01</date>
+        <publisher>Sony Imagesoft</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3005-1.jpg</cover>
+        <api_id>3005</api_id>
+    </Game>
+    <Game>
+        <name>Shadow Dancer: The Secret of Shinobi</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>3793C01A</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/5530-1.jpg</cover>
+        <api_id>5530</api_id>
+    </Game>
+    <Game>
+        <name>Shadow of the Beast</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>1575581D</crc>
+        <date>1992-01-01</date>
+        <publisher>TecMagik</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3007-2.jpg</cover>
+        <api_id>3007</api_id>
+    </Game>
+    <Game>
+        <name>Shanghai</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>AAB67EC3</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3008-2.jpg</cover>
+        <api_id>3008</api_id>
+    </Game>
+    <Game>
+        <name>Shanghai</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>D5D25156</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3008-2.jpg</cover>
+        <api_id>3008</api_id>
+    </Game>
+    <Game>
+        <name>Shinobi</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>0C6FAC4E</crc>
+        <date>1988-06-19</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2071-1.jpg</cover>
+        <api_id>2071</api_id>
+    </Game>
+    <Game>
+        <name>Shinobi</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>E1FFF1BB</crc>
+        <date>1988-06-19</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/2071-1.jpg</cover>
+        <api_id>2071</api_id>
+    </Game>
+    <Game>
+        <name>Shooting Gallery</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>4B051022</crc>
+        <date>1987-03-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3009-2.jpg</cover>
+        <api_id>3009</api_id>
+    </Game>
+    <Game>
+        <name>Sitio do Picapau Amarelo</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>ABDF3923</crc>
+        <date>1998-08-01</date>
+        <publisher>Tec Toy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3010-1.jpg</cover>
+        <api_id>3010</api_id>
+    </Game>
+    <Game>
+        <name>Slap Shot</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>702C3E98</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3011-1.jpg</cover>
+        <api_id>3011</api_id>
+    </Game>
+    <Game>
+        <name>Slap Shot</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>C93BD0E9</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3011-1.jpg</cover>
+        <api_id>3011</api_id>
+    </Game>
+    <Game>
+        <name>Slap Shot</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>D33B296A</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3011-1.jpg</cover>
+        <api_id>3011</api_id>
+    </Game>
+    <Game>
+        <name>Slap Shot</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>FBB0A92A</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Unknown</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3011-1.jpg</cover>
+        <api_id>3011</api_id>
+    </Game>
+    <Game>
+        <name>Solomon no Kagi: Oujo Rihita no Namida</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>11645549</crc>
+        <date>1988-04-17</date>
+        <publisher>Salio</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3012-1.jpg</cover>
+        <api_id>3012</api_id>
+    </Game>
+    <Game>
+        <name>Sonic Blast</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>96B3F29E</crc>
+        <date>1997-12-01</date>
+        <publisher>Tec Toy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3013-1.jpg</cover>
+        <api_id>3013</api_id>
+    </Game>
+    <Game>
+        <name>Sonic the Hedgehog</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B519E833</crc>
+        <date>1991-06-23</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3016-1.jpg</cover>
+        <api_id>3016</api_id>
+    </Game>
+    <Game>
+        <name>Sonic the Hedgehog 2</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>5B3B922C</crc>
+        <date>1992-11-21</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3017-2.jpg</cover>
+        <api_id>3017</api_id>
+    </Game>
+    <Game>
+        <name>Sonic the Hedgehog 2</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>D6F2BFCA</crc>
+        <date>1992-11-21</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3017-2.jpg</cover>
+        <api_id>3017</api_id>
+    </Game>
+    <Game>
+        <name>Sonic the Hedgehog Chaos</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>AEDF3BDF</crc>
+        <date>1993-10-25</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3014-1.jpg</cover>
+        <api_id>3014</api_id>
+    </Game>
+    <Game>
+        <name>Sonic the Hedgehog Spinball</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>11C1BC8A</crc>
+        <date>1995-01-10</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3015-2.jpg</cover>
+        <api_id>3015</api_id>
+    </Game>
+    <Game>
+        <name>Sonic's Edusoft</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>D9096263</crc>
+        <date>1991-01-01</date>
+        <publisher>U.S. Gold, Sega</publisher>
+        <region>Unknown</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3018-1.png</cover>
+        <api_id>3018</api_id>
+    </Game>
+    <Game>
+        <name>Space Gun</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>A908CFF5</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3019-1.jpg</cover>
+        <api_id>3019</api_id>
+    </Game>
+    <Game>
+        <name>Space Harrier</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>BEDDF80E</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan, USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3020-1.jpg</cover>
+        <api_id>3020</api_id>
+    </Game>
+    <Game>
+        <name>Space Harrier</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>CA1D3752</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3020-1.jpg</cover>
+        <api_id>3020</api_id>
+    </Game>
+    <Game>
+        <name>Space Harrier 3-D</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>6BD5C2BF</crc>
+        <date>1988-02-29</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3021-1.jpg</cover>
+        <api_id>3021</api_id>
+    </Game>
+    <Game>
+        <name>Special Criminal Investigation</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>1B7D2A20</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3022-2.jpg</cover>
+        <api_id>3022</api_id>
+    </Game>
+    <Game>
+        <name>Special Criminal Investigation</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>FA8E4CA0</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3022-2.jpg</cover>
+        <api_id>3022</api_id>
+    </Game>
+    <Game>
+        <name>Speedball</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>5CCC1A65</crc>
+        <date>1991-03-01</date>
+        <publisher>Virgin Games</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3023-2.jpg</cover>
+        <api_id>3023</api_id>
+    </Game>
+    <Game>
+        <name>Speedball</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>A57CAD18</crc>
+        <date>1991-03-01</date>
+        <publisher>Virgin Games</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3023-2.jpg</cover>
+        <api_id>3023</api_id>
+    </Game>
+    <Game>
+        <name>Speedball 2</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>0C7366A0</crc>
+        <date>1992-01-01</date>
+        <publisher>Virgin Games</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3024-1.jpg</cover>
+        <api_id>3024</api_id>
+    </Game>
+    <Game>
+        <name>SpellCaster</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>4752CAE7</crc>
+        <date>1988-09-23</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3025-2.jpg</cover>
+        <api_id>3025</api_id>
+    </Game>
+    <Game>
+        <name>Spider-Man - Return of the Sinister Six</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>EBE45388</crc>
+        <date>1993-01-01</date>
+        <publisher>Acclaim</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3026-1.jpg</cover>
+        <api_id>3026</api_id>
+    </Game>
+    <Game>
+        <name>Sports Pad Soccer</name>
+        <players>2</players>
+        <simultaneous>1</simultaneous>
+        <crc>41C948BF</crc>
+        <date>1988-10-29</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/51087-1.jpg</cover>
+        <api_id>51087</api_id>
+    </Game>
+    <Game>
+        <name>Spy vs. Spy</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>78D7FAAB</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3029-1.jpg</cover>
+        <api_id>3029</api_id>
+    </Game>
+    <Game>
+        <name>Star Wars</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>D4B8F66D</crc>
+        <date>1993-01-01</date>
+        <publisher>U.S. Gold Ltd.</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3030-1.jpg</cover>
+        <api_id>3030</api_id>
+    </Game>
+    <Game>
+        <name>Street Fighter II</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>0F8287EC</crc>
+        <date>1997-09-01</date>
+        <publisher>Tectoy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3031-1.jpg</cover>
+        <api_id>3031</api_id>
+    </Game>
+    <Game>
+        <name>Streets of Rage</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>4AB3790F</crc>
+        <date>1993-06-07</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3032-2.jpg</cover>
+        <api_id>3032</api_id>
+    </Game>
+    <Game>
+        <name>Streets of Rage II</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>04E9C089</crc>
+        <date>1994-02-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3033-2.jpg</cover>
+        <api_id>3033</api_id>
+    </Game>
+    <Game>
+        <name>Strider</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>9802ED31</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3034-2.jpg</cover>
+        <api_id>3034</api_id>
+    </Game>
+    <Game>
+        <name>Strider</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B990269A</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Unknown</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3034-2.jpg</cover>
+        <api_id>3034</api_id>
+    </Game>
+    <Game>
+        <name>Strider II</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B8F0915A</crc>
+        <date>1992-01-01</date>
+        <publisher>U.S. Gold</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3035-2.jpg</cover>
+        <api_id>3035</api_id>
+    </Game>
+    <Game>
+        <name>Submarine Attack</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>D8F2F1B9</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3036-1.jpg</cover>
+        <api_id>3036</api_id>
+    </Game>
+    <Game>
+        <name>Sukeban Deka II: Shoujo Tekkamen Densetsu</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B13DF647</crc>
+        <date>1987-04-19</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3037-1.jpg</cover>
+        <api_id>3037</api_id>
+    </Game>
+    <Game>
+        <name>Summer Games</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>80EB1FFF</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3038-2.jpg</cover>
+        <api_id>3038</api_id>
+    </Game>
+    <Game>
+        <name>Summer Games</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8DA5C93F</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3038-2.jpg</cover>
+        <api_id>3038</api_id>
+    </Game>
+    <Game>
+        <name>Super Basketball</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>0DBF3B4A</crc>
+        <date>1970-01-01</date>
+        <publisher>N/A</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/41668-1.png</cover>
+        <api_id>41668</api_id>
+    </Game>
+    <Game>
+        <name>Super Boy IV</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B995B4F0</crc>
+        <date>1992-01-01</date>
+        <publisher>Zemina</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/26750-1.jpg</cover>
+        <api_id>26750</api_id>
+    </Game>
+    <Game>
+        <name>Super Kick Off</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>406AA0C2</crc>
+        <date>1991-12-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3039-1.jpg</cover>
+        <api_id>3039</api_id>
+    </Game>
+    <Game>
+        <name>Super Monaco GP</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>3EF12BAA</crc>
+        <date>1990-09-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3040-2.jpg</cover>
+        <api_id>3040</api_id>
+    </Game>
+    <Game>
+        <name>Super Monaco GP</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>55BF81A0</crc>
+        <date>1990-09-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3040-2.jpg</cover>
+        <api_id>3040</api_id>
+    </Game>
+    <Game>
+        <name>Super Monaco GP</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>A1D6D963</crc>
+        <date>1990-09-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3040-2.jpg</cover>
+        <api_id>3040</api_id>
+    </Game>
+    <Game>
+        <name>Super Monaco GP</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>DD7ADBCC</crc>
+        <date>1990-09-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3040-2.jpg</cover>
+        <api_id>3040</api_id>
+    </Game>
+    <Game>
+        <name>Super Off Road</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>54F68C2A</crc>
+        <date>1993-09-01</date>
+        <publisher>Virgin Games</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3041-2.jpg</cover>
+        <api_id>3041</api_id>
+    </Game>
+    <Game>
+        <name>Super Racing</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>7E0EF8CB</crc>
+        <date>1988-07-02</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3042-1.jpg</cover>
+        <api_id>3042</api_id>
+    </Game>
+    <Game>
+        <name>Super Smash T.V.</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>E0B1AFF8</crc>
+        <date>1992-10-01</date>
+        <publisher>Flying Edge</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3043-1.jpg</cover>
+        <api_id>3043</api_id>
+    </Game>
+    <Game>
+        <name>Super Space Invaders</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>1D6244EE</crc>
+        <date>1991-11-01</date>
+        <publisher>Domark</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3044-1.jpg</cover>
+        <api_id>3044</api_id>
+    </Game>
+    <Game>
+        <name>Super Tennis</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>914514E3</crc>
+        <date>1986-06-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3045-1.jpg</cover>
+        <api_id>3045</api_id>
+    </Game>
+    <Game>
+        <name>Super Tetris</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>BD1CC7DF</crc>
+        <date>1988-02-25</date>
+        <publisher>Sega</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/35258-1.jpg</cover>
+        <api_id>35258</api_id>
+    </Game>
+    <Game>
+        <name>Superman: The Man of Steel</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>6F9AC98F</crc>
+        <date>1993-01-01</date>
+        <publisher>Virgin Interactive</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3046-1.jpg</cover>
+        <api_id>3046</api_id>
+    </Game>
+    <Game>
+        <name>T2: The Arcade Game</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>93CA8152</crc>
+        <date>1993-01-01</date>
+        <publisher>Midway</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3132-1.jpg</cover>
+        <api_id>3132</api_id>
+    </Game>
+    <Game>
+        <name>Taito Chase H.Q.</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>85CFC9C9</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3047-1.jpg</cover>
+        <api_id>3047</api_id>
+    </Game>
+    <Game>
+        <name>Taz in Escape from Mars</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>11CE074C</crc>
+        <date>1997-03-01</date>
+        <publisher>Tec Toy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3048-1.jpg</cover>
+        <api_id>3048</api_id>
+    </Game>
+    <Game>
+        <name>Taz-Mania</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>1B312E04</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3049-2.jpg</cover>
+        <api_id>3049</api_id>
+    </Game>
+    <Game>
+        <name>Taz-Mania</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>7CC3E837</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3049-2.jpg</cover>
+        <api_id>3049</api_id>
+    </Game>
+    <Game>
+        <name>Tecmo World Cup '92</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>96E75F48</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3050-1.jpg</cover>
+        <api_id>3050</api_id>
+    </Game>
+    <Game>
+        <name>Tecmo World Cup '93</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>5A1C3DDE</crc>
+        <date>1993-12-31</date>
+        <publisher>Tecmo</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3051-2.jpg</cover>
+        <api_id>3051</api_id>
+    </Game>
+    <Game>
+        <name>Teddy Boy</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>2728FAA3</crc>
+        <date>1985-10-20</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3052-1.jpg</cover>
+        <api_id>3052</api_id>
+    </Game>
+    <Game>
+        <name>Tennis Ace</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>1A390B93</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3053-1.jpg</cover>
+        <api_id>3053</api_id>
+    </Game>
+    <Game>
+        <name>Tensai Bakabon</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8132AB2C</crc>
+        <date>1988-06-02</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3054-1.jpg</cover>
+        <api_id>3054</api_id>
+    </Game>
+    <Game>
+        <name>Terminator 2: Judgment Day</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>AC56104F</crc>
+        <date>1993-01-01</date>
+        <publisher>Flying Edge</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3055-1.jpg</cover>
+        <api_id>3055</api_id>
+    </Game>
+    <Game>
+        <name>The Addams Family</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>72420F38</crc>
+        <date>1993-01-01</date>
+        <publisher>Flying Edge</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3056-1.jpg</cover>
+        <api_id>3056</api_id>
+    </Game>
+    <Game>
+        <name>The Cyber Shinobi</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>1350E4F8</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3057-1.jpg</cover>
+        <api_id>3057</api_id>
+    </Game>
+    <Game>
+        <name>The Cyber Shinobi</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>DAC00A3A</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Unknown</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3057-1.jpg</cover>
+        <api_id>3057</api_id>
+    </Game>
+    <Game>
+        <name>The Dinosaur Dooley</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>32F4B791</crc>
+        <date>1991-01-01</date>
+        <publisher>N/A</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3058-1.jpg</cover>
+        <api_id>3058</api_id>
+    </Game>
+    <Game>
+        <name>The Excellent Dizzy Collection</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8813514B</crc>
+        <date>1993-11-01</date>
+        <publisher>Codemasters</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/35369-1.png</cover>
+        <api_id>35369</api_id>
+    </Game>
+    <Game>
+        <name>The Flash</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>BE31D63F</crc>
+        <date>1993-10-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3059-1.jpg</cover>
+        <api_id>3059</api_id>
+    </Game>
+    <Game>
+        <name>The Flintstones</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>CA5C78A5</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3060-1.jpg</cover>
+        <api_id>3060</api_id>
+    </Game>
+    <Game>
+        <name>The Incredible Crash Dummies</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B4584DDE</crc>
+        <date>1993-01-01</date>
+        <publisher>Flying Edge</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3061-2.jpg</cover>
+        <api_id>3061</api_id>
+    </Game>
+    <Game>
+        <name>The Incredible Hulk</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>BE9A7071</crc>
+        <date>1994-01-01</date>
+        <publisher>U.S. Gold</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3062-1.jpg</cover>
+        <api_id>3062</api_id>
+    </Game>
+    <Game>
+        <name>The Lion King</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C352C7EB</crc>
+        <date>1994-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3064-2.jpg</cover>
+        <api_id>3064</api_id>
+    </Game>
+    <Game>
+        <name>The Lucky Dime Caper Starring Donald Duck</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>7F6D0DF6</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3065-1.jpg</cover>
+        <api_id>3065</api_id>
+    </Game>
+    <Game>
+        <name>The Lucky Dime Caper Starring Donald Duck</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>A1710F13</crc>
+        <date>1991-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3065-1.jpg</cover>
+        <api_id>3065</api_id>
+    </Game>
+    <Game>
+        <name>The New Zealand Story</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C660FF34</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3066-2.jpg</cover>
+        <api_id>3066</api_id>
+    </Game>
+    <Game>
+        <name>The Ninja</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>320313EC</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3076-1.jpg</cover>
+        <api_id>3076</api_id>
+    </Game>
+    <Game>
+        <name>The Ninja</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>66A15BD9</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3076-1.jpg</cover>
+        <api_id>3076</api_id>
+    </Game>
+    <Game>
+        <name>The Ottifants</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>82EF2A7D</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3067-1.jpg</cover>
+        <api_id>3067</api_id>
+    </Game>
+    <Game>
+        <name>The Simpsons: Bart vs. The Space Mutants</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>D1CC08EE</crc>
+        <date>1991-01-01</date>
+        <publisher>Acclaim</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3069-2.jpg</cover>
+        <api_id>3069</api_id>
+    </Game>
+    <Game>
+        <name>The Simpsons: Bart vs. The World</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>F6B2370A</crc>
+        <date>1993-01-01</date>
+        <publisher>Flying Edge</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3070-1.jpg</cover>
+        <api_id>3070</api_id>
+    </Game>
+    <Game>
+        <name>The Smurfs</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>3E63768A</crc>
+        <date>1994-01-01</date>
+        <publisher>Infogrames</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3071-2.jpg</cover>
+        <api_id>3071</api_id>
+    </Game>
+    <Game>
+        <name>The Terminator</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>E3D5CE9A</crc>
+        <date>1992-01-01</date>
+        <publisher>Virgin</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3074-1.jpg</cover>
+        <api_id>3074</api_id>
+    </Game>
+    <Game>
+        <name>The Terminator</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>EDC5C012</crc>
+        <date>1992-01-01</date>
+        <publisher>Virgin</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3074-1.jpg</cover>
+        <api_id>3074</api_id>
+    </Game>
+    <Game>
+        <name>The Three Dragon Story</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8640E7E8</crc>
+        <date>1989-01-01</date>
+        <publisher>Zemina</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/27357-1.jpg</cover>
+        <api_id>27357</api_id>
+    </Game>
+    <Game>
+        <name>Thunder Blade</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>AE920E4B</crc>
+        <date>1987-07-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3077-1.jpg</cover>
+        <api_id>3077</api_id>
+    </Game>
+    <Game>
+        <name>Thunder Blade</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C0CE19B1</crc>
+        <date>1987-07-01</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3077-1.jpg</cover>
+        <api_id>3077</api_id>
+    </Game>
+    <Game>
+        <name>Time Soldiers</name>
+        <players>2</players>
+        <simultaneous>1</simultaneous>
+        <crc>51BD14BE</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3078-1.jpg</cover>
+        <api_id>3078</api_id>
+    </Game>
+    <Game>
+        <name>Tom and Jerry: The Movie</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>BF7B7285</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3081-1.png</cover>
+        <api_id>3081</api_id>
+    </Game>
+    <Game>
+        <name>Toto World 3</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>4F8D75EC</crc>
+        <date>1993-01-01</date>
+        <publisher>N/A</publisher>
+        <region>Korea</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3082-1.jpg</cover>
+        <api_id>3082</api_id>
+    </Game>
+    <Game>
+        <name>TransBot</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>4BC42857</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3083-1.jpg</cover>
+        <api_id>3083</api_id>
+    </Game>
+    <Game>
+        <name>TransBot</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>58B99750</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3083-1.jpg</cover>
+        <api_id>3083</api_id>
+    </Game>
+    <Game>
+        <name>Trivial Pursuit - Genus Edition</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>E5374022</crc>
+        <date>1992-01-01</date>
+        <publisher>Domark</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3090-2.jpg</cover>
+        <api_id>3090</api_id>
+    </Game>
+    <Game>
+        <name>Turma da Monica em O Resgate</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>22CCA9BB</crc>
+        <date>1993-01-01</date>
+        <publisher>Tectoy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/48542-1.png</cover>
+        <api_id>48542</api_id>
+    </Game>
+    <Game>
+        <name>TV Colosso</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>E1714A88</crc>
+        <date>1970-01-01</date>
+        <publisher>N/A</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/27506-1.jpg</cover>
+        <api_id>27506</api_id>
+    </Game>
+    <Game>
+        <name>Ultima IV: Quest of the Avatar</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B52D60C8</crc>
+        <date>1990-01-01</date>
+        <publisher>Origin</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3091-1.jpg</cover>
+        <api_id>3091</api_id>
+    </Game>
+    <Game>
+        <name>Ultima IV: Quest of the Avatar</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>DE9F8517</crc>
+        <date>1990-01-01</date>
+        <publisher>Origin</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3091-1.jpg</cover>
+        <api_id>3091</api_id>
+    </Game>
+    <Game>
+        <name>Ultimate Soccer</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>15668CA4</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3093-1.jpg</cover>
+        <api_id>3093</api_id>
+    </Game>
+    <Game>
+        <name>Vigilante</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>DFB0B161</crc>
+        <date>1988-07-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3094-2.jpg</cover>
+        <api_id>3094</api_id>
+    </Game>
+    <Game>
+        <name>Virtua Fighter Animation</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>57F1545B</crc>
+        <date>1997-03-01</date>
+        <publisher>Tec Toy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3096-1.jpg</cover>
+        <api_id>3096</api_id>
+    </Game>
+    <Game>
+        <name>Walter Payton Football</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>3D55759B</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/20619-1.jpg</cover>
+        <api_id>20619</api_id>
+    </Game>
+    <Game>
+        <name>Wanted</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>5359762D</crc>
+        <date>1989-12-31</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3098-1.jpg</cover>
+        <api_id>3098</api_id>
+    </Game>
+    <Game>
+        <name>Where in the World Is Carmen Sandiego?</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>428B1E7C</crc>
+        <date>1989-01-01</date>
+        <publisher>Parker Bros.</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3099-2.jpg</cover>
+        <api_id>3099</api_id>
+    </Game>
+    <Game>
+        <name>Where in the World Is Carmen Sandiego?</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>88AA8CA6</crc>
+        <date>1989-01-01</date>
+        <publisher>Parker Bros.</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3099-2.jpg</cover>
+        <api_id>3099</api_id>
+    </Game>
+    <Game>
+        <name>Wimbledon</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>912D92AF</crc>
+        <date>1992-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3101-2.jpg</cover>
+        <api_id>3101</api_id>
+    </Game>
+    <Game>
+        <name>Wimbledon II</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>7F3AFE58</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3103-2.jpg</cover>
+        <api_id>3103</api_id>
+    </Game>
+    <Game>
+        <name>Winter Olympics: Lillehammer '94</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>2FEC2B4A</crc>
+        <date>1994-01-01</date>
+        <publisher>U.S. Gold</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3104-1.jpg</cover>
+        <api_id>3104</api_id>
+    </Game>
+    <Game>
+        <name>Winter Olympics: Lillehammer '94</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>A20290B6</crc>
+        <date>1994-01-01</date>
+        <publisher>U.S. Gold</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3104-1.jpg</cover>
+        <api_id>3104</api_id>
+    </Game>
+    <Game>
+        <name>Wolfchild</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>1F8EFA1D</crc>
+        <date>1993-01-01</date>
+        <publisher>Virgin Games</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3105-1.jpg</cover>
+        <api_id>3105</api_id>
+    </Game>
+    <Game>
+        <name>Wonder Boy</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>73705C02</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3106-1.jpg</cover>
+        <api_id>3106</api_id>
+    </Game>
+    <Game>
+        <name>Wonder Boy III: The Dragon's Trap</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>679E1676</crc>
+        <date>1989-07-03</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3108-1.jpg</cover>
+        <api_id>3108</api_id>
+    </Game>
+    <Game>
+        <name>Wonder Boy in Monster Land</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8312C429</crc>
+        <date>1987-07-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3109-2.jpg</cover>
+        <api_id>3109</api_id>
+    </Game>
+    <Game>
+        <name>Wonder Boy in Monster Land</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8CBEF0C1</crc>
+        <date>1987-07-01</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3109-2.jpg</cover>
+        <api_id>3109</api_id>
+    </Game>
+    <Game>
+        <name>Wonder Boy in Monster World</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>7D7CE80B</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3110-1.jpg</cover>
+        <api_id>3110</api_id>
+    </Game>
+    <Game>
+        <name>Wonder Boy in Monster World</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>81BFF9BB</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3110-1.jpg</cover>
+        <api_id>3110</api_id>
+    </Game>
+    <Game>
+        <name>Woody Pop: Shinjinrui no Block Kuzushi</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>315917D4</crc>
+        <date>1987-03-15</date>
+        <publisher>Sega</publisher>
+        <region>Japan</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3111-1.jpg</cover>
+        <api_id>3111</api_id>
+    </Game>
+    <Game>
+        <name>World Class Leader Board Golf</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>C9A449B7</crc>
+        <date>1991-01-01</date>
+        <publisher>U.S. Gold</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3113-1.jpg</cover>
+        <api_id>3113</api_id>
+    </Game>
+    <Game>
+        <name>World Cup Italia '90</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>6E1AD6FD</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3115-2.jpg</cover>
+        <api_id>3115</api_id>
+    </Game>
+    <Game>
+        <name>World Cup Italia '90</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>A0CF8B15</crc>
+        <date>1990-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3115-2.jpg</cover>
+        <api_id>3115</api_id>
+    </Game>
+    <Game>
+        <name>World Cup USA 94</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>A6BF8F9E</crc>
+        <date>1992-01-01</date>
+        <publisher>U.S. Gold</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3116-2.jpg</cover>
+        <api_id>3116</api_id>
+    </Game>
+    <Game>
+        <name>World Games</name>
+        <players>4</players>
+        <simultaneous>0</simultaneous>
+        <crc>914D3FC4</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3117-1.jpg</cover>
+        <api_id>3117</api_id>
+    </Game>
+    <Game>
+        <name>World Games</name>
+        <players>4</players>
+        <simultaneous>0</simultaneous>
+        <crc>A2A60BC8</crc>
+        <date>1989-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3117-1.jpg</cover>
+        <api_id>3117</api_id>
+    </Game>
+    <Game>
+        <name>World Grand Prix</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>4AAAD0D6</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3118-2.jpg</cover>
+        <api_id>3118</api_id>
+    </Game>
+    <Game>
+        <name>World Grand Prix</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>7B369892</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3118-2.jpg</cover>
+        <api_id>3118</api_id>
+    </Game>
+    <Game>
+        <name>World Grand Prix</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B5A9F824</crc>
+        <date>1986-01-01</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3118-2.jpg</cover>
+        <api_id>3118</api_id>
+    </Game>
+    <Game>
+        <name>World Soccer</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>72112B75</crc>
+        <date>1987-07-19</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/48138-1.jpg</cover>
+        <api_id>48138</api_id>
+    </Game>
+    <Game>
+        <name>WWF Wrestlemania: Steel Cage Challenge</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>2DB21448</crc>
+        <date>1992-01-01</date>
+        <publisher>Flying Edge</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3120-1.jpg</cover>
+        <api_id>3120</api_id>
+    </Game>
+    <Game>
+        <name>X-Men: Mojo World</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>3E1387F6</crc>
+        <date>1996-09-14</date>
+        <publisher>Tec Toy</publisher>
+        <region>Brazil</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3123-2.jpg</cover>
+        <api_id>3123</api_id>
+    </Game>
+    <Game>
+        <name>Xenon 2: Megablast</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>5C205EE1</crc>
+        <date>1989-08-01</date>
+        <publisher>Virgin Games</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3121-1.jpg</cover>
+        <api_id>3121</api_id>
+    </Game>
+    <Game>
+        <name>Xenon 2: Megablast</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>EC726C0D</crc>
+        <date>1989-08-01</date>
+        <publisher>Virgin Games</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3121-1.jpg</cover>
+        <api_id>3121</api_id>
+    </Game>
+    <Game>
+        <name>Ys: The Vanished Omens</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>B33E2827</crc>
+        <date>1988-10-14</date>
+        <publisher>Sega</publisher>
+        <region>USA, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/5501-1.jpg</cover>
+        <api_id>5501</api_id>
+    </Game>
+    <Game>
+        <name>Zaxxon 3-D</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>A3EF13CB</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3124-1.jpg</cover>
+        <api_id>3124</api_id>
+    </Game>
+    <Game>
+        <name>Zaxxon 3-D</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>BBA74147</crc>
+        <date>1987-01-01</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3124-1.jpg</cover>
+        <api_id>3124</api_id>
+    </Game>
+    <Game>
+        <name>Zillion</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>5718762C</crc>
+        <date>1987-05-27</date>
+        <publisher>Sega</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3125-2.jpg</cover>
+        <api_id>3125</api_id>
+    </Game>
+    <Game>
+        <name>Zillion</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>60C19645</crc>
+        <date>1987-05-27</date>
+        <publisher>Sega</publisher>
+        <region>Japan, Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3125-2.jpg</cover>
+        <api_id>3125</api_id>
+    </Game>
+    <Game>
+        <name>Zillion</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>7BA54510</crc>
+        <date>1987-05-27</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3125-2.jpg</cover>
+        <api_id>3125</api_id>
+    </Game>
+    <Game>
+        <name>Zillion II: The Tri Formation</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>2F2E3BC9</crc>
+        <date>1988-01-01</date>
+        <publisher>Sega</publisher>
+        <region>World</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/3126-1.jpg</cover>
+        <api_id>3126</api_id>
+    </Game>
+    <Game>
+        <name>Zool: Ninja of the 'Nth' Dimension</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>9D9D0A5F</crc>
+        <date>1993-01-01</date>
+        <publisher>Sega</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/7510-1.jpg</cover>
+        <api_id>7510</api_id>
+    </Game>
+</Data>
