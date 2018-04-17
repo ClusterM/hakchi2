@@ -221,6 +221,17 @@
         <api_id>31126</api_id>
     </Game>
     <Game>
+        <name>Astrowar</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>e83f5848</crc>
+        <date>1983-01-01</date>
+        <publisher>Artic</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/31126-1.jpg</cover>
+        <api_id>31126</api_id>
+    </Game>
+    <Game>
         <name>Atari Video Cube</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
@@ -252,28 +263,6 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/45820-1.jpg</cover>
         <api_id>45820</api_id>
-    </Game>
-    <Game>
-        <name>Bachelor Party</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>d9cd6c95</crc>
-        <date>1982-05-01</date>
-        <publisher>N/A</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/45821-1.jpg</cover>
-        <api_id>45821</api_id>
-    </Game>
-    <Game>
-        <name>Bachelorette Party</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>92f91d36</crc>
-        <date>1970-01-01</date>
-        <publisher>N/A</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/31128-1.jpg</cover>
-        <api_id>31128</api_id>
     </Game>
     <Game>
         <name>Backgammon</name>
@@ -395,17 +384,6 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/31841-1.jpg</cover>
         <api_id>31841</api_id>
-    </Game>
-    <Game>
-        <name>Bermuda</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>0fcb5b94</crc>
-        <date>1983-01-01</date>
-        <publisher>Starsoft</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/44809-1.jpg</cover>
-        <api_id>44809</api_id>
     </Game>
     <Game>
         <name>Bermuda Triangle</name>
@@ -549,17 +527,6 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/5298-1.jpg</cover>
         <api_id>5298</api_id>
-    </Game>
-    <Game>
-        <name>Breakaway IV</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>3037638c</crc>
-        <date>1970-01-01</date>
-        <publisher>Tele-Games</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/38425-1.jpg</cover>
-        <api_id>38425</api_id>
     </Game>
     <Game>
         <name>Bridge</name>
@@ -714,17 +681,6 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/22148-1.jpg</cover>
         <api_id>22148</api_id>
-    </Game>
-    <Game>
-        <name>Championship Soccer</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>3f59bb60</crc>
-        <date>1985-05-01</date>
-        <publisher>Atari</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/20287-1.jpg</cover>
-        <api_id>20287</api_id>
     </Game>
     <Game>
         <name>Checkers</name>
@@ -1090,17 +1046,6 @@
         <api_id>31857</api_id>
     </Game>
     <Game>
-        <name>Decathlon</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>3feb39b1</crc>
-        <date>1983-01-01</date>
-        <publisher>Activision</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/9245-1.jpg</cover>
-        <api_id>9245</api_id>
-    </Game>
-    <Game>
         <name>Defender</name>
         <players>2</players>
         <simultaneous>0</simultaneous>
@@ -1163,6 +1108,17 @@
         <date>1983-10-01</date>
         <publisher>Panda</publisher>
         <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/31859-1.jpg</cover>
+        <api_id>31859</api_id>
+    </Game>
+    <Game>
+        <name>Dice Puzzle</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>f691b853</crc>
+        <date>1983-10-01</date>
+        <publisher>Panda</publisher>
+        <region>Europe</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/31859-1.jpg</cover>
         <api_id>31859</api_id>
     </Game>
@@ -1508,6 +1464,17 @@
         <api_id>33504</api_id>
     </Game>
     <Game>
+        <name>Fatal Run</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>991d2348</crc>
+        <date>1970-01-01</date>
+        <publisher>N/A</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/33504-1.jpg</cover>
+        <api_id>33504</api_id>
+    </Game>
+    <Game>
         <name>Fathom</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
@@ -1572,17 +1539,6 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/20286-1.jpg</cover>
         <api_id>20286</api_id>
-    </Game>
-    <Game>
-        <name>Flag Capture</name>
-        <players>2</players>
-        <simultaneous>0</simultaneous>
-        <crc>8aa1c41e</crc>
-        <date>1978-01-01</date>
-        <publisher>Atari</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/22158-1.jpg</cover>
-        <api_id>22158</api_id>
     </Game>
     <Game>
         <name>Flash Gordon</name>
@@ -1665,7 +1621,7 @@
         <name>Frogger</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
-        <crc>1228e48c</crc>
+        <crc>f5e1af92</crc>
         <date>1982-01-01</date>
         <publisher>Sega</publisher>
         <region>USA</region>
@@ -1761,17 +1717,6 @@
         <api_id>36549</api_id>
     </Game>
     <Game>
-        <name>Gangster</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>03c2452c</crc>
-        <date>1970-01-01</date>
-        <publisher>Ariola</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/44830-1.jpg</cover>
-        <api_id>44830</api_id>
-    </Game>
-    <Game>
         <name>Gangster Alley</name>
         <players>2</players>
         <simultaneous>0</simultaneous>
@@ -1860,17 +1805,6 @@
         <api_id>34909</api_id>
     </Game>
     <Game>
-        <name>GLIB</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>50bb03a4</crc>
-        <date>1983-05-01</date>
-        <publisher>N/A</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/34911-1.jpg</cover>
-        <api_id>34911</api_id>
-    </Game>
-    <Game>
         <name>Golf</name>
         <players>2</players>
         <simultaneous>0</simultaneous>
@@ -1929,6 +1863,17 @@
         <name>Great Escape</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
+        <crc>58010be3</crc>
+        <date>1983-05-05</date>
+        <publisher>N/A</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/45826-1.jpg</cover>
+        <api_id>45826</api_id>
+    </Game>
+    <Game>
+        <name>Great Escape</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
         <crc>99C240C1</crc>
         <date>1983-05-05</date>
         <publisher>N/A</publisher>
@@ -1968,17 +1913,6 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/34912-1.jpg</cover>
         <api_id>34912</api_id>
-    </Game>
-    <Game>
-        <name>GUNSLINGER</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>68dd7acd</crc>
-        <date>1970-01-01</date>
-        <publisher>N/A</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/34913-1.jpg</cover>
-        <api_id>34913</api_id>
     </Game>
     <Game>
         <name>Gyruss</name>
@@ -2201,17 +2135,6 @@
         <api_id>5306</api_id>
     </Game>
     <Game>
-        <name>Jungle Fever</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>0123617B</crc>
-        <date>1970-01-01</date>
-        <publisher>N/A</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/33491-1.jpg</cover>
-        <api_id>33491</api_id>
-    </Game>
-    <Game>
         <name>Jungle Hunt</name>
         <players>2</players>
         <simultaneous>0</simultaneous>
@@ -2311,6 +2234,17 @@
         <api_id>5308</api_id>
     </Game>
     <Game>
+        <name>Klax</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>a8aaf68b</crc>
+        <date>1990-12-01</date>
+        <publisher>Atari</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/5308-1.jpg</cover>
+        <api_id>5308</api_id>
+    </Game>
+    <Game>
         <name>Kool-Aid Man</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
@@ -2375,6 +2309,17 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/22207-1.jpg</cover>
         <api_id>22207</api_id>
+    </Game>
+    <Game>
+        <name>Lilly Adventure</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>3544c6d6</crc>
+        <date>1983-10-01</date>
+        <publisher>Home Vision</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/17517-1.jpg</cover>
+        <api_id>17517</api_id>
     </Game>
     <Game>
         <name>Lilly Adventure</name>
@@ -2564,28 +2509,6 @@
         <api_id>17520</api_id>
     </Game>
     <Game>
-        <name>Maze Craze</name>
-        <players>2</players>
-        <simultaneous>0</simultaneous>
-        <crc>0098e428</crc>
-        <date>1978-01-01</date>
-        <publisher>Atari</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/5310-1.jpg</cover>
-        <api_id>5310</api_id>
-    </Game>
-    <Game>
-        <name>McDonald's</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>add0115d</crc>
-        <date>1983-04-01</date>
-        <publisher>Parker Brothers</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/44099-1.jpg</cover>
-        <api_id>44099</api_id>
-    </Game>
-    <Game>
         <name>Mega Force</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
@@ -2595,17 +2518,6 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/7951-1.jpg</cover>
         <api_id>7951</api_id>
-    </Game>
-    <Game>
-        <name>Megamania</name>
-        <players>2</players>
-        <simultaneous>0</simultaneous>
-        <crc>33edc33e</crc>
-        <date>1982-09-01</date>
-        <publisher>Activision</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/19862-1.jpg</cover>
-        <api_id>19862</api_id>
     </Game>
     <Game>
         <name>Meltdown</name>
@@ -2718,17 +2630,6 @@
         <api_id>22166</api_id>
     </Game>
     <Game>
-        <name>Montezuma's Revenge</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>e680a1c9</crc>
-        <date>1984-01-01</date>
-        <publisher>Parker Brothers</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/19207-1.jpg</cover>
-        <api_id>19207</api_id>
-    </Game>
-    <Game>
         <name>Moon Patrol</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
@@ -2831,6 +2732,17 @@
         <name>Mr. Postman</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
+        <crc>16980cb8</crc>
+        <date>1983-01-01</date>
+        <publisher>Bit Corporation</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/22169-1.jpg</cover>
+        <api_id>22169</api_id>
+    </Game>
+    <Game>
+        <name>Mr. Postman</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
         <crc>A7B03AA5</crc>
         <date>1983-01-01</date>
         <publisher>Bit Corporation</publisher>
@@ -2912,6 +2824,17 @@
         <date>1983-03-22</date>
         <publisher>TechnoVision</publisher>
         <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/38213-1.jpg</cover>
+        <api_id>38213</api_id>
+    </Game>
+    <Game>
+        <name>Nuts</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>d76d5f14</crc>
+        <date>1983-03-22</date>
+        <publisher>TechnoVision</publisher>
+        <region>Europe</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/38213-1.jpg</cover>
         <api_id>38213</api_id>
     </Game>
@@ -3048,17 +2971,6 @@
         <api_id>38217</api_id>
     </Game>
     <Game>
-        <name>Party Mix</name>
-        <players>4</players>
-        <simultaneous>0</simultaneous>
-        <crc>8b8ae545</crc>
-        <date>1983-01-01</date>
-        <publisher>Starpath Corporation</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/34332-1.jpg</cover>
-        <api_id>34332</api_id>
-    </Game>
-    <Game>
         <name>Peek-A-Boo</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
@@ -3125,6 +3037,17 @@
         <api_id>34335</api_id>
     </Game>
     <Game>
+        <name>Pharaoh's Curse</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>c6b82fc6</crc>
+        <date>1983-01-01</date>
+        <publisher>TechnoVision</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/34335-1.jpg</cover>
+        <api_id>34335</api_id>
+    </Game>
+    <Game>
         <name>Phaser Patrol</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
@@ -3167,17 +3090,6 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/22171-1.jpg</cover>
         <api_id>22171</api_id>
-    </Game>
-    <Game>
-        <name>Pigs in Space</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>27673d7c</crc>
-        <date>1983-05-05</date>
-        <publisher>Atari</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/17528-1.jpg</cover>
-        <api_id>17528</api_id>
     </Game>
     <Game>
         <name>Pitfall II: Lost Caverns</name>
@@ -3367,17 +3279,6 @@
         <api_id>22218</api_id>
     </Game>
     <Game>
-        <name>Quick Step</name>
-        <players>2</players>
-        <simultaneous>0</simultaneous>
-        <crc>057440fe</crc>
-        <date>1983-08-01</date>
-        <publisher>Imagic</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/38222-1.jpg</cover>
-        <api_id>38222</api_id>
-    </Game>
-    <Game>
         <name>Rabbit Transit</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
@@ -3453,17 +3354,6 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/22176-1.jpg</cover>
         <api_id>22176</api_id>
-    </Game>
-    <Game>
-        <name>Rampage</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>f0b446ac</crc>
-        <date>1989-05-02</date>
-        <publisher>Activision</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/5320-1.jpg</cover>
-        <api_id>5320</api_id>
     </Game>
     <Game>
         <name>Raumpatrouille</name>
@@ -3719,17 +3609,6 @@
         <api_id>48152</api_id>
     </Game>
     <Game>
-        <name>Save Mary</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>01e18f53</crc>
-        <date>1970-01-01</date>
-        <publisher>Atari</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/38230-1.jpg</cover>
-        <api_id>38230</api_id>
-    </Game>
-    <Game>
         <name>Save Our Ship</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
@@ -3737,6 +3616,17 @@
         <date>1983-07-29</date>
         <publisher>TechnoVision</publisher>
         <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/38231-1.jpg</cover>
+        <api_id>38231</api_id>
+    </Game>
+    <Game>
+        <name>Save Our Ship</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>c422160a</crc>
+        <date>1983-07-29</date>
+        <publisher>TechnoVision</publisher>
+        <region>Europe</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/38231-1.jpg</cover>
         <api_id>38231</api_id>
     </Game>
@@ -3772,17 +3662,6 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/28711-1.jpg</cover>
         <api_id>28711</api_id>
-    </Game>
-    <Game>
-        <name>Sea Hunt</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>f94a8aec</crc>
-        <date>1987-01-01</date>
-        <publisher>Froggo</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/28710-1.jpg</cover>
-        <api_id>28710</api_id>
     </Game>
     <Game>
         <name>Sea Monster</name>
@@ -3939,6 +3818,17 @@
         <api_id>54183</api_id>
     </Game>
     <Game>
+        <name>Ski Run</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>e20a00b3</crc>
+        <date>2009-01-01</date>
+        <publisher>Ariola</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/54183-1.jpg</cover>
+        <api_id>54183</api_id>
+    </Game>
+    <Game>
         <name>Skiing</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
@@ -4047,17 +3937,6 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/22179-1.jpg</cover>
         <api_id>22179</api_id>
-    </Game>
-    <Game>
-        <name>Snow White</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>38598a9a</crc>
-        <date>2002-01-01</date>
-        <publisher>Atari</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/54185-1.jpg</cover>
-        <api_id>54185</api_id>
     </Game>
     <Game>
         <name>Solar Fox</name>
@@ -4434,6 +4313,17 @@
         <api_id>38241</api_id>
     </Game>
     <Game>
+        <name>Steeplechase</name>
+        <players>4</players>
+        <simultaneous>0</simultaneous>
+        <crc>6aad3f22</crc>
+        <date>1981-07-08</date>
+        <publisher>Tele-Games</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/38241-1.jpg</cover>
+        <api_id>38241</api_id>
+    </Game>
+    <Game>
         <name>Stellar Track</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
@@ -4610,6 +4500,17 @@
         <api_id>5331</api_id>
     </Game>
     <Game>
+        <name>Superman</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>afd7317b</crc>
+        <date>1978-01-01</date>
+        <publisher>Atari</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/5332-1.jpg</cover>
+        <api_id>5332</api_id>
+    </Game>
+    <Game>
         <name>Surf's Up</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
@@ -4619,17 +4520,6 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/54219-1.jpg</cover>
         <api_id>54219</api_id>
-    </Game>
-    <Game>
-        <name>Surfer's Paradise</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>8c68f2ae</crc>
-        <date>1983-07-01</date>
-        <publisher>Video Gems</publisher>
-        <region>Europe</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/38246-1.jpg</cover>
-        <api_id>38246</api_id>
     </Game>
     <Game>
         <name>Survival Island</name>
@@ -4647,6 +4537,17 @@
         <players>1</players>
         <simultaneous>0</simultaneous>
         <crc>8c0eea30</crc>
+        <date>1983-07-20</date>
+        <publisher>Milton Bradley</publisher>
+        <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/38248-1.jpg</cover>
+        <api_id>38248</api_id>
+    </Game>
+    <Game>
+        <name>Survival Run</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
+        <crc>8e888f3e</crc>
         <date>1983-07-20</date>
         <publisher>Milton Bradley</publisher>
         <region>USA</region>
@@ -4718,17 +4619,6 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/22187-1.jpg</cover>
         <api_id>22187</api_id>
-    </Game>
-    <Game>
-        <name>Tank-Plus</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>9c326a97</crc>
-        <date>1970-01-01</date>
-        <publisher>N/A</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/50170-1.jpg</cover>
-        <api_id>50170</api_id>
     </Game>
     <Game>
         <name>Tanks But No Tanks</name>
@@ -4910,6 +4800,17 @@
         <name>Time Warp</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
+        <crc>551e2144</crc>
+        <date>1983-01-01</date>
+        <publisher>Zellers</publisher>
+        <region>Europe</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/22212-1.jpg</cover>
+        <api_id>22212</api_id>
+    </Game>
+    <Game>
+        <name>Time Warp</name>
+        <players>1</players>
+        <simultaneous>0</simultaneous>
         <crc>E5BC054D</crc>
         <date>1983-01-01</date>
         <publisher>Zellers</publisher>
@@ -5083,17 +4984,6 @@
         <api_id>1358</api_id>
     </Game>
     <Game>
-        <name>Video Checkers</name>
-        <players>2</players>
-        <simultaneous>0</simultaneous>
-        <crc>3df33335</crc>
-        <date>1980-01-01</date>
-        <publisher>Atari</publisher>
-        <region>USA</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/34338-1.jpg</cover>
-        <api_id>34338</api_id>
-    </Game>
-    <Game>
         <name>Video Chess</name>
         <players>1</players>
         <simultaneous>0</simultaneous>
@@ -5147,17 +5037,6 @@
         <region>USA</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/22194-1.jpg</cover>
         <api_id>22194</api_id>
-    </Game>
-    <Game>
-        <name>Walker</name>
-        <players>1</players>
-        <simultaneous>0</simultaneous>
-        <crc>da8e49fb</crc>
-        <date>1983-01-01</date>
-        <publisher>Suntek</publisher>
-        <region>Europe</region>
-        <cover>http://thegamesdb.net/banners/boxart/original/front/41985-1.jpg</cover>
-        <api_id>41985</api_id>
     </Game>
     <Game>
         <name>Wall Ball</name>
@@ -5288,6 +5167,17 @@
         <date>1983-04-04</date>
         <publisher>Home Vision</publisher>
         <region>USA</region>
+        <cover>http://thegamesdb.net/banners/boxart/original/front/44121-1.jpg</cover>
+        <api_id>44121</api_id>
+    </Game>
+    <Game>
+        <name>World End</name>
+        <players>2</players>
+        <simultaneous>0</simultaneous>
+        <crc>dcc36508</crc>
+        <date>1983-04-04</date>
+        <publisher>Home Vision</publisher>
+        <region>Europe</region>
         <cover>http://thegamesdb.net/banners/boxart/original/front/44121-1.jpg</cover>
         <api_id>44121</api_id>
     </Game>
