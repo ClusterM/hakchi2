@@ -1116,7 +1116,7 @@ Continue?</value>
     <value>Your kernel or scripts are out of date. Please update before synchronizing games</value>
   </data>
   <data name="CannotProceedMinimalMemboot" xml:space="preserve">
-    <value>Your NES/SNES Mini is currently in recovery state, cannot proceed</value>
+    <value>Your NES/SNES Mini is currently in recovery state, cannot proceed. To exit this state, use Tools -&gt; Reboot</value>
   </data>
   <data name="FactoryResetNote" xml:space="preserve">
     <value>Done! All traces of hakchi have been removed and your NES/SNES Mini has been reset to factory settings.</value>

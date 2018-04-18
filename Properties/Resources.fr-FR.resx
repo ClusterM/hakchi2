@@ -804,7 +804,7 @@ Continuer?</value>
     <value>Votre kernel ou vos scripts sont passés date. S.v.p. mettre à jouer avant de synchroniser des jeux</value>
   </data>
   <data name="CannotProceedMinimalMemboot" xml:space="preserve">
-    <value>Votre NES/SNES Mini est présentement en mode de recouvrement, impossible de continuer</value>
+    <value>Votre NES/SNES Mini est présentement en mode de recouvrement, impossible de continuer. Pour quitter cet état, utilisez Outils -&gt; Redémarrer</value>
   </data>
   <data name="FactoryResetNote" xml:space="preserve">
     <value>Terminé! Toutes traces de hakchi ont été effacées et votre NES/SNES Mini est réinitialisée aux paramètre d'usine.</value>

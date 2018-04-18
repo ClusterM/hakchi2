@@ -462,7 +462,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your NES/SNES Mini is currently in recovery state, cannot proceed.
+        ///   Looks up a localized string similar to Your NES/SNES Mini is currently in recovery state, cannot proceed. To exit this state, use Tools -&gt; Reboot.
         /// </summary>
         internal static string CannotProceedMinimalMemboot {
             get {
@@ -1668,7 +1668,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to f795325-dirty
+        ///   Looks up a localized string similar to d909abe-dirty
         ///.
         /// </summary>
         internal static string gitCommit {

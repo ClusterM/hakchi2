@@ -26,8 +26,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 form.label1.Text = "1. " + Resources.MakeSureYourMiniIsConnected;
                 form.label2.Text = "2. " + Resources.JustWaitForYourMini;
-                form.label3.Enabled = false;
-                form.buttonDriver.Enabled = false;
+                //form.label3.Enabled = false;
+                //form.buttonDriver.Enabled = false;
             }
             form.ShowDialog(owner);
             return form.DialogResult == DialogResult.OK;
