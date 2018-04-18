@@ -21,54 +21,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
             get; set;
         }
 
-        public bool ShowFoldersManager(Tasker tasker, NesMenuCollection collection)
-        {
-            if (tasker.HostForm.Disposing) return false;
-            if (tasker.HostForm.InvokeRequired)
-            {
-                return (bool)tasker.HostForm.Invoke(new Func<Tasker, NesMenuCollection, bool>(ShowFoldersManager), new object[] { tasker, collection });
-            }
-            try
-            {
-                using (FoldersManagerForm form = new FoldersManagerForm(collection, MainForm.StaticRef))
-                {
-                    tasker.PushState(Tasker.State.Paused);
-                    var result = form.ShowDialog() == DialogResult.OK;
-                    tasker.PopState();
-                    return result;
-                }
-            }
-            catch (InvalidOperationException) { }
-            return false;
-        }
-
-        public bool ShowExportDialog(Tasker tasker)
-        {
-            if (tasker.HostForm.Disposing) return false;
-            if (tasker.HostForm.InvokeRequired)
-            {
-                return (bool)tasker.HostForm.Invoke(new Func<Tasker, bool>(ShowExportDialog), new object[] { tasker });
-            }
-            try
-            {
-                using (ExportGamesDialog driveSelectDialog = new ExportGamesDialog())
-                {
-                    tasker.PushState(Tasker.State.Paused);
-                    var result = driveSelectDialog.ShowDialog() == DialogResult.OK;
-                    tasker.PopState();
-                    if (!result)
-                        return false;
-                    this.exportLinked = driveSelectDialog.LinkedExport;
-                    this.exportDirectory = driveSelectDialog.ExportPath;
-                    if (!Directory.Exists(driveSelectDialog.ExportPath))
-                        Directory.CreateDirectory(driveSelectDialog.ExportPath);
-                }
-                return true;
-            }
-            catch (InvalidOperationException) { }
-            return false;
-        }
-
         private class GamesTreeStats
         {
             public List<NesMenuCollection> allMenus = new List<NesMenuCollection>();
@@ -79,50 +31,98 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         private string exportDirectory;
         private bool exportLinked;
+        private GamesTreeStats stats;
+        private HashSet<ApplicationFileInfo> localGameSet;
+        Dictionary<string, string> originalGames;
+        NesApplication.CopyMode copyMode;
 
         public SyncTask()
         {
             Games = new NesMenuCollection();
+            exportDirectory = string.Empty;
+            exportLinked = false;
+            stats = new GamesTreeStats();
+            localGameSet = new HashSet<ApplicationFileInfo>();
+            originalGames = new Dictionary<string, string>();
+            copyMode = ConfigIni.Instance.SyncLinked ? NesApplication.CopyMode.LinkedSync : NesApplication.CopyMode.Sync;
         }
 
-        public Tasker.Conclusion ExportGames(Tasker tasker, Object syncObject = null)
+        public Tasker.Conclusion ShowFoldersManager(Tasker tasker, Object syncObject = null)
         {
-            int maxProgress = 100;
-            tasker.SetTitle(Resources.ExportGames);
-            tasker.SetStatusImage(Resources.sign_up);
-            tasker.SetProgress(0, maxProgress, Tasker.State.Starting, Resources.SelectDrive);
-            if (Games == null || Games.Count == 0)
-                throw new Exception("No games to upload");
+            if (tasker.HostForm.Disposing) return Tasker.Conclusion.Undefined;
+            if (tasker.HostForm.InvokeRequired)
+            {
+                return (Tasker.Conclusion)tasker.HostForm.Invoke(new Func<Tasker, Object, Tasker.Conclusion>(ShowFoldersManager), new object[] { tasker, syncObject });
+            }
+            tasker.SetStatus(Resources.RunningFoldersManager);
+            try
+            {
+                using (FoldersManagerForm form = new FoldersManagerForm(Games, MainForm.StaticRef))
+                {
+                    tasker.PushState(Tasker.State.Paused);
+                    var result = form.ShowDialog() == DialogResult.OK ? Tasker.Conclusion.Success : Tasker.Conclusion.Abort;
+                    tasker.PopState();
+                    return result;
+                }
+            }
+            catch (InvalidOperationException) { }
+            return Tasker.Conclusion.Abort;
+        }
 
-            // select drive
-            exportLinked = false;
-            exportDirectory = string.Empty;
-            if (!ShowExportDialog(tasker))
-                return Tasker.Conclusion.Abort;
+        public Tasker.Conclusion ShowExportDialog(Tasker tasker, Object syncObject = null)
+        {
+            if (tasker.HostForm.Disposing) return Tasker.Conclusion.Undefined;
+            if (tasker.HostForm.InvokeRequired)
+            {
+                return (Tasker.Conclusion)tasker.HostForm.Invoke(new Func<Tasker, Object, Tasker.Conclusion>(ShowExportDialog), new object[] { tasker, syncObject });
+            }
+            tasker.SetStatus(Resources.SelectDrive);
+            try
+            {
+                using (ExportGamesDialog driveSelectDialog = new ExportGamesDialog())
+                {
+                    tasker.PushState(Tasker.State.Paused);
+                    var result = driveSelectDialog.ShowDialog() == DialogResult.OK;
+                    tasker.PopState();
+                    if (!result)
+                        return Tasker.Conclusion.Abort;
+                    this.exportLinked = driveSelectDialog.LinkedExport;
+                    this.exportDirectory = driveSelectDialog.ExportPath;
+                    if (!Directory.Exists(driveSelectDialog.ExportPath))
+                        Directory.CreateDirectory(driveSelectDialog.ExportPath);
+                }
+                copyMode = exportLinked ? NesApplication.CopyMode.LinkedExport : NesApplication.CopyMode.Export;
+                return Tasker.Conclusion.Success;
+            }
+            catch (InvalidOperationException) { }
+            return Tasker.Conclusion.Abort;
+        }
 
-            // building folders
-            tasker.SetProgress(5, maxProgress, Tasker.State.Starting, Resources.BuildingMenu);
+        public Tasker.Conclusion BuildMenu(Tasker tasker, Object syncObject = null)
+        {
+            tasker.SetStatus(Resources.BuildingMenu);
             if (ConfigIni.Instance.FoldersMode == NesMenuCollection.SplitStyle.Custom)
             {
-                if (!ShowFoldersManager(tasker, Games))
+                if (ShowFoldersManager(tasker) != Tasker.Conclusion.Success)
                     return Tasker.Conclusion.Abort;
                 Games.AddBack();
             }
             else
                 Games.Split(ConfigIni.Instance.FoldersMode, ConfigIni.Instance.MaxGamesPerFolder);
+            return Tasker.Conclusion.Success;
+        }
 
-            // generate menus and game files ready to be uploaded
+        public Tasker.Conclusion BuildFiles(Tasker tasker, Object syncObject = null)
+        {
             tasker.SetStatus(Resources.AddingGames);
-            Dictionary<string, string> originalGames = new Dictionary<string, string>();
-            var localGameSet = new HashSet<ApplicationFileInfo>();
-            var stats = new GamesTreeStats();
-            AddMenu(
-                Games,
-                originalGames,
-                exportLinked ? NesApplication.CopyMode.LinkedExport : NesApplication.CopyMode.Export,
-                localGameSet,
-                stats);
-            tasker.SetProgress(15, maxProgress);
+            AddMenu(Games, originalGames, copyMode, localGameSet, stats);
+            return Tasker.Conclusion.Success;
+        }
+
+        public Tasker.Conclusion ExportGames(Tasker tasker, Object syncObject = null)
+        {
+            if (Games == null || Games.Count == 0)
+                throw new Exception("No games to upload");
 
             // check free space
             tasker.SetStatus(Resources.CalculatingDiff);
