@@ -207,7 +207,15 @@ namespace com.clusterrr.hakchi_gui
                             if (string.IsNullOrEmpty(value))
                                 ProfilePath = string.Empty;
                             else
-                                ProfilePath = Regex.Replace(value, "\\/CLV-.-[A-Z]{5}", "").Replace("//", "/");
+                                try
+                                {
+                                    ProfilePath = Path.GetDirectoryName(value).Replace("\\", "/").Replace("//", "/");
+                                }
+                                catch
+                                {
+                                    System.Diagnostics.Debug.WriteLine($"Error parsing desktop file. Invalid profile path \"{value}\"");
+                                    ProfilePath = string.Empty;
+                                }
                             break;
                         case "name":
                             Name = value;
@@ -220,9 +228,17 @@ namespace com.clusterrr.hakchi_gui
                             }
                             else
                             {
-                                IconPath = Regex.Replace(value, "\\/CLV-.-[A-Z]{5}\\/CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)", "").Replace("//", "/");
-                                Match m = Regex.Match(value, "CLV-.-[A-Z]{5}\\.(?:gif|png|jpg)");
-                                IconFilename = m.Success ? m.ToString() : string.Empty;
+                                try
+                                {
+                                    IconPath = Path.GetDirectoryName(value).Replace("\\", "/").Replace("//", "/");
+                                    IconFilename = Path.GetFileName(value);
+                                }
+                                catch
+                                {
+                                    System.Diagnostics.Debug.WriteLine($"Error parsing desktop file. Invalid icon path \"{value}\"");
+                                    IconPath = string.Empty;
+                                    IconFilename = string.Empty;
+                                }
                             }
                             break;
                         case "code":
