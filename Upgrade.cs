@@ -153,7 +153,7 @@ namespace com.clusterrr.hakchi_gui
                             catch (DirectoryNotFoundException) { }
                             catch (UnauthorizedAccessException)
                             {
-                                Debug.WriteLine($"Could not delete directory \"{dir}\". UAC restrictions.");
+                                Debug.WriteLine($"Could not delete directory \"{dir}\". UAC restrictions. No big deal");
                             }
                             catch { }
                         }
@@ -167,7 +167,7 @@ namespace com.clusterrr.hakchi_gui
                             catch (FileNotFoundException) { }
                             catch (UnauthorizedAccessException)
                             {
-                                Debug.WriteLine($"Could not delete file \"{file}\". UAC restrictions.");
+                                Debug.WriteLine($"Could not delete file \"{file}\". UAC restrictions. No big deal");
                             }
                             catch { }
                         }
