@@ -1329,54 +1329,53 @@ namespace com.clusterrr.hakchi_gui
         private HashSet<ApplicationFileInfo> CopyToExportLinked(string relativeTargetPath)
         {
             string targetDir = $"{relativeTargetPath}/{desktop.Code}";
-
-            string originalMediaGamePath = hakchi.MediaPath + OriginalGamesCacheDirectory.Substring(2).Replace("\\", "/");
             string mediaGamePath = hakchi.MediaPath + GamesDirectory.Substring(2).Replace("\\", "/");
             string iconPath = mediaGamePath;
 
             var gameSet = new HashSet<ApplicationFileInfo>();
             if (IsOriginalGame)
             {
+                mediaGamePath = hakchi.MediaPath + OriginalGamesDirectory.Substring(2).Replace("\\", "/");
+                iconPath = mediaGamePath;
+
                 var originalExtensions = new string[] { ".sfrom", ".qd", ".nes" };
-                bool foundRom = false;
                 bool foundIcon = File.Exists(this.iconPath);
-                foreach (var file in Directory.GetFiles(basePath, "*"))
-                {
+                bool foundRom = false;
+                foreach (var file in Directory.GetFiles(basePath, "*.*"))
                     if (originalExtensions.Contains(Path.GetExtension(file)))
                         foundRom = true;
-                    if (Path.GetFileName(file).Equals(desktop.Code + ".png"))
-                        foundIcon = true;
-                }
 
-                string originalBasePath = Path.Combine(OriginalGamesCacheDirectory, desktop.Code);
-                if (Directory.Exists(originalBasePath))
+                string originalCacheMediaGamePath = hakchi.MediaPath + OriginalGamesCacheDirectory.Substring(2).Replace("\\", "/");
+                string originalCacheBasePath = Path.Combine(OriginalGamesCacheDirectory, desktop.Code);
+                if (Directory.Exists(originalCacheBasePath))
                 {
                     // handle copying or linking original games rom and icons
-                    foreach (var file in Directory.GetFiles(originalBasePath, "*"))
-                    {
-                        if (!foundRom && originalExtensions.Contains(Path.GetExtension(file)))
+                    if (!foundRom || !foundIcon)
+                        foreach (var file in Directory.GetFiles(originalCacheBasePath, "*.*"))
                         {
-                            mediaGamePath = originalMediaGamePath;
-                            foundRom = true;
+                            if (!foundRom && originalExtensions.Contains(Path.GetExtension(file)))
+                            {
+                                mediaGamePath = originalCacheMediaGamePath;
+                                foundRom = true;
+                            }
+                            if (!foundIcon && Path.GetFileName(file).Equals(desktop.Code + ".png"))
+                            {
+                                iconPath = originalCacheMediaGamePath;
+                                foundIcon = true;
+                            }
+                            if (foundRom && foundIcon) break;
                         }
-                        if (!foundIcon && Path.GetFileName(file).Equals(desktop.Code + ".png"))
-                        {
-                            iconPath = originalMediaGamePath;
-                            foundIcon = true;
-                        }
-                        if (foundRom && foundIcon) break;
-                    }
 
                     // copy autoplay and pixelart folders when they are in cache
-                    if (Directory.Exists(Path.Combine(originalBasePath, "autoplay")))
+                    if (Directory.Exists(Path.Combine(originalCacheBasePath, "autoplay")))
                     {
                         gameSet.UnionWith(ApplicationFileInfo.GetApplicationFileInfoForDirectory(
-                            Path.Combine(originalBasePath, "autoplay"), $"{targetDir}/autoplay"));
+                            Path.Combine(originalCacheBasePath, "autoplay"), $"{targetDir}/autoplay"));
                     }
-                    if (Directory.Exists(Path.Combine(originalBasePath, "pixelart")))
+                    if (Directory.Exists(Path.Combine(originalCacheBasePath, "pixelart")))
                     {
                         gameSet.UnionWith(ApplicationFileInfo.GetApplicationFileInfoForDirectory(
-                            Path.Combine(originalBasePath, "pixelart"), $"{targetDir}/pixelart"));
+                            Path.Combine(originalCacheBasePath, "pixelart"), $"{targetDir}/pixelart"));
                     }
                 }
 
