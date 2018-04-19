@@ -404,7 +404,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 hakchiLog = sr.ReadToEnd();
             }
-            Console.WriteLine(hakchiLog);
             foreach (string line in hakchiLog.Split(Convert.ToChar(0x0A)))
                 if (line.StartsWith("flash md5 mismatch! "))
                     throw new Exception(line);
