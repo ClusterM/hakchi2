@@ -436,6 +436,24 @@ namespace com.clusterrr.hakchi_gui.Tasks
             GC.Collect();
         }
 
+        // generic tasks
+
+        public static Tasker.TaskFunc Wait(int milliseconds, string message)
+        {
+            return (Tasker tasker, Object syncObject) =>
+            {
+                const int step = 100;
+
+                tasker.SetStatus(message);
+                int steps = milliseconds / step;
+                for (int i = 0; i < steps; ++i)
+                {
+                    tasker.SetProgress(i, steps);
+                    Thread.Sleep(step);
+                }
+                return Tasker.Conclusion.Success;
+            };
+        }
     }
 
     public static class TaskerExtensions

@@ -53,6 +53,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             List<TaskFunc> taskList = new List<TaskFunc>();
             taskList.Add(WaitForFelOrMembootableShell);
             taskList.Add(Memboot);
+            taskList.Add(Tasker.Wait(6000, Resources.PleaseWait));
             taskList.Add(WaitForShell);
             taskList.Add(hakchi.ShowSplashScreen);
 
@@ -294,8 +295,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     // no-op
                 }
-
-                Thread.Sleep(5000);
             }
             else
             {

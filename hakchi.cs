@@ -404,17 +404,19 @@ namespace com.clusterrr.hakchi_gui
             return eligibleForUpdate;
         }
 
-        public static Tasker.Conclusion ShowSplashScreen(Tasker tasker, Object syncObject)
-        {
-            return ShowSplashScreen() == 0 ? Tasker.Conclusion.Success : Tasker.Conclusion.Error;
-        }
-
         public static int ShowSplashScreen()
         {
-            var splashScreenStream = new MemoryStream(Resources.splash);
-            Shell.ExecuteSimple("uistop");
+            if (Shell.IsOnline)
+            {
+                Shell.ExecuteSimple("uistop");
+                return Shell.Execute("gunzip -c - > /dev/fb0", new MemoryStream(Resources.splash), null, null, 3000);
+            }
+            return 1;
+        }
 
-            return Shell.Execute("gunzip -c - > /dev/fb0", splashScreenStream, null, null, 3000);
+        public static Tasker.Conclusion ShowSplashScreen(Tasker tasker, Object syncObject = null)
+        {
+            return ShowSplashScreen() == 0 ? Tasker.Conclusion.Success : Tasker.Conclusion.Error;
         }
 
         public static void RunTemporaryScript(Stream script, string fileName, int timeout = 0, bool throwOnNonZero = false)

@@ -250,7 +250,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (Tasks.MessageForm.Show(this, Resources.OutdatedScripts, Resources.SystemEligibleForRootfsUpdate, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
                         {
-                            if (MembootCustomKernel())
+                            if (InstallHakchi())
                                 Tasks.MessageForm.Show(this, Resources.UpdateComplete, Resources.DoneYouCanUpload, Resources.sign_check, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.OK }, Tasks.MessageForm.DefaultButton.Button1);
                             return;
                         }
@@ -272,7 +272,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (Tasks.MessageForm.Show(this, Resources.OutdatedScripts, Resources.SystemRequiresRootfsUpdate, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
                         {
-                            if (MembootCustomKernel())
+                            if (InstallHakchi())
                                 Tasks.MessageForm.Show(this, Resources.UpdateComplete, Resources.DoneYouCanUpload, Resources.sign_check, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.OK }, Tasks.MessageForm.DefaultButton.Button1);
                             return;
                         }
@@ -1697,14 +1697,7 @@ namespace com.clusterrr.hakchi_gui
         
         private void membootCustomKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var tasker = new Tasker(this))
-            {
-                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
-                tasker.SetStatusImage(Resources.sign_keyring);
-                tasker.SetTitle(((ToolStripMenuItem)sender).Text);
-                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
-                tasker.Start();
-            }
+            MembootCustomKernel();
         }
 
         private void membootRecoveryKernelToolStripMenuItem_Click(object sender, EventArgs e)
