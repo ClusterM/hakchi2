@@ -458,6 +458,13 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        public static Tasker.Conclusion SyncConfig(Tasker tasker, Object syncObject = null)
+        {
+            tasker.SetStatus(Resources.UploadingConfig);
+            SyncConfig(ConfigIni.GetConfigDictionary());
+            return Tasker.Conclusion.Success;
+        }
+
         public static Dictionary<string, string> LoadConfig()
         {
             var config = new Dictionary<string, string>();

@@ -426,6 +426,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calculating free space....
+        /// </summary>
+        internal static string CalculatingFreeSpace {
+            get {
+                return ResourceManager.GetString("CalculatingFreeSpace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string Cancel {
@@ -1668,7 +1677,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to d909abe-dirty
+        ///   Looks up a localized string similar to 4d8ed8d-dirty
         ///.
         /// </summary>
         internal static string gitCommit {

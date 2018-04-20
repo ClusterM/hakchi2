@@ -866,4 +866,7 @@ Continuer?</value>
   <data name="DisableUSBWarning" xml:space="preserve">
     <value>Ceci désactivera quelconque lecteur USB OTG connecé dans votre NES/SNES Mini. Êtes-vous sûr de désactiver USB-HOST?</value>
   </data>
+  <data name="CalculatingFreeSpace" xml:space="preserve">
+    <value>Calcul de l'espace libre...</value>
+  </data>
 </root>
