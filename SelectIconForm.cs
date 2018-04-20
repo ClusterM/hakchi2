@@ -82,7 +82,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 buttonOk.Enabled = true;
                 pictureBoxArt.Image = Image.FromFile((listBox.SelectedItem as IconItem).Path);
-                pictureBoxArt.SizeMode = (pictureBoxArt.Image.Width > 204 || pictureBoxArt.Image.Height > 204) ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.CenterImage;
+                pictureBoxArt.SizeMode = (pictureBoxArt.Image.Width > (hakchi.IsSnes(ConfigIni.Instance.ConsoleType) ? 228 : 204) || pictureBoxArt.Image.Height > 204) ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.CenterImage;
             }
             else
             {

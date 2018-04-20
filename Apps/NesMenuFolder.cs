@@ -262,18 +262,20 @@ namespace com.clusterrr.hakchi_gui
             Directory.CreateDirectory(basePath);
             getAdjustedDesktopFile().Save(Path.Combine(basePath, desktop.Code + ".desktop"), false, true);
 
+            var maxX = hakchi.IsSnes(ConfigIni.Instance.ConsoleType) ? 228 : 204;
+            var maxY = 204;
             var sourcePath = getImagePath(ImageId);
             if (sourcePath != null)
             {
                 var smallSourcePath = sourcePath.Replace(".png", "_small.png");
                 if (!File.Exists(smallSourcePath))
                     smallSourcePath = sourcePath;
-                ProcessImageFile(sourcePath, iconPath, 204, 204, true, false, false);
+                ProcessImageFile(sourcePath, iconPath, maxX, maxY, true, false, false);
                 ProcessImageFile(smallSourcePath, smallIconPath, 40, 40, true, false, false);
             }
             else
             {
-                ProcessImage(Image, iconPath, 204, 204, true, false, false);
+                ProcessImage(Image, iconPath, maxX, maxY, true, false, false);
                 ProcessImage(Image, smallIconPath, 40, 40, true, false, false);
             }
             return true;
@@ -293,6 +295,8 @@ namespace com.clusterrr.hakchi_gui
             var desktopStream = getAdjustedDesktopFile().SaveTo(new MemoryStream(), false, true);
             localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}.desktop", DateTime.UtcNow, desktopStream));
 
+            var maxX = hakchi.IsSnes(ConfigIni.Instance.ConsoleType) ? 228 : 204;
+            var maxY = 204;
             var sourcePath = getImagePath(ImageId);
             Stream iconStream, smallIconStream;
             if (sourcePath != null)
@@ -300,7 +304,7 @@ namespace com.clusterrr.hakchi_gui
                 var smallSourcePath = sourcePath.Replace(".png", "_small.png");
                 if (!File.Exists(smallSourcePath))
                     smallSourcePath = sourcePath;
-                iconStream = ProcessImageFileToStream(sourcePath, 204, 204, true, false, false);
+                iconStream = ProcessImageFileToStream(sourcePath, maxX, maxY, true, false, false);
                 smallIconStream = ProcessImageFileToStream(smallSourcePath, 40, 40, true, false, false);
 
                 localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}.png", File.GetLastWriteTimeUtc(sourcePath), iconStream));
@@ -308,7 +312,7 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                iconStream = ProcessImageToStream(Image, 204, 204, true, false, false);
+                iconStream = ProcessImageToStream(Image, maxX, maxY, true, false, false);
                 smallIconStream = ProcessImageToStream(Image, 40, 40, true, false, false);
 
                 localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}.png", DateTime.UtcNow, iconStream));

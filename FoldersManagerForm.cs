@@ -264,13 +264,14 @@ namespace com.clusterrr.hakchi_gui
 
         private void ShowSelected()
         {
+            var maxX = (hakchi.IsSnes(ConfigIni.Instance.ConsoleType) ? 228 : 204);
             var node = treeView.SelectedNode;
             listViewContent.Clear();
             if (node != null && (node.Nodes.Count > 0 || node.Tag is NesMenuFolder)) // Folder or root
             {
                 pictureBoxArt.Image = (node.Tag is NesMenuFolder) ? (node.Tag as NesMenuFolder).Image : null;
-                pictureBoxArt.Width = 204;
-                pictureBoxArt.Left = pictureBoxLeft + 7;
+                pictureBoxArt.Width = maxX;
+                pictureBoxArt.Left = pictureBoxLeft + ((maxX - 204) / 2);
                 groupBoxArt.Enabled = (node.Tag is NesMenuFolder);
                 groupBoxSplitModes.Enabled = true;
                 pictureBoxArt.Cursor = Cursors.Hand;
@@ -304,7 +305,7 @@ namespace com.clusterrr.hakchi_gui
 
             if (pictureBoxArt.Image != null)
             {
-                pictureBoxArt.SizeMode = (pictureBoxArt.Image.Width > 204 || pictureBoxArt.Image.Height > 204) ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.CenterImage;
+                pictureBoxArt.SizeMode = (pictureBoxArt.Image.Width > pictureBoxArt.Width || pictureBoxArt.Image.Height > 204) ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.CenterImage;
             }
 
             ShowFolderStats();
