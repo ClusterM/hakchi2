@@ -519,7 +519,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
             tasker.AddTask(RemoteCleanup, 1);
             tasker.AddTask(SyncOriginalGames, 1);
-            tasker.AddTask(hakchi.SyncConfig, 1);
+            tasker.AddTask(ShellTasks.SyncConfig, 1);
 
             return Tasker.Conclusion.Success;
         }

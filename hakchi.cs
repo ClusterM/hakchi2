@@ -299,7 +299,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message + ex.StackTrace);
                 CanInteract = false;
                 MinimalMemboot = false;
             }
@@ -414,11 +414,6 @@ namespace com.clusterrr.hakchi_gui
             return 1;
         }
 
-        public static Tasker.Conclusion ShowSplashScreen(Tasker tasker, Object syncObject = null)
-        {
-            return ShowSplashScreen() == 0 ? Tasker.Conclusion.Success : Tasker.Conclusion.Error;
-        }
-
         public static void RunTemporaryScript(Stream script, string fileName, int timeout = 0, bool throwOnNonZero = false)
         {
             try
@@ -458,13 +453,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static Tasker.Conclusion SyncConfig(Tasker tasker, Object syncObject = null)
-        {
-            tasker.SetStatus(Resources.UploadingConfig);
-            SyncConfig(ConfigIni.GetConfigDictionary());
-            return Tasker.Conclusion.Success;
-        }
-
         public static Dictionary<string, string> LoadConfig()
         {
             var config = new Dictionary<string, string>();
@@ -498,40 +486,5 @@ namespace com.clusterrr.hakchi_gui
             }
             return config;
         }
-
-        public static Image TakeScreenshot()
-        {
-            var screenshot = new Bitmap(1280, 720, PixelFormat.Format24bppRgb);
-            var rawStream = new MemoryStream();
-            Shell.ExecuteSimple("hakchi uipause");
-            Shell.Execute("cat /dev/fb0", null, rawStream, null, 2000, true);
-            Shell.ExecuteSimple("hakchi uiresume");
-            var raw = rawStream.ToArray();
-            BitmapData data = screenshot.LockBits(
-                new Rectangle(0, 0, screenshot.Width, screenshot.Height),
-                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-
-            int rawOffset = 0;
-            unsafe
-            {
-                for (int y = 0; y < screenshot.Height; ++y)
-                {
-                    byte* row = (byte*)data.Scan0 + (y * data.Stride);
-                    int columnOffset = 0;
-                    for (int x = 0; x < screenshot.Width; ++x)
-                    {
-                        row[columnOffset] = raw[rawOffset];
-                        row[columnOffset + 1] = raw[rawOffset + 1];
-                        row[columnOffset + 2] = raw[rawOffset + 2];
-
-                        columnOffset += 3;
-                        rawOffset += 4;
-                    }
-                }
-            }
-            screenshot.UnlockBits(data);
-            return screenshot;
-        }
-
     }
 }

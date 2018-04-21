@@ -53,9 +53,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
             List<TaskFunc> taskList = new List<TaskFunc>();
             taskList.Add(WaitForFelOrMembootableShell);
             taskList.Add(Memboot);
-            taskList.Add(Tasker.Wait(6000, Resources.PleaseWait));
+            taskList.Add(Tasker.Wait(10000, Resources.PleaseWait));
             taskList.Add(WaitForShell);
-            taskList.Add(hakchi.ShowSplashScreen);
+            taskList.Add(ShellTasks.ShowSplashScreen);
 
             switch (type)
             {
@@ -259,8 +259,24 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             if (hakchi.Shell.IsOnline && hakchi.Shell.Execute("[ -f /proc/atags ]") == 0)
             {
-                if (hakchi.MinimalMemboot && stockKernel == null)
-                    return Conclusion.Success;
+                // do we care about stock kernel
+                if (stockKernel == null)
+                {
+                    if (hakchi.MinimalMemboot) // already in minimal memboot?
+                        return Conclusion.Success;
+                    if (hakchi.Shell.ExecuteSimple("[ -e /bin/recovery ] && echo \"0\"") == "0") // recovery function?
+                    {
+                        try
+                        {
+                            hakchi.Shell.ExecuteSimple("/bin/recovery", 100);
+                        }
+                        catch
+                        {
+                            // no-op
+                        }
+                        return Conclusion.Success;
+                    }
+                }
 
                 hakchi.Shell.ExecuteSimple("mkdir -p /tmp/kexec/", throwOnNonZero: true);
                 hakchi.Shell.Execute(
@@ -289,7 +305,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 hakchi.Shell.ExecuteSimple("cd /tmp/; umount -ar", 0);
                 try
                 {
-                    hakchi.Shell.ExecuteSimple("/tmp/kexec/kexec -e");
+                    hakchi.Shell.ExecuteSimple("/tmp/kexec/kexec -e", 100);
                 }
                 catch
                 {

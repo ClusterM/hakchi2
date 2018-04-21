@@ -17,6 +17,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             return Conclusion.Success;
         }
+
         public static Conclusion Shutdown(Tasker tasker, Object syncObject = null)
         {
             tasker.SetStatus(Resources.PoweringOff);
@@ -28,6 +29,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             return Conclusion.Success;
         }
+
         public static Conclusion MountBase(Tasker tasker, Object syncObject = null)
         {
             tasker.SetStatus("hakchi mount_base");
@@ -44,9 +46,23 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             return (Tasker tasker, Object syncObject) =>
             {
+                tasker.SetStatus(command);
                 hakchi.Shell.Execute(command, stdin, stdout, stderr, timeout, throwOnNonZero);
                 return Conclusion.Success;
             };
+        }
+
+        public static Tasker.Conclusion ShowSplashScreen(Tasker tasker, Object syncObject = null)
+        {
+            tasker.SetStatus(Resources.PleaseWait);
+            return hakchi.ShowSplashScreen() == 0 ? Tasker.Conclusion.Success : Tasker.Conclusion.Error;
+        }
+
+        public static Tasker.Conclusion SyncConfig(Tasker tasker, Object syncObject = null)
+        {
+            tasker.SetStatus(Resources.UploadingConfig);
+            hakchi.SyncConfig(ConfigIni.GetConfigDictionary());
+            return Tasker.Conclusion.Success;
         }
     }
 }

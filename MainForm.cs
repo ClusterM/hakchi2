@@ -1578,7 +1578,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.SetStatusImage(Resources.sign_brick);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
                 tasker.AddTask(ShellTasks.MountBase);
-                tasker.AddTask(hakchi.ShowSplashScreen);
+                tasker.AddTask(ShellTasks.ShowSplashScreen);
                 tasker.AddTasks(new ModTasks(mods).Tasks);
                 tasker.AddFinalTask(MembootTasks.BootHakchi);
                 return tasker.Start() == Tasker.Conclusion.Success;
@@ -1594,7 +1594,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.SetStatusImage(Resources.sign_brick);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
                 tasker.AddTask(ShellTasks.MountBase);
-                tasker.AddTask(hakchi.ShowSplashScreen);
+                tasker.AddTask(ShellTasks.ShowSplashScreen);
                 tasker.AddTasks(new ModTasks(null, mods).Tasks);
                 tasker.AddFinalTask(MembootTasks.BootHakchi);
                 return tasker.Start() == Tasker.Conclusion.Success;
