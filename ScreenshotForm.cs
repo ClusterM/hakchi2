@@ -22,6 +22,8 @@ namespace com.clusterrr.hakchi_gui
             this.liveView = liveView;
             InitializeComponent();
             formatTitle = Text;
+            Directory.CreateDirectory(unattendedPath);
+            saveImageFileDialog.InitialDirectory = unattendedPath;
 
             new Thread(() =>
             {
@@ -153,7 +155,8 @@ namespace com.clusterrr.hakchi_gui
 
         private void saveImageToFile(object sender = null, EventArgs e = null)
         {
-            if(saveImageFileDialog.ShowDialog(this) == DialogResult.OK)
+            saveImageFileDialog.FileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + string.Format("_{0:0000}", counter++) + ".png";
+            if (saveImageFileDialog.ShowDialog(this) == DialogResult.OK)
             {
                 SaveScreenshot(saveImageFileDialog.FileName);
             }

@@ -18,7 +18,6 @@ namespace com.clusterrr.ssh
         Thread connectThread;
         private bool enabled;
         private bool hasConnected;
-        //private int retries;
         private string service;
         private string ip;
         private ushort port;
@@ -134,14 +133,13 @@ namespace com.clusterrr.ssh
             private set { ip = value; }
         }
 
-        public SshClientWrapper(string serviceName, string ip, ushort port, string username, string password)
+        public SshClientWrapper(string service, string ip, ushort port, string username, string password)
         {
             sshClient = null;
             connectThread = null;
             enabled = false;
             hasConnected = false;
-            //retries = 0;
-            this.service = serviceName;
+            this.service = service;
             this.ip = ip;
             this.port = port;
             this.username = username;
@@ -177,9 +175,8 @@ namespace com.clusterrr.ssh
             }
 
             Debug.WriteLine("SSH shell connected");
-#if DEBUG
+            Debug.WriteLine($"IP Address: {ip}");
             Debug.WriteLine($"Encryption: {sshClient.ConnectionInfo.CurrentServerEncryption}");
-#endif
 
             hasConnected = true;
             OnConnected(this);
@@ -215,15 +212,9 @@ namespace com.clusterrr.ssh
             }
             catch (Exception ex)
             {
-                if (ex.InnerException != null)
-                {
-                    if (ex.InnerException is ThreadAbortException)
-                    {
-                        Debug.WriteLine("Ping abort (usually happens when running clovershell");
-                        return -1;
-                    }
-                }
-                Debug.WriteLine("Error performing ping: " + ex.Message);
+#if VERY_DEBUG
+                Debug.WriteLine($"Error during ping \"{ip ?? service}\": " + (ex.InnerException ?? ex).Message);
+#endif
             }
             return -1;
         }

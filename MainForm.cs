@@ -76,29 +76,12 @@ namespace com.clusterrr.hakchi_gui
             StaticRef = this;
             InitializeComponent();
             FormInitialize();
-
-            // setup system shell
-            hakchi.OnConnected += Shell_OnConnected;
-            hakchi.OnDisconnected += Shell_OnDisconnected;
-            hakchi.Initialize();
-
-            // setup ftp server for legacy system shell
-            FtpServer = new mooftpserv.Server();
-            FtpServer.AuthHandler = new mooftpserv.NesMiniAuthHandler();
-            FtpServer.FileSystemHandler = new mooftpserv.NesMiniFileSystemHandler(hakchi.Shell);
-            FtpServer.LogHandler = new mooftpserv.DebugLogHandler();
-            FtpServer.LocalPort = 1021;
-
-            // setup shell menu items
-            SetupShellMenuItems(null);
         }
 
         private void FormInitialize()
         {
             try
             {
-                SetWindowTitle();
-
                 // prepare collections
                 LoadLanguages();
                 CoreCollection.Load();
@@ -139,6 +122,59 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 Tasks.ErrorForm.Show(null, "Critical error: " + ex.Message, ex.StackTrace);
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            try // wrap upgrade check in an exception check, to avoid past mistakes
+            {
+                AutoUpdater.Start(UPDATE_XML_URL);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("There was an error running the auto-updater: " + ex.Message + "\r\n" + ex.StackTrace);
+                Tasks.ErrorForm.Show(Resources.Error, "There was an error running the auto-updater: " + ex.Message, ex.StackTrace);
+            }
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            // centralized upgrade actions system
+            new Upgrade(this).Run();
+
+            // welcome message, only run for new new users
+            if (ConfigIni.Instance.RunCount++ == 0)
+            {
+                Tasks.MessageForm.Show(Resources.Hello, Resources.FirstRun, Resources.Nintendo_NES_icon);
+            }
+
+            // setup system shell
+            hakchi.OnConnected += Shell_OnConnected;
+            hakchi.OnDisconnected += Shell_OnDisconnected;
+            hakchi.Initialize();
+
+            // setup ftp server for legacy system shell
+            FtpServer = new mooftpserv.Server();
+            FtpServer.AuthHandler = new mooftpserv.NesMiniAuthHandler();
+            FtpServer.FileSystemHandler = new mooftpserv.NesMiniFileSystemHandler(hakchi.Shell);
+            FtpServer.LogHandler = new mooftpserv.DebugLogHandler();
+            FtpServer.LocalPort = 1021;
+
+            // nothing else will call this at the moment, so need to do it
+            SyncConsoleSettings(true);
+            SyncConsoleType(true);
+
+            // enable timers
+            timerConnectionCheck.Enabled = true;
+            timerCalculateGames.Enabled = true;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Debug.WriteLine("Closing main form");
+            SaveConfig();
+            FtpServer.Stop();
+            hakchi.Shutdown();
         }
 
         private void SetWindowTitle()
@@ -1951,47 +1987,6 @@ namespace com.clusterrr.hakchi_gui
                 if (form.ShowDialog() == DialogResult.OK)
                     ConfigIni.Instance.ExtraCommandLineArguments[cmdLineType] = form.textBox.Text;
             }
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            try // wrap upgrade check in an exception check, to avoid past mistakes
-            {
-                AutoUpdater.Start(UPDATE_XML_URL);
-            }
-            catch(Exception ex)
-            {
-                Debug.WriteLine("There was an error running the auto-updater: " + ex.Message + "\r\n" + ex.StackTrace);
-                Tasks.ErrorForm.Show(Resources.Error, "There was an error running the auto-updater: " + ex.Message, ex.StackTrace);
-            }
-        }
-
-        private void MainForm_Shown(object sender, EventArgs e)
-        {
-            // centralized upgrade actions system
-            new Upgrade(this).Run();
-
-            // welcome message, only run for new new users
-            if (ConfigIni.Instance.RunCount++ == 0)
-            {
-                Tasks.MessageForm.Show(Resources.Hello, Resources.FirstRun, Resources.Nintendo_NES_icon);
-            }
-
-            // nothing else will call this at the moment, so need to do it
-            SyncConsoleSettings(true);
-            SyncConsoleType(true);
-
-            // enable timers
-            timerConnectionCheck.Enabled = true;
-            timerCalculateGames.Enabled = true;
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Debug.WriteLine("Closing main form");
-            SaveConfig();
-            FtpServer.Stop();
-            hakchi.Shutdown();
         }
 
         private void dragEnter(object sender, DragEventArgs e)
