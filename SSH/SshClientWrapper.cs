@@ -197,18 +197,19 @@ namespace com.clusterrr.ssh
 
         public int Ping()
         {
-            if (string.IsNullOrEmpty(ip) || ip == "0.0.0.0")
+            if ((string.IsNullOrEmpty(ip) || ip == "0.0.0.0") && string.IsNullOrEmpty(service))
                 return -1;
 
             try
             {
                 Ping pingSender = new Ping();
-                PingReply reply = pingSender.Send(ip, 100);
+                PingReply reply = pingSender.Send(ip ?? service, 100);
                 if (reply != null && reply.Status.Equals(IPStatus.Success))
                 {
 #if DEBUG
                     Debug.WriteLine($"Pinged {reply.Address}, {reply.RoundtripTime}ms");
 #endif
+                    ip = reply.Address.ToString();
                     return (int)reply.RoundtripTime;
                 }
             }
@@ -222,7 +223,7 @@ namespace com.clusterrr.ssh
                         return -1;
                     }
                 }
-                Debug.WriteLine("Error performing ping: " + ex.Message + "\r\n" + ex.StackTrace);
+                Debug.WriteLine("Error performing ping: " + ex.Message);
             }
             return -1;
         }

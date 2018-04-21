@@ -625,7 +625,7 @@ namespace com.clusterrr.hakchi_gui
         
         public static int ShellPipe(string command, Stream stdin = null, Stream stdout = null, Stream stderr = null, int timeout = 0, bool throwOnNonZero = false)
         {
-            if (hakchi.Shell is ClovershellConnection)
+            if (!(hakchi.Shell is INetworkShell))
                 return hakchi.Shell.Execute(command, stdin, stdout, stderr, timeout, throwOnNonZero);
 
             if (!(stderr is null))
@@ -647,7 +647,7 @@ namespace com.clusterrr.hakchi_gui
                         splitStream.RemoveStream(stdErr).AddStreams(stderr);
                         if (match.Success)
                         {
-                            SocketTransfer(hakchi.STATIC_IP, int.Parse(match.Groups[2].Value), stdin, stdout);
+                            SocketTransfer((hakchi.Shell as INetworkShell).IPAddress, int.Parse(match.Groups[2].Value), stdin, stdout);
                         }
                     }
                 }

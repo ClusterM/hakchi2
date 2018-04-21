@@ -320,7 +320,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                 lastTime = DateTime.Now;
                             }
                         };
-                        if (ftp.Connect(hakchi.STATIC_IP, 21, hakchi.USERNAME, hakchi.PASSWORD))
+                        if (ftp.Connect((hakchi.Shell as INetworkShell).IPAddress, 21, hakchi.USERNAME, hakchi.PASSWORD))
                         {
                             ftp.Upload(uploadPath);
                             uploadSuccessful = true;
