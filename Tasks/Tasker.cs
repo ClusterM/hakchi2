@@ -1,5 +1,6 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -285,11 +286,18 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public Tasker AttachViews(params ITaskerView[] views)
         {
-            foreach(var view in views)
+            foreach (var view in views)
             {
                 AttachView(view);
             }
             return this;
+        }
+
+        public T GetSpecificView<T>()
+        {
+            foreach (var view in views)
+                if (view is T) return (T)(view);
+            return default(T);
         }
 
         // run

@@ -637,6 +637,12 @@
       <DependentUpon>TaskerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tasks\TaskerTaskbar.cs" />
+    <Compile Include="Tasks\TaskerTransferForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\TaskerTransferForm.Designer.cs">
+      <DependentUpon>TaskerTransferForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrackableFileStream.cs" />
     <Compile Include="TrackableStream.cs" />
     <Compile Include="UnsupportedFourScreenException.cs" />
@@ -1276,6 +1282,7 @@
     <None Include="images\sign-globe.png" />
     <None Include="images\sign-sync.png" />
     <None Include="images\sign-paper-plane.png" />
+    <None Include="images\sign-thumb-up.png" />
     <Content Include="readmeTemplate.css" />
     <Content Include="readmeTemplate.html" />
     <Content Include="retroarch-whitelist.txt" />
@@ -2189,6 +2196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tasks\TaskerForm.resx">
       <DependentUpon>TaskerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\TaskerTransferForm.resx">
+      <DependentUpon>TaskerTransferForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingClovershellForm.bg-BG.resx">
       <DependentUpon>WaitingClovershellForm.cs</DependentUpon>

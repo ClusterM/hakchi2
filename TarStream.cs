@@ -33,6 +33,10 @@ namespace com.clusterrr.util
         public delegate void OnProgressDelegate(long Position, long Length);
         public event OnProgressDelegate OnReadProgress = delegate { };
 
+        string currentFileName = "";
+        public delegate void OnAdvancedProgressDelegate(long Position, long Length, string FileName);
+        public event OnAdvancedProgressDelegate OnAdvancedReadProgress = delegate { };
+
         [StructLayout(LayoutKind.Sequential)]
         private struct TarHeader
         {
@@ -336,6 +340,8 @@ namespace com.clusterrr.util
                             (long)lastWriteTimeUtc.Subtract(new DateTime(1970, 1, 1)).TotalSeconds
                             , 8).PadLeft(11, '0');
                         header.FileType = '0';
+
+                        this.currentFileName = header.FileName; // keep filename for advanced progress report
                     }
                     else if (header.FileName.EndsWith("/")) // It's a directory...
                     {
@@ -375,6 +381,7 @@ namespace com.clusterrr.util
                 }
             }
             OnReadProgress(Position, Length);
+            OnAdvancedReadProgress(Position, Length, this.currentFileName);
             return origCount - count;
         }
 

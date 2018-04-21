@@ -1677,7 +1677,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4d8ed8d-dirty
+        ///   Looks up a localized string similar to 17ce942-dirty
         ///.
         /// </summary>
         internal static string gitCommit {
@@ -3003,6 +3003,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static System.Drawing.Bitmap sign_sync {
             get {
                 object obj = ResourceManager.GetObject("sign_sync", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_thumb_up {
+            get {
+                object obj = ResourceManager.GetObject("sign_thumb_up", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1371,16 +1371,13 @@ namespace com.clusterrr.hakchi_gui
 
         bool UploadGames(bool exportGames = false)
         {
-            using (var tasker = new Tasks.Tasker(this))
+            using (var tasker = new Tasks.Tasker(this, new Tasks.TaskerTaskbar(), new Tasks.TaskerTransferForm()))
             {
-                tasker.AttachView(new Tasks.TaskerTaskbar());
-                tasker.AttachView(new Tasks.TaskerForm());
-
                 var syncTask = new Tasks.SyncTask();
                 syncTask.Games.AddRange(listViewGames.CheckedItems.Cast<ListViewItem>().
                     Where(item => item.Tag is NesApplication).
                     Select(item => item.Tag as NesApplication));
-                tasker.AddTask(exportGames ? (Tasks.Tasker.TaskFunc)syncTask.ExportGames : syncTask.UploadGames);
+                tasker.AddTask(exportGames ? (Tasks.Tasker.TaskFunc)syncTask.ExportGames : syncTask.UploadGames, 0);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
