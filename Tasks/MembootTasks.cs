@@ -264,52 +264,68 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     if (hakchi.MinimalMemboot) // already in minimal memboot?
                         return Conclusion.Success;
-                    if (hakchi.Shell.ExecuteSimple("[ -e /bin/recovery ] && echo \"0\"") == "0") // recovery function?
+                    if (hakchi.Shell.ExecuteSimple("[ -e /bin/detached ] && echo \"1\"") == "1") // detached recovery function?
                     {
                         try
                         {
-                            hakchi.Shell.ExecuteSimple("/bin/recovery", 100);
+                            hakchi.Shell.ExecuteSimple("/bin/detached recovery", 100);
                         }
-                        catch
-                        {
-                            // no-op
-                        }
+                        catch { } // no-op
                         return Conclusion.Success;
                     }
                 }
 
-                hakchi.Shell.ExecuteSimple("mkdir -p /tmp/kexec/", throwOnNonZero: true);
-                hakchi.Shell.Execute(
-                    command: "cat > /tmp/kexec/kexec && chmod +x /tmp/kexec/kexec",
-                    stdin: File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "tools", "arm", "kexec.static")),
-                    throwOnNonZero: true
-                );
-                hakchi.Shell.Execute(
-                    command: "cat > /tmp/kexec/unpackbootimg && chmod +x /tmp/kexec/unpackbootimg",
-                    stdin: File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "tools", "arm", "unpackbootimg.static")),
-                    throwOnNonZero: true
-                );
-
-                hakchi.Shell.ExecuteSimple("uistop");
-
-                TrackableStream kernelStream = new TrackableStream(kernel);
-
-                kernelStream.OnProgress += tasker.OnProgress;
-
-                hakchi.Shell.Execute(
-                    command: "cat > /tmp/kexec/boot.img; cd /tmp/kexec/; ./unpackbootimg -i boot.img",
-                    stdin: kernelStream,
-                    throwOnNonZero: true
-                );
-                hakchi.Shell.ExecuteSimple("cd /tmp/kexec/ && ./kexec -l -t zImage boot.img-zImage \"--command-line=$(cat boot.img-cmdline)\" --ramdisk=boot.img-ramdisk.gz --atags", 0, true);
-                hakchi.Shell.ExecuteSimple("cd /tmp/; umount -ar", 0);
                 try
                 {
-                    hakchi.Shell.ExecuteSimple("/tmp/kexec/kexec -e", 100);
+                    hakchi.Shell.ExecuteSimple("uistop");
+                    hakchi.Shell.ExecuteSimple("mkdir -p /tmp/kexec/", throwOnNonZero: true);
+                    hakchi.Shell.Execute(
+                        command: "cat > /tmp/kexec/kexec && chmod +x /tmp/kexec/kexec",
+                        stdin: File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "tools", "arm", "kexec.static")),
+                        throwOnNonZero: true
+                    );
+
+                    TrackableStream kernelStream = new TrackableStream(kernel);
+                    kernelStream.OnProgress += tasker.OnProgress;
+                    if (stockKernel == null)
+                    {
+                        hakchi.UploadFile(Path.Combine(Program.BaseDirectoryInternal, "tools", "arm", "detached-fallback"), "/tmp/kexec/detached-fallback");
+                        hakchi.UploadFile(kernelStream, "/tmp/kexec/boot.img", false);
+                        try
+                        {
+                            hakchi.Shell.ExecuteSimple("cd /tmp/kexec/; /bin/sh /tmp/kexec/detached-fallback recovery /tmp/kexec/boot.img", 100);
+                        }
+                        catch { } // no-op
+                    }
+                    else
+                    {
+                        hakchi.Shell.Execute(
+                            command: "cat > /tmp/kexec/unpackbootimg && chmod +x /tmp/kexec/unpackbootimg",
+                            stdin: File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "tools", "arm", "unpackbootimg.static")),
+                            throwOnNonZero: true
+                        );
+                        hakchi.Shell.Execute(
+                            command: "cat > /tmp/kexec/boot.img; cd /tmp/kexec/; ./unpackbootimg -i boot.img",
+                            stdin: kernelStream,
+                            throwOnNonZero: true
+                        );
+                        hakchi.Shell.ExecuteSimple("cd /tmp/kexec/ && ./kexec -l -t zImage boot.img-zImage \"--command-line=$(cat boot.img-cmdline)\" --ramdisk=boot.img-ramdisk.gz --atags", 0, true);
+                        hakchi.Shell.ExecuteSimple("cd /tmp/; umount -ar", 0);
+                        try
+                        {
+                            hakchi.Shell.ExecuteSimple("/tmp/kexec/kexec -e", 100);
+                        }
+                        catch { } // no-op
+                    }
                 }
                 catch
                 {
-                    // no-op
+                    try
+                    {
+                        hakchi.Shell.ExecuteSimple("uistart");
+                    }
+                    catch { } // no-op
+                    throw;
                 }
             }
             else

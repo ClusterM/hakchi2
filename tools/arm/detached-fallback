@@ -1,0 +1,48 @@
+#!/bin/sh
+
+if [ "$1" = "--detached" ]; then
+  shift
+else
+  [ -x "$0" ] || chmod +x "$0"
+  "$0" --detached ${1+"$@"} &
+  wait $!
+  exit $?
+fi
+
+source /etc/preinit
+script_init
+
+getCmdLine(){
+  dd status=none "if=$1" bs=64 count=8 skip=1 | tr -d '\0' | tr ' ' '\n'
+  echo
+}
+
+memboot(){
+  local bootimg="$1";shift
+  [ -f "$bootimg" ] || return 1
+  kexec -l -t zImage "$bootimg" "--command-line=$(getCmdLine "$bootimg" | xargs) $@" --atags || return 1
+  trap ":" HUP KILL
+  killall -q clovershell
+  uistop
+  sync
+  cd /
+  umount -a -r 2>/dev/null
+  disableUsbDevice
+  kexec -e
+  while :;do sleep 1;:;done
+}
+
+recovery(){
+  local bootimg="$1"
+  [ -f "$bootimg" ] && memboot "$bootimg" "$modname-shell"
+  bootimg="$temppath/boot.img"
+  sunxi-flash read_boot2 > "$bootimg" || return 1
+  [ -f "$bootimg" ] && memboot "$bootimg" "$modname-shell"
+}
+
+cdir="$(dirname "$(readlink -f "$0")")"
+if [ -f "$cdir/kexec" ]; then
+  [ -x "$cdir/kexec" ] || chmod +x "$cdir/kexec"
+  export PATH="$cdir:$PATH"
+fi
+${1+"$@"}

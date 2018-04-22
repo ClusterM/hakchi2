@@ -143,12 +143,12 @@ namespace com.clusterrr.hakchi_gui
 
         public static string CurrentHakchiScriptVersion
         {
-            get { return "1.0.3"; }
+            get { return "1.0.4"; }
         }
 
         public static string CurrentHakchiScriptRevision
         {
-            get { return "113"; }
+            get { return "114"; }
         }
 
         static hakchi()
@@ -426,6 +426,20 @@ namespace com.clusterrr.hakchi_gui
                 hakchi.Shell.ExecuteSimple($"rm /tmp/{fileName}", 2000, throwOnNonZero);
             }
 
+        }
+
+        public static int UploadFile(Stream stream, string remoteFileName, bool makeExec = true)
+        {
+            return Shell.Execute(
+                command: $"cat > \"{remoteFileName}\"" + (makeExec ? $" && chmod +x \"{remoteFileName}\"" : ""),
+                stdin: stream,
+                throwOnNonZero: true
+            );
+        }
+
+        public static int UploadFile(string localFileName, string remoteFileName, bool makeExec = true)
+        {
+            return UploadFile(File.OpenRead(localFileName), remoteFileName, makeExec);
         }
 
         public static void SyncConfig(Dictionary<string, string> config, bool reboot = false)

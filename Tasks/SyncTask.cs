@@ -14,6 +14,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 {
     class SyncTask
     {
+        readonly string remoteTempDirectory = "/tmp/upload-test";
         readonly string tempDirectory = Path.Combine(Path.GetTempPath(), "hakchi2");
         public const int UpdateFreq = 100;
 
@@ -126,8 +127,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public Tasker.Conclusion CheckLocalStorageRequirements(Tasker tasker, Object syncObject = null)
         {
-            // check free space
-            tasker.SetStatus("Calculating free space...");
             var drive = new DriveInfo(Path.GetPathRoot(exportDirectory));
             long storageTotal = drive.TotalSize;
             long storageUsed = Shared.DirectorySize(exportDirectory);
@@ -273,7 +272,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             // clean up previous directories (separate game storage vs not)
             tasker.SetStatus(Resources.CleaningUp);
-            hakchi.Shell.ExecuteSimple("find \"" + (ConfigIni.Instance.UploadToTmp ? "/tmp/upload-test" : hakchi.RemoteGameSyncPath) + "/\" -maxdepth 1 | tail -n +2 " +
+            hakchi.Shell.ExecuteSimple("find \"" + (ConfigIni.Instance.UploadToTmp ? remoteTempDirectory : hakchi.RemoteGameSyncPath) + "/\" -maxdepth 1 | tail -n +2 " +
                 "| grep -" + (ConfigIni.Instance.SeparateGameStorage ? "v" : "") + "Ee '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' " +
                 "| while read f; do rm -rf \"$f\"; done", 0, true);
 
@@ -310,8 +309,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     Debug.WriteLine($"Upload size: " + Shared.SizeSuffix(ftp.Length));
                     if (ftp.Length > 0)
                     {
-                        DateTime startTime = DateTime.Now,
-                            lastTime = DateTime.Now;
+                        DateTime startTime = DateTime.Now, lastTime = DateTime.Now;
                         ftp.OnReadProgress += delegate (long pos, long len, string filename)
                         {
                             if (DateTime.Now.Subtract(lastTime).TotalMilliseconds >= UpdateFreq)
@@ -496,7 +494,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             // set up upload path
             if (ConfigIni.Instance.UploadToTmp)
             {
-                uploadPath = "/tmp/upload-test";
+                uploadPath = remoteTempDirectory;
             }
             else
             {

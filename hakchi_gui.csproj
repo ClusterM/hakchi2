@@ -265,6 +265,9 @@
     <EmbeddedResource Include="Extensions\ModStore\ProgressBarForm.resx">
       <DependentUpon>ProgressBarForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Motd.fr-FR.resx">
+      <DependentUpon>Motd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Motd.resx">
       <DependentUpon>Motd.cs</DependentUpon>
     </EmbeddedResource>
@@ -1299,6 +1302,9 @@
     <Content Include="retroarch-whitelist.txt" />
     <None Include="packages.config" />
     <None Include="sfrom_tool\README.TXT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="tools\arm\detached-fallback">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="tools\arm\kexec.static">
