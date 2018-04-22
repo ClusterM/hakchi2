@@ -481,27 +481,6 @@ namespace com.clusterrr.hakchi_gui
             return pages * page_size;
         }
 
-        public static bool CheckHsqs(string nandDump)
-        {
-            FileInfo hsqsInfo = new FileInfo(nandDump);
-            using (FileStream fStream = new FileStream(nandDump, FileMode.Open))
-            {
-                fStream.Seek(0, SeekOrigin.Begin);
-
-                byte[] hsqsMagic = new byte[] { 0x68, 0x73, 0x71, 0x73 };
-                byte[] fileMagic = new byte[4];
-
-                fStream.Read(fileMagic, 0, 4);
-                fStream.Seek(0, SeekOrigin.Begin);
-                fStream.Close();
-
-                if (!fileMagic.SequenceEqual(hsqsMagic))
-                    return false;
-
-                return true;
-            }
-        }
-
         public static MemoryStream GetMembootImage()
         {
             var kernelHmodStream = new MemoryStream();
@@ -654,7 +633,7 @@ namespace com.clusterrr.hakchi_gui
                 catch (ThreadAbortException) { }
             });
             transferThread.Start();
-            int returnValue = hakchi.Shell.Execute($"nc -lv -s 0.0.0.0 -e {command}", null, null, splitStream, timeout, throwOnNonZero);
+            int returnValue = hakchi.Shell.Execute($"nc -lv -w 60 -i 60 -s 0.0.0.0 -e {command}", null, null, splitStream, timeout, throwOnNonZero);
             transferThread.Abort();
             return returnValue;
         }

@@ -1863,6 +1863,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid user data backup..
+        /// </summary>
+        internal static string InvalidUserDataBackup {
+            get {
+                return ResourceManager.GetString("InvalidUserDataBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap it {

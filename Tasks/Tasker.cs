@@ -462,6 +462,16 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 return Tasker.Conclusion.Success;
             };
         }
+
+        public static Tasker.TaskFunc WaitIf(bool condition, int milliseconds, string message)
+        {
+            return condition ? Wait(milliseconds, message) : Stub;
+        }
+
+        public static Conclusion Stub(Tasker tasker, Object syncObject)
+        {
+            return Conclusion.Success;
+        }
     }
 
     public static class TaskerExtensions

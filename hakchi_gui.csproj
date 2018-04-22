@@ -194,6 +194,8 @@
     <Compile Include="Extensions\ModStore\ProgressBarForm.designer.cs">
       <DependentUpon>ProgressBarForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Files\Extensions.cs" />
+    <Compile Include="Files\CheckFileType.cs" />
     <Compile Include="Ftp\ArxOneFtpWrapper.cs" />
     <None Include="Ftp\FluentFtpWrapper.cs" />
     <Compile Include="hakchi.cs" />

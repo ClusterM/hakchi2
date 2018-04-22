@@ -1538,7 +1538,7 @@ namespace com.clusterrr.hakchi_gui
                         break;
 
                     case MembootTasks.NandTasks.DumpNandC:
-                        if (!DumpDialog(FileAccess.Write, "nandc.hsqs", "hsqs", out dumpFilename))
+                        if (!DumpDialog(FileAccess.Write, "nandc.tar", "tar", out dumpFilename))
                             return false;
 
                         tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpNandC, dumpPath: dumpFilename).Tasks);
@@ -1552,7 +1552,7 @@ namespace com.clusterrr.hakchi_gui
                         break;
 
                     case MembootTasks.NandTasks.FlashNandC:
-                        if (!DumpDialog(FileAccess.Read, "nandc.hsqs", "hsqs", out dumpFilename))
+                        if (!DumpDialog(FileAccess.Read, "nandc.tar", "tar", out dumpFilename))
                             return false;
 
                         tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashNandC, dumpPath: dumpFilename).Tasks);

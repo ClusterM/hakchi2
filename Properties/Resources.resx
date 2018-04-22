@@ -1220,4 +1220,7 @@ Continue?</value>
   <data name="motdTemplateHTML" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\motdTemplate.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="InvalidUserDataBackup" xml:space="preserve">
+    <value>Invalid user data backup.</value>
+  </data>
 </root>

@@ -56,7 +56,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             List<TaskFunc> taskList = new List<TaskFunc>();
             taskList.Add(WaitForFelOrMembootableShell);
             taskList.Add(Memboot);
-            taskList.Add(Tasker.Wait(WaitDelay, Resources.PleaseWait));
+            taskList.Add(Tasker.WaitIf(!hakchi.MinimalMemboot, WaitDelay, Resources.PleaseWait));
             taskList.Add(WaitForShell);
             taskList.Add(ShellTasks.ShowSplashScreen);
 
@@ -498,11 +498,20 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 if (!validTasks.Contains(task))
                     throw new ArgumentOutOfRangeException("task");
                 
-                if (task == NandTasks.FlashNandB && !Shared.CheckHsqs(nandDump))
+                if (task == NandTasks.FlashNandB && !Files.CheckFileType.IsSquashFs(nandDump))
                     throw new Exception(Properties.Resources.InvalidHsqs);
 
-                long partitionSize = 300 * 1024 * 1024;
 
+                bool isTar = false;
+                if (task == NandTasks.FlashNandC)
+                {
+                    isTar = Files.CheckFileType.IsTar(nandDump);
+                    if (!(isTar || Files.CheckFileType.IsExtFs(nandDump)))
+                        throw new Exception(Properties.Resources.InvalidUserDataBackup);
+                }
+
+                long partitionSize = 300 * 1024 * 1024;
+                var splitStream = new SplitterStream(Program.debugStreams);
                 switch (task)
                 {
                     case NandTasks.DumpNandB:
@@ -520,6 +529,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         break;
 
                     case NandTasks.DumpNandC:
+                        hakchi.Shell.Execute("hakchi mount_base", null, null, null, 0, true);
+                        partitionSize = long.Parse(hakchi.Shell.ExecuteSimple("df -B 1 | grep /newroot/var/lib | head -n 1 | awk -e '{print $3 }'", throwOnNonZero: true).Trim());
+                        break;
                     case NandTasks.FlashNandC:
                         partitionSize = long.Parse(hakchi.Shell.ExecuteSimple("blockdev --getsize64 /dev/nandc", throwOnNonZero: true));
                         break;
@@ -528,7 +540,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         partitionSize = 536870912;
                         break;
                     case NandTasks.FormatNandC:
-                        var splitStream = new SplitterStream(Program.debugStreams);
                         hakchi.Shell.Execute("cat > /bin/mke2fs; chmod +x /bin/mke2fs", File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "tools", "arm", "mke2fs.static")), null, null, 0, true);
                         hakchi.Shell.Execute("hakchi umount_base", null, splitStream, splitStream);
                         hakchi.Shell.Execute("yes | mke2fs -t ext4 -L data -b 4K -E stripe-width=32 -O ^huge_file,^metadata_csum /dev/nandc", null, splitStream, splitStream, 0, true);
@@ -547,10 +558,20 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     if (mode == FileMode.Open && file.Length > partitionSize)
                         throw new Exception(Resources.ImageTooLarge);
 
-                    if (mode == FileMode.Create)
+                    if (mode == FileMode.Create && task != NandTasks.DumpNandC)
                         file.SetLength(partitionSize);
 
-                    file.OnProgress += tasker.OnProgress;
+                    if (task == NandTasks.DumpNandC)
+                    {
+                        file.OnProgress += (long position, long length) =>
+                        {
+                            tasker.OnProgress(Math.Min(position, partitionSize), partitionSize);
+                        };
+                    }
+                    else
+                    {
+                        file.OnProgress += tasker.OnProgress;
+                    }
 
                     switch (task)
                     {
@@ -564,11 +585,20 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             break;
 
                         case NandTasks.DumpNandC:
-                            Shared.ShellPipe($"dd if=/dev/nandc bs=128K count={(partitionSize / 1024) / 4 }", null, file, throwOnNonZero: true);
+                            Shared.ShellPipe($"tar -cvC /newroot/var/lib/ .", null, file, null, throwOnNonZero: true);
                             break;
 
                         case NandTasks.FlashNandC:
-                            Shared.ShellPipe("dd of=/dev/nandc bs=128K", file, throwOnNonZero: true);
+                            if (isTar)
+                            {
+                                hakchi.Shell.Execute("hakchi mount_base", null, null, null, 0, true);
+                                hakchi.Shell.Execute("rm -rf /newroot/var/lib/*", null, null, null, 0, true);
+                                hakchi.Shell.Execute("tar -xvC /newroot/var/lib/", file, throwOnNonZero: true);
+                            }
+                            else
+                            {
+                                Shared.ShellPipe("dd of=/dev/nandc bs=128K", file, throwOnNonZero: true);
+                            }
                             break;
 
                         case NandTasks.DumpNand:
