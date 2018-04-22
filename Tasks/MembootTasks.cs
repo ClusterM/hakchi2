@@ -15,6 +15,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
 {
     class MembootTasks
     {
+        // Constants
+        public const int WaitDelay = 13000;
+
         // Enums
         public enum MembootTaskType {
             InstallHakchi,
@@ -53,7 +56,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             List<TaskFunc> taskList = new List<TaskFunc>();
             taskList.Add(WaitForFelOrMembootableShell);
             taskList.Add(Memboot);
-            taskList.Add(Tasker.Wait(10000, Resources.PleaseWait));
+            taskList.Add(Tasker.Wait(WaitDelay, Resources.PleaseWait));
             taskList.Add(WaitForShell);
             taskList.Add(ShellTasks.ShowSplashScreen);
 
