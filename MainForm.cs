@@ -10,6 +10,7 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Resources;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -24,11 +25,13 @@ namespace com.clusterrr.hakchi_gui
         /// The URL for the update metadata XML file
         /// </summary>
 #if DEBUG
-        private static string UPDATE_XML_URL = "https://teamshinkansen.github.io/xml/updates/update-debug.xml";
+        private static readonly string UPDATE_XML_URL = "https://teamshinkansen.github.io/xml/updates/update-debug.xml";
 #else
-        private static string UPDATE_XML_URL = "https://teamshinkansen.github.io/xml/updates/update-release.xml";
+        private static readonly string UPDATE_XML_URL = "https://teamshinkansen.github.io/xml/updates/update-release.xml";
 #endif
-        private static string SFROM_TOOL_URL = "http://darkakuma.z-net.us/p/sfromtool.html";
+        private static readonly string MOTD_URL = "https://teamshinkansen.github.io/motd.md";
+        private static readonly string SFROM_TOOL_URL = "http://darkakuma.z-net.us/p/sfromtool.html";
+        private static readonly string MotdFilename = Path.Combine(Program.BaseDirectoryExternal, "config", "motd.md");
 
         public enum OriginalGamesPosition { AtTop = 0, AtBottom = 1, Sorted = 2, Hidden = 3 }
         public enum GamesSorting { Name = 0, Core = 1, System = 2 }
@@ -124,6 +127,59 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private void ShowMOTD(string message = null)
+        {
+            try
+            {
+                if (message == null)
+                {
+                    message = File.ReadAllText(Path.Combine(Program.BaseDirectoryExternal, "config", "motd.md"));
+                }
+                new Motd(message).ShowDialog();
+            }
+            catch
+            {
+                Debug.WriteLine("Could not show \"Message of the day\"");
+            }
+        }
+
+        private void UpdateMOTD()
+        {
+            var client = new WebClient();
+            try
+            {
+                if (File.Exists(MotdFilename))
+                {
+                    if (new FileInfo(MotdFilename).LastWriteTime.AddHours(6) > DateTime.Now)
+                    {
+                        return;
+                    }
+                }
+
+                Debug.WriteLine("Downloading motd file, URL: " + MOTD_URL);
+                string motd = client.DownloadString(MOTD_URL);
+                if (!string.IsNullOrEmpty(motd))
+                {
+                    File.WriteAllText(MotdFilename, motd);
+                }
+                Match m = Regex.Match(motd, "\\<\\!\\-\\-\\-\\s([^\\s]+)\\s\\-\\-\\>");
+                if (m.Success)
+                {
+                    Debug.WriteLine("Motd timestamp: " + m.Groups[1].Value);
+                    DateTime date = DateTime.Parse(m.Groups[1].Value);
+                    if (date.CompareTo(ConfigIni.Instance.LastMOTD) > 0)
+                    {
+                        ConfigIni.Instance.LastMOTD = date;
+                        Invoke(new Action<string>(ShowMOTD), new object[] { motd });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             try // wrap upgrade check in an exception check, to avoid past mistakes
@@ -148,25 +204,28 @@ namespace com.clusterrr.hakchi_gui
                 Tasks.MessageForm.Show(Resources.Hello, Resources.FirstRun, Resources.Nintendo_NES_icon);
             }
 
+            // nothing else will call this at the moment, so need to do it
+            SyncConsoleSettings(true);
+            SyncConsoleType(true);
+
             // setup system shell
             hakchi.OnConnected += Shell_OnConnected;
             hakchi.OnDisconnected += Shell_OnDisconnected;
             hakchi.Initialize();
 
-            // setup ftp server for legacy system shell
+            // setup ftp server for legacy system shell (clovershell)
             FtpServer = new mooftpserv.Server();
             FtpServer.AuthHandler = new mooftpserv.NesMiniAuthHandler();
             FtpServer.FileSystemHandler = new mooftpserv.NesMiniFileSystemHandler(hakchi.Shell);
             FtpServer.LogHandler = new mooftpserv.DebugLogHandler();
             FtpServer.LocalPort = 1021;
 
-            // nothing else will call this at the moment, so need to do it
-            SyncConsoleSettings(true);
-            SyncConsoleType(true);
-
             // enable timers
             timerConnectionCheck.Enabled = true;
             timerCalculateGames.Enabled = true;
+
+            // defer but run message of the day
+            new Thread(UpdateMOTD).Start();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -231,12 +290,14 @@ namespace com.clusterrr.hakchi_gui
                 FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, "127.0.0.1:21");
                 FTPToolStripMenuItem.Enabled = true;
                 FTPToolStripMenuItem.Checked = ConfigIni.Instance.FtpServer;
-                FTPToolStripMenuItem_Click(null, null);
+                if (caller != null)
+                    FTPToolStripMenuItem_Click(null, null);
 
                 shellToolStripMenuItem.Text = string.Format(Resources.TelnetServerOn, "127.0.0.1:1023");
                 shellToolStripMenuItem.Enabled = true;
                 shellToolStripMenuItem.Checked = ConfigIni.Instance.TelnetServer;
-                shellToolStripMenuItem_Click(null, null);
+                if (caller != null)
+                    shellToolStripMenuItem_Click(null, null);
             }
             else if (caller is INetworkShell)
             {
@@ -349,8 +410,6 @@ namespace com.clusterrr.hakchi_gui
             // setup ui items
             SetupShellMenuItems(hakchi.Shell);
             SetWindowTitle();
-            MemoryStats.DebugDisplay();
-            timerCalculateGames.Enabled = true;
 
             // developer settings
             devForceSshToolStripMenuItem.Checked = ConfigIni.Instance.ForceSSHTransfers;
@@ -380,6 +439,9 @@ namespace com.clusterrr.hakchi_gui
                 cloverconHackToolStripMenuItem.Enabled =
                 globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Enabled =
                 saveSettingsToNESMiniNowToolStripMenuItem.Enabled = (hakchi.Connected && hakchi.CanInteract);
+
+            // just to be sure
+            timerCalculateGames.Enabled = true;
         }
 
         private static hakchi.ConsoleType lastConsoleType = hakchi.ConsoleType.Unknown;
@@ -2294,6 +2356,7 @@ namespace com.clusterrr.hakchi_gui
 
         private bool changeFTPServerState()
         {
+            if (FtpServer == null) return false;
             if (FTPToolStripMenuItem.Enabled && FTPToolStripMenuItem.Checked && hakchi.Shell.IsOnline)
             {
                 try
@@ -2875,6 +2938,11 @@ namespace com.clusterrr.hakchi_gui
         private void modStoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ModStore().ShowDialog();
+        }
+
+        private void messageOfTheDayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowMOTD();
         }
     }
 }

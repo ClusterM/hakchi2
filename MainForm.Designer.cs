@@ -137,7 +137,9 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.messageOfTheDayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem22 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonAddGames = new System.Windows.Forms.Button();
@@ -1008,7 +1010,9 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gitHubPageWithActualReleasesToolStripMenuItem,
             this.fAQToolStripMenuItem,
+            this.messageOfTheDayToolStripMenuItem,
             this.donateToolStripMenuItem,
+            this.toolStripMenuItem22,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
@@ -1025,11 +1029,22 @@
             resources.ApplyResources(this.fAQToolStripMenuItem, "fAQToolStripMenuItem");
             this.fAQToolStripMenuItem.Click += new System.EventHandler(this.fAQToolStripMenuItem_Click);
             // 
+            // messageOfTheDayToolStripMenuItem
+            // 
+            this.messageOfTheDayToolStripMenuItem.Name = "messageOfTheDayToolStripMenuItem";
+            resources.ApplyResources(this.messageOfTheDayToolStripMenuItem, "messageOfTheDayToolStripMenuItem");
+            this.messageOfTheDayToolStripMenuItem.Click += new System.EventHandler(this.messageOfTheDayToolStripMenuItem_Click);
+            // 
             // donateToolStripMenuItem
             // 
             resources.ApplyResources(this.donateToolStripMenuItem, "donateToolStripMenuItem");
             this.donateToolStripMenuItem.Name = "donateToolStripMenuItem";
             this.donateToolStripMenuItem.Click += new System.EventHandler(this.donateToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem22
+            // 
+            this.toolStripMenuItem22.Name = "toolStripMenuItem22";
+            resources.ApplyResources(this.toolStripMenuItem22, "toolStripMenuItem22");
             // 
             // aboutToolStripMenuItem
             // 
@@ -1891,6 +1906,8 @@
         private System.Windows.Forms.ToolStripMenuItem disableClovershellListenerToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem21;
         private System.Windows.Forms.ToolStripMenuItem modStoreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem messageOfTheDayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem22;
     }
 }
 

@@ -1677,7 +1677,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 17ce942-dirty
+        ///   Looks up a localized string similar to 2b3d136-dirty
         ///.
         /// </summary>
         internal static string gitCommit {
@@ -2069,6 +2069,41 @@ namespace com.clusterrr.hakchi_gui.Properties {
             get {
                 object obj = ResourceManager.GetObject("modstore_info", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @font-face {
+        ///  font-family: octicons-link;
+        ///  src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM+8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQg [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string motdTemplateCSS {
+            get {
+                return ResourceManager.GetString("motdTemplateCSS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+        ///&lt;style&gt;
+        ///{0}
+        ///
+        ///	.markdown-body {
+        ///		box-sizing: border-box;
+        ///		min-width: 200px;
+        ///		margin: 0 auto;
+        ///		padding: 45px;
+        ///	}
+        ///&lt;/style&gt;
+        ///&lt;article class=&quot;markdown-body&quot;&gt;
+        ///&lt;h1&gt;{1}&lt;/h1&gt;
+        ///{2}
+        ///&lt;/article&gt;
+        ///.
+        /// </summary>
+        internal static string motdTemplateHTML {
+            get {
+                return ResourceManager.GetString("motdTemplateHTML", resourceCulture);
             }
         }
         

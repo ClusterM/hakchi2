@@ -200,6 +200,12 @@
     <Compile Include="INetworkShell.cs" />
     <Compile Include="ISystemShell.cs" />
     <Compile Include="MemoryStats.cs" />
+    <Compile Include="Motd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Motd.Designer.cs">
+      <DependentUpon>Motd.cs</DependentUpon>
+    </Compile>
     <Compile Include="MultiFormContext.cs" />
     <Compile Include="NewCustomGameForm.cs">
       <SubType>Form</SubType>
@@ -258,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Extensions\ModStore\ProgressBarForm.resx">
       <DependentUpon>ProgressBarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Motd.resx">
+      <DependentUpon>Motd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewCustomGameForm.fr-FR.resx">
       <DependentUpon>NewCustomGameForm.cs</DependentUpon>
@@ -1263,6 +1272,8 @@
     <None Include="folder_images\folder_home.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="motdTemplate.html" />
+    <Content Include="motdTemplate.css" />
     <Content Include="icon_app.ico" />
     <Content Include="icon_window.ico" />
     <None Include="images\blank_dos.png" />

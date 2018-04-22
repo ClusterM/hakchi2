@@ -198,6 +198,7 @@ namespace com.clusterrr.hakchi_gui
         }
 
         // other settings
+        public DateTime LastMOTD = default(DateTime);
         public int RunCount = 0;
         public string LastVersion = "0.0.0.0";
         public string Language = "";
