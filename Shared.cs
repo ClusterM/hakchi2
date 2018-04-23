@@ -5,6 +5,7 @@ using com.clusterrr.util;
 using Renci.SshNet;
 using SevenZip;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -506,6 +507,18 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
             }
+        }
+
+        public static void InPlaceStringEdit(this byte[] buffer, int startOffset, int windowSize, byte fillByte, Func<string, string> Functor)
+        {
+            string converted = Encoding.ASCII.GetString(buffer, startOffset, windowSize).TrimEnd(new char[] { '\0' });
+            converted = Functor(converted);
+            byte[] newBuffer = Enumerable.Repeat((byte)fillByte, windowSize).ToArray();
+            Array.Copy(
+                Encoding.ASCII.GetBytes(converted), 0,
+                newBuffer, 0,
+                converted.Length < windowSize ? converted.Length : windowSize);
+            newBuffer.CopyTo(buffer, startOffset);
         }
 
         public static Dictionary<hakchi.ConsoleType, string[]> CorrectKeys()

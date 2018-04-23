@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Resources;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -417,11 +418,13 @@ namespace com.clusterrr.hakchi_gui
             // developer settings
             devForceSshToolStripMenuItem.Checked = ConfigIni.Instance.ForceSSHTransfers;
             uploadTotmpforTestingToolStripMenuItem.Checked = ConfigIni.Instance.UploadToTmp;
+            forceClovershellMembootsToolStripMenuItem.Checked = ConfigIni.Instance.ForceClovershell;
             disableSSHlistenerToolStripMenuItem.Checked = ConfigIni.Instance.DisableSSHListener;
             disableClovershellListenerToolStripMenuItem.Checked = ConfigIni.Instance.DisableClovershellListener;
             developerToolsToolStripMenuItem.Visible =
                 devForceSshToolStripMenuItem.Checked ||
                 uploadTotmpforTestingToolStripMenuItem.Checked ||
+                forceClovershellMembootsToolStripMenuItem.Checked ||
                 disableSSHlistenerToolStripMenuItem.Checked ||
                 disableClovershellListenerToolStripMenuItem.Checked;
 
@@ -2946,6 +2949,11 @@ namespace com.clusterrr.hakchi_gui
         private void messageOfTheDayToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowMOTD();
+        }
+
+        private void forceClovershellMembootsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.ForceClovershell = forceClovershellMembootsToolStripMenuItem.Checked;
         }
     }
 }

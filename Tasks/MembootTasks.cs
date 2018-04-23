@@ -16,7 +16,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
     class MembootTasks
     {
         // Constants
-        public const int WaitDelay = 13000;
+        public const int WaitDelay = 10000;
 
         // Enums
         public enum MembootTaskType {
@@ -262,6 +262,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             if (hakchi.Shell.IsOnline && hakchi.Shell.Execute("[ -f /proc/atags ]") == 0)
             {
+                // override
+                string addedArgs = ConfigIni.Instance.ForceClovershell ? " hakchi-clovershell" : "";
+
                 // do we care about stock kernel
                 if (stockKernel == null)
                 {
@@ -271,7 +274,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     {
                         try
                         {
-                            hakchi.Shell.ExecuteSimple("/bin/detached recovery", 100);
+                            hakchi.Shell.ExecuteSimple("/bin/detached recovery" + addedArgs, 100);
                         }
                         catch { } // no-op
                         return Conclusion.Success;
@@ -282,31 +285,29 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     hakchi.Shell.ExecuteSimple("uistop");
                     hakchi.Shell.ExecuteSimple("mkdir -p /tmp/kexec/", throwOnNonZero: true);
-                    hakchi.Shell.Execute(
-                        command: "cat > /tmp/kexec/kexec && chmod +x /tmp/kexec/kexec",
-                        stdin: File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "tools", "arm", "kexec.static")),
-                        throwOnNonZero: true
-                    );
+                    hakchi.UploadFile(
+                        Path.Combine(Program.BaseDirectoryInternal, "tools", "arm", "kexec.static"),
+                        "/tmp/kexec/kexec");
 
                     TrackableStream kernelStream = new TrackableStream(kernel);
                     kernelStream.OnProgress += tasker.OnProgress;
                     if (stockKernel == null)
                     {
-                        hakchi.UploadFile(Path.Combine(Program.BaseDirectoryInternal, "tools", "arm", "detached-fallback"), "/tmp/kexec/detached-fallback");
+                        hakchi.UploadFile(
+                            Path.Combine(Program.BaseDirectoryInternal, "tools", "arm", "detached-fallback"),
+                            "/tmp/kexec/detached-fallback");
                         hakchi.UploadFile(kernelStream, "/tmp/kexec/boot.img", false);
                         try
                         {
-                            hakchi.Shell.ExecuteSimple("cd /tmp/kexec/; /bin/sh /tmp/kexec/detached-fallback recovery /tmp/kexec/boot.img", 100);
+                            hakchi.Shell.ExecuteSimple("cd /tmp/kexec/; /bin/sh /tmp/kexec/detached-fallback recovery /tmp/kexec/boot.img" + addedArgs, 100);
                         }
                         catch { } // no-op
                     }
                     else
                     {
-                        hakchi.Shell.Execute(
-                            command: "cat > /tmp/kexec/unpackbootimg && chmod +x /tmp/kexec/unpackbootimg",
-                            stdin: File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "tools", "arm", "unpackbootimg.static")),
-                            throwOnNonZero: true
-                        );
+                        hakchi.UploadFile(
+                            Path.Combine(Program.BaseDirectoryInternal, "tools", "arm", "unpackbootimg.static"),
+                            "/tmp/kexec/unpackbootimg");
                         hakchi.Shell.Execute(
                             command: "cat > /tmp/kexec/boot.img; cd /tmp/kexec/; ./unpackbootimg -i boot.img",
                             stdin: kernelStream,
@@ -333,6 +334,16 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
             else
             {
+                if (stockKernel == null && ConfigIni.Instance.ForceClovershell)
+                {
+                    kernel.InPlaceStringEdit(64, 512, 0, (string str) => {
+                        if (str.IndexOf("hakchi-shell") != -1)
+                            return str.Replace("hakchi-shell", "hakchi-clovershell");
+                        else
+                            return str + " hakchi-clovershell";
+                    });
+                }
+
                 int progress = 0;
                 int maxProgress = (int)((double)kernel.Length / (double)67000 + 50);
                 fel.WriteMemory(Fel.transfer_base_m, kernel,

@@ -20,7 +20,7 @@ getCmdLine(){
 memboot(){
   local bootimg="$1";shift
   [ -f "$bootimg" ] || return 1
-  kexec -l -t zImage "$bootimg" "--command-line=$(getCmdLine "$bootimg" | xargs) $@" --atags || return 1
+  kexec -l -t zImage "$bootimg" "--command-line=$(getCmdLine "$bootimg" | (grep -v "$modname-*shell"; echo "$@") | xargs)" --atags || return 1
   trap ":" HUP KILL
   killall -q clovershell
   uistop
@@ -34,10 +34,14 @@ memboot(){
 
 recovery(){
   local bootimg="$1"
-  [ -f "$bootimg" ] && memboot "$bootimg" "$modname-shell"
+  [ -f "$bootimg" ] && shift
+  local rshell="$modname-shell"
+  pack_list | grep -qF clovershell && rshell="$modname-clovershell"
+  [ "$#" -gt "0" ] && rshell=""
+  [ -f "$bootimg" ] && memboot "$bootimg" "$rshell" ${1+"$@"}
   bootimg="$temppath/boot.img"
   sunxi-flash read_boot2 > "$bootimg" || return 1
-  [ -f "$bootimg" ] && memboot "$bootimg" "$modname-shell"
+  [ -f "$bootimg" ] && memboot "$bootimg" "$rshell" ${1+"$@"}
 }
 
 cdir="$(dirname "$(readlink -f "$0")")"

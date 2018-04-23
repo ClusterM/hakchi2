@@ -219,6 +219,7 @@ namespace com.clusterrr.hakchi_gui
         public MainForm.OriginalGamesPosition OriginalGamesPosition = MainForm.OriginalGamesPosition.AtTop;
         public MainForm.GamesSorting GamesSorting = MainForm.GamesSorting.Name;
         public bool ShowGamesWithoutCoverArt = false;
+        public bool ForceClovershell = false;
         public bool ForceSSHTransfers = false;
         public bool UploadToTmp = false;
         public bool DisableSSHListener = false;

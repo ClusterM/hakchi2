@@ -492,25 +492,34 @@
     <value>Outils du développeur</value>
   </data>
   <data name="devForceSshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>257, 22</value>
   </data>
   <data name="devForceSshToolStripMenuItem.Text" xml:space="preserve">
     <value>Forcer les transferts par SSH</value>
   </data>
   <data name="uploadTotmpforTestingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>257, 22</value>
   </data>
   <data name="uploadTotmpforTestingToolStripMenuItem.Text" xml:space="preserve">
     <value>Envoyer vers /tmp (pour tests)</value>
   </data>
+  <data name="toolStripMenuItem23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 6</value>
+  </data>
+  <data name="forceClovershellMembootsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 22</value>
+  </data>
+  <data name="forceClovershellMembootsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Forcer Clovershell pour memboots</value>
+  </data>
   <data name="disableSSHlistenerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>257, 22</value>
   </data>
   <data name="disableSSHlistenerToolStripMenuItem.Text" xml:space="preserve">
     <value>Désactiver l'écoute SSH</value>
   </data>
   <data name="disableClovershellListenerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>257, 22</value>
   </data>
   <data name="disableClovershellListenerToolStripMenuItem.Text" xml:space="preserve">
     <value>Désactiver l'écoute Clovershell</value>
