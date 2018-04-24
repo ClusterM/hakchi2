@@ -21,7 +21,7 @@ memboot(){
   local bootimg="$1";shift
   [ -f "$bootimg" ] || return 1
   kexec -l -t zImage "$bootimg" "--command-line=$(getCmdLine "$bootimg" | (grep -v "$modname-*shell"; echo "$@") | xargs)" --atags || return 1
-  trap ":" HUP KILL
+  trap ":" HUP TERM
   killall -q clovershell
   uistop
   sync
