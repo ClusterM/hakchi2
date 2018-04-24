@@ -82,12 +82,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
             set
             {
-                if (this.state.Any())
-                {
-                    if (this.state.Peek() == value) return;
-                    this.state.Pop();
-                }
-                this.state.Push(value);
                 SetState(value);
             }
         }
@@ -95,24 +89,32 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public Tasker PushState(State state)
         {
             this.state.Push(state);
-            this.SetState(state);
+
+            this.views.ForEach(view => view.SetState(state));
             return this;
         }
 
         public Tasker PopState()
         {
+            State state = State.Undefined;
             if (this.state.Any())
             {
-                this.state.Pop();
+                state = this.state.Pop();
             }
-            this.SetState(this.state.Any() ? this.state.Peek() : State.Undefined);
+
+            this.views.ForEach(view => view.SetState(state));
             return this;
         }
 
-        // ITaskerView interface
-
         public Tasker SetState(Tasker.State state)
         {
+            if (this.state.Any())
+            {
+                if (this.state.Peek() == state) return this;
+                this.state.Pop();
+            }
+            this.state.Push(state);
+
             this.views.ForEach(view => view.SetState(state));
             return this;
         }
@@ -363,6 +365,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(ConfigIni.Instance.Language);
             while (!Ready) { Thread.Sleep(1); Debug.Write("."); }
+            SetStatus(Resources.Starting);
+            TaskState = State.Starting;
             SetProgress(0, 1);
             try
             {
@@ -472,6 +476,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             return Conclusion.Success;
         }
+
     }
 
     public static class TaskerExtensions

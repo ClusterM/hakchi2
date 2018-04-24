@@ -241,7 +241,6 @@ namespace com.clusterrr.hakchi_gui
             shells.ForEach(shell => { if (shell != caller) shell.Enabled = false; });
             try
             {
-                Connected = Shell.IsOnline;
                 if (!Shell.IsOnline)
                 {
                     throw new IOException("Shell connection should be online!");
@@ -295,6 +294,7 @@ namespace com.clusterrr.hakchi_gui
                 }
 
                 // chain to other OnConnected events
+                Connected = Shell.IsOnline;
                 OnConnected(caller);
             }
             catch (Exception ex)

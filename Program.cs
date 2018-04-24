@@ -76,6 +76,19 @@ namespace com.clusterrr.hakchi_gui
             {
                 Debug.WriteLine(ex.Message + ex.StackTrace);
             }
+            try
+            {
+                MemoryStream inMemoryLog = new MemoryStream();
+                Encoding encoding = System.Text.Encoding.GetEncoding(MY_CODE_PAGE);
+                StreamWriter inMemoryWriter = new StreamWriter(inMemoryLog, encoding);
+                inMemoryWriter.AutoFlush = true;
+                debugStreams.Add(inMemoryLog);
+                Debug.Listeners.Add(new TextWriterTraceListener(inMemoryWriter));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + ex.StackTrace);
+            }
             Debug.AutoFlush = true;
 #endif
             isPortable = !args.Contains("/nonportable") || args.Contains("/portable");
@@ -192,6 +205,12 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 MessageBox.Show(ex.Message + ex.StackTrace, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public static string GetCurrentLogContent()
+        {
+            MemoryStream stream = debugStreams.OfType<MemoryStream>().First();
+            return Encoding.GetEncoding(MY_CODE_PAGE).GetString(stream.GetBuffer(), 0, (int)stream.Length);
         }
 
         [DllImport("Shell32.dll")]

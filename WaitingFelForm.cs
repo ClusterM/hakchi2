@@ -65,7 +65,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Tasks.ErrorForm.Show(this.Text, ex.Message, ex.StackTrace);
+                Tasks.ErrorForm.Show(this, ex);
             }
         }
 

@@ -869,4 +869,13 @@ Continuer?</value>
   <data name="CalculatingFreeSpace" xml:space="preserve">
     <value>Calcul de l'espace libre...</value>
   </data>
+  <data name="CriticalError" xml:space="preserve">
+    <value>Erreur critique</value>
+  </data>
+  <data name="InvalidUserDataBackup" xml:space="preserve">
+    <value>Sauvegarde utilisateur invalide.</value>
+  </data>
+  <data name="FinishBootSequenceQ" xml:space="preserve">
+    <value>Votre NES/SNES Mini est présentement en mode de récupération. Désirez-vous terminer le processus de démarrage au lieu de redémarrer?</value>
+  </data>
 </root>

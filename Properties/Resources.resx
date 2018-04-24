@@ -1223,4 +1223,22 @@ Continue?</value>
   <data name="InvalidUserDataBackup" xml:space="preserve">
     <value>Invalid user data backup.</value>
   </data>
+  <data name="CriticalError" xml:space="preserve">
+    <value>Critical error</value>
+  </data>
+  <data name="sign_lightning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-lightning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_light_bulb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-light-bulb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_sync_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-sync-off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign_light_bulb_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sign-light-bulb-off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FinishBootSequenceQ" xml:space="preserve">
+    <value>You are currently running in recovery mode. Would you like to finish normal boot procedure instead of rebooting?</value>
+  </data>
 </root>

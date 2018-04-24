@@ -32,9 +32,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-                Tasks.ErrorForm.Show(this.Text, ex.Message, ex.StackTrace);
-                //MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Tasks.ErrorForm.Show(this, ex);
                 Close();
             }
         }
@@ -49,7 +47,7 @@ namespace com.clusterrr.hakchi_gui
                     listViewSaves.Visible = false;
                     exportToolStripMenuItem.Enabled = importToolStripMenuItem.Enabled =
                         buttonExport.Enabled = buttonImport.Enabled = false;
-                    if (!WaitingClovershellForm.WaitForDevice(this))
+                    if (!WaitingShellForm.WaitForDevice(this))
                         return false;
                     return true;
                 })))
@@ -129,10 +127,9 @@ namespace com.clusterrr.hakchi_gui
             catch (ObjectDisposedException) { }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
                 try
                 {
-                    Tasks.ErrorForm.Show(this, this.Text, ex.Message, ex.StackTrace);
+                    Tasks.ErrorForm.Show(this, ex);
                 }
                 catch { }
             }
@@ -155,7 +152,7 @@ namespace com.clusterrr.hakchi_gui
                 var savesToDelete = (IEnumerable<ListViewItem>)o;
                 if (!(bool)Invoke(new Func<bool>(delegate
                 {
-                    if (!WaitingClovershellForm.WaitForDevice(this))
+                    if (!WaitingShellForm.WaitForDevice(this))
                         return false;
                     return true;
                 }))) return;
@@ -175,11 +172,7 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine(ex.Message + ex.StackTrace);
                 try
                 {
-                    Tasks.ErrorForm.Show(this, this.Text, ex.Message, ex.StackTrace);
-                    //Invoke(new Action(delegate
-                    //{
-                    //    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //}));
+                    Tasks.ErrorForm.Show(this, ex);
                 }
                 catch { }
             }
@@ -199,7 +192,7 @@ namespace com.clusterrr.hakchi_gui
                     saveFileDialog.Title = name;
                     if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
-                        if (!WaitingClovershellForm.WaitForDevice(this))
+                        if (!WaitingShellForm.WaitForDevice(this))
                             return;
                         using (var save = new MemoryStream())
                         {
@@ -213,14 +206,9 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
                 try
                 {
-                    Tasks.ErrorForm.Show(this, this.Text, ex.Message, ex.StackTrace);
-                    //Invoke(new Action(delegate
-                    //{
-                    //    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //}));
+                    Tasks.ErrorForm.Show(this, ex);
                 }
                 catch { }
             }
@@ -246,7 +234,7 @@ namespace com.clusterrr.hakchi_gui
                 var files = (string[])o;
                 if (!(bool)Invoke(new Func<bool>(delegate
                 {
-                    if (!WaitingClovershellForm.WaitForDevice(this))
+                    if (!WaitingShellForm.WaitForDevice(this))
                         return false;
                     return true;
                 }))) return;
@@ -262,14 +250,9 @@ namespace com.clusterrr.hakchi_gui
             catch (ObjectDisposedException) { }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
                 try
                 {
-                    Tasks.ErrorForm.Show(this, this.Text, ex.Message, ex.StackTrace);
-                    //Invoke(new Action(delegate
-                    //{
-                    //    MessageBox.Show(this, ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //}));
+                    Tasks.ErrorForm.Show(this, ex);
                 }
                 catch { }
             }

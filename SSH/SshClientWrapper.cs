@@ -192,6 +192,7 @@ namespace com.clusterrr.ssh
             }
         }
 
+        
         public int Ping()
         {
             if ((string.IsNullOrEmpty(ip) || ip == "0.0.0.0") && string.IsNullOrEmpty(service))
@@ -212,8 +213,9 @@ namespace com.clusterrr.ssh
             }
             catch (Exception ex)
             {
+                string msg = $"Error during ping \"{ip ?? service}\": {(ex.InnerException ?? ex).Message}";
 #if VERY_DEBUG
-                Debug.WriteLine($"Error during ping \"{ip ?? service}\": " + (ex.InnerException ?? ex).Message);
+                Debug.WriteLine(msg);
 #endif
             }
             return -1;

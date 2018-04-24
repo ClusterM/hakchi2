@@ -607,6 +607,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Critical error.
+        /// </summary>
+        internal static string CriticalError {
+            get {
+                return ResourceManager.GetString("CriticalError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to App code already exists, please use a different code!.
         /// </summary>
         internal static string CustomGameCodeAlreadyExists {
@@ -1051,6 +1060,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
             get {
                 object obj = ResourceManager.GetObject("fi", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are currently running in recovery mode. Would you like to finish normal boot procedure instead of rebooting?.
+        /// </summary>
+        internal static string FinishBootSequenceQ {
+            get {
+                return ResourceManager.GetString("FinishBootSequenceQ", resourceCulture);
             }
         }
         
@@ -1677,7 +1695,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2b3d136-dirty
+        ///   Looks up a localized string similar to f083b24-dirty
         ///.
         /// </summary>
         internal static string gitCommit {
@@ -2097,17 +2115,21 @@ namespace com.clusterrr.hakchi_gui.Properties {
         ///&lt;style&gt;
         ///{0}
         ///
-        ///	.markdown-body {
-        ///		box-sizing: border-box;
-        ///		min-width: 200px;
-        ///		margin: 0 auto;
-        ///		padding: 45px;
-        ///	}
+        ///.markdown-body {{
+        ///	box-sizing: border-box;
+        ///	border: solid 1px silver;
+        ///	border-radius: 10px;
+        ///	background-color: white;
+        ///	margin: 0;
+        ///	padding: 10px;
+        ///}}
         ///&lt;/style&gt;
+        ///&lt;body style=&quot;background-color: {3}&quot;&gt;
         ///&lt;article class=&quot;markdown-body&quot;&gt;
-        ///&lt;h1&gt;{1}&lt;/h1&gt;
+        ///&lt;!-- {1} --&gt;
         ///{2}
         ///&lt;/article&gt;
+        ///&lt;/body&gt;
         ///.
         /// </summary>
         internal static string motdTemplateHTML {
@@ -3024,6 +3046,36 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sign_light_bulb {
+            get {
+                object obj = ResourceManager.GetObject("sign_light_bulb", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_light_bulb_off {
+            get {
+                object obj = ResourceManager.GetObject("sign_light_bulb_off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_lightning {
+            get {
+                object obj = ResourceManager.GetObject("sign_lightning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sign_paper_plane {
             get {
                 object obj = ResourceManager.GetObject("sign_paper_plane", resourceCulture);
@@ -3047,6 +3099,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static System.Drawing.Bitmap sign_sync {
             get {
                 object obj = ResourceManager.GetObject("sign_sync", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_sync_off {
+            get {
+                object obj = ResourceManager.GetObject("sign_sync_off", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

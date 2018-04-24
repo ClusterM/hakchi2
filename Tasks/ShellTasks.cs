@@ -12,7 +12,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             tasker.SetStatus(Resources.Rebooting);
             try
             {
-                hakchi.Shell.Execute("sync; umount -ar; reboot -f");
+                hakchi.Shell.ExecuteSimple("sync; umount -ar; reboot -f", 100);
             } catch { }
 
             return Conclusion.Success;
@@ -23,7 +23,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             tasker.SetStatus(Resources.PoweringOff);
             try
             {
-                hakchi.Shell.Execute("sync; umount -ar; poweroff -f");
+                hakchi.Shell.ExecuteSimple("sync; umount -ar; poweroff -f", 100);
             }
             catch { }
 

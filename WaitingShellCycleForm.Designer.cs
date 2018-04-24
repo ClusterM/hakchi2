@@ -1,6 +1,6 @@
-﻿namespace com.clusterrr.hakchi_gui.Tasks
+﻿namespace com.clusterrr.hakchi_gui
 {
-    partial class TaskerForm
+    partial class WaitingShellCycleForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,31 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.statusLabel = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WaitingShellCycleForm));
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.progressBarEx1 = new ProgressODoom.ProgressBarEx();
             this.fruityLoopsBackgroundPainter1 = new ProgressODoom.FruityLoopsBackgroundPainter();
             this.styledBorderPainter1 = new ProgressODoom.StyledBorderPainter();
             this.fruityLoopsProgressPainter1 = new ProgressODoom.FruityLoopsProgressPainter();
-            this.statusPictureBox = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.statusPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // statusLabel
+            // pictureBox1
             // 
-            this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(50, 21);
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(46, 13);
-            this.statusLabel.TabIndex = 0;
-            this.statusLabel.Text = "Status...";
+            this.pictureBox1.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.sign_sync;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
             // 
             // progressBarEx1
             // 
+            resources.ApplyResources(this.progressBarEx1, "progressBarEx1");
             this.progressBarEx1.BackgroundPainter = this.fruityLoopsBackgroundPainter1;
             this.progressBarEx1.BorderPainter = this.styledBorderPainter1;
-            this.progressBarEx1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.progressBarEx1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.progressBarEx1.Location = new System.Drawing.Point(12, 49);
             this.progressBarEx1.MarqueePercentage = 25;
             this.progressBarEx1.MarqueeSpeed = 30;
             this.progressBarEx1.MarqueeStep = 1;
@@ -62,10 +71,8 @@
             this.progressBarEx1.ProgressPadding = 0;
             this.progressBarEx1.ProgressPainter = this.fruityLoopsProgressPainter1;
             this.progressBarEx1.ProgressType = ProgressODoom.ProgressType.Smooth;
-            this.progressBarEx1.ShowPercentage = true;
-            this.progressBarEx1.Size = new System.Drawing.Size(538, 46);
-            this.progressBarEx1.TabIndex = 0;
-            this.progressBarEx1.Value = 0;
+            this.progressBarEx1.ShowPercentage = false;
+            this.progressBarEx1.Value = 30;
             // 
             // fruityLoopsBackgroundPainter1
             // 
@@ -82,44 +89,33 @@
             this.fruityLoopsProgressPainter1.GlossPainter = null;
             this.fruityLoopsProgressPainter1.ProgressBorderPainter = null;
             // 
-            // statusPictureBox
+            // WaitingShellCycleForm
             // 
-            this.statusPictureBox.Location = new System.Drawing.Point(12, 11);
-            this.statusPictureBox.Name = "statusPictureBox";
-            this.statusPictureBox.Size = new System.Drawing.Size(32, 32);
-            this.statusPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.statusPictureBox.TabIndex = 1;
-            this.statusPictureBox.TabStop = false;
-            // 
-            // TaskerForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 107);
-            this.Controls.Add(this.statusPictureBox);
             this.Controls.Add(this.progressBarEx1);
-            this.Controls.Add(this.statusLabel);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "TaskerForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Tasker";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TaskerForm_FormClosing);
-            this.Shown += new System.EventHandler(this.TaskerForm_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.statusPictureBox)).EndInit();
+            this.Name = "WaitingShellCycleForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WaitingShellCycle_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WaitingShellCycle_FormClosed);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label statusLabel;
+
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label1;
         private ProgressODoom.ProgressBarEx progressBarEx1;
         private ProgressODoom.FruityLoopsBackgroundPainter fruityLoopsBackgroundPainter1;
-        private ProgressODoom.FruityLoopsProgressPainter fruityLoopsProgressPainter1;
         private ProgressODoom.StyledBorderPainter styledBorderPainter1;
-        private System.Windows.Forms.PictureBox statusPictureBox;
+        private ProgressODoom.FruityLoopsProgressPainter fruityLoopsProgressPainter1;
     }
 }

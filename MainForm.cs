@@ -123,8 +123,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-                Tasks.ErrorForm.Show(null, "Critical error: " + ex.Message, ex.StackTrace);
+                Tasks.ErrorForm.Show(this, ex, Resources.CriticalError);
             }
         }
 
@@ -189,8 +188,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("There was an error running the auto-updater: " + ex.Message + "\r\n" + ex.StackTrace);
-                Tasks.ErrorForm.Show(Resources.Error, "There was an error running the auto-updater: " + ex.Message, ex.StackTrace);
+                Tasks.ErrorForm.Show(this, ex);
             }
         }
 
@@ -775,8 +773,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-                Tasks.ErrorForm.Show(Resources.Error, ex.Message, ex.StackTrace);
+                Tasks.ErrorForm.Show(this, ex);
             }
         }
 
@@ -1384,7 +1381,7 @@ namespace com.clusterrr.hakchi_gui
             var returnVal = Tasks.MessageForm.Show(this, Resources.CustomKernel, Resources.CustomKernelInstalledQ, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No, Tasks.MessageForm.Button.Cancel }, Tasks.MessageForm.DefaultButton.Button1);
             if (returnVal == MessageForm.Button.Yes)
             {
-                return WaitingClovershellForm.WaitForDevice(this);
+                return WaitingShellForm.WaitForDevice(this);
             }
             else if (returnVal == MessageForm.Button.No)
             {
@@ -1392,7 +1389,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (InstallHakchi())
                     {
-                        return WaitingClovershellForm.WaitForDevice(this);
+                        return WaitingShellForm.WaitForDevice(this);
                     }
                 }
             }
@@ -2309,7 +2306,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                if (WaitingClovershellForm.WaitForDevice(this))
+                if (WaitingShellForm.WaitForDevice(this))
                 {
                     hakchi.SyncConfig(ConfigIni.GetConfigDictionary(), true);
                     if (!ConfigIni.Instance.DisablePopups)
@@ -2318,8 +2315,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-                Tasks.ErrorForm.Show(null, ex.Message, ex.StackTrace);
+                Tasks.ErrorForm.Show(this, ex);
             }
         }
 
@@ -2327,7 +2323,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                if (WaitingClovershellForm.WaitForDevice(this))
+                if (WaitingShellForm.WaitForDevice(this))
                 {
                     if (hakchi.MinimalMemboot)
                     {
@@ -2355,8 +2351,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-                Tasks.ErrorForm.Show(null, ex.Message, ex.StackTrace);
+                Tasks.ErrorForm.Show(this, ex);
             }
         }
 
@@ -2382,12 +2377,10 @@ namespace com.clusterrr.hakchi_gui
                                 FtpServer.Stop();
                             }
                             catch { }
-                            Debug.WriteLine(ex.Message + ex.StackTrace);
-                            Invoke(new Action(delegate ()
-                            {
-                                Tasks.ErrorForm.Show(null, ex.Message, ex.StackTrace);
+                            Invoke(new Action(() => {
                                 ConfigIni.Instance.FtpServer = openFTPInExplorerToolStripMenuItem.Enabled = FTPToolStripMenuItem.Checked = false;
                             }));
+                            Tasks.ErrorForm.Show(this, ex);
                         }
                     });
                     ftpThread.Start();
@@ -2395,8 +2388,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine(ex.Message + ex.StackTrace);
-                    Tasks.ErrorForm.Show(null, ex.Message, ex.StackTrace);
+                    Tasks.ErrorForm.Show(this, ex);
                 }
             }
             else
@@ -2425,8 +2417,7 @@ namespace com.clusterrr.hakchi_gui
                 ConfigIni.Instance.TelnetServer =
                     openTelnetToolStripMenuItem.Enabled =
                     shellToolStripMenuItem.Checked = false;
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-                Tasks.ErrorForm.Show(null, ex.Message, ex.StackTrace);
+                Tasks.ErrorForm.Show(this, ex);
             }
         }
 
@@ -2457,8 +2448,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-                Tasks.ErrorForm.Show(null, ex.Message, ex.StackTrace);
+                Tasks.ErrorForm.Show(this, ex);
             }
         }
 
@@ -2498,15 +2488,14 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                if (WaitingClovershellForm.WaitForDevice(this))
+                if (WaitingShellForm.WaitForDevice(this))
                 {
                     Program.FormContext.AddForm(new ScreenshotForm());
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-                Tasks.ErrorForm.Show(null, ex.Message, ex.StackTrace);
+                Tasks.ErrorForm.Show(this, ex);
             }
         }
 
@@ -2529,8 +2518,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-                Tasks.ErrorForm.Show(null, ex.Message, ex.StackTrace);
+                Tasks.ErrorForm.Show(this, ex);
             }
         }
 
@@ -2552,7 +2540,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch(Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
+                Tasks.ErrorForm.Show(this, ex);
             }
         }
 
@@ -2757,7 +2745,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                if (WaitingClovershellForm.WaitForDevice(this))
+                if (WaitingShellForm.WaitForDevice(this))
                 {
                     if (hakchi.MinimalMemboot)
                     {
@@ -2805,8 +2793,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-                Tasks.ErrorForm.Show(null, "Error changing boot image: " + ex.Message, ex.StackTrace);
+                Tasks.ErrorForm.Show(this, ex);
             }
         }
 
@@ -2814,7 +2801,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                if (WaitingClovershellForm.WaitForDevice(this))
+                if (WaitingShellForm.WaitForDevice(this))
                 {
                     if (hakchi.MinimalMemboot)
                     {
@@ -2841,8 +2828,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-                Tasks.ErrorForm.Show(null, "Error disabling boot image: " + ex.Message, ex.StackTrace);
+                Tasks.ErrorForm.Show(this, ex);
             }
         }
 
@@ -2860,7 +2846,7 @@ namespace com.clusterrr.hakchi_gui
                     Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedCannotInteract, Resources.sign_ban);
                     return;
                 }
-                if (WaitingClovershellForm.WaitForDevice(this))
+                if (WaitingShellForm.WaitForDevice(this))
                 {
                     hakchi.Shell.ExecuteSimple("hakchi unset cfg_boot_logo; rm \"$(hakchi get rootfs)/etc/boot.png\"");
                     hakchi.Shell.ExecuteSimple("rm \"/media/hakchi/boot.png\"");
@@ -2871,8 +2857,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-                Tasks.ErrorForm.Show(null, "Error resetting boot image: " + ex.Message, ex.StackTrace);
+                Tasks.ErrorForm.Show(this, ex);
             }
         }
 
@@ -2933,11 +2918,26 @@ namespace com.clusterrr.hakchi_gui
         {
             if (hakchi.Shell.IsOnline)
             {
-                try
+                bool justBoot = false;
+                if (hakchi.MinimalMemboot)
                 {
-                    hakchi.Shell.ExecuteSimple("sync; umount -ar; reboot -f", 100);
+                    if (Tasks.MessageForm.Show(this, Resources.Rebooting, Resources.FinishBootSequenceQ, Resources.sign_question, new Tasks.MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
+                    {
+                        justBoot = true;
+                    }
                 }
-                catch { }
+
+                using (var tasker = new Tasker(this))
+                {
+                    tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                    tasker.SetStatusImage(Resources.sign_sync);
+                    tasker.SetTitle(Resources.Rebooting);
+                    if (justBoot)
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
+                    else
+                        tasker.AddTasks(Tasks.ShellTasks.Reboot, Tasks.MembootTasks.WaitForShellCycle);
+                    tasker.Start();
+                }
             }
         }
 
@@ -2954,6 +2954,11 @@ namespace com.clusterrr.hakchi_gui
         private void forceClovershellMembootsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Instance.ForceClovershell = forceClovershellMembootsToolStripMenuItem.Checked;
+        }
+
+        private void technicalInformationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new TechInfo().ShowDialog(this);
         }
     }
 }

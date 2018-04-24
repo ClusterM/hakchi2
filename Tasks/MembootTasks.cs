@@ -16,7 +16,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
     class MembootTasks
     {
         // Constants
-        public const int WaitDelay = 10000;
+        public const int MembootWaitDelay = 30000;
+        public const int BootWaitDelay = 10000;
 
         // Enums
         public enum MembootTaskType {
@@ -54,12 +55,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             fel = new Fel();
             List<TaskFunc> taskList = new List<TaskFunc>();
-            taskList.Add(WaitForFelOrMembootableShell);
-            taskList.Add(Memboot);
-            taskList.Add(Tasker.WaitIf(!hakchi.MinimalMemboot, WaitDelay, Resources.PleaseWait));
-            taskList.Add(WaitForShell);
-            taskList.Add(ShellTasks.ShowSplashScreen);
-
+            if (!hakchi.MinimalMemboot)
+            {
+                taskList.Add(WaitForFelOrMembootableShell);
+                taskList.Add(Memboot);
+                taskList.Add(WaitForShellCycle);
+                taskList.Add(ShellTasks.ShowSplashScreen);
+            }
             switch (type)
             {
                 case MembootTaskType.InstallHakchi:
@@ -215,15 +217,17 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Conclusion.Success;
         }
 
-        public Conclusion WaitForShell(Tasker tasker, Object syncObject = null)
+        public static Conclusion WaitForShellCycle(Tasker tasker, Object syncObject = null)
         {
             if (tasker.HostForm.InvokeRequired)
             {
-                return (Conclusion)tasker.HostForm.Invoke(new Func<Tasker, object, Conclusion>(WaitForShell), new object[] { tasker, syncObject });
+                return (Conclusion)tasker.HostForm.Invoke(new Func<Tasker, object, Conclusion>(WaitForShellCycle), new object[] { tasker, syncObject });
             }
             tasker.SetStatus(Resources.WaitingForDevice);
-            var result = WaitingClovershellForm.WaitForDevice(tasker.HostForm, true);
-            if (result)
+            tasker.PushState(State.Waiting);
+            var result = WaitingShellCycleForm.WaitForDevice(tasker.HostForm, MembootWaitDelay);
+            tasker.PopState();
+            if (result == DialogResult.OK)
                 return Conclusion.Success;
 
             return Conclusion.Abort;
@@ -437,11 +441,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
             MemoryStream hakchiLogStream = new MemoryStream();
             var splitStream = new SplitterStream(hakchiLogStream).AddStreams(Program.debugStreams);
 
+            tasker.PushState(State.Waiting);
             try
             {
                 hakchi.Shell.Execute("boot", null, splitStream, splitStream, 0, true);
             }
             catch { }
+            tasker.PopState();
 
             hakchiLogStream.Seek(0, SeekOrigin.Begin);
             string hakchiLog;

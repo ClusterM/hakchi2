@@ -147,11 +147,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
         private Tasker.State taskState = Tasker.State.Undefined;
         private bool isClosing = false;
 
-        private void Tasker_Load(object sender, EventArgs e)
-        {
-            statusLabel.Text = Resources.Starting;
-        }
-
         private void TaskerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!isClosing && e.CloseReason == CloseReason.UserClosing)

@@ -225,7 +225,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     catch (Exception ex)
                     {
-                        Tasks.ErrorForm.Show(MainForm.StaticRef, Resources.ImportGames, string.Format(Resources.ErrorImportingGame, Path.GetFileName(inputFileName)), ex.Message + ex.StackTrace);
+                        Tasks.ErrorForm.Show(MainForm.StaticRef, Resources.ImportGames, string.Format(Resources.ErrorImportingGame, Path.GetFileName(inputFileName)), ex.Message + ex.StackTrace, Resources.sign_error);
                         return false;
                     }
 
