@@ -2235,6 +2235,9 @@
     <EmbeddedResource Include="Tasks\TaskerTransferForm.resx">
       <DependentUpon>TaskerTransferForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TechInfo.fr-FR.resx">
+      <DependentUpon>TechInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TechInfo.resx">
       <DependentUpon>TechInfo.cs</DependentUpon>
     </EmbeddedResource>

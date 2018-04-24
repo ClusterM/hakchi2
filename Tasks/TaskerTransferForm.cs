@@ -64,7 +64,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         private DateTime lastTime = default(DateTime);
         private long lastData = 0;
         private Queue<double> speedSamples;
-        public ITaskerView SetProgress(long value, long maximum, string fileName)
+        public TaskerTransferForm SetAdvancedProgress(long value, long maximum, string fileName)
         {
             // call parent tasker SetProgress to update other views (and this one's progress bar)
             Tasker.SetProgress(value, maximum);
@@ -74,7 +74,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 if (InvokeRequired)
                 {
-                    return (ITaskerView)Invoke(new Func<long, long, string, ITaskerView>(SetProgress), new object[] { value, maximum, fileName });
+                    return (TaskerTransferForm)Invoke(new Func<long, long, string, TaskerTransferForm>(SetAdvancedProgress), new object[] { value, maximum, fileName });
                 }
 
                 // update other elements

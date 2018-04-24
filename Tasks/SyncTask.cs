@@ -173,15 +173,42 @@ namespace com.clusterrr.hakchi_gui.Tasks
             foreach (var afi in transferGameSet)
             {
                 string path = new Uri(exportDirectory + "/" + afi.FilePath).LocalPath;
+
                 string dir = Path.GetDirectoryName(path);
                 if (!Directory.Exists(dir))
                 {
                     Directory.CreateDirectory(dir);
                 }
 
+                if (DateTime.Now.Subtract(lastTime).TotalMilliseconds > UpdateFreq)
+                {
+                    transferForm.SetAdvancedProgress(value, max, afi.FilePath);
+                    lastTime = DateTime.Now;
+                }
+
+                // either read actual file, or file stream
                 if (!string.IsNullOrEmpty(afi.LocalFilePath))
                 {
-                    File.Copy(afi.LocalFilePath, path, true);
+                    if (afi.FileSize > NesApplication.MaxCompress)
+                    {
+                        using (var stream = new TrackableFileStream(afi.LocalFilePath, FileMode.Open))
+                        {
+                            stream.OnProgress += ((long pos, long len) => {
+                                if (DateTime.Now.Subtract(lastTime).TotalMilliseconds > UpdateFreq)
+                                {
+                                    transferForm.SetAdvancedProgress(value + pos, max, afi.FilePath);
+                                    lastTime = DateTime.Now;
+                                }
+                            });
+                            using (var f = File.Open(path, FileMode.Create))
+                                stream.CopyTo(f);
+                            File.SetLastWriteTimeUtc(path, afi.ModifiedTime);
+                        }
+                    }
+                    else
+                    {
+                        File.Copy(afi.LocalFilePath, path, true);
+                    }
                 }
                 else
                 {
@@ -198,12 +225,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     }
                 }
                 value += afi.FileSize;
-
-                if (DateTime.Now.Subtract(lastTime).TotalMilliseconds > UpdateFreq)
-                {
-                    transferForm.SetProgress(value, max, afi.FilePath);
-                    lastTime = DateTime.Now;
-                }
             }
             Debug.WriteLine("Uploaded " + (int)(max / 1024) + "kb in " + DateTime.Now.Subtract(startTime).TotalSeconds + " seconds");
 
@@ -314,7 +335,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         {
                             if (DateTime.Now.Subtract(lastTime).TotalMilliseconds >= UpdateFreq)
                             {
-                                transferForm.SetProgress(pos, len, filename);
+                                transferForm.SetAdvancedProgress(pos, len, filename);
                                 lastTime = DateTime.Now;
                             }
                         };
@@ -325,7 +346,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             Debug.WriteLine("Uploaded " + (int)(ftp.Length / 1024) + "kb in " + DateTime.Now.Subtract(startTime).TotalSeconds + " seconds");
                         }
                     }
-                    transferForm.SetProgress(ftp.Length, ftp.Length, "");
+                    transferForm.SetAdvancedProgress(ftp.Length, ftp.Length, "");
                 }
             }
 
@@ -364,7 +385,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             if (done) return;
                             if (DateTime.Now.Subtract(lastTime).TotalMilliseconds >= UpdateFreq)
                             {
-                                transferForm.SetProgress(pos, len, filename);
+                                transferForm.SetAdvancedProgress(pos, len, filename);
                                 lastTime = DateTime.Now;
                             }
                         };
@@ -379,7 +400,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         gamesTar.CopyTo(File.OpenWrite(Program.BaseDirectoryExternal + "\\DebugSyncOutput.tar"));
 #endif
                     }
-                    transferForm.SetProgress(gamesTar.Length, gamesTar.Length, "");
+                    transferForm.SetAdvancedProgress(gamesTar.Length, gamesTar.Length, "");
                 }
             }
 
