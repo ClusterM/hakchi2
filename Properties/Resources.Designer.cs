@@ -940,6 +940,33 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please note, this dump file is only useful for legacy hakchi2 or hakchi2 ce versions, it is not useful for the current version..
+        /// </summary>
+        internal static string DumpOriginalKernelCompleteMessage {
+            get {
+                return ResourceManager.GetString("DumpOriginalKernelCompleteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Original kernel dump complete.
+        /// </summary>
+        internal static string DumpOriginalKernelCompleteTitle {
+            get {
+                return ResourceManager.GetString("DumpOriginalKernelCompleteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The original kernel could not be found on the system..
+        /// </summary>
+        internal static string DumpOriginalKernelNotFound {
+            get {
+                return ResourceManager.GetString("DumpOriginalKernelNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable auto refresh.
         /// </summary>
         internal static string EnableAutoRefresh {
@@ -1695,7 +1722,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to f083b24-dirty
+        ///   Looks up a localized string similar to 4e03c20-dirty
         ///.
         /// </summary>
         internal static string gitCommit {

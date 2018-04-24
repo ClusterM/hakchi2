@@ -2960,5 +2960,10 @@ namespace com.clusterrr.hakchi_gui
         {
             new TechInfo().ShowDialog(this);
         }
+
+        private void dumpOriginalKernellegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

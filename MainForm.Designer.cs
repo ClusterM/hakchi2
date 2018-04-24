@@ -142,6 +142,7 @@
             this.messageOfTheDayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem22 = new System.Windows.Forms.ToolStripSeparator();
+            this.technicalInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonAddGames = new System.Windows.Forms.Button();
@@ -230,7 +231,7 @@
             this.toolStripMenuItem20 = new System.Windows.Forms.ToolStripSeparator();
             this.syncStructureForAllGamesCollectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
-            this.technicalInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dumpOriginalKernellegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -430,7 +431,8 @@
             this.flashNANDCPartitionToolStripMenuItem,
             this.formatNANDCToolStripMenuItem,
             this.toolStripSeparator1,
-            this.factoryResetToolStripMenuItem});
+            this.factoryResetToolStripMenuItem,
+            this.dumpOriginalKernellegacyToolStripMenuItem});
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
             resources.ApplyResources(this.advancedToolStripMenuItem, "advancedToolStripMenuItem");
             // 
@@ -1064,6 +1066,12 @@
             this.toolStripMenuItem22.Name = "toolStripMenuItem22";
             resources.ApplyResources(this.toolStripMenuItem22, "toolStripMenuItem22");
             // 
+            // technicalInformationToolStripMenuItem
+            // 
+            this.technicalInformationToolStripMenuItem.Name = "technicalInformationToolStripMenuItem";
+            resources.ApplyResources(this.technicalInformationToolStripMenuItem, "technicalInformationToolStripMenuItem");
+            this.technicalInformationToolStripMenuItem.Click += new System.EventHandler(this.technicalInformationToolStripMenuItem_Click);
+            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
@@ -1683,11 +1691,11 @@
             this.gamesConsoleComboBox.Name = "gamesConsoleComboBox";
             this.gamesConsoleComboBox.SelectedIndexChanged += new System.EventHandler(this.gamesConsoleComboBox_SelectedIndexChanged);
             // 
-            // technicalInformationToolStripMenuItem
+            // dumpOriginalKernellegacyToolStripMenuItem
             // 
-            this.technicalInformationToolStripMenuItem.Name = "technicalInformationToolStripMenuItem";
-            resources.ApplyResources(this.technicalInformationToolStripMenuItem, "technicalInformationToolStripMenuItem");
-            this.technicalInformationToolStripMenuItem.Click += new System.EventHandler(this.technicalInformationToolStripMenuItem_Click);
+            this.dumpOriginalKernellegacyToolStripMenuItem.Name = "dumpOriginalKernellegacyToolStripMenuItem";
+            resources.ApplyResources(this.dumpOriginalKernellegacyToolStripMenuItem, "dumpOriginalKernellegacyToolStripMenuItem");
+            this.dumpOriginalKernellegacyToolStripMenuItem.Click += new System.EventHandler(this.dumpOriginalKernellegacyToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1935,6 +1943,7 @@
         private System.Windows.Forms.ToolStripMenuItem forceClovershellMembootsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem23;
         private System.Windows.Forms.ToolStripMenuItem technicalInformationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dumpOriginalKernellegacyToolStripMenuItem;
     }
 }
 

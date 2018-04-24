@@ -1241,4 +1241,13 @@ Continue?</value>
   <data name="FinishBootSequenceQ" xml:space="preserve">
     <value>You are currently running in recovery mode. Would you like to finish normal boot procedure instead of rebooting?</value>
   </data>
+  <data name="DumpOriginalKernelCompleteMessage" xml:space="preserve">
+    <value>Please note, this dump file is only useful for legacy hakchi2 or hakchi2 ce versions, it is not useful for the current version.</value>
+  </data>
+  <data name="DumpOriginalKernelCompleteTitle" xml:space="preserve">
+    <value>Original kernel dump complete</value>
+  </data>
+  <data name="DumpOriginalKernelNotFound" xml:space="preserve">
+    <value>The original kernel could not be found on the system.</value>
+  </data>
 </root>

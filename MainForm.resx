@@ -213,25 +213,25 @@
     <value>&amp;File</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text" xml:space="preserve">
     <value>Install / Repair</value>
   </data>
   <data name="resetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="resetToolStripMenuItem.Text" xml:space="preserve">
     <value>Reset</value>
   </data>
   <data name="uninstallToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text" xml:space="preserve">
     <value>Uninstall</value>
   </data>
   <data name="toolStripMenuItem11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 6</value>
+    <value>177, 6</value>
   </data>
   <data name="normalModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 22</value>
@@ -246,7 +246,7 @@
     <value>SD mode</value>
   </data>
   <data name="flashUbootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="flashUbootToolStripMenuItem.Text" xml:space="preserve">
     <value>Flash uboot</value>
@@ -341,8 +341,14 @@
   <data name="factoryResetToolStripMenuItem.Text" xml:space="preserve">
     <value>Factory reset</value>
   </data>
+  <data name="dumpOriginalKernellegacyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 22</value>
+  </data>
+  <data name="dumpOriginalKernellegacyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dump original kernel (legacy)</value>
+  </data>
   <data name="advancedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="advancedToolStripMenuItem.Text" xml:space="preserve">
     <value>Advanced</value>
@@ -2824,6 +2830,12 @@
   <data name="&gt;&gt;toolStripMenuItem22.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;technicalInformationToolStripMenuItem.Name" xml:space="preserve">
+    <value>technicalInformationToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;technicalInformationToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;aboutToolStripMenuItem.Name" xml:space="preserve">
     <value>aboutToolStripMenuItem</value>
   </data>
@@ -3118,10 +3130,10 @@
   <data name="&gt;&gt;syncStructureForAllGamesCollectionsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;technicalInformationToolStripMenuItem.Name" xml:space="preserve">
-    <value>technicalInformationToolStripMenuItem</value>
+  <data name="&gt;&gt;dumpOriginalKernellegacyToolStripMenuItem.Name" xml:space="preserve">
+    <value>dumpOriginalKernellegacyToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;technicalInformationToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;dumpOriginalKernellegacyToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
