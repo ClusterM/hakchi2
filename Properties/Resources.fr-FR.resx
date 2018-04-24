@@ -878,4 +878,13 @@ Continuer?</value>
   <data name="FinishBootSequenceQ" xml:space="preserve">
     <value>Votre NES/SNES Mini est présentement en mode de récupération. Désirez-vous terminer le processus de démarrage au lieu de redémarrer?</value>
   </data>
+  <data name="DumpOriginalKernelCompleteMessage" xml:space="preserve">
+    <value>Veuillez noter que ce fichier de sauvegarde n'est utile que pour les précédentes versions de hakchi2 et hakchi2 CE. Il n'est d'aucune utilité pour la version actuelle.</value>
+  </data>
+  <data name="DumpOriginalKernelCompleteTitle" xml:space="preserve">
+    <value>Sauvegarde du kernel d'origine complétée</value>
+  </data>
+  <data name="DumpOriginalKernelNotFound" xml:space="preserve">
+    <value>Le kernel d'origine est introuvable sur votre NES/SNES Mini</value>
+  </data>
 </root>

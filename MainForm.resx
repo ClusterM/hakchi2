@@ -272,6 +272,15 @@
   <data name="toolStripMenuItem10.Size" type="System.Drawing.Size, System.Drawing">
     <value>273, 6</value>
   </data>
+  <data name="dumpOriginalKernellegacyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 22</value>
+  </data>
+  <data name="dumpOriginalKernellegacyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dump original kernel (legacy)</value>
+  </data>
+  <data name="toolStripMenuItem24.Size" type="System.Drawing.Size, System.Drawing">
+    <value>273, 6</value>
+  </data>
   <data name="dumpTheWholeNANDToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
@@ -316,7 +325,7 @@
     <value>276, 22</value>
   </data>
   <data name="formatNANDCToolStripMenuItem.Text" xml:space="preserve">
-    <value>Format NAND-C</value>
+    <value>Format NAND-C partition</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>273, 6</value>
@@ -340,12 +349,6 @@
   </data>
   <data name="factoryResetToolStripMenuItem.Text" xml:space="preserve">
     <value>Factory reset</value>
-  </data>
-  <data name="dumpOriginalKernellegacyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 22</value>
-  </data>
-  <data name="dumpOriginalKernellegacyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Dump original kernel (legacy)</value>
   </data>
   <data name="advancedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
@@ -2392,6 +2395,12 @@
   <data name="&gt;&gt;factoryResetToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;dumpOriginalKernellegacyToolStripMenuItem.Name" xml:space="preserve">
+    <value>dumpOriginalKernellegacyToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;dumpOriginalKernellegacyToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;modulesToolStripMenuItem.Name" xml:space="preserve">
     <value>modulesToolStripMenuItem</value>
   </data>
@@ -3130,11 +3139,11 @@
   <data name="&gt;&gt;syncStructureForAllGamesCollectionsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;dumpOriginalKernellegacyToolStripMenuItem.Name" xml:space="preserve">
-    <value>dumpOriginalKernellegacyToolStripMenuItem</value>
+  <data name="&gt;&gt;toolStripMenuItem24.Name" xml:space="preserve">
+    <value>toolStripMenuItem24</value>
   </data>
-  <data name="&gt;&gt;dumpOriginalKernellegacyToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;toolStripMenuItem24.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

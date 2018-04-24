@@ -301,7 +301,7 @@
     <value>5</value>
   </data>
   <data name="statusStrip.Text" xml:space="preserve">
-    <value>statusStrip1</value>
+    <value></value>
   </data>
   <data name="&gt;&gt;statusStrip.Name" xml:space="preserve">
     <value>statusStrip</value>

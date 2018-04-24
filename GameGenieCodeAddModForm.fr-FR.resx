@@ -70,4 +70,7 @@
   <data name="label2.Text">
     <value>Description :</value>
   </data>
+  <data name="buttonOk.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
 </root>

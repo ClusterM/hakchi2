@@ -79,4 +79,13 @@
   <data name="removeToolStripMenuItem.Text">
     <value>Supprimer</value>
   </data>
+  <data name="buttonOk.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ofdXmlFile.Filter" xml:space="preserve">
+    <value>Fichiers XML|*.xml</value>
+  </data>
+  <data name="ofdXmlFile.Title" xml:space="preserve">
+    <value>Sélectionner fichier XML de Game Genie Nestopia</value>
+  </data>
 </root>

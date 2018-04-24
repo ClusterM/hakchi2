@@ -1722,7 +1722,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4e03c20-dirty
+        ///   Looks up a localized string similar to 736f22c-dirty
         ///.
         /// </summary>
         internal static string gitCommit {

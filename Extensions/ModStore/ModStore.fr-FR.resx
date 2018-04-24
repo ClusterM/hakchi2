@@ -153,4 +153,16 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Magasin de mods Hakchi</value>
   </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Retroarch</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>USB-Host</value>
+  </data>
+  <data name="statusStrip1.Text" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="PoweredByLinkS.Text" xml:space="preserve">
+    <value>GénéréParLien</value>
+  </data>
 </root>

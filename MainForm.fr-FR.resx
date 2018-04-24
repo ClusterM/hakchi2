@@ -1052,4 +1052,40 @@
   <data name="syncStructureForAllGamesCollectionsToolStripMenuItem.Text" xml:space="preserve">
     <value>Synchroniser les réglages pour toutes les collections</value>
   </data>
+  <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Kernel</value>
+  </data>
+  <data name="modulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Modules</value>
+  </data>
+  <data name="kachikachiToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kachikachi</value>
+  </data>
+  <data name="canoeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Canoe</value>
+  </data>
+  <data name="retroarchToolStripMenuItem.Text" xml:space="preserve">
+    <value>Retroarch</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Supp</value>
+  </data>
+  <data name="sFROMToolToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Outil SFROM Tool</value>
+  </data>
+  <data name="labelID.Text" xml:space="preserve">
+    <value>ID:</value>
+  </data>
+  <data name="buttonGoogle.Text" xml:space="preserve">
+    <value>Google</value>
+  </data>
+  <data name="structureButton.Text" xml:space="preserve">
+    <value>Structure</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>hakchi2</value>
+  </data>
+  <data name="dumpOriginalKernellegacyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sauvegarde du kernel d'origine (ancien)</value>
+  </data>
 </root>

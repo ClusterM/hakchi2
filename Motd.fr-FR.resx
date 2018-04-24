@@ -120,4 +120,7 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Message important</value>
   </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
 </root>

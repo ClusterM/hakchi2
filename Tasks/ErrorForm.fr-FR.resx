@@ -120,4 +120,13 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Erreur</value>
   </data>
+  <data name="copyToClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Copier vers le presse-papier</value>
+  </data>
+  <data name="errorLabel.Text" xml:space="preserve">
+    <value>Message d'erreur</value>
+  </data>
+  <data name="buttonOK.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
 </root>

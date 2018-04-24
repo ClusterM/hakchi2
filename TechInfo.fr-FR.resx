@@ -201,4 +201,10 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Information technique</value>
   </data>
+  <data name="saveFileDialog1.Filter" xml:space="preserve">
+    <value>Fichiers texte|*.txt</value>
+  </data>
+  <data name="buttonOk.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
 </root>
