@@ -13,7 +13,7 @@ namespace com.clusterrr.hakchi_gui
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
             this.labelVersion.Text = String.Format("Version {0}", Shared.AppDisplayVersion);
-            this.labelGitCommit.Text = String.Format("Git Commit {0}", Resources.gitCommit);
+            this.labelGitCommit.Text = String.Format("Git Commit {0}", Shared.GitCommit);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;

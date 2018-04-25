@@ -225,6 +225,13 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        public static string GitCommit {
+            get
+            {
+                return Encoding.UTF8.GetString(Resources.gitCommit);
+            }
+        }
+
         public static bool IsVersionGreaterOrEqual(string given, string minimum)
         {
             return new Version(given).CompareTo(new Version(minimum)) > -1;

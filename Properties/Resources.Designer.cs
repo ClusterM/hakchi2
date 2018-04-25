@@ -1712,12 +1712,12 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 736f22c-dirty
-        ///.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string gitCommit {
+        internal static byte[] gitCommit {
             get {
-                return ResourceManager.GetString("gitCommit", resourceCulture);
+                object obj = ResourceManager.GetObject("gitCommit", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
