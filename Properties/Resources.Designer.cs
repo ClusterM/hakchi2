@@ -1936,6 +1936,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kernel Dump.
+        /// </summary>
+        internal static string KernelDump {
+            get {
+                return ResourceManager.GetString("KernelDump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your original kernel is saved in the &quot;hakchi2\dump&quot; folder. Do not lose it. .
         /// </summary>
         internal static string KernelDumped {
@@ -3272,6 +3281,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to System Software Backup.
+        /// </summary>
+        internal static string SystemSoftwareBackup {
+            get {
+                return ResourceManager.GetString("SystemSoftwareBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Telnet server on telnet://{0} (login:root).
         /// </summary>
         internal static string TelnetServerOn {
@@ -3534,6 +3552,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
             get {
                 object obj = ResourceManager.GetObject("us", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Data Backup.
+        /// </summary>
+        internal static string UserDataBackup {
+            get {
+                return ResourceManager.GetString("UserDataBackup", resourceCulture);
             }
         }
         

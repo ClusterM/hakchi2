@@ -1483,29 +1483,46 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        bool DumpDialog(FileAccess type, string FileName, string FileExt, out string DumpFileName)
+        bool DumpDialog(FileAccess type, string FileName, string FileExt, out string DumpFileName, string DialogFilter = null)
         {
             DumpFileName = null;
+            string currentFilter;
             switch (type)
             {
                 case FileAccess.Read:
                     openDumpFileDialog.FileName = FileName;
                     openDumpFileDialog.DefaultExt = FileExt;
+                    currentFilter = openDumpFileDialog.Filter;
+
+                    if (DialogFilter != null)
+                        openDumpFileDialog.Filter = DialogFilter;
+
                     if (openDumpFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         DumpFileName = openDumpFileDialog.FileName;
+                        openDumpFileDialog.Filter = currentFilter;
                         return true;
                     }
+
+                    openDumpFileDialog.Filter = currentFilter;
                     return false;
 
                 case FileAccess.Write:
                     saveDumpFileDialog.FileName = FileName;
                     saveDumpFileDialog.DefaultExt = FileExt;
+                    currentFilter = saveDumpFileDialog.Filter;
+
+                    if (DialogFilter != null)
+                        saveDumpFileDialog.Filter = DialogFilter;
+
                     if (saveDumpFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         DumpFileName = saveDumpFileDialog.FileName;
+                        saveDumpFileDialog.Filter = currentFilter;
                         return true;
                     }
+
+                    saveDumpFileDialog.Filter = currentFilter;
                     return false;
 
                 default:
@@ -1531,28 +1548,28 @@ namespace com.clusterrr.hakchi_gui
                         break;
 
                     case MembootTasks.NandTasks.DumpNandB:
-                        if (!DumpDialog(FileAccess.Write, "nandb.hsqs", "hsqs", out dumpFilename))
+                        if (!DumpDialog(FileAccess.Write, "nandb.hsqs", "hsqs", out dumpFilename, $"{Resources.SystemSoftwareBackup}|*.hsqs"))
                             return false;
 
                         tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpNandB, dumpPath: dumpFilename).Tasks);
                         break;
 
                     case MembootTasks.NandTasks.DumpNandC:
-                        if (!DumpDialog(FileAccess.Write, "nandc.tar", "tar", out dumpFilename))
+                        if (!DumpDialog(FileAccess.Write, "nandc.tar", "tar", out dumpFilename, $"{Resources.UserDataBackup}|*.tar"))
                             return false;
 
                         tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpNandC, dumpPath: dumpFilename).Tasks);
                         break;
 
                     case MembootTasks.NandTasks.FlashNandB:
-                        if (!DumpDialog(FileAccess.Read, "nandb.hsqs", "hsqs", out dumpFilename))
+                        if (!DumpDialog(FileAccess.Read, "nandb.hsqs", "hsqs", out dumpFilename, $"{Resources.SystemSoftwareBackup}|*.hsqs"))
                             return false;
 
                         tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashNandB, dumpPath: dumpFilename).Tasks);
                         break;
 
                     case MembootTasks.NandTasks.FlashNandC:
-                        if (!DumpDialog(FileAccess.Read, "nandc.tar", "tar", out dumpFilename))
+                        if (!DumpDialog(FileAccess.Read, "nandc.tar", "tar", out dumpFilename, $"{Resources.UserDataBackup}|*.tar;*.hsqs"))
                             return false;
 
                         tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashNandC, dumpPath: dumpFilename).Tasks);
@@ -2759,7 +2776,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     using (OpenFileDialog ofdPng = new OpenFileDialog())
                     {
-                        ofdPng.Filter = "Image files|*.bmp;*.gif;*.jpg;*.jpeg;*.png;*.tif;*.tiff";
+                        ofdPng.Filter = $"{Resources.Images}|*.bmp;*.gif;*.jpg;*.jpeg;*.png;*.tif;*.tiff";
                         if (ofdPng.ShowDialog(this) != DialogResult.OK) return;
 
                         string imageFile = ofdPng.FileName;
@@ -2965,7 +2982,7 @@ namespace com.clusterrr.hakchi_gui
         {
             string dumpFilename;
 
-            if (!DumpDialog(FileAccess.Write, "kernel.img", "img", out dumpFilename))
+            if (!DumpDialog(FileAccess.Write, "kernel.img", "img", out dumpFilename, $"{Resources.KernelDump} (*.img)|*.img"))
                 return;
 
             using (var stockKernel = File.Open(dumpFilename, FileMode.Create))

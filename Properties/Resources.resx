@@ -1247,4 +1247,13 @@ Continue?</value>
   <data name="DumpOriginalKernelNotFound" xml:space="preserve">
     <value>The original kernel could not be found on the system.</value>
   </data>
+  <data name="KernelDump" xml:space="preserve">
+    <value>Kernel Dump</value>
+  </data>
+  <data name="SystemSoftwareBackup" xml:space="preserve">
+    <value>System Software Backup</value>
+  </data>
+  <data name="UserDataBackup" xml:space="preserve">
+    <value>User Data Backup</value>
+  </data>
 </root>

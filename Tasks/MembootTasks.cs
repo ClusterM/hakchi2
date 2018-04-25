@@ -413,7 +413,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 using (OpenFileDialog ofd = new OpenFileDialog())
                 {
-                    ofd.Filter = "Kernel Image (*.img)|*.img";
+                    ofd.Filter = $"{Resources.KernelDump}|*.img";
                     ofd.InitialDirectory = Shared.PathCombine(Program.BaseDirectoryExternal, "dump");
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
