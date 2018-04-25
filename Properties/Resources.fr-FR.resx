@@ -656,9 +656,6 @@ Voulez-vous télécharger l'outil?</value>
   <data name="CalculatingDiff" xml:space="preserve">
     <value>Calculs différentiels...</value>
   </data>
-  <data name="FormatNandCQ" xml:space="preserve">
-    <value>Voulez-vous formatter la NAND-C? Cela effacera toutes vos données personnelles.</value>
-  </data>
   <data name="ScanningCover" xml:space="preserve">
     <value>Analyse des illustrations pour {0}</value>
   </data>

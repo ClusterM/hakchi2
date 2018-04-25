@@ -706,7 +706,7 @@ It's very simple to use. Just click "Add more games", select some ROMs, press "S
     <value>Flashing NAND memory...</value>
   </data>
   <data name="FlashNandCQ" xml:space="preserve">
-    <value>Do you want to flash NAND-C partition image? It will replace all user data.</value>
+    <value>Do you want to flash the user data? It will replace all user data.</value>
   </data>
   <data name="hu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\flags\hu.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -906,7 +906,7 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
     <value>Calculating differential...</value>
   </data>
   <data name="FormatNandCQ" xml:space="preserve">
-    <value>Do you want to format NAND-C? It will erase all user data.</value>
+    <value>Do you want to format the user data partition? It will erase all user data.</value>
   </data>
   <data name="ScanningCover" xml:space="preserve">
     <value>Scanning box art for {0}</value>

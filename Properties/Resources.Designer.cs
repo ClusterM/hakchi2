@@ -1119,7 +1119,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to flash NAND-C partition image? It will replace all user data..
+        ///   Looks up a localized string similar to Do you want to flash the user data? It will replace all user data..
         /// </summary>
         internal static string FlashNandCQ {
             get {
@@ -1573,7 +1573,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to format NAND-C? It will erase all user data..
+        ///   Looks up a localized string similar to Do you want to format the user data partition? It will erase all user data..
         /// </summary>
         internal static string FormatNandCQ {
             get {

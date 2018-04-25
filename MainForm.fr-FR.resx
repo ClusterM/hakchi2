@@ -307,32 +307,17 @@
   <data name="dumpNANDBToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>353, 22</value>
   </data>
-  <data name="dumpNANDBToolStripMenuItem.Text" xml:space="preserve">
-    <value>Extraire la partition NAND-B déchiffrée</value>
-  </data>
   <data name="flashNANDBPartitionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>353, 22</value>
-  </data>
-  <data name="flashNANDBPartitionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Flasher la partition NAND-B déchiffrée</value>
   </data>
   <data name="dumpNANDCPartitionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>353, 22</value>
   </data>
-  <data name="dumpNANDCPartitionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Décoder la partition NAND-C</value>
-  </data>
   <data name="flashNANDCPartitionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>353, 22</value>
   </data>
-  <data name="flashNANDCPartitionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Flasher la partition NAND-C</value>
-  </data>
   <data name="formatNANDCToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>353, 22</value>
-  </data>
-  <data name="formatNANDCToolStripMenuItem.Text" xml:space="preserve">
-    <value>Formatter la partition NAND-C</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>350, 6</value>

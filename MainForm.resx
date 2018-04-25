@@ -301,31 +301,31 @@
     <value>276, 22</value>
   </data>
   <data name="dumpNANDBToolStripMenuItem.Text" xml:space="preserve">
-    <value>Dump decrypted NAND-B partition</value>
+    <value>Dump decrypted system software</value>
   </data>
   <data name="flashNANDBPartitionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
   <data name="flashNANDBPartitionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Flash decrypted NAND-B partition</value>
+    <value>Flash decrypted system software</value>
   </data>
   <data name="dumpNANDCPartitionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
   <data name="dumpNANDCPartitionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Dump NAND-C partition</value>
+    <value>Dump user data partition</value>
   </data>
   <data name="flashNANDCPartitionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
   <data name="flashNANDCPartitionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Flash NAND-C partition</value>
+    <value>Flash user data partition</value>
   </data>
   <data name="formatNANDCToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
   <data name="formatNANDCToolStripMenuItem.Text" xml:space="preserve">
-    <value>Format NAND-C partition</value>
+    <value>Format user data partition</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>273, 6</value>
