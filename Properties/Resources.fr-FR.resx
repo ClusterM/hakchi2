@@ -884,4 +884,19 @@ Continuer?</value>
   <data name="DumpOriginalKernelNotFound" xml:space="preserve">
     <value>Le kernel d'origine est introuvable sur votre NES/SNES Mini</value>
   </data>
+  <data name="FormatNandCQ" xml:space="preserve">
+    <value>Désirez-vous formatter la partition données utilisateur? Cette opération effacera toutes vos données personnelles.</value>
+  </data>
+  <data name="KernelDump" xml:space="preserve">
+    <value>Sauvegarde du kernel</value>
+  </data>
+  <data name="SystemSoftwareBackup" xml:space="preserve">
+    <value>Sauvegarde du logiciel système</value>
+  </data>
+  <data name="UserDataBackup" xml:space="preserve">
+    <value>Sauvegarde des données utilisateur</value>
+  </data>
+  <data name="DumpOriginalKernelnvalid" xml:space="preserve">
+    <value>Le kernel d'origine que vous avez fourni n'est pas un kernel d'origine valide</value>
+  </data>
 </root>

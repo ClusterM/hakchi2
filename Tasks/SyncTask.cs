@@ -476,7 +476,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public Tasker.Conclusion ExportGames(Tasker tasker, Object syncObject = null)
         {
             // get specialized view
-            transferForm = tasker.GetSpecificView<TaskerTransferForm>();
+            transferForm = tasker.GetSpecificViews<TaskerTransferForm>().First();
 
             // set up progress bar
             tasker.SetTitle(Resources.ExportGames);
@@ -501,7 +501,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public Tasker.Conclusion UploadGames(Tasker tasker, Object syncObject = null)
         {
             // get specialized view
-            transferForm = tasker.GetSpecificView<TaskerTransferForm>();
+            transferForm = tasker.GetSpecificViews<TaskerTransferForm>().First();
 
             // set up progress bar
             tasker.SetTitle(Resources.UploadGames);

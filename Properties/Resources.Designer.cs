@@ -948,6 +948,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The original kernel file you&apos;ve supplied is not a validated original kernel..
+        /// </summary>
+        internal static string DumpOriginalKernelInvalid {
+            get {
+                return ResourceManager.GetString("DumpOriginalKernelInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The original kernel could not be found on the system..
         /// </summary>
         internal static string DumpOriginalKernelNotFound {
@@ -2137,8 +2146,9 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-        ///&lt;style&gt;
+        ///   Looks up a localized string similar to &lt;html&gt;
+        ///&lt;head&gt;
+        ///&lt;style type=&quot;text/css&quot;&gt;
         ///{0}
         ///
         ///.markdown-body {{
@@ -2150,13 +2160,14 @@ namespace com.clusterrr.hakchi_gui.Properties {
         ///	padding: 10px;
         ///}}
         ///&lt;/style&gt;
+        ///&lt;/head&gt;
         ///&lt;body style=&quot;background-color: {3}&quot;&gt;
-        ///&lt;article class=&quot;markdown-body&quot;&gt;
+        ///&lt;div class=&quot;markdown-body&quot;&gt;
         ///&lt;!-- {1} --&gt;
         ///{2}
-        ///&lt;/article&gt;
+        ///&lt;/div&gt;
         ///&lt;/body&gt;
-        ///.
+        ///&lt;/html&gt;.
         /// </summary>
         internal static string motdTemplateHTML {
             get {

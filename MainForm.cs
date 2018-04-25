@@ -135,7 +135,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     message = File.ReadAllText(Path.Combine(Program.BaseDirectoryExternal, "config", "motd.md"));
                 }
-                new Motd(message).ShowDialog();
+                new Motd(message).ShowDialog(this);
             }
             catch
             {
@@ -2982,28 +2982,22 @@ namespace com.clusterrr.hakchi_gui
         private void dumpOriginalKernellegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string dumpFilename;
-
             if (!DumpDialog(FileAccess.Write, "kernel.img", "img", out dumpFilename, $"{Resources.KernelDump} (*.img)|*.img"))
                 return;
 
-            using (var stockKernel = File.Open(dumpFilename, FileMode.Create))
+            using (var tasker = new Tasker(this))
             {
-                using (var tasker = new Tasker(this))
+                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                tasker.SetStatusImage(Resources.sign_cogs);
+                tasker.SetTitle(Resources.DumpingKernel);
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpStockKernel, dumpPath: dumpFilename).Tasks);
+                if (tasker.Start() == Tasker.Conclusion.Success)
                 {
-                    tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
-                    tasker.SetStatusImage(Resources.sign_cogs);
-                    tasker.SetTitle(Resources.DumpingKernel);
-                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
-                    tasker.AddTask(MembootTasks.DumpStockKernel(stockKernel));
-                    tasker.AddFinalTask(ShellTasks.Reboot);
-
-                    if(tasker.Start() != Tasker.Conclusion.Success)
-                    {
-                        stockKernel.Close();
-                        File.Delete(dumpFilename);
-                    }
+                    if (!ConfigIni.Instance.DisablePopups)
+                        Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
                 }
             }
         }
+
     }
 }

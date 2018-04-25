@@ -1256,4 +1256,7 @@ Continue?</value>
   <data name="UserDataBackup" xml:space="preserve">
     <value>User Data Backup</value>
   </data>
+  <data name="DumpOriginalKernelInvalid" xml:space="preserve">
+    <value>The original kernel file you've supplied is not a validated original kernel.</value>
+  </data>
 </root>

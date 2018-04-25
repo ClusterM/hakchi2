@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
 {
+    #pragma warning disable CS0414
     public partial class WaitingShellCycleForm : Form
     {
         public WaitingShellCycleForm(int maxWaiting)

@@ -94,4 +94,7 @@
   <data name="labelLoading.Text" xml:space="preserve">
     <value>Chargement, attendez...</value>
   </data>
+  <data name="statusStrip.Text" xml:space="preserve">
+    <value>Statut</value>
+  </data>
 </root>

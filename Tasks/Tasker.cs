@@ -295,11 +295,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return this;
         }
 
-        public T GetSpecificView<T>()
+        public IEnumerable<T> GetSpecificViews<T>()
         {
-            foreach (var view in views)
-                if (view is T) return (T)(view);
-            return default(T);
+            return views.OfType<T>();
         }
 
         // run

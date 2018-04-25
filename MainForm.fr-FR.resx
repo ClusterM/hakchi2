@@ -1073,4 +1073,22 @@
   <data name="dumpOriginalKernellegacyToolStripMenuItem.Text" xml:space="preserve">
     <value>Sauvegarde du kernel d'origine (ancien)</value>
   </data>
+  <data name="dumpNANDBToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sauvegarde du logiciel système décrypté</value>
+  </data>
+  <data name="flashNANDBPartitionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Flasher logiciel système décrypté</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sauvegarde de la partition données utilisateur</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Flasher la partition données utilisateur</value>
+  </data>
+  <data name="formatNANDCToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fromatter la partition données utilisateur</value>
+  </data>
+  <data name="technicalInformationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Information technique...</value>
+  </data>
 </root>

@@ -17,7 +17,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
     {
         // Constants
         public const int MembootWaitDelay = 30000;
-        public const int BootWaitDelay = 10000;
 
         // Enums
         public enum MembootTaskType {
@@ -36,7 +35,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
             MembootRecovery,
             FlashNormalUboot,
             FlashSDUboot,
-            FactoryReset
+            FactoryReset,
+            DumpStockKernel
         }
         public enum HakchiTasks { Install, Reset, Uninstall }
         public enum NandTasks { DumpNand, DumpNandB, FlashNandB, DumpNandC, FlashNandC, FormatNandC }
@@ -174,12 +174,18 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     taskList.Add(BootHakchi);
                     break;
 
-                case MembootTaskType.MembootRecovery: break;
+                case MembootTaskType.MembootRecovery:
+                    break;
 
                 case MembootTaskType.MembootOriginal:
+                    taskList.Add(BootBackup2);
+                    break;
+
+                case MembootTaskType.DumpStockKernel:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        BootBackup2
+                        DumpStockKernel(dumpPath),
+                        ShellTasks.Reboot
                     });
                     break;
             }
@@ -188,16 +194,19 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public Conclusion WaitForFelOrMembootableShell(Tasker tasker, Object syncObject = null)
         {
-            if (tasker.HostForm.InvokeRequired)
+            var hostForm = tasker.GetSpecificViews<Form>().FirstOrDefault();
+            if (hostForm == default(Form))
+                hostForm = tasker.HostForm;
+            if (hostForm.InvokeRequired)
             {
-                return (Conclusion)tasker.HostForm.Invoke(new Func<Tasker, Object, Conclusion>(WaitForFelOrMembootableShell), new object[] { tasker, syncObject });
+                return (Conclusion)hostForm.Invoke(new Func<Tasker, Object, Conclusion>(WaitForFelOrMembootableShell), new object[] { tasker, syncObject });
             }
 
             tasker.SetStatus(Resources.WaitingForDevice);
             if (hakchi.Shell.IsOnline && hakchi.Shell.Execute("[ -f /proc/atags ]") == 0)
                 return Conclusion.Success;
 
-            if (!WaitingFelForm.WaitForDevice(Shared.ClassicUSB.vid, Shared.ClassicUSB.pid, tasker.HostForm))
+            if (!WaitingFelForm.WaitForDevice(Shared.ClassicUSB.vid, Shared.ClassicUSB.pid, hostForm))
                 return Conclusion.Abort;
 
             fel.Fes1Bin = Resources.fes1;
@@ -218,13 +227,17 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public static Conclusion WaitForShellCycle(Tasker tasker, Object syncObject = null)
         {
-            if (tasker.HostForm.InvokeRequired)
+            var hostForm = tasker.GetSpecificViews<Form>().FirstOrDefault();
+            if (hostForm == default(Form))
+                hostForm = tasker.HostForm;
+            if (hostForm.InvokeRequired)
             {
-                return (Conclusion)tasker.HostForm.Invoke(new Func<Tasker, object, Conclusion>(WaitForShellCycle), new object[] { tasker, syncObject });
+                return (Conclusion)hostForm.Invoke(new Func<Tasker, object, Conclusion>(WaitForShellCycle), new object[] { tasker, syncObject });
             }
+
             tasker.SetStatus(Resources.WaitingForDevice);
             tasker.PushState(State.Waiting);
-            var result = WaitingShellCycleForm.WaitForDevice(tasker.HostForm, MembootWaitDelay);
+            var result = WaitingShellCycleForm.WaitForDevice(hostForm, MembootWaitDelay);
             tasker.PopState();
             if (result == DialogResult.OK)
                 return Conclusion.Success;
@@ -234,8 +247,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public Conclusion Memboot(Tasker tasker, Object syncObject = null)
         {
-            tasker.SetStatus(Resources.Membooting);
-
+            // load appropriate kernel
             byte[] kernel;
             if (stockKernel != null && stockKernel.Length > 0)
             {
@@ -246,34 +258,22 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 kernel = Shared.GetMembootImage().ToArray();
             }
 
-            if (!hakchi.Shell.IsOnline)
+            tasker.SetStatus(Resources.Membooting);
+            if (hakchi.Shell.IsOnline)
             {
-                var size = Shared.CalcKernelSize(kernel);
-                if (size > kernel.Length || size > Fel.transfer_max_size)
-                    throw new Exception(Resources.InvalidKernelSize + " " + size);
-                size = (size + Fel.sector_size - 1) / Fel.sector_size;
-                size = size * Fel.sector_size;
-                if (kernel.Length != size)
-                {
-                    var newK = new byte[size];
-                    Array.Copy(kernel, newK, kernel.Length);
-                    kernel = newK;
-                }
-            }
+                // sanity check
+                if (hakchi.Shell.Execute("[ -f /proc/atags ]") != 0)
+                    throw new Exception("system is online, but cannot memboot");
 
-            tasker.SetStatus(Resources.UploadingKernel);
-
-            if (hakchi.Shell.IsOnline && hakchi.Shell.Execute("[ -f /proc/atags ]") == 0)
-            {
                 // override
                 string addedArgs = ConfigIni.Instance.ForceClovershell ? " hakchi-clovershell" : "";
 
-                // do we care about stock kernel
+                // skip to built-in recovery
                 if (stockKernel == null)
                 {
                     if (hakchi.MinimalMemboot) // already in minimal memboot?
                         return Conclusion.Success;
-                    if (hakchi.Shell.ExecuteSimple("[ -e /bin/detached ] && echo \"1\"") == "1") // detached recovery function?
+                    if (hakchi.Shell.Execute("[ -e /bin/detached ]") == 0) // detached recovery function?
                     {
                         try
                         {
@@ -337,6 +337,20 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
             else
             {
+                // check and adjust kernel size
+                var size = Shared.CalcKernelSize(kernel);
+                if (size > kernel.Length || size > Fel.transfer_max_size)
+                    throw new Exception(Resources.InvalidKernelSize + " " + size);
+                size = (size + Fel.sector_size - 1) / Fel.sector_size;
+                size = size * Fel.sector_size;
+                if (kernel.Length != size)
+                {
+                    var newK = new byte[size];
+                    Array.Copy(kernel, newK, kernel.Length);
+                    kernel = newK;
+                }
+
+                // clovershell override "hex-edit" boot.img
                 if (stockKernel == null && ConfigIni.Instance.ForceClovershell)
                 {
                     kernel.InPlaceStringEdit(64, 512, 0, (string str) => {
@@ -347,6 +361,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     });
                 }
 
+                // upload kernel through fel
                 int progress = 0;
                 int maxProgress = (int)((double)kernel.Length / (double)67000 + 50);
                 fel.WriteMemory(Fel.transfer_base_m, kernel,
@@ -382,25 +397,35 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Conclusion.Success;
         }
 
-        public static TaskFunc DumpStockKernel(Stream stockKernel)
+        public static TaskFunc DumpStockKernel(string dumpPath)
         {
             return (Tasker tasker, Object syncObject) =>
             {
-                if (hakchi.Shell.Execute("hakchi getBackup2", null, stockKernel) == 0)
+                using (var stockKernel = File.Open(dumpPath, FileMode.Create))
                 {
-                    return Conclusion.Success;
-                }
-                else
-                {
-                    throw new Exception("Stock kernel not found on system.");
+                    if (hakchi.Shell.Execute("hakchi getBackup2", null, stockKernel) == 0)
+                    {
+                        return Conclusion.Success;
+                    }
+                    else
+                    {
+                        stockKernel.Close();
+                        File.Delete(dumpPath);
+                        throw new Exception("Stock kernel not found on system.");
+                    }
                 }
             };
         }
 
         public Conclusion GetStockKernel(Tasker tasker, Object syncObject = null)
         {
-            if (tasker.HostForm.InvokeRequired)
-                return (Conclusion)tasker.HostForm.Invoke(new Func<Tasker, Object, Conclusion>(GetStockKernel), new object[] { tasker, syncObject });
+            var hostForm = tasker.GetSpecificViews<Form>().FirstOrDefault();
+            if (hostForm == default(Form))
+                hostForm = tasker.HostForm;
+            if (hostForm.InvokeRequired)
+            {
+                return (Conclusion)hostForm.Invoke(new Func<Tasker, Object, Conclusion>(GetStockKernel), new object[] { tasker, syncObject });
+            }
 
             tasker.SetStatus(Resources.DumpingKernel);
             stockKernel = new MemoryStream();
@@ -415,7 +440,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     ofd.Filter = $"{Resources.KernelDump}|*.img";
                     ofd.InitialDirectory = Shared.PathCombine(Program.BaseDirectoryExternal, "dump");
-                    if (ofd.ShowDialog() == DialogResult.OK)
+                    if (ofd.ShowDialog(hostForm) == DialogResult.OK)
                     {
                         if (File.OpenRead(ofd.FileName).Length <= Fel.kernel_max_size)
                         {
@@ -432,6 +457,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         }
                         else
                         {
+                            MessageForm.Show(hostForm, Resources.Error, Resources.DumpOriginalKernelInvalid, Resources.sign_error);
                             return Conclusion.Abort;
                         }
                     }
