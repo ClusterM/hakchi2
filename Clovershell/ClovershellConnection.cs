@@ -663,7 +663,7 @@ namespace com.clusterrr.clovershell
                     {
                         Thread.Sleep(50);
                         if (!IsOnline)
-                            throw new ClovershellException("device goes offline");
+                            throw new ClovershellDisconnectedException("device goes offline");
                         if (!c.finished && timeout > 0 && (DateTime.Now - c.LastDataTime).TotalMilliseconds > timeout)
                             throw new ClovershellException("clovershell read timeout");
                     }

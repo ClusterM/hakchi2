@@ -63,7 +63,7 @@ namespace com.clusterrr.clovershell
                     if (stdinQueue > 32 * 1024 && connection.IsOnline)
                     {
                         Debug.WriteLine(string.Format("queue: {0} / {1}, {2}MB / {3}MB ({4}%)",
-                            stdinQueue, stdinPipeSize, stdin.Position / 1024 / 1024, stdin.Length / 1024 / 1024, 100 * stdin.Position / stdin.Length));
+                            stdinQueue, stdinPipeSize, stdin.Position / 1024 / 1024, stdin.Length / 1024 / 1024, stdin.Length == 0 ? 100 : (100 * stdin.Position / stdin.Length)));
                         while (stdinQueue > 16 * 1024)
                         {
                             Thread.Sleep(50);

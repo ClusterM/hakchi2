@@ -60,6 +60,8 @@
             this.membootCustomKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.membootRecoveryKernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
+            this.dumpOriginalKernellegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem24 = new System.Windows.Forms.ToolStripSeparator();
             this.dumpTheWholeNANDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolFlashTheWholeNANDStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumpNANDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,7 +71,6 @@
             this.formatNANDCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.factoryResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dumpOriginalKernellegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstallModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -232,7 +233,7 @@
             this.toolStripMenuItem20 = new System.Windows.Forms.ToolStripSeparator();
             this.syncStructureForAllGamesCollectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
-            this.toolStripMenuItem24 = new System.Windows.Forms.ToolStripSeparator();
+            this.timerUpdate = new System.Windows.Forms.Timer(this.components);
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -461,6 +462,17 @@
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
             resources.ApplyResources(this.toolStripMenuItem10, "toolStripMenuItem10");
             // 
+            // dumpOriginalKernellegacyToolStripMenuItem
+            // 
+            this.dumpOriginalKernellegacyToolStripMenuItem.Name = "dumpOriginalKernellegacyToolStripMenuItem";
+            resources.ApplyResources(this.dumpOriginalKernellegacyToolStripMenuItem, "dumpOriginalKernellegacyToolStripMenuItem");
+            this.dumpOriginalKernellegacyToolStripMenuItem.Click += new System.EventHandler(this.dumpOriginalKernellegacyToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem24
+            // 
+            this.toolStripMenuItem24.Name = "toolStripMenuItem24";
+            resources.ApplyResources(this.toolStripMenuItem24, "toolStripMenuItem24");
+            // 
             // dumpTheWholeNANDToolStripMenuItem
             // 
             this.dumpTheWholeNANDToolStripMenuItem.Name = "dumpTheWholeNANDToolStripMenuItem";
@@ -513,12 +525,6 @@
             resources.ApplyResources(this.factoryResetToolStripMenuItem, "factoryResetToolStripMenuItem");
             this.factoryResetToolStripMenuItem.Name = "factoryResetToolStripMenuItem";
             this.factoryResetToolStripMenuItem.Click += new System.EventHandler(this.factoryResetToolStripMenuItem_Click);
-            // 
-            // dumpOriginalKernellegacyToolStripMenuItem
-            // 
-            this.dumpOriginalKernellegacyToolStripMenuItem.Name = "dumpOriginalKernellegacyToolStripMenuItem";
-            resources.ApplyResources(this.dumpOriginalKernellegacyToolStripMenuItem, "dumpOriginalKernellegacyToolStripMenuItem");
-            this.dumpOriginalKernellegacyToolStripMenuItem.Click += new System.EventHandler(this.dumpOriginalKernellegacyToolStripMenuItem_Click);
             // 
             // modulesToolStripMenuItem
             // 
@@ -1699,10 +1705,9 @@
             this.gamesConsoleComboBox.Name = "gamesConsoleComboBox";
             this.gamesConsoleComboBox.SelectedIndexChanged += new System.EventHandler(this.gamesConsoleComboBox_SelectedIndexChanged);
             // 
-            // toolStripMenuItem24
+            // timerUpdate
             // 
-            this.toolStripMenuItem24.Name = "toolStripMenuItem24";
-            resources.ApplyResources(this.toolStripMenuItem24, "toolStripMenuItem24");
+            this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
             // 
             // MainForm
             // 
@@ -1952,6 +1957,7 @@
         private System.Windows.Forms.ToolStripMenuItem technicalInformationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dumpOriginalKernellegacyToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem24;
+        private System.Windows.Forms.Timer timerUpdate;
     }
 }
 

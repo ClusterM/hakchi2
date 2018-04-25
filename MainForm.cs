@@ -346,7 +346,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (Tasks.MessageForm.Show(this, Resources.OutdatedScripts, Resources.SystemEligibleForRootfsUpdate, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
                         {
-                            new Thread(UpdateHakchi).Start();
+                            Invoke(new Action(timerUpdate.Start));
                             return;
                         }
                     }
@@ -358,7 +358,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (Tasks.MessageForm.Show(this, Resources.OutdatedKernel, Resources.SystemRequiresReflash, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
                         {
-                            new Thread(UpdateHakchi).Start();
+                            Invoke(new Action(timerUpdate.Start));
                             return;
                         }
                     }
@@ -366,7 +366,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (Tasks.MessageForm.Show(this, Resources.OutdatedScripts, Resources.SystemRequiresRootfsUpdate, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
                         {
-                            new Thread(UpdateHakchi).Start();
+                            Invoke(new Action(timerUpdate.Start));
                             return;
                         }
                     }
@@ -380,9 +380,10 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine(ex.Message + ex.StackTrace);
             }
         }
-
-        void UpdateHakchi()
+        
+        private void timerUpdate_Tick(object sender, EventArgs e)
         {
+            timerUpdate.Stop();
             if (InstallHakchi())
                 Tasks.MessageForm.Show(this, Resources.UpdateComplete, Resources.DoneYouCanUpload, Resources.sign_check, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.OK }, Tasks.MessageForm.DefaultButton.Button1);
         }

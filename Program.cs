@@ -209,8 +209,12 @@ namespace com.clusterrr.hakchi_gui
 
         public static string GetCurrentLogContent()
         {
-            MemoryStream stream = debugStreams.OfType<MemoryStream>().First();
-            return Encoding.GetEncoding(MY_CODE_PAGE).GetString(stream.GetBuffer(), 0, (int)stream.Length);
+            MemoryStream stream = debugStreams.OfType<MemoryStream>().FirstOrDefault();
+            if (stream != default(MemoryStream))
+            {
+                return Encoding.GetEncoding(MY_CODE_PAGE).GetString(stream.GetBuffer(), 0, (int)stream.Length);
+            }
+            return "";
         }
 
         [DllImport("Shell32.dll")]
