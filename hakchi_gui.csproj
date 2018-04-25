@@ -279,7 +279,9 @@
     <EmbeddedResource Include="ScreenshotForm.resx">
       <DependentUpon>ScreenshotForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="basehmods.tar" />
+    <Content Include="basehmods.tar">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="images\sign-check.png" />
     <None Include="images\sign-down.png" />
     <None Include="images\sign-error.png" />

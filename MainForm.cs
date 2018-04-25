@@ -2963,7 +2963,29 @@ namespace com.clusterrr.hakchi_gui
 
         private void dumpOriginalKernellegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            string dumpFilename;
+
+            if (!DumpDialog(FileAccess.Write, "kernel.img", "img", out dumpFilename))
+                return;
+
+            using (var stockKernel = File.Open(dumpFilename, FileMode.Create))
+            {
+                using (var tasker = new Tasker(this))
+                {
+                    tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                    tasker.SetStatusImage(Resources.sign_cogs);
+                    tasker.SetTitle(Resources.DumpingKernel);
+                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
+                    tasker.AddTask(MembootTasks.DumpStockKernel(stockKernel));
+                    tasker.AddFinalTask(ShellTasks.Reboot);
+
+                    if(tasker.Start() != Tasker.Conclusion.Success)
+                    {
+                        stockKernel.Close();
+                        File.Delete(dumpFilename);
+                    }
+                }
+            }
         }
     }
 }

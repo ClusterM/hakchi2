@@ -486,7 +486,7 @@ namespace com.clusterrr.hakchi_gui
         {
             var kernelHmodStream = new MemoryStream();
 
-            using (var baseHmods = new MemoryStream(Resources.baseHmods)) {
+            using (var baseHmods = File.OpenRead(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar"))) {
                 using (var szExtractor = new SevenZipExtractor(baseHmods))
                 {
                     szExtractor.ExtractFile(".\\hakchi.hmod", kernelHmodStream);

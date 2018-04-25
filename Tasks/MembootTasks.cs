@@ -179,8 +179,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 case MembootTaskType.MembootOriginal:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        GetStockKernel,
-                        Memboot
+                        BootBackup2
                     });
                     break;
             }
@@ -371,6 +370,33 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Conclusion.Success;
         }
 
+        public Conclusion BootBackup2(Tasker tasker, object syncObject)
+        {
+            tasker.SetStatus(Resources.Membooting);
+            try
+            {
+                hakchi.Shell.Execute("hakchi bootBackup2");
+            } catch {
+                // no-op
+            }
+            return Conclusion.Success;
+        }
+
+        public static TaskFunc DumpStockKernel(Stream stockKernel)
+        {
+            return (Tasker tasker, Object syncObject) =>
+            {
+                if (hakchi.Shell.Execute("hakchi getBackup2", null, stockKernel) == 0)
+                {
+                    return Conclusion.Success;
+                }
+                else
+                {
+                    throw new Exception("Stock kernel not found on system.");
+                }
+            };
+        }
+
         public Conclusion GetStockKernel(Tasker tasker, Object syncObject = null)
         {
             if (tasker.HostForm.InvokeRequired)
@@ -378,14 +404,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             tasker.SetStatus(Resources.DumpingKernel);
             stockKernel = new MemoryStream();
-            bool hasNandBackup = (hakchi.Shell.Execute("[ \"$(sntool sunxi_flash phy_read 68 1 | dd status=none bs=7 count=1)\" = \"ANDROID\" ]") == 0);
-
-            if (hasNandBackup)
+            
+            if (hakchi.Shell.Execute("hakchi getBackup2", null, stockKernel, null, 0, true) == 0)
             {
-                hakchi.Shell.Execute("sntool sunxi_flash read_boot2 68", null, stockKernel, null, 0, true);
-                if(stockKernel.Length == 0)
-                    throw new Exception("Error reading backup kernel.");
-
                 return Conclusion.Success;
             }
             else

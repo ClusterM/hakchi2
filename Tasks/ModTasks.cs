@@ -121,7 +121,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 tasker.SetStatus(Resources.TransferringMods);
                 var escapedTransferPath = Shared.EscapeShellArgument(transferPath);
-                var hmodStream = new TrackableStream(Resources.baseHmods);
+                var hmodStream = new TrackableStream(File.OpenRead(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")));
                 hmodStream.OnProgress += tasker.OnProgress;
                 hakchi.Shell.Execute($"mkdir -p {escapedTransferPath}", null, null, null, 0, true);
                 hakchi.Shell.Execute($"tar -xvC {escapedTransferPath}", hmodStream, null, null, 0, true);

@@ -1001,9 +1001,6 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   <data name="DefaultNoChange" xml:space="preserve">
     <value>Default / no change</value>
   </data>
-  <data name="baseHmods" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\basehmods.tar;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="BootingHakchi" xml:space="preserve">
     <value>Booting hakchi...</value>
   </data>
