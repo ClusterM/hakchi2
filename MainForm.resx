@@ -319,7 +319,7 @@
     <value>276, 22</value>
   </data>
   <data name="flashNANDCPartitionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Flash NAND-C partition (experts only!)</value>
+    <value>Flash NAND-C partition</value>
   </data>
   <data name="formatNANDCToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>

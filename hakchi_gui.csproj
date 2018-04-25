@@ -2065,6 +2065,8 @@
 "./busybox" sh -e "./copypackedhmods" "../mods/hmods" "../$(OutDir)user_mods"
 "./busybox" rm -rf "../$(OutDir)user_mods/hakchi.hmod"
 "./busybox" cp -R "../user_mods/" "../$(OutDir)/"
+"./busybox" rm -rf "../$(OutDir)user_mods/clovershell.hmod"
+"./busybox" tar -czvf "../$(OutDir)user_mods/clovershell.hmod" -C "../user_mods/clovershell.hmod/" .
 "./busybox" sh -e "./gitcommit" &gt; "../commit.txt"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

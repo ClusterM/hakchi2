@@ -326,7 +326,7 @@
     <value>353, 22</value>
   </data>
   <data name="flashNANDCPartitionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Flasher la partition NAND-C (Experts seulement!)</value>
+    <value>Flasher la partition NAND-C</value>
   </data>
   <data name="formatNANDCToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>353, 22</value>
