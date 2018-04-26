@@ -174,11 +174,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     taskList.Add(BootHakchi);
                     break;
 
-                case MembootTaskType.MembootRecovery:
-                    break;
-
                 case MembootTaskType.MembootOriginal:
                     taskList.Add(BootBackup2);
+                    break;
+
+                case MembootTaskType.MembootRecovery:
                     break;
 
                 case MembootTaskType.DumpStockKernel:
@@ -261,18 +261,12 @@ namespace com.clusterrr.hakchi_gui.Tasks
             tasker.SetStatus(Resources.Membooting);
             if (hakchi.Shell.IsOnline)
             {
-                // sanity check
-                if (hakchi.Shell.Execute("[ -f /proc/atags ]") != 0)
-                    throw new Exception("system is online, but cannot memboot");
-
-                // override
+                // override arguments
                 string addedArgs = ConfigIni.Instance.ForceClovershell ? " hakchi-clovershell" : "";
 
-                // skip to built-in recovery
-                if (stockKernel == null)
+                // skip to built-in recovery if running latest version
+                if (stockKernel == null && hakchi.CanInteract && !hakchi.SystemEligibleForRootfsUpdate())
                 {
-                    if (hakchi.MinimalMemboot) // already in minimal memboot?
-                        return Conclusion.Success;
                     if (hakchi.Shell.Execute("[ -e /bin/detached ]") == 0) // detached recovery function?
                     {
                         try
@@ -388,11 +382,22 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public Conclusion BootBackup2(Tasker tasker, object syncObject)
         {
             tasker.SetStatus(Resources.Membooting);
-            try
+            if (hakchi.Shell.Execute("hakchi haveBackup2") == 0)
             {
-                hakchi.Shell.Execute("hakchi bootBackup2");
-            } catch {
-                // no-op
+                try
+                {
+                    hakchi.Shell.Execute("hakchi bootBackup2");
+                }
+                catch
+                {
+                    // no-op
+                }
+            }
+            else
+            {
+                tasker.AddTasks(
+                    GetStockKernel,
+                    Memboot);
             }
             return Conclusion.Success;
         }
@@ -455,11 +460,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                 return Conclusion.Success;
                             }
                         }
-                        else
-                        {
-                            MessageForm.Show(hostForm, Resources.Error, Resources.DumpOriginalKernelInvalid, Resources.sign_error);
-                            return Conclusion.Abort;
-                        }
+                        MessageForm.Show(hostForm, Resources.Error, Resources.DumpOriginalKernelInvalid, Resources.sign_error);
+                    }
+                    else
+                    {
+                        return Conclusion.Abort;
                     }
                 }
             }
