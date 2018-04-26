@@ -2987,15 +2987,12 @@ namespace com.clusterrr.hakchi_gui
 
             using (var tasker = new Tasker(this))
             {
-                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                tasker.AttachViews(new TaskerTaskbar(), new TaskerForm());
                 tasker.SetStatusImage(Resources.sign_cogs);
                 tasker.SetTitle(Resources.DumpingKernel);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpStockKernel, dumpPath: dumpFilename).Tasks);
                 if (tasker.Start() == Tasker.Conclusion.Success)
-                {
-                    if (!ConfigIni.Instance.DisablePopups)
-                        Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
-                }
+                    MessageForm.Show(this, Resources.DumpOriginalKernelCompleteTitle, Resources.DumpOriginalKernelCompleteMessage, Resources.sign_check);
             }
         }
 
