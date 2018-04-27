@@ -145,7 +145,6 @@ namespace com.clusterrr.hakchi_gui
 
         private void UpdateMOTD()
         {
-            var client = new WebClient();
             try
             {
                 if (File.Exists(MotdFilename))
@@ -155,6 +154,8 @@ namespace com.clusterrr.hakchi_gui
                         return;
                     }
                 }
+
+                var client = new WebClient();
 
                 Trace.WriteLine("Downloading motd file, URL: " + MOTD_URL);
                 string motd = client.DownloadString(MOTD_URL);
