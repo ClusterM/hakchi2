@@ -77,13 +77,14 @@ namespace com.clusterrr.hakchi_gui
                 Debug.WriteLine(ex.Message + ex.StackTrace);
             }
             Debug.AutoFlush = true;
+#else
+            Trace.Listeners.Clear();
 #endif
 #if TRACE
             try
             {
                 MemoryStream inMemoryLog = new MemoryStream();
                 debugStreams.Add(inMemoryLog);
-                Trace.Listeners.Clear();
                 Trace.Listeners.Add(new TextWriterTraceListener(new StreamWriter(inMemoryLog, System.Text.Encoding.GetEncoding(MY_CODE_PAGE))));
             }
             catch (Exception ex)
