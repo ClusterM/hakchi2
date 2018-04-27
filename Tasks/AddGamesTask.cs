@@ -82,18 +82,21 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         {
                             var filesInArchive = szExtractor.ArchiveFileNames;
                             var gameFilesInArchive = new List<string>();
-                            foreach (var f in szExtractor.ArchiveFileNames)
+                            foreach (var f in szExtractor.ArchiveFileData)
                             {
-                                var e = Path.GetExtension(f).ToLower();
-                                if (e == ".desktop")
+                                if (!f.IsDirectory)
                                 {
-                                    gameFilesInArchive.Clear();
-                                    gameFilesInArchive.Add(f);
-                                    break;
-                                }
-                                else if (CoreCollection.Extensions.Contains(e))
-                                {
-                                    gameFilesInArchive.Add(f);
+                                    var e = Path.GetExtension(f.FileName).ToLower();
+                                    if (e == ".desktop")
+                                    {
+                                        gameFilesInArchive.Clear();
+                                        gameFilesInArchive.Add(f.FileName);
+                                        break;
+                                    }
+                                    else if (CoreCollection.Extensions.Contains(e))
+                                    {
+                                        gameFilesInArchive.Add(f.FileName);
+                                    }
                                 }
                             }
                             if (gameFilesInArchive.Count == 1) // Only one known file (or app)
