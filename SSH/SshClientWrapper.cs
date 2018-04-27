@@ -1,25 +1,30 @@
 ﻿using com.clusterrr.hakchi_gui;
 using Renci.SshNet;
+using DnsUtils.Services;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace com.clusterrr.ssh
 {
+
     public class SshClientWrapper : ISystemShell, INetworkShell
     {
         public event OnConnectedEventHandler OnConnected = delegate { };
         public event OnDisconnectedEventHandler OnDisconnected = delegate { };
 
         private SshClient sshClient;
+        private Mdns mdns;
+        private Llmnr llmnr;
+
         Thread connectThread;
         private bool enabled;
         private bool hasConnected;
         private string service;
-        private string ip;
         private ushort port;
         private string username;
         private string password;
@@ -76,17 +81,20 @@ namespace com.clusterrr.ssh
                                 Trace.WriteLine("SSH shell disconnected");
                                 hasConnected = false;
                                 OnDisconnected();
-                                Thread.Sleep(1000); // give it additional time to disconnect
+                                Thread.Sleep(1500); // give it additional time to disconnect
                             }
                             else if (AutoReconnect)
                             {
-                                if (Ping() != -1)
+                                if (Resolve())
                                 {
-                                    Connect();
+                                    if (Ping() != -1)
+                                    {
+                                        Connect();
+                                    }
                                 }
                             }
                         }
-                        Thread.Sleep(1000);
+                        Thread.Sleep(250);
                     }
                     catch (ThreadAbortException)
                     {
@@ -129,18 +137,19 @@ namespace com.clusterrr.ssh
 
         public string IPAddress
         {
-            get { return ip; }
-            private set { ip = value; }
+            get; private set;
         }
 
         public SshClientWrapper(string service, string ip, ushort port, string username, string password)
         {
             sshClient = null;
+            mdns = new Mdns();
+            llmnr = new Llmnr();
             connectThread = null;
             enabled = false;
             hasConnected = false;
             this.service = service;
-            this.ip = ip;
+            this.IPAddress = ip;
             this.port = port;
             this.username = username;
             this.password = password;
@@ -156,12 +165,12 @@ namespace com.clusterrr.ssh
         {
             if (IsOnline)
                 return;
-            if (string.IsNullOrEmpty(ip) || ip == "0.0.0.0")
+            if (string.IsNullOrEmpty(IPAddress) || IPAddress == "0.0.0.0")
                 return;
 
             if (sshClient == null)
             {
-                sshClient = new SshClient(ip, port, username, password);
+                sshClient = new SshClient(IPAddress, port, username, password);
                 sshClient.ErrorOccurred += SshClient_OnError;
             }
             if (!sshClient.IsConnected)
@@ -170,12 +179,12 @@ namespace com.clusterrr.ssh
             }
             if (!sshClient.IsConnected)
             {
-                throw new SshClientException(string.Format("Unable to connect to SSH server at {0}:{1}", 
+                throw new SshClientException(string.Format("Unable to connect to SSH server at {0}:{1}",
                     sshClient.ConnectionInfo.Host, sshClient.ConnectionInfo.Port));
             }
 
             Trace.WriteLine("SSH shell connected");
-            Trace.WriteLine($"IP Address: {ip}");
+            Trace.WriteLine($"IP Address: {IPAddress}");
             Trace.WriteLine($"Encryption: {sshClient.ConnectionInfo.CurrentServerEncryption}");
 
             hasConnected = true;
@@ -190,28 +199,39 @@ namespace com.clusterrr.ssh
                 // this will disconnect the shell and thread loop will detect it and call OnDisconnected and clean up
                 sshClient.Disconnect();
             }
+            this.IPAddress = null;
         }
 
-        
+        public bool Resolve()
+        {
+            IPAddress address = NameResolving.ResolveAsync(this.service, 2000, mdns, llmnr).Result;
+            if (address != null)
+            {
+                this.IPAddress = address.ToString();
+                return true;
+            }
+            return false;
+        }
+
         public int Ping()
         {
-            if ((string.IsNullOrEmpty(ip) || ip == "0.0.0.0") && string.IsNullOrEmpty(service))
+            if ((string.IsNullOrEmpty(IPAddress) || IPAddress == "0.0.0.0") && string.IsNullOrEmpty(service))
                 return -1;
 
             try
             {
                 Ping pingSender = new Ping();
-                PingReply reply = pingSender.Send(ip ?? service, 100);
+                PingReply reply = pingSender.Send(IPAddress ?? service, 100);
                 if (reply != null && reply.Status.Equals(IPStatus.Success))
                 {
                     Trace.WriteLine($"Pinged {reply.Address}, {reply.RoundtripTime}ms");
-                    ip = reply.Address.ToString();
+                    IPAddress = reply.Address.ToString();
                     return (int)reply.RoundtripTime;
                 }
             }
             catch (Exception ex)
             {
-                string msg = $"Error during ping \"{ip ?? service}\": {(ex.InnerException ?? ex).Message}";
+                string msg = $"Error during ping \"{IPAddress ?? service}\": {(ex.InnerException ?? ex).Message}";
 #if VERY_DEBUG
                 Debug.WriteLine(msg);
 #endif
@@ -296,4 +316,5 @@ namespace com.clusterrr.ssh
             Disconnect();
         }
     }
+
 }
