@@ -899,4 +899,7 @@ Continuer?</value>
   <data name="DumpOriginalKernelnvalid" xml:space="preserve">
     <value>Le kernel d'origine que vous avez fourni n'est pas un kernel d'origine valide</value>
   </data>
+  <data name="None" xml:space="preserve">
+    <value>Aucun</value>
+  </data>
 </root>

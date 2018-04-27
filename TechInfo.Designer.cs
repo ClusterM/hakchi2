@@ -35,6 +35,8 @@
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.logContentsRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listView1
@@ -85,19 +87,34 @@
             this.saveFileDialog1.FileName = "Technical Information.txt";
             resources.ApplyResources(this.saveFileDialog1, "saveFileDialog1");
             // 
+            // logContentsRichTextBox
+            // 
+            resources.ApplyResources(this.logContentsRichTextBox, "logContentsRichTextBox");
+            this.logContentsRichTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.logContentsRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.logContentsRichTextBox.Name = "logContentsRichTextBox";
+            this.logContentsRichTextBox.ReadOnly = true;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
             // TechInfo
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.logContentsRichTextBox);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.listView1);
-            this.MaximizeBox = false;
             this.Name = "TechInfo";
             this.Load += new System.EventHandler(this.TechInfo_Load);
             this.Shown += new System.EventHandler(this.TechInfo_Shown);
             this.Resize += new System.EventHandler(this.TechInfo_Resize);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -108,5 +125,7 @@
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.RichTextBox logContentsRichTextBox;
+        private System.Windows.Forms.Label label1;
     }
 }

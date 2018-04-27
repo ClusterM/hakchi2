@@ -184,6 +184,10 @@ namespace com.clusterrr.hakchi_gui
         {
             try // wrap upgrade check in an exception check, to avoid past mistakes
             {
+                AutoUpdater.RemindLaterTimeSpan = RemindLaterFormat.Days;
+                AutoUpdater.RemindLaterAt = 7;
+                AutoUpdater.ShowRemindLaterButton = true;
+                AutoUpdater.RunUpdateAsAdmin = false;
                 AutoUpdater.Start(UPDATE_XML_URL);
             }
             catch (Exception ex)

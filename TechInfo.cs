@@ -31,11 +31,11 @@ namespace com.clusterrr.hakchi_gui
             if (string.IsNullOrWhiteSpace(devTools)) devTools = "None";
 
             var gamesSize = Shared.DirectorySize(Path.Combine(Program.BaseDirectoryExternal, "games"));
-            var gamesNum = Directory.EnumerateDirectories(Path.Combine(Program.BaseDirectoryExternal, "games")).Count();
+            var gamesNum = gamesSize > 0 ? Directory.EnumerateDirectories(Path.Combine(Program.BaseDirectoryExternal, "games")).Count() : 0;
             var gamesSnesSize = Shared.DirectorySize(Path.Combine(Program.BaseDirectoryExternal, "games_snes"));
-            var gamesSnesNum = Directory.EnumerateDirectories(Path.Combine(Program.BaseDirectoryExternal, "games_snes")).Count();
+            var gamesSnesNum = gamesSnesSize > 0 ? Directory.EnumerateDirectories(Path.Combine(Program.BaseDirectoryExternal, "games_snes")).Count() : 0;
             var gamesCacheSize = Shared.DirectorySize(Path.Combine(Program.BaseDirectoryExternal, "games_cache"));
-            var gamesCacheNum = Directory.EnumerateDirectories(Path.Combine(Program.BaseDirectoryExternal, "games_cache")).Count();
+            var gamesCacheNum = gamesCacheSize > 0 ? Directory.EnumerateDirectories(Path.Combine(Program.BaseDirectoryExternal, "games_cache")).Count() : 0;
 
             listView1.Items.AddRange(new ListViewItem[] {
                 // general info
@@ -44,9 +44,9 @@ namespace com.clusterrr.hakchi_gui
                 new ListViewItem(new string[] { "Developer tools:", devTools }, listView1.Groups[0]),
                 new ListViewItem(new string[] { "Internal path:", Program.BaseDirectoryInternal }, listView1.Groups[0]),
                 new ListViewItem(new string[] { "External path:", Program.BaseDirectoryExternal }, listView1.Groups[0]),
-                new ListViewItem(new string[] { "/games:", $"{gamesNum} directories (" + Shared.SizeSuffix(gamesSize) + ")" }, listView1.Groups[0]),
-                new ListViewItem(new string[] { "/games_snes:", $"{gamesSnesNum} directories (" + Shared.SizeSuffix(gamesSnesSize) + ")" }, listView1.Groups[0]),
-                new ListViewItem(new string[] { "/games_cache", $"{gamesCacheNum} directories (" + Shared.SizeSuffix(gamesCacheSize) + ")" }, listView1.Groups[0]),
+                new ListViewItem(new string[] { "/games:", gamesNum > 0 ? ($"{gamesNum} directories (" + Shared.SizeSuffix(gamesSize) + ")") : Resources.None }, listView1.Groups[0]),
+                new ListViewItem(new string[] { "/games_snes:", gamesSnesNum > 0 ? ($"{gamesSnesNum} directories (" + Shared.SizeSuffix(gamesSnesSize) + ")") : Resources.None}, listView1.Groups[0]),
+                new ListViewItem(new string[] { "/games_cache", gamesCacheNum > 0 ? ($"{gamesCacheNum} directories (" + Shared.SizeSuffix(gamesCacheSize) + ")") : Resources.None }, listView1.Groups[0]),
 
                 // settings
                 new ListViewItem(new string[] { "Separate games for multiboot:", ConfigIni.Instance.SeparateGameStorage ? Resources.Yes : Resources.No }, listView1.Groups[6]),
@@ -131,6 +131,7 @@ namespace com.clusterrr.hakchi_gui
                 });
             }
 
+            logContentsRichTextBox.Text = Program.GetCurrentLogContent();
         }
 
         private void buttonOk_Click(object sender, EventArgs e)
@@ -145,6 +146,11 @@ namespace com.clusterrr.hakchi_gui
                 using (var writer = new StreamWriter(File.OpenWrite(saveFileDialog1.FileName)))
                 {
                     listView1.Items.Cast<ListViewItem>().ToList().ForEach(item => { writer.WriteLine(item.SubItems[0].Text + " " + item.SubItems[1].Text); });
+                    writer.Write(
+                        Environment.NewLine +
+                        "--- DEBUGLOG.TXT content ---" + Environment.NewLine +
+                        logContentsRichTextBox.Text +
+                        "--- End of DEBUGLOG.TXT content ---" + Environment.NewLine);
                 }
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(this, Resources.Wow, Resources.Done, Resources.sign_check);

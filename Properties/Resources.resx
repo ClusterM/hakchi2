@@ -1259,4 +1259,7 @@ Continue?</value>
   <data name="DumpOriginalKernelInvalid" xml:space="preserve">
     <value>The original kernel file you've supplied is not a validated original kernel.</value>
   </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
 </root>
