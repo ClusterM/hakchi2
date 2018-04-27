@@ -2048,6 +2048,10 @@
     </PublishFile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="DnsUtils\DnsUtils\DnsUtils.csproj">
+      <Project>{2f5b45d4-c5b1-46f4-bb78-02500d78ba6e}</Project>
+      <Name>DnsUtils</Name>
+    </ProjectReference>
     <ProjectReference Include="ProgressODoom\ProgressODoom.csproj">
       <Project>{8dd1e84b-0b03-4c0b-9b42-1e49f75e7cb1}</Project>
       <Name>ProgressODoom</Name>
