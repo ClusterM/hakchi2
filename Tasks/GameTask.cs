@@ -68,7 +68,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 tasker.SetStatus(string.Format(Resources.RepairingGame, game.Name));
                 bool success = game.Repair();
-                Debug.WriteLine($"Repairing game \"{game.Name}\" was " + (success ? "successful" : "not successful"));
+                Trace.WriteLine($"Repairing game \"{game.Name}\" was " + (success ? "successful" : "not successful"));
                 tasker.SetProgress(++i, max);
             }
 
@@ -114,8 +114,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("Error trying to finding cover art for game " + game.Name);
-                    Debug.WriteLine(ex.Message + ex.StackTrace);
+                    Trace.WriteLine("Error trying to finding cover art for game " + game.Name);
+                    Trace.WriteLine(ex.Message + ex.StackTrace);
                 }
                 tasker.SetProgress(++i, Games.Count);
             }
@@ -367,7 +367,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             }
 
                             // create game temporarily to perform cover search
-                            Debug.WriteLine(string.Format("Resetting game \"{0}\".", query.Single().Name));
+                            Trace.WriteLine(string.Format("Resetting game \"{0}\".", query.Single().Name));
                             var game = NesApplication.FromDirectory(path);
                             game.FindCover(code + ".desktop");
                             game.Save();
@@ -379,7 +379,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error synchronizing original games " + ex.Message + ex.StackTrace);
+                Trace.WriteLine("Error synchronizing original games " + ex.Message + ex.StackTrace);
                 tasker.ShowError(ex, Resources.ErrorRestoringAllOriginalGames);
                 return Tasker.Conclusion.Error;
             }

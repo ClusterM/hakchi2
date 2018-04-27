@@ -193,7 +193,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine($"Folder image id \"{value??"NULL"}\" is invalid. No corresponding file or resource exists.");
+                    System.Diagnostics.Trace.WriteLine($"Folder image id \"{value??"NULL"}\" is invalid. No corresponding file or resource exists.");
                     imageId = "folder";
                 }
             }

@@ -180,7 +180,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 }
                 catch // remove bad directories if any, no throw
                 {
-                    Debug.WriteLine($"Game directory \"{gameDir}\" is invalid, deleting");
+                    Trace.WriteLine($"Game directory \"{gameDir}\" is invalid, deleting");
                     Directory.Delete(gameDir, true);
                 }
                 tasker.SetProgress(++i, gameDirs.Length);

@@ -140,7 +140,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 var xmlDataBasePath = Path.Combine(System.IO.Path.Combine(Program.BaseDirectoryInternal, "data"), "nescarts.xml");
-                Debug.WriteLine("Loading " + xmlDataBasePath);
+                Trace.WriteLine("Loading " + xmlDataBasePath);
 
                 if (File.Exists(xmlDataBasePath))
                 {
@@ -171,11 +171,11 @@ namespace com.clusterrr.hakchi_gui
                         };
                     }
                 }
-                Debug.WriteLine(string.Format("NES XML loading done, {0} roms total", gameInfoCache.Count));
+                Trace.WriteLine(string.Format("NES XML loading done, {0} roms total", gameInfoCache.Count));
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Probable data/nescarts.xml file corruption: " + ex.Message + ex.StackTrace);
+                Trace.WriteLine("Probable data/nescarts.xml file corruption: " + ex.Message + ex.StackTrace);
             }
         }
 

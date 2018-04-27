@@ -126,9 +126,9 @@ namespace com.clusterrr.hakchi_gui
 
         public static void DebugListHashSet(IEnumerable<ApplicationFileInfo> localGameSet)
         {
-            Debug.WriteLine("HashSet Listing:");
+            Trace.WriteLine("HashSet Listing:");
             foreach (var afi in localGameSet)
-                Debug.WriteLine($"{afi.FilePath} [{afi.LocalFilePath ?? "-"}]{(afi.FileStream == null ? "" : " [stream]")} {afi.FileSize} bytes {afi.ModifiedTime.ToString()}");
+                Trace.WriteLine($"{afi.FilePath} [{afi.LocalFilePath ?? "-"}]{(afi.FileStream == null ? "" : " [stream]")} {afi.FileSize} bytes {afi.ModifiedTime.ToString()}");
         }
     }
 

@@ -250,7 +250,7 @@ namespace com.clusterrr.hakchi_gui
 
                 // detect unique id
                 UniqueID = Shell.ExecuteSimple("echo \"`devmem 0x01C23800``devmem 0x01C23804``devmem 0x01C23808``devmem 0x01C2380C`\"").Trim().Replace("0x", "");
-                Debug.WriteLine($"Detected device unique ID: {UniqueID}");
+                Trace.WriteLine($"Detected device unique ID: {UniqueID}");
 
                 // execution stops here for a minimal memboot
                 if (!MinimalMemboot)
@@ -265,14 +265,14 @@ namespace com.clusterrr.hakchi_gui
                     }
                     var customFirmwareLoaded = Shell.ExecuteSimple("hakchi currentFirmware");
                     CustomFirmwareLoaded = customFirmwareLoaded != "_nand_";
-                    Debug.WriteLine(string.Format("Detected mounted board: {0}, region: {1}, firmware: {2}", board, region, customFirmwareLoaded));
+                    Trace.WriteLine(string.Format("Detected mounted board: {0}, region: {1}, firmware: {2}", board, region, customFirmwareLoaded));
 
                     // detect running versions
                     var versions = Shell.ExecuteSimple("source /var/version && echo \"$bootVersion $kernelVersion $hakchiVersion\"", 500, true).Split(' ');
                     BootVersion = versions[0];
                     KernelVersion = versions[1];
                     ScriptVersion = versions[2];
-                    Debug.WriteLine($"Detected versions: boot {BootVersion}, kernel {KernelVersion}, script {ScriptVersion}");
+                    Trace.WriteLine($"Detected versions: boot {BootVersion}, kernel {KernelVersion}, script {ScriptVersion}");
                     CanInteract = !SystemRequiresReflash() && !SystemRequiresRootfsUpdate();
 
                     // only do more interaction if safe to do so
@@ -299,7 +299,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
+                Trace.WriteLine(ex.Message + ex.StackTrace);
                 CanInteract = false;
                 MinimalMemboot = false;
             }
@@ -448,7 +448,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (config != null && config.Count > 0)
                 {
-                    Debug.WriteLine("Saving p00000_config values");
+                    Trace.WriteLine("Saving p00000_config values");
                     foreach (var key in config.Keys)
                     {
                         var data = Encoding.UTF8.GetBytes(string.Format("cfg_{0}='{1}'\n", key, config[key].Replace(@"'", @"\'")));
@@ -473,7 +473,7 @@ namespace com.clusterrr.hakchi_gui
 
             try
             {
-                Debug.WriteLine("Reading p0000_config file");
+                Trace.WriteLine("Reading p0000_config file");
                 string configFile;
                 using (var stream = new MemoryStream())
                 {
@@ -495,7 +495,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error reading p0000_config file : " + ex.Message + ex.StackTrace);
+                Trace.WriteLine("Error reading p0000_config file : " + ex.Message + ex.StackTrace);
                 config.Clear();
             }
             return config;

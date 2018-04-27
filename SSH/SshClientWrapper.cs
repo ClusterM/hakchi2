@@ -73,7 +73,7 @@ namespace com.clusterrr.ssh
                         {
                             if (hasConnected)
                             {
-                                Debug.WriteLine("SSH shell disconnected");
+                                Trace.WriteLine("SSH shell disconnected");
                                 hasConnected = false;
                                 OnDisconnected();
                                 Thread.Sleep(1000); // give it additional time to disconnect
@@ -94,7 +94,7 @@ namespace com.clusterrr.ssh
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine("Error during connect loop: " + ex.Message + ex.StackTrace);
+                        Trace.WriteLine("Error during connect loop: " + ex.Message + ex.StackTrace);
                     }
                 }
             }
@@ -104,7 +104,7 @@ namespace com.clusterrr.ssh
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Critical error: " + ex.Message + ex.StackTrace);
+                Trace.WriteLine("Critical error: " + ex.Message + ex.StackTrace);
             }
         }
 
@@ -174,9 +174,9 @@ namespace com.clusterrr.ssh
                     sshClient.ConnectionInfo.Host, sshClient.ConnectionInfo.Port));
             }
 
-            Debug.WriteLine("SSH shell connected");
-            Debug.WriteLine($"IP Address: {ip}");
-            Debug.WriteLine($"Encryption: {sshClient.ConnectionInfo.CurrentServerEncryption}");
+            Trace.WriteLine("SSH shell connected");
+            Trace.WriteLine($"IP Address: {ip}");
+            Trace.WriteLine($"Encryption: {sshClient.ConnectionInfo.CurrentServerEncryption}");
 
             hasConnected = true;
             OnConnected(this);
@@ -204,9 +204,7 @@ namespace com.clusterrr.ssh
                 PingReply reply = pingSender.Send(ip ?? service, 100);
                 if (reply != null && reply.Status.Equals(IPStatus.Success))
                 {
-#if DEBUG
-                    Debug.WriteLine($"Pinged {reply.Address}, {reply.RoundtripTime}ms");
-#endif
+                    Trace.WriteLine($"Pinged {reply.Address}, {reply.RoundtripTime}ms");
                     ip = reply.Address.ToString();
                     return (int)reply.RoundtripTime;
                 }
@@ -234,9 +232,7 @@ namespace com.clusterrr.ssh
                 throw new SshClientException(string.Format("Shell command \"{0}\" returned exit code {1} {2}", command, sshCommand.ExitStatus, sshCommand.Error));
             }
 
-#if DEBUG
-            Debug.WriteLine(string.Format("{0} # exit code {1}", command, sshCommand.ExitStatus));
-#endif
+            Trace.WriteLine(string.Format("{0} # exit code {1}", command, sshCommand.ExitStatus));
 
             return result.Trim();
         }
@@ -270,9 +266,7 @@ namespace com.clusterrr.ssh
                 throw new SshClientException(string.Format("Shell command \"{0}\" returned exit code {1} {2}", command, sshCommand.ExitStatus, sshCommand.Error));
             }
 
-#if DEBUG
-            Debug.WriteLine(string.Format("{0} # exit code {1}", command, sshCommand.ExitStatus));
-#endif
+            Trace.WriteLine(string.Format("{0} # exit code {1}", command, sshCommand.ExitStatus));
 
             return sshCommand.ExitStatus;
         }

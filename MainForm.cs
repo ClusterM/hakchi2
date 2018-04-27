@@ -139,7 +139,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch
             {
-                Debug.WriteLine("Could not show \"Message of the day\"");
+                Trace.WriteLine("Could not show \"Message of the day\"");
             }
         }
 
@@ -156,7 +156,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
 
-                Debug.WriteLine("Downloading motd file, URL: " + MOTD_URL);
+                Trace.WriteLine("Downloading motd file, URL: " + MOTD_URL);
                 string motd = client.DownloadString(MOTD_URL);
                 if (!string.IsNullOrEmpty(motd))
                 {
@@ -165,7 +165,7 @@ namespace com.clusterrr.hakchi_gui
                 Match m = Regex.Match(motd, "\\<\\!\\-\\-\\-\\s([^\\s]+)\\s\\-\\-\\>");
                 if (m.Success)
                 {
-                    Debug.WriteLine("Motd timestamp: " + m.Groups[1].Value);
+                    Trace.WriteLine("Motd timestamp: " + m.Groups[1].Value);
                     DateTime date = DateTime.Parse(m.Groups[1].Value);
                     if (date.CompareTo(ConfigIni.Instance.LastMOTD) > 0)
                     {
@@ -176,7 +176,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                Trace.WriteLine(ex.Message);
             }
         }
 
@@ -229,7 +229,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Debug.WriteLine("Closing main form");
+            Trace.WriteLine("Closing main form");
             SaveConfig();
             FtpServer.Stop();
             hakchi.Shutdown();
@@ -377,7 +377,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
+                Trace.WriteLine(ex.Message + ex.StackTrace);
             }
         }
         
@@ -579,11 +579,11 @@ namespace com.clusterrr.hakchi_gui
                     tasker.AttachView(new Tasks.TaskerForm());
                     tasker.AddTask(task.UpdateLocal);
                     if (tasker.Start() == Tasks.Tasker.Conclusion.Success)
-                        Debug.WriteLine("Successfully updated local original games cache.");
+                        Trace.WriteLine("Successfully updated local original games cache.");
                 }
             }
             else
-                Debug.WriteLine("Local original games cache in sync.");
+                Trace.WriteLine("Local original games cache in sync.");
         }
 
         public void LoadGames(bool reloadFromFiles = true)
@@ -669,7 +669,7 @@ namespace com.clusterrr.hakchi_gui
                 // Trying to load flag
                 item.Image = (Image)rm.GetObject(country);
                 if (item.Image == null)
-                    Debug.WriteLine($"There is no flag for \"{country}\"");
+                    Trace.WriteLine($"There is no flag for \"{country}\"");
                 item.ImageScaling = ToolStripItemImageScaling.None;
                 item.Click += delegate (object sender, EventArgs e)
                     {
@@ -742,7 +742,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void SaveSelectedGames()
         {
-            Debug.WriteLine("Saving selected games");
+            Trace.WriteLine("Saving selected games");
             var selected = ConfigIni.Instance.SelectedGames;
             var original = ConfigIni.Instance.OriginalGames;
             selected.Clear();
@@ -2260,14 +2260,14 @@ namespace com.clusterrr.hakchi_gui
         private void disableSSHlistenerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Instance.DisableSSHListener = disableSSHlistenerToolStripMenuItem.Checked;
-            Debug.WriteLine("Recycling system shell listeners");
+            Trace.WriteLine("Recycling system shell listeners");
             hakchi.Initialize();
         }
 
         private void disableClovershellListenerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Instance.DisableClovershellListener = disableClovershellListenerToolStripMenuItem.Checked;
-            Debug.WriteLine("Recycling system shell listeners");
+            Trace.WriteLine("Recycling system shell listeners");
             hakchi.Initialize();
         }
 
@@ -2497,7 +2497,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
+                Trace.WriteLine(ex.Message + ex.StackTrace);
                 Tasks.MessageForm.Show(Resources.Error, Resources.NoTelnet, Resources.sign_error);
             }
         }

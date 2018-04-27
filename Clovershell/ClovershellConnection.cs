@@ -120,7 +120,7 @@ namespace com.clusterrr.clovershell
                 if (value)
                 {
                     var server = new TcpListener(IPAddress.Any, shellPort);
-                    Debug.WriteLine(string.Format("Listening port {0}", shellPort));
+                    Trace.WriteLine(string.Format("Listening port {0}", shellPort));
                     server.Start();
                     shellListenerThread = new Thread(shellListenerThreadLoop);
                     shellListenerThread.Start(server);
@@ -187,7 +187,7 @@ namespace com.clusterrr.clovershell
                 while (enabled)
                 {
                     online = false;
-                    //Debug.WriteLine("Waiting for clovershell");
+                    //Trace.WriteLine("Waiting for clovershell");
                     while (enabled)
                     {
                         try
@@ -230,22 +230,22 @@ namespace com.clusterrr.clovershell
                                         {
                                             inEndp = endp.Descriptor.EndpointID;
                                             inMax = endp.Descriptor.MaxPacketSize;
-                                            //Debug.WriteLine("IN endpoint found: " + inEndp);
-                                            //Debug.WriteLine("IN endpoint maxsize: " + inMax);
+                                            //Trace.WriteLine("IN endpoint found: " + inEndp);
+                                            //Trace.WriteLine("IN endpoint maxsize: " + inMax);
                                         }
                                         else
                                         {
                                             outEndp = endp.Descriptor.EndpointID;
                                             outMax = endp.Descriptor.MaxPacketSize;
-                                            //Debug.WriteLine("OUT endpoint found: " + outEndp);
-                                            //Debug.WriteLine("OUT endpoint maxsize: " + outMax);
+                                            //Trace.WriteLine("OUT endpoint found: " + outEndp);
+                                            //Trace.WriteLine("OUT endpoint maxsize: " + outMax);
                                         }
                                     }
                             if (inEndp != 0x81 || outEndp != 0x01)
                                 break;
                             epReader = device.OpenEndpointReader((ReadEndpointID)inEndp, 65536);
                             epWriter = device.OpenEndpointWriter((WriteEndpointID)outEndp);
-                            Debug.WriteLine("clovershell connected");
+                            Trace.WriteLine("clovershell connected");
                             // Kill all other sessions and drop all output
                             killAll();
                             var body = new byte[65536];
@@ -272,7 +272,7 @@ namespace com.clusterrr.clovershell
                         }
                         catch (ClovershellException ex)
                         {
-                            Debug.WriteLine(ex.Message + ex.StackTrace);
+                            Trace.WriteLine(ex.Message + ex.StackTrace);
                             break;
                         }
                     }
@@ -280,7 +280,7 @@ namespace com.clusterrr.clovershell
                     {
                         dropAll();
                         OnDisconnected();
-                        Debug.WriteLine("clovershell disconnected");
+                        Trace.WriteLine("clovershell disconnected");
                     }
                     online = false;
                     if (device != null)
@@ -302,7 +302,7 @@ namespace com.clusterrr.clovershell
             }
             catch (ClovershellException ex)
             {
-                Debug.WriteLine("Critical error: " + ex.Message + ex.StackTrace);
+                Trace.WriteLine("Critical error: " + ex.Message + ex.StackTrace);
             }
         }
 
@@ -438,7 +438,7 @@ namespace com.clusterrr.clovershell
                     if (res != ErrorCode.Ok)
                     {
                         if (repeats >= 10) break;
-                        //Debug.WriteLine("write error: " + res);
+                        //Trace.WriteLine("write error: " + res);
                         repeats++;
                         Thread.Sleep(100);
                     }
@@ -457,7 +457,7 @@ namespace com.clusterrr.clovershell
                 {
                     while (!server.Pending()) Thread.Sleep(100);
                     var connection = new ShellConnection(this, server.AcceptSocket());
-                    Debug.WriteLine("Shell client connected");
+                    Trace.WriteLine("Shell client connected");
                     try
                     {
                         if (!online) throw new ClovershellException("NES Mini is offline");
@@ -478,7 +478,7 @@ namespace com.clusterrr.clovershell
                     }
                     catch (ClovershellException ex)
                     {
-                        Debug.WriteLine(ex.Message + ex.StackTrace);
+                        Trace.WriteLine(ex.Message + ex.StackTrace);
                         if (connection.socket.Connected)
                             connection.socket.Send(Encoding.ASCII.GetBytes("Error: " + ex.Message));
                         connection.Dispose();
@@ -491,7 +491,7 @@ namespace com.clusterrr.clovershell
             }
             catch (ClovershellException ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
+                Trace.WriteLine(ex.Message + ex.StackTrace);
             }
             finally
             {
@@ -508,13 +508,13 @@ namespace com.clusterrr.clovershell
                 if (connection == null) return;
                 connection.id = arg;
                 shellConnections[connection.id] = connection;
-                //Debug.WriteLine(string.Format("Shell started, id={0}", connection.id));
+                //Trace.WriteLine(string.Format("Shell started, id={0}", connection.id));
                 connection.shellConnectionThread = new Thread(connection.shellConnectionLoop);
                 connection.shellConnectionThread.Start();
             }
             catch (ClovershellException ex)
             {
-                Debug.WriteLine("shell error: " + ex.Message + ex.StackTrace);
+                Trace.WriteLine("shell error: " + ex.Message + ex.StackTrace);
             }
         }
 
@@ -524,7 +524,7 @@ namespace com.clusterrr.clovershell
             {
                 var connection = (from c in pendingExecConnections where c.command == command select c).Last();
                 pendingExecConnections.Remove(connection);
-                //Debug.WriteLine("Executing: " + command);
+                //Trace.WriteLine("Executing: " + command);
                 connection.id = arg;
                 execConnections[arg] = connection;
                 if (connection.stdin != null)
@@ -535,7 +535,7 @@ namespace com.clusterrr.clovershell
             }
             catch (ClovershellException ex)
             {
-                Debug.WriteLine("exec error: " + ex.Message);
+                Trace.WriteLine("exec error: " + ex.Message);
             }
         }
 
@@ -546,7 +546,7 @@ namespace com.clusterrr.clovershell
             if (c.stdout != null)
                 c.stdout.Write(data, pos, len);
             c.LastDataTime = DateTime.Now;
-            //Debug.WriteLine("stdout: " + Encoding.UTF8.GetString(data, pos, len));
+            //Trace.WriteLine("stdout: " + Encoding.UTF8.GetString(data, pos, len));
             if (len == 0)
                 c.stdoutFinished = true;
         }
@@ -557,7 +557,7 @@ namespace com.clusterrr.clovershell
             if (c == null) return;
             if (c.stderr != null)
                 c.stderr.Write(data, pos, len);
-#if DEBUG
+#if VERY_DEBUG
             //Debug.WriteLine("stderr: " + Encoding.UTF8.GetString(data, pos, len));
 #endif
             c.LastDataTime = DateTime.Now;
@@ -570,7 +570,7 @@ namespace com.clusterrr.clovershell
             var c = execConnections[arg];
             if (c == null) return;
             c.result = data[pos];
-            Debug.WriteLine(string.Format("{0} # exit code: {1}", c.command, c.result));
+            Trace.WriteLine(string.Format("{0} # exit code: {1}", c.command, c.result));
             c.finished = true;
         }
 
@@ -592,7 +592,7 @@ namespace com.clusterrr.clovershell
             }
             catch (ClovershellException ex)
             {
-                Debug.WriteLine("Socket write error: " + ex.Message + ex.StackTrace);
+                Trace.WriteLine("Socket write error: " + ex.Message + ex.StackTrace);
             }
         }
 

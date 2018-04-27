@@ -11,13 +11,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public ITaskerView SetState(Tasker.State state)
         {
-            Debug.WriteLine($"Set state {state.ToString()}");
+            Trace.WriteLine($"Set state {state.ToString()}");
             return this;
         }
 
         public ITaskerView SetProgress(long value, long maximum)
         {
-            Debug.WriteLine($"Set progress {value} of {maximum}");
+            Trace.WriteLine($"Set progress {value} of {maximum}");
             return this;
         }
 
@@ -28,31 +28,31 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public ITaskerView SetTitle(string title)
         {
-            Debug.WriteLine($"Set title \"{title}\"");
+            Trace.WriteLine($"Set title \"{title}\"");
             return this;
         }
 
         public ITaskerView SetStatusImage(System.Drawing.Image image)
         {
-            Debug.WriteLine($"Set status image");
+            Trace.WriteLine($"Set status image");
             return this;
         }
 
         public ITaskerView SetStatus(string status)
         {
-            Debug.WriteLine($"Set status \"{status}\"");
+            Trace.WriteLine($"Set status \"{status}\"");
             return this;
         }
 
         public ITaskerView Show()
         {
-            Debug.WriteLine("Showing");
+            Trace.WriteLine("Showing");
             return this;
         }
 
         public ITaskerView Close()
         {
-            Debug.WriteLine("Hiding");
+            Trace.WriteLine("Hiding");
             return this;
         }
 

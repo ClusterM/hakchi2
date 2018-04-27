@@ -409,7 +409,7 @@ namespace com.clusterrr.util
         {
             foreach (var e in entries)
             {
-                Debug.WriteLine("Filename: " + e.FileName ?? "");
+                Trace.WriteLine("Filename: " + e.FileName ?? "");
                 if (e.ExtInfo != null)
                     ApplicationFileInfo.DebugListHashSet(new List<ApplicationFileInfo>() { e.ExtInfo });
             }

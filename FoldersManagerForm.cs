@@ -77,7 +77,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine(ex.Message + ex.StackTrace);
+                        Trace.WriteLine(ex.Message + ex.StackTrace);
                         Tasks.ErrorForm.Show(mainForm, ex);
                         File.Delete(FoldersXmlPath);
                         return;
@@ -102,7 +102,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
+                Trace.WriteLine(ex.Message + ex.StackTrace);
                 Tasks.ErrorForm.Show(mainForm, ex);
             }
         }
@@ -567,7 +567,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (!destinationNode.FullPath.StartsWith(newNode.FullPath) && (destinationNode != newNode.Parent))
                 {
-                    Debug.WriteLine(string.Format("Drag: {0}->{1}", newNode, destinationNode));
+                    Trace.WriteLine(string.Format("Drag: {0}->{1}", newNode, destinationNode));
                     if (newNode.Parent.Tag is NesMenuFolder)
                         (newNode.Parent.Tag as NesMenuFolder).ChildMenuCollection.Remove(newNode.Tag as INesMenuElement);
                     else if (newNode.Parent.Tag is NesMenuCollection)

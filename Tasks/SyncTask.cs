@@ -132,10 +132,10 @@ namespace com.clusterrr.hakchi_gui.Tasks
             long storageUsed = Shared.DirectorySize(exportDirectory);
             long storageFree = drive.AvailableFreeSpace;
             long maxGamesSize = storageUsed + storageFree;
-            Debug.WriteLine($"Exporting to folder: {exportDirectory}");
-            Debug.WriteLine($"Drive: {drive.Name} ({drive.DriveFormat})");
-            Debug.WriteLine(string.Format("Storage size: {0:F1}MB, used by games: {1:F1}MB, free: {2:F1}MB", storageTotal / 1024.0 / 1024.0, storageUsed / 1024.0 / 1024.0, storageFree / 1024.0 / 1024.0));
-            Debug.WriteLine(string.Format("Available for games: {0:F1}MB", maxGamesSize / 1024.0 / 1024.0));
+            Trace.WriteLine($"Exporting to folder: {exportDirectory}");
+            Trace.WriteLine($"Drive: {drive.Name} ({drive.DriveFormat})");
+            Trace.WriteLine(string.Format("Storage size: {0:F1}MB, used by games: {1:F1}MB, free: {2:F1}MB", storageTotal / 1024.0 / 1024.0, storageUsed / 1024.0 / 1024.0, storageFree / 1024.0 / 1024.0));
+            Trace.WriteLine(string.Format("Available for games: {0:F1}MB", maxGamesSize / 1024.0 / 1024.0));
             if (stats.TotalSize > maxGamesSize)
             {
                 throw new Exception(
@@ -165,7 +165,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public Tasker.Conclusion SyncLocalGames(Tasker tasker, Object syncObject = null)
         {
             // now transfer whatever games are remaining
-            Debug.WriteLine("Exporting games: " + Shared.SizeSuffix(stats.TotalSize));
+            Trace.WriteLine("Exporting games: " + Shared.SizeSuffix(stats.TotalSize));
             long max = transferGameSet.Sum(afi => afi.FileSize);
             long value = 0;
             DateTime startTime = DateTime.Now, lastTime = DateTime.Now;
@@ -214,7 +214,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     if (afi.FileStream == null || !afi.FileStream.CanRead)
                     {
-                        Debug.WriteLine($"\"{afi.FilePath}\": no source data or stream or unreadable");
+                        Trace.WriteLine($"\"{afi.FilePath}\": no source data or stream or unreadable");
                     }
                     else
                     {
@@ -226,7 +226,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 }
                 value += afi.FileSize;
             }
-            Debug.WriteLine("Uploaded " + (int)(max / 1024) + "kb in " + DateTime.Now.Subtract(startTime).TotalSeconds + " seconds");
+            Trace.WriteLine("Uploaded " + (int)(max / 1024) + "kb in " + DateTime.Now.Subtract(startTime).TotalSeconds + " seconds");
 
             // show resulting games directory
             tasker.SetStatus(Resources.PleaseWait);
@@ -319,15 +319,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
             bool uploadSuccessful = false;
             if (!transferGameSet.Any())
             {
-                Debug.WriteLine("No file to upload");
+                Trace.WriteLine("No file to upload");
                 uploadSuccessful = true;
             }
             else
             {
-                Debug.WriteLine("Uploading through FTP");
+                Trace.WriteLine("Uploading through FTP");
                 using (var ftp = new FtpWrapper(transferGameSet))
                 {
-                    Debug.WriteLine($"Upload size: " + Shared.SizeSuffix(ftp.Length));
+                    Trace.WriteLine($"Upload size: " + Shared.SizeSuffix(ftp.Length));
                     if (ftp.Length > 0)
                     {
                         DateTime startTime = DateTime.Now, lastTime = DateTime.Now;
@@ -343,7 +343,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         {
                             ftp.Upload(uploadPath);
                             uploadSuccessful = true;
-                            Debug.WriteLine("Uploaded " + (int)(ftp.Length / 1024) + "kb in " + DateTime.Now.Subtract(startTime).TotalSeconds + " seconds");
+                            Trace.WriteLine("Uploaded " + (int)(ftp.Length / 1024) + "kb in " + DateTime.Now.Subtract(startTime).TotalSeconds + " seconds");
                         }
                     }
                     transferForm.SetAdvancedProgress(ftp.Length, ftp.Length, "");
@@ -353,7 +353,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             // don't continue if upload wasn't successful
             if (!uploadSuccessful)
             {
-                Debug.WriteLine("Something happened during transfer, cancelling");
+                Trace.WriteLine("Something happened during transfer, cancelling");
                 return Tasker.Conclusion.Error;
             }
 
@@ -367,15 +367,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
             bool uploadSuccessful = false;
             if (!transferGameSet.Any())
             {
-                Debug.WriteLine("No file to upload");
+                Trace.WriteLine("No file to upload");
                 uploadSuccessful = true;
             }
             else
             {
-                Debug.WriteLine("Uploading through tar file");
+                Trace.WriteLine("Uploading through tar file");
                 using (var gamesTar = new TarStream(transferGameSet, "."))
                 {
-                    Debug.WriteLine($"Upload size: " + Shared.SizeSuffix(gamesTar.Length));
+                    Trace.WriteLine($"Upload size: " + Shared.SizeSuffix(gamesTar.Length));
                     if (gamesTar.Length > 0)
                     {
                         DateTime startTime = DateTime.Now, lastTime = DateTime.Now;
@@ -390,7 +390,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             }
                         };
                         hakchi.Shell.Execute($"tar -xvC \"{uploadPath}\"", gamesTar, null, null, 0, true);
-                        Debug.WriteLine("Uploaded " + (int)(gamesTar.Length / 1024) + "kb in " + DateTime.Now.Subtract(startTime).TotalSeconds + " seconds");
+                        Trace.WriteLine("Uploaded " + (int)(gamesTar.Length / 1024) + "kb in " + DateTime.Now.Subtract(startTime).TotalSeconds + " seconds");
 
                         uploadSuccessful = true;
                         done = true;
@@ -407,7 +407,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             // don't continue if upload wasn't successful
             if (!uploadSuccessful)
             {
-                Debug.WriteLine("Something happened during transfer, cancelling");
+                Trace.WriteLine("Something happened during transfer, cancelling");
                 return Tasker.Conclusion.Error;
             }
 
@@ -574,15 +574,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     }
                     catch (GameGenieFormatException ex)
                     {
-                        Debug.WriteLine(string.Format(Resources.GameGenieFormatError, ex.Code, game.Name));
+                        Trace.WriteLine(string.Format(Resources.GameGenieFormatError, ex.Code, game.Name));
                     }
                     catch (GameGenieNotFoundException ex)
                     {
-                        Debug.WriteLine(string.Format(Resources.GameGenieNotFound, ex.Code, game.Name));
+                        Trace.WriteLine(string.Format(Resources.GameGenieNotFound, ex.Code, game.Name));
                     }
 
                     long gameSize = game.Size();
-                    Debug.WriteLine(string.Format("Processing {0} ('{1}'), size: {2}KB", game.Code, game.Name, gameSize / 1024));
+                    Trace.WriteLine(string.Format("Processing {0} ('{1}'), size: {2}KB", game.Code, game.Name, gameSize / 1024));
                     gameSize = game.CopyTo(targetDirectory, localGameSet, copyMode);
                     stats.TotalSize += gameSize;
                     stats.TransferSize += gameSize;
@@ -608,7 +608,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     long folderSize = folder.CopyTo(targetDirectory, localGameSet);
                     stats.TotalSize += folderSize;
                     stats.TransferSize += folderSize;
-                    Debug.WriteLine(string.Format("Processed folder {0} ('{1}'), size: {2}KB", folder.Code, folder.Name, folderSize / 1024));
+                    Trace.WriteLine(string.Format("Processed folder {0} ('{1}'), size: {2}KB", folder.Code, folder.Name, folderSize / 1024));
                 }
             }
         }

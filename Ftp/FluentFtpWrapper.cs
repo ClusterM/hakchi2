@@ -69,7 +69,7 @@ namespace com.clusterrr.util.fluentftp
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                Trace.WriteLine(ex.Message);
             }
             return false;
         }
@@ -130,7 +130,7 @@ namespace com.clusterrr.util.fluentftp
                     }
                     else
                     {
-                        Debug.WriteLine($"Error with file \"{afi.FilePath}\", no input data.");
+                        Trace.WriteLine($"Error with file \"{afi.FilePath}\", no input data.");
                         OnFileInputError(afi.FilePath);
                     }
                     currentPosition += afi.FileSize;

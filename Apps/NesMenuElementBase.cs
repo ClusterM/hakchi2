@@ -207,7 +207,7 @@ namespace com.clusterrr.hakchi_gui
                     ((inImage.Height == targetHeight && inImage.Width <= targetWidth) ||
                      (inImage.Width == targetWidth && inImage.Height <= targetHeight)))
                 {
-                    Debug.WriteLine($"\"{Path.GetFileName(inPath)}\" did not need resizing, no processing done");
+                    Trace.WriteLine($"\"{Path.GetFileName(inPath)}\" did not need resizing, no processing done");
                     File.Copy(inPath, outPath, true);
                     return;
                 }
@@ -246,7 +246,7 @@ namespace com.clusterrr.hakchi_gui
                     ((inImage.Height == targetHeight && inImage.Width <= targetWidth) ||
                      (inImage.Width == targetWidth && inImage.Height <= targetHeight)))
                 {
-                    Debug.WriteLine($"\"{Path.GetFileName(inPath)}\" did not need resizing, no processing done");
+                    Trace.WriteLine($"\"{Path.GetFileName(inPath)}\" did not need resizing, no processing done");
                     var stream = new MemoryStream(File.ReadAllBytes(inPath));
                     stream.Position = 0;
                     return stream;
@@ -271,7 +271,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (nQuant.QuantizationException q)
             {
-                Debug.WriteLine(q.Message);
+                Trace.WriteLine(q.Message);
             }
         }
 

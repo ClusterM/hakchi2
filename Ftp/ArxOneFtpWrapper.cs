@@ -77,7 +77,7 @@ namespace com.clusterrr.util.arxoneftp
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                Trace.WriteLine(ex.Message);
             }
             return false;
         }
@@ -100,7 +100,7 @@ namespace com.clusterrr.util.arxoneftp
                 catch (ArxOne.Ftp.Exceptions.FtpFileException ex)
                 {
                     if (ex.Code != 550)
-                        Debug.WriteLine(ex.Message);
+                        Trace.WriteLine(ex.Message);
                 }
             }
 
@@ -157,7 +157,7 @@ namespace com.clusterrr.util.arxoneftp
                     }
                     else
                     {
-                        Debug.WriteLine($"Error with file \"{afi.FilePath}\", no input data.");
+                        Trace.WriteLine($"Error with file \"{afi.FilePath}\", no input data.");
                         OnFileInputError(afi.FilePath);
                     }
                     currentPosition += afi.FileSize;

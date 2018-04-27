@@ -169,7 +169,7 @@ namespace com.clusterrr.hakchi_gui
             catch (ObjectDisposedException) { }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
+                Trace.WriteLine(ex.Message + ex.StackTrace);
                 try
                 {
                     Tasks.ErrorForm.Show(this, ex);
@@ -303,7 +303,7 @@ namespace com.clusterrr.hakchi_gui
                     }
 
                 }
-                Debug.WriteLine("Loaded " + images.Count + " imags");
+                Trace.WriteLine("Loaded " + images.Count + " imags");
                 if (images.Count == 0) return;
                 if (menuOpened) return; // Right click...
                 Invoke(new Action(delegate
@@ -325,7 +325,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
+                Trace.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 

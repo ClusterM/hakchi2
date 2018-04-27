@@ -42,14 +42,14 @@ namespace com.clusterrr.hakchi_gui
             }
             public void DebugWrite()
             {
-                Debug.WriteLine("Bin: " + Bin);
-                Debug.WriteLine("Name: " + Name);
-                Debug.WriteLine("DisplayName: " + DisplayName);
+                Trace.WriteLine("Bin: " + Bin);
+                Trace.WriteLine("Name: " + Name);
+                Trace.WriteLine("DisplayName: " + DisplayName);
                 if (SupportedExtensions != null)
-                    Debug.WriteLine("SupportedExtensions: " + string.Join(", ", SupportedExtensions));
+                    Trace.WriteLine("SupportedExtensions: " + string.Join(", ", SupportedExtensions));
                 if (Systems != null)
-                    Debug.WriteLine("Systems: " + string.Join(", ", Systems));
-                Debug.WriteLine("");
+                    Trace.WriteLine("Systems: " + string.Join(", ", Systems));
+                Trace.WriteLine("");
             }
             public override string ToString()
             {
@@ -100,14 +100,14 @@ namespace com.clusterrr.hakchi_gui
             var client = new WebClient();
             try
             {
-                Debug.WriteLine("Downloading whitelist file, URL: " + WHITELIST_UPDATE_URL);
+                Trace.WriteLine("Downloading whitelist file, URL: " + WHITELIST_UPDATE_URL);
                 string whitelist = client.DownloadString(WHITELIST_UPDATE_URL);
                 if (!string.IsNullOrEmpty(whitelist))
                     File.WriteAllText(WhiteListFilename, whitelist);
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
+                Trace.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -123,7 +123,7 @@ namespace com.clusterrr.hakchi_gui
             cores = BuiltInCores.List.ToDictionary(pair => pair.Bin);
 
             // load info files
-            Debug.WriteLine("Loading libretro core info files");
+            Trace.WriteLine("Loading libretro core info files");
             var whiteList = File.Exists(WhiteListFilename) ? File.ReadAllLines(WhiteListFilename) : Resources.retroarch_whitelist.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             var regex = new Regex("(^[^\\s]+)\\s+=\\s+\"?([^\"\\r\\n]*)\"?", RegexOptions.Multiline | RegexOptions.Compiled);
             var infoFiles = Directory.GetFiles(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "libretro_cores"), "*.info");
@@ -178,7 +178,7 @@ namespace com.clusterrr.hakchi_gui
             new Thread(CoreCollection.UpdateWhitelist).Start();
 
             // cross indexing
-            Debug.WriteLine("Building libretro core cross index");
+            Trace.WriteLine("Building libretro core cross index");
             foreach (var c in cores)
             {
                 if (c.Value.SupportedExtensions != null)
@@ -317,7 +317,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ": ", ex.StackTrace);
+                Trace.WriteLine(ex.Message + ": ", ex.StackTrace);
                 return false;
             }
             return true;
@@ -333,7 +333,7 @@ namespace com.clusterrr.hakchi_gui
                 if (fileInfo.LastWriteTimeUtc < DateTime.UtcNow.AddDays(-1))
                     return false;
 
-                Debug.Write("CoreCollection loading indexes from cache: ");
+                Trace.Write("CoreCollection loading indexes from cache: ");
 
                 // load cores
                 cores = JsonConvert.DeserializeObject<Dictionary<string, CoreInfo>>(File.ReadAllText(string.Format(CollectionFilename, string.Empty)));
@@ -364,11 +364,11 @@ namespace com.clusterrr.hakchi_gui
                     systemIndex[pair.Key] = list;
                 }
 
-                Debug.WriteLine("Done!");
+                Trace.WriteLine("Done!");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ": ", ex.StackTrace);
+                Trace.WriteLine(ex.Message + ": ", ex.StackTrace);
                 cores.Clear();
                 extIndex.Clear();
                 systemIndex.Clear();

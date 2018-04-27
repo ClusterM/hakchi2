@@ -166,12 +166,12 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     if (ex is ThreadAbortException) return Tasker.Conclusion.Abort;
                     if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
                     {
-                        Debug.WriteLine(ex.InnerException.Message + ex.InnerException.StackTrace);
+                        Trace.WriteLine(ex.InnerException.Message + ex.InnerException.StackTrace);
                         tasker.ShowError(ex.InnerException, Path.GetFileName(sourceFileName));
                     }
                     else
                     {
-                        Debug.WriteLine(ex.Message + ex.StackTrace, Path.GetFileName(sourceFileName));
+                        Trace.WriteLine(ex.Message + ex.StackTrace, Path.GetFileName(sourceFileName));
                         tasker.ShowError(ex);
                     }
                     return Tasker.Conclusion.Error;

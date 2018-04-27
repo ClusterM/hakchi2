@@ -403,7 +403,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error creating app from directory {path} : " + ex.Message + ex.StackTrace);
+                Trace.WriteLine($"Error creating app from directory {path} : " + ex.Message + ex.StackTrace);
                 return new UnknownGame(path);
             }
         }
@@ -452,7 +452,7 @@ namespace com.clusterrr.hakchi_gui
             char prefix;
             if (coreInfo != null)
             {
-                Debug.WriteLine("Import Detected Core: " + coreInfo.DisplayName);
+                Trace.WriteLine("Import Detected Core: " + coreInfo.DisplayName);
                 application = coreInfo.QualifiedBin;
                 args = coreInfo.DefaultArgs;
             }
@@ -501,7 +501,7 @@ namespace com.clusterrr.hakchi_gui
                         CoreCollection.CoreInfo newCoreInfo = CoreCollection.GetCoreFromExec(application);
                         if (newCoreInfo != coreInfo)
                         {
-                            Debug.WriteLine("Patching override core: " + newCoreInfo.Name);
+                            Trace.WriteLine("Patching override core: " + newCoreInfo.Name);
                             coreInfo = newCoreInfo;
                         }
                     }
@@ -717,7 +717,7 @@ namespace com.clusterrr.hakchi_gui
                     file => !excludedFiles.Contains(Path.GetFileName(file))).ToArray();
             }
 
-            Debug.WriteLine("Found files: " + string.Join(", ", foundFiles.Select(file => Path.GetFileName(file))));
+            Trace.WriteLine("Found files: " + string.Join(", ", foundFiles.Select(file => Path.GetFileName(file))));
 
             List<string> acceptedFiles = new List<string>();
             foreach (var file in foundFiles)
@@ -749,14 +749,14 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
-            Debug.WriteLine("Accepted files: " + string.Join(", ", acceptedFiles.Select(file => Path.GetFileName(file))));
+            Trace.WriteLine("Accepted files: " + string.Join(", ", acceptedFiles.Select(file => Path.GetFileName(file))));
 
             string selectedFile = string.Empty;
             if (acceptedFiles.Count == 0)
             {
                 if (fullgamepath != "")
                     Desktop.Exec = Desktop.Exec.Replace(fullgamepath, "").Replace("  ", " ");
-                Debug.WriteLine("No validated file found in game folder");
+                Trace.WriteLine("No validated file found in game folder");
                 return true;
             }
             else if (acceptedFiles.Count == 1)
@@ -840,7 +840,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("Image loading error: " + ex.Message + ex.StackTrace);
+                    Trace.WriteLine("Image loading error: " + ex.Message + ex.StackTrace);
                 }
                 return null;
             }
@@ -862,7 +862,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("Image loading error: " + ex.Message + ex.StackTrace);
+                    Trace.WriteLine("Image loading error: " + ex.Message + ex.StackTrace);
                 }
                 return null;
             }
@@ -1002,7 +1002,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error trying to find cover art: " + ex.Message + ex.StackTrace);
+                Trace.WriteLine("Error trying to find cover art: " + ex.Message + ex.StackTrace);
             }
 
             return CoverArtMatchSuccess = false;
@@ -1017,7 +1017,7 @@ namespace com.clusterrr.hakchi_gui
             var regexTrim = new Regex(@"\s+", RegexOptions.Compiled);
 
             name = regexTrim.Replace(" " + regexSanitize.Replace(name, " ").ToLower() + " ", " ");
-            //Debug.WriteLine("FindCoverMatch: " + name);
+            //Trace.WriteLine("FindCoverMatch: " + name);
 
             if (!string.IsNullOrEmpty(name.Trim()))
             {
@@ -1025,7 +1025,7 @@ namespace com.clusterrr.hakchi_gui
                 List<string[]> words = new List<string[]>();
                 foreach(string word in name.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    //Debug.WriteLine($"\"{word}\"");
+                    //Trace.WriteLine($"\"{word}\"");
                     if (word == "&" || word == "and") // and, & can be used interchangeably, or omitted
                     {
                         words.Add(new string[] { "&", "and", string.Empty });
@@ -1195,9 +1195,9 @@ namespace com.clusterrr.hakchi_gui
             int maxLength = 64 - ".sfrom.lzma".Length;
             if(f.Length > maxLength) // 64 characters, leave room for longest extension: '.sfrom.lzma'
             {
-                Debug.WriteLine($"'{f}' l:{f.Length}");
+                Trace.WriteLine($"'{f}' l:{f.Length}");
                 f = f.Substring(0, maxLength);
-                Debug.WriteLine($"'{f}' l:{f.Length}");
+                Trace.WriteLine($"'{f}' l:{f.Length}");
             }
             string output = f.Trim(new char[] { '_', '.' }) + e;
             return output;
@@ -1478,7 +1478,7 @@ namespace com.clusterrr.hakchi_gui
                 var archName = filename + ".7z";
                 var compressor = new SevenZipCompressor();
                 compressor.CompressionLevel = CompressionLevel.High;
-                Debug.WriteLine("Compressing " + filename);
+                Trace.WriteLine("Compressing " + filename);
                 compressor.CompressFiles(archName, filename);
                 Thread.Sleep(1);
                 File.Delete(filename);
@@ -1492,7 +1492,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 using (var szExtractor = new SevenZipExtractor(filename))
                 {
-                    Debug.WriteLine("Decompressing " + filename);
+                    Trace.WriteLine("Decompressing " + filename);
                     szExtractor.ExtractArchive(basePath);
                     foreach (var f in szExtractor.ArchiveFileNames)
                         desktop.Exec = desktop.Exec.Replace(Path.GetFileName(filename), f);

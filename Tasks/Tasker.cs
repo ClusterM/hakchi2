@@ -362,7 +362,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         private void startThread()
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(ConfigIni.Instance.Language);
-            while (!Ready) { Thread.Sleep(1); Debug.Write("."); }
+            while (!Ready) { Thread.Sleep(1); Trace.Write("."); }
             SetStatus(Resources.Starting);
             TaskState = State.Starting;
             SetProgress(0, 1);
@@ -374,7 +374,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     // pop out next task
                     CurrentTask = tasks.Dequeue();
-                    Debug.WriteLine("Executing task: " + CurrentTask.displayName);
+                    Trace.WriteLine("Executing task: " + CurrentTask.displayName);
 
                     // set title if not already set
                     if (firstTask && !titleSet)
@@ -399,7 +399,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
             catch (ThreadAbortException)
             {
-                Debug.WriteLine("Thread aborted");
+                Trace.WriteLine("Thread aborted");
                 if (TaskConclusion == Conclusion.Undefined)
                 {
                     TaskConclusion = Conclusion.Abort;
@@ -422,7 +422,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 CurrentTask = null;
                 if (finalTask != null)
                 {
-                    Debug.WriteLine("Executing final task: " + finalTask.displayName);
+                    Trace.WriteLine("Executing final task: " + finalTask.displayName);
                     finalTask.task(this, SyncObject);
                     finalTask = null;
                 }
@@ -435,7 +435,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 SetState(State.Done).SetStatus(Resources.Done);
             }
 
-            Debug.WriteLine($"Tasker completed all tasks, conclusion: {TaskConclusion.ToString()}");
+            Trace.WriteLine($"Tasker completed all tasks, conclusion: {TaskConclusion.ToString()}");
             Close();
             thread = null;
         }

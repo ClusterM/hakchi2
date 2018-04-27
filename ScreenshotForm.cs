@@ -213,7 +213,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error saving unattended screenshot: " + ex.Message + ex.StackTrace);
+                Trace.WriteLine("Error saving unattended screenshot: " + ex.Message + ex.StackTrace);
             }
         }
 

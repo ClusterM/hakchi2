@@ -213,7 +213,7 @@ namespace com.clusterrr.hakchi_gui
                                 }
                                 catch
                                 {
-                                    System.Diagnostics.Debug.WriteLine($"Error parsing desktop file. Invalid profile path \"{value}\"");
+                                    System.Diagnostics.Trace.WriteLine($"Error parsing desktop file. Invalid profile path \"{value}\"");
                                     ProfilePath = string.Empty;
                                 }
                             break;
@@ -235,7 +235,7 @@ namespace com.clusterrr.hakchi_gui
                                 }
                                 catch
                                 {
-                                    System.Diagnostics.Debug.WriteLine($"Error parsing desktop file. Invalid icon path \"{value}\"");
+                                    System.Diagnostics.Trace.WriteLine($"Error parsing desktop file. Invalid icon path \"{value}\"");
                                     IconPath = string.Empty;
                                     IconFilename = string.Empty;
                                 }
@@ -276,7 +276,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch(Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Exception: " + ex);
+                System.Diagnostics.Trace.WriteLine("Exception: " + ex);
             }
 
             hasUnsavedChanges = false;
@@ -333,7 +333,7 @@ namespace com.clusterrr.hakchi_gui
                 if (currentFilePath == null)
                     throw new FileLoadException("No path give to save application " + name);
 
-                System.Diagnostics.Debug.WriteLine(string.Format("Saving application \"{0}\" as {1}", name, code));
+                System.Diagnostics.Trace.WriteLine(string.Format("Saving application \"{0}\" as {1}", name, code));
                 SaveTo(currentFilePath, snesExtraFields, omitProfilePathCode);
                 hasUnsavedChanges = false;
             }

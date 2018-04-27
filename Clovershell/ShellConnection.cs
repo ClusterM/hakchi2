@@ -82,14 +82,14 @@ namespace com.clusterrr.clovershell
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
+                Trace.WriteLine(ex.Message + ex.StackTrace);
                 if (socket.Connected)
                     socket.Send(Encoding.ASCII.GetBytes("Error: " + ex.Message));
             }
             finally
             {
                 shellConnectionThread = null;
-                Debug.WriteLine(string.Format("Shell client {0} disconnected", id));
+                Trace.WriteLine(string.Format("Shell client {0} disconnected", id));
                 if (socket != null)
                     socket.Close();
                 connection.shellConnections[id] = null;

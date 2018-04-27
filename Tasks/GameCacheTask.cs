@@ -66,10 +66,10 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         }
                         catch (Exception ex)
                         {
-                            Debug.WriteLine(ex.Message + ex.StackTrace);
+                            Trace.WriteLine(ex.Message + ex.StackTrace);
                             if (Directory.Exists(gamePath))
                             {
-                                Debug.WriteLine($"Exception, erasing \"{gamePath}\".");
+                                Trace.WriteLine($"Exception, erasing \"{gamePath}\".");
                                 Directory.Delete(gamePath, true);
                             }
                         }
@@ -80,7 +80,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
+                Trace.WriteLine(ex.Message + ex.StackTrace);
                 return Tasker.Conclusion.Error;
             }
 

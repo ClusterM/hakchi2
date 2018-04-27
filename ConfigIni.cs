@@ -270,7 +270,7 @@ namespace com.clusterrr.hakchi_gui
             string configPath = Shared.PathCombine(Program.BaseDirectoryExternal, ConfigDir, ConfigFile);
             if (File.Exists(configPath))
             {
-                Debug.WriteLine("Loading configuration");
+                Trace.WriteLine("Loading configuration");
                 try
                 {
                     instance = JsonConvert.DeserializeObject<ConfigIni>(File.ReadAllText(configPath));
@@ -278,7 +278,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("Unexpected error loading config file : " + ex.Message + ex.StackTrace);
+                    Trace.WriteLine("Unexpected error loading config file : " + ex.Message + ex.StackTrace);
                     instance = null;
                 }
             }
@@ -290,7 +290,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if(instance != null)
             {
-                Debug.WriteLine("Saving configuration");
+                Trace.WriteLine("Saving configuration");
                 try
                 {
                     string configPath = Shared.PathCombine(Program.BaseDirectoryExternal, ConfigDir, ConfigFile);
@@ -300,13 +300,13 @@ namespace com.clusterrr.hakchi_gui
                     string legacyConfigPath = Shared.PathCombine(Program.BaseDirectoryExternal, ConfigDir, LegacyConfigFile);
                     if (File.Exists(legacyConfigPath))
                     {
-                        Debug.WriteLine("Legacy configuration file can be removed");
+                        Trace.WriteLine("Legacy configuration file can be removed");
                         // File.Delete(legacyConfigPath); // TODO : Eventually
                     }
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("Unexpected error saving config file : " + ex.Message + ex.StackTrace);
+                    Trace.WriteLine("Unexpected error saving config file : " + ex.Message + ex.StackTrace);
                 }
             }
         }
@@ -389,7 +389,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 try
                 {
-                    Debug.WriteLine("Loading legacy configuration file");
+                    Trace.WriteLine("Loading legacy configuration file");
                     instance = new ConfigIni();
 
                     var configLines = File.ReadAllLines(fileName);
@@ -607,7 +607,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("Error loading legacy configuration file : " + ex.Message + ex.StackTrace);
+                    Trace.WriteLine("Error loading legacy configuration file : " + ex.Message + ex.StackTrace);
                     instance = null;
                 }
             }

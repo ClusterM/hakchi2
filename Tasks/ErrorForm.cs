@@ -16,18 +16,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public static void Show(Form hostForm, Exception ex, string title = null)
         {
             string text = formatException(ex);
-#if DEBUG
-            System.Diagnostics.Debug.WriteLine(ex.Message + ex.StackTrace);
-#endif
+            System.Diagnostics.Trace.WriteLine(ex.Message + ex.StackTrace);
             Show(hostForm, (title ?? Resources.Error), ex.Message, text, Resources.sign_error);
         }
 
         public static void Show(Exception ex, string title = null)
         {
             string text = formatException(ex);
-#if DEBUG
-            System.Diagnostics.Debug.WriteLine(ex.Message + ex.StackTrace);
-#endif
+            System.Diagnostics.Trace.WriteLine(ex.Message + ex.StackTrace);
             Show((title ?? Resources.Error), ex.Message, text, Resources.sign_error);
         }
 

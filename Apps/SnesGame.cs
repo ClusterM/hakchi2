@@ -159,7 +159,7 @@ namespace com.clusterrr.hakchi_gui
             // already in sfrom?
             if (ext.ToLower() == ".sfrom")
             {
-                Debug.WriteLine("ROM is already in SFROM format, no conversion needed");
+                Trace.WriteLine("ROM is already in SFROM format, no conversion needed");
                 application = "/bin/clover-canoe-shvc-wr -rom";
                 args = DefaultCanoeArgs;
                 return true;
@@ -168,7 +168,7 @@ namespace com.clusterrr.hakchi_gui
             // header removal
             if ((ext.ToLower() == ".smc") && ((rawRomData.Length % 1024) != 0))
             {
-                Debug.WriteLine("Removing SMC header");
+                Trace.WriteLine("Removing SMC header");
                 var stripped = new byte[rawRomData.Length - 512];
                 Array.Copy(rawRomData, 512, stripped, 0, stripped.Length);
                 rawRomData = stripped;
@@ -193,10 +193,10 @@ namespace com.clusterrr.hakchi_gui
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("Error reading ROM header: " + ex.Message + ex.StackTrace);
+                    Trace.WriteLine("Error reading ROM header: " + ex.Message + ex.StackTrace);
                 }
 
-                Debug.WriteLine($"Convert with SFROM Tool: {inputFileName}");
+                Trace.WriteLine($"Convert with SFROM Tool: {inputFileName}");
                 if (SfromToolWrapper.ConvertROMtoSFROM(ref rawRomData))
                 {
                     outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
@@ -206,7 +206,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else
                 {
-                    Debug.WriteLine("SFROM Tool conversion failed, attempting the built-in SFROM conversion");
+                    Trace.WriteLine("SFROM Tool conversion failed, attempting the built-in SFROM conversion");
                     convertedSuccessfully = false;
                 }
             }
@@ -217,7 +217,7 @@ namespace com.clusterrr.hakchi_gui
                 FindPatch(ref rawRomData, inputFileName, crc32);
                 if (isSnesSystem)
                 {
-                    Debug.WriteLine($"Trying to convert {inputFileName}");
+                    Trace.WriteLine($"Trying to convert {inputFileName}");
                     bool problemGame = false;
                     try
                     {
@@ -307,7 +307,7 @@ namespace com.clusterrr.hakchi_gui
                     romType = SnesRomType.HiRom;
                 else
                 {
-                    Debug.WriteLine("Can't detect ROM type");
+                    Trace.WriteLine("Can't detect ROM type");
                     throw new Exception("can't detect ROM type, seems like ROM is corrupted");
                 }
             }
@@ -339,33 +339,33 @@ namespace com.clusterrr.hakchi_gui
                 rawRomData[0xFFD9] = 0x01; // Force NTSC
             */
 
-            Debug.WriteLine($"Game title: {gameTitle}");
-            Debug.WriteLine($"ROM type: {romType}");
+            Trace.WriteLine($"Game title: {gameTitle}");
+            Trace.WriteLine($"ROM type: {romType}");
             ushort presetId = 0;
             ushort chip = 0;
             if (SfxTypes.Contains(romHeader.RomType)) // Super FX chip
             {
-                Debug.WriteLine($"Super FX chip detected");
+                Trace.WriteLine($"Super FX chip detected");
                 chip = 0x0C;
             }
             if (!knownPresets.TryGetValue(gameTitle, out presetId)) // Known codes
             {
                 if (Dsp1Types.Contains(romHeader.RomType))
                 {
-                    Debug.WriteLine($"DSP-1 chip detected");
+                    Trace.WriteLine($"DSP-1 chip detected");
                     presetId = 0x10BD; // ID from Mario Kard, DSP1
                 }
                 if (SA1Types.Contains(romHeader.RomType))
                 {
-                    Debug.WriteLine($"SA1 chip detected");
+                    Trace.WriteLine($"SA1 chip detected");
                     presetId = 0x109C; // ID from Super Mario RPG, SA1
                 }
             }
             else
             {
-                Debug.WriteLine($"We have preset for this game");
+                Trace.WriteLine($"We have preset for this game");
             }
-            Debug.WriteLine(string.Format("PresetID: 0x{0:X2}{1:X2}, extra byte: {2:X2}", presetId & 0xFF, (presetId >> 8) & 0xFF, chip));
+            Trace.WriteLine(string.Format("PresetID: 0x{0:X2}{1:X2}, extra byte: {2:X2}", presetId & 0xFF, (presetId >> 8) & 0xFF, chip));
 
             var sfromHeader1 = new SfromHeader1((uint)rawRomData.Length);
             var sfromHeader2 = new SfromHeader2((uint)rawRomData.Length, presetId, romType, chip);
@@ -658,7 +658,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 var xmlDataBasePath = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "snescarts.xml");
-                Debug.WriteLine("Loading " + xmlDataBasePath);
+                Trace.WriteLine("Loading " + xmlDataBasePath);
 
                 if (File.Exists(xmlDataBasePath))
                 {
@@ -705,18 +705,18 @@ namespace com.clusterrr.hakchi_gui
                             }
                             catch
                             {
-                                Debug.WriteLine($"Invalid XML record for game: {cartridge.OuterXml}");
+                                Trace.WriteLine($"Invalid XML record for game: {cartridge.OuterXml}");
                             }
 
                             gameInfoCache[crc] = info;
                         };
                     }
                 }
-                Debug.WriteLine(string.Format("SNES XML loading done, {0} roms total", gameInfoCache.Count));
+                Trace.WriteLine(string.Format("SNES XML loading done, {0} roms total", gameInfoCache.Count));
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Probable data/snescarts.xml file corruption: " + ex.Message + ex.StackTrace);
+                Trace.WriteLine("Probable data/snescarts.xml file corruption: " + ex.Message + ex.StackTrace);
             }
         }
 

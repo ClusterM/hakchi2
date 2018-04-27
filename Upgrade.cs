@@ -38,21 +38,21 @@ namespace com.clusterrr.hakchi_gui
 
             if (lastVersion.CompareTo(currentVersion) > 0)
             {
-                Debug.WriteLine("[Upgrade] Version has been downgraded from last run, results can be unpredictable");
+                Trace.WriteLine("[Upgrade] Version has been downgraded from last run, results can be unpredictable");
                 return false;
             }
             else if (lastVersion.CompareTo(currentVersion) == 0)
             {
-                Debug.WriteLine("[Upgrade] No upgrade action needed");
+                Trace.WriteLine("[Upgrade] No upgrade action needed");
                 return false;
             }
 
-            Debug.WriteLine("[Upgrade] Checking for upgrade actions. Last run version: " + lastVersion.ToString() + ", current version: " + currentVersion.ToString());
+            Trace.WriteLine("[Upgrade] Checking for upgrade actions. Last run version: " + lastVersion.ToString() + ", current version: " + currentVersion.ToString());
             foreach (var action in actions)
             {
                 if (lastVersion.CompareTo(action.startingVersion) >= 0 && lastVersion.CompareTo(action.targetVersion) < 0)
                 {
-                    Debug.WriteLine("[Upgrade] Running upgrade action " + action.startingVersion.ToString() + " -> " + action.targetVersion);
+                    Trace.WriteLine("[Upgrade] Running upgrade action " + action.startingVersion.ToString() + " -> " + action.targetVersion);
                     try
                     {
                         if (action.action() != true)
@@ -62,7 +62,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine("[Upgrade] Error executing action: " + ex.Message + ex.StackTrace);
+                        Trace.WriteLine("[Upgrade] Error executing action: " + ex.Message + ex.StackTrace);
                         return false;
                     }
 
@@ -75,7 +75,7 @@ namespace com.clusterrr.hakchi_gui
             // bring the last version up to speed since all actions were successful
             ConfigIni.Instance.LastVersion = currentVersion.ToString();
 
-            Debug.WriteLine("[Upgrade] All actions executed successfully");
+            Trace.WriteLine("[Upgrade] All actions executed successfully");
             return true;
         }
 
@@ -101,7 +101,7 @@ namespace com.clusterrr.hakchi_gui
                         string f2 = Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir, "folders_snes_usa.xml");
                         if (File.Exists(f))
                         {
-                            Debug.WriteLine("Converting folders_snes.xml file into eur and usa counterparts.");
+                            Trace.WriteLine("Converting folders_snes.xml file into eur and usa counterparts.");
                             if (!File.Exists(f1)) File.Copy(f, f1);
                             if (!File.Exists(f2)) File.Copy(f, f2);
                             File.Delete(f);
@@ -153,7 +153,7 @@ namespace com.clusterrr.hakchi_gui
                             catch (DirectoryNotFoundException) { }
                             catch (UnauthorizedAccessException)
                             {
-                                Debug.WriteLine($"Could not delete directory \"{dir}\". UAC restrictions. No big deal");
+                                Trace.WriteLine($"Could not delete directory \"{dir}\". UAC restrictions. No big deal");
                             }
                             catch { }
                         }
@@ -167,7 +167,7 @@ namespace com.clusterrr.hakchi_gui
                             catch (FileNotFoundException) { }
                             catch (UnauthorizedAccessException)
                             {
-                                Debug.WriteLine($"Could not delete file \"{file}\". UAC restrictions. No big deal");
+                                Trace.WriteLine($"Could not delete file \"{file}\". UAC restrictions. No big deal");
                             }
                             catch { }
                         }

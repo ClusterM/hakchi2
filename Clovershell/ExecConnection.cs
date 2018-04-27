@@ -62,7 +62,7 @@ namespace com.clusterrr.clovershell
                     LastDataTime = DateTime.Now;
                     if (stdinQueue > 32 * 1024 && connection.IsOnline)
                     {
-                        Debug.WriteLine(string.Format("queue: {0} / {1}, {2}MB / {3}MB ({4}%)",
+                        Trace.WriteLine(string.Format("queue: {0} / {1}, {2}MB / {3}MB ({4}%)",
                             stdinQueue, stdinPipeSize, stdin.Position / 1024 / 1024, stdin.Length / 1024 / 1024, stdin.Length == 0 ? 100 : (100 * stdin.Position / stdin.Length)));
                         while (stdinQueue > 16 * 1024)
                         {
@@ -82,7 +82,7 @@ namespace com.clusterrr.clovershell
             catch (ThreadAbortException) { }
             catch (ClovershellException ex)
             {
-                Debug.WriteLine("stdin error: " + ex.Message + ex.StackTrace);
+                Trace.WriteLine("stdin error: " + ex.Message + ex.StackTrace);
             }
             finally
             {
