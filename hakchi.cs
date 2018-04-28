@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using SevenZip;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -48,9 +49,9 @@ namespace com.clusterrr.hakchi_gui
 
         public static ConsoleType? DetectedConsoleType { get; private set; }
         public static bool CustomFirmwareLoaded { get; private set; }
-        public static string BootVersion { get; private set; }
-        public static string KernelVersion { get; private set; }
-        public static string ScriptVersion { get; private set; }
+        public static string RawBootVersion { get; private set; }
+        public static string RawKernelVersion { get; private set; }
+        public static string RawScriptVersion { get; private set; }
         public static string UniqueID { get; private set; }
         public static bool CanInteract { get; private set; }
         public static bool MinimalMemboot { get; private set; }
@@ -121,34 +122,42 @@ namespace com.clusterrr.hakchi_gui
             return RemoteGameSyncPath;
         }
 
-        public static string MinimumHakchiBootVersion
+        public static Version MinimumBootVersion
         {
-            get { return "1.0.1"; }
+            get { return new Version(1, 0, 1, 0); }
         }
 
-        public static string MinimumHakchiKernelVersion
+        public static Version MinimumKernelVersion
         {
-            get { return "3.4.112"; }
+            get { return new Version(3, 4, 112, 0); }
         }
 
-        public static string MinimumHakchiScriptVersion
+        public static Version MinimumScriptVersion
         {
-            get { return "1.0.3"; }
+            get { return new Version(1, 0, 3, 110); }
         }
 
-        public static string MinimumHakchiScriptRevision
+        public static string RawLocalBootVersion
         {
-            get { return "110"; }
+            get; private set;
         }
 
-        public static string CurrentHakchiScriptVersion
+        public static string RawLocalKernelVersion
         {
-            get { return "1.0.4"; }
+            get; private set;
         }
 
-        public static string CurrentHakchiScriptRevision
+        public static string RawLocalScriptVersion
         {
-            get { return "115"; }
+            get; private set;
+        }
+
+        public static Version ConvertVersion(string ver)
+        {
+            Match m = Regex.Match(ver, @"(?:\d+[\.-]){2,3}(?:\d+)+");
+            return m.Success ?
+                new Version(m.Value.Replace("-", ".")) :
+                new Version(0, 0, 0, 0);
         }
 
         static hakchi()
@@ -162,9 +171,9 @@ namespace com.clusterrr.hakchi_gui
             Connected = false;
             DetectedConsoleType = null;
             CustomFirmwareLoaded = false;
-            BootVersion = "";
-            KernelVersion = "";
-            ScriptVersion = "";
+            RawBootVersion = "";
+            RawKernelVersion = "";
+            RawScriptVersion = "";
             CanInteract = false;
             MinimalMemboot = false;
             UniqueID = null;
@@ -183,6 +192,21 @@ namespace com.clusterrr.hakchi_gui
 
         public static void Initialize()
         {
+            // load local version info
+            try
+            {
+                var ver = GetHakchiVersion();
+                Trace.WriteLine($"Local hakchi.hmod version info: boot {ver["bootVersion"]}, kernel {ver["kernelVersion"]}, script {ver["hakchiVersion"]}");
+                RawLocalBootVersion = ver["bootVersion"];
+                RawLocalKernelVersion = ver["kernelVersion"];
+                RawLocalScriptVersion = ver["hakchiVersion"];
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.Message + ex.StackTrace);
+            }
+
+            // just in case Initialize was ever called before
             if (shells.Any())
             {
                 if (Connected)
@@ -269,10 +293,10 @@ namespace com.clusterrr.hakchi_gui
 
                     // detect running versions
                     var versions = Shell.ExecuteSimple("source /var/version && echo \"$bootVersion $kernelVersion $hakchiVersion\"", 500, true).Split(' ');
-                    BootVersion = versions[0];
-                    KernelVersion = versions[1];
-                    ScriptVersion = versions[2];
-                    Trace.WriteLine($"Detected versions: boot {BootVersion}, kernel {KernelVersion}, script {ScriptVersion}");
+                    RawBootVersion = versions[0];
+                    RawKernelVersion = versions[1];
+                    RawScriptVersion = versions[2];
+                    Trace.WriteLine($"Detected versions: boot {RawBootVersion}, kernel {RawKernelVersion}, script {RawScriptVersion}");
                     CanInteract = !SystemRequiresReflash() && !SystemRequiresRootfsUpdate();
 
                     // only do more interaction if safe to do so
@@ -337,71 +361,32 @@ namespace com.clusterrr.hakchi_gui
 
         public static bool SystemRequiresReflash()
         {
-            bool requiresReflash = false;
             try
             {
-                string kernelVersion = KernelVersion.Substring(0, KernelVersion.LastIndexOf('.'));
-                if (!Shared.IsVersionGreaterOrEqual(kernelVersion, hakchi.MinimumHakchiKernelVersion) ||
-                    !Shared.IsVersionGreaterOrEqual(BootVersion, hakchi.MinimumHakchiBootVersion))
-                {
-                    requiresReflash = true;
-                }
+                return ConvertVersion(RawKernelVersion) < MinimumKernelVersion || ConvertVersion(RawBootVersion) < MinimumBootVersion;
             }
-            catch
-            {
-                requiresReflash = true;
-            }
-            return requiresReflash;
+            catch { }
+            return true;
         }
 
         public static bool SystemRequiresRootfsUpdate()
         {
-            bool requiresUpdate = false;
             try
             {
-                Match match = Regex.Match(ScriptVersion, @"v(\d+.\d+.\d+)[\-\.](\d+)(.*)");
-                if (match.Success)
-                {
-                    string version = match.Groups[1].Value;
-                    string revision = match.Groups[2].Value;
-
-                    if (!Shared.IsVersionGreaterOrEqual(version, hakchi.MinimumHakchiScriptVersion) ||
-                        !(int.Parse(revision) >= int.Parse(hakchi.MinimumHakchiScriptRevision)))
-                    {
-                        requiresUpdate = true;
-                    }
-                }
+                return ConvertVersion(RawScriptVersion) < MinimumScriptVersion;
             }
-            catch
-            {
-                requiresUpdate = true;
-            }
-            return requiresUpdate;
+            catch { }
+            return true;
         }
 
         public static bool SystemEligibleForRootfsUpdate()
         {
-            bool eligibleForUpdate = false;
             try
             {
-                Match match = Regex.Match(ScriptVersion, @"v(\d+.\d+.\d+)[\-\.](\d+)(.*)");
-                if (match.Success)
-                {
-                    string version = match.Groups[1].Value;
-                    string revision = match.Groups[2].Value;
-
-                    if (!Shared.IsVersionGreaterOrEqual(version, hakchi.CurrentHakchiScriptVersion) ||
-                        !(int.Parse(revision) >= int.Parse(hakchi.CurrentHakchiScriptRevision)))
-                    {
-                        eligibleForUpdate = true;
-                    }
-                }
+                return ConvertVersion(RawBootVersion) < ConvertVersion(RawLocalBootVersion) || ConvertVersion(RawScriptVersion) < ConvertVersion(RawLocalScriptVersion);
             }
-            catch
-            {
-                eligibleForUpdate = true;
-            }
-            return eligibleForUpdate;
+            catch { }
+            return true;
         }
 
         public static int ShowSplashScreen()
@@ -500,5 +485,53 @@ namespace com.clusterrr.hakchi_gui
             }
             return config;
         }
+
+        public static SevenZipExtractor GetHakchiHmod()
+        {
+            var kernelHmodStream = new MemoryStream();
+            using (var baseHmods = File.OpenRead(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")))
+            {
+                using (var szExtractor = new SevenZipExtractor(baseHmods))
+                {
+                    szExtractor.ExtractFile(".\\hakchi.hmod", kernelHmodStream);
+                }
+            }
+            var tar = new MemoryStream();
+            using (var szExtractor = new SevenZipExtractor(kernelHmodStream))
+            {
+                szExtractor.ExtractFile(0, tar);
+                tar.Seek(0, SeekOrigin.Begin);
+                return new SevenZipExtractor(tar);
+            }
+        }
+
+        public static MemoryStream GetMembootImage()
+        {
+            var o = new MemoryStream();
+            GetHakchiHmod().ExtractFile("boot\\boot.img", o);
+            return o;
+        }
+
+        public static Dictionary<string, string> GetHakchiVersion()
+        {
+            using (var o = new MemoryStream())
+            {
+                GetHakchiHmod().ExtractFile("var\\version", o);
+                o.Position = 0;
+                string contents = Encoding.UTF8.GetString(o.ToArray());
+
+                MatchCollection collection = Regex.Matches(contents, @"^([^=]+)=(""(?:[^""\\]*(?:\\.[^""\\]*)*)""|\'(?:[^\'\\]*(?:\\.[^\'\\]*)*)\')", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+                var version = new Dictionary<string, string>();
+                foreach (Match match in collection)
+                {
+                    string param = match.Groups[1].Value;
+                    string value = match.Groups[2].Value;
+                    value = value.Substring(1, value.Length - 2).Replace("\'", "'").Replace("\\\"", "\"");
+                    version[param] = value;
+                }
+                return version;
+            }
+        }
+
     }
 }

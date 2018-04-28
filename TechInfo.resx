@@ -154,8 +154,8 @@
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACJTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0dyb3VwBAAAAAZIZWFkZXIPSGVhZGVyQWxpZ25tZW50A1Rh
         ZwROYW1lAQQCAShTeXN0ZW0uV2luZG93cy5Gb3Jtcy5Ib3Jpem9udGFsQWxpZ25tZW50AgAAAAIAAAAG
-        AwAAABFTaGVsbCBpbmZvcm1hdGlvbgX8////KFN5c3RlbS5XaW5kb3dzLkZvcm1zLkhvcml6b250YWxB
-        bGlnbm1lbnQBAAAAB3ZhbHVlX18ACAIAAAAAAAAACgYFAAAADnNoZWxsSW5mb0dyb3VwCw==
+        AwAAABFMb2NhbCBoYWtjaGkuaG1vZAX8////KFN5c3RlbS5XaW5kb3dzLkZvcm1zLkhvcml6b250YWxB
+        bGlnbm1lbnQBAAAAB3ZhbHVlX18ACAIAAAAAAAAACgYFAAAAEGxvY2FsSGFrY2hpR3JvdXAL
 </value>
   </data>
   <data name="listView1.Groups2" mimetype="application/x-microsoft.net.object.binary.base64">
@@ -164,11 +164,21 @@
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACJTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0dyb3VwBAAAAAZIZWFkZXIPSGVhZGVyQWxpZ25tZW50A1Rh
         ZwROYW1lAQQCAShTeXN0ZW0uV2luZG93cy5Gb3Jtcy5Ib3Jpem9udGFsQWxpZ25tZW50AgAAAAIAAAAG
-        AwAAABJoYWtjaGkgaW5mb3JtYXRpb24F/P///yhTeXN0ZW0uV2luZG93cy5Gb3Jtcy5Ib3Jpem9udGFs
-        QWxpZ25tZW50AQAAAAd2YWx1ZV9fAAgCAAAAAAAAAAoGBQAAAAtoYWtjaGlHcm91cAs=
+        AwAAABFTaGVsbCBpbmZvcm1hdGlvbgX8////KFN5c3RlbS5XaW5kb3dzLkZvcm1zLkhvcml6b250YWxB
+        bGlnbm1lbnQBAAAAB3ZhbHVlX18ACAIAAAAAAAAACgYFAAAADnNoZWxsSW5mb0dyb3VwCw==
 </value>
   </data>
   <data name="listView1.Groups3" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACJTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0dyb3VwBAAAAAZIZWFkZXIPSGVhZGVyQWxpZ25tZW50A1Rh
+        ZwROYW1lAQQCAShTeXN0ZW0uV2luZG93cy5Gb3Jtcy5Ib3Jpem9udGFsQWxpZ25tZW50AgAAAAIAAAAG
+        AwAAABpSdW5uaW5nIGhha2NoaSBpbmZvcm1hdGlvbgX8////KFN5c3RlbS5XaW5kb3dzLkZvcm1zLkhv
+        cml6b250YWxBbGlnbm1lbnQBAAAAB3ZhbHVlX18ACAIAAAAAAAAACgYFAAAAC2hha2NoaUdyb3VwCw==
+</value>
+  </data>
+  <data name="listView1.Groups4" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACJTeXN0
@@ -178,7 +188,7 @@
         B3ZhbHVlX18ACAIAAAAAAAAACgYFAAAACnBhdGhzR3JvdXAL
 </value>
   </data>
-  <data name="listView1.Groups4" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="listView1.Groups5" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACJTeXN0
@@ -188,7 +198,7 @@
         ZW50AQAAAAd2YWx1ZV9fAAgCAAAAAAAAAAoGBQAAABBtZW1vcnlTdGF0c0dyb3VwCw==
 </value>
   </data>
-  <data name="listView1.Groups5" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="listView1.Groups6" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACJTeXN0
@@ -198,7 +208,7 @@
         aWdubWVudAEAAAAHdmFsdWVfXwAIAgAAAAAAAAAKBgUAAAAUY29uc29sZVNldHRpbmdzR3JvdXAL
 </value>
   </data>
-  <data name="listView1.Groups6" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="listView1.Groups7" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACJTeXN0
@@ -303,6 +313,9 @@
   </data>
   <data name="logContentsRichTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
+  </data>
+  <data name="logContentsRichTextBox.Text" xml:space="preserve">
+    <value />
   </data>
   <data name="&gt;&gt;logContentsRichTextBox.Name" xml:space="preserve">
     <value>logContentsRichTextBox</value>

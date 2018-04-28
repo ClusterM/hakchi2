@@ -32,16 +32,30 @@ memboot(){
   while :;do sleep 1;:;done
 }
 
+reboot_kexec(){
+  local bootimg="$1"
+  if [ -f "$bootimg" ]; then
+    shift
+  else
+    bootimg="$temppath/boot.img"
+    readBoot2 > "$bootimg" || return 1
+  fi
+  [ -f "$bootimg" ] || return 1
+  memboot "$bootimg" ${1+"$@"}
+}
+
+clovershellActive(){
+  [ "$cf_clovershell" = "y" ] && return 0
+  (ps | grep -vF grep;pack_list) | grep -qF clovershell
+}
+
 recovery(){
   local bootimg="$1"
-  [ -f "$bootimg" ] && shift
+  [ -f "$bootimg" ] && shift || bootimg=""
   local rshell="$modname-shell"
-  pack_list | grep -qF clovershell && rshell="$modname-clovershell"
-  [ "$#" -gt "0" ] && rshell=""
-  [ -f "$bootimg" ] && memboot "$bootimg" "$rshell" ${1+"$@"}
-  bootimg="$temppath/boot.img"
-  sunxi-flash read_boot2 > "$bootimg" || return 1
-  [ -f "$bootimg" ] && memboot "$bootimg" "$rshell" ${1+"$@"}
+  clovershellActive && rshell="$modname-clovershell"
+  echo "$*" | grep -q "$modname-*shell" && rshell=""
+  reboot_kexec "$bootimg" "$rshell" ${1+"$@"}
 }
 
 cdir="$(dirname "$(readlink -f "$0")")"

@@ -232,11 +232,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static bool IsVersionGreaterOrEqual(string given, string minimum)
-        {
-            return new Version(given).CompareTo(new Version(minimum)) > -1;
-        }
-
         public static readonly string[] SizeSuffixes =
                    { "B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
         public static string SizeSuffix(Int64 value, int decimalPlaces = 1)
@@ -487,33 +482,6 @@ namespace com.clusterrr.hakchi_gui
             pages += (second_size + page_size - 1) / page_size;
             pages += (dt_size + page_size - 1) / page_size;
             return pages * page_size;
-        }
-
-        public static MemoryStream GetMembootImage()
-        {
-            var kernelHmodStream = new MemoryStream();
-
-            using (var baseHmods = File.OpenRead(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar"))) {
-                using (var szExtractor = new SevenZipExtractor(baseHmods))
-                {
-                    szExtractor.ExtractFile(".\\hakchi.hmod", kernelHmodStream);
-                }
-
-            }
-            using (var tar = new MemoryStream())
-            {
-                using (var szExtractor = new SevenZipExtractor(kernelHmodStream))
-                {
-                    szExtractor.ExtractFile(0, tar);
-                    tar.Seek(0, SeekOrigin.Begin);
-                    using (var szExtractorTar = new SevenZipExtractor(tar))
-                    {
-                        var o = new MemoryStream();
-                        szExtractorTar.ExtractFile("boot\\boot.img", o);
-                        return o;
-                    }
-                }
-            }
         }
 
         public static void InPlaceStringEdit(this byte[] buffer, int startOffset, int windowSize, byte fillByte, Func<string, string> Functor)

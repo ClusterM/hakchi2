@@ -54,7 +54,8 @@
             ((System.Windows.Forms.ListViewGroup)(resources.GetObject("listView1.Groups3"))),
             ((System.Windows.Forms.ListViewGroup)(resources.GetObject("listView1.Groups4"))),
             ((System.Windows.Forms.ListViewGroup)(resources.GetObject("listView1.Groups5"))),
-            ((System.Windows.Forms.ListViewGroup)(resources.GetObject("listView1.Groups6")))});
+            ((System.Windows.Forms.ListViewGroup)(resources.GetObject("listView1.Groups6"))),
+            ((System.Windows.Forms.ListViewGroup)(resources.GetObject("listView1.Groups7")))});
             this.listView1.Name = "listView1";
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;

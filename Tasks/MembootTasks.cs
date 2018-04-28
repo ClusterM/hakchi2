@@ -16,7 +16,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
     class MembootTasks
     {
         // Constants
-        public const int MembootWaitDelay = 30000;
+        public const int MembootWaitDelay = 45000;
 
         // Enums
         public enum MembootTaskType {
@@ -255,7 +255,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
             else
             {
-                kernel = Shared.GetMembootImage().ToArray();
+                stockKernel = null; // double-safety
+                kernel = hakchi.GetMembootImage().ToArray();
             }
 
             tasker.SetStatus(Resources.Membooting);

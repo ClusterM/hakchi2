@@ -23,6 +23,16 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
+                ListViewGroup
+                    generalInfoGroup = listView1.Groups[0],
+                    localHakchiGroup = listView1.Groups[1],
+                    shellInfoGroup = listView1.Groups[2],
+                    hakchiGroup = listView1.Groups[3],
+                    pathsGroup = listView1.Groups[4],
+                    memoryStatsGroup = listView1.Groups[5],
+                    consoleSettingsGroup = listView1.Groups[6],
+                    settingsGroup = listView1.Groups[7];
+
                 string devTools = "";
                 if (ConfigIni.Instance.ForceClovershell) devTools += "Force Clovershell, ";
                 if (ConfigIni.Instance.ForceSSHTransfers) devTools += "Force SSH Transfers, ";
@@ -41,96 +51,99 @@ namespace com.clusterrr.hakchi_gui
 
                 listView1.Items.AddRange(new ListViewItem[] {
                     // general info
-                    new ListViewItem(new string[] { "hakchi2 CE version:", Shared.AppDisplayVersion }, listView1.Groups[0]),
-                    new ListViewItem(new string[] { "Portable mode:", Program.isPortable ? Resources.Yes : Resources.No }, listView1.Groups[0]),
-                    new ListViewItem(new string[] { "Developer tools:", devTools }, listView1.Groups[0]),
-                    new ListViewItem(new string[] { "Internal path:", Program.BaseDirectoryInternal }, listView1.Groups[0]),
-                    new ListViewItem(new string[] { "External path:", Program.BaseDirectoryExternal }, listView1.Groups[0]),
-                    new ListViewItem(new string[] { "/games:", gamesNum > 0 ? ($"{gamesNum} directories (" + Shared.SizeSuffix(gamesSize) + ")") : Resources.None }, listView1.Groups[0]),
-                    new ListViewItem(new string[] { "/games_snes:", gamesSnesNum > 0 ? ($"{gamesSnesNum} directories (" + Shared.SizeSuffix(gamesSnesSize) + ")") : Resources.None}, listView1.Groups[0]),
-                    new ListViewItem(new string[] { "/games_cache", gamesCacheNum > 0 ? ($"{gamesCacheNum} directories (" + Shared.SizeSuffix(gamesCacheSize) + ")") : Resources.None }, listView1.Groups[0]),
+                    new ListViewItem(new string[] { "hakchi2 CE version:", Shared.AppDisplayVersion }, generalInfoGroup),
+                    new ListViewItem(new string[] { "Portable mode:", Program.isPortable ? Resources.Yes : Resources.No }, generalInfoGroup),
+                    new ListViewItem(new string[] { "Developer tools:", devTools }, generalInfoGroup),
+                    new ListViewItem(new string[] { "Internal path:", Program.BaseDirectoryInternal }, generalInfoGroup),
+                    new ListViewItem(new string[] { "External path:", Program.BaseDirectoryExternal }, generalInfoGroup),
+                    new ListViewItem(new string[] { "/games:", gamesNum > 0 ? ($"{gamesNum} directories (" + Shared.SizeSuffix(gamesSize) + ")") : Resources.None }, generalInfoGroup),
+                    new ListViewItem(new string[] { "/games_snes:", gamesSnesNum > 0 ? ($"{gamesSnesNum} directories (" + Shared.SizeSuffix(gamesSnesSize) + ")") : Resources.None}, generalInfoGroup),
+                    new ListViewItem(new string[] { "/games_cache", gamesCacheNum > 0 ? ($"{gamesCacheNum} directories (" + Shared.SizeSuffix(gamesCacheSize) + ")") : Resources.None }, generalInfoGroup),
+
+                    // local hakchi info
+                    new ListViewItem(new string[] { "Boot version:", hakchi.RawLocalBootVersion }, localHakchiGroup),
+                    new ListViewItem(new string[] { "Kernel version:", hakchi.RawLocalKernelVersion }, localHakchiGroup),
+                    new ListViewItem(new string[] { "Script version:", hakchi.RawLocalScriptVersion }, localHakchiGroup),
+
+                    // shell info
+                    new ListViewItem(new string[] { "Connected:", hakchi.Connected ? Resources.Yes : Resources.No }, shellInfoGroup),
 
                     // settings
-                    new ListViewItem(new string[] { "Separate games for multiboot:", ConfigIni.Instance.SeparateGameStorage ? Resources.Yes : Resources.No }, listView1.Groups[6]),
-                    new ListViewItem(new string[] { "Use linked sync:", ConfigIni.Instance.SyncLinked ? Resources.Yes : Resources.No }, listView1.Groups[6]),
+                    new ListViewItem(new string[] { "Separate games for multiboot:", ConfigIni.Instance.SeparateGameStorage ? Resources.Yes : Resources.No }, settingsGroup),
+                    new ListViewItem(new string[] { "Use linked sync:", ConfigIni.Instance.SyncLinked ? Resources.Yes : Resources.No }, settingsGroup),
                 });
 
-                string shell = Resources.Unknown;
-                string connected = Resources.No;
-                string minimalMemboot = Resources.No;
                 if (hakchi.Connected)
                 {
                     // shell
-                    connected = Resources.Yes;
+                    string shell = Resources.Unknown;
                     if (hakchi.Shell is INetworkShell)
                         shell = "SSH";
                     else if (hakchi.Shell is clovershell.ClovershellConnection)
                         shell = "Clovershell";
 
-                    // shell info
                     listView1.Items.AddRange(new ListViewItem[] {
-                        new ListViewItem(new string[] { "Connected:", connected }, listView1.Groups[1]),
-                        new ListViewItem(new string[] { "Shell:", shell }, listView1.Groups[1]),
-                        new ListViewItem(new string[] { "Can interact:", hakchi.CanInteract ? Resources.Yes : Resources.No }, listView1.Groups[1]),
-                        new ListViewItem(new string[] { "Minimal memboot:", hakchi.MinimalMemboot ? Resources.Yes : Resources.No }, listView1.Groups[1]),
+                        // shell info
+                        new ListViewItem(new string[] { "Shell:", shell }, shellInfoGroup),
+                        new ListViewItem(new string[] { "Can interact:", hakchi.CanInteract ? Resources.Yes : Resources.No }, shellInfoGroup),
+                        new ListViewItem(new string[] { "Minimal memboot:", hakchi.MinimalMemboot ? Resources.Yes : Resources.No }, shellInfoGroup),
+                        new ListViewItem(new string[] { "Console unique ID:", hakchi.UniqueID }, shellInfoGroup),
+
+                        // hakchi info
+                        new ListViewItem(new string[] { "Boot version:", hakchi.RawBootVersion }, hakchiGroup),
+                        new ListViewItem(new string[] { "Kernel version:", hakchi.RawKernelVersion }, hakchiGroup),
+                        new ListViewItem(new string[] { "Script version:", hakchi.RawScriptVersion }, hakchiGroup),
                     });
+                    
 
                     if (hakchi.MinimalMemboot)
                     {
                         // no-op
                     }
-                    if (hakchi.CanInteract)
+                    else
                     {
-                        listView1.Items.AddRange(new ListViewItem[] {
-                            // more shell info
-                            new ListViewItem(new string[] { "Detected console type:", MainForm.GetConsoleTypeName(hakchi.DetectedConsoleType) }, listView1.Groups[1]),
-                            new ListViewItem(new string[] { "Custom firmware:", hakchi.CustomFirmwareLoaded ? Resources.Yes : Resources.No }, listView1.Groups[1]),
-                            new ListViewItem(new string[] { "Console unique ID:", hakchi.UniqueID }, listView1.Groups[1]),
-
-                            // hakchi info
-                            new ListViewItem(new string[] { "Boot version:", hakchi.BootVersion }, listView1.Groups[2]),
-                            new ListViewItem(new string[] { "Kernel version:", hakchi.KernelVersion }, listView1.Groups[2]),
-                            new ListViewItem(new string[] { "Script version:", hakchi.ScriptVersion }, listView1.Groups[2]),
-
-                            // paths
-                            new ListViewItem(new string[] { "Config:", hakchi.ConfigPath }, listView1.Groups[3]),
-                            new ListViewItem(new string[] { "Remote sync:", hakchi.RemoteGameSyncPath }, listView1.Groups[3]),
-                            new ListViewItem(new string[] { "System code:", hakchi.SystemCode ?? "-" }, listView1.Groups[3]),
-                            new ListViewItem(new string[] { "Media:", hakchi.MediaPath }, listView1.Groups[3]),
-                            new ListViewItem(new string[] { "Original games:", hakchi.OriginalGamesPath }, listView1.Groups[3]),
-                            new ListViewItem(new string[] { "Games:", hakchi.GamesPath }, listView1.Groups[3]),
-                            new ListViewItem(new string[] { "RootFS:", hakchi.RootFsPath }, listView1.Groups[3]),
-                            new ListViewItem(new string[] { "Profile:", hakchi.GamesProfilePath }, listView1.Groups[3]),
-                            new ListViewItem(new string[] { "SquashFS:", hakchi.SquashFsPath }, listView1.Groups[3]),
-
-                            // memory stats
-                            new ListViewItem(new string[] { "Storage total:", Shared.SizeSuffix(MemoryStats.StorageTotal) }, listView1.Groups[4]),
-                            new ListViewItem(new string[] { "Storage used:", Shared.SizeSuffix(MemoryStats.StorageUsed) }, listView1.Groups[4]),
-                            new ListViewItem(new string[] { "Storage free:", Shared.SizeSuffix(MemoryStats.StorageFree) }, listView1.Groups[4]),
-                            new ListViewItem(new string[] { "External saves:", MemoryStats.ExternalSaves ? Resources.Yes : Resources.No }, listView1.Groups[4]),
-                            new ListViewItem(new string[] { "Saves:", Shared.SizeSuffix(MemoryStats.SaveStatesSize) }, listView1.Groups[4]),
-                            new ListViewItem(new string[] { "All games:", Shared.SizeSuffix(MemoryStats.AllGamesSize) }, listView1.Groups[4]),
-                            new ListViewItem(new string[] { "Non multiboot games:", Shared.SizeSuffix(MemoryStats.NonMultibootGamesSize) }, listView1.Groups[4]),
-                            new ListViewItem(new string[] { "Extra files:", Shared.SizeSuffix(MemoryStats.ExtraFilesSize) }, listView1.Groups[4]),
-
-                            // console settings
-                            new ListViewItem(new string[] { "USB host enabled", ConfigIni.Instance.UsbHost ? Resources.Yes : Resources.No }, listView1.Groups[5]),
-                            new ListViewItem(new string[] { "Fontfix enabled", ConfigIni.Instance.UseFont ? Resources.Yes : Resources.No }, listView1.Groups[5]),
-                        });
-
-                        // collections sizes
-                        foreach (var pair in MemoryStats.Collections)
+                        if (hakchi.CanInteract)
                         {
-                            listView1.Items.Add(
-                                new ListViewItem(new string[] { MainForm.GetConsoleTypeName(pair.Key) + " games:", Shared.SizeSuffix(pair.Value) }, listView1.Groups[4]));
+                            listView1.Items.AddRange(new ListViewItem[]
+                            {
+                                // more shell info
+                                new ListViewItem(new string[] { "Detected console type:", MainForm.GetConsoleTypeName(hakchi.DetectedConsoleType) }, shellInfoGroup),
+                                new ListViewItem(new string[] { "Custom firmware:", hakchi.CustomFirmwareLoaded ? Resources.Yes : Resources.No }, shellInfoGroup),
+
+                                // paths
+                                new ListViewItem(new string[] { "Config:", hakchi.ConfigPath }, pathsGroup),
+                                new ListViewItem(new string[] { "Remote sync:", hakchi.RemoteGameSyncPath }, pathsGroup),
+                                new ListViewItem(new string[] { "System code:", hakchi.SystemCode ?? "-" }, pathsGroup),
+                                new ListViewItem(new string[] { "Media:", hakchi.MediaPath }, pathsGroup),
+                                new ListViewItem(new string[] { "Original games:", hakchi.OriginalGamesPath }, pathsGroup),
+                                new ListViewItem(new string[] { "Games:", hakchi.GamesPath }, pathsGroup),
+                                new ListViewItem(new string[] { "RootFS:", hakchi.RootFsPath }, pathsGroup),
+                                new ListViewItem(new string[] { "Profile:", hakchi.GamesProfilePath }, pathsGroup),
+                                new ListViewItem(new string[] { "SquashFS:", hakchi.SquashFsPath }, pathsGroup),
+
+                                // memory stats
+                                new ListViewItem(new string[] { "Storage total:", Shared.SizeSuffix(MemoryStats.StorageTotal) }, memoryStatsGroup),
+                                new ListViewItem(new string[] { "Storage used:", Shared.SizeSuffix(MemoryStats.StorageUsed) }, memoryStatsGroup),
+                                new ListViewItem(new string[] { "Storage free:", Shared.SizeSuffix(MemoryStats.StorageFree) }, memoryStatsGroup),
+                                new ListViewItem(new string[] { "External saves:", MemoryStats.ExternalSaves ? Resources.Yes : Resources.No }, memoryStatsGroup),
+                                new ListViewItem(new string[] { "Saves:", Shared.SizeSuffix(MemoryStats.SaveStatesSize) }, memoryStatsGroup),
+                                new ListViewItem(new string[] { "All games:", Shared.SizeSuffix(MemoryStats.AllGamesSize) }, memoryStatsGroup),
+                                new ListViewItem(new string[] { "Non multiboot games:", Shared.SizeSuffix(MemoryStats.NonMultibootGamesSize) }, memoryStatsGroup),
+                                new ListViewItem(new string[] { "Extra files:", Shared.SizeSuffix(MemoryStats.ExtraFilesSize) }, memoryStatsGroup),
+
+                                // console settings
+                                new ListViewItem(new string[] { "USB host enabled", ConfigIni.Instance.UsbHost ? Resources.Yes : Resources.No }, consoleSettingsGroup),
+                                new ListViewItem(new string[] { "Fontfix enabled", ConfigIni.Instance.UseFont ? Resources.Yes : Resources.No }, consoleSettingsGroup),
+                            });
+
+                            // collections sizes
+                            foreach (var pair in MemoryStats.Collections)
+                            {
+                                listView1.Items.Add(
+                                    new ListViewItem(new string[] { MainForm.GetConsoleTypeName(pair.Key) + " games:", Shared.SizeSuffix(pair.Value) }, memoryStatsGroup));
+                            }
                         }
                     }
-                }
-                else
-                {
-                    listView1.Items.AddRange(new ListViewItem[] {
-                        new ListViewItem(new string[] { "Connected:", connected }, listView1.Groups[1]),
-                    });
                 }
 
                 logContentsRichTextBox.Text = Program.GetCurrentLogContent();

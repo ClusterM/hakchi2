@@ -1971,6 +1971,9 @@
     <EmbeddedResource Include="images\snes-eu-jp_sm_tr.png" />
     <EmbeddedResource Include="images\snes-us_sm.png" />
     <EmbeddedResource Include="images\snes-us_sm_tr.png" />
+    <None Include="tools\busybox" />
+    <None Include="tools\copypackedhmods" />
+    <None Include="tools\downloadfiles" />
     <None Include="user_mods\README.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
