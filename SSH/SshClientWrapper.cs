@@ -80,8 +80,9 @@ namespace com.clusterrr.ssh
                             {
                                 Trace.WriteLine("SSH shell disconnected");
                                 hasConnected = false;
+
+                                Thread.Sleep(1500); // give it additional time to disconnect before calling event handler
                                 OnDisconnected();
-                                Thread.Sleep(1500); // give it additional time to disconnect
                             }
                             else if (AutoReconnect)
                             {
