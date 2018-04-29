@@ -1,0 +1,4 @@
+local ext_path=$mountpoint/var/lib/clover/backgrounds
+mkdir -p $ext_path
+
+return 0

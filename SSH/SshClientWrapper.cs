@@ -79,19 +79,19 @@ namespace com.clusterrr.ssh
                             if (hasConnected)
                             {
                                 Trace.WriteLine("SSH shell disconnected");
+                                this.IPAddress = null;
                                 hasConnected = false;
-
-                                Thread.Sleep(1500); // give it additional time to disconnect before calling event handler
                                 OnDisconnected();
                             }
                             else if (AutoReconnect)
                             {
-                                if (Resolve())
+                                if (Resolve() || Ping() != -1)
                                 {
-                                    if (Ping() != -1)
+                                    try
                                     {
                                         Connect();
                                     }
+                                    catch { } // no-op
                                 }
                             }
                         }
@@ -144,8 +144,8 @@ namespace com.clusterrr.ssh
         public SshClientWrapper(string service, string ip, ushort port, string username, string password)
         {
             sshClient = null;
-            mdns = new Mdns();
-            llmnr = new Llmnr();
+            mdns = null;
+            llmnr = null;
             connectThread = null;
             enabled = false;
             hasConnected = false;
@@ -200,12 +200,17 @@ namespace com.clusterrr.ssh
                 // this will disconnect the shell and thread loop will detect it and call OnDisconnected and clean up
                 sshClient.Disconnect();
             }
-            this.IPAddress = null;
         }
 
         public bool Resolve()
         {
-            IPAddress address = NameResolving.ResolveAsync(this.service, 2000, mdns, llmnr).Result;
+            if (mdns == null || llmnr == null)
+            {
+                mdns = new Mdns();
+                llmnr = new Llmnr();
+            }
+
+            IPAddress address = NameResolving.ResolveAsync(this.service, 1000, mdns, llmnr).Result;
             if (address != null)
             {
                 this.IPAddress = address.ToString();
@@ -222,7 +227,7 @@ namespace com.clusterrr.ssh
             try
             {
                 Ping pingSender = new Ping();
-                PingReply reply = pingSender.Send(IPAddress ?? service, 100);
+                PingReply reply = pingSender.Send(IPAddress ?? service, 1000);
                 if (reply != null && reply.Status.Equals(IPStatus.Success))
                 {
                     Trace.WriteLine($"Pinged {reply.Address}, {reply.RoundtripTime}ms");
