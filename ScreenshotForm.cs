@@ -79,7 +79,7 @@ namespace com.clusterrr.hakchi_gui
                     var screenshot = new Bitmap(1280, 720, PixelFormat.Format24bppRgb);
                     var rawStream = new MemoryStream();
                     hakchi.Shell.ExecuteSimple("hakchi uipause");
-                    hakchi.Shell.Execute("cat /dev/fb0", null, rawStream, null, 1000, true);
+                    hakchi.Shell.Execute("cat /dev/fb0", null, rawStream, null, 2000, true);
                     hakchi.Shell.ExecuteSimple("hakchi uiresume");
                     var raw = rawStream.ToArray();
                     BitmapData data = screenshot.LockBits(
