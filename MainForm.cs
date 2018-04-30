@@ -291,13 +291,13 @@ namespace com.clusterrr.hakchi_gui
 
             if (caller == null || caller is UnknownShell)
             {
-                FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, "127.0.0.1:21");
+                FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, Resources.Unknown);
                 FTPToolStripMenuItem.Enabled = true;
                 FTPToolStripMenuItem.Checked = ConfigIni.Instance.FtpServer;
                 if (caller != null)
                     FTPToolStripMenuItem_Click(null, null);
 
-                shellToolStripMenuItem.Text = string.Format(Resources.TelnetServerOn, "127.0.0.1:1023");
+                shellToolStripMenuItem.Text = string.Format(Resources.TelnetServerOn, Resources.Unknown);
                 shellToolStripMenuItem.Enabled = true;
                 shellToolStripMenuItem.Checked = ConfigIni.Instance.TelnetServer;
                 if (caller != null)
@@ -316,7 +316,7 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, "127.0.0.1:21");
+                FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, "127.0.0.1:1021");
                 FTPToolStripMenuItem.Enabled = true;
                 FTPToolStripMenuItem_Click(null, null);
 

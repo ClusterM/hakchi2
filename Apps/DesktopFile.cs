@@ -230,7 +230,7 @@ namespace com.clusterrr.hakchi_gui
                             {
                                 try
                                 {
-                                    IconPath = Path.GetDirectoryName(value).Replace("\\", "/").Replace("//", "/");
+                                    IconPath = Path.GetDirectoryName(Path.GetDirectoryName(value)).Replace("\\", "/").Replace("//", "/");
                                     IconFilename = Path.GetFileName(value);
                                 }
                                 catch

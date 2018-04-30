@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,12 +19,12 @@ namespace com.clusterrr.ssh
         public event OnDisconnectedEventHandler OnDisconnected = delegate { };
 
         private SshClient sshClient;
-        private Mdns mdns;
         private Llmnr llmnr;
 
         Thread connectThread;
         private bool enabled;
         private bool hasConnected;
+        DateTime lastDisconnected;
         private string service;
         private ushort port;
         private string username;
@@ -81,17 +82,14 @@ namespace com.clusterrr.ssh
                                 Trace.WriteLine("SSH shell disconnected");
                                 this.IPAddress = null;
                                 hasConnected = false;
+                                lastDisconnected = DateTime.Now;
                                 OnDisconnected();
                             }
                             else if (AutoReconnect)
                             {
-                                if (Resolve() || Ping() != -1)
+                                if (DateTime.Now.Subtract(lastDisconnected).TotalMilliseconds > 3000 && Resolve() && Ping() != -1)
                                 {
-                                    try
-                                    {
-                                        Connect();
-                                    }
-                                    catch { } // no-op
+                                    Connect();
                                 }
                             }
                         }
@@ -141,16 +139,16 @@ namespace com.clusterrr.ssh
             get; private set;
         }
 
-        public SshClientWrapper(string service, string ip, ushort port, string username, string password)
+        public SshClientWrapper(string service, string IPAddress, ushort port, string username, string password)
         {
             sshClient = null;
-            mdns = null;
             llmnr = null;
             connectThread = null;
             enabled = false;
             hasConnected = false;
+            lastDisconnected = DateTime.Now.Subtract(TimeSpan.FromSeconds(3));
             this.service = service;
-            this.IPAddress = ip;
+            this.IPAddress = IPAddress;
             this.port = port;
             this.username = username;
             this.password = password;
@@ -169,19 +167,21 @@ namespace com.clusterrr.ssh
             if (string.IsNullOrEmpty(IPAddress) || IPAddress == "0.0.0.0")
                 return;
 
-            if (sshClient == null)
+            try
             {
-                sshClient = new SshClient(IPAddress, port, username, password);
-                sshClient.ErrorOccurred += SshClient_OnError;
+                if (sshClient == null)
+                {
+                    sshClient = new SshClient(IPAddress, port, username, password);
+                    sshClient.ErrorOccurred += SshClient_OnError;
+                }
+                if (!sshClient.IsConnected)
+                {
+                    sshClient.Connect();
+                }
             }
-            if (!sshClient.IsConnected)
+            catch (Exception)
             {
-                sshClient.Connect();
-            }
-            if (!sshClient.IsConnected)
-            {
-                throw new SshClientException(string.Format("Unable to connect to SSH server at {0}:{1}",
-                    sshClient.ConnectionInfo.Host, sshClient.ConnectionInfo.Port));
+                throw new SshClientException(string.Format("Unable to connect to SSH server at {0}:{1}", sshClient.ConnectionInfo.Host, sshClient.ConnectionInfo.Port));
             }
 
             Trace.WriteLine("SSH shell connected");
@@ -204,13 +204,12 @@ namespace com.clusterrr.ssh
 
         public bool Resolve()
         {
-            if (mdns == null || llmnr == null)
+            if (llmnr == null)
             {
-                mdns = new Mdns();
                 llmnr = new Llmnr();
             }
 
-            IPAddress address = NameResolving.ResolveAsync(this.service, 1000, mdns, llmnr).Result;
+            IPAddress address = NameResolving.ResolveAsync(this.service, 1000, llmnr).Result;
             if (address != null)
             {
                 this.IPAddress = address.ToString();
