@@ -495,7 +495,7 @@
     <value>257, 22</value>
   </data>
   <data name="forceClovershellMembootsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Forcer Clovershell pour memboots</value>
+    <value>Forcer memboots Clovershell</value>
   </data>
   <data name="disableSSHlistenerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 22</value>
@@ -1090,5 +1090,11 @@
   </data>
   <data name="technicalInformationToolStripMenuItem.Text" xml:space="preserve">
     <value>Information technique...</value>
+  </data>
+  <data name="forceNetworkMembootsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Forcer memboots mode réseau</value>
+  </data>
+  <data name="testCommandToolStripMenuItem.Text" xml:space="preserve">
+    <value>Commande test</value>
   </data>
 </root>

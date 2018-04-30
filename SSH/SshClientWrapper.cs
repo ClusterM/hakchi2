@@ -87,7 +87,8 @@ namespace com.clusterrr.ssh
                             }
                             else if (AutoReconnect)
                             {
-                                if (DateTime.Now.Subtract(lastDisconnected).TotalMilliseconds > 3000 && Resolve() && Ping() != -1)
+                                if (DateTime.Now.Subtract(lastDisconnected).TotalMilliseconds > 3000 &&
+                                    ((Resolve() && Ping() != -1) || Ping() != -1 ))
                                 {
                                     Connect();
                                 }

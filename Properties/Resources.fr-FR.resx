@@ -896,10 +896,18 @@ Continuer?</value>
   <data name="UserDataBackup" xml:space="preserve">
     <value>Sauvegarde des données utilisateur</value>
   </data>
-  <data name="DumpOriginalKernelnvalid" xml:space="preserve">
-    <value>Le kernel d'origine que vous avez fourni n'est pas un kernel d'origine valide</value>
-  </data>
   <data name="None" xml:space="preserve">
     <value>Aucun</value>
+  </data>
+  <data name="DumpOriginalKernelInvalid" xml:space="preserve">
+    <value>Le kernel d'origine que vous avez fourni n'est pas un kernel d'origine valide</value>
+  </data>
+  <data name="WaitingForDeviceTakingALongTime" xml:space="preserve">
+    <value>Votre NES/SNES Mini prend beaucoup de temps à redémarrer.
+
+Vous pouvez attendre encore un peu et retenter l'action à nouveau s'il revient en ligne éventuellement. Utilisez "Outils &gt; Redémarrer" pour revenir en mode normal à partir du "Mode récupération".</value>
+  </data>
+  <data name="RecoveryModeCloseWarning" xml:space="preserve">
+    <value>Votre NES/SNES Mini est présentement en mode récupération. Vous ne pourrez pas l'éteindre normalement. Voulez-vous terminer la séquence de démarrage pour la ramener en mode normal?</value>
   </data>
 </root>

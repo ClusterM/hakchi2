@@ -1265,6 +1265,7 @@
     <None Include="images\sign-lightning.png" />
     <None Include="images\sign-sync-off.png" />
     <None Include="images\sign-light-bulb-off.png" />
+    <None Include="images\sign-clock.png" />
     <Content Include="motdTemplate.html" />
     <Content Include="motdTemplate.css" />
     <Content Include="icon_app.ico" />
@@ -2021,32 +2022,32 @@
   <ItemGroup>
     <PublishFile Include="data\GameGenieDB.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\nescarts.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\snescarts.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
@@ -2090,18 +2091,20 @@
   <PropertyGroup>
     <BuildDependsOn>$(BuildDependsOn);MoveLanguageResourceFiles;</BuildDependsOn>
   </PropertyGroup>
-  <PropertyGroup> <!-- Inject a custom target into Clean by extending CleanDependsOn -->
+  <PropertyGroup>
+    <!-- Inject a custom target into Clean by extending CleanDependsOn -->
     <CleanDependsOn>$(CleanDependsOn); CustomAfterClean </CleanDependsOn>
   </PropertyGroup>
   <Target Name="CustomAfterClean">
     <ItemGroup>
-      <HakchiFiles Include="$(ProjectDir)basehmods.tar"/>
-      <HakchiFiles Include="$(ProjectDir)mods/hmods/hakchi.hmod"/>
-      <HakchiFiles Include="$(ProjectDir)mods/hmods/font_remount.hmod"/>
-      <HakchiFiles Include="$(ProjectDir)tools/arm/detached-fallback"/>
+      <HakchiFiles Include="$(ProjectDir)basehmods.tar" />
+      <HakchiFiles Include="$(ProjectDir)mods/hmods/hakchi.hmod" />
+      <HakchiFiles Include="$(ProjectDir)mods/hmods/font_remount.hmod" />
+      <HakchiFiles Include="$(ProjectDir)tools/arm/detached-fallback" />
     </ItemGroup>
-    <Delete Files="@(HakchiFiles)"></Delete>
-  </Target>  
+    <Delete Files="@(HakchiFiles)">
+    </Delete>
+  </Target>
   <Target Name="MoveLanguageResourceFiles">
     <ItemGroup>
       <LanguageResourceFiles Include="$(OutDir)**\hakchi.resources.dll;" Exclude="$(OutDir)languages\**\*.*" />

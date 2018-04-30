@@ -96,9 +96,13 @@
             this.devForceSshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadTotmpforTestingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripSeparator();
+            this.forceNetworkMembootsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forceClovershellMembootsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem26 = new System.Windows.Forms.ToolStripSeparator();
             this.disableSSHlistenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disableClovershellListenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem25 = new System.Windows.Forms.ToolStripSeparator();
+            this.testCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useLinkedSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,6 +154,7 @@
             this.buttonAddGames = new System.Windows.Forms.Button();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusConnectionIcon = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelShell = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelSize = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
@@ -701,9 +706,13 @@
             this.devForceSshToolStripMenuItem,
             this.uploadTotmpforTestingToolStripMenuItem,
             this.toolStripMenuItem23,
+            this.forceNetworkMembootsToolStripMenuItem,
             this.forceClovershellMembootsToolStripMenuItem,
+            this.toolStripMenuItem26,
             this.disableSSHlistenerToolStripMenuItem,
-            this.disableClovershellListenerToolStripMenuItem});
+            this.disableClovershellListenerToolStripMenuItem,
+            this.toolStripMenuItem25,
+            this.testCommandToolStripMenuItem});
             this.developerToolsToolStripMenuItem.Name = "developerToolsToolStripMenuItem";
             resources.ApplyResources(this.developerToolsToolStripMenuItem, "developerToolsToolStripMenuItem");
             // 
@@ -726,12 +735,24 @@
             this.toolStripMenuItem23.Name = "toolStripMenuItem23";
             resources.ApplyResources(this.toolStripMenuItem23, "toolStripMenuItem23");
             // 
+            // forceNetworkMembootsToolStripMenuItem
+            // 
+            this.forceNetworkMembootsToolStripMenuItem.CheckOnClick = true;
+            this.forceNetworkMembootsToolStripMenuItem.Name = "forceNetworkMembootsToolStripMenuItem";
+            resources.ApplyResources(this.forceNetworkMembootsToolStripMenuItem, "forceNetworkMembootsToolStripMenuItem");
+            this.forceNetworkMembootsToolStripMenuItem.Click += new System.EventHandler(this.forceNetworkMembootsToolStripMenuItem_Click);
+            // 
             // forceClovershellMembootsToolStripMenuItem
             // 
             this.forceClovershellMembootsToolStripMenuItem.CheckOnClick = true;
             this.forceClovershellMembootsToolStripMenuItem.Name = "forceClovershellMembootsToolStripMenuItem";
             resources.ApplyResources(this.forceClovershellMembootsToolStripMenuItem, "forceClovershellMembootsToolStripMenuItem");
             this.forceClovershellMembootsToolStripMenuItem.Click += new System.EventHandler(this.forceClovershellMembootsToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem26
+            // 
+            this.toolStripMenuItem26.Name = "toolStripMenuItem26";
+            resources.ApplyResources(this.toolStripMenuItem26, "toolStripMenuItem26");
             // 
             // disableSSHlistenerToolStripMenuItem
             // 
@@ -746,6 +767,17 @@
             this.disableClovershellListenerToolStripMenuItem.Name = "disableClovershellListenerToolStripMenuItem";
             resources.ApplyResources(this.disableClovershellListenerToolStripMenuItem, "disableClovershellListenerToolStripMenuItem");
             this.disableClovershellListenerToolStripMenuItem.Click += new System.EventHandler(this.disableClovershellListenerToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem25
+            // 
+            this.toolStripMenuItem25.Name = "toolStripMenuItem25";
+            resources.ApplyResources(this.toolStripMenuItem25, "toolStripMenuItem25");
+            // 
+            // testCommandToolStripMenuItem
+            // 
+            resources.ApplyResources(this.testCommandToolStripMenuItem, "testCommandToolStripMenuItem");
+            this.testCommandToolStripMenuItem.Name = "testCommandToolStripMenuItem";
+            this.testCommandToolStripMenuItem.Click += new System.EventHandler(this.testCommandToolStripMenuItem_Click);
             // 
             // separateGamesForMultibootToolStripMenuItem
             // 
@@ -1108,6 +1140,7 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusConnectionIcon,
+            this.toolStripStatusLabelShell,
             this.toolStripStatusLabelSelected,
             this.toolStripStatusLabelSize,
             this.toolStripProgressBar});
@@ -1121,6 +1154,15 @@
             this.toolStripStatusConnectionIcon.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.red;
             this.toolStripStatusConnectionIcon.Margin = new System.Windows.Forms.Padding(2, 3, 2, 2);
             this.toolStripStatusConnectionIcon.Name = "toolStripStatusConnectionIcon";
+            // 
+            // toolStripStatusLabelShell
+            // 
+            resources.ApplyResources(this.toolStripStatusLabelShell, "toolStripStatusLabelShell");
+            this.toolStripStatusLabelShell.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.toolStripStatusLabelShell.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.toolStripStatusLabelShell.Name = "toolStripStatusLabelShell";
             // 
             // toolStripStatusLabelSelected
             // 
@@ -1144,6 +1186,7 @@
             this.toolStripProgressBar.Name = "toolStripProgressBar";
             resources.ApplyResources(this.toolStripProgressBar, "toolStripProgressBar");
             this.toolStripProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.toolStripProgressBar.Value = 50;
             // 
             // openFileDialogNes
             // 
@@ -1958,6 +2001,11 @@
         private System.Windows.Forms.ToolStripMenuItem dumpOriginalKernellegacyToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem24;
         private System.Windows.Forms.Timer timerUpdate;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelShell;
+        private System.Windows.Forms.ToolStripMenuItem forceNetworkMembootsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem25;
+        private System.Windows.Forms.ToolStripMenuItem testCommandToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem26;
     }
 }
 

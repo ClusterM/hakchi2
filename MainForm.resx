@@ -517,11 +517,20 @@
   <data name="toolStripMenuItem23.Size" type="System.Drawing.Size, System.Drawing">
     <value>222, 6</value>
   </data>
+  <data name="forceNetworkMembootsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="forceNetworkMembootsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Force Network memboots</value>
+  </data>
   <data name="forceClovershellMembootsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>225, 22</value>
   </data>
   <data name="forceClovershellMembootsToolStripMenuItem.Text" xml:space="preserve">
     <value>Force Clovershell memboots</value>
+  </data>
+  <data name="toolStripMenuItem26.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 6</value>
   </data>
   <data name="disableSSHlistenerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>225, 22</value>
@@ -534,6 +543,18 @@
   </data>
   <data name="disableClovershellListenerToolStripMenuItem.Text" xml:space="preserve">
     <value>Disable Clovershell listener</value>
+  </data>
+  <data name="toolStripMenuItem25.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 6</value>
+  </data>
+  <data name="testCommandToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="testCommandToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="testCommandToolStripMenuItem.Text" xml:space="preserve">
+    <value>Test command</value>
   </data>
   <data name="developerToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>301, 22</value>
@@ -908,28 +929,37 @@
     <value>False</value>
   </data>
   <data name="toolStripStatusConnectionIcon.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 17</value>
+    <value>16, 19</value>
+  </data>
+  <data name="toolStripStatusLabelShell.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolStripStatusLabelShell.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 19</value>
+  </data>
+  <data name="toolStripStatusLabelShell.Text" xml:space="preserve">
+    <value>Offline</value>
   </data>
   <data name="toolStripStatusLabelSelected.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="toolStripStatusLabelSelected.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 17</value>
+    <value>160, 19</value>
   </data>
   <data name="toolStripStatusLabelSize.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="toolStripStatusLabelSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 17</value>
+    <value>160, 19</value>
   </data>
   <data name="toolStripProgressBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 16</value>
+    <value>235, 18</value>
   </data>
   <data name="statusStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 614</value>
+    <value>0, 612</value>
   </data>
   <data name="statusStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>659, 22</value>
+    <value>659, 24</value>
   </data>
   <data name="statusStrip.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -2560,11 +2590,23 @@
   <data name="&gt;&gt;toolStripMenuItem23.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;forceNetworkMembootsToolStripMenuItem.Name" xml:space="preserve">
+    <value>forceNetworkMembootsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;forceNetworkMembootsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;forceClovershellMembootsToolStripMenuItem.Name" xml:space="preserve">
     <value>forceClovershellMembootsToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;forceClovershellMembootsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem26.Name" xml:space="preserve">
+    <value>toolStripMenuItem26</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem26.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;disableSSHlistenerToolStripMenuItem.Name" xml:space="preserve">
     <value>disableSSHlistenerToolStripMenuItem</value>
@@ -2576,6 +2618,18 @@
     <value>disableClovershellListenerToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;disableClovershellListenerToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem25.Name" xml:space="preserve">
+    <value>toolStripMenuItem25</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem25.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;testCommandToolStripMenuItem.Name" xml:space="preserve">
+    <value>testCommandToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;testCommandToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;separateGamesForMultibootToolStripMenuItem.Name" xml:space="preserve">
@@ -2864,6 +2918,12 @@
     <value>toolStripStatusConnectionIcon</value>
   </data>
   <data name="&gt;&gt;toolStripStatusConnectionIcon.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripStatusLabelShell.Name" xml:space="preserve">
+    <value>toolStripStatusLabelShell</value>
+  </data>
+  <data name="&gt;&gt;toolStripStatusLabelShell.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripStatusLabelSelected.Name" xml:space="preserve">

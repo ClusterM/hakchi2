@@ -448,7 +448,12 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         // generic tasks
 
-        public static Tasker.TaskFunc Wait(int milliseconds, string message)
+        public static Conclusion Stub(Tasker tasker, Object syncObject)
+        {
+            return Conclusion.Success;
+        }
+
+        public static TaskFunc Wait(int milliseconds, string message)
         {
             return (Tasker tasker, Object syncObject) =>
             {
@@ -461,18 +466,28 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     tasker.SetProgress(i, steps);
                     Thread.Sleep(step);
                 }
-                return Tasker.Conclusion.Success;
+                return Conclusion.Success;
             };
         }
 
-        public static Tasker.TaskFunc WaitIf(bool condition, int milliseconds, string message)
+        public static TaskFunc TaskIf(TaskFunc condition, TaskFunc successTask, TaskFunc failureTask = null)
         {
-            return condition ? Wait(milliseconds, message) : Stub;
+            return (Tasker tasker, Object syncObject) =>
+            {
+                return (condition(tasker, syncObject) == Conclusion.Success) ?
+                    successTask(tasker, syncObject) :
+                    (failureTask ?? Stub)(tasker, syncObject);
+            };
         }
 
-        public static Conclusion Stub(Tasker tasker, Object syncObject)
+        public static TaskFunc TaskIf(Func<bool> condition, TaskFunc trueTask, TaskFunc falseTask = null)
         {
-            return Conclusion.Success;
+            return (Tasker tasker, Object syncObject) =>
+            {
+                return (condition()) ?
+                    trueTask(tasker, syncObject) :
+                    (falseTask ?? Stub)(tasker, syncObject);
+            };
         }
 
     }

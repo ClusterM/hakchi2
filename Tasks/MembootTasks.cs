@@ -58,7 +58,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             if (!hakchi.MinimalMemboot)
             {
                 taskList.Add(WaitForFelOrMembootableShell);
-                taskList.Add(Memboot);
+                taskList.Add(TaskIf(() => { return hakchi.Shell.IsOnline; }, Memboot, MembootFel));
                 taskList.Add(WaitForShellCycle);
                 taskList.Add(ShellTasks.ShowSplashScreen);
             }
@@ -240,13 +240,88 @@ namespace com.clusterrr.hakchi_gui.Tasks
             var result = WaitingShellCycleForm.WaitForDevice(hostForm, MembootWaitDelay);
             tasker.PopState();
             if (result == DialogResult.OK)
+            {
                 return Conclusion.Success;
+            }
+            else if (result == DialogResult.No)
+            {
+                MessageForm.Show(hostForm, Resources.WaitingForDevice, Resources.WaitingForDeviceTakingALongTime, Resources.sign_clock);
+            }
 
             return Conclusion.Abort;
         }
 
         public Conclusion Memboot(Tasker tasker, Object syncObject = null)
         {
+            tasker.SetStatus(Resources.Membooting);
+            if (!hakchi.Shell.IsOnline)
+                return Conclusion.Abort;
+
+            // get kernel image (only custom kernel with this method)
+            byte[] kernel = hakchi.GetMembootImage().ToArray();
+
+            // override arguments
+            string addedArgs = "";
+            if (ConfigIni.Instance.ForceClovershell)
+                addedArgs = " hakchi-clovershell";
+            else if (ConfigIni.Instance.ForceNetwork)
+                addedArgs = " hakchi-shell";
+
+            // skip to built-in recovery if running latest version
+            if (hakchi.CanInteract && !hakchi.SystemEligibleForRootfsUpdate())
+            {
+                if (hakchi.Shell.Execute("[ -e /bin/detached ]") == 0) // detached recovery function?
+                {
+                    try
+                    {
+                        hakchi.Shell.ExecuteSimple("/bin/detached recovery" + addedArgs, 100);
+                    }
+                    catch { } // no-op
+                    return Conclusion.Success;
+                }
+            }
+
+            // use detached-fallback script and up-to-date boot.img
+            try
+            {
+                hakchi.Shell.ExecuteSimple("uistop");
+                hakchi.Shell.ExecuteSimple("mkdir -p /tmp/kexec/", throwOnNonZero: true);
+                hakchi.UploadFile(
+                    Path.Combine(Program.BaseDirectoryInternal, "tools", "arm", "kexec.static"),
+                    "/tmp/kexec/kexec");
+                hakchi.UploadFile(
+                    Path.Combine(Program.BaseDirectoryInternal, "tools", "arm", "detached-fallback"),
+                    "/tmp/kexec/detached-fallback");
+
+                TrackableStream kernelStream = new TrackableStream(kernel);
+                kernelStream.OnProgress += tasker.OnProgress;
+                hakchi.UploadFile(kernelStream, "/tmp/kexec/boot.img", false);
+
+                try
+                {
+                    hakchi.Shell.ExecuteSimple("cd /tmp/kexec/; /bin/sh /tmp/kexec/detached-fallback recovery /tmp/kexec/boot.img" + addedArgs, 100);
+                }
+                catch { } // no-op
+            }
+            catch
+            {
+                try
+                {
+                    hakchi.Shell.ExecuteSimple("uistart");
+                }
+                catch { } // no-op
+                throw;
+            }
+
+            return Conclusion.Success;
+        }
+
+        public Conclusion MembootKexec(Tasker tasker, Object syncObject = null)
+        {
+            tasker.SetStatus(Resources.Membooting);
+            if (!hakchi.Shell.IsOnline)
+                return Conclusion.Abort;
+
             // load appropriate kernel
             byte[] kernel;
             if (stockKernel != null && stockKernel.Length > 0)
@@ -255,128 +330,105 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
             else
             {
-                stockKernel = null; // double-safety
+                stockKernel = null;
                 kernel = hakchi.GetMembootImage().ToArray();
             }
 
-            tasker.SetStatus(Resources.Membooting);
-            if (hakchi.Shell.IsOnline)
+            // memboot using kexec (no way to force clovershell or shell)
+            try
             {
-                // override arguments
-                string addedArgs = ConfigIni.Instance.ForceClovershell ? " hakchi-clovershell" : "";
+                hakchi.Shell.ExecuteSimple("uistop");
+                hakchi.Shell.ExecuteSimple("mkdir -p /tmp/kexec/", throwOnNonZero: true);
+                hakchi.UploadFile(
+                    Path.Combine(Program.BaseDirectoryInternal, "tools", "arm", "kexec.static"),
+                    "/tmp/kexec/kexec");
+                hakchi.UploadFile(
+                    Path.Combine(Program.BaseDirectoryInternal, "tools", "arm", "unpackbootimg.static"),
+                    "/tmp/kexec/unpackbootimg");
 
-                // skip to built-in recovery if running latest version
-                if (stockKernel == null && hakchi.CanInteract && !hakchi.SystemEligibleForRootfsUpdate())
-                {
-                    if (hakchi.Shell.Execute("[ -e /bin/detached ]") == 0) // detached recovery function?
-                    {
-                        try
-                        {
-                            hakchi.Shell.ExecuteSimple("/bin/detached recovery" + addedArgs, 100);
-                        }
-                        catch { } // no-op
-                        return Conclusion.Success;
-                    }
-                }
-
-                try
-                {
-                    hakchi.Shell.ExecuteSimple("uistop");
-                    hakchi.Shell.ExecuteSimple("mkdir -p /tmp/kexec/", throwOnNonZero: true);
-                    hakchi.UploadFile(
-                        Path.Combine(Program.BaseDirectoryInternal, "tools", "arm", "kexec.static"),
-                        "/tmp/kexec/kexec");
-
-                    TrackableStream kernelStream = new TrackableStream(kernel);
-                    kernelStream.OnProgress += tasker.OnProgress;
-                    if (stockKernel == null)
-                    {
-                        hakchi.UploadFile(
-                            Path.Combine(Program.BaseDirectoryInternal, "tools", "arm", "detached-fallback"),
-                            "/tmp/kexec/detached-fallback");
-                        hakchi.UploadFile(kernelStream, "/tmp/kexec/boot.img", false);
-                        try
-                        {
-                            hakchi.Shell.ExecuteSimple("cd /tmp/kexec/; /bin/sh /tmp/kexec/detached-fallback recovery /tmp/kexec/boot.img" + addedArgs, 100);
-                        }
-                        catch { } // no-op
-                    }
-                    else
-                    {
-                        hakchi.UploadFile(
-                            Path.Combine(Program.BaseDirectoryInternal, "tools", "arm", "unpackbootimg.static"),
-                            "/tmp/kexec/unpackbootimg");
-                        hakchi.Shell.Execute(
-                            command: "cat > /tmp/kexec/boot.img; cd /tmp/kexec/; ./unpackbootimg -i boot.img",
-                            stdin: kernelStream,
-                            throwOnNonZero: true
-                        );
-                        hakchi.Shell.ExecuteSimple("cd /tmp/kexec/ && ./kexec -l -t zImage boot.img-zImage \"--command-line=$(cat boot.img-cmdline)\" --ramdisk=boot.img-ramdisk.gz --atags", 0, true);
-                        hakchi.Shell.ExecuteSimple("cd /tmp/; umount -ar", 0);
-                        try
-                        {
-                            hakchi.Shell.ExecuteSimple("/tmp/kexec/kexec -e", 100);
-                        }
-                        catch { } // no-op
-                    }
-                }
-                catch
-                {
-                    try
-                    {
-                        hakchi.Shell.ExecuteSimple("uistart");
-                    }
-                    catch { } // no-op
-                    throw;
-                }
-            }
-            else
-            {
-                // check and adjust kernel size
-                var size = Shared.CalcKernelSize(kernel);
-                if (size > kernel.Length || size > Fel.transfer_max_size)
-                    throw new Exception(Resources.InvalidKernelSize + " " + size);
-                size = (size + Fel.sector_size - 1) / Fel.sector_size;
-                size = size * Fel.sector_size;
-                if (kernel.Length != size)
-                {
-                    var newK = new byte[size];
-                    Array.Copy(kernel, newK, kernel.Length);
-                    kernel = newK;
-                }
-
-                // clovershell override "hex-edit" boot.img
-                if (stockKernel == null && ConfigIni.Instance.ForceClovershell)
-                {
-                    kernel.InPlaceStringEdit(64, 512, 0, (string str) => {
-                        if (str.IndexOf("hakchi-shell") != -1)
-                            return str.Replace("hakchi-shell", "hakchi-clovershell");
-                        else
-                            return str + " hakchi-clovershell";
-                    });
-                }
-
-                // upload kernel through fel
-                int progress = 0;
-                int maxProgress = (int)((double)kernel.Length / (double)67000 + 50);
-                fel.WriteMemory(Fel.transfer_base_m, kernel,
-                    delegate (Fel.CurrentAction action, string command)
-                    {
-                        switch (action)
-                        {
-                            case Fel.CurrentAction.WritingMemory:
-                                tasker.SetStatus(Resources.UploadingKernel);
-                                break;
-                        }
-                        progress++;
-                        tasker.SetProgress(progress, maxProgress);
-                    }
+                TrackableStream kernelStream = new TrackableStream(kernel);
+                kernelStream.OnProgress += tasker.OnProgress;
+                hakchi.Shell.Execute(
+                    command: "cat > /tmp/kexec/boot.img; cd /tmp/kexec/; ./unpackbootimg -i boot.img",
+                    stdin: kernelStream,
+                    throwOnNonZero: true
                 );
 
-                var bootCommand = string.Format("boota {0:x}", Fel.transfer_base_m);
-                tasker.SetStatus(Resources.ExecutingCommand + " " + bootCommand);
-                fel.RunUbootCmd(bootCommand, true);
+                hakchi.Shell.ExecuteSimple("cd /tmp/kexec/ && ./kexec -l -t zImage boot.img-zImage \"--command-line=$(cat boot.img-cmdline)\" --ramdisk=boot.img-ramdisk.gz --atags", 0, true);
+                hakchi.Shell.ExecuteSimple("cd /tmp/; umount -ar", 0);
+                try
+                {
+                    hakchi.Shell.ExecuteSimple("/tmp/kexec/kexec -e", 100);
+                }
+                catch { } // no-op
             }
+            catch
+            {
+                try
+                {
+                    hakchi.Shell.ExecuteSimple("uistart");
+                }
+                catch { } // no-op
+                throw;
+            }
+
+            return Conclusion.Success;
+        }
+
+        public Conclusion MembootFel(Tasker tasker, Object syncObject = null)
+        {
+            tasker.SetStatus(Resources.Membooting);
+            if (hakchi.Shell.IsOnline)
+                return Conclusion.Abort;
+
+            // check and adjust kernel size
+            byte[] kernel = hakchi.GetMembootImage().ToArray();
+            var size = Shared.CalcKernelSize(kernel);
+            if (size > kernel.Length || size > Fel.transfer_max_size)
+                throw new Exception(Resources.InvalidKernelSize + " " + size);
+            size = (size + Fel.sector_size - 1) / Fel.sector_size;
+            size = size * Fel.sector_size;
+            if (kernel.Length != size)
+            {
+                var newK = new byte[size];
+                Array.Copy(kernel, newK, kernel.Length);
+                kernel = newK;
+            }
+
+            // clovershell override "hex-edit" boot.img
+            if (ConfigIni.Instance.ForceClovershell || ConfigIni.Instance.ForceNetwork)
+            {
+                kernel.InPlaceStringEdit(64, 512, 0, (string str) => {
+                    str.Replace("hakchi-shell", "").Replace("hakchi-clovershell", "");
+                    if (ConfigIni.Instance.ForceClovershell)
+                        str += " hakchi-clovershell";
+                    else if (ConfigIni.Instance.ForceNetwork)
+                        str += " hakchi-shell";
+                    return str;
+                });
+            }
+
+            // upload kernel through fel
+            int progress = 0;
+            int maxProgress = (int)((double)kernel.Length / (double)67000 + 50);
+            fel.WriteMemory(Fel.transfer_base_m, kernel,
+                delegate (Fel.CurrentAction action, string command)
+                {
+                    switch (action)
+                    {
+                        case Fel.CurrentAction.WritingMemory:
+                            tasker.SetStatus(Resources.UploadingKernel);
+                            break;
+                    }
+                    progress++;
+                    tasker.SetProgress(progress, maxProgress);
+                }
+            );
+
+            var bootCommand = string.Format("boota {0:x}", Fel.transfer_base_m);
+            tasker.SetStatus(Resources.ExecutingCommand + " " + bootCommand);
+            fel.RunUbootCmd(bootCommand, true);
+
             return Conclusion.Success;
         }
 
@@ -398,7 +450,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 tasker.AddTasks(
                     GetStockKernel,
-                    Memboot);
+                    MembootKexec);
             }
             return Conclusion.Success;
         }
@@ -407,15 +459,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             return (Tasker tasker, Object syncObject) =>
             {
-                using (var stockKernel = File.Open(dumpPath, FileMode.Create))
+                using (var stockKernelFile = File.Open(dumpPath, FileMode.Create))
                 {
-                    if (hakchi.Shell.Execute("hakchi getBackup2", null, stockKernel) == 0)
+                    if (hakchi.Shell.Execute("hakchi getBackup2", null, stockKernelFile) == 0)
                     {
                         return Conclusion.Success;
                     }
                     else
                     {
-                        stockKernel.Close();
+                        stockKernelFile.Close();
                         File.Delete(dumpPath);
                         throw new Exception("Stock kernel not found on system.");
                     }

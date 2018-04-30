@@ -2568,6 +2568,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your NES/SNES Mini is currently in recovery mode. You will not be able to turn it off normally. Do you want to finish boot sequence so it returns to normal afterwards?.
+        /// </summary>
+        internal static string RecoveryModeCloseWarning {
+            get {
+                return ResourceManager.GetString("RecoveryModeCloseWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your system is now in recovery mode, here you can telnet into the system to run any command you want, you can also use FTP to transfer files.
         ///
         ///In order to mount your base partitions, you&apos;ll need to run the command &quot;hakchi mount_base&quot;.
@@ -2975,6 +2984,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static System.Drawing.Bitmap sign_check {
             get {
                 object obj = ResourceManager.GetObject("sign_check", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_clock {
+            get {
+                object obj = ResourceManager.GetObject("sign_clock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -3617,6 +3636,17 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string WaitingForDevice {
             get {
                 return ResourceManager.GetString("WaitingForDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your device is taking a long time to reboot.
+        ///
+        ///You can wait some more and try the action again if it comes online after a while. Use &quot;Tools &gt; Reboot&quot; to get back to normal operation from &quot;Recovery mode&quot;..
+        /// </summary>
+        internal static string WaitingForDeviceTakingALongTime {
+            get {
+                return ResourceManager.GetString("WaitingForDeviceTakingALongTime", resourceCulture);
             }
         }
         

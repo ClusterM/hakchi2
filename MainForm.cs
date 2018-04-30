@@ -234,6 +234,28 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (hakchi.MinimalMemboot)
+            {
+                var result = MessageForm.Show(this, Resources.Warning, Resources.RecoveryModeCloseWarning, Resources.sign_life_buoy, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No, MessageForm.Button.Cancel }, MessageForm.DefaultButton.Button1);
+                if (result == MessageForm.Button.Yes)
+                {
+                    using (var tasker = new Tasker(this))
+                    {
+                        tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                        tasker.SetStatusImage(Resources.sign_sync);
+                        tasker.SetTitle(Resources.Rebooting);
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
+                        tasker.AddTask(Tasker.Wait(1000, Resources.WaitingForDevice));
+                        tasker.Start();
+                    }
+                }
+                else if (result == MessageForm.Button.Cancel)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+
             Trace.WriteLine("Closing main form");
             SaveConfig();
             FtpServer.Stop();
@@ -422,12 +444,14 @@ namespace com.clusterrr.hakchi_gui
             // developer settings
             devForceSshToolStripMenuItem.Checked = ConfigIni.Instance.ForceSSHTransfers;
             uploadTotmpforTestingToolStripMenuItem.Checked = ConfigIni.Instance.UploadToTmp;
+            forceNetworkMembootsToolStripMenuItem.Checked = ConfigIni.Instance.ForceNetwork;
             forceClovershellMembootsToolStripMenuItem.Checked = ConfigIni.Instance.ForceClovershell;
             disableSSHlistenerToolStripMenuItem.Checked = ConfigIni.Instance.DisableSSHListener;
             disableClovershellListenerToolStripMenuItem.Checked = ConfigIni.Instance.DisableClovershellListener;
             developerToolsToolStripMenuItem.Visible =
                 devForceSshToolStripMenuItem.Checked ||
                 uploadTotmpforTestingToolStripMenuItem.Checked ||
+                forceNetworkMembootsToolStripMenuItem.Checked ||
                 forceClovershellMembootsToolStripMenuItem.Checked ||
                 disableSSHlistenerToolStripMenuItem.Checked ||
                 disableClovershellListenerToolStripMenuItem.Checked;
@@ -1337,7 +1361,10 @@ namespace com.clusterrr.hakchi_gui
                     SystemColors.ControlText :
                     Color.Red;
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.Message + ex.StackTrace);
+            }
         }
 
         private void buttonAddGames_Click(object sender, EventArgs e)
@@ -1415,7 +1442,7 @@ namespace com.clusterrr.hakchi_gui
             }
             if (hakchi.MinimalMemboot)
             {
-                Tasks.MessageForm.Show(Resources.UploadGames, Resources.CannotProceedMinimalMemboot);
+                Tasks.MessageForm.Show(Resources.UploadGames, Resources.CannotProceedMinimalMemboot, Resources.sign_life_buoy);
                 return;
             }
             if (!hakchi.CanInteract)
@@ -1827,7 +1854,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.SetTitle(((ToolStripMenuItem)sender).Text);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
                 if (tasker.Start() == Tasker.Conclusion.Success)
-                    Tasks.MessageForm.Show(Resources.RecoveryKernel, Resources.RecoveryModeMessage, Resources.sign_info);
+                    Tasks.MessageForm.Show(Resources.RecoveryKernel, Resources.RecoveryModeMessage, Resources.sign_life_buoy);
             }
         }
 
@@ -2319,10 +2346,26 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private int timerConnectionAnim = 0;
         private void timerConnectionCheck_Tick(object sender, EventArgs e)
         {
-            toolStripStatusConnectionIcon.Image = hakchi.Connected ? Resources.green : Resources.red;
-            toolStripStatusConnectionIcon.ToolTipText = hakchi.Connected ? "Online" : "Offline";
+            if (hakchi.Connected)
+            {
+                toolStripStatusConnectionIcon.Image = Resources.green;
+                toolStripStatusConnectionIcon.ToolTipText = "Online";
+                if (timerConnectionAnim++ < 4)
+                    toolStripStatusLabelShell.Text = "Online";
+                else
+                    toolStripStatusLabelShell.Text = (hakchi.Shell is INetworkShell) ? "SSH" : "Clovershell";
+                if (timerConnectionAnim == 8)
+                    timerConnectionAnim = 0;
+            }
+            else
+            {
+                toolStripStatusConnectionIcon.Image = Resources.red;
+                toolStripStatusConnectionIcon.ToolTipText = "Offline";
+                toolStripStatusLabelShell.Text = "Offline";
+            }
         }
 
         private void saveSettingsToNESMiniNowToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2350,7 +2393,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (hakchi.MinimalMemboot)
                     {
-                        Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot);
+                        Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot, Resources.sign_life_buoy);
                         return;
                     }
                     if (!hakchi.CanInteract)
@@ -2772,7 +2815,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (hakchi.MinimalMemboot)
                     {
-                        Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot);
+                        Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot, Resources.sign_life_buoy);
                         return;
                     }
                     if (!hakchi.CanInteract)
@@ -2828,7 +2871,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (hakchi.MinimalMemboot)
                     {
-                        Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot);
+                        Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot, Resources.sign_life_buoy);
                         return;
                     }
                     if (!hakchi.CanInteract)
@@ -2861,7 +2904,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (hakchi.MinimalMemboot)
                 {
-                    Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot);
+                    Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot, Resources.sign_life_buoy);
                     return;
                 }
                 if (!hakchi.CanInteract)
@@ -2944,9 +2987,14 @@ namespace com.clusterrr.hakchi_gui
                 bool justBoot = false;
                 if (hakchi.MinimalMemboot)
                 {
-                    if (Tasks.MessageForm.Show(this, Resources.Rebooting, Resources.FinishBootSequenceQ, Resources.sign_question, new Tasks.MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
+                    var result = Tasks.MessageForm.Show(this, Resources.Rebooting, Resources.FinishBootSequenceQ, Resources.sign_life_buoy, new Tasks.MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No, MessageForm.Button.Cancel }, MessageForm.DefaultButton.Button1);
+                    if (result == MessageForm.Button.Yes)
                     {
                         justBoot = true;
+                    }
+                    else if (result == MessageForm.Button.Cancel)
+                    {
+                        return;
                     }
                 }
 
@@ -2958,7 +3006,7 @@ namespace com.clusterrr.hakchi_gui
                     if (justBoot)
                         tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
                     else
-                        tasker.AddTasks(Tasks.ShellTasks.Reboot, Tasks.MembootTasks.WaitForShellCycle);
+                        tasker.AddTask(Tasks.ShellTasks.Reboot);
                     tasker.Start();
                 }
             }
@@ -2977,6 +3025,19 @@ namespace com.clusterrr.hakchi_gui
         private void forceClovershellMembootsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Instance.ForceClovershell = forceClovershellMembootsToolStripMenuItem.Checked;
+            if (ConfigIni.Instance.ForceClovershell)
+            {
+                forceNetworkMembootsToolStripMenuItem.Checked = ConfigIni.Instance.ForceNetwork = false;
+            }
+        }
+
+        private void forceNetworkMembootsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.ForceNetwork = forceNetworkMembootsToolStripMenuItem.Checked;
+            if (ConfigIni.Instance.ForceNetwork)
+            {
+                forceClovershellMembootsToolStripMenuItem.Checked = ConfigIni.Instance.ForceClovershell = false;
+            }
         }
 
         private void technicalInformationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3001,5 +3062,9 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private void testCommandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // nothing
+        }
     }
 }
