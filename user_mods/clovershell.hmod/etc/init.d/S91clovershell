@@ -5,17 +5,24 @@ VENDOR_ID="1f3a"
 PRODUCT_ID="efe8"
 
 start() {
-    echo   "0"                   > "$CONFIGFS/enable"
-    echo   "$VENDOR_ID" > "$CONFIGFS/idVendor"
-    echo   "$PRODUCT_ID"   > "$CONFIGFS/idProduct"
-    echo   "clover" > "$CONFIGFS/functions"
-    echo   "1"                   > "$CONFIGFS/enable"
-    echo   "done"
-    /bin/clovershell --daemon
+    echo "0"           > "$CONFIGFS/enable"
+    echo "$VENDOR_ID"  > "$CONFIGFS/idVendor"
+    echo "$PRODUCT_ID" > "$CONFIGFS/idProduct"
+    echo "clover"      > "$CONFIGFS/functions"
+    echo "1"           > "$CONFIGFS/enable"
+    echo "done"
+    env -i USER="root" \
+      LOGNAME="root" \
+      HOME="/root" \
+      SHELL="/bin/sh" \
+      PATH="$PATH" \
+      TERM="linux" \
+      ENV='$HOME/.shrc' \
+      /bin/clovershell --daemon
 }
 
 stop() {
-    killall clovershell 
+    killall -q clovershell
 }
 
 restart() {
