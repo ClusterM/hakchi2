@@ -2090,6 +2090,18 @@
   <PropertyGroup>
     <BuildDependsOn>$(BuildDependsOn);MoveLanguageResourceFiles;</BuildDependsOn>
   </PropertyGroup>
+  <PropertyGroup> <!-- Inject a custom target into Clean by extending CleanDependsOn -->
+    <CleanDependsOn>$(CleanDependsOn); CustomAfterClean </CleanDependsOn>
+  </PropertyGroup>
+  <Target Name="CustomAfterClean">
+    <ItemGroup>
+      <HakchiFiles Include="$(ProjectDir)basehmods.tar"/>
+      <HakchiFiles Include="$(ProjectDir)mods/hmods/hakchi.hmod"/>
+      <HakchiFiles Include="$(ProjectDir)mods/hmods/font_remount.hmod"/>
+      <HakchiFiles Include="$(ProjectDir)tools/arm/detached-fallback"/>
+    </ItemGroup>
+    <Delete Files="@(HakchiFiles)"></Delete>
+  </Target>  
   <Target Name="MoveLanguageResourceFiles">
     <ItemGroup>
       <LanguageResourceFiles Include="$(OutDir)**\hakchi.resources.dll;" Exclude="$(OutDir)languages\**\*.*" />
