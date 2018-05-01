@@ -706,7 +706,9 @@ namespace com.clusterrr.hakchi_gui
                         SaveConfig();
                         lastConsoleType = hakchi.ConsoleType.Unknown;
 
-                        Thread.CurrentThread.CurrentUICulture = new CultureInfo(langCodes[language]);
+                        var ci = new CultureInfo(langCodes[language]);
+                        Thread.CurrentThread.CurrentCulture = ci;
+                        Thread.CurrentThread.CurrentUICulture = ci;
                         this.Hide();
                         this.Controls.Clear();
                         this.InitializeComponent();
