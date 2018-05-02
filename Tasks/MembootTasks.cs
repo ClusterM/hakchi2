@@ -488,7 +488,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             tasker.SetStatus(Resources.DumpingKernel);
             stockKernel = new MemoryStream();
             
-            if (hakchi.Shell.Execute("hakchi getBackup2", null, stockKernel, null, 0, true) == 0)
+            if (hakchi.Shell.Execute("hakchi getBackup2", null, stockKernel) == 0)
             {
                 return Conclusion.Success;
             }
