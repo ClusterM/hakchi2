@@ -663,7 +663,7 @@ Voulez-vous télécharger l'outil?</value>
     <value>Une erreur s'est produite lors de la restoration des jeux originaux. Vous pouvez toujours utiliser l'option Restaurer les jeux originaux sous le menu Fichier plus tard pour la collection en cours.</value>
   </data>
   <data name="UninstallNote" xml:space="preserve">
-    <value>Terminé. Attendez que le témoin LED power s'éteigne. Vous pouvez maintenant flasher le coeur d'origine si vous voulez restaurer votre NES/SNES mini aux réglages d'usine. Sinon vous pouvez réinstaller le coeur pour rétablir les fonctionnalités de hakchi.</value>
+    <value>Terminé. Si tout s'est bien passé, votre NES/SNES Mini est maintenant de retour au kernel d'origine!</value>
   </data>
   <data name="ImageTooLarge" xml:space="preserve">
     <value>L'image est trop volumineuse</value>

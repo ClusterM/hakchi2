@@ -267,20 +267,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
             else if (ConfigIni.Instance.ForceNetwork)
                 addedArgs = " hakchi-shell";
 
-            // skip to built-in recovery if running latest version
-            if (hakchi.CanInteract && !hakchi.SystemEligibleForRootfsUpdate())
-            {
-                if (hakchi.Shell.Execute("[ -e /bin/detached ]") == 0) // detached recovery function?
-                {
-                    try
-                    {
-                        hakchi.Shell.ExecuteSimple("/bin/detached recovery" + addedArgs, 100);
-                    }
-                    catch { } // no-op
-                    return Conclusion.Success;
-                }
-            }
-
             // use detached-fallback script and up-to-date boot.img
             try
             {

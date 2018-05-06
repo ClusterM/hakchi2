@@ -3450,7 +3450,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done. Wait until the power LED goes out. You can now flash the original kernel if you want to restore the unit to factory settings. Otherwise you can flash custom firmware again to restore hakchi functionality..
+        ///   Looks up a localized string similar to Done. If everything went well, your NES/SNES Mini should be back to running the stock kernel..
         /// </summary>
         internal static string UninstallNote {
             get {

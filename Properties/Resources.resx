@@ -918,7 +918,7 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
     <value>An error occured while restoring the original games. You can always use File -&gt; Restore original games later on to try again for the games collection you intend to use them in.</value>
   </data>
   <data name="UninstallNote" xml:space="preserve">
-    <value>Done. Wait until the power LED goes out. You can now flash the original kernel if you want to restore the unit to factory settings. Otherwise you can flash custom firmware again to restore hakchi functionality.</value>
+    <value>Done. If everything went well, your NES/SNES Mini should be back to running the stock kernel.</value>
   </data>
   <data name="ImageTooLarge" xml:space="preserve">
     <value>The image is too large</value>
