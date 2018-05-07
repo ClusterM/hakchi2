@@ -251,7 +251,6 @@
             // 
             // menuStrip
             // 
-            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.kernelToolStripMenuItem,
@@ -1139,7 +1138,6 @@
             // 
             // statusStrip
             // 
-            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusConnectionIcon,
             this.toolStripStatusLabelShell,
@@ -1173,7 +1171,6 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.toolStripStatusLabelSelected.Name = "toolStripStatusLabelSelected";
-            this.toolStripStatusLabelSelected.Spring = true;
             // 
             // toolStripStatusLabelSize
             // 
@@ -1182,7 +1179,6 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.toolStripStatusLabelSize.Name = "toolStripStatusLabelSize";
-            this.toolStripStatusLabelSize.Spring = true;
             // 
             // toolStripProgressBar
             // 
@@ -1200,7 +1196,6 @@
             // 
             // contextMenuStrip
             // 
-            this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.explorerToolStripMenuItem,
             this.toolStripMenuItem14,
@@ -1600,7 +1595,6 @@
             // 
             // foldersContextMenuStrip
             // 
-            this.foldersContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.foldersContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.disablePagefoldersToolStripMenuItem,
             this.customToolStripMenuItem,

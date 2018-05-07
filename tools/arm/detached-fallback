@@ -39,11 +39,14 @@ reboot_kexec(){
   if [ -f "$bootimg" ]; then
     shift
   else
-    bootimg="$temppath/boot.img"
-    readBoot2 > "$bootimg" || return 1
+    bootimg="$rootfs/boot/boot.img"
+    if [ ! -f "$bootimg" ]; then
+      bootimg="$temppath/boot.img"
+      readBoot2 > "$bootimg" || return 1
+    fi
   fi
   [ -f "$bootimg" ] || return 1
-  memboot "$bootimg" ${1+"$@"}
+  memboot "$bootimg" "$modname-chainload" ${1+"$@"}
 }
 
 clovershellActive(){

@@ -2,6 +2,7 @@
 using Renci.SshNet;
 using DnsUtils.Services;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -81,17 +82,30 @@ namespace com.clusterrr.ssh
                             if (hasConnected)
                             {
                                 Trace.WriteLine("SSH shell disconnected");
-                                this.IPAddress = null;
-                                hasConnected = false;
                                 lastDisconnected = DateTime.Now;
+                                if (sshClient != null)
+                                {
+                                    sshClient.Dispose();
+                                    sshClient = null;
+                                }
+                                resolvedIPs = null;
+                                IPAddress = null;
+                                hasConnected = false;
                                 OnDisconnected();
                             }
                             else if (AutoReconnect)
                             {
-                                if (DateTime.Now.Subtract(lastDisconnected).TotalMilliseconds > 3000 &&
-                                    ((Resolve() && PingResolved() != -1) || Ping() != -1))
+                                if (DateTime.Now.Subtract(lastDisconnected).TotalMilliseconds > 3000)
                                 {
-                                    Connect();
+                                    Ping(this.service); // this is to wake up llmnr
+                                    if (Resolve() && PingResolved())
+                                    {
+                                        foreach (var ip in resolvedIPs)
+                                        {
+                                            IPAddress = ip.ToString();
+                                            Connect();
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -149,7 +163,7 @@ namespace com.clusterrr.ssh
             connectThread = null;
             enabled = false;
             hasConnected = false;
-            lastDisconnected = DateTime.Now.Subtract(TimeSpan.FromSeconds(3));
+            lastDisconnected = DateTime.Now.Subtract(TimeSpan.FromMilliseconds(3000));
             this.service = service;
             this.IPAddress = IPAddress;
             this.port = port;
@@ -165,9 +179,7 @@ namespace com.clusterrr.ssh
 
         public void Connect()
         {
-            if (IsOnline)
-                return;
-            if (string.IsNullOrEmpty(IPAddress) || IPAddress == "0.0.0.0")
+            if (IsOnline || string.IsNullOrEmpty(IPAddress) || IPAddress == "0.0.0.0")
                 return;
 
             try
@@ -181,15 +193,17 @@ namespace com.clusterrr.ssh
                 {
                     sshClient.Connect();
                 }
+                Trace.WriteLine("SSH shell connected");
+                Trace.WriteLine($"IP Address: {IPAddress}");
+                Trace.WriteLine($"Encryption: {sshClient.ConnectionInfo.CurrentServerEncryption}");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new SshClientException(string.Format("Unable to connect to SSH server at {0}:{1}", sshClient.ConnectionInfo.Host, sshClient.ConnectionInfo.Port));
+                Debug.WriteLine(string.Format("Unable to connect to SSH server at {0}:{1} ({2})", sshClient.ConnectionInfo.Host, sshClient.ConnectionInfo.Port, ex.Message));
+                sshClient = null;
+                IPAddress = null;
+                return;
             }
-
-            Trace.WriteLine("SSH shell connected");
-            Trace.WriteLine($"IP Address: {IPAddress}");
-            Trace.WriteLine($"Encryption: {sshClient.ConnectionInfo.CurrentServerEncryption}");
 
             hasConnected = true;
             OnConnected(this);
@@ -200,8 +214,7 @@ namespace com.clusterrr.ssh
             if (sshClient == null) return;
             if (sshClient.IsConnected)
             {
-                // this will disconnect the shell and thread loop will detect it and call OnDisconnected and clean up
-                sshClient.Disconnect();
+                sshClient.Disconnect(); // this will disconnect the shell and thread loop will detect it and call OnDisconnected and clean up
             }
         }
 
@@ -211,34 +224,43 @@ namespace com.clusterrr.ssh
             {
                 llmnr = new Llmnr();
             }
-
-            IPAddress[] addresses = NameResolving.ResolveAsync(this.service, 1000, llmnr).Result;
-            if (addresses != null)
+            if (resolvedIPs == null)
             {
-                this.resolvedIPs = addresses;
-                return true;
+                this.resolvedIPs = NameResolving.ResolveAsync(this.service, 2000, llmnr).Result;
             }
-            return false;
+            return (resolvedIPs != null && resolvedIPs.Length > 0);
         }
 
-        public int PingResolved()
+        public int Ping()
+        {
+            if (IPAddress == "0.0.0.0")
+                IPAddress = null;
+            if (string.IsNullOrEmpty(IPAddress))
+                return -1;
+            return Ping(this.IPAddress, true);
+        }
+
+        public bool PingResolved()
         {
             if (resolvedIPs != null && resolvedIPs.Length > 0)
             {
+                List<IPAddress> successfulIPs = new List<IPAddress>();
                 foreach (var ip in resolvedIPs)
                 {
                     int result = Ping(ip.ToString());
                     if (result != -1)
                     {
-                        this.IPAddress = ip.ToString();
-                        return result;
+                        successfulIPs.Add(ip);
                     }
+                    Debug.WriteLine($"[llmnr] detected ip address: {ip.ToString()}: " + (result == -1 ? "ping failed" : "ping successful"));
                 }
+                resolvedIPs = successfulIPs.ToArray();
+                return (resolvedIPs.Length > 0);
             }
-            return -1;
+            return false;
         }
 
-        public int Ping(string ip)
+        public int Ping(string ip, bool verbose = false)
         {
             try
             {
@@ -246,7 +268,8 @@ namespace com.clusterrr.ssh
                 PingReply reply = pingSender.Send(ip, 500);
                 if (reply != null && reply.Status.Equals(IPStatus.Success))
                 {
-                    Trace.WriteLine($"Pinged {reply.Address}, {reply.RoundtripTime}ms");
+                    if (verbose)
+                        Trace.WriteLine($"Pinged {reply.Address}, {reply.RoundtripTime}ms");
                     IPAddress = reply.Address.ToString();
                     return (int)reply.RoundtripTime;
                 }
@@ -254,20 +277,10 @@ namespace com.clusterrr.ssh
             catch (Exception ex)
             {
 #if VERY_DEBUG
-                string msg = $"Error during ping \"{IPAddress ?? service}\": {(ex.InnerException ?? ex).Message}";
-                Debug.WriteLine(msg);
+                Debug.WriteLine($"Error during ping \"{IPAddress ?? service}\": {(ex.InnerException ?? ex).Message}");
 #endif
             }
             return -1;
-        }
-
-        public int Ping()
-        {
-            if ((string.IsNullOrEmpty(IPAddress) || IPAddress == "0.0.0.0") && string.IsNullOrEmpty(service))
-                return -1;
-            if (IPAddress == "0.0.0.0")
-                IPAddress = null;
-            return Ping(this.IPAddress ?? this.service);
         }
 
         public string ExecuteSimple(string command, int timeout = 2000, bool throwOnNonZero = false)
