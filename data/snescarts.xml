@@ -501,7 +501,7 @@
     <crc>8ce1ba79</crc>
     <date>1994-01-01</date>
     <publisher>Hi Tech Expressions</publisher>
-    <region>USA) (Proto</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/3476-1.jpg</cover>
     <api_id>3476</api_id>
   </Game>
@@ -798,7 +798,7 @@
     <crc>18bbee33</crc>
     <date>1994</date>
     <publisher>Hi Tech Entertainment</publisher>
-    <region>USA) (Proto</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/3484-1.jpg</cover>
     <api_id>3484</api_id>
   </Game>
@@ -1018,7 +1018,7 @@
     <crc>c2e91694</crc>
     <date>1992-10-07</date>
     <publisher>Electronic Arts</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/1524-1.jpg</cover>
     <api_id>1524</api_id>
   </Game>
@@ -1650,13 +1650,13 @@
     <api_id>1755</api_id>
   </Game>
   <Game>
-    <name>Donkey Kong Country</name>
+    <name>Donkey Kong Country - Competition Cartridge</name>
     <players>2</players>
     <simultaneous>1</simultaneous>
     <crc>0e204fbd</crc>
     <date>1994-11-21</date>
     <publisher>Nintendo</publisher>
-    <region>USA) (Competition Edition</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/131-2.jpg</cover>
     <api_id>131</api_id>
   </Game>
@@ -1667,7 +1667,7 @@
     <crc>762af827</crc>
     <date>1994-11-21</date>
     <publisher>Nintendo</publisher>
-    <region>USA) (Competition Edition</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/131-2.jpg</cover>
     <api_id>131</api_id>
   </Game>
@@ -1678,7 +1678,7 @@
     <crc>4e2d90f4</crc>
     <date>1995-11-20</date>
     <publisher>Nintendo</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/1525-1.jpg</cover>
     <api_id>1525</api_id>
   </Game>
@@ -2096,7 +2096,7 @@
     <crc>0c664b71</crc>
     <date>1993-01-01</date>
     <publisher>Gametek</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/3605-1.png</cover>
     <api_id>3605</api_id>
   </Game>
@@ -2184,7 +2184,7 @@
     <crc>3d17f6ea</crc>
     <date>1994-05-27</date>
     <publisher>Data East</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/1912-1.png</cover>
     <api_id>1912</api_id>
   </Game>
@@ -2195,7 +2195,7 @@
     <crc>2c52c792</crc>
     <date>1992-10-05</date>
     <publisher>Squaresoft</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/1602-1.jpg</cover>
     <api_id>1602</api_id>
   </Game>
@@ -2206,7 +2206,7 @@
     <crc>23084fcd</crc>
     <date>1991-11-01</date>
     <publisher>Squaresoft</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/1286-2.jpg</cover>
     <api_id>1286</api_id>
   </Game>
@@ -2217,7 +2217,7 @@
     <crc>c0fa0464</crc>
     <date>1994-04-02</date>
     <publisher>Squaresoft</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/83-1.jpg</cover>
     <api_id>83</api_id>
   </Game>
@@ -2448,7 +2448,7 @@
     <crc>15194fc9</crc>
     <date>1992-01-01</date>
     <publisher>Acclaim</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/3631-1.png</cover>
     <api_id>3631</api_id>
   </Game>
@@ -2881,7 +2881,7 @@
     <api_id>1991</api_id>
   </Game>
   <Game>
-    <name>International Superstar Soccer</name>
+    <name>International Superstar Soccer - Euro</name>
     <players>2</players>
     <simultaneous>0</simultaneous>
     <crc>6cd568a9</crc>
@@ -2898,7 +2898,7 @@
     <crc>49627238</crc>
     <date>1995-06-01</date>
     <publisher>Konami</publisher>
-    <region>Europe</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/3794-1.jpg</cover>
     <api_id>3794</api_id>
   </Game>
@@ -3129,7 +3129,7 @@
     <crc>dc5a250b</crc>
     <date>1992-11-01</date>
     <publisher>Electronic Arts</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/3810-1.jpg</cover>
     <api_id>3810</api_id>
   </Game>
@@ -3184,7 +3184,7 @@
     <crc>8bfde0b7</crc>
     <date>1993-11-01</date>
     <publisher>Ocean</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/3203-1.jpg</cover>
     <api_id>3203</api_id>
   </Game>
@@ -3327,7 +3327,7 @@
     <crc>09e9a04e</crc>
     <date>1995-08-01</date>
     <publisher>Nintendo</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/1254-1.jpg</cover>
     <api_id>1254</api_id>
   </Game>
@@ -3448,7 +3448,7 @@
     <crc>ac5116d9</crc>
     <date>1992-06-01</date>
     <publisher>Acclaim</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/289-1.jpg</cover>
     <api_id>289</api_id>
   </Game>
@@ -3547,7 +3547,7 @@
     <crc>51e3d566</crc>
     <date>1992-03-01</date>
     <publisher>Sunsoft</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/2832-1.jpg</cover>
     <api_id>2832</api_id>
   </Game>
@@ -4009,7 +4009,7 @@
     <crc>ded53c64</crc>
     <date>1994-01-21</date>
     <publisher>Capcom</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/143-1.jpg</cover>
     <api_id>143</api_id>
   </Game>
@@ -4119,7 +4119,7 @@
     <crc>53524952</crc>
     <date>1994-01-01</date>
     <publisher>Visual Concept</publisher>
-    <region>USA) (Proto</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/5597-1.jpg</cover>
     <api_id>5597</api_id>
   </Game>
@@ -4251,7 +4251,7 @@
     <crc>88d54085</crc>
     <date>1992-01-01</date>
     <publisher>Parker Brothers</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/5614-1.jpg</cover>
     <api_id>5614</api_id>
   </Game>
@@ -4284,7 +4284,7 @@
     <crc>70bb5513</crc>
     <date>1994-09-01</date>
     <publisher>Acclaim</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/2823-1.jpg</cover>
     <api_id>2823</api_id>
   </Game>
@@ -4383,7 +4383,7 @@
     <crc>8f42cae7</crc>
     <date>1994-03-01</date>
     <publisher>Acclaim</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/2815-1.jpg</cover>
     <api_id>2815</api_id>
   </Game>
@@ -4460,7 +4460,7 @@
     <crc>200370a2</crc>
     <date>1992-01-01</date>
     <publisher>HAL America</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/5700-1.jpg</cover>
     <api_id>5700</api_id>
   </Game>
@@ -5714,7 +5714,7 @@
     <crc>a012d1ad</crc>
     <date>1992-01-01</date>
     <publisher>LJN</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/5814-1.jpg</cover>
     <api_id>5814</api_id>
   </Game>
@@ -5846,7 +5846,7 @@
     <crc>13380511</crc>
     <date>2002-07-18</date>
     <publisher>Ocean</publisher>
-    <region>USA) (Proto</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/5830-1.jpg</cover>
     <api_id>5830</api_id>
   </Game>
@@ -6209,7 +6209,7 @@
     <crc>cb0653d0</crc>
     <date>1994-01-01</date>
     <publisher>Mitsui</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/6127-1.png</cover>
     <api_id>6127</api_id>
   </Game>
@@ -6297,18 +6297,18 @@
     <crc>8fc4e6d0</crc>
     <date>1993-02-21</date>
     <publisher>Nintendo</publisher>
-    <region>USA) (Rev 2</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/1730-1.jpg</cover>
     <api_id>1730</api_id>
   </Game>
   <Game>
-    <name>Star Fox</name>
+    <name>Star Fox - Super Weekend Competition</name>
     <players>1</players>
     <simultaneous>0</simultaneous>
     <crc>cd1f04b8</crc>
     <date>1993-02-21</date>
     <publisher>Nintendo</publisher>
-    <region>USA) (Rev 2</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/1730-1.jpg</cover>
     <api_id>1730</api_id>
   </Game>
@@ -6473,7 +6473,7 @@
     <crc>380c2635</crc>
     <date>1994-07-01</date>
     <publisher>Nintendo</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/3270-1.jpg</cover>
     <api_id>3270</api_id>
   </Game>
@@ -6605,7 +6605,7 @@
     <crc>77811b34</crc>
     <date>1992-01-01</date>
     <publisher>Absolute Entertainment, Inc.</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/6148-1.jpg</cover>
     <api_id>6148</api_id>
   </Game>
@@ -6693,7 +6693,7 @@
     <crc>9526d1aa</crc>
     <date>1992-01-01</date>
     <publisher>Avalon</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/6152-1.png</cover>
     <api_id>6152</api_id>
   </Game>
@@ -6748,7 +6748,7 @@
     <crc>49e53877</crc>
     <date>2015-11-01</date>
     <publisher>Playtronic</publisher>
-    <region>Brazil) (Es,Pt</region>
+    <region>Brazil</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/32483-1.jpg</cover>
     <api_id>32483</api_id>
   </Game>
@@ -6913,7 +6913,7 @@
     <crc>cf98ddaa</crc>
     <date>1995-10-04</date>
     <publisher>Nintendo</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/137-1.jpg</cover>
     <api_id>137</api_id>
   </Game>
@@ -6957,7 +6957,7 @@
     <crc>A2315A14</crc>
     <date>1994-11-25</date>
     <publisher>Wisdom Tree</publisher>
-    <region>USA) (Unl</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/6225-1.jpg</cover>
     <api_id>6225</api_id>
   </Game>
@@ -7001,7 +7001,7 @@
     <crc>008463a0</crc>
     <date>1994-01-01</date>
     <publisher>Nintendo</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/6167-1.jpg</cover>
     <api_id>6167</api_id>
   </Game>
@@ -7144,7 +7144,7 @@
     <crc>be47f6c6</crc>
     <date>1992-11-01</date>
     <publisher>JVC</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/2658-1.jpg</cover>
     <api_id>2658</api_id>
   </Game>
@@ -7155,7 +7155,7 @@
     <crc>4a5f30d8</crc>
     <date>1994-10-01</date>
     <publisher>JVC</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/2660-1.jpg</cover>
     <api_id>2660</api_id>
   </Game>
@@ -7166,7 +7166,7 @@
     <crc>1e7ea62c</crc>
     <date>1993-10-01</date>
     <publisher>JVC</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/2659-1.jpg</cover>
     <api_id>2659</api_id>
   </Game>
@@ -7320,7 +7320,7 @@
     <crc>b17230ae</crc>
     <date>1993-05-01</date>
     <publisher>Sunsoft</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/6233-1.jpg</cover>
     <api_id>6233</api_id>
   </Game>
@@ -7463,7 +7463,7 @@
     <crc>3bc7054a</crc>
     <date>1994-08-08</date>
     <publisher>Nintendo</publisher>
-    <region>USA) (Rev 1</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/6258-1.jpg</cover>
     <api_id>6258</api_id>
   </Game>
@@ -7957,7 +7957,7 @@
     <crc>59180F1C</crc>
     <date>1994-01-01</date>
     <publisher>Accolade</publisher>
-    <region>USA) (Proto</region>
+    <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/6322-1.jpg</cover>
     <api_id>6322</api_id>
   </Game>
