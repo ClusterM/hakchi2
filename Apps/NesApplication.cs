@@ -1353,7 +1353,7 @@ namespace com.clusterrr.hakchi_gui
                     if (!foundRom || !foundIcon)
                         foreach (var file in Directory.GetFiles(originalCacheBasePath, "*.*"))
                         {
-                            if (!foundRom && originalExtensions.Contains(Path.GetExtension(file)))
+                            if (!foundRom && originalExtensions.Contains(Path.GetExtension(file).ToLower()))
                             {
                                 mediaGamePath = originalCacheMediaGamePath;
                                 foundRom = true;

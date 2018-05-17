@@ -21,7 +21,7 @@ namespace com.clusterrr.ssh
 
         private SshClient sshClient;
         private Llmnr llmnr;
-        private IPAddress[] resolvedIPs;
+        private Mdns mdns;
 
         Thread connectThread;
         private bool enabled;
@@ -88,7 +88,6 @@ namespace com.clusterrr.ssh
                                     sshClient.Dispose();
                                     sshClient = null;
                                 }
-                                resolvedIPs = null;
                                 IPAddress = null;
                                 hasConnected = false;
                                 OnDisconnected();
@@ -97,15 +96,7 @@ namespace com.clusterrr.ssh
                             {
                                 if (DateTime.Now.Subtract(lastDisconnected).TotalMilliseconds > 3000)
                                 {
-                                    Ping(this.service); // this is to wake up llmnr
-                                    if (Resolve() && PingResolved())
-                                    {
-                                        foreach (var ip in resolvedIPs)
-                                        {
-                                            IPAddress = ip.ToString();
-                                            Connect();
-                                        }
-                                    }
+                                    attemptConnect();
                                 }
                             }
                         }
@@ -159,7 +150,7 @@ namespace com.clusterrr.ssh
         {
             sshClient = null;
             llmnr = null;
-            resolvedIPs = null;
+            mdns = null;
             connectThread = null;
             enabled = false;
             hasConnected = false;
@@ -218,49 +209,39 @@ namespace com.clusterrr.ssh
             }
         }
 
-        public bool Resolve()
+        private void attemptConnect()
         {
-            if (llmnr == null)
-            {
-                llmnr = new Llmnr();
-            }
-            if (resolvedIPs == null)
-            {
-                this.resolvedIPs = NameResolving.ResolveAsync(this.service, 2000, llmnr).Result;
-            }
-            return (resolvedIPs != null && resolvedIPs.Length > 0);
-        }
+            ping(this.service); // this is to wake up llmnr
 
-        public int Ping()
-        {
-            if (IPAddress == "0.0.0.0")
-                IPAddress = null;
-            if (string.IsNullOrEmpty(IPAddress))
-                return -1;
-            return Ping(this.IPAddress, true);
-        }
-
-        public bool PingResolved()
-        {
+            IPAddress[] resolvedIPs = resolve();
             if (resolvedIPs != null && resolvedIPs.Length > 0)
             {
-                List<IPAddress> successfulIPs = new List<IPAddress>();
                 foreach (var ip in resolvedIPs)
                 {
-                    int result = Ping(ip.ToString());
+                    int result = ping(ip.ToString());
+                    Debug.WriteLine($"Resolve: detected ip address: {ip.ToString()}: " + (result == -1 ? "ping failed" : "ping successful"));
+
                     if (result != -1)
                     {
-                        successfulIPs.Add(ip);
+                        IPAddress = ip.ToString();
+                        Connect();
+                        if (IsOnline)
+                            break;
                     }
-                    Debug.WriteLine($"[llmnr] detected ip address: {ip.ToString()}: " + (result == -1 ? "ping failed" : "ping successful"));
                 }
-                resolvedIPs = successfulIPs.ToArray();
-                return (resolvedIPs.Length > 0);
             }
-            return false;
         }
 
-        public int Ping(string ip, bool verbose = false)
+        private IPAddress[] resolve()
+        {
+            if (llmnr == null)
+                llmnr = new Llmnr();
+            if (mdns == null)
+                mdns = new Mdns();
+            return NameResolving.ResolveAsync(this.service, 2000, llmnr, mdns).Result;
+        }
+
+        private int ping(string ip, bool verbose = false)
         {
             try
             {
@@ -281,6 +262,15 @@ namespace com.clusterrr.ssh
 #endif
             }
             return -1;
+        }
+
+        public int Ping()
+        {
+            if (IPAddress == "0.0.0.0")
+                IPAddress = null;
+            if (string.IsNullOrEmpty(IPAddress))
+                return -1;
+            return ping(this.IPAddress, true);
         }
 
         public string ExecuteSimple(string command, int timeout = 2000, bool throwOnNonZero = false)
