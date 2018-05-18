@@ -71,6 +71,11 @@ namespace com.clusterrr.hakchi_gui
 
         private void refreshContentToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            try
+            {
+                File.Delete(config.ConfigPath);
+            }
+            catch { }
             ModStore_Initialise();
             Tasks.MessageForm.Show(this, this.Text, "Refreshed Mod store");
         }
