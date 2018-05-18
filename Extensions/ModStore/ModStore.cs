@@ -29,15 +29,18 @@ namespace com.clusterrr.hakchi_gui
             ModStore_Initialise();
         }
 
-        private void ModStore_Initialise()
+        private void ModStore_Initialise(bool LoadXML = true)
         {
-            //Load Config
-            XmlSerializer xs = new XmlSerializer(typeof(ModStoreManager));
-            if (File.Exists(config.ConfigPath))
+            if (LoadXML)
             {
-                using (var fs = File.Open(config.ConfigPath, FileMode.Open))
+                //Load Config
+                XmlSerializer xs = new XmlSerializer(typeof(ModStoreManager));
+                if (File.Exists(config.ConfigPath))
                 {
-                    config = (ModStoreManager)xs.Deserialize(fs);
+                    using (var fs = File.Open(config.ConfigPath, FileMode.Open))
+                    {
+                        config = (ModStoreManager)xs.Deserialize(fs);
+                    }
                 }
             }
 
@@ -71,13 +74,9 @@ namespace com.clusterrr.hakchi_gui
 
         private void refreshContentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                File.Delete(config.ConfigPath);
-            }
-            catch { }
-            ModStore_Initialise();
-            Tasks.MessageForm.Show(this, this.Text, "Refreshed Mod store");
+            updateModuleList();
+            ModStore_Initialise(false);
+            Tasks.MessageForm.Show(this, this.Text, "Refreshed Mod Store");
         }
 
         private void PoweredByLinkS_Click(object sender, EventArgs e)
