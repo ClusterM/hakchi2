@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModStore));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.refreshContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sortByAZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sortByDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.submitYourOwnModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +74,7 @@
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.refreshContentToolStripMenuItem,
+            this.sortToolStripMenuItem,
             this.submitYourOwnModToolStripMenuItem,
             this.helpToolStripMenuItem});
             resources.ApplyResources(this.menuStrip, "menuStrip");
@@ -81,6 +85,26 @@
             this.refreshContentToolStripMenuItem.Name = "refreshContentToolStripMenuItem";
             resources.ApplyResources(this.refreshContentToolStripMenuItem, "refreshContentToolStripMenuItem");
             this.refreshContentToolStripMenuItem.Click += new System.EventHandler(this.refreshContentToolStripMenuItem_Click);
+            // 
+            // sortToolStripMenuItem
+            // 
+            this.sortToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sortByAZToolStripMenuItem,
+            this.sortByDateToolStripMenuItem});
+            this.sortToolStripMenuItem.Name = "sortToolStripMenuItem";
+            resources.ApplyResources(this.sortToolStripMenuItem, "sortToolStripMenuItem");
+            // 
+            // sortByAZToolStripMenuItem
+            // 
+            this.sortByAZToolStripMenuItem.Name = "sortByAZToolStripMenuItem";
+            resources.ApplyResources(this.sortByAZToolStripMenuItem, "sortByAZToolStripMenuItem");
+            this.sortByAZToolStripMenuItem.Click += new System.EventHandler(this.sortMethodClick);
+            // 
+            // sortByDateToolStripMenuItem
+            // 
+            this.sortByDateToolStripMenuItem.Name = "sortByDateToolStripMenuItem";
+            resources.ApplyResources(this.sortByDateToolStripMenuItem, "sortByDateToolStripMenuItem");
+            this.sortByDateToolStripMenuItem.Click += new System.EventHandler(this.sortMethodClick);
             // 
             // submitYourOwnModToolStripMenuItem
             // 
@@ -303,5 +327,8 @@
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.TabPage tabPage6;
         private ModStoreTabControl modStoreTabControl6;
+        private System.Windows.Forms.ToolStripMenuItem sortToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sortByAZToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sortByDateToolStripMenuItem;
     }
 }

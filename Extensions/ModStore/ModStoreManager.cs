@@ -14,6 +14,7 @@ namespace com.clusterrr.hakchi_gui.module_library
         public List<ModStoreItem> AvailableItems = new List<ModStoreItem>();
         public List<InstalledModItem> InstalledItems = new List<InstalledModItem>();
         public DateTime LastUpdate = new DateTime();
+        public bool SortAlphabetically = false;
         public string ConfigPath { get { return Path.Combine(Program.BaseDirectoryExternal, "config\\ModStoreConfig.xml"); } }
 
         public void CheckForDeletedItems()
