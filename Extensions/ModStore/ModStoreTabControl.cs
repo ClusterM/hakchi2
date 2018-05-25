@@ -23,12 +23,10 @@ namespace com.clusterrr.hakchi_gui
         }
 
         #region GUI
-        private int loadingDescription = 0;
         private void loadModuleDescription()
         {
             Cursor.Current = Cursors.WaitCursor;
             var installedModule = manager.GetInstalledModule(currentItem);
-            loadingDescription++;
             webBrowser1.Navigate(new Uri(currentItem.Description, UriKind.Absolute));
             moduleDescriptionBrowser.DocumentText = String.Format("<html style='background-color:#d20014;color:#ffffff;'>" +
                                                                     "<body background='https://hakchiresources.com/wp-content/uploads/2018/04/bg-1.png' style='width:273px;'>" +
@@ -86,21 +84,19 @@ namespace com.clusterrr.hakchi_gui
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             Cursor.Current = Cursors.Default;
-            loadingDescription--;
         }
 
         private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
-            if (loadingDescription == 0)
-            {
-                if (e.Url.ToString() == "about:blank") return;
+            string url = e.Url.ToString();
+            if (url == "about:blank" || url == currentItem.Description || url.StartsWith("res:"))
+                return;
 
-                // cancel the current event
-                e.Cancel = true;
+            // cancel the current event
+            e.Cancel = true;
 
-                // this opens the URL in the user's default browser
-                System.Diagnostics.Process.Start(e.Url.ToString());
-            }
+            // this opens the URL in the user's default browser
+            System.Diagnostics.Process.Start(url);
         }
         #endregion
 
@@ -116,7 +112,6 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (item is ModStoreGame)
                         {
-                            moduleListBox.Items.Add(item.Name);
                             itemList.Add(item);
                         }
                     }
@@ -129,12 +124,15 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (item is Module && (item as Module).Categories.Contains(Category))
                         {
-                            moduleListBox.Items.Add(item.Name);
                             itemList.Add(item);
                         }
                     }
                     break;
             }
+            if (manager.SortAlphabetically)
+                itemList.Sort((ModStoreItem a, ModStoreItem b) => { return a.Name.CompareTo(b.Name); });
+            foreach (var item in itemList)
+                moduleListBox.Items.Add(item.Name);
             moduleListBox.SelectedIndex = 0;
         }
 
@@ -149,22 +147,22 @@ namespace com.clusterrr.hakchi_gui
             InstalledModItem installedModule = manager.GetInstalledModule(currentItem);
 
             //Download or update module
-            if(installedModule == null || installedModule.Version != currentItem.Version)
+            if (installedModule == null || installedModule.Version != currentItem.Version)
             {
                 moduleDownloadButton_Click(this, new EventArgs());
                 installedModule = manager.GetInstalledModule(currentItem);
             }
 
-            if(installedModule != null)
+            if (installedModule != null)
             {
                 List<string> mods = new List<string>();
                 foreach (var file in installedModule.InstalledFiles)
                 {
-                    if(file.EndsWith(".hmod"))
+                    if (file.EndsWith(".hmod"))
                     {
                         mods.Add(file.Substring(0, file.Length - 5));
                     }
-                    else if(file.EndsWith(".hmod\\"))
+                    else if (file.EndsWith(".hmod\\"))
                     {
                         mods.Add(file.Substring(0, file.Length - 6));
                     }

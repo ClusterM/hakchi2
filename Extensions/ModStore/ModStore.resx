@@ -127,29 +127,29 @@
   <data name="refreshContentToolStripMenuItem.Text" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="sortByAZToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="sortByAZToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sort by A-Z</value>
+  </data>
+  <data name="sortByDateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="sortByDateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sort by Date</value>
+  </data>
+  <data name="sortToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
+  </data>
+  <data name="sortToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sort</value>
+  </data>
   <data name="submitYourOwnModToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 20</value>
   </data>
   <data name="submitYourOwnModToolStripMenuItem.Text" xml:space="preserve">
     <value>Submit Mod</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 22</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>About...</value>
-  </data>
-  <data name="discordLinkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 22</value>
-  </data>
-  <data name="discordLinkToolStripMenuItem.Text" xml:space="preserve">
-    <value>Discord Link</value>
-  </data>
-  <data name="visitWebsiteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 22</value>
-  </data>
-  <data name="visitWebsiteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Visit Website</value>
   </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
@@ -179,15 +179,27 @@
   <data name="&gt;&gt;menuStrip.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 22</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>About...</value>
+  </data>
+  <data name="discordLinkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 22</value>
+  </data>
+  <data name="discordLinkToolStripMenuItem.Text" xml:space="preserve">
+    <value>Discord Link</value>
+  </data>
+  <data name="visitWebsiteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 22</value>
+  </data>
+  <data name="visitWebsiteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Visit Website</value>
+  </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>125, 17</value>
   </metadata>
-  <data name="PoweredByLinkS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 17</value>
-  </data>
-  <data name="PoweredByLinkS.Text" xml:space="preserve">
-    <value>PoweredByLinkS</value>
-  </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 439</value>
   </data>
@@ -216,22 +228,118 @@
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="webBrowser1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="PoweredByLinkS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 17</value>
   </data>
-  <data name="webBrowser1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+  <data name="PoweredByLinkS.Text" xml:space="preserve">
+    <value>PoweredByLinkS</value>
   </data>
-  <data name="webBrowser1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
+  <data name="&gt;&gt;tabPage0.Name" xml:space="preserve">
+    <value>tabPage0</value>
   </data>
-  <data name="webBrowser1.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>15, 16</value>
+  <data name="&gt;&gt;tabPage0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="webBrowser1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 382</value>
+  <data name="&gt;&gt;tabPage0.Parent" xml:space="preserve">
+    <value>tabControl1</value>
   </data>
-  <data name="webBrowser1.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;tabPage0.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.Name" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tabPage5.Name" xml:space="preserve">
+    <value>tabPage5</value>
+  </data>
+  <data name="&gt;&gt;tabPage5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage5.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage5.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;tabPage3.Name" xml:space="preserve">
+    <value>tabPage3</value>
+  </data>
+  <data name="&gt;&gt;tabPage3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage3.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Name" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;tabPage6.Name" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;tabPage6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage6.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage6.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 27</value>
+  </data>
+  <data name="tabControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>752, 414</value>
+  </data>
+  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="&gt;&gt;webBrowser1.Name" xml:space="preserve">
@@ -273,26 +381,41 @@
   <data name="&gt;&gt;tabPage0.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="modStoreTabControl1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="webBrowser1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="modStoreTabControl1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="webBrowser1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="modStoreTabControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="webBrowser1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
-  <data name="modStoreTabControl1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="webBrowser1.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>15, 16</value>
+  </data>
+  <data name="webBrowser1.Size" type="System.Drawing.Size, System.Drawing">
     <value>738, 382</value>
   </data>
-  <data name="modStoreTabControl1.TabIndex" type="System.Int32, mscorlib">
+  <data name="webBrowser1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;webBrowser1.Name" xml:space="preserve">
+    <value>webBrowser1</value>
+  </data>
+  <data name="&gt;&gt;webBrowser1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.WebBrowser, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;webBrowser1.Parent" xml:space="preserve">
+    <value>tabPage0</value>
+  </data>
+  <data name="&gt;&gt;webBrowser1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl1.Name" xml:space="preserve">
     <value>modStoreTabControl1</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl1.Type" xml:space="preserve">
-    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl1.Parent" xml:space="preserve">
     <value>tabPage1</value>
@@ -327,26 +450,38 @@
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="modStoreTabControl4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="modStoreTabControl1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="modStoreTabControl4.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="modStoreTabControl1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="modStoreTabControl4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="modStoreTabControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="modStoreTabControl4.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="modStoreTabControl1.Size" type="System.Drawing.Size, System.Drawing">
     <value>738, 382</value>
   </data>
-  <data name="modStoreTabControl4.TabIndex" type="System.Int32, mscorlib">
+  <data name="modStoreTabControl1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl1.Name" xml:space="preserve">
+    <value>modStoreTabControl1</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl1.Type" xml:space="preserve">
+    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.5.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl1.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl4.Name" xml:space="preserve">
     <value>modStoreTabControl4</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl4.Type" xml:space="preserve">
-    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl4.Parent" xml:space="preserve">
     <value>tabPage4</value>
@@ -381,26 +516,38 @@
   <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="modStoreTabControl5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="modStoreTabControl4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="modStoreTabControl5.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="modStoreTabControl4.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="modStoreTabControl5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="modStoreTabControl4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="modStoreTabControl5.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="modStoreTabControl4.Size" type="System.Drawing.Size, System.Drawing">
     <value>738, 382</value>
   </data>
-  <data name="modStoreTabControl5.TabIndex" type="System.Int32, mscorlib">
+  <data name="modStoreTabControl4.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl4.Name" xml:space="preserve">
+    <value>modStoreTabControl4</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl4.Type" xml:space="preserve">
+    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.5.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl4.Parent" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl5.Name" xml:space="preserve">
     <value>modStoreTabControl5</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl5.Type" xml:space="preserve">
-    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl5.Parent" xml:space="preserve">
     <value>tabPage5</value>
@@ -435,26 +582,38 @@
   <data name="&gt;&gt;tabPage5.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="modStoreTabControl3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="modStoreTabControl5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="modStoreTabControl3.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="modStoreTabControl5.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="modStoreTabControl3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="modStoreTabControl5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="modStoreTabControl3.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="modStoreTabControl5.Size" type="System.Drawing.Size, System.Drawing">
     <value>738, 382</value>
   </data>
-  <data name="modStoreTabControl3.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="modStoreTabControl5.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl5.Name" xml:space="preserve">
+    <value>modStoreTabControl5</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl5.Type" xml:space="preserve">
+    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.5.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl5.Parent" xml:space="preserve">
+    <value>tabPage5</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl5.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl3.Name" xml:space="preserve">
     <value>modStoreTabControl3</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl3.Type" xml:space="preserve">
-    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl3.Parent" xml:space="preserve">
     <value>tabPage3</value>
@@ -489,26 +648,38 @@
   <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="modStoreTabControl2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="modStoreTabControl3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="modStoreTabControl2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="modStoreTabControl3.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="modStoreTabControl2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="modStoreTabControl3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="modStoreTabControl2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="modStoreTabControl3.Size" type="System.Drawing.Size, System.Drawing">
     <value>738, 382</value>
   </data>
-  <data name="modStoreTabControl2.TabIndex" type="System.Int32, mscorlib">
+  <data name="modStoreTabControl3.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl3.Name" xml:space="preserve">
+    <value>modStoreTabControl3</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl3.Type" xml:space="preserve">
+    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.5.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl3.Parent" xml:space="preserve">
+    <value>tabPage3</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl3.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl2.Name" xml:space="preserve">
     <value>modStoreTabControl2</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl2.Type" xml:space="preserve">
-    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl2.Parent" xml:space="preserve">
     <value>tabPage2</value>
@@ -543,26 +714,38 @@
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="modStoreTabControl6.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="modStoreTabControl2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="modStoreTabControl6.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="modStoreTabControl2.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="modStoreTabControl6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="modStoreTabControl2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="modStoreTabControl6.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="modStoreTabControl2.Size" type="System.Drawing.Size, System.Drawing">
     <value>738, 382</value>
   </data>
-  <data name="modStoreTabControl6.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="modStoreTabControl2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl2.Name" xml:space="preserve">
+    <value>modStoreTabControl2</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl2.Type" xml:space="preserve">
+    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.5.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl2.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl2.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl6.Name" xml:space="preserve">
     <value>modStoreTabControl6</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl6.Type" xml:space="preserve">
-    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;modStoreTabControl6.Parent" xml:space="preserve">
     <value>tabPage6</value>
@@ -597,28 +780,31 @@
   <data name="&gt;&gt;tabPage6.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 27</value>
+  <data name="modStoreTabControl6.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
-  <data name="tabControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
+  <data name="modStoreTabControl6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
   </data>
-  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>752, 414</value>
+  <data name="modStoreTabControl6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
-  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
+  <data name="modStoreTabControl6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>738, 382</value>
+  </data>
+  <data name="modStoreTabControl6.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
-    <value>tabControl1</value>
+  <data name="&gt;&gt;modStoreTabControl6.Name" xml:space="preserve">
+    <value>modStoreTabControl6</value>
   </data>
-  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;modStoreTabControl6.Type" xml:space="preserve">
+    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.2.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;modStoreTabControl6.Parent" xml:space="preserve">
+    <value>tabPage6</value>
   </data>
-  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;modStoreTabControl6.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="fontDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -626,9 +812,6 @@
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>fr-FR</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -646,6 +829,24 @@
     <value>refreshContentToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;refreshContentToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sortToolStripMenuItem.Name" xml:space="preserve">
+    <value>sortToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;sortToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sortByAZToolStripMenuItem.Name" xml:space="preserve">
+    <value>sortByAZToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;sortByAZToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sortByDateToolStripMenuItem.Name" xml:space="preserve">
+    <value>sortByDateToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;sortByDateToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;submitYourOwnModToolStripMenuItem.Name" xml:space="preserve">

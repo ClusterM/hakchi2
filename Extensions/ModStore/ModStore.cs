@@ -44,6 +44,9 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
+            //Set Sort Menu Check
+            setSortMenuItemCheck();
+
             if (config.AvailableItems.Count == 0 || (DateTime.Now - config.LastUpdate).TotalDays >= 1.0)
             {
                 //Ask user to update repository information
@@ -60,18 +63,12 @@ namespace com.clusterrr.hakchi_gui
             //Check if user deleted module
             config.CheckForDeletedItems();
 
-            //Set Control Config
-            foreach (TabPage tabPage in tabControl1.Controls)
-            {
-                ModStoreTabControl modStoreTabControl = tabPage.Controls[0] as ModStoreTabControl;
-                if (modStoreTabControl != null)
-                    modStoreTabControl.Manager = config;
-            }
+            //Setup Tabs and Load Items
+            loadTabItems();
         }
         #endregion
 
         #region Non Essential GUI code
-
         private void refreshContentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             updateModuleList();
@@ -104,9 +101,39 @@ namespace com.clusterrr.hakchi_gui
             var modStoreAbout = new ModStoreAbout();
             modStoreAbout.ShowDialog();
         }
+
+        private void sortMethodClick(object sender, EventArgs e)
+        {
+            //Check if method is active
+            if (((ToolStripMenuItem)sender).Checked)
+                return;
+
+            //Set Sort Method
+            config.SortAlphabetically = sender == sortByAZToolStripMenuItem;
+            setSortMenuItemCheck();
+            //Reload all tabs
+            loadTabItems();
+        }
+
+        private void setSortMenuItemCheck()
+        {
+            sortByAZToolStripMenuItem.Checked = config.SortAlphabetically;
+            sortByDateToolStripMenuItem.Checked = !config.SortAlphabetically;
+        }
         #endregion
 
         #region Main Mod Store Code
+        private void loadTabItems()
+        {
+            //For each Mod Store Tab set ModStoreManager (forces tab item refresh)
+            foreach (TabPage tabPage in tabControl1.Controls)
+            {
+                ModStoreTabControl modStoreTabControl = tabPage.Controls[0] as ModStoreTabControl;
+                if (modStoreTabControl != null)
+                    modStoreTabControl.Manager = config;
+            }
+        }
+
         private void updateModuleList()
         {
             try
@@ -227,13 +254,15 @@ namespace com.clusterrr.hakchi_gui
 
         private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
-            if (e.Url.ToString() == "about:blank") return;
+            string url = e.Url.ToString();
+            if (url == "about:blank" || url == "https://hakchiresources.com/modstorewelcome/?mode=welcome" || url.StartsWith("res:"))
+                return;
 
             // cancel the current event
-            e.Cancel = true;
+                e.Cancel = true;
 
             // this opens the URL in the user's default browser
-            Process.Start(e.Url.ToString());
+            Process.Start(url);
         }
 
         private void ModStore_FormClosing(object sender, FormClosingEventArgs e)
