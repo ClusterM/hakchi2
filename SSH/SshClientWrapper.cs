@@ -245,14 +245,16 @@ namespace com.clusterrr.ssh
         {
             try
             {
-                Ping pingSender = new Ping();
-                PingReply reply = pingSender.Send(ip, 500);
-                if (reply != null && reply.Status.Equals(IPStatus.Success))
+                using (Ping pingSender = new Ping())
                 {
-                    if (verbose)
-                        Trace.WriteLine($"Pinged {reply.Address}, {reply.RoundtripTime}ms");
-                    IPAddress = reply.Address.ToString();
-                    return (int)reply.RoundtripTime;
+                    PingReply reply = pingSender.Send(ip, 500);
+                    if (reply != null && reply.Status.Equals(IPStatus.Success))
+                    {
+                        if (verbose)
+                            Trace.WriteLine($"Pinged {reply.Address}, {reply.RoundtripTime}ms");
+                        IPAddress = reply.Address.ToString();
+                        return (int)reply.RoundtripTime;
+                    }
                 }
             }
             catch (Exception ex)
