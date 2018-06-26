@@ -3,4 +3,4 @@
 	url = https://github.com/TeamShinkansen/SSH.NET.git
 [submodule "DnsUtils"]
 	path = DnsUtils
-	url = https://github.com/Phyyl/DnsUtils.git
+	url = https://github.com/TeamShinkansen/DnsUtils.git
