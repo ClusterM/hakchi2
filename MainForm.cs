@@ -1855,6 +1855,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.SetStatusImage(Resources.sign_life_buoy);
                 tasker.SetTitle(((ToolStripMenuItem)sender).Text);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
+                tasker.AddTask(ShellTasks.ShellCommand("touch /user-recovery.flag"));
                 if (tasker.Start() == Tasker.Conclusion.Success)
                     Tasks.MessageForm.Show(Resources.RecoveryKernel, Resources.RecoveryModeMessage, Resources.sign_life_buoy);
             }

@@ -45,6 +45,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
         private Fel fel;
         private MemoryStream stockKernel;
 
+        // Public variables
+        public bool userRecovery = false;
+
         // Public Static variables
         public static readonly Dictionary<hakchi.ConsoleType, string[]> correctKernels = Shared.CorrectKernels();
         public static readonly Dictionary<hakchi.ConsoleType, string[]> correctKeys = Shared.CorrectKeys();
@@ -53,6 +56,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public MembootTasks(MembootTaskType type, string[] hmodsInstall = null, string[] hmodsUninstall = null, string dumpPath = null)
         {
+            userRecovery = (hakchi.Shell.IsOnline && hakchi.MinimalMemboot && hakchi.UserMinimalMemboot);
+
             fel = new Fel();
             List<TaskFunc> taskList = new List<TaskFunc>();
             if (!hakchi.MinimalMemboot)
@@ -68,76 +73,94 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     taskList.AddRange(new TaskFunc[]
                     {
                         HandleHakchi(HakchiTasks.Install),
-                        ModTasks.TransferBaseHmods("/hakchi/transfer"),
-                        BootHakchi
+                        ModTasks.TransferBaseHmods("/hakchi/transfer")
                     });
+                    if (!userRecovery)
+                        taskList.Add(BootHakchi);
+
                     break;
 
                 case MembootTaskType.ResetHakchi:
                     taskList.AddRange(new TaskFunc[]
                     {
                         HandleHakchi(HakchiTasks.Reset),
-                        ModTasks.TransferBaseHmods("/hakchi/transfer"),
-                        BootHakchi
+                        ModTasks.TransferBaseHmods("/hakchi/transfer")
                     });
+                    if (!userRecovery)
+                        taskList.Add(BootHakchi);
+
                     break;
 
                 case MembootTaskType.UninstallHakchi:
                     taskList.AddRange(new TaskFunc[] {
                         GetStockKernel,
                         FlashStockKernel,
-                        HandleHakchi(HakchiTasks.Uninstall),
-                        ShellTasks.Reboot
+                        HandleHakchi(HakchiTasks.Uninstall)
                     });
+                    if (!userRecovery)
+                        taskList.Add(ShellTasks.Reboot);
+
                     break;
 
                 case MembootTaskType.FactoryReset:
                     taskList.AddRange(new TaskFunc[] {
                         GetStockKernel,
                         FlashStockKernel,
-                        ProcessNand(null, NandTasks.FormatNandC),
-                        ShellTasks.Reboot
+                        ProcessNand(null, NandTasks.FormatNandC)
                     });
+                    if (!userRecovery)
+                        taskList.Add(ShellTasks.Reboot);
+
                     break;
 
                 case MembootTaskType.DumpNand:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        ProcessNand(dumpPath, NandTasks.DumpNand),
-                        ShellTasks.Reboot
+                        ProcessNand(dumpPath, NandTasks.DumpNand)
                     });
+                    if (!userRecovery)
+                        taskList.Add(ShellTasks.Reboot);
+
                     break;
 
                 case MembootTaskType.DumpNandB:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        ProcessNand(dumpPath, NandTasks.DumpNandB),
-                        ShellTasks.Reboot
+                        ProcessNand(dumpPath, NandTasks.DumpNandB)
                     });
+                    if (!userRecovery)
+                        taskList.Add(ShellTasks.Reboot);
+
                     break;
 
                 case MembootTaskType.DumpNandC:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        ProcessNand(dumpPath, NandTasks.DumpNandC),
-                        ShellTasks.Reboot
+                        ProcessNand(dumpPath, NandTasks.DumpNandC)
                     });
+                    if (!userRecovery)
+                        taskList.Add(ShellTasks.Reboot);
+
                     break;
 
                 case MembootTaskType.FlashNandB:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        ProcessNand(dumpPath, NandTasks.FlashNandB),
-                        ShellTasks.Reboot
+                        ProcessNand(dumpPath, NandTasks.FlashNandB)
                     });
+                    if (!userRecovery)
+                        taskList.Add(ShellTasks.Reboot);
+
                     break;
 
                 case MembootTaskType.FlashNandC:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        ProcessNand(dumpPath, NandTasks.FlashNandC),
-                        ShellTasks.Reboot
+                        ProcessNand(dumpPath, NandTasks.FlashNandC)
                     });
+                    if (!userRecovery)
+                        taskList.Add(ShellTasks.Reboot);
+
                     break;
 
                 case MembootTaskType.FormatNandC:
@@ -145,9 +168,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     {
                         ProcessNand(dumpPath, NandTasks.FormatNandC),
                         HandleHakchi(HakchiTasks.Install),
-                        ModTasks.TransferBaseHmods("/hakchi/transfer"),
-                        BootHakchi
+                        ModTasks.TransferBaseHmods("/hakchi/transfer")
                     });
+                    if (!userRecovery)
+                        taskList.Add(BootHakchi);
+
                     break;
 
                 case MembootTaskType.ProcessMods:
@@ -157,17 +182,21 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 case MembootTaskType.FlashNormalUboot:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        FlashUboot(Fel.UbootType.Normal),
-                        ShellTasks.Reboot
+                        FlashUboot(Fel.UbootType.Normal)
                     });
+                    if (!userRecovery)
+                        taskList.Add(ShellTasks.Reboot);
+
                     break;
 
                 case MembootTaskType.FlashSDUboot:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        FlashUboot(Fel.UbootType.SD),
-                        ShellTasks.Reboot
+                        FlashUboot(Fel.UbootType.SD)
                     });
+                    if (!userRecovery)
+                        taskList.Add(ShellTasks.Reboot);
+
                     break;
 
                 case MembootTaskType.Memboot:
@@ -184,9 +213,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 case MembootTaskType.DumpStockKernel:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        DumpStockKernel(dumpPath),
-                        ShellTasks.Reboot
+                        DumpStockKernel(dumpPath)
                     });
+                    if (!userRecovery)
+                        taskList.Add(ShellTasks.Reboot);
+
                     break;
             }
             Tasks = taskList.ToArray();
@@ -624,6 +655,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     case NandTasks.DumpNandB:
                     case NandTasks.FlashNandB:
+                        hakchi.Shell.Execute("hakchi umount_base", null, splitStream, splitStream);
                         hakchi.Shell.Execute("umount /newroot");
                         hakchi.Shell.Execute("cryptsetup close root-crypt");
                         hakchi.Shell.ExecuteSimple("cryptsetup open /dev/nandb root-crypt --type plain --cipher aes-xts-plain --key-file /key-file", 2000, true);
@@ -710,6 +742,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             break;
 
                         case NandTasks.DumpNand:
+                            hakchi.Shell.Execute("hakchi umount_base", splitStream, splitStream, splitStream, 0, true);
                             Shared.ShellPipe("sntool sunxi_flash phy_read 0 1000", null, file, throwOnNonZero: true);
                             break;
                     }
