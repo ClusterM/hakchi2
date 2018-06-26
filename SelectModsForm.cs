@@ -340,7 +340,6 @@ namespace com.clusterrr.hakchi_gui
                 item.Group = group;
                 if (!loadInstalledMods && installedMods.Contains(hmod.RawName))
                 {
-                    item.Checked = true;
                     item.ForeColor = SystemColors.GrayText;
                 }
 
@@ -524,10 +523,6 @@ namespace com.clusterrr.hakchi_gui
 
         private void listViewHmods_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            if(!loadInstalledMods && e.Item.Checked == false && ((Hmod)e.Item.Tag).isInstalled)
-            {
-                e.Item.Checked = true;
-            }
         }
 
         private void listViewHmods_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -543,11 +538,6 @@ namespace com.clusterrr.hakchi_gui
                 string html = String.Format(Properties.Resources.readmeTemplateHTML, Properties.Resources.readmeTemplateCSS, "", "", $"rgb({color.R},{color.G},{color.B})");
                 wbReadme.DocumentText = html;
                 hmodDisplayed = null;
-            }
-
-            if (!loadInstalledMods && e.Item != null && e.Item.Selected == true && ((Hmod)e.Item.Tag).isInstalled)
-            {
-                e.Item.Selected = false;
             }
         }
 
