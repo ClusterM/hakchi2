@@ -353,24 +353,15 @@
     <api_id>274</api_id>
   </Game>
   <Game>
-    <name>Arcade's Greatest Hits</name>
+    <name>Arcade's Greatest Hits - The Atari Collection 1</name>
     <players>2</players>
     <simultaneous>0</simultaneous>
-    <crc>471b12b0</crc>
+    <crc>02394f36</crc>
     <date>1997-08-30</date>
     <publisher>Midway</publisher>
     <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/1568-1.jpg</cover>
     <api_id>1568</api_id>
-  </Game>
-  <Game>
-    <name>Arcade's Greatest Hits - The Atari Collection 1</name>
-    <players/>
-    <simultaneous/>
-    <crc>02394f36</crc>
-    <date>1997</date>
-    <publisher>Midway</publisher>
-    <region>USA</region>
     <cover/>
   </Game>
   <Game>
@@ -641,7 +632,7 @@
     <name>Bazooka Blitzkrieg</name>
     <players>2</players>
     <simultaneous>0</simultaneous>
-    <crc>49c187f3</crc>
+    <crc>6810AA95</crc>
     <date>1992-12-31</date>
     <publisher>Bandai</publisher>
     <region>USA</region>
@@ -796,7 +787,7 @@
     <players>1</players>
     <simultaneous>0</simultaneous>
     <crc>18bbee33</crc>
-    <date>1994</date>
+    <date>1994-01-01</date>
     <publisher>Hi Tech Entertainment</publisher>
     <region>USA</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/3484-1.jpg</cover>
@@ -1796,7 +1787,7 @@
     <name>Duel, The - Test Drive II</name>
     <players>1</players>
     <simultaneous>0</simultaneous>
-    <crc>ba093e24</crc>
+    <crc>1CC662CD</crc>
     <date>1992-12-01</date>
     <publisher>Accolade</publisher>
     <region>USA</region>
@@ -1973,11 +1964,11 @@
     <players>1</players>
     <simultaneous>0</simultaneous>
     <crc>e6ede101</crc>
-    <date>1994</date>
-    <publisher/>
+    <date>1993-01-01</date>
+    <publisher>Nintendo</publisher>
     <region>USA</region>
-    <cover>http://thegamesdb.net/banners/boxart/original/front/31476-1.jpg</cover>
-    <api_id>31476</api_id>
+    <cover>http://thegamesdb.net/banners/boxart/original/front/5616-1.jpg</cover>
+    <api_id>5616</api_id>
   </Game>
   <Game>
     <name>Extra Innings</name>
@@ -2170,7 +2161,7 @@
     <name>FIFA Soccer 97 - Gold Edition</name>
     <players>2</players>
     <simultaneous>0</simultaneous>
-    <crc>9cdbb2f8</crc>
+    <crc>38916376</crc>
     <date>1996-01-01</date>
     <publisher>Electronic Arts</publisher>
     <region>USA</region>
@@ -2644,20 +2635,22 @@
     <players>2</players>
     <simultaneous>0</simultaneous>
     <crc>0ce626ba</crc>
-    <date>1993-10-07</date>
+    <date>1995-09-30</date>
     <publisher>Sunsoft</publisher>
     <region>Europe</region>
-    <cover>http://thegamesdb.net/banners/boxart/original/front/1922-1.jpg</cover>
-    <api_id>1922</api_id>
+    <cover>http://thegamesdb.net/banners/boxart/original/front/26335-1.jpg</cover>
+    <api_id>26335</api_id>
   </Game>
   <Game>
     <name>Hebereke's Popoon</name>
-    <players/>
-    <simultaneous/>
+    <players>2</players>
+    <simultaneous>0</simultaneous>
     <crc>7a313722</crc>
-    <date>1994</date>
+    <date>1993-10-01</date>
     <publisher>SunSoft</publisher>
     <region>Europe</region>
+    <cover>http://thegamesdb.net/banners/boxart/original/front/1922-1.jpg</cover>
+    <api_id>1922</api_id>
     <cover/>
   </Game>
   <Game>
@@ -3788,7 +3781,7 @@
     <simultaneous>0</simultaneous>
     <crc>8d2596a7</crc>
     <date>1995-01-01</date>
-    <publisher/>
+    <publisher>Ocean</publisher>
     <region>Europe</region>
     <cover>http://thegamesdb.net/banners/boxart/original/front/3836-1.jpg</cover>
     <api_id>3836</api_id>
@@ -6184,7 +6177,7 @@
     <name>Spectre</name>
     <players>1</players>
     <simultaneous>0</simultaneous>
-    <crc>ade6e0d8</crc>
+    <crc>25DC31B1</crc>
     <date>1994-05-01</date>
     <publisher>Cybersoft</publisher>
     <region>USA</region>
@@ -7579,12 +7572,14 @@
   </Game>
   <Game>
     <name>Tintin - Prisoners of the Sun</name>
-    <players/>
-    <simultaneous/>
+    <players>1</players>
+    <simultaneous>0</simultaneous>
     <crc>a94a47be</crc>
-    <date>1997</date>
+    <date>1997-01-01</date>
     <publisher>Infogrames</publisher>
     <region>Europe</region>
+    <cover>http://thegamesdb.net/banners/boxart/original/front/3672-1.jpg</cover>
+    <api_id>3672</api_id>
     <cover/>
   </Game>
   <Game>
@@ -8259,6 +8254,17 @@
     <api_id>6346</api_id>
   </Game>
   <Game>
+    <name>Williams Arcade's Greatest Hits</name>
+    <players>2</players>
+    <simultaneous>0</simultaneous>
+    <crc>471b12b0</crc>
+    <date>1996-04-10</date>
+    <publisher>Williams</publisher>
+    <region>USA</region>
+    <cover>http://thegamesdb.net/banners/boxart/original/front/3288-1.jpg</cover>
+    <api_id>3288</api_id>
+  </Game>
+  <Game>
     <name>Wing Commander</name>
     <players>1</players>
     <simultaneous>0</simultaneous>
@@ -8392,12 +8398,14 @@
   </Game>
   <Game>
     <name>World Cup Striker</name>
-    <players/>
-    <simultaneous/>
+    <players>2</players>
+    <simultaneous>0</simultaneous>
     <crc>6d16f5e7</crc>
-    <date>1994</date>
+    <date>1994-01-10</date>
     <publisher>Elite</publisher>
     <region>Europe</region>
+    <cover>http://thegamesdb.net/banners/boxart/original/front/50082-1.jpg</cover>
+    <api_id>50082</api_id>
     <cover/>
   </Game>
   <Game>
@@ -8470,7 +8478,7 @@
     <name>Worms</name>
     <players>2</players>
     <simultaneous>0</simultaneous>
-    <crc>90d0fac0</crc>
+    <crc>B035CB2D</crc>
     <date>1995-01-01</date>
     <publisher>Konami</publisher>
     <region>Europe</region>
