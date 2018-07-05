@@ -142,6 +142,7 @@ namespace com.clusterrr.hakchi_gui
             correctKernels[MainForm.ConsoleType.NES] = new string[] {
                 "5cfdca351484e7025648abc3b20032ff",
                 "07bfb800beba6ef619c29990d14b5158",
+                "90eec1e2b4f00e53dc2dd53a9e7334c1", // new 2017 rereleased version
             };
             correctKernels[MainForm.ConsoleType.Famicom] = new string[] {
                 "ac8144c3ea4ab32e017648ee80bdc230",  // Famicom Mini

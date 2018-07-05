@@ -159,6 +159,7 @@ namespace com.clusterrr.hakchi_gui
         public MainForm()
         {
             InitializeComponent();
+            toolFlashTheWholeNANDStripMenuItem.Visible = Control.ModifierKeys == Keys.Shift;
 
             Clovershell = new ClovershellConnection() { AutoReconnect = true, Enabled = true };
             Clovershell.OnConnected += Clovershell_OnConnected;
