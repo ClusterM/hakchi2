@@ -1352,9 +1352,9 @@ namespace com.clusterrr.hakchi_gui
                 }
                 double usagePercentage = ((double)stats.Size / (double)maxGamesSize);
                 if (usagePercentage > 1.0)
-                {
                     usagePercentage = 1.0;
-                }
+                if (usagePercentage < 0.0)
+                    usagePercentage = 0.0;
                 toolStripStatusLabelSelected.Text = stats.Count + " " + Resources.GamesSelected;
                 toolStripProgressBar.Maximum = int.MaxValue;
                 toolStripProgressBar.Value = Convert.ToInt32(usagePercentage * int.MaxValue);

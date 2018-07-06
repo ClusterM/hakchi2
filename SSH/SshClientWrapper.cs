@@ -211,22 +211,36 @@ namespace com.clusterrr.ssh
 
         private void attemptConnect()
         {
-            ping(this.service); // this is to wake up llmnr
+            if (ping(this.service) != -1)
+            {
+                Debug.WriteLine($"Ping success, attempting connect to `{IPAddress.ToString()}`...");
+                Connect();
+                if (IsOnline)
+                {
+                    Debug.WriteLine("Connected!");
+                    return;
+                }
+            }
 
             IPAddress[] resolvedIPs = resolve();
             if (resolvedIPs != null && resolvedIPs.Length > 0)
             {
+                Debug.WriteLine($"Resolved {resolvedIPs.Length} addresses...");
                 foreach (var ip in resolvedIPs)
                 {
-                    int result = ping(ip.ToString());
-                    Debug.WriteLine($"Resolve: detected ip address: {ip.ToString()}: " + (result == -1 ? "ping failed" : "ping successful"));
+                    int result = ping(ip.ToString(), true);
+                    Debug.WriteLine($"Resolve: detected ip address: {ip.ToString()}: ping " + (result == -1 ? "failed" : "successful"));
 
                     if (result != -1)
                     {
+                        Debug.WriteLine("Attempting to connect...");
                         IPAddress = ip.ToString();
                         Connect();
                         if (IsOnline)
-                            break;
+                        {
+                            Debug.WriteLine("Success!");
+                            return;
+                        }
                     }
                 }
             }
