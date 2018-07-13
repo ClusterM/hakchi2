@@ -249,7 +249,7 @@ It's very simple to use. Just click "Add more games", select some ROMs, press "S
     <value>Hello</value>
   </data>
   <data name="KernelDumped" xml:space="preserve">
-    <value>Your original kernel is saved in the "hakchi2\dump" folder. Do not lose it. </value>
+    <value>Your original kernel has been saved in a special area of your console.</value>
   </data>
   <data name="DeletePreset" xml:space="preserve">
     <value>Do you really want to delete the "{0}" preset?</value>

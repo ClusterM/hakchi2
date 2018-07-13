@@ -1963,7 +1963,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your original kernel is saved in the &quot;hakchi2\dump&quot; folder. Do not lose it. .
+        ///   Looks up a localized string similar to Your original kernel has been saved in a special area of your console..
         /// </summary>
         internal static string KernelDumped {
             get {

@@ -7,7 +7,7 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("hakchi2 CE")]
-[assembly: AssemblyDescription("Based on hakchi by madmonkey.\r\n\r\nCoders:\r\nAlexey 'Cluster' Avdyukhin\r\nprincess_daphie\r\nDanTheMan827\r\nskogaby\r\n\r\nTranslators:\r\nFrench: princess_daphie\r\n\r\nSpecial thanks:\r\nmadmonkey and pcm720 for great help with everything.\r\nxsnake for Japanese font.\r\nPete Batard/Akeo for Zadig.\r\npbatard for libwdi.\r\nThomas Bleeker for WinUSBNet lib.\r\nbootgod for cartridge database.\r\nMarkovtsev Vadim for SevenZipSharp lib.\r\nNeoRame for Graphics.\r\nNhakin for Game Genie database.\r\nmooware for mooftpserv.")]
+[assembly: AssemblyDescription("Based on hakchi by madmonkey.\r\n\r\nCoders:\r\nAlexey 'Cluster' Avdyukhin\r\nprincess_daphie\r\nDanTheMan827\r\nskogaby\r\n\r\nTranslators:\r\nFrench: princess_daphie\r\nGerman: Domi78\r\n\r\nSpecial thanks:\r\nmadmonkey and pcm720 for great help with everything.\r\nxsnake for Japanese font.\r\nPete Batard/Akeo for Zadig.\r\npbatard for libwdi.\r\nThomas Bleeker for WinUSBNet lib.\r\nbootgod for cartridge database.\r\nMarkovtsev Vadim for SevenZipSharp lib.\r\nNeoRame for Graphics.\r\nNhakin for Game Genie database.\r\nmooware for mooftpserv.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Team Shinkansen")]
 [assembly: AssemblyProduct("hakchi2 CE")]
