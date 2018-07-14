@@ -570,7 +570,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (!File.Exists(filename) || Path.GetExtension(filename).ToLower() != ".desktop")
                 throw new FileNotFoundException($"Invalid application file \"{filename}\"");
-            var code = Path.GetFileNameWithoutExtension(filename).ToUpper();
+            var code = Path.GetFileNameWithoutExtension(filename);
             var targetDir = Path.Combine(GamesDirectory, code);
             Shared.DirectoryCopy(Path.GetDirectoryName(filename), targetDir, true, false, true, false);
             return FromDirectory(targetDir);

@@ -91,14 +91,33 @@ namespace com.clusterrr.hakchi_gui
         }
 
         // special case methods
+
         public ICollection<string> SelectedGamesForConsole(hakchi.ConsoleType c)
         {
             return (c == hakchi.ConsoleType.Unknown) ? null : gamesCollectionSettings[c].SelectedGames;
         }
+
         public ICollection<string> SelectedOriginalGamesForConsole(hakchi.ConsoleType c)
         {
             return (c == hakchi.ConsoleType.Unknown) ? null : gamesCollectionSettings[c].OriginalGames;
         }
+
+        public void AddNewSelectedGame(string code)
+        {
+            hakchi.ConsoleType[] nes = { hakchi.ConsoleType.Famicom, hakchi.ConsoleType.NES };
+            hakchi.ConsoleType[] snes = { hakchi.ConsoleType.SNES_EUR, hakchi.ConsoleType.SNES_USA, hakchi.ConsoleType.SuperFamicom };
+            hakchi.ConsoleType[] selected = null;
+            if (nes.Contains(consoleType))
+                selected = nes;
+            else if (snes.Contains(consoleType))
+                selected = snes;
+            else
+                return;
+            foreach (var c in selected)
+                if (!gamesCollectionSettings[c].SelectedGames.Contains(code))
+                    gamesCollectionSettings[c].SelectedGames.Add(code);
+        }
+
         public void SyncGamesCollectionsStructureSettings()
         {
             foreach (var pair in gamesCollectionSettings)

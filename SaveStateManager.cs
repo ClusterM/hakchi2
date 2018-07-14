@@ -80,14 +80,12 @@ namespace com.clusterrr.hakchi_gui
                      "    echo $code $size $flags $name\n" +
                      "    unset flags\n" +
                      "    unset name\n" +
-                     "  else\n" +
-                     "    rm -rf $savespath/$code\n" +
                      "  fi\n" +
                      "done";
                 var listSavesScriptStream = new MemoryStream(Encoding.UTF8.GetBytes(listSavesScript));
                 listSavesScriptStream.Seek(0, SeekOrigin.Begin);
                 var output = new MemoryStream();
-                hakchi.Shell.Execute("sh", listSavesScriptStream, output, null, 10000, true);
+                hakchi.Shell.Execute("sh", listSavesScriptStream, output, null, 0, true);
                 var lines = Encoding.UTF8.GetString(output.ToArray()).Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 Invoke(new Action(delegate
                 {

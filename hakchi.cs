@@ -24,7 +24,16 @@ namespace com.clusterrr.hakchi_gui
         public const string PASSWORD = "";
         public const long BLOCK_SIZE = 4096;
 
-        public enum ConsoleType { NES = 0, Famicom = 1, SNES_EUR = 2, SNES_USA = 3, SuperFamicom = 4, Unknown = 255 }
+        public enum ConsoleType
+        {
+            NES = 0,
+            Famicom = 1,
+            SNES_EUR = 2,
+            SNES_USA = 3,
+            SuperFamicom = 4,
+            Unknown = 255
+        }
+
         public static readonly Dictionary<ConsoleType, string> ConsoleTypeToSystemCode = new Dictionary<ConsoleType, string>()
         {
             { ConsoleType.NES, "nes-usa" },

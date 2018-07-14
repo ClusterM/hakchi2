@@ -260,6 +260,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     }
                     foreach (var newApp in newApps)
                     {
+                        ConfigIni.Instance.AddNewSelectedGame(newApp.Code);
                         var item = new ListViewItem(newApp.Name);
                         item.Group = newGroup;
                         item.Tag = newApp;
