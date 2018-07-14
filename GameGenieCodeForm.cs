@@ -26,7 +26,7 @@ namespace com.clusterrr.hakchi_gui
             checkedListBoxGameCode.Items.Clear();
 
             var lCodeSorted = FGameGenieDataBase.GameCodes.OrderBy(o => o.Description);
-            var lSelectedCode = (FGame as NesApplication).GameGenie.ToUpper().Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
+            var lSelectedCode = ((FGame as NesApplication).GameGenie ?? "").ToUpper().Split(new char[] { ',', '\t', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var code in lCodeSorted)
                 checkedListBoxGameCode.Items.Add(code, lSelectedCode.Contains(code.Code.ToUpper().Trim()));
