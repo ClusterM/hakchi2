@@ -87,6 +87,29 @@ namespace com.clusterrr.hakchi_gui
             new NesDefaultGame { Code = "CLV-P-HACLJ",  Name = "ダウンタウン熱血行進曲 それゆけ大運動会" },
             new NesDefaultGame { Code = "CLV-P-HACPJ",  Name = "アトランチスの謎" }
         };
+        public static NesDefaultGame[] defaultShonenJumpGames = new NesDefaultGame[]
+        {
+            new NesDefaultGame { Code = "CLV-P-HBAAJ", Name = "ファミコンジャンプ 英雄列伝" },
+            new NesDefaultGame { Code = "CLV-P-HBABJ", Name = "ファミコンジャンプII 最強の7人" },
+            new NesDefaultGame { Code = "CLV-P-HBACJ", Name = "ドラゴンボール 神龍の謎" },
+            new NesDefaultGame { Code = "CLV-P-HBAEJ", Name = "ドラゴンボール3 悟空伝" },
+            new NesDefaultGame { Code = "CLV-P-HBAFJ", Name = "ドラゴンボールZ 強襲!サイヤ人" },
+            new NesDefaultGame { Code = "CLV-P-HBAKJ", Name = "キン肉マン マッスルタッグマッチ" },
+            new NesDefaultGame { Code = "CLV-P-HBALJ", Name = "キン肉マン キン肉星王位争奪戦" },
+            new NesDefaultGame { Code = "CLV-P-HBAMJ", Name = "キャプテン翼" },
+            new NesDefaultGame { Code = "CLV-P-HBANJ", Name = "キャプテン翼II スーパーストライカー" },
+            new NesDefaultGame { Code = "CLV-P-HBAPJ", Name = "北斗の拳３ 新世紀創造 凄拳烈伝" },
+            new NesDefaultGame { Code = "CLV-P-HBARJ", Name = "聖闘士星矢 黄金伝説" },
+            new NesDefaultGame { Code = "CLV-P-HBASJ", Name = "聖闘士星矢 黄金伝説 完結編" },
+            new NesDefaultGame { Code = "CLV-P-HBAUJ", Name = "暗黒神話 ヤマトタケル伝説" },
+            new NesDefaultGame { Code = "CLV-P-HBAVJ", Name = "魁!!男塾 疾風一号生" },
+            new NesDefaultGame { Code = "CLV-P-HBAXJ", Name = "まじかる☆タルるートくん FANTASTIC WORLD!!" },
+            new NesDefaultGame { Code = "CLV-P-HBAZJ", Name = "ろくでなしBLUES" },
+            new NesDefaultGame { Code = "CLV-P-HBBBJ", Name = "ドラゴンクエスト" },
+            new NesDefaultGame { Code = "CLV-P-HBBCJ", Name = "天地を喰らう" },
+            new NesDefaultGame { Code = "CLV-P-HBBEJ", Name = "赤龍王" },
+            new NesDefaultGame { Code = "CLV-P-HBBFJ", Name = "北斗の拳" },
+        };
         public static NesDefaultGame[] defaultSnesGames = new NesDefaultGame[] {
             new NesDefaultGame { Code = "CLV-P-SAAAE",  Name = "Super Mario World" },
             new NesDefaultGame { Code = "CLV-P-SAABE",  Name = "F-ZERO" },
