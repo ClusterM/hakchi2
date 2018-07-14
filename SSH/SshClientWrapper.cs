@@ -271,12 +271,14 @@ namespace com.clusterrr.ssh
                     }
                 }
             }
+#pragma warning disable CS0168
             catch (Exception ex)
             {
 #if VERY_DEBUG
                 Debug.WriteLine($"Error during ping \"{IPAddress ?? service}\": {(ex.InnerException ?? ex).Message}");
 #endif
             }
+#pragma warning restore CS0168
             return -1;
         }
 

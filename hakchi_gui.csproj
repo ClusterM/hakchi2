@@ -111,15 +111,14 @@
     <Reference Include="ArxOne.Ftp, Version=1.12.1.0, Culture=neutral, PublicKeyToken=da7223da01d9ab51, processorArchitecture=MSIL">
       <HintPath>packages\ArxOne.Ftp.1.12.1\lib\net40-Client\ArxOne.Ftp.dll</HintPath>
     </Reference>
-    <Reference Include="AutoUpdater.NET, Version=1.4.7.0, Culture=neutral, PublicKeyToken=942f95247e354701, processorArchitecture=MSIL">
-      <HintPath>packages\Autoupdater.NET.Official.1.4.7\lib\net452\AutoUpdater.NET.dll</HintPath>
+    <Reference Include="AutoUpdater.NET, Version=1.4.10.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
+      <HintPath>packages\Autoupdater.NET.Official.1.4.10\lib\net452\AutoUpdater.NET.dll</HintPath>
     </Reference>
     <Reference Include="CommonMark, Version=0.1.0.0, Culture=neutral, PublicKeyToken=001ef8810438905d, processorArchitecture=MSIL">
       <HintPath>packages\CommonMark.NET.0.15.1\lib\net45\CommonMark.dll</HintPath>
     </Reference>
-    <Reference Include="Costura, Version=1.6.2.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
-      <HintPath>packages\Costura.Fody.1.6.2\lib\dotnet\Costura.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Costura, Version=3.1.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
+      <HintPath>packages\Costura.Fody.3.1.0\lib\net46\Costura.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -197,7 +196,6 @@
     <Compile Include="Files\Extensions.cs" />
     <Compile Include="Files\CheckFileType.cs" />
     <Compile Include="Ftp\ArxOneFtpWrapper.cs" />
-    <None Include="Ftp\FluentFtpWrapper.cs" />
     <Compile Include="hakchi.cs" />
     <Compile Include="INetworkShell.cs" />
     <Compile Include="ISystemShell.cs" />
@@ -2022,32 +2020,32 @@
   <ItemGroup>
     <PublishFile Include="data\GameGenieDB.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\nescarts.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\snescarts.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
@@ -2112,13 +2110,13 @@
     <Copy SourceFiles="@(LanguageResourceFiles)" DestinationFolder="$(OutDir)languages\%(RecursiveDir)" SkipUnchangedFiles="true" />
     <RemoveDir Directories="$(OutDir)%(LanguageResourceFiles.RecursiveDir);" />
   </Target>
-  <Import Project="packages\Fody.2.4.6\build\Fody.targets" Condition="Exists('packages\Fody.2.4.6\build\Fody.targets')" />
+  <Import Project="packages\Fody.3.1.3\build\Fody.targets" Condition="Exists('packages\Fody.3.1.3\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\Fody.2.4.6\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Fody.2.4.6\build\Fody.targets'))" />
-    <Error Condition="!Exists('packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets'))" />
+    <Error Condition="!Exists('packages\Fody.3.1.3\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Fody.3.1.3\build\Fody.targets'))" />
+    <Error Condition="!Exists('packages\Costura.Fody.3.1.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Costura.Fody.3.1.0\build\Costura.Fody.targets'))" />
   </Target>
-  <Import Project="packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets" Condition="Exists('packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets')" />
+  <Import Project="packages\Costura.Fody.3.1.0\build\Costura.Fody.targets" Condition="Exists('packages\Costura.Fody.3.1.0\build\Costura.Fody.targets')" />
 </Project>
