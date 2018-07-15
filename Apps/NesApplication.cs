@@ -1,5 +1,6 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
-using SevenZip;
+using SharpCompress;
+using SharpCompress.Archives;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -295,12 +296,15 @@ namespace com.clusterrr.hakchi_gui
                     int extPos = gameFilePath.LastIndexOf('.');
                     if (extPos > -1 && compressedFiles.Contains(gameFilePath.Substring(extPos)))
                     {
-                        using (var extractor = new SevenZipExtractor(gameFilePath))
+                        using (var extractor = ArchiveFactory.Open(gameFilePath))
                         {
-                            if (extractor.FilesCount == 1)
+                            if (extractor.Entries.Count() == 1)
                             {
                                 MemoryStream stream = new MemoryStream();
-                                extractor.ExtractFile(0, stream);
+                                using (var srcStream = extractor.Entries.First().OpenEntryStream())
+                                {
+                                    srcStream.CopyTo(stream);
+                                }
                                 return stream;
                             }
                         }
@@ -748,14 +752,15 @@ namespace com.clusterrr.hakchi_gui
                 int extPos = file.LastIndexOf('.');
                 if (extPos > -1 && compressedFiles.Contains(file.Substring(extPos)))
                 {
-                    using (var extractor = new SevenZipExtractor(file))
+                    using (var extractor = ArchiveFactory.Open(file))
                     {
-                        if (extractor.FilesCount == 1)
+                        if (extractor.Entries.Count() == 1)
                         {
-                            var extractedFileName = extractor.ArchiveFileNames[0];
+                            var entry = extractor.Entries.First();
+                            var extractedFileName = entry.Key;
                             if (!File.Exists(Path.Combine(this.basePath, extractedFileName)))
                             {
-                                extractor.ExtractArchive(this.basePath);
+                                entry.WriteToDirectory(this.BasePath);
                                 acceptedFiles.Add(Path.Combine(basePath, extractedFileName));
                                 File.Delete(file);
                             }
@@ -1485,7 +1490,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 foreach (var e in compressedExtensions)
                     if (file.ToLower().EndsWith(e) && exec.Contains(" " + Path.GetFileName(file) + " ") &&
-                        new SevenZipExtractor(file).FilesCount == 1)
+                        ArchiveFactory.Open(file).Entries.Count() == 1)
                     {
                         result.Add(file);
                         break;
@@ -1499,10 +1504,10 @@ namespace com.clusterrr.hakchi_gui
             foreach (var filename in CompressPossible())
             {
                 var archName = filename + ".7z";
-                var compressor = new SevenZipCompressor();
-                compressor.CompressionLevel = CompressionLevel.High;
+                //var compressor = new SevenZipCompressor();
+                //compressor.CompressionLevel = CompressionLevel.High;
                 Trace.WriteLine("Compressing " + filename);
-                compressor.CompressFiles(archName, filename);
+                //compressor.CompressFiles(archName, filename);
                 Thread.Sleep(1);
                 File.Delete(filename);
                 desktop.Exec = desktop.Exec.Replace(Path.GetFileName(filename), Path.GetFileName(archName));
@@ -1513,12 +1518,12 @@ namespace com.clusterrr.hakchi_gui
         {
             foreach (var filename in DecompressPossible())
             {
-                using (var szExtractor = new SevenZipExtractor(filename))
+                using (var extractor = ArchiveFactory.Open(filename))
                 {
                     Trace.WriteLine("Decompressing " + filename);
-                    szExtractor.ExtractArchive(basePath);
-                    foreach (var f in szExtractor.ArchiveFileNames)
-                        desktop.Exec = desktop.Exec.Replace(Path.GetFileName(filename), f);
+                    extractor.Entries.First().WriteToDirectory(basePath);
+                    foreach (var e in extractor.Entries)
+                        desktop.Exec = desktop.Exec.Replace(Path.GetFileName(filename), e.Key);
                 }
                 Thread.Sleep(1);
                 File.Delete(filename);

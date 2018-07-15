@@ -12,7 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using SevenZip;
+using SharpCompress;
+using SharpCompress.Archives;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -500,38 +501,36 @@ namespace com.clusterrr.hakchi_gui
             return config;
         }
 
-        public static SevenZipExtractor GetHakchiHmod()
+        public static IArchive GetHakchiHmod()
         {
-            var kernelHmodStream = new MemoryStream();
-            using (var baseHmods = File.OpenRead(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")))
+            using (MemoryStream hakchiHmod = new MemoryStream())
             {
-                using (var szExtractor = new SevenZipExtractor(baseHmods))
+                using (var extractor = ArchiveFactory.Open(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")))
                 {
-                    szExtractor.ExtractFile(".\\hakchi.hmod", kernelHmodStream);
+                    extractor.Entries.Where(e => e.Key == "./hakchi.hmod").First().OpenEntryStream().CopyTo(hakchiHmod);
                 }
-            }
-            var tar = new MemoryStream();
-            using (var szExtractor = new SevenZipExtractor(kernelHmodStream))
-            {
-                szExtractor.ExtractFile(0, tar);
-                tar.Seek(0, SeekOrigin.Begin);
-                return new SevenZipExtractor(tar);
+                MemoryStream tar = new MemoryStream();
+                using (var extractor = ArchiveFactory.Open(hakchiHmod))
+                {
+                    extractor.Entries.First().OpenEntryStream().CopyTo(tar);
+                    tar.Position = 0;
+                    return SharpCompress.Archives.Tar.TarArchive.Open(tar);
+                }
             }
         }
 
         public static MemoryStream GetMembootImage()
         {
-            var o = new MemoryStream();
-            GetHakchiHmod().ExtractFile("boot\\boot.img", o);
-            return o;
+            var image = new MemoryStream();
+            GetHakchiHmod().Entries.Where(e => e.Key == "boot/boot.img").First().OpenEntryStream().CopyTo(image);
+            return image;
         }
 
         public static Dictionary<string, string> GetHakchiVersion()
         {
             using (var o = new MemoryStream())
             {
-                GetHakchiHmod().ExtractFile("var\\version", o);
-                o.Position = 0;
+                GetHakchiHmod().Entries.Where(e => e.Key == "var/version").First().OpenEntryStream().CopyTo(o);
                 string contents = Encoding.UTF8.GetString(o.ToArray());
 
                 MatchCollection collection = Regex.Matches(contents, @"^([^=]+)=(""(?:[^""\\]*(?:\\.[^""\\]*)*)""|\'(?:[^\'\\]*(?:\\.[^\'\\]*)*)\')", RegexOptions.Multiline | RegexOptions.IgnoreCase);
