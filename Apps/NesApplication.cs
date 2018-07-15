@@ -1,6 +1,7 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
-using SharpCompress;
 using SharpCompress.Archives;
+using pdj.tiny7z.Archive;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,8 +11,6 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using Newtonsoft.Json;
-using pdj.tiny7z.Archive;
 
 namespace com.clusterrr.hakchi_gui
 {

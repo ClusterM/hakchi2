@@ -1,4 +1,5 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
+using SharpCompress.Archives;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -6,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using SevenZip;
 
 namespace com.clusterrr.hakchi_gui.Tasks
 {
@@ -60,8 +60,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                 string cmd = $"cd {gamesCloverPath}/{game.Code} && tar -c *";
                                 shell.Execute(cmd, null, tar, null, 10000, true);
                                 tar.Seek(0, SeekOrigin.Begin);
-                                using (var szExtractorTar = new SevenZipExtractor(tar))
-                                    szExtractorTar.ExtractArchive(gamePath);
+                                using (var extractorTar = SharpCompress.Archives.Tar.TarArchive.Open(tar))
+                                    extractorTar.WriteToDirectory(gamePath);
                             }
                         }
                         catch (Exception ex)

@@ -1,4 +1,8 @@
-﻿using SevenZip;
+﻿using com.clusterrr.hakchi_gui.Tasks;
+using com.clusterrr.hakchi_gui.Properties;
+using SharpCompress.Archives;
+using SharpCompress.Common;
+using SharpCompress.Readers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,8 +16,6 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Xml.Serialization;
 using System.Xml;
-using com.clusterrr.hakchi_gui.Tasks;
-using com.clusterrr.hakchi_gui.Properties;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -139,22 +141,22 @@ namespace com.clusterrr.hakchi_gui
 
                     if (!skipExtraction)
                     {
-                        using (var szExtractor = new SevenZipExtractor(dir))
+                        using (var extractor = ArchiveFactory.Open(dir))
                         {
                             var tar = new MemoryStream();
-                            szExtractor.ExtractFile(0, tar);
+                            extractor.Entries.First().OpenEntryStream().CopyTo(tar);
                             tar.Seek(0, SeekOrigin.Begin);
-                            using (var szExtractorTar = new SevenZipExtractor(tar))
+                            using (var extractorTar = ArchiveFactory.Open(tar))
                             {
-                                foreach (var f in szExtractorTar.ArchiveFileNames)
+                                foreach (var f in extractorTar.Entries)
                                 {
                                     foreach (var readmeFilename in readmeFiles)
                                     {
-                                        if (f.ToLower() != readmeFilename && f.ToLower() != $".\\{readmeFilename}")
+                                        if (f.Key.ToLower() != readmeFilename && f.Key.ToLower() != $".\\{readmeFilename}")
                                             continue;
 
                                         var o = new MemoryStream();
-                                        szExtractorTar.ExtractFile(f, o);
+                                        f.OpenEntryStream().CopyTo(o);
                                         readmeData.Add(readmeFilename, Encoding.UTF8.GetString(o.ToArray()));
                                     }
                                 }
@@ -448,37 +450,40 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else if (ext == ".7z" || ext == ".zip" || ext == ".rar")
                 {
-                    using (var szExtractor = new SevenZipExtractor(file))
+                    using (var extractor = ArchiveFactory.Open(file))
                     {
-                        foreach(var f in szExtractor.ArchiveFileData)
+                        foreach (var f in extractor.Entries)
                         {
-                            if (Path.GetExtension(f.FileName).ToLower() == ".hmod")
+                            if (Path.GetExtension(f.Key).ToLower() == ".hmod")
                             {
                                 if (f.IsDirectory)
                                 {
-                                    List<int> indices = new List<int>();
-                                    for (int i = 0; i < szExtractor.ArchiveFileData.Count; ++i)
-                                        if (szExtractor.ArchiveFileData[i].FileName.StartsWith(f.FileName))
-                                            indices.Add(i);
-                                    szExtractor.ExtractFiles(usermodsDirectory, indices.ToArray());
-
-                                    if (!Directory.Exists(Path.Combine(usermodsDirectory, Path.GetFileName(f.FileName))))
+                                    using (var reader = extractor.ExtractAllEntries())
                                     {
-                                        Directory.Move(Path.Combine(usermodsDirectory, f.FileName), Path.Combine(usermodsDirectory, Path.GetFileName(f.FileName)));
-
-                                        new DirectoryInfo(usermodsDirectory).Refresh();
-                                        int pos = f.FileName.IndexOfAny(new char[] { '/', '\\' });
-                                        Directory.Delete(Path.Combine(usermodsDirectory, pos > 0 ? f.FileName.Substring(0, pos) : f.FileName), true);
+                                        while (reader.MoveToNextEntry())
+                                        {
+                                            if (!reader.Entry.IsDirectory && reader.Entry.Key.StartsWith(f.Key))
+                                                reader.WriteEntryToDirectory(usermodsDirectory, new ExtractionOptions() { ExtractFullPath = true, Overwrite = true });
+                                        }
                                     }
 
-                                    hmods.Add(new Hmod(Path.GetFileNameWithoutExtension(f.FileName)));
+                                    if (!Directory.Exists(Path.Combine(usermodsDirectory, Path.GetFileName(f.Key))))
+                                    {
+                                        Directory.Move(Path.Combine(usermodsDirectory, f.Key), Path.Combine(usermodsDirectory, Path.GetFileName(f.Key)));
+
+                                        new DirectoryInfo(usermodsDirectory).Refresh();
+                                        int pos = f.Key.IndexOfAny(new char[] { '/', '\\' });
+                                        Directory.Delete(Path.Combine(usermodsDirectory, pos > 0 ? f.Key.Substring(0, pos) : f.Key), true);
+                                    }
+
+                                    hmods.Add(new Hmod(Path.GetFileNameWithoutExtension(f.Key)));
                                 }
                                 else
                                 {
-                                    using (var outFile = new FileStream(Path.Combine(usermodsDirectory, Path.GetFileName(f.FileName)), FileMode.Create))
+                                    using (var outFile = new FileStream(Path.Combine(usermodsDirectory, Path.GetFileName(f.Key)), FileMode.Create))
                                     {
-                                        szExtractor.ExtractFile(f.FileName, outFile);
-                                        hmods.Add(new Hmod(Path.GetFileNameWithoutExtension(f.FileName)));
+                                        f.OpenEntryStream().CopyTo(outFile);
+                                        hmods.Add(new Hmod(Path.GetFileNameWithoutExtension(f.Key)));
                                     }
                                 }
                             }

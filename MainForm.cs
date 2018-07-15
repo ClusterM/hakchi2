@@ -1,6 +1,6 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using AutoUpdaterDotNET;
-using SevenZip;
+using SharpCompress.Archives;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -2127,9 +2127,9 @@ namespace com.clusterrr.hakchi_gui
                 }
                 if (Path.GetFileName(files[0]).ToLower().StartsWith("sfrom_tool") && (ext == ".rar" || ext == ".zip" || ext == ".rar"))
                 {
-                    using (var szExtractor = new SevenZipExtractor(files[0]))
+                    using (var extractor = ArchiveFactory.Open(files[0]))
                     {
-                        szExtractor.ExtractArchive(Path.Combine(Program.BaseDirectoryExternal, "sfrom_tool"));
+                        extractor.WriteToDirectory(Path.Combine(Program.BaseDirectoryExternal, "sfrom_tool"));
                     }
                     enableSFROMToolToolStripMenuItem.Checked = true;
                     enableSFROMToolToolStripMenuItem_Click(sender, e);
@@ -2161,11 +2161,11 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else if (ext == ".7z" || ext == ".zip" || ext == ".rar")
                 {
-                    using (var szExtractor = new SevenZipExtractor(file))
+                    using (var extractor = ArchiveFactory.Open(file))
                     {
                         bool isMod = false;
-                        foreach (var f in szExtractor.ArchiveFileNames)
-                            if (Path.GetExtension(f).ToLower() == ".hmod")
+                        foreach (var f in extractor.Entries)
+                            if (Path.GetExtension(f.Key).ToLower() == ".hmod")
                             {
                                 modsToInstall.Add(file);
                                 isMod = true;
@@ -2680,6 +2680,9 @@ namespace com.clusterrr.hakchi_gui
             if (groupTaskWithSelected(task, task.CompressGames, false))
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
+
+            listViewGames.SelectedItems.Cast<ListViewItem>().ToList().
+                ForEach(i => i.Selected = false);
         }
 
         private void decompressSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2688,6 +2691,9 @@ namespace com.clusterrr.hakchi_gui
             if (groupTaskWithSelected(task, task.DecompressGames, false))
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
+
+            listViewGames.SelectedItems.Cast<ListViewItem>().ToList().
+                ForEach(i => i.Selected = false);
         }
 
         private void deleteSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)

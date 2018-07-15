@@ -559,42 +559,6 @@
     <Compile Include="SelectFileForm.Designer.cs">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SevenZip\ArchiveEmulationStreamProxy.cs" />
-    <Compile Include="SevenZip\ArchiveExtractCallback.cs" />
-    <Compile Include="SevenZip\ArchiveOpenCallback.cs" />
-    <Compile Include="SevenZip\ArchiveUpdateCallback.cs" />
-    <Compile Include="SevenZip\COM.cs" />
-    <Compile Include="SevenZip\Common.cs" />
-    <Compile Include="SevenZip\EventArgs.cs" />
-    <Compile Include="SevenZip\Exceptions.cs" />
-    <Compile Include="SevenZip\FileSignatureChecker.cs" />
-    <Compile Include="SevenZip\Formats.cs" />
-    <Compile Include="SevenZip\LibraryFeature.cs" />
-    <Compile Include="SevenZip\LibraryManager.cs" />
-    <Compile Include="SevenZip\LzmaDecodeStream.cs" />
-    <Compile Include="SevenZip\LzmaEncodeStream.cs" />
-    <Compile Include="SevenZip\LzmaProgressCallback.cs" />
-    <Compile Include="SevenZip\NativeMethods.cs" />
-    <Compile Include="SevenZip\sdk\Common\CRC.cs" />
-    <Compile Include="SevenZip\sdk\Common\InBuffer.cs" />
-    <Compile Include="SevenZip\sdk\Common\OutBuffer.cs" />
-    <Compile Include="SevenZip\sdk\Compress\LZMA\LzmaBase.cs" />
-    <Compile Include="SevenZip\sdk\Compress\LZMA\LzmaDecoder.cs" />
-    <Compile Include="SevenZip\sdk\Compress\LZMA\LzmaEncoder.cs" />
-    <Compile Include="SevenZip\sdk\Compress\LZ\IMatchFinder.cs" />
-    <Compile Include="SevenZip\sdk\Compress\LZ\LzBinTree.cs" />
-    <Compile Include="SevenZip\sdk\Compress\LZ\LzInWindow.cs" />
-    <Compile Include="SevenZip\sdk\Compress\LZ\LzOutWindow.cs" />
-    <Compile Include="SevenZip\sdk\Compress\RangeCoder\RangeCoder.cs" />
-    <Compile Include="SevenZip\sdk\Compress\RangeCoder\RangeCoderBit.cs" />
-    <Compile Include="SevenZip\sdk\Compress\RangeCoder\RangeCoderBitTree.cs" />
-    <Compile Include="SevenZip\sdk\ICoder.cs" />
-    <Compile Include="SevenZip\SevenZipCompressor.cs" />
-    <Compile Include="SevenZip\SevenZipCompressorAsynchronous.cs" />
-    <Compile Include="SevenZip\SevenZipExtractor.cs" />
-    <Compile Include="SevenZip\SevenZipExtractorAsynchronous.cs" />
-    <Compile Include="SevenZip\SevenZipSfx.cs" />
-    <Compile Include="SevenZip\StreamWrappers.cs" />
     <Compile Include="SnesPresetEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1994,14 +1958,6 @@
     <None Include="patches\README.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="tools\7z.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="tools\7z64.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <Content Include="SevenZip\gpl.txt" />
-    <Content Include="SevenZip\lgpl.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

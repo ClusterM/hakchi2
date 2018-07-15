@@ -1,4 +1,5 @@
-﻿using com.clusterrr.FelLib;
+﻿using static com.clusterrr.hakchi_gui.Tasks.Tasker;
+using com.clusterrr.FelLib;
 using com.clusterrr.hakchi_gui.Properties;
 using com.clusterrr.util;
 using System;
@@ -8,8 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using static com.clusterrr.hakchi_gui.Tasks.Tasker;
-using SevenZip;
 
 namespace com.clusterrr.hakchi_gui.Tasks
 {

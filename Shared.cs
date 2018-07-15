@@ -1,9 +1,5 @@
-﻿using com.clusterrr.clovershell;
-using com.clusterrr.hakchi_gui.Properties;
-using com.clusterrr.ssh;
-using com.clusterrr.util;
-using Renci.SshNet;
-using SevenZip;
+﻿using com.clusterrr.hakchi_gui.Properties;
+using SharpCompress.Archives;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -626,5 +622,6 @@ namespace com.clusterrr.hakchi_gui
             transferThread.Abort();
             return returnValue;
         }
+
     }
 }

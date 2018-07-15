@@ -1,4 +1,6 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
+using SharpCompress.Archives;
+using SharpCompress.Common;
 using System;
 using System.Collections;
 using System.Diagnostics;
@@ -8,7 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using SevenZip;
 
 namespace com.clusterrr.hakchi_gui.Tasks
 {
@@ -78,24 +79,24 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     string tmp = null;
                     if (ext == ".7z" || ext == ".zip" || ext == ".rar")
                     {
-                        using (var szExtractor = new SevenZipExtractor(sourceFileName))
+                        using (var extractor = ArchiveFactory.Open(sourceFileName))
                         {
-                            var filesInArchive = szExtractor.ArchiveFileNames;
+                            var filesInArchive = extractor.Entries;
                             var gameFilesInArchive = new List<string>();
-                            foreach (var f in szExtractor.ArchiveFileData)
+                            foreach (var f in extractor.Entries)
                             {
                                 if (!f.IsDirectory)
                                 {
-                                    var e = Path.GetExtension(f.FileName).ToLower();
+                                    var e = Path.GetExtension(f.Key).ToLower();
                                     if (e == ".desktop")
                                     {
                                         gameFilesInArchive.Clear();
-                                        gameFilesInArchive.Add(f.FileName);
+                                        gameFilesInArchive.Add(f.Key);
                                         break;
                                     }
                                     else if (CoreCollection.Extensions.Contains(e))
                                     {
-                                        gameFilesInArchive.Add(f.FileName);
+                                        gameFilesInArchive.Add(f.Key);
                                     }
                                 }
                             }
@@ -112,13 +113,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                     fileName = sourceFileName;
                                 else continue;
                             }
-                            else if (filesInArchive.Count == 1) // No known files but only one another file
+                            else if (filesInArchive.Count() == 1) // No known files but only one another file
                             {
-                                fileName = filesInArchive[0];
+                                fileName = filesInArchive.First().Key;
                             }
                             else // Need to select
                             {
-                                var r = SelectFile(tasker, filesInArchive.ToArray());
+                                var r = SelectFile(tasker, filesInArchive.Select(f => f.Key).ToArray());
                                 if (r == DialogResult.OK)
                                     fileName = selectedFile;
                                 else if (r == DialogResult.Ignore)
@@ -129,19 +130,19 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             {
                                 var o = new MemoryStream();
                                 if (Path.GetExtension(fileName).ToLower() == ".desktop" // App in archive, need the whole directory
-                                    || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName) + ".jpg") // Or it has cover in archive
-                                    || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName) + ".png")
-                                    || szExtractor.ArchiveFileNames.Contains(Path.GetFileNameWithoutExtension(fileName) + ".ips") // Or IPS file
+                                    || filesInArchive.Select(f => f.Key).Contains(Path.GetFileNameWithoutExtension(fileName) + ".jpg") // Or it has cover in archive
+                                    || filesInArchive.Select(f => f.Key).Contains(Path.GetFileNameWithoutExtension(fileName) + ".png")
+                                    || filesInArchive.Select(f => f.Key).Contains(Path.GetFileNameWithoutExtension(fileName) + ".ips") // Or IPS file
                                     )
                                 {
                                     tmp = Path.Combine(tempDirectory, fileName);
                                     Directory.CreateDirectory(tmp);
-                                    szExtractor.ExtractArchive(tmp);
+                                    extractor.WriteToDirectory(tmp, new ExtractionOptions() { ExtractFullPath = true, Overwrite = true });
                                     fileName = Path.Combine(tmp, fileName);
                                 }
                                 else
                                 {
-                                    szExtractor.ExtractFile(fileName, o);
+                                    extractor.Entries.Where(f => f.Key == fileName).First().WriteTo(o);
                                     rawData = new byte[o.Length];
                                     o.Seek(0, SeekOrigin.Begin);
                                     o.Read(rawData, 0, (int)o.Length);
