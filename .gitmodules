@@ -4,3 +4,6 @@
 [submodule "DnsUtils"]
 	path = DnsUtils
 	url = https://github.com/TeamShinkansen/DnsUtils.git
+[submodule "tiny7z"]
+	path = tiny7z
+	url = https://github.com/daPhie79/tiny7z.git

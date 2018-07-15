@@ -2065,6 +2065,10 @@
       <Project>{2f5f8c90-0bd1-424f-997c-7bc6280919d1}</Project>
       <Name>Renci.SshNet</Name>
     </ProjectReference>
+    <ProjectReference Include="tiny7z\tiny7z\tiny7z.csproj">
+      <Project>{e52ae256-6645-423a-b262-2cc5b6060f94}</Project>
+      <Name>tiny7z</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

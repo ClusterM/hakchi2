@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using pdj.tiny7z.Archive;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -1504,10 +1505,15 @@ namespace com.clusterrr.hakchi_gui
             foreach (var filename in CompressPossible())
             {
                 var archName = filename + ".7z";
-                //var compressor = new SevenZipCompressor();
-                //compressor.CompressionLevel = CompressionLevel.High;
-                Trace.WriteLine("Compressing " + filename);
-                //compressor.CompressFiles(archName, filename);
+                {
+                    var archive = new SevenZipArchive(File.Create(archName), FileAccess.Write);
+                    var compressor = archive.Compressor();
+                    compressor.Solid = true;
+                    compressor.AddFile(filename);
+                    Trace.WriteLine("Compressing " + filename);
+                    compressor.Finalize();
+                    archive.Close();
+                }
                 Thread.Sleep(1);
                 File.Delete(filename);
                 desktop.Exec = desktop.Exec.Replace(Path.GetFileName(filename), Path.GetFileName(archName));
