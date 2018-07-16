@@ -650,27 +650,35 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
                 long partitionSize = 300 * 1024 * 1024;
                 var splitStream = new SplitterStream(Program.debugStreams);
+                string osDecryptedDevice = "/dev/nandb";
+                bool hasKeyfile = hakchi.Shell.Execute("[ -f /key-file ]") == 0;
+
+                if (hasKeyfile)
+                    osDecryptedDevice = "/dev/mapper/root-crypt";
+
                 switch (task)
                 {
                     case NandTasks.DumpNandB:
+                        partitionSize = long.Parse(hakchi.Shell.ExecuteSimple($"echo $((($(hexdump -e '1/4 \"%u\"' -s $((0x28)) -n 4 ${osDecryptedDevice})+0xfff)/0x1000))", throwOnNonZero: true).Trim()) * 4 * 1024;
+                        break;
+
                     case NandTasks.FlashNandB:
                         hakchi.Shell.Execute("hakchi umount_base", null, splitStream, splitStream);
                         hakchi.Shell.Execute("umount /newroot");
-                        hakchi.Shell.Execute("cryptsetup close root-crypt");
-                        hakchi.Shell.ExecuteSimple("cryptsetup open /dev/nandb root-crypt --type plain --cipher aes-xts-plain --key-file /key-file", 2000, true);
+                        if (hasKeyfile)
+                        {
+                            hakchi.Shell.Execute("cryptsetup close root-crypt");
+                            hakchi.Shell.ExecuteSimple("cryptsetup open /dev/nandb root-crypt --type plain --cipher aes-xts-plain --key-file /key-file", 2000, true);
+                        }
 
-                        if (task == NandTasks.DumpNandB)
-                            partitionSize = long.Parse(hakchi.Shell.ExecuteSimple("echo $((($(hexdump -e '1/4 \"%u\"' -s $((0x28)) -n 4 /dev/mapper/root-crypt)+0xfff)/0x1000))", throwOnNonZero: true).Trim()) * 4 * 1024;
-
-                        if (task == NandTasks.FlashNandB)
-                            partitionSize = long.Parse(hakchi.Shell.ExecuteSimple("blockdev --getsize64 /dev/mapper/root-crypt", throwOnNonZero: true));
-
+                        partitionSize = long.Parse(hakchi.Shell.ExecuteSimple($"blockdev --getsize64 ${osDecryptedDevice}", throwOnNonZero: true));
                         break;
 
                     case NandTasks.DumpNandC:
                         hakchi.Shell.Execute("hakchi mount_base", null, null, null, 0, true);
                         partitionSize = long.Parse(hakchi.Shell.ExecuteSimple("df -B 1 | grep /newroot/var/lib | head -n 1 | awk -e '{print $3 }'", throwOnNonZero: true).Trim());
                         break;
+
                     case NandTasks.FlashNandC:
                         partitionSize = long.Parse(hakchi.Shell.ExecuteSimple("blockdev --getsize64 /dev/nandc", throwOnNonZero: true));
                         break;
@@ -678,6 +686,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     case NandTasks.DumpNand:
                         partitionSize = 536870912;
                         break;
+
                     case NandTasks.FormatNandC:
                         hakchi.Shell.Execute("cat > /bin/mke2fs; chmod +x /bin/mke2fs", File.OpenRead(Shared.PathCombine(Program.BaseDirectoryInternal, "tools", "arm", "mke2fs.static")), null, null, 0, true);
                         hakchi.Shell.Execute("hakchi umount_base", null, splitStream, splitStream);
@@ -715,12 +724,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     switch (task)
                     {
                         case NandTasks.DumpNandB:
-                            Shared.ShellPipe($"dd if=/dev/mapper/root-crypt bs=128K count={(partitionSize / 1024) / 4 }", null, file, throwOnNonZero: true);
+                            Shared.ShellPipe($"dd if=${osDecryptedDevice} bs=128K count={(partitionSize / 1024) / 4 }", null, file, throwOnNonZero: true);
                             break;
 
                         case NandTasks.FlashNandB:
-                            Shared.ShellPipe("dd of=/dev/mapper/root-crypt bs=128K", file, throwOnNonZero: true);
-                            hakchi.Shell.Execute("cryptsetup close root-crypt", throwOnNonZero: true);
+                            Shared.ShellPipe($"dd of=${osDecryptedDevice} bs=128K", file, throwOnNonZero: true);
+                            if(hasKeyfile)
+                                hakchi.Shell.Execute("cryptsetup close root-crypt", throwOnNonZero: true);
                             break;
 
                         case NandTasks.DumpNandC:
