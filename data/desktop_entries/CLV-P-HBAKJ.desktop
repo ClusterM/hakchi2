@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/clover-kachikachi /usr/share/games/CLV-P-HBAKJ/CLV-P-HBAKJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 77 --enable-armet
+Path=/var/lib/clover/profiles/0//CLV-P-HBAKJ
+Name=キン肉マン マッスルタッグマッチ
+Icon=/usr/share/games/CLV-P-HBAKJ/CLV-P-HBAKJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HBAKJ
+TestID=106
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1985-11-08
+SaveCount=0
+SortRawTitle=きんにくまんまっするたっぐまっち
+SortRawPublisher=ばんだいなむこえんたーていんめんと
+Copyright=キン肉マン マッスルタッグマッチ\n©ゆでたまご・東映アニメーション　©BANDAI NAMCO Entertainment Inc.

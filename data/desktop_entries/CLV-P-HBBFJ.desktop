@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/clover-kachikachi /usr/share/games/CLV-P-HBBFJ/CLV-P-HBBFJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 87 --enable-armet
+Path=/var/lib/clover/profiles/0//CLV-P-HBBFJ
+Name=北斗の拳
+Icon=/usr/share/games/CLV-P-HBBFJ/CLV-P-HBBFJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HBBFJ
+TestID=110
+ID=0
+Players=2
+Simultaneous=0
+ReleaseDate=1986-08-10
+SaveCount=0
+SortRawTitle=ほくとのけん
+SortRawPublisher=とうえいあにめーしょん
+Copyright=北斗の拳　©武論尊・原哲夫／NSP・東映アニメーション　©東映アニメーション

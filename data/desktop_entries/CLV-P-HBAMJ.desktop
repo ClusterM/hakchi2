@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/clover-kachikachi /usr/share/games/CLV-P-HBAMJ/CLV-P-HBAMJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 81 --enable-armet
+Path=/var/lib/clover/profiles/0//CLV-P-HBAMJ
+Name=キャプテン翼
+Icon=/usr/share/games/CLV-P-HBAMJ/CLV-P-HBAMJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HBAMJ
+TestID=108
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1988-04-28
+SaveCount=0
+SortRawTitle=きゃぷてんつばさ
+SortRawPublisher=こーえーてくもげーむす
+Copyright=キャプテン翼　©高橋陽一／集英社　©コーエーテクモゲームス

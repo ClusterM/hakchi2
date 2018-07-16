@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/clover-kachikachi /usr/share/games/CLV-P-HBAEJ/CLV-P-HBAEJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet
+Path=/var/lib/clover/profiles/0//CLV-P-HBAEJ
+Name=ドラゴンボール3 悟空伝
+Icon=/usr/share/games/CLV-P-HBAEJ/CLV-P-HBAEJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HBAEJ
+TestID=104
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1989-10-27
+SaveCount=0
+SortRawTitle=どらごんぼーるすりーごくうでん
+SortRawPublisher=ばんだいなむこえんたーていんめんと
+Copyright=ドラゴンボール3 悟空伝\n©バードスタジオ／集英社・東映アニメーション　©BANDAI NAMCO Entertainment Inc.

@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/clover-kachikachi /usr/share/games/CLV-P-HBAFJ/CLV-P-HBAFJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet
+Path=/var/lib/clover/profiles/0//CLV-P-HBAFJ
+Name=ドラゴンボールZ 強襲!サイヤ人
+Icon=/usr/share/games/CLV-P-HBAFJ/CLV-P-HBAFJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HBAFJ
+TestID=105
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1990-10-27
+SaveCount=1
+SortRawTitle=どらごんぼーるぜっときょうしゅう！さいやじん
+SortRawPublisher=ばんだいなむこえんたーていんめんと
+Copyright=ドラゴンボールZ 強襲!サイヤ人\n©バードスタジオ／集英社・東映アニメーション　©BANDAI NAMCO Entertainment Inc.

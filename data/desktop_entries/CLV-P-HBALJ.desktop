@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/clover-kachikachi /usr/share/games/CLV-P-HBALJ/CLV-P-HBALJ.qd --fds-auto-disk-side-switch --fds-disk-switch-side-threshold 8 --fds-disk-switch-side-delay 64 --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 84 --fds-bios-volume 69 --enable-armet
+Path=/var/lib/clover/profiles/0//CLV-P-HBALJ
+Name=キン肉マン キン肉星王位争奪戦
+Icon=/usr/share/games/CLV-P-HBALJ/CLV-P-HBALJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HBALJ
+TestID=107
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1987-05-01
+SaveCount=0
+SortRawTitle=きんにくまんきんにくせいおういそうだつせん
+SortRawPublisher=ばんだいなむこえんたーていんめんと
+Copyright=キン肉マン キン肉星王位争奪戦　©ゆでたまご・東映アニメーション　©BANDAI NAMCO Entertainment Inc.

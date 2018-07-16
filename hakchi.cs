@@ -32,6 +32,7 @@ namespace com.clusterrr.hakchi_gui
             SNES_EUR = 2,
             SNES_USA = 3,
             SuperFamicom = 4,
+            ShonenJump = 5,
             Unknown = 255
         }
 
@@ -41,7 +42,8 @@ namespace com.clusterrr.hakchi_gui
             { ConsoleType.Famicom, "nes-jpn" },
             { ConsoleType.SNES_EUR, "snes-eur" },
             { ConsoleType.SNES_USA, "snes-usa" },
-            { ConsoleType.SuperFamicom, "snes-jpn" }
+            { ConsoleType.SuperFamicom, "snes-jpn" },
+            { ConsoleType.ShonenJump, "hvcj-jpn" },
         };
         public static readonly Dictionary<string, ConsoleType> SystemCodeToConsoleType = new Dictionary<string, ConsoleType>()
         {
@@ -49,7 +51,8 @@ namespace com.clusterrr.hakchi_gui
             { "nes-jpn", ConsoleType.Famicom  },
             { "snes-eur", ConsoleType.SNES_EUR },
             { "snes-usa", ConsoleType.SNES_USA },
-            { "snes-jpn", ConsoleType.SuperFamicom }
+            { "snes-jpn", ConsoleType.SuperFamicom },
+            { "hvcj-jpn", ConsoleType.ShonenJump },
         };
 
         public static ISystemShell Shell { get; private set; }
@@ -93,6 +96,7 @@ namespace com.clusterrr.hakchi_gui
                     case ConsoleType.SNES_USA:
                     case ConsoleType.SNES_EUR:
                     case ConsoleType.SuperFamicom:
+                    case ConsoleType.ShonenJump:
                         return "/usr/share/games";
                 }
             }
@@ -149,7 +153,7 @@ namespace com.clusterrr.hakchi_gui
 
         public static Version MinimumScriptVersion
         {
-            get { return new Version(1, 0, 3, 110); }
+            get { return new Version(1, 0, 3, 113); }
         }
 
         public static string RawLocalBootVersion
@@ -323,6 +327,10 @@ namespace com.clusterrr.hakchi_gui
                         OriginalGamesPath = Shell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
                         RootFsPath = Shell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
                         SquashFsPath = Shell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
+
+                        // adjust detected console type
+                        if (SystemCodeToConsoleType.ContainsKey(SystemCode))
+                            DetectedConsoleType = SystemCodeToConsoleType[SystemCode];
 
                         // load config
                         ConfigIni.SetConfigDictionary(LoadConfig());

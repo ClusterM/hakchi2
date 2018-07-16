@@ -543,6 +543,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Famicom (Shonen Jump).
+        /// </summary>
+        internal static string consoleTypeShonenJump {
+            get {
+                return ResourceManager.GetString("consoleTypeShonenJump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SNES (USA/Europe).
         /// </summary>
         internal static string consoleTypeSnes {

@@ -39,7 +39,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 var reply = shell.ExecuteSimple($"[ -d {gamesCloverPath} ] && echo YES || echo NO");
                 if (reply == "NO")
                 {
-                    gamesCloverPath = hakchi.GamesPath;
+                    gamesCloverPath = hakchi.GamesSquashFsPath;
                     reply = shell.ExecuteSimple($"[ -d {gamesCloverPath} ] && echo YES || echo NO");
                     if (reply == "NO")
                         throw new Exception("Unable to update local cache. games directory not accessible");
@@ -61,7 +61,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                 shell.Execute(cmd, null, tar, null, 10000, true);
                                 tar.Seek(0, SeekOrigin.Begin);
                                 using (var extractorTar = SharpCompress.Archives.Tar.TarArchive.Open(tar))
-                                    extractorTar.WriteToDirectory(gamePath);
+                                    extractorTar.WriteToDirectory(gamePath, new SharpCompress.Common.ExtractionOptions() { ExtractFullPath = true, Overwrite = true });
                             }
                         }
                         catch (Exception ex)

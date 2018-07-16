@@ -49,6 +49,7 @@ namespace com.clusterrr.hakchi_gui
                 case hakchi.ConsoleType.SNES_EUR: return Resources.consoleTypeSnesEur;
                 case hakchi.ConsoleType.SNES_USA: return Resources.consoleTypeSnesUsa;
                 case hakchi.ConsoleType.SuperFamicom: return Resources.consoleTypeSuperFamicom;
+                case hakchi.ConsoleType.ShonenJump: return Resources.consoleTypeShonenJump;
                 case hakchi.ConsoleType.Unknown: return Resources.Unknown;
             }
             return string.Empty;
@@ -2129,7 +2130,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     using (var extractor = ArchiveFactory.Open(files[0]))
                     {
-                        extractor.WriteToDirectory(Path.Combine(Program.BaseDirectoryExternal, "sfrom_tool"));
+                        extractor.WriteToDirectory(Path.Combine(Program.BaseDirectoryExternal, "sfrom_tool"), new SharpCompress.Common.ExtractionOptions() { ExtractFullPath = true, Overwrite = true });
                     }
                     enableSFROMToolToolStripMenuItem.Checked = true;
                     enableSFROMToolToolStripMenuItem_Click(sender, e);

@@ -147,7 +147,7 @@ namespace com.clusterrr.hakchi_gui.module_library
                                 else if(!file.IsDirectory)
                                     installedModule.InstalledFiles.Add(file.Key);
                             }
-                            extractor.WriteToDirectory(userModDir);
+                            extractor.WriteToDirectory(userModDir, new SharpCompress.Common.ExtractionOptions() { ExtractFullPath = true, Overwrite = true });
                             InstalledItems.Add(installedModule);
                         }
                         File.Delete(tempFileName);
