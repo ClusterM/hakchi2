@@ -180,6 +180,109 @@ namespace com.clusterrr.hakchi_gui
         }
 
         private bool hasUnsavedChanges = false;
+        public bool Load(Stream configStream)
+        {
+            try
+            {
+                using (StreamReader reader = new StreamReader(configStream))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        int pos = line.IndexOf('=');
+                        if (pos <= 0)
+                            continue;
+                        var param = line.Substring(0, pos).Trim().ToLower();
+                        var value = line.Substring(pos + 1).Trim();
+                        if (param.Length <= 0)
+                            continue;
+
+                        switch (param)
+                        {
+                            case "exec":
+                                Exec = value;
+                                break;
+                            case "path":
+                                if (string.IsNullOrEmpty(value))
+                                    ProfilePath = string.Empty;
+                                else
+                                    try
+                                    {
+                                        ProfilePath = Path.GetDirectoryName(value).Replace("\\", "/").Replace("//", "/");
+                                    }
+                                    catch
+                                    {
+                                        System.Diagnostics.Trace.WriteLine($"Error parsing desktop file. Invalid profile path \"{value}\"");
+                                        ProfilePath = string.Empty;
+                                    }
+                                break;
+                            case "name":
+                                Name = value;
+                                break;
+                            case "icon":
+                                if (string.IsNullOrEmpty(value))
+                                {
+                                    IconPath = string.Empty;
+                                    IconFilename = string.Empty;
+                                }
+                                else
+                                {
+                                    try
+                                    {
+                                        IconPath = Path.GetDirectoryName(Path.GetDirectoryName(value)).Replace("\\", "/").Replace("//", "/");
+                                        IconFilename = Path.GetFileName(value);
+                                    }
+                                    catch
+                                    {
+                                        System.Diagnostics.Trace.WriteLine($"Error parsing desktop file. Invalid icon path \"{value}\"");
+                                        IconPath = string.Empty;
+                                        IconFilename = string.Empty;
+                                    }
+                                }
+                                break;
+                            case "code":
+                                Code = value;
+                                break;
+                            case "testid":
+                                TestId = int.Parse(value);
+                                break;
+                            case "status":
+                                Status = value;
+                                break;
+                            case "players":
+                                Players = byte.Parse(value);
+                                break;
+                            case "simultaneous":
+                                Simultaneous = (bool)(int.Parse(value) != 0);
+                                break;
+                            case "releasedate":
+                                ReleaseDate = value;
+                                break;
+                            case "savecount":
+                                SaveCount = byte.Parse(value);
+                                break;
+                            case "sortrawtitle":
+                                SortName = value;
+                                break;
+                            case "sortrawpublisher":
+                                Publisher = value;
+                                break;
+                            case "copyright":
+                                Copyright = value;
+                                break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine("Exception: " + ex);
+            }
+
+            hasUnsavedChanges = false;
+            return true;
+        }
+
         public bool Load(string configPath)
         {
             if (!File.Exists(configPath)) throw new FileNotFoundException();
@@ -187,99 +290,12 @@ namespace com.clusterrr.hakchi_gui
 
             try
             {
-                string[] configLines = File.ReadAllLines(currentFilePath);
-                foreach (string line in configLines)
-                {
-                    int pos = line.IndexOf('=');
-                    if (pos <= 0)
-                        continue;
-                    var param = line.Substring(0, pos).Trim().ToLower();
-                    var value = line.Substring(pos + 1).Trim();
-                    if (param.Length <= 0)
-                        continue;
-
-                    switch (param)
-                    {
-                        case "exec":
-                            Exec = value;
-                            break;
-                        case "path":
-                            if (string.IsNullOrEmpty(value))
-                                ProfilePath = string.Empty;
-                            else
-                                try
-                                {
-                                    ProfilePath = Path.GetDirectoryName(value).Replace("\\", "/").Replace("//", "/");
-                                }
-                                catch
-                                {
-                                    System.Diagnostics.Trace.WriteLine($"Error parsing desktop file. Invalid profile path \"{value}\"");
-                                    ProfilePath = string.Empty;
-                                }
-                            break;
-                        case "name":
-                            Name = value;
-                            break;
-                        case "icon":
-                            if (string.IsNullOrEmpty(value))
-                            {
-                                IconPath = string.Empty;
-                                IconFilename = string.Empty;
-                            }
-                            else
-                            {
-                                try
-                                {
-                                    IconPath = Path.GetDirectoryName(Path.GetDirectoryName(value)).Replace("\\", "/").Replace("//", "/");
-                                    IconFilename = Path.GetFileName(value);
-                                }
-                                catch
-                                {
-                                    System.Diagnostics.Trace.WriteLine($"Error parsing desktop file. Invalid icon path \"{value}\"");
-                                    IconPath = string.Empty;
-                                    IconFilename = string.Empty;
-                                }
-                            }
-                            break;
-                        case "code":
-                            Code = value;
-                            break;
-                        case "testid":
-                            TestId = int.Parse(value);
-                            break;
-                        case "status":
-                            Status = value;
-                            break;
-                        case "players":
-                            Players = byte.Parse(value);
-                            break;
-                        case "simultaneous":
-                            Simultaneous = (bool)(int.Parse(value) != 0);
-                            break;
-                        case "releasedate":
-                            ReleaseDate = value;
-                            break;
-                        case "savecount":
-                            SaveCount = byte.Parse(value);
-                            break;
-                        case "sortrawtitle":
-                            SortName = value;
-                            break;
-                        case "sortrawpublisher":
-                            Publisher = value;
-                            break;
-                        case "copyright":
-                            Copyright = value;
-                            break;
-                    }
-                }
+                return Load(File.OpenRead(configPath));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Diagnostics.Trace.WriteLine("Exception: " + ex);
             }
-
-            hasUnsavedChanges = false;
             return true;
         }
 

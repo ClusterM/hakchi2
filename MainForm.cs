@@ -591,29 +591,15 @@ namespace com.clusterrr.hakchi_gui
                 return;
             }
 
-            string cachePath = Path.Combine(Program.BaseDirectoryExternal, "games_cache");
-            var games = new NesMenuCollection();
-            foreach (NesDefaultGame game in NesApplication.DefaultGames)
+            using (var tasker = new Tasks.Tasker(this))
             {
-                if (!Directory.Exists(Path.Combine(cachePath, game.Code)))
-                    games.Add(game);
+                var task = new Tasks.GameCacheTask();
+                tasker.AttachView(new Tasks.TaskerTaskbar());
+                tasker.AttachView(new Tasks.TaskerForm());
+                tasker.AddTask(task.UpdateLocal);
+                if (tasker.Start() == Tasks.Tasker.Conclusion.Success)
+                    Trace.WriteLine("Done refreshing local original games cache.");
             }
-
-            if (games.Count > 0)
-            {
-                using (var tasker = new Tasks.Tasker(this))
-                {
-                    var task = new Tasks.GameCacheTask();
-                    task.Games = games;
-                    tasker.AttachView(new Tasks.TaskerTaskbar());
-                    tasker.AttachView(new Tasks.TaskerForm());
-                    tasker.AddTask(task.UpdateLocal);
-                    if (tasker.Start() == Tasks.Tasker.Conclusion.Success)
-                        Trace.WriteLine("Successfully updated local original games cache.");
-                }
-            }
-            else
-                Trace.WriteLine("Local original games cache in sync.");
         }
 
         public void LoadGames(bool reloadFromFiles = true)
@@ -2035,7 +2021,7 @@ namespace com.clusterrr.hakchi_gui
             LoadGames();
         }
 
-        public void ResetOriginalGamesForAllSystems()
+        public void ResetOriginalGamesForAllSystems(bool nonDestructiveSync)
         {
             using (var tasker = new Tasks.Tasker(this))
             {
@@ -2044,35 +2030,23 @@ namespace com.clusterrr.hakchi_gui
 
                 var task = new Tasks.GameTask();
                 task.ResetAllOriginalGames = true;
-                task.NonDestructiveSync = true;
+                task.NonDestructiveSync = nonDestructiveSync;
                 tasker.AddTask(task.SyncOriginalGames);
 
                 var conclusion = tasker.Start();
                 if (conclusion == Tasks.Tasker.Conclusion.Success)
                 {
-                    if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.NES).Any())
-                        AddDefaultsToSelectedGames(NesApplication.defaultNesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.NES));
-                    if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.Famicom).Any())
-                        AddDefaultsToSelectedGames(NesApplication.defaultFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.Famicom));
-                    if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SNES_EUR).Any())
-                        AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SNES_EUR));
-                    if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SNES_USA).Any())
-                        AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SNES_USA));
-                    if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SuperFamicom).Any())
-                        AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SuperFamicom));
-                    if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.ShonenJump).Any())
-                        AddDefaultsToSelectedGames(NesApplication.defaultShonenJumpGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.ShonenJump));
+                    foreach (var c in Enum.GetValues(typeof(hakchi.ConsoleType)).Cast<hakchi.ConsoleType>())
+                    {
+                        if (c != hakchi.ConsoleType.Unknown)
+                        {
+                            ConfigIni.Instance.SelectedOriginalGamesForConsole(c).Clear();
+                            ConfigIni.Instance.SelectedOriginalGamesForConsole(c).AddRange(NesApplication.DefaultGames[c]);
+                        }
+                    }
                 }
             }
             LoadGames();
-        }
-
-        private void AddDefaultsToSelectedGames(NesDefaultGame[] games, ICollection<string> selectedGames)
-        {
-            foreach (NesDefaultGame game in games)
-            {
-                if (!selectedGames.Contains(game.Code)) selectedGames.Add(game.Code);
-            }
         }
 
         private void resetOriginalGamesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2406,9 +2380,12 @@ namespace com.clusterrr.hakchi_gui
                         Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedCannotInteract, Resources.sign_ban);
                         return;
                     }
+
                     var gameNames = new Dictionary<string, string>();
-                    foreach (var game in NesApplication.AllDefaultGames)
+                    foreach (NesDefaultGame game in NesApplication.AllDefaultGames)
+                    {
                         gameNames[game.Code] = game.Name;
+                    }
                     foreach (ListViewItem item in listViewGames.Items)
                     {
                         if (item.Tag is NesApplication)
@@ -3073,9 +3050,5 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void testCommandToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // nothing
-        }
     }
 }

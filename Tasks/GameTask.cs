@@ -314,7 +314,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             string desktopEntriesArchiveFile = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "desktop_entries.7z");
             string originalGamesPath = Path.Combine(Program.BaseDirectoryExternal, "games_originals");
-            var selectedGames = ConfigIni.Instance.SelectedGames;
 
             if (!Directory.Exists(originalGamesPath))
                 Directory.CreateDirectory(originalGamesPath);
@@ -324,7 +323,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             try
             {
-                var defaultGames = ResetAllOriginalGames ? NesApplication.AllDefaultGames : NesApplication.DefaultGames;
+                var defaultGames = ResetAllOriginalGames ? NesApplication.AllDefaultGames.Select(g => g.Code).ToArray() : NesApplication.CurrentDefaultGames;
 
                 using (var extractor = ArchiveFactory.Open(desktopEntriesArchiveFile))
                 {
@@ -335,9 +334,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         var f = reader.Entry.Key;
 
                         var code = Path.GetFileNameWithoutExtension(f);
-                        var query = defaultGames.Where(g => g.Code == code);
-
-                        if (query.Count() != 1)
+                        if (!defaultGames.Contains(code))
                             continue;
 
                         var ext = Path.GetExtension(f).ToLower();
@@ -363,14 +360,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             {
                                 reader.WriteEntryTo(o);
                                 o.Flush();
-                                if (!this.ResetAllOriginalGames && !selectedGames.Contains(code))
+                                if (!this.ResetAllOriginalGames && !ConfigIni.Instance.SelectedGames.Contains(code))
                                 {
-                                    selectedGames.Add(code);
+                                    ConfigIni.Instance.SelectedGames.Add(code);
                                 }
                             }
 
                             // create game temporarily to perform cover search
-                            Trace.WriteLine(string.Format("Resetting game \"{0}\".", query.Single().Name));
+                            Trace.WriteLine(string.Format($"Resetting game \"{code}\"."));
                             var game = NesApplication.FromDirectory(path);
                             game.FindCover(code + ".desktop");
                             game.Save();

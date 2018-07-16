@@ -92,12 +92,12 @@ namespace com.clusterrr.hakchi_gui
 
         // special case methods
 
-        public ICollection<string> SelectedGamesForConsole(hakchi.ConsoleType c)
+        public List<string> SelectedGamesForConsole(hakchi.ConsoleType c)
         {
             return (c == hakchi.ConsoleType.Unknown) ? null : gamesCollectionSettings[c].SelectedGames;
         }
 
-        public ICollection<string> SelectedOriginalGamesForConsole(hakchi.ConsoleType c)
+        public List<string> SelectedOriginalGamesForConsole(hakchi.ConsoleType c)
         {
             return (c == hakchi.ConsoleType.Unknown) ? null : gamesCollectionSettings[c].OriginalGames;
         }
@@ -456,21 +456,20 @@ namespace com.clusterrr.hakchi_gui
                                         break;
                                     case "hiddengames":
                                         list = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-                                        instance.gamesCollectionSettings[hakchi.ConsoleType.NES].OriginalGames = NesApplication.defaultNesGames.Select(game => game.Code).Where(code => !list.Contains(code)).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.NES].OriginalGames = NesApplication.DefaultGames[hakchi.ConsoleType.NES].Where(code => !list.Contains(code)).ToList();
                                         break;
                                     case "hiddengamesfamicom":
                                         list = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-                                        instance.gamesCollectionSettings[hakchi.ConsoleType.Famicom].OriginalGames = NesApplication.defaultFamicomGames.Select(game => game.Code).Where(code => !list.Contains(code)).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.Famicom].OriginalGames = NesApplication.DefaultGames[hakchi.ConsoleType.Famicom].Where(code => !list.Contains(code)).ToList();
                                         break;
                                     case "hiddengamessnes":
                                         list = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_EUR].OriginalGames = NesApplication.defaultSnesGames.Select(game => game.Code).Where(code => !list.Contains(code)).ToList();
-                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_USA].OriginalGames = NesApplication.defaultSnesGames.Select(game => game.Code).Where(code => !list.Contains(code)).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_EUR].OriginalGames = NesApplication.DefaultGames[hakchi.ConsoleType.SNES_EUR].Where(code => !list.Contains(code)).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SNES_USA].OriginalGames = NesApplication.DefaultGames[hakchi.ConsoleType.SNES_USA].Where(code => !list.Contains(code)).ToList();
                                         break;
                                     case "hiddengamessuperfamicom":
                                         list = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SuperFamicom].OriginalGames =
-                                            NesApplication.defaultSuperFamicomGames.Select(game => game.Code).Where(code => !list.Contains(code)).ToList();
+                                        instance.gamesCollectionSettings[hakchi.ConsoleType.SuperFamicom].OriginalGames = NesApplication.DefaultGames[hakchi.ConsoleType.SuperFamicom].Where(code => !list.Contains(code)).ToList();
                                         break;
                                     case "originalgamesposition":
                                         instance.OriginalGamesPosition = (MainForm.OriginalGamesPosition)byte.Parse(value);

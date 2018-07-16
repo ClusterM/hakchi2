@@ -68,10 +68,9 @@ namespace com.clusterrr.hakchi_gui
         public static string UniqueID { get; private set; }
         public static bool CanInteract { get; private set; }
         public static bool MinimalMemboot { get; private set; }
-        public static bool UserMinimalMemboot { get
-            {
-                return hakchi.Shell.IsOnline && MinimalMemboot && (Shell.Execute("ls /user-recovery.flag") == 0);
-            }
+        public static bool UserMinimalMemboot
+        {
+            get { return hakchi.Shell.IsOnline && MinimalMemboot && (Shell.Execute("ls /user-recovery.flag") == 0); }
         }
 
         public static string ConfigPath { get; private set; }

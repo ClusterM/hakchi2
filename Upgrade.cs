@@ -87,7 +87,7 @@ namespace com.clusterrr.hakchi_gui
                     startingVersion = new Version("0.0.0.0"),
                     targetVersion = new Version("3.0.0.0"),
                     action = new ActionFunc(() => {
-                        mainForm.ResetOriginalGamesForAllSystems();
+                        mainForm.ResetOriginalGamesForAllSystems(false);
                         return true;
                     })
                 },

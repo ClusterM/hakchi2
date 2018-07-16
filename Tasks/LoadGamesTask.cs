@@ -158,9 +158,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             // list original game directories
             var originalGameDirs = new List<string>();
-            foreach (var defaultGame in NesApplication.DefaultGames)
+            foreach (var defaultGame in NesApplication.CurrentDefaultGames)
             {
-                string gameDir = Path.Combine(NesApplication.OriginalGamesDirectory, defaultGame.Code);
+                string gameDir = Path.Combine(NesApplication.OriginalGamesDirectory, defaultGame);
                 if (Directory.Exists(gameDir))
                     originalGameDirs.Add(gameDir);
             }
