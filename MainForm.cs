@@ -2060,6 +2060,8 @@ namespace com.clusterrr.hakchi_gui
                         AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SNES_USA));
                     if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SuperFamicom).Any())
                         AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SuperFamicom));
+                    if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.ShonenJump).Any())
+                        AddDefaultsToSelectedGames(NesApplication.defaultShonenJumpGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.ShonenJump));
                 }
             }
             LoadGames();

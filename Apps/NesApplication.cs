@@ -182,7 +182,7 @@ namespace com.clusterrr.hakchi_gui
         }
         public static NesDefaultGame[] AllDefaultGames
         {
-            get { return Shared.ConcatArrays(defaultNesGames, defaultFamicomGames, defaultSnesGames, defaultSuperFamicomGames); }
+            get { return Shared.ConcatArrays(defaultNesGames, defaultFamicomGames, defaultSnesGames, defaultSuperFamicomGames, defaultShonenJumpGames); }
         }
 
         public static readonly string OriginalGamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games_originals");
