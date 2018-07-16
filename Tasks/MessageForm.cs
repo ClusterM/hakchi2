@@ -14,7 +14,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public MessageForm()
         {
             InitializeComponent();
-            EnableMenuItem(GetSystemMenu(Handle, false), SC_CLOSE, MF_BYCOMMAND | MF_DISABLED);
+            if(Shared.isWindows())
+            {
+                EnableMenuItem(GetSystemMenu(Handle, false), SC_CLOSE, MF_BYCOMMAND | MF_DISABLED);
+            }
+            else
+            {
+                this.ControlBox = false;
+            }
         }
 
         public static Button Show(Form hostForm, string title, string message, Image icon = null, Button[] buttons = null, DefaultButton defaultButton = DefaultButton.Button1)
