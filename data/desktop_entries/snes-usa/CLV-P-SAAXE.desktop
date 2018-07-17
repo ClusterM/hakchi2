@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SAAXE/CLV-P-SAAXE.sfrom --volume 100 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-SAAXE
+Name=Super Punch-Out!!
+Icon=/var/squashfs/usr/share/games/CLV-P-SAAXE/CLV-P-SAAXE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SAAXE
+TestID=8
+Status=Finished-0013
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1994-09-14
+SaveCount=3
+SortRawTitle=super punch-out!!
+SortRawPublisher=NINTENDO
+Copyright=Super Punch-Out!!™ ©1994 Nintendo
+MyPlayDemoTime=45

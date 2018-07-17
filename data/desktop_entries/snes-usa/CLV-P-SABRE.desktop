@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SABRE/CLV-P-SABRE.sfrom --volume 75 -rollback-snapshot-period 3600
+Path=/var/lib/clover/profiles/0//CLV-P-SABRE
+Name=Secret of Mana
+Icon=/var/squashfs/usr/share/games/CLV-P-SABRE/CLV-P-SABRE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SABRE
+TestID=13
+Status=Duplicate-2
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1993-10-03
+SaveCount=3
+SortRawTitle=secret of mana
+SortRawPublisher=SQUARE ENIX
+Copyright=Secret of Mana ©1993 SQUARE ENIX CO., LTD. All Rights Reserved. SECRET OF MANA is a registered trademark or trademark of Square Enix Co., Ltd. SQUARE ENIX and the SQUARE ENIX logo are registered trademarks or trademarks of Square Enix Holdings Co., Ltd.
+MyPlayDemoTime=45

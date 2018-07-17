@@ -317,6 +317,152 @@
     <Content Include="basehmods.tar">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBAAJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBABJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBACJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBAEJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBAFJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBAKJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBALJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBAMJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBANJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBAPJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBARJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBASJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBAUJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBAVJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBAXJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBAZJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBBBJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBBCJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBBEJ.desktop" />
+    <None Include="data\desktop_entries\hvcj-jpn\CLV-P-HBBFJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HAAAJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HAACJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HAADJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HAAEJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HAAHJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HAAMJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HAANJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HAAPJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HAAQJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HAARJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HAASJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HAAUJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HAAWJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HAAXJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HABBJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HABCJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HABLJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HABMJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HABNJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HABQJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HABRJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HABVJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HACAJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HACBJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HACCJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HACEJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HACHJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HACJJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HACLJ.desktop" />
+    <None Include="data\desktop_entries\nes-jpn\CLV-P-HACPJ.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAAAE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAACE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAADE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAAEE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAAFE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAAHE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAANE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAAPE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAAQE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAARE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAASE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAATE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAAUE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAAVE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAAWE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAAXE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NAAZE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NABBE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NABCE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NABJE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NABKE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NABME.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NABNE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NABQE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NABRE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NABVE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NABXE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NACBE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NACDE.desktop" />
+    <None Include="data\desktop_entries\nes-usa\CLV-P-NACHE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SAAAE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SAABE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SAAEE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SAAFE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SAAHE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SAAJE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SAAKE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SAALE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SAAQE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SAAXE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SABCE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SABDE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SABHE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SABQE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SABRE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SABTE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SACBE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SACCE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SADGE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SADJE.desktop" />
+    <None Include="data\desktop_entries\snes-eur\CLV-P-SADKE.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VAAAJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VAABJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VAAEJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VAAFJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VAAGJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VAAHJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VAALJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VAAQJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VABBJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VABCJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VABDJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VABQJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VABRJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VABTJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VACCJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VACDJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VADFJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VADGJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VADJJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VADKJ.desktop" />
+    <None Include="data\desktop_entries\snes-jpn\CLV-P-VADZJ.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SAAAE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SAABE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SAAEE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SAAFE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SAAHE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SAAJE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SAAKE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SAALE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SAAQE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SAAXE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SABCE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SABDE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SABHE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SABQE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SABRE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SABTE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SACBE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SACCE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SADGE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SADJE.desktop" />
+    <None Include="data\desktop_entries\snes-usa\CLV-P-SADKE.desktop" />
+    <None Include="data\libretro_cores.7z">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="driver\source\AUTHORS" />
     <None Include="driver\source\autogen.sh" />
     <None Include="driver\source\bootstrap.sh" />
@@ -730,468 +876,160 @@
     <EmbeddedResource Include="images\flags\jp.png" />
     <EmbeddedResource Include="images\flags\ro.png" />
     <None Include="data\ubootSD.bin" />
-    <None Include="data\libretro_cores\2048_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\3dengine_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\4do_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\81_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\advanced_tests_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\atari800_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\blastem_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\bluemsx_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\bnes_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\bsnes_accuracy_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\bsnes_balanced_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\bsnes_cplusplus98_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\bsnes_mercury_accuracy_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\bsnes_mercury_balanced_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\bsnes_mercury_performance_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\bsnes_performance_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\cap32_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\chailove_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\citra_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\craft_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\crocods_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\cruzes_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\desmume_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\dinothawr_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\dolphin_launcher_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\dolphin_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\dosbox_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\easyrpg_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\emux_chip8_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\emux_gb_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\emux_nes_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\emux_sms_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\fbalpha2012_cps1_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\fbalpha2012_cps2_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\fbalpha2012_cps3_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\fbalpha2012_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\fbalpha2012_neogeo_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\fb_alpha_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\fceumm_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\ffmpeg_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\fmsx_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\freeintv_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\freej2me_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\fsuae_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\fuse_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\gambatte_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\gearboy_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\genesis_plus_gx_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\glupen64_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\gme_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\gpsp_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\gw_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\handy_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\hatari_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\higan_sfc_balanced_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\higan_sfc_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\imageviewer_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\lutro_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mame2000_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mame2003_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mame2003_midway_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mame2009_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mame2010_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mame2014_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mame2016_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mame_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mednafen_gba_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mednafen_lynx_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mednafen_ngp_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mednafen_pce_fast_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mednafen_pcfx_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mednafen_psx_hw_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mednafen_psx_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mednafen_saturn_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mednafen_snes_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mednafen_supergrafx_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mednafen_vb_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mednafen_wswan_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\melonds_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mess2014_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\meteor_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mgba_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mrboom_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mupen64plus_gles3_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\mupen64plus_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\nekop2_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\nestopia_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\np2kai_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\nxengine_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\o2em_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\openlara_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\opentyrian_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\parallel_n64_debug_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\parallel_n64_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\pascal_pong_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\pcem_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\pcsx1_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\pcsx_rearmed_interpreter_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\pcsx_rearmed_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\pcsx_rearmed_libretro_neon.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\pcsx_rearmed_neon_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\picodrive_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\pocketcdg_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\pokemini_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\ppsspp_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\prboom_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\prosystem_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\puae_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\px68k_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\quicknes_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\redream_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\reicast_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\reicast_naomi_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\remotejoy_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\rustation_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\sameboy_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\scummvm_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\snes9x2002_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\snes9x2005_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\snes9x2005_plus_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\snes9x2010_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\snes9x_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\stella_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\stonesoup_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\tempgba_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\testaudio_callback_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\testaudio_no_callback_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\testaudio_playback_wav_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\testgl_compute_shaders_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\testgl_ff_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\testgl_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\testinput_buttontest_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\testretroluxury_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\testsw_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\testsw_vram_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\testvulkan_async_compute_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\testvulkan_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\test_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\test_netplay_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\tgbdual_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\tyrquake_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\uae4arm_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\ume2014_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\uzem_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\vbam_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\vba_next_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\vecx_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\vice_x128_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\vice_x64_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\vice_xplus4_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\vice_xvic_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\virtualjaguar_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\xrick_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\libretro_cores\yabause_libretro.info">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="data\libretro_cores\2048_libretro.info" />
+    <None Include="data\libretro_cores\3dengine_libretro.info" />
+    <None Include="data\libretro_cores\4do_libretro.info" />
+    <None Include="data\libretro_cores\81_libretro.info" />
+    <None Include="data\libretro_cores\advanced_tests_libretro.info" />
+    <None Include="data\libretro_cores\atari800_libretro.info" />
+    <None Include="data\libretro_cores\blastem_libretro.info" />
+    <None Include="data\libretro_cores\bluemsx_libretro.info" />
+    <None Include="data\libretro_cores\bnes_libretro.info" />
+    <None Include="data\libretro_cores\bsnes_accuracy_libretro.info" />
+    <None Include="data\libretro_cores\bsnes_balanced_libretro.info" />
+    <None Include="data\libretro_cores\bsnes_cplusplus98_libretro.info" />
+    <None Include="data\libretro_cores\bsnes_mercury_accuracy_libretro.info" />
+    <None Include="data\libretro_cores\bsnes_mercury_balanced_libretro.info" />
+    <None Include="data\libretro_cores\bsnes_mercury_performance_libretro.info" />
+    <None Include="data\libretro_cores\bsnes_performance_libretro.info" />
+    <None Include="data\libretro_cores\cap32_libretro.info" />
+    <None Include="data\libretro_cores\chailove_libretro.info" />
+    <None Include="data\libretro_cores\citra_libretro.info" />
+    <None Include="data\libretro_cores\craft_libretro.info" />
+    <None Include="data\libretro_cores\crocods_libretro.info" />
+    <None Include="data\libretro_cores\cruzes_libretro.info" />
+    <None Include="data\libretro_cores\desmume_libretro.info" />
+    <None Include="data\libretro_cores\dinothawr_libretro.info" />
+    <None Include="data\libretro_cores\dolphin_launcher_libretro.info" />
+    <None Include="data\libretro_cores\dolphin_libretro.info" />
+    <None Include="data\libretro_cores\dosbox_libretro.info" />
+    <None Include="data\libretro_cores\easyrpg_libretro.info" />
+    <None Include="data\libretro_cores\emux_chip8_libretro.info" />
+    <None Include="data\libretro_cores\emux_gb_libretro.info" />
+    <None Include="data\libretro_cores\emux_nes_libretro.info" />
+    <None Include="data\libretro_cores\emux_sms_libretro.info" />
+    <None Include="data\libretro_cores\fbalpha2012_cps1_libretro.info" />
+    <None Include="data\libretro_cores\fbalpha2012_cps2_libretro.info" />
+    <None Include="data\libretro_cores\fbalpha2012_cps3_libretro.info" />
+    <None Include="data\libretro_cores\fbalpha2012_libretro.info" />
+    <None Include="data\libretro_cores\fbalpha2012_neogeo_libretro.info" />
+    <None Include="data\libretro_cores\fb_alpha_libretro.info" />
+    <None Include="data\libretro_cores\fceumm_libretro.info" />
+    <None Include="data\libretro_cores\ffmpeg_libretro.info" />
+    <None Include="data\libretro_cores\fmsx_libretro.info" />
+    <None Include="data\libretro_cores\freeintv_libretro.info" />
+    <None Include="data\libretro_cores\freej2me_libretro.info" />
+    <None Include="data\libretro_cores\fsuae_libretro.info" />
+    <None Include="data\libretro_cores\fuse_libretro.info" />
+    <None Include="data\libretro_cores\gambatte_libretro.info" />
+    <None Include="data\libretro_cores\gearboy_libretro.info" />
+    <None Include="data\libretro_cores\genesis_plus_gx_libretro.info" />
+    <None Include="data\libretro_cores\glupen64_libretro.info" />
+    <None Include="data\libretro_cores\gme_libretro.info" />
+    <None Include="data\libretro_cores\gpsp_libretro.info" />
+    <None Include="data\libretro_cores\gw_libretro.info" />
+    <None Include="data\libretro_cores\handy_libretro.info" />
+    <None Include="data\libretro_cores\hatari_libretro.info" />
+    <None Include="data\libretro_cores\higan_sfc_balanced_libretro.info" />
+    <None Include="data\libretro_cores\higan_sfc_libretro.info" />
+    <None Include="data\libretro_cores\imageviewer_libretro.info" />
+    <None Include="data\libretro_cores\lutro_libretro.info" />
+    <None Include="data\libretro_cores\mame2000_libretro.info" />
+    <None Include="data\libretro_cores\mame2003_libretro.info" />
+    <None Include="data\libretro_cores\mame2003_midway_libretro.info" />
+    <None Include="data\libretro_cores\mame2009_libretro.info" />
+    <None Include="data\libretro_cores\mame2010_libretro.info" />
+    <None Include="data\libretro_cores\mame2014_libretro.info" />
+    <None Include="data\libretro_cores\mame2016_libretro.info" />
+    <None Include="data\libretro_cores\mame_libretro.info" />
+    <None Include="data\libretro_cores\mednafen_gba_libretro.info" />
+    <None Include="data\libretro_cores\mednafen_lynx_libretro.info" />
+    <None Include="data\libretro_cores\mednafen_ngp_libretro.info" />
+    <None Include="data\libretro_cores\mednafen_pce_fast_libretro.info" />
+    <None Include="data\libretro_cores\mednafen_pcfx_libretro.info" />
+    <None Include="data\libretro_cores\mednafen_psx_hw_libretro.info" />
+    <None Include="data\libretro_cores\mednafen_psx_libretro.info" />
+    <None Include="data\libretro_cores\mednafen_saturn_libretro.info" />
+    <None Include="data\libretro_cores\mednafen_snes_libretro.info" />
+    <None Include="data\libretro_cores\mednafen_supergrafx_libretro.info" />
+    <None Include="data\libretro_cores\mednafen_vb_libretro.info" />
+    <None Include="data\libretro_cores\mednafen_wswan_libretro.info" />
+    <None Include="data\libretro_cores\melonds_libretro.info" />
+    <None Include="data\libretro_cores\mess2014_libretro.info" />
+    <None Include="data\libretro_cores\meteor_libretro.info" />
+    <None Include="data\libretro_cores\mgba_libretro.info" />
+    <None Include="data\libretro_cores\mrboom_libretro.info" />
+    <None Include="data\libretro_cores\mupen64plus_gles3_libretro.info" />
+    <None Include="data\libretro_cores\mupen64plus_libretro.info" />
+    <None Include="data\libretro_cores\nekop2_libretro.info" />
+    <None Include="data\libretro_cores\nestopia_libretro.info" />
+    <None Include="data\libretro_cores\np2kai_libretro.info" />
+    <None Include="data\libretro_cores\nxengine_libretro.info" />
+    <None Include="data\libretro_cores\o2em_libretro.info" />
+    <None Include="data\libretro_cores\openlara_libretro.info" />
+    <None Include="data\libretro_cores\opentyrian_libretro.info" />
+    <None Include="data\libretro_cores\parallel_n64_debug_libretro.info" />
+    <None Include="data\libretro_cores\parallel_n64_libretro.info" />
+    <None Include="data\libretro_cores\pascal_pong_libretro.info" />
+    <None Include="data\libretro_cores\pcem_libretro.info" />
+    <None Include="data\libretro_cores\pcsx1_libretro.info" />
+    <None Include="data\libretro_cores\pcsx_rearmed_interpreter_libretro.info" />
+    <None Include="data\libretro_cores\pcsx_rearmed_libretro.info" />
+    <None Include="data\libretro_cores\pcsx_rearmed_libretro_neon.info" />
+    <None Include="data\libretro_cores\pcsx_rearmed_neon_libretro.info" />
+    <None Include="data\libretro_cores\picodrive_libretro.info" />
+    <None Include="data\libretro_cores\pocketcdg_libretro.info" />
+    <None Include="data\libretro_cores\pokemini_libretro.info" />
+    <None Include="data\libretro_cores\ppsspp_libretro.info" />
+    <None Include="data\libretro_cores\prboom_libretro.info" />
+    <None Include="data\libretro_cores\prosystem_libretro.info" />
+    <None Include="data\libretro_cores\puae_libretro.info" />
+    <None Include="data\libretro_cores\px68k_libretro.info" />
+    <None Include="data\libretro_cores\quicknes_libretro.info" />
+    <None Include="data\libretro_cores\redream_libretro.info" />
+    <None Include="data\libretro_cores\reicast_libretro.info" />
+    <None Include="data\libretro_cores\reicast_naomi_libretro.info" />
+    <None Include="data\libretro_cores\remotejoy_libretro.info" />
+    <None Include="data\libretro_cores\rustation_libretro.info" />
+    <None Include="data\libretro_cores\sameboy_libretro.info" />
+    <None Include="data\libretro_cores\scummvm_libretro.info" />
+    <None Include="data\libretro_cores\snes9x2002_libretro.info" />
+    <None Include="data\libretro_cores\snes9x2005_libretro.info" />
+    <None Include="data\libretro_cores\snes9x2005_plus_libretro.info" />
+    <None Include="data\libretro_cores\snes9x2010_libretro.info" />
+    <None Include="data\libretro_cores\snes9x_libretro.info" />
+    <None Include="data\libretro_cores\stella_libretro.info" />
+    <None Include="data\libretro_cores\stonesoup_libretro.info" />
+    <None Include="data\libretro_cores\tempgba_libretro.info" />
+    <None Include="data\libretro_cores\testaudio_callback_libretro.info" />
+    <None Include="data\libretro_cores\testaudio_no_callback_libretro.info" />
+    <None Include="data\libretro_cores\testaudio_playback_wav_libretro.info" />
+    <None Include="data\libretro_cores\testgl_compute_shaders_libretro.info" />
+    <None Include="data\libretro_cores\testgl_ff_libretro.info" />
+    <None Include="data\libretro_cores\testgl_libretro.info" />
+    <None Include="data\libretro_cores\testinput_buttontest_libretro.info" />
+    <None Include="data\libretro_cores\testretroluxury_libretro.info" />
+    <None Include="data\libretro_cores\testsw_libretro.info" />
+    <None Include="data\libretro_cores\testsw_vram_libretro.info" />
+    <None Include="data\libretro_cores\testvulkan_async_compute_libretro.info" />
+    <None Include="data\libretro_cores\testvulkan_libretro.info" />
+    <None Include="data\libretro_cores\test_libretro.info" />
+    <None Include="data\libretro_cores\test_netplay_libretro.info" />
+    <None Include="data\libretro_cores\tgbdual_libretro.info" />
+    <None Include="data\libretro_cores\tyrquake_libretro.info" />
+    <None Include="data\libretro_cores\uae4arm_libretro.info" />
+    <None Include="data\libretro_cores\ume2014_libretro.info" />
+    <None Include="data\libretro_cores\uzem_libretro.info" />
+    <None Include="data\libretro_cores\vbam_libretro.info" />
+    <None Include="data\libretro_cores\vba_next_libretro.info" />
+    <None Include="data\libretro_cores\vecx_libretro.info" />
+    <None Include="data\libretro_cores\vice_x128_libretro.info" />
+    <None Include="data\libretro_cores\vice_x64_libretro.info" />
+    <None Include="data\libretro_cores\vice_xplus4_libretro.info" />
+    <None Include="data\libretro_cores\vice_xvic_libretro.info" />
+    <None Include="data\libretro_cores\virtualjaguar_libretro.info" />
+    <None Include="data\libretro_cores\xrick_libretro.info" />
+    <None Include="data\libretro_cores\yabause_libretro.info" />
     <None Include="FodyWeavers.xml" />
     <None Include="data\blankBoot.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1772,108 +1610,6 @@
     <None Include="patches\974523ff-Terranigma %28Europe, France, Germany, Spain%29.ips">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="data\desktop_entries\CLV-P-HAAAJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HAACJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HAADJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HAAEJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HAAHJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HAAMJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HAANJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HAAPJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HAAQJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HAARJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HAASJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HAAUJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HAAWJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HAAXJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HABBJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HABCJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HABLJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HABMJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HABNJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HABQJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HABRJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HABVJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HACAJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HACBJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HACCJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HACEJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HACHJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HACJJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HACLJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-HACPJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAAAE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAACE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAADE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAAEE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAAFE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAAHE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAANE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAAPE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAAQE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAARE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAASE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAATE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAAUE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAAVE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAAWE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAAXE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NAAZE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NABBE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NABCE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NABJE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NABKE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NABME.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NABNE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NABQE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NABRE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NABVE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NABXE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NACBE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NACDE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-NACHE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SAAAE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SAABE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SAAEE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SAAFE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SAAHE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SAAJE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SAAKE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SAALE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SAAQE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SAAXE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SABCE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SABDE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SABHE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SABQE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SABRE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SABTE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SACBE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SACCE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SADGE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SADJE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-SADKE.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VAAAJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VAABJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VAAEJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VAAFJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VAAGJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VAAHJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VAALJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VAAQJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VABBJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VABCJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VABDJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VABQJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VABRJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VABTJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VACCJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VACDJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VADFJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VADGJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VADJJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VADKJ.desktop" />
-    <None Include="data\desktop_entries\CLV-P-VADZJ.desktop" />
     <None Include="app.config" />
     <None Include="data\desktop_entries.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

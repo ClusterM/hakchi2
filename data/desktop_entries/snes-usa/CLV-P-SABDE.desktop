@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SABDE/CLV-P-SABDE.sfrom --volume 37 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-SABDE
+Name=Super Ghouls'n Ghosts
+Icon=/var/squashfs/usr/share/games/CLV-P-SABDE/CLV-P-SABDE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SABDE
+TestID=10
+Status=Finished-0016
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1991-11-28
+SaveCount=0
+SortRawTitle=super ghouls 'n ghosts
+SortRawPublisher=CAPCOM
+Copyright=Super Ghouls'n Ghosts™ ©CAPCOM CO., LTD. 1991, 2017 ALL RIGHTS RESERVED.
+MyPlayDemoTime=45

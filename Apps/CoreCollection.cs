@@ -1,4 +1,6 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
+using SharpCompress.Archives;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +10,6 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using Newtonsoft.Json;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -126,53 +127,62 @@ namespace com.clusterrr.hakchi_gui
             Trace.WriteLine("Loading libretro core info files");
             var whiteList = File.Exists(WhiteListFilename) ? File.ReadAllLines(WhiteListFilename) : Resources.retroarch_whitelist.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             var regex = new Regex("(^[^\\s]+)\\s+=\\s+\"?([^\"\\r\\n]*)\"?", RegexOptions.Multiline | RegexOptions.Compiled);
-            var infoFiles = Directory.GetFiles(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "libretro_cores"), "*.info");
-            foreach (var file in infoFiles)
+
+            using (var extractor = ArchiveFactory.Open(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "libretro_cores.7z")))
             {
-                Match m = Regex.Match(Path.GetFileNameWithoutExtension(file), "^(.*)_libretro");
-                if (m.Success && !string.IsNullOrEmpty(m.Groups[1].ToString()))
+                var reader = extractor.ExtractAllEntries();
+                //var infoFiles = Directory.GetFiles(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "libretro_cores"), "*.info");
+                //foreach (var file in infoFiles)
+                while (reader.MoveToNextEntry())
                 {
-                    var bin = m.Groups[1].ToString();
-                    if (!whiteList.Contains(bin))
-                        continue;
+                    string file = reader.Entry.Key;
 
-                    var f = File.ReadAllText(file);
-                    var matches = regex.Matches(f);
-                    if (matches.Count <= 0)
-                        continue;
-
-                    var core = new CoreInfo(bin);
-                    string system = null;
-                    foreach (Match mm in matches)
+                    Match m = Regex.Match(Path.GetFileNameWithoutExtension(file), "^(.*)_libretro");
+                    if (m.Success && !string.IsNullOrEmpty(m.Groups[1].ToString()))
                     {
-                        if (mm.Success)
+                        var bin = m.Groups[1].ToString();
+                        if (!whiteList.Contains(bin))
+                            continue;
+
+                        var f = new StreamReader(reader.OpenEntryStream()).ReadToEnd();
+                        //var f = File.ReadAllText(file);
+                        var matches = regex.Matches(f);
+                        if (matches.Count <= 0)
+                            continue;
+
+                        var core = new CoreInfo(bin);
+                        string system = null;
+                        foreach (Match mm in matches)
                         {
-                            switch (mm.Groups[1].ToString().ToLower())
+                            if (mm.Success)
                             {
-                                case "corename":
-                                    core.Name = mm.Groups[2].ToString();
-                                    break;
-                                case "display_name":
-                                    core.DisplayName = mm.Groups[2].ToString();
-                                    break;
-                                case "systemname":
-                                    system = mm.Groups[2].ToString();
-                                    break;
-                                case "supported_extensions":
-                                    core.SupportedExtensions = mm.Groups[2].ToString().Split('|');
-                                    for (var i = 0; i < core.SupportedExtensions.Length; ++i)
-                                        core.SupportedExtensions[i] = "." + core.SupportedExtensions[i];
-                                    break;
-                                case "database":
-                                    core.Systems = mm.Groups[2].ToString().Split('|');
-                                    break;
+                                switch (mm.Groups[1].ToString().ToLower())
+                                {
+                                    case "corename":
+                                        core.Name = mm.Groups[2].ToString();
+                                        break;
+                                    case "display_name":
+                                        core.DisplayName = mm.Groups[2].ToString();
+                                        break;
+                                    case "systemname":
+                                        system = mm.Groups[2].ToString();
+                                        break;
+                                    case "supported_extensions":
+                                        core.SupportedExtensions = mm.Groups[2].ToString().Split('|');
+                                        for (var i = 0; i < core.SupportedExtensions.Length; ++i)
+                                            core.SupportedExtensions[i] = "." + core.SupportedExtensions[i];
+                                        break;
+                                    case "database":
+                                        core.Systems = mm.Groups[2].ToString().Split('|');
+                                        break;
+                                }
                             }
                         }
+                        if (core.Systems == null && system != null)
+                            core.Systems = new string[] { system };
+                        core.Kind = CoreKind.Libretro;
+                        cores[bin] = core;
                     }
-                    if (core.Systems == null && system != null)
-                        core.Systems = new string[] { system };
-                    core.Kind = CoreKind.Libretro;
-                    cores[bin] = core;
                 }
             }
             new Thread(CoreCollection.UpdateWhitelist).Start();

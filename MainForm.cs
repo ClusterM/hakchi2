@@ -2382,9 +2382,9 @@ namespace com.clusterrr.hakchi_gui
                     }
 
                     var gameNames = new Dictionary<string, string>();
-                    foreach (NesDefaultGame game in NesApplication.AllDefaultGames)
+                    foreach (var game in NesApplication.AllDefaultGames)
                     {
-                        gameNames[game.Code] = game.Name;
+                        gameNames[game.Key] = game.Value.Name;
                     }
                     foreach (ListViewItem item in listViewGames.Items)
                     {

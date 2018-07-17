@@ -1,5 +1,7 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using SharpCompress.Archives;
+using SharpCompress.Common;
+using SharpCompress.Readers;
 using pdj.tiny7z.Archive;
 using Newtonsoft.Json;
 using System;
@@ -24,56 +26,36 @@ namespace com.clusterrr.hakchi_gui
         public static bool? NeedAutoDownloadCover;
         public static string[] CachedCoverFiles;
 
-        public static readonly Dictionary<hakchi.ConsoleType, string[]> DefaultGames;
+        public static readonly Dictionary<hakchi.ConsoleType, List<string>> DefaultGames;
+        public static readonly Dictionary<string, DesktopFile> AllDefaultGames;
         static NesApplication()
         {
-            DefaultGames = new Dictionary<hakchi.ConsoleType, string[]>()
-            {
-                {
-                    hakchi.ConsoleType.NES,
-                    new string[] { "CLV-P-NAAAE", "CLV-P-NAACE", "CLV-P-NAADE", "CLV-P-NAAEE", "CLV-P-NAAFE", "CLV-P-NAAHE", "CLV-P-NAANE", "CLV-P-NAAPE", "CLV-P-NAAQE", "CLV-P-NAARE", "CLV-P-NAASE", "CLV-P-NAATE", "CLV-P-NAAUE", "CLV-P-NAAVE", "CLV-P-NAAWE", "CLV-P-NAAXE", "CLV-P-NAAZE", "CLV-P-NABBE", "CLV-P-NABCE", "CLV-P-NABJE", "CLV-P-NABKE", "CLV-P-NABME", "CLV-P-NABNE", "CLV-P-NABQE", "CLV-P-NABRE", "CLV-P-NABVE", "CLV-P-NABXE", "CLV-P-NACBE", "CLV-P-NACDE", "CLV-P-NACHE", }
-                },
-                {
-                    hakchi.ConsoleType.Famicom,
-                    new string[] { "CLV-P-HAAAJ", "CLV-P-HAACJ", "CLV-P-HAADJ", "CLV-P-HAAEJ", "CLV-P-HAAHJ", "CLV-P-HAAMJ", "CLV-P-HAANJ", "CLV-P-HAAPJ", "CLV-P-HAAQJ", "CLV-P-HAARJ", "CLV-P-HAASJ", "CLV-P-HAAUJ", "CLV-P-HAAWJ", "CLV-P-HAAXJ", "CLV-P-HABBJ", "CLV-P-HABCJ", "CLV-P-HABLJ", "CLV-P-HABMJ", "CLV-P-HABNJ", "CLV-P-HABQJ", "CLV-P-HABRJ", "CLV-P-HABVJ", "CLV-P-HACAJ", "CLV-P-HACBJ", "CLV-P-HACCJ", "CLV-P-HACEJ", "CLV-P-HACHJ", "CLV-P-HACJJ", "CLV-P-HACLJ", "CLV-P-HACPJ", }
-                },
-                {
-                    hakchi.ConsoleType.SNES_EUR,
-                    new string[] { "CLV-P-SAAAE", "CLV-P-SAABE", "CLV-P-SAAEE", "CLV-P-SAAFE", "CLV-P-SAAHE", "CLV-P-SAAJE", "CLV-P-SAAKE", "CLV-P-SAALE", "CLV-P-SAAQE", "CLV-P-SAAXE", "CLV-P-SABCE", "CLV-P-SABDE", "CLV-P-SABHE", "CLV-P-SABQE", "CLV-P-SABRE", "CLV-P-SABTE", "CLV-P-SACBE", "CLV-P-SACCE", "CLV-P-SADGE", "CLV-P-SADJE", "CLV-P-SADKE", }
-                },
-                {
-                    hakchi.ConsoleType.SNES_USA,
-                    new string[] { "CLV-P-SAAAE", "CLV-P-SAABE", "CLV-P-SAAEE", "CLV-P-SAAFE", "CLV-P-SAAHE", "CLV-P-SAAJE", "CLV-P-SAAKE", "CLV-P-SAALE", "CLV-P-SAAQE", "CLV-P-SAAXE", "CLV-P-SABCE", "CLV-P-SABDE", "CLV-P-SABHE", "CLV-P-SABQE", "CLV-P-SABRE", "CLV-P-SABTE", "CLV-P-SACBE", "CLV-P-SACCE", "CLV-P-SADGE", "CLV-P-SADJE", "CLV-P-SADKE", }
-                },
-                {
-                    hakchi.ConsoleType.SuperFamicom,
-                    new string[] { "CLV-P-VAAAJ", "CLV-P-VAABJ", "CLV-P-VAAEJ", "CLV-P-VAAFJ", "CLV-P-VAAGJ", "CLV-P-VAAHJ", "CLV-P-VAALJ", "CLV-P-VAAQJ", "CLV-P-VABBJ", "CLV-P-VABCJ", "CLV-P-VABDJ", "CLV-P-VABQJ", "CLV-P-VABRJ", "CLV-P-VABTJ", "CLV-P-VACCJ", "CLV-P-VACDJ", "CLV-P-VADFJ", "CLV-P-VADGJ", "CLV-P-VADJJ", "CLV-P-VADKJ", "CLV-P-VADZJ", }
-                },
-                {
-                    hakchi.ConsoleType.ShonenJump,
-                    new string[] { "CLV-P-HBAAJ", "CLV-P-HBABJ", "CLV-P-HBACJ", "CLV-P-HBAEJ", "CLV-P-HBAFJ", "CLV-P-HBAKJ", "CLV-P-HBALJ", "CLV-P-HBAMJ", "CLV-P-HBANJ", "CLV-P-HBAPJ", "CLV-P-HBARJ", "CLV-P-HBASJ", "CLV-P-HBAUJ", "CLV-P-HBAVJ", "CLV-P-HBAXJ", "CLV-P-HBAZJ", "CLV-P-HBBBJ", "CLV-P-HBBCJ", "CLV-P-HBBEJ", "CLV-P-HBBFJ", }
-                },
-            };
+            Trace.WriteLine("Loading original games data");
+
+            DefaultGames = new Dictionary<hakchi.ConsoleType, List<string>>();
+            AllDefaultGames = new Dictionary<string, DesktopFile>();
+            foreach (var c in Enum.GetValues(typeof(hakchi.ConsoleType)).Cast<hakchi.ConsoleType>())
+                if (c != hakchi.ConsoleType.Unknown)
+                    DefaultGames.Add(c, new List<string>());
 
             try
             {
                 string desktopEntriesArchiveFile = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "desktop_entries.7z");
                 using (var extractor = ArchiveFactory.Open(desktopEntriesArchiveFile))
                 {
-                    AllDefaultGames = new NesDefaultGame[extractor.Entries.Count()];
                     var reader = extractor.ExtractAllEntries();
-                    var i = 0;
                     while (reader.MoveToNextEntry())
                     {
+                        if (reader.Entry.IsDirectory)
+                            continue;
+
+                        hakchi.ConsoleType c = hakchi.SystemCodeToConsoleType[reader.Entry.Key.Substring(0, reader.Entry.Key.IndexOf('/'))];
+                        DefaultGames[c].Add(Path.GetFileNameWithoutExtension(reader.Entry.Key));
                         using (var str = reader.OpenEntryStream())
                         {
                             var desktopFile = new DesktopFile();
                             desktopFile.Load(str);
-                            AllDefaultGames[i++] = new NesDefaultGame()
-                            {
-                                Code = desktopFile.Code,
-                                Name = desktopFile.Name
-                            };
+                            AllDefaultGames[desktopFile.Code] = desktopFile;
                         }
                     }
                 }
@@ -81,16 +63,12 @@ namespace com.clusterrr.hakchi_gui
             catch (Exception ex)
             {
                 Trace.WriteLine("Error loading original games from desktop_entries.7z data file." + ex.Message + ex.StackTrace);
-                AllDefaultGames = DefaultGames.SelectMany(p => p.Value).Distinct().Select(g => new NesDefaultGame() { Code = g, Name = g }).ToArray();
+                Tasks.ErrorForm.Show(ex);
             }
         }
-        public static string[] CurrentDefaultGames
+        public static IList<string> CurrentDefaultGames
         {
             get => DefaultGames[ConfigIni.Instance.ConsoleType];
-        }
-        public static NesDefaultGame[] AllDefaultGames
-        {
-            get;
         }
 
         public static readonly string OriginalGamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games_originals");
@@ -257,17 +235,14 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private bool isOriginalGame;
         public bool IsOriginalGame
         {
-            get { return isOriginalGame; }
+            get; private set;
         }
 
-        private bool isDeleting;
         public bool IsDeleting
         {
-            get { return isDeleting; }
-            set { isDeleting = value; }
+            get; set;
         }
 
         public IEnumerable<string> CoverArtMatches
@@ -542,8 +517,8 @@ namespace com.clusterrr.hakchi_gui
         protected NesApplication() : base()
         {
             Metadata = new AppMetadata();
-            isOriginalGame = false;
-            isDeleting = false;
+            IsOriginalGame = false;
+            IsDeleting = false;
             CoverArtMatches = new string[0];
             CoverArtMatchSuccess = false;
         }
@@ -553,13 +528,13 @@ namespace com.clusterrr.hakchi_gui
         {
             Metadata = metadata ?? new AppMetadata();
 
-            isOriginalGame = false;
-            isDeleting = false;
+            IsOriginalGame = false;
+            IsDeleting = false;
             foreach (var og in CurrentDefaultGames)
             {
                 if( og == desktop.Code )
                 {
-                    isOriginalGame = true;
+                    IsOriginalGame = true;
                     break;
                 }
             }

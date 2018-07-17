@@ -323,7 +323,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             try
             {
-                var defaultGames = ResetAllOriginalGames ? NesApplication.AllDefaultGames.Select(g => g.Code).ToArray() : NesApplication.CurrentDefaultGames;
+                var defaultGames = ResetAllOriginalGames ? NesApplication.AllDefaultGames.Select(g => g.Key) : NesApplication.CurrentDefaultGames;
 
                 using (var extractor = ArchiveFactory.Open(desktopEntriesArchiveFile))
                 {
@@ -331,15 +331,16 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     int i = 0;
                     while (reader.MoveToNextEntry())
                     {
-                        var f = reader.Entry.Key;
+                        if (reader.Entry.IsDirectory)
+                            continue;
 
-                        var code = Path.GetFileNameWithoutExtension(f);
+                        var code = Path.GetFileNameWithoutExtension(reader.Entry.Key);
                         if (!defaultGames.Contains(code))
                             continue;
 
-                        var ext = Path.GetExtension(f).ToLower();
+                        var ext = Path.GetExtension(reader.Entry.Key).ToLower();
                         if (ext != ".desktop") // sanity check
-                            throw new FileLoadException($"invalid file \"{f}\" found in desktop_entries.7z data file.");
+                            throw new FileLoadException($"invalid file \"{reader.Entry.Key}\" found in desktop_entries.7z data file.");
 
                         string path = Path.Combine(originalGamesPath, code);
                         string outputFile = Path.Combine(path, code + ".desktop");
@@ -373,7 +374,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             game.Save();
                         }
 
-                        tasker.SetProgress(++i, defaultGames.Length);
+                        tasker.SetProgress(++i, defaultGames.Count());
                     }
                 }
             }

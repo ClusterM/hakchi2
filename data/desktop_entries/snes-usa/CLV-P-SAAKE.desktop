@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SAAKE/CLV-P-SAAKE.sfrom --volume 85 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-SAAKE
+Name=Kirby's Dream Course
+Icon=/var/squashfs/usr/share/games/CLV-P-SAAKE/CLV-P-SAAKE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SAAKE
+TestID=20
+Status=Completing-TBD
+ID=0
+Players=2
+Simultaneous=1
+ReleaseDate=1995-02-01
+SaveCount=1
+SortRawTitle=kirby's dream course
+SortRawPublisher=NINTENDO
+Copyright=Kirby's Dream Course™ ©1994-1995 HAL Laboratory, Inc. / Nintendo
+MyPlayDemoTime=45

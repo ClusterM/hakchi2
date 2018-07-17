@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SAAAE/CLV-P-SAAAE.sfrom --volume 100 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-SAAAE
+Name=Super Mario World
+Icon=/var/squashfs/usr/share/games/CLV-P-SAAAE/CLV-P-SAAAE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SAAAE
+TestID=0
+Status=Completing-3
+ID=0
+Players=2
+Simultaneous=0
+ReleaseDate=1991-08-18
+SaveCount=3
+SortRawTitle=super mario world
+SortRawPublisher=NINTENDO
+Copyright=Super Mario World™ ©1990-1991 Nintendo
+MyPlayDemoTime=45

@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SAAEE/CLV-P-SAAEE.sfrom --volume 85 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-SAAEE
+Name=The Legend of Zelda: A Link to the Past
+Icon=/var/squashfs/usr/share/games/CLV-P-SAAEE/CLV-P-SAAEE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SAAEE
+TestID=2
+Status=Completing-3
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1992-04-13
+SaveCount=3
+SortRawTitle=the legend of zelda: a link to the past
+SortRawPublisher=NINTENDO
+Copyright=The Legend of Zelda™: A Link to the Past™ ©1991-1992 Nintendo
+MyPlayDemoTime=45

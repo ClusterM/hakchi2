@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/clover-canoe-shvc-wr -rom /var/squashfs/usr/share/games/CLV-P-SADKE/CLV-P-SADKE.sfrom --volume 65 -rollback-snapshot-period 600
+Path=/var/lib/clover/profiles/0//CLV-P-SADKE
+Name=Star Fox 2
+Icon=/var/squashfs/usr/share/games/CLV-P-SADKE/CLV-P-SADKE.png
+
+[X-CLOVER Game]
+Code=CLV-P-SADKE
+TestID=19
+Status=Completing-6
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=2017-01-01
+SaveCount=1
+SortRawTitle=star fox 2
+SortRawPublisher=NINTENDO
+Copyright=Star Fox™ 2 ©2017 Nintendo
+MyPlayDemoTime=45
