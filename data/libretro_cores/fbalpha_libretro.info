@@ -1,4 +1,4 @@
-display_name = "Arcade (FB Alpha 2016)"
+display_name = "Arcade (FB Alpha)"
 authors = "Team FB Alpha"
 supported_extensions = "iso|zip|7z"
 corename = "FB Alpha"

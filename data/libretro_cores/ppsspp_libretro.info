@@ -1,4 +1,4 @@
-display_name = "PSP (PPSSPP)"
+display_name = "Sony - PlayStation Portable (PPSSPP)"
 authors = "Henrik Hrydgard"
 supported_extensions = "elf|iso|cso|prx|pbp"
 corename = "PPSSPP"
@@ -14,4 +14,4 @@ firmware_count = 1
 firmware0_desc = "ppge_atlas.zim (PPSSPP Data ROM)"
 firmware0_path = "PPSSPP/ppge_atlas.zim"
 firmware0_opt = "false"
-notes = "(!) ppge_atlas.zim (md5): a93fc411c1ce7d001a2a812643c70085|(!) PPSSPP requires the asset files, lang folder, and flash0 folder inside the 'system\PPSSPP' directory."
+notes = "(!) ppge_atlas.zim (md5): a93fc411c1ce7d001a2a812643c70085|(!) PPSSPP requires the asset files, lang folder, and flash0 folder inside the 'system\PPSSPP' directory.|(!) Check https://docs.libretro.com/library/ppsspp/#bios to find out how to get the assets files."

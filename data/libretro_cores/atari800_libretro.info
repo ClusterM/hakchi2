@@ -1,4 +1,4 @@
-display_name = "Atari 8-bit computer systems and 5200 (Atari800)"
+display_name = "Atari - 5200 (Atari800)"
 authors = "Petr Stehlik"
 supported_extensions = "xfd|atr|atx|cdm|cas|bin|a52|xex|zip"
 corename = "Atari800"

@@ -1,6 +1,6 @@
-display_name = "WonderSwan/Color (Beetle Cygne)"
+display_name = "Bandai - WonderSwan/Color (Beetle Cygne)"
 authors = "Dox|Mednafen Team"
-supported_extensions = "ws|wsc"
+supported_extensions = "ws|wsc|pc2"
 corename = "Beetle WonderSwan"
 manufacturer = "Bandai"
 categories = "Emulator"

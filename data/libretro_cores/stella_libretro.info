@@ -1,4 +1,4 @@
-display_name = "Atari 2600 (Stella)"
+display_name = "Atari - 2600 (Stella)"
 authors = "Stephen Anthony|Bradford Mott|Eckhard Stolberg|Brian Watson"
 supported_extensions = "a26|bin"
 corename = "Stella"

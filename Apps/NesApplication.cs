@@ -1147,7 +1147,7 @@ namespace com.clusterrr.hakchi_gui
         }
 
         // --- patch desktop file
-        private ApplicationFileInfo GetDesktopApplicationFileInfo(string relativeTargetPath, string mediaGamePath, string iconPath, string profilePath)
+        private ApplicationFileInfo GetAdjustedDesktopFileAFI(string relativeTargetPath, string mediaGamePath, string iconPath, string profilePath)
         {
             var newdesktop = GetAdjustedDesktopFile(mediaGamePath, iconPath, profilePath);
             var f = new FileInfo(Path.Combine(basePath, newdesktop.Code + ".desktop"));
@@ -1162,17 +1162,31 @@ namespace com.clusterrr.hakchi_gui
         {
             string targetDir = $"{relativeTargetPath}/{desktop.Code}";
 
+            HashSet<ApplicationFileInfo> gameSet = ApplicationFileInfo.GetApplicationFileInfoForDirectory(
+                basePath, targetDir, true, new string[] { desktop.Code + ".desktop" });
+
             string mediaGamePath = hakchi.GamesPath;
             string iconPath = hakchi.GamesPath;
             if (IsOriginalGame)
             {
-                mediaGamePath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
-                if (!File.Exists(this.iconPath))
-                    iconPath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
+                if (ConfigIni.Instance.AlwaysCopyOriginalGames)
+                {
+                    string originalBasePath = Path.Combine(OriginalGamesCacheDirectory, desktop.Code);
+                    if (Directory.Exists(originalBasePath))
+                    {
+                        HashSet<ApplicationFileInfo> supplementalGameSet = ApplicationFileInfo.GetApplicationFileInfoForDirectory(
+                            originalBasePath, targetDir, true, new string[] { desktop.Code + ".desktop" });
+                        gameSet = gameSet.CopyFilesTo(supplementalGameSet, false);
+                    }
+                }
+                else
+                {
+                    mediaGamePath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
+                    if (!File.Exists(this.iconPath))
+                        iconPath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
+                }
             }
-            HashSet<ApplicationFileInfo> gameSet = ApplicationFileInfo.GetApplicationFileInfoForDirectory(
-                basePath, targetDir, true, new string[] { desktop.Code + ".desktop" });
-            gameSet.Add(GetDesktopApplicationFileInfo(
+            gameSet.Add(GetAdjustedDesktopFileAFI(
                 relativeTargetPath, mediaGamePath, iconPath, hakchi.GamesProfilePath));
             return gameSet;
         }
@@ -1183,17 +1197,31 @@ namespace com.clusterrr.hakchi_gui
             string targetDir = $"{relativeTargetPath}/{desktop.Code}";
             string targetStorageDir = $".storage/{desktop.Code}";
 
+            HashSet<ApplicationFileInfo> gameSet = ApplicationFileInfo.GetApplicationFileInfoForDirectory(
+                basePath, targetStorageDir, true, new string[] { desktop.Code + ".desktop" });
+
             string mediaGamePath = hakchi.GetRemoteGameSyncPath(ConfigIni.Instance.ConsoleType) + "/.storage";
             string iconPath = mediaGamePath;
             if (IsOriginalGame)
             {
-                mediaGamePath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
-                if (!File.Exists(this.iconPath))
-                    iconPath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
+                if (ConfigIni.Instance.AlwaysCopyOriginalGames)
+                {
+                    string originalBasePath = Path.Combine(OriginalGamesCacheDirectory, desktop.Code);
+                    if (Directory.Exists(originalBasePath))
+                    {
+                        HashSet<ApplicationFileInfo> supplementalGameSet = ApplicationFileInfo.GetApplicationFileInfoForDirectory(
+                            originalBasePath, targetStorageDir, true, new string[] { desktop.Code + ".desktop" });
+                        gameSet = gameSet.CopyFilesTo(supplementalGameSet, false);
+                    }
+                }
+                else
+                {
+                    mediaGamePath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
+                    if (!File.Exists(this.iconPath))
+                        iconPath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
+                }
             }
-            HashSet<ApplicationFileInfo> gameSet = ApplicationFileInfo.GetApplicationFileInfoForDirectory(
-                basePath, targetStorageDir, true, new string[] { desktop.Code + ".desktop" });
-            gameSet.Add(GetDesktopApplicationFileInfo(
+            gameSet.Add(GetAdjustedDesktopFileAFI(
                 relativeTargetPath, mediaGamePath, iconPath, hakchi.GamesProfilePath));
             return gameSet;
         }
@@ -1234,7 +1262,7 @@ namespace com.clusterrr.hakchi_gui
                     iconPath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
             }
 
-            gameSet.Add(GetDesktopApplicationFileInfo(
+            gameSet.Add(GetAdjustedDesktopFileAFI(
                 relativeTargetPath, mediaGamePath, iconPath, hakchi.GamesProfilePath));
             return gameSet;
         }
@@ -1308,8 +1336,8 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // add adjusted desktop file
-            gameSet.Add(
-                GetDesktopApplicationFileInfo(relativeTargetPath, mediaGamePath, iconPath, hakchi.GamesProfilePath));
+            gameSet.Add(GetAdjustedDesktopFileAFI
+                (relativeTargetPath, mediaGamePath, iconPath, hakchi.GamesProfilePath));
 
             return gameSet;
         }

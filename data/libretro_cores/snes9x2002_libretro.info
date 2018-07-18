@@ -1,4 +1,4 @@
-display_name = "SNES / Super Famicom (Snes9x 2002)"
+display_name = "Nintendo - SNES / Famicom (Snes9x 2002)"
 authors = "Snes9x Team|PocketSNES Team|Toadking"
 supported_extensions = "smc|fig|sfc|gd3|gd7|dx2|bsx|swc"
 corename = "Snes9x 2002"

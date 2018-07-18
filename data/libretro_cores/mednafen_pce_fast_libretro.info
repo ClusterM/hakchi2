@@ -1,4 +1,4 @@
-display_name = "PC Engine/PCE-CD (Beetle PCE FAST)"
+display_name = "NEC - PC Engine / CD (Beetle PCE FAST)"
 authors = "Mednafen Team"
 supported_extensions = "pce|cue|ccd|iso|img|bin|chd"
 corename = "Beetle PCE Fast"

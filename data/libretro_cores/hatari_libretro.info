@@ -1,4 +1,4 @@
-display_name = "Atari ST/STE/TT/Falcon (Hatari)"
+display_name = "Atari - ST/STE/TT/Falcon (Hatari)"
 authors = "Nicolas Pomarède"
 supported_extensions = "st|msa|zip|stx|dim|ipf"
 corename = "Hatari"

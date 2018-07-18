@@ -267,7 +267,7 @@ namespace com.clusterrr.hakchi_gui
                 Prefix = 'U',
                 DefaultCover = Resources.blank_snes_us,
                 GoogleSuffix = "(snes | super nintendo)"
-            },
+            }
         };
 
         private static char[] Prefixes = null;

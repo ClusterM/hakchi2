@@ -1,4 +1,4 @@
-display_name = "Neo Geo Pocket/Color (Beetle NeoPop)"
+display_name = "SNK - Neo Geo Pocket / Color (Beetle NeoPop)"
 authors = "neopop_uk|Mednafen Team"
 supported_extensions = "ngp|ngc|ngpc"
 corename = "Beetle NeoPop"

@@ -1,4 +1,4 @@
-display_name = "SNES / Super Famicom (bsnes-mercury Performance)"
+display_name = "Nintendo - SNES / Famicom (bsnes-mercury Performance)"
 authors = "byuu|Alcaro"
 supported_extensions = "sfc|smc|bml"
 corename = "bsnes-mercury Performance"

@@ -161,7 +161,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
             foreach (var defaultGame in NesApplication.CurrentDefaultGames)
             {
                 string gameDir = Path.Combine(NesApplication.OriginalGamesDirectory, defaultGame);
-                if (Directory.Exists(gameDir))
+                string cachedDir = Path.Combine(NesApplication.OriginalGamesCacheDirectory, defaultGame);
+                if (Directory.Exists(gameDir) && (!ConfigIni.Instance.AlwaysCopyOriginalGames || Directory.Exists(cachedDir)))
                     originalGameDirs.Add(gameDir);
             }
 

@@ -1,4 +1,4 @@
-display_name = "MSX (fMSX)"
+display_name = "Microsoft - MSX (fMSX)"
 authors = "Marat Fayzullin"
 supported_extensions = "rom|mx1|mx2|dsk|cas"
 corename = "fMSX"

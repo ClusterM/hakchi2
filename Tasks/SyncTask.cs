@@ -294,8 +294,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
             // clean up previous directories (separate game storage vs not)
             tasker.SetStatus(Resources.CleaningUp);
             hakchi.Shell.ExecuteSimple("find \"" + (ConfigIni.Instance.UploadToTmp ? remoteTempDirectory : hakchi.RemoteGameSyncPath) + "/\" -maxdepth 1 | tail -n +2 " +
-                "| grep -" + (ConfigIni.Instance.SeparateGameStorage ? "v" : "") + "Ee '(/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' " +
+                "| grep -" + (ConfigIni.Instance.SeparateGameStorage ? "v" : "") + "Ee '(/hvcj-jpn?|/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' " +
                 "| while read f; do rm -rf \"$f\"; done", 0, true);
+
+            // clean up symbolic links (they will be recreated if needed)
+            hakchi.Shell.ExecuteSimple($"find \"{uploadPath}\" -type l | while read f; do rm \"$f\"; done", 0, true);
 
             // get the remote list of files, timestamps, and sizes
             tasker.SetStatus(Resources.CalculatingDiff);
@@ -425,7 +428,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public Tasker.Conclusion SyncOriginalGames(Tasker tasker, Object syncObject = null)
         {
-            if (originalGames.Any())
+            if (originalGames.Any() && (!ConfigIni.Instance.AlwaysCopyOriginalGames || ConfigIni.Instance.SyncLinked))
             {
                 using (MemoryStream commandBuilder = new MemoryStream())
                 {
@@ -435,15 +438,24 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     commandBuilder.Write(Encoding.UTF8.GetBytes(data), 0, data.Length);
                     foreach (var originalCode in originalGames.Keys)
                     {
+                        string src = $"{hakchi.SquashFsPath}{hakchi.GamesSquashFsPath}/{originalCode}";
+                        string dst = $"{uploadPath}/{originalGames[originalCode]}/{originalCode}";
+                        if (ConfigIni.Instance.AlwaysCopyOriginalGames)
+                        {
+                            src = $"{uploadPath}/.storage/{originalCode}";
+                        }
+
                         string originalSyncCode = "";
                         switch (ConfigIni.Instance.ConsoleType)
                         {
                             case hakchi.ConsoleType.NES:
                             case hakchi.ConsoleType.Famicom:
                                 originalSyncCode =
-                                    $"src=\"{hakchi.SquashFsPath}{hakchi.GamesSquashFsPath}/{originalCode}\" && " +
-                                    $"dst=\"{uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
+                                    $"src=\"{src}\" && " +
+                                    $"dst=\"{dst}\" && " +
                                     $"mkdir -p \"$dst\" && " +
+                                    $"rm -rf \"$dst/autoplay\" &&" +
+                                    $"rm -rf \"$dst/pixelart\" &&" +
                                     $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\") && " +
                                     $"([ -L \"$dst/pixelart\" ] || ln -s \"$src/pixelart\" \"$dst/\")" +
                                     "\n";
@@ -452,9 +464,10 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             case hakchi.ConsoleType.SNES_USA:
                             case hakchi.ConsoleType.SuperFamicom:
                                 originalSyncCode =
-                                    $"src=\"{hakchi.SquashFsPath}{hakchi.GamesSquashFsPath}/{originalCode}\" && " +
-                                    $"dst=\"{uploadPath}/{originalGames[originalCode]}/{originalCode}\" && " +
+                                    $"src=\"{src}\" && " +
+                                    $"dst=\"{dst}\" && " +
                                     $"mkdir -p \"$dst\" && " +
+                                    $"rm -rf \"$dst/autoplay\" &&" +
                                     $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\")" +
                                     "\n";
                                 break;

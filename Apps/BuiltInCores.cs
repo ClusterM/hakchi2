@@ -47,7 +47,7 @@
                 SupportedExtensions = new string[] { ".msu" },
                 Systems = new string[] { "Nintendo - Super Nintendo Entertainment System (MSU-1)" },
                 Kind = CoreCollection.CoreKind.Libretro
-            },
+            }
         };
     }
 }

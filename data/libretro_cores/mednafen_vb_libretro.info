@@ -1,4 +1,4 @@
-display_name = "Virtual Boy (Beetle VB)"
+display_name = "Nintendo - Virtual Boy (Beetle VB)"
 authors = "Mednafen Team"
 supported_extensions = "vb|vboy|bin"
 corename = "Beetle VB"

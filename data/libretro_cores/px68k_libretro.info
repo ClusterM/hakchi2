@@ -1,6 +1,6 @@
-display_name = "Sharp X68000 (PX68k)"
+display_name = "Sharp - X68000 (PX68k)"
 authors = "hissorii"
-supported_extensions = "dim|zip|img|d88|88d|hdm|dup|2hd|xdf|hdf|cmd"
+supported_extensions = "dim|zip|img|d88|88d|hdm|dup|2hd|xdf|hdf|cmd|m3u"
 corename = "PX68k"
 manufacturer = "Sharp"
 categories = "Emulator"

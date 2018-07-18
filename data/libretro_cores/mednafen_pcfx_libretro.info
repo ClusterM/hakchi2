@@ -1,4 +1,4 @@
-display_name = "PC-FX (Beetle PC-FX)"
+display_name = "NEC - PC-FX (Beetle PC-FX)"
 authors = "Mednafen Team"
 supported_extensions = "cue|ccd|toc|chd"
 corename = "Beetle PC-FX"

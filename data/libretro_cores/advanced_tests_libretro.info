@@ -1,8 +1,0 @@
-display_name = "Advanced Test"
-authors = "Team Libretro"
-corename = "Advanced Test"
-categories = "Tech demo"
-license = "MIT"
-permissions = ""
-display_version = "v1"
-supports_no_game = "true"

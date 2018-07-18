@@ -2733,66 +2733,6 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2048
-        ///4do
-        ///atari800
-        ///bluemsx
-        ///bsnes_mercury_performance
-        ///cap32
-        ///dinothawr
-        ///dosbox
-        ///81
-        ///emux_chip8
-        ///fbalpha2012
-        ///fbalpha2012_cps1
-        ///fbalpha2012_cps2
-        ///fbalpha2012_cps3
-        ///fbalpha2012_neogeo
-        ///fb_alpha
-        ///fmsx
-        ///freeintv
-        ///fuse
-        ///gambatte
-        ///genesis_plus_gx
-        ///glupen64
-        ///gme
-        ///gpsp
-        ///gw
-        ///handy
-        ///imageviewer
-        ///lutro
-        ///mame2000
-        ///mame2003
-        ///mame2010
-        ///mame2014
-        ///mednafen_ngp
-        ///mednafen_pce_fast
-        ///mednafen_pcfx
-        ///mednafen_supergrafx
-        ///mednafen_vb
-        ///mednafen_wswan
-        ///mgba
-        ///mrboom
-        ///mupen64plus
-        ///np2kai
-        ///nekop2
-        ///nxengine
-        ///o2em
-        ///pcsx_rearmed_neon
-        ///picodrive
-        ///pocketcdg
-        ///pokemini
-        ///ppsspp
-        ///prboom
-        ///pr [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string retroarch_whitelist {
-            get {
-                return ResourceManager.GetString("retroarch_whitelist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ro {

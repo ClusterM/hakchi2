@@ -15,8 +15,6 @@ namespace com.clusterrr.hakchi_gui
 {
     public static class CoreCollection
     {
-        private const string WHITELIST_UPDATE_URL = "https://teamshinkansen.github.io/retroarch-whitelist.txt";
-        private static readonly string WhiteListFilename = Shared.PathCombine(Program.BaseDirectoryExternal, "config", "retroarch_whitelist.txt");
         private static readonly string CollectionFilename = Shared.PathCombine(Program.BaseDirectoryExternal, "config", "cores{0}.json");
 
         public enum CoreKind { Unknown, BuiltIn, Libretro };
@@ -96,22 +94,6 @@ namespace com.clusterrr.hakchi_gui
         private static SortedDictionary<string, List<CoreInfo>> extIndex = new SortedDictionary<string, List<CoreInfo>>();
         private static SortedDictionary<string, List<CoreInfo>> systemIndex = new SortedDictionary<string, List<CoreInfo>>();
 
-        private static void UpdateWhitelist()
-        {
-            var client = new WebClient();
-            try
-            {
-                Trace.WriteLine("Downloading whitelist file, URL: " + WHITELIST_UPDATE_URL);
-                string whitelist = client.DownloadString(WHITELIST_UPDATE_URL);
-                if (!string.IsNullOrEmpty(whitelist))
-                    File.WriteAllText(WhiteListFilename, whitelist);
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine(ex.Message + ex.StackTrace);
-            }
-        }
-
         public static void Load()
         {
             // try to load from cache
@@ -125,14 +107,11 @@ namespace com.clusterrr.hakchi_gui
 
             // load info files
             Trace.WriteLine("Loading libretro core info files");
-            var whiteList = File.Exists(WhiteListFilename) ? File.ReadAllLines(WhiteListFilename) : Resources.retroarch_whitelist.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             var regex = new Regex("(^[^\\s]+)\\s+=\\s+\"?([^\"\\r\\n]*)\"?", RegexOptions.Multiline | RegexOptions.Compiled);
 
             using (var extractor = ArchiveFactory.Open(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "libretro_cores.7z")))
             {
                 var reader = extractor.ExtractAllEntries();
-                //var infoFiles = Directory.GetFiles(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "libretro_cores"), "*.info");
-                //foreach (var file in infoFiles)
                 while (reader.MoveToNextEntry())
                 {
                     string file = reader.Entry.Key;
@@ -141,11 +120,7 @@ namespace com.clusterrr.hakchi_gui
                     if (m.Success && !string.IsNullOrEmpty(m.Groups[1].ToString()))
                     {
                         var bin = m.Groups[1].ToString();
-                        if (!whiteList.Contains(bin))
-                            continue;
-
                         var f = new StreamReader(reader.OpenEntryStream()).ReadToEnd();
-                        //var f = File.ReadAllText(file);
                         var matches = regex.Matches(f);
                         if (matches.Count <= 0)
                             continue;
@@ -185,7 +160,6 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
             }
-            new Thread(CoreCollection.UpdateWhitelist).Start();
 
             // cross indexing
             Trace.WriteLine("Building libretro core cross index");

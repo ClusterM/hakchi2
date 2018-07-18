@@ -1,4 +1,4 @@
-display_name = "Amiga (UAE4ARM)"
+display_name = "Commodore - Amiga (UAE4ARM)"
 authors = "GnoStiC"
 supported_extensions = "adf|dms|zip|ipf|adz|uae"
 corename = "UAE4ARM"

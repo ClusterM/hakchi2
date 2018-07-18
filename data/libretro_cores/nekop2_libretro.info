@@ -1,4 +1,4 @@
-display_name = "NEC PC-98 (Neko Project II)"
+display_name = "NEC - PC-98 (Neko Project II)"
 authors = "Neko Project II Team"
 supported_extensions = "d98|zip|98d|fdi|fdd|2hd|tfd|d88|88d|hdm|xdf|dup|cmd|hdi|thd|nhd|hdd"
 corename = "Neko Project II"

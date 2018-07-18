@@ -1,4 +1,4 @@
-display_name = "ZX81 (EightyOne)"
+display_name = "Sinclair - ZX 81 (EightyOne)"
 authors = "Michael D Wynne"
 supported_extensions = "p|tzx|t81"
 corename = "81"

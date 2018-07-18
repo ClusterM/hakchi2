@@ -512,6 +512,7 @@ namespace com.clusterrr.hakchi_gui
             separateGamesForMultibootToolStripMenuItem.Checked = ConfigIni.Instance.SeparateGameStorage;
             disableHakchi2PopupsToolStripMenuItem.Checked = ConfigIni.Instance.DisablePopups;
             useLinkedSyncToolStripMenuItem.Checked = ConfigIni.Instance.SyncLinked;
+            alwaysCopyOriginalGamesToolStripMenuItem.Checked = ConfigIni.Instance.AlwaysCopyOriginalGames;
 
             // sfrom tool
             enableSFROMToolToolStripMenuItem.Checked = ConfigIni.Instance.UseSFROMTool;
@@ -2245,6 +2246,12 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.Instance.SyncLinked = useLinkedSyncToolStripMenuItem.Checked;
         }
 
+        private void alwaysCopyOriginalGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.AlwaysCopyOriginalGames = alwaysCopyOriginalGamesToolStripMenuItem.Checked;
+            LoadGames();
+        }
+
         private void enableUSBHostToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!enableUSBHostToolStripMenuItem.Checked)
@@ -3050,5 +3057,9 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private void importCachedOriginalGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

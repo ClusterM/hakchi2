@@ -45,6 +45,7 @@
             this.reloadGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
             this.resetOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importCachedOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -237,6 +238,7 @@
             this.syncStructureForAllGamesCollectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
             this.timerUpdate = new System.Windows.Forms.Timer(this.components);
+            this.alwaysCopyOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -273,6 +275,7 @@
             this.reloadGamesToolStripMenuItem,
             this.toolStripMenuItem12,
             this.resetOriginalGamesToolStripMenuItem,
+            this.importCachedOriginalGamesToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -354,6 +357,12 @@
             this.resetOriginalGamesToolStripMenuItem.Name = "resetOriginalGamesToolStripMenuItem";
             resources.ApplyResources(this.resetOriginalGamesToolStripMenuItem, "resetOriginalGamesToolStripMenuItem");
             this.resetOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.resetOriginalGamesToolStripMenuItem_Click);
+            // 
+            // importCachedOriginalGamesToolStripMenuItem
+            // 
+            this.importCachedOriginalGamesToolStripMenuItem.Name = "importCachedOriginalGamesToolStripMenuItem";
+            resources.ApplyResources(this.importCachedOriginalGamesToolStripMenuItem, "importCachedOriginalGamesToolStripMenuItem");
+            this.importCachedOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.importCachedOriginalGamesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -655,6 +664,7 @@
             this.sFROMToolToolStripMenuItem,
             this.developerToolsToolStripMenuItem,
             this.separateGamesForMultibootToolStripMenuItem,
+            this.alwaysCopyOriginalGamesToolStripMenuItem,
             this.useLinkedSyncToolStripMenuItem,
             this.compressGamesToolStripMenuItem,
             this.compressBoxArtToolStripMenuItem,
@@ -1737,6 +1747,15 @@
             // 
             this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
             // 
+            // alwaysCopyOriginalGamesToolStripMenuItem
+            // 
+            this.alwaysCopyOriginalGamesToolStripMenuItem.Checked = true;
+            this.alwaysCopyOriginalGamesToolStripMenuItem.CheckOnClick = true;
+            this.alwaysCopyOriginalGamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.alwaysCopyOriginalGamesToolStripMenuItem.Name = "alwaysCopyOriginalGamesToolStripMenuItem";
+            resources.ApplyResources(this.alwaysCopyOriginalGamesToolStripMenuItem, "alwaysCopyOriginalGamesToolStripMenuItem");
+            this.alwaysCopyOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.alwaysCopyOriginalGamesToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1989,6 +2008,8 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelShell;
         private System.Windows.Forms.ToolStripMenuItem forceNetworkMembootsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem26;
+        private System.Windows.Forms.ToolStripMenuItem importCachedOriginalGamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem alwaysCopyOriginalGamesToolStripMenuItem;
     }
 }
 

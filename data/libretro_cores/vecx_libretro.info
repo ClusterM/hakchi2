@@ -1,4 +1,4 @@
-display_name = "Vectrex (vecx)"
+display_name = "GCE - Vectrex (vecx)"
 authors = "Valavan Manohararajah|John Hawthorn|Nikita Zimin|Demeth"
 supported_extensions = "bin|vec"
 corename = "vecx"

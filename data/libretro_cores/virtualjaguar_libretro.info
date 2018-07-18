@@ -1,4 +1,4 @@
-display_name = "Atari Jaguar (Virtual Jaguar)"
+display_name = "Atari - Jaguar (Virtual Jaguar)"
 authors = "David Raingeard|Shamus"
 supported_extensions = "j64|jag|rom|abs|cof|bin|prg"
 corename = "Virtual Jaguar"

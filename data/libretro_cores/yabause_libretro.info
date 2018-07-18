@@ -1,4 +1,4 @@
-display_name = "Sega Saturn (Yabause)"
+display_name = "Sega - Saturn (Yabause)"
 authors = "Guillaume Duhammel|Theo Berkau|Anders Montonen"
 supported_extensions = "bin|cue|iso"
 corename = "Yabause"

@@ -1,8 +1,0 @@
-display_name = "TestVulkan"
-authors = "Team Libretro"
-corename = "TestVulkan"
-categories = "Tech demo"
-license = "MIT"
-permissions = ""
-display_version = "v1"
-supports_no_game = "true"
