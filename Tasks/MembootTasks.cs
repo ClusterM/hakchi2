@@ -751,7 +751,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             break;
 
                         case NandTasks.DumpNand:
-                            hakchi.Shell.Execute("hakchi umount_base", splitStream, splitStream, splitStream, 0, true);
+                            hakchi.Shell.Execute("hakchi umount_base", null, splitStream, splitStream, 0, true);
                             Shared.ShellPipe("sntool sunxi_flash phy_read 0 1000", null, file, throwOnNonZero: true);
                             break;
                     }
