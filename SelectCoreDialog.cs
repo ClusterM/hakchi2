@@ -280,7 +280,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void buttonApply_Click(object sender, EventArgs e)
         {
-            var core = (CoreCollection.CoreInfo)listBoxCore.SelectedItem;
+            var core = listBoxCore.SelectedItem.GetType() == typeof(CoreCollection.CoreInfo) ? (CoreCollection.CoreInfo)listBoxCore.SelectedItem : null;
             string system = (string)listBoxSystem.SelectedItem;
             if (system == Resources.Unassigned)
                 system = string.Empty;
@@ -288,11 +288,11 @@ namespace com.clusterrr.hakchi_gui
             foreach(ListViewItem item in listViewGames.SelectedItems)
             {
                 item.SubItems[2].Text = system;
-                item.SubItems[3].Text = core.Name;
+                item.SubItems[3].Text = core == null ? string.Empty : core.Name;
 
                 var game = item.Tag as NesApplication;
                 game.Metadata.System = system;
-                game.Metadata.Core = core.Bin;
+                game.Metadata.Core = core == null ? string.Empty : core.Bin;
                 game.Desktop.Exec = newCommand.Replace("{rom}", game.Desktop.Args[0]).Replace("{args}", string.Join(" ", game.Desktop.Args.Skip(1).ToArray())).Trim();
                 game.Save();
                 game.SaveMetadata();
@@ -313,6 +313,18 @@ namespace com.clusterrr.hakchi_gui
 
         private void showAllSystemsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (listViewGames.SelectedItems.Count > 1)
+            {
+                try
+                {
+                    listViewGames.BeginUpdate();
+                    listViewGames.SelectedItems.Cast<ListViewItem>().Skip(1).ToList().ForEach(i => i.Selected = false);
+                }
+                finally
+                {
+                    listViewGames.EndUpdate();
+                }
+            }
             ShowSelected();
         }
 

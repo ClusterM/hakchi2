@@ -1,9 +1,5 @@
-﻿using com.clusterrr.clovershell;
-using com.clusterrr.hakchi_gui.Properties;
-using com.clusterrr.ssh;
-using com.clusterrr.util;
-using Renci.SshNet;
-using SevenZip;
+﻿using com.clusterrr.hakchi_gui.Properties;
+using SharpCompress.Archives;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -515,6 +511,7 @@ namespace com.clusterrr.hakchi_gui
             correctKernels[hakchi.ConsoleType.NES] = new string[] {
                 "5cfdca351484e7025648abc3b20032ff",
                 "07bfb800beba6ef619c29990d14b5158",
+                "90eec1e2b4f00e53dc2dd53a9e7334c1", // new 2017 rereleased version
             };
             correctKernels[hakchi.ConsoleType.Famicom] = new string[] {
                 "ac8144c3ea4ab32e017648ee80bdc230",  // Famicom Mini
@@ -533,6 +530,10 @@ namespace com.clusterrr.hakchi_gui
             {
                 "632e179db63d9bcd42281f776a030c14", // Super Famicom Mini (JAP)
                 "c3378edfc1b96a5268a066d5fbe12d89", // Super Famicom Mini (JAP)
+            };
+            correctKernels[hakchi.ConsoleType.ShonenJump] = new string[]
+            {
+                "8a6731a5aebea36293f076fad9afa600"
             };
             return correctKernels;
         }
@@ -624,6 +625,20 @@ namespace com.clusterrr.hakchi_gui
             int returnValue = hakchi.Shell.Execute($"nc -lv -w 60 -i 60 -s 0.0.0.0 -e {command}", null, null, splitStream, timeout, throwOnNonZero);
             transferThread.Abort();
             return returnValue;
+        }
+
+        public static bool isWindows()
+        {
+            switch (Environment.OSVersion.Platform)
+            {
+                case PlatformID.Win32NT:
+                case PlatformID.Win32S:
+                case PlatformID.Win32Windows:
+                case PlatformID.WinCE:
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
 }

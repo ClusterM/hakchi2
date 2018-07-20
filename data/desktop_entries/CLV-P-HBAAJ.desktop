@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/clover-kachikachi /usr/share/games/CLV-P-HBAAJ/CLV-P-HBAAJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet
+Path=/var/lib/clover/profiles/0//CLV-P-HBAAJ
+Name=ファミコンジャンプ 英雄列伝 
+Icon=/usr/share/games/CLV-P-HBAAJ/CLV-P-HBAAJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HBAAJ
+TestID=101
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1989-02-15
+SaveCount=0
+SortRawTitle=ふぁみこんじゃんぷひーろーれつでん
+SortRawPublisher=ばんだいなむこえんたーていんめんと
+Copyright=ファミコンジャンプ 英雄列伝　©JUMP 50th Anniversary ©BANDAI NAMCO Entertainment Inc.

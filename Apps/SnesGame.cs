@@ -119,7 +119,6 @@ namespace com.clusterrr.hakchi_gui
             { "NHL HOCKEY 1998" }, // NHL '98 (U).smc
             { "RENDERING RANGER R2" }, // Rendering Ranger R2 (J).smc
             { "ROBOTREK 1 USA" }, // Robotrek (U) [!].smc
-            { "ROCK N' ROLL RACING" }, // Rock N' Roll Racing (U) [!].smc
             { "ROMANCING SAGA3" }, // Romancing SaGa 3 (J) (V1.1).smc
             { "SD??????GX" }, // SD Gundam GX (J) [!].smc
             { "SECRET OF EVERMORE" }, // Secret of Evermore (U) [!].smc

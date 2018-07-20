@@ -1,5 +1,7 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
-using SevenZip;
+using SharpCompress.Archives;
+using pdj.tiny7z.Archive;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +11,6 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -134,6 +135,29 @@ namespace com.clusterrr.hakchi_gui
             new NesDefaultGame { Code = "CLV-P-VADKJ",  Name = "スターフォックス2" },
             new NesDefaultGame { Code = "CLV-P-VADZJ",  Name = "パネルでポン" },
         };
+        public static NesDefaultGame[] defaultShonenJumpGames = new NesDefaultGame[]
+        {
+            new NesDefaultGame { Code = "CLV-P-HBAAJ", Name = "ファミコンジャンプ 英雄列伝" },
+            new NesDefaultGame { Code = "CLV-P-HBABJ", Name = "ファミコンジャンプII 最強の7人" },
+            new NesDefaultGame { Code = "CLV-P-HBACJ", Name = "ドラゴンボール 神龍の謎" },
+            new NesDefaultGame { Code = "CLV-P-HBAEJ", Name = "ドラゴンボール3 悟空伝" },
+            new NesDefaultGame { Code = "CLV-P-HBAFJ", Name = "ドラゴンボールZ 強襲!サイヤ人" },
+            new NesDefaultGame { Code = "CLV-P-HBAKJ", Name = "キン肉マン マッスルタッグマッチ" },
+            new NesDefaultGame { Code = "CLV-P-HBALJ", Name = "キン肉マン キン肉星王位争奪戦" },
+            new NesDefaultGame { Code = "CLV-P-HBAMJ", Name = "キャプテン翼" },
+            new NesDefaultGame { Code = "CLV-P-HBANJ", Name = "キャプテン翼II スーパーストライカー" },
+            new NesDefaultGame { Code = "CLV-P-HBAPJ", Name = "北斗の拳３ 新世紀創造 凄拳烈伝" },
+            new NesDefaultGame { Code = "CLV-P-HBARJ", Name = "聖闘士星矢 黄金伝説" },
+            new NesDefaultGame { Code = "CLV-P-HBASJ", Name = "聖闘士星矢 黄金伝説 完結編" },
+            new NesDefaultGame { Code = "CLV-P-HBAUJ", Name = "暗黒神話 ヤマトタケル伝説" },
+            new NesDefaultGame { Code = "CLV-P-HBAVJ", Name = "魁!!男塾 疾風一号生" },
+            new NesDefaultGame { Code = "CLV-P-HBAXJ", Name = "まじかる☆タルるートくん FANTASTIC WORLD!!" },
+            new NesDefaultGame { Code = "CLV-P-HBAZJ", Name = "ろくでなしBLUES" },
+            new NesDefaultGame { Code = "CLV-P-HBBBJ", Name = "ドラゴンクエスト" },
+            new NesDefaultGame { Code = "CLV-P-HBBCJ", Name = "天地を喰らう" },
+            new NesDefaultGame { Code = "CLV-P-HBBEJ", Name = "赤龍王" },
+            new NesDefaultGame { Code = "CLV-P-HBBFJ", Name = "北斗の拳" },
+        };
 
         public static NesDefaultGame[] DefaultGames
         {
@@ -151,12 +175,14 @@ namespace com.clusterrr.hakchi_gui
                         return defaultSnesGames;
                     case hakchi.ConsoleType.SuperFamicom:
                         return defaultSuperFamicomGames;
+                    case hakchi.ConsoleType.ShonenJump:
+                        return defaultShonenJumpGames;
                 }
             }
         }
         public static NesDefaultGame[] AllDefaultGames
         {
-            get { return Shared.ConcatArrays(defaultNesGames, defaultFamicomGames, defaultSnesGames, defaultSuperFamicomGames); }
+            get { return Shared.ConcatArrays(defaultNesGames, defaultFamicomGames, defaultSnesGames, defaultSuperFamicomGames, defaultShonenJumpGames); }
         }
 
         public static readonly string OriginalGamesDirectory = Path.Combine(Program.BaseDirectoryExternal, "games_originals");
@@ -170,6 +196,7 @@ namespace com.clusterrr.hakchi_gui
                     default:
                     case hakchi.ConsoleType.NES:
                     case hakchi.ConsoleType.Famicom:
+                    case hakchi.ConsoleType.ShonenJump:
                         return Path.Combine(Program.BaseDirectoryExternal, "games");
                     case hakchi.ConsoleType.SNES_EUR:
                     case hakchi.ConsoleType.SNES_USA:
@@ -272,12 +299,15 @@ namespace com.clusterrr.hakchi_gui
                     int extPos = gameFilePath.LastIndexOf('.');
                     if (extPos > -1 && compressedFiles.Contains(gameFilePath.Substring(extPos)))
                     {
-                        using (var extractor = new SevenZipExtractor(gameFilePath))
+                        using (var extractor = ArchiveFactory.Open(gameFilePath))
                         {
-                            if (extractor.FilesCount == 1)
+                            if (extractor.Entries.Count() == 1)
                             {
                                 MemoryStream stream = new MemoryStream();
-                                extractor.ExtractFile(0, stream);
+                                using (var srcStream = extractor.Entries.First().OpenEntryStream())
+                                {
+                                    srcStream.CopyTo(stream);
+                                }
                                 return stream;
                             }
                         }
@@ -570,7 +600,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (!File.Exists(filename) || Path.GetExtension(filename).ToLower() != ".desktop")
                 throw new FileNotFoundException($"Invalid application file \"{filename}\"");
-            var code = Path.GetFileNameWithoutExtension(filename).ToUpper();
+            var code = Path.GetFileNameWithoutExtension(filename);
             var targetDir = Path.Combine(GamesDirectory, code);
             Shared.DirectoryCopy(Path.GetDirectoryName(filename), targetDir, true, false, true, false);
             return FromDirectory(targetDir);
@@ -725,14 +755,15 @@ namespace com.clusterrr.hakchi_gui
                 int extPos = file.LastIndexOf('.');
                 if (extPos > -1 && compressedFiles.Contains(file.Substring(extPos)))
                 {
-                    using (var extractor = new SevenZipExtractor(file))
+                    using (var extractor = ArchiveFactory.Open(file))
                     {
-                        if (extractor.FilesCount == 1)
+                        if (extractor.Entries.Count() == 1)
                         {
-                            var extractedFileName = extractor.ArchiveFileNames[0];
+                            var entry = extractor.Entries.First();
+                            var extractedFileName = entry.Key;
                             if (!File.Exists(Path.Combine(this.basePath, extractedFileName)))
                             {
-                                extractor.ExtractArchive(this.basePath);
+                                entry.WriteToDirectory(this.BasePath);
                                 acceptedFiles.Add(Path.Combine(basePath, extractedFileName));
                                 File.Delete(file);
                             }
@@ -1462,7 +1493,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 foreach (var e in compressedExtensions)
                     if (file.ToLower().EndsWith(e) && exec.Contains(" " + Path.GetFileName(file) + " ") &&
-                        new SevenZipExtractor(file).FilesCount == 1)
+                        ArchiveFactory.Open(file).Entries.Count() == 1)
                     {
                         result.Add(file);
                         break;
@@ -1476,13 +1507,19 @@ namespace com.clusterrr.hakchi_gui
             foreach (var filename in CompressPossible())
             {
                 var archName = filename + ".7z";
-                var compressor = new SevenZipCompressor();
-                compressor.CompressionLevel = CompressionLevel.High;
-                Trace.WriteLine("Compressing " + filename);
-                compressor.CompressFiles(archName, filename);
-                Thread.Sleep(1);
-                File.Delete(filename);
+                {
+                    var archive = new SevenZipArchive(File.Create(archName), FileAccess.Write);
+                    var compressor = archive.Compressor();
+                    compressor.Solid = true;
+                    compressor.AddFile(filename);
+                    Trace.WriteLine("Compressing " + filename);
+                    compressor.Finalize();
+                    archive.Close();
+                }
                 desktop.Exec = desktop.Exec.Replace(Path.GetFileName(filename), Path.GetFileName(archName));
+
+                Thread.Sleep(1); File.Delete(filename);
+                Thread.Sleep(1);
             }
         }
 
@@ -1490,15 +1527,16 @@ namespace com.clusterrr.hakchi_gui
         {
             foreach (var filename in DecompressPossible())
             {
-                using (var szExtractor = new SevenZipExtractor(filename))
+                using (var extractor = ArchiveFactory.Open(filename))
                 {
                     Trace.WriteLine("Decompressing " + filename);
-                    szExtractor.ExtractArchive(basePath);
-                    foreach (var f in szExtractor.ArchiveFileNames)
-                        desktop.Exec = desktop.Exec.Replace(Path.GetFileName(filename), f);
+                    extractor.Entries.First().WriteToDirectory(basePath);
+                    foreach (var e in extractor.Entries)
+                        desktop.Exec = desktop.Exec.Replace(Path.GetFileName(filename), e.Key);
                 }
+
+                Thread.Sleep(1); File.Delete(filename);
                 Thread.Sleep(1);
-                File.Delete(filename);
             }
         }
 

@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/clover-kachikachi /usr/share/games/CLV-P-HBAZJ/CLV-P-HBAZJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet
+Path=/var/lib/clover/profiles/0//CLV-P-HBAZJ
+Name=ろくでなしBLUES
+Icon=/usr/share/games/CLV-P-HBAZJ/CLV-P-HBAZJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HBAZJ
+TestID=117
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1993-10-29
+SaveCount=2
+SortRawTitle=ろくでなしぶるーす
+SortRawPublisher=ばんだいなむこえんたーていんめんと
+Copyright=ろくでなしBLUES　©森田まさのり／集英社　©BANDAI NAMCO Entertainment Inc.

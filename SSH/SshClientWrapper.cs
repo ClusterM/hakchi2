@@ -211,22 +211,36 @@ namespace com.clusterrr.ssh
 
         private void attemptConnect()
         {
-            ping(this.service); // this is to wake up llmnr
+            if (ping(this.service) != -1)
+            {
+                Debug.WriteLine($"Ping success, attempting connect to `{IPAddress.ToString()}`...");
+                Connect();
+                if (IsOnline)
+                {
+                    Debug.WriteLine("Connected!");
+                    return;
+                }
+            }
 
             IPAddress[] resolvedIPs = resolve();
             if (resolvedIPs != null && resolvedIPs.Length > 0)
             {
+                Debug.WriteLine($"Resolved {resolvedIPs.Length} addresses...");
                 foreach (var ip in resolvedIPs)
                 {
-                    int result = ping(ip.ToString());
-                    Debug.WriteLine($"Resolve: detected ip address: {ip.ToString()}: " + (result == -1 ? "ping failed" : "ping successful"));
+                    int result = ping(ip.ToString(), true);
+                    Debug.WriteLine($"Resolve: detected ip address: {ip.ToString()}: ping " + (result == -1 ? "failed" : "successful"));
 
                     if (result != -1)
                     {
+                        Debug.WriteLine("Attempting to connect...");
                         IPAddress = ip.ToString();
                         Connect();
                         if (IsOnline)
-                            break;
+                        {
+                            Debug.WriteLine("Success!");
+                            return;
+                        }
                     }
                 }
             }
@@ -245,22 +259,26 @@ namespace com.clusterrr.ssh
         {
             try
             {
-                Ping pingSender = new Ping();
-                PingReply reply = pingSender.Send(ip, 500);
-                if (reply != null && reply.Status.Equals(IPStatus.Success))
+                using (Ping pingSender = new Ping())
                 {
-                    if (verbose)
-                        Trace.WriteLine($"Pinged {reply.Address}, {reply.RoundtripTime}ms");
-                    IPAddress = reply.Address.ToString();
-                    return (int)reply.RoundtripTime;
+                    PingReply reply = pingSender.Send(ip, 500);
+                    if (reply != null && reply.Status.Equals(IPStatus.Success))
+                    {
+                        if (verbose)
+                            Trace.WriteLine($"Pinged {reply.Address}, {reply.RoundtripTime}ms");
+                        IPAddress = reply.Address.ToString();
+                        return (int)reply.RoundtripTime;
+                    }
                 }
             }
+#pragma warning disable CS0168
             catch (Exception ex)
             {
 #if VERY_DEBUG
                 Debug.WriteLine($"Error during ping \"{IPAddress ?? service}\": {(ex.InnerException ?? ex).Message}");
 #endif
             }
+#pragma warning restore CS0168
             return -1;
         }
 

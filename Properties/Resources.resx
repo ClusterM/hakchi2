@@ -249,7 +249,7 @@ It's very simple to use. Just click "Add more games", select some ROMs, press "S
     <value>Hello</value>
   </data>
   <data name="KernelDumped" xml:space="preserve">
-    <value>Your original kernel is saved in the "hakchi2\dump" folder. Do not lose it. </value>
+    <value>Your original kernel has been saved in a special area of your console.</value>
   </data>
   <data name="DeletePreset" xml:space="preserve">
     <value>Do you really want to delete the "{0}" preset?</value>
@@ -1272,5 +1272,8 @@ You can wait some more and try the action again if it comes online after a while
   </data>
   <data name="RecoveryModeCloseWarning" xml:space="preserve">
     <value>Your NES/SNES Mini is currently in recovery mode. You will not be able to turn it off normally. Do you want to finish boot sequence so it returns to normal afterwards?</value>
+  </data>
+  <data name="consoleTypeShonenJump" xml:space="preserve">
+    <value>Famicom (Shonen Jump)</value>
   </data>
 </root>

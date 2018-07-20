@@ -1,8 +1,11 @@
+!include "LogicLib.nsh"
+!include "Sections.nsh"
+
 ; The name of the installer
 Name "Hakchi2 CE"
 
 ; The icon of the installer
-Icon "..\icon.ico"
+Icon "..\icon_app.ico"
 
 ; The file to write
 OutFile "Hakchi2 CE Web Installer.exe"
@@ -28,6 +31,8 @@ SetCompressor /FINAL /SOLID lzma
 
 ;--------------------------------
 
+Var DownloadURL
+
 ; Pages
 
 Page components
@@ -40,7 +45,15 @@ UninstPage instfiles
 ;--------------------------------
 
 ; The stuff to install
-Section "Hakchi2 CE (required)"
+
+SectionGroup /e "Hakchi2 CE (required"
+  Section "Release Build" section_release
+  SectionEnd
+  Section /o "Debug Build" section_debug
+  SectionEnd
+SectionGroupEnd
+
+Section
   SetShellVarContext all
   SectionIn RO
   
@@ -51,7 +64,7 @@ Section "Hakchi2 CE (required)"
   CreateDirectory "$INSTDIR"
   
   ; Download update.xml
-  inetc::get "https://teamshinkansen.github.io/xml/updates/update.xml" "update.xml"
+  inetc::get $DownloadURL "update.xml"
   Pop $0
   StrCmp $0 "OK" ParseXML InstallError
 
@@ -65,13 +78,13 @@ Section "Hakchi2 CE (required)"
   nsisXML::getText
 
   ; Download the release package
-  inetc::get "$3" "hakchi2-ce-release.zip"
+  inetc::get "$3" "hakchi2-ce.zip"
   Pop $0
   StrCmp $0 "OK" ExtractZip InstallError
 
   ExtractZip:
-  ZipDLL::extractall "hakchi2-ce-release.zip" "$INSTDIR"
-  Delete "hakchi2-ce-release.zip"
+  ZipDLL::extractall "hakchi2-ce.zip" "$INSTDIR"
+  Delete "hakchi2-ce.zip"
 
   ; Create nonportable.flag
   FileOpen $9 "nonportable.flag" w
@@ -96,7 +109,7 @@ Section "Hakchi2 CE (required)"
 
   InstallError:
     Delete "update.xml"
-    Delete "hakchi2-ce-release.zip"
+    Delete "hakchi2-ce.zip"
     RMDir "$INSTDIR"
     Abort
 
@@ -134,3 +147,25 @@ Section "Uninstall"
   RMDir /r "$INSTDIR"
 
 SectionEnd
+
+Function .onInit
+  StrCpy $DownloadURL "https://teamshinkansen.github.io/xml/updates/update-release.xml"
+  StrCpy $1 ${section_release}
+  StrCpy $2 ${section_debug}
+
+FunctionEnd
+
+Function .onSelChange
+  !insertmacro StartRadioButtons $1
+    !insertmacro RadioButton ${section_release}
+    !insertmacro RadioButton ${section_debug}
+  !insertmacro EndRadioButtons
+  
+  ${If} ${SectionIsSelected} ${section_release}
+    StrCpy $DownloadURL "https://teamshinkansen.github.io/xml/updates/update-release.xml"
+  ${EndIf}
+  ${If} ${SectionIsSelected} ${section_debug}
+    StrCpy $DownloadURL "https://teamshinkansen.github.io/xml/updates/update-debug.xml"
+  ${EndIf}
+
+FunctionEnd

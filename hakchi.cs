@@ -12,7 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using SevenZip;
+using SharpCompress;
+using SharpCompress.Archives;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -24,14 +25,25 @@ namespace com.clusterrr.hakchi_gui
         public const string PASSWORD = "";
         public const long BLOCK_SIZE = 4096;
 
-        public enum ConsoleType { NES = 0, Famicom = 1, SNES_EUR = 2, SNES_USA = 3, SuperFamicom = 4, Unknown = 255 }
+        public enum ConsoleType
+        {
+            NES = 0,
+            Famicom = 1,
+            SNES_EUR = 2,
+            SNES_USA = 3,
+            SuperFamicom = 4,
+            ShonenJump = 5,
+            Unknown = 255
+        }
+
         public static readonly Dictionary<ConsoleType, string> ConsoleTypeToSystemCode = new Dictionary<ConsoleType, string>()
         {
             { ConsoleType.NES, "nes-usa" },
             { ConsoleType.Famicom, "nes-jpn" },
             { ConsoleType.SNES_EUR, "snes-eur" },
             { ConsoleType.SNES_USA, "snes-usa" },
-            { ConsoleType.SuperFamicom, "snes-jpn" }
+            { ConsoleType.SuperFamicom, "snes-jpn" },
+            { ConsoleType.ShonenJump, "hvcj-jpn" },
         };
         public static readonly Dictionary<string, ConsoleType> SystemCodeToConsoleType = new Dictionary<string, ConsoleType>()
         {
@@ -39,7 +51,8 @@ namespace com.clusterrr.hakchi_gui
             { "nes-jpn", ConsoleType.Famicom  },
             { "snes-eur", ConsoleType.SNES_EUR },
             { "snes-usa", ConsoleType.SNES_USA },
-            { "snes-jpn", ConsoleType.SuperFamicom }
+            { "snes-jpn", ConsoleType.SuperFamicom },
+            { "hvcj-jpn", ConsoleType.ShonenJump },
         };
 
         public static ISystemShell Shell { get; private set; }
@@ -55,6 +68,11 @@ namespace com.clusterrr.hakchi_gui
         public static string UniqueID { get; private set; }
         public static bool CanInteract { get; private set; }
         public static bool MinimalMemboot { get; private set; }
+        public static bool UserMinimalMemboot { get
+            {
+                return hakchi.Shell.IsOnline && MinimalMemboot && (Shell.Execute("ls /user-recovery.flag") == 0);
+            }
+        }
 
         public static string ConfigPath { get; private set; }
         public static string RemoteGameSyncPath { get; private set; }
@@ -78,6 +96,7 @@ namespace com.clusterrr.hakchi_gui
                     case ConsoleType.SNES_USA:
                     case ConsoleType.SNES_EUR:
                     case ConsoleType.SuperFamicom:
+                    case ConsoleType.ShonenJump:
                         return "/usr/share/games";
                 }
             }
@@ -134,7 +153,7 @@ namespace com.clusterrr.hakchi_gui
 
         public static Version MinimumScriptVersion
         {
-            get { return new Version(1, 0, 3, 110); }
+            get { return new Version(1, 0, 3, 113); }
         }
 
         public static string RawLocalBootVersion
@@ -308,6 +327,10 @@ namespace com.clusterrr.hakchi_gui
                         OriginalGamesPath = Shell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
                         RootFsPath = Shell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
                         SquashFsPath = Shell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
+
+                        // adjust detected console type
+                        if (SystemCodeToConsoleType.ContainsKey(SystemCode))
+                            DetectedConsoleType = SystemCodeToConsoleType[SystemCode];
 
                         // load config
                         ConfigIni.SetConfigDictionary(LoadConfig());
@@ -486,38 +509,36 @@ namespace com.clusterrr.hakchi_gui
             return config;
         }
 
-        public static SevenZipExtractor GetHakchiHmod()
+        public static IArchive GetHakchiHmod()
         {
-            var kernelHmodStream = new MemoryStream();
-            using (var baseHmods = File.OpenRead(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")))
+            using (MemoryStream hakchiHmod = new MemoryStream())
             {
-                using (var szExtractor = new SevenZipExtractor(baseHmods))
+                using (var extractor = ArchiveFactory.Open(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")))
                 {
-                    szExtractor.ExtractFile(".\\hakchi.hmod", kernelHmodStream);
+                    extractor.Entries.Where(e => e.Key == "./hakchi.hmod").First().OpenEntryStream().CopyTo(hakchiHmod);
                 }
-            }
-            var tar = new MemoryStream();
-            using (var szExtractor = new SevenZipExtractor(kernelHmodStream))
-            {
-                szExtractor.ExtractFile(0, tar);
-                tar.Seek(0, SeekOrigin.Begin);
-                return new SevenZipExtractor(tar);
+                MemoryStream tar = new MemoryStream();
+                using (var extractor = ArchiveFactory.Open(hakchiHmod))
+                {
+                    extractor.Entries.First().OpenEntryStream().CopyTo(tar);
+                    tar.Position = 0;
+                    return SharpCompress.Archives.Tar.TarArchive.Open(tar);
+                }
             }
         }
 
         public static MemoryStream GetMembootImage()
         {
-            var o = new MemoryStream();
-            GetHakchiHmod().ExtractFile("boot\\boot.img", o);
-            return o;
+            var image = new MemoryStream();
+            GetHakchiHmod().Entries.Where(e => e.Key == "boot/boot.img").First().OpenEntryStream().CopyTo(image);
+            return image;
         }
 
         public static Dictionary<string, string> GetHakchiVersion()
         {
             using (var o = new MemoryStream())
             {
-                GetHakchiHmod().ExtractFile("var\\version", o);
-                o.Position = 0;
+                GetHakchiHmod().Entries.Where(e => e.Key == "var/version").First().OpenEntryStream().CopyTo(o);
                 string contents = Encoding.UTF8.GetString(o.ToArray());
 
                 MatchCollection collection = Regex.Matches(contents, @"^([^=]+)=(""(?:[^""\\]*(?:\\.[^""\\]*)*)""|\'(?:[^\'\\]*(?:\\.[^\'\\]*)*)\')", RegexOptions.Multiline | RegexOptions.IgnoreCase);

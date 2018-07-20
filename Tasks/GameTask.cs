@@ -1,4 +1,5 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
+using SharpCompress.Archives;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using SevenZip;
 
 namespace com.clusterrr.hakchi_gui.Tasks
 {
@@ -217,8 +217,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 else
                 {
                     tasker.SetStatus(string.Format(Resources.Skipping, game.Name));
-                    Thread.Sleep(1);
                 }
+                Thread.Sleep(1);
             }
 
             return Tasker.Conclusion.Success;
@@ -242,8 +242,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 else
                 {
                     tasker.SetStatus(string.Format(Resources.Skipping, game.Name));
-                    Thread.Sleep(1);
                 }
+                Thread.Sleep(1);
             }
 
             return Tasker.Conclusion.Success;
@@ -268,8 +268,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 else
                 {
                     tasker.SetStatus(string.Format(Resources.Skipping, game.Name));
-                    Thread.Sleep(1);
                 }
+                Thread.Sleep(1);
             }
 
             return Tasker.Conclusion.Success;
@@ -297,9 +297,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 else
                 {
                     tasker.SetStatus(string.Format(Resources.Skipping, game.Name));
-                    Thread.Sleep(1);
                 }
 
+                Thread.Sleep(1);
                 tasker.SetProgress(++i, Games.Count);
             }
 
@@ -326,11 +326,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 var defaultGames = ResetAllOriginalGames ? NesApplication.AllDefaultGames : NesApplication.DefaultGames;
 
-                using (var szExtractor = new SevenZipExtractor(desktopEntriesArchiveFile))
+                using (var extractor = ArchiveFactory.Open(desktopEntriesArchiveFile))
                 {
+                    var reader = extractor.ExtractAllEntries();
                     int i = 0;
-                    foreach (var f in szExtractor.ArchiveFileNames)
+                    while (reader.MoveToNextEntry())
                     {
+                        var f = reader.Entry.Key;
+
                         var code = Path.GetFileNameWithoutExtension(f);
                         var query = defaultGames.Where(g => g.Code == code);
 
@@ -358,7 +361,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             // extract .desktop file from archive
                             using (var o = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
                             {
-                                szExtractor.ExtractFile(f, o);
+                                reader.WriteEntryTo(o);
                                 o.Flush();
                                 if (!this.ResetAllOriginalGames && !selectedGames.Contains(code))
                                 {

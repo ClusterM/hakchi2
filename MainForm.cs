@@ -1,6 +1,6 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using AutoUpdaterDotNET;
-using SevenZip;
+using SharpCompress.Archives;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,6 +49,7 @@ namespace com.clusterrr.hakchi_gui
                 case hakchi.ConsoleType.SNES_EUR: return Resources.consoleTypeSnesEur;
                 case hakchi.ConsoleType.SNES_USA: return Resources.consoleTypeSnesUsa;
                 case hakchi.ConsoleType.SuperFamicom: return Resources.consoleTypeSuperFamicom;
+                case hakchi.ConsoleType.ShonenJump: return Resources.consoleTypeShonenJump;
                 case hakchi.ConsoleType.Unknown: return Resources.Unknown;
             }
             return string.Empty;
@@ -1352,9 +1353,9 @@ namespace com.clusterrr.hakchi_gui
                 }
                 double usagePercentage = ((double)stats.Size / (double)maxGamesSize);
                 if (usagePercentage > 1.0)
-                {
                     usagePercentage = 1.0;
-                }
+                if (usagePercentage < 0.0)
+                    usagePercentage = 0.0;
                 toolStripStatusLabelSelected.Text = stats.Count + " " + Resources.GamesSelected;
                 toolStripProgressBar.Maximum = int.MaxValue;
                 toolStripProgressBar.Value = Convert.ToInt32(usagePercentage * int.MaxValue);
@@ -1855,6 +1856,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.SetStatusImage(Resources.sign_life_buoy);
                 tasker.SetTitle(((ToolStripMenuItem)sender).Text);
                 tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
+                tasker.AddTask(ShellTasks.ShellCommand("touch /user-recovery.flag"));
                 if (tasker.Start() == Tasker.Conclusion.Success)
                     Tasks.MessageForm.Show(Resources.RecoveryKernel, Resources.RecoveryModeMessage, Resources.sign_life_buoy);
             }
@@ -1902,7 +1904,6 @@ namespace com.clusterrr.hakchi_gui
                     List<string> hmods = new List<string>();
                     foreach (ListViewItem item in form.listViewHmods.CheckedItems)
                     {
-                        if (((Hmod)item.Tag).isInstalled) continue;
                         hmods.Add(((Hmod)item.Tag).RawName);
                     }
                     if (hmods.Count == 0) return;
@@ -2059,6 +2060,8 @@ namespace com.clusterrr.hakchi_gui
                         AddDefaultsToSelectedGames(NesApplication.defaultSnesGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SNES_USA));
                     if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SuperFamicom).Any())
                         AddDefaultsToSelectedGames(NesApplication.defaultSuperFamicomGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.SuperFamicom));
+                    if (!ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.ShonenJump).Any())
+                        AddDefaultsToSelectedGames(NesApplication.defaultShonenJumpGames, ConfigIni.Instance.SelectedOriginalGamesForConsole(hakchi.ConsoleType.ShonenJump));
                 }
             }
             LoadGames();
@@ -2127,9 +2130,9 @@ namespace com.clusterrr.hakchi_gui
                 }
                 if (Path.GetFileName(files[0]).ToLower().StartsWith("sfrom_tool") && (ext == ".rar" || ext == ".zip" || ext == ".rar"))
                 {
-                    using (var szExtractor = new SevenZipExtractor(files[0]))
+                    using (var extractor = ArchiveFactory.Open(files[0]))
                     {
-                        szExtractor.ExtractArchive(Path.Combine(Program.BaseDirectoryExternal, "sfrom_tool"));
+                        extractor.WriteToDirectory(Path.Combine(Program.BaseDirectoryExternal, "sfrom_tool"), new SharpCompress.Common.ExtractionOptions() { ExtractFullPath = true, Overwrite = true });
                     }
                     enableSFROMToolToolStripMenuItem.Checked = true;
                     enableSFROMToolToolStripMenuItem_Click(sender, e);
@@ -2161,11 +2164,11 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else if (ext == ".7z" || ext == ".zip" || ext == ".rar")
                 {
-                    using (var szExtractor = new SevenZipExtractor(file))
+                    using (var extractor = ArchiveFactory.Open(file))
                     {
                         bool isMod = false;
-                        foreach (var f in szExtractor.ArchiveFileNames)
-                            if (Path.GetExtension(f).ToLower() == ".hmod")
+                        foreach (var f in extractor.Entries)
+                            if (Path.GetExtension(f.Key).ToLower() == ".hmod")
                             {
                                 modsToInstall.Add(file);
                                 isMod = true;
@@ -2680,6 +2683,9 @@ namespace com.clusterrr.hakchi_gui
             if (groupTaskWithSelected(task, task.CompressGames, false))
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
+
+            listViewGames.SelectedItems.Cast<ListViewItem>().ToList().
+                ForEach(i => i.Selected = false);
         }
 
         private void decompressSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2688,6 +2694,9 @@ namespace com.clusterrr.hakchi_gui
             if (groupTaskWithSelected(task, task.DecompressGames, false))
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
+
+            listViewGames.SelectedItems.Cast<ListViewItem>().ToList().
+                ForEach(i => i.Selected = false);
         }
 
         private void deleteSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)

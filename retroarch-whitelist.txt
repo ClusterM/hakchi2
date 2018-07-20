@@ -50,6 +50,7 @@ pokemini
 ppsspp
 prboom
 prosystem
+puae
 px68k
 fceumm
 nestopia

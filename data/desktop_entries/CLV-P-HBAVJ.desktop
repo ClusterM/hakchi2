@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/clover-kachikachi /usr/share/games/CLV-P-HBAVJ/CLV-P-HBAVJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet
+Path=/var/lib/clover/profiles/0//CLV-P-HBAVJ
+Name=魁!!男塾 疾風一号生
+Icon=/usr/share/games/CLV-P-HBAVJ/CLV-P-HBAVJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HBAVJ
+TestID=115
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1989-03-03
+SaveCount=0
+SortRawTitle=さきがけ！！おとこじゅくしっぷういちごうせい
+SortRawPublisher=ばんだいなむこえんたーていんめんと
+Copyright=魁!!男塾 疾風一号生　©宮下あきら／集英社・東映アニメーション　©BANDAI NAMCO Entertainment Inc.

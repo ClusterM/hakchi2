@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/clover-kachikachi /usr/share/games/CLV-P-HBAUJ/CLV-P-HBAUJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet
+Path=/var/lib/clover/profiles/0//CLV-P-HBAUJ
+Name=暗黒神話 ヤマトタケル伝説
+Icon=/usr/share/games/CLV-P-HBAUJ/CLV-P-HBAUJ.png
+
+[X-CLOVER Game]
+Code=CLV-P-HBAUJ
+TestID=114
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=1989-03-24
+SaveCount=0
+SortRawTitle=あんこくしんわやまとたけるでんせつ
+SortRawPublisher=とんきんはうす
+Copyright=暗黒神話 ヤマトタケル伝説　©諸星大二朗 ©1989 東京書籍

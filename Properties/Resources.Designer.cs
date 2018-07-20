@@ -543,6 +543,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Famicom (Shonen Jump).
+        /// </summary>
+        internal static string consoleTypeShonenJump {
+            get {
+                return ResourceManager.GetString("consoleTypeShonenJump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SNES (USA/Europe).
         /// </summary>
         internal static string consoleTypeSnes {
@@ -1954,7 +1963,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your original kernel is saved in the &quot;hakchi2\dump&quot; folder. Do not lose it. .
+        ///   Looks up a localized string similar to Your original kernel has been saved in a special area of your console..
         /// </summary>
         internal static string KernelDumped {
             get {

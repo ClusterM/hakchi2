@@ -1,11 +1,12 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
-using SevenZip;
+using SharpCompress.Archives;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -80,14 +81,12 @@ namespace com.clusterrr.hakchi_gui
                      "    echo $code $size $flags $name\n" +
                      "    unset flags\n" +
                      "    unset name\n" +
-                     "  else\n" +
-                     "    rm -rf $savespath/$code\n" +
                      "  fi\n" +
                      "done";
                 var listSavesScriptStream = new MemoryStream(Encoding.UTF8.GetBytes(listSavesScript));
                 listSavesScriptStream.Seek(0, SeekOrigin.Begin);
                 var output = new MemoryStream();
-                hakchi.Shell.Execute("sh", listSavesScriptStream, output, null, 10000, true);
+                hakchi.Shell.Execute("sh", listSavesScriptStream, output, null, 0, true);
                 var lines = Encoding.UTF8.GetString(output.ToArray()).Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 Invoke(new Action(delegate
                 {
@@ -282,21 +281,22 @@ namespace com.clusterrr.hakchi_gui
                 {
                     hakchi.Shell.Execute("cd /var/lib/clover/profiles/0 && tar -cz " + code, null, save, null, 10000, true);
                     save.Seek(0, SeekOrigin.Begin);
-                    using (var szExtractor = new SevenZipExtractor(save))
+                    using (var extractor = ArchiveFactory.Open(save))
                     {
-                        var tar = new MemoryStream();
-                        szExtractor.ExtractFile(0, tar);
-                        tar.Seek(0, SeekOrigin.Begin);
-                        using (var szExtractorTar = new SevenZipExtractor(tar))
+                        using (var tar = new MemoryStream())
                         {
-                            foreach (var f in szExtractorTar.ArchiveFileNames)
+                            extractor.Entries.First().OpenEntryStream().CopyTo(tar);
+                            using (var extractorTar = SharpCompress.Archives.Tar.TarArchive.Open(tar))
                             {
-                                if (Path.GetExtension(f).ToLower() == ".png")
+                                foreach (var f in extractorTar.Entries)
                                 {
-                                    var o = new MemoryStream();
-                                    szExtractorTar.ExtractFile(f, o);
-                                    o.Seek(0, SeekOrigin.Begin);
-                                    images.Add(Image.FromStream(o));
+                                    if (Path.GetExtension(f.Key).ToLower() == ".png")
+                                    {
+                                        var o = new MemoryStream();
+                                        f.OpenEntryStream().CopyTo(o);
+                                        o.Seek(0, SeekOrigin.Begin);
+                                        images.Add(Image.FromStream(o));
+                                    }
                                 }
                             }
                         }

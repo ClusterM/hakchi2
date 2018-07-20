@@ -5,7 +5,7 @@ using System.Net;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using com.clusterrr.hakchi_gui.Properties;
-using SevenZip;
+using SharpCompress.Archives;
 
 namespace com.clusterrr.hakchi_gui.module_library
 {
@@ -124,20 +124,18 @@ namespace com.clusterrr.hakchi_gui.module_library
                         }
                         break;
                     case ModuleType.compressedFile:
-                        SevenZipExtractor.SetLibraryPath(Path.Combine(Program.BaseDirectoryInternal, IntPtr.Size == 8 ? @"tools\7z64.dll" : @"tools\7z.dll"));
                         var tempFileName = Path.GetTempFileName();
                         if(!ProgressBarForm.DownloadFile(module.Path, tempFileName))
                             throw new Exception("Cannot download file: " + module.Path);
-                        using (var szExtractor = new SevenZipExtractor(tempFileName))
+                        using (var extractor = ArchiveFactory.Open(tempFileName))
                         {
                             installedModule = module.CreateInstalledItem();
-                            var data = szExtractor.ArchiveFileData;
-                            foreach (var file in data)
+                            foreach (var file in extractor.Entries)
                             {
-                                int index = file.FileName.IndexOf('\\');
+                                int index = file.Key.IndexOf('/');
                                 if (index != -1)
                                 {
-                                    var folder = file.FileName.Substring(0, index + 1);
+                                    var folder = file.Key.Substring(0, index + 1);
                                     if (!installedModule.InstalledFiles.Contains(folder))
                                     {
                                         installedModule.InstalledFiles.Add(folder);
@@ -147,9 +145,9 @@ namespace com.clusterrr.hakchi_gui.module_library
                                     }
                                 }
                                 else if(!file.IsDirectory)
-                                    installedModule.InstalledFiles.Add(file.FileName);
+                                    installedModule.InstalledFiles.Add(file.Key);
                             }
-                            szExtractor.ExtractArchive(userModDir);
+                            extractor.WriteToDirectory(userModDir, new SharpCompress.Common.ExtractionOptions() { ExtractFullPath = true, Overwrite = true });
                             InstalledItems.Add(installedModule);
                         }
                         File.Delete(tempFileName);
