@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/usr/bin/clover-kachikachi /usr/share/games/CLV-P-HBALJ/CLV-P-HBALJ.qd --fds-auto-disk-side-switch --fds-disk-switch-side-threshold 8 --fds-disk-switch-side-delay 64 --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 84 --fds-bios-volume 69 --enable-armet
+Exec=/usr/bin/clover-kachikachi-wr /usr/share/games/CLV-P-HBALJ/CLV-P-HBALJ.qd --fds-auto-disk-side-switch --fds-disk-switch-side-threshold 8 --fds-disk-switch-side-delay 64 --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 84 --fds-bios-volume 69 --enable-armet
 Path=/var/lib/clover/profiles/0//CLV-P-HBALJ
 Name=キン肉マン キン肉星王位争奪戦
 Icon=/usr/share/games/CLV-P-HBALJ/CLV-P-HBALJ.png

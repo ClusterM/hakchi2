@@ -1273,4 +1273,7 @@ You can wait some more and try the action again if it comes online after a while
   <data name="consoleTypeShonenJump" xml:space="preserve">
     <value>Famicom (Shonen Jump)</value>
   </data>
+  <data name="LinkingGames" xml:space="preserve">
+    <value>Processing symbolic links...</value>
+  </data>
 </root>

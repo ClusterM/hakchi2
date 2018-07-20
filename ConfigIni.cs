@@ -45,12 +45,12 @@ namespace com.clusterrr.hakchi_gui
             }
         }
         [JsonIgnore]
-        public ICollection<string> SelectedGames
+        public List<string> SelectedGames
         {
             get { return gamesCollectionSettings[consoleType].SelectedGames; }
         }
         [JsonIgnore]
-        public ICollection<string> OriginalGames
+        public List<string> OriginalGames
         {
             get { return gamesCollectionSettings[consoleType].OriginalGames; }
         }
@@ -104,7 +104,7 @@ namespace com.clusterrr.hakchi_gui
 
         public void AddNewSelectedGame(string code)
         {
-            hakchi.ConsoleType[] nes = { hakchi.ConsoleType.Famicom, hakchi.ConsoleType.NES };
+            hakchi.ConsoleType[] nes = { hakchi.ConsoleType.Famicom, hakchi.ConsoleType.NES, hakchi.ConsoleType.ShonenJump };
             hakchi.ConsoleType[] snes = { hakchi.ConsoleType.SNES_EUR, hakchi.ConsoleType.SNES_USA, hakchi.ConsoleType.SuperFamicom };
             hakchi.ConsoleType[] selected = null;
             if (nes.Contains(consoleType))

@@ -361,14 +361,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             {
                                 reader.WriteEntryTo(o);
                                 o.Flush();
-                                if (!this.ResetAllOriginalGames && !ConfigIni.Instance.SelectedGames.Contains(code))
+                                if (!this.ResetAllOriginalGames && !ConfigIni.Instance.OriginalGames.Contains(code))
                                 {
-                                    ConfigIni.Instance.SelectedGames.Add(code);
+                                    ConfigIni.Instance.OriginalGames.Add(code);
                                 }
                             }
 
                             // create game temporarily to perform cover search
-                            Trace.WriteLine(string.Format($"Resetting game \"{code}\"."));
+                            Trace.WriteLine(string.Format($"Resetting game \"{NesApplication.AllDefaultGames[code].Name}\"."));
                             var game = NesApplication.FromDirectory(path);
                             game.FindCover(code + ".desktop");
                             game.Save();

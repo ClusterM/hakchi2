@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/usr/bin/clover-kachikachi /usr/share/games/CLV-P-HBBEJ/CLV-P-HBBEJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet
+Exec=/usr/bin/clover-kachikachi-wr /usr/share/games/CLV-P-HBBEJ/CLV-P-HBBEJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet
 Path=/var/lib/clover/profiles/0//CLV-P-HBBEJ
 Name=赤龍王
 Icon=/usr/share/games/CLV-P-HBBEJ/CLV-P-HBBEJ.png

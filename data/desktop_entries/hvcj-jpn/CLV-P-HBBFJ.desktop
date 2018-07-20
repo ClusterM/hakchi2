@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/usr/bin/clover-kachikachi /usr/share/games/CLV-P-HBBFJ/CLV-P-HBBFJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 87 --enable-armet
+Exec=/usr/bin/clover-kachikachi-wr /usr/share/games/CLV-P-HBBFJ/CLV-P-HBBFJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 87 --enable-armet
 Path=/var/lib/clover/profiles/0//CLV-P-HBBFJ
 Name=北斗の拳
 Icon=/usr/share/games/CLV-P-HBBFJ/CLV-P-HBBFJ.png

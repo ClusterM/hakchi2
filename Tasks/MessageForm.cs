@@ -108,5 +108,35 @@ namespace com.clusterrr.hakchi_gui.Tasks
         const int MF_BYCOMMAND = 0;
         const int MF_DISABLED = 2;
         const int SC_CLOSE = 0xF060;
+
+        private void MessageForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    foreach (var button in buttons)
+                        if (button == Button.Abort)
+                        {
+                            result = Button.Abort;
+                            Close();
+                            return;
+                        }
+                    foreach (var button in buttons)
+                        if (button == Button.Cancel)
+                        {
+                            result = Button.Cancel;
+                            Close();
+                            return;
+                        }
+                    foreach (var button in buttons)
+                        if (button == Button.No)
+                        {
+                            result = Button.No;
+                            Close();
+                            return;
+                        }
+                    break;
+            }
+        }
     }
 }

@@ -910,4 +910,7 @@ Vous pouvez attendre encore un peu et retenter l'action à nouveau s'il revient 
   <data name="RecoveryModeCloseWarning" xml:space="preserve">
     <value>Votre NES/SNES Mini est présentement en mode récupération. Vous ne pourrez pas l'éteindre normalement. Voulez-vous terminer la séquence de démarrage pour la ramener en mode normal?</value>
   </data>
+  <data name="LinkingGames" xml:space="preserve">
+    <value>Traitement des liens symboliques...</value>
+  </data>
 </root>

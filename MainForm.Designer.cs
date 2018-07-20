@@ -103,6 +103,7 @@
             this.disableSSHlistenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disableClovershellListenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alwaysCopyOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useLinkedSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -238,7 +239,6 @@
             this.syncStructureForAllGamesCollectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
             this.timerUpdate = new System.Windows.Forms.Timer(this.components);
-            this.alwaysCopyOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -360,8 +360,8 @@
             // 
             // importCachedOriginalGamesToolStripMenuItem
             // 
-            this.importCachedOriginalGamesToolStripMenuItem.Name = "importCachedOriginalGamesToolStripMenuItem";
             resources.ApplyResources(this.importCachedOriginalGamesToolStripMenuItem, "importCachedOriginalGamesToolStripMenuItem");
+            this.importCachedOriginalGamesToolStripMenuItem.Name = "importCachedOriginalGamesToolStripMenuItem";
             this.importCachedOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.importCachedOriginalGamesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
@@ -782,6 +782,15 @@
             this.separateGamesForMultibootToolStripMenuItem.Name = "separateGamesForMultibootToolStripMenuItem";
             resources.ApplyResources(this.separateGamesForMultibootToolStripMenuItem, "separateGamesForMultibootToolStripMenuItem");
             this.separateGamesForMultibootToolStripMenuItem.Click += new System.EventHandler(this.separateGamesForMultibootToolStripMenuItem_Click);
+            // 
+            // alwaysCopyOriginalGamesToolStripMenuItem
+            // 
+            this.alwaysCopyOriginalGamesToolStripMenuItem.Checked = true;
+            this.alwaysCopyOriginalGamesToolStripMenuItem.CheckOnClick = true;
+            this.alwaysCopyOriginalGamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.alwaysCopyOriginalGamesToolStripMenuItem.Name = "alwaysCopyOriginalGamesToolStripMenuItem";
+            resources.ApplyResources(this.alwaysCopyOriginalGamesToolStripMenuItem, "alwaysCopyOriginalGamesToolStripMenuItem");
+            this.alwaysCopyOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.alwaysCopyOriginalGamesToolStripMenuItem_Click);
             // 
             // useLinkedSyncToolStripMenuItem
             // 
@@ -1746,15 +1755,6 @@
             // timerUpdate
             // 
             this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
-            // 
-            // alwaysCopyOriginalGamesToolStripMenuItem
-            // 
-            this.alwaysCopyOriginalGamesToolStripMenuItem.Checked = true;
-            this.alwaysCopyOriginalGamesToolStripMenuItem.CheckOnClick = true;
-            this.alwaysCopyOriginalGamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.alwaysCopyOriginalGamesToolStripMenuItem.Name = "alwaysCopyOriginalGamesToolStripMenuItem";
-            resources.ApplyResources(this.alwaysCopyOriginalGamesToolStripMenuItem, "alwaysCopyOriginalGamesToolStripMenuItem");
-            this.alwaysCopyOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.alwaysCopyOriginalGamesToolStripMenuItem_Click);
             // 
             // MainForm
             // 

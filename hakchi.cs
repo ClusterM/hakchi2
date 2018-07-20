@@ -108,7 +108,12 @@ namespace com.clusterrr.hakchi_gui
 
         public static bool IsNes(ConsoleType consoleType)
         {
-            return (new ConsoleType[] { ConsoleType.Famicom, ConsoleType.NES }).Contains(consoleType);
+            return (new ConsoleType[] { ConsoleType.Famicom, ConsoleType.NES, ConsoleType.ShonenJump }).Contains(consoleType);
+        }
+
+        public static bool HasPixelArt(ConsoleType consoleType)
+        {
+            return consoleType == ConsoleType.NES || consoleType == ConsoleType.Famicom;
         }
 
         public static string GetDetectedRemoteGameSyncPath()

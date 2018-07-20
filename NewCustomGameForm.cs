@@ -23,7 +23,11 @@ namespace com.clusterrr.hakchi_gui
 
         private void maskedTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.KeyChar = char.ToUpper(e.KeyChar);
+            if (char.IsLetterOrDigit(e.KeyChar))
+                e.KeyChar = char.ToUpper(e.KeyChar);
+            else
+                e.Handled = true;
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

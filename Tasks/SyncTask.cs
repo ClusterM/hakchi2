@@ -37,7 +37,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
         private GamesTreeStats stats;
         private HashSet<ApplicationFileInfo> localGameSet;
         private IEnumerable<ApplicationFileInfo> transferGameSet;
-        Dictionary<string, string> originalGames;
         NesApplication.CopyMode copyMode;
 
         public SyncTask()
@@ -49,7 +48,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
             stats = new GamesTreeStats();
             localGameSet = new HashSet<ApplicationFileInfo>();
             transferGameSet = null;
-            originalGames = new Dictionary<string, string>();
             copyMode = ConfigIni.Instance.SyncLinked ? NesApplication.CopyMode.LinkedSync : NesApplication.CopyMode.Sync;
         }
 
@@ -121,7 +119,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public Tasker.Conclusion BuildFiles(Tasker tasker, Object syncObject = null)
         {
             tasker.SetStatus(Resources.AddingGames);
-            AddMenu(Games, originalGames, copyMode, localGameSet, stats);
+            AddMenu(Games, copyMode, localGameSet, stats);
             return Tasker.Conclusion.Success;
         }
 
@@ -426,61 +424,23 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Tasker.Conclusion.Success;
         }
 
-        public Tasker.Conclusion SyncOriginalGames(Tasker tasker, Object syncObject = null)
+        public Tasker.Conclusion LinkGames(Tasker tasker, Object syncObject = null)
         {
-            if (originalGames.Any() && (!ConfigIni.Instance.AlwaysCopyOriginalGames || ConfigIni.Instance.SyncLinked))
+            using (MemoryStream commandBuilder = new MemoryStream())
             {
-                using (MemoryStream commandBuilder = new MemoryStream())
+                tasker.SetStatus(Resources.LinkingGames);
+
+                string data = $"#!/bin/sh\ncd \"/tmp\"\n";
+                commandBuilder.Write(Encoding.UTF8.GetBytes(data), 0, data.Length);
+                foreach (var menuCollection in stats.allMenus)
                 {
-                    tasker.SetStatus(Resources.UploadingOriginalGames);
-
-                    string data = $"#!/bin/sh\ncd \"/tmp\"\n";
-                    commandBuilder.Write(Encoding.UTF8.GetBytes(data), 0, data.Length);
-                    foreach (var originalCode in originalGames.Keys)
-                    {
-                        string src = $"{hakchi.SquashFsPath}{hakchi.GamesSquashFsPath}/{originalCode}";
-                        string dst = $"{uploadPath}/{originalGames[originalCode]}/{originalCode}";
-                        if (ConfigIni.Instance.AlwaysCopyOriginalGames)
-                        {
-                            src = $"{uploadPath}/.storage/{originalCode}";
-                        }
-
-                        string originalSyncCode = "";
-                        switch (ConfigIni.Instance.ConsoleType)
-                        {
-                            case hakchi.ConsoleType.NES:
-                            case hakchi.ConsoleType.Famicom:
-                                originalSyncCode =
-                                    $"src=\"{src}\" && " +
-                                    $"dst=\"{dst}\" && " +
-                                    $"mkdir -p \"$dst\" && " +
-                                    $"rm -rf \"$dst/autoplay\" &&" +
-                                    $"rm -rf \"$dst/pixelart\" &&" +
-                                    $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\") && " +
-                                    $"([ -L \"$dst/pixelart\" ] || ln -s \"$src/pixelart\" \"$dst/\")" +
-                                    "\n";
-                                break;
-                            case hakchi.ConsoleType.SNES_EUR:
-                            case hakchi.ConsoleType.SNES_USA:
-                            case hakchi.ConsoleType.SuperFamicom:
-                                originalSyncCode =
-                                    $"src=\"{src}\" && " +
-                                    $"dst=\"{dst}\" && " +
-                                    $"mkdir -p \"$dst\" && " +
-                                    $"rm -rf \"$dst/autoplay\" &&" +
-                                    $"([ -L \"$dst/autoplay\" ] || ln -s \"$src/autoplay\" \"$dst/\")" +
-                                    "\n";
-                                break;
-                        }
-                        commandBuilder.Write(Encoding.UTF8.GetBytes(originalSyncCode), 0, originalSyncCode.Length);
-                    }
-                    tasker.SetProgress(1, 2);
-
-                    hakchi.RunTemporaryScript(commandBuilder, "originalgamessync.sh");
+                    AddSymLinks(menuCollection, commandBuilder);
                 }
 
-                tasker.SetProgress(2, 2);
+                tasker.SetProgress(1, 2);
+                hakchi.RunTemporaryScript(commandBuilder, "linkgamessync.sh");
             }
+            tasker.SetProgress(2, 2);
             return Tasker.Conclusion.Success;
         }
 
@@ -550,7 +510,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 tasker.AddTask(SyncRemoteGamesFTP, 28);
             }
             tasker.AddTask(RemoteCleanup, 1);
-            tasker.AddTask(SyncOriginalGames, 1);
+            tasker.AddTask(LinkGames, 1);
             tasker.AddTask(ShellTasks.SyncConfig, 1);
 
             return Tasker.Conclusion.Success;
@@ -558,7 +518,126 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         // internal methods
 
-        private void AddMenu(NesMenuCollection menuCollection, Dictionary<string, string> originalGames, NesApplication.CopyMode copyMode, HashSet<ApplicationFileInfo> localGameSet = null, GamesTreeStats stats = null)
+        private void AddSymLinks(NesMenuCollection menuCollection, MemoryStream commandBuilder)
+        {
+            int menuIndex = stats.allMenus.IndexOf(menuCollection);
+            string targetDirectory = string.Format("{0:D3}", menuIndex);
+
+            foreach (var menuElement in menuCollection)
+            {
+                if (menuElement is NesApplication)
+                {
+                    NesApplication app = menuElement as NesApplication;
+
+                    bool hasAutoplayPixelArt = Directory.Exists(Path.Combine(app.BasePath, "autoplay")) || Directory.Exists(Path.Combine(app.BasePath, "autoplay"));
+                    string src = $"{uploadPath}/.storage/{app.Code}";
+                    string dst = $"{uploadPath}/{targetDirectory}/{app.Code}";
+
+                    bool needLink = false;
+                    if (ConfigIni.Instance.SyncLinked)
+                    {
+                        if (app.IsOriginalGame)
+                        {
+                            if (ConfigIni.Instance.AlwaysCopyOriginalGames)
+                            {
+                                if (hasAutoplayPixelArt)
+                                {
+                                    needLink = true;
+                                }
+                                else
+                                {
+                                    needLink = true;
+                                }
+                            }
+                            else
+                            {
+                                if (hasAutoplayPixelArt)
+                                {
+                                    needLink = true;
+                                }
+                                else
+                                {
+                                    needLink = true;
+                                    src = $"{hakchi.SquashFsPath}{hakchi.GamesSquashFsPath}/{app.Code}";
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (hasAutoplayPixelArt)
+                            {
+                                needLink = true;
+                            }
+                            else
+                            {
+                                // needLink = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (app.IsOriginalGame)
+                        {
+                            if (ConfigIni.Instance.AlwaysCopyOriginalGames)
+                            {
+                                if (hasAutoplayPixelArt)
+                                {
+                                    // needLink = false;
+                                }
+                                else
+                                {
+                                    // needLink = false;
+                                }
+                            }
+                            else
+                            {
+                                if (hasAutoplayPixelArt)
+                                {
+                                    // needLink = false;
+                                }
+                                else
+                                {
+                                    needLink = true;
+                                    src = $"{hakchi.SquashFsPath}{hakchi.GamesSquashFsPath}/{app.Code}";
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (hasAutoplayPixelArt)
+                            {
+                                // needLink = false;
+                            }
+                            else
+                            {
+                                // needLink = false;
+                            }
+                        }
+                    }
+
+                    if (needLink)
+                    {
+                        string linkCode =
+                            $"src=\"{src}\" && " +
+                            $"dst=\"{dst}\" && " +
+                            $"mkdir -p \"$dst\" && " +
+                            $"rm -rf \"$dst/autoplay\" && " +
+                            $"ln -s \"$src/autoplay\" \"$dst/\" ";
+                        if (hakchi.HasPixelArt(ConfigIni.Instance.ConsoleType))
+                            linkCode +=
+                                $"&& rm -rf \"$dst/pixelart\" && " +
+                                $"ln -s \"$src/pixelart\" \"$dst/\" ";
+                        linkCode += "\n";
+#if VERY_DEBUG
+                        Trace.WriteLine(linkCode);
+#endif
+                        commandBuilder.Write(Encoding.UTF8.GetBytes(linkCode), 0, linkCode.Length);
+                    }
+                }
+            }
+        }
+
+        private void AddMenu(NesMenuCollection menuCollection, NesApplication.CopyMode copyMode, HashSet<ApplicationFileInfo> localGameSet = null, GamesTreeStats stats = null)
         {
             if (stats == null)
                 stats = new GamesTreeStats();
@@ -600,10 +679,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     stats.TotalSize += gameSize;
                     stats.TransferSize += gameSize;
                     stats.TotalGames++;
-
-                    // legacy
-                    if (game.IsOriginalGame)
-                        originalGames[game.Code] = $"{menuIndex:D3}";
                 }
                 if (element is NesMenuFolder)
                 {
@@ -614,7 +689,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     if (!stats.allMenus.Contains(folder.ChildMenuCollection))
                     {
                         stats.allMenus.Add(folder.ChildMenuCollection);
-                        AddMenu(folder.ChildMenuCollection, originalGames, copyMode, localGameSet, stats);
+                        AddMenu(folder.ChildMenuCollection, copyMode, localGameSet, stats);
                     }
                     folder.ChildIndex = stats.allMenus.IndexOf(folder.ChildMenuCollection);
 

@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/usr/bin/clover-kachikachi /usr/share/games/CLV-P-HBAXJ/CLV-P-HBAXJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet --enable-ccr
+Exec=/usr/bin/clover-kachikachi-wr /usr/share/games/CLV-P-HBAXJ/CLV-P-HBAXJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet --enable-ccr
 Path=/var/lib/clover/profiles/0//CLV-P-HBAXJ
 Name=まじかる☆タルるートくん FANTASTIC WORLD!!
 Icon=/usr/share/games/CLV-P-HBAXJ/CLV-P-HBAXJ.png

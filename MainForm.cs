@@ -272,7 +272,7 @@ namespace com.clusterrr.hakchi_gui
                 return;
             }
 
-            string title = $"hakchi2 CE v{Shared.AppDisplayVersion}";
+            string title = $"hakchi CE v{Shared.AppDisplayVersion}";
 
 #if DEBUG
             title += " (Debug";
@@ -441,6 +441,7 @@ namespace com.clusterrr.hakchi_gui
             // setup ui items
             SetupShellMenuItems(hakchi.Shell);
             SetWindowTitle();
+            gamesConsoleComboBox.Enabled = !hakchi.Connected || ConfigIni.Instance.SeparateGameStorage;
 
             // developer settings
             devForceSshToolStripMenuItem.Checked = ConfigIni.Instance.ForceSSHTransfers;
@@ -495,7 +496,7 @@ namespace com.clusterrr.hakchi_gui
             }
             lastConsoleType = ConfigIni.Instance.ConsoleType;
 
-            // select games collection
+            // games collection combo box
             for (int i = 0; i < gamesConsoleComboBox.Items.Count; ++i)
             {
                 if (GetConsoleTypeName(ConfigIni.Instance.ConsoleType) == gamesConsoleComboBox.Items[i] as string)
@@ -762,20 +763,31 @@ namespace com.clusterrr.hakchi_gui
         private void SaveSelectedGames()
         {
             Trace.WriteLine("Saving selected games");
-            var selected = ConfigIni.Instance.SelectedGames;
-            var original = ConfigIni.Instance.OriginalGames;
-            selected.Clear();
-            if (ConfigIni.Instance.OriginalGamesPosition != OriginalGamesPosition.Hidden)
-                original.Clear();
+            List<string> selected = new List<string>();
+            HashSet<string> original = new HashSet<string>();
+            original.UnionWith(ConfigIni.Instance.OriginalGames);
 
-            foreach (ListViewItem item in listViewGames.CheckedItems)
+            foreach (ListViewItem item in listViewGames.Items)
             {
-                if (item.Tag is NesApplication)
+                if (!(item.Tag is NesApplication))
+                    continue;
+
+                NesApplication game = item.Tag as NesApplication;
+                if (item.Checked)
                 {
-                    NesApplication game = item.Tag as NesApplication;
-                    (game.IsOriginalGame ? original : selected).Add(game.Code);
+                    if (game.IsOriginalGame) original.Add(game.Code); else selected.Add(game.Code);
+                }
+                else
+                {
+                    if (game.IsOriginalGame) original.Remove(game.Code);
                 }
             }
+
+            ConfigIni.Instance.SelectedGames.Clear();
+            ConfigIni.Instance.SelectedGames.AddRange(selected);
+
+            ConfigIni.Instance.OriginalGames.Clear();
+            ConfigIni.Instance.OriginalGames.AddRange(original);
         }
 
         private void SaveGameItem(ListViewItem item)
@@ -831,9 +843,7 @@ namespace com.clusterrr.hakchi_gui
                 for (int i = 0; i < listViewGames.Items.Count; ++i)
                 {
                     if (!selected && listViewGames.Items[i].Selected)
-                    {
                         SaveGameItem(listViewGames.Items[i]);
-                    }
                     listViewGames.Items[i].Selected = selected;
                 }
             }
@@ -1060,7 +1070,10 @@ namespace com.clusterrr.hakchi_gui
                         SelectAll(false);
                     break;
                 case Keys.Delete:
-                    if ((listViewGames.SelectedItems.Count > 1) || (listViewGames.SelectedItems.Count == 1 && listViewGames.SelectedItems[0].Tag is NesApplication))
+                    if ((listViewGames.SelectedItems.Count > 1) ||
+                        (listViewGames.SelectedItems.Count == 1 &&
+                        listViewGames.SelectedItems[0].Tag is NesApplication &&
+                        (!(listViewGames.SelectedItems[0].Tag as NesApplication).IsOriginalGame)))
                         deleteSelectedGamesToolStripMenuItem_Click(null, null);
                     break;
                 case Keys.Space:
@@ -2234,6 +2247,14 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.Instance.SeparateGameStorage = separateGamesForMultibootToolStripMenuItem.Checked;
             MemoryStats.DebugDisplay();
             timerCalculateGames.Enabled = true;
+
+            if (hakchi.Connected)
+            {
+                if (!ConfigIni.Instance.SeparateGameStorage && hakchi.DetectedConsoleType != null)
+                    ConfigIni.Instance.ConsoleType = hakchi.DetectedConsoleType.Value;
+                SyncConsoleType();
+                gamesConsoleComboBox.Enabled = !hakchi.Connected || ConfigIni.Instance.SeparateGameStorage;
+            }
         }
 
         private void disableHakchi2PopupsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2249,6 +2270,7 @@ namespace com.clusterrr.hakchi_gui
         private void alwaysCopyOriginalGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Instance.AlwaysCopyOriginalGames = alwaysCopyOriginalGamesToolStripMenuItem.Checked;
+            SaveSelectedGames();
             LoadGames();
         }
 
@@ -2940,7 +2962,10 @@ namespace com.clusterrr.hakchi_gui
                 if (selectCoreDialog.ShowDialog(this) == DialogResult.OK)
                 {
                     if (selectCoreDialog.Modified)
+                    {
                         SaveConfig();
+                        LoadGames(false);
+                    }
                 }
             }
 

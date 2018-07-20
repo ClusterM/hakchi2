@@ -1,7 +1,5 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using SharpCompress.Archives;
-using SharpCompress.Common;
-using SharpCompress.Readers;
 using pdj.tiny7z.Archive;
 using Newtonsoft.Json;
 using System;
@@ -1163,7 +1161,11 @@ namespace com.clusterrr.hakchi_gui
             string targetDir = $"{relativeTargetPath}/{desktop.Code}";
 
             HashSet<ApplicationFileInfo> gameSet = ApplicationFileInfo.GetApplicationFileInfoForDirectory(
-                basePath, targetDir, true, new string[] { desktop.Code + ".desktop" });
+                basePath,
+                targetDir,
+                true,
+                new string[] {
+                    desktop.Code + ".desktop" });
 
             string mediaGamePath = hakchi.GamesPath;
             string iconPath = hakchi.GamesPath;
@@ -1171,11 +1173,16 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (ConfigIni.Instance.AlwaysCopyOriginalGames)
                 {
-                    string originalBasePath = Path.Combine(OriginalGamesCacheDirectory, desktop.Code);
-                    if (Directory.Exists(originalBasePath))
+                    string cachedOriginalPath = Path.Combine(OriginalGamesCacheDirectory, desktop.Code);
+                    if (Directory.Exists(cachedOriginalPath))
                     {
                         HashSet<ApplicationFileInfo> supplementalGameSet = ApplicationFileInfo.GetApplicationFileInfoForDirectory(
-                            originalBasePath, targetDir, true, new string[] { desktop.Code + ".desktop" });
+                            cachedOriginalPath,
+                            targetDir,
+                            true,
+                            new string[] {
+                                desktop.Code + ".desktop" });
+
                         gameSet = gameSet.CopyFilesTo(supplementalGameSet, false);
                     }
                 }
@@ -1198,7 +1205,11 @@ namespace com.clusterrr.hakchi_gui
             string targetStorageDir = $".storage/{desktop.Code}";
 
             HashSet<ApplicationFileInfo> gameSet = ApplicationFileInfo.GetApplicationFileInfoForDirectory(
-                basePath, targetStorageDir, true, new string[] { desktop.Code + ".desktop" });
+                basePath,
+                targetStorageDir,
+                true,
+                new string[] {
+                    desktop.Code + ".desktop" });
 
             string mediaGamePath = hakchi.GetRemoteGameSyncPath(ConfigIni.Instance.ConsoleType) + "/.storage";
             string iconPath = mediaGamePath;
@@ -1206,11 +1217,22 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (ConfigIni.Instance.AlwaysCopyOriginalGames)
                 {
-                    string originalBasePath = Path.Combine(OriginalGamesCacheDirectory, desktop.Code);
-                    if (Directory.Exists(originalBasePath))
+                    string cachedOriginalPath = Path.Combine(OriginalGamesCacheDirectory, desktop.Code);
+                    if (Directory.Exists(cachedOriginalPath))
                     {
+                        List<string> skipFiles = new List<string>() { desktop.Code + ".desktop" };
+                        if (Directory.Exists(Path.Combine(basePath, "autoplay")) || Directory.Exists(Path.Combine(basePath, "pixelart")))
+                        {
+                            skipFiles.Add("autoplay/");
+                            skipFiles.Add("pixelart/");
+                        }
+
                         HashSet<ApplicationFileInfo> supplementalGameSet = ApplicationFileInfo.GetApplicationFileInfoForDirectory(
-                            originalBasePath, targetStorageDir, true, new string[] { desktop.Code + ".desktop" });
+                            cachedOriginalPath,
+                            targetStorageDir,
+                            true,
+                            skipFiles.ToArray());
+
                         gameSet = gameSet.CopyFilesTo(supplementalGameSet, false);
                     }
                 }
@@ -1235,15 +1257,24 @@ namespace com.clusterrr.hakchi_gui
             string iconPath = hakchi.GamesPath;
 
             HashSet<ApplicationFileInfo> gameSet = ApplicationFileInfo.GetApplicationFileInfoForDirectory(
-                basePath, targetDir, true, new string[] { desktop.Code + ".desktop" });
+                basePath,
+                targetDir,
+                true,
+                new string[] {
+                    desktop.Code + ".desktop" });
 
             if (IsOriginalGame)
             {
-                string originalBasePath = Path.Combine(OriginalGamesCacheDirectory, desktop.Code);
-                if (Directory.Exists(originalBasePath))
+                string cachedOriginalPath = Path.Combine(OriginalGamesCacheDirectory, desktop.Code);
+                if (Directory.Exists(cachedOriginalPath))
                 {
                     HashSet<ApplicationFileInfo> supplementalGameSet = ApplicationFileInfo.GetApplicationFileInfoForDirectory(
-                        originalBasePath, targetDir, true, new string[] { desktop.Code + ".desktop" });
+                        cachedOriginalPath,
+                        targetDir,
+                        true,
+                        new string[] {
+                            desktop.Code + ".desktop" });
+
                     gameSet = gameSet.CopyFilesTo(supplementalGameSet, false);
                 }
 
@@ -1328,6 +1359,18 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
+                // copy autoplay and pixelart folders when they are in cache
+                if (Directory.Exists(Path.Combine(basePath, "autoplay")))
+                {
+                    gameSet.UnionWith(ApplicationFileInfo.GetApplicationFileInfoForDirectory(
+                        Path.Combine(basePath, "autoplay"), $"{targetDir}/autoplay"));
+                }
+                if (Directory.Exists(Path.Combine(basePath, "pixelart")))
+                {
+                    gameSet.UnionWith(ApplicationFileInfo.GetApplicationFileInfoForDirectory(
+                        Path.Combine(basePath, "pixelart"), $"{targetDir}/pixelart"));
+                }
+
                 if (File.Exists(Path.Combine(basePath, GameGenieFileName)))
                 {
                     gameSet.Add(ApplicationFileInfo.GetApplicationFileInfo(GameFilePath, targetDir));

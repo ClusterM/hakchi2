@@ -1981,6 +1981,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Processing symbolic links....
+        /// </summary>
+        internal static string LinkingGames {
+            get {
+                return ResourceManager.GetString("LinkingGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Games.
         /// </summary>
         internal static string ListCategoryAll {

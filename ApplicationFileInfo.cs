@@ -79,21 +79,44 @@ namespace com.clusterrr.hakchi_gui
 
         public static HashSet<ApplicationFileInfo> GetApplicationFileInfoForDirectory(string rootDirectory, string targetDirectory = null, bool recursive = true, string[] skipFiles = null)
         {
-            var fileInfoSet = new HashSet<ApplicationFileInfo>();
             var filepaths = Directory.GetFiles(rootDirectory, "*", recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
 
             targetDirectory = targetDirectory ?? string.Empty;
             if (!string.IsNullOrEmpty(targetDirectory))
                 targetDirectory = "/" + targetDirectory.Trim('/');
 
+            if (skipFiles == null)
+                skipFiles = new string[0];
+
+            var fileInfoSet = new HashSet<ApplicationFileInfo>();
             foreach (string path in filepaths)
             {
-                if (skipFiles != null && skipFiles.Contains(Path.GetFileName(path)))
+                // handle skip files
+                bool skip = false;
+                foreach (var f in skipFiles)
+                {
+                    if (f.EndsWith("/"))
+                    {
+                        var i = path.IndexOf(f);
+                        if (i == 0 || (i > 0 && path[i - 1] == '/'))
+                        {
+                            skip = true;
+                            break;
+                        }
+                    }
+                    else if (f == Path.GetFileName(path))
+                    {
+                        skip = true;
+                        break;
+                    }
+                }
+                if (skip)
                     continue;
+
                 // make the filepath match what we'd get back from the console
                 string canonicalPath = "." + targetDirectory + path.Remove(0, rootDirectory.Length).Replace("\\", "/");
-                FileInfo f = new FileInfo(path);
-                fileInfoSet.Add(new ApplicationFileInfo(canonicalPath, f.Length, f.LastWriteTimeUtc, path));
+                FileInfo fi = new FileInfo(path);
+                fileInfoSet.Add(new ApplicationFileInfo(canonicalPath, fi.Length, fi.LastWriteTimeUtc, path));
             }
 
             return fileInfoSet;

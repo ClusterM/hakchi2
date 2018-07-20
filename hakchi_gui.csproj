@@ -240,6 +240,12 @@
     <Compile Include="SelectSystemDialog.Designer.cs">
       <DependentUpon>SelectSystemDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SfromToolWrapper.cs" />
     <Compile Include="ExportGamesDialog.cs">
       <SubType>Form</SubType>
@@ -481,6 +487,7 @@
     <None Include="data\libretro_cores\fbalpha2012_libretro.info" />
     <None Include="data\libretro_cores\fbalpha2012_neogeo_libretro.info" />
     <None Include="data\libretro_cores\fbalpha_libretro.info" />
+    <None Include="data\libretro_cores\fceumm_libretro.info" />
     <None Include="data\libretro_cores\fmsx_libretro.info" />
     <None Include="data\libretro_cores\freeintv_libretro.info" />
     <None Include="data\libretro_cores\freej2me_libretro.info" />
@@ -512,6 +519,7 @@
     <None Include="data\libretro_cores\mrboom_libretro.info" />
     <None Include="data\libretro_cores\mupen64plus_libretro.info" />
     <None Include="data\libretro_cores\nekop2_libretro.info" />
+    <None Include="data\libretro_cores\nestopia_libretro.info" />
     <None Include="data\libretro_cores\np2kai_libretro.info" />
     <None Include="data\libretro_cores\nxengine_libretro.info" />
     <None Include="data\libretro_cores\o2em_libretro.info" />
@@ -1270,6 +1278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectSystemDialog.resx">
       <DependentUpon>SelectSystemDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SnesPresetEditor.resx">
       <DependentUpon>SnesPresetEditor.cs</DependentUpon>
