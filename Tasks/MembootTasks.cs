@@ -659,7 +659,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 switch (task)
                 {
                     case NandTasks.DumpNandB:
-                        partitionSize = long.Parse(hakchi.Shell.ExecuteSimple($"echo $((($(hexdump -e '1/4 \"%u\"' -s $((0x28)) -n 4 ${osDecryptedDevice})+0xfff)/0x1000))", throwOnNonZero: true).Trim()) * 4 * 1024;
+                        partitionSize = long.Parse(hakchi.Shell.ExecuteSimple($"echo $((($(hexdump -e '1/4 \"%u\"' -s $((0x28)) -n 4 {osDecryptedDevice})+0xfff)/0x1000))", throwOnNonZero: true).Trim()) * 4 * 1024;
                         break;
 
                     case NandTasks.FlashNandB:
@@ -671,7 +671,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             hakchi.Shell.ExecuteSimple("cryptsetup open /dev/nandb root-crypt --type plain --cipher aes-xts-plain --key-file /key-file", 2000, true);
                         }
 
-                        partitionSize = long.Parse(hakchi.Shell.ExecuteSimple($"blockdev --getsize64 ${osDecryptedDevice}", throwOnNonZero: true));
+                        partitionSize = long.Parse(hakchi.Shell.ExecuteSimple($"blockdev --getsize64 {osDecryptedDevice}", throwOnNonZero: true));
                         break;
 
                     case NandTasks.DumpNandC:
@@ -724,11 +724,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     switch (task)
                     {
                         case NandTasks.DumpNandB:
-                            Shared.ShellPipe($"dd if=${osDecryptedDevice} bs=128K count={(partitionSize / 1024) / 4 }", null, file, throwOnNonZero: true);
+                            Shared.ShellPipe($"dd if={osDecryptedDevice} bs=128K count={(partitionSize / 1024) / 4 }", null, file, throwOnNonZero: true);
                             break;
 
                         case NandTasks.FlashNandB:
-                            Shared.ShellPipe($"dd of=${osDecryptedDevice} bs=128K", file, throwOnNonZero: true);
+                            Shared.ShellPipe($"dd of={osDecryptedDevice} bs=128K", file, throwOnNonZero: true);
                             if(hasKeyfile)
                                 hakchi.Shell.Execute("cryptsetup close root-crypt", throwOnNonZero: true);
                             break;
