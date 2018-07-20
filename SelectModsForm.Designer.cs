@@ -16,6 +16,8 @@
             this.groupByToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteModFromDiskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showModInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.modListMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -82,9 +84,12 @@
             // modListMenuStrip
             // 
             this.modListMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.groupByToolStripMenuItem});
+            this.groupByToolStripMenuItem,
+            this.deleteModFromDiskToolStripMenuItem,
+            this.showModInExplorerToolStripMenuItem});
             this.modListMenuStrip.Name = "contextMenuStrip1";
-            this.modListMenuStrip.Size = new System.Drawing.Size(124, 26);
+            this.modListMenuStrip.Size = new System.Drawing.Size(190, 92);
+            this.modListMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.modListMenuStrip_Opening);
             // 
             // groupByToolStripMenuItem
             // 
@@ -92,7 +97,7 @@
             this.categoryToolStripMenuItem,
             this.creatorToolStripMenuItem});
             this.groupByToolStripMenuItem.Name = "groupByToolStripMenuItem";
-            this.groupByToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.groupByToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.groupByToolStripMenuItem.Text = "Group by";
             // 
             // categoryToolStripMenuItem
@@ -109,6 +114,20 @@
             this.creatorToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.creatorToolStripMenuItem.Text = "Creator";
             this.creatorToolStripMenuItem.Click += new System.EventHandler(this.creatorToolStripMenuItem_Click);
+            // 
+            // deleteModFromDiskToolStripMenuItem
+            // 
+            this.deleteModFromDiskToolStripMenuItem.Name = "deleteModFromDiskToolStripMenuItem";
+            this.deleteModFromDiskToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.deleteModFromDiskToolStripMenuItem.Text = "Delete from disk";
+            this.deleteModFromDiskToolStripMenuItem.Click += new System.EventHandler(this.deleteModFromDiskToolStripMenuItem_Click);
+            // 
+            // showModInExplorerToolStripMenuItem
+            // 
+            this.showModInExplorerToolStripMenuItem.Name = "showModInExplorerToolStripMenuItem";
+            this.showModInExplorerToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.showModInExplorerToolStripMenuItem.Text = "Show mod in explorer";
+            this.showModInExplorerToolStripMenuItem.Click += new System.EventHandler(this.showModInExplorerToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -167,5 +186,7 @@
         private System.Windows.Forms.ToolStripMenuItem categoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem creatorToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ToolStripMenuItem showModInExplorerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteModFromDiskToolStripMenuItem;
     }
 }

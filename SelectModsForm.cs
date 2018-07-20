@@ -558,5 +558,40 @@ namespace com.clusterrr.hakchi_gui
             hmodName.Width = listViewHmods.Width - 4 - SystemInformation.VerticalScrollBarWidth;
             listViewHmods.EndUpdate();
         }
+
+        private void showModInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(listViewHmods.SelectedItems.Count > 0)
+            {
+                Hmod selectedHmod = (Hmod)(listViewHmods.SelectedItems[0].Tag);
+                string args = $"/select, \"{selectedHmod.HmodPath}\"";
+                Process.Start("explorer.exe", args);
+            }
+        }
+
+        private void deleteModFromDiskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach(ListViewItem selectedItem in listViewHmods.SelectedItems)
+            {
+                Hmod selectedHmod = (Hmod)(selectedItem.Tag);
+                if (selectedHmod.isFile)
+                {
+                    File.Delete(selectedHmod.HmodPath);
+                }
+                else
+                {
+                    Directory.Delete(selectedHmod.HmodPath, true);
+                }
+                hmods.Remove(selectedHmod);
+            }
+            populateList();
+        }
+
+        private void modListMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            bool isHmodSelected = (listViewHmods.SelectedItems.Count > 0);
+            deleteModFromDiskToolStripMenuItem.Visible = isHmodSelected;
+            showModInExplorerToolStripMenuItem.Visible = (listViewHmods.SelectedItems.Count == 1);
+        }
     }
 }
