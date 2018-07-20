@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 namespace com.clusterrr.hakchi_gui.module_library
 {
     [XmlInclude(typeof(Module))]
+    [XmlInclude(typeof(RACoreModule))]
     [XmlInclude(typeof(ModStoreGame))]
     public abstract class ModStoreItem
     {

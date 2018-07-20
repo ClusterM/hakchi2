@@ -15,7 +15,6 @@ namespace com.clusterrr.hakchi_gui
 
         private ModStoreItem currentItem { get; set; }
         private ModStoreManager manager;
-        private List<ModStoreItem> itemList = new List<ModStoreItem>();
 
         public ModStoreTabControl()
         {
@@ -64,21 +63,16 @@ namespace com.clusterrr.hakchi_gui
                 moduleDownloadButton.Text = "Download " + currentItem.Type;
                 moduleDownloadInstallButton.Text = "Download and Install " + currentItem.Type;
             }
+            moduleDownloadInstallButton.Enabled = true;
         }
 
-        private void moduleListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void moduleListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = moduleListBox.SelectedIndex;
-            if (index != -1)
+            if (moduleListView.SelectedItems.Count != 0 && currentItem != moduleListView.SelectedItems[0].Tag)
             {
-                if (currentItem != itemList[index])
-                {
-                    currentItem = itemList[index];
-                    loadModuleDescription();
-                }
+                currentItem = (ModStoreItem)moduleListView.SelectedItems[0].Tag;
+                loadModuleDescription();
             }
-            else
-                currentItem = null;
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -103,8 +97,10 @@ namespace com.clusterrr.hakchi_gui
         #region Mod Manager Code
         private void loadModuleList()
         {
-            moduleListBox.Items.Clear();
-            itemList.Clear();
+            currentItem = null;
+            moduleListView.Groups.Clear();
+            moduleListView.Items.Clear();
+            moduleListView.Sorting = (manager.SortAlphabetically) ? SortOrder.Ascending : SortOrder.None;
             switch (Category)
             {
                 case "game":
@@ -112,28 +108,76 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (item is ModStoreGame)
                         {
-                            itemList.Add(item);
+                            var i = new ListViewItem(item.Name);
+                            i.Tag = item;
+                            moduleListView.Items.Add(i);
                         }
                     }
                     moduleDownloadInstallButton.Enabled = false;
                     moduleDownloadInstallButton.Visible = false;
                     moduleDescriptionBrowser.Size = new System.Drawing.Size(moduleDescriptionBrowser.Size.Width, moduleDescriptionBrowser.Size.Height + 14);
                     break;
+                case "retroarch_cores":
+                    //Store System Groups
+                    var systems = new Dictionary<string, ListViewGroup>();
+
+                    //Create list item for each core and assign core to system group
+                    foreach (var item in manager.AvailableItems)
+                    {
+                        if (item is RACoreModule)
+                        {
+                            var i = new ListViewItem(item.Name);
+                            i.Tag = item;
+
+                            //Create system group, if it doesn't exist
+                            string System = ((RACoreModule)item).System;
+                            if (!systems.ContainsKey(System))
+                                systems[System] = new ListViewGroup(System);
+
+                            i.Group = systems[System];
+                        }
+                    }
+
+                    //Sort System Groups by name
+                    var systemNames = new string[systems.Count];
+                    systems.Keys.CopyTo(systemNames, 0);
+                    Array.Sort(systemNames);
+
+                    //Add each group and its items to the listview
+                    foreach (var key in systemNames)
+                    {
+                        var group = systems[key];
+                        if (manager.SortAlphabetically && group.Items.Count > 1)
+                        {
+                            //Sort items as array then add back to group
+                            var items = new ListViewItem[group.Items.Count];
+                            group.Items.CopyTo(items, 0);
+                            group.Items.Clear();
+                            Array.Sort(items, (ListViewItem a, ListViewItem b) => { return a.Text.CompareTo(b.Text); });
+                            group.Items.AddRange(items);
+                        }
+                        moduleListView.Items.AddRange(group.Items);
+                        moduleListView.Groups.Add(group);
+                    }
+                    break;
                 default:
                     foreach (var item in manager.AvailableItems)
                     {
                         if (item is Module && (item as Module).Categories.Contains(Category))
                         {
-                            itemList.Add(item);
+                            var i = new ListViewItem(item.Name);
+                            i.Tag = item;
+                            moduleListView.Items.Add(i);
                         }
                     }
                     break;
             }
-            if (manager.SortAlphabetically)
-                itemList.Sort((ModStoreItem a, ModStoreItem b) => { return a.Name.CompareTo(b.Name); });
-            foreach (var item in itemList)
-                moduleListBox.Items.Add(item.Name);
-            moduleListBox.SelectedIndex = 0;
+
+            if (moduleListView.Groups.Count != 0 && moduleListView.Items.Count != 0)
+                moduleListView.Groups[0].Items[0].Selected = true;
+            else if (moduleListView.Items.Count != 0)
+                moduleListView.Items[0].Selected = true;
+            moduleListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
         private void moduleDownloadButton_Click(object sender, EventArgs e)
