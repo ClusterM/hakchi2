@@ -908,9 +908,6 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   <data name="ScanningCover" xml:space="preserve">
     <value>Scanning box art for {0}</value>
   </data>
-  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icon_app.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ErrorRestoringAllOriginalGames" xml:space="preserve">
     <value>An error occured while restoring the original games. You can always use File -&gt; Restore original games later on to try again for the games collection you intend to use them in.</value>
   </data>
@@ -1275,5 +1272,8 @@ You can wait some more and try the action again if it comes online after a while
   </data>
   <data name="LinkingGames" xml:space="preserve">
     <value>Processing symbolic links...</value>
+  </data>
+  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon_window.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
