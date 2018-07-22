@@ -213,6 +213,12 @@
     <Compile Include="SelectCoverDialog.Designer.cs">
       <DependentUpon>SelectCoverDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectFirmwareDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectFirmwareDialog.Designer.cs">
+      <DependentUpon>SelectFirmwareDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectSystemDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1215,6 +1221,9 @@
     <EmbeddedResource Include="SelectFileForm.de-DE.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectFirmwareDialog.resx">
+      <DependentUpon>SelectFirmwareDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectIconForm.de-DE.resx">
       <DependentUpon>SelectIconForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1778,32 +1787,32 @@
   <ItemGroup>
     <PublishFile Include="data\GameGenieDB.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\nescarts.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\snescarts.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

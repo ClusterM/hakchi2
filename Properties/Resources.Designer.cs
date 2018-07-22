@@ -1108,6 +1108,42 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Firmware.
+        /// </summary>
+        internal static string Firmware {
+            get {
+                return ResourceManager.GetString("Firmware", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current.
+        /// </summary>
+        internal static string FirmwareCurrent {
+            get {
+                return ResourceManager.GetString("FirmwareCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default Firmware on NAND.
+        /// </summary>
+        internal static string FirmwareDefault {
+            get {
+                return ResourceManager.GetString("FirmwareDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upon rebooting, your running NES/SNES Mini should be running the selected firmware &quot;{0}&quot;!.
+        /// </summary>
+        internal static string FirmwareSwitched {
+            get {
+                return ResourceManager.GetString("FirmwareSwitched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello there! I&apos;m very glad that you are using hakchi2!
         ///
         ///It&apos;s very simple to use. Just click &quot;Add more games&quot;, select some ROMs, press &quot;Synchronize&quot; to upload games to the console internal memory, or press &quot;Export&quot; to use USB HOST mode, and follow the instructions. Good luck!.

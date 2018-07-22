@@ -913,4 +913,16 @@ Vous pouvez attendre encore un peu et retenter l'action à nouveau s'il revient 
   <data name="LinkingGames" xml:space="preserve">
     <value>Traitement des liens symboliques...</value>
   </data>
+  <data name="Firmware" xml:space="preserve">
+    <value>Logiciel</value>
+  </data>
+  <data name="FirmwareSwitched" xml:space="preserve">
+    <value>Après redémarrage, votre NES/SNES Mini aura normalement chargé le logiciel "{0}"!</value>
+  </data>
+  <data name="FirmwareDefault" xml:space="preserve">
+    <value>Logiciel par défaut sur NAND</value>
+  </data>
+  <data name="FirmwareCurrent" xml:space="preserve">
+    <value>Actuel</value>
+  </data>
 </root>

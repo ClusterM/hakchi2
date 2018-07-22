@@ -144,6 +144,7 @@
             this.disableBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetDefaultBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rebootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.switchRunningFirmwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripSeparator();
             this.prepareArtDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1008,6 +1009,7 @@
             this.toolStripMenuItem8,
             this.bootImageToolStripMenuItem,
             this.rebootToolStripMenuItem,
+            this.switchRunningFirmwareToolStripMenuItem,
             this.toolStripMenuItem18,
             this.prepareArtDirectoryToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
@@ -1098,6 +1100,12 @@
             this.rebootToolStripMenuItem.Name = "rebootToolStripMenuItem";
             resources.ApplyResources(this.rebootToolStripMenuItem, "rebootToolStripMenuItem");
             this.rebootToolStripMenuItem.Click += new System.EventHandler(this.rebootToolStripMenuItem_Click);
+            // 
+            // switchRunningFirmwareToolStripMenuItem
+            // 
+            this.switchRunningFirmwareToolStripMenuItem.Name = "switchRunningFirmwareToolStripMenuItem";
+            resources.ApplyResources(this.switchRunningFirmwareToolStripMenuItem, "switchRunningFirmwareToolStripMenuItem");
+            this.switchRunningFirmwareToolStripMenuItem.Click += new System.EventHandler(this.switchRunningFirmwareToolStripMenuItem_Click);
             // 
             // toolStripMenuItem18
             // 
@@ -2051,6 +2059,7 @@
         private System.Windows.Forms.ToolStripMenuItem separateGamesStorageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autodetectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asIsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem switchRunningFirmwareToolStripMenuItem;
     }
 }
 

@@ -3109,5 +3109,10 @@ namespace com.clusterrr.hakchi_gui
             SaveConfig();
             LoadGames();
         }
+
+        private void switchRunningFirmwareToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new SelectFirmwareDialog().ShowDialog();
+        }
     }
 }
