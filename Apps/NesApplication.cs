@@ -1437,11 +1437,16 @@ namespace com.clusterrr.hakchi_gui
             foreach (var file in files)
             {
                 foreach (var e in compressedExtensions)
-                    if (file.ToLower().EndsWith(e) && exec.Contains(" " + Path.GetFileName(file) + " ") &&
-                        ArchiveFactory.Open(file).Entries.Count() == 1)
+                    if (file.ToLower().EndsWith(e) && exec.Contains(" " + Path.GetFileName(file) + " "))
                     {
-                        result.Add(file);
-                        break;
+                        using (var archive = ArchiveFactory.Open(file))
+                        {
+                            if (archive.Entries.Count() == 1)
+                            {
+                                result.Add(file);
+                                break;
+                            }
+                        }
                     }
             }
             return result.ToArray();
@@ -1452,31 +1457,16 @@ namespace com.clusterrr.hakchi_gui
             foreach (var filename in CompressPossible())
             {
                 var archName = filename + ".7z";
-                using (var archFile = File.Create(archName))
+                using (var archive = new SevenZipArchive(File.Create(archName), FileAccess.Write))
                 {
-                    var archive = new SevenZipArchive(archFile, FileAccess.Write);
                     var compressor = archive.Compressor();
                     compressor.Solid = true;
                     compressor.AddFile(filename);
                     Trace.WriteLine("Compressing " + filename);
                     compressor.Finalize();
-                    archive.Close();
                 }
                 desktop.Exec = desktop.Exec.Replace(Path.GetFileName(filename), Path.GetFileName(archName));
-
-                bool deleted = false;
-                while (!deleted)
-                {
-                    try
-                    {
-                        File.Delete(filename);
-                        deleted = true;
-                    }
-                    catch (IOException)
-                    {
-                        Thread.Sleep(1);
-                    }
-                }
+                File.Delete(filename);
             }
         }
 
@@ -1491,20 +1481,7 @@ namespace com.clusterrr.hakchi_gui
                     foreach (var e in extractor.Entries)
                         desktop.Exec = desktop.Exec.Replace(Path.GetFileName(filename), e.Key);
                 }
-
-                bool deleted = false;
-                while (!deleted)
-                {
-                    try
-                    {
-                        File.Delete(filename);
-                        deleted = true;
-                    }
-                    catch (IOException)
-                    {
-                        Thread.Sleep(1);
-                    }
-                }
+                File.Delete(filename);
             }
         }
 
