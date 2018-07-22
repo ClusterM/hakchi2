@@ -212,11 +212,11 @@ namespace com.clusterrr.hakchi_gui
                 Version version = AppVersion;
                 if (version.Revision > 0)
                 {
-                    return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+                    return $"{version.Major - 2}.{version.Minor}.{version.Build}.{version.Revision}";
                 }
                 else
                 {
-                    return $"{version.Major}.{version.Minor}.{version.Build}";
+                    return $"{version.Major - 2}.{version.Minor}.{version.Build}";
                 }
             }
         }

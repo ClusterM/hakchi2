@@ -27,7 +27,7 @@ namespace com.clusterrr.hakchi_gui
             { "bsnes_mercury_performance", "bsnes" },
             { "mednafen_vb", "vb" },
             { "mednafen_wswan", "ws" },
-            { "msu", "snes9x" } // exception case for MSU-1 games
+            { "msu", "snes9x" },
         };
 
         public static string GetCommand(string core)

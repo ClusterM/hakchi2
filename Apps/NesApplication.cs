@@ -75,18 +75,9 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                switch (ConfigIni.Instance.ConsoleType)
-                {
-                    default:
-                    case hakchi.ConsoleType.NES:
-                    case hakchi.ConsoleType.Famicom:
-                    case hakchi.ConsoleType.ShonenJump:
-                        return Path.Combine(Program.BaseDirectoryExternal, "games");
-                    case hakchi.ConsoleType.SNES_EUR:
-                    case hakchi.ConsoleType.SNES_USA:
-                    case hakchi.ConsoleType.SuperFamicom:
-                        return Path.Combine(Program.BaseDirectoryExternal, "games_snes");
-                }
+                if (!ConfigIni.Instance.SeparateGameLocalStorage)
+                    return Path.Combine(Program.BaseDirectoryExternal, "games");
+                return Path.Combine(Program.BaseDirectoryExternal, hakchi.IsNes(ConfigIni.Instance.ConsoleType) ? "games" : "games_snes");
             }
         }
 
@@ -1461,8 +1452,9 @@ namespace com.clusterrr.hakchi_gui
             foreach (var filename in CompressPossible())
             {
                 var archName = filename + ".7z";
+                using (var archFile = File.Create(archName))
                 {
-                    var archive = new SevenZipArchive(File.Create(archName), FileAccess.Write);
+                    var archive = new SevenZipArchive(archFile, FileAccess.Write);
                     var compressor = archive.Compressor();
                     compressor.Solid = true;
                     compressor.AddFile(filename);
@@ -1472,8 +1464,19 @@ namespace com.clusterrr.hakchi_gui
                 }
                 desktop.Exec = desktop.Exec.Replace(Path.GetFileName(filename), Path.GetFileName(archName));
 
-                Thread.Sleep(1); File.Delete(filename);
-                Thread.Sleep(1);
+                bool deleted = false;
+                while (!deleted)
+                {
+                    try
+                    {
+                        File.Delete(filename);
+                        deleted = true;
+                    }
+                    catch (IOException)
+                    {
+                        Thread.Sleep(1);
+                    }
+                }
             }
         }
 
@@ -1489,8 +1492,19 @@ namespace com.clusterrr.hakchi_gui
                         desktop.Exec = desktop.Exec.Replace(Path.GetFileName(filename), e.Key);
                 }
 
-                Thread.Sleep(1); File.Delete(filename);
-                Thread.Sleep(1);
+                bool deleted = false;
+                while (!deleted)
+                {
+                    try
+                    {
+                        File.Delete(filename);
+                        deleted = true;
+                    }
+                    catch (IOException)
+                    {
+                        Thread.Sleep(1);
+                    }
+                }
             }
         }
 

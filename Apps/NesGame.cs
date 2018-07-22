@@ -38,7 +38,6 @@ namespace com.clusterrr.hakchi_gui
             }
             catch
             {
-                //application = "/bin/nes";
                 return true;
             }
             crc32 = nesFile.CRC32;
@@ -51,27 +50,15 @@ namespace com.clusterrr.hakchi_gui
             }
             nesFile.CorrectRom();
 
-            if (hakchi.IsNes(ConfigIni.Instance.ConsoleType))
-            {
-                application = "/bin/clover-kachikachi-wr";
-                args = DefaultArgs;
-            }
-            else
-            {
-                //application = "/bin/nes";
-            }
+            application = "/bin/clover-kachikachi-wr";
+            args = DefaultArgs;
 
-            //if (nesFile.Mapper == 71) nesFile.Mapper = 2; // games by Codemasters/Camerica - this is UNROM clone. One exception - Fire Hawk
-            //if (nesFile.Mapper == 88) nesFile.Mapper = 4; // Compatible with MMC3... sometimes
-            //if (nesFile.Mapper == 95) nesFile.Mapper = 4; // Compatible with MMC3
-            //if (nesFile.Mapper == 206) nesFile.Mapper = 4; // Compatible with MMC3
-            if (!supportedMappers.Contains(nesFile.Mapper) &&  (hakchi.IsNes(ConfigIni.Instance.ConsoleType))
-                && (IgnoreMapper != true))
+            if (!supportedMappers.Contains(nesFile.Mapper) && (IgnoreMapper != true))
             {
                 if (IgnoreMapper != false)
                 {
                     var result = Tasks.MessageForm.Show(ParentForm, Resources.AreYouSure,
-                        string.Format(Resources.MapperNotSupported, System.IO.Path.GetFileName(inputFileName), nesFile.Mapper),
+                        string.Format(Resources.MapperNotSupported, Path.GetFileName(inputFileName), nesFile.Mapper),
                         Resources.sign_warning,
                         new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.YesToAll, Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No },
                         Tasks.MessageForm.DefaultButton.Button2);
@@ -82,12 +69,11 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else return false;
             }
-            if ((nesFile.Mirroring == NesFile.MirroringType.FourScreenVram) &&
-                (ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.NES || ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.Famicom) &&
-                (IgnoreMapper != true))
+
+            if ((nesFile.Mirroring == NesFile.MirroringType.FourScreenVram) && (IgnoreMapper != true))
             {
                 var result = Tasks.MessageForm.Show(ParentForm, Resources.AreYouSure,
-                    string.Format(Resources.FourScreenNotSupported, System.IO.Path.GetFileName(inputFileName)),
+                    string.Format(Resources.FourScreenNotSupported, Path.GetFileName(inputFileName)),
                     Resources.sign_warning,
                     new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.YesToAll, Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No },
                     Tasks.MessageForm.DefaultButton.Button2);

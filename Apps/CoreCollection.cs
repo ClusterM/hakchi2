@@ -102,13 +102,11 @@ namespace com.clusterrr.hakchi_gui
                 return;
             }
 
-            // clear and add default cores
-            cores = BuiltInCores.List.ToDictionary(pair => pair.Bin);
-
             // load info files
             Trace.WriteLine("Loading libretro core info files");
             var regex = new Regex("(^[^\\s]+)\\s+=\\s+\"?([^\"\\r\\n]*)\"?", RegexOptions.Multiline | RegexOptions.Compiled);
 
+            cores = new Dictionary<string, CoreInfo>();
             using (var extractor = ArchiveFactory.Open(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "libretro_cores.7z")))
             {
                 var reader = extractor.ExtractAllEntries();
@@ -160,6 +158,9 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
             }
+
+            // add built-in cores
+            BuiltInCores.List.ToList().ForEach(c => cores.Add(c.Bin, c));
 
             // cross indexing
             Trace.WriteLine("Building libretro core cross index");

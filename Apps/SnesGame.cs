@@ -175,91 +175,84 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // check if we can use sfrom tool
-            bool convertedSuccessfully = false;
-            bool isSnesSystem = hakchi.IsSnes(ConfigIni.Instance.ConsoleType);
-
-            if (isSnesSystem && ConfigIni.Instance.UseSFROMTool && SfromToolWrapper.IsInstalled)
+            if (ConfigIni.Instance.ConvertToSFROM)
             {
-                try
+                bool convertedSuccessfully = false;
+                if (ConfigIni.Instance.UseSFROMTool && SfromToolWrapper.IsInstalled)
                 {
-                    SnesRomType romType;
-                    string gameTitle;
-                    SnesRomHeader romHeader = GetCorrectHeader(rawRomData, out romType, out gameTitle);
-                    if (romHeader.SramSize > 0)
-                        saveCount = 3;
-                    else
-                        saveCount = 0;
-                }
-                catch (Exception ex)
-                {
-                    Trace.WriteLine("Error reading ROM header: " + ex.Message + ex.StackTrace);
-                }
-
-                Trace.WriteLine($"Convert with SFROM Tool: {inputFileName}");
-                if (SfromToolWrapper.ConvertROMtoSFROM(ref rawRomData))
-                {
-                    outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
-                    application = "/bin/clover-canoe-shvc-wr -rom";
-                    args = DefaultCanoeArgs;
-                    convertedSuccessfully = true;
-                }
-                else
-                {
-                    Trace.WriteLine("SFROM Tool conversion failed, attempting the built-in SFROM conversion");
-                    convertedSuccessfully = false;
-                }
-            }
-
-            if (!convertedSuccessfully)
-            {
-                // fallback method, with patching
-                FindPatch(ref rawRomData, inputFileName, crc32);
-                if (isSnesSystem)
-                {
-                    Trace.WriteLine($"Trying to convert {inputFileName}");
-                    bool problemGame = false;
                     try
                     {
-                        MakeSfrom(ref rawRomData, ref saveCount, out problemGame);
+                        SnesRomType romType;
+                        string gameTitle;
+                        SnesRomHeader romHeader = GetCorrectHeader(rawRomData, out romType, out gameTitle);
+                        if (romHeader.SramSize > 0)
+                            saveCount = 3;
+                        else
+                            saveCount = 0;
                     }
                     catch (Exception ex)
                     {
-                        Tasks.ErrorForm.Show(MainForm.StaticRef, Resources.ImportGames, string.Format(Resources.ErrorImportingGame, Path.GetFileName(inputFileName)), ex.Message + ex.StackTrace, Resources.sign_error);
-                        return false;
+                        Trace.WriteLine("Error reading ROM header: " + ex.Message + ex.StackTrace);
                     }
 
-                    // Using 3rd party emulator for this ROM?
-                    outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
-                    if (problemGame && Need3rdPartyEmulator != true)
+                    Trace.WriteLine($"Convert with SFROM Tool: {inputFileName}");
+                    if (SfromToolWrapper.ConvertROMtoSFROM(ref rawRomData))
                     {
-                        if (Need3rdPartyEmulator != false)
-                        {
-                            var result = Tasks.MessageForm.Show(ParentForm, Resources.AreYouSure,
-                                string.Format(Resources.Need3rdPartyEmulator, Path.GetFileName(inputFileName)),
-                                Resources.sign_warning,
-                                new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.YesToAll, Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No },
-                                Tasks.MessageForm.DefaultButton.Button2);
-                            if (result == Tasks.MessageForm.Button.YesToAll)
-                                Need3rdPartyEmulator = true;
-                            if (result == Tasks.MessageForm.Button.No)
-                                problemGame = false;
-                        }
-                        else problemGame = false;
-                    }
-                    if (problemGame)
-                    {
-                        //application = "/bin/snes";
-                        //args = "";
+                        outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
+                        application = "/bin/clover-canoe-shvc-wr -rom";
+                        args = DefaultCanoeArgs;
+                        convertedSuccessfully = true;
                     }
                     else
                     {
-                        application = "/bin/clover-canoe-shvc-wr -rom";
-                        args = DefaultCanoeArgs;
+                        Trace.WriteLine("SFROM Tool conversion failed, attempting the built-in SFROM conversion");
+                        convertedSuccessfully = false;
                     }
                 }
-                else
+
+                if (!convertedSuccessfully)
                 {
-                    //application = "/bin/snes";
+                    // fallback method, with patching
+                    FindPatch(ref rawRomData, inputFileName, crc32);
+
+                    if (ConfigIni.Instance.ConvertToSFROM)
+                    {
+                        Trace.WriteLine($"Trying to convert {inputFileName}");
+                        bool problemGame = false;
+                        try
+                        {
+                            MakeSfrom(ref rawRomData, ref saveCount, out problemGame);
+                        }
+                        catch (Exception ex)
+                        {
+                            Tasks.ErrorForm.Show(MainForm.StaticRef, Resources.ImportGames, string.Format(Resources.ErrorImportingGame, Path.GetFileName(inputFileName)), ex.Message + ex.StackTrace, Resources.sign_error);
+                            return false;
+                        }
+
+                        // Using 3rd party emulator for this ROM?
+                        outputFileName = Path.GetFileNameWithoutExtension(outputFileName) + ".sfrom";
+                        if (problemGame && Need3rdPartyEmulator != true)
+                        {
+                            if (Need3rdPartyEmulator != false)
+                            {
+                                var result = Tasks.MessageForm.Show(ParentForm, Resources.AreYouSure,
+                                    string.Format(Resources.Need3rdPartyEmulator, Path.GetFileName(inputFileName)),
+                                    Resources.sign_warning,
+                                    new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.YesToAll, Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No },
+                                    Tasks.MessageForm.DefaultButton.Button2);
+                                if (result == Tasks.MessageForm.Button.YesToAll)
+                                    Need3rdPartyEmulator = true;
+                                if (result == Tasks.MessageForm.Button.No)
+                                    problemGame = false;
+                            }
+                            else problemGame = false;
+                        }
+                        if (!problemGame)
+                        {
+                            application = "/bin/clover-canoe-shvc-wr -rom";
+                            args = DefaultCanoeArgs;
+                        }
+                    }
                 }
             }
 

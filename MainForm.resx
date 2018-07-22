@@ -121,14 +121,26 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="autodetectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="autodetectToolStripMenuItem.Text" xml:space="preserve">
+    <value>Autodetect...</value>
+  </data>
+  <data name="asIsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="asIsToolStripMenuItem.Text" xml:space="preserve">
+    <value>As-Is...</value>
+  </data>
   <data name="addMoreGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+    <value>194, 22</value>
   </data>
   <data name="addMoreGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Add more &amp;games</value>
   </data>
   <data name="addCustomAppToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+    <value>194, 22</value>
   </data>
   <data name="addCustomAppToolStripMenuItem.Text" xml:space="preserve">
     <value>Add custom &amp;app</value>
@@ -149,22 +161,22 @@
     <value>Delete preset</value>
   </data>
   <data name="presetsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+    <value>194, 22</value>
   </data>
   <data name="presetsToolStripMenuItem.Text" xml:space="preserve">
     <value>Selection presets</value>
   </data>
   <data name="toolStripMenuItem13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 6</value>
+    <value>191, 6</value>
   </data>
   <data name="exportGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+    <value>194, 22</value>
   </data>
   <data name="exportGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>E&amp;xport games...</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+    <value>194, 22</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Text" xml:space="preserve">
     <value>S&amp;ynchronize</value>
@@ -174,7 +186,7 @@
     <value>F3</value>
   </data>
   <data name="searchToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+    <value>194, 22</value>
   </data>
   <data name="searchToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Search</value>
@@ -183,35 +195,25 @@
     <value>F5</value>
   </data>
   <data name="reloadGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+    <value>194, 22</value>
   </data>
   <data name="reloadGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Reload</value>
   </data>
   <data name="toolStripMenuItem12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 6</value>
+    <value>191, 6</value>
   </data>
   <data name="resetOriginalGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+    <value>194, 22</value>
   </data>
   <data name="resetOriginalGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Restore &amp;original games</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="importCachedOriginalGamesToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="importCachedOriginalGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
-  </data>
-  <data name="importCachedOriginalGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Import cached original games</value>
-  </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 6</value>
+    <value>191, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+    <value>194, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Exit</value>
@@ -223,25 +225,25 @@
     <value>&amp;File</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text" xml:space="preserve">
     <value>Install / Repair</value>
   </data>
   <data name="resetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="resetToolStripMenuItem.Text" xml:space="preserve">
     <value>Reset</value>
   </data>
   <data name="uninstallToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text" xml:space="preserve">
     <value>Uninstall</value>
   </data>
   <data name="toolStripMenuItem11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 6</value>
+    <value>177, 6</value>
   </data>
   <data name="normalModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 22</value>
@@ -256,7 +258,7 @@
     <value>SD mode</value>
   </data>
   <data name="flashUbootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="flashUbootToolStripMenuItem.Text" xml:space="preserve">
     <value>Flash uboot</value>
@@ -303,6 +305,7 @@
   <data name="toolFlashTheWholeNANDStripMenuItem.Text" xml:space="preserve">
     <value>Flash the whole NAND (experts only!)</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="toolFlashTheWholeNANDStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -360,7 +363,7 @@
     <value>Factory reset</value>
   </data>
   <data name="advancedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="advancedToolStripMenuItem.Text" xml:space="preserve">
     <value>Advanced</value>
@@ -511,6 +514,45 @@
   <data name="sFROMToolToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>If you want to use SFROM Tool, </value>
   </data>
+  <data name="convertSNESROMSToSFROMToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 22</value>
+  </data>
+  <data name="convertSNESROMSToSFROMToolStripMenuItem.Text" xml:space="preserve">
+    <value>Convert SNES ROMS to SFROM</value>
+  </data>
+  <data name="separateGamesStorageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 22</value>
+  </data>
+  <data name="separateGamesStorageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Separate games storage</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 22</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Compress games when adding</value>
+  </data>
+  <data name="compressBoxArtToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 22</value>
+  </data>
+  <data name="compressBoxArtToolStripMenuItem.Text" xml:space="preserve">
+    <value>Compress box art when adding</value>
+  </data>
+  <data name="centerBoxArtThumbnailToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 22</value>
+  </data>
+  <data name="centerBoxArtThumbnailToolStripMenuItem.Text" xml:space="preserve">
+    <value>Center box art thumbnail</value>
+  </data>
+  <data name="disableHakchi2PopupsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 22</value>
+  </data>
+  <data name="disableHakchi2PopupsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Disable hakchi2 pop-ups</value>
+  </data>
+  <data name="toolStripMenuItem25.Size" type="System.Drawing.Size, System.Drawing">
+    <value>298, 6</value>
+  </data>
   <data name="devForceSshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>225, 22</value>
   </data>
@@ -579,30 +621,6 @@
   </data>
   <data name="useLinkedSyncToolStripMenuItem.Text" xml:space="preserve">
     <value>Use linked sync</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 22</value>
-  </data>
-  <data name="compressGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Compress games when adding</value>
-  </data>
-  <data name="compressBoxArtToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 22</value>
-  </data>
-  <data name="compressBoxArtToolStripMenuItem.Text" xml:space="preserve">
-    <value>Compress box art when adding</value>
-  </data>
-  <data name="centerBoxArtThumbnailToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 22</value>
-  </data>
-  <data name="centerBoxArtThumbnailToolStripMenuItem.Text" xml:space="preserve">
-    <value>Center box art thumbnail</value>
-  </data>
-  <data name="disableHakchi2PopupsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 22</value>
-  </data>
-  <data name="disableHakchi2PopupsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Disable hakchi2 pop-ups</value>
   </data>
   <data name="toolStripMenuItem16.Size" type="System.Drawing.Size, System.Drawing">
     <value>298, 6</value>
@@ -2197,9 +2215,6 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>658, 635</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>674, 674</value>
   </data>
@@ -2219,6 +2234,18 @@
     <value>addMoreGamesToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;addMoreGamesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;autodetectToolStripMenuItem.Name" xml:space="preserve">
+    <value>autodetectToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;autodetectToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;asIsToolStripMenuItem.Name" xml:space="preserve">
+    <value>asIsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;asIsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;addCustomAppToolStripMenuItem.Name" xml:space="preserve">
@@ -2291,12 +2318,6 @@
     <value>resetOriginalGamesToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;resetOriginalGamesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;importCachedOriginalGamesToolStripMenuItem.Name" xml:space="preserve">
-    <value>importCachedOriginalGamesToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;importCachedOriginalGamesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
@@ -2581,6 +2602,48 @@
   <data name="&gt;&gt;usePCMPatchWhenAvailableToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;convertSNESROMSToSFROMToolStripMenuItem.Name" xml:space="preserve">
+    <value>convertSNESROMSToSFROMToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;convertSNESROMSToSFROMToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;separateGamesStorageToolStripMenuItem.Name" xml:space="preserve">
+    <value>separateGamesStorageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;separateGamesStorageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;compressGamesToolStripMenuItem.Name" xml:space="preserve">
+    <value>compressGamesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;compressGamesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;compressBoxArtToolStripMenuItem.Name" xml:space="preserve">
+    <value>compressBoxArtToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;compressBoxArtToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;centerBoxArtThumbnailToolStripMenuItem.Name" xml:space="preserve">
+    <value>centerBoxArtThumbnailToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;centerBoxArtThumbnailToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;disableHakchi2PopupsToolStripMenuItem.Name" xml:space="preserve">
+    <value>disableHakchi2PopupsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;disableHakchi2PopupsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem25.Name" xml:space="preserve">
+    <value>toolStripMenuItem25</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem25.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;developerToolsToolStripMenuItem.Name" xml:space="preserve">
     <value>developerToolsToolStripMenuItem</value>
   </data>
@@ -2651,30 +2714,6 @@
     <value>useLinkedSyncToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;useLinkedSyncToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;compressGamesToolStripMenuItem.Name" xml:space="preserve">
-    <value>compressGamesToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;compressGamesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;compressBoxArtToolStripMenuItem.Name" xml:space="preserve">
-    <value>compressBoxArtToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;compressBoxArtToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;centerBoxArtThumbnailToolStripMenuItem.Name" xml:space="preserve">
-    <value>centerBoxArtThumbnailToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;centerBoxArtThumbnailToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;disableHakchi2PopupsToolStripMenuItem.Name" xml:space="preserve">
-    <value>disableHakchi2PopupsToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;disableHakchi2PopupsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem16.Name" xml:space="preserve">

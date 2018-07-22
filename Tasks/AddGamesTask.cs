@@ -40,16 +40,18 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return DialogResult.Cancel;
         }
 
-        public AddGamesTask(ListView listViewGames, IEnumerable<string> files)
+        public AddGamesTask(ListView listViewGames, IEnumerable<string> files, bool asIs = false)
         {
             this.listViewGames = listViewGames;
             this.files = files;
             this.addedApps = new List<NesApplication>();
+            this.asIs = asIs;
         }
 
         private ListView listViewGames;
         private IEnumerable<string> files;
         private List<NesApplication> addedApps;
+        private bool asIs;
 
         public Tasker.Conclusion AddGames(Tasker tasker, Object syncObject = null)
         {
@@ -77,7 +79,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     var ext = Path.GetExtension(sourceFileName).ToLower();
                     byte[] rawData = null;
                     string tmp = null;
-                    if (ext == ".7z" || ext == ".zip" || ext == ".rar")
+                    if (!asIs && (ext == ".7z" || ext == ".zip" || ext == ".rar"))
                     {
                         using (var extractor = ArchiveFactory.Open(sourceFileName))
                         {

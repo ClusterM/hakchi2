@@ -223,6 +223,8 @@ namespace com.clusterrr.hakchi_gui
         public string Language = "";
         public bool UseSFROMTool = false;
         public bool UsePCMPatch = false;
+        public bool SeparateGameLocalStorage = false;
+        public bool ConvertToSFROM = true;
         public bool Compress = true;
         public bool CompressCover = true;
         public bool CenterThumbnail = false;

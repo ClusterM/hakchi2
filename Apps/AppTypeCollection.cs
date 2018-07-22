@@ -289,7 +289,7 @@ namespace com.clusterrr.hakchi_gui
                     return l;
             }
 
-            char letter = src[0];
+            char letter = src.Length > 0 ? src[0] : 'Z';
             while (Prefixes.Contains(letter))
             {
                 ++letter;

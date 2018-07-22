@@ -33,6 +33,8 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addMoreGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autodetectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asIsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addCustomAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.presetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
@@ -45,7 +47,6 @@
             this.reloadGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
             this.resetOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importCachedOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kernelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,6 +94,13 @@
             this.sFROMToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableSFROMToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usePCMPatchWhenAvailableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertSNESROMSToSFROMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.separateGamesStorageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compressBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.centerBoxArtThumbnailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disableHakchi2PopupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem25 = new System.Windows.Forms.ToolStripSeparator();
             this.developerToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devForceSshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadTotmpforTestingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,10 +113,6 @@
             this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysCopyOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useLinkedSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.compressGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.compressBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.centerBoxArtThumbnailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.disableHakchi2PopupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripSeparator();
             this.cloverconHackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetUsingCombinationOfButtonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -275,7 +279,6 @@
             this.reloadGamesToolStripMenuItem,
             this.toolStripMenuItem12,
             this.resetOriginalGamesToolStripMenuItem,
-            this.importCachedOriginalGamesToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -283,9 +286,23 @@
             // 
             // addMoreGamesToolStripMenuItem
             // 
+            this.addMoreGamesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.autodetectToolStripMenuItem,
+            this.asIsToolStripMenuItem});
             this.addMoreGamesToolStripMenuItem.Name = "addMoreGamesToolStripMenuItem";
             resources.ApplyResources(this.addMoreGamesToolStripMenuItem, "addMoreGamesToolStripMenuItem");
-            this.addMoreGamesToolStripMenuItem.Click += new System.EventHandler(this.buttonAddGames_Click);
+            // 
+            // autodetectToolStripMenuItem
+            // 
+            this.autodetectToolStripMenuItem.Name = "autodetectToolStripMenuItem";
+            resources.ApplyResources(this.autodetectToolStripMenuItem, "autodetectToolStripMenuItem");
+            this.autodetectToolStripMenuItem.Click += new System.EventHandler(this.buttonAddGames_Click);
+            // 
+            // asIsToolStripMenuItem
+            // 
+            this.asIsToolStripMenuItem.Name = "asIsToolStripMenuItem";
+            resources.ApplyResources(this.asIsToolStripMenuItem, "asIsToolStripMenuItem");
+            this.asIsToolStripMenuItem.Click += new System.EventHandler(this.asIsToolStripMenuItem_Click);
             // 
             // addCustomAppToolStripMenuItem
             // 
@@ -357,12 +374,6 @@
             this.resetOriginalGamesToolStripMenuItem.Name = "resetOriginalGamesToolStripMenuItem";
             resources.ApplyResources(this.resetOriginalGamesToolStripMenuItem, "resetOriginalGamesToolStripMenuItem");
             this.resetOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.resetOriginalGamesToolStripMenuItem_Click);
-            // 
-            // importCachedOriginalGamesToolStripMenuItem
-            // 
-            resources.ApplyResources(this.importCachedOriginalGamesToolStripMenuItem, "importCachedOriginalGamesToolStripMenuItem");
-            this.importCachedOriginalGamesToolStripMenuItem.Name = "importCachedOriginalGamesToolStripMenuItem";
-            this.importCachedOriginalGamesToolStripMenuItem.Click += new System.EventHandler(this.importCachedOriginalGamesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -662,14 +673,17 @@
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.languageToolStripMenuItem,
             this.sFROMToolToolStripMenuItem,
-            this.developerToolsToolStripMenuItem,
-            this.separateGamesForMultibootToolStripMenuItem,
-            this.alwaysCopyOriginalGamesToolStripMenuItem,
-            this.useLinkedSyncToolStripMenuItem,
+            this.convertSNESROMSToSFROMToolStripMenuItem,
+            this.separateGamesStorageToolStripMenuItem,
             this.compressGamesToolStripMenuItem,
             this.compressBoxArtToolStripMenuItem,
             this.centerBoxArtThumbnailToolStripMenuItem,
             this.disableHakchi2PopupsToolStripMenuItem,
+            this.toolStripMenuItem25,
+            this.developerToolsToolStripMenuItem,
+            this.separateGamesForMultibootToolStripMenuItem,
+            this.alwaysCopyOriginalGamesToolStripMenuItem,
+            this.useLinkedSyncToolStripMenuItem,
             this.toolStripMenuItem16,
             this.cloverconHackToolStripMenuItem,
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem,
@@ -707,6 +721,65 @@
             this.usePCMPatchWhenAvailableToolStripMenuItem.Name = "usePCMPatchWhenAvailableToolStripMenuItem";
             resources.ApplyResources(this.usePCMPatchWhenAvailableToolStripMenuItem, "usePCMPatchWhenAvailableToolStripMenuItem");
             this.usePCMPatchWhenAvailableToolStripMenuItem.Click += new System.EventHandler(this.usePCMPatchWhenAvailableToolStripMenuItem_Click);
+            // 
+            // convertSNESROMSToSFROMToolStripMenuItem
+            // 
+            this.convertSNESROMSToSFROMToolStripMenuItem.Checked = true;
+            this.convertSNESROMSToSFROMToolStripMenuItem.CheckOnClick = true;
+            this.convertSNESROMSToSFROMToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.convertSNESROMSToSFROMToolStripMenuItem.Name = "convertSNESROMSToSFROMToolStripMenuItem";
+            resources.ApplyResources(this.convertSNESROMSToSFROMToolStripMenuItem, "convertSNESROMSToSFROMToolStripMenuItem");
+            this.convertSNESROMSToSFROMToolStripMenuItem.Click += new System.EventHandler(this.convertSNESROMSToSFROMToolStripMenuItem_Click);
+            // 
+            // separateGamesStorageToolStripMenuItem
+            // 
+            this.separateGamesStorageToolStripMenuItem.Checked = true;
+            this.separateGamesStorageToolStripMenuItem.CheckOnClick = true;
+            this.separateGamesStorageToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.separateGamesStorageToolStripMenuItem.Name = "separateGamesStorageToolStripMenuItem";
+            resources.ApplyResources(this.separateGamesStorageToolStripMenuItem, "separateGamesStorageToolStripMenuItem");
+            this.separateGamesStorageToolStripMenuItem.Click += new System.EventHandler(this.separateGamesStorageToolStripMenuItem_Click);
+            // 
+            // compressGamesToolStripMenuItem
+            // 
+            this.compressGamesToolStripMenuItem.Checked = true;
+            this.compressGamesToolStripMenuItem.CheckOnClick = true;
+            this.compressGamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.compressGamesToolStripMenuItem.Name = "compressGamesToolStripMenuItem";
+            resources.ApplyResources(this.compressGamesToolStripMenuItem, "compressGamesToolStripMenuItem");
+            this.compressGamesToolStripMenuItem.Click += new System.EventHandler(this.compressGamesToolStripMenuItem_Click);
+            // 
+            // compressBoxArtToolStripMenuItem
+            // 
+            this.compressBoxArtToolStripMenuItem.Checked = true;
+            this.compressBoxArtToolStripMenuItem.CheckOnClick = true;
+            this.compressBoxArtToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.compressBoxArtToolStripMenuItem.Name = "compressBoxArtToolStripMenuItem";
+            resources.ApplyResources(this.compressBoxArtToolStripMenuItem, "compressBoxArtToolStripMenuItem");
+            this.compressBoxArtToolStripMenuItem.Click += new System.EventHandler(this.compressBoxArtToolStripMenuItem_Click);
+            // 
+            // centerBoxArtThumbnailToolStripMenuItem
+            // 
+            this.centerBoxArtThumbnailToolStripMenuItem.Checked = true;
+            this.centerBoxArtThumbnailToolStripMenuItem.CheckOnClick = true;
+            this.centerBoxArtThumbnailToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.centerBoxArtThumbnailToolStripMenuItem.Name = "centerBoxArtThumbnailToolStripMenuItem";
+            resources.ApplyResources(this.centerBoxArtThumbnailToolStripMenuItem, "centerBoxArtThumbnailToolStripMenuItem");
+            this.centerBoxArtThumbnailToolStripMenuItem.Click += new System.EventHandler(this.centerBoxArtThumbnailToolStripMenuItem_Click);
+            // 
+            // disableHakchi2PopupsToolStripMenuItem
+            // 
+            this.disableHakchi2PopupsToolStripMenuItem.Checked = true;
+            this.disableHakchi2PopupsToolStripMenuItem.CheckOnClick = true;
+            this.disableHakchi2PopupsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.disableHakchi2PopupsToolStripMenuItem.Name = "disableHakchi2PopupsToolStripMenuItem";
+            resources.ApplyResources(this.disableHakchi2PopupsToolStripMenuItem, "disableHakchi2PopupsToolStripMenuItem");
+            this.disableHakchi2PopupsToolStripMenuItem.Click += new System.EventHandler(this.disableHakchi2PopupsToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem25
+            // 
+            this.toolStripMenuItem25.Name = "toolStripMenuItem25";
+            resources.ApplyResources(this.toolStripMenuItem25, "toolStripMenuItem25");
             // 
             // developerToolsToolStripMenuItem
             // 
@@ -800,42 +873,6 @@
             this.useLinkedSyncToolStripMenuItem.Name = "useLinkedSyncToolStripMenuItem";
             resources.ApplyResources(this.useLinkedSyncToolStripMenuItem, "useLinkedSyncToolStripMenuItem");
             this.useLinkedSyncToolStripMenuItem.Click += new System.EventHandler(this.useLinkedSyncToolStripMenuItem_Click);
-            // 
-            // compressGamesToolStripMenuItem
-            // 
-            this.compressGamesToolStripMenuItem.Checked = true;
-            this.compressGamesToolStripMenuItem.CheckOnClick = true;
-            this.compressGamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.compressGamesToolStripMenuItem.Name = "compressGamesToolStripMenuItem";
-            resources.ApplyResources(this.compressGamesToolStripMenuItem, "compressGamesToolStripMenuItem");
-            this.compressGamesToolStripMenuItem.Click += new System.EventHandler(this.compressGamesToolStripMenuItem_Click);
-            // 
-            // compressBoxArtToolStripMenuItem
-            // 
-            this.compressBoxArtToolStripMenuItem.Checked = true;
-            this.compressBoxArtToolStripMenuItem.CheckOnClick = true;
-            this.compressBoxArtToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.compressBoxArtToolStripMenuItem.Name = "compressBoxArtToolStripMenuItem";
-            resources.ApplyResources(this.compressBoxArtToolStripMenuItem, "compressBoxArtToolStripMenuItem");
-            this.compressBoxArtToolStripMenuItem.Click += new System.EventHandler(this.compressBoxArtToolStripMenuItem_Click);
-            // 
-            // centerBoxArtThumbnailToolStripMenuItem
-            // 
-            this.centerBoxArtThumbnailToolStripMenuItem.Checked = true;
-            this.centerBoxArtThumbnailToolStripMenuItem.CheckOnClick = true;
-            this.centerBoxArtThumbnailToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.centerBoxArtThumbnailToolStripMenuItem.Name = "centerBoxArtThumbnailToolStripMenuItem";
-            resources.ApplyResources(this.centerBoxArtThumbnailToolStripMenuItem, "centerBoxArtThumbnailToolStripMenuItem");
-            this.centerBoxArtThumbnailToolStripMenuItem.Click += new System.EventHandler(this.centerBoxArtThumbnailToolStripMenuItem_Click);
-            // 
-            // disableHakchi2PopupsToolStripMenuItem
-            // 
-            this.disableHakchi2PopupsToolStripMenuItem.Checked = true;
-            this.disableHakchi2PopupsToolStripMenuItem.CheckOnClick = true;
-            this.disableHakchi2PopupsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.disableHakchi2PopupsToolStripMenuItem.Name = "disableHakchi2PopupsToolStripMenuItem";
-            resources.ApplyResources(this.disableHakchi2PopupsToolStripMenuItem, "disableHakchi2PopupsToolStripMenuItem");
-            this.disableHakchi2PopupsToolStripMenuItem.Click += new System.EventHandler(this.disableHakchi2PopupsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem16
             // 
@@ -2008,8 +2045,12 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelShell;
         private System.Windows.Forms.ToolStripMenuItem forceNetworkMembootsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem26;
-        private System.Windows.Forms.ToolStripMenuItem importCachedOriginalGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem alwaysCopyOriginalGamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem25;
+        private System.Windows.Forms.ToolStripMenuItem convertSNESROMSToSFROMToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem separateGamesStorageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem autodetectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asIsToolStripMenuItem;
     }
 }
 

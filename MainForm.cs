@@ -507,6 +507,8 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // more settings
+            convertSNESROMSToSFROMToolStripMenuItem.Checked = ConfigIni.Instance.ConvertToSFROM;
+            separateGamesStorageToolStripMenuItem.Checked = ConfigIni.Instance.SeparateGameLocalStorage;
             compressGamesToolStripMenuItem.Checked = ConfigIni.Instance.Compress;
             compressBoxArtToolStripMenuItem.Checked = ConfigIni.Instance.CompressCover;
             centerBoxArtThumbnailToolStripMenuItem.Checked = ConfigIni.Instance.CenterThumbnail;
@@ -1378,6 +1380,15 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+
+        private void asIsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogNes.ShowDialog() == DialogResult.OK)
+            {
+                AddGames(openFileDialogNes.FileNames, true);
+            }
+        }
+
         private void reloadGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveConfig();
@@ -1653,13 +1664,13 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public void AddGames(IEnumerable<string> files)
+        public void AddGames(IEnumerable<string> files, bool asIs = false)
         {
             using (var tasker = new Tasks.Tasker(this))
             {
                 tasker.AttachView(new Tasks.TaskerTaskbar());
                 tasker.AttachView(new Tasks.TaskerForm());
-                var task = new Tasks.AddGamesTask(listViewGames, files);
+                var task = new Tasks.AddGamesTask(listViewGames, files, asIs);
                 tasker.AddTask(task.AddGames, 4);
                 tasker.AddTask(task.UpdateListView);
 
@@ -3085,6 +3096,18 @@ namespace com.clusterrr.hakchi_gui
         private void importCachedOriginalGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void convertSNESROMSToSFROMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.ConvertToSFROM = convertSNESROMSToSFROMToolStripMenuItem.Checked;
+        }
+
+        private void separateGamesStorageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.SeparateGameLocalStorage = separateGamesStorageToolStripMenuItem.Checked;
+            SaveConfig();
+            LoadGames();
         }
     }
 }
