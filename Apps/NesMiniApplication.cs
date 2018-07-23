@@ -639,7 +639,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (skipFiles != null && skipFiles.Contains(file.Name))
                     continue;
-                string temppath = System.IO.Path.Combine(destDirName, file.Name);
+                string temppath = Path.Combine(destDirName, file.Name);
                 size += file.CopyTo(temppath, true).Length;
             }
 
@@ -648,7 +648,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 foreach (DirectoryInfo subdir in dirs)
                 {
-                    string temppath = System.IO.Path.Combine(destDirName, subdir.Name);
+                    string temppath = Path.Combine(destDirName, subdir.Name);
                     size += DirectoryCopy(subdir.FullName, temppath, copySubDirs, skipFiles);
                 }
             }

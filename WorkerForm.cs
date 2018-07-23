@@ -455,10 +455,33 @@ namespace com.clusterrr.hakchi_gui
                     SetProgress(progress, maxProgress);
                 }
             );
-
             var size = CalcKernelSize(kernel);
-            if (size == 0 /*|| size > Fel.kernel_max_size*/)
+            if (size == 0)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);
+
+            if (size > Fel.kernel_max_size) // Weird kernel size? Lets dump it again to avoid "can't unpack ramdisk" error.
+            {
+                SetStatus(Resources.DumpingKernel);
+                maxProgress += 100; // It will take some more time...
+                SetProgress(progress, maxProgress);
+                kernel = fel.ReadFlash(Fel.kernel_base_f, Fel.sector_size * (uint)Math.Ceiling(size * 1.0 / Fel.sector_size),
+                    delegate (Fel.CurrentAction action, string command)
+                    {
+                        switch (action)
+                        {
+                            case Fel.CurrentAction.RunningCommand:
+                                SetStatus(Resources.ExecutingCommand + " " + command);
+                                break;
+                            case Fel.CurrentAction.ReadingMemory:
+                                SetStatus(Resources.DumpingKernel);
+                                break;
+                        }
+                        progress++;
+                        SetProgress(progress, maxProgress);
+                    }
+                );
+            }
+
             if (kernel.Length > size)
             {
                 var sm_kernel = new byte[size];
@@ -1272,8 +1295,14 @@ namespace com.clusterrr.hakchi_gui
                 UnpackRamfs(kernelPath);
             if (Directory.Exists(hakchiDirectory))
                 Directory.Delete(hakchiDirectory, true);
+            string[] skipFiles = includeExtraBinaries ? new string[0] : new string[] { "rsync", "usleep" };
+            foreach(var hugeFile in skipFiles)
+            {
+                foreach (var f in Directory.GetFiles(ramfsDirectory, hugeFile, SearchOption.AllDirectories))
+                    File.Delete(f);
+            }
             NesMiniApplication.DirectoryCopy(Path.Combine(modsDirectory, Mod), ramfsDirectory, true,
-                includeExtraBinaries ? null : new string[] { "rsync", "usleep" }); // Remove huge files
+                skipFiles); // Remove huge files
             var ramfsFiles = Directory.GetFiles(ramfsDirectory, "*.*", SearchOption.AllDirectories);
             foreach (var file in ramfsFiles)
             {

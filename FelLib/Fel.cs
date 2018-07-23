@@ -399,7 +399,7 @@ namespace com.clusterrr.FelLib
         public void RunUbootCmd(string command, bool noreturn = false, OnFelProgress callback = null)
         {
             callback?.Invoke(CurrentAction.RunningCommand, command);
-            if (cmdOffset < 0) throw new Exception("Invalid Unoot binary, command variable not found");
+            if (cmdOffset < 0) throw new Exception("Invalid Uboot binary, command variable not found");
             const UInt32 testSize = 0x20;
             if (UBootBin == null || UBootBin.Length < testSize)
                 throw new FelException("Can't init Uboot, incorrect Uboot binary");
