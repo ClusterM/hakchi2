@@ -152,7 +152,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             }
                         }
                     }
-                    app = NesApplication.Import(fileName, sourceFileName, rawData);
+                    app = NesApplication.Import(fileName, sourceFileName, rawData, asIs);
 
                     if (app is ISupportsGameGenie && Path.GetExtension(fileName).ToLower() == ".nes")
                     {

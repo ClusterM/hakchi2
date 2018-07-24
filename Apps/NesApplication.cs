@@ -310,7 +310,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static NesApplication Import(string inputFileName, string originalFileName = null, byte[] rawRomData = null)
+        public static NesApplication Import(string inputFileName, string originalFileName = null, byte[] rawRomData = null, bool asIs = false)
         {
             var ext = Path.GetExtension(inputFileName).ToLower();
             if (ext == ".desktop") // already hakchi2-ed game
@@ -377,7 +377,7 @@ namespace com.clusterrr.hakchi_gui
             string outputFileName = GenerateSafeFileName(Path.GetFileName(inputFileName));
 
             // only attempt patching if file is reasonable and fits in memory
-            if (rawRomData != null)
+            if (rawRomData != null && !asIs)
             {
                 bool patched = false;
                 if (!appInfo.Unknown)
