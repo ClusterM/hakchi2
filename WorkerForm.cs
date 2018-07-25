@@ -986,7 +986,7 @@ namespace com.clusterrr.hakchi_gui
                         Directory.CreateDirectory(exportDirectory);
                     string lastDirectory = null;
                     long pos = 0;
-                    if (!ExecuteTool("rsync.exe", $"-ac --delete --progress --exclude=title.fnt --exclude=copyright.fnt \"{cygwinPath(tempGamesDirectory)}\" \"{cygwinPath(exportDirectory)}\"",
+                    if (!ExecuteTool("rsync.exe", $"-rlptoDc --delete --progress --exclude=title.fnt --exclude=copyright.fnt \"{cygwinPath(tempGamesDirectory)}\" \"{cygwinPath(exportDirectory)}\"",
                         null, false, delegate (string line)
                         {
                             if (line.EndsWith("/"))
@@ -1417,15 +1417,17 @@ namespace com.clusterrr.hakchi_gui
                         var realTargetGamePath = Path.Combine(Path.Combine(Path.Combine(exportDirectory, SubConsoleDirectory), string.Format("{0:D3}", menuIndex)), originalCode);
                         if (Directory.Exists(realTargetGamePath))
                         {
-                            if (!ExecuteTool("rsync.exe", $"-ac --delete \"{cygwinPath(realTargetGamePath)}\" \"{cygwinPath(targetDirectory)}\""))
+                            if (!ExecuteTool("rsync.exe", $"-rlptoDc --delete \"{cygwinPath(realTargetGamePath)}\" \"{cygwinPath(targetDirectory)}\""))
                                 throw new Exception("Can't rsync to USB drive");
                         }
                     }
-                    if (!Directory.Exists(Path.Combine(targetGamePath, "autoplay")))
+                    string autoplay = Path.Combine(targetGamePath, "autoplay");
+                    if (!Directory.Exists(autoplay) && !File.Exists(autoplay))
                         Directory.CreateDirectory(Path.Combine(targetGamePath, "autoplay"));
                     if (ConfigIni.ConsoleType == MainForm.ConsoleType.NES || ConfigIni.ConsoleType == MainForm.ConsoleType.Famicom)
                     {
-                        if (!Directory.Exists(Path.Combine(targetGamePath, "pixelart")))
+                        string pixelart = Path.Combine(targetGamePath, "pixelart");
+                        if (!Directory.Exists(pixelart) && !File.Exists(pixelart))
                             Directory.CreateDirectory(Path.Combine(targetGamePath, "pixelart"));
                     }
                     File.Copy(desktopFilePath, Path.Combine(targetGamePath, $"{originalCode}.desktop"), true);
