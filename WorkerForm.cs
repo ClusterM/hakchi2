@@ -140,25 +140,26 @@ namespace com.clusterrr.hakchi_gui
             tempHmodsDirectory = Path.Combine(transferDirectory, "hmod");
 
             correctKernels[MainForm.ConsoleType.NES] = new string[] {
-                "5cfdca351484e7025648abc3b20032ff",
-                "07bfb800beba6ef619c29990d14b5158",
-                "90eec1e2b4f00e53dc2dd53a9e7334c1", // new 2017 rereleased version
+                "5cfdca351484e7025648abc3b20032ff", // dp-nes-release-v1.0.2-0-g99e37e1-eur_usa
+                "07bfb800beba6ef619c29990d14b5158", // dp-nes-release-v1.0.3-0-gc4c703b-eur_usa
+                "90eec1e2b4f00e53dc2dd53a9e7334c1", // dp-nes-release-v1.0.7-0-g4ea4041-eur_usa
             };
             correctKernels[MainForm.ConsoleType.Famicom] = new string[] {
-                "ac8144c3ea4ab32e017648ee80bdc230",  // Famicom Mini
+                "ac8144c3ea4ab32e017648ee80bdc230",  // dp-hvc-release-v1.0.5-0-g2f04d11-jpn
+                "8a6731a5aebea36293f076fad9afa600",  // dp-hvc-release-v3.0.1-0-gad315e1-jpn // TODO: This one has other games collection, so it will not work correctly
             };
             correctKernels[MainForm.ConsoleType.SNES] = new string[] {
-                "d76c2a091ebe7b4614589fc6954653a5", // SNES Mini (EUR)
-                "c2b57b550f35d64d1c6ce66f9b5180ce", // SNES Mini (EUR)
-                "0f890bc78cbd9ede43b83b015ba4c022", // SNES Mini (EUR)
-                "449b711238575763c6701f5958323d48", // SNES Mini (USA)
-                "5296e64818bf2d1dbdc6b594f3eefd17", // SNES Mini (USA)
-                "228967ab1035a347caa9c880419df487", // SNES Mini (USA)
+                "d76c2a091ebe7b4614589fc6954653a5", // dp-shvc-release-v2.0.7-0-geb2b275-eur
+                "c2b57b550f35d64d1c6ce66f9b5180ce", // dp-shvc-release-v2.0.13-0-g9dca6c5-eur
+                "0f890bc78cbd9ede43b83b015ba4c022", // dp-shvc-release-v2.0.14-0-gd8b65c6-eur
+                "5296e64818bf2d1dbdc6b594f3eefd17", // dp-shvc-release-v2.0.7-0-geb2b275-usa
+                "449b711238575763c6701f5958323d48", // dp-shvc-release-v2.0.13-0-g9dca6c5-usa
+                "228967ab1035a347caa9c880419df487", // dp-shvc-release-v2.0.14-0-gd8b65c6-usa
             };
             correctKernels[MainForm.ConsoleType.SuperFamicom] = new string[]
             {
-                "632e179db63d9bcd42281f776a030c14", // Super Famicom Mini (JAP)
-                "c3378edfc1b96a5268a066d5fbe12d89", // Super Famicom Mini (JAP)
+                "632e179db63d9bcd42281f776a030c14", // dp-shvc-release-v2.0.12-0-gbff4fb3-jpn
+                "c3378edfc1b96a5268a066d5fbe12d89", // dp-shvc-release-v2.0.14-0-gd8b65c6-jpn
             };
             correctKeys[MainForm.ConsoleType.NES] =
                 correctKeys[MainForm.ConsoleType.Famicom] =
@@ -1296,7 +1297,7 @@ namespace com.clusterrr.hakchi_gui
             if (Directory.Exists(hakchiDirectory))
                 Directory.Delete(hakchiDirectory, true);
             string[] skipFiles = includeExtraBinaries ? new string[0] : new string[] { "rsync", "usleep" };
-            foreach(var hugeFile in skipFiles)
+            foreach (var hugeFile in skipFiles)
             {
                 foreach (var f in Directory.GetFiles(ramfsDirectory, hugeFile, SearchOption.AllDirectories))
                     File.Delete(f);
