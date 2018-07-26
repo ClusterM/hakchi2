@@ -225,25 +225,25 @@
     <value>&amp;File</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="flashCustomKernelToolStripMenuItem.Text" xml:space="preserve">
     <value>Install / Repair</value>
   </data>
   <data name="resetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="resetToolStripMenuItem.Text" xml:space="preserve">
     <value>Reset</value>
   </data>
   <data name="uninstallToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="uninstallToolStripMenuItem.Text" xml:space="preserve">
     <value>Uninstall</value>
   </data>
   <data name="toolStripMenuItem11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 6</value>
+    <value>177, 6</value>
   </data>
   <data name="normalModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 22</value>
@@ -258,7 +258,7 @@
     <value>SD mode</value>
   </data>
   <data name="flashUbootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="flashUbootToolStripMenuItem.Text" xml:space="preserve">
     <value>Flash uboot</value>
@@ -363,7 +363,7 @@
     <value>Factory reset</value>
   </data>
   <data name="advancedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="advancedToolStripMenuItem.Text" xml:space="preserve">
     <value>Advanced</value>
@@ -662,19 +662,19 @@
     <value>Controller hacks</value>
   </data>
   <data name="kachikachiToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>131, 22</value>
   </data>
   <data name="kachikachiToolStripMenuItem.Text" xml:space="preserve">
     <value>Kachikachi</value>
   </data>
   <data name="canoeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>131, 22</value>
   </data>
   <data name="canoeToolStripMenuItem.Text" xml:space="preserve">
     <value>Canoe</value>
   </data>
   <data name="retroarchToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>131, 22</value>
   </data>
   <data name="retroarchToolStripMenuItem.Text" xml:space="preserve">
     <value>Retroarch</value>
@@ -725,55 +725,40 @@
     <value>&amp;Settings</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>331, 22</value>
+    <value>204, 22</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text" xml:space="preserve">
     <value>Save-State Manager</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>331, 22</value>
+    <value>204, 22</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Text" xml:space="preserve">
     <value>Take screenshot</value>
   </data>
   <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>328, 6</value>
-  </data>
-  <data name="FTPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>331, 22</value>
-  </data>
-  <data name="FTPToolStripMenuItem.Text" xml:space="preserve">
-    <value>FTP server on ftp://root@127.0.0.1:1021</value>
+    <value>201, 6</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>331, 22</value>
+    <value>204, 22</value>
   </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text" xml:space="preserve">
     <value>Open FTP client</value>
-  </data>
-  <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>328, 6</value>
-  </data>
-  <data name="shellToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>331, 22</value>
-  </data>
-  <data name="shellToolStripMenuItem.Text" xml:space="preserve">
-    <value>Shell server on telnet://127.0.0.1:1023 (login:root)</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>331, 22</value>
+    <value>204, 22</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text" xml:space="preserve">
     <value>Open Telnet client</value>
   </data>
   <data name="toolStripMenuItem8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>328, 6</value>
+    <value>201, 6</value>
   </data>
   <data name="changeBootImageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 22</value>
@@ -794,28 +779,28 @@
     <value>Reset to default</value>
   </data>
   <data name="bootImageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>331, 22</value>
+    <value>204, 22</value>
   </data>
   <data name="bootImageToolStripMenuItem.Text" xml:space="preserve">
     <value>Boot splash</value>
   </data>
   <data name="rebootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>331, 22</value>
+    <value>204, 22</value>
   </data>
   <data name="rebootToolStripMenuItem.Text" xml:space="preserve">
     <value>Reboot</value>
   </data>
   <data name="switchRunningFirmwareToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>331, 22</value>
+    <value>204, 22</value>
   </data>
   <data name="switchRunningFirmwareToolStripMenuItem.Text" xml:space="preserve">
     <value>Switch running firmware</value>
   </data>
   <data name="toolStripMenuItem18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>328, 6</value>
+    <value>201, 6</value>
   </data>
   <data name="prepareArtDirectoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>331, 22</value>
+    <value>204, 22</value>
   </data>
   <data name="prepareArtDirectoryToolStripMenuItem.Text" xml:space="preserve">
     <value>Prepare art folders</value>
@@ -2842,28 +2827,10 @@
   <data name="&gt;&gt;toolStripMenuItem6.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;FTPToolStripMenuItem.Name" xml:space="preserve">
-    <value>FTPToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;FTPToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;openFTPInExplorerToolStripMenuItem.Name" xml:space="preserve">
     <value>openFTPInExplorerToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;openFTPInExplorerToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem7.Name" xml:space="preserve">
-    <value>toolStripMenuItem7</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;shellToolStripMenuItem.Name" xml:space="preserve">
-    <value>shellToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;shellToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;openTelnetToolStripMenuItem.Name" xml:space="preserve">

@@ -1294,4 +1294,7 @@ You can wait some more and try the action again if it comes online after a while
   <data name="AlreadyInRecoveryQ" xml:space="preserve">
     <value>You're already in recovery mode, do you want to reload the recovery image?</value>
   </data>
+  <data name="CannotProceedCannotSync" xml:space="preserve">
+    <value>Your hakchi installation is running Clovershell daemon. It is not safe to sync games with Clovershell. Please uninstall this module in order to sync games safely!</value>
+  </data>
 </root>

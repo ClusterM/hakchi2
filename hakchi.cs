@@ -1,18 +1,14 @@
 ﻿using com.clusterrr.clovershell;
 using com.clusterrr.hakchi_gui.Properties;
-using com.clusterrr.hakchi_gui.Tasks;
 using com.clusterrr.ssh;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using SharpCompress;
 using SharpCompress.Archives;
 
 namespace com.clusterrr.hakchi_gui
@@ -67,6 +63,7 @@ namespace com.clusterrr.hakchi_gui
         public static string RawScriptVersion { get; private set; }
         public static string UniqueID { get; private set; }
         public static bool CanInteract { get; private set; }
+        public static bool CanSync { get; private set; }
         public static bool MinimalMemboot { get; private set; }
         public static bool UserMinimalMemboot
         {
@@ -147,17 +144,17 @@ namespace com.clusterrr.hakchi_gui
 
         public static Version MinimumBootVersion
         {
-            get { return new Version(1, 0, 1, 0); }
+            get { return new Version(1, 0, 2); }
         }
 
         public static Version MinimumKernelVersion
         {
-            get { return new Version(3, 4, 112, 0); }
+            get { return new Version(3, 4, 113); }
         }
 
         public static Version MinimumScriptVersion
         {
-            get { return new Version(1, 0, 3, 113); }
+            get { return new Version(1, 0, 4, 118); }
         }
 
         public static string RawLocalBootVersion
@@ -178,9 +175,11 @@ namespace com.clusterrr.hakchi_gui
         public static Version ConvertVersion(string ver)
         {
             Match m = Regex.Match(ver, @"(?:\d+[\.-]){2,3}(?:\d+)+");
-            return m.Success ?
-                new Version(m.Value.Replace("-", ".")) :
-                new Version(0, 0, 0, 0);
+            if (m.Success)
+            {
+                return new Version(m.Value.Replace("-", "."));
+            }
+            return new Version(0, 0, 0, 0);
         }
 
         static hakchi()
@@ -198,6 +197,7 @@ namespace com.clusterrr.hakchi_gui
             RawKernelVersion = "";
             RawScriptVersion = "";
             CanInteract = false;
+            CanSync = false;
             MinimalMemboot = false;
             UniqueID = null;
             ConfigPath = "/etc/preinit.d/p0000_config";
@@ -325,6 +325,9 @@ namespace com.clusterrr.hakchi_gui
                     // only do more interaction if safe to do so
                     if (CanInteract)
                     {
+                        // disable sync on legacy clovershell
+                        CanSync = !(caller is ClovershellConnection);
+
                         // detect basic paths
                         RemoteGameSyncPath = Shell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
                         SystemCode = Shell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();

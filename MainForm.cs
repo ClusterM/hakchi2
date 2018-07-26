@@ -57,7 +57,6 @@ namespace com.clusterrr.hakchi_gui
 
         public static bool? DownloadCover;
         public const int MaxGamesPerFolder = 50;
-        public static mooftpserv.Server FtpServer;
         public static MainForm StaticRef;
 
         private class GamesSorter : IComparer
@@ -218,13 +217,6 @@ namespace com.clusterrr.hakchi_gui
             hakchi.OnDisconnected += Shell_OnDisconnected;
             hakchi.Initialize();
 
-            // setup ftp server for legacy system shell (clovershell)
-            FtpServer = new mooftpserv.Server();
-            FtpServer.AuthHandler = new mooftpserv.NesMiniAuthHandler();
-            FtpServer.FileSystemHandler = new mooftpserv.NesMiniFileSystemHandler(hakchi.Shell);
-            FtpServer.LogHandler = new mooftpserv.DebugLogHandler();
-            FtpServer.LocalPort = 1021;
-
             // enable timers
             timerConnectionCheck.Enabled = true;
             timerCalculateGames.Enabled = true;
@@ -259,7 +251,6 @@ namespace com.clusterrr.hakchi_gui
 
             Trace.WriteLine("Closing main form");
             SaveConfig();
-            FtpServer.Stop();
             hakchi.Shutdown();
         }
 
@@ -314,38 +305,18 @@ namespace com.clusterrr.hakchi_gui
 
             if (caller == null || caller is UnknownShell)
             {
-                FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, Resources.Unknown);
-                FTPToolStripMenuItem.Enabled = true;
-                FTPToolStripMenuItem.Checked = ConfigIni.Instance.FtpServer;
-                if (caller != null)
-                    FTPToolStripMenuItem_Click(null, null);
-
-                shellToolStripMenuItem.Text = string.Format(Resources.TelnetServerOn, Resources.Unknown);
-                shellToolStripMenuItem.Enabled = true;
-                shellToolStripMenuItem.Checked = ConfigIni.Instance.TelnetServer;
-                if (caller != null)
-                    shellToolStripMenuItem_Click(null, null);
+                openFTPInExplorerToolStripMenuItem.Enabled = false;
+                openTelnetToolStripMenuItem.Enabled = false;
             }
             else if (caller is INetworkShell)
             {
-                FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, (caller as ssh.SshClientWrapper).IPAddress + ":21");
-                FTPToolStripMenuItem.Enabled = false;
                 openFTPInExplorerToolStripMenuItem.Enabled = true;
-                changeFTPServerState();
-
-                shellToolStripMenuItem.Text = string.Format(Resources.TelnetServerOn, (caller as ssh.SshClientWrapper).IPAddress + ":" + caller.ShellPort);
-                shellToolStripMenuItem.Enabled = false;
                 openTelnetToolStripMenuItem.Enabled = true;
             }
-            else
+            else // caller is ClovershellConnection
             {
-                FTPToolStripMenuItem.Text = string.Format(Resources.FTPServerOn, "127.0.0.1:1021");
-                FTPToolStripMenuItem.Enabled = true;
-                FTPToolStripMenuItem_Click(null, null);
-
-                shellToolStripMenuItem.Text = string.Format(Resources.TelnetServerOn, "127.0.0.1:1023");
-                shellToolStripMenuItem.Enabled = true;
-                shellToolStripMenuItem_Click(null, null);
+                openFTPInExplorerToolStripMenuItem.Enabled = false;
+                openTelnetToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -1464,6 +1435,11 @@ namespace com.clusterrr.hakchi_gui
                 Tasks.MessageForm.Show(Resources.UploadGames, Resources.CannotProceedCannotInteract, Resources.sign_ban);
                 return;
             }
+            if (!hakchi.CanSync)
+            {
+                Tasks.MessageForm.Show(Resources.UploadGames, Resources.CannotProceedCannotSync, Resources.sign_ban);
+                return;
+            }
             if (ConfigIni.Instance.SeparateGameStorage)
             {
                 if (MemoryStats.NonMultibootGamesSize > 0)
@@ -2449,72 +2425,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private bool changeFTPServerState()
-        {
-            if (FtpServer == null) return false;
-            if (FTPToolStripMenuItem.Enabled && FTPToolStripMenuItem.Checked && hakchi.Shell.IsOnline)
-            {
-                try
-                {
-                    var ftpThread = new Thread(delegate ()
-                    {
-                        try
-                        {
-                            (FtpServer.FileSystemHandler as mooftpserv.NesMiniFileSystemHandler).UpdateShell(hakchi.Shell);
-                            FtpServer.Run();
-                        }
-                        catch (ThreadAbortException) { }
-                        catch (Exception ex)
-                        {
-                            try
-                            {
-                                FtpServer.Stop();
-                            }
-                            catch { }
-                            Invoke(new Action(() => {
-                                ConfigIni.Instance.FtpServer = openFTPInExplorerToolStripMenuItem.Enabled = FTPToolStripMenuItem.Checked = false;
-                            }));
-                            Tasks.ErrorForm.Show(this, ex);
-                        }
-                    });
-                    ftpThread.Start();
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    Tasks.ErrorForm.Show(this, ex);
-                }
-            }
-            else
-            {
-                FtpServer.Stop();
-            }
-            return false;
-        }
-
-        private void FTPToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigIni.Instance.FtpServer = FTPToolStripMenuItem.Checked;
-            openFTPInExplorerToolStripMenuItem.Enabled = changeFTPServerState();
-        }
-
-        private void shellToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                ConfigIni.Instance.TelnetServer = shellToolStripMenuItem.Checked;
-                hakchi.Shell.ShellEnabled = shellToolStripMenuItem.Checked;
-                openTelnetToolStripMenuItem.Enabled = shellToolStripMenuItem.Checked && hakchi.Shell.IsOnline;
-            }
-            catch (Exception ex)
-            {
-                ConfigIni.Instance.TelnetServer =
-                    openTelnetToolStripMenuItem.Enabled =
-                    shellToolStripMenuItem.Checked = false;
-                Tasks.ErrorForm.Show(this, ex);
-            }
-        }
-
         private void openFTPInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string ip, port;
@@ -2525,8 +2435,7 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                ip = "127.0.0.1";
-                port = FtpServer.LocalPort.ToString();
+                return;
             }
 
             try
@@ -2554,10 +2463,15 @@ namespace com.clusterrr.hakchi_gui
                 ip = (hakchi.Shell as INetworkShell).IPAddress;
                 port = hakchi.Shell.ShellPort.ToString();
             }
-            else
+            else if (hakchi.Shell is clovershell.ClovershellConnection)
             {
+                (hakchi.Shell as clovershell.ClovershellConnection).ShellEnabled = true;
                 ip = "127.0.0.1";
                 port = "1023";
+            }
+            else
+            {
+                return;
             }
 
             try

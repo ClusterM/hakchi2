@@ -258,7 +258,7 @@ namespace com.clusterrr.clovershell
                             lastAliveTime = DateTime.Now;
                             online = true;
                             OnConnected(this);
-                            while (device.mUsbRegistry.IsAlive)
+                            while (device.UsbRegistryInfo.IsAlive)
                             {
                                 Thread.Sleep(100);
                                 if ((IdleTime.TotalSeconds >= 10) && (Ping() < 0))
@@ -536,6 +536,11 @@ namespace com.clusterrr.clovershell
             catch (ClovershellException ex)
             {
                 Trace.WriteLine("exec error: " + ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Trace.WriteLine("critical error during exec: " + ex.Message + "\n" + ex.StackTrace);
+                throw new ClovershellException("clovershell is confused");
             }
         }
 

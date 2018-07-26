@@ -232,8 +232,8 @@ namespace com.clusterrr.hakchi_gui
         public bool SeparateGameStorage = true;
         public bool SyncLinked = true;
         public bool AlwaysCopyOriginalGames = true;
-        public bool FtpServer = false;
-        public bool TelnetServer = false;
+        //public bool FtpServer = false;
+        //public bool TelnetServer = false;
         public string FtpCommand = "ftp://{0}:{1}@{2}:{3}";
         public string FtpArguments = "";
         public string TelnetCommand = "telnet://{0}:{1}";
@@ -567,7 +567,7 @@ namespace com.clusterrr.hakchi_gui
                                         instance.DisablePopups = !value.ToLower().Equals("false");
                                         break;
                                     case "ftpserver":
-                                        instance.FtpServer = !value.ToLower().Equals("false");
+                                        //instance.FtpServer = !value.ToLower().Equals("false");
                                         break;
                                     case "ftpcommand":
                                         instance.FtpCommand = value;
@@ -576,7 +576,7 @@ namespace com.clusterrr.hakchi_gui
                                         instance.FtpArguments = value;
                                         break;
                                     case "telnetserver":
-                                        instance.TelnetServer = !value.ToLower().Equals("false");
+                                        //instance.TelnetServer = !value.ToLower().Equals("false");
                                         break;
                                     case "telnetcommand":
                                         instance.TelnetCommand = value;

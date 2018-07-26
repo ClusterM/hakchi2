@@ -479,6 +479,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your hakchi installation is running Clovershell daemon. It is not safe to sync games with Clovershell. Please uninstall this module in order to sync games safely!.
+        /// </summary>
+        internal static string CannotProceedCannotSync {
+            get {
+                return ResourceManager.GetString("CannotProceedCannotSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your NES/SNES Mini is currently in recovery state, cannot proceed. To exit this state, use Tools -&gt; Reboot.
         /// </summary>
         internal static string CannotProceedMinimalMemboot {

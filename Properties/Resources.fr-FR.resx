@@ -925,4 +925,7 @@ Vous pouvez attendre encore un peu et retenter l'action à nouveau s'il revient 
   <data name="FirmwareCurrent" xml:space="preserve">
     <value>Actuel</value>
   </data>
+  <data name="CannotProceedCannotSync" xml:space="preserve">
+    <value>Votre installation de hakchi utilise Clovershell. Il n'est pas sécuritaire de syncroniser vos jeux à l'aide de Clovershell. Veuillez désinstaller le module afin de syncroniser vos jeux de façon optimale!</value>
+  </data>
 </root>

@@ -1,0 +1,19 @@
+[submodule "Libraries/DnsUtils"]
+	path = Libraries/DnsUtils
+	url = https://github.com/TeamShinkansen/DnsUtils.git
+[submodule "Libraries/SSH.NET"]
+	path = Libraries/SSH.NET
+	url = https://github.com/TeamShinkansen/SSH.NET.git
+	branch = notracesource
+[submodule "Libraries/ProgressODoom"]
+	path = Libraries/ProgressODoom
+	url = https://github.com/daPhie79/ProgressODoom.git
+[submodule "Libraries/tiny7z"]
+	path = Libraries/tiny7z
+	url = https://github.com/daPhie79/tiny7z.git
+[submodule "Libraries/mooftpserv"]
+	path = Libraries/mooftpserv
+	url = https://github.com/TeamShinkansen/mooftpserv.git
+[submodule "Libraries/LibUsbDotNet"]
+	path = Libraries/LibUsbDotNet
+	url = https://github.com/TeamShinkansen/LibUsbDotNet.git
