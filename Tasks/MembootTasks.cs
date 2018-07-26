@@ -784,6 +784,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     throw new Exception(Resources.InvalidUbootSize + " " + uboot.Length);
                 }
 
+                uboot.SetLength(655360);
+
                 uboot.OnProgress += tasker.OnProgress;
 
                 hakchi.Shell.Execute("cat > /uboot.bin", uboot, null, null, 0, true);
