@@ -53,13 +53,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public readonly TaskFunc[] Tasks;
 
-        public MembootTasks(MembootTaskType type, string[] hmodsInstall = null, string[] hmodsUninstall = null, string dumpPath = null)
+        public MembootTasks(MembootTaskType type, string[] hmodsInstall = null, string[] hmodsUninstall = null, string dumpPath = null, bool forceRecoveryReload = false)
         {
             userRecovery = (hakchi.Shell.IsOnline && hakchi.MinimalMemboot && hakchi.UserMinimalMemboot);
 
             fel = new Fel();
             List<TaskFunc> taskList = new List<TaskFunc>();
-            if (!hakchi.MinimalMemboot)
+            if (!hakchi.MinimalMemboot || forceRecoveryReload)
             {
                 taskList.Add(WaitForFelOrMembootableShell);
                 taskList.Add(TaskIf(() => { return hakchi.Shell.IsOnline; }, Memboot, MembootFel));

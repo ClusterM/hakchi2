@@ -106,6 +106,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Already In Recovery Mode.
+        /// </summary>
+        internal static string AlreadyInRecovery {
+            get {
+                return ResourceManager.GetString("AlreadyInRecovery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;re already in recovery mode, do you want to reload the recovery image?.
+        /// </summary>
+        internal static string AlreadyInRecoveryQ {
+            get {
+                return ResourceManager.GetString("AlreadyInRecoveryQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply changes.
         /// </summary>
         internal static string ApplyChanges {

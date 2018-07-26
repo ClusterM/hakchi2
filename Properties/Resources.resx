@@ -1288,4 +1288,10 @@ You can wait some more and try the action again if it comes online after a while
   <data name="FirmwareCurrent" xml:space="preserve">
     <value>Current</value>
   </data>
+  <data name="AlreadyInRecovery" xml:space="preserve">
+    <value>Already In Recovery Mode</value>
+  </data>
+  <data name="AlreadyInRecoveryQ" xml:space="preserve">
+    <value>You're already in recovery mode, do you want to reload the recovery image?</value>
+  </data>
 </root>

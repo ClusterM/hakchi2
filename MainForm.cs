@@ -1861,12 +1861,18 @@ namespace com.clusterrr.hakchi_gui
 
         private void membootRecoveryKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool forceRecoveryReload = false;
+            if(hakchi.Shell.IsOnline && hakchi.MinimalMemboot)
+            {
+                forceRecoveryReload = (Control.ModifierKeys == Keys.Shift) || (Tasks.MessageForm.Show(this, Resources.AlreadyInRecovery, Resources.AlreadyInRecoveryQ, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes);
+            }
+
             using (var tasker = new Tasker(this))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_life_buoy);
                 tasker.SetTitle(((ToolStripMenuItem)sender).Text);
-                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery, forceRecoveryReload: forceRecoveryReload).Tasks);
                 tasker.AddTask(ShellTasks.ShellCommand("touch /user-recovery.flag"));
                 if (tasker.Start() == Tasker.Conclusion.Success)
                     Tasks.MessageForm.Show(Resources.RecoveryKernel, Resources.RecoveryModeMessage, Resources.sign_life_buoy);
