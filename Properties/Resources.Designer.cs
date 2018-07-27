@@ -3663,7 +3663,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Your device is taking a long time to reboot.
         ///
-        ///You can wait some more and try the action again if it comes online after a while. Use &quot;Tools &gt; Reboot&quot; to get back to normal operation from &quot;Recovery mode&quot;..
+        ///You can wait some more and if it comes back online, you should see &quot;Recovery mode&quot; in the title bar. In that case, you can try the same action again, or use &quot;Tools &gt; Reboot&quot; to get back to normal operation..
         /// </summary>
         internal static string WaitingForDeviceTakingALongTime {
             get {

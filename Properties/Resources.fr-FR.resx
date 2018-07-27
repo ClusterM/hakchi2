@@ -905,7 +905,7 @@ Continuer?</value>
   <data name="WaitingForDeviceTakingALongTime" xml:space="preserve">
     <value>Votre NES/SNES Mini prend beaucoup de temps à redémarrer.
 
-Vous pouvez attendre encore un peu et retenter l'action à nouveau s'il revient en ligne éventuellement. Utilisez "Outils &gt; Redémarrer" pour revenir en mode normal à partir du "Mode récupération".</value>
+Vous pouvez attendre encore un peu et si elle se reconnecte, vous devriez voir "Mode récupération" dans la barre de titre. Vous pouvez ensuite retenter la même opération, ou utiliser "Outils &gt; Redémarrer" pour retourner au mode d'opération normal.</value>
   </data>
   <data name="RecoveryModeCloseWarning" xml:space="preserve">
     <value>Votre NES/SNES Mini est présentement en mode récupération. Vous ne pourrez pas l'éteindre normalement. Voulez-vous terminer la séquence de démarrage pour la ramener en mode normal?</value>
