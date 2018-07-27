@@ -24,14 +24,25 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 ListViewGroup
-                    generalInfoGroup = listView1.Groups[0],
-                    localHakchiGroup = listView1.Groups[1],
-                    shellInfoGroup = listView1.Groups[2],
-                    hakchiGroup = listView1.Groups[3],
-                    pathsGroup = listView1.Groups[4],
-                    memoryStatsGroup = listView1.Groups[5],
-                    consoleSettingsGroup = listView1.Groups[6],
-                    settingsGroup = listView1.Groups[7];
+                    generalInfoGroup = new ListViewGroup("General information"),
+                    localHakchiGroup = new ListViewGroup("Loadl hakchi.hmod"),
+                    shellInfoGroup = new ListViewGroup("Shell information"),
+                    hakchiGroup = new ListViewGroup("Running hakchi.hmod info"),
+                    pathsGroup = new ListViewGroup("Paths"),
+                    memoryStatsGroup = new ListViewGroup("Memory stats"),
+                    consoleSettingsGroup = new ListViewGroup("Console settings"),
+                    settingsGroup = new ListViewGroup("Settings");
+
+                listView1.Groups.AddRange(new ListViewGroup[] {
+                    generalInfoGroup,
+                    localHakchiGroup,
+                    shellInfoGroup,
+                    hakchiGroup,
+                    pathsGroup,
+                    memoryStatsGroup,
+                    consoleSettingsGroup,
+                    settingsGroup
+                });
 
                 string devTools = "";
                 if (ConfigIni.Instance.ForceClovershell) devTools += "Force Clovershell, ";
