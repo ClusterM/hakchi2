@@ -108,7 +108,6 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -124,6 +123,12 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="LibUsb.Common">
+      <HintPath>Libraries\LibUsbDotNet\stage\LibUsb.Common\bin\Debug\net45\LibUsb.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="LibUsbDotNet.LibUsbDotNet">
+      <HintPath>Libraries\LibUsbDotNet\stage\LibUsbDotNet\bin\Debug\net45\LibUsbDotNet.LibUsbDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDeploymentWrapper.cs" />
@@ -150,7 +155,7 @@
     <Compile Include="Extensions\ModStore\ModStore.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Extensions\ModStore\ModStore.designer.cs">
+    <Compile Include="Extensions\ModStore\ModStore.Designer.cs">
       <DependentUpon>ModStore.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ModStore\ModStoreAbout.cs">
@@ -165,14 +170,14 @@
     <Compile Include="Extensions\ModStore\ModStoreTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Extensions\ModStore\ModStoreTabControl.designer.cs">
+    <Compile Include="Extensions\ModStore\ModStoreTabControl.Designer.cs">
       <DependentUpon>ModStoreTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ModStore\Module.cs" />
     <Compile Include="Extensions\ModStore\ProgressBarForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Extensions\ModStore\ProgressBarForm.designer.cs">
+    <Compile Include="Extensions\ModStore\ProgressBarForm.Designer.cs">
       <DependentUpon>ProgressBarForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Files\Extensions.cs" />

@@ -1020,7 +1020,7 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
     <value>..\data\uboot.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ubootSD" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\data\ubootsd.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\data\ubootSD.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="UninstallingHakchi" xml:space="preserve">
     <value>Uninstalling hakchi...</value>
@@ -1164,7 +1164,7 @@ Continue?</value>
     <value>Are you sure you want to sync all your games collections' structure settings to the currently displayed settings?</value>
   </data>
   <data name="Nintendo_NES_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\nintendo-nes-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\images\Nintendo-NES-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CannotInteract" xml:space="preserve">
     <value>Hakchi update required</value>

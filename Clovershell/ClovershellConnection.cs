@@ -253,7 +253,7 @@ namespace com.clusterrr.clovershell
                             while (epReader.Read(body, 50, out len) == ErrorCode.Ok) ;
                             epReader.ReadBufferSize = 65536;
                             epReader.DataReceived += epReader_DataReceived;
-                            epReader.ReadThreadPriority = ThreadPriority.AboveNormal;
+                            //epReader.ReadThreadPriority = ThreadPriority.AboveNormal;
                             epReader.DataReceivedEnabled = true;
                             lastAliveTime = DateTime.Now;
                             online = true;
