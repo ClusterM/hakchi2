@@ -13,7 +13,7 @@ namespace com.clusterrr.hakchi_gui
             { "fbalpha2012_cps2", "cps2" },
             { "fbalpha2012_cps3", "cps3" },
             { "fbalpha2012_neogeo", "neo" },
-            { "fb_alpha", "fba2016" },
+            { "fbalpha", "fba2016" },
             { "vba_next", "vba-next" },
             { "mednafen_ngp", "ngp" },
             { "mednafen_supergrafx", "sgfx" },
