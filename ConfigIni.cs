@@ -231,7 +231,7 @@ namespace com.clusterrr.hakchi_gui
         public bool DisablePopups = false;
         public bool SeparateGameStorage = true;
         public bool SyncLinked = true;
-        public bool AlwaysCopyOriginalGames = true;
+        public bool AlwaysCopyOriginalGames = false;
         //public bool FtpServer = false;
         //public bool TelnetServer = false;
         public string FtpCommand = "ftp://{0}:{1}@{2}:{3}";

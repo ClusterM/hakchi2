@@ -68,7 +68,6 @@ namespace com.clusterrr.hakchi_gui
 
                     // bump up currently updated version
                     lastVersion = action.targetVersion;
-                    ConfigIni.Instance.LastVersion = lastVersion.ToString();
                 }
             }
 
@@ -172,6 +171,17 @@ namespace com.clusterrr.hakchi_gui
                             catch { }
                         }
 
+                        return true;
+                    })
+                },
+
+                new Action()
+                {
+                    startingVersion = new Version("3.2.2.0"),
+                    targetVersion = new Version("3.3.0.0"),
+                    action = new ActionFunc(() => {
+                        if (ConfigIni.Instance.LastVersion != "0.0.0.0")
+                            ConfigIni.Instance.SeparateGameLocalStorage = true;
                         return true;
                     })
                 },
