@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.IO;
 using System.Net;
+using System.Threading;
 using com.clusterrr.hakchi_gui.Properties;
 using com.clusterrr.hakchi_gui.module_library;
 using Newtonsoft.Json.Linq;
@@ -164,47 +165,45 @@ namespace com.clusterrr.hakchi_gui
 
                     try
                     {
-                        switch(type)
+                        //Grab Mod Store Item variables from JSON item
+                        string Name = System.Web.HttpUtility.HtmlDecode(post["title"].ToString());
+                        string Id = System.Web.HttpUtility.HtmlDecode(post["title"].ToString()); //Temporary ID need to replace
+                        string Author = post["custom_fields"]["user_submit_name"][0].ToString();
+                        string Description = post["url"].ToString() + "?mode=mod_store";
+                        string Version = post["custom_fields"]["usp_custom_field"][0].ToString();
+                        string Path = post["custom_fields"]["user_submit_url"][0].ToString();
+                        var Categories = new List<string>();
+                        foreach (var category in post["categories"])
                         {
-                            case "Module":
-                                Module module = new Module
-                                {
-                                    Name = System.Web.HttpUtility.HtmlDecode(post["title"].ToString()),
-                                    Id = System.Web.HttpUtility.HtmlDecode(post["title"].ToString()), //Temporary ID need to replace
-                                    Author = post["custom_fields"]["user_submit_name"][0].ToString(),
-                                    Description = post["url"].ToString() + "?mode=mod_store",
-                                    Version = post["custom_fields"]["usp_custom_field"][0].ToString(),
-                                    Path = post["custom_fields"]["user_submit_url"][0].ToString()
-                                };
+                            Categories.Add(category["slug"].ToString());
+                        }
 
-                                //Set Module Type
-                                var extention = module.Path.Substring(module.Path.LastIndexOf('.') + 1).ToLower();
-                                if (extention.Equals("hmod"))
-                                    module.ModType = ModuleType.hmod;
-                                else if (extention.Equals("zip") || extention.Equals("7z") || extention.Equals("rar"))
-                                    module.ModType = ModuleType.compressedFile;
-                                else
-                                    continue; //Unknown File Type
-
-                                //Set Categories
-                                foreach (var category in post["categories"])
+                        //Set module type for RA cores
+                        if (Categories.Contains("retroarch_cores"))
+                            type = "RACore";
+                        
+                        switch (type)
+                        {
+                            case "RACore":
+                                string System = "unknown";
+                                foreach (var tag in post["tags"])
                                 {
-                                    module.Categories.Add(category["slug"].ToString());
+                                    if (tag["slug"].ToString().StartsWith("ra_"))
+                                        System = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(tag["slug"].ToString().Substring(3).Replace('_', ' '));
                                 }
-
-                                config.AvailableItems.Add(module);
+                                var raModule = new RACoreModule { Name = Name, Id = Id, Author = Author, Description = Description, Version = Version, Path = Path, Categories = Categories, System = System };
+                                if (raModule.SetModType())
+                                    config.AvailableItems.Add(raModule);
                                 break;
-                            
+
+                            case "Module":
+                                var module = new Module { Name = Name, Id = Id, Author = Author, Description = Description, Version = Version, Path = Path, Categories = Categories };
+                                if (module.SetModType())
+                                    config.AvailableItems.Add(module);
+                                break;
+
                             case "Game":
-                                config.AvailableItems.Add(new ModStoreGame
-                                {
-                                    Name = System.Web.HttpUtility.HtmlDecode(post["title"].ToString()),
-                                    Id = System.Web.HttpUtility.HtmlDecode(post["title"].ToString()), //Temporary ID need to replace
-                                    Author = post["custom_fields"]["user_submit_name"][0].ToString(),
-                                    Description = post["url"].ToString() + "?mode=mod_store",
-                                    Version = post["custom_fields"]["usp_custom_field"][0].ToString(),
-                                    Path = post["custom_fields"]["user_submit_url"][0].ToString()
-                                });
+                                config.AvailableItems.Add(new ModStoreGame { Name = Name, Id = Id, Author = Author, Description = Description, Version = Version, Path = Path });
                                 break;
                         }
                     }

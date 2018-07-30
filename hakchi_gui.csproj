@@ -180,6 +180,7 @@
     <Compile Include="Extensions\ModStore\ProgressBarForm.Designer.cs">
       <DependentUpon>ProgressBarForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\ModStore\RACoreModule.cs" />
     <Compile Include="Files\Extensions.cs" />
     <Compile Include="Files\CheckFileType.cs" />
     <Compile Include="FtpClient\ArxOneFtpWrapper.cs" />

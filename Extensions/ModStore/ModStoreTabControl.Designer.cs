@@ -30,11 +30,12 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.moduleListBox = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.moduleDownloadButton = new System.Windows.Forms.Button();
             this.moduleDownloadInstallButton = new System.Windows.Forms.Button();
             this.moduleDescriptionBrowser = new System.Windows.Forms.WebBrowser();
+            this.moduleListView = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -46,8 +47,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 212F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.webBrowser1, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.moduleListBox, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.moduleListView, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -70,17 +71,6 @@
             this.webBrowser1.WebBrowserShortcutsEnabled = false;
             this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
-            // 
-            // moduleListBox
-            // 
-            this.moduleListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.moduleListBox.FormattingEnabled = true;
-            this.moduleListBox.IntegralHeight = false;
-            this.moduleListBox.Location = new System.Drawing.Point(3, 3);
-            this.moduleListBox.Name = "moduleListBox";
-            this.moduleListBox.Size = new System.Drawing.Size(176, 408);
-            this.moduleListBox.TabIndex = 1;
-            this.moduleListBox.SelectedIndexChanged += new System.EventHandler(this.moduleListBox_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -110,6 +100,7 @@
             // moduleDownloadInstallButton
             // 
             this.moduleDownloadInstallButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.moduleDownloadInstallButton.Enabled = false;
             this.moduleDownloadInstallButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.moduleDownloadInstallButton.Location = new System.Drawing.Point(0, 360);
             this.moduleDownloadInstallButton.Name = "moduleDownloadInstallButton";
@@ -133,6 +124,26 @@
             this.moduleDescriptionBrowser.TabIndex = 7;
             this.moduleDescriptionBrowser.WebBrowserShortcutsEnabled = false;
             // 
+            // moduleListView
+            // 
+            this.moduleListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.moduleListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.moduleListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.moduleListView.Location = new System.Drawing.Point(3, 3);
+            this.moduleListView.MultiSelect = false;
+            this.moduleListView.Name = "moduleListView";
+            this.moduleListView.Size = new System.Drawing.Size(176, 408);
+            this.moduleListView.TabIndex = 3;
+            this.moduleListView.UseCompatibleStateImageBehavior = false;
+            this.moduleListView.View = System.Windows.Forms.View.Details;
+            this.moduleListView.SelectedIndexChanged += new System.EventHandler(this.moduleListView_SelectedIndexChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "";
+            this.columnHeader1.Width = 150;
+            // 
             // ModStoreTabControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -150,10 +161,11 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ListBox moduleListBox;
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.WebBrowser moduleDescriptionBrowser;
         private System.Windows.Forms.Button moduleDownloadButton;
         private System.Windows.Forms.Button moduleDownloadInstallButton;
+        private System.Windows.Forms.ListView moduleListView;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }
