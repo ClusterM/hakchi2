@@ -109,54 +109,54 @@ namespace com.clusterrr.hakchi_gui
             cores = new Dictionary<string, CoreInfo>();
             using (var extractor = ArchiveFactory.Open(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "libretro_cores.7z")))
             {
-                var reader = extractor.ExtractAllEntries();
-                while (reader.MoveToNextEntry())
-                {
-                    string file = reader.Entry.Key;
-
-                    Match m = Regex.Match(Path.GetFileNameWithoutExtension(file), "^(.*)_libretro");
-                    if (m.Success && !string.IsNullOrEmpty(m.Groups[1].ToString()))
+                using (var reader = extractor.ExtractAllEntries())
+                    while (reader.MoveToNextEntry())
                     {
-                        var bin = m.Groups[1].ToString();
-                        var f = new StreamReader(reader.OpenEntryStream()).ReadToEnd();
-                        var matches = regex.Matches(f);
-                        if (matches.Count <= 0)
-                            continue;
+                        string file = reader.Entry.Key;
 
-                        var core = new CoreInfo(bin);
-                        string system = null;
-                        foreach (Match mm in matches)
+                        Match m = Regex.Match(Path.GetFileNameWithoutExtension(file), "^(.*)_libretro");
+                        if (m.Success && !string.IsNullOrEmpty(m.Groups[1].ToString()))
                         {
-                            if (mm.Success)
+                            var bin = m.Groups[1].ToString();
+                            var f = new StreamReader(reader.OpenEntryStream()).ReadToEnd();
+                            var matches = regex.Matches(f);
+                            if (matches.Count <= 0)
+                                continue;
+
+                            var core = new CoreInfo(bin);
+                            string system = null;
+                            foreach (Match mm in matches)
                             {
-                                switch (mm.Groups[1].ToString().ToLower())
+                                if (mm.Success)
                                 {
-                                    case "corename":
-                                        core.Name = mm.Groups[2].ToString();
-                                        break;
-                                    case "display_name":
-                                        core.DisplayName = mm.Groups[2].ToString();
-                                        break;
-                                    case "systemname":
-                                        system = mm.Groups[2].ToString();
-                                        break;
-                                    case "supported_extensions":
-                                        core.SupportedExtensions = mm.Groups[2].ToString().Split('|');
-                                        for (var i = 0; i < core.SupportedExtensions.Length; ++i)
-                                            core.SupportedExtensions[i] = "." + core.SupportedExtensions[i];
-                                        break;
-                                    case "database":
-                                        core.Systems = mm.Groups[2].ToString().Split('|');
-                                        break;
+                                    switch (mm.Groups[1].ToString().ToLower())
+                                    {
+                                        case "corename":
+                                            core.Name = mm.Groups[2].ToString();
+                                            break;
+                                        case "display_name":
+                                            core.DisplayName = mm.Groups[2].ToString();
+                                            break;
+                                        case "systemname":
+                                            system = mm.Groups[2].ToString();
+                                            break;
+                                        case "supported_extensions":
+                                            core.SupportedExtensions = mm.Groups[2].ToString().Split('|');
+                                            for (var i = 0; i < core.SupportedExtensions.Length; ++i)
+                                                core.SupportedExtensions[i] = "." + core.SupportedExtensions[i];
+                                            break;
+                                        case "database":
+                                            core.Systems = mm.Groups[2].ToString().Split('|');
+                                            break;
+                                    }
                                 }
                             }
+                            if (core.Systems == null && system != null)
+                                core.Systems = new string[] { system };
+                            core.Kind = CoreKind.Libretro;
+                            cores[bin] = core;
                         }
-                        if (core.Systems == null && system != null)
-                            core.Systems = new string[] { system };
-                        core.Kind = CoreKind.Libretro;
-                        cores[bin] = core;
                     }
-                }
             }
 
             // add built-in cores

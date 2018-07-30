@@ -41,21 +41,21 @@ namespace com.clusterrr.hakchi_gui
                 string desktopEntriesArchiveFile = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "desktop_entries.7z");
                 using (var extractor = ArchiveFactory.Open(desktopEntriesArchiveFile))
                 {
-                    var reader = extractor.ExtractAllEntries();
-                    while (reader.MoveToNextEntry())
-                    {
-                        if (reader.Entry.IsDirectory)
-                            continue;
-
-                        hakchi.ConsoleType c = hakchi.SystemCodeToConsoleType[reader.Entry.Key.Substring(0, reader.Entry.Key.IndexOf('/'))];
-                        DefaultGames[c].Add(Path.GetFileNameWithoutExtension(reader.Entry.Key));
-                        using (var str = reader.OpenEntryStream())
+                    using (var reader = extractor.ExtractAllEntries())
+                        while (reader.MoveToNextEntry())
                         {
-                            var desktopFile = new DesktopFile();
-                            desktopFile.Load(str);
-                            AllDefaultGames[desktopFile.Code] = desktopFile;
+                            if (reader.Entry.IsDirectory)
+                                continue;
+
+                            hakchi.ConsoleType c = hakchi.SystemCodeToConsoleType[reader.Entry.Key.Substring(0, reader.Entry.Key.IndexOf('/'))];
+                            DefaultGames[c].Add(Path.GetFileNameWithoutExtension(reader.Entry.Key));
+                            using (var str = reader.OpenEntryStream())
+                            {
+                                var desktopFile = new DesktopFile();
+                                desktopFile.Load(str);
+                                AllDefaultGames[desktopFile.Code] = desktopFile;
+                            }
                         }
-                    }
                 }
             }
             catch (Exception ex)

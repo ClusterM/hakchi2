@@ -327,54 +327,56 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
                 using (var extractor = ArchiveFactory.Open(desktopEntriesArchiveFile))
                 {
-                    var reader = extractor.ExtractAllEntries();
-                    int i = 0;
-                    while (reader.MoveToNextEntry())
+                    using (var reader = extractor.ExtractAllEntries())
                     {
-                        if (reader.Entry.IsDirectory)
-                            continue;
-
-                        var code = Path.GetFileNameWithoutExtension(reader.Entry.Key);
-                        if (!defaultGames.Contains(code))
-                            continue;
-
-                        var ext = Path.GetExtension(reader.Entry.Key).ToLower();
-                        if (ext != ".desktop") // sanity check
-                            throw new FileLoadException($"invalid file \"{reader.Entry.Key}\" found in desktop_entries.7z data file.");
-
-                        string path = Path.Combine(originalGamesPath, code);
-                        string outputFile = Path.Combine(path, code + ".desktop");
-                        bool exists = File.Exists(outputFile);
-
-                        if (exists && !NonDestructiveSync)
+                        int i = 0;
+                        while (reader.MoveToNextEntry())
                         {
-                            Shared.EnsureEmptyDirectory(path);
-                            Thread.Sleep(0);
-                        }
+                            if (reader.Entry.IsDirectory)
+                                continue;
 
-                        if (!exists || !NonDestructiveSync)
-                        {
-                            Directory.CreateDirectory(path);
+                            var code = Path.GetFileNameWithoutExtension(reader.Entry.Key);
+                            if (!defaultGames.Contains(code))
+                                continue;
 
-                            // extract .desktop file from archive
-                            using (var o = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
+                            var ext = Path.GetExtension(reader.Entry.Key).ToLower();
+                            if (ext != ".desktop") // sanity check
+                                throw new FileLoadException($"invalid file \"{reader.Entry.Key}\" found in desktop_entries.7z data file.");
+
+                            string path = Path.Combine(originalGamesPath, code);
+                            string outputFile = Path.Combine(path, code + ".desktop");
+                            bool exists = File.Exists(outputFile);
+
+                            if (exists && !NonDestructiveSync)
                             {
-                                reader.WriteEntryTo(o);
-                                o.Flush();
-                                if (!this.ResetAllOriginalGames && !ConfigIni.Instance.OriginalGames.Contains(code))
-                                {
-                                    ConfigIni.Instance.OriginalGames.Add(code);
-                                }
+                                Shared.EnsureEmptyDirectory(path);
+                                Thread.Sleep(0);
                             }
 
-                            // create game temporarily to perform cover search
-                            Trace.WriteLine(string.Format($"Resetting game \"{NesApplication.AllDefaultGames[code].Name}\"."));
-                            var game = NesApplication.FromDirectory(path);
-                            game.FindCover(code + ".desktop");
-                            game.Save();
-                        }
+                            if (!exists || !NonDestructiveSync)
+                            {
+                                Directory.CreateDirectory(path);
 
-                        tasker.SetProgress(++i, defaultGames.Count());
+                                // extract .desktop file from archive
+                                using (var o = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
+                                {
+                                    reader.WriteEntryTo(o);
+                                    o.Flush();
+                                    if (!this.ResetAllOriginalGames && !ConfigIni.Instance.OriginalGames.Contains(code))
+                                    {
+                                        ConfigIni.Instance.OriginalGames.Add(code);
+                                    }
+                                }
+
+                                // create game temporarily to perform cover search
+                                Trace.WriteLine(string.Format($"Resetting game \"{NesApplication.AllDefaultGames[code].Name}\"."));
+                                var game = NesApplication.FromDirectory(path);
+                                game.FindCover(code + ".desktop");
+                                game.Save();
+                            }
+
+                            tasker.SetProgress(++i, defaultGames.Count());
+                        }
                     }
                 }
             }

@@ -573,7 +573,11 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AttachView(new Tasks.TaskerForm());
                 tasker.AddTask(task.UpdateLocal);
                 if (tasker.Start() == Tasks.Tasker.Conclusion.Success)
+                {
                     Trace.WriteLine("Done refreshing local original games cache.");
+                    if (ConfigIni.Instance.AlwaysCopyOriginalGames && task.LoadedGames > 0)
+                        LoadGames();
+                }
             }
         }
 

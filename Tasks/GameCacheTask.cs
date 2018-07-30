@@ -12,8 +12,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
 {
     public class GameCacheTask
     {
+        public int LoadedGames
+        {
+            get;
+            private set;
+        }
+
         public GameCacheTask()
         {
+            LoadedGames = 0;
         }
 
         public Tasker.Conclusion UpdateLocal(Tasker tasker, Object SyncObject = null)
@@ -58,6 +65,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                 using (var extractorTar = SharpCompress.Archives.Tar.TarArchive.Open(tar))
                                     extractorTar.WriteToDirectory(gamePath, new SharpCompress.Common.ExtractionOptions() { ExtractFullPath = true, Overwrite = true });
                             }
+                            ++LoadedGames;
                         }
                         catch (Exception ex)
                         {

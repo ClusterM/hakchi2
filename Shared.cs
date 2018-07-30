@@ -1,5 +1,4 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
-using SharpCompress.Archives;
 using System;
 using System.Collections;
 using System.Collections.Generic;
