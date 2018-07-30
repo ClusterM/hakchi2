@@ -784,11 +784,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     throw new Exception(Resources.InvalidUbootSize + " " + uboot.Length);
                 }
 
-                uboot.SetLength(655360);
-
                 uboot.OnProgress += tasker.OnProgress;
 
                 hakchi.Shell.Execute("cat > /uboot.bin", uboot, null, null, 0, true);
+                hakchi.Shell.Execute("truncate -s 640K /uboot.bin", null, null, null, 0, true);
+
                 MemoryStream flashLog = new MemoryStream();
                 var splitStream = new SplitterStream(flashLog).AddStreams(Program.debugStreams);
                 if (hakchi.Shell.Execute("hakchi flashBoot2 /uboot.bin 8 5", null, splitStream) != 0)
