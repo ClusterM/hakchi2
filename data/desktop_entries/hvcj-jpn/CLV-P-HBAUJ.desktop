@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/usr/bin/clover-kachikachi-wr /usr/share/games/CLV-P-HBAUJ/CLV-P-HBAUJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet
+Exec=/bin/clover-kachikachi-wr /usr/share/games/CLV-P-HBAUJ/CLV-P-HBAUJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet
 Path=/var/lib/clover/profiles/0//CLV-P-HBAUJ
 Name=暗黒神話 ヤマトタケル伝説
 Icon=/usr/share/games/CLV-P-HBAUJ/CLV-P-HBAUJ.png

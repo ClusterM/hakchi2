@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/usr/bin/clover-kachikachi-wr /usr/share/games/CLV-P-HBABJ/CLV-P-HBABJ.nes  --guest-overscan-dimensions 0,0,12,12 --initial-fadein-durations 3,2 --volume 75 --enable-armet
+Exec=/bin/clover-kachikachi-wr /usr/share/games/CLV-P-HBABJ/CLV-P-HBABJ.nes  --guest-overscan-dimensions 0,0,12,12 --initial-fadein-durations 3,2 --volume 75 --enable-armet
 Path=/var/lib/clover/profiles/0//CLV-P-HBABJ
 Name=ファミコンジャンプII 最強の7人
 Icon=/usr/share/games/CLV-P-HBABJ/CLV-P-HBABJ.png

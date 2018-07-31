@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/usr/bin/clover-kachikachi-wr /usr/share/games/CLV-P-HBASJ/CLV-P-HBASJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet
+Exec=/bin/clover-kachikachi-wr /usr/share/games/CLV-P-HBASJ/CLV-P-HBASJ.nes  --guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet
 Path=/var/lib/clover/profiles/0//CLV-P-HBASJ
 Name=聖闘士星矢 黄金伝説 完結編
 Icon=/usr/share/games/CLV-P-HBASJ/CLV-P-HBASJ.png

@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/usr/bin/clover-kachikachi-wr /usr/share/games/CLV-P-HBANJ/CLV-P-HBANJ.nes  --guest-overscan-dimensions 0,0,9,8 --initial-fadein-durations 3,2 --volume 81 --enable-armet
+Exec=/bin/clover-kachikachi-wr /usr/share/games/CLV-P-HBANJ/CLV-P-HBANJ.nes  --guest-overscan-dimensions 0,0,9,8 --initial-fadein-durations 3,2 --volume 81 --enable-armet
 Path=/var/lib/clover/profiles/0//CLV-P-HBANJ
 Name=キャプテン翼II スーパーストライカー
 Icon=/usr/share/games/CLV-P-HBANJ/CLV-P-HBANJ.png
