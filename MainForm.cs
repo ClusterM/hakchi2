@@ -430,8 +430,6 @@ namespace com.clusterrr.hakchi_gui
                 disableClovershellListenerToolStripMenuItem.Checked;
 
             // console settings
-            enableUSBHostToolStripMenuItem.Checked = ConfigIni.Instance.UsbHost;
-            useExtendedFontToolStripMenuItem.Checked = ConfigIni.Instance.UseFont;
             epilepsyProtectionToolStripMenuItem.Checked = ConfigIni.Instance.AntiArmetLevel > 0;
             selectButtonCombinationToolStripMenuItem.Enabled = resetUsingCombinationOfButtonsToolStripMenuItem.Checked = ConfigIni.Instance.ResetHack;
             enableAutofireToolStripMenuItem.Checked = ConfigIni.Instance.AutofireHack;
@@ -440,9 +438,7 @@ namespace com.clusterrr.hakchi_gui
             upABStartOnSecondControllerToolStripMenuItem.Checked = ConfigIni.Instance.FcStart && upABStartOnSecondControllerToolStripMenuItem.Enabled;
 
             // enable/disable options based on console being connected and can interact or not
-            enableUSBHostToolStripMenuItem.Enabled =
-                useExtendedFontToolStripMenuItem.Enabled =
-                epilepsyProtectionToolStripMenuItem.Enabled =
+            epilepsyProtectionToolStripMenuItem.Enabled =
                 cloverconHackToolStripMenuItem.Enabled =
                 globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Enabled =
                 saveSettingsToNESMiniNowToolStripMenuItem.Enabled = (hakchi.Connected && hakchi.CanInteract);
@@ -1964,11 +1960,6 @@ namespace com.clusterrr.hakchi_gui
             Close();
         }
 
-        private void useExtendedFontToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigIni.Instance.UseFont = useExtendedFontToolStripMenuItem.Checked;
-        }
-
         private void ToolStripMenuItemArmet_Click(object sender, EventArgs e)
         {
             ConfigIni.Instance.AntiArmetLevel = epilepsyProtectionToolStripMenuItem.Checked ? (byte)2 : (byte)0;
@@ -2269,19 +2260,6 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.Instance.AlwaysCopyOriginalGames = alwaysCopyOriginalGamesToolStripMenuItem.Checked;
             SaveSelectedGames();
             LoadGames();
-        }
-
-        private void enableUSBHostToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!enableUSBHostToolStripMenuItem.Checked)
-            {
-                if (Tasks.MessageForm.Show(this, Resources.Warning, Resources.DisableUSBWarning, Resources.sign_warning, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1 ) == MessageForm.Button.No)
-                {
-                    enableUSBHostToolStripMenuItem.Checked = true;
-                    return;
-                }
-            }
-            ConfigIni.Instance.UsbHost = enableUSBHostToolStripMenuItem.Checked;
         }
 
         private void devForceSshToolStripMenuItem_Click(object sender, EventArgs e)

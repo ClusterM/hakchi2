@@ -124,8 +124,6 @@
             this.kachikachiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.canoeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.retroarchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.enableUSBHostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useExtendedFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.epilepsyProtectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.saveSettingsToNESMiniNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -685,8 +683,6 @@
             this.toolStripMenuItem16,
             this.cloverconHackToolStripMenuItem,
             this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem,
-            this.enableUSBHostToolStripMenuItem,
-            this.useExtendedFontToolStripMenuItem,
             this.epilepsyProtectionToolStripMenuItem,
             this.toolStripMenuItem5,
             this.saveSettingsToNESMiniNowToolStripMenuItem});
@@ -953,24 +949,6 @@
             resources.ApplyResources(this.retroarchToolStripMenuItem, "retroarchToolStripMenuItem");
             this.retroarchToolStripMenuItem.Tag = "2";
             this.retroarchToolStripMenuItem.Click += new System.EventHandler(this.globalCommandLineArgumentsexpertsOnluToolStripMenuItem_Click);
-            // 
-            // enableUSBHostToolStripMenuItem
-            // 
-            this.enableUSBHostToolStripMenuItem.Checked = true;
-            this.enableUSBHostToolStripMenuItem.CheckOnClick = true;
-            this.enableUSBHostToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.enableUSBHostToolStripMenuItem.Name = "enableUSBHostToolStripMenuItem";
-            resources.ApplyResources(this.enableUSBHostToolStripMenuItem, "enableUSBHostToolStripMenuItem");
-            this.enableUSBHostToolStripMenuItem.Click += new System.EventHandler(this.enableUSBHostToolStripMenuItem_Click);
-            // 
-            // useExtendedFontToolStripMenuItem
-            // 
-            this.useExtendedFontToolStripMenuItem.Checked = true;
-            this.useExtendedFontToolStripMenuItem.CheckOnClick = true;
-            this.useExtendedFontToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.useExtendedFontToolStripMenuItem.Name = "useExtendedFontToolStripMenuItem";
-            resources.ApplyResources(this.useExtendedFontToolStripMenuItem, "useExtendedFontToolStripMenuItem");
-            this.useExtendedFontToolStripMenuItem.Click += new System.EventHandler(this.useExtendedFontToolStripMenuItem_Click);
             // 
             // epilepsyProtectionToolStripMenuItem
             // 
@@ -1855,7 +1833,6 @@
         private System.Windows.Forms.ToolStripMenuItem enableAutofireToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem globalCommandLineArgumentsexpertsOnluToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem upABStartOnSecondControllerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem useExtendedFontToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modulesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem installModulesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uninstallModulesToolStripMenuItem;
@@ -1968,7 +1945,6 @@
         private System.Windows.Forms.ToolStripMenuItem prepareArtDirectoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formatNANDCToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
-        private System.Windows.Forms.ToolStripMenuItem enableUSBHostToolStripMenuItem;
         private System.Windows.Forms.Button structureButton;
         private System.Windows.Forms.ContextMenuStrip foldersContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem disablePagefoldersToolStripMenuItem;

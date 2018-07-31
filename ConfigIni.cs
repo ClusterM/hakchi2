@@ -135,7 +135,6 @@ namespace com.clusterrr.hakchi_gui
         public enum ExtraCmdLineTypes { Kachikachi = 0, Canoe = 1, Retroarch = 2 }
         private class ConsoleSetting
         {
-            public bool UsbHost = true;
             public bool UseFont = true;
             public byte AntiArmetLevel = 0;
             public bool AutofireHack = false;
@@ -156,18 +155,6 @@ namespace com.clusterrr.hakchi_gui
         private Dictionary<int, ConsoleSetting> consoleSettings;
         public hakchi.ConsoleType LastConnectedConsoleType = hakchi.ConsoleType.Unknown;
 
-        [JsonIgnore]
-        public bool UsbHost
-        {
-            get { return consoleSettings[0].UsbHost; }
-            set { consoleSettings[0].UsbHost = value; }
-        }
-        [JsonIgnore]
-        public bool UseFont
-        {
-            get { return consoleSettings[0].UseFont; }
-            set { consoleSettings[0].UseFont = value; }
-        }
         [JsonIgnore]
         public byte AntiArmetLevel
         {
@@ -232,8 +219,6 @@ namespace com.clusterrr.hakchi_gui
         public bool SeparateGameStorage = true;
         public bool SyncLinked = true;
         public bool AlwaysCopyOriginalGames = false;
-        //public bool FtpServer = false;
-        //public bool TelnetServer = false;
         public string FtpCommand = "ftp://{0}:{1}@{2}:{3}";
         public string FtpArguments = "";
         public string TelnetCommand = "telnet://{0}:{1}";
@@ -323,8 +308,8 @@ namespace com.clusterrr.hakchi_gui
                     string legacyConfigPath = Shared.PathCombine(Program.BaseDirectoryExternal, ConfigDir, LegacyConfigFile);
                     if (File.Exists(legacyConfigPath))
                     {
-                        Trace.WriteLine("Legacy configuration file can be removed");
-                        // File.Delete(legacyConfigPath); // TODO : Eventually
+                        Trace.WriteLine("Legacy configuration file will be removed");
+                        File.Delete(legacyConfigPath);
                     }
                 }
                 catch (Exception ex)
@@ -345,9 +330,7 @@ namespace com.clusterrr.hakchi_gui
                 config["clovercon_autofire_xy"] = instance.AutofireXYHack ? "1" : "0";
                 config["clovercon_autofire_interval"] = instance.AutofireInterval.ToString();
                 config["clovercon_fc_start"] = instance.FcStart && (instance.LastConnectedConsoleType == hakchi.ConsoleType.Famicom) ? "1" : "0";
-                config["fontfix_enabled"] = instance.UseFont ? "y" : "n";
                 config["disable_armet"] = instance.AntiArmetLevel > 0 ? "y" : "n";
-                config["usb_host"] = instance.UsbHost ? "y" : "n";
                 config["nes_extra_args"] = instance.ExtraCommandLineArguments[ExtraCmdLineTypes.Kachikachi];
                 config["snes_extra_args"] = instance.ExtraCommandLineArguments[ExtraCmdLineTypes.Canoe];
                 config["retroarch_extra_args"] = instance.ExtraCommandLineArguments[ExtraCmdLineTypes.Retroarch];
@@ -379,14 +362,8 @@ namespace com.clusterrr.hakchi_gui
                     case "clovercon_fc_start":
                         instance.FcStart = setting.Value == "1";
                         break;
-                    case "fontfix_enabled":
-                        instance.UseFont = setting.Value == "y";
-                        break;
                     case "disable_armet":
                         instance.AntiArmetLevel = setting.Value == "y" ? (byte)2 : (byte)0;
-                        break;
-                    case "usb_host":
-                        instance.UsbHost = setting.Value == "y";
                         break;
                     case "nes_extra_args":
                         instance.ExtraCommandLineArguments[ExtraCmdLineTypes.Kachikachi] = setting.Value;

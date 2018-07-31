@@ -141,10 +141,6 @@ namespace com.clusterrr.hakchi_gui
                                 new ListViewItem(new string[] { "All games:", Shared.SizeSuffix(MemoryStats.AllGamesSize) }, memoryStatsGroup),
                                 new ListViewItem(new string[] { "Non multiboot games:", Shared.SizeSuffix(MemoryStats.NonMultibootGamesSize) }, memoryStatsGroup),
                                 new ListViewItem(new string[] { "Extra files:", Shared.SizeSuffix(MemoryStats.ExtraFilesSize) }, memoryStatsGroup),
-
-                                // console settings
-                                new ListViewItem(new string[] { "USB host enabled", ConfigIni.Instance.UsbHost ? Resources.Yes : Resources.No }, consoleSettingsGroup),
-                                new ListViewItem(new string[] { "Fontfix enabled", ConfigIni.Instance.UseFont ? Resources.Yes : Resources.No }, consoleSettingsGroup),
                             });
 
                             // collections sizes
