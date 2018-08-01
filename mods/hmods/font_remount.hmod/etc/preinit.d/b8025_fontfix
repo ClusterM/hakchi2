@@ -1,0 +1,73 @@
+#!/bin/sh
+
+fontFix_bind(){
+  if [ -f "$1" ] && [ -f "$2" ]; then
+    mount_bind "$1" "$2" && return 0
+  fi
+  return 1
+}
+
+fontFix_getPath0(){
+  [ -f "$1.fnt" ] && echo "$1.fnt" && return 0
+  [ -f "$1.font" ] && echo "$1.font" && return 0
+  return 1
+}
+
+fontFix_getPath(){
+  fontFix_getPath0 "$mountpoint/media/$modname/fonts/$1" && return 0
+  fontFix_getPath0 "$installpath/fonts/$1" ] && return 0
+  fontFix_getPath0 "$rootfs/usr/share/fonts/$1" ] && return 0
+  fontFix_getPath0 "$squashfs$gamepath/$1" ] && return 0
+  return 1
+}
+
+fontFix0(){
+  local fontPath="$(fontFix_getPath "$4")"
+  fontFix_bind "$fontPath" "$mountpoint/usr/share/$1/resources/fonts/$2$3.fnt" || \
+  fontFix_bind "$fontPath" "$mountpoint/usr/share/$1/resources/fonts/$2$3.font"
+}
+
+fontFix(){
+  local ui0="ui/$sftype-$sfregion"
+  local ui1=""
+  case "$sftype-$sfregion" in
+    nes-usa)
+      ui0="clover-ui"
+      ui1="nes/"
+    ;;
+    nes-jpn)
+      ui0="clover-ui"
+      ui1="hvc/"
+    ;;
+    snes-jpn)
+      ui0="ui/shvc"
+    ;;
+    hvcj-jpn)
+      ui0="ui/hvc"
+    ;;
+  esac
+
+  repair_fonts "$rootfs$gamepath"
+  local font=""
+  fontFix0 "$ui0" "$ui1" title title
+  fontFix0 "$ui0" "$ui1" copyright copyright
+  fontFix0 "$ui0" "$ui1" s small
+  fontFix0 "$ui0" "$ui1" m medium
+  fontFix0 "$ui0" "$ui1" l large
+  fontFix0 "$ui0" "" debug debug
+}
+
+repair_fonts(){
+  [ "$sftype" = "nes" ] || return 0
+
+  local titleFontPath="$(fontFix_getPath "title")"
+  local copyrightFontPath="$(fontFix_getPath "copyright")"
+
+  titleFontPath="${titleFontPath#$mountpoint}"
+  copyrightFontPath="${copyrightFontPath#$mountpoint}"
+
+  mkdir -p "$1" || return 1
+
+  [ -f "$mountpoint$titleFontPath" ] && (ln -nsf "$titleFontPath" "$1/title.fnt" || copy "$mountpoint$titleFontPath" "$1/")
+  [ -f "$mountpoint$copyrightFontPath" ] && (ln -nsf "$copyrightFontPath" "$1/copyright.fnt" || copy "$mountpoint$copyrightFontPath" "$1/")
+}

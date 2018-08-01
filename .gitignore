@@ -1,4 +1,4 @@
-/bin/
+bin/
 driver/source/nesmini_driver/Release/
 driver/usb_driver/
 obj/
@@ -6,13 +6,8 @@ obj/
 *.csproj.user
 *.pfx
 commit.txt
-packages/**/*
-!packages/repositories.config
-Web Installer/*.exe
-ProgressODoom/bin/
-mods/hmods/kernel.hmod
-mods/hmods/font_remount.hmod
 basehmods.tar
 downloadedFiles.txt
 mods/hmods/hakchi.hmod
 tools/arm/detached-fallback
+Web Installer/*.exe

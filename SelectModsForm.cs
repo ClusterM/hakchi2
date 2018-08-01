@@ -152,7 +152,7 @@ namespace com.clusterrr.hakchi_gui
                                 {
                                     foreach (var readmeFilename in readmeFiles)
                                     {
-                                        if (f.Key.ToLower() != readmeFilename && f.Key.ToLower() != $".\\{readmeFilename}")
+                                        if (f.Key.ToLower() != readmeFilename && f.Key.ToLower() != $"./{readmeFilename}")
                                             continue;
 
                                         var o = new MemoryStream();

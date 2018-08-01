@@ -106,9 +106,9 @@ namespace com.clusterrr.hakchi_gui
             Trace.WriteLine("Loading libretro core info files");
             var regex = new Regex("(^[^\\s]+)\\s+=\\s+\"?([^\"\\r\\n]*)\"?", RegexOptions.Multiline | RegexOptions.Compiled);
 
+            // list base info files present in "libretro_cores.7z"
             cores = new Dictionary<string, CoreInfo>();
             using (var extractor = ArchiveFactory.Open(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "libretro_cores.7z")))
-            {
                 using (var reader = extractor.ExtractAllEntries())
                     while (reader.MoveToNextEntry())
                     {
@@ -118,45 +118,25 @@ namespace com.clusterrr.hakchi_gui
                         if (m.Success && !string.IsNullOrEmpty(m.Groups[1].ToString()))
                         {
                             var bin = m.Groups[1].ToString();
-                            var f = new StreamReader(reader.OpenEntryStream()).ReadToEnd();
-                            var matches = regex.Matches(f);
-                            if (matches.Count <= 0)
-                                continue;
-
-                            var core = new CoreInfo(bin);
-                            string system = null;
-                            foreach (Match mm in matches)
-                            {
-                                if (mm.Success)
-                                {
-                                    switch (mm.Groups[1].ToString().ToLower())
-                                    {
-                                        case "corename":
-                                            core.Name = mm.Groups[2].ToString();
-                                            break;
-                                        case "display_name":
-                                            core.DisplayName = mm.Groups[2].ToString();
-                                            break;
-                                        case "systemname":
-                                            system = mm.Groups[2].ToString();
-                                            break;
-                                        case "supported_extensions":
-                                            core.SupportedExtensions = mm.Groups[2].ToString().Split('|');
-                                            for (var i = 0; i < core.SupportedExtensions.Length; ++i)
-                                                core.SupportedExtensions[i] = "." + core.SupportedExtensions[i];
-                                            break;
-                                        case "database":
-                                            core.Systems = mm.Groups[2].ToString().Split('|');
-                                            break;
-                                    }
-                                }
-                            }
-                            if (core.Systems == null && system != null)
-                                core.Systems = new string[] { system };
-                            core.Kind = CoreKind.Libretro;
-                            cores[bin] = core;
+                            var core = parseInfoFile(reader.OpenEntryStream(), bin);
+                            if (core != null)
+                                cores[bin] = core;
                         }
                     }
+
+            // list user-added info files present in /info
+            if (!Directory.Exists(Path.Combine(Program.BaseDirectoryExternal, "info")))
+                Directory.CreateDirectory(Path.Combine(Program.BaseDirectoryExternal, "info"));
+            foreach (var file in Directory.EnumerateFiles(Path.Combine(Program.BaseDirectoryExternal, "info"), "*_libretro.info"))
+            {
+                using (var stream = File.OpenRead(file))
+                {
+                    var filename = Path.GetFileName(file);
+                    var bin = filename.Substring(0, filename.IndexOf("_libretro.info"));
+                    var core = parseInfoFile(stream, bin);
+                    if (core != null)
+                        cores[bin] = core;
+                }
             }
 
             // add built-in cores
@@ -189,7 +169,49 @@ namespace com.clusterrr.hakchi_gui
             }
 
             // save cache
-            Serialize();
+            // Serialize();
+        }
+
+        private static Regex parseRegex = new Regex("(^[^\\s]+)\\s+=\\s+\"?([^\"\\r\\n]*)\"?", RegexOptions.Multiline | RegexOptions.Compiled);
+        private static CoreInfo parseInfoFile(Stream stream, string bin)
+        {
+            var f = new StreamReader(stream).ReadToEnd();
+            var matches = parseRegex.Matches(f);
+            if (matches.Count <= 0)
+                return null;
+
+            var core = new CoreInfo(bin);
+            string system = null;
+            foreach (Match mm in matches)
+            {
+                if (mm.Success)
+                {
+                    switch (mm.Groups[1].ToString().ToLower())
+                    {
+                        case "corename":
+                            core.Name = mm.Groups[2].ToString();
+                            break;
+                        case "display_name":
+                            core.DisplayName = mm.Groups[2].ToString();
+                            break;
+                        case "systemname":
+                            system = mm.Groups[2].ToString();
+                            break;
+                        case "supported_extensions":
+                            core.SupportedExtensions = mm.Groups[2].ToString().Split('|');
+                            for (var i = 0; i < core.SupportedExtensions.Length; ++i)
+                                core.SupportedExtensions[i] = "." + core.SupportedExtensions[i];
+                            break;
+                        case "database":
+                            core.Systems = mm.Groups[2].ToString().Split('|');
+                            break;
+                    }
+                }
+            }
+            if (core.Systems == null && system != null)
+                core.Systems = new string[] { system };
+            core.Kind = CoreKind.Libretro;
+            return core;
         }
 
         public static IEnumerable<CoreInfo> Cores

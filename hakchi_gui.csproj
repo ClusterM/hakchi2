@@ -952,6 +952,9 @@
     <None Include="images\sign-sync-off.png" />
     <None Include="images\sign-light-bulb-off.png" />
     <None Include="images\sign-clock.png" />
+    <Content Include="info\README.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="motdTemplate.html" />
     <Content Include="motdTemplate.css" />
     <Content Include="icon_app.ico" />
