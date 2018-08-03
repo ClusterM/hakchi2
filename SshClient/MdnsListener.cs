@@ -13,18 +13,9 @@ using System.Threading.Tasks;
 
 namespace com.clusterrr.ssh
 {
-    public class Devices
+    public class MdnsListener : IListener
     {
-        public class Entry
-        {
-            public IList<IPAddress> Addresses;
-            public ushort Port;
-            public string UniqueID;
-            public string ConsoleType;
-            public string ConsoleRegion;
-        }
-
-        public IList<Entry> Available
+        public IList<Device> Available
         {
             get; private set;
         }
@@ -33,9 +24,9 @@ namespace com.clusterrr.ssh
         string serviceName;
         string serviceType;
 
-        public Devices(string name, string type)
+        public MdnsListener(string name, string type)
         {
-            Available = new List<Entry>();
+            Available = new List<Device>();
             serviceName = name;
             serviceType = type;
 
@@ -80,7 +71,7 @@ namespace com.clusterrr.ssh
             debugAnnouncement("Service added:", e.Announcement);
 
             // create entry
-            var dev = new Entry()
+            var dev = new Device()
             {
                 Addresses = e.Announcement.Addresses,
                 Port = e.Announcement.Port,

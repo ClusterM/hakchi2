@@ -706,7 +706,11 @@
       <DependentUpon>SnesPresetEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="SplitterStream.cs" />
-    <Compile Include="SshClient\Devices.cs" />
+    <Compile Include="SshClient\Device.cs" />
+    <Compile Include="SshClient\IListener.cs" />
+    <Compile Include="SshClient\MdnsListener.cs" />
+    <Compile Include="SshClient\LlmnrListener.cs" />
+    <Compile Include="SshClient\PingListener.cs" />
     <Compile Include="SshClient\SshClientException.cs" />
     <Compile Include="SshClient\SshClientWrapper.cs" />
     <Compile Include="StringInputForm.cs">
@@ -1795,6 +1799,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Libraries\DnsUtils\DnsUtils\DnsUtils.csproj">
+      <Project>{2f5b45d4-c5b1-46f4-bb78-02500d78ba6e}</Project>
+      <Name>DnsUtils</Name>
+    </ProjectReference>
     <ProjectReference Include="Libraries\LibUsbDotNet\stage\LibUsb.Common\LibUsb.Common.csproj">
       <Project>{3144d4c7-12ce-4d8c-9315-c86f207d73c1}</Project>
       <Name>LibUsb.Common</Name>

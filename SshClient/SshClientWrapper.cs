@@ -21,7 +21,7 @@ namespace com.clusterrr.ssh
 
         private SshClient sshClient;
         private Thread connectThread;
-        private Devices devices;
+        private List<IListener> listeners;
 
         private bool enabled;
         private bool hasConnected;
@@ -44,9 +44,12 @@ namespace com.clusterrr.ssh
                 if (value)
                 {
                     // start devices listener
-                    if (devices == null)
+                    if (listeners == null)
                     {
-                        devices = new Devices(serviceName, serviceType);
+                        listeners = new List<IListener>();
+                        //listeners.Add(new MdnsListener(serviceName, serviceType));
+                        listeners.Add(new LlmnrListener(serviceName));
+                        //listeners.Add(new PingListener(serviceName));
                     }
 
                     // start connection watching thread
@@ -63,10 +66,12 @@ namespace com.clusterrr.ssh
                         connectThread.Abort();
                         connectThread = null;
                     }
-                    if (devices != null)
+                    if (listeners != null)
                     {
-                        devices.Abort();
-                        devices = null;
+                        foreach (var l in listeners)
+                            l.Abort();
+                        listeners.Clear();
+                        listeners = null;
                     }
                     if (sshClient != null)
                     {
@@ -109,7 +114,7 @@ namespace com.clusterrr.ssh
         {
             sshClient = null;
             connectThread = null;
-            devices = null;
+            listeners = null;
             enabled = false;
             hasConnected = false;
             lastDisconnected = DateTime.Now.Subtract(TimeSpan.FromMilliseconds(3000));
@@ -225,19 +230,24 @@ namespace com.clusterrr.ssh
 
         private void attemptConnect()
         {
-            if (devices.Available.Any())
+            Trace.WriteLine("Attempting to connect...");
+            foreach (IListener l in listeners)
             {
-                foreach (var dev in devices.Available)
+                Trace.WriteLine("Trying listener " + l.GetType().Name);
+                foreach (var dev in l.Available)
                 {
-                    IPAddress = dev.Addresses.First().ToString();
-                    port = dev.Port;
-                    if (ping(IPAddress) != -1)
+                    foreach (var a in dev.Addresses)
                     {
-                        Connect();
-                        if (IsOnline)
+                        IPAddress = a.ToString();
+                        port = dev.Port;
+                        if (ping(IPAddress) != -1)
                         {
-                            Debug.WriteLine("Success!");
-                            return;
+                            Connect();
+                            if (IsOnline)
+                            {
+                                Debug.WriteLine("Success!");
+                                return;
+                            }
                         }
                     }
                 }
