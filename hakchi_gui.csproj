@@ -706,6 +706,7 @@
       <DependentUpon>SnesPresetEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="SplitterStream.cs" />
+    <Compile Include="SshClient\Devices.cs" />
     <Compile Include="SshClient\SshClientException.cs" />
     <Compile Include="SshClient\SshClientWrapper.cs" />
     <Compile Include="StringInputForm.cs">
@@ -941,9 +942,15 @@
     <Content Include="driver\Nintendo_Classic_USB_Driver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="folder_images\console_famicom.png">
+    <None Include="folder_images\console_atari_lynx 2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
+    <None Include="folder_images\console_atari_lynx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_famicom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="folder_images\folder_home.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -952,6 +959,96 @@
     <None Include="images\sign-sync-off.png" />
     <None Include="images\sign-light-bulb-off.png" />
     <None Include="images\sign-clock.png" />
+    <None Include="folder_images\console_nec_supergrafx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_nec_turboduo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_nec_turbografx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_nec_turbografxcd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_sega_genesis_32x_us.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_sega_genesis_cd_32x_us.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_sega_genesis_cd_us.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_sega_genesis_us.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_sega_megadrive_32x_eu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_sega_mega_drive_32x_jp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_sega_mega_drive_cd_32x_eu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_sega_mega_drive_cd_32x_jp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_sega_mega_drive_cd_eu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_sega_mega_drive_cd_jp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_sega_mega_drive_eu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_sega_mega_drive_jp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_snk_ngpc_camo_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_snk_ngpc_carbon_black_Z.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_snk_ngpc_crystal_white.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_snk_ngpc_platinum_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_snk_ngpc_platinum_silver.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\console_snk_ngpc_stone_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\folder_retroarch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\folder_system_atari_lynx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\folder_system_cd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\folder_system_dos_3_5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\folder_system_dos_3_5a.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\folder_system_dos_5_25.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\folder_system_psx_cd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\folder_system_snk_ngpc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="info\README.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1693,12 +1790,11 @@
     <PackageReference Include="SharpCompress">
       <Version>0.22.0</Version>
     </PackageReference>
+    <PackageReference Include="Tmds.MDns">
+      <Version>0.7.0</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Libraries\DnsUtils\DnsUtils\DnsUtils.csproj">
-      <Project>{2f5b45d4-c5b1-46f4-bb78-02500d78ba6e}</Project>
-      <Name>DnsUtils</Name>
-    </ProjectReference>
     <ProjectReference Include="Libraries\LibUsbDotNet\stage\LibUsb.Common\LibUsb.Common.csproj">
       <Project>{3144d4c7-12ce-4d8c-9315-c86f207d73c1}</Project>
       <Name>LibUsb.Common</Name>

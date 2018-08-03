@@ -48,8 +48,6 @@ namespace com.clusterrr.hakchi_gui
                 if (ConfigIni.Instance.ForceClovershell) devTools += "Force Clovershell, ";
                 if (ConfigIni.Instance.ForceSSHTransfers) devTools += "Force SSH Transfers, ";
                 if (ConfigIni.Instance.UploadToTmp) devTools += "Upload to /tmp, ";
-                if (ConfigIni.Instance.DisableClovershellListener) devTools += "Disable Clovershell listener, ";
-                if (ConfigIni.Instance.DisableSSHListener) devTools += "Disable SSH listener, ";
                 devTools = devTools.TrimEnd(new char[] { ',', ' ' });
                 if (string.IsNullOrWhiteSpace(devTools)) devTools = "None";
 

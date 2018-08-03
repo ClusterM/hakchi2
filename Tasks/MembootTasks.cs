@@ -785,13 +785,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 }
 
                 uboot.OnProgress += tasker.OnProgress;
-
                 hakchi.Shell.Execute("cat > /uboot.bin", uboot, null, null, 0, true);
-                hakchi.Shell.Execute("truncate -s 640K /uboot.bin", null, null, null, 0, true);
 
                 MemoryStream flashLog = new MemoryStream();
                 var splitStream = new SplitterStream(flashLog).AddStreams(Program.debugStreams);
-                if (hakchi.Shell.Execute("hakchi flashBoot2 /uboot.bin 8 5", null, splitStream) != 0)
+                if (hakchi.Shell.Execute("hakchi flashBoot1 /uboot.bin", null, splitStream) != 0)
                 {
                     using (var sr = new StreamReader(flashLog))
                     {

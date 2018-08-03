@@ -1,6 +1,3 @@
-[submodule "Libraries/DnsUtils"]
-	path = Libraries/DnsUtils
-	url = https://github.com/TeamShinkansen/DnsUtils.git
 [submodule "Libraries/SSH.NET"]
 	path = Libraries/SSH.NET
 	url = https://github.com/TeamShinkansen/SSH.NET.git

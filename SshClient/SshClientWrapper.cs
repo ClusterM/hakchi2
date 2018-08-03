@@ -1,10 +1,11 @@
 ﻿using com.clusterrr.hakchi_gui;
 using Renci.SshNet;
-using DnsUtils.Services;
+using Tmds.MDns;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -13,22 +14,22 @@ using System.Threading.Tasks;
 
 namespace com.clusterrr.ssh
 {
-
     public class SshClientWrapper : ISystemShell, INetworkShell
     {
         public event OnConnectedEventHandler OnConnected = delegate { };
         public event OnDisconnectedEventHandler OnDisconnected = delegate { };
 
         private SshClient sshClient;
-        private Llmnr llmnr;
-        private Mdns mdns;
+        private Thread connectThread;
+        private Devices devices;
 
-        Thread connectThread;
         private bool enabled;
         private bool hasConnected;
         DateTime lastDisconnected;
-        private string service;
-        private ushort port;
+
+        private string serviceName;
+        private string serviceType;
+        private int? port;
         private string username;
         private string password;
 
@@ -42,6 +43,12 @@ namespace com.clusterrr.ssh
                 enabled = value;
                 if (value)
                 {
+                    // start devices listener
+                    if (devices == null)
+                    {
+                        devices = new Devices(serviceName, serviceType);
+                    }
+
                     // start connection watching thread
                     if (connectThread == null)
                     {
@@ -56,6 +63,11 @@ namespace com.clusterrr.ssh
                         connectThread.Abort();
                         connectThread = null;
                     }
+                    if (devices != null)
+                    {
+                        devices.Abort();
+                        devices = null;
+                    }
                     if (sshClient != null)
                     {
                         if (sshClient.IsConnected)
@@ -66,6 +78,95 @@ namespace com.clusterrr.ssh
                         sshClient = null;
                     }
                 }
+            }
+        }
+
+        public bool IsOnline
+        {
+            get
+            {
+                return sshClient != null && sshClient.IsConnected;
+            }
+        }
+
+        public ushort ShellPort // this is telnet port
+        {
+            get { return 23; }
+        }
+
+        public bool ShellEnabled
+        {
+            get { return IsOnline; }
+            set { }
+        }
+
+        public string IPAddress
+        {
+            get; private set;
+        }
+
+        public SshClientWrapper(string serviceName, string serviceType, string IPAddress, int? port, string username, string password)
+        {
+            sshClient = null;
+            connectThread = null;
+            devices = null;
+            enabled = false;
+            hasConnected = false;
+            lastDisconnected = DateTime.Now.Subtract(TimeSpan.FromMilliseconds(3000));
+
+            this.serviceName = serviceName;
+            this.serviceType = serviceType;
+            this.IPAddress = IPAddress;
+            this.port = port;
+            this.username = username;
+            this.password = password;
+        }
+
+        public void Dispose()
+        {
+            // this will shutdown everything
+            Enabled = false;
+        }
+
+        public void Connect()
+        {
+            if (IsOnline || string.IsNullOrEmpty(IPAddress) || IPAddress == "0.0.0.0")
+                return;
+
+            try
+            {
+                if (sshClient == null)
+                {
+                    sshClient = new SshClient(IPAddress, port.Value, username, password);
+                    sshClient.ErrorOccurred += SshClient_OnError;
+                }
+                if (!sshClient.IsConnected)
+                {
+                    sshClient.Connect();
+                }
+                Trace.WriteLine("SSH shell connected");
+                Trace.WriteLine($"IP Address: {IPAddress}");
+                Trace.WriteLine($"Encryption: {sshClient.ConnectionInfo.CurrentServerEncryption}");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(string.Format("Unable to connect to SSH server at {0}:{1} ({2})", sshClient.ConnectionInfo.Host, sshClient.ConnectionInfo.Port, ex.Message));
+                sshClient = null;
+                IPAddress = null;
+                port = null;
+                return;
+            }
+
+            hasConnected = true;
+            OnConnected(this);
+        }
+
+        public void Disconnect()
+        {
+            if (sshClient == null) return;
+            if (sshClient.IsConnected)
+            {
+                sshClient.Disconnect(); // this will disconnect the shell and thread loop will detect it and call OnDisconnected and clean up
             }
         }
 
@@ -100,7 +201,7 @@ namespace com.clusterrr.ssh
                                 }
                             }
                         }
-                        Thread.Sleep(250);
+                        Thread.Sleep(500);
                     }
                     catch (ThreadAbortException)
                     {
@@ -122,119 +223,16 @@ namespace com.clusterrr.ssh
             }
         }
 
-        public bool IsOnline
-        {
-            get
-            {
-                return sshClient != null && sshClient.IsConnected;
-            }
-        }
-
-        public ushort ShellPort // this is telnet port
-        {
-            get { return 23; }
-        }
-
-        public bool ShellEnabled
-        {
-            get { return IsOnline; }
-            set { }
-        }
-
-        public string IPAddress
-        {
-            get; private set;
-        }
-
-        public SshClientWrapper(string service, string IPAddress, ushort port, string username, string password)
-        {
-            sshClient = null;
-            llmnr = null;
-            mdns = null;
-            connectThread = null;
-            enabled = false;
-            hasConnected = false;
-            lastDisconnected = DateTime.Now.Subtract(TimeSpan.FromMilliseconds(3000));
-            this.service = service;
-            this.IPAddress = IPAddress;
-            this.port = port;
-            this.username = username;
-            this.password = password;
-        }
-
-        public void Dispose()
-        {
-            // this will shutdown everything
-            Enabled = false;
-        }
-
-        public void Connect()
-        {
-            if (IsOnline || string.IsNullOrEmpty(IPAddress) || IPAddress == "0.0.0.0")
-                return;
-
-            try
-            {
-                if (sshClient == null)
-                {
-                    sshClient = new SshClient(IPAddress, port, username, password);
-                    sshClient.ErrorOccurred += SshClient_OnError;
-                }
-                if (!sshClient.IsConnected)
-                {
-                    sshClient.Connect();
-                }
-                Trace.WriteLine("SSH shell connected");
-                Trace.WriteLine($"IP Address: {IPAddress}");
-                Trace.WriteLine($"Encryption: {sshClient.ConnectionInfo.CurrentServerEncryption}");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(string.Format("Unable to connect to SSH server at {0}:{1} ({2})", sshClient.ConnectionInfo.Host, sshClient.ConnectionInfo.Port, ex.Message));
-                sshClient = null;
-                IPAddress = null;
-                return;
-            }
-
-            hasConnected = true;
-            OnConnected(this);
-        }
-
-        public void Disconnect()
-        {
-            if (sshClient == null) return;
-            if (sshClient.IsConnected)
-            {
-                sshClient.Disconnect(); // this will disconnect the shell and thread loop will detect it and call OnDisconnected and clean up
-            }
-        }
-
         private void attemptConnect()
         {
-            if (ping(this.service) != -1)
+            if (devices.Available.Any())
             {
-                Debug.WriteLine($"Ping success, attempting connect to `{IPAddress.ToString()}`...");
-                Connect();
-                if (IsOnline)
+                foreach (var dev in devices.Available)
                 {
-                    Debug.WriteLine("Connected!");
-                    return;
-                }
-            }
-
-            IPAddress[] resolvedIPs = resolve();
-            if (resolvedIPs != null && resolvedIPs.Length > 0)
-            {
-                Debug.WriteLine($"Resolved {resolvedIPs.Length} addresses...");
-                foreach (var ip in resolvedIPs)
-                {
-                    int result = ping(ip.ToString(), true);
-                    Debug.WriteLine($"Resolve: detected ip address: {ip.ToString()}: ping " + (result == -1 ? "failed" : "successful"));
-
-                    if (result != -1)
+                    IPAddress = dev.Addresses.First().ToString();
+                    port = dev.Port;
+                    if (ping(IPAddress) != -1)
                     {
-                        Debug.WriteLine("Attempting to connect...");
-                        IPAddress = ip.ToString();
                         Connect();
                         if (IsOnline)
                         {
@@ -244,15 +242,6 @@ namespace com.clusterrr.ssh
                     }
                 }
             }
-        }
-
-        private IPAddress[] resolve()
-        {
-            if (llmnr == null)
-                llmnr = new Llmnr();
-            if (mdns == null)
-                mdns = new Mdns();
-            return NameResolving.ResolveAsync(this.service, 2000, llmnr, mdns).Result;
         }
 
         private int ping(string ip, bool verbose = false)

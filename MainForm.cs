@@ -419,15 +419,11 @@ namespace com.clusterrr.hakchi_gui
             uploadTotmpforTestingToolStripMenuItem.Checked = ConfigIni.Instance.UploadToTmp;
             forceNetworkMembootsToolStripMenuItem.Checked = ConfigIni.Instance.ForceNetwork;
             forceClovershellMembootsToolStripMenuItem.Checked = ConfigIni.Instance.ForceClovershell;
-            disableSSHlistenerToolStripMenuItem.Checked = ConfigIni.Instance.DisableSSHListener;
-            disableClovershellListenerToolStripMenuItem.Checked = ConfigIni.Instance.DisableClovershellListener;
             developerToolsToolStripMenuItem.Visible =
                 devForceSshToolStripMenuItem.Checked ||
                 uploadTotmpforTestingToolStripMenuItem.Checked ||
                 forceNetworkMembootsToolStripMenuItem.Checked ||
-                forceClovershellMembootsToolStripMenuItem.Checked ||
-                disableSSHlistenerToolStripMenuItem.Checked ||
-                disableClovershellListenerToolStripMenuItem.Checked;
+                forceClovershellMembootsToolStripMenuItem.Checked;
 
             // console settings
             epilepsyProtectionToolStripMenuItem.Checked = ConfigIni.Instance.AntiArmetLevel > 0;
@@ -2272,20 +2268,6 @@ namespace com.clusterrr.hakchi_gui
             ConfigIni.Instance.UploadToTmp = uploadTotmpforTestingToolStripMenuItem.Checked;
         }
 
-        private void disableSSHlistenerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigIni.Instance.DisableSSHListener = disableSSHlistenerToolStripMenuItem.Checked;
-            Trace.WriteLine("Recycling system shell listeners");
-            hakchi.Initialize();
-        }
-
-        private void disableClovershellListenerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigIni.Instance.DisableClovershellListener = disableClovershellListenerToolStripMenuItem.Checked;
-            Trace.WriteLine("Recycling system shell listeners");
-            hakchi.Initialize();
-        }
-
         private void pagesModefoldersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (sender == customToolStripMenuItem && customToolStripMenuItem.Checked)
@@ -2995,11 +2977,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void importCachedOriginalGamesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void convertSNESROMSToSFROMToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Instance.ConvertToSFROM = convertSNESROMSToSFROMToolStripMenuItem.Checked;
@@ -3014,7 +2991,27 @@ namespace com.clusterrr.hakchi_gui
 
         private void switchRunningFirmwareToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new SelectFirmwareDialog().ShowDialog();
+            try
+            {
+                if (hakchi.MinimalMemboot)
+                {
+                    Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot, Resources.sign_life_buoy);
+                    return;
+                }
+                if (!hakchi.CanInteract)
+                {
+                    Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedCannotInteract, Resources.sign_ban);
+                    return;
+                }
+                if (WaitingShellForm.WaitForDevice(this))
+                {
+                    new SelectFirmwareDialog().ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                Tasks.ErrorForm.Show(this, ex);
+            }
         }
     }
 }

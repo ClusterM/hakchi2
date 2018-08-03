@@ -15,8 +15,8 @@ namespace com.clusterrr.hakchi_gui
 {
     public static class hakchi
     {
-        public static readonly string[] StaticIPs = new string[] { "10.234.137.10", "169.254.13.37" };
-        public const string DNS_NAME = "hakchi";
+        public const string SERVICE_NAME = "hakchi";
+        public const string SERVICE_TYPE = "_ssh._tcp";
         public const string USERNAME = "root";
         public const string PASSWORD = "";
         public const long BLOCK_SIZE = 4096;
@@ -243,24 +243,18 @@ namespace com.clusterrr.hakchi_gui
             Shell = shells.First();
 
             // clovershell (for legacy compatibility)
-            if (!ConfigIni.Instance.DisableClovershellListener)
-            {
-                var clovershell = new ClovershellConnection() { AutoReconnect = true };
-                clovershell.OnConnected += Shell_OnConnected;
-                clovershell.OnDisconnected += Shell_OnDisconnected;
-                shells.Add(clovershell);
-                clovershell.Enabled = true;
-            }
+            var clovershell = new ClovershellConnection() { AutoReconnect = true };
+            clovershell.OnConnected += Shell_OnConnected;
+            clovershell.OnDisconnected += Shell_OnDisconnected;
+            shells.Add(clovershell);
+            clovershell.Enabled = true;
 
             // new high-tech but slow SSH connection
-            if (!ConfigIni.Instance.DisableSSHListener)
-            {
-                var ssh = new SshClientWrapper(DNS_NAME, null, 22, USERNAME, PASSWORD) { AutoReconnect = true };
-                ssh.OnConnected += Shell_OnConnected;
-                ssh.OnDisconnected += Shell_OnDisconnected;
-                shells.Add(ssh);
-                ssh.Enabled = true;
-            }
+            var ssh = new SshClientWrapper(SERVICE_NAME, SERVICE_TYPE, null, null, USERNAME, PASSWORD) { AutoReconnect = true };
+            ssh.OnConnected += Shell_OnConnected;
+            ssh.OnDisconnected += Shell_OnDisconnected;
+            shells.Add(ssh);
+            ssh.Enabled = true;
         }
 
         public static void Shutdown()
@@ -292,52 +286,52 @@ namespace com.clusterrr.hakchi_gui
                 {
                     throw new IOException("Shell connection should be online!");
                 }
+                DetectedConsoleType = ConsoleType.Unknown;
 
                 MinimalMemboot = Shell.Execute("source /hakchi/config; [ \"$cf_memboot\" = \"y\" ]") == 0;
-
-                // detect unique id
-                UniqueID = Shell.ExecuteSimple("echo \"`devmem 0x01C23800``devmem 0x01C23804``devmem 0x01C23808``devmem 0x01C2380C`\"").Trim().Replace("0x", "");
+                UniqueID = Shell.ExecuteSimple("hakchi hwid").Replace(" ", "");
                 Trace.WriteLine($"Detected device unique ID: {UniqueID}");
 
                 // execution stops here for a minimal memboot
                 if (!MinimalMemboot)
                 {
-                    // detect running/mounted firmware
-                    string board = Shell.ExecuteSimple("cat /etc/clover/boardtype", 3000, true);
-                    string region = Shell.ExecuteSimple("cat /etc/clover/REGION", 3000, true);
-                    DetectedConsoleType = translateConsoleType(board, region);
-                    if (DetectedConsoleType == ConsoleType.Unknown)
+                    var versionExists = Shell.ExecuteSimple("[ -f /var/version ] && echo \"yes\"", 2000, true) == "yes";
+                    if (versionExists)
                     {
-                        throw new IOException("Unable to determine mounted firmware");
+                        var versions = Shell.ExecuteSimple("source /var/version && echo \"$bootVersion $kernelVersion $hakchiVersion\"", 2000, true).Split(' ');
+                        RawBootVersion = versions[0];
+                        RawKernelVersion = versions[1];
+                        RawScriptVersion = versions[2];
+                        Trace.WriteLine($"Detected versions: boot {RawBootVersion}, kernel {RawKernelVersion}, script {RawScriptVersion}");
+
+                        CanInteract = !SystemRequiresReflash() && !SystemRequiresRootfsUpdate();
                     }
-                    var customFirmwareLoaded = Shell.ExecuteSimple("hakchi currentFirmware");
-                    CustomFirmwareLoaded = customFirmwareLoaded != "_nand_";
-                    Trace.WriteLine(string.Format("Detected mounted board: {0}, region: {1}, firmware: {2}", board, region, customFirmwareLoaded));
+                    else
+                    {
+                        RawBootVersion = "1.0.0";
+                        RawKernelVersion = "3.4.112-00";
+                        RawScriptVersion = "v1.0.0-000";
+                        Trace.WriteLine("Detected versions: severely outdated!");
 
-                    // detect running versions
-                    var versions = Shell.ExecuteSimple("source /var/version && echo \"$bootVersion $kernelVersion $hakchiVersion\"", 500, true).Split(' ');
-                    RawBootVersion = versions[0];
-                    RawKernelVersion = versions[1];
-                    RawScriptVersion = versions[2];
-                    Trace.WriteLine($"Detected versions: boot {RawBootVersion}, kernel {RawKernelVersion}, script {RawScriptVersion}");
-                    CanInteract = !SystemRequiresReflash() && !SystemRequiresRootfsUpdate();
+                        CanInteract = false;
+                    }
 
-                    // only do more interaction if safe to do so
                     if (CanInteract)
                     {
                         // disable sync on legacy clovershell
                         CanSync = !(caller is ClovershellConnection);
 
+                        // detect console firmware/type
+                        SystemCode = Shell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
+                        if (SystemCodeToConsoleType.ContainsKey(SystemCode))
+                            DetectedConsoleType = SystemCodeToConsoleType[SystemCode];
+                        CustomFirmwareLoaded = Shell.ExecuteSimple("hakchi currentFirmware", 2000, true) != "_nand_";
+
                         // detect basic paths
                         RemoteGameSyncPath = Shell.ExecuteSimple("hakchi findGameSyncStorage", 2000, true).Trim();
-                        SystemCode = Shell.ExecuteSimple("hakchi eval 'echo \"$sftype-$sfregion\"'", 2000, true).Trim();
                         OriginalGamesPath = Shell.ExecuteSimple("hakchi get gamepath", 2000, true).Trim();
                         RootFsPath = Shell.ExecuteSimple("hakchi get rootfs", 2000, true).Trim();
                         SquashFsPath = Shell.ExecuteSimple("hakchi get squashfs", 2000, true).Trim();
-
-                        // adjust detected console type
-                        if (SystemCodeToConsoleType.ContainsKey(SystemCode))
-                            DetectedConsoleType = SystemCodeToConsoleType[SystemCode];
 
                         // load config
                         ConfigIni.SetConfigDictionary(LoadConfig());
@@ -357,36 +351,6 @@ namespace com.clusterrr.hakchi_gui
                 CanInteract = false;
                 MinimalMemboot = false;
             }
-        }
-
-        private static ConsoleType translateConsoleType(string board, string region)
-        {
-            switch (board)
-            {
-                default:
-                case "dp-nes":
-                case "dp-hvc":
-                    switch (region)
-                    {
-                        case "EUR_USA":
-                            return ConsoleType.NES;
-                        case "JPN":
-                            return ConsoleType.Famicom;
-                    }
-                    break;
-                case "dp-shvc":
-                    switch (region)
-                    {
-                        case "USA":
-                            return ConsoleType.SNES_USA;
-                        case "EUR":
-                            return ConsoleType.SNES_EUR;
-                        case "JPN":
-                            return ConsoleType.SuperFamicom;
-                    }
-                    break;
-            }
-            return ConsoleType.Unknown;
         }
 
         public static bool SystemRequiresReflash()

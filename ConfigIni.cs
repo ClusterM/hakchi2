@@ -107,7 +107,9 @@ namespace com.clusterrr.hakchi_gui
             hakchi.ConsoleType[] nes = { hakchi.ConsoleType.Famicom, hakchi.ConsoleType.NES, hakchi.ConsoleType.ShonenJump };
             hakchi.ConsoleType[] snes = { hakchi.ConsoleType.SNES_EUR, hakchi.ConsoleType.SNES_USA, hakchi.ConsoleType.SuperFamicom };
             hakchi.ConsoleType[] selected = null;
-            if (nes.Contains(consoleType))
+            if (!SeparateGameLocalStorage)
+                selected = nes.Concat(snes).ToArray();
+            else if (nes.Contains(consoleType))
                 selected = nes;
             else if (snes.Contains(consoleType))
                 selected = snes;
@@ -230,8 +232,6 @@ namespace com.clusterrr.hakchi_gui
         public bool ForceNetwork = false;
         public bool ForceSSHTransfers = false;
         public bool UploadToTmp = false;
-        public bool DisableSSHListener = false;
-        public bool DisableClovershellListener = false;
         public bool ExportLinked = true;
         public string ExportDrive = "";
         public FelLib.Fel.UbootType MembootUboot = FelLib.Fel.UbootType.SD;

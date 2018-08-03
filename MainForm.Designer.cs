@@ -107,9 +107,6 @@
             this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripSeparator();
             this.forceNetworkMembootsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forceClovershellMembootsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem26 = new System.Windows.Forms.ToolStripSeparator();
-            this.disableSSHlistenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.disableClovershellListenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysCopyOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useLinkedSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -782,10 +779,7 @@
             this.uploadTotmpforTestingToolStripMenuItem,
             this.toolStripMenuItem23,
             this.forceNetworkMembootsToolStripMenuItem,
-            this.forceClovershellMembootsToolStripMenuItem,
-            this.toolStripMenuItem26,
-            this.disableSSHlistenerToolStripMenuItem,
-            this.disableClovershellListenerToolStripMenuItem});
+            this.forceClovershellMembootsToolStripMenuItem});
             this.developerToolsToolStripMenuItem.Name = "developerToolsToolStripMenuItem";
             resources.ApplyResources(this.developerToolsToolStripMenuItem, "developerToolsToolStripMenuItem");
             // 
@@ -821,25 +815,6 @@
             this.forceClovershellMembootsToolStripMenuItem.Name = "forceClovershellMembootsToolStripMenuItem";
             resources.ApplyResources(this.forceClovershellMembootsToolStripMenuItem, "forceClovershellMembootsToolStripMenuItem");
             this.forceClovershellMembootsToolStripMenuItem.Click += new System.EventHandler(this.forceClovershellMembootsToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem26
-            // 
-            this.toolStripMenuItem26.Name = "toolStripMenuItem26";
-            resources.ApplyResources(this.toolStripMenuItem26, "toolStripMenuItem26");
-            // 
-            // disableSSHlistenerToolStripMenuItem
-            // 
-            this.disableSSHlistenerToolStripMenuItem.CheckOnClick = true;
-            this.disableSSHlistenerToolStripMenuItem.Name = "disableSSHlistenerToolStripMenuItem";
-            resources.ApplyResources(this.disableSSHlistenerToolStripMenuItem, "disableSSHlistenerToolStripMenuItem");
-            this.disableSSHlistenerToolStripMenuItem.Click += new System.EventHandler(this.disableSSHlistenerToolStripMenuItem_Click);
-            // 
-            // disableClovershellListenerToolStripMenuItem
-            // 
-            this.disableClovershellListenerToolStripMenuItem.CheckOnClick = true;
-            this.disableClovershellListenerToolStripMenuItem.Name = "disableClovershellListenerToolStripMenuItem";
-            resources.ApplyResources(this.disableClovershellListenerToolStripMenuItem, "disableClovershellListenerToolStripMenuItem");
-            this.disableClovershellListenerToolStripMenuItem.Click += new System.EventHandler(this.disableClovershellListenerToolStripMenuItem_Click);
             // 
             // separateGamesForMultibootToolStripMenuItem
             // 
@@ -1985,8 +1960,6 @@
         private System.Windows.Forms.ToolStripMenuItem rightmostToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem20;
         private System.Windows.Forms.ToolStripMenuItem syncStructureForAllGamesCollectionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem disableSSHlistenerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem disableClovershellListenerToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem21;
         private System.Windows.Forms.ToolStripMenuItem modStoreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem messageOfTheDayToolStripMenuItem;
@@ -1999,7 +1972,6 @@
         private System.Windows.Forms.Timer timerUpdate;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelShell;
         private System.Windows.Forms.ToolStripMenuItem forceNetworkMembootsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem26;
         private System.Windows.Forms.ToolStripMenuItem alwaysCopyOriginalGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem25;
         private System.Windows.Forms.ToolStripMenuItem convertSNESROMSToSFROMToolStripMenuItem;

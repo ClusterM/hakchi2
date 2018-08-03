@@ -34,9 +34,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.radioEUR = new System.Windows.Forms.RadioButton();
-            this.radioUSA = new System.Windows.Forms.RadioButton();
             this.checkLinked = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -76,27 +73,6 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // radioEUR
-            // 
-            resources.ApplyResources(this.radioEUR, "radioEUR");
-            this.radioEUR.Name = "radioEUR";
-            this.radioEUR.TabStop = true;
-            this.radioEUR.UseVisualStyleBackColor = true;
-            this.radioEUR.CheckedChanged += new System.EventHandler(this.Region_CheckedChanged);
-            // 
-            // radioUSA
-            // 
-            resources.ApplyResources(this.radioUSA, "radioUSA");
-            this.radioUSA.Name = "radioUSA";
-            this.radioUSA.TabStop = true;
-            this.radioUSA.UseVisualStyleBackColor = true;
-            this.radioUSA.CheckedChanged += new System.EventHandler(this.Region_CheckedChanged);
-            // 
             // checkLinked
             // 
             resources.ApplyResources(this.checkLinked, "checkLinked");
@@ -111,9 +87,6 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.checkLinked);
-            this.Controls.Add(this.radioUSA);
-            this.Controls.Add(this.radioEUR);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.comboDriveLetters);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.lblSelectDrive);
@@ -135,9 +108,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton radioEUR;
-        private System.Windows.Forms.RadioButton radioUSA;
         private System.Windows.Forms.CheckBox checkLinked;
     }
 }

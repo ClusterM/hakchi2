@@ -56,11 +56,6 @@ namespace com.clusterrr.hakchi_gui
 
             if (comboDriveLetters.Items.Count > 0) comboDriveLetters.SelectedIndex = 0;
 
-            if (ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.SNES_EUR)
-                radioEUR.Checked = true;
-            if (ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.SNES_USA)
-                radioUSA.Checked = true;
-
             if (!string.IsNullOrEmpty(ConfigIni.Instance.ExportDrive))
             {
                 foreach (DriveLetterItem drive in comboDriveLetters.Items)
@@ -101,51 +96,30 @@ namespace com.clusterrr.hakchi_gui
             else
             {
                 SelectedDrive = ((DriveLetterItem)comboDriveLetters.SelectedItem).info;
-                string systemCode = "";
                 if (ConfigIni.Instance.SeparateGameStorage)
                 {
-                    switch (ConfigIni.Instance.ConsoleType)
+                    if (ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.Unknown)
                     {
-                        case hakchi.ConsoleType.Famicom:
-                            systemCode = "nes-jpn";
-                            break;
-                        case hakchi.ConsoleType.NES:
-                            systemCode = "nes-usa";
-                            break;
-                        case hakchi.ConsoleType.SNES_EUR:
-                            systemCode = "snes-eur";
-                            break;
-                        case hakchi.ConsoleType.SNES_USA:
-                            systemCode = "snes-usa";
-                            break;
-                        case hakchi.ConsoleType.SuperFamicom:
-                            systemCode = "snes-jpn";
-                            break;
-
-                        default:
-                            DialogResult = DialogResult.Abort;
-                            this.Close();
-                            return;
+                        Tasks.ErrorForm.Show(this, Resources.ExportGames, Resources.CriticalError, "Unknown console type!", Resources.sign_error);
+                        Close();
                     }
-                }
 
-                if (ConfigIni.Instance.SeparateGameStorage)
-                {
-                    ExportPath = Shared.PathCombine(SelectedDrive.RootDirectory.FullName, "hakchi", "games", systemCode);
+                    ExportPath = Path.Combine(
+                        SelectedDrive.RootDirectory.FullName, "hakchi", "games",
+                        hakchi.ConsoleTypeToSystemCode[ConfigIni.Instance.ConsoleType]);
                 }
                 else
                 {
-                    ExportPath = Shared.PathCombine(SelectedDrive.RootDirectory.FullName, "hakchi", "games");
+                    ExportPath = Path.Combine(
+                        SelectedDrive.RootDirectory.FullName, "hakchi", "games");
                 }
 
                 ConfigIni.Instance.ExportDrive = Path.GetPathRoot(SelectedDrive.RootDirectory.FullName).ToLower();
                 LinkedExport = checkLinked.Enabled && checkLinked.Checked;
 
                 DialogResult = DialogResult.OK;
-                this.Close();
+                Close();
             }
-
-
         }
 
         private void comboDriveLetters_SelectedIndexChanged(object sender, EventArgs e)
@@ -159,10 +133,6 @@ namespace com.clusterrr.hakchi_gui
             {
                 checkLinked.Enabled = false;
             }
-        }
-
-        private void Region_CheckedChanged(object sender, EventArgs e)
-        {
         }
 
         private void checkLinked_CheckedChanged(object sender, EventArgs e)

@@ -65,6 +65,7 @@ namespace com.clusterrr.hakchi_gui
             if (StorageTotal != -1 || StorageUsed != -1 || StorageFree != -1)
             {
                 Trace.WriteLine(string.Format("Storage size: {0:F1}MB, used: {1:F1}MB, free: {2:F1}MB", StorageTotal / 1024.0 / 1024.0, StorageUsed / 1024.0 / 1024.0, StorageFree / 1024.0 / 1024.0));
+                Trace.Indent();
                 Trace.WriteLine(string.Format("Used by all games: {0:F1}MB", AllGamesSize / 1024.0 / 1024.0));
                 Trace.WriteLine(string.Format("Used by non multi-boot games: {0:F1}MB", NonMultibootGamesSize / 1024.0 / 1024.0));
                 Trace.WriteLine(string.Format("Used by current games collection: {0:F1}MB", CurrentCollectionSize() / 1024.0 / 1024.0));
@@ -72,6 +73,7 @@ namespace com.clusterrr.hakchi_gui
                 Trace.WriteLine(string.Format("Used by other files (mods, configs, etc.): {0:F1}MB", (StorageUsed - AllGamesSize - SaveStatesSize) / 1024.0 / 1024.0));
                 Trace.WriteLine(string.Format("Reserved memory: {0:F1}MB", ReservedMemory / 1024.0 / 1024.0));
                 Trace.WriteLine(string.Format("Available for games: {0:F1}MB", AvailableForGames() / 1024.0 / 1024.0));
+                Trace.Unindent();
             }
         }
 
