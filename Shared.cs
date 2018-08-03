@@ -211,7 +211,7 @@ namespace com.clusterrr.hakchi_gui
                 Version version = AppVersion;
                 if (version.Revision > 0)
                 {
-                    return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+                    return $"{version.Major}.{version.Minor + 1}.0rc{version.Revision}";
                 }
                 else
                 {
