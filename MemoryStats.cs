@@ -88,12 +88,12 @@ namespace com.clusterrr.hakchi_gui
                     return;
                 }
 
-                var storage = shell.ExecuteSimple("df \"$(hakchi findGameSyncStorage)\" | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 15000, true).Split('|');
+                var storage = shell.ExecuteSimple("df \"$(hakchi findGameSyncStorage)\" | tail -n 1 | awk '{ print $2 \" | \" $3 \" | \" $4 }'", 0, true).Split('|');
                 StorageTotal = long.Parse(storage[0]) * 1024;
                 StorageUsed = long.Parse(storage[1]) * 1024;
                 StorageFree = long.Parse(storage[2]) * 1024;
-                ExternalSaves = shell.ExecuteSimple("mount | grep /var/lib/clover/profiles", 2000).Trim().Length > 0;
-                SaveStatesSize = long.Parse(shell.ExecuteSimple("du -s \"$(readlink /var/saves)\" | awk '{ print $1 }'", 15000, true)) * 1024;
+                ExternalSaves = shell.ExecuteSimple("mount | grep /var/lib/clover/profiles").Trim().Length > 0;
+                SaveStatesSize = long.Parse(shell.ExecuteSimple("du -s \"$(readlink /var/saves)\" | awk '{ print $1 }'", 0, true)) * 1024;
                 getCollectionsSize();
 
                 DebugDisplay();
@@ -141,7 +141,7 @@ namespace com.clusterrr.hakchi_gui
             ExtraFilesSize = 0;
             Collections = new Dictionary<hakchi.ConsoleType, long>();
 
-            string rawData = hakchi.Shell.ExecuteSimple("du -d 1 \"" + hakchi.RemoteGameSyncPath + "\" | head -n -1 | awk '{ print $2 \" | \" $1 }'", 5000, true);
+            string rawData = hakchi.Shell.ExecuteSimple("du -d 1 \"" + hakchi.RemoteGameSyncPath + "\" | head -n -1 | awk '{ print $2 \" | \" $1 }'", 0, true);
             if (!string.IsNullOrEmpty(rawData))
             {
                 foreach (string line in rawData.Split(new char[] { '\n', '\r', '\f' }, StringSplitOptions.RemoveEmptyEntries))
