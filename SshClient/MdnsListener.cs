@@ -38,7 +38,7 @@ namespace com.clusterrr.ssh
             serviceBrowser.StartBrowse(type);
         }
 
-        public void Abort()
+        public void Dispose()
         {
             serviceBrowser.StopBrowse();
             Available.Clear();

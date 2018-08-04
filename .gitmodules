@@ -11,6 +11,3 @@
 [submodule "Libraries/LibUsbDotNet"]
 	path = Libraries/LibUsbDotNet
 	url = https://github.com/TeamShinkansen/LibUsbDotNet.git
-[submodule "Libraries/DnsUtils"]
-	path = Libraries/DnsUtils
-	url = https://github.com/TeamShinkansen/DnsUtils.git

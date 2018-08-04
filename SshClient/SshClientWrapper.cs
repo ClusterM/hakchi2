@@ -16,6 +16,8 @@ namespace com.clusterrr.ssh
 {
     public class SshClientWrapper : ISystemShell, INetworkShell
     {
+        public const ushort DEFAULT_SSH_PORT = 22;
+
         public event OnConnectedEventHandler OnConnected = delegate { };
         public event OnDisconnectedEventHandler OnDisconnected = delegate { };
 
@@ -47,9 +49,8 @@ namespace com.clusterrr.ssh
                     if (listeners == null)
                     {
                         listeners = new List<IListener>();
-                        //listeners.Add(new MdnsListener(serviceName, serviceType));
-                        listeners.Add(new LlmnrListener(serviceName));
-                        //listeners.Add(new PingListener(serviceName));
+                        listeners.Add(new MdnsListener(serviceName, serviceType));
+                        listeners.Add(new DnsListener(serviceName));
                     }
 
                     // start connection watching thread
@@ -68,8 +69,7 @@ namespace com.clusterrr.ssh
                     }
                     if (listeners != null)
                     {
-                        foreach (var l in listeners)
-                            l.Abort();
+                        listeners.ForEach(l => l.Dispose());
                         listeners.Clear();
                         listeners = null;
                     }
@@ -230,12 +230,11 @@ namespace com.clusterrr.ssh
 
         private void attemptConnect()
         {
-            Trace.WriteLine("Attempting to connect...");
             foreach (IListener l in listeners)
             {
-                Trace.WriteLine("Trying listener " + l.GetType().Name);
                 foreach (var dev in l.Available)
                 {
+                    Trace.WriteLine("Device detected: " + string.Join(", ", dev.Addresses));
                     foreach (var a in dev.Addresses)
                     {
                         IPAddress = a.ToString();
