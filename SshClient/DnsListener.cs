@@ -66,6 +66,11 @@ namespace com.clusterrr.ssh
             lastChecked = DateTime.Now;
         }
 
+        public void Cycle()
+        {
+            devices.Clear();
+        }
+
         public void Dispose()
         {
             devices.Clear();

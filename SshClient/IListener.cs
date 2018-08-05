@@ -12,5 +12,7 @@ namespace com.clusterrr.ssh
         {
             get;
         }
+
+        void Cycle();
     }
 }

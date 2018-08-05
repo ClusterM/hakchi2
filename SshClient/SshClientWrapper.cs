@@ -162,6 +162,7 @@ namespace com.clusterrr.ssh
                 return;
             }
 
+            listeners.ForEach(l => l.Cycle());
             hasConnected = true;
             OnConnected(this);
         }

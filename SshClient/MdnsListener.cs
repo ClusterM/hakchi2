@@ -38,6 +38,11 @@ namespace com.clusterrr.ssh
             serviceBrowser.StartBrowse(type);
         }
 
+        public void Cycle()
+        {
+            // no-op
+        }
+
         public void Dispose()
         {
             serviceBrowser.StopBrowse();

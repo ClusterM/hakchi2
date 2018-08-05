@@ -1,9 +1,11 @@
 ﻿using com.clusterrr.hakchi_gui;
 using com.clusterrr.hakchi_gui.Properties;
+using com.clusterrr.hakchi_gui.Tasks;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -51,7 +53,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 var firmwareCurrent = hakchi.Shell.ExecuteSimple("hakchi currentFirmware", 1000, true);
-                var firmwareFullPath = selected == 0 ? "_nand_" : firmwarePaths[selected - 1];
+                var firmwareFullPath = selected == 0 ? "_nand_" : '"' + firmwarePaths[selected - 1] + '"';
 
                 if (firmwareCurrent == firmwareFullPath)
                 {
@@ -61,10 +63,11 @@ namespace com.clusterrr.hakchi_gui
 
                 try
                 {
-                    hakchi.Shell.ExecuteSimple($"/bin/hsqs \"{firmwareFullPath}\"", 500, false);
+                    hakchi.Shell.ExecuteSimple("/bin/detached hsqs " + firmwareFullPath);
                 }
-                catch { } // no-op
+                catch { }
                 hakchi.Shell.Disconnect();
+
                 Tasks.MessageForm.Show(this, Resources.Firmware, string.Format(Resources.FirmwareSwitched, (string)listBoxFirmwares.SelectedItem), Resources.sign_check, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.OK });
             }
             catch (Exception ex)
