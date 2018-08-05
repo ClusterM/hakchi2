@@ -46,7 +46,6 @@ namespace com.clusterrr.ssh
 
         private void debugAnnouncement(string header, ServiceAnnouncement a)
         {
-#if DEBUG
             Trace.WriteLine(header);
             Trace.Indent();
             Trace.WriteLine("Instance: " + a.Instance);
@@ -55,7 +54,6 @@ namespace com.clusterrr.ssh
             Trace.WriteLine("Port: " + a.Port);
             Trace.WriteLine("Txt: " + string.Join(", ", a.Txt));
             Trace.Unindent();
-#endif
         }
 
         private void onServiceAdded(object sender, ServiceAnnouncementEventArgs e)

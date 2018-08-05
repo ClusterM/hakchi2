@@ -64,6 +64,7 @@ namespace com.clusterrr.hakchi_gui
                     hakchi.Shell.ExecuteSimple($"/bin/hsqs \"{firmwareFullPath}\"", 500, false);
                 }
                 catch { } // no-op
+                hakchi.Shell.Disconnect();
                 Tasks.MessageForm.Show(this, Resources.Firmware, string.Format(Resources.FirmwareSwitched, (string)listBoxFirmwares.SelectedItem), Resources.sign_check, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.OK });
             }
             catch (Exception ex)

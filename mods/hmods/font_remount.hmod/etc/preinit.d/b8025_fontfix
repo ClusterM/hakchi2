@@ -48,13 +48,14 @@ fontFix(){
   esac
 
   repair_fonts "$rootfs$gamepath"
+  fontFix0 "$ui0" "$ui1" "s" "small"
+  fontFix0 "$ui0" "$ui1" "m" "medium"
+  fontFix0 "$ui0" "$ui1" "l" "large"
   local font=""
-  fontFix0 "$ui0" "$ui1" title title
-  fontFix0 "$ui0" "$ui1" copyright copyright
-  fontFix0 "$ui0" "$ui1" s small
-  fontFix0 "$ui0" "$ui1" m medium
-  fontFix0 "$ui0" "$ui1" l large
-  fontFix0 "$ui0" "" debug debug
+  for font in title copyright s m l; do
+    fontFix0 "$ui0" "$ui1" "$font" "$font"
+  done
+  fontFix0 "$ui0" "" "debug" "debug"
 }
 
 repair_fonts(){

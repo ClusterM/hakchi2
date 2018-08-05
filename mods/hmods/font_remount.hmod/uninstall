@@ -1,7 +1,1 @@
-rm -rf "$rootfs/usr/fonts"
-
-if [ "$sftype" == "nes" ]; then
-  find "$rootfs$gamepath" -type f -name "*.fnt" -exec rm {} \;
-  restore "$gamepath/title.fnt"
-  restore "$gamepath/copyright.fnt"
-fi
+[ "$sftype" = "nes" ] && find "$rootfs$gamepath" -type f -name "*.fnt" -exec rm -f {} \;

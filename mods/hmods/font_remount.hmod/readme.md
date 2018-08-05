@@ -1,8 +1,12 @@
-----------------------
+---
 Name: Font Remount
 Creator: DanTheMan827
-Category: System
-----------------------
+Category: UI
+Version: 1.2.0
+Packed on: Tue Mar 27 20:19:21 DST 2018
+Git commit: b5217ca
+---
+
 This module will search **/media/hakchi/fonts** and **/var/lib/hakchi/fonts** for font files with the following names
 
 - title.fnt

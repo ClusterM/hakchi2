@@ -234,20 +234,19 @@ namespace com.clusterrr.ssh
             {
                 foreach (var dev in l.Available)
                 {
-                    Trace.WriteLine("Device detected: " + string.Join(", ", dev.Addresses));
                     foreach (var a in dev.Addresses)
                     {
+                        Trace.WriteLine($"Attempting to connect to {a}...");
                         IPAddress = a.ToString();
                         port = dev.Port;
-                        if (ping(IPAddress) != -1)
+                        Connect();
+                        if (IsOnline)
                         {
-                            Connect();
-                            if (IsOnline)
-                            {
-                                Debug.WriteLine("Success!");
-                                return;
-                            }
+                            Trace.WriteLine("Success!");
+                            return;
                         }
+                        else
+                            Trace.WriteLine("Failure.");
                     }
                 }
             }

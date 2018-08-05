@@ -2993,19 +2993,22 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                if (hakchi.MinimalMemboot)
-                {
-                    Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot, Resources.sign_life_buoy);
-                    return;
-                }
-                if (!hakchi.CanInteract)
-                {
-                    Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedCannotInteract, Resources.sign_ban);
-                    return;
-                }
                 if (WaitingShellForm.WaitForDevice(this))
                 {
-                    new SelectFirmwareDialog().ShowDialog();
+                    if (hakchi.MinimalMemboot)
+                    {
+                        Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedMinimalMemboot, Resources.sign_life_buoy);
+                        return;
+                    }
+                    if (!hakchi.CanInteract)
+                    {
+                        Tasks.MessageForm.Show(this, Resources.Warning, Resources.CannotProceedCannotInteract, Resources.sign_ban);
+                        return;
+                    }
+                    if (WaitingShellForm.WaitForDevice(this))
+                    {
+                        new SelectFirmwareDialog().ShowDialog();
+                    }
                 }
             }
             catch (Exception ex)
