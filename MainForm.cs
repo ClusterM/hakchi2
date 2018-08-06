@@ -161,6 +161,8 @@ namespace com.clusterrr.hakchi_gui
                 string motd = client.DownloadString(MOTD_URL);
                 if (!string.IsNullOrEmpty(motd))
                 {
+                    if (!Directory.Exists(Path.GetDirectoryName(MotdFilename)))
+                        Directory.CreateDirectory(Path.GetDirectoryName(MotdFilename));
                     File.WriteAllText(MotdFilename, motd);
                 }
                 Match m = Regex.Match(motd, "\\<\\!\\-\\-\\-\\s([^\\s]+)\\s\\-\\-\\>");
