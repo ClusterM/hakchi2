@@ -66,7 +66,6 @@ namespace com.clusterrr.ssh
             // ignore other services
             if (e.Announcement.Instance != this.serviceName)
             {
-                Trace.WriteLine("Ignoring service: " + e.Announcement.Instance);
                 return;
             }
 
