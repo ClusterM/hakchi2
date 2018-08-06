@@ -1,7 +1,0 @@
-local script=S810password
-copy $script $rootfs/etc/init.d/
-chmod +x $rootfs/etc/init.d/$script
-copy password.raw.gz $rootfs/etc/
-copy password_ok.raw.gz $rootfs/etc/
-copy password_fail.raw.gz $rootfs/etc/
-return 1

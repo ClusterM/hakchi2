@@ -13,5 +13,5 @@ download(){
 
 printf "" > "$downloadedFileListName"
 
-download "https://hakchi.net/hakchi/hakchi-v1.0.4-118.hmod" "mods/hmods/hakchi.hmod" || exit 1
+download "https://hakchi.net/hakchi/hakchi-v1.0.4-119.hmod" "mods/hmods/hakchi.hmod" || exit 1
 download "https://hakchi.net/hakchi/detached-fallback" "tools/arm/detached-fallback" || exit 1

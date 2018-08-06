@@ -1,5 +1,0 @@
-local script=S810password
-rm $rootfs/etc/init.d/$script
-rm $rootfs/etc/password.raw.gz
-rm $rootfs/etc/password_ok.raw.gz
-rm $rootfs/etc/password_fail.raw.gz

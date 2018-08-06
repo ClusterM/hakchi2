@@ -7,7 +7,7 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("hakchi CE")]
-[assembly: AssemblyDescription("Based on hakchi by madmonkey.\r\n\r\nCoders:\r\nAlexey 'Cluster' Avdyukhin\r\nprincess_daphie\r\nDanTheMan827\r\nskogaby\r\n\r\nTranslators:\r\nFrench: princess_daphie\r\nGerman: Domi78\r\n\r\nSpecial thanks:\r\nmadmonkey and pcm720 for great help with everything.\r\nxsnake for Japanese font.\r\nPete Batard/Akeo for Zadig.\r\npbatard for libwdi.\r\nThomas Bleeker for WinUSBNet lib.\r\nbootgod for cartridge database.\r\nMarkovtsev Vadim for SevenZipSharp lib.\r\nNeoRame for Graphics.\r\nNhakin for Game Genie database.\r\nmooware for mooftpserv.")]
+[assembly: AssemblyDescription("Based on hakchi by madmonkey.\r\n\r\nCoders:\r\nAlexey 'Cluster' Avdyukhin\r\nprincess_daphie\r\nDanTheMan827\r\nskogaby\r\n\r\nTranslators:\r\nFrench: princess_daphie\r\nGerman: Domi78\r\n\r\nSpecial thanks:\r\nmadmonkey and pcm720 for great help with everything.\r\nPete Batard/Akeo for Zadig.\r\npbatard for libwdi.\r\nThomas Bleeker for WinUSBNet lib.\r\nbootgod for cartridge database.\r\nNeoRame for Graphics.\r\nFaustbear (u/faustbear) for addition folder graphics.\r\nNhakin for Game Genie database.\r\nAdam Hathcock for SharpCompress.\r\nBoneSoft software for ProgressODoom.\r\nGert Driesen for SSH.NET.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Team Shinkansen")]
 [assembly: AssemblyProduct("hakchi CE")]
@@ -33,6 +33,6 @@ using System.Resources;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.3.0.2")]
-[assembly: AssemblyFileVersion("3.3.0.2")]
+[assembly: AssemblyVersion("3.4.0.0")]
+[assembly: AssemblyFileVersion("3.4.0.0")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
