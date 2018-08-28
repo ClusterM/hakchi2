@@ -1,5 +1,0 @@
-# List of the binaries referenced by the WinUSB inf
-# These are used to generate and self-sign a .cat file
-
-WdfCoInstaller#WDF_VERSION#.dll
-winusbcoinstaller2.dll

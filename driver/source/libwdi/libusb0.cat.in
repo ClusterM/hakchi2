@@ -1,8 +1,0 @@
-# List of the binaries referenced by the libusb-win32 inf
-# These are used to generate and self-sign a .cat file
-
-libusb0.sys
-libusb0.dll
-libusb0_x86.dll
-#LK_DLL#
-#LK_X86_DLL#
