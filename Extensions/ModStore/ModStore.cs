@@ -20,6 +20,7 @@ namespace com.clusterrr.hakchi_gui
         #region Form Initialisation
         public ModStore()
         {
+            config.parentForm = this;
             InitializeComponent();
             this.Icon = Resources.icon;
             PoweredByLinkS.Text = "Powered By HakchiResources.com";
@@ -41,6 +42,7 @@ namespace com.clusterrr.hakchi_gui
                     using (var fs = File.Open(config.ConfigPath, FileMode.Open))
                     {
                         config = (ModStoreManager)xs.Deserialize(fs);
+                        config.parentForm = this;
                     }
                 }
             }

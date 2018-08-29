@@ -185,12 +185,6 @@
       <DependentUpon>ModStoreTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ModStore\Module.cs" />
-    <Compile Include="Extensions\ModStore\ProgressBarForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Extensions\ModStore\ProgressBarForm.Designer.cs">
-      <DependentUpon>ProgressBarForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Extensions\ModStore\RACoreModule.cs" />
     <Compile Include="Files\Extensions.cs" />
     <Compile Include="Files\CheckFileType.cs" />
@@ -288,9 +282,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Extensions\ModStore\ModStoreTabControl.resx">
       <DependentUpon>ModStoreTabControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Extensions\ModStore\ProgressBarForm.resx">
-      <DependentUpon>ProgressBarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FoldersManagerForm.de-DE.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
@@ -780,6 +771,7 @@
     <Compile Include="Tasks\TaskerTransferForm.Designer.cs">
       <DependentUpon>TaskerTransferForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tasks\WebClientTasks.cs" />
     <Compile Include="TechInfo.cs">
       <SubType>Form</SubType>
     </Compile>

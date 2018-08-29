@@ -5,18 +5,22 @@ using System.Net;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using com.clusterrr.hakchi_gui.Properties;
+using com.clusterrr.hakchi_gui.Tasks;
 using SharpCompress.Archives;
 
 namespace com.clusterrr.hakchi_gui.module_library
 {
     public class ModStoreManager
     {
+        [XmlIgnore]
+        [NonSerialized]
+        public Form parentForm;
         public List<ModStoreItem> AvailableItems = new List<ModStoreItem>();
         public List<InstalledModItem> InstalledItems = new List<InstalledModItem>();
         public DateTime LastUpdate = new DateTime();
         public bool SortAlphabetically = false;
         public string ConfigPath { get { return Path.Combine(Program.BaseDirectoryExternal, "config\\ModStoreConfig.xml"); } }
-
+        
         public void CheckForDeletedItems()
         {
             string userModDir = Path.Combine(Program.BaseDirectoryExternal, "user_mods");
@@ -60,6 +64,16 @@ namespace com.clusterrr.hakchi_gui.module_library
             }
         }
 
+        private Tasker DownloadFile(string url, string fileName)
+        {
+            var tasker = new Tasker(parentForm);
+            tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+            tasker.SetStatusImage(Resources.sign_sync);
+            tasker.SetTitle("Downloading...");
+            tasker.AddTask(WebClientTasks.DownloadFile(url, fileName));
+            return tasker;
+        }
+
         public void DownloadGame(ModStoreGame game)
         {
             try
@@ -70,12 +84,13 @@ namespace com.clusterrr.hakchi_gui.module_library
                     InstalledItems.Remove(installedGame);
 
                 string tempFileName = Path.GetTempPath() + game.Path.Substring(game.Path.LastIndexOf("/") + 1);
-                if (!ProgressBarForm.DownloadFile(game.Path, tempFileName))
-                    throw new Exception("Cannot download file: " + game.Path);
 
-                MainForm mainForm = Application.OpenForms[0] as MainForm;
-                mainForm.AddGames(new string[] { tempFileName });
-                File.Delete(tempFileName);
+                if(DownloadFile(game.Path, tempFileName).Start() == Tasker.Conclusion.Success)
+                {
+                    MainForm mainForm = Application.OpenForms[0] as MainForm;
+                    mainForm.AddGames(new string[] { tempFileName });
+                    File.Delete(tempFileName);
+                }
 
                 //InstalledItems.Add(game.CreateInstalledItem());
             }
@@ -116,41 +131,43 @@ namespace com.clusterrr.hakchi_gui.module_library
                         {
                             string fileLocation = Path.Combine(userModDir, module.Path.Substring(module.Path.LastIndexOf('/') + 1));
 
-                            if (!ProgressBarForm.DownloadFile(module.Path, fileLocation))
-                                throw new Exception("Cannot download file: " + module.Path);
-                            installedModule = module.CreateInstalledItem();
-                            installedModule.InstalledFiles.Add(module.Path.Substring(module.Path.LastIndexOf('/') + 1));
-                            InstalledItems.Add(installedModule);
+                            if (DownloadFile(module.Path, fileLocation).Start() == Tasker.Conclusion.Success)
+                            {
+                                installedModule = module.CreateInstalledItem();
+                                installedModule.InstalledFiles.Add(module.Path.Substring(module.Path.LastIndexOf('/') + 1));
+                                InstalledItems.Add(installedModule);
+                            }
                         }
                         break;
                     case ModuleType.compressedFile:
                         var tempFileName = Path.GetTempFileName();
-                        if(!ProgressBarForm.DownloadFile(module.Path, tempFileName))
-                            throw new Exception("Cannot download file: " + module.Path);
-                        using (var extractor = ArchiveFactory.Open(tempFileName))
+                        if(DownloadFile(module.Path, tempFileName).Start() == Tasker.Conclusion.Success)
                         {
-                            installedModule = module.CreateInstalledItem();
-                            foreach (var file in extractor.Entries)
+                            using (var extractor = ArchiveFactory.Open(tempFileName))
                             {
-                                int index = file.Key.IndexOf('/');
-                                if (index != -1)
+                                installedModule = module.CreateInstalledItem();
+                                foreach (var file in extractor.Entries)
                                 {
-                                    var folder = file.Key.Substring(0, index + 1);
-                                    if (!installedModule.InstalledFiles.Contains(folder))
+                                    int index = file.Key.IndexOf('/');
+                                    if (index != -1)
                                     {
-                                        installedModule.InstalledFiles.Add(folder);
-                                        var localFolder = Path.Combine(userModDir, folder);
-                                        if (Directory.Exists(localFolder))
-                                            Directory.Delete(localFolder, true);
+                                        var folder = file.Key.Substring(0, index + 1);
+                                        if (!installedModule.InstalledFiles.Contains(folder))
+                                        {
+                                            installedModule.InstalledFiles.Add(folder);
+                                            var localFolder = Path.Combine(userModDir, folder);
+                                            if (Directory.Exists(localFolder))
+                                                Directory.Delete(localFolder, true);
+                                        }
                                     }
+                                    else if(!file.IsDirectory)
+                                        installedModule.InstalledFiles.Add(file.Key);
                                 }
-                                else if(!file.IsDirectory)
-                                    installedModule.InstalledFiles.Add(file.Key);
+                                extractor.WriteToDirectory(userModDir, new SharpCompress.Common.ExtractionOptions() { ExtractFullPath = true, Overwrite = true });
+                                InstalledItems.Add(installedModule);
                             }
-                            extractor.WriteToDirectory(userModDir, new SharpCompress.Common.ExtractionOptions() { ExtractFullPath = true, Overwrite = true });
-                            InstalledItems.Add(installedModule);
+                            File.Delete(tempFileName);
                         }
-                        File.Delete(tempFileName);
                         break;
                 }
             }
