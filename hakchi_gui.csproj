@@ -152,6 +152,12 @@
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\SystemCollection.cs" />
     <Compile Include="Apps\UnknownGame.cs" />
+    <Compile Include="Extensions\ModStore\ModInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Extensions\ModStore\ModInfoControl.Designer.cs">
+      <DependentUpon>ModInfoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\ModStore\ModStore.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,11 @@
     <Compile Include="Extensions\ModStore\ModStoreGame.cs" />
     <Compile Include="Extensions\ModStore\ModStoreItem.cs" />
     <Compile Include="Extensions\ModStore\ModStoreManager.cs" />
+    <Compile Include="Extensions\ModStore\ModStoreResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModStoreResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\ModStore\ModStoreTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -250,6 +261,9 @@
     <EmbeddedResource Include="ExportGamesDialog.fr-FR.resx">
       <DependentUpon>ExportGamesDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Extensions\ModStore\ModInfoControl.resx">
+      <DependentUpon>ModInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Extensions\ModStore\ModStore.de-DE.resx">
       <DependentUpon>ModStore.cs</DependentUpon>
     </EmbeddedResource>
@@ -267,6 +281,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Extensions\ModStore\ModStoreAbout.resx">
       <DependentUpon>ModStoreAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extensions\ModStore\ModStoreResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ModStoreResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Extensions\ModStore\ModStoreTabControl.resx">
       <DependentUpon>ModStoreTabControl.cs</DependentUpon>
@@ -1052,6 +1070,7 @@
     <None Include="folder_images\folder_system_snk_ngpc.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Extensions\ModStore\Resources\InfoStrips.png" />
     <Content Include="info\README.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

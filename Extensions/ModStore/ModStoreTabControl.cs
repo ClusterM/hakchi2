@@ -27,20 +27,7 @@ namespace com.clusterrr.hakchi_gui
             Cursor.Current = Cursors.WaitCursor;
             var installedModule = manager.GetInstalledModule(currentItem);
             webBrowser1.Navigate(new Uri(currentItem.Description, UriKind.Absolute));
-            moduleDescriptionBrowser.DocumentText = String.Format("<html style='background-color:#d20014;color:#ffffff;'>" +
-                                                                    "<body background='https://hakchiresources.com/wp-content/uploads/2018/04/bg-1.png' style='width:273px;'>" +
-                                                                         "<span style='font-family: Arial, Helvetica, sans-serif;'>" +
-                                                                              "<b>Module Name:</b><br /><span style='font-size:75%;'>{0}</span><br />" +
-                                                                              "<b>Author:</b><br /><span style='font-size:75%;'>{1}</span><br />" +
-                                                                              "<b>Latest Version:</b><br /><span style='font-size:75%;'>{2}</span><br />" +
-                                                                              "<b>Installed Version:</b><br /><span style='font-size:75%;'>{3}</span>" +
-                                                                          "</span>" +
-                                                                    "</body>" +
-                                                                  "</html>",
-                                                                  currentItem.Name,
-                                                                  currentItem.Author,
-                                                                  currentItem.Version,
-                                                                  (installedModule != null) ? installedModule.Version : "N/A");
+            modInfo.SetInfo(currentItem.Name, currentItem.Author, currentItem.Version, (installedModule != null ? installedModule.Version : "N/A"));
 
             if (installedModule != null)
             {
@@ -115,7 +102,6 @@ namespace com.clusterrr.hakchi_gui
                     }
                     moduleDownloadInstallButton.Enabled = false;
                     moduleDownloadInstallButton.Visible = false;
-                    moduleDescriptionBrowser.Size = new System.Drawing.Size(moduleDescriptionBrowser.Size.Width, moduleDescriptionBrowser.Size.Height + 14);
                     break;
                 case "retroarch_cores":
                     //Store System Groups
