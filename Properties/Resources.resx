@@ -1297,4 +1297,10 @@ You can wait some more and if it comes back online, you should see "Recovery mod
   <data name="CannotProceedCannotSync" xml:space="preserve">
     <value>Your hakchi installation is running Clovershell daemon. It is not safe to sync games with Clovershell. Please uninstall this module in order to sync games safely!</value>
   </data>
+  <data name="DownloadingEllipsis" xml:space="preserve">
+    <value>Downloading...</value>
+  </data>
+  <data name="DownloadingProgress" xml:space="preserve">
+    <value>Downloading: {0} / {1}</value>
+  </data>
 </root>

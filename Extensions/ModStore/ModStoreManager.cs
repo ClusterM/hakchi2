@@ -69,7 +69,7 @@ namespace com.clusterrr.hakchi_gui.module_library
             var tasker = new Tasker(parentForm);
             tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
             tasker.SetStatusImage(Resources.sign_sync);
-            tasker.SetTitle("Downloading...");
+            tasker.SetTitle(Resources.DownloadingEllipsis);
             tasker.AddTask(WebClientTasks.DownloadFile(url, fileName));
             return tasker;
         }

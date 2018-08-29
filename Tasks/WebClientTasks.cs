@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.clusterrr.hakchi_gui.Properties;
+using System;
 using System.IO;
 using System.Net;
 using System.Threading;
@@ -18,12 +19,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(async (object sender, DownloadProgressChangedEventArgs e) =>
                 {
                     tasker.SetProgress(e.BytesReceived, e.TotalBytesToReceive);
-                    tasker.SetStatus($"Downloading: {Shared.SizeSuffix(e.BytesReceived)} / {Shared.SizeSuffix(e.TotalBytesToReceive)}");
+                    tasker.SetStatus(String.Format(Resources.DownloadingProgress, Shared.SizeSuffix(e.BytesReceived), Shared.SizeSuffix(e.TotalBytesToReceive)));
                 });
                 wc.DownloadFileCompleted += (object sender, System.ComponentModel.AsyncCompletedEventArgs e) =>
                 {
                     if (e.Error != null)
                     {
+                        File.Delete(fileName);
                         tasker.ShowError(e.Error);
                         result = Conclusion.Error;
                     }
@@ -36,8 +38,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         if (tasker.TaskConclusion == Conclusion.Abort)
                         {
                             wc.CancelAsync();
-                            Thread.Sleep(500);
-                            File.Delete(fileName);
                             break;
                         }
                         if (downloadTask.IsCanceled || downloadTask.IsCompleted || downloadTask.IsFaulted)

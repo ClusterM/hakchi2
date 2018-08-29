@@ -106,7 +106,21 @@ namespace com.clusterrr.hakchi_gui.Properties {
                 return ResourceManager.GetString("DoneYouCanUpload", resourceCulture);
             }
         }
-        
+
+        internal static string DownloadingEllipsis
+        {
+            get {
+                return ResourceManager.GetString("DownloadingEllipsis", resourceCulture);
+            }
+        }
+
+        internal static string DownloadingProgress
+        {
+            get {
+                return ResourceManager.GetString("DownloadingProgress", resourceCulture);
+            }
+        }
+
         internal static string DoYouWantCancel {
             get {
                 return ResourceManager.GetString("DoYouWantCancel", resourceCulture);
