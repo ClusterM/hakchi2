@@ -1408,7 +1408,7 @@ namespace com.clusterrr.hakchi_gui
             return gameSet.GetSize(hakchi.BLOCK_SIZE);
         }
 
-        public static readonly string[] nonCompressibleExtensions = { ".7z", ".zip", "*.rar", ".hsqs", ".sh", ".pbp", ".chd" };
+        public static readonly string[] nonCompressibleExtensions = { ".7z", ".zip", ".rar", ".hsqs", ".sh", ".pbp", ".chd" };
         public static readonly string[] compressedExtensions = { ".7z", ".zip" };
         public string[] CompressPossible()
         {
