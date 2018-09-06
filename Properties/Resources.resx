@@ -1329,4 +1329,19 @@ You can wait some more and if it comes back online, you should see "Recovery mod
   <data name="ShowExperimentalQuestion" xml:space="preserve">
     <value>Are you sure you want to show experimental mods?</value>
   </data>
+  <data name="pencil_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\pencil-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>Processing...</value>
+  </data>
+  <data name="UnsavedChanges" xml:space="preserve">
+    <value>Unsaved Changes</value>
+  </data>
+  <data name="UnsavedChangesQ" xml:space="preserve">
+    <value>You have unsaved changes, do you want to save them?</value>
+  </data>
+  <data name="NoRepositoriesConfigured" xml:space="preserve">
+    <value>No repositories configured</value>
+  </data>
 </root>

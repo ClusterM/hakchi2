@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using com.clusterrr.hakchi_gui.ModHub.Repository;
 using Newtonsoft.Json;
 
 namespace com.clusterrr.hakchi_gui
@@ -236,6 +237,10 @@ namespace com.clusterrr.hakchi_gui
         public string ExportDrive = "";
         public FelLib.Fel.UbootType MembootUboot = FelLib.Fel.UbootType.SD;
         public Hmod.ListSort hmodListSort = Hmod.ListSort.Category;
+        public RepositoryInfo[] repos = new RepositoryInfo[] {
+            new RepositoryInfo("KMFD's Mod Hub", "https://hakchi.net/KMFDManic/NESC-SNESC-Modifications/.repo/"),
+            new RepositoryInfo("Mod Store", "modstore://"),
+        };
 
         // constructor
         private ConfigIni()

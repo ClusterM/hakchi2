@@ -20,6 +20,7 @@ namespace com.clusterrr.hakchi_gui.Hmod
         public readonly string RawName;
         public readonly string Category;
         public readonly string Creator;
+        public readonly string Version;
         public readonly string EmulatedSystem;
         public readonly bool isInstalled;
         public static string UserModsDirectory
@@ -155,6 +156,11 @@ namespace com.clusterrr.hakchi_gui.Hmod
                 this.Category = Properties.Resources.Unknown;
             }
 
+            if (!this.Readme.frontMatter.TryGetValue("Version", out this.Version))
+            {
+                this.Version = null;
+            }
+
             if (!this.Readme.frontMatter.TryGetValue("Creator", out this.Creator))
             {
                 this.Creator = Properties.Resources.Unknown;
@@ -171,10 +177,10 @@ namespace com.clusterrr.hakchi_gui.Hmod
             return File.Exists(this.HmodPath) || Directory.Exists(this.HmodPath);
         }
 
-        public static List<Hmod> GetMods(bool onlyInstalled = false, Form taskerParent = null)
+        public static List<Hmod> GetMods(bool onlyInstalled = false, string[] installed = null, Form taskerParent = null)
         {
             var usermodsDirectory = UserModsDirectory;
-            var installedMods = hakchi.GetPackList() ?? new string[] { };
+            var installedMods = installed ?? hakchi.GetPackList() ?? new string[] { };
             var modsList = new List<string>();
 
             if (onlyInstalled)

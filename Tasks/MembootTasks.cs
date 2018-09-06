@@ -187,7 +187,16 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     break;
 
                 case MembootTaskType.ProcessMods:
+                    bool unmountAfter = userRecovery && hakchi.Shell.Execute("hakchi eval 'mountpoint -q \"$mountpoint/var/lib/\"'") == 0;
+                    
+                    taskList.Add(ShellTasks.MountBase);
                     taskList.AddRange(new ModTasks(hmodsInstall, hmodsUninstall).Tasks);
+
+                    if (!userRecovery)
+                        taskList.Add(BootHakchi);
+
+                    if (unmountAfter)
+                        taskList.Add(ShellTasks.UnmountBase);
                     break;
 
                 case MembootTaskType.FlashNormalUboot:

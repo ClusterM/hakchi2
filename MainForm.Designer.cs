@@ -15,6 +15,7 @@
         {
             if (disposing && (components != null))
             {
+                StaticRef = null;
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -77,8 +78,7 @@
             this.installModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstallModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateModulesReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem21 = new System.Windows.Forms.ToolStripSeparator();
-            this.modStoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modRepoStartSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.originalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.positionAtTheTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -238,6 +238,8 @@
             this.syncStructureForAllGamesCollectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
             this.timerUpdate = new System.Windows.Forms.Timer(this.components);
+            this.modRepoEndSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.manageModRepositoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -550,8 +552,9 @@
             this.installModulesToolStripMenuItem,
             this.uninstallModulesToolStripMenuItem,
             this.generateModulesReportToolStripMenuItem,
-            this.toolStripMenuItem21,
-            this.modStoreToolStripMenuItem});
+            this.modRepoStartSeparator,
+            this.modRepoEndSeparator,
+            this.manageModRepositoriesToolStripMenuItem});
             this.modulesToolStripMenuItem.Name = "modulesToolStripMenuItem";
             resources.ApplyResources(this.modulesToolStripMenuItem, "modulesToolStripMenuItem");
             // 
@@ -573,16 +576,10 @@
             resources.ApplyResources(this.generateModulesReportToolStripMenuItem, "generateModulesReportToolStripMenuItem");
             this.generateModulesReportToolStripMenuItem.Click += new System.EventHandler(this.generateModulesReportToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem21
+            // modRepoStartSeparator
             // 
-            this.toolStripMenuItem21.Name = "toolStripMenuItem21";
-            resources.ApplyResources(this.toolStripMenuItem21, "toolStripMenuItem21");
-            // 
-            // modStoreToolStripMenuItem
-            // 
-            this.modStoreToolStripMenuItem.Name = "modStoreToolStripMenuItem";
-            resources.ApplyResources(this.modStoreToolStripMenuItem, "modStoreToolStripMenuItem");
-            this.modStoreToolStripMenuItem.Click += new System.EventHandler(this.modStoreToolStripMenuItem_Click);
+            this.modRepoStartSeparator.Name = "modRepoStartSeparator";
+            resources.ApplyResources(this.modRepoStartSeparator, "modRepoStartSeparator");
             // 
             // viewToolStripMenuItem
             // 
@@ -1745,6 +1742,17 @@
             // 
             this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
             // 
+            // modRepoEndSeparator
+            // 
+            this.modRepoEndSeparator.Name = "modRepoEndSeparator";
+            resources.ApplyResources(this.modRepoEndSeparator, "modRepoEndSeparator");
+            // 
+            // manageModRepositoriesToolStripMenuItem
+            // 
+            this.manageModRepositoriesToolStripMenuItem.Name = "manageModRepositoriesToolStripMenuItem";
+            resources.ApplyResources(this.manageModRepositoriesToolStripMenuItem, "manageModRepositoriesToolStripMenuItem");
+            this.manageModRepositoriesToolStripMenuItem.Click += new System.EventHandler(this.manageModRepositoriesToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1976,8 +1984,7 @@
         private System.Windows.Forms.ToolStripMenuItem rightmostToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem20;
         private System.Windows.Forms.ToolStripMenuItem syncStructureForAllGamesCollectionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem21;
-        private System.Windows.Forms.ToolStripMenuItem modStoreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator modRepoStartSeparator;
         private System.Windows.Forms.ToolStripMenuItem messageOfTheDayToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem22;
         private System.Windows.Forms.ToolStripMenuItem forceClovershellMembootsToolStripMenuItem;
@@ -1998,6 +2005,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem generateModulesReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem archiveSelectedGamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator modRepoEndSeparator;
+        private System.Windows.Forms.ToolStripMenuItem manageModRepositoriesToolStripMenuItem;
     }
 }
 

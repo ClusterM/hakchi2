@@ -200,9 +200,35 @@
     <Compile Include="Hmod\Readme.cs" />
     <Compile Include="Hmod\Hmod.cs" />
     <Compile Include="Hmod\ReadmeCache.cs" />
+    <Compile Include="HTTPHelpers.cs" />
     <Compile Include="INetworkShell.cs" />
     <Compile Include="ISystemShell.cs" />
     <Compile Include="MemoryStats.cs" />
+    <Compile Include="ModHub\Controls\ModHubTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModHub\Controls\ModHubTabControl.Designer.cs">
+      <DependentUpon>ModHubTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModHub\Repository\RepoManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModHub\Repository\RepoManagementForm.Designer.cs">
+      <DependentUpon>RepoManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModHub\ModHubForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModHub\ModHubForm.Designer.cs">
+      <DependentUpon>ModHubForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModHub\ModHubResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModHubResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ModHub\Repository\Repository.cs" />
+    <Compile Include="ModHub\Repository\RepositoryInfo.cs" />
     <Compile Include="Motd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -259,6 +285,7 @@
     <Compile Include="ExportGamesDialog.Designer.cs">
       <DependentUpon>ExportGamesDialog.cs</DependentUpon>
     </Compile>
+    <None Include="images\pencil-icon.png" />
     <Content Include="tools\putty\puttytel.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -313,6 +340,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.de-DE.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModHub\Controls\ModHubTabControl.resx">
+      <DependentUpon>ModHubTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModHub\ModHubForm.resx">
+      <DependentUpon>ModHubForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModHub\ModHubResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ModHubResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModHub\Repository\RepoManagementForm.resx">
+      <DependentUpon>RepoManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Motd.de-DE.resx">
       <DependentUpon>Motd.cs</DependentUpon>
@@ -712,8 +752,10 @@
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tasks\AddGamesTask.cs" />
+    <Compile Include="Tasks\ArchiveTasks.cs" />
     <Compile Include="Tasks\GameCacheTask.cs" />
     <Compile Include="Tasks\GameTask.cs" />
+    <Compile Include="Tasks\IOTasks.cs" />
     <Compile Include="Tasks\ITaskerView.cs" />
     <Compile Include="Tasks\ErrorForm.cs">
       <SubType>Form</SubType>
@@ -2132,6 +2174,7 @@
       <Name>tiny7z</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>cd /D "$(ProjectDir)tools/" || cd "$(ProjectDir)tools/"

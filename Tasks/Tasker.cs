@@ -248,6 +248,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return this;
         }
 
+        public Tasker AddTasks(IEnumerable<TaskFunc> funcs)
+        {
+            foreach (TaskFunc func in funcs)
+            {
+                AddTask(func);
+            }
+            return this;
+        }
+
         public Tasker AddFinalTask(Task task)
         {
             if (this.finalTask != null)

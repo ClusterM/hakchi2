@@ -86,6 +86,14 @@ namespace com.clusterrr.hakchi_gui.Extensions.ModStore
             _InstalledVersion = InstalledVersion;
             Refresh();
         }
+        public void Clear() => SetInfo(null, null, null, null);
+
+        public bool IsEmpty {
+            get
+            {
+                return _ModuleName == null && _Author == null && _LatestVersion == null && _InstalledVersion == null;
+            }
+        }
 
         private int DrawString(string text, Font font, int yOffset, ref PaintEventArgs e)
         {

@@ -37,7 +37,7 @@ namespace com.clusterrr.hakchi_gui.Hmod
                     break;
             }
 
-            hmods.AddRange(Hmod.GetMods(hakchi.CanInteract && onlyInstalledMods, this));
+            hmods.AddRange(Hmod.GetMods(hakchi.CanInteract && onlyInstalledMods, null, this));
 
             populateList();
 

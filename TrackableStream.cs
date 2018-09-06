@@ -6,6 +6,7 @@ namespace com.clusterrr.util
     {
         public delegate void OnProgressDelegate(long Position, long Length);
         public event OnProgressDelegate OnProgress = delegate { };
+        private long internalStreamProgress = 0;
         private Stream internalStream;
 
         //
@@ -203,12 +204,13 @@ namespace com.clusterrr.util
             if (internalStream is Stream)
             {
                 internalStream.Write(array, offset, count);
+                OnProgress(internalStream.Position, internalStream.Length);
             }
             else
             {
                 base.Write(array, offset, count);
+                OnProgress(this.Position, this.Length);
             }
-            OnProgress(this.Position, this.Length);
         }
 
         //
@@ -232,12 +234,13 @@ namespace com.clusterrr.util
             if (internalStream is Stream)
             {
                 internalStream.WriteByte(value);
+                OnProgress(internalStream.Position, internalStream.Length);
             }
             else
             {
                 base.WriteByte(value);
+                OnProgress(this.Position, this.Length);
             }
-            OnProgress(this.Position, this.Length);
         }
 
         //
@@ -280,13 +283,15 @@ namespace com.clusterrr.util
             if (internalStream is Stream)
             {
                 r = internalStream.Read(array, offset, count);
+                internalStreamProgress += r;
+                OnProgress(internalStreamProgress, this.Length);
             }
             else
             {
                 r = base.Read(array, offset, count);
+                OnProgress(this.Position, this.Length);
             }
 
-            OnProgress(this.Position, this.Length);
             return r;
         }
 
@@ -306,12 +311,14 @@ namespace com.clusterrr.util
             if (internalStream is Stream)
             {
                 r = internalStream.ReadByte();
+                internalStreamProgress += r;
+                OnProgress(internalStreamProgress, this.Length);
             }
             else
             {
                 r = base.ReadByte();
+                OnProgress(this.Position, this.Length);
             }
-            OnProgress(this.Position, this.Length);
             return r;
         }
     }

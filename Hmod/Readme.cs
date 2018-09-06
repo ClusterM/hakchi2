@@ -10,7 +10,7 @@ namespace com.clusterrr.hakchi_gui
     
     public struct HmodReadme
     {
-        public static readonly string[] readmeFiles = new string[] { "readme.txt", "readme.md", "readme" };
+        public static readonly string[] readmeFiles = new string[] { "readme.md", "readme.txt", "readme" };
         public readonly Dictionary<string, string> frontMatter;
         public readonly string readme;
         public readonly string rawReadme;

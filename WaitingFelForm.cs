@@ -38,7 +38,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 int exitCode = 0;
-                Shared.doWithTempFolder((string temp) =>
+                TempHelpers.doWithTempFolder((string temp) =>
                 {
                     var fileName = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "driver"), "classic_driver.exe");
                     var process = new Process();

@@ -2476,6 +2476,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No repositories configured.
+        /// </summary>
+        internal static string NoRepositoriesConfigured {
+            get {
+                return ResourceManager.GetString("NoRepositoriesConfigured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t start Telnet client, seems like it&apos;s disabled. You need to enable it first, you can do it in “Control Panel“ -&gt; “Programs“ -&gt; &quot;Turn Windows features on or off&quot;..
         /// </summary>
         internal static string NoTelnet {
@@ -2557,6 +2566,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pencil_icon {
+            get {
+                object obj = ResourceManager.GetObject("pencil_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to permanently delete the contents of:
         ///
         ///{0}
@@ -2630,6 +2649,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string PressOkToContinue {
             get {
                 return ResourceManager.GetString("PressOkToContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Processing....
+        /// </summary>
+        internal static string Processing {
+            get {
+                return ResourceManager.GetString("Processing", resourceCulture);
             }
         }
         
@@ -3604,6 +3632,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string UnknownGame {
             get {
                 return ResourceManager.GetString("UnknownGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsaved Changes.
+        /// </summary>
+        internal static string UnsavedChanges {
+            get {
+                return ResourceManager.GetString("UnsavedChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have unsaved changes, do you want to save them?.
+        /// </summary>
+        internal static string UnsavedChangesQ {
+            get {
+                return ResourceManager.GetString("UnsavedChangesQ", resourceCulture);
             }
         }
         

@@ -87,8 +87,7 @@ namespace com.clusterrr.hakchi_gui.module_library
 
                 if(DownloadFile(game.Path, tempFileName).Start() == Tasker.Conclusion.Success)
                 {
-                    MainForm mainForm = Application.OpenForms[0] as MainForm;
-                    mainForm.AddGames(new string[] { tempFileName });
+                    MainForm.StaticRef.AddGames(new string[] { tempFileName });
                     File.Delete(tempFileName);
                 }
 

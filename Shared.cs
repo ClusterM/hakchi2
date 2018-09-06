@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
@@ -638,32 +639,6 @@ namespace com.clusterrr.hakchi_gui
                 default:
                     return false;
             }
-        }
-        public static string getUniqueTempPath(string baseDir = null)
-        {
-            if(baseDir == null)
-            {
-                baseDir = Path.GetTempPath();
-            }
-
-            int counter = 0;
-            string path = Path.Combine(baseDir, $"hakchi2-ce-temp");
-
-            while (Directory.Exists(path))
-            {
-                counter++;
-                path = Path.Combine(baseDir, $"hakchi2-ce-temp{counter}");
-            }
-
-            return path;
-        }
-        public static void doWithTempFolder(Action<string> func, bool deleteAfter = true)
-        {
-            var tempFolder = getUniqueTempPath();
-            Directory.CreateDirectory(tempFolder);
-            func(tempFolder);
-            if (deleteAfter)
-                Directory.Delete(tempFolder, true);
         }
     }
 }

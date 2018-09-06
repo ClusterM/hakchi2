@@ -17,6 +17,8 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using com.clusterrr.hakchi_gui.Tasks;
+using com.clusterrr.hakchi_gui.ModHub.Repository;
+using com.clusterrr.hakchi_gui.ModHub;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -80,6 +82,7 @@ namespace com.clusterrr.hakchi_gui
             StaticRef = this;
             InitializeComponent();
             FormInitialize();
+            populateRepos();
         }
 
         private void FormInitialize()
@@ -1642,9 +1645,9 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public void AddGames(IEnumerable<string> files, bool asIs = false)
+        public void AddGames(IEnumerable<string> files, bool asIs = false, Form parentForm = null)
         {
-            using (var tasker = new Tasks.Tasker(this))
+            using (var tasker = new Tasks.Tasker(parentForm ?? this))
             {
                 tasker.AttachView(new Tasks.TaskerTaskbar());
                 tasker.AttachView(new Tasks.TaskerForm());
@@ -2142,7 +2145,22 @@ namespace com.clusterrr.hakchi_gui
             foreach (var file in files)
             {
                 var ext = Path.GetExtension(file).ToLower();
-                if (ext == ".hmod")
+                if (ext == ".hrepo" && File.Exists(file))
+                {
+                    var hrepo = new HmodReadme(File.ReadAllText(file), true);
+                    string name = null;
+                    string link = null;
+
+                    if (hrepo.frontMatter.TryGetValue("Name", out name) && (hrepo.frontMatter.TryGetValue("Link", out link)))
+                    {
+                        var repoList = ConfigIni.Instance.repos.ToList();
+                        repoList.Add(new RepositoryInfo(name, link));
+                        ConfigIni.Instance.repos = repoList.ToArray();
+                        ConfigIni.Save();
+                        populateRepos();
+                    }
+                }
+                else if (ext == ".hmod")
                 {
                     modsToInstall.Add(file);
                 }
@@ -2955,11 +2973,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void modStoreToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new ModStore().ShowDialog();
-        }
-
         private void messageOfTheDayToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowMOTD();
@@ -3070,8 +3083,8 @@ namespace com.clusterrr.hakchi_gui
                 if (sfd.ShowDialog(this) != DialogResult.OK)
                     return;
 
-                var installedMods = Hmod.Hmod.GetMods(true, this).OrderBy(o => o.RawName).ToList();
-                var availableMods = Hmod.Hmod.GetMods(false, this).OrderBy(o => o.RawName).ToList();
+                var installedMods = Hmod.Hmod.GetMods(true, null, this).OrderBy(o => o.RawName).ToList();
+                var availableMods = Hmod.Hmod.GetMods(false, null, this).OrderBy(o => o.RawName).ToList();
                 var separatorLine = "--------------------";
 
                 var outLines = new List<string>();
@@ -3096,6 +3109,73 @@ namespace com.clusterrr.hakchi_gui
 
                 File.WriteAllText(sfd.FileName, String.Join("\r\n", outLines.ToArray()));
             }
+        }
+
+        private List<ToolStripMenuItem> repoMenuItems = new List<ToolStripMenuItem>();
+        public void populateRepos()
+        {
+            foreach (var menuItem in repoMenuItems)
+            {
+                modulesToolStripMenuItem.DropDownItems.Remove(menuItem);
+                if (!menuItem.IsDisposed)
+                {
+                    menuItem.Dispose();
+                }
+            }
+            repoMenuItems.Clear();
+
+            if (ConfigIni.Instance.repos.Length == 0)
+            {
+                var menuItem = new ToolStripMenuItem(Resources.NoRepositoriesConfigured) { Enabled = false };
+                repoMenuItems.Add(menuItem);
+
+                var index = modulesToolStripMenuItem.DropDownItems.IndexOf(modRepoEndSeparator);
+                modulesToolStripMenuItem.DropDownItems.Insert(index, menuItem);
+            }
+            else
+            {
+                foreach (RepositoryInfo repo in ConfigIni.Instance.repos)
+                {
+                    var menuItem = new ToolStripMenuItem(repo.Name) { Tag = repo.URL };
+                    menuItem.Click += repoMenuItem_Click;
+                    repoMenuItems.Add(menuItem);
+
+                    var index = modulesToolStripMenuItem.DropDownItems.IndexOf(modRepoEndSeparator);
+                    modulesToolStripMenuItem.DropDownItems.Insert(index, menuItem);
+                }
+            }
+        }
+
+        private void repoMenuItem_Click(object sender, EventArgs e)
+        {
+            if(sender is ToolStripMenuItem)
+            {
+                ToolStripMenuItem unboxed = (ToolStripMenuItem)sender;
+
+                if (unboxed.Tag is string && unboxed.Tag != null)
+                {
+                    var url = (string)(unboxed.Tag);
+                    if (url == "modstore://") {
+                        new ModStore().ShowDialog(this);
+                    }
+                    else
+                    {
+                        var repo = new ModHub.Repository.Repository(url);
+                        repo.LoadTasker(this);
+                        using (var hub = new ModHub.ModHubForm())
+                        {
+                            hub.Text = unboxed.Text;
+                            hub.LoadData(repo.Items);
+                            hub.ShowDialog(this);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void manageModRepositoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new RepoManagementForm().ShowDialog(this);
         }
     }
 }
