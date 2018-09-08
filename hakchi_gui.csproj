@@ -190,6 +190,16 @@
     <Compile Include="Files\CheckFileType.cs" />
     <Compile Include="FtpClient\ArxOneFtpWrapper.cs" />
     <Compile Include="hakchi.cs" />
+    <Compile Include="Hmod\Controls\ReadmeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Hmod\Controls\ReadmeControl.Designer.cs">
+      <DependentUpon>ReadmeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hmod\ListSort.cs" />
+    <Compile Include="Hmod\Readme.cs" />
+    <Compile Include="Hmod\Hmod.cs" />
+    <Compile Include="Hmod\ReadmeCache.cs" />
     <Compile Include="INetworkShell.cs" />
     <Compile Include="ISystemShell.cs" />
     <Compile Include="MemoryStats.cs" />
@@ -291,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GameGenieCodeForm.de-DE.resx">
       <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hmod\Controls\ReadmeControl.resx">
+      <DependentUpon>ReadmeControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageGooglerForm.de-DE.resx">
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
@@ -640,11 +653,11 @@
     <Compile Include="SaveStateManager.Designer.cs">
       <DependentUpon>SaveStateManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="SelectModsForm.cs">
+    <Compile Include="Hmod\SelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SelectModsForm.Designer.cs">
-      <DependentUpon>SelectModsForm.cs</DependentUpon>
+    <Compile Include="Hmod\SelectForm.Designer.cs">
+      <DependentUpon>SelectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Apps\NesDefaultGame.cs" />
     <Compile Include="FelLib\AWFELMessage.cs" />
@@ -1715,8 +1728,8 @@
     <EmbeddedResource Include="SelectIconForm.fr-FR.resx">
       <DependentUpon>SelectIconForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectModsForm.resx">
-      <DependentUpon>SelectModsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Hmod\SelectForm.resx">
+      <DependentUpon>SelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
@@ -2113,32 +2126,32 @@
   <ItemGroup>
     <PublishFile Include="data\GameGenieDB.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\nescarts.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\snescarts.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

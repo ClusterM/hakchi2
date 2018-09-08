@@ -235,7 +235,7 @@ namespace com.clusterrr.hakchi_gui
         public bool ExportLinked = true;
         public string ExportDrive = "";
         public FelLib.Fel.UbootType MembootUboot = FelLib.Fel.UbootType.SD;
-        public HmodListSort hmodListSort = HmodListSort.Category;
+        public Hmod.ListSort hmodListSort = Hmod.ListSort.Category;
 
         // constructor
         private ConfigIni()
@@ -584,7 +584,7 @@ namespace com.clusterrr.hakchi_gui
                                         }
                                         break;
                                     case "hmodlistsort":
-                                        instance.hmodListSort = (HmodListSort)byte.Parse(value);
+                                        instance.hmodListSort = (Hmod.ListSort)byte.Parse(value);
                                         break;
                                 }
                                 break;

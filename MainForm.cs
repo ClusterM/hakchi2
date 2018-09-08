@@ -1897,7 +1897,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void installModules(string[] add = null)
         {
-            using (var form = new SelectModsForm(false, true, add))
+            using (var form = new Hmod.SelectForm(false, true, add))
             {
                 form.Text = Resources.SelectModsInstall;
                 if (form.ShowDialog() == DialogResult.OK)
@@ -1905,7 +1905,7 @@ namespace com.clusterrr.hakchi_gui
                     List<string> hmods = new List<string>();
                     foreach (ListViewItem item in form.listViewHmods.CheckedItems)
                     {
-                        hmods.Add(((Hmod)item.Tag).RawName);
+                        hmods.Add(((Hmod.Hmod)item.Tag).RawName);
                     }
                     if (hmods.Count == 0) return;
                     if (InstallMods(hmods.ToArray()))
@@ -1919,7 +1919,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void uninstallModulesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var form = new SelectModsForm(true, false))
+            using (var form = new Hmod.SelectForm(true, false))
             {
                 form.Text = Resources.SelectModsUninstall;
                 if (form.ShowDialog() == DialogResult.OK)
@@ -1927,7 +1927,7 @@ namespace com.clusterrr.hakchi_gui
                     List<string> hmods = new List<string>();
                     foreach (ListViewItem item in form.listViewHmods.CheckedItems)
                     {
-                        hmods.Add(((Hmod)item.Tag).RawName);
+                        hmods.Add(((Hmod.Hmod)item.Tag).RawName);
                     }
                     if (hmods.Count == 0) return;
                     if (UninstallMods(hmods.ToArray()))

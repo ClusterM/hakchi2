@@ -525,5 +525,28 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        public static string[] GetPackList()
+        {
+            if (hakchi.Shell.IsOnline && (hakchi.MinimalMemboot || hakchi.CanInteract))
+            {
+                string[] installedMods;
+                bool wasMounted = true;
+                if (hakchi.MinimalMemboot)
+                {
+                    if (hakchi.Shell.Execute("hakchi eval 'mountpoint -q \"$mountpoint/var/lib\"'") != 0)
+                    {
+                        wasMounted = false;
+                        hakchi.Shell.ExecuteSimple("hakchi mount_base");
+                    }
+                }
+                installedMods = hakchi.Shell.ExecuteSimple("hakchi pack_list", 0, true).Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                if (!wasMounted)
+                    hakchi.Shell.ExecuteSimple("hakchi umount_base");
+                return installedMods;
+            }
+
+            return null;
+        }
+
     }
 }
