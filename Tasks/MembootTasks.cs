@@ -43,6 +43,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         // Private variables
         private Fel fel;
         private MemoryStream stockKernel;
+        private bool ignoreBackupKernel = false;
 
         // Public variables
         public bool userRecovery = false;
@@ -53,8 +54,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public readonly TaskFunc[] Tasks;
 
-        public MembootTasks(MembootTaskType type, string[] hmodsInstall = null, string[] hmodsUninstall = null, string dumpPath = null, bool forceRecoveryReload = false)
+        public MembootTasks(MembootTaskType type, string[] hmodsInstall = null, string[] hmodsUninstall = null, string dumpPath = null, bool forceRecoveryReload = false, bool ignoreBackupKernel = false)
         {
+            this.ignoreBackupKernel = ignoreBackupKernel;
             userRecovery = (hakchi.Shell.IsOnline && hakchi.MinimalMemboot && hakchi.UserMinimalMemboot);
 
             fel = new Fel();
@@ -91,22 +93,32 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     break;
 
                 case MembootTaskType.UninstallHakchi:
-                    taskList.AddRange(new TaskFunc[] {
-                        GetStockKernel,
-                        FlashStockKernel,
+                    taskList.Add(GetStockKernel);
+
+                    if (ignoreBackupKernel)
+                        taskList.Add(EraseBackupKernel);
+
+                    taskList.AddRange(new TaskFunc[]{
+                        FlashKernel,
                         HandleHakchi(HakchiTasks.Uninstall)
                     });
+
                     if (!userRecovery)
                         taskList.Add(ShellTasks.Reboot);
 
                     break;
 
                 case MembootTaskType.FactoryReset:
+                    taskList.Add(GetStockKernel);
+
+                    if (ignoreBackupKernel)
+                        taskList.Add(EraseBackupKernel);
+
                     taskList.AddRange(new TaskFunc[] {
-                        GetStockKernel,
-                        FlashStockKernel,
+                        FlashKernel,
                         ProcessNand(null, NandTasks.FormatNandC)
                     });
+
                     if (!userRecovery)
                         taskList.Add(ShellTasks.Reboot);
 
@@ -491,6 +503,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
             };
         }
 
+        public static Conclusion EraseBackupKernel(Tasker tasker, Object syncObject = null)
+        {
+            return hakchi.Shell.Execute("sunxi-flash log_write 68 1 </dev/zero") == 0 ? Conclusion.Success : Conclusion.Error;
+        }
+
         public Conclusion GetStockKernel(Tasker tasker, Object syncObject = null)
         {
             var hostForm = tasker.GetSpecificViews<Form>().FirstOrDefault();
@@ -503,8 +520,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             tasker.SetStatus(Resources.DumpingKernel);
             stockKernel = new MemoryStream();
-            
-            if (hakchi.Shell.Execute("hakchi getBackup2", null, stockKernel) == 0)
+
+            if ((!ignoreBackupKernel) && hakchi.Shell.Execute("hakchi getBackup2", null, stockKernel) == 0)
             {
                 return Conclusion.Success;
             }
@@ -540,14 +557,19 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Conclusion.Error;
         }
 
-        public Conclusion FlashStockKernel(Tasker tasker, Object syncObject = null)
+        public Conclusion FlashKernel(Tasker tasker, Object syncObject = null)
         {
             tasker.SetStatus(Resources.UploadingKernel);
             if (stockKernel == null || stockKernel.Length == 0)
                 return Conclusion.Error;
 
             stockKernel.Seek(0, SeekOrigin.Begin);
-            hakchi.Shell.Execute("cat > /kernel.img && sntool kernel /kernel.img", stockKernel, null, null, 0, true);
+            hakchi.Shell.Execute("cat > /kernel.img", stockKernel, null, null, 0, true);
+            
+            if (hakchi.Shell.Execute("sntool check /kernel.img") != 0)
+                throw new Exception(Resources.KernelCheckFailed);
+
+            hakchi.Shell.Execute("sntool kernel /kernel.img", null, null, null, 0, true);
 
             if (hakchi.Shell.Execute("hakchi flashBoot2 /kernel.img") != 0)
                 throw new Exception(Resources.VerifyFailed);

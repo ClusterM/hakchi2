@@ -1660,14 +1660,17 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        bool Uninstall()
+        bool Uninstall(bool ignoreBackupKernel = false)
         {
             using (var tasker = new Tasker(this))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_delete);
                 tasker.SetTitle(Resources.UninstallingHakchi);
-                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.UninstallHakchi).Tasks);
+                tasker.AddTasks(new MembootTasks(
+                    MembootTasks.MembootTaskType.UninstallHakchi,
+                    ignoreBackupKernel: ignoreBackupKernel
+                ).Tasks);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
@@ -1706,9 +1709,11 @@ namespace com.clusterrr.hakchi_gui
 
         private void uninstallToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool ignoreBackupKernel = Control.ModifierKeys == Keys.Shift;
+
             if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.UninstallQ1, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
             {
-                if (Uninstall())
+                if (Uninstall(ignoreBackupKernel))
                     Tasks.MessageForm.Show(Resources.Done, Resources.UninstallNote, Resources.sign_check);
             }
         }
@@ -1865,6 +1870,8 @@ namespace com.clusterrr.hakchi_gui
 
         private void factoryResetToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool ignoreBackupKernel = Control.ModifierKeys == Keys.Shift;
+
             if (Tasks.MessageForm.Show(this, Resources.Warning, Resources.FactoryResetQ, Resources.sign_warning, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1) == MessageForm.Button.Yes)
             {
                 using (var tasker = new Tasker(this))
@@ -1872,7 +1879,10 @@ namespace com.clusterrr.hakchi_gui
                     tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                     tasker.SetStatusImage(Resources.sign_delete);
                     tasker.SetTitle(((ToolStripMenuItem)sender).Text);
-                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FactoryReset).Tasks);
+                    tasker.AddTasks(new MembootTasks(
+                        MembootTasks.MembootTaskType.FactoryReset,
+                        ignoreBackupKernel: ignoreBackupKernel
+                    ).Tasks);
                     if (tasker.Start() == Tasker.Conclusion.Success)
                         if(!ConfigIni.Instance.DisablePopups)
                             Tasks.MessageForm.Show(Resources.Done, Resources.FactoryResetNote, Resources.sign_check);

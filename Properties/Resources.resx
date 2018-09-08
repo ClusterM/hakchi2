@@ -1303,4 +1303,7 @@ You can wait some more and if it comes back online, you should see "Recovery mod
   <data name="DownloadingProgress" xml:space="preserve">
     <value>Downloading: {0} / {1}</value>
   </data>
+  <data name="KernelCheckFailed" xml:space="preserve">
+    <value>Kernel checksum failed</value>
+  </data>
 </root>
