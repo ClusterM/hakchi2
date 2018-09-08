@@ -1,0 +1,137 @@
+Additional Icon Pack 2.22 for Hakchi/CE/NESC/SNESC 
+
+These icons are intended to supplement the excellent original pack by NeoRame, which can be found in Cluster's original Hakchi2, Team Shinkansen's Hakchi2CE, KMFDManic's Xtras folder, and NeoRame's repo here: https://github.com/NeoRame/hakchi2/tree/master/folder_images
+
+There are tons of great icon packs out there, but the styles vary widely. I like the default icon style; something about having pixel representations of the original consoles, not squared off or cropped to a standard aspect ratio, is a look I find very appealing. I like the way I’m able to quickly recognize the silhouettes of the consoles when scrolling through the folders, and they match well with the SNESC's UI.
+
+At first, I went ahead and made a few pixel-art icons myself for the consoles I most wanted to see represented. I kept addiing cores to my setup, and realized I'd like to have icons for pretty much everything the SNESC supports. So here they are!
+
+I tried to match the style of the default icons pretty closely, if not exactly, without reusing any existing assets except the base folder icons. I've put my own spin on the style, but they fit in pretty well with NeoRame's icons to my eyes. 
+
+****2.22 Update****
+Added new systems:
+3DO (3 versions: Panasonic, Panasonic FZ-10, Goldstar)
+TRS-80 Model 3
+Tandy Color Computer 3
+Updated Scumm/Maniac Mansion icon
+
+****2.21 Update****
+Cleaned up folder images (outline issue corrected, thanks u/princess_daphie!)
+Added Sega Mycard/SegaCard folder icons
+Updated CD, PSX CD, Lynx and NGPC icons
+Added Maniac Mansion game box for ScummVM
+
+****2.2 Update****
+Added more new systems: 
+
+-Commodore PET 2001, 4032, CBM 8032
+-Texas Instruments TI-99/4A original aluminum chassis and beige plastic versions
+-Sega SC-3000H
+-Atari Jaguar
+-DEC VT-100 Terminal
+
+Also per request from Reddit user u/1541drive, I've included a game icon for Zork 1, to represent interactive fiction/text adventures - particularly since the Z-machine isn't actual hardware, but could easily be considered a "system" on its own. 
+
+
+****2.11 Update****
+
+Added Sega Dreamcast icons due to a new Dreamcast core being announced!
+
+****2.1 Update****
+Set now includes additional icons to help fill in some gaps! Some of these had good representation in KM's set, created by skycyber-guy. BUT... I wanted variants like the FDS and Duo-RX and found it easier to create my own, so here they are! Also included Super Game Boy and variants per request from /u/liriel-666.
+
+Here's a list of just the new ones:
+
+-NEC PC Engine Duo, Duo-R, and Duo RX
+-Nintendo Famicom and Famicom Disk System
+-Nintendo Super Game Boy, US and JP versions, along with Super Game Boy 2
+-Sony MSX and MSX2 models
+-Sony Playstation and Playstation One
+ 
+
+All System icons included: 
+
+-Amiga 500, 600, 1200, and CD32
+-Amstrad CPC 464, 664, 6128, 6128+
+-Apple II, Apple IIe, Apple IIe Platinum Edition
+-Atari 5200 (2 versions)
+-Atari 7800 (2 versions)
+-Atari 8-bit computers: 400, 800, 600xl, 800xl, XE, XLGS (with and without keyboard
+-Atari Jaguar
+-Atari Lynx model 1 and 2
+-Atari ST 520 and 1040
+-Bandai Wonderswan, Wonderwan Color, Swan Crystal
+-Colecovision (and CBS Colecovision)
+-Commodore 64, 64C, VIC-20
+-Commodore PET 2001, 4032, CBM 8032
+-DEC VT-100 Terminal
+-DOSBox Icons: Tandy 1000, IBM 6571, LGR Woodgrain 486
+-GCE Vectrex, as well as MB and Bandai variants, with bottom access panel open/closed
+-Magnavox Odyssey 2
+-Mattel Intellivision I-III, Tandyvision, Sears Super Video Arcade
+-NEC PC Engine Duo, Duo-R, and Duo RX
+-NEC PC-9801 VX
+-NEC PC-FX
+-NEC SuperGrafx (JP)
+-NEC TurboDuo (US)
+-NEC TurboGrafx-16 (US)
+-NEC TurboGrafx-16 with CD add-on (US)
+-Neo Geo Pocket Color, all 6 US color styles
+-Nintendo DS and DS Lite
+-Nintendo Famicom and Famicom Disk System
+-Nintendo Super Game Boy, US and JP versions, along with Super Game Boy 2
+-Nintendo Virtual Boy
+-ScummVM Maniac Mansion
+-Sega Dreamcast - original white and Sega Sports black
+-Sega Genesis/Mega Drive Model 1, Sega CD Model 1, and 32X, all regions, all combinations possible within each region
+-Sega Pico
+-Sega SC-3000H
+-Sega SG-1000 mkI, II, and III
+-Sega Saturn
+-Sharp X68000, X68000 Super HD, X68000 XVI, X68000 Compact
+-Sinclair ZX-81, Spectrum, Spectrum Plus 48k, Plus 128k 1,2,and 3
+-Sony MSX and MSX2 models
+-Sony PSP and PSP Slim
+-Sony Playstation and Playstation One
+-Texas Instruments TI-99/4A original aluminum chassis and beige plastic versions
+-Zork / Z-Machine / IF
+
+
+
+Folder icons included:
+
+-3" Hitachi Amstrad CPC/Spectrum Disk
+-3" Hitachi Amstrad CPC/Spectrum Disk (inverted)
+-3.5" floppy disk
+-3.5" floppy disk inverted 
+-5.25" floppy disk
+-Atari 5200
+-Atari 7800
+-Black PSX CD
+-Colecovision
+-Compact Cassette
+-Intellivision
+-Lynx
+-NGPC
+-Nintendo DS
+-Odyssey 2
+-PSP UMD
+-Sega MyCard/SegaCard
+-Standard CD
+-Vectrex
+-Vectrex (inverted)
+-Virtual Boy
+-Wonderswan
+
+
+These are free to use for whatever, share them, modify them, etc., I'd just like to be credited.
+As before, these are just .png's so they'll probably work with Retropie and similar setups as well.
+
+Per u/princess_daphie the version 1 icon set is now being distributed with Hakchi CE default icons, and KMFDManic AKA u/MDFMKanic has included them with his core extras, which is super awesome! Hopefully the 2.0 set will be considered a worthy update. Thanks so much to them, everyone else in Team Shinkansen, Cluster M, The Other Guys, and everyone in the community on r/minisnesmods for being so friendly and helpful, and working tirelessly to make magic on these great mini consoles.
+
+
+
+Get the icons here: 
+https://drive.google.com/open?id=1XgjegRTCffdv2bfnQj3GKf_7qoDhsZF9
+
+
