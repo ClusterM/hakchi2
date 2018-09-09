@@ -76,6 +76,7 @@
             this.modulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstallModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateModulesReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem21 = new System.Windows.Forms.ToolStripSeparator();
             this.modStoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -547,6 +548,7 @@
             this.modulesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.installModulesToolStripMenuItem,
             this.uninstallModulesToolStripMenuItem,
+            this.generateModulesReportToolStripMenuItem,
             this.toolStripMenuItem21,
             this.modStoreToolStripMenuItem});
             this.modulesToolStripMenuItem.Name = "modulesToolStripMenuItem";
@@ -563,6 +565,12 @@
             this.uninstallModulesToolStripMenuItem.Name = "uninstallModulesToolStripMenuItem";
             resources.ApplyResources(this.uninstallModulesToolStripMenuItem, "uninstallModulesToolStripMenuItem");
             this.uninstallModulesToolStripMenuItem.Click += new System.EventHandler(this.uninstallModulesToolStripMenuItem_Click);
+            // 
+            // generateModulesReportToolStripMenuItem
+            // 
+            this.generateModulesReportToolStripMenuItem.Name = "generateModulesReportToolStripMenuItem";
+            resources.ApplyResources(this.generateModulesReportToolStripMenuItem, "generateModulesReportToolStripMenuItem");
+            this.generateModulesReportToolStripMenuItem.Click += new System.EventHandler(this.generateModulesReportToolStripMenuItem_Click);
             // 
             // toolStripMenuItem21
             // 
@@ -1980,6 +1988,7 @@
         private System.Windows.Forms.ToolStripMenuItem asIsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem switchRunningFirmwareToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem generateModulesReportToolStripMenuItem;
     }
 }
 

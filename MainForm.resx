@@ -571,6 +571,12 @@
   <data name="uninstallModulesToolStripMenuItem.Text" xml:space="preserve">
     <value>Uninstall extra modules</value>
   </data>
+  <data name="generateModulesReportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 22</value>
+  </data>
+  <data name="generateModulesReportToolStripMenuItem.Text" xml:space="preserve">
+    <value>Generate modules report</value>
+  </data>
   <data name="toolStripMenuItem21.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 6</value>
   </data>

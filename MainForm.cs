@@ -3028,5 +3028,58 @@ namespace com.clusterrr.hakchi_gui
                 Tasks.ErrorForm.Show(this, ex);
             }
         }
+
+        private void addModInfoToReport(ref List<string> list, ref List<Hmod.Hmod> mods)
+        {
+            foreach (var mod in mods)
+            {
+                list.Add($"  {mod.RawName}");
+                list.Add("  --------------------");
+                foreach(var fmKey in mod.Readme.frontMatter.Keys)
+                {
+                    list.Add($"    {fmKey}: {mod.Readme.frontMatter[fmKey]}");
+                }
+                list.Add("");
+            }
+        }
+
+        private void generateModulesReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var sfd = new SaveFileDialog()
+            {
+                Filter = "Text File|*.txt",
+                FileName = "hakchi modules report.txt"
+            })
+            {
+                if (sfd.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                var installedMods = Hmod.Hmod.GetMods(true, this);
+                var availableMods = Hmod.Hmod.GetMods(false, this);
+                var separatorLine = "--------------------";
+
+                var outLines = new List<string>();
+
+                if (hakchi.CanInteract)
+                {
+                    outLines.Add("Installed Mods:");
+                    outLines.Add(separatorLine);
+                    outLines.Add("");
+                    addModInfoToReport(ref outLines, ref installedMods);
+                }
+                else
+                {
+                    outLines.Add("System Not Online");
+                    outLines.Add("");
+                }
+
+                outLines.Add("Available Mods:");
+                outLines.Add(separatorLine);
+                outLines.Add("");
+                addModInfoToReport(ref outLines, ref availableMods);
+
+                File.WriteAllText(sfd.FileName, String.Join("\r\n", outLines.ToArray()));
+            }
+        }
     }
 }
