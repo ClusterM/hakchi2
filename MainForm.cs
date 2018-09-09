@@ -3048,14 +3048,14 @@ namespace com.clusterrr.hakchi_gui
             using (var sfd = new SaveFileDialog()
             {
                 Filter = "Text File|*.txt",
-                FileName = "hakchi modules report.txt"
+                FileName = "hmod_audit.txt"
             })
             {
                 if (sfd.ShowDialog(this) != DialogResult.OK)
                     return;
 
-                var installedMods = Hmod.Hmod.GetMods(true, this);
-                var availableMods = Hmod.Hmod.GetMods(false, this);
+                var installedMods = Hmod.Hmod.GetMods(true, this).OrderBy(o => o.RawName).ToList();
+                var availableMods = Hmod.Hmod.GetMods(false, this).OrderBy(o => o.RawName).ToList();
                 var separatorLine = "--------------------";
 
                 var outLines = new List<string>();
