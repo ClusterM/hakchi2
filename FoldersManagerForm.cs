@@ -25,6 +25,8 @@ namespace com.clusterrr.hakchi_gui
                         return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders.xml");
                     case hakchi.ConsoleType.Famicom:
                         return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_famicom.xml");
+                    case hakchi.ConsoleType.ShonenJump:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_shonen_jump.xml");
                     case hakchi.ConsoleType.SNES_EUR:
                         return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_snes_eur.xml");
                     case hakchi.ConsoleType.SNES_USA:
