@@ -8,7 +8,7 @@ Name "Hakchi2 CE"
 Icon "..\icon_app.ico"
 
 ; The file to write
-OutFile "Hakchi2 CE Web Installer.exe"
+OutFile "..\bin\hakchi2-ce-webinstaller.exe"
 
 ; The default installation directory
 InstallDir "$PROGRAMFILES\Team Shinkansen\Hakchi2 CE"

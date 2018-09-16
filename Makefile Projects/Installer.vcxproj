@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{15F9D451-9DAF-4904-B2EC-6B485FCA86FD}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <NMakeBuildCommandLine>msbuild.exe "$(SolutionDir)NSI\nsi-helper\nsi-helper.csproj" /p:Configuration=Release
+
+del /S /Q "$(SolutionDir)bin\Debug"
+del /S /Q "$(SolutionDir)bin\Release"
+
+rmdir /S /Q "$(SolutionDir)bin\Debug"
+rmdir /S /Q "$(SolutionDir)bin\Release"
+
+msbuild.exe "$(SolutionPath)" /p:Configuration=Release
+msbuild.exe "$(SolutionPath)" /p:Configuration=Debug
+
+"$(SolutionDir)NSI\nsi-helper\bin\Release\nsi-helper.exe" "$(SolutionDir)bin\Release" "$(SolutionDir)NSI\release-uninstall.nsh"
+"$(SolutionDir)NSI\nsi-helper\bin\Release\nsi-helper.exe" "$(SolutionDir)bin\Debug" "$(SolutionDir)NSI\debug-uninstall.nsh"
+
+makensis.exe "$(SolutionDir)NSI\Installer.nsi"
+
+del "$(SolutionDir)NSI\release-uninstall.nsh"
+del "$(SolutionDir)NSI\debug-uninstall.nsh"</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>msbuild.exe "$(SolutionDir)NSI\nsi-helper\nsi-helper.csproj" /p:Configuration=Release
+
+del /S /Q "$(SolutionDir)bin\Debug"
+del /S /Q "$(SolutionDir)bin\Release"
+
+rmdir /S /Q "$(SolutionDir)bin\Debug"
+rmdir /S /Q "$(SolutionDir)bin\Release"
+
+msbuild.exe "$(SolutionPath)" /t:Clean /p:Configuration=Release
+msbuild.exe "$(SolutionPath)" /t:Clean /p:Configuration=Debug
+
+msbuild.exe "$(SolutionPath)" /p:Configuration=Release
+msbuild.exe "$(SolutionPath)" /p:Configuration=Debug
+
+"$(SolutionDir)NSI\nsi-helper\bin\Release\nsi-helper.exe" "$(SolutionDir)bin\Release" "$(SolutionDir)NSI\release-uninstall.nsh"
+"$(SolutionDir)NSI\nsi-helper\bin\Release\nsi-helper.exe" "$(SolutionDir)bin\Debug" "$(SolutionDir)NSI\debug-uninstall.nsh"
+
+makensis.exe "$(SolutionDir)NSI\Installer.nsi"
+
+del "$(SolutionDir)NSI\release-uninstall.nsh"
+del "$(SolutionDir)NSI\debug-uninstall.nsh"</NMakeReBuildCommandLine>
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeCleanCommandLine>del "$(SolutionDir)bin\hakchi2-ce-*-installer.exe"</NMakeCleanCommandLine>
+    <ExecutablePath>$(VC_ExecutablePath_x86);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(SystemRoot)\SysWow64;$(FxCopDir);$(PATH);C:\Program Files\NSIS;C:\Program Files (x86)\NSIS;</ExecutablePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

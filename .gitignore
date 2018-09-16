@@ -4,6 +4,7 @@ driver/usb_driver/
 obj/
 .vs/
 *.csproj.user
+*.vcxproj.user
 *.pfx
 commit.txt
 basehmods.tar
@@ -12,3 +13,5 @@ mods/hmods/hakchi.hmod
 tools/arm/detached-fallback
 Web Installer/*.exe
 driver/classic_driver.exe
+Makefile Projects/Release/
+Makefile Projects/Debug/

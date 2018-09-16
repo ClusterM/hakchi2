@@ -9,7 +9,7 @@ Name "Hakchi2 CE ${cever_1}.${cever_2}.${cever_3}"
 Icon "..\icon_app.ico"
 
 ; The file to write
-OutFile "hakchi2-ce-${cever_1}.${cever_2}.${cever_3}.exe"
+OutFile "..\bin\hakchi2-ce-${cever_1}.${cever_2}.${cever_3}-installer.exe"
 
 ; The default installation directory
 Var defaultInstDir
@@ -107,7 +107,10 @@ Section "Uninstall"
   Delete "$DESKTOP\Hakchi2 CE.lnk"
   RMDir /r "$SMPROGRAMS\Team Shinkansen\Hakchi2 CE"
   RMDir "$SMPROGRAMS\Team Shinkansen"
-  RMDir /r "$INSTDIR"
+  !include "debug-uninstall.nsh"
+  Delete "$INSTDIR\nonportable.flag"
+  Delete "$INSTDIR\uninstall.exe"
+  RMDir "$INSTDIR"
 SectionEnd
 ;--------------------------------
 
