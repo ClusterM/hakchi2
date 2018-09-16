@@ -13,12 +13,62 @@ namespace com.clusterrr.hakchi_gui
     {
         readonly UInt16 vid, pid;
 
+        public static bool DriverInstalled()
+        {
+            if (!Shared.isWindows())
+                return true;
+
+            var proc = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "pnputil.exe",
+                    Arguments = "-e",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
+                }
+            };
+            proc.Start();
+            return proc.StandardOutput.ReadToEnd().Contains("USB\\VID_1F3A&PID_EFE8");
+        }
+
+        public static int InstallDriver()
+        {
+            try
+            {
+                int exitCode = 0;
+                Shared.doWithTempFolder((string temp) =>
+                {
+                    var fileName = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "driver"), "classic_driver.exe");
+                    var process = new Process();
+                    process.StartInfo.FileName = fileName;
+                    process.StartInfo.WorkingDirectory = temp;
+                    process.StartInfo.Verb = "runas";
+                    process.Start();
+                    process.WaitForExit();
+                    exitCode = process.ExitCode;
+                });
+                return exitCode;
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.ToString());
+                return -1;
+            }
+        }
+
         public WaitingFelForm(UInt16 vid, UInt16 pid)
         {
             InitializeComponent();
-            buttonDriver.Left = label6.Left + label6.Width;
+            buttonDriver.Left = labelDriver.Left + labelDriver.Width;
             this.vid = vid;
             this.pid = pid;
+            if (DriverInstalled() || InstallDriver() == 0)
+            {
+                labelDriver.Visible = false;
+                buttonDriver.Visible = false;
+            }
             timer.Enabled = true;
         }
 
@@ -58,10 +108,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                var process = new Process();
-                var fileName = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "driver"), "Nintendo_Classic_USB_Driver.exe");
-                process.StartInfo.FileName = fileName;
-                process.Start();
+                buttonDriver.Enabled = InstallDriver() != 0;
             }
             catch (Exception ex)
             {

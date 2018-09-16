@@ -15,3 +15,4 @@ printf "" > "$downloadedFileListName"
 
 download "https://hakchi.net/hakchi/hakchi-v1.0.4-121.hmod" "mods/hmods/hakchi.hmod" || exit 1
 download "https://hakchi.net/hakchi/detached-fallback" "tools/arm/detached-fallback" || exit 1
+download "https://github.com/TeamShinkansen/libwdi/releases/download/classic_driver_1/classic_driver.exe" "driver/classic_driver.exe" || exit 1

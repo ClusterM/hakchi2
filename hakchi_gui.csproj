@@ -562,46 +562,6 @@
     <None Include="data\libretro_cores\virtualjaguar_libretro.info" />
     <None Include="data\libretro_cores\xrick_libretro.info" />
     <None Include="data\libretro_cores\yabause_libretro.info" />
-    <None Include="driver\source\AUTHORS" />
-    <None Include="driver\source\autogen.sh" />
-    <None Include="driver\source\bootstrap.sh" />
-    <None Include="driver\source\ChangeLog" />
-    <None Include="driver\source\configure.ac" />
-    <None Include="driver\source\COPYING" />
-    <None Include="driver\source\COPYING-LGPL" />
-    <None Include="driver\source\ddk_build.cmd" />
-    <None Include="driver\source\libwdi.suo" />
-    <None Include="driver\source\libwdi\.msvc\detect_64build.vcxproj" />
-    <None Include="driver\source\libwdi\.msvc\embedder.vcxproj" />
-    <None Include="driver\source\libwdi\.msvc\embedder_sources" />
-    <None Include="driver\source\libwdi\.msvc\installer_x64.vcxproj" />
-    <None Include="driver\source\libwdi\.msvc\installer_x64_sources" />
-    <None Include="driver\source\libwdi\.msvc\installer_x86.vcxproj" />
-    <None Include="driver\source\libwdi\.msvc\installer_x86_sources" />
-    <None Include="driver\source\libwdi\.msvc\libwdi_dll.vcxproj" />
-    <None Include="driver\source\libwdi\.msvc\libwdi_sources" />
-    <None Include="driver\source\libwdi\.msvc\libwdi_static.vcxproj" />
-    <None Include="driver\source\libwdi\libusb0.cat.in" />
-    <None Include="driver\source\libwdi\libusb0.inf.in" />
-    <None Include="driver\source\libwdi\libusbk.cat.in" />
-    <None Include="driver\source\libwdi\libusbk.inf.in" />
-    <None Include="driver\source\libwdi\libwdi.pc.in" />
-    <None Include="driver\source\libwdi\Makefile.am" />
-    <None Include="driver\source\libwdi\usbser.cat.in" />
-    <None Include="driver\source\libwdi\usbser.inf.in" />
-    <None Include="driver\source\libwdi\vid_data.sh" />
-    <None Include="driver\source\libwdi\winusb.cat.in" />
-    <None Include="driver\source\libwdi\winusb.inf.in" />
-    <None Include="driver\source\Makefile.am" />
-    <None Include="driver\source\nesmini_driver\nesmini_driver.vcxproj" />
-    <None Include="driver\source\NEWS" />
-    <None Include="driver\source\README.md" />
-    <None Include="driver\source\_bm.sh" />
-    <None Include="driver\source\_bump.sh" />
-    <None Include="driver\source\_chlver.sh" />
-    <None Include="driver\source\_chzver.sh" />
-    <None Include="driver\source\_pre-commit.sh" />
-    <None Include="driver\source\_release.sh" />
     <None Include="images\sign-check.png" />
     <None Include="images\sign-down.png" />
     <None Include="images\sign-error.png" />
@@ -829,54 +789,14 @@
     </None>
     <EmbeddedResource Include="images\noboxart.png" />
     <None Include="Extensions\ModStore\Resources\info.png" />
-    <None Include="driver\source\libwdi.sln" />
-    <None Include="driver\source\libwdi\.msvc\detect_64build.vcxproj.user" />
-    <None Include="driver\source\libwdi\.msvc\embedder.vcxproj.filters" />
-    <None Include="driver\source\libwdi\.msvc\embedder.vcxproj.user" />
-    <None Include="driver\source\libwdi\.msvc\installer_x64.vcxproj.filters" />
-    <None Include="driver\source\libwdi\.msvc\installer_x64.vcxproj.user" />
-    <None Include="driver\source\libwdi\.msvc\installer_x86.vcxproj.filters" />
-    <None Include="driver\source\libwdi\.msvc\installer_x86.vcxproj.user" />
-    <None Include="driver\source\libwdi\.msvc\libwdi_dll.vcxproj.filters" />
-    <None Include="driver\source\libwdi\.msvc\libwdi_dll.vcxproj.user" />
-    <None Include="driver\source\libwdi\.msvc\libwdi_static.vcxproj.filters" />
-    <None Include="driver\source\libwdi\.msvc\libwdi_static.vcxproj.user" />
-    <None Include="driver\source\libwdi\build64.h" />
-    <None Include="driver\source\libwdi\embedder.c" />
-    <None Include="driver\source\libwdi\embedder.h" />
-    <None Include="driver\source\libwdi\embedder_files.h" />
-    <None Include="driver\source\libwdi\installer.c" />
-    <None Include="driver\source\libwdi\installer.h" />
-    <None Include="driver\source\libwdi\libwdi.c" />
-    <None Include="driver\source\libwdi\libwdi.def" />
-    <None Include="driver\source\libwdi\libwdi.h" />
-    <None Include="driver\source\libwdi\libwdi.rc" />
-    <None Include="driver\source\libwdi\libwdi_dlg.c" />
-    <None Include="driver\source\libwdi\libwdi_i.h" />
-    <None Include="driver\source\libwdi\logging.c" />
-    <None Include="driver\source\libwdi\logging.h" />
-    <None Include="driver\source\libwdi\msapi_utf8.h" />
-    <None Include="driver\source\libwdi\mssign32.h" />
-    <None Include="driver\source\libwdi\pki.c" />
-    <None Include="driver\source\libwdi\resource.h" />
-    <None Include="driver\source\libwdi\stdfn.h" />
-    <None Include="driver\source\libwdi\tokenizer.c" />
-    <None Include="driver\source\libwdi\tokenizer.h" />
-    <None Include="driver\source\libwdi\vid_data.c" />
-    <None Include="driver\source\msvc\config.h" />
-    <None Include="driver\source\msvc\inttypes.h" />
-    <None Include="driver\source\msvc\stdint.h" />
-    <None Include="driver\source\nesmini_driver\nesmini_driver.cpp" />
-    <None Include="driver\source\nesmini_driver\nesmini_driver.vcxproj.filters" />
-    <None Include="driver\source\nesmini_driver\nesmini_driver.vcxproj.user" />
-    <Content Include="driver\Nintendo_Classic_USB_Driver.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="images\sign-light-bulb.png" />
     <None Include="images\sign-lightning.png" />
     <None Include="images\sign-sync-off.png" />
     <None Include="images\sign-light-bulb-off.png" />
     <None Include="images\sign-clock.png" />
+    <Content Include="driver\classic_driver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Extensions\ModStore\Resources\InfoStrips.png" />
     <None Include="folder_images\2600.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2031,7 +1951,6 @@
     <None Include="data\nescarts.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="driver\nesmini_driver.exe" />
     <EmbeddedResource Include="images\2600_sm.png" />
     <EmbeddedResource Include="images\2600_sm_tr.png" />
     <EmbeddedResource Include="images\32x_sm.png" />

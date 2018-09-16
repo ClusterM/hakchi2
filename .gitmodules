@@ -11,3 +11,6 @@
 [submodule "Libraries/LibUsbDotNet"]
 	path = Libraries/LibUsbDotNet
 	url = https://github.com/TeamShinkansen/LibUsbDotNet.git
+[submodule "driver/source"]
+	path = driver/source
+	url = https://github.com/TeamShinkansen/libwdi.git

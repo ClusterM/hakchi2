@@ -35,7 +35,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelDriver = new System.Windows.Forms.Label();
             this.buttonDriver = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
@@ -65,10 +65,10 @@
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
             // 
-            // label6
+            // labelDriver
             // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
+            resources.ApplyResources(this.labelDriver, "labelDriver");
+            this.labelDriver.Name = "labelDriver";
             // 
             // buttonDriver
             // 
@@ -88,7 +88,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.buttonDriver);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.labelDriver);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -113,7 +113,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelDriver;
         private System.Windows.Forms.Button buttonDriver;
         private System.Windows.Forms.Timer timer;
     }
