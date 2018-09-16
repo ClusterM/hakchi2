@@ -107,7 +107,17 @@ Section "Uninstall"
   Delete "$DESKTOP\Hakchi2 CE.lnk"
   RMDir /r "$SMPROGRAMS\Team Shinkansen\Hakchi2 CE"
   RMDir "$SMPROGRAMS\Team Shinkansen"
+  
+  IfFileExists "$INSTDIR\hakchi.pdb" uninstall_debug
+  
+  uninstall_release:
+  !include "release-uninstall.nsh"
+  Goto uninstall_done
+  
+  uninstall_debug:
   !include "debug-uninstall.nsh"
+  
+  uninstall_done:
   Delete "$INSTDIR\nonportable.flag"
   Delete "$INSTDIR\uninstall.exe"
   RMDir "$INSTDIR"
