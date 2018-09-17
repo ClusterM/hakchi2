@@ -33,7 +33,7 @@
             this.label0 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelDriver = new System.Windows.Forms.Label();
             this.buttonDriver = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -55,10 +55,10 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
-            // label3
+            // labelDriver
             // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
+            resources.ApplyResources(this.labelDriver, "labelDriver");
+            this.labelDriver.Name = "labelDriver";
             // 
             // buttonDriver
             // 
@@ -86,7 +86,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonDriver);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.labelDriver);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label0);
@@ -108,7 +108,7 @@
         private System.Windows.Forms.Label label0;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelDriver;
         private System.Windows.Forms.Button buttonDriver;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.PictureBox pictureBox1;

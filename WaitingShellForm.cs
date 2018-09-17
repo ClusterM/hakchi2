@@ -14,7 +14,12 @@ namespace com.clusterrr.hakchi_gui
         public WaitingShellForm()
         {
             InitializeComponent();
-            buttonDriver.Left = label3.Left + label3.Width;
+            buttonDriver.Left = labelDriver.Left + labelDriver.Width;
+            if (WaitingFelForm.DriverInstalled() )
+            {
+                labelDriver.Visible = false;
+                buttonDriver.Visible = false;
+            }
             timer.Enabled = true;
         }
 
@@ -72,10 +77,7 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                var process = new Process();
-                var fileName = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "driver"), "nesmini_driver.exe");
-                process.StartInfo.FileName = fileName;
-                process.Start();
+                buttonDriver.Enabled = WaitingFelForm.InstallDriver() != 0;
             }
             catch (Exception ex)
             {
