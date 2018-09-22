@@ -142,6 +142,8 @@ namespace com.clusterrr.hakchi_gui
                         else
                             BaseDirectoryExternal = BaseDirectoryInternal;
 
+                        Directory.SetCurrentDirectory(BaseDirectoryInternal);
+
                         Trace.WriteLine("Base directory: " + BaseDirectoryExternal + " (" + (isPortable ? "portable" : "non-portable") + " mode)");
                         ConfigIni.Load();
                         try

@@ -272,6 +272,11 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        public static ConfigIni GetCleanInstance()
+        {
+            return new ConfigIni();
+        }
+
         // load
         public static bool Load()
         {

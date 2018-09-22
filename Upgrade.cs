@@ -186,6 +186,20 @@ namespace com.clusterrr.hakchi_gui
                     })
                 },
 
+                new Action()
+                {
+                    startingVersion = new Version("3.4.1.0"),
+                    targetVersion = new Version("3.4.1.1"),
+                    action = new ActionFunc(() => {
+                        var tempConfig = ConfigIni.GetCleanInstance();
+                        ConfigIni.Instance.TelnetCommand = tempConfig.TelnetCommand;
+                        ConfigIni.Instance.TelnetArguments = tempConfig.TelnetArguments;
+                        ConfigIni.Instance.FtpCommand = tempConfig.FtpCommand;
+                        ConfigIni.Instance.FtpArguments = tempConfig.FtpArguments;
+                        return true;
+                    })
+                }
+
             });
         }
     }
