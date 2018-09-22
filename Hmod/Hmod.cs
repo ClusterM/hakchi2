@@ -1,6 +1,8 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using com.clusterrr.hakchi_gui.Tasks;
 using SharpCompress.Archives;
+using SharpCompress.Common;
+using SharpCompress.Readers;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -88,24 +90,18 @@ namespace com.clusterrr.hakchi_gui.Hmod
 
                     if (!skipExtraction)
                     {
-                        using (var extractor = ArchiveFactory.Open(dir))
+                        using (var reader = ReaderFactory.Open(File.OpenRead(dir)))
                         {
-                            var tar = new MemoryStream();
-                            extractor.Entries.First().OpenEntryStream().CopyTo(tar);
-                            tar.Seek(0, SeekOrigin.Begin);
-                            using (var extractorTar = ArchiveFactory.Open(tar))
+                            while (reader.MoveToNextEntry())
                             {
-                                foreach (var f in extractorTar.Entries)
+                                foreach (var readmeFilename in HmodReadme.readmeFiles)
                                 {
-                                    foreach (var readmeFilename in HmodReadme.readmeFiles)
-                                    {
-                                        if (f.Key.ToLower() != readmeFilename && f.Key.ToLower() != $"./{readmeFilename}")
-                                            continue;
+                                    if (reader.Entry.Key.ToLower() != readmeFilename && reader.Entry.Key.ToLower() != $"./{readmeFilename}")
+                                        continue;
 
-                                        var o = new MemoryStream();
-                                        f.OpenEntryStream().CopyTo(o);
-                                        readmeData.Add(readmeFilename, Encoding.UTF8.GetString(o.ToArray()));
-                                    }
+                                    var o = new MemoryStream();
+                                    reader.OpenEntryStream().CopyTo(o);
+                                    readmeData.Add(readmeFilename, Encoding.UTF8.GetString(o.ToArray()));
                                 }
                             }
                         }

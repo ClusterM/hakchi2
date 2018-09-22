@@ -486,7 +486,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 using (var extractor = ArchiveFactory.Open(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")))
                 {
-                    extractor.Entries.Where(e => e.Key == "./hakchi.hmod").First().OpenEntryStream().CopyTo(hakchiHmod);
+                    extractor.Entries.Where(e => e.Key == "./hakchi.hmod" || e.Key == "hakchi.hmod").First().OpenEntryStream().CopyTo(hakchiHmod);
                 }
                 MemoryStream tar = new MemoryStream();
                 using (var extractor = ArchiveFactory.Open(hakchiHmod))
