@@ -259,6 +259,9 @@
     <Compile Include="ExportGamesDialog.Designer.cs">
       <DependentUpon>ExportGamesDialog.cs</DependentUpon>
     </Compile>
+    <Content Include="tools\putty\puttytel.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="ExportGamesDialog.de-DE.resx">
       <DependentUpon>ExportGamesDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -2009,6 +2012,9 @@
     <None Include="tools\busybox" />
     <None Include="tools\copypackedhmods" />
     <None Include="tools\downloadfiles" />
+    <Content Include="tools\putty\LICENCE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="user_mods\README.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

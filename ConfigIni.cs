@@ -221,10 +221,10 @@ namespace com.clusterrr.hakchi_gui
         public bool SeparateGameStorage = true;
         public bool SyncLinked = true;
         public bool AlwaysCopyOriginalGames = false;
-        public string FtpCommand = "explorer.exe";
-        public string FtpArguments = "ftp://{0}:{1}@{2}:{3}";
-        public string TelnetCommand = "telnet://{0}:{1}";
-        public string TelnetArguments = "";
+        public string FtpCommand = @"explorer.exe";
+        public string FtpArguments = @"ftp://{0}:{1}@{2}:{3}";
+        public string TelnetCommand = @"tools\putty\puttytel.exe";
+        public string TelnetArguments = @"telnet://{0}:{1}";
         public MainForm.OriginalGamesPosition OriginalGamesPosition = MainForm.OriginalGamesPosition.AtTop;
         public MainForm.GamesSorting GamesSorting = MainForm.GamesSorting.Name;
         public bool ShowGamesWithoutCoverArt = false;

@@ -2427,6 +2427,7 @@ namespace com.clusterrr.hakchi_gui
             }
             catch (Exception ex)
             {
+                Trace.WriteLine(ex.Message + ex.StackTrace);
                 Tasks.ErrorForm.Show(this, ex);
             }
         }
@@ -2464,7 +2465,7 @@ namespace com.clusterrr.hakchi_gui
             catch (Exception ex)
             {
                 Trace.WriteLine(ex.Message + ex.StackTrace);
-                Tasks.MessageForm.Show(Resources.Error, Resources.NoTelnet, Resources.sign_error);
+                Tasks.ErrorForm.Show(this, ex);
             }
         }
 
