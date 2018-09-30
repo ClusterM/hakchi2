@@ -139,7 +139,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
         public AppMetadata Metadata;
-
+        public bool SkipCoreSelect = false;
         public const string GameGenieFileName = "gamegenie.txt";
         public string GameGeniePath { private set; get; }
         public string GameGenie { get; set; }

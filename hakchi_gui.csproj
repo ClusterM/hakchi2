@@ -754,6 +754,7 @@
     <Compile Include="TechInfo.Designer.cs">
       <DependentUpon>TechInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="TempHelpers.cs" />
     <Compile Include="TrackableFileStream.cs" />
     <Compile Include="TrackableStream.cs" />
     <Compile Include="UnsupportedFourScreenException.cs" />
