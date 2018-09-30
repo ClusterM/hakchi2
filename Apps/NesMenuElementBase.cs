@@ -8,6 +8,8 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.IO;
 using System.Text.RegularExpressions;
+using SharpCompress.Writers;
+using System.IO.Compression;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -90,6 +92,15 @@ namespace com.clusterrr.hakchi_gui
         public virtual bool Save()
         {
             return false;
+        }
+
+        public virtual void Archive(string destinationFile)
+        {
+            using (var file = File.Open(destinationFile, FileMode.Create))
+            using (var writer = WriterFactory.Open(file, SharpCompress.Common.ArchiveType.Tar, new WriterOptions(SharpCompress.Common.CompressionType.GZip)))
+            {
+                writer.WriteAll(basePath);
+            }
         }
 
         public virtual long Size()

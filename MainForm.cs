@@ -929,7 +929,9 @@ namespace com.clusterrr.hakchi_gui
                     explorerToolStripMenuItem.Enabled =
                         downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
                         scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
-                        deleteSelectedGamesBoxArtToolStripMenuItem.Enabled = true;
+                        deleteSelectedGamesBoxArtToolStripMenuItem.Enabled = 
+                        archiveSelectedGamesToolStripMenuItem.Enabled = 
+                        true;
 
                     deleteSelectedGamesToolStripMenuItem.Enabled =
                         repairGamesToolStripMenuItem.Enabled =
@@ -960,7 +962,9 @@ namespace com.clusterrr.hakchi_gui
                     deleteSelectedGamesToolStripMenuItem.Enabled =
                     sFROMToolToolStripMenuItem1.Enabled =
                     repairGamesToolStripMenuItem.Enabled =
-                    selectEmulationCoreToolStripMenuItem.Enabled = false;
+                    selectEmulationCoreToolStripMenuItem.Enabled = 
+                    archiveSelectedGamesToolStripMenuItem.Enabled =
+                    false;
             }
             else if (c > 1)
             {
@@ -2589,6 +2593,17 @@ namespace com.clusterrr.hakchi_gui
                     Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
             if (ConfigIni.Instance.ShowGamesWithoutCoverArt)
                 LoadGames(false);
+        }
+
+        private void archiveSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var task = new Tasks.GameTask();
+            if (groupTaskWithSelected(task, task.ArchiveGames, false))
+                if (!ConfigIni.Instance.DisablePopups)
+                    Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
+
+            listViewGames.SelectedItems.Cast<ListViewItem>().ToList().
+                ForEach(i => i.Selected = false);
         }
 
         private void compressSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)

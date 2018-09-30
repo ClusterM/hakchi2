@@ -164,6 +164,7 @@
             this.downloadBoxArtForSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedGamesBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripSeparator();
+            this.archiveSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decompressSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1188,6 +1189,7 @@
             this.downloadBoxArtForSelectedGamesToolStripMenuItem,
             this.deleteSelectedGamesBoxArtToolStripMenuItem,
             this.toolStripMenuItem15,
+            this.archiveSelectedGamesToolStripMenuItem,
             this.compressSelectedGamesToolStripMenuItem,
             this.decompressSelectedGamesToolStripMenuItem,
             this.deleteSelectedGamesToolStripMenuItem,
@@ -1232,6 +1234,12 @@
             // 
             this.toolStripMenuItem15.Name = "toolStripMenuItem15";
             resources.ApplyResources(this.toolStripMenuItem15, "toolStripMenuItem15");
+            // 
+            // archiveSelectedGamesToolStripMenuItem
+            // 
+            resources.ApplyResources(this.archiveSelectedGamesToolStripMenuItem, "archiveSelectedGamesToolStripMenuItem");
+            this.archiveSelectedGamesToolStripMenuItem.Name = "archiveSelectedGamesToolStripMenuItem";
+            this.archiveSelectedGamesToolStripMenuItem.Click += new System.EventHandler(this.archiveSelectedGamesToolStripMenuItem_Click);
             // 
             // compressSelectedGamesToolStripMenuItem
             // 
@@ -1989,6 +1997,7 @@
         private System.Windows.Forms.ToolStripMenuItem switchRunningFirmwareToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem generateModulesReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem archiveSelectedGamesToolStripMenuItem;
     }
 }
 

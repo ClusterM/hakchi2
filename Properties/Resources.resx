@@ -1306,4 +1306,24 @@ You can wait some more and if it comes back online, you should see "Recovery mod
   <data name="KernelCheckFailed" xml:space="preserve">
     <value>Kernel checksum failed</value>
   </data>
+  <data name="Archiving" xml:space="preserve">
+    <value>Archiving: {0}</value>
+  </data>
+  <data name="ArchivingGame" xml:space="preserve">
+    <value>Archiving Game</value>
+  </data>
+  <data name="ArchivingGames" xml:space="preserve">
+    <value>Archiving Games</value>
+  </data>
+  <data name="GameArchiveFilter" xml:space="preserve">
+    <value>Game Archive (*.clvg)|*.clvg</value>
+  </data>
+  <data name="ReplaceFileQ" xml:space="preserve">
+    <value>Replace File?</value>
+  </data>
+  <data name="ReplaceFollowingFileQ" xml:space="preserve">
+    <value>Do you want to replace the following file?
+
+{0}</value>
+  </data>
 </root>

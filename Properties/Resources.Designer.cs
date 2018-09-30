@@ -152,6 +152,33 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archiving: {0}.
+        /// </summary>
+        internal static string Archiving {
+            get {
+                return ResourceManager.GetString("Archiving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archiving Game.
+        /// </summary>
+        internal static string ArchivingGame {
+            get {
+                return ResourceManager.GetString("ArchivingGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archiving Games.
+        /// </summary>
+        internal static string ArchivingGames {
+            get {
+                return ResourceManager.GetString("ArchivingGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
         internal static string AreYouSure {
@@ -1709,6 +1736,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game Archive (*.clvg)|*.clvg.
+        /// </summary>
+        internal static string GameArchiveFilter {
+            get {
+                return ResourceManager.GetString("GameArchiveFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Game Genie code &quot;{0}&quot; for game &quot;{1}&quot;..
         /// </summary>
         internal static string GameGenieFormatError {
@@ -2756,6 +2792,26 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string RepairSelectedGamesQ {
             get {
                 return ResourceManager.GetString("RepairSelectedGamesQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace File?.
+        /// </summary>
+        internal static string ReplaceFileQ {
+            get {
+                return ResourceManager.GetString("ReplaceFileQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to replace the following file?
+        ///
+        ///{0}.
+        /// </summary>
+        internal static string ReplaceFollowingFileQ {
+            get {
+                return ResourceManager.GetString("ReplaceFollowingFileQ", resourceCulture);
             }
         }
         

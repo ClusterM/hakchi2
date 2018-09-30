@@ -1033,6 +1033,15 @@
   <data name="toolStripMenuItem15.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 6</value>
   </data>
+  <data name="archiveSelectedGamesToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="archiveSelectedGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="archiveSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Archive selected games</value>
+  </data>
   <data name="compressSelectedGamesToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -2961,6 +2970,12 @@
   </data>
   <data name="&gt;&gt;toolStripMenuItem15.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;archiveSelectedGamesToolStripMenuItem.Name" xml:space="preserve">
+    <value>archiveSelectedGamesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;archiveSelectedGamesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;compressSelectedGamesToolStripMenuItem.Name" xml:space="preserve">
     <value>compressSelectedGamesToolStripMenuItem</value>

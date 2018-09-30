@@ -390,5 +390,58 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Tasker.Conclusion.Success;
         }
 
+        internal Tasker.Conclusion ArchiveGames(Tasker tasker, object syncObject)
+        {
+            long counter = 0;
+            long gameCount = Games.Count;
+
+            tasker.SetTitle(gameCount > 1 ? Resources.ArchivingGames : Resources.ArchivingGame);
+            
+            string directory = null;
+
+            if (gameCount > 1)
+            {
+                using (var fbd = new FolderBrowserDialog() { SelectedPath = Program.BaseDirectoryExternal })
+                {
+                    if (fbd.ShowDialog() == DialogResult.OK)
+                    {
+                        directory = fbd.SelectedPath;
+                    }
+                    else
+                    {
+                        return Tasker.Conclusion.Abort;
+                    }
+                }
+            }
+
+            foreach (var game in Games)
+            {
+                tasker.SetStatus(String.Format(Resources.Archiving, game.Name));
+                var fileName = $"{game.Code} - {game.Name}.clvg";
+
+                if (directory == null)
+                {
+                    using (var sfd = new SaveFileDialog() { Filter = Resources.GameArchiveFilter, FileName = fileName })
+                    {
+                        if (sfd.ShowDialog() == DialogResult.OK)
+                        {
+                            game.Archive(sfd.FileName);
+                        }
+                    }
+                }
+                else
+                {
+                    var archivePath = Path.Combine(directory, fileName);
+                    if (File.Exists(archivePath) &&  tasker.ShowMessage(Resources.ReplaceFileQ, String.Format(Resources.ReplaceFollowingFileQ, archivePath), Resources.sign_question, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }) == MessageForm.Button.No)
+                    {
+                        continue;
+                    }
+                    game.Archive(archivePath);
+                }
+                counter++;
+                tasker.SetProgress(counter, gameCount);
+            }
+            return Tasker.Conclusion.Success;
+        }
     }
 }
