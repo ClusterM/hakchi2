@@ -99,7 +99,7 @@ namespace com.clusterrr.hakchi_gui
             using (var file = File.Open(destinationFile, FileMode.Create))
             using (var writer = WriterFactory.Open(file, SharpCompress.Common.ArchiveType.Tar, new WriterOptions(SharpCompress.Common.CompressionType.GZip)))
             {
-                writer.WriteAll(basePath);
+                writer.WriteAll(basePath, "*", SearchOption.AllDirectories);
             }
         }
 

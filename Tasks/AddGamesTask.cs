@@ -91,7 +91,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             using (var file = File.OpenRead(sourceFileName))
                             using (var reader = ReaderFactory.Open(file))
                             {
-                                reader.WriteAllToDirectory(tmp);
+                                reader.WriteAllToDirectory(tmp, new ExtractionOptions() { ExtractFullPath = true, PreserveFileTime = true });
                             }
 
                             var gameFilesInArchive = Directory.GetFiles(tmp, "*.desktop").Select(o => new DirectoryInfo(o)).Cast<DirectoryInfo>().ToArray();
