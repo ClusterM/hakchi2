@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModStore));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.refreshContentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showExperimentalModsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sortByAZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sortByDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +57,8 @@
             this.modStoreTabControl2 = new com.clusterrr.hakchi_gui.ModStoreTabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.modStoreTabControl6 = new com.clusterrr.hakchi_gui.ModStoreTabControl();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.modStoreTabControl7 = new com.clusterrr.hakchi_gui.ModStoreTabControl();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.menuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -67,6 +70,7 @@
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -74,6 +78,7 @@
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.refreshContentToolStripMenuItem,
+            this.showExperimentalModsToolStripMenuItem,
             this.sortToolStripMenuItem,
             this.submitYourOwnModToolStripMenuItem,
             this.helpToolStripMenuItem});
@@ -85,6 +90,12 @@
             this.refreshContentToolStripMenuItem.Name = "refreshContentToolStripMenuItem";
             resources.ApplyResources(this.refreshContentToolStripMenuItem, "refreshContentToolStripMenuItem");
             this.refreshContentToolStripMenuItem.Click += new System.EventHandler(this.refreshContentToolStripMenuItem_Click);
+            // 
+            // showExperimentalModsToolStripMenuItem
+            // 
+            this.showExperimentalModsToolStripMenuItem.Name = "showExperimentalModsToolStripMenuItem";
+            resources.ApplyResources(this.showExperimentalModsToolStripMenuItem, "showExperimentalModsToolStripMenuItem");
+            this.showExperimentalModsToolStripMenuItem.Click += new System.EventHandler(this.showExperimentalModsToolStripMenuItem_Click);
             // 
             // sortToolStripMenuItem
             // 
@@ -166,6 +177,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage7);
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -269,6 +281,19 @@
             resources.ApplyResources(this.modStoreTabControl6, "modStoreTabControl6");
             this.modStoreTabControl6.Name = "modStoreTabControl6";
             // 
+            // tabPage7
+            // 
+            this.tabPage7.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage7.Controls.Add(this.modStoreTabControl7);
+            resources.ApplyResources(this.tabPage7, "tabPage7");
+            this.tabPage7.Name = "tabPage7";
+            // 
+            // modStoreTabControl7
+            // 
+            this.modStoreTabControl7.Category = "experimental";
+            resources.ApplyResources(this.modStoreTabControl7, "modStoreTabControl7");
+            this.modStoreTabControl7.Name = "modStoreTabControl7";
+            // 
             // ModStore
             // 
             resources.ApplyResources(this, "$this");
@@ -295,6 +320,7 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,5 +356,8 @@
         private System.Windows.Forms.ToolStripMenuItem sortToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sortByAZToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sortByDateToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage7;
+        private ModStoreTabControl modStoreTabControl7;
+        private System.Windows.Forms.ToolStripMenuItem showExperimentalModsToolStripMenuItem;
     }
 }

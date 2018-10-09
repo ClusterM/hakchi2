@@ -3053,6 +3053,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to show experimental mods?.
+        /// </summary>
+        internal static string ShowExperimentalQuestion {
+            get {
+                return ResourceManager.GetString("ShowExperimentalQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap sign_add {

@@ -16,6 +16,7 @@ namespace com.clusterrr.hakchi_gui
     {
         private ModStoreManager config = new ModStoreManager();
         private Module currentModule { get; set; }
+        private bool showExperimentalTab = false;
 
         #region Form Initialisation
         public ModStore()
@@ -65,6 +66,12 @@ namespace com.clusterrr.hakchi_gui
 
             //Check if user deleted module
             config.CheckForDeletedItems();
+
+            //Add or Remove Experimental Tab
+            if (showExperimentalTab == false)
+                tabControl1.TabPages.Remove(tabPage7);
+            else if (tabControl1.TabPages.Contains(tabPage7) == false)
+                tabControl1.TabPages.Add(tabPage7);
 
             //Setup Tabs and Load Items
             loadTabItems();
@@ -122,6 +129,17 @@ namespace com.clusterrr.hakchi_gui
         {
             sortByAZToolStripMenuItem.Checked = config.SortAlphabetically;
             sortByDateToolStripMenuItem.Checked = !config.SortAlphabetically;
+        }
+
+        private void showExperimentalModsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.ShowExperimentalQuestion, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
+            {
+                showExperimentalTab = true;
+                menuStrip.Items.Remove(showExperimentalModsToolStripMenuItem);
+                ModStore_Initialise(false);
+                tabControl1.SelectedTab = tabPage7;
+            }
         }
         #endregion
 

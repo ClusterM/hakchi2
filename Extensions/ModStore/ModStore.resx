@@ -127,6 +127,12 @@
   <data name="refreshContentToolStripMenuItem.Text" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="showExperimentalModsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 20</value>
+  </data>
+  <data name="showExperimentalModsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Show Experimental Mods</value>
+  </data>
   <data name="sortByAZToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
@@ -638,6 +644,57 @@
   </data>
   <data name="modStoreTabControl6.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="modStoreTabControl7.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="modStoreTabControl7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="modStoreTabControl7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>738, 382</value>
+  </data>
+  <data name="modStoreTabControl7.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl7.Name" xml:space="preserve">
+    <value>modStoreTabControl7</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl7.Type" xml:space="preserve">
+    <value>com.clusterrr.hakchi_gui.ModStoreTabControl, hakchi, Version=3.4.1.7, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl7.Parent" xml:space="preserve">
+    <value>tabPage7</value>
+  </data>
+  <data name="&gt;&gt;modStoreTabControl7.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPage7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage7.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>744, 388</value>
+  </data>
+  <data name="tabPage7.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>Experimental</value>
+  </data>
+  <data name="&gt;&gt;tabPage7.Name" xml:space="preserve">
+    <value>tabPage7</value>
+  </data>
+  <data name="&gt;&gt;tabPage7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage7.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage7.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="fontDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>241, 17</value>

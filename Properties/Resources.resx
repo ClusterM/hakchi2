@@ -1326,4 +1326,7 @@ You can wait some more and if it comes back online, you should see "Recovery mod
 
 {0}</value>
   </data>
+  <data name="ShowExperimentalQuestion" xml:space="preserve">
+    <value>Are you sure you want to show experimental mods?</value>
+  </data>
 </root>
