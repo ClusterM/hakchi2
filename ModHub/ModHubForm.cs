@@ -1,5 +1,6 @@
 ﻿using com.clusterrr.hakchi_gui.ModHub.Controls;
 using com.clusterrr.hakchi_gui.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -20,7 +21,7 @@ namespace com.clusterrr.hakchi_gui.ModHub
             IEnumerable<Repository.Repository.Item> items;
             foreach (var mod in repoItems)
             {
-                if (mod.Category != null && !categories.Contains(mod.Category))
+                if (mod.Category != null && categories.FindIndex(o => o.Equals(mod.Category, StringComparison.OrdinalIgnoreCase)) == -1)
                 {
                     categories.Add(mod.Category);
                 }
@@ -32,7 +33,7 @@ namespace com.clusterrr.hakchi_gui.ModHub
 
             foreach (var category in categories)
             {
-                items = repoItems.Where((o) => o.Kind != Repository.Repository.ItemKind.Game && ((o.Category != null && o.Category.Equals(category, System.StringComparison.CurrentCultureIgnoreCase)) || o.Category == null && category == null));
+                items = repoItems.Where((o) => o.Kind != Repository.Repository.ItemKind.Game && ((o.Category != null && o.Category.Equals(category, System.StringComparison.OrdinalIgnoreCase)) || o.Category == null && category == null));
                 if (items.Count() == 0)
                     continue;
 

@@ -398,9 +398,6 @@
   <data name="modRepoEndSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 6</value>
   </data>
-  <data name="modRepoEndSeparator.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="manageModRepositoriesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>209, 22</value>
   </data>

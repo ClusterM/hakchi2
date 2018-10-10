@@ -286,6 +286,7 @@
       <DependentUpon>ExportGamesDialog.cs</DependentUpon>
     </Compile>
     <None Include="images\pencil-icon.png" />
+    <Content Include="ModHub\snes-dots.png" />
     <Content Include="tools\putty\puttytel.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

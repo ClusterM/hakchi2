@@ -1025,6 +1025,9 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   <data name="UninstallingHakchi" xml:space="preserve">
     <value>Uninstalling hakchi...</value>
   </data>
+  <data name="snes-dots" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ModHub\snes-dots.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\splash.gz;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

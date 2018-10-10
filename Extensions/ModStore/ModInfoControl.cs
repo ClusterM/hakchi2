@@ -1,18 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui.Extensions.ModStore
 {
     public partial class ModInfoControl : UserControl
     {
-        private Image infoStrips = new Bitmap(ModStoreResources.InfoStrips);
+        private Bitmap _infoStrips = ModStoreResources.InfoStrips;
+        public Bitmap infoStrips {
+            get
+            {
+                return _infoStrips;
+            }
+            set
+            {
+                _infoStrips = value;
+                Refresh();
+            }
+        }
+
+        private Color _textColor = Color.White;
+        public Color textColor
+        {
+            get
+            {
+                return _textColor;
+                
+            }
+            set
+            {
+                _textColor = value;
+                Refresh();
+            }
+        }
+
         private Font HeadingFont = new Font("Arial", 12, FontStyle.Bold);
         private Font DataFont = new Font("Arial", 9, FontStyle.Regular);
         private const int padding = 8;
@@ -95,42 +115,47 @@ namespace com.clusterrr.hakchi_gui.Extensions.ModStore
             }
         }
 
-        private int DrawString(string text, Font font, int yOffset, ref PaintEventArgs e)
+        private int DrawString(Brush brush, string text, Font font, int yOffset, ref PaintEventArgs e)
         {
-            e.Graphics.DrawString(text, font, Brushes.White, new RectangleF(padding, yOffset, Width - (padding * 2), Height));
+            e.Graphics.DrawString(text, font, brush, new RectangleF(padding, yOffset, Width - (padding * 2), Height));
             return (int)(e.Graphics.MeasureString(text, font, Width - (padding * 2)).Height);
         }
 
         private void ModInfo_Paint(object sender, PaintEventArgs e)
         {
+            var brush = new SolidBrush(_textColor);
+
             int CurrentYOffset = padding;
-            for(int i = 0; i < Height; i = i + infoStrips.Height)
+            if (_infoStrips != null)
             {
-                e.Graphics.DrawImage(infoStrips, Width - infoStrips.Width, i);
+                for (int i = 0; i < Height; i = i + _infoStrips.Height)
+                {
+                    e.Graphics.DrawImage(_infoStrips, Width - _infoStrips.Width, i);
+                }
             }
 
             if(_ModuleName != null && _ModuleName.Trim().Length > 0)
             {
-                CurrentYOffset += DrawString("Module Name:", HeadingFont, CurrentYOffset, ref e);
-                CurrentYOffset += DrawString($"{_ModuleName}\r\n ", DataFont, CurrentYOffset, ref e);
+                CurrentYOffset += DrawString(brush, "Module Name:", HeadingFont, CurrentYOffset, ref e);
+                CurrentYOffset += DrawString(brush, $"{_ModuleName}\r\n ", DataFont, CurrentYOffset, ref e);
             }
 
             if(_Author != null && _Author.Trim().Length > 0)
             {
-                CurrentYOffset += DrawString("Author:", HeadingFont, CurrentYOffset, ref e);
-                CurrentYOffset += DrawString($"{_Author}\r\n ", DataFont, CurrentYOffset, ref e);
+                CurrentYOffset += DrawString(brush, "Author:", HeadingFont, CurrentYOffset, ref e);
+                CurrentYOffset += DrawString(brush, $"{_Author}\r\n ", DataFont, CurrentYOffset, ref e);
             }
 
             if(_LatestVersion != null && _LatestVersion.Trim().Length > 0)
             {
-                CurrentYOffset += DrawString("Latest Version:", HeadingFont, CurrentYOffset, ref e);
-                CurrentYOffset += DrawString($"{_LatestVersion}\r\n ", DataFont, CurrentYOffset, ref e);
+                CurrentYOffset += DrawString(brush, "Latest Version:", HeadingFont, CurrentYOffset, ref e);
+                CurrentYOffset += DrawString(brush, $"{_LatestVersion}\r\n ", DataFont, CurrentYOffset, ref e);
             }
 
             if (_InstalledVersion != null && _InstalledVersion.Trim().Length > 0)
             {
-                CurrentYOffset += DrawString("Installed Version:", HeadingFont, CurrentYOffset, ref e);
-                CurrentYOffset += DrawString($"{_InstalledVersion}\r\n ", DataFont, CurrentYOffset, ref e);
+                CurrentYOffset += DrawString(brush, "Installed Version:", HeadingFont, CurrentYOffset, ref e);
+                CurrentYOffset += DrawString(brush, $"{_InstalledVersion}\r\n ", DataFont, CurrentYOffset, ref e);
             }
         }
     }
