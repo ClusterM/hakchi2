@@ -1347,4 +1347,7 @@ You can wait some more and if it comes back online, you should see "Recovery mod
   <data name="NoRepositoriesConfigured" xml:space="preserve">
     <value>No repositories configured</value>
   </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
 </root>

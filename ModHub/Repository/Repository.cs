@@ -1,17 +1,14 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using com.clusterrr.hakchi_gui.Tasks;
 using com.clusterrr.util;
-using SharpCompress.Archives;
 using SharpCompress.Readers;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static com.clusterrr.hakchi_gui.Tasks.Tasker;
 
@@ -51,6 +48,7 @@ namespace com.clusterrr.hakchi_gui.ModHub.Repository
         }
 
         public List<Item> Items = new List<Item>();
+        public string Readme { get; private set; } = null;
 
         public static string[] ItemKindFileExtensions = new string[] { null, ".hmod", ".clvg" };
         public enum ItemKind
@@ -183,12 +181,17 @@ namespace com.clusterrr.hakchi_gui.ModHub.Repository
                 {
                     while (reader.MoveToNextEntry())
                     {
-                        if (Regex.Match(reader.Entry.Key, @"^(?:\./)?list").Success)
+                        if (Regex.Match(reader.Entry.Key, @"^(?:\./)?list$", RegexOptions.IgnoreCase).Success)
                         {
                             list = Regex.Replace(StreamToString(reader.OpenEntryStream()), @"[\r\n]+", "\n").Split("\n"[0]);
                         }
 
-                        var match = Regex.Match(reader.Entry.Key, @"^(?:\./)?([^/]+)/(extract|link|md5|sha1|readme(?:\.(?:md|txt)?)?)$");
+                        if (Regex.Match(reader.Entry.Key, @"^(?:\./)?readme.md$", RegexOptions.IgnoreCase).Success)
+                        {
+                            Readme = StreamToString(reader.OpenEntryStream());
+                        }
+                        
+                        var match = Regex.Match(reader.Entry.Key, @"^(?:\./)?([^/]+)/(extract|link|md5|sha1|readme(?:\.(?:md|txt)?)?)$", RegexOptions.IgnoreCase);
                         if (match.Success)
                         {
                             var mod = match.Groups[1].ToString();
@@ -202,7 +205,7 @@ namespace com.clusterrr.hakchi_gui.ModHub.Repository
                                 tempDict.Add(mod, item);
                             }
 
-                            switch (fileName)
+                            switch (fileName.ToLower())
                             {
                                 case "extract":
                                     item.setExtract(true);

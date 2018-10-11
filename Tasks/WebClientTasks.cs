@@ -13,7 +13,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             return (Tasker tasker, Object sync) =>
             {
-
                 Conclusion result = Conclusion.Success;
                 var wc = new WebClient();
                 wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(async (object sender, DownloadProgressChangedEventArgs e) =>
@@ -26,7 +25,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     if (e.Error != null)
                     {
                         File.Delete(fileName);
-                        tasker.ShowError(e.Error);
                         result = Conclusion.Error;
                     }
                 };

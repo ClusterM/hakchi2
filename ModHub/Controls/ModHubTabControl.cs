@@ -11,19 +11,15 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
 {
     public partial class ModHubTabControl : UserControl
     {
+        private string Download = ModHubResources.DownloadModule;
+        private string DownloadAndInstall = ModHubResources.DownloadAndInstallModule;
+        private string DownloadPlural = ModHubResources.DownloadModules;
+        private string DownloadAndInstallPlural = ModHubResources.DownloadAndInstallModules;
+
         public enum ButtonStringType
         {
             Module,
             Game
-        }
-
-        private static class ButtonStrings
-        {
-            public static string Download = ModHubResources.DownloadModule;
-            public static string DownloadAndInstall = ModHubResources.DownloadAndInstallModule;
-            public static string DownloadPlural = ModHubResources.DownloadModules;
-            public static string DownloadAndInstallPlural = ModHubResources.DownloadAndInstallModules;
-
         }
 
         public ModHubForm parentForm = null;
@@ -42,17 +38,17 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
             switch (type)
             {
                 case ButtonStringType.Module:
-                    ButtonStrings.Download = ModHubResources.DownloadModule;
-                    ButtonStrings.DownloadAndInstall = ModHubResources.DownloadAndInstallModule;
-                    ButtonStrings.DownloadPlural = ModHubResources.DownloadModules;
-                    ButtonStrings.DownloadAndInstallPlural = ModHubResources.DownloadAndInstallModules;
+                    Download = ModHubResources.DownloadModule;
+                    DownloadAndInstall = ModHubResources.DownloadAndInstallModule;
+                    DownloadPlural = ModHubResources.DownloadModules;
+                    DownloadAndInstallPlural = ModHubResources.DownloadAndInstallModules;
                     return;
 
                 case ButtonStringType.Game:
-                    ButtonStrings.Download = ModHubResources.DownloadGame;
-                    ButtonStrings.DownloadAndInstall = null;
-                    ButtonStrings.DownloadPlural = ModHubResources.DownloadGames;
-                    ButtonStrings.DownloadAndInstallPlural = null;
+                    Download = ModHubResources.DownloadGame;
+                    DownloadAndInstall = null;
+                    DownloadPlural = ModHubResources.DownloadGames;
+                    DownloadAndInstallPlural = null;
                     return;
             }
 
@@ -62,13 +58,13 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
         {
             if (modList.SelectedItems.Count > 1)
             {
-                modDownloadButton.Text = ButtonStrings.DownloadPlural;
-                modDownloadInstallButton.Text = ButtonStrings.DownloadAndInstallPlural;
+                modDownloadButton.Text = DownloadPlural;
+                modDownloadInstallButton.Text = DownloadAndInstallPlural;
             }
             else
             {
-                modDownloadButton.Text = ButtonStrings.Download;
-                modDownloadInstallButton.Text = ButtonStrings.DownloadAndInstall;
+                modDownloadButton.Text = Download;
+                modDownloadInstallButton.Text = DownloadAndInstall;
             }
         }
         public void LoadData(IEnumerable<Repository.Repository.Item> items)

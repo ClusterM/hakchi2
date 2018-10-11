@@ -7223,7 +7223,7 @@ html, body {
     background: transparent;
 }
 
-h1#title {
+#content > h1:first-child {
     margin-top: 0;
     padding-top: 0;
     width: 100%;

@@ -3165,7 +3165,7 @@ namespace com.clusterrr.hakchi_gui
                         using (var hub = new ModHub.ModHubForm())
                         {
                             hub.Text = unboxed.Text;
-                            hub.LoadData(repo.Items);
+                            hub.LoadData(repo);
                             hub.ShowDialog(this);
                         }
                     }

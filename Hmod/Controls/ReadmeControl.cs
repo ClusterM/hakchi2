@@ -15,20 +15,24 @@ namespace com.clusterrr.hakchi_gui.Hmod.Controls
         public ReadmeControl()
         {
             InitializeComponent();
+
+            wbReadme.Navigate("about:blank");
+            HtmlDocument doc = wbReadme.Document;
+            doc.Write(String.Empty);
+
             clear();
         }
 
-        private string formatReadme(ref HmodReadme hReadme)
+        private string formatReadme(string name, ref HmodReadme hReadme)
         {
-            
-
-            return CommonMarkConverter.Convert(String.Join("  \n", hReadme.headingLines) + "\n\n" + (hReadme.isMarkdown || hReadme.readme.Length == 0 ? hReadme.readme : $"```\n{hReadme.readme}\n```"));
+            string markdownTitle = (name != null && name.Trim() != "" ? $"# {name}\n\n" : "");
+            return CommonMarkConverter.Convert(markdownTitle + String.Join("  \n", hReadme.headingLines) + "\n\n" + (hReadme.isMarkdown || hReadme.readme.Length == 0 ? hReadme.readme : $"```\n{hReadme.readme}\n```"));
         }
 
         private void setReadmeHTML(string name, ref HmodReadme hReadme)
         {
             Color color = this.BackColor;
-            string html = String.Format(Properties.Resources.readmeTemplateHTML, Properties.Resources.readmeTemplateCSS, name, formatReadme(ref Readme), $"rgb({color.R},{color.G},{color.B})");
+            string html = String.Format(Properties.Resources.readmeTemplateHTML, Properties.Resources.readmeTemplateCSS, formatReadme(name, ref Readme), $"rgb({color.R},{color.G},{color.B})");
             wbReadme.DocumentText = html;
         }
 
@@ -47,7 +51,7 @@ namespace com.clusterrr.hakchi_gui.Hmod.Controls
         {
             Readme = new HmodReadme("");
             Color color = this.BackColor;
-            string html = String.Format(Properties.Resources.readmeTemplateHTML, Properties.Resources.readmeTemplateCSS, "", "", $"rgb({color.R},{color.G},{color.B})");
+            string html = String.Format(Properties.Resources.readmeTemplateHTML, Properties.Resources.readmeTemplateCSS, "", $"rgb({color.R},{color.G},{color.B})");
             wbReadme.DocumentText = html;
         }
 
