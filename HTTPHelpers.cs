@@ -45,6 +45,7 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
+                request.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
 
                 request.AllowAutoRedirect = true;
                 HttpWebResponse response = (HttpWebResponse)(request.GetResponse());

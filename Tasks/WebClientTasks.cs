@@ -15,6 +15,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 Conclusion result = Conclusion.Success;
                 var wc = new WebClient();
+                wc.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
+
                 wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(async (object sender, DownloadProgressChangedEventArgs e) =>
                 {
                     tasker.SetProgress(e.BytesReceived, e.TotalBytesToReceive);
