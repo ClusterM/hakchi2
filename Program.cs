@@ -50,6 +50,19 @@ namespace com.clusterrr.hakchi_gui
         [STAThread]
         static void Main(string[] args)
         {
+
+            var versionFileArgIndex = -1;
+            if (args != null && (versionFileArgIndex = Array.IndexOf(args, "--versionFile")) != -1)
+            {
+                string versionFormat = "{0}";
+                var versionFormatArgIndex = -1;
+                if (args != null && (versionFormatArgIndex = Array.IndexOf(args, "--versionFormat")) != -1)
+                {
+                    versionFormat = args[versionFormatArgIndex + 1];
+                }
+                File.WriteAllText(args[versionFileArgIndex + 1], String.Format(versionFormat, Shared.AppDisplayVersion));
+                return;
+            }
 #if DEBUG
             try
             {

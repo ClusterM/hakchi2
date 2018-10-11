@@ -1,18 +1,22 @@
 !include "LogicLib.nsh"
 !include "Sections.nsh"
-!getdllversion "../bin/Release/hakchi.exe" cever_
 
-; The name of the installer
-Name "Hakchi2 CE ${cever_1}.${cever_2}.${cever_3}"
+; Display Version
+!system '..\bin\Release\hakchi.exe --versionFormat "!define DisplayVersion {0}" --versionFile version.nsh'
+!include ".\version.nsh"
+!system 'del version.nsh'
 
 ; The icon of the installer
 Icon "..\icon_app.ico"
 
 ; The file to write
-OutFile "..\bin\hakchi2-ce-${cever_1}.${cever_2}.${cever_3}-installer.exe"
+OutFile "..\bin\hakchi2-ce-${DisplayVersion}-installer.exe"
 
 ; The default installation directory
 Var defaultInstDir
+
+; The name of the installer
+Name "Hakchi2 CE ${DisplayVersion}"
 
 ; Registry key to check for directory (so if you install again, it will 
 ; overwrite the old one automatically)
@@ -45,7 +49,7 @@ UninstPage instfiles
 
 ; Sections
 
-SectionGroup /e "Hakchi2 CE ${cever_1}.${cever_2}.${cever_3} (required)"
+SectionGroup /e "Hakchi2 CE ${DisplayVersion} (required)"
   
   Section "Release Build" section_release
     SetOutPath $INSTDIR
@@ -139,7 +143,11 @@ Function .onSelChange
   !insertmacro EndRadioButtons
 
   ${If} ${SectionIsSelected} ${section_portable}
-    StrCpy $InstDir "$EXEDIR\hakchi2-ce-${cever_1}.${cever_2}.${cever_3}"
+    ${If} ${SectionIsSelected} ${section_debug}
+      StrCpy $InstDir "$EXEDIR\hakchi2-ce-${DisplayVersion}-debug"
+    ${Else}
+      StrCpy $InstDir "$EXEDIR\hakchi2-ce-${DisplayVersion}-release"
+    ${EndIf}
     !insertmacro UnselectSection ${section_install}
     !insertmacro UnselectSection ${section_startmenu}
     !insertmacro UnselectSection ${section_desktop}
