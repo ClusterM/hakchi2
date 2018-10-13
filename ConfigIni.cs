@@ -11,6 +11,8 @@ namespace com.clusterrr.hakchi_gui
 {
     public class ConfigIni
     {
+        public enum UbootType { Normal, SD }
+
         // constants
         public const string ConfigDir = "config";
         public const string ConfigFile = "config.json";
@@ -235,7 +237,7 @@ namespace com.clusterrr.hakchi_gui
         public bool UploadToTmp = false;
         public bool ExportLinked = true;
         public string ExportDrive = "";
-        public FelLib.Fel.UbootType MembootUboot = FelLib.Fel.UbootType.SD;
+        public UbootType MembootUboot = UbootType.SD;
         public Hmod.ListSort hmodListSort = Hmod.ListSort.Category;
         public RepositoryInfo[] repos = new RepositoryInfo[] {
             new RepositoryInfo("KMFD's Mod Hub", "https://hakchi.net/KMFDManic/NESC-SNESC-Modifications/.repo/"),
@@ -586,11 +588,11 @@ namespace com.clusterrr.hakchi_gui
                                     case "membootuboot":
                                         if (value == "uboot.bin")
                                         {
-                                            instance.MembootUboot = FelLib.Fel.UbootType.Normal;
+                                            instance.MembootUboot = UbootType.Normal;
                                         }
                                         else
                                         {
-                                            instance.MembootUboot = FelLib.Fel.UbootType.SD;
+                                            instance.MembootUboot = UbootType.SD;
                                         }
                                         break;
                                     case "hmodlistsort":

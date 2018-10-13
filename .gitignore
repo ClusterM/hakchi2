@@ -16,3 +16,4 @@ driver/classic_driver.exe
 Makefile Projects/Release/
 Makefile Projects/Debug/
 tools/putty/puttytel.exe
+packages/

@@ -82,7 +82,6 @@ namespace com.clusterrr.hakchi_gui
             StaticRef = this;
             InitializeComponent();
             FormInitialize();
-            populateRepos();
         }
 
         private void FormInitialize()
@@ -91,6 +90,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 // prepare collections
                 LoadLanguages();
+                populateRepos();
                 CoreCollection.Load();
 
                 // init list view control
@@ -685,7 +685,7 @@ namespace com.clusterrr.hakchi_gui
                     item.Checked = true;
                     if (string.IsNullOrEmpty(ConfigIni.Instance.Language))
                         ConfigIni.Instance.Language = langCodes[language];
-                }
+                }   
                 found |= item.Checked;
                 if (langCodes[language] == "en-US")
                     english = item;

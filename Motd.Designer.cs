@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Motd));
             this.button1 = new System.Windows.Forms.Button();
-            this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
             // button1
@@ -40,19 +39,10 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // webBrowser
-            // 
-            resources.ApplyResources(this.webBrowser, "webBrowser");
-            this.webBrowser.IsWebBrowserContextMenuEnabled = false;
-            this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Url = new System.Uri("about:blank", System.UriKind.Absolute);
-            this.webBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser_Navigating);
-            // 
             // Motd
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.webBrowser);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
@@ -67,6 +57,5 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.WebBrowser webBrowser;
     }
 }

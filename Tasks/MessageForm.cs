@@ -14,7 +14,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public MessageForm()
         {
             InitializeComponent();
-            if(Shared.isWindows())
+            if(Shared.isWindows)
             {
                 EnableMenuItem(GetSystemMenu(Handle, false), SC_CLOSE, MF_BYCOMMAND | MF_DISABLED);
             }

@@ -1380,6 +1380,7 @@
             // 
             // textBoxName
             // 
+            this.textBoxName.BackColor = System.Drawing.SystemColors.Window;
             resources.ApplyResources(this.textBoxName, "textBoxName");
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
@@ -1409,6 +1410,7 @@
             // 
             // textBoxPublisher
             // 
+            this.textBoxPublisher.BackColor = System.Drawing.SystemColors.Window;
             resources.ApplyResources(this.textBoxPublisher, "textBoxPublisher");
             this.textBoxPublisher.Name = "textBoxPublisher";
             this.textBoxPublisher.TextChanged += new System.EventHandler(this.textBoxPublisher_TextChanged);
@@ -1420,6 +1422,7 @@
             // 
             // textBoxArguments
             // 
+            this.textBoxArguments.BackColor = System.Drawing.SystemColors.Window;
             resources.ApplyResources(this.textBoxArguments, "textBoxArguments");
             this.textBoxArguments.Name = "textBoxArguments";
             this.textBoxArguments.TextChanged += new System.EventHandler(this.textBoxArguments_TextChanged);
@@ -1431,6 +1434,7 @@
             // 
             // pictureBoxArt
             // 
+            this.pictureBoxArt.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
@@ -1470,6 +1474,7 @@
             // 
             // textBoxGameGenie
             // 
+            this.textBoxGameGenie.BackColor = System.Drawing.SystemColors.Window;
             resources.ApplyResources(this.textBoxGameGenie, "textBoxGameGenie");
             this.textBoxGameGenie.Name = "textBoxGameGenie";
             this.textBoxGameGenie.TextChanged += new System.EventHandler(this.textBoxGameGenie_TextChanged);
@@ -1481,6 +1486,7 @@
             // 
             // maskedTextBoxReleaseDate
             // 
+            this.maskedTextBoxReleaseDate.BackColor = System.Drawing.SystemColors.Window;
             resources.ApplyResources(this.maskedTextBoxReleaseDate, "maskedTextBoxReleaseDate");
             this.maskedTextBoxReleaseDate.Name = "maskedTextBoxReleaseDate";
             this.maskedTextBoxReleaseDate.TextChanged += new System.EventHandler(this.maskedTextBoxReleaseDate_TextChanged);
@@ -1526,6 +1532,7 @@
             // 
             // textBoxSortName
             // 
+            this.textBoxSortName.BackColor = System.Drawing.SystemColors.Window;
             resources.ApplyResources(this.textBoxSortName, "textBoxSortName");
             this.textBoxSortName.Name = "textBoxSortName";
             this.textBoxSortName.TextChanged += new System.EventHandler(this.textBoxSortName_TextChanged);
@@ -1538,6 +1545,7 @@
             // 
             // numericUpDownSaveCount
             // 
+            this.numericUpDownSaveCount.BackColor = System.Drawing.SystemColors.Window;
             resources.ApplyResources(this.numericUpDownSaveCount, "numericUpDownSaveCount");
             this.numericUpDownSaveCount.Name = "numericUpDownSaveCount";
             this.numericUpDownSaveCount.ValueChanged += new System.EventHandler(this.numericUpDownSaveCount_ValueChanged);
@@ -1732,6 +1740,7 @@
             // 
             // gamesConsoleComboBox
             // 
+            this.gamesConsoleComboBox.BackColor = System.Drawing.SystemColors.Window;
             this.gamesConsoleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gamesConsoleComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.gamesConsoleComboBox, "gamesConsoleComboBox");

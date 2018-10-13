@@ -28,33 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.wbReadme = new System.Windows.Forms.WebBrowser();
-            this.SuspendLayout();
-            // 
-            // wbReadme
-            // 
-            this.wbReadme.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wbReadme.Location = new System.Drawing.Point(0, 0);
-            this.wbReadme.MinimumSize = new System.Drawing.Size(20, 20);
-            this.wbReadme.Name = "wbReadme";
-            this.wbReadme.Size = new System.Drawing.Size(618, 465);
-            this.wbReadme.TabIndex = 0;
-            this.wbReadme.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.wbReadme_Navigating);
-            // 
-            // ReadmeControl
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.wbReadme);
-            this.Name = "ReadmeControl";
-            this.Size = new System.Drawing.Size(618, 465);
-            this.ResumeLayout(false);
-
         }
 
         #endregion
-
-        private System.Windows.Forms.WebBrowser wbReadme;
     }
 }

@@ -14,3 +14,6 @@
 [submodule "driver/source"]
 	path = driver/source
 	url = https://github.com/TeamShinkansen/libwdi.git
+[submodule "Libraries/FelLib"]
+	path = Libraries/FelLib
+	url = https://github.com/TeamShinkansen/FelLib.git

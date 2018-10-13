@@ -1,5 +1,5 @@
 ﻿using static com.clusterrr.hakchi_gui.Tasks.Tasker;
-using com.clusterrr.FelLib;
+using FelLib;
 using com.clusterrr.hakchi_gui.Properties;
 using com.clusterrr.util;
 using System;
@@ -202,7 +202,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 case MembootTaskType.FlashNormalUboot:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        FlashUboot(Fel.UbootType.Normal)
+                        FlashUboot(ConfigIni.UbootType.Normal)
                     });
                     if (!userRecovery)
                         taskList.Add(ShellTasks.Reboot);
@@ -212,7 +212,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 case MembootTaskType.FlashSDUboot:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        FlashUboot(Fel.UbootType.SD)
+                        FlashUboot(ConfigIni.UbootType.SD)
                     });
                     if (!userRecovery)
                         taskList.Add(ShellTasks.Reboot);
@@ -257,11 +257,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
             if (hakchi.Shell.IsOnline && hakchi.Shell.Execute("[ -f /proc/atags ]") == 0)
                 return Conclusion.Success;
 
-            if (!WaitingFelForm.WaitForDevice(Shared.ClassicUSB.vid, Shared.ClassicUSB.pid, hostForm))
+            if (!WaitingFelForm.WaitForDevice(hostForm))
                 return Conclusion.Abort;
 
             fel.Fes1Bin = Resources.fes1;
-            if (ConfigIni.Instance.MembootUboot == Fel.UbootType.SD)
+            if (ConfigIni.Instance.MembootUboot == ConfigIni.UbootType.SD)
             {
                 fel.UBootBin = Resources.ubootSD;
             }
@@ -269,7 +269,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 fel.UBootBin = Resources.uboot;
             }
-            if (!fel.Open(Shared.ClassicUSB.vid, Shared.ClassicUSB.pid))
+            if (!fel.Open())
                 throw new FelException("Can't open device");
             tasker.SetStatus(Resources.UploadingFes1);
             fel.InitDram(true);
@@ -795,13 +795,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
             };
         }
 
-        public static TaskFunc FlashUboot(Fel.UbootType type)
+        public static TaskFunc FlashUboot(ConfigIni.UbootType type)
         {
             return (Tasker tasker, Object syncObject) =>
             {
                 tasker.SetStatus(Resources.FlashingUboot);
                 TrackableStream uboot;
-                if(type == Fel.UbootType.Normal)
+                if(type == ConfigIni.UbootType.Normal)
                 {
                     uboot = new TrackableStream(Resources.uboot);
                 }

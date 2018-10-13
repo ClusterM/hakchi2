@@ -44,7 +44,6 @@
             this.PoweredByLinkS = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage0 = new System.Windows.Forms.TabPage();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.modStoreTabControl1 = new com.clusterrr.hakchi_gui.ModStoreTabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -63,7 +62,6 @@
             this.menuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage0.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -185,20 +183,8 @@
             // tabPage0
             // 
             this.tabPage0.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage0.Controls.Add(this.webBrowser1);
             resources.ApplyResources(this.tabPage0, "tabPage0");
             this.tabPage0.Name = "tabPage0";
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.AllowWebBrowserDrop = false;
-            resources.ApplyResources(this.webBrowser1, "webBrowser1");
-            this.webBrowser1.IsWebBrowserContextMenuEnabled = false;
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.ScriptErrorsSuppressed = true;
-            this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Url = new System.Uri("https://hakchiresources.com/modstorewelcome/?mode=welcome", System.UriKind.Absolute);
-            this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
             // 
             // tabPage1
             // 
@@ -313,7 +299,6 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage0.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
@@ -350,7 +335,6 @@
         private System.Windows.Forms.ToolStripMenuItem submitYourOwnModToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem discordLinkToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage0;
-        private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.TabPage tabPage6;
         private ModStoreTabControl modStoreTabControl6;
         private System.Windows.Forms.ToolStripMenuItem sortToolStripMenuItem;

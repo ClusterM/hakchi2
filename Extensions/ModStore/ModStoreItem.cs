@@ -15,6 +15,7 @@ namespace com.clusterrr.hakchi_gui.module_library
         public string Name;
         public string Author;
         public string Path;
+        public string Content;
         public string Description;
         public string Version;
         public abstract string Type { get; }

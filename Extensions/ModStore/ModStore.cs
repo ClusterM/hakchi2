@@ -149,6 +149,8 @@ namespace com.clusterrr.hakchi_gui
             //For each Mod Store Tab set ModStoreManager (forces tab item refresh)
             foreach (TabPage tabPage in tabControl1.Controls)
             {
+                if (tabPage.Controls.Count == 0) continue;
+
                 ModStoreTabControl modStoreTabControl = tabPage.Controls[0] as ModStoreTabControl;
                 if (modStoreTabControl != null)
                     modStoreTabControl.Manager = config;
@@ -190,6 +192,7 @@ namespace com.clusterrr.hakchi_gui
                         string Id = System.Web.HttpUtility.HtmlDecode(post["title"].ToString()); //Temporary ID need to replace
                         string Author = post["custom_fields"]["user_submit_name"][0].ToString();
                         string Description = post["url"].ToString() + "?mode=mod_store";
+                        string Content = post["content"].ToString();
                         string Version = post["custom_fields"]["usp_custom_field"][0].ToString();
                         string Path = post["custom_fields"]["user_submit_url"][0].ToString();
                         var Categories = new List<string>();
@@ -211,19 +214,19 @@ namespace com.clusterrr.hakchi_gui
                                     if (tag["slug"].ToString().StartsWith("ra_"))
                                         System = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(tag["slug"].ToString().Substring(3).Replace('_', ' '));
                                 }
-                                var raModule = new RACoreModule { Name = Name, Id = Id, Author = Author, Description = Description, Version = Version, Path = Path, Categories = Categories, System = System };
+                                var raModule = new RACoreModule { Name = Name, Id = Id, Author = Author, Content = Content, Description = Description, Version = Version, Path = Path, Categories = Categories, System = System };
                                 if (raModule.SetModType())
                                     config.AvailableItems.Add(raModule);
                                 break;
 
                             case "Module":
-                                var module = new Module { Name = Name, Id = Id, Author = Author, Description = Description, Version = Version, Path = Path, Categories = Categories };
+                                var module = new Module { Name = Name, Id = Id, Author = Author, Content = Content, Description = Description, Version = Version, Path = Path, Categories = Categories };
                                 if (module.SetModType())
                                     config.AvailableItems.Add(module);
                                 break;
 
                             case "Game":
-                                config.AvailableItems.Add(new ModStoreGame { Name = Name, Id = Id, Author = Author, Description = Description, Version = Version, Path = Path });
+                                config.AvailableItems.Add(new ModStoreGame { Name = Name, Id = Id, Author = Author, Content = Content, Description = Description, Version = Version, Path = Path });
                                 break;
                         }
                     }

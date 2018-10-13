@@ -19,7 +19,6 @@ namespace com.clusterrr.hakchi_gui
 {
     static class Shared
     {
-        public static readonly FelLib.Fel.VidPidPair ClassicUSB = new FelLib.Fel.VidPidPair(vid: 0x1F3A, pid: 0xEFE8);
         public static string[] hmodDirectories {
             get
             {
@@ -627,7 +626,8 @@ namespace com.clusterrr.hakchi_gui
             return returnValue;
         }
 
-        public static bool isWindows()
+		public static readonly bool isWindows = _isWindows();
+        private static bool _isWindows()
         {
             switch (Environment.OSVersion.Platform)
             {

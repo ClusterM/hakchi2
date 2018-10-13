@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Threading;
+using System.Text.RegularExpressions;
 using com.clusterrr.hakchi_gui.module_library;
+using System.Drawing;
+using System.Net;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -15,10 +18,24 @@ namespace com.clusterrr.hakchi_gui
 
         private ModStoreItem currentItem { get; set; }
         private ModStoreManager manager;
-
+        private WebBrowser webBrowser1;
+        private TextBox textBox1;
+        private ReverseMarkdown.Converter converter = new ReverseMarkdown.Converter();
         public ModStoreTabControl()
         {
             InitializeComponent();
+            if (Shared.isWindows)
+            {
+                webBrowser1 = new WebBrowser() { AllowWebBrowserDrop = false, Dock = DockStyle.Fill, ScriptErrorsSuppressed = true };
+                webBrowser1.Navigating += webBrowser1_Navigating;
+                webBrowser1.DocumentCompleted += webBrowser1_DocumentCompleted;
+                panelReadme.Controls.Add(webBrowser1);
+            }
+            else
+            {
+                textBox1 = new TextBox() { Dock = DockStyle.Fill, Multiline = true, ReadOnly = true, BackColor = SystemColors.Window, ScrollBars = ScrollBars.Both };
+                panelReadme.Controls.Add(textBox1);
+            }
         }
 
         #region GUI
@@ -26,7 +43,15 @@ namespace com.clusterrr.hakchi_gui
         {
             Cursor.Current = Cursors.WaitCursor;
             var installedModule = manager.GetInstalledModule(currentItem);
-            webBrowser1.Navigate(new Uri(currentItem.Description, UriKind.Absolute));
+            if (Shared.isWindows)
+            {
+                webBrowser1.Navigate(new Uri(currentItem.Description, UriKind.Absolute));
+            }
+            else
+            {
+                textBox1.Text = Regex.Replace(converter.Convert(currentItem.Content).Replace("\r", ""), @"[\n]{2,}", "\n\n").Replace("\n", "\r\n").Trim();
+            }
+            
             modInfo.SetInfo(currentItem.Name, currentItem.Author, currentItem.Version, (installedModule != null ? installedModule.Version : "N/A"));
 
             if (installedModule != null)

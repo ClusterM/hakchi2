@@ -1,21 +1,18 @@
-﻿using com.clusterrr.FelLib;
-using com.clusterrr.hakchi_gui.Properties;
+﻿using com.clusterrr.hakchi_gui.Properties;
+using FelLib;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Management;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
 {
     public partial class WaitingFelForm : Form
     {
-        readonly UInt16 vid, pid;
-
+        bool deviceFound = false;
         public static bool DriverInstalled()
         {
-            if (!Shared.isWindows())
+            if (!Shared.isWindows)
                 return true;
 
             var proc = new Process
@@ -58,12 +55,10 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public WaitingFelForm(UInt16 vid, UInt16 pid)
+        public WaitingFelForm()
         {
             InitializeComponent();
             buttonDriver.Left = labelDriver.Left + labelDriver.Width;
-            this.vid = vid;
-            this.pid = pid;
             if (DriverInstalled() || InstallDriver() == 0)
             {
                 labelDriver.Visible = false;
@@ -72,26 +67,28 @@ namespace com.clusterrr.hakchi_gui
             timer.Enabled = true;
         }
 
-        public static bool WaitForDevice(UInt16 vid, UInt16 pid, IWin32Window owner)
+        public static bool WaitForDevice(IWin32Window owner)
         {
-            if (Fel.DeviceExists(vid, pid)) return true;
-            var form = new WaitingFelForm(vid, pid);
+            if (Fel.DeviceExists()) return true;
+            var form = new WaitingFelForm();
             form.ShowDialog(owner);
             return form.DialogResult == DialogResult.OK;
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (Fel.DeviceExists(vid, pid))
+            if (Fel.DeviceExists())
             {
                 DialogResult = DialogResult.OK;
                 timer.Enabled = false;
+                deviceFound = true;
+                Close();
             }
         }
 
         private void WaitingForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!Fel.DeviceExists(vid, pid))
+            if (!deviceFound && !Fel.DeviceExists())
             {
                 if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.DoYouWantCancel, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button2) == Tasks.MessageForm.Button.No)
                 {
