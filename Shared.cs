@@ -627,6 +627,13 @@ namespace com.clusterrr.hakchi_gui
         }
 
 		public static readonly bool isWindows = _isWindows();
+        public static string ReverseMarkdown(string html)
+        {
+            var converter = new ReverseMarkdown.Converter();
+            var text = converter.Convert(html);
+            return Regex.Replace(text.Replace("\r", ""), @"[\n]{2,}", "\n\n").Replace("\n", "\r\n").Trim();
+        }
+
         private static bool _isWindows()
         {
             switch (Environment.OSVersion.Platform)

@@ -18,6 +18,7 @@ namespace com.clusterrr.hakchi_gui.ModHub
         }
         public void LoadData(Repository.Repository repo)
         {
+            tabControl1.SuspendLayout();
 
             if(repo.Readme != null && repo.Readme.Trim() != "")
             {
@@ -79,7 +80,8 @@ namespace com.clusterrr.hakchi_gui.ModHub
                 page.Controls.Add(tabControl);
                 tabControl1.TabPages.Add(page);
             }
-
+            
+            tabControl1.ResumeLayout();
         }
     }
 }

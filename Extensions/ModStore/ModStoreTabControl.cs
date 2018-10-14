@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using com.clusterrr.hakchi_gui.module_library;
 using System.Drawing;
 using System.Net;
+using com.clusterrr.hakchi_gui.Hmod.Controls;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -19,7 +20,7 @@ namespace com.clusterrr.hakchi_gui
         private ModStoreItem currentItem { get; set; }
         private ModStoreManager manager;
         private WebBrowser webBrowser1;
-        private TextBox textBox1;
+        private TextReadmeControl trcReadme;
         private ReverseMarkdown.Converter converter = new ReverseMarkdown.Converter();
         public ModStoreTabControl()
         {
@@ -33,8 +34,8 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                textBox1 = new TextBox() { Dock = DockStyle.Fill, Multiline = true, ReadOnly = true, BackColor = SystemColors.Window, ScrollBars = ScrollBars.Both };
-                panelReadme.Controls.Add(textBox1);
+                trcReadme = new TextReadmeControl() { Dock = DockStyle.Fill };
+                panelReadme.Controls.Add(trcReadme);
             }
         }
 
@@ -49,7 +50,7 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                textBox1.Text = Regex.Replace(converter.Convert(currentItem.Content).Replace("\r", ""), @"[\n]{2,}", "\n\n").Replace("\n", "\r\n").Trim();
+                trcReadme.setReadme(null, Shared.ReverseMarkdown(currentItem.Content));
             }
             
             modInfo.SetInfo(currentItem.Name, currentItem.Author, currentItem.Version, (installedModule != null ? installedModule.Version : "N/A"));

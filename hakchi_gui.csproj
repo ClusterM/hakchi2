@@ -2161,6 +2161,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Libraries\FelLib\FelLib\FelLib.csproj">
+      <Project>{3cb5e644-ab96-478c-8d88-093c48781174}</Project>
+      <Name>FelLib</Name>
+    </ProjectReference>
     <ProjectReference Include="Libraries\ProgressODoom\ProgressODoom.csproj">
       <Project>{8dd1e84b-0b03-4c0b-9b42-1e49f75e7cb1}</Project>
       <Name>ProgressODoom</Name>

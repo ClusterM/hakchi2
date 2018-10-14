@@ -96,6 +96,7 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
 
         public void GroupList(string key)
         {
+            modList.SuspendLayout();
             modList.Groups.Clear();
             var listGroups = new SortedDictionary<string, ListViewGroup>();
             foreach(ListViewItem item in modList.Items)
@@ -117,10 +118,16 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
             {
                 modList.Groups.Add(group);
             }
+            modList.ResumeLayout();
         }
 
         private void modList_SelectedIndexChanged(object sender, System.EventArgs e)
         {
+            modInfo.SuspendLayout();
+            modReadme.SuspendLayout();
+            modDownloadButton.SuspendLayout();
+            modDownloadInstallButton.SuspendLayout();
+
             modDownloadButton.Enabled = (modList.SelectedItems.Count > 0);
             modDownloadInstallButton.Enabled = (modList.SelectedItems.Count > 0);
 
@@ -161,6 +168,11 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
                     break;
             }
             RefreshButtonStrings();
+
+            modInfo.ResumeLayout();
+            modReadme.ResumeLayout();
+            modDownloadButton.ResumeLayout();
+            modDownloadInstallButton.ResumeLayout();
         }
 
         private IEnumerable<TaskFunc> GetItemDownloadTask(Repository.Repository.Item item)

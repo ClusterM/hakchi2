@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.clusterrr.hakchi_gui;
+using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -50,7 +51,7 @@ namespace com.clusterrr.util
         {
         }
 
-        private static bool taskbarSupported = Environment.OSVersion.Version >= new Version(6, 1);
+        private static bool taskbarSupported = Shared.isWindows && Environment.OSVersion.Version >= new Version(6, 1);
 
         public static void SetState(Form form, TaskbarStates taskbarState)
         {

@@ -9,6 +9,7 @@ using com.clusterrr.hakchi_gui.Properties;
 using com.clusterrr.hakchi_gui.module_library;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
+using com.clusterrr.hakchi_gui.Hmod.Controls;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -25,6 +26,28 @@ namespace com.clusterrr.hakchi_gui
             InitializeComponent();
             this.Icon = Resources.icon;
             PoweredByLinkS.Text = "Powered By HakchiResources.com";
+
+            var welcomeURL = new Uri("https://hakchiresources.com/modstorewelcome/?mode=welcome");
+
+            if (Shared.isWindows)
+            {
+                var browser = new WebBrowser() { ScriptErrorsSuppressed = true, AllowWebBrowserDrop = false, Dock = DockStyle.Fill, Url = welcomeURL };
+                tabPage0.Controls.Add(browser);
+            }
+            else
+            {
+                var welcomeControl = new TextReadmeControl() { Dock = DockStyle.Fill };
+                using (var webClient = new System.Net.WebClient())
+                {
+                    ReverseMarkdown.Converter converter = new ReverseMarkdown.Converter();
+
+                    var welcomeText = Shared.ReverseMarkdown(webClient.DownloadString(welcomeURL));
+
+                    welcomeControl.setReadme(null, welcomeText);
+                }
+                
+                tabPage0.Controls.Add(welcomeControl);
+            }
         }
 
         private void ModStore_Load(object sender, EventArgs e)
