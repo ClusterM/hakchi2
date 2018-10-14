@@ -13,7 +13,7 @@ download(){
 
 printf "" > "$downloadedFileListName"
 
-download "https://hakchi.net/hakchi/hakchi-v1.0.4-121.hmod" "mods/hmods/hakchi.hmod" || exit 1
+download "https://hakchi.net/hakchi/hakchi-v1.0.4-122.hmod" "mods/hmods/hakchi.hmod" || exit 1
 download "https://hakchi.net/hakchi/detached-fallback" "tools/arm/detached-fallback" || exit 1
 download "https://github.com/TeamShinkansen/libwdi/releases/download/classic_driver_1/classic_driver.exe" "driver/classic_driver.exe" || exit 1
 download "https://the.earth.li/~sgtatham/putty/latest/w32/puttytel.exe" "tools/putty/puttytel.exe" || exit 1

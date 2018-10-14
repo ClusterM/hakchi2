@@ -126,24 +126,26 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (!isPortable)
                         {
-                            // This is not correct way for Windows 7+...
                             BaseDirectoryExternal = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "hakchi2");
-                            // So if it's not exists, lets try to get documents library path (Win7+)
                             try
                             {
                                 if (!Directory.Exists(BaseDirectoryExternal))
                                 {
-                                    BaseDirectoryExternal = Path.Combine(GetDocumentsLibraryPath(), "hakchi2");
+                                    Directory.CreateDirectory(BaseDirectoryExternal);
                                 }
 
                                 // There are some folders which should be accessed by user
                                 // Moving them to "My documents"
-                                if (isFirstRun)
+                                var externalDirs = new string[]
+                                    { "art", "folder_images", "patches", "user_mods", "sfrom_tool" };
+                                foreach (var dir in externalDirs)
                                 {
-                                    var externalDirs = new string[]
-                                        { "art", "folder_images", "patches", "user_mods", "sfrom_tool" };
-                                    foreach (var dir in externalDirs)
-                                        Shared.DirectoryCopy(Path.Combine(BaseDirectoryInternal, dir), Path.Combine(BaseDirectoryExternal, dir), true, false, true, false);
+                                    var sourceDir = Path.Combine(BaseDirectoryInternal, dir);
+                                    var destDir = Path.Combine(BaseDirectoryExternal, dir);
+                                    if (isFirstRun || !Directory.Exists(destDir))
+                                    {
+                                        Shared.DirectoryCopy(sourceDir, destDir, true, false, true, false);
+                                    }
                                 }
                             }
                             catch (Exception ex)

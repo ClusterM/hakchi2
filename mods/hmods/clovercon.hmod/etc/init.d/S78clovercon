@@ -2,11 +2,19 @@
 source /etc/preinit
 script_init
 
+[ -f "/etc/clover/boardtype" ] || exit 1
 CLV_BOARD_NAME="$(cat "/etc/clover/boardtype")"
 MODULE="clvcon"
 [ -f "/lib/modules/$(uname -r)/extra/$MODULE.ko" ] || MODULE="clovercon"
 
+getboot2note(){
+  local b2md5="$(hakchi getBackup2 | md5sum | awk '{print $1}')"
+  grep -F "$b2md5" "/etc/firmwaredb" | cut -d\  -f4-
+}
+
 start(){
+  local MODULE_PARAMS=""
+
   [ -z "$cfg_clovercon_enabled" ] && cfg_clovercon_enabled='y'
   [ -z "$cfg_clovercon_home_combination" ] && cfg_clovercon_home_combination='0x24'
   [ -z "$cfg_clovercon_autofire" ] && cfg_clovercon_autofire='1'
@@ -37,6 +45,9 @@ start(){
       MODULE_PARAMS="1,195,2,194"
     ;;
   esac
+
+  [ "$(getboot2note)" = "hardwired controllers" ] && MODULE_PARAMS="1,-1,2,-1"
+
   insmod "$mountpoint/lib/modules/$(uname -r)/extra/$MODULE.ko" \
          "module_params=$MODULE_PARAMS" \
          "home_combination=$cfg_clovercon_home_combination" \
