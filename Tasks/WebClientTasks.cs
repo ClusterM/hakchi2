@@ -1,5 +1,6 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading;
@@ -13,6 +14,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             return (Tasker tasker, Object sync) =>
             {
+                Debug.WriteLine($"Downloading: {url} to {fileName}");
                 Conclusion result = Conclusion.Success;
                 var wc = new WebClient();
                 wc.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
@@ -37,6 +39,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     {
                         if (tasker.TaskConclusion == Conclusion.Abort)
                         {
+                            Debug.WriteLine("Download Aborted");
                             wc.CancelAsync();
                             break;
                         }
