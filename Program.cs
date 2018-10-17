@@ -137,7 +137,7 @@ namespace com.clusterrr.hakchi_gui
                                 // There are some folders which should be accessed by user
                                 // Moving them to "My documents"
                                 var externalDirs = new string[]
-                                    { "art", "folder_images", "patches", "user_mods", "sfrom_tool" };
+                                    { "art", "folder_images", "info", "patches", "sfrom_tool", "user_mods" };
                                 foreach (var dir in externalDirs)
                                 {
                                     var sourceDir = Path.Combine(BaseDirectoryInternal, dir);
