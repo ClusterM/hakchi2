@@ -508,31 +508,32 @@ namespace com.clusterrr.hakchi_gui
         {
             Dictionary<hakchi.ConsoleType, string[]> correctKernels = new Dictionary<hakchi.ConsoleType, string[]>();
             correctKernels[hakchi.ConsoleType.NES] = new string[] {
-                "5cfdca351484e7025648abc3b20032ff",
-                "07bfb800beba6ef619c29990d14b5158",
-                "90eec1e2b4f00e53dc2dd53a9e7334c1", // new 2017 rereleased version
+                "5cfdca351484e7025648abc3b20032ff", // kernel-dp-nes-release-v1.0.2-0-g99e37e1.img
+                "07bfb800beba6ef619c29990d14b5158", // kernel-dp-nes-release-v1.0.3-0-gc4c703b.img
+                "90eec1e2b4f00e53dc2dd53a9e7334c1", // kernel-dp-nes-release-v1.0.7-0-g4ea4041.img
             };
             correctKernels[hakchi.ConsoleType.Famicom] = new string[] {
-                "ac8144c3ea4ab32e017648ee80bdc230",  // Famicom Mini
+                "ac8144c3ea4ab32e017648ee80bdc230", // kernel-dp-hvc-release-v1.0.5-0-g2f04d11.img
+                "cf5fd8e5ad0835bbf9dbd9bdc198a369", // kernel-dp-hvc-release-v1.0.8-0-g32708cb.img
             };
             correctKernels[hakchi.ConsoleType.SNES_EUR] = new string[] {
-                "d76c2a091ebe7b4614589fc6954653a5", // SNES Mini (EUR)
-                "c2b57b550f35d64d1c6ce66f9b5180ce", // SNES Mini (EUR)
-                "0f890bc78cbd9ede43b83b015ba4c022", // SNES Mini (EUR)
+                "d76c2a091ebe7b4614589fc6954653a5", // kernel-dp-sneseur-release-v2.0.7-0-geb2b275.img
+                "c2b57b550f35d64d1c6ce66f9b5180ce", // kernel-dp-sneseur-release-v2.0.13-0-g9dca6c5.img
+                "0f890bc78cbd9ede43b83b015ba4c022", // kernel-dp-sneseur-release-v2.0.14-0-gd8b65c6.img
             };
             correctKernels[hakchi.ConsoleType.SNES_USA] = new string[] {
-                "449b711238575763c6701f5958323d48", // SNES Mini (USA)
-                "5296e64818bf2d1dbdc6b594f3eefd17", // SNES Mini (USA)
-                "228967ab1035a347caa9c880419df487", // SNES Mini (USA)
+                "5296e64818bf2d1dbdc6b594f3eefd17", // kernel-dp-snesusa-release-v2.0.7-0-geb2b275.img
+                "449b711238575763c6701f5958323d48", // kernel-dp-snesusa-release-v2.0.13-0-g9dca6c5.img
+                "228967ab1035a347caa9c880419df487", // kernel-dp-snesusa-release-v2.0.14-0-gd8b65c6.img
             };
             correctKernels[hakchi.ConsoleType.SuperFamicom] = new string[]
             {
-                "632e179db63d9bcd42281f776a030c14", // Super Famicom Mini (JAP)
-                "c3378edfc1b96a5268a066d5fbe12d89", // Super Famicom Mini (JAP)
+                "632e179db63d9bcd42281f776a030c14", // kernel-dp-shvc-release-v2.0.12-0-gbff4fb3.img
+                "c3378edfc1b96a5268a066d5fbe12d89", // kernel-dp-shvc-release-v2.0.14-0-gd8b65c6.img
             };
             correctKernels[hakchi.ConsoleType.ShonenJump] = new string[]
             {
-                "8a6731a5aebea36293f076fad9afa600"
+                "8a6731a5aebea36293f076fad9afa600", // kernel-dp-hvcj-release-v3.0.1-0-gad315e1.img
             };
             return correctKernels;
         }
