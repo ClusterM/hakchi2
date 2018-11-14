@@ -432,6 +432,22 @@ namespace com.clusterrr.hakchi_gui
                 File.Copy(inputFileName, romPath);
             }
 
+            if (ext == ".cue")
+            {
+                var cue = new CueSharp.CueSheet(inputFileName);
+                var cuePath = (new FileInfo(inputFileName)).Directory;
+                foreach (var track in cue.Tracks)
+                {
+                    string dataFile = Path.Combine(cuePath.FullName, track.DataFile.Filename);
+                    string destFile = Path.Combine(gamePath, track.DataFile.Filename);
+
+                    if (!File.Exists(destFile))
+                    {
+                        File.Copy(dataFile, destFile);
+                    }
+                }
+            }
+
             // save desktop file
             var game = new NesApplication(gamePath, null, true);
             var name = Path.GetFileNameWithoutExtension(inputFileName);
@@ -1408,7 +1424,7 @@ namespace com.clusterrr.hakchi_gui
             return gameSet.GetSize(hakchi.BLOCK_SIZE);
         }
 
-        public static readonly string[] nonCompressibleExtensions = { ".7z", ".zip", ".rar", ".hsqs", ".sh", ".pbp", ".chd" };
+        public static readonly string[] nonCompressibleExtensions = { ".7z", ".zip", ".rar", ".hsqs", ".sh", ".pbp", ".chd", ".cue" };
         public static readonly string[] compressedExtensions = { ".7z", ".zip" };
         public string[] CompressPossible()
         {

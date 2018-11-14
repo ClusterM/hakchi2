@@ -2161,6 +2161,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Libraries\CueSharp\CueSharp\CueSharp.csproj">
+      <Project>{aec446c6-fa7d-4224-83c4-87c270759403}</Project>
+      <Name>CueSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="Libraries\FelLib\FelLib\FelLib.csproj">
       <Project>{3cb5e644-ab96-478c-8d88-093c48781174}</Project>
       <Name>FelLib</Name>

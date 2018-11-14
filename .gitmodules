@@ -17,3 +17,6 @@
 [submodule "Libraries/FelLib"]
 	path = Libraries/FelLib
 	url = https://github.com/TeamShinkansen/FelLib.git
+[submodule "Libraries/CueSharp"]
+	path = Libraries/CueSharp
+	url = https://github.com/TeamShinkansen/CueSharp.git
