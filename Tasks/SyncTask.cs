@@ -686,6 +686,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     if (folder.Name == Resources.FolderNameTrashBin)
                         continue; // skip recycle bin!
 
+                    if (folder.ChildMenuCollection.Count == 1 && folder.ChildMenuCollection[0].Name == Resources.FolderNameBack)
+                        continue; // skip empty folders
+
                     if (!stats.allMenus.Contains(folder.ChildMenuCollection))
                     {
                         stats.allMenus.Add(folder.ChildMenuCollection);
