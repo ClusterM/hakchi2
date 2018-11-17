@@ -635,6 +635,16 @@ namespace com.clusterrr.hakchi_gui
             return Regex.Replace(text.Replace("\r", ""), @"[\n]{2,}", "\n\n").Replace("\n", "\r\n").Trim();
         }
 
+        public static string ReplaceInvalidFilenameCharacters(string input, string replacement = "_")
+        {
+            string output = input;
+            foreach (char c in Path.GetInvalidFileNameChars())
+            {
+                output = output.Replace(c.ToString(), replacement);
+            }
+            return output;
+        }
+
         private static bool _isWindows()
         {
             switch (Environment.OSVersion.Platform)

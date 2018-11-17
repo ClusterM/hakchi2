@@ -417,7 +417,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             foreach (var game in Games)
             {
                 tasker.SetStatus(String.Format(Resources.Archiving, game.Name));
-                var fileName = $"{game.Code} - {game.Name}.clvg";
+                var fileName = Shared.ReplaceInvalidFilenameCharacters($"{game.Code} - {game.Name}.clvg");
 
                 if (directory == null)
                 {
