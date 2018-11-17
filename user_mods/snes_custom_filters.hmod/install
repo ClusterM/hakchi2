@@ -1,5 +1,0 @@
-copy "$transferpath/p8030_snes_filters" "$preinitpath"
-mkdir -p "$rootfs/usr/bin"
-chmod +x "$transferpath/canoe-custom-filters"
-copy "$transferpath/canoe-custom-filters" "$rootfs/usr/bin/"
-return 1

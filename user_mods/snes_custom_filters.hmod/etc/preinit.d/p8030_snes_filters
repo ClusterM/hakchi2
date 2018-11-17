@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ -f "$mountpoint/usr/bin/clover-canoe-shvc" ] && \
+! pack_list | grep -qFi 'retroarch' && \
+overmount "/usr/bin/canoe-custom-filters" "/usr/bin/clover-canoe-shvc"

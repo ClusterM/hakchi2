@@ -17,3 +17,4 @@ Makefile Projects/Release/
 Makefile Projects/Debug/
 tools/putty/puttytel.exe
 packages/
+!user_mods/snes_custom_filters.hmod/usr/bin/
