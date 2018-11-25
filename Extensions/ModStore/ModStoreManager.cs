@@ -66,6 +66,12 @@ namespace com.clusterrr.hakchi_gui.module_library
 
         private Tasker DownloadFile(string url, string fileName)
         {
+            if (File.Exists(fileName))
+                File.Delete(fileName);
+
+            if (Directory.Exists(fileName))
+                Directory.Delete(fileName, true);
+
             var tasker = new Tasker(parentForm);
             tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
             tasker.SetStatusImage(Resources.sign_sync);
@@ -113,10 +119,12 @@ namespace com.clusterrr.hakchi_gui.module_library
                     {
                         try
                         {
-                            if (file.EndsWith("\\"))
-                                Directory.Delete(Path.Combine(userModDir, file), true);
-                            else
-                                File.Delete(Path.Combine(userModDir, file));
+                            var modPath = Path.Combine(userModDir, file);
+                            if (Directory.Exists(modPath))
+                                Directory.Delete(modPath, true);
+
+                            if (File.Exists(modPath))
+                                File.Delete(modPath);
                         }
                         catch { }
                     }
