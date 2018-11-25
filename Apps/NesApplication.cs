@@ -438,6 +438,11 @@ namespace com.clusterrr.hakchi_gui
                 var cuePath = (new FileInfo(inputFileName)).Directory;
                 foreach (var track in cue.Tracks)
                 {
+                    if (track.DataFile.Filename == null)
+                    {
+                        continue;
+                    }
+
                     string dataFile = Path.Combine(cuePath.FullName, track.DataFile.Filename);
                     string destFile = Path.Combine(gamePath, track.DataFile.Filename);
 
