@@ -128,6 +128,7 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveStateManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.takeScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveDmesgOutputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.openFTPInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openTelnetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -956,6 +957,7 @@
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveStateManagerToolStripMenuItem,
             this.takeScreenshotToolStripMenuItem,
+            this.saveDmesgOutputToolStripMenuItem,
             this.toolStripMenuItem6,
             this.openFTPInExplorerToolStripMenuItem,
             this.openTelnetToolStripMenuItem,
@@ -979,6 +981,12 @@
             this.takeScreenshotToolStripMenuItem.Name = "takeScreenshotToolStripMenuItem";
             resources.ApplyResources(this.takeScreenshotToolStripMenuItem, "takeScreenshotToolStripMenuItem");
             this.takeScreenshotToolStripMenuItem.Click += new System.EventHandler(this.takeScreenshotToolStripMenuItem_Click);
+            // 
+            // saveDmesgOutputToolStripMenuItem
+            // 
+            this.saveDmesgOutputToolStripMenuItem.Name = "saveDmesgOutputToolStripMenuItem";
+            resources.ApplyResources(this.saveDmesgOutputToolStripMenuItem, "saveDmesgOutputToolStripMenuItem");
+            this.saveDmesgOutputToolStripMenuItem.Click += new System.EventHandler(this.saveDmesgOutputToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
@@ -2016,6 +2024,7 @@
         private System.Windows.Forms.ToolStripMenuItem archiveSelectedGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator modRepoEndSeparator;
         private System.Windows.Forms.ToolStripMenuItem manageModRepositoriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveDmesgOutputToolStripMenuItem;
     }
 }
 

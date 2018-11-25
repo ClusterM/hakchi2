@@ -718,6 +718,12 @@
   <data name="takeScreenshotToolStripMenuItem.Text" xml:space="preserve">
     <value>Take screenshot</value>
   </data>
+  <data name="saveDmesgOutputToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="saveDmesgOutputToolStripMenuItem.Text" xml:space="preserve">
+    <value>Save dmesg output</value>
+  </data>
   <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 6</value>
   </data>
@@ -2780,6 +2786,12 @@
     <value>takeScreenshotToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;takeScreenshotToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;saveDmesgOutputToolStripMenuItem.Name" xml:space="preserve">
+    <value>saveDmesgOutputToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;saveDmesgOutputToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem6.Name" xml:space="preserve">

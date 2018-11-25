@@ -3177,5 +3177,28 @@ namespace com.clusterrr.hakchi_gui
         {
             new RepoManagementForm().ShowDialog(this);
         }
+
+        private void saveDmesgOutputToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (hakchi.Shell.IsOnline || WaitingShellForm.WaitForDevice(this))
+            {
+                using (var sfd = new SaveFileDialog() { Filter = "Text Files|*.txt" })
+                {
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        using (var outputFile = File.Create(sfd.FileName))
+                        using (var tasker = new Tasks.Tasker(this))
+                        {
+                            tasker.AttachView(new TaskerTaskbar());
+                            tasker.AttachView(new TaskerForm());
+                            tasker.AddTask(ShellTasks.ShellCommand("dmesg", null, outputFile, outputFile));
+                            tasker.Start();
+                            outputFile.Close();
+                            Tasks.MessageForm.Show(Resources.Wow, Resources.Done, Resources.sign_check);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
