@@ -591,6 +591,10 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
                 az = data[4] - 0x80;
                 a = !get_bit(data[5], 0);
                 b = !get_bit(data[5], 1);
+		        up = jy < -DEAD_ZONE;
+		        down = jy > DEAD_ZONE;
+		        left = jx < -DEAD_ZONE;
+		        right = jx > DEAD_ZONE;
                 // Tilt nunchuck left = select
                 if (!get_bit(info->buttons_state, 2)) // Select not pressed yet
                 {
@@ -606,7 +610,7 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
                 } else { // Already pressed
                     start = ax >= ACC_DEAD_ZONE;
                 }
-                // Tilt nunchuck upwards = home
+                // Tilt nunchuck upside down = home
                 home = (az <= -ACC_TRIGGER_ZONE);
                 break;
             case 1:
