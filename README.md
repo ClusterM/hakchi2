@@ -1,5 +1,5 @@
 # WARNING
-### **hakchi2 is no longer supported. Please use hakchi2 CE (aka Hakchi 3) from https://github.com/TeamShinkansen/hakchi2/releases.
+### **hakchi2 is no longer supported. Please use hakchi2 CE (aka Hakchi 3) from https://github.com/TeamShinkansen/hakchi2/releases.**
 
 ## hakchi2
 
