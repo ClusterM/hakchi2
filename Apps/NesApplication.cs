@@ -1002,13 +1002,13 @@ namespace com.clusterrr.hakchi_gui
 
             return new Dictionary<string, bool>();
         }
-
+        
+        private static Regex puzzleMatchRegexIteration = new Regex(@"\s[ivx]+\s|[0-9]{1,2}", RegexOptions.Compiled);
         private static void PuzzleMatch(List<string[]> pieces, string puzzle, out bool match, out bool partial)
         {
             match = false;
             partial = false;
 
-            var regexIteration = new Regex(@"\s[ivx]+\s|[0-9]{1,2}", RegexOptions.Compiled);
             if (pieces.Count == 0)
             {
                 if(puzzle.Trim().Length == 0)
@@ -1018,7 +1018,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else
                 {
-                    if (!regexIteration.IsMatch(puzzle))
+                    if (!puzzleMatchRegexIteration.IsMatch(puzzle))
                     {
                         match = true;
                         partial = true;
@@ -1031,7 +1031,7 @@ namespace com.clusterrr.hakchi_gui
                 string words = string.Empty;
                 pieces.ForEach(delegate (string[] p) { words += " " + string.Join(" ", p); });
                 words += " ";
-                if (!regexIteration.IsMatch(words))
+                if (!puzzleMatchRegexIteration.IsMatch(words))
                 {
                     match = true;
                     partial = true;

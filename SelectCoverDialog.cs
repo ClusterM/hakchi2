@@ -72,7 +72,10 @@ namespace com.clusterrr.hakchi_gui
                 listViewImages.Items.Clear();
 
                 NesApplication game = items[0].Tag as NesApplication;
+                var matchedCovers = game.CoverArtMatches.ToArray();
                 int i = imageList.Images.Count;
+
+                listViewImages.View = matchedCovers.Length < 100 ? View.LargeIcon : View.List;
 
                 if (imageIndexes.ContainsKey(game.Metadata.AppInfo.Name))
                 {
@@ -90,7 +93,7 @@ namespace com.clusterrr.hakchi_gui
                     listViewImages.Items.Add(item);
                 }
 
-                foreach (var match in game.CoverArtMatches)
+                foreach (var match in matchedCovers)
                 {
                     var item = new ListViewItem(Path.GetFileName(match));
                     if (imageIndexes.ContainsKey(match))
@@ -99,9 +102,12 @@ namespace com.clusterrr.hakchi_gui
                     }
                     else
                     {
-                        var image = Shared.ResizeImage(Image.FromFile(match), null, null, 114, 102, false, true, true, true);
-                        imageList.Images.Add(image);
-                        imageIndexes.Add(match, item.ImageIndex = i++);
+                        if (matchedCovers.Length < 100)
+                        {
+                            var image = Shared.ResizeImage(Image.FromFile(match), null, null, 114, 102, false, true, true, true);
+                            imageList.Images.Add(image);
+                            imageIndexes.Add(match, item.ImageIndex = i++);
+                        }
                     }
                     listViewImages.Items.Add(item);
                 }
