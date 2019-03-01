@@ -16,6 +16,7 @@ namespace com.clusterrr.hakchi_gui
             { "fbalpha2012_cps3", "cps3" },
             { "fbalpha2012_neogeo", "neo" },
             { "genesis_plus_gx", "genesis-plus-gx" },
+            { "mame2003_plus", "mame2003-plus" },
             { "mednafen_ngp", "ngp" },
             { "mednafen_pce_fast", "pce" },
             { "mednafen_pcfx", "pcfx" },
