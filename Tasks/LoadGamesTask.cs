@@ -273,7 +273,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 }
                 if (ConfigIni.Instance.ShowGamesWithoutCoverArt)
                 {
-                    if (!game.Metadata.CustomCoverArt)
+                    if (!game.Metadata.CustomCoverArt && !game.IsOriginalGame)
                         group = normalGroups[ViewGroup.NoCoverArt];
                     else if (ConfigIni.Instance.GamesSorting == MainForm.GamesSorting.Name)
                     {
