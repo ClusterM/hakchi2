@@ -320,7 +320,15 @@ namespace com.clusterrr.hakchi_gui
             {
                 labelElementCount.Text = string.Format(Resources.FolderStatistics, node.Text, node.Nodes.Count);
                 if (node.Nodes.Count >= MainForm.MaxGamesPerFolder)
-                    labelElementCount.Text += " " + Resources.TooManyPerFolder;
+                {
+                    labelElementCount.ForeColor = Color.Red;
+                    toolTip1.SetToolTip(labelElementCount, Resources.TooManyPerFolder);
+                }
+                else
+                {
+                    labelElementCount.ForeColor = SystemColors.ControlText;
+                    toolTip1.SetToolTip(labelElementCount, null);
+                }
                 buttonNewFolder.Enabled = true;
             }
             else

@@ -59,6 +59,7 @@
             this.checkBoxAddHome = new System.Windows.Forms.CheckBox();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -409,5 +410,6 @@
         private System.Windows.Forms.ComboBox comboBoxBackPosition;
         private System.Windows.Forms.Label labelPosition2;
         private System.Windows.Forms.CheckBox checkBoxAddHome;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
