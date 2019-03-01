@@ -126,9 +126,6 @@
   <data name="label2.Text" xml:space="preserve">
     <value>2. Die Konsole einschalten.</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>3. Treiber installieren, wenn noch nicht installiert ist:</value>
-  </data>
   <data name="buttonDriver.Text" xml:space="preserve">
     <value>Installiere Treiber</value>
   </data>

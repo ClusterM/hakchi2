@@ -234,9 +234,6 @@
   <data name="logContentsRichTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="logContentsRichTextBox.Text" xml:space="preserve">
-    <value />
-  </data>
   <data name="&gt;&gt;logContentsRichTextBox.Name" xml:space="preserve">
     <value>logContentsRichTextBox</value>
   </data>

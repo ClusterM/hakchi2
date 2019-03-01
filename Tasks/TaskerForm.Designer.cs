@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskerForm));
             this.statusLabel = new System.Windows.Forms.Label();
             this.progressBarEx1 = new ProgressODoom.ProgressBarEx();
             this.fruityLoopsBackgroundPainter1 = new ProgressODoom.FruityLoopsBackgroundPainter();
@@ -39,20 +40,15 @@
             // 
             // statusLabel
             // 
-            this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(50, 21);
+            resources.ApplyResources(this.statusLabel, "statusLabel");
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(46, 13);
-            this.statusLabel.TabIndex = 0;
-            this.statusLabel.Text = "Status...";
             // 
             // progressBarEx1
             // 
             this.progressBarEx1.BackgroundPainter = this.fruityLoopsBackgroundPainter1;
             this.progressBarEx1.BorderPainter = this.styledBorderPainter1;
-            this.progressBarEx1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.progressBarEx1, "progressBarEx1");
             this.progressBarEx1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.progressBarEx1.Location = new System.Drawing.Point(12, 49);
             this.progressBarEx1.MarqueePercentage = 25;
             this.progressBarEx1.MarqueeSpeed = 30;
             this.progressBarEx1.MarqueeStep = 1;
@@ -63,8 +59,6 @@
             this.progressBarEx1.ProgressPainter = this.fruityLoopsProgressPainter1;
             this.progressBarEx1.ProgressType = ProgressODoom.ProgressType.Smooth;
             this.progressBarEx1.ShowPercentage = true;
-            this.progressBarEx1.Size = new System.Drawing.Size(538, 46);
-            this.progressBarEx1.TabIndex = 0;
             this.progressBarEx1.Value = 0;
             // 
             // fruityLoopsBackgroundPainter1
@@ -84,18 +78,14 @@
             // 
             // statusPictureBox
             // 
-            this.statusPictureBox.Location = new System.Drawing.Point(12, 11);
+            resources.ApplyResources(this.statusPictureBox, "statusPictureBox");
             this.statusPictureBox.Name = "statusPictureBox";
-            this.statusPictureBox.Size = new System.Drawing.Size(32, 32);
-            this.statusPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.statusPictureBox.TabIndex = 1;
             this.statusPictureBox.TabStop = false;
             // 
             // TaskerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 107);
             this.Controls.Add(this.statusPictureBox);
             this.Controls.Add(this.progressBarEx1);
             this.Controls.Add(this.statusLabel);
@@ -104,8 +94,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TaskerForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Tasker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TaskerForm_FormClosing);
             this.Shown += new System.EventHandler(this.TaskerForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.statusPictureBox)).EndInit();

@@ -28,27 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserReadmeControl));
             this.wbReadme = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
             // wbReadme
             // 
-            this.wbReadme.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wbReadme.Location = new System.Drawing.Point(0, 0);
-            this.wbReadme.MinimumSize = new System.Drawing.Size(20, 20);
+            resources.ApplyResources(this.wbReadme, "wbReadme");
             this.wbReadme.Name = "wbReadme";
-            this.wbReadme.Size = new System.Drawing.Size(618, 465);
-            this.wbReadme.TabIndex = 0;
             this.wbReadme.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.wbReadme_Navigating);
             // 
             // BrowserReadmeControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.wbReadme);
             this.Name = "BrowserReadmeControl";
-            this.Size = new System.Drawing.Size(618, 465);
             this.ResumeLayout(false);
 
         }

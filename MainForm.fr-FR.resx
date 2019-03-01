@@ -360,9 +360,6 @@
   <data name="modStoreToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>290, 22</value>
   </data>
-  <data name="modStoreToolStripMenuItem.Text" xml:space="preserve">
-    <value>Magasin de mods Hakchi</value>
-  </data>
   <data name="originalGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 22</value>
   </data>
@@ -500,14 +497,8 @@
   <data name="disableSSHlistenerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 22</value>
   </data>
-  <data name="disableSSHlistenerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Désactiver l'écoute SSH</value>
-  </data>
   <data name="disableClovershellListenerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 22</value>
-  </data>
-  <data name="disableClovershellListenerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Désactiver l'écoute Clovershell</value>
   </data>
   <data name="separateGamesForMultibootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>422, 22</value>
@@ -593,14 +584,8 @@
   <data name="enableUSBHostToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>422, 22</value>
   </data>
-  <data name="enableUSBHostToolStripMenuItem.Text" xml:space="preserve">
-    <value>Activer le mode USB host</value>
-  </data>
   <data name="useExtendedFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>422, 22</value>
-  </data>
-  <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
-    <value>Utiliser la police avancée</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>422, 22</value>
@@ -635,9 +620,6 @@
   <data name="FTPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>348, 22</value>
   </data>
-  <data name="FTPToolStripMenuItem.Text" xml:space="preserve">
-    <value>Serveur FTP sur ftp://root:clover@127.0.0.1:1021</value>
-  </data>
   <data name="openFTPInExplorerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>348, 22</value>
   </data>
@@ -649,9 +631,6 @@
   </data>
   <data name="shellToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>348, 22</value>
-  </data>
-  <data name="shellToolStripMenuItem.Text" xml:space="preserve">
-    <value>Serveur Telnet sur telnet://127.0.0.1:1023 (login:root)</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>348, 22</value>
@@ -1090,8 +1069,5 @@
   </data>
   <data name="forceNetworkMembootsToolStripMenuItem.Text" xml:space="preserve">
     <value>Forcer memboots mode réseau</value>
-  </data>
-  <data name="testCommandToolStripMenuItem.Text" xml:space="preserve">
-    <value>Commande test</value>
   </data>
 </root>

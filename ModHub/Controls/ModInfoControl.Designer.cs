@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModInfoControl));
             this.SuspendLayout();
             // 
             // ModInfoControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(0)))), ((int)(((byte)(20)))));
             this.Name = "ModInfoControl";
-            this.Size = new System.Drawing.Size(219, 305);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ModInfo_Paint);
             this.ResumeLayout(false);
 

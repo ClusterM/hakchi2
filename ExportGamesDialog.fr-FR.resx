@@ -133,26 +133,17 @@
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 13</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Région:</value>
-  </data>
   <data name="radioEUR.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 53</value>
   </data>
   <data name="radioEUR.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 17</value>
   </data>
-  <data name="radioEUR.Text" xml:space="preserve">
-    <value>Eur</value>
-  </data>
   <data name="radioUSA.Location" type="System.Drawing.Point, System.Drawing">
     <value>250, 53</value>
   </data>
   <data name="radioUSA.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 17</value>
-  </data>
-  <data name="radioUSA.Text" xml:space="preserve">
-    <value>Usa</value>
   </data>
   <data name="checkLinked.Location" type="System.Drawing.Point, System.Drawing">
     <value>196, 76</value>

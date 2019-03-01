@@ -79,7 +79,4 @@
   <data name="label5.Text">
     <value>4. Après quelques secondes relâchez le bouton RESET, le témoin d’alimentation doit être éteint.</value>
   </data>
-  <data name="label6.Text">
-    <value>5. Installez le pilote s’il n’est pas encore installé :</value>
-  </data>
 </root>

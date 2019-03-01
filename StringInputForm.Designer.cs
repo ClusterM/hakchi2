@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StringInputForm));
             this.labelComments = new System.Windows.Forms.Label();
             this.textBox = new System.Windows.Forms.TextBox();
             this.buttonOK = new System.Windows.Forms.Button();
@@ -35,38 +36,26 @@
             // 
             // labelComments
             // 
-            this.labelComments.Location = new System.Drawing.Point(12, 22);
+            resources.ApplyResources(this.labelComments, "labelComments");
             this.labelComments.Name = "labelComments";
-            this.labelComments.Size = new System.Drawing.Size(454, 44);
-            this.labelComments.TabIndex = 0;
-            this.labelComments.Text = "Input some text here";
             // 
             // textBox
             // 
-            this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox.Location = new System.Drawing.Point(12, 69);
+            resources.ApplyResources(this.textBox, "textBox");
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(391, 20);
-            this.textBox.TabIndex = 1;
             // 
             // buttonOK
             // 
-            this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOK.Location = new System.Drawing.Point(418, 69);
+            resources.ApplyResources(this.buttonOK, "buttonOK");
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(48, 20);
-            this.buttonOK.TabIndex = 2;
-            this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // StringInputForm
             // 
             this.AcceptButton = this.buttonOK;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 106);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.labelComments);
@@ -75,8 +64,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "StringInputForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "StringInputForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 

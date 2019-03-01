@@ -132,9 +132,6 @@
   <data name="label5.Text" xml:space="preserve">
     <value>4. Nach wenigen Sekunden die RESET-Taste loslassen, die POWER-LED sollte nicht eingeschaltet sein.</value>
   </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>5. Treiber installieren, wenn sie noch nicht installiert sind:</value>
-  </data>
   <data name="buttonDriver.Text" xml:space="preserve">
     <value>Installiere Treiber</value>
   </data>

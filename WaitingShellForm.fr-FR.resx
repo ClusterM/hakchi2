@@ -73,7 +73,4 @@
   <data name="label2.Text" xml:space="preserve">
     <value>2. Allumez-la.</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>3. Installez le pilote s’il n’est pas encore installé :</value>
-  </data>
 </root>

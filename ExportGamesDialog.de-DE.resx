@@ -126,15 +126,6 @@
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Region auswählen:</value>
-  </data>
-  <data name="radioEUR.Text" xml:space="preserve">
-    <value>EUR</value>
-  </data>
-  <data name="radioUSA.Text" xml:space="preserve">
-    <value>USA</value>
-  </data>
   <data name="checkLinked.Text" xml:space="preserve">
     <value>Verknüpfter Export</value>
   </data>

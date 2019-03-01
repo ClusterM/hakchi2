@@ -31,6 +31,7 @@ namespace com.clusterrr.hakchi_gui
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScreenshotForm));
             this.screenshotPictureBox = new System.Windows.Forms.PictureBox();
             this.screenshotContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openInDefaultViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,25 +40,19 @@ namespace com.clusterrr.hakchi_gui
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.updateScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startStopLiveViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveImageFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.takeUnattendedScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.takeUnattendedScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveImageFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.screenshotPictureBox)).BeginInit();
             this.screenshotContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // screenshotPictureBox
             // 
-            this.screenshotPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.screenshotPictureBox, "screenshotPictureBox");
             this.screenshotPictureBox.BackColor = System.Drawing.Color.Black;
             this.screenshotPictureBox.ContextMenuStrip = this.screenshotContextMenuStrip;
-            this.screenshotPictureBox.Location = new System.Drawing.Point(0, 0);
             this.screenshotPictureBox.Name = "screenshotPictureBox";
-            this.screenshotPictureBox.Size = new System.Drawing.Size(853, 480);
-            this.screenshotPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.screenshotPictureBox.TabIndex = 0;
             this.screenshotPictureBox.TabStop = false;
             this.screenshotPictureBox.DoubleClick += new System.EventHandler(this.screenshotPictureBox_DoubleClick);
             // 
@@ -73,79 +68,65 @@ namespace com.clusterrr.hakchi_gui
             this.toolStripMenuItem1,
             this.takeUnattendedScreenshotToolStripMenuItem});
             this.screenshotContextMenuStrip.Name = "screenshotContextMenuStrip";
-            this.screenshotContextMenuStrip.Size = new System.Drawing.Size(248, 148);
+            resources.ApplyResources(this.screenshotContextMenuStrip, "screenshotContextMenuStrip");
             // 
             // openInDefaultViewerToolStripMenuItem
             // 
             this.openInDefaultViewerToolStripMenuItem.Name = "openInDefaultViewerToolStripMenuItem";
-            this.openInDefaultViewerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openInDefaultViewerToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
-            this.openInDefaultViewerToolStripMenuItem.Text = "&Open in default viewer";
+            resources.ApplyResources(this.openInDefaultViewerToolStripMenuItem, "openInDefaultViewerToolStripMenuItem");
             this.openInDefaultViewerToolStripMenuItem.Click += new System.EventHandler(this.OpenInDefaultViewer);
             // 
             // copyImageToClipboardToolStripMenuItem
             // 
             this.copyImageToClipboardToolStripMenuItem.Name = "copyImageToClipboardToolStripMenuItem";
-            this.copyImageToClipboardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyImageToClipboardToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
-            this.copyImageToClipboardToolStripMenuItem.Text = "&Copy image to clipboard";
+            resources.ApplyResources(this.copyImageToClipboardToolStripMenuItem, "copyImageToClipboardToolStripMenuItem");
             this.copyImageToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyImageToClipboard);
             // 
             // saveImageToolStripMenuItem
             // 
             this.saveImageToolStripMenuItem.Name = "saveImageToolStripMenuItem";
-            this.saveImageToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveImageToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
-            this.saveImageToolStripMenuItem.Text = "&Save image to file";
+            resources.ApplyResources(this.saveImageToolStripMenuItem, "saveImageToolStripMenuItem");
             this.saveImageToolStripMenuItem.Click += new System.EventHandler(this.saveImageToFile);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(244, 6);
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // updateScreenshotToolStripMenuItem
             // 
             this.updateScreenshotToolStripMenuItem.Name = "updateScreenshotToolStripMenuItem";
-            this.updateScreenshotToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.updateScreenshotToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
-            this.updateScreenshotToolStripMenuItem.Text = "&Refresh screenshot";
+            resources.ApplyResources(this.updateScreenshotToolStripMenuItem, "updateScreenshotToolStripMenuItem");
             this.updateScreenshotToolStripMenuItem.Click += new System.EventHandler(this.updateScreenshot);
             // 
             // startStopLiveViewToolStripMenuItem
             // 
             this.startStopLiveViewToolStripMenuItem.Name = "startStopLiveViewToolStripMenuItem";
-            this.startStopLiveViewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F5)));
-            this.startStopLiveViewToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
-            this.startStopLiveViewToolStripMenuItem.Text = "Enable &auto refresh";
+            resources.ApplyResources(this.startStopLiveViewToolStripMenuItem, "startStopLiveViewToolStripMenuItem");
             this.startStopLiveViewToolStripMenuItem.Click += new System.EventHandler(this.LiveView);
-            // 
-            // saveImageFileDialog
-            // 
-            this.saveImageFileDialog.DefaultExt = "png";
-            this.saveImageFileDialog.Filter = "PNG Images|*.png";
-            // 
-            // takeUnattendedScreenshotToolStripMenuItem
-            // 
-            this.takeUnattendedScreenshotToolStripMenuItem.Name = "takeUnattendedScreenshotToolStripMenuItem";
-            this.takeUnattendedScreenshotToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F11;
-            this.takeUnattendedScreenshotToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
-            this.takeUnattendedScreenshotToolStripMenuItem.Text = "Take unattended screenshot";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(244, 6);
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
+            // 
+            // takeUnattendedScreenshotToolStripMenuItem
+            // 
+            this.takeUnattendedScreenshotToolStripMenuItem.Name = "takeUnattendedScreenshotToolStripMenuItem";
+            resources.ApplyResources(this.takeUnattendedScreenshotToolStripMenuItem, "takeUnattendedScreenshotToolStripMenuItem");
+            // 
+            // saveImageFileDialog
+            // 
+            this.saveImageFileDialog.DefaultExt = "png";
+            resources.ApplyResources(this.saveImageFileDialog, "saveImageFileDialog");
             // 
             // ScreenshotForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(853, 480);
             this.Controls.Add(this.screenshotPictureBox);
             this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.Name = "ScreenshotForm";
-            this.Text = "Screenshot taken on {0} at {1}";
             this.Load += new System.EventHandler(this.ScreenshotForm_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ScreenshotForm_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.screenshotPictureBox)).EndInit();

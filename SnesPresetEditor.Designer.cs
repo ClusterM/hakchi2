@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SnesPresetEditor));
             this.labelPresetID = new System.Windows.Forms.Label();
             this.textBoxPresetID = new System.Windows.Forms.TextBox();
             this.labelExtra = new System.Windows.Forms.Label();
@@ -37,54 +38,36 @@
             // 
             // labelPresetID
             // 
-            this.labelPresetID.AutoSize = true;
-            this.labelPresetID.Location = new System.Drawing.Point(12, 22);
+            resources.ApplyResources(this.labelPresetID, "labelPresetID");
             this.labelPresetID.Name = "labelPresetID";
-            this.labelPresetID.Size = new System.Drawing.Size(74, 13);
-            this.labelPresetID.TabIndex = 0;
-            this.labelPresetID.Text = "Preset ID:   0x";
             // 
             // textBoxPresetID
             // 
-            this.textBoxPresetID.Location = new System.Drawing.Point(84, 19);
-            this.textBoxPresetID.MaxLength = 4;
+            resources.ApplyResources(this.textBoxPresetID, "textBoxPresetID");
             this.textBoxPresetID.Name = "textBoxPresetID";
-            this.textBoxPresetID.Size = new System.Drawing.Size(55, 20);
-            this.textBoxPresetID.TabIndex = 1;
             // 
             // labelExtra
             // 
-            this.labelExtra.AutoSize = true;
-            this.labelExtra.Location = new System.Drawing.Point(191, 22);
+            resources.ApplyResources(this.labelExtra, "labelExtra");
             this.labelExtra.Name = "labelExtra";
-            this.labelExtra.Size = new System.Drawing.Size(77, 13);
-            this.labelExtra.TabIndex = 2;
-            this.labelExtra.Text = "Extra byte:   0x";
             // 
             // textBoxExtra
             // 
-            this.textBoxExtra.Location = new System.Drawing.Point(266, 19);
-            this.textBoxExtra.MaxLength = 2;
+            resources.ApplyResources(this.textBoxExtra, "textBoxExtra");
             this.textBoxExtra.Name = "textBoxExtra";
-            this.textBoxExtra.Size = new System.Drawing.Size(31, 20);
-            this.textBoxExtra.TabIndex = 3;
             // 
             // buttonOk
             // 
-            this.buttonOk.Location = new System.Drawing.Point(336, 19);
+            resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(53, 20);
-            this.buttonOk.TabIndex = 4;
-            this.buttonOk.Text = "OK";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
             // SnesPresetEditor
             // 
             this.AcceptButton = this.buttonOk;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(409, 54);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.textBoxExtra);
             this.Controls.Add(this.labelExtra);
@@ -93,8 +76,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.Name = "SnesPresetEditor";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "SNES Preset ID";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SnesPresetEditor_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

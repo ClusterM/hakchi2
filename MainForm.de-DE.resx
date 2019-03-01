@@ -222,9 +222,6 @@
   <data name="uninstallModulesToolStripMenuItem.Text" xml:space="preserve">
     <value>Module deinstallieren</value>
   </data>
-  <data name="modStoreToolStripMenuItem.Text" xml:space="preserve">
-    <value>Hakchi Mod-Store</value>
-  </data>
   <data name="viewToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ansicht</value>
   </data>
@@ -291,15 +288,6 @@
   <data name="forceClovershellMembootsToolStripMenuItem.Text" xml:space="preserve">
     <value>Erzwinge Clovershell MemBoots</value>
   </data>
-  <data name="disableSSHlistenerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Deaktiviere den SSH-Dienst</value>
-  </data>
-  <data name="disableClovershellListenerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Deaktiviere den Clovershell-Dienst</value>
-  </data>
-  <data name="testCommandToolStripMenuItem.Text" xml:space="preserve">
-    <value>Testbefehl</value>
-  </data>
   <data name="separateGamesForMultibootToolStripMenuItem.Text" xml:space="preserve">
     <value>Teile Spiele für Multiboot auf</value>
   </data>
@@ -348,12 +336,6 @@
   <data name="retroarchToolStripMenuItem.Text" xml:space="preserve">
     <value>Retroarch</value>
   </data>
-  <data name="enableUSBHostToolStripMenuItem.Text" xml:space="preserve">
-    <value>Aktiviere USB-Host</value>
-  </data>
-  <data name="useExtendedFontToolStripMenuItem.Text" xml:space="preserve">
-    <value>Erweiterte Schriftart verwenden</value>
-  </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
     <value>Epilepsieschutz deaktivieren</value>
   </data>
@@ -369,14 +351,8 @@
   <data name="takeScreenshotToolStripMenuItem.Text" xml:space="preserve">
     <value>Einen Screenshot machen</value>
   </data>
-  <data name="FTPToolStripMenuItem.Text" xml:space="preserve">
-    <value>FTP-Server auf ftp://root@127.0.0.1:1021</value>
-  </data>
   <data name="openFTPInExplorerToolStripMenuItem.Text" xml:space="preserve">
     <value>FTP-Client öffnen</value>
-  </data>
-  <data name="shellToolStripMenuItem.Text" xml:space="preserve">
-    <value>Telnet Server auf telnet://127.0.0.1:1023 (login:root)</value>
   </data>
   <data name="openTelnetToolStripMenuItem.Text" xml:space="preserve">
     <value>Telnet-Client öffnen</value>

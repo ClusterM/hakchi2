@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskerTransferForm));
             this.statusPictureBox = new System.Windows.Forms.PictureBox();
             this.progressBarEx1 = new ProgressODoom.ProgressBarEx();
             this.fruityLoopsBackgroundPainter1 = new ProgressODoom.FruityLoopsBackgroundPainter();
@@ -44,20 +45,16 @@
             // 
             // statusPictureBox
             // 
-            this.statusPictureBox.Location = new System.Drawing.Point(12, 12);
+            resources.ApplyResources(this.statusPictureBox, "statusPictureBox");
             this.statusPictureBox.Name = "statusPictureBox";
-            this.statusPictureBox.Size = new System.Drawing.Size(48, 48);
-            this.statusPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.statusPictureBox.TabIndex = 4;
             this.statusPictureBox.TabStop = false;
             // 
             // progressBarEx1
             // 
             this.progressBarEx1.BackgroundPainter = this.fruityLoopsBackgroundPainter1;
             this.progressBarEx1.BorderPainter = this.styledBorderPainter1;
-            this.progressBarEx1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.progressBarEx1, "progressBarEx1");
             this.progressBarEx1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.progressBarEx1.Location = new System.Drawing.Point(12, 66);
             this.progressBarEx1.MarqueePercentage = 25;
             this.progressBarEx1.MarqueeSpeed = 30;
             this.progressBarEx1.MarqueeStep = 1;
@@ -68,8 +65,6 @@
             this.progressBarEx1.ProgressPainter = this.fruityLoopsProgressPainter1;
             this.progressBarEx1.ProgressType = ProgressODoom.ProgressType.Smooth;
             this.progressBarEx1.ShowPercentage = true;
-            this.progressBarEx1.Size = new System.Drawing.Size(484, 46);
-            this.progressBarEx1.TabIndex = 0;
             this.progressBarEx1.Value = 0;
             // 
             // fruityLoopsBackgroundPainter1
@@ -89,63 +84,38 @@
             // 
             // statusLabel
             // 
-            this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(66, 19);
+            resources.ApplyResources(this.statusLabel, "statusLabel");
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(46, 13);
-            this.statusLabel.TabIndex = 0;
-            this.statusLabel.Text = "Status...";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 124);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Estimated time left:";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 146);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Transfer rate:";
             // 
             // labelFileName
             // 
-            this.labelFileName.AutoSize = true;
-            this.labelFileName.Location = new System.Drawing.Point(66, 39);
+            resources.ApplyResources(this.labelFileName, "labelFileName");
             this.labelFileName.Name = "labelFileName";
-            this.labelFileName.Size = new System.Drawing.Size(52, 13);
-            this.labelFileName.TabIndex = 0;
-            this.labelFileName.Text = "File name";
             // 
             // labelTimeLeft
             // 
-            this.labelTimeLeft.AutoSize = true;
-            this.labelTimeLeft.Location = new System.Drawing.Point(117, 124);
+            resources.ApplyResources(this.labelTimeLeft, "labelTimeLeft");
             this.labelTimeLeft.Name = "labelTimeLeft";
-            this.labelTimeLeft.Size = new System.Drawing.Size(47, 13);
-            this.labelTimeLeft.TabIndex = 0;
-            this.labelTimeLeft.Text = "Time left";
             // 
             // labelTransferRate
             // 
-            this.labelTransferRate.AutoSize = true;
-            this.labelTransferRate.Location = new System.Drawing.Point(117, 146);
+            resources.ApplyResources(this.labelTransferRate, "labelTransferRate");
             this.labelTransferRate.Name = "labelTransferRate";
-            this.labelTransferRate.Size = new System.Drawing.Size(67, 13);
-            this.labelTransferRate.TabIndex = 0;
-            this.labelTransferRate.Text = "Transfer rate";
             // 
             // TaskerTransferForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 175);
             this.Controls.Add(this.labelTransferRate);
             this.Controls.Add(this.labelTimeLeft);
             this.Controls.Add(this.labelFileName);
@@ -159,8 +129,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TaskerTransferForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Transfer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TaskerTransferForm_FormClosing);
             this.Load += new System.EventHandler(this.TaskerTransferForm_Load);
             this.Shown += new System.EventHandler(this.TaskerTransferForm_Shown);
