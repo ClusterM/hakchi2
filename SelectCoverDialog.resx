@@ -283,7 +283,7 @@
     <value>Name</value>
   </data>
   <data name="systemColumnHeader.Text" xml:space="preserve">
-    <value>System</value>
+    <value>Console</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

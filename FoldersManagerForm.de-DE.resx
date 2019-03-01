@@ -135,9 +135,6 @@
   <data name="labelPosition1.Text" xml:space="preserve">
     <value>Position des Ordners:</value>
   </data>
-  <data name="buttonFoldersApp.Text" xml:space="preserve">
-    <value>Nach Typ aufteilen</value>
-  </data>
   <data name="buttonNoFoldersOriginal.Text" xml:space="preserve">
     <value>Originale Spiele -&gt; Andere Spiele</value>
   </data>

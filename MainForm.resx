@@ -456,7 +456,7 @@
     <value>112, 22</value>
   </data>
   <data name="systemToolStripMenuItem.Text" xml:space="preserve">
-    <value>System</value>
+    <value>Console</value>
   </data>
   <data name="sortByToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>

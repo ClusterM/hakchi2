@@ -172,7 +172,7 @@
     <value>165, 22</value>
   </data>
   <data name="emulatedSystemToolStripMenuItem.Text" xml:space="preserve">
-    <value>Emulated System</value>
+    <value>Emulated Console</value>
   </data>
   <data name="groupByToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>

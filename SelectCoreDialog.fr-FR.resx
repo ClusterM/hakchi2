@@ -120,23 +120,14 @@
   <data name="buttonClose.Text" xml:space="preserve">
     <value>Fermer</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Sélectionner le système approprié pour les jeux suivants:</value>
-  </data>
   <data name="nameColumnHeader.Text" xml:space="preserve">
     <value>Nom</value>
   </data>
   <data name="extColumnHeader.Text" xml:space="preserve">
     <value>Ext</value>
   </data>
-  <data name="systemColumnHeader.Text" xml:space="preserve">
-    <value>Système</value>
-  </data>
   <data name="coreColumnHeader.Text" xml:space="preserve">
     <value>Coeur</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Système:</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Coeur:</value>

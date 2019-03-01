@@ -459,7 +459,7 @@
     <value>10</value>
   </data>
   <data name="buttonFoldersApp.Text" xml:space="preserve">
-    <value>Split by app type</value>
+    <value>Split by console</value>
   </data>
   <data name="&gt;&gt;buttonFoldersApp.Name" xml:space="preserve">
     <value>buttonFoldersApp</value>

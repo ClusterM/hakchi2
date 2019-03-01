@@ -138,9 +138,6 @@
   <data name="nameColumnHeader.Text" xml:space="preserve">
     <value>Nom</value>
   </data>
-  <data name="systemColumnHeader.Text" xml:space="preserve">
-    <value>Système</value>
-  </data>
   <data name="extColumnHeader.Text" xml:space="preserve">
     <value>Ext</value>
   </data>

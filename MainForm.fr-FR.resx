@@ -411,9 +411,6 @@
   <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 22</value>
   </data>
-  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
-    <value>Système</value>
-  </data>
   <data name="showGamesWithoutBoxArtToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 22</value>
   </data>

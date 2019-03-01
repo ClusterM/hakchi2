@@ -118,9 +118,6 @@
   <data name="labelPosition1.Text" xml:space="preserve">
     <value>Priorité dossier:</value>
   </data>
-  <data name="buttonFoldersApp.Text" xml:space="preserve">
-    <value>Séparer par type d'appli</value>
-  </data>
   <data name="comboBoxBackPosition.Items" xml:space="preserve">
     <value>À gauche</value>
   </data>

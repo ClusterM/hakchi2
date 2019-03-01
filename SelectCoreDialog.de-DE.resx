@@ -120,23 +120,14 @@
   <data name="buttonClose.Text" xml:space="preserve">
     <value>Schließen</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>System und Emulator für die folgenden Spiele auswählen:</value>
-  </data>
   <data name="nameColumnHeader.Text" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="extColumnHeader.Text" xml:space="preserve">
     <value>Ext</value>
   </data>
-  <data name="systemColumnHeader.Text" xml:space="preserve">
-    <value>System</value>
-  </data>
   <data name="coreColumnHeader.Text" xml:space="preserve">
     <value>Emulator</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>System:</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Emulator:</value>

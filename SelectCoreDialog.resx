@@ -160,7 +160,7 @@
     <value>0</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Select appropriate system and core for the following games:</value>
+    <value>Select appropriate console and core for the following games:</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -187,7 +187,7 @@
     <value>45</value>
   </data>
   <data name="systemColumnHeader.Text" xml:space="preserve">
-    <value>System</value>
+    <value>Console</value>
   </data>
   <data name="systemColumnHeader.Width" type="System.Int32, mscorlib">
     <value>140</value>
@@ -253,7 +253,7 @@
     <value>0</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>System:</value>
+    <value>Console:</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>

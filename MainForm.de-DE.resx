@@ -249,9 +249,6 @@
   <data name="coreToolStripMenuItem.Text" xml:space="preserve">
     <value>Emulator</value>
   </data>
-  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
-    <value>System</value>
-  </data>
   <data name="showGamesWithoutBoxArtToolStripMenuItem.Text" xml:space="preserve">
     <value>Spiele ohne Cover gruppieren</value>
   </data>

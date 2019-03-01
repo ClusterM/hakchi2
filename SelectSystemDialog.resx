@@ -153,7 +153,7 @@
     <value>1</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Select systems to create/delete art directory for:</value>
+    <value>Select consoles to create/delete art directory for:</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
