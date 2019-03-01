@@ -1229,7 +1229,7 @@
     <value>26</value>
   </data>
   <data name="buttonExport.Text" xml:space="preserve">
-    <value>Export games</value>
+    <value>Export to USB</value>
   </data>
   <data name="&gt;&gt;buttonExport.Name" xml:space="preserve">
     <value>buttonExport</value>

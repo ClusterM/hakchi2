@@ -489,9 +489,6 @@
   <data name="gameName.Text" xml:space="preserve">
     <value>Spiel-Name</value>
   </data>
-  <data name="buttonExport.Text" xml:space="preserve">
-    <value>Spiele exportieren</value>
-  </data>
   <data name="labelID.Text" xml:space="preserve">
     <value>ID:</value>
   </data>

@@ -848,9 +848,6 @@
   <data name="gameName.Text" xml:space="preserve">
     <value>Nom du jeu</value>
   </data>
-  <data name="buttonExport.Text" xml:space="preserve">
-    <value>Exporter les jeux</value>
-  </data>
   <data name="labelName.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 13</value>
   </data>

@@ -518,9 +518,6 @@ C'est très simple à utiliser. Cliquez sur "Ajouter des jeux", sélectionner qu
   <data name="Aborting" xml:space="preserve">
     <value>Annulation...</value>
   </data>
-  <data name="ExportGames" xml:space="preserve">
-    <value>Exporter des jeux</value>
-  </data>
   <data name="LinkedGamesQ" xml:space="preserve">
     <value>Voulez-vous créer des jeux liés?</value>
   </data>

@@ -1112,7 +1112,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export Games.
+        ///   Looks up a localized string similar to Export to USB.
         /// </summary>
         internal static string ExportGames {
             get {

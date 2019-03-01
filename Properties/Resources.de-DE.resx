@@ -516,9 +516,6 @@
   <data name="Aborting" xml:space="preserve">
     <value>Breche ab...</value>
   </data>
-  <data name="ExportGames" xml:space="preserve">
-    <value>Spiele exportieren</value>
-  </data>
   <data name="LinkedGamesQ" xml:space="preserve">
     <value>Willst Du verknüpfte Spiele erstellen?</value>
   </data>

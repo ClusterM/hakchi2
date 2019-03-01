@@ -751,7 +751,7 @@ It's very simple to use. Just click "Add more games", select some ROMs, press "S
     <value>Aborting...</value>
   </data>
   <data name="ExportGames" xml:space="preserve">
-    <value>Export Games</value>
+    <value>Export to USB</value>
   </data>
   <data name="LinkedGamesQ" xml:space="preserve">
     <value>Do you want to make linked games?</value>
