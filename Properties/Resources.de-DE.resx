@@ -899,11 +899,6 @@ Fortfahren?</value>
   <data name="None" xml:space="preserve">
     <value>Nichts</value>
   </data>
-  <data name="WaitingForDeviceTakingALongTime" xml:space="preserve">
-    <value>Deine Konsole braucht sehr lange für ein Neustart.
-
-Du kannst etwas länger warten und es nach einer Weile nochmal versuchen, wenn sie wieder online ist. Benutze "Tools -&gt; Neu starten" um vom abgesichten Modus wieder in den normalen Modus zurückzukehren.</value>
-  </data>
   <data name="RecoveryModeCloseWarning" xml:space="preserve">
     <value>Dein NES/SNES Mini ist momentan im abgesicherten Modus. Du wirst nicht in der Lage sein, es normal auszuschalten. Möchtest Du den normalen Startvorgang abschließen damit es später wieder in den normalen Modus zurückkehrt?</value>
   </data>

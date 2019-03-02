@@ -1262,7 +1262,11 @@ Continue?</value>
   <data name="WaitingForDeviceTakingALongTime" xml:space="preserve">
     <value>Your device is taking a long time to reboot.
 
-You can wait some more and if it comes back online, you should see "Recovery mode" in the title bar. In that case, you can try the same action again, or use "Tools &gt; Reboot" to get back to normal operation.</value>
+You can wait some more and if it comes back online, you should see "Recovery mode" in the title bar. In that case, you can try the same action again, or use "Tools &gt; Reboot" to get back to normal operation.
+
+The most common reason for console taking too long to reboot is a Firewall, such as Windows Firewall, you can add an exception for hakchi2 ce to fix this issue.
+
+Other reasons may include VPNs blocking traffic to the local network and Windows failing to detect the RNDIS driver correctly.</value>
   </data>
   <data name="RecoveryModeCloseWarning" xml:space="preserve">
     <value>Your NES/SNES Mini is currently in recovery mode. You will not be able to turn it off normally. Do you want to finish boot sequence so it returns to normal afterwards?</value>

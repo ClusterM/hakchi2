@@ -3841,7 +3841,11 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Your device is taking a long time to reboot.
         ///
-        ///You can wait some more and if it comes back online, you should see &quot;Recovery mode&quot; in the title bar. In that case, you can try the same action again, or use &quot;Tools &gt; Reboot&quot; to get back to normal operation..
+        ///You can wait some more and if it comes back online, you should see &quot;Recovery mode&quot; in the title bar. In that case, you can try the same action again, or use &quot;Tools &gt; Reboot&quot; to get back to normal operation.
+        ///
+        ///The most common reason for console taking too long to reboot is a Firewall, such as Windows Firewall, you can add an exception for hakchi2 ce to fix this issue.
+        ///
+        ///Other reasons may include VPNs blocking traffic to the local network and Windows failing t [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string WaitingForDeviceTakingALongTime {
             get {
