@@ -61,6 +61,15 @@ namespace com.clusterrr.hakchi_gui.ModHub {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Author:.
+        /// </summary>
+        internal static string Author {
+            get {
+                return ResourceManager.GetString("Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download and Install Module.
         /// </summary>
         internal static string DownloadAndInstallModule {
@@ -111,6 +120,33 @@ namespace com.clusterrr.hakchi_gui.ModHub {
         internal static string DownloadModules {
             get {
                 return ResourceManager.GetString("DownloadModules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installed Version:.
+        /// </summary>
+        internal static string InstalledVersion {
+            get {
+                return ResourceManager.GetString("InstalledVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latest Version:.
+        /// </summary>
+        internal static string LatestVersion {
+            get {
+                return ResourceManager.GetString("LatestVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Module Name:.
+        /// </summary>
+        internal static string ModuleName {
+            get {
+                return ResourceManager.GetString("ModuleName", resourceCulture);
             }
         }
         

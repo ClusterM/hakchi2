@@ -136,25 +136,25 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
 
             if(_ModuleName != null && _ModuleName.Trim().Length > 0)
             {
-                CurrentYOffset += DrawString(brush, "Module Name:", HeadingFont, CurrentYOffset, ref e);
+                CurrentYOffset += DrawString(brush, ModHubResources.ModuleName, HeadingFont, CurrentYOffset, ref e);
                 CurrentYOffset += DrawString(brush, $"{_ModuleName}\r\n ", DataFont, CurrentYOffset, ref e);
             }
 
             if(_Author != null && _Author.Trim().Length > 0)
             {
-                CurrentYOffset += DrawString(brush, "Author:", HeadingFont, CurrentYOffset, ref e);
+                CurrentYOffset += DrawString(brush, ModHubResources.Author, HeadingFont, CurrentYOffset, ref e);
                 CurrentYOffset += DrawString(brush, $"{_Author}\r\n ", DataFont, CurrentYOffset, ref e);
             }
 
             if(_LatestVersion != null && _LatestVersion.Trim().Length > 0)
             {
-                CurrentYOffset += DrawString(brush, "Latest Version:", HeadingFont, CurrentYOffset, ref e);
+                CurrentYOffset += DrawString(brush, ModHubResources.LatestVersion, HeadingFont, CurrentYOffset, ref e);
                 CurrentYOffset += DrawString(brush, $"{_LatestVersion}\r\n ", DataFont, CurrentYOffset, ref e);
             }
 
             if (_InstalledVersion != null && _InstalledVersion.Trim().Length > 0)
             {
-                CurrentYOffset += DrawString(brush, "Installed Version:", HeadingFont, CurrentYOffset, ref e);
+                CurrentYOffset += DrawString(brush, ModHubResources.InstalledVersion, HeadingFont, CurrentYOffset, ref e);
                 CurrentYOffset += DrawString(brush, $"{_InstalledVersion}\r\n ", DataFont, CurrentYOffset, ref e);
             }
         }
