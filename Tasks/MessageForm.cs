@@ -41,6 +41,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             MessageForm form = new MessageForm();
             form.Text = title ?? form.Text;
+            form.messageLabel.MaximumSize = new Size(form.panel3.Size.Width, 0);
             form.messageLabel.Text = message;
             form.pictureBox1.Image = icon ?? Resources.sign_info;
 
