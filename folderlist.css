@@ -1,0 +1,32 @@
+﻿body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    margin: 1em;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    display: block;
+    background-repeat: no-repeat;
+    min-height: 16px;
+    padding: 0 0 0 20px;
+    margin: 3px 0;
+    vertical-align: middle;
+}
+
+li:before {
+    content: '';
+    display: inline-block;
+    height: 16px;
+    width: 0;
+    vertical-align: middle;
+}
+
+li[data-type='folder'] { 
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAElBMVEX///9TcYd3m7VTcYe0zd53m7Xb+4DeAAAAA3RSTlMAAAD6dsTeAAAAM0lEQVR4XmOAA0FjY0NBIGAQNgYDQxAjFAQYgDjExcXFlQFEEs1QhTCCsDFCwSCIAQMAAIeZGoDaH2rAAAAAAElFTkSuQmCC');
+}

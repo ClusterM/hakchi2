@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -14,28 +15,29 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class FoldersManagerForm : Form
     {
-        public static string FoldersXmlPath
+        public static string FoldersXmlPathBase
         {
             get
             {
-                switch(ConfigIni.Instance.ConsoleType)
+                switch (ConfigIni.Instance.ConsoleType)
                 {
                     default:
                     case hakchi.ConsoleType.NES:
-                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders.xml");
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders");
                     case hakchi.ConsoleType.Famicom:
-                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_famicom.xml");
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_famicom");
                     case hakchi.ConsoleType.ShonenJump:
-                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_shonen_jump.xml");
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_shonen_jump");
                     case hakchi.ConsoleType.SNES_EUR:
-                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_snes_eur.xml");
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_snes_eur");
                     case hakchi.ConsoleType.SNES_USA:
-                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_snes_usa.xml");
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_snes_usa");
                     case hakchi.ConsoleType.SuperFamicom:
-                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_super_famicom.xml");
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_super_famicom");
                 }
             }
         }
+
         List<TreeNode> cuttedNodes = new List<TreeNode>();
         List<INesMenuElement> deletedGames = new List<INesMenuElement>();
         NesMenuCollection gamesCollection = new NesMenuCollection();
@@ -71,17 +73,18 @@ namespace com.clusterrr.hakchi_gui
                 InitializeComponent();
                 gamesCollection = nesMenuCollection;
                 this.mainForm = mainForm;
-                if (File.Exists(FoldersXmlPath))
+                var xmlFilePath = File.Exists($"{FoldersXmlPathBase}.htm") ? $"{FoldersXmlPathBase}.htm" : $"{FoldersXmlPathBase}.xml";
+                if (File.Exists(xmlFilePath))
                 {
                     try
                     {
-                        XmlToTree(File.ReadAllText(FoldersXmlPath));
+                        XmlToTree(File.ReadAllText(xmlFilePath));
                     }
                     catch (Exception ex)
                     {
                         Trace.WriteLine(ex.Message + ex.StackTrace);
                         Tasks.ErrorForm.Show(mainForm, ex);
-                        File.Delete(FoldersXmlPath);
+                        File.Delete(xmlFilePath);
                         return;
                     }
                 }
@@ -903,8 +906,9 @@ namespace com.clusterrr.hakchi_gui
 
         void SaveTree()
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(FoldersXmlPath));
-            File.WriteAllText(FoldersXmlPath, TreeToXml());
+            Directory.CreateDirectory(Path.GetDirectoryName(FoldersXmlPathBase));
+            File.WriteAllText($"{FoldersXmlPathBase}.htm", TreeToXml());
+            if (File.Exists($"{FoldersXmlPathBase}.xml")) File.Delete($"{FoldersXmlPathBase}.xml");
             if (mainForm != null)
             {
                 for (int i = 1; i < mainForm.listViewGames.Items.Count; i++)
@@ -923,48 +927,85 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private string TreeToXml()
+        private string TreeToXml(string title = null)
         {
+            if (title == null)
+            {
+                title = MainForm.GetConsoleTypeName(ConfigIni.Instance.ConsoleType);
+            }
+
             if (treeView.Nodes == null || treeView.Nodes.Count == 0)
                 return "";
 
             var root = treeView.Nodes[0];
             var xml = new XmlDocument();
-            var treeNode = xml.CreateElement("Tree");
-            xml.AppendChild(treeNode);
-            NodeToXml(xml, treeNode, root);
-            using (var stringWriter = new StringWriter())
-            using (var xmlTextWriter = new XmlTextWriter(stringWriter))
+            var htmlNode = xml.CreateElement("html");
+            var headNode = xml.CreateElement("head");
+            var styleNode = xml.CreateElement("style");
+            var bodyNode = xml.CreateElement("body");
+            var ulNode = xml.CreateElement("ul");
+            var titleNode = xml.CreateElement("title");
+            var h1Node = xml.CreateElement("h1");
+
+            htmlNode.SetAttribute("lang", ConfigIni.Instance.Language);
+            htmlNode.AppendChild(headNode);
+            headNode.AppendChild(titleNode);
+            titleNode.AppendChild(xml.CreateTextNode(String.Format(Resources.Hakchi2CEGames0, title)));
+            headNode.AppendChild(styleNode);
+            styleNode.AppendChild(xml.CreateTextNode(Resources.folderListCss));
+            htmlNode.AppendChild(bodyNode);
+            bodyNode.AppendChild(h1Node);
+            h1Node.AppendChild(xml.CreateTextNode(title));
+            bodyNode.AppendChild(ulNode);
+            xml.AppendChild(htmlNode);
+
+            var icons = new Dictionary<int, Image>();
+            NodeToXml(xml, ulNode, root, ref icons);
+
+            foreach(int key in icons.Keys)
             {
-                xmlTextWriter.Formatting = Formatting.Indented;
-                xmlTextWriter.WriteStartDocument();
-                xml.WriteTo(xmlTextWriter);
-                xmlTextWriter.WriteEndDocument();
-                xmlTextWriter.Flush();
-                return stringWriter.GetStringBuilder().ToString();
+                using (var imageStream = new MemoryStream())
+                {
+                    icons[key].Save(imageStream, ImageFormat.Png);
+                    styleNode.AppendChild(xml.CreateTextNode($"\n.icon-{key} {{ background-image: url('data:image/png;base64,{Convert.ToBase64String(imageStream.ToArray())}') }}"));
+                }
             }
+
+            return $"<!DOCTYPE html>\n{xml.OuterXml}";
         }
-        private void NodeToXml(XmlDocument xml, XmlElement element, TreeNode node)
+        private void NodeToXml(XmlDocument xml, XmlElement element, TreeNode node, ref Dictionary<int, Image> icons)
         {
             foreach (TreeNode child in node.Nodes)
             {
                 if (child.Tag is NesMenuFolder)
                 {
-                    var subElement = xml.CreateElement("Folder");
+                    var liNode = xml.CreateElement("li");
+                    var ulNode = xml.CreateElement("ul");
                     var folder = child.Tag as NesMenuFolder;
-                    subElement.SetAttribute("name", folder.Name);
-                    subElement.SetAttribute("icon", folder.ImageId);
-                    subElement.SetAttribute("position", ((byte)folder.Position).ToString());
-                    element.AppendChild(subElement);
-                    NodeToXml(xml, subElement, child);
+                    liNode.AppendChild(xml.CreateTextNode(folder.Name));
+                    liNode.AppendChild(ulNode);
+                    liNode.SetAttribute("data-type", "folder");
+                    liNode.SetAttribute("data-icon", folder.ImageId);
+                    liNode.SetAttribute("data-position", ((byte)folder.Position).ToString());
+                    element.AppendChild(liNode);
+                    NodeToXml(xml, ulNode, child, ref icons);
                 }
                 else if (child.Tag is NesApplication)
                 {
-                    var subElement = xml.CreateElement("Game");
+                    var liNode = xml.CreateElement("li");
                     var game = child.Tag as NesApplication;
-                    subElement.SetAttribute("code", game.Code);
-                    subElement.SetAttribute("name", game.Name);
-                    element.AppendChild(subElement);
+                    
+                    if (!icons.Keys.Contains(child.ImageIndex))
+                    {
+                        icons.Add(child.ImageIndex, treeView.ImageList.Images[child.ImageIndex]);
+                    }
+
+                    liNode.SetAttribute("data-type", "application");
+                    liNode.SetAttribute("class", $"icon-{child.ImageIndex}");
+                    liNode.SetAttribute("data-code", game.Code);
+                    
+                    liNode.AppendChild(xml.CreateTextNode(game.Name));
+                    element.AppendChild(liNode);
                 }
             }
         }
@@ -976,7 +1017,11 @@ namespace com.clusterrr.hakchi_gui
             var xml = new XmlDocument();
             xml.LoadXml(xmlString);
             gamesCollection.Clear();
-            XmlToNode(xml, xml.SelectSingleNode("/Tree").ChildNodes, oldCollection, gamesCollection);
+            XmlNode treeNode = xml.SelectSingleNode("/Tree");
+            if (treeNode == null) treeNode = xml.SelectSingleNode("/html/body/ul");
+
+
+            XmlToNode(xml, treeNode.ChildNodes, oldCollection, gamesCollection);
             // oldCollection has only unsorted (new) games
             if (oldCollection.Count > 0)
             {
@@ -1004,17 +1049,18 @@ namespace com.clusterrr.hakchi_gui
                 nesMenuCollection = rootMenuCollection;
             foreach (XmlNode element in elements)
             {
-                switch (element.Name)
+                switch ($"{element.Name}.{element.Attributes["data-type"]?.Value}")
                 {
-                    case "Folder":
-                        var folder = new NesMenuFolder(element.Attributes["name"].Value, element.Attributes["icon"].Value);
-                        folder.Position = (NesMenuFolder.Priority)byte.Parse(element.Attributes["position"].Value);
+                    case "Folder.":
+                    case "li.folder":
+                        var folder = new NesMenuFolder(element.ChildNodes[0].InnerText, element.Attributes["data-icon"].Value);
+                        folder.Position = (NesMenuFolder.Priority)byte.Parse(element.Attributes["data-position"].Value);
                         nesMenuCollection.Add(folder);
-                        XmlToNode(xml, element.ChildNodes, rootMenuCollection, folder.ChildMenuCollection);
+                        XmlToNode(xml, element.Name != "li" ? element.ChildNodes : element.SelectSingleNode("ul").ChildNodes, rootMenuCollection, folder.ChildMenuCollection);
                         break;
-                    case "Game":
-                    //case "OriginalGame":
-                        var code = element.Attributes["code"].Value;
+                    case "Game.":
+                    case "li.application":
+                        var code = element.Attributes["data-code"].Value;
                         var games = from n in rootMenuCollection where ((n is NesApplication) && (n.Code == code)) select n;
                         if (games.Count() > 0)
                         {

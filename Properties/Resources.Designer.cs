@@ -1619,6 +1619,45 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to body {
+        ///    font-family: Arial, Helvetica, sans-serif;
+        ///    font-size: 12px;
+        ///    margin: 1em;
+        ///}
+        ///
+        ///ul {
+        ///    list-style: none;
+        ///    padding: 0;
+        ///}
+        ///
+        ///li {
+        ///    list-style: none;
+        ///    display: block;
+        ///    background-repeat: no-repeat;
+        ///    min-height: 16px;
+        ///    padding: 0 0 0 20px;
+        ///    margin: 3px 0;
+        ///    vertical-align: middle;
+        ///}
+        ///
+        ///li:before {
+        ///    content: &apos;&apos;;
+        ///    display: inline-block;
+        ///    height: 16px;
+        ///    width: 0;
+        ///    vertical-align: middle;
+        ///}
+        ///
+        ///li[data-type=&apos;folder&apos;] { 
+        ///    background-image: url(&apos;data:image/png;base64 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string folderListCss {
+            get {
+                return ResourceManager.GetString("folderListCss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         internal static string FolderNameBack {
@@ -1902,6 +1941,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
             get {
                 object obj = ResourceManager.GetObject("green", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hakchi2 CE Games - {0}.
+        /// </summary>
+        internal static string Hakchi2CEGames0 {
+            get {
+                return ResourceManager.GetString("Hakchi2CEGames0", resourceCulture);
             }
         }
         
