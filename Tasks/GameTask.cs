@@ -421,7 +421,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
                 if (directory == null)
                 {
-                    using (var sfd = new SaveFileDialog() { Filter = Resources.GameArchiveFilter, FileName = fileName })
+                    using (var sfd = new SaveFileDialog() { Filter = Resources.GameArchive + "(*.clvg)|*.clvg", FileName = fileName })
                     {
                         if (sfd.ShowDialog() == DialogResult.OK)
                         {

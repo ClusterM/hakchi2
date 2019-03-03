@@ -152,6 +152,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archive Files.
+        /// </summary>
+        internal static string ArchiveFiles {
+            get {
+                return ResourceManager.GetString("ArchiveFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Archiving: {0}.
         /// </summary>
         internal static string Archiving {
@@ -1786,11 +1795,11 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Game Archive (*.clvg)|*.clvg.
+        ///   Looks up a localized string similar to Game Archive.
         /// </summary>
-        internal static string GameArchiveFilter {
+        internal static string GameArchive {
             get {
-                return ResourceManager.GetString("GameArchiveFilter", resourceCulture);
+                return ResourceManager.GetString("GameArchive", resourceCulture);
             }
         }
         

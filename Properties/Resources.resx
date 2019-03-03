@@ -1319,9 +1319,6 @@ Other reasons may include VPNs blocking traffic to the local network and Windows
   <data name="ArchivingGames" xml:space="preserve">
     <value>Archiving Games</value>
   </data>
-  <data name="GameArchiveFilter" xml:space="preserve">
-    <value>Game Archive (*.clvg)|*.clvg</value>
-  </data>
   <data name="ReplaceFileQ" xml:space="preserve">
     <value>Replace File?</value>
   </data>
@@ -1374,6 +1371,12 @@ Other reasons may include VPNs blocking traffic to the local network and Windows
   </data>
   <data name="XMLFiles" xml:space="preserve">
     <value>XML Files</value>
+  </data>
+  <data name="ArchiveFiles" xml:space="preserve">
+    <value>Archive Files</value>
+  </data>
+  <data name="GameArchive" xml:space="preserve">
+    <value>Game Archive</value>
   </data>
   <data name="SupportedFiles" xml:space="preserve">
     <value>Supported Files</value>

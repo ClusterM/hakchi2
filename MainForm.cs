@@ -112,7 +112,7 @@ namespace com.clusterrr.hakchi_gui
 
                 // supported extensions in add games dialog
                 string extensions = string.Empty;
-                extensions += "All Files|*.*|Archive Files|*.zip;*.7z;*.rar|";
+                extensions += Resources.AllFiles + "|*.*|" + Resources.ArchiveFiles + "|*.zip;*.7z;*.rar|";
                 foreach(var system in CoreCollection.Systems)
                 {
                     extensions += system + "|*" + string.Join(";*", CoreCollection.GetExtensionsFromSystem(system).ToArray()) + "|";
