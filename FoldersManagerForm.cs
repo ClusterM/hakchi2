@@ -38,6 +38,8 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        bool needsSave = false;
+        TreeNode rootNode;
         List<TreeNode> cuttedNodes = new List<TreeNode>();
         List<INesMenuElement> deletedGames = new List<INesMenuElement>();
         NesMenuCollection gamesCollection = new NesMenuCollection();
@@ -117,7 +119,7 @@ namespace com.clusterrr.hakchi_gui
             cuttedNodes.Clear();
             treeView.Nodes.Clear();
             var folderImageIndex = getImageIndex(null);
-            var rootNode = new TreeNode(Resources.MainMenu, folderImageIndex, folderImageIndex);
+            rootNode = new TreeNode(Resources.MainMenu, folderImageIndex, folderImageIndex);
             treeView.Nodes.Add(rootNode);
             rootNode.Tag = gamesCollection;
             AddNodes(rootNode.Nodes, gamesCollection);
@@ -127,6 +129,7 @@ namespace com.clusterrr.hakchi_gui
 
         void DrawSplitTree(NesMenuCollection.SplitStyle splitStyle = NesMenuCollection.SplitStyle.NoSplit)
         {
+            needsSave = true;
             var node = treeView.SelectedNode;
             NesMenuCollection collection;
             if (node.Tag is NesMenuFolder)
@@ -372,6 +375,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void treeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
+            needsSave = true;
             if (!(e.Node.Tag is NesMenuFolder) ||
                 string.IsNullOrEmpty(e.Label) || string.IsNullOrEmpty(e.Label.Trim()))
                 e.CancelEdit = true;
@@ -396,6 +400,7 @@ namespace com.clusterrr.hakchi_gui
                 e.CancelEdit = true;
             else
             {
+                needsSave = true;
                 var item = listViewContent.Items[e.Item];
                 var node = item.Tag as TreeNode;
                 node.Text = e.Label;
@@ -447,6 +452,7 @@ namespace com.clusterrr.hakchi_gui
         private void listViewContent_ItemDrag(object sender, ItemDragEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
+            needsSave = true;
             var nodes = new List<TreeNode>();
             foreach (ListViewItem i in listViewContent.SelectedItems)
                 nodes.Add(i.Tag as TreeNode);
@@ -463,6 +469,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (e.Data.GetDataPresent("System.Windows.Forms.TreeNode[]", false))
             {
+                needsSave = true;
                 TreeNode destinationNode;
                 if (sender is TreeView)
                 {
@@ -495,6 +502,7 @@ namespace com.clusterrr.hakchi_gui
         private void comboBoxPosition_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!(treeView.SelectedNode.Tag is NesMenuFolder)) return;
+            needsSave = true;
             int value = comboBoxPosition.SelectedIndex;
             if (value >= 2) value++;
             var node = treeView.SelectedNode;
@@ -614,6 +622,7 @@ namespace com.clusterrr.hakchi_gui
         
         void newFolder(TreeNode parent = null)
         {
+            needsSave = true;
             var newFolder = new NesMenuFolder(Resources.FolderNameNewFolder);
             var folderImageIndex = getImageIndex(newFolder);
             var newnode = new TreeNode(Resources.FolderNameNewFolder, folderImageIndex, folderImageIndex);
@@ -665,6 +674,7 @@ namespace com.clusterrr.hakchi_gui
 
         void deleteElements(IEnumerable<TreeNode> nodes)
         {
+            needsSave = true;
             if (nodes.Count() == 1)
             {
                 if (Tasks.MessageForm.Show(Resources.AreYouSure, string.Format(Resources.DeleteElement, nodes.First().Text), Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) != Tasks.MessageForm.Button.Yes)
@@ -754,6 +764,7 @@ namespace com.clusterrr.hakchi_gui
 
         void pasteElements(TreeNode node)
         {
+            needsSave = true;
             if ((cuttedNodes.Count > 0) && MoveToFolder(cuttedNodes, node))
             {
                 cutElements(new TreeNode[0]);
@@ -884,6 +895,7 @@ namespace com.clusterrr.hakchi_gui
                 var form = new SelectIconForm(folder.ImageId);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
+                    needsSave = true;
                     folder.ImageId = form.listBox.SelectedItem.ToString();
                     ShowSelected();
                 }
@@ -893,6 +905,11 @@ namespace com.clusterrr.hakchi_gui
         private void TreeContructorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason != CloseReason.UserClosing || DialogResult == DialogResult.OK) return;
+            if (needsSave == false)
+            {
+                DialogResult = DialogResult.Cancel;
+                return;
+            }
             var a = Tasks.MessageForm.Show(this.Text, Resources.FoldersSaveQ, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No, Tasks.MessageForm.Button.Cancel }, Tasks.MessageForm.DefaultButton.Button1);
             if (a == Tasks.MessageForm.Button.Cancel)
             {
@@ -904,11 +921,11 @@ namespace com.clusterrr.hakchi_gui
             DialogResult = DialogResult.Cancel;
         }
 
-        void SaveTree()
+        void SaveTree(string filename = null)
         {
             Directory.CreateDirectory(Path.GetDirectoryName(FoldersXmlPathBase));
-            File.WriteAllText($"{FoldersXmlPathBase}.htm", TreeToXml());
-            if (File.Exists($"{FoldersXmlPathBase}.xml")) File.Delete($"{FoldersXmlPathBase}.xml");
+            File.WriteAllText(filename == null ? $"{FoldersXmlPathBase}.htm" : filename, TreeToXml());
+            if (filename == null && File.Exists($"{FoldersXmlPathBase}.xml")) File.Delete($"{FoldersXmlPathBase}.xml");
             if (mainForm != null)
             {
                 for (int i = 1; i < mainForm.listViewGames.Items.Count; i++)
@@ -1071,6 +1088,77 @@ namespace com.clusterrr.hakchi_gui
                         break;
                 }
             }
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            treeView.SelectedNode = rootNode;
+            DrawSplitTree(NesMenuCollection.SplitStyle.NoSplit);
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var ofd = new OpenFileDialog())
+                {
+                    ofd.Filter = Resources.SupportedFiles + " (*.htm, *.xml)|*.xml;*.htm|" + Resources.HTMLFiles + " (*.htm)|*.htm|" + Resources.XMLFiles + " (*.xml)|*.xml";
+                    if (ofd.ShowDialog(this) == DialogResult.OK)
+                    {
+                        needsSave = true;
+                        XmlToTree(File.ReadAllText(ofd.FileName));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.Message + ex.StackTrace);
+                Tasks.ErrorForm.Show(mainForm, ex);
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveTree();
+                needsSave = false;
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.Message + ex.StackTrace);
+                Tasks.ErrorForm.Show(mainForm, ex);
+            }
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var sfd = new SaveFileDialog())
+                {
+                    sfd.Filter = $"{Resources.HTMLFiles}|*.htm";
+                    if (sfd.ShowDialog(this) == DialogResult.OK)
+                    {
+                        SaveTree(sfd.FileName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.Message + ex.StackTrace);
+                Tasks.ErrorForm.Show(mainForm, ex);
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void FoldersManagerForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

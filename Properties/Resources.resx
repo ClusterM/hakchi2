@@ -1369,4 +1369,13 @@ Other reasons may include VPNs blocking traffic to the local network and Windows
   <data name="Hakchi2CEGames0" xml:space="preserve">
     <value>Hakchi2 CE Games - {0}</value>
   </data>
+  <data name="HTMLFiles" xml:space="preserve">
+    <value>HTML Files</value>
+  </data>
+  <data name="XMLFiles" xml:space="preserve">
+    <value>XML Files</value>
+  </data>
+  <data name="SupportedFiles" xml:space="preserve">
+    <value>Supported Files</value>
+  </data>
 </root>
