@@ -236,6 +236,7 @@ namespace com.clusterrr.hakchi_gui
         public bool ForceSSHTransfers = false;
         public bool UploadToTmp = false;
         public bool ExportLinked = true;
+        public bool CreateSavesFolder = true;
         public string ExportDrive = "";
         public UbootType MembootUboot = UbootType.SD;
         public Hmod.ListSort hmodListSort = Hmod.ListSort.Category;

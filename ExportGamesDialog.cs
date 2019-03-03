@@ -15,6 +15,8 @@ namespace com.clusterrr.hakchi_gui
     {
         private readonly string baseDrive = Path.GetPathRoot(Program.BaseDirectoryExternal).ToLower();
         public string ExportPath;
+        public Boolean CreateSavesFolder = false;
+        public string SavesPath;
         public bool LinkedExport = false;
         public DriveInfo SelectedDrive;
         public struct DriveLetterItem
@@ -79,6 +81,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
             checkLinked.Checked = ConfigIni.Instance.ExportLinked;
+            checkCreateSavesFolder.Checked = ConfigIni.Instance.CreateSavesFolder;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -115,6 +118,7 @@ namespace com.clusterrr.hakchi_gui
                 }
 
                 ConfigIni.Instance.ExportDrive = Path.GetPathRoot(SelectedDrive.RootDirectory.FullName).ToLower();
+                CreateSavesFolder = checkCreateSavesFolder.Enabled && checkCreateSavesFolder.Checked;
                 LinkedExport = checkLinked.Enabled && checkLinked.Checked;
 
                 DialogResult = DialogResult.OK;
@@ -133,11 +137,18 @@ namespace com.clusterrr.hakchi_gui
             {
                 checkLinked.Enabled = false;
             }
+            SavesPath = Path.Combine(Path.GetPathRoot(drive.RootDirectory.FullName).ToLower(), "hakchi", "saves");
+            checkCreateSavesFolder.Enabled = !Directory.Exists(SavesPath);
         }
 
         private void checkLinked_CheckedChanged(object sender, EventArgs e)
         {
             ConfigIni.Instance.ExportLinked = ((CheckBox)sender).Checked;
+        }
+
+        private void checkCreateSavesFolder_CheckedChanged(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.CreateSavesFolder = ((CheckBox)sender).Checked;
         }
     }
 }

@@ -94,6 +94,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     this.exportDirectory = driveSelectDialog.ExportPath;
                     if (!Directory.Exists(driveSelectDialog.ExportPath))
                         Directory.CreateDirectory(driveSelectDialog.ExportPath);
+
+                    if (driveSelectDialog.CreateSavesFolder && !Directory.Exists(driveSelectDialog.SavesPath))
+                        Directory.CreateDirectory(driveSelectDialog.SavesPath);
                 }
                 copyMode = exportLinked ? NesApplication.CopyMode.LinkedExport : NesApplication.CopyMode.Export;
                 return Tasker.Conclusion.Success;

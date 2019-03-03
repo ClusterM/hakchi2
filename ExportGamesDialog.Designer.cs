@@ -35,6 +35,7 @@
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.checkLinked = new System.Windows.Forms.CheckBox();
+            this.checkCreateSavesFolder = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,10 +83,20 @@
             this.checkLinked.UseVisualStyleBackColor = true;
             this.checkLinked.CheckedChanged += new System.EventHandler(this.checkLinked_CheckedChanged);
             // 
+            // checkCreateSavesFolder
+            // 
+            resources.ApplyResources(this.checkCreateSavesFolder, "checkCreateSavesFolder");
+            this.checkCreateSavesFolder.Checked = true;
+            this.checkCreateSavesFolder.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkCreateSavesFolder.Name = "checkCreateSavesFolder";
+            this.checkCreateSavesFolder.UseVisualStyleBackColor = true;
+            this.checkCreateSavesFolder.CheckedChanged += new System.EventHandler(this.checkCreateSavesFolder_CheckedChanged);
+            // 
             // ExportGamesDialog
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkCreateSavesFolder);
             this.Controls.Add(this.checkLinked);
             this.Controls.Add(this.comboDriveLetters);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -109,5 +120,6 @@
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.CheckBox checkLinked;
+        private System.Windows.Forms.CheckBox checkCreateSavesFolder;
     }
 }
