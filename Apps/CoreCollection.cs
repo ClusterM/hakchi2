@@ -10,6 +10,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using SharpCompress.Compressors.Deflate;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -106,23 +107,27 @@ namespace com.clusterrr.hakchi_gui
             Trace.WriteLine("Loading libretro core info files");
             var regex = new Regex("(^[^\\s]+)\\s+=\\s+\"?([^\"\\r\\n]*)\"?", RegexOptions.Multiline | RegexOptions.Compiled);
 
-            // list base info files present in "libretro_cores.7z"
+            // list base info files present in "libretro_cores.tgz"
             cores = new Dictionary<string, CoreInfo>();
-            using (var extractor = ArchiveFactory.Open(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "libretro_cores.7z")))
-                using (var reader = extractor.ExtractAllEntries())
-                    while (reader.MoveToNextEntry())
-                    {
-                        string file = reader.Entry.Key;
+            using (var extractor = ArchiveFactory.Open(Shared.PathCombine(Program.BaseDirectoryInternal, "data", "libretro_cores.tar")))
+            using (var reader = extractor.ExtractAllEntries())
+            {
+                while (reader.MoveToNextEntry())
+                {
+                    var file = reader.Entry.Key;
 
-                        Match m = Regex.Match(Path.GetFileNameWithoutExtension(file), "^(.*)_libretro");
-                        if (m.Success && !string.IsNullOrEmpty(m.Groups[1].ToString()))
-                        {
-                            var bin = m.Groups[1].ToString();
-                            var core = parseInfoFile(reader.OpenEntryStream(), bin);
-                            if (core != null)
-                                cores[bin] = core;
-                        }
+                    Match m = Regex.Match(file, "^(?:[^/]*/)?(.*)_libretro\\.info");
+                    if (m.Success && !string.IsNullOrEmpty(m.Groups[1].ToString()))
+                    {
+                        var fileStream = reader.OpenEntryStream();
+                        var bin = m.Groups[1].ToString();
+                        var core = parseInfoFile(fileStream, bin);
+                        fileStream.Close();
+                        if (core != null)
+                            cores[bin] = core;
                     }
+                }
+            }
 
             // list user-added info files present in /info
             if (!Directory.Exists(Path.Combine(Program.BaseDirectoryExternal, "info")))
@@ -168,6 +173,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
+            Trace.WriteLine($"Done, {cores.Count()} cores loaded");
             // save cache
             // Serialize();
         }

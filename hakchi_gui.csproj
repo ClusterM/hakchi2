@@ -263,6 +263,12 @@
     <Compile Include="ExportGamesDialog.Designer.cs">
       <DependentUpon>ExportGamesDialog.cs</DependentUpon>
     </Compile>
+    <None Include="data\desktop_entries.tar">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\libretro_cores.tar">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="images\pencil-icon.png" />
     <None Include="images\discord.png" />
     <None Include="images\reddit.png" />
@@ -513,9 +519,6 @@
     <None Include="data\desktop_entries\snes-usa\CLV-P-SADGE.desktop" />
     <None Include="data\desktop_entries\snes-usa\CLV-P-SADJE.desktop" />
     <None Include="data\desktop_entries\snes-usa\CLV-P-SADKE.desktop" />
-    <None Include="data\libretro_cores.7z">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="data\libretro_cores\2048_libretro.info" />
     <None Include="data\libretro_cores\4do_libretro.info" />
     <None Include="data\libretro_cores\81_libretro.info" />
@@ -2006,9 +2009,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.config" />
-    <None Include="data\desktop_entries.7z">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="hakchi-nonportable.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -2123,32 +2123,32 @@
   <ItemGroup>
     <PublishFile Include="data\GameGenieDB.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\nescarts.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="data\snescarts.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
@@ -2218,7 +2218,12 @@
 "./busybox" sh -e "./copypackedhmods" "../mods/hmods" "../$(OutDir)user_mods"
 "./busybox" rm -rf "../$(OutDir)user_mods/hakchi.hmod"
 "./busybox" cp -R "../user_mods/" "../$(OutDir)/"
-"./busybox" sh -e "./gitcommit" &gt; "../commit.txt"</PreBuildEvent>
+"./busybox" sh -e "./gitcommit" &gt; "../commit.txt"
+
+"./busybox" rm "../data/libretro_cores.tar"
+"./busybox" rm "../data/desktop_entries.tar"
+"./busybox" tar -cvf "../data/libretro_cores.tar" -C "../data/libretro_cores/" "."
+"./busybox" tar -cvf "../data/desktop_entries.tar" -C "../data/desktop_entries/" "."</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>

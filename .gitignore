@@ -17,4 +17,8 @@ Makefile Projects/Release/
 Makefile Projects/Debug/
 tools/putty/puttytel.exe
 packages/
+data/libretro_cores.7z
+data/desktop_entries.7z
+data/libretro_cores.tar
+data/desktop_entries.tar
 !user_mods/snes_custom_filters.hmod/usr/bin/

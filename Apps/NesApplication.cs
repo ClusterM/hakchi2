@@ -11,6 +11,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using SharpCompress.Compressors.Deflate;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -38,29 +39,27 @@ namespace com.clusterrr.hakchi_gui
 
             try
             {
-                string desktopEntriesArchiveFile = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "desktop_entries.7z");
+                string desktopEntriesArchiveFile = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "desktop_entries.tar");
                 using (var extractor = ArchiveFactory.Open(desktopEntriesArchiveFile))
-                {
-                    using (var reader = extractor.ExtractAllEntries())
-                        while (reader.MoveToNextEntry())
-                        {
-                            if (reader.Entry.IsDirectory)
-                                continue;
+                using (var reader = extractor.ExtractAllEntries())
+                    while (reader.MoveToNextEntry())
+                    {
+                        if (reader.Entry.IsDirectory)
+                            continue;
 
-                            hakchi.ConsoleType c = hakchi.SystemCodeToConsoleType[reader.Entry.Key.Substring(0, reader.Entry.Key.IndexOf('/'))];
-                            DefaultGames[c].Add(Path.GetFileNameWithoutExtension(reader.Entry.Key));
-                            using (var str = reader.OpenEntryStream())
-                            {
-                                var desktopFile = new DesktopFile();
-                                desktopFile.Load(str);
-                                AllDefaultGames[desktopFile.Code] = desktopFile;
-                            }
+                        hakchi.ConsoleType c = hakchi.SystemCodeToConsoleType[reader.Entry.Key.Substring(2, reader.Entry.Key.IndexOf('/', 2) - 2)];
+                        DefaultGames[c].Add(Path.GetFileNameWithoutExtension(reader.Entry.Key));
+                        using (var str = reader.OpenEntryStream())
+                        {
+                            var desktopFile = new DesktopFile();
+                            desktopFile.Load(str);
+                            AllDefaultGames[desktopFile.Code] = desktopFile;
                         }
-                }
+                    }
             }
             catch (Exception ex)
             {
-                Trace.WriteLine("Error loading original games from desktop_entries.7z data file." + ex.Message + ex.StackTrace);
+                Trace.WriteLine("Error loading original games from desktop_entries.tar data file." + ex.Message + ex.StackTrace);
                 Tasks.ErrorForm.Show(ex);
             }
         }
