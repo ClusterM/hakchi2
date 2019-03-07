@@ -48,6 +48,7 @@
             this.ClientSize = new System.Drawing.Size(825, 473);
             this.Controls.Add(this.tabControl1);
             this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
+            this.MinimumSize = new System.Drawing.Size(768, 500);
             this.Name = "ModHubForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ModHubForm";
