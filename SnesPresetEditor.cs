@@ -27,8 +27,8 @@ namespace com.clusterrr.hakchi_gui
                     game.Decompress();
                 this.game = game;
                 header2 = game.ReadSfromHeader2();
-                textBoxPresetID.Text = string.Format("{0:X2}{1:X2}", header2.PresetID & 0xFF, (header2.PresetID >> 8) & 0xFF);
-                textBoxExtra.Text = string.Format("{0:X2}", header2.Chip & 0xFF);
+                textBoxPresetID.Text = string.Format("{0:X4}", header2.PresetID);
+                textBoxExtra.Text = string.Format("{0:X2}", header2.Chip);
             }
             catch (Exception ex)
             {
@@ -42,7 +42,6 @@ namespace com.clusterrr.hakchi_gui
             try
             {
                 var presetID = Convert.ToInt32(textBoxPresetID.Text, 16);
-                presetID = ((presetID & 0xFF) << 8) | ((presetID >> 8) & 0xFF);
                 var chip = Convert.ToInt32(textBoxExtra.Text, 16);
                 header2.PresetID = (ushort)presetID;
                 header2.Chip = (uint)chip;
