@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SnesPresetEditor));
             this.labelPresetID = new System.Windows.Forms.Label();
-            this.textBoxPresetID = new System.Windows.Forms.TextBox();
+            this.textBoxPresetID = new Int16HexTextBox();
             this.labelExtra = new System.Windows.Forms.Label();
-            this.textBoxExtra = new System.Windows.Forms.TextBox();
+            this.textBoxExtra = new Int8HexTextBox();
             this.buttonOk = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -85,9 +85,9 @@
         #endregion
 
         private System.Windows.Forms.Label labelPresetID;
-        private System.Windows.Forms.TextBox textBoxPresetID;
+        private Int16HexTextBox textBoxPresetID;
         private System.Windows.Forms.Label labelExtra;
-        private System.Windows.Forms.TextBox textBoxExtra;
+        private Int8HexTextBox textBoxExtra;
         private System.Windows.Forms.Button buttonOk;
     }
 }

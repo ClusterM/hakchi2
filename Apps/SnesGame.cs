@@ -334,7 +334,7 @@ namespace com.clusterrr.hakchi_gui
             Trace.WriteLine($"Game title: {gameTitle}");
             Trace.WriteLine($"ROM type: {romType}");
             ushort presetId = 0;
-            ushort chip = 0;
+            byte chip = 0;
             if (SfxTypes.Contains(romHeader.RomType)) // Super FX chip
             {
                 Trace.WriteLine($"Super FX chip detected");
@@ -501,44 +501,44 @@ namespace com.clusterrr.hakchi_gui
         [StructLayout(LayoutKind.Sequential)]
         public struct SfromHeader1
         {
-            [MarshalAs(UnmanagedType.U4)]
-            public uint Uknown1_0x00000100;
-            [MarshalAs(UnmanagedType.U4)]
+            [MarshalAs(UnmanagedType.U4)] // 0x00
+            public uint Unknown1;
+            [MarshalAs(UnmanagedType.U4)] // 0x04
             public uint FileSize;
-            [MarshalAs(UnmanagedType.U4)]
-            public uint Uknown2_0x00000030;
-            [MarshalAs(UnmanagedType.U4)]
+            [MarshalAs(UnmanagedType.U4)] // 0x08
+            public uint Unknown2;
+            [MarshalAs(UnmanagedType.U4)] // 0x0C
             public uint RomEnd;
-            [MarshalAs(UnmanagedType.U4)]
+            [MarshalAs(UnmanagedType.U4)] // 0x10
             public uint FooterStart;
-            [MarshalAs(UnmanagedType.U4)]
+            [MarshalAs(UnmanagedType.U4)] // 0x14
             public uint Header2;
-            [MarshalAs(UnmanagedType.U4)]
-            public uint FileSize2;
-            [MarshalAs(UnmanagedType.U4)]
-            public uint Uknown3_0x00000000;
-            [MarshalAs(UnmanagedType.U4)]
+            [MarshalAs(UnmanagedType.U4)] // 0x18
+            public uint Header3;
+            [MarshalAs(UnmanagedType.U4)] // 0x1C
+            public uint Unknown3;
+            [MarshalAs(UnmanagedType.U4)] // 0x20
             public uint Flags;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] // 0x24
             public byte[] VCGameID;
             [MarshalAs(UnmanagedType.U4)]
-            public uint Uknown4_0x00000000;
+            public uint Unknown4;
 
             public SfromHeader1(uint romSize)
             {
-                Uknown1_0x00000100 = 0x00000100;
-                FileSize = (uint)(48 + romSize + 38);
-                Uknown2_0x00000030 = 0x00000030;
-                RomEnd = (uint)(48 + romSize);
+                Unknown1 = 0x00000100;
+                FileSize = (uint)(romSize + Marshal.SizeOf(typeof(SfromHeader1)) + Marshal.SizeOf(typeof(SfromHeader2)));
+                Unknown2 = 0x00000030;
+                RomEnd = (uint)(Marshal.SizeOf(typeof(SfromHeader1)) + romSize);
                 FooterStart = FileSize;
                 Header2 = RomEnd;
-                FileSize2 = FileSize;
-                Uknown3_0x00000000 = 0;
-                Flags = FileSize - 11;
+                Header3 = FileSize;
+                Unknown3 = 0;
+                Flags = RomEnd + 27;
                 VCGameID = new byte[8];
                 var VCGameID_s = Encoding.ASCII.GetBytes("WUP-XXXX");
                 Array.Copy(VCGameID_s, VCGameID, VCGameID_s.Length);
-                Uknown4_0x00000000 = 0;
+                Unknown4 = 0;
             }
 
             public byte[] GetBytes()
@@ -557,7 +557,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 var size = Marshal.SizeOf(typeof(SfromHeader1));
                 IntPtr ptr = Marshal.AllocHGlobal(size);
-                Marshal.Copy(buffer, pos, ptr, size);
+                Marshal.Copy(new byte[size], 0, ptr, size);
+                Marshal.Copy(buffer, pos, ptr, Math.Min(buffer.Length - pos, size));
                 var r = (SfromHeader1)Marshal.PtrToStructure(ptr, typeof(SfromHeader1));
                 Marshal.FreeHGlobal(ptr);
                 return r;
@@ -570,45 +571,45 @@ namespace com.clusterrr.hakchi_gui
             [MarshalAs(UnmanagedType.U1)] // 0x00
             public byte FPS;
             [MarshalAs(UnmanagedType.U4)] // 0x01
-            public uint RomSize;
+            public UInt32 RomSize;
             [MarshalAs(UnmanagedType.U4)] // 0x05
-            public uint PcmSize;
+            public UInt32 PcmSize;
             [MarshalAs(UnmanagedType.U4)] // 0x09
-            public uint FooterSize;
+            public UInt32 FooterSize;
             [MarshalAs(UnmanagedType.U2)] // 0x0D
-            public ushort PresetID;
+            public UInt16 PresetID;
             [MarshalAs(UnmanagedType.U1)] // 0x0F
-            public byte Mostly2;
+            public byte MaxControllers;
             [MarshalAs(UnmanagedType.U1)] // 0x10
             public byte Volume;
             [MarshalAs(UnmanagedType.U1)] // 0x11
             public byte RomType;
             [MarshalAs(UnmanagedType.U4)] // 0x12
-            public uint Chip;
-            [MarshalAs(UnmanagedType.U4)] // 0x16
-            public uint Unknown1_0x00000000;
-            [MarshalAs(UnmanagedType.U4)] // 0x1A
-            public uint Unknown2_0x00000100;
-            [MarshalAs(UnmanagedType.U4)] // 0x1E
-            public uint Unknown3_0x00000100;
-            [MarshalAs(UnmanagedType.U4)]
-            public uint Unknown4_0x00000000;
+            public UInt32 Chip;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5)] // 0x16
+            private byte[] Padding1;
+            [MarshalAs(UnmanagedType.U4)] // 0x1B
+            public UInt32 Unknown3;
+            [MarshalAs(UnmanagedType.U4)] // 0x1F
+            public UInt32 Unknown4;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 13)] // 0x23
+            private byte[] Padding2;
 
-            public SfromHeader2(uint romSize, ushort presetId, SnesRomType romType, uint chip)
+            public SfromHeader2(uint romSize, ushort presetId, SnesRomType romType, byte chip)
             {
                 FPS = 60;
                 RomSize = romSize;
                 PcmSize = 0;
                 FooterSize = 0;
                 PresetID = presetId;
-                Mostly2 = 2;
-                Volume = 100;
+                MaxControllers = 2;
+                Volume = 0x5A;
                 RomType = (byte)romType;
                 Chip = chip;
-                Unknown1_0x00000000 = 0x00000000;
-                Unknown2_0x00000100 = 0x00000100;
-                Unknown3_0x00000100 = 0x00000100;
-                Unknown4_0x00000000 = 0x00000000;
+                Padding1 = new byte[5];
+                Unknown3 = 0x00000001;
+                Unknown4 = 0x00000001;
+                Padding2 = new byte[13];
             }
 
             public byte[] GetBytes()
@@ -627,7 +628,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 var size = Marshal.SizeOf(typeof(SfromHeader2));
                 IntPtr ptr = Marshal.AllocHGlobal(size);
-                Marshal.Copy(buffer, pos, ptr, size);
+                Marshal.Copy(new byte[size], 0, ptr, size);
+                Marshal.Copy(buffer, pos, ptr, Math.Min(buffer.Length - pos, size));
                 var r = (SfromHeader2)Marshal.PtrToStructure(ptr, typeof(SfromHeader2));
                 Marshal.FreeHGlobal(ptr);
                 return r;
