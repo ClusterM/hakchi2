@@ -1070,14 +1070,14 @@ namespace com.clusterrr.hakchi_gui
                 {
                     case "Folder.":
                     case "li.folder":
-                        var folder = new NesMenuFolder(element.ChildNodes[0].InnerText, element.Attributes["data-icon"].Value);
-                        folder.Position = (NesMenuFolder.Priority)byte.Parse(element.Attributes["data-position"].Value);
+                        var folder = new NesMenuFolder(Shared.FirstNonNull<string>(element.Attributes["name"]?.Value, element.ChildNodes[0]?.InnerText), Shared.FirstNonNull<string>(element.Attributes["data-icon"]?.Value, element.Attributes["icon"]?.Value));
+                        folder.Position = (NesMenuFolder.Priority)byte.Parse(Shared.FirstNonNull<string>(element.Attributes["data-position"]?.Value, element.Attributes["position"]?.Value));
                         nesMenuCollection.Add(folder);
                         XmlToNode(xml, element.Name != "li" ? element.ChildNodes : element.SelectSingleNode("ul").ChildNodes, rootMenuCollection, folder.ChildMenuCollection);
                         break;
                     case "Game.":
                     case "li.application":
-                        var code = element.Attributes["data-code"].Value;
+                        var code = Shared.FirstNonNull<string>(element.Attributes["data-code"]?.Value, element.Attributes["code"]?.Value);
                         var games = from n in rootMenuCollection where ((n is NesApplication) && (n.Code == code)) select n;
                         if (games.Count() > 0)
                         {

@@ -658,5 +658,15 @@ namespace com.clusterrr.hakchi_gui
                     return false;
             }
         }
+        public static T FirstNonNull<T>(params T[] vals) {
+            foreach (T val in vals)
+            {
+                if(val != null)
+                {
+                    return val;
+                }
+            }
+            return default(T);
+        }
     }
 }
