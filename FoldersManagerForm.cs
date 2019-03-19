@@ -1006,6 +1006,10 @@ namespace com.clusterrr.hakchi_gui
                     liNode.SetAttribute("data-position", ((byte)folder.Position).ToString());
                     element.AppendChild(liNode);
                     NodeToXml(xml, ulNode, child, ref icons);
+                    if(ulNode.ChildNodes.Count == 0)
+                    {
+                        ulNode.AppendChild(xml.CreateTextNode(""));
+                    }
                 }
                 else if (child.Tag is NesApplication)
                 {
