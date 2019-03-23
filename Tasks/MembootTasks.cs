@@ -20,6 +20,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         // Enums
         public enum MembootTaskType {
             InstallHakchi,
+            InstallHakchiSD,
             ResetHakchi,
             UninstallHakchi,
             DumpNand,
@@ -37,7 +38,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             FactoryReset,
             DumpStockKernel
         }
-        public enum HakchiTasks { Install, Reset, Uninstall }
+        public enum HakchiTasks { Install, Reset, Uninstall, InstallSD }
         public enum NandTasks { DumpNand, DumpNandB, FlashNandB, DumpNandC, FlashNandC, FormatNandC }
 
         // Private variables
@@ -63,9 +64,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
             List<TaskFunc> taskList = new List<TaskFunc>();
             if (!hakchi.MinimalMemboot || forceRecoveryReload)
             {
-                taskList.Add(WaitForFelOrMembootableShell);
+                taskList.Add(WaitForFelOrMembootableShell(type == MembootTaskType.InstallHakchiSD));
                 taskList.Add(TaskIf(() => { return hakchi.Shell.IsOnline; }, Memboot, MembootFel));
-                taskList.Add(WaitForShellCycle);
+                taskList.Add(WaitForShellCycle(-1));
                 taskList.Add(ShellTasks.ShowSplashScreen);
             }
             switch (type)
@@ -78,6 +79,19 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     });
                     if (!userRecovery)
                         taskList.Add(BootHakchi);
+
+                    break;
+
+                case MembootTaskType.InstallHakchiSD:
+                    taskList.AddRange(new TaskFunc[]
+                    {
+                        HandleHakchi(HakchiTasks.InstallSD),
+                    });
+                    if (!userRecovery)
+                    {
+                        taskList.Add(ShellTasks.Reboot);
+                        taskList.Add(WaitForShellCycle(0, null, Resources.FormatSDReboot));
+                    }
 
                     break;
 
@@ -243,25 +257,37 @@ namespace com.clusterrr.hakchi_gui.Tasks
             Tasks = taskList.ToArray();
         }
 
-        public Conclusion WaitForFelOrMembootableShell(Tasker tasker, Object syncObject = null)
+        private Conclusion WaitForFelOrMembootableShell(Tasker tasker, Object syncObject = null, bool sdRequired = false)
         {
             var hostForm = tasker.GetSpecificViews<Form>().FirstOrDefault();
             if (hostForm == default(Form))
                 hostForm = tasker.HostForm;
             if (hostForm.InvokeRequired)
             {
-                return (Conclusion)hostForm.Invoke(new Func<Tasker, Object, Conclusion>(WaitForFelOrMembootableShell), new object[] { tasker, syncObject });
+                return (Conclusion)hostForm.Invoke(new Func<Tasker, Object, bool, Conclusion>(WaitForFelOrMembootableShell), new object[] { tasker, syncObject, sdRequired });
             }
 
             tasker.SetStatus(Resources.WaitingForDevice);
             if (hakchi.Shell.IsOnline && hakchi.Shell.Execute("[ -f /proc/atags ]") == 0)
-                return Conclusion.Success;
+            {
+                if (sdRequired)
+                {
+                    if (hakchi.Shell.Execute("hakchi mmcUsed") == 0)
+                    {
+                        return Conclusion.Success;
+                    }
+                }
+                else
+                {
+                    return Conclusion.Success;
+                }
+            }
 
             if (!WaitingFelForm.WaitForDevice(hostForm))
                 return Conclusion.Abort;
 
             fel.Fes1Bin = Resources.fes1;
-            if (ConfigIni.Instance.MembootUboot == ConfigIni.UbootType.SD)
+            if (ConfigIni.Instance.MembootUboot == ConfigIni.UbootType.SD || sdRequired)
             {
                 fel.UBootBin = Resources.ubootSD;
             }
@@ -276,19 +302,24 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Conclusion.Success;
         }
 
-        public static Conclusion WaitForShellCycle(Tasker tasker, Object syncObject = null)
+        public TaskFunc WaitForFelOrMembootableShell(bool requireSd)
+        {
+            return (Tasker tasker, Object syncObject) => WaitForFelOrMembootableShell(tasker, syncObject, requireSd);
+        }
+
+        public static Conclusion WaitForShellCycle(Tasker tasker, Object syncObject = null, int maxWaitTime = -1, string title = null, string message = null)
         {
             var hostForm = tasker.GetSpecificViews<Form>().FirstOrDefault();
             if (hostForm == default(Form))
                 hostForm = tasker.HostForm;
             if (hostForm.InvokeRequired)
             {
-                return (Conclusion)hostForm.Invoke(new Func<Tasker, object, Conclusion>(WaitForShellCycle), new object[] { tasker, syncObject });
+                return (Conclusion)hostForm.Invoke(new Func<Tasker, object, int, string, string, Conclusion>(WaitForShellCycle), new object[] { tasker, syncObject, maxWaitTime, title, message });
             }
 
             tasker.SetStatus(Resources.WaitingForDevice);
             tasker.PushState(State.Waiting);
-            var result = WaitingShellCycleForm.WaitForDevice(hostForm, MembootWaitDelay);
+            var result = WaitingShellCycleForm.WaitForDevice(hostForm, maxWaitTime == -1 ? MembootWaitDelay : maxWaitTime);
             tasker.PopState();
             if (result == DialogResult.OK)
             {
@@ -296,10 +327,23 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
             else if (result == DialogResult.No)
             {
-                MessageForm.Show(hostForm, Resources.WaitingForDevice, Resources.WaitingForDeviceTakingALongTime, Resources.sign_clock);
+                MessageForm.Show(hostForm, title == null ? Resources.WaitingForDevice : title, message == null ? Resources.WaitingForDeviceTakingALongTime : message, Resources.sign_clock);
             }
 
             return Conclusion.Abort;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="maxWaitTime">The amount of time to wait.
+        /// 
+        /// If this is -1, the default duration will be used
+        /// If this is 0, it will wait indefinitely or until closed.</param>
+        /// <returns></returns>
+        public static TaskFunc WaitForShellCycle(int maxWaitTime = -1, string title = null, string message = null)
+        {
+            return (Tasker tasker, Object syncObject) => WaitForShellCycle(tasker, syncObject, maxWaitTime, title, message);
         }
 
         public Conclusion Memboot(Tasker tasker, Object syncObject = null)
@@ -621,6 +665,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 switch (task)
                 {
+                    case HakchiTasks.InstallSD:
                     case HakchiTasks.Install:
                         tasker.SetStatus(Resources.InstallingHakchi);
                         break;
@@ -631,6 +676,35 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         tasker.SetStatus(Resources.Uninstalling);
                         break;
                 }
+
+                if (task == HakchiTasks.InstallSD)
+                {
+                    if (hakchi.Shell.Execute("[ -b /dev/mmcblk0 ]") != 0)
+                    {
+                        throw new Exception(Resources.NoSDCard);
+                    }
+
+                    var splitStream = new SplitterStream(Program.debugStreams);
+                    hakchi.Shell.Execute("umount /newroot; losetup -d /dev/loop2; umount /firmware");
+                    hakchi.Shell.Execute("mkdir -p /sd-temp/", null, null, null, 0, true);
+                    hakchi.Shell.Execute("tar -xzvf - -C /sd-temp/", hakchi.GetHakchiHmodStream(), null, null, 0, true); // 16
+                    tasker.SetProgress(16, 161);
+                    hakchi.Shell.Execute("dd if=/dev/zero of=/dev/mmcblk0 bs=1M count=32", null, null, null, 0, true); // 32
+                    tasker.SetProgress(48, 161);
+                    hakchi.Shell.Execute("dd if=/sd-temp/sd/mbr.bin of=/dev/mmcblk0", null, null, null, 0, true); // 1
+                    tasker.SetProgress(49, 161);
+                    hakchi.Shell.Execute("gunzip -c /sd-temp/sd/data.vfat.gz | dd of=/dev/mmcblk0 bs=1M seek=32", null, null, null, 0, true); // 96
+                    tasker.SetProgress(145, 161);
+                    hakchi.Shell.Execute("dd if=/sd-temp/sd/boot0.bin of=/dev/mmcblk0 bs=1K seek=8", null, null, null, 0, true); // 1
+                    tasker.SetProgress(146, 161);
+                    hakchi.Shell.Execute("dd if=/sd-temp/sd/uboot.bin of=/dev/mmcblk0 bs=1K seek=19096", null, null, null, 0, true); // 1
+                    tasker.SetProgress(147, 161);
+                    hakchi.Shell.Execute("dd if=/sd-temp/sd/kernel.img of=/dev/mmcblk0 bs=1K seek=20480", null, null, null, 0, true); // 4
+                    tasker.SetProgress(151, 161);
+                    hakchi.Shell.Execute("dd \"if=/sd-temp/sd/squash.hsqs\" of=/dev/mmcblk0 bs=1K seek=40", null, null, null, 0, true); // 10
+                    tasker.SetProgress(161, 161);
+                }
+
                 if (task == HakchiTasks.Reset || task == HakchiTasks.Uninstall)
                 {
                     hakchi.Shell.Execute("hakchi mount_base", null, null, null, 0, true);

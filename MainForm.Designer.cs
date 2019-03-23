@@ -141,6 +141,7 @@
             this.resetDefaultBootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rebootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.switchRunningFirmwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formatSDCardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripSeparator();
             this.prepareArtDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -978,6 +979,7 @@
             this.bootImageToolStripMenuItem,
             this.rebootToolStripMenuItem,
             this.switchRunningFirmwareToolStripMenuItem,
+            this.formatSDCardToolStripMenuItem,
             this.toolStripMenuItem18,
             this.prepareArtDirectoryToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
@@ -1062,6 +1064,12 @@
             this.switchRunningFirmwareToolStripMenuItem.Name = "switchRunningFirmwareToolStripMenuItem";
             resources.ApplyResources(this.switchRunningFirmwareToolStripMenuItem, "switchRunningFirmwareToolStripMenuItem");
             this.switchRunningFirmwareToolStripMenuItem.Click += new System.EventHandler(this.switchRunningFirmwareToolStripMenuItem_Click);
+            // 
+            // formatSDCardToolStripMenuItem
+            // 
+            this.formatSDCardToolStripMenuItem.Name = "formatSDCardToolStripMenuItem";
+            resources.ApplyResources(this.formatSDCardToolStripMenuItem, "formatSDCardToolStripMenuItem");
+            this.formatSDCardToolStripMenuItem.Click += new System.EventHandler(this.formatSDCardToolStripMenuItem_Click);
             // 
             // toolStripMenuItem18
             // 
@@ -2053,6 +2061,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveDmesgOutputToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem joinOurDiscordServerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rminisnesmodsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem formatSDCardToolStripMenuItem;
     }
 }
 

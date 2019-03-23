@@ -480,14 +480,21 @@ namespace com.clusterrr.hakchi_gui
             return config;
         }
 
+        public static MemoryStream GetHakchiHmodStream()
+        {
+            MemoryStream hakchiHmod = new MemoryStream();
+            using (var extractor = ArchiveFactory.Open(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")))
+            {
+                extractor.Entries.Where(e => e.Key == "./hakchi.hmod" || e.Key == "hakchi.hmod").First().OpenEntryStream().CopyTo(hakchiHmod);
+            }
+            hakchiHmod.Seek(0, SeekOrigin.Begin);
+            return hakchiHmod;
+        }
+
         public static IArchive GetHakchiHmod()
         {
-            using (MemoryStream hakchiHmod = new MemoryStream())
+            using (MemoryStream hakchiHmod = GetHakchiHmodStream())
             {
-                using (var extractor = ArchiveFactory.Open(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")))
-                {
-                    extractor.Entries.Where(e => e.Key == "./hakchi.hmod" || e.Key == "hakchi.hmod").First().OpenEntryStream().CopyTo(hakchiHmod);
-                }
                 MemoryStream tar = new MemoryStream();
                 using (var extractor = ArchiveFactory.Open(hakchiHmod))
                 {

@@ -23,7 +23,14 @@ namespace com.clusterrr.hakchi_gui
             this.startTime = DateTime.Now;
 
             this.pictureBox1.Image = hakchi.Connected ? Resources.sign_sync : Resources.sign_sync_off;
-            this.timer1.Enabled = true;
+            if (maxWaiting > 0)
+            {
+                this.timer1.Enabled = true;
+            }
+            else
+            {
+                progressBarEx1.Value = 0;
+            }
         }
 
         public static DialogResult WaitForDevice(IWin32Window owner, int maxWaiting = -1)

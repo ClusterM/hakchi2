@@ -1381,4 +1381,21 @@ Other reasons may include VPNs blocking traffic to the local network and Windows
   <data name="SupportedFiles" xml:space="preserve">
     <value>Supported Files</value>
   </data>
+  <data name="FormatSD" xml:space="preserve">
+    <value>Format SD</value>
+  </data>
+  <data name="FormatSDQ" xml:space="preserve">
+    <value>Are you sure you want to format the SD card inserted in the classic?
+
+This will erase all data present on the card!</value>
+  </data>
+  <data name="FormatSDReboot" xml:space="preserve">
+    <value>The classic will now reboot and continue the formatting process, this may take a few minutes depending on card speed.</value>
+  </data>
+  <data name="FormattingSDCard" xml:space="preserve">
+    <value>Formatting SD Card</value>
+  </data>
+  <data name="NoSDCard" xml:space="preserve">
+    <value>No SD card is inserted in the classic.</value>
+  </data>
 </root>

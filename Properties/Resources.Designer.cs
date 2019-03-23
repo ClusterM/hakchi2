@@ -1767,6 +1767,44 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Format SD.
+        /// </summary>
+        internal static string FormatSD {
+            get {
+                return ResourceManager.GetString("FormatSD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to format the SD card inserted in the classic?
+        ///
+        ///This will erase all data present on the card!.
+        /// </summary>
+        internal static string FormatSDQ {
+            get {
+                return ResourceManager.GetString("FormatSDQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The classic will now reboot and continue the formatting process, this may take a few minutes depending on card speed..
+        /// </summary>
+        internal static string FormatSDReboot {
+            get {
+                return ResourceManager.GetString("FormatSDReboot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formatting SD Card.
+        /// </summary>
+        internal static string FormattingSDCard {
+            get {
+                return ResourceManager.GetString("FormattingSDCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Oops, {0} uses four-screen mode (i.e. the game has additional VRAM memory in the cartridge), and this feature is not supported by the NES Mini. The game will probably not start. But it should work if other emulator&apos;s module installed. Do you want to add this game anyway?.
         /// </summary>
         internal static string FourScreenNotSupported {
@@ -2558,6 +2596,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string NoRepositoriesConfigured {
             get {
                 return ResourceManager.GetString("NoRepositoriesConfigured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No SD card is inserted in the classic..
+        /// </summary>
+        internal static string NoSDCard {
+            get {
+                return ResourceManager.GetString("NoSDCard", resourceCulture);
             }
         }
         
