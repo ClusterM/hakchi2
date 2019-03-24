@@ -1381,6 +1381,27 @@ Other reasons may include VPNs blocking traffic to the local network and Windows
   <data name="SupportedFiles" xml:space="preserve">
     <value>Supported Files</value>
   </data>
+  <data name="AddingHakchiMBR" xml:space="preserve">
+    <value>Adding hakchi MBR</value>
+  </data>
+  <data name="ClearingTheFirst32MBOfSDCard" xml:space="preserve">
+    <value>Clearing first 32MB of SD card</value>
+  </data>
+  <data name="CopyFilesFromNandQ" xml:space="preserve">
+    <value>Copy files from NAND?</value>
+  </data>
+  <data name="CopyFilesFromNandQ2" xml:space="preserve">
+    <value>Do you want to copy your saves and games from NAND to the SD card?</value>
+  </data>
+  <data name="CopyingHakchiToSDCard" xml:space="preserve">
+    <value>Copying hakchi to SD card</value>
+  </data>
+  <data name="CopyingNandDataToSDCard" xml:space="preserve">
+    <value>Copying NAND data to SD card</value>
+  </data>
+  <data name="ExtractingHakchiToTemporaryFolder" xml:space="preserve">
+    <value>Extracting hakchi to temporary folder</value>
+  </data>
   <data name="FormatSD" xml:space="preserve">
     <value>Format SD</value>
   </data>
@@ -1389,13 +1410,37 @@ Other reasons may include VPNs blocking traffic to the local network and Windows
 
 This will erase all data present on the card!</value>
   </data>
-  <data name="FormatSDReboot" xml:space="preserve">
-    <value>The classic will now reboot and continue the formatting process, this may take a few minutes depending on card speed.</value>
-  </data>
   <data name="FormattingSDCard" xml:space="preserve">
     <value>Formatting SD Card</value>
   </data>
+  <data name="FormattingTheSDCard" xml:space="preserve">
+    <value>Formatting SD card</value>
+  </data>
+  <data name="MountingSDCard" xml:space="preserve">
+    <value>Mounting SD card</value>
+  </data>
+  <data name="MountingSquashFS" xml:space="preserve">
+    <value>Mounting SquashFS</value>
+  </data>
   <data name="NoSDCard" xml:space="preserve">
     <value>No SD card is inserted in the classic.</value>
+  </data>
+  <data name="UnmountingSDCard" xml:space="preserve">
+    <value>Unmounting SD card</value>
+  </data>
+  <data name="WritingBoot0" xml:space="preserve">
+    <value>Writing boot0</value>
+  </data>
+  <data name="WritingFATFilesystem" xml:space="preserve">
+    <value>Writing FAT filesystem</value>
+  </data>
+  <data name="WritingKernel" xml:space="preserve">
+    <value>Writing kernel</value>
+  </data>
+  <data name="WritingSquashFS" xml:space="preserve">
+    <value>Writing SquashFS</value>
+  </data>
+  <data name="WritingUboot" xml:space="preserve">
+    <value>Writing uboot</value>
   </data>
 </root>

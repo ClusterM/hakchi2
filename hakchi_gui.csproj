@@ -146,6 +146,7 @@
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\SystemCollection.cs" />
     <Compile Include="Apps\UnknownGame.cs" />
+    <Compile Include="EventStream.cs" />
     <Compile Include="ModHub\Controls\ModInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
