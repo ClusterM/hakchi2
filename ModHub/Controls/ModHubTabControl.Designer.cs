@@ -35,7 +35,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.modDownloadButton = new System.Windows.Forms.Button();
             this.modDownloadInstallButton = new System.Windows.Forms.Button();
-            this.modInfo = new com.clusterrr.hakchi_gui.Extensions.ModStore.ModInfoControl();
+            this.modInfo = new com.clusterrr.hakchi_gui.ModHub.Controls.ModInfoControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -165,7 +165,7 @@
         private Hmod.Controls.ReadmeControl modReadme;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Panel panel1;
-        private Extensions.ModStore.ModInfoControl modInfo;
+        private ModHub.Controls.ModInfoControl modInfo;
         private System.Windows.Forms.Button modDownloadButton;
         private System.Windows.Forms.Button modDownloadInstallButton;
     }

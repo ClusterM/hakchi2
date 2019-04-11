@@ -1,4 +1,4 @@
-﻿namespace com.clusterrr.hakchi_gui.Extensions.ModStore
+﻿namespace com.clusterrr.hakchi_gui.ModHub.Controls
 {
     partial class ModInfoControl
     {

@@ -805,26 +805,32 @@
   <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text" xml:space="preserve">
     <value>GitHub page with actual releases</value>
   </data>
-  <data name="fAQToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="joinOurDiscordServerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>246, 22</value>
   </data>
-  <data name="fAQToolStripMenuItem.Text" xml:space="preserve">
-    <value>FAQ</value>
+  <data name="joinOurDiscordServerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Join our discord server</value>
   </data>
-  <data name="messageOfTheDayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="rminisnesmodsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>246, 22</value>
   </data>
-  <data name="messageOfTheDayToolStripMenuItem.Text" xml:space="preserve">
-    <value>Important message</value>
-  </data>
-  <data name="donateToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="rminisnesmodsToolStripMenuItem.Text" xml:space="preserve">
+    <value>/r/minisnesmods</value>
   </data>
   <data name="donateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>246, 22</value>
   </data>
   <data name="donateToolStripMenuItem.Text" xml:space="preserve">
     <value>Donate</value>
+  </data>
+  <data name="donateToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 22</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text" xml:space="preserve">
+    <value>FAQ</value>
   </data>
   <data name="toolStripMenuItem22.Size" type="System.Drawing.Size, System.Drawing">
     <value>243, 6</value>
@@ -834,6 +840,12 @@
   </data>
   <data name="technicalInformationToolStripMenuItem.Text" xml:space="preserve">
     <value>Technical Information...</value>
+  </data>
+  <data name="messageOfTheDayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 22</value>
+  </data>
+  <data name="messageOfTheDayToolStripMenuItem.Text" xml:space="preserve">
+    <value>Important message</value>
   </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>246, 22</value>
@@ -1115,7 +1127,7 @@
     <value>Select emulation core...</value>
   </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 248</value>
+    <value>284, 270</value>
   </data>
   <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
     <value>contextMenuStrip</value>
@@ -2494,6 +2506,18 @@
   <data name="&gt;&gt;modRepoStartSeparator.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;modRepoEndSeparator.Name" xml:space="preserve">
+    <value>modRepoEndSeparator</value>
+  </data>
+  <data name="&gt;&gt;modRepoEndSeparator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;manageModRepositoriesToolStripMenuItem.Name" xml:space="preserve">
+    <value>manageModRepositoriesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;manageModRepositoriesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;viewToolStripMenuItem.Name" xml:space="preserve">
     <value>viewToolStripMenuItem</value>
   </data>
@@ -2878,16 +2902,22 @@
   <data name="&gt;&gt;gitHubPageWithActualReleasesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;joinOurDiscordServerToolStripMenuItem.Name" xml:space="preserve">
+    <value>joinOurDiscordServerToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;joinOurDiscordServerToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rminisnesmodsToolStripMenuItem.Name" xml:space="preserve">
+    <value>rminisnesmodsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;rminisnesmodsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;fAQToolStripMenuItem.Name" xml:space="preserve">
     <value>fAQToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;fAQToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;messageOfTheDayToolStripMenuItem.Name" xml:space="preserve">
-    <value>messageOfTheDayToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;messageOfTheDayToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;donateToolStripMenuItem.Name" xml:space="preserve">
@@ -2906,6 +2936,12 @@
     <value>technicalInformationToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;technicalInformationToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;messageOfTheDayToolStripMenuItem.Name" xml:space="preserve">
+    <value>messageOfTheDayToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;messageOfTheDayToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;aboutToolStripMenuItem.Name" xml:space="preserve">
@@ -3219,18 +3255,6 @@
   </data>
   <data name="&gt;&gt;timerUpdate.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;modRepoEndSeparator.Name" xml:space="preserve">
-    <value>modRepoEndSeparator</value>
-  </data>
-  <data name="&gt;&gt;modRepoEndSeparator.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;manageModRepositoriesToolStripMenuItem.Name" xml:space="preserve">
-    <value>manageModRepositoriesToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;manageModRepositoriesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

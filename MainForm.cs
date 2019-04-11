@@ -90,7 +90,6 @@ namespace com.clusterrr.hakchi_gui
             {
                 // prepare collections
                 LoadLanguages();
-                populateRepos();
                 CoreCollection.Load();
 
                 // init list view control
@@ -206,6 +205,7 @@ namespace com.clusterrr.hakchi_gui
         {
             // centralized upgrade actions system
             new Upgrade(this).Run();
+            populateRepos();
 
             // welcome message, only run for new new users
             if (ConfigIni.Instance.RunCount++ == 0)
@@ -1955,20 +1955,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void gitHubPageWithActualReleasesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://github.com/TeamShinkansen/hakchi2/releases");
-        }
-
-        private void fAQToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://github.com/TeamShinkansen/hakchi2/wiki/FAQ");
-        }
-
-        private void donateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://www.paypal.me/clusterm");
-        }
+        private void openWebsiteLink(Object sender, EventArgs e) => Process.Start((string)((ToolStripMenuItem)sender).Tag);
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -3156,7 +3143,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     var url = (string)(unboxed.Tag);
                     if (url == "modstore://") {
-                        new ModStore().ShowDialog(this);
+                        throw new NotImplementedException();
                     }
                     else
                     {

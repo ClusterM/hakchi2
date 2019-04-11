@@ -79,6 +79,8 @@
             this.uninstallModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateModulesReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modRepoStartSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.modRepoEndSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.manageModRepositoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.originalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.positionAtTheTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -143,11 +145,13 @@
             this.prepareArtDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.joinOurDiscordServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rminisnesmodsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.messageOfTheDayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem22 = new System.Windows.Forms.ToolStripSeparator();
             this.technicalInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.messageOfTheDayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonAddGames = new System.Windows.Forms.Button();
@@ -239,8 +243,6 @@
             this.syncStructureForAllGamesCollectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
             this.timerUpdate = new System.Windows.Forms.Timer(this.components);
-            this.modRepoEndSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.manageModRepositoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -581,6 +583,17 @@
             // 
             this.modRepoStartSeparator.Name = "modRepoStartSeparator";
             resources.ApplyResources(this.modRepoStartSeparator, "modRepoStartSeparator");
+            // 
+            // modRepoEndSeparator
+            // 
+            this.modRepoEndSeparator.Name = "modRepoEndSeparator";
+            resources.ApplyResources(this.modRepoEndSeparator, "modRepoEndSeparator");
+            // 
+            // manageModRepositoriesToolStripMenuItem
+            // 
+            this.manageModRepositoriesToolStripMenuItem.Name = "manageModRepositoriesToolStripMenuItem";
+            resources.ApplyResources(this.manageModRepositoriesToolStripMenuItem, "manageModRepositoriesToolStripMenuItem");
+            this.manageModRepositoriesToolStripMenuItem.Click += new System.EventHandler(this.manageModRepositoriesToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -1027,6 +1040,7 @@
             // 
             // disableBootImageToolStripMenuItem
             // 
+            this.disableBootImageToolStripMenuItem.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.github;
             this.disableBootImageToolStripMenuItem.Name = "disableBootImageToolStripMenuItem";
             resources.ApplyResources(this.disableBootImageToolStripMenuItem, "disableBootImageToolStripMenuItem");
             this.disableBootImageToolStripMenuItem.Click += new System.EventHandler(this.disableBootImageToolStripMenuItem_Click);
@@ -1065,38 +1079,55 @@
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gitHubPageWithActualReleasesToolStripMenuItem,
-            this.fAQToolStripMenuItem,
-            this.messageOfTheDayToolStripMenuItem,
+            this.joinOurDiscordServerToolStripMenuItem,
+            this.rminisnesmodsToolStripMenuItem,
             this.donateToolStripMenuItem,
+            this.fAQToolStripMenuItem,
             this.toolStripMenuItem22,
             this.technicalInformationToolStripMenuItem,
+            this.messageOfTheDayToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
             // 
             // gitHubPageWithActualReleasesToolStripMenuItem
             // 
+            this.gitHubPageWithActualReleasesToolStripMenuItem.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.github;
             this.gitHubPageWithActualReleasesToolStripMenuItem.Name = "gitHubPageWithActualReleasesToolStripMenuItem";
             resources.ApplyResources(this.gitHubPageWithActualReleasesToolStripMenuItem, "gitHubPageWithActualReleasesToolStripMenuItem");
-            this.gitHubPageWithActualReleasesToolStripMenuItem.Click += new System.EventHandler(this.gitHubPageWithActualReleasesToolStripMenuItem_Click);
+            this.gitHubPageWithActualReleasesToolStripMenuItem.Tag = "https://github.com/TeamShinkansen/hakchi2/releases";
+            this.gitHubPageWithActualReleasesToolStripMenuItem.Click += new System.EventHandler(this.openWebsiteLink);
+            // 
+            // joinOurDiscordServerToolStripMenuItem
+            // 
+            this.joinOurDiscordServerToolStripMenuItem.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.discord;
+            this.joinOurDiscordServerToolStripMenuItem.Name = "joinOurDiscordServerToolStripMenuItem";
+            resources.ApplyResources(this.joinOurDiscordServerToolStripMenuItem, "joinOurDiscordServerToolStripMenuItem");
+            this.joinOurDiscordServerToolStripMenuItem.Tag = "https://discord.gg/C9EDFyg";
+            this.joinOurDiscordServerToolStripMenuItem.Click += new System.EventHandler(this.openWebsiteLink);
+            // 
+            // rminisnesmodsToolStripMenuItem
+            // 
+            this.rminisnesmodsToolStripMenuItem.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.reddit;
+            this.rminisnesmodsToolStripMenuItem.Name = "rminisnesmodsToolStripMenuItem";
+            resources.ApplyResources(this.rminisnesmodsToolStripMenuItem, "rminisnesmodsToolStripMenuItem");
+            this.rminisnesmodsToolStripMenuItem.Tag = "https://www.reddit.com/r/minisnesmods/";
+            this.rminisnesmodsToolStripMenuItem.Click += new System.EventHandler(this.openWebsiteLink);
             // 
             // fAQToolStripMenuItem
             // 
             this.fAQToolStripMenuItem.Name = "fAQToolStripMenuItem";
             resources.ApplyResources(this.fAQToolStripMenuItem, "fAQToolStripMenuItem");
-            this.fAQToolStripMenuItem.Click += new System.EventHandler(this.fAQToolStripMenuItem_Click);
-            // 
-            // messageOfTheDayToolStripMenuItem
-            // 
-            this.messageOfTheDayToolStripMenuItem.Name = "messageOfTheDayToolStripMenuItem";
-            resources.ApplyResources(this.messageOfTheDayToolStripMenuItem, "messageOfTheDayToolStripMenuItem");
-            this.messageOfTheDayToolStripMenuItem.Click += new System.EventHandler(this.messageOfTheDayToolStripMenuItem_Click);
+            this.fAQToolStripMenuItem.Tag = "https://github.com/TeamShinkansen/hakchi2/wiki/FAQ";
+            this.fAQToolStripMenuItem.Click += new System.EventHandler(this.openWebsiteLink);
             // 
             // donateToolStripMenuItem
             // 
-            resources.ApplyResources(this.donateToolStripMenuItem, "donateToolStripMenuItem");
+            this.donateToolStripMenuItem.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.paypal;
             this.donateToolStripMenuItem.Name = "donateToolStripMenuItem";
-            this.donateToolStripMenuItem.Click += new System.EventHandler(this.donateToolStripMenuItem_Click);
+            resources.ApplyResources(this.donateToolStripMenuItem, "donateToolStripMenuItem");
+            this.donateToolStripMenuItem.Tag = "https://www.paypal.me/clusterm";
+            this.donateToolStripMenuItem.Click += new System.EventHandler(this.openWebsiteLink);
             // 
             // toolStripMenuItem22
             // 
@@ -1108,6 +1139,12 @@
             this.technicalInformationToolStripMenuItem.Name = "technicalInformationToolStripMenuItem";
             resources.ApplyResources(this.technicalInformationToolStripMenuItem, "technicalInformationToolStripMenuItem");
             this.technicalInformationToolStripMenuItem.Click += new System.EventHandler(this.technicalInformationToolStripMenuItem_Click);
+            // 
+            // messageOfTheDayToolStripMenuItem
+            // 
+            this.messageOfTheDayToolStripMenuItem.Name = "messageOfTheDayToolStripMenuItem";
+            resources.ApplyResources(this.messageOfTheDayToolStripMenuItem, "messageOfTheDayToolStripMenuItem");
+            this.messageOfTheDayToolStripMenuItem.Click += new System.EventHandler(this.messageOfTheDayToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -1759,17 +1796,6 @@
             // 
             this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
             // 
-            // modRepoEndSeparator
-            // 
-            this.modRepoEndSeparator.Name = "modRepoEndSeparator";
-            resources.ApplyResources(this.modRepoEndSeparator, "modRepoEndSeparator");
-            // 
-            // manageModRepositoriesToolStripMenuItem
-            // 
-            this.manageModRepositoriesToolStripMenuItem.Name = "manageModRepositoriesToolStripMenuItem";
-            resources.ApplyResources(this.manageModRepositoriesToolStripMenuItem, "manageModRepositoriesToolStripMenuItem");
-            this.manageModRepositoriesToolStripMenuItem.Click += new System.EventHandler(this.manageModRepositoriesToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -2025,6 +2051,8 @@
         private System.Windows.Forms.ToolStripSeparator modRepoEndSeparator;
         private System.Windows.Forms.ToolStripMenuItem manageModRepositoriesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveDmesgOutputToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem joinOurDiscordServerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rminisnesmodsToolStripMenuItem;
     }
 }
 

@@ -198,6 +198,16 @@ namespace com.clusterrr.hakchi_gui
                         ConfigIni.Instance.FtpArguments = tempConfig.FtpArguments;
                         return true;
                     })
+                },
+
+                new Action()
+                {
+                    startingVersion = new Version("3.5.0.0"),
+                    targetVersion = new Version("3.5.3.0"),
+                    action = new ActionFunc(() => {
+                        ConfigIni.Instance.repos = ConfigIni.Instance.repos.Where(repo => repo.URL != "modstore://").ToArray();
+                        return true;
+                    })
                 }
 
             });

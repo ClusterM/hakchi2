@@ -146,40 +146,12 @@
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\SystemCollection.cs" />
     <Compile Include="Apps\UnknownGame.cs" />
-    <Compile Include="Extensions\ModStore\ModInfoControl.cs">
+    <Compile Include="ModHub\Controls\ModInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Extensions\ModStore\ModInfoControl.Designer.cs">
+    <Compile Include="ModHub\Controls\ModInfoControl.Designer.cs">
       <DependentUpon>ModInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Extensions\ModStore\ModStore.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Extensions\ModStore\ModStore.Designer.cs">
-      <DependentUpon>ModStore.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Extensions\ModStore\ModStoreAbout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Extensions\ModStore\ModStoreAbout.designer.cs">
-      <DependentUpon>ModStoreAbout.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Extensions\ModStore\ModStoreGame.cs" />
-    <Compile Include="Extensions\ModStore\ModStoreItem.cs" />
-    <Compile Include="Extensions\ModStore\ModStoreManager.cs" />
-    <Compile Include="Extensions\ModStore\ModStoreResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModStoreResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Extensions\ModStore\ModStoreTabControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Extensions\ModStore\ModStoreTabControl.Designer.cs">
-      <DependentUpon>ModStoreTabControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Extensions\ModStore\Module.cs" />
-    <Compile Include="Extensions\ModStore\RACoreModule.cs" />
     <Compile Include="Files\Extensions.cs" />
     <Compile Include="Files\CheckFileType.cs" />
     <Compile Include="hakchi.cs" />
@@ -292,6 +264,10 @@
       <DependentUpon>ExportGamesDialog.cs</DependentUpon>
     </Compile>
     <None Include="images\pencil-icon.png" />
+    <None Include="images\discord.png" />
+    <None Include="images\reddit.png" />
+    <None Include="images\github.png" />
+    <None Include="images\paypal.png" />
     <Content Include="ModHub\snes-dots.png" />
     <Content Include="tools\putty\puttytel.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -302,33 +278,8 @@
     <EmbeddedResource Include="ExportGamesDialog.fr-FR.resx">
       <DependentUpon>ExportGamesDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Extensions\ModStore\ModInfoControl.resx">
+    <EmbeddedResource Include="ModHub\Controls\ModInfoControl.resx">
       <DependentUpon>ModInfoControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Extensions\ModStore\ModStore.de-DE.resx">
-      <DependentUpon>ModStore.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Extensions\ModStore\ModStore.fr-FR.resx">
-      <DependentUpon>ModStore.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Extensions\ModStore\ModStore.resx">
-      <DependentUpon>ModStore.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Extensions\ModStore\ModStoreAbout.de-DE.resx">
-      <DependentUpon>ModStoreAbout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Extensions\ModStore\ModStoreAbout.fr-FR.resx">
-      <DependentUpon>ModStoreAbout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Extensions\ModStore\ModStoreAbout.resx">
-      <DependentUpon>ModStoreAbout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Extensions\ModStore\ModStoreResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ModStoreResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Extensions\ModStore\ModStoreTabControl.resx">
-      <DependentUpon>ModStoreTabControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FoldersManagerForm.de-DE.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
@@ -835,7 +786,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="images\noboxart.png" />
-    <None Include="Extensions\ModStore\Resources\info.png" />
     <None Include="images\sign-light-bulb.png" />
     <None Include="images\sign-lightning.png" />
     <None Include="images\sign-sync-off.png" />
@@ -844,7 +794,6 @@
     <Content Include="driver\classic_driver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Extensions\ModStore\Resources\InfoStrips.png" />
     <None Include="folder_images\2600.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

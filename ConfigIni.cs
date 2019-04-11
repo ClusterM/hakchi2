@@ -241,7 +241,6 @@ namespace com.clusterrr.hakchi_gui
         public Hmod.ListSort hmodListSort = Hmod.ListSort.Category;
         public RepositoryInfo[] repos = new RepositoryInfo[] {
             new RepositoryInfo("KMFD's Mod Hub", "https://hakchi.net/KMFDManic/NESC-SNESC-Modifications/.repo/"),
-            new RepositoryInfo("Mod Store", "modstore://"),
         };
 
         // constructor

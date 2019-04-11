@@ -1,11 +1,11 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace com.clusterrr.hakchi_gui.Extensions.ModStore
+namespace com.clusterrr.hakchi_gui.ModHub.Controls
 {
     public partial class ModInfoControl : UserControl
     {
-        private Bitmap _infoStrips = ModStoreResources.InfoStrips;
+        private Bitmap _infoStrips = null;
         public Bitmap infoStrips {
             get
             {
