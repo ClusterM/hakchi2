@@ -37,13 +37,10 @@
 #include <linux/miscdevice.h>
 
 static unsigned short home_combination = 0xffff;
-static char autofire = 0;
-static char autofire_xy = 0;
-static unsigned char autofire_interval = 8;
-static char fc_start = 0;
-
-volatile static char debug_buff[30000];
-volatile static long int debug_pos = 0;
+static unsigned short autofire = 0;
+static unsigned short autofire_xy = 0;
+static unsigned short autofire_interval = 8;
+static unsigned short fc_start = 0;
 
 MODULE_AUTHOR("Christophe Aguettaz <christophe.aguettaz@nerd.nintendo.com>, mod by Cluster <clusterrr@clusterrr.com");
 MODULE_DESCRIPTION("Nintendo Clover/Wii Classic/Wii Pro controllers on I2C");
@@ -117,19 +114,19 @@ static struct delayed_work detect_work;
 static DEFINE_MUTEX(con_state_lock);
 static DEFINE_MUTEX(detect_task_lock);
 
-#define VERBOSITY        0
+#define VERBOSITY        1
 #define STATE_DEVICES    1
 
 #if VERBOSITY > 0
-    #define ERR(m, ...) {int dbg_len = snprintf((void*)(debug_buff+debug_pos), sizeof(debug_buff)-1-debug_pos, "Clovercon error: " m "\n", ##__VA_ARGS__); if (dbg_len>0) debug_pos+=dbg_len;}
-    #define INF(m, ...) {int dbg_len = snprintf((void*)(debug_buff+debug_pos), sizeof(debug_buff)-1-debug_pos, "Clovercon info: " m "\n", ##__VA_ARGS__); if (dbg_len>0) debug_pos+=dbg_len;}
+    #define ERR(m, ...) printk(KERN_ERR m, ##__VA_ARGS__)
+    #define INF(m, ...) printk(KERN_INFO m, ##__VA_ARGS__)
 #else
     #define ERR(m, ...)
     #define INF(m, ...)
 #endif
 
 #if VERBOSITY > 1
-    #define DBG(m, ...) {int dbg_len = snprintf((void*)(debug_buff+debug_pos), sizeof(debug_buff)-1-debug_pos, "Clovercon: " m "\n", ##__VA_ARGS__); if (dbg_len>0) debug_pos+=dbg_len;}
+    #define DBG(m, ...) printk(KERN_DEBUG m, ##__VA_ARGS__)
     #define FAST_ERR(m, ...) ERR(m, ##__VA_ARGS__)
     #define FAST_DBG(m, ...) DBG(m, ##__VA_ARGS__)
 #else
@@ -138,32 +135,10 @@ static DEFINE_MUTEX(detect_task_lock);
     #define FAST_DBG(m, ...)
 #endif
 
-void hex_dump(char* str, char* buf, int len)
-{
 #if VERBOSITY > 2
-    int dbg_len = snprintf((void*)(debug_buff+debug_pos), sizeof(debug_buff)-1-debug_pos, "%s", str);
-    if (dbg_len>0) debug_pos+=dbg_len;
-    while (len)
-    {
-    dbg_len = snprintf((void*)(debug_buff+debug_pos), sizeof(debug_buff)-1-debug_pos, " %02X", *buf);
-    if (dbg_len>0) debug_pos+=dbg_len;
-    buf++;
-    len--;
-    }
-    dbg_len = snprintf((void*)(debug_buff+debug_pos), sizeof(debug_buff)-1-debug_pos, "\n");
-    if (dbg_len>0) debug_pos+=dbg_len;
-#endif
-}
-
-#if VERBOSITY > 0
-static ssize_t clovercon_debug_read(struct file *fp, char __user *buf,
-    size_t count, loff_t *pos)
-{
-    size_t l = MAX(MIN(count, debug_pos - *pos), 0);
-    memcpy(buf, (void*)(debug_buff + *pos), l);
-    if (l > 0) *pos += l;
-    return l;
-}
+    #define HEXDUMP(prefix, data, len) print_hex_dump(KERN_DEBUG, prefix, DUMP_PREFIX_NONE, 16, 256, data, len, true)
+#else
+    #define HEXDUMP(prefix, data, len)
 #endif
 
 #if (VERBOSITY > 0) || STATE_DEVICES
@@ -194,24 +169,6 @@ static int device_dumb_release(struct inode *ip, struct file *fp)
 {
     return 0;
 }
-#endif
-
-#if VERBOSITY > 0
-/* file operations for /dev/clovercon_debug */
-static const struct file_operations clovercon_debug_fops = {
-    .owner = THIS_MODULE,
-    .read = clovercon_debug_read,
-    .write = device_dumb_write,
-    .unlocked_ioctl = device_dumb_ioctl,
-    .open = device_dumb_open,
-    .release = device_dumb_release,
-};
-
-static struct miscdevice clovercon_debug_device = {
-    .minor = MISC_DYNAMIC_MINOR,
-    .name = "clovercon_debug",
-    .fops = &clovercon_debug_fops,
-};
 #endif
 
 #if STATE_DEVICES
@@ -287,19 +244,19 @@ static int arr_argc = 0;
 const char *controller_names[] = {CON_NAME_PREFIX"1", CON_NAME_PREFIX"2",
                                   CON_NAME_PREFIX"3", CON_NAME_PREFIX"4"};
 
-module_param_array(module_params, int, &arr_argc, 0000);
+module_param_array(module_params, int, &arr_argc, S_IRUSR | S_IRGRP | S_IROTH);
 MODULE_PARM_DESC(module_params, "Input info in the form con0_i2c_bus, con0_detect_gpio, "
                                 "form con1_i2c_bus, con1_detect_gpio, ... gpio < 0 means no detection");
-module_param(home_combination, short, 0000);
+module_param(home_combination, short, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 MODULE_PARM_DESC(home_combination, "Button combination to open menu "
                 "(0x001=A,0x002=B,0x004=Select,0x008=Start,0x010=Up,0x020=Down,0x040=Left,0x080=Right,0x100=X,0x200=Y,0x400=L,0x800=R");
-module_param(autofire, byte, 0000);
+module_param(autofire, short, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 MODULE_PARM_DESC(autofire, "Enable autofire (hold select+a / select+b for a second)");
-module_param(autofire_xy, byte, 0000);
+module_param(autofire_xy, short, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 MODULE_PARM_DESC(autofire_xy, "Use X/Y on classic controller as autofire A/B");
-module_param(autofire_interval, byte, 0000);
+module_param(autofire_interval, short, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 MODULE_PARM_DESC(autofire_interval, "Autofire interval (default is 8)");
-module_param(fc_start, byte, 0000);
+module_param(fc_start, short, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 MODULE_PARM_DESC(fc_start, "Enable start button emulation for second controller");
 
 #if CLOVERCON_DETECT_USE_IRQ
@@ -420,7 +377,6 @@ static int clovercon_read_controller_info(struct i2c_client *client, u8 *data, s
         return ret;
 
     return len;
-    // print_hex_dump(KERN_DEBUG, "Controller info data: " , DUMP_PREFIX_NONE, 16, 256, data, len, false);
 }
 
 static int clovercon_setup(struct clovercon_info *info) {
@@ -430,8 +386,8 @@ static int clovercon_setup(struct clovercon_info *info) {
     u8 con_info_data[CON_INFO_LEN];
     int ret;
 #if VERBOSITY > 2
-    static const int READ_LEN = 21;
-    u8 data[READ_LEN];
+    u8 debug_data[32];
+    s16 debug_pos;
 #endif
     DBG("Clovercon setup");
 
@@ -441,7 +397,7 @@ static int clovercon_setup(struct clovercon_info *info) {
         ERR("error reading controller info");
         goto err;
     }
-    hex_dump("con_info_data before setup:", con_info_data, ret);
+    HEXDUMP("con_info_data before setup: ", con_info_data, ret);
 #endif
 
     ret = clovercon_write(client, &init_data[0], 2);
@@ -462,17 +418,20 @@ static int clovercon_setup(struct clovercon_info *info) {
         ret = -EIO;
         goto err;
     }
-    hex_dump("con_info_data after setup:", con_info_data, sizeof(con_info_data));
+    HEXDUMP("con_info_data after setup: ", con_info_data, sizeof(con_info_data));
 
 #if VERBOSITY > 2
-    ret = clovercon_read(client, 0, data, READ_LEN);
-    if (ret)
+    for (debug_pos = 0; debug_pos < 256; debug_pos += sizeof(debug_data))
     {
-        ERR("read failed for active controller - possible controller disconnect");
-        ret = -EIO;
-        goto err;
+        ret = clovercon_read(client, debug_pos, debug_data, sizeof(debug_data));
+        if (ret)
+        {
+            ERR("read failed for active controller - possible controller disconnect");
+            ret = -EIO;
+            goto err;
+        }
+        HEXDUMP("clvcon dump: ", debug_data, sizeof(debug_data));
     }
-    hex_dump("poll:", data, READ_LEN);
 #endif
 
     // autodetecting data format
@@ -553,7 +512,9 @@ static void clovercon_poll(struct input_polled_dev *polled_dev) {
             break;
         }
 
-        //print_hex_dump(KERN_DEBUG, "", DUMP_PREFIX_OFFSET, 16, 256, data, READ_LEN, false);
+        #if VERBOSITY > 4
+            HEXDUMP("clvcon polling: ", data, READ_LEN);
+        #endif
 
         /* The Wii could trust the payload 100% because the Wii Remote
          * controller is powered with AA batteries. In the case of
@@ -1296,10 +1257,6 @@ static int __init clovercon_init(void) {
         goto err_controller_cleanup;
     }
 
-#if VERBOSITY > 0
-    misc_register(&clovercon_debug_device);
-#endif
-
     return 0;
 
 err_controller_cleanup:
@@ -1316,9 +1273,6 @@ static void __exit clovercon_exit(void) {
     clovercon_teardown_detection();
     clovercon_remove_controllers();
     i2c_del_driver(&clovercon_driver);
-#if VERBOSITY > 0
-    misc_deregister(&clovercon_debug_device);
-#endif
 }
 
 module_exit(clovercon_exit);
