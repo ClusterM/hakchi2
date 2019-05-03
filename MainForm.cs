@@ -3169,12 +3169,14 @@ namespace com.clusterrr.hakchi_gui
                     else
                     {
                         var repo = new ModHub.Repository.Repository(url);
-                        repo.LoadTasker(this);
-                        using (var hub = new ModHub.ModHubForm())
+                        if  (repo.LoadTasker(this) != null)
                         {
-                            hub.Text = unboxed.Text;
-                            hub.LoadData(repo);
-                            hub.ShowDialog(this);
+                            using (var hub = new ModHub.ModHubForm())
+                            {
+                                hub.Text = unboxed.Text;
+                                hub.LoadData(repo);
+                                hub.ShowDialog(this);
+                            }
                         }
                     }
                 }

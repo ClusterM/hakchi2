@@ -252,6 +252,10 @@ namespace com.clusterrr.hakchi_gui.ModHub.Repository
                 return;
                 // End pack processing
             }
+            else
+            {
+                throw new Exception($"HTTP request returned status {repoResponse.Result.Status}");
+            }
             
             var taskList = HTTPHelpers.GetHTTPResponseStringAsync(RepositoryListURL);
 
