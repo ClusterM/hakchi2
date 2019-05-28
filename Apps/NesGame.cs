@@ -17,7 +17,7 @@ namespace com.clusterrr.hakchi_gui
     {
         public const char Prefix = 'H';
         public static bool? IgnoreMapper;
-        const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 10,2 --volume 75 --enable-armet";
+        const string DefaultArgs = "--guest-overscan-dimensions 0,0,9,3 --initial-fadein-durations 3,2 --volume 75 --enable-armet";
         private static Dictionary<uint, CachedGameInfo> gameInfoCache = null;
 
         private static byte[] supportedMappers = new byte[] { 0, 1, 2, 3, 4, 5, 7, 9, 10, 86, 87, 184 };
