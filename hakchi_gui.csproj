@@ -754,6 +754,12 @@
     </Compile>
     <Compile Include="Tasks\MembootTasks.cs" />
     <Compile Include="Tasks\ModTasks.cs" />
+    <Compile Include="Tasks\SDFormat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\SDFormat.Designer.cs">
+      <DependentUpon>SDFormat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tasks\ShellTasks.cs" />
     <Compile Include="Tasks\LoadGamesTask.cs" />
     <Compile Include="Tasks\MessageForm.cs">
@@ -1758,6 +1764,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tasks\MessageForm.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\SDFormat.resx">
+      <DependentUpon>SDFormat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tasks\TaskerForm.de-DE.resx">
       <DependentUpon>TaskerForm.cs</DependentUpon>

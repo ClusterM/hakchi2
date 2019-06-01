@@ -21,7 +21,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
         // Enums
         public enum MembootTaskType {
             InstallHakchi,
-            InstallHakchiSD,
             ResetHakchi,
             UninstallHakchi,
             DumpNand,
@@ -37,9 +36,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
             FlashNormalUboot,
             FlashSDUboot,
             FactoryReset,
-            DumpStockKernel
+            DumpStockKernel,
         }
-        public enum HakchiTasks { Install, Reset, Uninstall, InstallSDPart1, InstallSDPart2 }
+        public enum HakchiTasks { Install, Reset, Uninstall }
         public enum NandTasks { DumpNand, DumpNandB, FlashNandB, DumpNandC, FlashNandC, FormatNandC }
 
         // Private variables
@@ -56,7 +55,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public readonly TaskFunc[] Tasks;
 
-        public MembootTasks(MembootTaskType type, string[] hmodsInstall = null, string[] hmodsUninstall = null, string dumpPath = null, bool forceRecoveryReload = false, bool ignoreBackupKernel = false)
+        public MembootTasks(MembootTaskType type, string[] hmodsInstall = null, string[] hmodsUninstall = null, string dumpPath = null, bool forceRecoveryReload = false, bool ignoreBackupKernel = false, bool requireSD = false)
         {
             this.ignoreBackupKernel = ignoreBackupKernel;
             userRecovery = (hakchi.Shell.IsOnline && hakchi.MinimalMemboot && hakchi.UserMinimalMemboot);
@@ -65,7 +64,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             List<TaskFunc> taskList = new List<TaskFunc>();
             if (!hakchi.MinimalMemboot || forceRecoveryReload)
             {
-                taskList.Add(WaitForFelOrMembootableShell(type == MembootTaskType.InstallHakchiSD));
+                taskList.Add(WaitForFelOrMembootableShell(requireSD));
                 taskList.Add(TaskIf(() => { return hakchi.Shell.IsOnline; }, Memboot, MembootFel));
                 taskList.Add(WaitForShellCycle(-1));
                 taskList.Add(ShellTasks.ShowSplashScreen);
@@ -80,21 +79,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     });
                     if (!userRecovery)
                         taskList.Add(BootHakchi);
-
-                    break;
-
-                case MembootTaskType.InstallHakchiSD:
-                    taskList.AddRange(new TaskFunc[]
-                    {
-                        HandleHakchi(HakchiTasks.InstallSDPart1),
-                        FormatDevice("/dev/mmcblk0p2"),
-                        HandleHakchi(HakchiTasks.InstallSDPart2)
-                    });
-                    if (!userRecovery)
-                    {
-                        taskList.Add(ShellTasks.Reboot);
-                        taskList.Add(WaitForShellCycle(-1));
-                    }
 
                     break;
 
@@ -134,7 +118,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     taskList.AddRange(new TaskFunc[] {
                         FlashKernel,
                         ShellTasks.UnmountBase,
-                        FormatDevice("/dev/nandc")
+                        ShellTasks.FormatDevice("/dev/nandc")
                     });
 
                     if (!userRecovery)
@@ -196,7 +180,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     taskList.AddRange(new TaskFunc[]
                     {
                         ShellTasks.UnmountBase,
-                        FormatDevice("/dev/nandc"),
+                        ShellTasks.FormatDevice("/dev/nandc"),
                         HandleHakchi(HakchiTasks.Install),
                         ModTasks.TransferBaseHmods("/hakchi/transfer")
                     });
@@ -663,50 +647,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Conclusion.Success;
         }
 
-        public TaskFunc FormatDevice(string device)
-        {
-            Regex mke2fsHeaderRegex = new Regex(@"(Allocating group tables|Writing inode tables|Creating journal \(\d+ blocks\)|Writing superblocks and filesystem accounting information)", RegexOptions.Compiled);
-            Regex mke2fsProgressRegex = new Regex(@"(\d+/\d+|done)", RegexOptions.Compiled);
-
-            return (Tasker tasker, Object sync) =>
-            {
-                using (EventStream formatProgress = new EventStream())
-                using (var splitStream = new SplitterStream(Program.debugStreams))
-                {
-                    splitStream.AddStreams(formatProgress);
-                    string currentHeading = null;
-                    formatProgress.OnData += (byte[] buffer) =>
-                    {
-                        string data = Encoding.ASCII.GetString(buffer);
-                        MatchCollection matches = mke2fsHeaderRegex.Matches(data);
-                        if (matches.Count > 0)
-                        {
-                            currentHeading = matches[matches.Count - 1].Value;
-                            tasker.SetStatus(currentHeading);
-                        }
-
-                        matches = mke2fsProgressRegex.Matches(data);
-
-                        if (matches.Count > 0 && currentHeading != null && currentHeading != "Writing superblocks and filesystem accounting information")
-                        {
-                            tasker.SetStatus($"{currentHeading}: {matches[matches.Count - 1].Value}");
-                            if (currentHeading == "Writing inode tables")
-                            {
-                                var inodes = matches[matches.Count - 1].Value.Split("/"[0]);
-                                tasker.SetProgress(long.Parse(inodes[0]), long.Parse(inodes[1]));
-                            }
-                        }
-                    };
-
-                    hakchi.Shell.Execute($"yes | mke2fs -t ext4 -L data -b 4K -E stripe-width=32 -O ^huge_file,^metadata_csum {Shared.EscapeShellArgument(device)}", null, splitStream, splitStream, 0, true);
-
-                    splitStream.RemoveStream(formatProgress);
-
-                    return Conclusion.Success;
-                }
-            };
-        }
-
         public TaskFunc HandleHakchi(HakchiTasks task)
         {
             var instance = this;
@@ -714,7 +654,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 switch (task)
                 {
-                    case HakchiTasks.InstallSDPart1:
                     case HakchiTasks.Install:
                         tasker.SetStatus(Resources.InstallingHakchi);
                         break;
@@ -724,91 +663,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     case HakchiTasks.Uninstall:
                         tasker.SetStatus(Resources.Uninstalling);
                         break;
-                }
-
-                if (task == HakchiTasks.InstallSDPart1)
-                {
-                    if (hakchi.Shell.Execute("[ -b /dev/mmcblk0 ]") != 0)
-                    {
-                        throw new Exception(Resources.NoSDCard);
-                    }
-
-                    var splitStream = new SplitterStream(Program.debugStreams);
-                    hakchi.Shell.Execute("umount /newroot");
-                    hakchi.Shell.Execute("losetup -d /dev/loop2");
-                    hakchi.Shell.Execute("umount /firmware");
-                    hakchi.Shell.Execute("mkdir -p /sd-temp/", null, null, null, 0, true);
-                    tasker.SetStatus(Resources.ExtractingHakchiToTemporaryFolder);
-                    hakchi.Shell.Execute("tar -xzvf - -C /sd-temp/", hakchi.GetHakchiHmodStream(), null, null, 0, true); // 16
-                    tasker.SetProgress(16, 161);
-                    tasker.SetStatus(Resources.ClearingTheFirst32MBOfSDCard);
-                    hakchi.Shell.Execute("dd if=/dev/zero of=/dev/mmcblk0 bs=1M count=32", null, null, null, 0, true); // 32
-                    tasker.SetProgress(48, 161);
-                    tasker.SetStatus(Resources.AddingHakchiMBR);
-                    hakchi.Shell.Execute("printf \"hakchi\\n%s\\n\" \"$(cat \"/sd-temp/var/version\")\" | dd \"of=/dev/mmcblk0\"", null, null, null, 0, true);
-                    tasker.SetProgress(49, 161);
-                    tasker.SetStatus(Resources.WritingFATFilesystem);
-                    hakchi.Shell.Execute("gunzip -c /sd-temp/sd/data.vfat.gz | dd of=/dev/mmcblk0 bs=1M seek=32", null, null, null, 0, true); // 96
-                    tasker.SetProgress(145, 161);
-                    tasker.SetStatus(Resources.WritingBoot0);
-                    hakchi.Shell.Execute("dd if=/sd-temp/sd/boot0.bin of=/dev/mmcblk0 bs=1K seek=8", null, null, null, 0, true); // 1
-                    tasker.SetProgress(146, 161);
-                    tasker.SetStatus(Resources.WritingUboot);
-                    hakchi.Shell.Execute("dd if=/sd-temp/sd/uboot.bin of=/dev/mmcblk0 bs=1K seek=19096", null, null, null, 0, true); // 1
-                    tasker.SetProgress(147, 161);
-                    tasker.SetStatus(Resources.WritingKernel);
-                    hakchi.Shell.Execute("dd if=/sd-temp/sd/kernel.img of=/dev/mmcblk0 bs=1K seek=20480", null, null, null, 0, true); // 4
-                    tasker.SetProgress(151, 161);
-                    tasker.SetStatus(Resources.WritingSquashFS);
-                    hakchi.Shell.Execute("dd \"if=/sd-temp/sd/squash.hsqs\" of=/dev/mmcblk0 bs=1K seek=40", null, null, null, 0, true); // 10
-                    tasker.SetProgress(161, 161);
-
-                    tasker.SetStatus(Resources.MountingSquashFS);
-                    hakchi.Shell.Execute("mkdir -p /squashtools /tmp", null, null, null, 0, true);
-                    hakchi.Shell.Execute("losetup -o $((1024*40)) /dev/loop1 /dev/mmcblk0", null, null, null, 0, true);
-                    hakchi.Shell.Execute("mount /dev/loop1 /squashtools", null, null, null, 0, true);
-                    hakchi.Shell.Execute("cp /squashtools/init /tmp/init", null, null, null, 0, true);
-
-                    hakchi.Shell.Execute("sh /tmp/init partition", null, splitStream, splitStream, 0, true);
-
-                    
-                }
-
-                if (task == HakchiTasks.InstallSDPart2)
-                {
-                    var splitStream = new SplitterStream(Program.debugStreams);
-                    
-                    tasker.SetStatus(Resources.MountingSDCard);
-                    hakchi.Shell.Execute("sh /tmp/init mount", null, splitStream, splitStream, 0, true);
-
-                    MessageForm.Button copySD = MessageForm.Button.No;
-
-                    tasker.HostForm.Invoke(new Action(()=>{
-                        copySD = MessageForm.Show(Resources.CopyFilesFromNandQ, Resources.CopyFilesFromNandQ2, Resources.sign_question, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No });
-                    }));
-
-                    if (copySD == MessageForm.Button.Yes)
-                    {
-                        using (EventStream copyDataProgress = new EventStream())
-                        {
-                            splitStream.AddStreams(copyDataProgress);
-                            copyDataProgress.OnData += (byte[] buffer) =>
-                            {
-                                tasker.SetStatus(System.Text.Encoding.ASCII.GetString(buffer));
-                            };
-                            tasker.SetStatus(Resources.CopyingNandDataToSDCard);
-                            hakchi.Shell.Execute("mkdir -p /nandc && mount /dev/nandc /nandc", null, null, null, 0, true);
-                            hakchi.Shell.Execute("rsync -avc /nandc/ /data/", null, splitStream, splitStream, 0, true);
-                            hakchi.Shell.Execute("umount /nandc/ && rmdir /nandc/", null, null, null, 0, true);
-                            splitStream.RemoveStream(copyDataProgress);
-                            copyDataProgress.Dispose();
-                        }
-                    }
-
-                    tasker.SetStatus(Resources.CopyingHakchiToSDCard);
-                    hakchi.Shell.Execute("sh /tmp/init copy", null, splitStream, splitStream, 0, true);
-                    tasker.SetStatus(Resources.UnmountingSDCard);
-                    hakchi.Shell.Execute("sh /tmp/init unmount", null, splitStream, splitStream, 0, true);
                 }
 
                 if (task == HakchiTasks.Reset || task == HakchiTasks.Uninstall)

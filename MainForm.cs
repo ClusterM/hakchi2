@@ -1635,14 +1635,20 @@ namespace com.clusterrr.hakchi_gui
 
         bool FormatSD()
         {
-            using (var tasker = new Tasker(this))
-            {
-                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
-                tasker.SetTitle(Resources.FormattingSDCard);
-                tasker.SetStatusImage(Resources.sign_cogs);
-                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.InstallHakchiSD).Tasks);
-                return tasker.Start() == Tasker.Conclusion.Success;
+            using(var dialog = new SDFormat()) {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    using(var tasker = new Tasker(this))
+                    {
+                        tasker.AttachViews(new TaskerTaskbar(), new TaskerForm());
+                        tasker.SetStatusImage(Resources.sign_cogs);
+                        tasker.SetTitle(Resources.FormattingSDCard);
+                        tasker.AddTasks(dialog.GetTasks());
+                        return tasker.Start() == Tasker.Conclusion.Success;
+                    }
+                }
             }
+            return false;
         }
 
         bool MembootCustomKernel()
@@ -3059,11 +3065,8 @@ namespace com.clusterrr.hakchi_gui
 
         private void formatSDCardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.FormatSDQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
-            {
                 if (FormatSD())
                     Tasks.MessageForm.Show(Resources.Done, Resources.DoneYouCanUpload, Resources.sign_check);
-            }
         }
 
         private void addModInfoToReport(ref List<string> list, ref List<Hmod.Hmod> mods)
