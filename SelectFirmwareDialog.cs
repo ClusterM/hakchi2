@@ -91,7 +91,7 @@ namespace com.clusterrr.hakchi_gui
                 }));
 
                 var firmwareCurrent = hakchi.Shell.ExecuteSimple("hakchi currentFirmware", 1000, true);
-                var firmwareList = hakchi.Shell.ExecuteSimple("find \"/var/lib/hakchi/\" -iname \"*.hsqs\"", 10000, true);
+                var firmwareList = hakchi.Shell.ExecuteSimple("find \"/media/\" \"/var/lib/hakchi/\" -iname \"*.hsqs\"", 10000, true);
                 firmwarePaths = new List<string>();
                 foreach (var firmware in firmwareList.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries))
                 {
