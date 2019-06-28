@@ -1,2 +1,2 @@
-local ext_path=$mountpoint/var/lib/clover/backgrounds
-rm -rf $ext_path
+local ext_path="$rootfs/usr/share/backgrounds"
+rm -rf "$ext_path"

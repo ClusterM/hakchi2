@@ -1,4 +1,2 @@
-local ext_path=$mountpoint/var/lib/clover/backgrounds
-mkdir -p $ext_path
-
+rm -f "$transferpath/usr/share/backgrounds/put_backgrounds_folders_here"
 return 0
