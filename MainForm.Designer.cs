@@ -415,6 +415,7 @@
             // 
             this.uninstallToolStripMenuItem.Name = "uninstallToolStripMenuItem";
             resources.ApplyResources(this.uninstallToolStripMenuItem, "uninstallToolStripMenuItem");
+            this.uninstallToolStripMenuItem.Text = Properties.Resources.Uninstall;
             this.uninstallToolStripMenuItem.Click += new System.EventHandler(this.uninstallToolStripMenuItem_Click);
             // 
             // toolStripMenuItem11
@@ -547,6 +548,7 @@
             // factoryResetToolStripMenuItem
             // 
             resources.ApplyResources(this.factoryResetToolStripMenuItem, "factoryResetToolStripMenuItem");
+            this.factoryResetToolStripMenuItem.Text = Properties.Resources.FactoryReset;
             this.factoryResetToolStripMenuItem.Name = "factoryResetToolStripMenuItem";
             this.factoryResetToolStripMenuItem.Click += new System.EventHandler(this.factoryResetToolStripMenuItem_Click);
             // 

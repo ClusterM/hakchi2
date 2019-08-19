@@ -1211,6 +1211,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Factory reset .
+        /// </summary>
+        internal static string FactoryReset {
+            get {
+                return ResourceManager.GetString("FactoryReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Done! All traces of hakchi have been removed and your NES/SNES Mini has been reset to factory settings..
         /// </summary>
         internal static string FactoryResetNote {
@@ -1229,6 +1238,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string FactoryResetQ {
             get {
                 return ResourceManager.GetString("FactoryResetQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Factory reset with kernel file.
+        /// </summary>
+        internal static string FactoryResetWithKernelFile {
+            get {
+                return ResourceManager.GetString("FactoryResetWithKernelFile", resourceCulture);
             }
         }
         
@@ -3799,6 +3817,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uninstall.
+        /// </summary>
+        internal static string Uninstall {
+            get {
+                return ResourceManager.GetString("Uninstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Done! Don&apos;t forget to perform a factory reset if you want to delete all Suspend Points..
         /// </summary>
         internal static string UninstallFactoryNote {
@@ -3858,6 +3885,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string UninstallQ2 {
             get {
                 return ResourceManager.GetString("UninstallQ2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstall and flash kernel file.
+        /// </summary>
+        internal static string UninstallWithKernelFile {
+            get {
+                return ResourceManager.GetString("UninstallWithKernelFile", resourceCulture);
             }
         }
         

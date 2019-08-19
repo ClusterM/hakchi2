@@ -239,9 +239,6 @@
   <data name="uninstallToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 22</value>
   </data>
-  <data name="uninstallToolStripMenuItem.Text" xml:space="preserve">
-    <value>Uninstall</value>
-  </data>
   <data name="toolStripMenuItem11.Size" type="System.Drawing.Size, System.Drawing">
     <value>146, 6</value>
   </data>
@@ -358,9 +355,6 @@
   </data>
   <data name="factoryResetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>270, 22</value>
-  </data>
-  <data name="factoryResetToolStripMenuItem.Text" xml:space="preserve">
-    <value>Factory reset</value>
   </data>
   <data name="advancedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 22</value>

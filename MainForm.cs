@@ -199,6 +199,23 @@ namespace com.clusterrr.hakchi_gui
             {
                 Tasks.ErrorForm.Show(this, ex);
             }
+            kernelToolStripMenuItem.DropDown.KeyDown += menuShiftHandler;
+            kernelToolStripMenuItem.DropDown.KeyUp += menuShiftHandler;
+            kernelToolStripMenuItem.DropDownOpening += menuShiftHandler;
+            advancedToolStripMenuItem.DropDown.KeyDown += menuShiftHandler;
+            advancedToolStripMenuItem.DropDown.KeyUp += menuShiftHandler;
+            advancedToolStripMenuItem.DropDownOpening += menuShiftHandler;
+            
+            this.KeyDown += menuShiftHandler;
+            this.KeyUp += menuShiftHandler;
+        }
+
+        private void menuShiftHandler(object sender, EventArgs e) => menuShiftHandler();
+        private void menuShiftHandler(object sender, KeyEventArgs e) => menuShiftHandler();
+        private void menuShiftHandler()
+        {
+            uninstallToolStripMenuItem.Text = Control.ModifierKeys == Keys.Shift ? Resources.UninstallWithKernelFile : Resources.Uninstall;
+            factoryResetToolStripMenuItem.Text = Control.ModifierKeys == Keys.Shift ? Resources.FactoryResetWithKernelFile : Resources.FactoryReset;
         }
 
         private void MainForm_Shown(object sender, EventArgs e)

@@ -1443,4 +1443,16 @@ This will erase all data present on the card!</value>
   <data name="WritingUboot" xml:space="preserve">
     <value>Writing uboot</value>
   </data>
+  <data name="FactoryReset" xml:space="preserve">
+    <value>Factory reset </value>
+  </data>
+  <data name="FactoryResetWithKernelFile" xml:space="preserve">
+    <value>Factory reset with kernel file</value>
+  </data>
+  <data name="Uninstall" xml:space="preserve">
+    <value>Uninstall</value>
+  </data>
+  <data name="UninstallWithKernelFile" xml:space="preserve">
+    <value>Uninstall and flash kernel file</value>
+  </data>
 </root>
