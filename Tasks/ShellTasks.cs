@@ -102,7 +102,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         }
                     };
 
-                    hakchi.Shell.Execute($"yes | mke2fs -t ext4 -L data -b 4K -E stripe-width=32 -O ^huge_file,^metadata_csum {Shared.EscapeShellArgument(device)}", null, splitStream, splitStream, 0, true);
+                    hakchi.Shell.Execute($"yes | mke2fs -t ext4 -L data -b 4K -m 0 -J size=4 -E stripe-width=32 -O ^huge_file,^metadata_csum {Shared.EscapeShellArgument(device)}", null, splitStream, splitStream, 0, true);
 
                     splitStream.RemoveStream(formatProgress);
 
