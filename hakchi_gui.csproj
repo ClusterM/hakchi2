@@ -181,7 +181,7 @@
     <Compile Include="Hmod\ListSort.cs" />
     <Compile Include="Hmod\Readme.cs" />
     <Compile Include="Hmod\Hmod.cs" />
-    <Compile Include="Hmod\ReadmeCache.cs" />
+    <Compile Include="Hmod\MetadataCache.cs" />
     <Compile Include="HTTPHelpers.cs" />
     <Compile Include="INetworkShell.cs" />
     <Compile Include="ISystemShell.cs" />

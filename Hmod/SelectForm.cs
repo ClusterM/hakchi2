@@ -39,6 +39,12 @@ namespace com.clusterrr.hakchi_gui.Hmod
 
             hmods.AddRange(Hmod.GetMods(hakchi.CanInteract && onlyInstalledMods, null, this));
 
+            if(!onlyInstalledMods)
+            {
+                CoreCollection.HmodInfo = hmods.ToArray();
+                CoreCollection.Load();
+            }
+
             populateList();
 
             if (filesToAdd != null) AddMods(filesToAdd);

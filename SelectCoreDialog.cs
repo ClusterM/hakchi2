@@ -92,6 +92,8 @@ namespace com.clusterrr.hakchi_gui
         public SelectCoreDialog()
         {
             InitializeComponent();
+            CoreCollection.HmodInfo = Hmod.Hmod.GetMods(false, new string[] { }).ToArray();
+            CoreCollection.Load();
             Icon = Resources.icon;
             Modified = false;
             DialogResult = DialogResult.Abort;

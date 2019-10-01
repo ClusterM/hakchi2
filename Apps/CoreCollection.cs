@@ -17,7 +17,7 @@ namespace com.clusterrr.hakchi_gui
     public static class CoreCollection
     {
         private static readonly string CollectionFilename = Shared.PathCombine(Program.BaseDirectoryExternal, "config", "cores{0}.json");
-
+        public static Hmod.Hmod[] HmodInfo = new Hmod.Hmod[] { };
         public enum CoreKind { Unknown, BuiltIn, Libretro };
         public class CoreInfo : IEquatable<CoreInfo>
         {
@@ -91,12 +91,16 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private static Dictionary<string, CoreInfo> cores = new Dictionary<string, CoreInfo>();
-        private static SortedDictionary<string, List<CoreInfo>> extIndex = new SortedDictionary<string, List<CoreInfo>>();
-        private static SortedDictionary<string, List<CoreInfo>> systemIndex = new SortedDictionary<string, List<CoreInfo>>();
+        private static Dictionary<string, CoreInfo> cores;
+        private static SortedDictionary<string, List<CoreInfo>> extIndex;
+        private static SortedDictionary<string, List<CoreInfo>> systemIndex;
 
         public static void Load()
         {
+            cores = new Dictionary<string, CoreInfo>();
+            extIndex = new SortedDictionary<string, List<CoreInfo>>();
+            systemIndex = new SortedDictionary<string, List<CoreInfo>>();
+
             // try to load from cache
             if (Deserialize())
             {
@@ -129,6 +133,25 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
 
+            // load from hmods
+            if (HmodInfo.Length == 0)
+                HmodInfo = Hmod.Hmod.GetMods(false, new string[] { }).ToArray();
+
+            foreach (Hmod.Hmod hmod in HmodInfo)
+            {
+                foreach (string file in hmod.LibretroInfo.Keys)
+                {
+                    using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(hmod.LibretroInfo[file])))
+                    {
+                        var filename = Path.GetFileName(file);
+                        var bin = filename.Substring(0, filename.IndexOf("_libretro.info"));
+                        var core = parseInfoFile(stream, bin);
+                        if (core != null)
+                            cores[bin] = core;
+                    }
+                }
+            }
+            
             // list user-added info files present in /info
             if (!Directory.Exists(Path.Combine(Program.BaseDirectoryExternal, "info")))
                 Directory.CreateDirectory(Path.Combine(Program.BaseDirectoryExternal, "info"));

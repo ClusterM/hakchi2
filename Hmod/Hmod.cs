@@ -3,6 +3,7 @@ using com.clusterrr.hakchi_gui.Tasks;
 using SharpCompress.Archives;
 using SharpCompress.Common;
 using SharpCompress.Readers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,8 @@ namespace com.clusterrr.hakchi_gui.Hmod
         public readonly string Creator;
         public readonly string Version;
         public readonly string EmulatedSystem;
+        public readonly Dictionary<string, string> LibretroInfo;
+        public readonly DateTime LastModified;
         public readonly bool isInstalled;
         public static string UserModsDirectory
         {
@@ -48,12 +51,23 @@ namespace com.clusterrr.hakchi_gui.Hmod
 
 
             Dictionary<string, string> readmeData = new Dictionary<string, string>();
+            Dictionary<string, string> libretroInfo = new Dictionary<string, string>();
+
+            LastModified = DateTime.UtcNow;
+            this.LibretroInfo = new Dictionary<string, string>();
 
             try
             {
                 var dir = Path.Combine(usermodsDirectory, mod + ".hmod");
                 if (Directory.Exists(dir))
                 {
+                    var files = (from f in (new DirectoryInfo(dir)).GetFiles("*", SearchOption.AllDirectories)
+                                 orderby f.LastWriteTimeUtc descending
+                                 select f.LastWriteTimeUtc);
+
+                    if (files.Count() > 0)
+                        LastModified = files.First();
+
                     isFile = false;
                     HmodPath = dir;
                     foreach (var f in HmodReadme.readmeFiles)
@@ -64,13 +78,20 @@ namespace com.clusterrr.hakchi_gui.Hmod
                             readmeData.Add(f.ToLower(), File.ReadAllText(fn));
                         }
                     }
+
+                    foreach (string file in Directory.EnumerateFiles(dir, "*_libretro.info"))
+                    {
+                        libretroInfo.Add(file, File.ReadAllText(file));
+                    }
+                    this.LibretroInfo = libretroInfo;
                 }
                 else if (File.Exists(dir))
                 {
+                    LastModified = new FileInfo(dir).LastWriteTimeUtc;
                     isFile = true;
                     HmodPath = dir;
 
-                    ReadmeCache cache;
+                    MetadataCache cache;
                     FileInfo info = new FileInfo(dir);
 
                     bool skipExtraction = false;
@@ -78,11 +99,15 @@ namespace com.clusterrr.hakchi_gui.Hmod
                     {
                         try
                         {
-                            cache = XMLSerialization.DeserializeXMLFileToObject<ReadmeCache>(cacheFile);
+                            cache = MetadataCache.Deserialize(cacheFile);
                             if (cache.LastModified == info.LastWriteTimeUtc)
                             {
                                 skipExtraction = true;
                                 readmeData = cache.getReadmeDictionary();
+                                foreach (string[] infoFile in cache.LibretroInfo)
+                                {
+                                    this.LibretroInfo.Add(infoFile[0], infoFile[1]);
+                                }
                             }
                         }
                         catch { }
@@ -100,16 +125,31 @@ namespace com.clusterrr.hakchi_gui.Hmod
                                     if (reader.Entry.Key.ToLower() != readmeFilename && reader.Entry.Key.ToLower() != $"./{readmeFilename}")
                                         continue;
 
-                                    var o = new MemoryStream();
-                                    reader.OpenEntryStream().CopyTo(o);
-                                    readmeData.Add(readmeFilename, Encoding.UTF8.GetString(o.ToArray()));
+                                    using (var o = new MemoryStream())
+                                    using (var e = reader.OpenEntryStream())
+                                    {
+                                        e.CopyTo(o);
+                                        readmeData.Add(readmeFilename, Encoding.UTF8.GetString(o.ToArray()));
+                                    }
+                                }
+
+                                if (reader.Entry.Key.ToLower().EndsWith("_libretro.info"))
+                                {
+                                    using (var o = new MemoryStream())
+                                    using (var e = reader.OpenEntryStream())
+                                    {
+                                        e.CopyTo(o);
+                                        libretroInfo.Add(reader.Entry.Key, Encoding.UTF8.GetString(o.ToArray()));
+                                    }
                                 }
                             }
                         }
-                        cache = new ReadmeCache(readmeData, "", info.LastWriteTimeUtc);
+                        cache = new MetadataCache(readmeData, libretroInfo, "", info.LastWriteTimeUtc);
 
                         if (!Directory.Exists(cacheDir))
                             Directory.CreateDirectory(cacheDir);
+
+                        this.LibretroInfo = libretroInfo;
 
                         File.WriteAllText(cacheFile, cache.Serialize());
                     }
@@ -120,15 +160,15 @@ namespace com.clusterrr.hakchi_gui.Hmod
                     {
                         try
                         {
-                            ReadmeCache cache;
-                            cache = XMLSerialization.DeserializeXMLFileToObject<ReadmeCache>(cacheFile);
+                            MetadataCache cache;
+                            cache = MetadataCache.Deserialize(cacheFile);
                             readmeData = cache.getReadmeDictionary();
                         }
                         catch { }
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
             }
 
@@ -180,7 +220,7 @@ namespace com.clusterrr.hakchi_gui.Hmod
         public static List<Hmod> GetMods(bool onlyInstalled = false, string[] installed = null, Form taskerParent = null)
         {
             var usermodsDirectory = UserModsDirectory;
-            var installedMods = installed ?? hakchi.GetPackList() ?? new string[] { };
+            var installedMods = installed  ?? hakchi.GetPackList() ?? new string[] { };
             var modsList = new List<string>();
 
             if (onlyInstalled)

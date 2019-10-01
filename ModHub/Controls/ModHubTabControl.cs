@@ -263,6 +263,8 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
                 }
                 
                 installedMods.AddRange(Hmod.Hmod.GetMods(true, selectedMods.ToArray(), parentForm));
+                CoreCollection.HmodInfo = installedMods.ToArray();
+                CoreCollection.Load();
             }
         }
 

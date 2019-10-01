@@ -38,15 +38,6 @@
                 SupportedExtensions = new string[] { ".sh" },
                 Systems = new string[] { "Shell Script" },
                 Kind = CoreCollection.CoreKind.BuiltIn
-            },
-            new CoreCollection.CoreInfo("msu") // exception case for MSU-1 games
-            {
-                DefaultArgs = string.Empty,
-                Name = "Snes9X (MSU-1)",
-                DisplayName = "Snes9X (MSU-1)",
-                SupportedExtensions = new string[] { ".msu" },
-                Systems = new string[] { "Nintendo - Super Nintendo Entertainment System (MSU-1)" },
-                Kind = CoreCollection.CoreKind.Libretro
             }
         };
     }
