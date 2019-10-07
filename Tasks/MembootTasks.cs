@@ -276,14 +276,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 return Conclusion.Abort;
 
             fel.Fes1Bin = Resources.fes1;
-            if (ConfigIni.Instance.MembootUboot == ConfigIni.UbootType.SD || sdRequired)
-            {
-                fel.UBootBin = Resources.ubootSD;
-            }
-            else
-            {
-                fel.UBootBin = Resources.uboot;
-            }
+            fel.UBootBin = hakchi.GetUboot().ToArray();
             if (!fel.Open())
                 throw new FelException("Can't open device");
             tasker.SetStatus(Resources.UploadingFes1);
@@ -828,14 +821,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 tasker.SetStatus(Resources.FlashingUboot);
                 TrackableStream uboot;
-                if(type == ConfigIni.UbootType.Normal)
+                byte[] ubootArray = hakchi.GetUboot().ToArray();
+
+                for (int i = ubootArray.Length - 9; i < ubootArray.Length; i++)
                 {
-                    uboot = new TrackableStream(Resources.uboot);
+                    ubootArray[i] = (byte)(type == ConfigIni.UbootType.SD ? 0xFF : 0x00);
                 }
-                else
-                {
-                    uboot = new TrackableStream(Resources.ubootSD);
-                }
+
+                uboot = new TrackableStream(ubootArray);
+
 
                 if (uboot.Length > 655360)
                 {

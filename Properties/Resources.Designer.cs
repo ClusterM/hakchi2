@@ -3779,31 +3779,11 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] uboot {
-            get {
-                object obj = ResourceManager.GetObject("uboot", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Uboot successfully flashed..
         /// </summary>
         internal static string UbootFlashed {
             get {
                 return ResourceManager.GetString("UbootFlashed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ubootSD {
-            get {
-                object obj = ResourceManager.GetObject("ubootSD", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         

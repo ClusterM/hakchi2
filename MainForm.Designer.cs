@@ -435,13 +435,15 @@
             // 
             this.normalModeToolStripMenuItem.Name = "normalModeToolStripMenuItem";
             resources.ApplyResources(this.normalModeToolStripMenuItem, "normalModeToolStripMenuItem");
-            this.normalModeToolStripMenuItem.Click += new System.EventHandler(this.normalModeToolStripMenuItem_Click);
+            this.normalModeToolStripMenuItem.Tag = Tasks.MembootTasks.MembootTaskType.FlashNormalUboot;
+            this.normalModeToolStripMenuItem.Click += new System.EventHandler(this.flashUbootToolStripMenuItem_Click);
             // 
             // sDModeToolStripMenuItem
             // 
             this.sDModeToolStripMenuItem.Name = "sDModeToolStripMenuItem";
             resources.ApplyResources(this.sDModeToolStripMenuItem, "sDModeToolStripMenuItem");
-            this.sDModeToolStripMenuItem.Click += new System.EventHandler(this.sDModeToolStripMenuItem_Click);
+            this.sDModeToolStripMenuItem.Tag = Tasks.MembootTasks.MembootTaskType.FlashSDUboot;
+            this.sDModeToolStripMenuItem.Click += new System.EventHandler(this.flashUbootToolStripMenuItem_Click);
             // 
             // advancedToolStripMenuItem
             // 

@@ -1016,12 +1016,6 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
   <data name="TransferringMods" xml:space="preserve">
     <value>Transferring mods...</value>
   </data>
-  <data name="uboot" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\data\uboot.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ubootSD" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\data\ubootSD.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="UninstallingHakchi" xml:space="preserve">
     <value>Uninstalling hakchi...</value>
   </data>

@@ -823,7 +823,6 @@
     <EmbeddedResource Include="images\flags\hu.png" />
     <EmbeddedResource Include="images\flags\jp.png" />
     <EmbeddedResource Include="images\flags\ro.png" />
-    <None Include="data\ubootSD.bin" />
     <None Include="FodyWeavers.xml" />
     <None Include="data\blankBoot.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1830,7 +1829,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="data\splash.gz" />
-    <None Include="data\uboot.bin" />
     <EmbeddedResource Include="images\flags\ar.png" />
     <EmbeddedResource Include="images\flags\bg.png" />
     <EmbeddedResource Include="images\flags\de.png" />

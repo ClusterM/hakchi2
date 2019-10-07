@@ -512,6 +512,13 @@ namespace com.clusterrr.hakchi_gui
             return image;
         }
 
+        public static MemoryStream GetUboot()
+        {
+            var image = new MemoryStream();
+            GetHakchiHmod().Entries.Where(e => e.Key == "boot/uboot.bin").First().OpenEntryStream().CopyTo(image);
+            return image;
+        }
+
         public static Dictionary<string, string> GetHakchiVersion()
         {
             using (var o = new MemoryStream())
