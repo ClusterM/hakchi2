@@ -1449,4 +1449,16 @@ This will erase all data present on the card!</value>
   <data name="UninstallWithKernelFile" xml:space="preserve">
     <value>Uninstall and flash kernel file</value>
   </data>
+  <data name="consoleTypeMdAsia" xml:space="preserve">
+    <value>Sega MegaDrive (Asia)</value>
+  </data>
+  <data name="consoleTypeMdEur" xml:space="preserve">
+    <value>Sega MegaDrive (EUR)</value>
+  </data>
+  <data name="consoleTypeMdJpn" xml:space="preserve">
+    <value>Sega MegaDrive (JPN)</value>
+  </data>
+  <data name="consoleTypeMdUsa" xml:space="preserve">
+    <value>Sega Genesis (USA)</value>
+  </data>
 </root>

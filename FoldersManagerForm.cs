@@ -34,6 +34,14 @@ namespace com.clusterrr.hakchi_gui
                         return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_snes_usa");
                     case hakchi.ConsoleType.SuperFamicom:
                         return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_super_famicom");
+                    case hakchi.ConsoleType.MD_JPN:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_md_jpn");
+                    case hakchi.ConsoleType.MD_USA:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_md_usa");
+                    case hakchi.ConsoleType.MD_EUR:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_md_eur");
+                    case hakchi.ConsoleType.MD_ASIA:
+                        return Path.Combine(Path.Combine(Program.BaseDirectoryExternal, ConfigIni.ConfigDir), "folders_md_asia");
                 }
             }
         }

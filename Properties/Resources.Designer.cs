@@ -615,6 +615,42 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sega MegaDrive (Asia).
+        /// </summary>
+        internal static string consoleTypeMdAsia {
+            get {
+                return ResourceManager.GetString("consoleTypeMdAsia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sega MegaDrive (EUR).
+        /// </summary>
+        internal static string consoleTypeMdEur {
+            get {
+                return ResourceManager.GetString("consoleTypeMdEur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sega MegaDrive (JPN).
+        /// </summary>
+        internal static string consoleTypeMdJpn {
+            get {
+                return ResourceManager.GetString("consoleTypeMdJpn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sega Genesis (USA).
+        /// </summary>
+        internal static string consoleTypeMdUsa {
+            get {
+                return ResourceManager.GetString("consoleTypeMdUsa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NES (USA/Europe).
         /// </summary>
         internal static string consoleTypeNes {

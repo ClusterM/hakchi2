@@ -25,6 +25,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public Tasker.Conclusion UpdateLocal(Tasker tasker, Object SyncObject = null)
         {
+            if (hakchi.IsMd(ConfigIni.Instance.ConsoleType)) return Tasker.Conclusion.Success;
+
             tasker.SetTitle(Resources.UpdatingLocalCache);
             tasker.SetStatusImage(Resources.sign_sync);
             tasker.SetProgress(-1, -1, Tasker.State.Running, Resources.UpdatingLocalCache);

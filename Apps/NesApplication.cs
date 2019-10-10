@@ -76,7 +76,14 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (!ConfigIni.Instance.SeparateGameLocalStorage)
                     return Path.Combine(Program.BaseDirectoryExternal, "games");
-                return Path.Combine(Program.BaseDirectoryExternal, hakchi.IsNes(ConfigIni.Instance.ConsoleType) ? "games" : "games_snes");
+
+                if (hakchi.IsMd(ConfigIni.Instance.ConsoleType))
+                    return Path.Combine(Program.BaseDirectoryExternal, "games_md");
+
+                if (hakchi.IsSnes(ConfigIni.Instance.ConsoleType))
+                    return Path.Combine(Program.BaseDirectoryExternal, "games_snes");
+
+                return Path.Combine(Program.BaseDirectoryExternal, "games");
             }
         }
 

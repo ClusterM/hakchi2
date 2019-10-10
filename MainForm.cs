@@ -52,6 +52,10 @@ namespace com.clusterrr.hakchi_gui
                 case hakchi.ConsoleType.SNES_USA: return Resources.consoleTypeSnesUsa;
                 case hakchi.ConsoleType.SuperFamicom: return Resources.consoleTypeSuperFamicom;
                 case hakchi.ConsoleType.ShonenJump: return Resources.consoleTypeShonenJump;
+                case hakchi.ConsoleType.MD_JPN: return Resources.consoleTypeMdJpn;
+                case hakchi.ConsoleType.MD_USA: return Resources.consoleTypeMdUsa;
+                case hakchi.ConsoleType.MD_EUR: return Resources.consoleTypeMdEur;
+                case hakchi.ConsoleType.MD_ASIA: return Resources.consoleTypeMdAsia;
                 case hakchi.ConsoleType.Unknown: return Resources.Unknown;
             }
             return string.Empty;

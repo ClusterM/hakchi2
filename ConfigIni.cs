@@ -109,6 +109,7 @@ namespace com.clusterrr.hakchi_gui
         {
             hakchi.ConsoleType[] nes = { hakchi.ConsoleType.Famicom, hakchi.ConsoleType.NES, hakchi.ConsoleType.ShonenJump };
             hakchi.ConsoleType[] snes = { hakchi.ConsoleType.SNES_EUR, hakchi.ConsoleType.SNES_USA, hakchi.ConsoleType.SuperFamicom };
+            hakchi.ConsoleType[] md = { hakchi.ConsoleType.MD_JPN, hakchi.ConsoleType.MD_USA, hakchi.ConsoleType.MD_EUR, hakchi.ConsoleType.MD_ASIA };
             hakchi.ConsoleType[] selected = null;
             if (!SeparateGameLocalStorage)
                 selected = nes.Concat(snes).ToArray();
@@ -116,6 +117,8 @@ namespace com.clusterrr.hakchi_gui
                 selected = nes;
             else if (snes.Contains(consoleType))
                 selected = snes;
+            else if (md.Contains(consoleType))
+                selected = md;
             else
                 return;
             foreach (var c in selected)
@@ -446,6 +449,7 @@ namespace com.clusterrr.hakchi_gui
                                     case "selectedgamessuperfamicom":
                                         instance.gamesCollectionSettings[hakchi.ConsoleType.SuperFamicom].SelectedGames = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         break;
+
                                     case "hiddengames":
                                         list = value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                                         instance.gamesCollectionSettings[hakchi.ConsoleType.NES].OriginalGames = NesApplication.DefaultGames[hakchi.ConsoleType.NES].Where(code => !list.Contains(code)).ToList();

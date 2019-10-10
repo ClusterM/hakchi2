@@ -29,6 +29,10 @@ namespace com.clusterrr.hakchi_gui
             SNES_USA = 3,
             SuperFamicom = 4,
             ShonenJump = 5,
+            MD_JPN = 6,
+            MD_USA = 7,
+            MD_EUR = 8,
+            MD_ASIA = 9,
             Unknown = 255
         }
 
@@ -40,6 +44,10 @@ namespace com.clusterrr.hakchi_gui
             { ConsoleType.SNES_USA, "snes-usa" },
             { ConsoleType.SuperFamicom, "snes-jpn" },
             { ConsoleType.ShonenJump, "hvcj-jpn" },
+            { ConsoleType.MD_JPN, "md-jpn" },
+            { ConsoleType.MD_USA, "md-usa" },
+            { ConsoleType.MD_EUR, "md-eur" },
+            { ConsoleType.MD_ASIA, "md-asia" },
         };
         public static readonly Dictionary<string, ConsoleType> SystemCodeToConsoleType = new Dictionary<string, ConsoleType>()
         {
@@ -49,6 +57,10 @@ namespace com.clusterrr.hakchi_gui
             { "snes-usa", ConsoleType.SNES_USA },
             { "snes-jpn", ConsoleType.SuperFamicom },
             { "hvcj-jpn", ConsoleType.ShonenJump },
+            { "md-jpn", ConsoleType.MD_JPN },
+            { "md-usa", ConsoleType.MD_USA },
+            { "md-eur", ConsoleType.MD_EUR },
+            { "md-asia", ConsoleType.MD_ASIA }
         };
 
         public static ISystemShell Shell { get; private set; }
@@ -106,6 +118,11 @@ namespace com.clusterrr.hakchi_gui
         public static bool IsNes(ConsoleType consoleType)
         {
             return (new ConsoleType[] { ConsoleType.Famicom, ConsoleType.NES, ConsoleType.ShonenJump }).Contains(consoleType);
+        }
+
+        public static bool IsMd(ConsoleType consoleType)
+        {
+            return (new ConsoleType[] { ConsoleType.MD_JPN, ConsoleType.MD_USA, ConsoleType.MD_EUR, ConsoleType.MD_ASIA }).Contains(consoleType);
         }
 
         public static bool HasPixelArt(ConsoleType consoleType)
