@@ -21,6 +21,7 @@ namespace com.clusterrr.hakchi_gui
             if (Shared.isWindows)
             {
                 webBrowser = new WebBrowser() { Location = position, Size = size, Url = new Uri("about:blank") };
+                webBrowser.Navigating += webBrowser_Navigating;
                 Controls.Add(webBrowser);
                 Color color = this.BackColor;
                 string text = CommonMarkConverter.Convert(message);
