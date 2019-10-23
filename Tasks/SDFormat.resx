@@ -197,6 +197,9 @@
   <data name="chkBootable.Text" xml:space="preserve">
     <value>Make card bootable</value>
   </data>
+  <data name="chkBootable.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;chkBootable.Name" xml:space="preserve">
     <value>chkBootable</value>
   </data>
@@ -340,6 +343,9 @@ If it turns out to be incompatible, the system will not start with the card inse
   </data>
   <data name="chkCopyNand.Text" xml:space="preserve">
     <value>Copy everything from NAND</value>
+  </data>
+  <data name="chkCopyNand.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;chkCopyNand.Name" xml:space="preserve">
     <value>chkCopyNand</value>
