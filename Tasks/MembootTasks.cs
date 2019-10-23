@@ -667,7 +667,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 if (task == HakchiTasks.Reset || task == HakchiTasks.Uninstall)
                 {
                     hakchi.Shell.Execute("hakchi mount_base", null, null, null, 0, true);
-                    hakchi.Shell.Execute("rm -rf /newroot/var/lib/hakchi/");
+                    hakchi.Shell.Execute("hakchi mod_uninstall");
                     hakchi.Shell.Execute("hakchi umount_base", null, null, null, 0, true);
                 }
 
@@ -886,29 +886,12 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return (Tasker tasker, Object syncObject) =>
             {
                 tasker.SetStatus(Resources.FlashingUboot);
-                TrackableStream uboot;
-                byte[] ubootArray = hakchi.GetUboot().ToArray();
-
-                for (int i = ubootArray.Length - 9; i < ubootArray.Length; i++)
-                {
-                    ubootArray[i] = (byte)(type == ConfigIni.UbootType.SD ? 0xFF : 0x00);
-                }
-
-                uboot = new TrackableStream(ubootArray);
-
-
-                if (uboot.Length > 655360)
-                {
-                    throw new Exception(Resources.InvalidUbootSize + " " + uboot.Length);
-                }
-
-                uboot.OnProgress += tasker.OnProgress;
-                hakchi.Shell.Execute("cat > /uboot.bin", uboot, null, null, 0, true);
-
+                
                 MemoryStream flashLog = new MemoryStream();
                 var splitStream = new SplitterStream(flashLog).AddStreams(Program.debugStreams);
-                if (hakchi.Shell.Execute("hakchi flashBoot1 /uboot.bin", null, splitStream) != 0)
+                if (hakchi.Shell.Execute($"sntool sd {(type == ConfigIni.UbootType.SD ? "enable" : "disable")}", null, splitStream, splitStream) != 0)
                 {
+                    flashLog.Seek(0, SeekOrigin.Begin);
                     using (var sr = new StreamReader(flashLog))
                     {
                         throw new Exception(sr.ReadToEnd());
