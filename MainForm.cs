@@ -161,7 +161,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
 
-                var client = new WebClient();
+                var client = new HakchiWebClient();
 
                 Trace.WriteLine("Downloading motd file, URL: " + MOTD_URL);
                 string motd = client.DownloadString(MOTD_URL);

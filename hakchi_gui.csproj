@@ -147,6 +147,9 @@
     <Compile Include="Apps\SystemCollection.cs" />
     <Compile Include="Apps\UnknownGame.cs" />
     <Compile Include="EventStream.cs" />
+    <Compile Include="HakchiWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ModHub\Controls\ModInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

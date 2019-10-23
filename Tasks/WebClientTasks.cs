@@ -1,6 +1,7 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Threading;
@@ -16,7 +17,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 Debug.WriteLine($"Downloading: {url} to {fileName}");
                 Conclusion result = Conclusion.Success;
-                var wc = new WebClient();
+                var wc = new HakchiWebClient();
                 wc.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
 
                 wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(async (object sender, DownloadProgressChangedEventArgs e) =>
@@ -30,6 +31,18 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     {
                         File.Delete(fileName);
                         result = Conclusion.Error;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            var date = DateTime.ParseExact(wc.ResponseHeaders.Get("Last-Modified"),
+                            "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
+                            CultureInfo.InvariantCulture.DateTimeFormat,
+                            DateTimeStyles.AssumeUniversal);
+
+                            File.SetLastWriteTimeUtc(fileName, date);
+                        } catch (Exception) { }
                     }
                 };
                 var downloadTask = wc.DownloadFileTaskAsync(new Uri(url), fileName);
