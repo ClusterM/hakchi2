@@ -417,7 +417,7 @@
             // 
             this.uninstallToolStripMenuItem.Name = "uninstallToolStripMenuItem";
             resources.ApplyResources(this.uninstallToolStripMenuItem, "uninstallToolStripMenuItem");
-            this.uninstallToolStripMenuItem.Text = Properties.Resources.Uninstall;
+            this.uninstallToolStripMenuItem.Text = global::com.clusterrr.hakchi_gui.Properties.Resources.Uninstall;
             this.uninstallToolStripMenuItem.Click += new System.EventHandler(this.uninstallToolStripMenuItem_Click);
             // 
             // toolStripMenuItem11
@@ -437,14 +437,14 @@
             // 
             this.normalModeToolStripMenuItem.Name = "normalModeToolStripMenuItem";
             resources.ApplyResources(this.normalModeToolStripMenuItem, "normalModeToolStripMenuItem");
-            this.normalModeToolStripMenuItem.Tag = Tasks.MembootTasks.MembootTaskType.FlashNormalUboot;
+            this.normalModeToolStripMenuItem.Tag = com.clusterrr.hakchi_gui.Tasks.MembootTasks.MembootTaskType.FlashNormalUboot;
             this.normalModeToolStripMenuItem.Click += new System.EventHandler(this.flashUbootToolStripMenuItem_Click);
             // 
             // sDModeToolStripMenuItem
             // 
             this.sDModeToolStripMenuItem.Name = "sDModeToolStripMenuItem";
             resources.ApplyResources(this.sDModeToolStripMenuItem, "sDModeToolStripMenuItem");
-            this.sDModeToolStripMenuItem.Tag = Tasks.MembootTasks.MembootTaskType.FlashSDUboot;
+            this.sDModeToolStripMenuItem.Tag = com.clusterrr.hakchi_gui.Tasks.MembootTasks.MembootTaskType.FlashSDUboot;
             this.sDModeToolStripMenuItem.Click += new System.EventHandler(this.flashUbootToolStripMenuItem_Click);
             // 
             // advancedToolStripMenuItem
@@ -552,8 +552,8 @@
             // factoryResetToolStripMenuItem
             // 
             resources.ApplyResources(this.factoryResetToolStripMenuItem, "factoryResetToolStripMenuItem");
-            this.factoryResetToolStripMenuItem.Text = Properties.Resources.FactoryReset;
             this.factoryResetToolStripMenuItem.Name = "factoryResetToolStripMenuItem";
+            this.factoryResetToolStripMenuItem.Text = global::com.clusterrr.hakchi_gui.Properties.Resources.FactoryReset;
             this.factoryResetToolStripMenuItem.Click += new System.EventHandler(this.factoryResetToolStripMenuItem_Click);
             // 
             // modulesToolStripMenuItem
