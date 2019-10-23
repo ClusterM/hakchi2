@@ -3231,5 +3231,19 @@ namespace com.clusterrr.hakchi_gui
             globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Visible =
             saveSettingsToNESMiniNowToolStripMenuItem.Visible = !hakchi.IsMdPartitioning;
         }
+
+        private void DownloadLatestHakchiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(hakchi.latestHmodFile));
+
+            using (var tasker = new Tasker(this))
+            {
+                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                tasker.SetStatusImage(Resources.sign_cogs);
+                tasker.SetTitle(Resources.DownloadingEllipsis);
+                tasker.AddTasks(WebClientTasks.DownloadFile(hakchi.latestHmodUrl, hakchi.latestHmodFile));
+                tasker.Start();
+            }
+        }
     }
 }

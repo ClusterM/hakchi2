@@ -1,6 +1,7 @@
 ﻿using com.clusterrr.clovershell;
 using com.clusterrr.hakchi_gui.Properties;
 using com.clusterrr.ssh;
+using SharpCompress.Archives;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using SharpCompress.Archives;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -19,7 +19,37 @@ namespace com.clusterrr.hakchi_gui
         public const string SERVICE_TYPE = "_ssh._tcp";
         public const string USERNAME = "root";
         public const string PASSWORD = "";
+        public static readonly string latestHmodFile = Path.Combine(Program.BaseDirectoryExternal, "data", "hakchi-latest.hmod");
+        public const string latestHmodUrl = "https://hakchi.net/hakchi/hmods/hakchi-latest.hmod";
         public const long BLOCK_SIZE = 4096;
+
+        
+
+        public struct HakchiHmod
+        {
+            public enum HmodLocation
+            {
+                Basehmods,
+                HakchiLatest
+            }
+
+            public Stream HmodStream;
+            public HmodLocation Location;
+            public DateTime LastModified;
+            public IArchive GetArchive()
+            {
+                using (Stream hakchiHmod = HmodStream)
+                {
+                    MemoryStream tar = new MemoryStream();
+                    using (var extractor = ArchiveFactory.Open(hakchiHmod))
+                    {
+                        extractor.Entries.First().OpenEntryStream().CopyTo(tar);
+                        tar.Position = 0;
+                        return SharpCompress.Archives.Tar.TarArchive.Open(tar);
+                    }
+                }
+            }
+        }
 
         public enum ConsoleType
         {
@@ -506,42 +536,47 @@ namespace com.clusterrr.hakchi_gui
             return config;
         }
 
-        public static MemoryStream GetHakchiHmodStream()
+        public static HakchiHmod GetHakchiHmod()
         {
-            MemoryStream hakchiHmod = new MemoryStream();
+            HakchiHmod hakchiHmod = new HakchiHmod();
+            
+            hakchiHmod.HmodStream = new MemoryStream();
+
             using (var extractor = ArchiveFactory.Open(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")))
             {
-                extractor.Entries.Where(e => e.Key == "./hakchi.hmod" || e.Key == "hakchi.hmod").First().OpenEntryStream().CopyTo(hakchiHmod);
-            }
-            hakchiHmod.Seek(0, SeekOrigin.Begin);
-            return hakchiHmod;
-        }
-
-        public static IArchive GetHakchiHmod()
-        {
-            using (MemoryStream hakchiHmod = GetHakchiHmodStream())
-            {
-                MemoryStream tar = new MemoryStream();
-                using (var extractor = ArchiveFactory.Open(hakchiHmod))
+                var hakchiEntry = extractor.Entries.Where(e => e.Key == "./hakchi.hmod" || e.Key == "hakchi.hmod").First();
+                if (File.Exists(latestHmodFile) && File.GetLastWriteTime(latestHmodFile) > hakchiEntry.LastModifiedTime)
                 {
-                    extractor.Entries.First().OpenEntryStream().CopyTo(tar);
-                    tar.Position = 0;
-                    return SharpCompress.Archives.Tar.TarArchive.Open(tar);
+                    using (var file = File.OpenRead(latestHmodFile))
+                    {
+                        hakchiHmod.LastModified = File.GetLastWriteTime(latestHmodFile);
+                        hakchiHmod.Location = HakchiHmod.HmodLocation.HakchiLatest;
+                        file.CopyTo(hakchiHmod.HmodStream);
+                    }
+                }
+                else
+                {
+                    hakchiHmod.LastModified = hakchiEntry.LastModifiedTime.Value;
+                    hakchiHmod.Location = HakchiHmod.HmodLocation.Basehmods;
+                    hakchiEntry.OpenEntryStream().CopyTo(hakchiHmod.HmodStream);
                 }
             }
+            hakchiHmod.HmodStream.Seek(0, SeekOrigin.Begin);
+            
+            return hakchiHmod;
         }
 
         public static MemoryStream GetMembootImage()
         {
             var image = new MemoryStream();
-            GetHakchiHmod().Entries.Where(e => e.Key == "boot/boot.img").First().OpenEntryStream().CopyTo(image);
+            GetHakchiHmod().GetArchive().Entries.Where(e => e.Key == "boot/boot.img").First().OpenEntryStream().CopyTo(image);
             return image;
         }
 
         public static MemoryStream GetUboot()
         {
             var image = new MemoryStream();
-            GetHakchiHmod().Entries.Where(e => e.Key == "boot/uboot.bin").First().OpenEntryStream().CopyTo(image);
+            GetHakchiHmod().GetArchive().Entries.Where(e => e.Key == "boot/uboot.bin").First().OpenEntryStream().CopyTo(image);
             return image;
         }
 
@@ -549,7 +584,7 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var o = new MemoryStream())
             {
-                GetHakchiHmod().Entries.Where(e => e.Key == "var/version").First().OpenEntryStream().CopyTo(o);
+                GetHakchiHmod().GetArchive().Entries.Where(e => e.Key == "var/version").First().OpenEntryStream().CopyTo(o);
                 string contents = Encoding.UTF8.GetString(o.ToArray());
 
                 MatchCollection collection = Regex.Matches(contents, @"^([^=]+)=(""(?:[^""\\]*(?:\\.[^""\\]*)*)""|\'(?:[^\'\\]*(?:\\.[^\'\\]*)*)\')", RegexOptions.Multiline | RegexOptions.IgnoreCase);

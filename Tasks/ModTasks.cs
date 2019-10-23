@@ -121,10 +121,29 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 tasker.SetStatus(Resources.TransferringMods);
                 var escapedTransferPath = Shared.EscapeShellArgument(transferPath);
-                var hmodStream = new TrackableStream(File.OpenRead(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")));
+
+                using (var baseHmods = File.OpenRead(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")))
+                using (var hmodStream = new TrackableStream(baseHmods))
+                {
+                    hmodStream.OnProgress += tasker.OnProgress;
+                    hakchi.Shell.Execute($"mkdir -p {escapedTransferPath}", null, null, null, 0, true);
+                    hakchi.Shell.Execute($"tar -xvC {escapedTransferPath} --exclude='./hakchi.hmod'", hmodStream, null, null, 0, true);
+                }
+                return Conclusion.Success;
+            };
+        }
+
+        public static TaskFunc TransferHakchiHmod(string transferPath = "/hakchi/transfer")
+        {
+            return (Tasker tasker, Object syncObject) =>
+            {
+                tasker.SetStatus(Resources.TransferringMods);
+                var escapedTransferPath = Shared.EscapeShellArgument(transferPath);
+                var escapedHmodPath = Shared.EscapeShellArgument($"{transferPath}/hakchi.hmod");
+                var hmodStream = new TrackableStream(hakchi.GetHakchiHmod().HmodStream);
                 hmodStream.OnProgress += tasker.OnProgress;
                 hakchi.Shell.Execute($"mkdir -p {escapedTransferPath}", null, null, null, 0, true);
-                hakchi.Shell.Execute($"tar -xvC {escapedTransferPath}", hmodStream, null, null, 0, true);
+                hakchi.Shell.Execute($"cat > {escapedHmodPath}", hmodStream, null, null, 0, true);
                 return Conclusion.Success;
             };
         }

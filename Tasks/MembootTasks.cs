@@ -75,7 +75,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     taskList.AddRange(new TaskFunc[]
                     {
                         HandleHakchi(HakchiTasks.Install),
-                        ModTasks.TransferBaseHmods("/hakchi/transfer")
+                        ModTasks.TransferBaseHmods("/hakchi/transfer"),
+                        ModTasks.TransferHakchiHmod("/hakchi/transfer")
                     });
                     if (!userRecovery)
                         taskList.Add(BootHakchi);
@@ -86,7 +87,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     taskList.AddRange(new TaskFunc[]
                     {
                         HandleHakchi(HakchiTasks.Reset),
-                        ModTasks.TransferBaseHmods("/hakchi/transfer")
+                        ModTasks.TransferBaseHmods("/hakchi/transfer"),
+                        ModTasks.TransferHakchiHmod("/hakchi/transfer")
                     });
                     if (!userRecovery)
                         taskList.Add(BootHakchi);
@@ -183,7 +185,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         ShellTasks.UnmountBase,
                         (Tasker tasker, Object syncObject) =>  ShellTasks.FormatDevice($"/dev/{Sunxi.NandInfo.GetNandInfo().GetDataPartition().Device}")(tasker, syncObject),
                         HandleHakchi(HakchiTasks.Install),
-                        ModTasks.TransferBaseHmods("/hakchi/transfer")
+                        ModTasks.TransferBaseHmods("/hakchi/transfer"),
+                        ModTasks.TransferHakchiHmod("/hakchi/transfer")
                     });
                     if (!userRecovery)
                         taskList.Add(BootHakchi);

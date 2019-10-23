@@ -117,7 +117,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             hakchi.Shell.Execute("umount /firmware");
             hakchi.Shell.Execute("mkdir -p /sd-temp/", null, null, null, 0, true);
             tasker.SetStatus(Resources.ExtractingHakchiToTemporaryFolder);
-            hakchi.Shell.Execute("tar -xzvf - -C /sd-temp/", hakchi.GetHakchiHmodStream(), null, null, 0, true); // 16
+            hakchi.Shell.Execute("tar -xzvf - -C /sd-temp/", hakchi.GetHakchiHmod().HmodStream, null, null, 0, true); // 16
             tasker.SetProgress(16, 161);
             tasker.SetStatus(Resources.ClearingTheFirst32MBOfSDCard);
             hakchi.Shell.Execute("dd if=/dev/zero of=/dev/mmcblk0 bs=1M count=32", null, null, null, 0, true); // 32

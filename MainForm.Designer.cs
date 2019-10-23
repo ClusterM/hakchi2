@@ -244,6 +244,7 @@
             this.syncStructureForAllGamesCollectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
             this.timerUpdate = new System.Windows.Forms.Timer(this.components);
+            this.downloadLatestHakchiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -805,7 +806,8 @@
             this.uploadTotmpforTestingToolStripMenuItem,
             this.toolStripMenuItem23,
             this.forceNetworkMembootsToolStripMenuItem,
-            this.forceClovershellMembootsToolStripMenuItem});
+            this.forceClovershellMembootsToolStripMenuItem,
+            this.downloadLatestHakchiToolStripMenuItem});
             this.developerToolsToolStripMenuItem.Name = "developerToolsToolStripMenuItem";
             resources.ApplyResources(this.developerToolsToolStripMenuItem, "developerToolsToolStripMenuItem");
             // 
@@ -1809,6 +1811,12 @@
             // 
             this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
             // 
+            // downloadLatestHakchiToolStripMenuItem
+            // 
+            this.downloadLatestHakchiToolStripMenuItem.Name = "downloadLatestHakchiToolStripMenuItem";
+            resources.ApplyResources(this.downloadLatestHakchiToolStripMenuItem, "downloadLatestHakchiToolStripMenuItem");
+            this.downloadLatestHakchiToolStripMenuItem.Click += new System.EventHandler(this.DownloadLatestHakchiToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -2067,6 +2075,7 @@
         private System.Windows.Forms.ToolStripMenuItem joinOurDiscordServerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rminisnesmodsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formatSDCardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem downloadLatestHakchiToolStripMenuItem;
     }
 }
 
