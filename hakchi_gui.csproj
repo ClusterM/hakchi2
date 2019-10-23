@@ -735,6 +735,7 @@
     <Compile Include="StringInputForm.Designer.cs">
       <DependentUpon>StringInputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sunxi\NandInfo.cs" />
     <Compile Include="TarStream.cs" />
     <Compile Include="TaskbarProgress.cs" />
     <Compile Include="FoldersManagerForm.cs">
@@ -2101,6 +2102,9 @@
     <Content Include="tools\putty\LICENCE">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="tools\mksquashfs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="user_mods\README.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

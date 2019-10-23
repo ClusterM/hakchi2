@@ -1596,36 +1596,36 @@ namespace com.clusterrr.hakchi_gui
                         tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpNand, dumpPath: dumpFilename).Tasks);
                         break;
 
-                    case MembootTasks.NandTasks.DumpNandB:
-                        if (!DumpDialog(FileAccess.Write, "nandb.hsqs", "hsqs", out dumpFilename, $"{Resources.SystemSoftwareBackup}|*.hsqs"))
+                    case MembootTasks.NandTasks.DumpSystemPartition:
+                        if (!DumpDialog(FileAccess.Write, "system_software.hsqs", "hsqs", out dumpFilename, $"{Resources.SystemSoftwareBackup}|*.hsqs"))
                             return false;
 
-                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpNandB, dumpPath: dumpFilename).Tasks);
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpSystemPartition, dumpPath: dumpFilename).Tasks);
                         break;
 
-                    case MembootTasks.NandTasks.DumpNandC:
-                        if (!DumpDialog(FileAccess.Write, "nandc.tar", "tar", out dumpFilename, $"{Resources.UserDataBackup}|*.tar"))
+                    case MembootTasks.NandTasks.DumpUserPartition:
+                        if (!DumpDialog(FileAccess.Write, "user_data.tar", "tar", out dumpFilename, $"{Resources.UserDataBackup}|*.tar"))
                             return false;
 
-                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpNandC, dumpPath: dumpFilename).Tasks);
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpUserPartition, dumpPath: dumpFilename).Tasks);
                         break;
 
-                    case MembootTasks.NandTasks.FlashNandB:
-                        if (!DumpDialog(FileAccess.Read, "nandb.hsqs", "hsqs", out dumpFilename, $"{Resources.SystemSoftwareBackup}|*.hsqs"))
+                    case MembootTasks.NandTasks.FlashSystemPartition:
+                        if (!DumpDialog(FileAccess.Read, "system_software.hsqs", "hsqs", out dumpFilename, $"{Resources.SystemSoftwareBackup}|*.hsqs"))
                             return false;
 
-                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashNandB, dumpPath: dumpFilename).Tasks);
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashSystemPartition, dumpPath: dumpFilename).Tasks);
                         break;
 
-                    case MembootTasks.NandTasks.FlashNandC:
-                        if (!DumpDialog(FileAccess.Read, "nandc.tar", "tar", out dumpFilename, $"{Resources.UserDataBackup}|*.tar;*.hsqs"))
+                    case MembootTasks.NandTasks.FlashUserPartition:
+                        if (!DumpDialog(FileAccess.Read, "user_data.tar", "tar", out dumpFilename, $"{Resources.UserDataBackup}|*.tar;*.hsqs"))
                             return false;
 
-                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashNandC, dumpPath: dumpFilename).Tasks);
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashUserPartition, dumpPath: dumpFilename).Tasks);
                         break;
                         
-                    case MembootTasks.NandTasks.FormatNandC:
-                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FormatNandC).Tasks);
+                    case MembootTasks.NandTasks.FormatUserPartition:
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FormatUserPartition).Tasks);
                         break;
 
                     default:
@@ -1801,7 +1801,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void dumpNANDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DoNand(MembootTasks.NandTasks.DumpNandB, ((ToolStripMenuItem)sender).Text))
+            if (DoNand(MembootTasks.NandTasks.DumpSystemPartition, ((ToolStripMenuItem)sender).Text))
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Done, Resources.NandDumped, Resources.sign_check);
         }
@@ -1809,14 +1809,14 @@ namespace com.clusterrr.hakchi_gui
 
         private void flashNANDBPartitionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DoNand(MembootTasks.NandTasks.FlashNandB, ((ToolStripMenuItem)sender).Text))
+            if (DoNand(MembootTasks.NandTasks.FlashSystemPartition, ((ToolStripMenuItem)sender).Text))
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Done, Resources.NandFlashed, Resources.sign_check);
         }
 
         private void dumpNANDCPartitionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DoNand(MembootTasks.NandTasks.DumpNandC, ((ToolStripMenuItem)sender).Text))
+            if (DoNand(MembootTasks.NandTasks.DumpUserPartition, ((ToolStripMenuItem)sender).Text))
                 if (!ConfigIni.Instance.DisablePopups)
                     Tasks.MessageForm.Show(Resources.Done, Resources.NandDumped, Resources.sign_check);
         }
@@ -1825,7 +1825,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.FlashNandCQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
             {
-                if (DoNand(MembootTasks.NandTasks.FlashNandC, ((ToolStripMenuItem)sender).Text))
+                if (DoNand(MembootTasks.NandTasks.FlashUserPartition, ((ToolStripMenuItem)sender).Text))
                     if (!ConfigIni.Instance.DisablePopups)
                         Tasks.MessageForm.Show(Resources.Done, Resources.NandFlashed, Resources.sign_check);
             }
@@ -1835,7 +1835,7 @@ namespace com.clusterrr.hakchi_gui
         {
             if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.FormatNandCQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
             {
-                if (DoNand(MembootTasks.NandTasks.FormatNandC, ((ToolStripMenuItem)sender).Text))
+                if (DoNand(MembootTasks.NandTasks.FormatUserPartition, ((ToolStripMenuItem)sender).Text))
                     if (!ConfigIni.Instance.DisablePopups)
                         Tasks.MessageForm.Show(Resources.Done, Resources.NandFormatted, Resources.sign_check);
             }

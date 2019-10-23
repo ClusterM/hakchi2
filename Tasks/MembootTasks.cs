@@ -24,11 +24,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
             ResetHakchi,
             UninstallHakchi,
             DumpNand,
-            DumpNandB,
-            FlashNandB,
-            DumpNandC,
-            FlashNandC,
-            FormatNandC,
+            DumpSystemPartition,
+            FlashSystemPartition,
+            DumpUserPartition,
+            FlashUserPartition,
+            FormatUserPartition,
             ProcessMods,
             Memboot,
             MembootOriginal,
@@ -39,7 +39,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             DumpStockKernel,
         }
         public enum HakchiTasks { Install, Reset, Uninstall }
-        public enum NandTasks { DumpNand, DumpNandB, FlashNandB, DumpNandC, FlashNandC, FormatNandC }
+        public enum NandTasks { DumpNand, DumpSystemPartition, FlashSystemPartition, DumpUserPartition, FlashUserPartition, FormatUserPartition }
 
         // Private variables
         private Fel fel;
@@ -118,7 +118,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     taskList.AddRange(new TaskFunc[] {
                         FlashKernel,
                         ShellTasks.UnmountBase,
-                        ShellTasks.FormatDevice("/dev/nandc")
+                        (Tasker tasker, Object syncObject) =>  ShellTasks.FormatDevice($"/dev/{Sunxi.NandInfo.GetNandInfo().GetDataPartition().Device}")(tasker, syncObject)
                     });
 
                     if (!userRecovery)
@@ -136,51 +136,51 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
                     break;
 
-                case MembootTaskType.DumpNandB:
+                case MembootTaskType.DumpSystemPartition:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        ProcessNand(dumpPath, NandTasks.DumpNandB)
+                        ProcessNand(dumpPath, NandTasks.DumpSystemPartition)
                     });
                     if (!userRecovery)
                         taskList.Add(ShellTasks.Reboot);
 
                     break;
 
-                case MembootTaskType.DumpNandC:
+                case MembootTaskType.DumpUserPartition:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        ProcessNand(dumpPath, NandTasks.DumpNandC)
+                        ProcessNand(dumpPath, NandTasks.DumpUserPartition)
                     });
                     if (!userRecovery)
                         taskList.Add(ShellTasks.Reboot);
 
                     break;
 
-                case MembootTaskType.FlashNandB:
+                case MembootTaskType.FlashSystemPartition:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        ProcessNand(dumpPath, NandTasks.FlashNandB)
+                        ProcessNand(dumpPath, NandTasks.FlashSystemPartition)
                     });
                     if (!userRecovery)
                         taskList.Add(ShellTasks.Reboot);
 
                     break;
 
-                case MembootTaskType.FlashNandC:
+                case MembootTaskType.FlashUserPartition:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        ProcessNand(dumpPath, NandTasks.FlashNandC)
+                        ProcessNand(dumpPath, NandTasks.FlashUserPartition)
                     });
                     if (!userRecovery)
                         taskList.Add(ShellTasks.Reboot);
 
                     break;
 
-                case MembootTaskType.FormatNandC:
+                case MembootTaskType.FormatUserPartition:
                     taskList.AddRange(new TaskFunc[]
                     {
                         ShellTasks.UnmountBase,
-                        ShellTasks.FormatDevice("/dev/nandc"),
+                        (Tasker tasker, Object syncObject) =>  ShellTasks.FormatDevice($"/dev/{Sunxi.NandInfo.GetNandInfo().GetDataPartition().Device}")(tasker, syncObject),
                         HandleHakchi(HakchiTasks.Install),
                         ModTasks.TransferBaseHmods("/hakchi/transfer")
                     });
@@ -690,55 +690,68 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             return (Tasker tasker, Object sync) =>
             {
-                NandTasks[] validTasks = { NandTasks.DumpNand, NandTasks.DumpNandB, NandTasks.DumpNandC, NandTasks.FlashNandB, NandTasks.FlashNandC };
+                NandTasks[] validTasks = { NandTasks.DumpNand, NandTasks.DumpSystemPartition, NandTasks.DumpUserPartition, NandTasks.FlashSystemPartition, NandTasks.FlashUserPartition };
                 if (!validTasks.Contains(task))
                     throw new ArgumentOutOfRangeException("task");
                 
-                if (task == NandTasks.FlashNandB && !Files.CheckFileType.IsSquashFs(nandDump))
+                if (task == NandTasks.FlashSystemPartition && !(Files.CheckFileType.IsSquashFs(nandDump) || Files.CheckFileType.IsExtFs(nandDump)))
                     throw new Exception(Properties.Resources.InvalidHsqs);
 
 
                 bool isTar = false;
-                if (task == NandTasks.FlashNandC)
+                if (task == NandTasks.FlashUserPartition)
                 {
                     isTar = Files.CheckFileType.IsTar(nandDump);
                     if (!(isTar || Files.CheckFileType.IsExtFs(nandDump)))
                         throw new Exception(Properties.Resources.InvalidUserDataBackup);
                 }
 
+                var nandInfo = Sunxi.NandInfo.GetNandInfo();
+
                 long partitionSize = 300 * 1024 * 1024;
                 var splitStream = new SplitterStream(Program.debugStreams);
-                string osDecryptedDevice = "/dev/nandb";
+                string rootfsDevice = $"/dev/{nandInfo.GetRootfsPartition().Device}";
+                string osDecryptedDevice = rootfsDevice;
+                string userDataDevice = $"/dev/{nandInfo.GetDataPartition().Device}";
                 bool hasKeyfile = hakchi.Shell.Execute("[ -f /key-file ]") == 0;
 
                 if (hasKeyfile)
                     osDecryptedDevice = "/dev/mapper/root-crypt";
 
+                bool systemIsHsqs = hakchi.Shell.ExecuteSimple($"dd if={osDecryptedDevice} bs=1 count=4", 0) == "HSQS";
+
                 switch (task)
                 {
-                    case NandTasks.DumpNandB:
-                        partitionSize = long.Parse(hakchi.Shell.ExecuteSimple($"echo $((($(hexdump -e '1/4 \"%u\"' -s $((0x28)) -n 4 {osDecryptedDevice})+0xfff)/0x1000))", throwOnNonZero: true).Trim()) * 4 * 1024;
+                    case NandTasks.DumpSystemPartition:
+                        if (systemIsHsqs)
+                        {
+                            partitionSize = long.Parse(hakchi.Shell.ExecuteSimple($"echo $((($(hexdump -e '1/4 \"%u\"' -s $((0x28)) -n 4 {osDecryptedDevice})+0xfff)/0x1000))", throwOnNonZero: true).Trim()) * 4 * 1024;
+                        }
+                        else
+                        {
+                            partitionSize = long.Parse(hakchi.Shell.ExecuteSimple($"blockdev --getsize64 {osDecryptedDevice}", throwOnNonZero: true));
+                        }
                         break;
 
-                    case NandTasks.FlashNandB:
+                    case NandTasks.FlashSystemPartition:
                         hakchi.Shell.Execute("hakchi umount_base", null, splitStream, splitStream);
                         hakchi.Shell.Execute("umount /newroot");
                         if (hasKeyfile)
                         {
                             hakchi.Shell.Execute("cryptsetup close root-crypt");
-                            hakchi.Shell.ExecuteSimple("cryptsetup open /dev/nandb root-crypt --type plain --cipher aes-xts-plain --key-file /key-file", 2000, true);
+                            hakchi.Shell.ExecuteSimple($"cryptsetup open {rootfsDevice} root-crypt --type plain --cipher aes-xts-plain --key-file /key-file", 2000, true);
                         }
 
                         partitionSize = long.Parse(hakchi.Shell.ExecuteSimple($"blockdev --getsize64 {osDecryptedDevice}", throwOnNonZero: true));
                         break;
 
-                    case NandTasks.DumpNandC:
+                    case NandTasks.DumpUserPartition:
                         hakchi.Shell.Execute("hakchi mount_base", null, null, null, 0, true);
                         partitionSize = long.Parse(hakchi.Shell.ExecuteSimple("df -B 1 | grep /newroot/var/lib | head -n 1 | awk -e '{print $3 }'", throwOnNonZero: true).Trim());
                         break;
 
-                    case NandTasks.FlashNandC:
-                        partitionSize = long.Parse(hakchi.Shell.ExecuteSimple("blockdev --getsize64 /dev/nandc", throwOnNonZero: true));
+                    case NandTasks.FlashUserPartition:
+                        partitionSize = long.Parse(hakchi.Shell.ExecuteSimple($"blockdev --getsize64 {userDataDevice}", throwOnNonZero: true));
                         break;
 
                     case NandTasks.DumpNand:
@@ -748,7 +761,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
                 FileMode mode = FileMode.Create;
 
-                if (task == NandTasks.FlashNandC || task == NandTasks.FlashNandB)
+                if (task == NandTasks.FlashUserPartition || task == NandTasks.FlashSystemPartition)
                     mode = FileMode.Open;
 
                 tasker.SetStatus(mode == FileMode.Open ? Resources.FlashingNand : Resources.DumpingNand);
@@ -757,14 +770,21 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     if (mode == FileMode.Open && file.Length > partitionSize)
                         throw new Exception(Resources.ImageTooLarge);
 
-                    if (mode == FileMode.Create && task != NandTasks.DumpNandC)
+                    if (mode == FileMode.Create && task != NandTasks.DumpUserPartition && task != NandTasks.DumpSystemPartition)
                         file.SetLength(partitionSize);
 
-                    if (task == NandTasks.DumpNandC)
+                    if (task == NandTasks.DumpUserPartition)
                     {
                         file.OnProgress += (long position, long length) =>
                         {
                             tasker.OnProgress(Math.Min(position, partitionSize), partitionSize);
+                        };
+                    }
+                    else if (task == NandTasks.DumpSystemPartition && !systemIsHsqs)
+                    {
+                        file.OnProgress += (long position, long length) =>
+                        {
+                            tasker.OnProgress(Math.Min(position, partitionSize) + partitionSize, partitionSize * 2);
                         };
                     }
                     else
@@ -774,21 +794,61 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
                     switch (task)
                     {
-                        case NandTasks.DumpNandB:
-                            Shared.ShellPipe($"dd if={osDecryptedDevice} bs=128K count={(partitionSize / 1024) / 4 }", null, file, throwOnNonZero: true);
+                        case NandTasks.DumpSystemPartition:
+                            if (systemIsHsqs)
+                            {
+                                Shared.ShellPipe($"dd if={osDecryptedDevice} bs=128K count={(partitionSize / 1024) / 4 }", null, file, throwOnNonZero: true);
+                            }
+                            else
+                            {
+                                Regex mksquashfsProgress = new Regex(@"(\d+)/(\d+)", RegexOptions.Compiled);
+                                using (var mksquashfs = File.OpenRead(Path.Combine(Program.BaseDirectoryInternal, "tools", "mksquashfs")))
+                                {
+                                    hakchi.Shell.Execute("cat > /mksquashfs", mksquashfs, throwOnNonZero: true);
+                                    hakchi.Shell.Execute("chmod +x /mksquashfs", throwOnNonZero: true);
+                                }
+
+                                hakchi.Shell.ExecuteSimple("hakchi mount_base");
+                                hakchi.Shell.ExecuteSimple("mkdir -p /tmp/");
+                                using (EventStream mkSquashfsProgress = new EventStream())
+                                {
+                                    splitStream.AddStreams(mkSquashfsProgress);
+                                    mkSquashfsProgress.OnData += (byte[] buffer) =>
+                                    {
+                                        string data = Encoding.ASCII.GetString(buffer);
+                                        MatchCollection matches = mksquashfsProgress.Matches(data);
+
+                                        if (matches.Count > 0)
+                                        {
+                                            tasker.SetProgress(long.Parse(matches[matches.Count - 1].Groups[1].Value), long.Parse(matches[matches.Count - 1].Groups[2].Value) * 2);
+                                        }
+                                    };
+
+                                    hakchi.Shell.Execute("/mksquashfs /newroot/var/squashfs /tmp/rootfs.hsqs", null, splitStream, splitStream, throwOnNonZero: true);
+
+                                    splitStream.RemoveStream(mkSquashfsProgress);
+                                }
+
+                                partitionSize = long.Parse(hakchi.Shell.ExecuteSimple("ls -la /tmp/rootfs.hsqs | awk -e '{ print $5 }'"));
+                                
+                                hakchi.Shell.ExecuteSimple("hakchi umount_base");
+                                Shared.ShellPipe("cat /tmp/rootfs.hsqs", stdout: file);
+                                hakchi.Shell.ExecuteSimple("rm /tmp/rootfs.hsqs");
+                            }
+                            
                             break;
 
-                        case NandTasks.FlashNandB:
+                        case NandTasks.FlashSystemPartition:
                             Shared.ShellPipe($"dd of={osDecryptedDevice} bs=128K", file, throwOnNonZero: true);
                             if(hasKeyfile)
                                 hakchi.Shell.Execute("cryptsetup close root-crypt", throwOnNonZero: true);
                             break;
 
-                        case NandTasks.DumpNandC:
+                        case NandTasks.DumpUserPartition:
                             Shared.ShellPipe($"tar -cvC /newroot/var/lib/ .", null, file, null, throwOnNonZero: true);
                             break;
 
-                        case NandTasks.FlashNandC:
+                        case NandTasks.FlashUserPartition:
                             if (isTar)
                             {
                                 hakchi.Shell.Execute("hakchi mount_base", null, null, null, 0, true);
@@ -797,13 +857,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             }
                             else
                             {
-                                Shared.ShellPipe("dd of=/dev/nandc bs=128K", file, throwOnNonZero: true);
+                                Shared.ShellPipe($"dd of={userDataDevice} bs=128K", file, throwOnNonZero: true);
                             }
                             break;
 
                         case NandTasks.DumpNand:
                             hakchi.Shell.Execute("hakchi umount_base", null, splitStream, splitStream, 0, true);
-                            Shared.ShellPipe("sntool sunxi_flash phy_read 0 1000", null, file, throwOnNonZero: true);
+                            Shared.ShellPipe("sntool sunxi_flash phy_read 0", null, file, throwOnNonZero: true);
                             break;
                     }
                     file.Close();

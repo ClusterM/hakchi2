@@ -188,20 +188,21 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 using (EventStream copyDataProgress = new EventStream())
                 {
+                    var userDataDeviceName = Sunxi.NandInfo.GetNandInfo().GetDataPartition().Device;
                     splitStream.AddStreams(copyDataProgress);
                     copyDataProgress.OnData += (byte[] buffer) =>
                     {
                         tasker.SetStatus(System.Text.Encoding.ASCII.GetString(buffer));
                     };
                     tasker.SetStatus(Resources.CopyingNandDataToSDCard);
-                    hakchi.Shell.Execute("mkdir -p /nandc && mount /dev/nandc /nandc", null, null, null, 0, true);
+                    hakchi.Shell.Execute($"mkdir -p /{userDataDeviceName} && mount /dev/{userDataDeviceName} /{userDataDeviceName}", null, null, null, 0, true);
 
                     if (DialogOptions.CopyType == SDFormatResult.CopyTypes.Everything) {
-                        hakchi.Shell.Execute("rsync -avc /nandc/ /data/", null, splitStream, splitStream, 0, true);
+                        hakchi.Shell.Execute($"rsync -avc /{userDataDeviceName}/ /data/", null, splitStream, splitStream, 0, true);
                     }
                     else
                     {
-                        var nandPath = DialogOptions.MakeBootable ? "/nandc/clover" : "/nandc/clover/profiles/0";
+                        var nandPath = DialogOptions.MakeBootable ? $"/{userDataDeviceName}/clover" : $"/{userDataDeviceName}/clover/profiles/0";
                         var dataPath = DialogOptions.MakeBootable ? "/data/clover" : "/data/hakchi/saves";
 
                         if (hakchi.Shell.Execute($"[ -d {nandPath} ]") == 0)
@@ -210,7 +211,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         }
                     }
 
-                    hakchi.Shell.Execute("umount /nandc/ && rmdir /nandc/", null, null, null, 0, true);
+                    hakchi.Shell.Execute($"umount /{userDataDeviceName}/ && rmdir /{userDataDeviceName}/", null, null, null, 0, true);
                     splitStream.RemoveStream(copyDataProgress);
                     copyDataProgress.Dispose();
                 }
