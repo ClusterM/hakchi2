@@ -499,6 +499,20 @@ namespace com.clusterrr.hakchi_gui.Tasks
             };
         }
 
+
+        public static TaskFunc ErrorTask(string message, string innerMessage = null)
+        {
+            return (Tasker tasker, Object syncObject) =>
+            {
+                if (innerMessage != null)
+                    throw new Exception(message, new Exception(innerMessage));
+
+                throw new Exception(message);
+            };
+        }
+
+        public static Conclusion SuccessTask(Tasker tasker, object syncObject) => Conclusion.Success;
+
     }
 
     public static class TaskerExtensions
