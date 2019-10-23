@@ -2771,6 +2771,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not supported on this platform.
+        /// </summary>
+        internal static string NotSupportedOnThisPlatform {
+            get {
+                return ResourceManager.GetString("NotSupportedOnThisPlatform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         internal static string OK {

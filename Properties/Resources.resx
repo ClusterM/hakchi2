@@ -1461,4 +1461,7 @@ This will erase all data present on the card!</value>
   <data name="consoleTypeMdUsa" xml:space="preserve">
     <value>Sega Genesis (USA)</value>
   </data>
+  <data name="NotSupportedOnThisPlatform" xml:space="preserve">
+    <value>Not supported on this platform</value>
+  </data>
 </root>

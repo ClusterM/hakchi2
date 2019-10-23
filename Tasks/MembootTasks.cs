@@ -94,13 +94,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     break;
 
                 case MembootTaskType.UninstallHakchi:
-                    taskList.Add(GetStockKernel);
+                    taskList.Add(TaskIf(() => hakchi.IsMdPartitioning, SuccessTask, GetStockKernel));
 
                     if (ignoreBackupKernel)
-                        taskList.Add(EraseBackupKernel);
+                        taskList.Add(TaskIf(() => hakchi.IsMdPartitioning, SuccessTask, EraseBackupKernel));
 
                     taskList.AddRange(new TaskFunc[]{
-                        FlashKernel,
+                        TaskIf(() => hakchi.IsMdPartitioning, SuccessTask, FlashKernel),
                         HandleHakchi(HakchiTasks.Uninstall)
                     });
 
@@ -110,6 +110,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     break;
 
                 case MembootTaskType.FactoryReset:
+                    taskList.Add(TaskIf(() => hakchi.IsMdPartitioning, ErrorTask(Resources.NotSupportedOnThisPlatform), SuccessTask));
                     taskList.Add(GetStockKernel);
 
                     if (ignoreBackupKernel)
@@ -227,6 +228,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     break;
 
                 case MembootTaskType.MembootOriginal:
+                    taskList.Add(TaskIf(() => hakchi.IsMdPartitioning, ErrorTask(Resources.NotSupportedOnThisPlatform), SuccessTask));
                     taskList.Add(BootBackup2);
                     break;
 
@@ -236,6 +238,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 case MembootTaskType.DumpStockKernel:
                     taskList.AddRange(new TaskFunc[]
                     {
+                        TaskIf(() => hakchi.IsMdPartitioning, ErrorTask(Resources.NotSupportedOnThisPlatform), SuccessTask),
                         DumpStockKernel(dumpPath)
                     });
                     if (!userRecovery)

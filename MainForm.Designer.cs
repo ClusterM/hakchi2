@@ -266,6 +266,7 @@
             this.helpToolStripMenuItem});
             resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Name = "menuStrip";
+            this.menuStrip.MenuActivate += new System.EventHandler(this.MenuStrip_MenuActivate);
             // 
             // fileToolStripMenuItem
             // 

@@ -114,16 +114,21 @@ namespace com.clusterrr.hakchi_gui
         {
             return (new ConsoleType[] { ConsoleType.SNES_EUR, ConsoleType.SNES_USA, ConsoleType.SuperFamicom }).Contains(consoleType);
         }
+        public static bool IsSnes() => IsSnes(ConfigIni.Instance.ConsoleType);
 
         public static bool IsNes(ConsoleType consoleType)
         {
             return (new ConsoleType[] { ConsoleType.Famicom, ConsoleType.NES, ConsoleType.ShonenJump }).Contains(consoleType);
         }
+        public static bool IsNes() => IsNes(ConfigIni.Instance.ConsoleType);
+
+        public static bool IsMdPartitioning { get; set; }
 
         public static bool IsMd(ConsoleType consoleType)
         {
             return (new ConsoleType[] { ConsoleType.MD_JPN, ConsoleType.MD_USA, ConsoleType.MD_EUR, ConsoleType.MD_ASIA }).Contains(consoleType);
         }
+        public static bool IsMd() => IsMd(ConfigIni.Instance.ConsoleType);
 
         public static bool HasPixelArt(ConsoleType consoleType)
         {
@@ -207,6 +212,7 @@ namespace com.clusterrr.hakchi_gui
 
         private static void clearProperties()
         {
+            IsMdPartitioning = false;
             Connected = false;
             DetectedConsoleType = null;
             CustomFirmwareLoaded = false;
@@ -303,6 +309,9 @@ namespace com.clusterrr.hakchi_gui
                 {
                     throw new IOException("Shell connection should be online!");
                 }
+
+                IsMdPartitioning = Shell.Execute("hakchi ismdPartitioning") == 0;
+
                 DetectedConsoleType = ConsoleType.Unknown;
 
                 MinimalMemboot = Shell.Execute("source /hakchi/config; [ \"$cf_memboot\" = \"y\" ]") == 0;
