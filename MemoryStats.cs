@@ -93,7 +93,9 @@ namespace com.clusterrr.hakchi_gui
                 StorageUsed = long.Parse(storage[1]) * 1024;
                 StorageFree = long.Parse(storage[2]) * 1024;
                 ExternalSaves = shell.ExecuteSimple("mount | grep /var/lib/clover/profiles").Trim().Length > 0;
-                SaveStatesSize = long.Parse(shell.ExecuteSimple("du -s \"$(readlink /var/saves)\" | awk '{ print $1 }'", 0, true)) * 1024;
+                long saveSize = 0;
+                long.TryParse(shell.ExecuteSimple("du -s \"$(readlink /var/saves)\" | awk '{ print $1 }'", 0, true), out saveSize);
+                SaveStatesSize = saveSize * 1024;
                 getCollectionsSize();
 
                 DebugDisplay();
