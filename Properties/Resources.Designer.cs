@@ -533,7 +533,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your NES/SNES Mini is currently in recovery state, cannot proceed. To exit this state, use Tools -&gt; Reboot.
+        ///   Looks up a localized string similar to Your mini is currently in recovery state, cannot proceed. To exit this state, use Tools -&gt; Reboot.
         /// </summary>
         internal static string CannotProceedMinimalMemboot {
             get {
@@ -542,7 +542,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You cannot synchronize a {0} games collection onto your currently running NES/SNES Mini ({1}). Please switch to the matching games collection, or switch to using &quot;separate games for multiboot&quot; mode, in order to proceed..
+        ///   Looks up a localized string similar to You cannot synchronize a {0} games collection onto your currently running mini ({1}). Please switch to the matching games collection, or switch to using &quot;separate games for multiboot&quot; mode, in order to proceed..
         /// </summary>
         internal static string CannotSyncToNonMultiBoot {
             get {
@@ -795,7 +795,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Did you already flash the custom kernel on your NES/SNES Mini?.
+        ///   Looks up a localized string similar to Did you already flash the custom kernel on your mini?.
         /// </summary>
         internal static string CustomKernelInstalledQ {
             get {
@@ -813,7 +813,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You need to flash the custom kernel to your NES/SNES Mini. This is only required once. Do you want to continue?.
+        ///   Looks up a localized string similar to You need to flash the custom kernel to your mini. This is only required once. Do you want to continue?.
         /// </summary>
         internal static string CustomWarning {
             get {
@@ -949,7 +949,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This will disable any OTG USB device plugged into your NES/SNES Mini. Are you sure you want to disable USB-HOST?.
+        ///   Looks up a localized string similar to This will disable any OTG USB device plugged into your mini. Are you sure you want to disable USB-HOST?.
         /// </summary>
         internal static string DisableUSBWarning {
             get {
@@ -1014,7 +1014,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done! You can upload games to your NES/SNES Mini now..
+        ///   Looks up a localized string similar to Done! You can upload games to your mini now..
         /// </summary>
         internal static string DoneYouCanUpload {
             get {
@@ -1256,7 +1256,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done! All traces of hakchi have been removed and your NES/SNES Mini has been reset to factory settings..
+        ///   Looks up a localized string similar to Done! All traces of hakchi have been removed and your mini has been reset to factory settings..
         /// </summary>
         internal static string FactoryResetNote {
             get {
@@ -1343,7 +1343,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upon rebooting, your running NES/SNES Mini should be running the selected firmware &quot;{0}&quot;!.
+        ///   Looks up a localized string similar to Upon rebooting, your running mini should be running the selected firmware &quot;{0}&quot;!.
         /// </summary>
         internal static string FirmwareSwitched {
             get {
@@ -2439,7 +2439,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Make sure your NES/SNES mini is properly connected via USB cable..
+        ///   Looks up a localized string similar to Make sure your mini is properly connected via USB cable..
         /// </summary>
         internal static string MakeSureYourMiniIsConnected {
             get {
@@ -2699,7 +2699,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First, dump the kernel image of your NES/SNES Mini. You only need to do this once. Do you want to continue?.
+        ///   Looks up a localized string similar to First, dump the kernel image of your mini. You only need to do this once. Do you want to continue?.
         /// </summary>
         internal static string NoKernelWarning {
             get {
@@ -2877,7 +2877,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please connect your NES/SNES mini in order to proceed. Note that you must also install the custom kernel, using the options in the Kernel menu..
+        ///   Looks up a localized string similar to Please connect your mini in order to proceed. Note that you must also install the custom kernel, using the options in the Kernel menu..
         /// </summary>
         internal static string PleaseConnectYourDevice {
             get {
@@ -3018,7 +3018,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your NES/SNES Mini is currently in recovery mode. You will not be able to turn it off normally. Do you want to finish boot sequence so it returns to normal afterwards?.
+        ///   Looks up a localized string similar to Your mini is currently in recovery mode. You will not be able to turn it off normally. Do you want to finish boot sequence so it returns to normal afterwards?.
         /// </summary>
         internal static string RecoveryModeCloseWarning {
             get {
@@ -3150,7 +3150,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to reset and repair hakchi on your NES/SNES Mini?.
+        ///   Looks up a localized string similar to Are you sure you want to reset and repair hakchi on your mini?.
         /// </summary>
         internal static string ResetQ {
             get {
@@ -3324,7 +3324,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the modules to install on your NES/SNES Mini.
+        ///   Looks up a localized string similar to Select the modules to install on your mini.
         /// </summary>
         internal static string SelectModsInstall {
             get {
@@ -3333,7 +3333,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the modules to remove from your NES/SNES Mini.
+        ///   Looks up a localized string similar to Select the modules to remove from your mini.
         /// </summary>
         internal static string SelectModsUninstall {
             get {
@@ -3723,7 +3723,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have {0} of games already synchronized on your NES/SNES Mini (non separated for multiboot). Proceeding will erase those. Are you sure?.
+        ///   Looks up a localized string similar to You have {0} of games already synchronized on your mini (non separated for multiboot). Proceeding will erase those. Are you sure?.
         /// </summary>
         internal static string SyncMultibootWarning {
             get {
@@ -3732,7 +3732,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have {0} of games already synchronized on your NES/SNES Mini (separated for multiboot). Proceeding will erase those. Are you sure?.
+        ///   Looks up a localized string similar to You have {0} of games already synchronized on your mini (separated for multiboot). Proceeding will erase those. Are you sure?.
         /// </summary>
         internal static string SyncNonMultibootWarning {
             get {
@@ -3887,7 +3887,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done. If everything went well, your NES/SNES Mini should be back to running the stock kernel..
+        ///   Looks up a localized string similar to Done. If everything went well, your mini should be back to running the stock kernel..
         /// </summary>
         internal static string UninstallNote {
             get {
@@ -3896,7 +3896,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to remove all traces of hakchi2 and return your NES/SNES Mini to its original state?.
+        ///   Looks up a localized string similar to Do you really want to remove all traces of hakchi2 and return your mini to its original state?.
         /// </summary>
         internal static string UninstallQ1 {
             get {

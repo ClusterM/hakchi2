@@ -597,7 +597,7 @@
     <value>422, 22</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text" xml:space="preserve">
-    <value>Sauvegarder les paramètres vers la NES/SNES Mini maintenant</value>
+    <value>Sauvegarder les paramètres vers la mini maintenant</value>
   </data>
   <data name="saveStateManagerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>348, 22</value>
@@ -813,7 +813,7 @@
     <value>Sélection de la couverture</value>
   </data>
   <data name="buttonStart.Text" xml:space="preserve">
-    <value>Synchroniser les jeux sélectionnés avec la NES/SNES Mini</value>
+    <value>Synchroniser les jeux sélectionnés avec la mini</value>
   </data>
   <data name="saveDumpFileDialog.Title" xml:space="preserve">
     <value>Sélectionner le nom du fichier de l’image extraite</value>

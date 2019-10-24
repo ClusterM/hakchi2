@@ -704,7 +704,7 @@
     <value>276, 22</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text" xml:space="preserve">
-    <value>Save settings to NES/SNES Mini now</value>
+    <value>Save settings to mini now</value>
   </data>
   <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 20</value>
@@ -1180,7 +1180,7 @@
     <value>27</value>
   </data>
   <data name="buttonStart.Text" xml:space="preserve">
-    <value>Synchronize selected games with NES/SNES Mini</value>
+    <value>Synchronize selected games with mini</value>
   </data>
   <data name="&gt;&gt;buttonStart.Name" xml:space="preserve">
     <value>buttonStart</value>

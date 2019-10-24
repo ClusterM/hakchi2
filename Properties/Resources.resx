@@ -133,7 +133,7 @@
     <value>Do you want to flash the custom kernel?</value>
   </data>
   <data name="CustomWarning" xml:space="preserve">
-    <value>You need to flash the custom kernel to your NES/SNES Mini. This is only required once. Do you want to continue?</value>
+    <value>You need to flash the custom kernel to your mini. This is only required once. Do you want to continue?</value>
   </data>
   <data name="Default30games" xml:space="preserve">
     <value>Original games</value>
@@ -145,7 +145,7 @@
     <value>Done!</value>
   </data>
   <data name="DoneYouCanUpload" xml:space="preserve">
-    <value>Done! You can upload games to your NES/SNES Mini now.</value>
+    <value>Done! You can upload games to your mini now.</value>
   </data>
   <data name="DoYouWantCancel" xml:space="preserve">
     <value>Do you want to cancel the current operation?</value>
@@ -193,7 +193,7 @@
     <value>No kernel dump found</value>
   </data>
   <data name="NoKernelWarning" xml:space="preserve">
-    <value>First, dump the kernel image of your NES/SNES Mini. You only need to do this once. Do you want to continue?</value>
+    <value>First, dump the kernel image of your mini. You only need to do this once. Do you want to continue?</value>
   </data>
   <data name="NoKernelYouNeed" xml:space="preserve">
     <value>No kernel dump found. You need to dump the kernel first.</value>
@@ -270,7 +270,7 @@ It's very simple to use. Just click "Add more games", select some ROMs, press "S
     <value>Uninstalling...</value>
   </data>
   <data name="UninstallQ1" xml:space="preserve">
-    <value>Do you really want to remove all traces of hakchi2 and return your NES/SNES Mini to its original state?</value>
+    <value>Do you really want to remove all traces of hakchi2 and return your mini to its original state?</value>
   </data>
   <data name="UninstallQ2" xml:space="preserve">
     <value>Do you want to flash the original kernel now?</value>
@@ -484,10 +484,10 @@ It's very simple to use. Just click "Add more games", select some ROMs, press "S
     <value>Installing mods...</value>
   </data>
   <data name="SelectModsInstall" xml:space="preserve">
-    <value>Select the modules to install on your NES/SNES Mini</value>
+    <value>Select the modules to install on your mini</value>
   </data>
   <data name="SelectModsUninstall" xml:space="preserve">
-    <value>Select the modules to remove from your NES/SNES Mini</value>
+    <value>Select the modules to remove from your mini</value>
   </data>
   <data name="UninstallingMods" xml:space="preserve">
     <value>Uninstalling mods...</value>
@@ -912,7 +912,7 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
     <value>An error occured while restoring the original games. You can always use File -&gt; Restore original games later on to try again for the games collection you intend to use them in.</value>
   </data>
   <data name="UninstallNote" xml:space="preserve">
-    <value>Done. If everything went well, your NES/SNES Mini should be back to running the stock kernel.</value>
+    <value>Done. If everything went well, your mini should be back to running the stock kernel.</value>
   </data>
   <data name="ImageTooLarge" xml:space="preserve">
     <value>The image is too large</value>
@@ -1056,10 +1056,10 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
     <value>Ok</value>
   </data>
   <data name="CannotSyncToNonMultiBoot" xml:space="preserve">
-    <value>You cannot synchronize a {0} games collection onto your currently running NES/SNES Mini ({1}). Please switch to the matching games collection, or switch to using "separate games for multiboot" mode, in order to proceed.</value>
+    <value>You cannot synchronize a {0} games collection onto your currently running mini ({1}). Please switch to the matching games collection, or switch to using "separate games for multiboot" mode, in order to proceed.</value>
   </data>
   <data name="PleaseConnectYourDevice" xml:space="preserve">
-    <value>Please connect your NES/SNES mini in order to proceed. Note that you must also install the custom kernel, using the options in the Kernel menu.</value>
+    <value>Please connect your mini in order to proceed. Note that you must also install the custom kernel, using the options in the Kernel menu.</value>
   </data>
   <data name="Starting" xml:space="preserve">
     <value>Starting...</value>
@@ -1104,10 +1104,10 @@ Continue?</value>
     <value>Your kernel or scripts are out of date. Please update before synchronizing games</value>
   </data>
   <data name="CannotProceedMinimalMemboot" xml:space="preserve">
-    <value>Your NES/SNES Mini is currently in recovery state, cannot proceed. To exit this state, use Tools -&gt; Reboot</value>
+    <value>Your mini is currently in recovery state, cannot proceed. To exit this state, use Tools -&gt; Reboot</value>
   </data>
   <data name="FactoryResetNote" xml:space="preserve">
-    <value>Done! All traces of hakchi have been removed and your NES/SNES Mini has been reset to factory settings.</value>
+    <value>Done! All traces of hakchi have been removed and your mini has been reset to factory settings.</value>
   </data>
   <data name="NandFormatted" xml:space="preserve">
     <value>NAND memory was successfully formatted.</value>
@@ -1116,7 +1116,7 @@ Continue?</value>
     <value>Recovery kernel</value>
   </data>
   <data name="ResetQ" xml:space="preserve">
-    <value>Are you sure you want to reset and repair hakchi on your NES/SNES Mini?</value>
+    <value>Are you sure you want to reset and repair hakchi on your mini?</value>
   </data>
   <data name="sign_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\sign-add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1146,10 +1146,10 @@ Continue?</value>
     <value>Update complete!</value>
   </data>
   <data name="SyncMultibootWarning" xml:space="preserve">
-    <value>You have {0} of games already synchronized on your NES/SNES Mini (non separated for multiboot). Proceeding will erase those. Are you sure?</value>
+    <value>You have {0} of games already synchronized on your mini (non separated for multiboot). Proceeding will erase those. Are you sure?</value>
   </data>
   <data name="SyncNonMultibootWarning" xml:space="preserve">
-    <value>You have {0} of games already synchronized on your NES/SNES Mini (separated for multiboot). Proceeding will erase those. Are you sure?</value>
+    <value>You have {0} of games already synchronized on your mini (separated for multiboot). Proceeding will erase those. Are you sure?</value>
   </data>
   <data name="FolderNameHome" xml:space="preserve">
     <value>Home</value>
@@ -1170,7 +1170,7 @@ Continue?</value>
     <value>Just wait until it power cycles.</value>
   </data>
   <data name="MakeSureYourMiniIsConnected" xml:space="preserve">
-    <value>Make sure your NES/SNES mini is properly connected via USB cable.</value>
+    <value>Make sure your mini is properly connected via USB cable.</value>
   </data>
   <data name="RecoveryMode" xml:space="preserve">
     <value>Recovery mode</value>
@@ -1188,10 +1188,10 @@ Continue?</value>
     <value>Updating list...</value>
   </data>
   <data name="CustomKernelInstalledQ" xml:space="preserve">
-    <value>Did you already flash the custom kernel on your NES/SNES Mini?</value>
+    <value>Did you already flash the custom kernel on your mini?</value>
   </data>
   <data name="DisableUSBWarning" xml:space="preserve">
-    <value>This will disable any OTG USB device plugged into your NES/SNES Mini. Are you sure you want to disable USB-HOST?</value>
+    <value>This will disable any OTG USB device plugged into your mini. Are you sure you want to disable USB-HOST?</value>
   </data>
   <data name="CalculatingFreeSpace" xml:space="preserve">
     <value>Calculating free space...</value>
@@ -1263,7 +1263,7 @@ The most common reason for console taking too long to reboot is a Firewall, such
 Other reasons may include VPNs blocking traffic to the local network and Windows failing to detect the RNDIS driver correctly.</value>
   </data>
   <data name="RecoveryModeCloseWarning" xml:space="preserve">
-    <value>Your NES/SNES Mini is currently in recovery mode. You will not be able to turn it off normally. Do you want to finish boot sequence so it returns to normal afterwards?</value>
+    <value>Your mini is currently in recovery mode. You will not be able to turn it off normally. Do you want to finish boot sequence so it returns to normal afterwards?</value>
   </data>
   <data name="consoleTypeShonenJump" xml:space="preserve">
     <value>Famicom (Shonen Jump)</value>
@@ -1278,7 +1278,7 @@ Other reasons may include VPNs blocking traffic to the local network and Windows
     <value>Firmware</value>
   </data>
   <data name="FirmwareSwitched" xml:space="preserve">
-    <value>Upon rebooting, your running NES/SNES Mini should be running the selected firmware "{0}"!</value>
+    <value>Upon rebooting, your running mini should be running the selected firmware "{0}"!</value>
   </data>
   <data name="FirmwareDefault" xml:space="preserve">
     <value>Default Firmware on NAND</value>

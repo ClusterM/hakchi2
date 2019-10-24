@@ -159,7 +159,7 @@
     <value>1</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>1. Connect your NES/SNES Mini to the PC via USB cable.</value>
+    <value>1. Connect your mini to the PC via USB cable.</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -301,7 +301,7 @@
     <value>CenterParent</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Waiting for your NES/SNES Mini...</value>
+    <value>Waiting for your mini...</value>
   </data>
   <data name="&gt;&gt;timer.Name" xml:space="preserve">
     <value>timer</value>

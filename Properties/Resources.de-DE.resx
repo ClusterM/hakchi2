@@ -133,7 +133,7 @@
     <value>Möchtest du den benutzerdefinierten Kernel flashen?</value>
   </data>
   <data name="CustomWarning" xml:space="preserve">
-    <value>Nun musst du deinen benutzerdefinierten Kernel auf dein NES/SNES Mini flashen. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>
+    <value>Nun musst du deinen benutzerdefinierten Kernel auf dein mini flashen. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>
   </data>
   <data name="Default30games" xml:space="preserve">
     <value>Originale Spiele</value>
@@ -145,7 +145,7 @@
     <value>Fertig!</value>
   </data>
   <data name="DoneYouCanUpload" xml:space="preserve">
-    <value>Fertig! Du kannst nun Spiele auf dein NES/SNES Mini übertragen.</value>
+    <value>Fertig! Du kannst nun Spiele auf dein mini übertragen.</value>
   </data>
   <data name="DoYouWantCancel" xml:space="preserve">
     <value>Möchtest du den aktuellen Vorgang abbrechen?</value>
@@ -193,7 +193,7 @@
     <value>Kein gesicherter Kernel gefunden</value>
   </data>
   <data name="NoKernelWarning" xml:space="preserve">
-    <value>Sichere zuerst das Kernel Abbild von deinem NES/SNES Mini. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>
+    <value>Sichere zuerst das Kernel Abbild von deinem mini. Dieses musst du nur einmal machen. Möchtest du fortfahren?</value>
   </data>
   <data name="NoKernelYouNeed" xml:space="preserve">
     <value>Kein gesicherter Kernel gefunden. Du musst den Kernel erst einmal sichern.</value>
@@ -268,7 +268,7 @@
     <value>Deinstallieren...</value>
   </data>
   <data name="UninstallQ1" xml:space="preserve">
-    <value>Möchtest du wirklich alle Spuren von hakchi2 beseitigen und dein NES/SNES Mini in seinen Originalzustand zurücksetzen?</value>
+    <value>Möchtest du wirklich alle Spuren von hakchi2 beseitigen und dein mini in seinen Originalzustand zurücksetzen?</value>
   </data>
   <data name="UninstallQ2" xml:space="preserve">
     <value>Fertig. Warte bis die Power LED erlischt. Du musst auch den originalen Kernel flashen. Möchtest du den originalen Kernel jetzt flashen?</value>
@@ -385,10 +385,10 @@
     <value>Installiere Mods...</value>
   </data>
   <data name="SelectModsInstall" xml:space="preserve">
-    <value>Wähle Module zum Installieren auf das NES/SNES Mini</value>
+    <value>Wähle Module zum Installieren auf das mini</value>
   </data>
   <data name="SelectModsUninstall" xml:space="preserve">
-    <value>Wähle Module, die du vom NES/SNES Mini entfernen möchtest</value>
+    <value>Wähle Module, die du vom mini entfernen möchtest</value>
   </data>
   <data name="UninstallingMods" xml:space="preserve">
     <value>Deinstalliere Mods...</value>
@@ -663,7 +663,7 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
     <value>Ein Fehler ist bei der Wiederherstellung der Original-Spiele aufgetreten. Du kannst später "Datei -&gt; Originalspiele wiederherstellen" erneut versuchen, um die gewünschte Spielesammlung zu erreichen.</value>
   </data>
   <data name="UninstallNote" xml:space="preserve">
-    <value>Fertig. Wenn alles geklappt hat, sollte Dein NES/SNES Mini wieder auf dem Original-Kernel laufen.</value>
+    <value>Fertig. Wenn alles geklappt hat, sollte Dein mini wieder auf dem Original-Kernel laufen.</value>
   </data>
   <data name="ImageTooLarge" xml:space="preserve">
     <value>Das Bild ist zu groß</value>
@@ -759,10 +759,10 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
     <value>OK</value>
   </data>
   <data name="CannotSyncToNonMultiBoot" xml:space="preserve">
-    <value>Du kannst keine {0} Spielesammlung mit Deinem aktuell laufendem NES/SNES Mini ({1}) synchronisieren. Bitte wechsle zur passenden Spielesammlung oder benutze den "Teile Spiele für Multiboot auf" Menüpunkt, um fortzufahren.</value>
+    <value>Du kannst keine {0} Spielesammlung mit Deinem aktuell laufendem mini ({1}) synchronisieren. Bitte wechsle zur passenden Spielesammlung oder benutze den "Teile Spiele für Multiboot auf" Menüpunkt, um fortzufahren.</value>
   </data>
   <data name="PleaseConnectYourDevice" xml:space="preserve">
-    <value>Bitte schließe Dein NES/SNES Mini an, um fortzufahren. Beachte, dass Du auch einen benutzerdefinierten Kernel aus dem Kernel Menü installieren musst.</value>
+    <value>Bitte schließe Dein mini an, um fortzufahren. Beachte, dass Du auch einen benutzerdefinierten Kernel aus dem Kernel Menü installieren musst.</value>
   </data>
   <data name="Starting" xml:space="preserve">
     <value>Starte...</value>
@@ -801,10 +801,10 @@ Fortfahren?</value>
     <value>Dein Kernel oder Deine Skripts sind veraltet. Bitte führe ein Update aus, bevor Du Spiele synchronisierst.</value>
   </data>
   <data name="CannotProceedMinimalMemboot" xml:space="preserve">
-    <value>Da Dein NES/SNES Mini momentan im Abgesicherten Modus ist, kann nicht fortgefahren werden. Um diesen Modus zu verlassen, benutze "Tools -&gt; Neu starten"</value>
+    <value>Da Dein mini momentan im Abgesicherten Modus ist, kann nicht fortgefahren werden. Um diesen Modus zu verlassen, benutze "Tools -&gt; Neu starten"</value>
   </data>
   <data name="FactoryResetNote" xml:space="preserve">
-    <value>Fertig! Alle Spuren von Hakchi wurden entfernt und Dein NES/SNES Mini wurde auf Werkseinstellungen zurückgesetzt.</value>
+    <value>Fertig! Alle Spuren von Hakchi wurden entfernt und Dein mini wurde auf Werkseinstellungen zurückgesetzt.</value>
   </data>
   <data name="NandFormatted" xml:space="preserve">
     <value>Der NAND-Speicher wurde erfolgreich formatiert.</value>
@@ -813,16 +813,16 @@ Fortfahren?</value>
     <value>Abgesicherter Modus</value>
   </data>
   <data name="ResetQ" xml:space="preserve">
-    <value>Bist Du sicher, dass Du Hakchi auf Deinem NES/SNES Mini zurücksetzen und reparieren möchtest?</value>
+    <value>Bist Du sicher, dass Du Hakchi auf Deinem mini zurücksetzen und reparieren möchtest?</value>
   </data>
   <data name="UpdateComplete" xml:space="preserve">
     <value>Update abgeschlossen!</value>
   </data>
   <data name="SyncMultibootWarning" xml:space="preserve">
-    <value>Du hast bereits {0} Spiele mit Deinem NES/SNES Mini synchronisiert (nicht für Multiboot aufgeteilt). Fortsetzen wird diese löschen. Bist Du sicher?</value>
+    <value>Du hast bereits {0} Spiele mit Deinem mini synchronisiert (nicht für Multiboot aufgeteilt). Fortsetzen wird diese löschen. Bist Du sicher?</value>
   </data>
   <data name="SyncNonMultibootWarning" xml:space="preserve">
-    <value>Du hast bereits {0} Spiele mit Deinem NES/SNES Mini synchronisiert (für Multiboot aufgeteilt). Fortsetzen wird diese löschen. Bist Du sicher?</value>
+    <value>Du hast bereits {0} Spiele mit Deinem mini synchronisiert (für Multiboot aufgeteilt). Fortsetzen wird diese löschen. Bist Du sicher?</value>
   </data>
   <data name="FolderNameHome" xml:space="preserve">
     <value>Hauptmenü</value>
@@ -840,7 +840,7 @@ Fortfahren?</value>
     <value>Warte einfach, bis der Strom wieder kommt.</value>
   </data>
   <data name="MakeSureYourMiniIsConnected" xml:space="preserve">
-    <value>Stelle sicher, dass Dein NES/SNES Mini mit einem USB-Kabel am PC verbunden ist.</value>
+    <value>Stelle sicher, dass Dein mini mit einem USB-Kabel am PC verbunden ist.</value>
   </data>
   <data name="RecoveryMode" xml:space="preserve">
     <value>Abgesicherter Modus</value>
@@ -858,10 +858,10 @@ Fortfahren?</value>
     <value>Aktualisiere Liste...</value>
   </data>
   <data name="CustomKernelInstalledQ" xml:space="preserve">
-    <value>Hast Du bereits einen benutzerdefinierten Kernel auf Dein NES/SNES Mini geflasht?</value>
+    <value>Hast Du bereits einen benutzerdefinierten Kernel auf Dein mini geflasht?</value>
   </data>
   <data name="DisableUSBWarning" xml:space="preserve">
-    <value>Das wird jeglichen USB-OTG-Adapter am NES/SNES Mini deaktivieren. Bist Du sicher, dass Du den USB-Host deaktivieren möchtest?</value>
+    <value>Das wird jeglichen USB-OTG-Adapter am mini deaktivieren. Bist Du sicher, dass Du den USB-Host deaktivieren möchtest?</value>
   </data>
   <data name="CalculatingFreeSpace" xml:space="preserve">
     <value>Berechne freien Speicher…</value>
@@ -900,7 +900,7 @@ Fortfahren?</value>
     <value>Nichts</value>
   </data>
   <data name="RecoveryModeCloseWarning" xml:space="preserve">
-    <value>Dein NES/SNES Mini ist momentan im abgesicherten Modus. Du wirst nicht in der Lage sein, es normal auszuschalten. Möchtest Du den normalen Startvorgang abschließen damit es später wieder in den normalen Modus zurückkehrt?</value>
+    <value>Dein mini ist momentan im abgesicherten Modus. Du wirst nicht in der Lage sein, es normal auszuschalten. Möchtest Du den normalen Startvorgang abschließen damit es später wieder in den normalen Modus zurückkehrt?</value>
   </data>
   <data name="LinkingGames" xml:space="preserve">
     <value>Verarbeitung der symbolischen Verbindung...</value>

@@ -337,7 +337,7 @@
     <value>Epilepsieschutz deaktivieren</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text" xml:space="preserve">
-    <value>Einstellungen in NES/SNES Mini jetzt speichern</value>
+    <value>Einstellungen in mini jetzt speichern</value>
   </data>
   <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Extras</value>
@@ -451,7 +451,7 @@
     <value>Cover für Spiel auswählen</value>
   </data>
   <data name="buttonStart.Text" xml:space="preserve">
-    <value>Synchronisiere gewählte Spiele mit NES/SNES Mini</value>
+    <value>Synchronisiere gewählte Spiele mit mini</value>
   </data>
   <data name="saveDumpFileDialog.Title" xml:space="preserve">
     <value>Wo soll der gesicherte Dump gespeichert werden?</value>

@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Text">
-    <value>En attente de votre NES/SNES Mini…</value>
+    <value>En attente de votre mini…</value>
   </data>
   <data name="buttonDriver.Text">
     <value>Installer le pilote</value>
@@ -68,10 +68,10 @@
     <value>Merci de suivre les étapes suivantes :</value>
   </data>
   <data name="label2.Text">
-    <value>1. Vérifiez que le bouton POWER de la NES/SNES Mini n’est pas enfoncé.</value>
+    <value>1. Vérifiez que le bouton POWER de la mini n’est pas enfoncé.</value>
   </data>
   <data name="label3.Text">
-    <value>2. (Re)connectez la NES/SNES Mini au PC à l’aide du cable USB.</value>
+    <value>2. (Re)connectez la mini au PC à l’aide du cable USB.</value>
   </data>
   <data name="label4.Text">
     <value>3. Maintenez le bouton RESET enfoncé et poussez le bouton POWER.</value>

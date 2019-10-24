@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label1.Text" xml:space="preserve">
-    <value>Bitte warte, bis Dein NES/SNES Mini neu gestartet wurde...</value>
+    <value>Bitte warte, bis Dein mini neu gestartet wurde...</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Warte auf Dein NES/SNES Mini...</value>
+    <value>Warte auf Dein mini...</value>
   </data>
 </root>

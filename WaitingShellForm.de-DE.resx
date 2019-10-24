@@ -121,7 +121,7 @@
     <value>Bitte führe folgende Schritte aus:</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>1. Verbinde NES/SNES Mini mit PC via USB.</value>
+    <value>1. Verbinde mini mit PC via USB.</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>2. Die Konsole einschalten.</value>
@@ -130,6 +130,6 @@
     <value>Installiere Treiber</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Warte auf dein NES/SNES Mini...</value>
+    <value>Warte auf dein mini...</value>
   </data>
 </root>
