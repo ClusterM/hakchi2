@@ -262,7 +262,7 @@ namespace com.clusterrr.hakchi_gui
             Directory.CreateDirectory(basePath);
             getAdjustedDesktopFile().Save(Path.Combine(basePath, desktop.Code + ".desktop"), false, true);
 
-            var maxX = hakchi.IsSnes(ConfigIni.Instance.ConsoleType) ? 228 : 204;
+            var maxX = 228;
             var maxY = 204;
             var sourcePath = getImagePath(ImageId);
             if (sourcePath != null)
@@ -295,7 +295,7 @@ namespace com.clusterrr.hakchi_gui
             var desktopStream = getAdjustedDesktopFile().SaveTo(new MemoryStream(), false, true);
             localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}.desktop", DateTime.UtcNow, desktopStream));
 
-            var maxX = hakchi.IsSnes(ConfigIni.Instance.ConsoleType) ? 228 : 204;
+            var maxX = 228;
             var maxY = 204;
             var sourcePath = getImagePath(ImageId);
             Stream iconStream, smallIconStream;

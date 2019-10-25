@@ -151,13 +151,8 @@ namespace com.clusterrr.hakchi_gui
         protected virtual void SetImage(Image img, bool EightBitCompression = false)
         {
             // full-size image ratio
-            int maxX = 204;
+            int maxX = 228;
             int maxY = 204;
-            if (ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.SNES_EUR || ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.SNES_USA || ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.SuperFamicom)
-            {
-                maxX = 228;
-                maxY = 204;
-            }
             ProcessImage(img, iconPath, maxX, maxY, false, true, EightBitCompression);
 
             // thumbnail image ratio
@@ -169,13 +164,8 @@ namespace com.clusterrr.hakchi_gui
         public virtual void SetImageFile(string path, bool EightBitCompression = false)
         {
             // full-size image ratio
-            int maxX = 204;
+            int maxX = 228;
             int maxY = 204;
-            if (ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.SNES_EUR || ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.SNES_USA || ConfigIni.Instance.ConsoleType == hakchi.ConsoleType.SuperFamicom)
-            {
-                maxX = 228;
-                maxY = 204;
-            }
             ProcessImageFile(path, iconPath, maxX, maxY, false, true, EightBitCompression);
 
             // check if a small image file might have accompanied the source image

@@ -280,7 +280,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void ShowSelected()
         {
-            var maxX = (hakchi.IsSnes(ConfigIni.Instance.ConsoleType) ? 228 : 204);
+            var maxX = 228;
             var node = treeView.SelectedNode;
             listViewContent.Clear();
             if (node != null && (node.Nodes.Count > 0 || node.Tag is NesMenuFolder)) // Folder or root
