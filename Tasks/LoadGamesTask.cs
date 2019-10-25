@@ -238,7 +238,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             group = game.IsOriginalGame ? normalGroups[ViewGroup.Original] : normalGroups[ViewGroup.Custom];
                             break;
                         case MainForm.GamesSorting.System:
-                            if (!appInfo.Unknown)
+                            if (!appInfo.Unknown && sortedGroups.ContainsKey(appInfo.Name))
                                 group = sortedGroups[appInfo.Name];
                             else if (!string.IsNullOrEmpty(game.Metadata.System) && sortedGroups.ContainsKey(game.Metadata.System))
                                 group = sortedGroups[game.Metadata.System];
