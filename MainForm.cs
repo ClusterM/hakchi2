@@ -1766,14 +1766,16 @@ namespace com.clusterrr.hakchi_gui
 
         private void flashUbootToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Tasks.MessageForm.Show(Resources.AreYouSure, Resources.FlashUbootNormalQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
+            var tag = (MembootTasks.MembootTaskType)((ToolStripMenuItem)sender).Tag;
+
+            if (Tasks.MessageForm.Show(Resources.AreYouSure, tag == MembootTasks.MembootTaskType.FlashNormalUboot ? Resources.FlashUbootNormalQ : Resources.FlashUbootSDQ, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
             {
                 using (var tasker = new Tasker(this))
                 {
                     tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                     tasker.SetTitle(Resources.FlashingUboot);
                     tasker.SetStatusImage(Resources.sign_cogs);
-                    tasker.AddTasks(new MembootTasks((MembootTasks.MembootTaskType)((ToolStripMenuItem)sender).Tag).Tasks);
+                    tasker.AddTasks(new MembootTasks(tag).Tasks);
                     if (tasker.Start() == Tasker.Conclusion.Success)
                         if (!ConfigIni.Instance.DisablePopups)
                             Tasks.MessageForm.Show(Resources.FlashingUboot, Resources.Done, Resources.sign_check);
