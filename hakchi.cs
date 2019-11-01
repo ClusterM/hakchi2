@@ -25,7 +25,7 @@ namespace com.clusterrr.hakchi_gui
 
         
 
-        public struct HakchiHmod
+        public struct Hmod
         {
             public enum HmodLocation
             {
@@ -33,23 +33,91 @@ namespace com.clusterrr.hakchi_gui
                 HakchiLatest
             }
 
-            public Stream HmodStream;
+            public MemoryStream HmodStream;
             public HmodLocation Location;
             public DateTime LastModified;
-            public IArchive GetArchive()
+            public static Hmod Get()
+            {
+                Hmod hakchiHmod = new Hmod();
+
+                hakchiHmod.HmodStream = new MemoryStream();
+
+                using (var extractor = ArchiveFactory.Open(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")))
+                {
+                    var hakchiEntry = extractor.Entries.Where(e => e.Key == "./hakchi.hmod" || e.Key == "hakchi.hmod").First();
+                    if (File.Exists(latestHmodFile) && File.GetLastWriteTime(latestHmodFile) > hakchiEntry.LastModifiedTime)
+                    {
+                        using (var file = File.OpenRead(latestHmodFile))
+                        {
+                            hakchiHmod.LastModified = File.GetLastWriteTime(latestHmodFile);
+                            hakchiHmod.Location = Hmod.HmodLocation.HakchiLatest;
+                            file.CopyTo(hakchiHmod.HmodStream);
+                        }
+                    }
+                    else
+                    {
+                        hakchiHmod.LastModified = hakchiEntry.LastModifiedTime.Value;
+                        hakchiHmod.Location = Hmod.HmodLocation.Basehmods;
+                        hakchiEntry.OpenEntryStream().CopyTo(hakchiHmod.HmodStream);
+                    }
+                }
+                hakchiHmod.HmodStream.Seek(0, SeekOrigin.Begin);
+
+                return hakchiHmod;
+            }
+
+            public IArchive Archive()
             {
                 using (Stream hakchiHmod = HmodStream)
                 {
                     MemoryStream tar = new MemoryStream();
                     using (var extractor = ArchiveFactory.Open(hakchiHmod))
+                    using (var entryStream = extractor.Entries.First().OpenEntryStream())
                     {
-                        extractor.Entries.First().OpenEntryStream().CopyTo(tar);
+                        entryStream.CopyTo(tar);
                         tar.Position = 0;
                         return SharpCompress.Archives.Tar.TarArchive.Open(tar);
                     }
                 }
             }
+
+            private MemoryStream ArchiveFile(string filename)
+            {
+                var image = new MemoryStream();
+                Archive().Entries.Where(e => e.Key == filename).First().OpenEntryStream().CopyTo(image);
+                return image;
+            }
+
+            public static Dictionary<string, string> GetVersion() => Get().Version();
+            public Dictionary<string, string> Version()
+            {
+                using (var o = ArchiveFile("var/version"))
+                {
+                    string contents = Encoding.UTF8.GetString(o.ToArray());
+
+                    MatchCollection collection = Regex.Matches(contents, @"^([^=]+)=(""(?:[^""\\]*(?:\\.[^""\\]*)*)""|\'(?:[^\'\\]*(?:\\.[^\'\\]*)*)\')", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+                    var version = new Dictionary<string, string>();
+                    foreach (Match match in collection)
+                    {
+                        string param = match.Groups[1].Value;
+                        string value = match.Groups[2].Value;
+                        value = value.Substring(1, value.Length - 2).Replace("\'", "'").Replace("\\\"", "\"");
+                        version[param] = value;
+                    }
+                    return version;
+                }
+            }
+
+            public static MemoryStream GetHmodStream() => Get().HmodStream;
+
+            public static MemoryStream GetMembootImage() => Get().MembootImage();
+            public MemoryStream MembootImage() => ArchiveFile("boot/boot.img");
+
+            public static MemoryStream GetUboot() => Get().Uboot();
+            public MemoryStream Uboot() => ArchiveFile("boot/uboot.bin");
         }
+
+        public static Hmod Get() => Hmod.Get();
 
         public enum ConsoleType
         {
@@ -271,7 +339,7 @@ namespace com.clusterrr.hakchi_gui
             // load local version info
             try
             {
-                var ver = GetHakchiVersion();
+                var ver = hakchi.Hmod.GetVersion();
                 Trace.WriteLine($"Local hakchi.hmod version info: boot {ver["bootVersion"]}, kernel {ver["kernelVersion"]}, script {ver["hakchiVersion"]}");
                 RawLocalBootVersion = ver["bootVersion"];
                 RawLocalKernelVersion = ver["kernelVersion"];
@@ -534,70 +602,6 @@ namespace com.clusterrr.hakchi_gui
                 config.Clear();
             }
             return config;
-        }
-
-        public static HakchiHmod GetHakchiHmod()
-        {
-            HakchiHmod hakchiHmod = new HakchiHmod();
-            
-            hakchiHmod.HmodStream = new MemoryStream();
-
-            using (var extractor = ArchiveFactory.Open(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")))
-            {
-                var hakchiEntry = extractor.Entries.Where(e => e.Key == "./hakchi.hmod" || e.Key == "hakchi.hmod").First();
-                if (File.Exists(latestHmodFile) && File.GetLastWriteTime(latestHmodFile) > hakchiEntry.LastModifiedTime)
-                {
-                    using (var file = File.OpenRead(latestHmodFile))
-                    {
-                        hakchiHmod.LastModified = File.GetLastWriteTime(latestHmodFile);
-                        hakchiHmod.Location = HakchiHmod.HmodLocation.HakchiLatest;
-                        file.CopyTo(hakchiHmod.HmodStream);
-                    }
-                }
-                else
-                {
-                    hakchiHmod.LastModified = hakchiEntry.LastModifiedTime.Value;
-                    hakchiHmod.Location = HakchiHmod.HmodLocation.Basehmods;
-                    hakchiEntry.OpenEntryStream().CopyTo(hakchiHmod.HmodStream);
-                }
-            }
-            hakchiHmod.HmodStream.Seek(0, SeekOrigin.Begin);
-            
-            return hakchiHmod;
-        }
-
-        public static MemoryStream GetMembootImage()
-        {
-            var image = new MemoryStream();
-            GetHakchiHmod().GetArchive().Entries.Where(e => e.Key == "boot/boot.img").First().OpenEntryStream().CopyTo(image);
-            return image;
-        }
-
-        public static MemoryStream GetUboot()
-        {
-            var image = new MemoryStream();
-            GetHakchiHmod().GetArchive().Entries.Where(e => e.Key == "boot/uboot.bin").First().OpenEntryStream().CopyTo(image);
-            return image;
-        }
-
-        public static Dictionary<string, string> GetHakchiVersion()
-        {
-            using (var o = new MemoryStream())
-            {
-                GetHakchiHmod().GetArchive().Entries.Where(e => e.Key == "var/version").First().OpenEntryStream().CopyTo(o);
-                string contents = Encoding.UTF8.GetString(o.ToArray());
-
-                MatchCollection collection = Regex.Matches(contents, @"^([^=]+)=(""(?:[^""\\]*(?:\\.[^""\\]*)*)""|\'(?:[^\'\\]*(?:\\.[^\'\\]*)*)\')", RegexOptions.Multiline | RegexOptions.IgnoreCase);
-                var version = new Dictionary<string, string>();
-                foreach (Match match in collection)
-                {
-                    string param = match.Groups[1].Value;
-                    string value = match.Groups[2].Value;
-                    value = value.Substring(1, value.Length - 2).Replace("\'", "'").Replace("\\\"", "\"");
-                    version[param] = value;
-                }
-                return version;
-            }
         }
 
         public static string[] GetPackList()

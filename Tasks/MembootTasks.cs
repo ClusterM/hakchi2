@@ -282,7 +282,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 return Conclusion.Abort;
 
             fel.Fes1Bin = Resources.fes1;
-            fel.UBootBin = hakchi.GetUboot().ToArray();
+            fel.UBootBin = hakchi.Hmod.GetUboot().ToArray();
             if (!fel.Open())
                 throw new FelException("Can't open device");
             tasker.SetStatus(Resources.UploadingFes1);
@@ -341,7 +341,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 return Conclusion.Abort;
 
             // get kernel image (only custom kernel with this method)
-            byte[] kernel = hakchi.GetMembootImage().ToArray();
+            byte[] kernel = hakchi.Hmod.GetMembootImage().ToArray();
 
             // override arguments
             string addedArgs = "";
@@ -400,7 +400,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             else
             {
                 stockKernel = null;
-                kernel = hakchi.GetMembootImage().ToArray();
+                kernel = hakchi.Hmod.GetMembootImage().ToArray();
             }
 
             // memboot using kexec (no way to force clovershell or shell)
@@ -451,7 +451,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 return Conclusion.Abort;
 
             // check and adjust kernel size
-            byte[] kernel = hakchi.GetMembootImage().ToArray();
+            byte[] kernel = hakchi.Hmod.GetMembootImage().ToArray();
             var size = Shared.CalcKernelSize(kernel);
             if (size > kernel.Length || size > Fel.transfer_max_size)
                 throw new Exception(Resources.InvalidKernelSize + " " + size);

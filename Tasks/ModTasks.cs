@@ -140,7 +140,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 tasker.SetStatus(Resources.TransferringMods);
                 var escapedTransferPath = Shared.EscapeShellArgument(transferPath);
                 var escapedHmodPath = Shared.EscapeShellArgument($"{transferPath}/hakchi.hmod");
-                var hmodStream = new TrackableStream(hakchi.GetHakchiHmod().HmodStream);
+                var hmodStream = new TrackableStream(hakchi.Hmod.GetHmodStream());
                 hmodStream.OnProgress += tasker.OnProgress;
                 hakchi.Shell.Execute($"mkdir -p {escapedTransferPath}", null, null, null, 0, true);
                 hakchi.Shell.Execute($"cat > {escapedHmodPath}", hmodStream, null, null, 0, true);
