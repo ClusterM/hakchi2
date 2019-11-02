@@ -1,0 +1,2 @@
+rm -f "$preinitpath/p7071_copyleft"
+return 0
