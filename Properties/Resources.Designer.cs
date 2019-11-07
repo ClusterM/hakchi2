@@ -424,6 +424,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bluetooth Adapters.
+        /// </summary>
+        internal static string BluetoothAdapters {
+            get {
+                return ResourceManager.GetString("BluetoothAdapters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Booting hakchi....
         /// </summary>
         internal static string BootingHakchi {
@@ -936,6 +945,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string DetectedConsole {
             get {
                 return ResourceManager.GetString("DetectedConsole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detected Devices (Click to Pair).
+        /// </summary>
+        internal static string DetectedDevicesClickToPair {
+            get {
+                return ResourceManager.GetString("DetectedDevicesClickToPair", resourceCulture);
             }
         }
         
@@ -2672,6 +2690,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No devices detected.
+        /// </summary>
+        internal static string NoDevicesDetected {
+            get {
+                return ResourceManager.GetString("NoDevicesDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No drive selected.
         /// </summary>
         internal static string NoDriveSelected {
@@ -2812,6 +2839,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string OutdatedScripts {
             get {
                 return ResourceManager.GetString("OutdatedScripts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paired Devices (Click to Unpair).
+        /// </summary>
+        internal static string PairedDevicesClickToUnpair {
+            get {
+                return ResourceManager.GetString("PairedDevicesClickToUnpair", resourceCulture);
             }
         }
         
@@ -3800,6 +3836,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string TransferringMods {
             get {
                 return ResourceManager.GetString("TransferringMods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trusted / Not Paired (Click to Remove).
+        /// </summary>
+        internal static string TrustedNotPairedClickToRemove {
+            get {
+                return ResourceManager.GetString("TrustedNotPairedClickToRemove", resourceCulture);
             }
         }
         

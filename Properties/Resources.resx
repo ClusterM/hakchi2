@@ -1464,4 +1464,19 @@ This will erase all data present on the card!</value>
   <data name="NotSupportedOnThisPlatform" xml:space="preserve">
     <value>Not supported on this platform</value>
   </data>
+  <data name="BluetoothAdapters" xml:space="preserve">
+    <value>Bluetooth Adapters</value>
+  </data>
+  <data name="PairedDevicesClickToUnpair" xml:space="preserve">
+    <value>Paired Devices (Click to Unpair)</value>
+  </data>
+  <data name="DetectedDevicesClickToPair" xml:space="preserve">
+    <value>Detected Devices (Click to Pair)</value>
+  </data>
+  <data name="NoDevicesDetected" xml:space="preserve">
+    <value>No devices detected</value>
+  </data>
+  <data name="TrustedNotPairedClickToRemove" xml:space="preserve">
+    <value>Trusted / Not Paired (Click to Remove)</value>
+  </data>
 </root>

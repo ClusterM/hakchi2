@@ -144,6 +144,7 @@
             this.formatSDCardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripSeparator();
             this.prepareArtDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bluetoothToolStripMenuItem = new com.clusterrr.hakchi_gui.Wireless.Bluetooth.BluetoothMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.joinOurDiscordServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -264,6 +265,7 @@
             this.viewToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.toolsToolStripMenuItem,
+            this.bluetoothToolStripMenuItem,
             this.helpToolStripMenuItem});
             resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Name = "menuStrip";
@@ -1089,6 +1091,11 @@
             this.prepareArtDirectoryToolStripMenuItem.Name = "prepareArtDirectoryToolStripMenuItem";
             resources.ApplyResources(this.prepareArtDirectoryToolStripMenuItem, "prepareArtDirectoryToolStripMenuItem");
             this.prepareArtDirectoryToolStripMenuItem.Click += new System.EventHandler(this.prepareArtDirectoryToolStripMenuItem_Click);
+            // 
+            // bluetoothToolStripMenuItem
+            // 
+            this.bluetoothToolStripMenuItem.Name = "bluetoothToolStripMenuItem";
+            resources.ApplyResources(this.bluetoothToolStripMenuItem, "bluetoothToolStripMenuItem");
             // 
             // helpToolStripMenuItem
             // 
@@ -2076,6 +2083,7 @@
         private System.Windows.Forms.ToolStripMenuItem rminisnesmodsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formatSDCardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downloadLatestHakchiToolStripMenuItem;
+        private com.clusterrr.hakchi_gui.Wireless.Bluetooth.BluetoothMenuItem bluetoothToolStripMenuItem;
     }
 }
 

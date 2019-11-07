@@ -146,6 +146,9 @@
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\SystemCollection.cs" />
     <Compile Include="Apps\UnknownGame.cs" />
+    <Compile Include="Wireless\Bluetooth\BluetoothMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="EventStream.cs" />
     <Compile Include="HakchiWebClient.cs">
       <SubType>Component</SubType>
@@ -819,6 +822,7 @@
     <Compile Include="WaitingFelForm.Designer.cs">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Wireless\Bluetooth\BluetoothControl.cs" />
     <Compile Include="XMLSerialization.cs" />
     <EmbeddedResource Include="ExportGamesDialog.resx">
       <DependentUpon>ExportGamesDialog.cs</DependentUpon>
