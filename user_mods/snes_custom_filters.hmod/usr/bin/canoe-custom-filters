@@ -41,11 +41,20 @@ while [ $# -gt 0 ] ; do
   --no-scanlines)
     mode1="-filter 1 -magfilter 1"
     ;;
+  --enable-scanlines)
+    mode2="-filter 2 -magfilter 3"
+    mode3="-filter 2 -magfilter 3 --pixel-perfect"
+    ;;
   --no-smooth)
     mode1="-filter 2 -magfilter 3"
     ;;
-  --smooth43)
+  --smooth43|--enable-smooth)
     mode2="-filter 1 -magfilter 1"
+    mode3="-filter 1 -magfilter 1 --pixel-perfect"
+    ;;
+  --crt-mode)
+    mode2="-filter 2 -magfilter 1"
+    mode3="-filter 2 -magfilter 1 --pixel-perfect"
     ;;
   --rollback-mode)
     case "$2" in
