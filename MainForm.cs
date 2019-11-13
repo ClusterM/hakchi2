@@ -1047,7 +1047,8 @@ namespace com.clusterrr.hakchi_gui
                     break;
                 case Keys.F12:
                     if (e.Modifiers == Keys.Control)
-                        developerToolsToolStripMenuItem.Visible = true;
+                        developerToolsToolStripMenuItem.Visible = 
+                        flashUbootToolStripMenuItem.Visible = true;
                     break;
             }
         }

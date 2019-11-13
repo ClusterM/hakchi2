@@ -20,7 +20,7 @@ namespace com.clusterrr.hakchi_gui
         public const string SERVICE_TYPE = "_ssh._tcp";
         public const string USERNAME = "root";
         public const string PASSWORD = "";
-        public static readonly string latestHmodFile = Path.Combine(Program.BaseDirectoryExternal, "data", "hakchi-latest.hmod");
+        public static readonly string latestHmodFile = Path.Combine(Program.BaseDirectoryExternal ?? "", "data", "hakchi-latest.hmod");
         public const string latestHmodUrl = "https://hakchi.net/hakchi/hmods/hakchi-latest.hmod";
         public const long BLOCK_SIZE = 4096;
 
