@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2005
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hakchi_gui", "hakchi_gui.csproj", "{F1F983FD-A54F-4881-8394-5A4BA65EFD6B}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -19,6 +19,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zipper", "Zipper\Zipper.csproj", "{2865B421-2F1D-484B-9826-D92A002702E6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Installer", "Makefile Projects\Installer.vcxproj", "{15F9D451-9DAF-4904-B2EC-6B485FCA86FD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2865B421-2F1D-484B-9826-D92A002702E6} = {2865B421-2F1D-484B-9826-D92A002702E6}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Installer (Web)", "Makefile Projects\Web Installer.vcxproj", "{1994C582-5BCD-45B1-A825-93123C16E33D}"
 EndProject
