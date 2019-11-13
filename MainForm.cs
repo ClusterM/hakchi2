@@ -3227,6 +3227,7 @@ namespace com.clusterrr.hakchi_gui
             dumpOriginalKernellegacyToolStripMenuItem.Visible = 
             toolStripSeparator1.Visible = 
             toolStripMenuItem10.Visible = 
+            toolStripMenuItem16.Visible =
             toolStripMenuItem5.Visible = 
 
             epilepsyProtectionToolStripMenuItem.Visible =
