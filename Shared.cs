@@ -1,13 +1,10 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
@@ -209,14 +206,21 @@ namespace com.clusterrr.hakchi_gui
             get
             {
                 Version version = AppVersion;
-                if (version.Revision > 0)
+
+                if (version.Revision > 2000)
                 {
-                    return $"{version.Major}.{version.Minor + 1}.0rc{version.Revision}";
+                    return $"{version.Major + 1}.0.0rc{version.Revision - 2000}";
                 }
-                else
+                else if (version.Revision > 1000)
                 {
-                    return $"{version.Major}.{version.Minor}.{version.Build}";
+                    return $"{version.Major}.{version.Minor + 1}.0rc{version.Revision - 1000}";
                 }
+                else if (version.Revision > 0)
+                {
+                    return $"{version.Major}.{version.Minor}.{version.Build + 1}rc{version.Revision}";
+                }
+
+                return $"{version.Major}.{version.Minor}.{version.Build}";
             }
         }
 
