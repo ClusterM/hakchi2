@@ -1,5 +1,6 @@
 ﻿using com.clusterrr.clovershell;
 using com.clusterrr.hakchi_gui.Properties;
+using com.clusterrr.hakchi_gui.Tasks;
 using com.clusterrr.ssh;
 using SharpCompress.Archives;
 using System;
@@ -113,8 +114,22 @@ namespace com.clusterrr.hakchi_gui
             public static MemoryStream GetMembootImage() => Get().MembootImage();
             public MemoryStream MembootImage() => ArchiveFile("boot/boot.img");
 
-            public static MemoryStream GetUboot() => Get().Uboot();
-            public MemoryStream Uboot() => ArchiveFile("boot/uboot.bin");
+            public static MemoryStream GetUboot(UbootType type = UbootType.SD) => Get().Uboot(type);
+            public MemoryStream Uboot(UbootType type = UbootType.SD)
+            {
+                var ubootStream = ArchiveFile("boot/uboot.bin");
+                if (type == UbootType.SD)
+                {
+                    ubootStream.Seek(-8, SeekOrigin.End);
+                    byte[] sdMarker = new byte[8];
+                    ubootStream.Read(sdMarker, 0, sdMarker.Length);
+                    ubootStream.Seek(-8, SeekOrigin.End);
+                    ubootStream.Write(sdMarker, 4, 4);
+                    ubootStream.Write(sdMarker, 0, 4);
+                    ubootStream.Seek(0, SeekOrigin.Begin);
+                }
+                return ubootStream;
+            }
         }
 
         public static Hmod Get() => Hmod.Get();

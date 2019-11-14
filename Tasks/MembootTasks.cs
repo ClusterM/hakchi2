@@ -1,19 +1,19 @@
-﻿using static com.clusterrr.hakchi_gui.Tasks.Tasker;
-using FelLib;
-using com.clusterrr.hakchi_gui.Properties;
+﻿using com.clusterrr.hakchi_gui.Properties;
 using com.clusterrr.util;
+using FelLib;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using static com.clusterrr.hakchi_gui.Tasks.Tasker;
 
 namespace com.clusterrr.hakchi_gui.Tasks
 {
-    class MembootTasks
+    public enum UbootType { Normal, SD }
+    public class MembootTasks
     {
         // Constants
         public const int MembootWaitDelay = 120000;
@@ -38,6 +38,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             FactoryReset,
             DumpStockKernel,
         }
+        
         public enum HakchiTasks { Install, Reset, Uninstall }
         public enum NandTasks { DumpNand, DumpSystemPartition, FlashSystemPartition, DumpUserPartition, FlashUserPartition, FormatUserPartition }
 
@@ -209,7 +210,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 case MembootTaskType.FlashNormalUboot:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        FlashUboot(ConfigIni.UbootType.Normal)
+                        FlashUboot(UbootType.Normal)
                     });
                     if (!userRecovery)
                         taskList.Add(ShellTasks.Reboot);
@@ -219,7 +220,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 case MembootTaskType.FlashSDUboot:
                     taskList.AddRange(new TaskFunc[]
                     {
-                        FlashUboot(ConfigIni.UbootType.SD)
+                        FlashUboot(UbootType.SD)
                     });
                     if (!userRecovery)
                         taskList.Add(ShellTasks.Reboot);
@@ -282,7 +283,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 return Conclusion.Abort;
 
             fel.Fes1Bin = Resources.fes1;
-            fel.UBootBin = hakchi.Hmod.GetUboot().ToArray();
+            fel.UBootBin = hakchi.Hmod.GetUboot(UbootType.SD).ToArray();
             if (!fel.Open())
                 throw new FelException("Can't open device");
             tasker.SetStatus(Resources.UploadingFes1);
@@ -881,7 +882,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             };
         }
 
-        public static TaskFunc FlashUboot(ConfigIni.UbootType type)
+        public static TaskFunc FlashUboot(UbootType type)
         {
             return (Tasker tasker, Object syncObject) =>
             {
@@ -889,7 +890,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 
                 MemoryStream flashLog = new MemoryStream();
                 var splitStream = new SplitterStream(flashLog).AddStreams(Program.debugStreams);
-                if (hakchi.Shell.Execute($"sntool sd {(type == ConfigIni.UbootType.SD ? "enable" : "disable")}", null, splitStream, splitStream) != 0)
+                if (hakchi.Shell.Execute($"sntool sd {(type == UbootType.SD ? "enable" : "disable")}", null, splitStream, splitStream) != 0)
                 {
                     flashLog.Seek(0, SeekOrigin.Begin);
                     using (var sr = new StreamReader(flashLog))

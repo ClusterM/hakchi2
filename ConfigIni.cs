@@ -5,13 +5,14 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using com.clusterrr.hakchi_gui.ModHub.Repository;
+using com.clusterrr.hakchi_gui.Tasks;
 using Newtonsoft.Json;
+using static com.clusterrr.hakchi_gui.Tasks.MembootTasks;
 
 namespace com.clusterrr.hakchi_gui
 {
     public class ConfigIni
     {
-        public enum UbootType { Normal, SD }
 
         // constants
         public const string ConfigDir = "config";
