@@ -36,6 +36,18 @@ namespace com.clusterrr.hakchi_gui
         private static readonly string SFROM_TOOL_URL = "http://darkakuma.z-net.us/p/sfromtool.html";
         private static readonly string MotdFilename = Path.Combine(Program.BaseDirectoryExternal, "config", "motd.md");
 
+        private bool GameGenieEnabled
+        {
+            get => labelGameGenie.Visible;
+            set
+            {
+                buttonShowGameGenieDatabase.Enabled =
+                textBoxGameGenie.Enabled =
+                labelGameGenie.Visible =
+                tableLayoutPanelGameGenie.Visible = value;
+            }
+        }
+
         public enum OriginalGamesPosition { AtTop = 0, AtBottom = 1, Sorted = 2, Hidden = 3 }
         public enum GamesSorting { Name = 0, Core = 1, System = 2 }
         public static string GetConsoleTypeName()
@@ -59,6 +71,13 @@ namespace com.clusterrr.hakchi_gui
                 case hakchi.ConsoleType.Unknown: return Resources.Unknown;
             }
             return string.Empty;
+        }
+
+        enum MaxPlayers
+        {
+            OnePlayer = 0,
+            TwoPlayer = 1,
+            TwoPlayerSimultaneous = 2
         }
 
         public static bool? DownloadCover;
@@ -109,20 +128,20 @@ namespace com.clusterrr.hakchi_gui
                 var tbl = textBoxName.Left;
                 textBoxName.Left = labelName.Left + labelName.Width;
                 textBoxName.Width -= textBoxName.Left - tbl;
-                maskedTextBoxReleaseDate.Left = label1.Left + label1.Width + 3;
+                maskedTextBoxReleaseDate.Left = labelReleaseDate.Left + labelReleaseDate.Width + 3;
                 tbl = textBoxPublisher.Left;
-                textBoxPublisher.Left = label2.Left + label2.Width;
+                textBoxPublisher.Left = labelPublisher.Left + labelPublisher.Width;
                 textBoxPublisher.Width -= textBoxPublisher.Left - tbl;
 
                 // supported extensions in add games dialog
                 string extensions = string.Empty;
                 extensions += Resources.AllFiles + "|*.*|" + Resources.ArchiveFiles + "|*.zip;*.7z;*.rar|";
-                foreach(var system in CoreCollection.Systems)
+                foreach (var system in CoreCollection.Systems)
                 {
                     extensions += system + "|*" + string.Join(";*", CoreCollection.GetExtensionsFromSystem(system).ToArray()) + "|";
                 }
                 openFileDialogNes.Filter = extensions.Trim('|');
-                
+
                 // Loading games database in background
                 new Thread(NesGame.LoadCache).Start();
                 new Thread(SnesGame.LoadCache).Start();
@@ -209,9 +228,15 @@ namespace com.clusterrr.hakchi_gui
             advancedToolStripMenuItem.DropDown.KeyDown += menuShiftHandler;
             advancedToolStripMenuItem.DropDown.KeyUp += menuShiftHandler;
             advancedToolStripMenuItem.DropDownOpening += menuShiftHandler;
-            
+
             this.KeyDown += menuShiftHandler;
             this.KeyUp += menuShiftHandler;
+
+            maxPlayersComboBox.Items.AddRange(new string[] {
+                "One player",
+                "Two players, not simultaneously",
+                "Two players, simultaneously"
+            });
         }
 
         private void menuShiftHandler(object sender, EventArgs e) => menuShiftHandler();
@@ -405,7 +430,7 @@ namespace com.clusterrr.hakchi_gui
                 Trace.WriteLine(ex.Message + ex.StackTrace);
             }
         }
-        
+
         private void timerUpdate_Tick(object sender, EventArgs e)
         {
             timerUpdate.Stop();
@@ -685,28 +710,28 @@ namespace com.clusterrr.hakchi_gui
                     Trace.WriteLine($"There is no flag for \"{country}\"");
                 item.ImageScaling = ToolStripItemImageScaling.None;
                 item.Click += delegate (object sender, EventArgs e)
-                    {
-                        ConfigIni.Instance.Language = langCodes[language];
-                        SaveConfig();
-                        lastConsoleType = hakchi.ConsoleType.Unknown;
+                {
+                    ConfigIni.Instance.Language = langCodes[language];
+                    SaveConfig();
+                    lastConsoleType = hakchi.ConsoleType.Unknown;
 
-                        var ci = new CultureInfo(langCodes[language]);
-                        Thread.CurrentThread.CurrentCulture = ci;
-                        Thread.CurrentThread.CurrentUICulture = ci;
-                        this.Hide();
-                        this.Controls.Clear();
-                        this.InitializeComponent();
-                        this.FormInitialize();
-                        this.SyncConsoleSettings(true);
-                        this.SyncConsoleType(true);
-                        this.Show();
-                    };
+                    var ci = new CultureInfo(langCodes[language]);
+                    Thread.CurrentThread.CurrentCulture = ci;
+                    Thread.CurrentThread.CurrentUICulture = ci;
+                    this.Hide();
+                    this.Controls.Clear();
+                    this.InitializeComponent();
+                    this.FormInitialize();
+                    this.SyncConsoleSettings(true);
+                    this.SyncConsoleType(true);
+                    this.Show();
+                };
                 if (Thread.CurrentThread.CurrentUICulture.Name.ToUpper() == langCodes[language].ToUpper())
                 {
                     item.Checked = true;
                     if (string.IsNullOrEmpty(ConfigIni.Instance.Language))
                         ConfigIni.Instance.Language = langCodes[language];
-                }   
+                }
                 found |= item.Checked;
                 if (langCodes[language] == "en-US")
                     english = item;
@@ -862,55 +887,57 @@ namespace com.clusterrr.hakchi_gui
             {
                 groupBoxOptions.Visible = true;
                 groupBoxOptions.Enabled = false;
-                labelID.Text = "ID: ";
-                labelSize.Text = Resources.Size;
+                labelID.Text = String.Empty;
+                labelSize.Text = String.Empty;
                 textBoxName.Text = "";
                 textBoxSortName.Text = "";
-                radioButtonOne.Checked = true;
-                radioButtonTwo.Checked = false;
-                radioButtonTwoSim.Checked = false;
+                maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.OnePlayer;
                 maskedTextBoxReleaseDate.Text = "";
                 textBoxPublisher.Text = "";
                 textBoxArguments.Text = "";
+                textBoxDescription.Text = "";
                 numericUpDownSaveCount.Value = 0;
                 pictureBoxArt.Image = Resources.noboxart;
                 pictureBoxThumbnail.Image = null;
                 pictureBoxThumbnail.Visible = false;
-                buttonShowGameGenieDatabase.Enabled = textBoxGameGenie.Enabled = false;
+                GameGenieEnabled = false;
                 textBoxGameGenie.Text = "";
                 checkBoxCompressed.Enabled = false;
                 checkBoxCompressed.Checked = false;
+                tabControl1.SelectedIndex = 0;
             }
             else
             {
                 var app = selected as NesApplication;
                 groupBoxOptions.Visible = true;
-                labelID.Text = "ID: " + app.Code;
-                labelSize.Text = $"{Resources.Size} {Shared.SizeSuffix(app.Size())}";
+                labelID.Text = app.Code;
+                labelSize.Text = Shared.SizeSuffix(app.Size());
                 textBoxName.Text = app.Name;
                 textBoxSortName.Text = app.SortName;
                 if (app.Desktop.Simultaneous && app.Desktop.Players == 2)
-                    radioButtonTwoSim.Checked = true;
+                    maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.TwoPlayerSimultaneous;
                 else if (app.Desktop.Players == 2)
-                    radioButtonTwo.Checked = true;
+                    maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.TwoPlayer;
                 else
-                    radioButtonOne.Checked = true;
+                    maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.OnePlayer;
                 maskedTextBoxReleaseDate.Text = app.Desktop.ReleaseDate;
                 textBoxPublisher.Text = app.Desktop.Publisher;
                 textBoxArguments.Text = app.Desktop.Exec;
+                textBoxDescription.Text = app.Desktop.Description;
                 numericUpDownSaveCount.Value = app.Desktop.SaveCount;
                 pictureBoxArt.Image = app.Image ?? Resources.noboxart;
                 pictureBoxThumbnail.Image = app.Thumbnail;
+                pictureBoxM2Spine.Image = app.M2Spine;
+                pictureBoxM2Front.Image = app.M2Front;
                 pictureBoxThumbnail.Visible = true;
                 if (app.IsOriginalGame || !(app is ISupportsGameGenie))
                 {
-                    buttonShowGameGenieDatabase.Enabled = textBoxGameGenie.Enabled = false;
+                    GameGenieEnabled = false;
                     textBoxGameGenie.Text = "";
                 }
                 else
                 {
-                    buttonShowGameGenieDatabase.Enabled = app is NesGame; //ISupportsGameGenie;
-                    textBoxGameGenie.Enabled = true;
+                    GameGenieEnabled = app is NesGame; //ISupportsGameGenie;
                     textBoxGameGenie.Text = app.GameGenie;
                 }
                 groupBoxOptions.Enabled = true;
@@ -953,8 +980,8 @@ namespace com.clusterrr.hakchi_gui
                     explorerToolStripMenuItem.Enabled =
                         downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
                         scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
-                        deleteSelectedGamesBoxArtToolStripMenuItem.Enabled = 
-                        archiveSelectedGamesToolStripMenuItem.Enabled = 
+                        deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
+                        archiveSelectedGamesToolStripMenuItem.Enabled =
                         true;
 
                     deleteSelectedGamesToolStripMenuItem.Enabled =
@@ -967,7 +994,7 @@ namespace com.clusterrr.hakchi_gui
                     sFROMToolToolStripMenuItem1.Enabled =
                         editROMHeaderToolStripMenuItem.Enabled =
                         resetROMHeaderToolStripMenuItem.Enabled =
-                            !game.IsOriginalGame && SfromToolWrapper.IsInstalled && game is SnesGame && 
+                            !game.IsOriginalGame && SfromToolWrapper.IsInstalled && game is SnesGame &&
                             (game.GameFilePath ?? "").ToLower().Contains(".sfrom");
                 }
             }
@@ -986,7 +1013,7 @@ namespace com.clusterrr.hakchi_gui
                     deleteSelectedGamesToolStripMenuItem.Enabled =
                     sFROMToolToolStripMenuItem1.Enabled =
                     repairGamesToolStripMenuItem.Enabled =
-                    selectEmulationCoreToolStripMenuItem.Enabled = 
+                    selectEmulationCoreToolStripMenuItem.Enabled =
                     archiveSelectedGamesToolStripMenuItem.Enabled =
                     false;
             }
@@ -1047,7 +1074,7 @@ namespace com.clusterrr.hakchi_gui
                     break;
                 case Keys.F12:
                     if (e.Modifiers == Keys.Control)
-                        developerToolsToolStripMenuItem.Visible = 
+                        developerToolsToolStripMenuItem.Visible =
                         flashUbootToolStripMenuItem.Visible = true;
                     break;
             }
@@ -1124,7 +1151,8 @@ namespace com.clusterrr.hakchi_gui
         private void buttonDefaultCover_Click(object sender, EventArgs e)
         {
             var app = GetSelectedGame();
-            if (app != null) { 
+            if (app != null)
+            {
                 app.Image = null;
                 ShowSelected();
                 timerCalculateGames.Enabled = true;
@@ -1154,6 +1182,34 @@ namespace com.clusterrr.hakchi_gui
             if (openFileDialogImage.ShowDialog() == DialogResult.OK)
             {
                 app.SetThumbnailFile(openFileDialogImage.FileName, ConfigIni.Instance.CompressCover);
+                ShowSelected();
+                timerCalculateGames.Enabled = true;
+            }
+        }
+
+        private void pictureBoxM2Spine_Click(object sender, EventArgs e)
+        {
+            var app = GetSelectedGame();
+            if (app == null) return;
+
+            openFileDialogImage.Filter = Resources.Images + "|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tif;*.tiff|" + Resources.AllFiles + "|*.*";
+            if (openFileDialogImage.ShowDialog() == DialogResult.OK)
+            {
+                app.SetM2Engage(openFileDialogImage.FileName, NesMenuElementBase.M2EngageImageType.Spine);
+                ShowSelected();
+                timerCalculateGames.Enabled = true;
+            }
+        }
+
+        private void pictureBoxM2Front_Click(object sender, EventArgs e)
+        {
+            var app = GetSelectedGame();
+            if (app == null) return;
+
+            openFileDialogImage.Filter = Resources.Images + "|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tif;*.tiff|" + Resources.AllFiles + "|*.*";
+            if (openFileDialogImage.ShowDialog() == DialogResult.OK)
+            {
+                app.SetM2Engage(openFileDialogImage.FileName, NesMenuElementBase.M2EngageImageType.Front);
                 ShowSelected();
                 timerCalculateGames.Enabled = true;
             }
@@ -1214,15 +1270,15 @@ namespace com.clusterrr.hakchi_gui
             listViewGames.Sort();
         }
 
-        private void radioButtonOne_CheckedChanged(object sender, EventArgs e)
+        private void maxPlayersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (showingSelected) return;
             if (listViewGames.SelectedItems.Count != 1) return;
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesApplication)) return;
             var game = (selected as NesApplication);
-            game.Desktop.Players = (byte)(radioButtonOne.Checked ? 1 : 2);
-            game.Desktop.Simultaneous = radioButtonTwoSim.Checked;
+            game.Desktop.Players = (byte)(maxPlayersComboBox.SelectedIndex == (int)MaxPlayers.OnePlayer ? 1 : 2);
+            game.Desktop.Simultaneous = maxPlayersComboBox.SelectedIndex == (int)MaxPlayers.TwoPlayerSimultaneous;
         }
 
         private void textBoxPublisher_TextChanged(object sender, EventArgs e)
@@ -1494,7 +1550,7 @@ namespace com.clusterrr.hakchi_gui
                         Resources.UploadGames,
                         string.Format(Resources.SyncNonMultibootWarning, Shared.SizeSuffix(MemoryStats.AllGamesSize - MemoryStats.NonMultibootGamesSize)),
                         Resources.sign_delete, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }) != Tasks.MessageForm.Button.Yes)
-                    return;
+                        return;
                 }
             }
             SaveConfig();
@@ -1624,7 +1680,7 @@ namespace com.clusterrr.hakchi_gui
 
                         tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashUserPartition, dumpPath: dumpFilename).Tasks);
                         break;
-                        
+
                     case MembootTasks.NandTasks.FormatUserPartition:
                         tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FormatUserPartition).Tasks);
                         break;
@@ -1657,10 +1713,11 @@ namespace com.clusterrr.hakchi_gui
 
         bool FormatSD()
         {
-            using(var dialog = new SDFormat()) {
+            using (var dialog = new SDFormat())
+            {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    using(var tasker = new Tasker(this))
+                    using (var tasker = new Tasker(this))
                     {
                         tasker.AttachViews(new TaskerTaskbar(), new TaskerForm());
                         tasker.SetStatusImage(Resources.sign_cogs);
@@ -1864,7 +1921,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.Start();
             }
         }
-        
+
         private void membootCustomKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MembootCustomKernel();
@@ -1873,7 +1930,7 @@ namespace com.clusterrr.hakchi_gui
         private void membootRecoveryKernelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             bool forceRecoveryReload = false;
-            if(hakchi.Shell.IsOnline && hakchi.MinimalMemboot)
+            if (hakchi.Shell.IsOnline && hakchi.MinimalMemboot)
             {
                 forceRecoveryReload = (Control.ModifierKeys == Keys.Shift) || (Tasks.MessageForm.Show(this, Resources.AlreadyInRecovery, Resources.AlreadyInRecoveryQ, Resources.sign_question, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes);
             }
@@ -1916,7 +1973,7 @@ namespace com.clusterrr.hakchi_gui
                         ignoreBackupKernel: ignoreBackupKernel
                     ).Tasks);
                     if (tasker.Start() == Tasker.Conclusion.Success)
-                        if(!ConfigIni.Instance.DisablePopups)
+                        if (!ConfigIni.Instance.DisablePopups)
                             Tasks.MessageForm.Show(Resources.Done, Resources.FactoryResetNote, Resources.sign_check);
                 }
             }
@@ -2557,7 +2614,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }.Start();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Tasks.ErrorForm.Show(this, ex);
             }
@@ -3072,8 +3129,8 @@ namespace com.clusterrr.hakchi_gui
 
         private void formatSDCardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                if (FormatSD())
-                    Tasks.MessageForm.Show(Resources.Done, Resources.DoneYouCanUpload, Resources.sign_check);
+            if (FormatSD())
+                Tasks.MessageForm.Show(Resources.Done, Resources.DoneYouCanUpload, Resources.sign_check);
         }
 
         private void addModInfoToReport(ref List<string> list, ref List<Hmod.Hmod> mods)
@@ -3082,7 +3139,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 list.Add($"  {mod.RawName}");
                 list.Add("  --------------------");
-                foreach(var fmKey in mod.Readme.frontMatter.Keys)
+                foreach (var fmKey in mod.Readme.frontMatter.Keys)
                 {
                     list.Add($"    {fmKey}: {mod.Readme.frontMatter[fmKey]}");
                 }
@@ -3166,20 +3223,21 @@ namespace com.clusterrr.hakchi_gui
 
         private void repoMenuItem_Click(object sender, EventArgs e)
         {
-            if(sender is ToolStripMenuItem)
+            if (sender is ToolStripMenuItem)
             {
                 ToolStripMenuItem unboxed = (ToolStripMenuItem)sender;
 
                 if (unboxed.Tag is string && unboxed.Tag != null)
                 {
                     var url = (string)(unboxed.Tag);
-                    if (url == "modstore://") {
+                    if (url == "modstore://")
+                    {
                         throw new NotImplementedException();
                     }
                     else
                     {
                         var repo = new ModHub.Repository.Repository(url);
-                        if  (repo.LoadTasker(this) != null)
+                        if (repo.LoadTasker(this) != null)
                         {
                             using (var hub = new ModHub.ModHubForm())
                             {
@@ -3224,12 +3282,12 @@ namespace com.clusterrr.hakchi_gui
         private void MenuStrip_MenuActivate(object sender, EventArgs e)
         {
             membootOriginalKernelToolStripMenuItem.Visible =
-            factoryResetToolStripMenuItem.Visible = 
-            dumpOriginalKernellegacyToolStripMenuItem.Visible = 
-            toolStripSeparator1.Visible = 
-            toolStripMenuItem10.Visible = 
+            factoryResetToolStripMenuItem.Visible =
+            dumpOriginalKernellegacyToolStripMenuItem.Visible =
+            toolStripSeparator1.Visible =
+            toolStripMenuItem10.Visible =
             toolStripMenuItem16.Visible =
-            toolStripMenuItem5.Visible = 
+            toolStripMenuItem5.Visible =
 
             epilepsyProtectionToolStripMenuItem.Visible =
             cloverconHackToolStripMenuItem.Visible =
@@ -3249,6 +3307,36 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AddTasks(WebClientTasks.DownloadFile(hakchi.latestHmodUrl, hakchi.latestHmodFile));
                 tasker.Start();
             }
+        }
+
+        private void groupBoxOptions_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBoxDescription_TextChanged(object sender, EventArgs e)
+        {
+            if (showingSelected) return;
+            if (listViewGames.SelectedItems.Count != 1) return;
+            var selected = listViewGames.SelectedItems[0].Tag;
+            if (selected == null || !(selected is NesApplication)) return;
+            var game = (selected as NesApplication);
+            game.Desktop.Description = textBoxDescription.Text;
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

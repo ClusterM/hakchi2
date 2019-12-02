@@ -173,6 +173,20 @@ namespace com.clusterrr.hakchi_gui
             set { setIf(value, ref copyright); }
         }
 
+        private string genre = string.Empty;
+        public string Genre
+        {
+            get { return genre; }
+            set { setIf(value, ref genre); }
+        }
+
+        private string description = string.Empty;
+        public string Description
+        {
+            get { return description; }
+            set { setIf(value, ref description); }
+        }
+
         private string currentFilePath = null;
         public string CurrentFilePath
         {
@@ -187,91 +201,111 @@ namespace com.clusterrr.hakchi_gui
                 using (StreamReader reader = new StreamReader(configStream))
                 {
                     string line;
+                    bool hitDescription = false;
+                    var descriptionLines = new List<string>();
                     while ((line = reader.ReadLine()) != null)
                     {
-                        int pos = line.IndexOf('=');
-                        if (pos <= 0)
-                            continue;
-                        var param = line.Substring(0, pos).Trim().ToLower();
-                        var value = line.Substring(pos + 1).Trim();
-                        if (param.Length <= 0)
-                            continue;
-
-                        switch (param)
+                        if (line == "[Description]")
                         {
-                            case "exec":
-                                Exec = value;
-                                break;
-                            case "path":
-                                if (string.IsNullOrEmpty(value))
-                                    ProfilePath = string.Empty;
-                                else
-                                    try
-                                    {
-                                        ProfilePath = Path.GetDirectoryName(value).Replace("\\", "/").Replace("//", "/");
-                                    }
-                                    catch
-                                    {
-                                        System.Diagnostics.Trace.WriteLine($"Error parsing desktop file. Invalid profile path \"{value}\"");
+                            hitDescription = true;
+                            continue;
+                        }
+                            
+                        if (hitDescription)
+                        {
+                            descriptionLines.Add(line);
+                        }
+
+                        else
+                        {
+                            int pos = line.IndexOf('=');
+                            if (pos <= 0)
+                                continue;
+                            var param = line.Substring(0, pos).Trim().ToLower();
+                            var value = line.Substring(pos + 1).Trim();
+                            if (param.Length <= 0)
+                                continue;
+
+                            switch (param)
+                            {
+                                case "exec":
+                                    Exec = value;
+                                    break;
+                                case "path":
+                                    if (string.IsNullOrEmpty(value))
                                         ProfilePath = string.Empty;
-                                    }
-                                break;
-                            case "name":
-                                Name = value;
-                                break;
-                            case "icon":
-                                if (string.IsNullOrEmpty(value))
-                                {
-                                    IconPath = string.Empty;
-                                    IconFilename = string.Empty;
-                                }
-                                else
-                                {
-                                    try
+                                    else
+                                        try
+                                        {
+                                            ProfilePath = Path.GetDirectoryName(value).Replace("\\", "/").Replace("//", "/");
+                                        }
+                                        catch
+                                        {
+                                            System.Diagnostics.Trace.WriteLine($"Error parsing desktop file. Invalid profile path \"{value}\"");
+                                            ProfilePath = string.Empty;
+                                        }
+                                    break;
+                                case "name":
+                                    Name = value;
+                                    break;
+                                case "icon":
+                                    if (string.IsNullOrEmpty(value))
                                     {
-                                        IconPath = Path.GetDirectoryName(Path.GetDirectoryName(value)).Replace("\\", "/").Replace("//", "/");
-                                        IconFilename = Path.GetFileName(value);
-                                    }
-                                    catch
-                                    {
-                                        System.Diagnostics.Trace.WriteLine($"Error parsing desktop file. Invalid icon path \"{value}\"");
                                         IconPath = string.Empty;
                                         IconFilename = string.Empty;
                                     }
-                                }
-                                break;
-                            case "code":
-                                Code = value;
-                                break;
-                            case "testid":
-                                TestId = int.Parse(value);
-                                break;
-                            case "status":
-                                Status = value;
-                                break;
-                            case "players":
-                                Players = byte.Parse(value);
-                                break;
-                            case "simultaneous":
-                                Simultaneous = (bool)(int.Parse(value) != 0);
-                                break;
-                            case "releasedate":
-                                ReleaseDate = value;
-                                break;
-                            case "savecount":
-                                SaveCount = byte.Parse(value);
-                                break;
-                            case "sortrawtitle":
-                                SortName = value;
-                                break;
-                            case "sortrawpublisher":
-                                Publisher = value;
-                                break;
-                            case "copyright":
-                                Copyright = value;
-                                break;
+                                    else
+                                    {
+                                        try
+                                        {
+                                            IconPath = Path.GetDirectoryName(Path.GetDirectoryName(value)).Replace("\\", "/").Replace("//", "/");
+                                            IconFilename = Path.GetFileName(value);
+                                        }
+                                        catch
+                                        {
+                                            System.Diagnostics.Trace.WriteLine($"Error parsing desktop file. Invalid icon path \"{value}\"");
+                                            IconPath = string.Empty;
+                                            IconFilename = string.Empty;
+                                        }
+                                    }
+                                    break;
+                                case "code":
+                                    Code = value;
+                                    break;
+                                case "testid":
+                                    TestId = int.Parse(value);
+                                    break;
+                                case "status":
+                                    Status = value;
+                                    break;
+                                case "players":
+                                    Players = byte.Parse(value);
+                                    break;
+                                case "simultaneous":
+                                    Simultaneous = (bool)(int.Parse(value) != 0);
+                                    break;
+                                case "releasedate":
+                                    ReleaseDate = value;
+                                    break;
+                                case "savecount":
+                                    SaveCount = byte.Parse(value);
+                                    break;
+                                case "sortrawtitle":
+                                    SortName = value;
+                                    break;
+                                case "sortrawpublisher":
+                                    Publisher = value;
+                                    break;
+                                case "copyright":
+                                    Copyright = value;
+                                    break;
+                                case "genre":
+                                    Genre = value;
+                                    break;
+                            }
                         }
                     }
+                    description = String.Join("\r\n", descriptionLines);
                 }
             }
             catch (Exception ex)
@@ -320,7 +354,11 @@ namespace com.clusterrr.hakchi_gui
                 $"SortRawTitle={this.sortRawTitle}\n" +
                 $"SortRawPublisher={this.sortRawPublisher.ToUpper()}\n" +
                 $"Copyright={this.copyright}\n" +
-                (snesExtraFields ? $"MyPlayDemoTime=45\n" : ""));
+                (snesExtraFields ? $"MyPlayDemoTime=45\n\n" : "\n") +
+                "[M2engage]\n" +
+                $"genre={this.genre}\n\n" +
+                "[Description]\n" +
+                this.description.Replace("\r\n", "\n").Trim());
             return content;
         }
 

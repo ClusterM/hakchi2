@@ -252,6 +252,9 @@ namespace com.clusterrr.hakchi_gui
             basePath = path;
             iconPath = Path.Combine(path, desktop.Code + ".png");
             smallIconPath = Path.Combine(path, desktop.Code + "_small.png");
+            spinePath = Path.Combine(path, desktop.Code + "_spine.png");
+            originalArtPath = Path.Combine(path, desktop.Code + "_original.png");
+            mdMiniIconPath = Path.Combine(path, desktop.Code + "_mdmini.png");
         }
 
         public override bool Save()

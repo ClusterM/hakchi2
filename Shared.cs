@@ -359,10 +359,13 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public static long DirectorySize(string path, long blockSize = -1)
+        public static long DirectorySize(string path, long blockSize = -1, string[] ignoreFiles = null)
         {
             if (string.IsNullOrEmpty(path))
                 throw new ArgumentNullException($"Null path cannot be used with this method.");
+
+            if (ignoreFiles == null)
+                ignoreFiles = new string[] { };
 
             long size = 0;
             DirectoryInfo dir = new DirectoryInfo(path);
@@ -373,7 +376,8 @@ namespace com.clusterrr.hakchi_gui
             FileInfo[] files = dir.GetFiles();
             foreach (FileInfo file in files)
             {
-                size += PadFileSize(file.Length, blockSize);
+                if (!ignoreFiles.Contains(file.Name))
+                    size += PadFileSize(file.Length, blockSize);
             }
             foreach (DirectoryInfo subdir in dirs)
             {

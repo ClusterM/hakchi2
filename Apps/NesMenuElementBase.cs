@@ -1,15 +1,11 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
+﻿using SharpCompress.Writers;
+using SpineGen.DrawingBitmaps;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
 using System.IO;
-using System.Text.RegularExpressions;
-using SharpCompress.Writers;
-using System.IO.Compression;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -40,9 +36,12 @@ namespace com.clusterrr.hakchi_gui
             return desktop.Name ?? desktop.Code;
         }
 
-        protected string basePath;
-        protected string iconPath;
-        protected string smallIconPath;
+        protected string basePath = string.Empty;
+        protected string iconPath = string.Empty;
+        protected string smallIconPath = string.Empty;
+        protected string spinePath = string.Empty;
+        protected string originalArtPath = string.Empty;
+        protected string mdMiniIconPath = string.Empty;
 
         public virtual string BasePath
         {
@@ -52,12 +51,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        protected NesMenuElementBase()
-        {
-            basePath = string.Empty;
-            iconPath = string.Empty;
-            smallIconPath = string.Empty;
-        }
+        protected NesMenuElementBase() { }
 
         protected NesMenuElementBase(string path, bool ignoreEmptyConfig = false)
         {
@@ -70,6 +64,9 @@ namespace com.clusterrr.hakchi_gui
                 desktop.Load(configPath);
                 iconPath = Path.Combine(basePath, desktop.IconFilename);
                 smallIconPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_small" + Path.GetExtension(desktop.IconFilename));
+                spinePath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_spine" + Path.GetExtension(desktop.IconFilename));
+                originalArtPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_original" + Path.GetExtension(desktop.IconFilename));
+                mdMiniIconPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_mdmini" + Path.GetExtension(desktop.IconFilename));
             }
             else
             {
@@ -86,7 +83,10 @@ namespace com.clusterrr.hakchi_gui
 
                 iconPath = Path.Combine(basePath, desktop.IconFilename);
                 smallIconPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_small" + Path.GetExtension(desktop.IconFilename));
-            }
+                spinePath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_spine" + Path.GetExtension(desktop.IconFilename));
+                originalArtPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_original" + Path.GetExtension(desktop.IconFilename));
+                mdMiniIconPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_mdmini" + Path.GetExtension(desktop.IconFilename));
+    }
         }
 
         public virtual bool Save()
@@ -107,7 +107,10 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                return Shared.DirectorySize(basePath, hakchi.BLOCK_SIZE);
+                return Shared.DirectorySize(basePath, hakchi.BLOCK_SIZE, new string[] {
+                    $"{desktop.Code}_original.png",
+                    $"{desktop.Code}_spine.png"
+                });
             }
             catch { }
             return 0;
@@ -119,15 +122,24 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (value == null)
                 {
-                    if (File.Exists(iconPath))
+                    try
                     {
-                        try
-                        {
+                        if (File.Exists(iconPath))
                             File.Delete(iconPath);
+
+                        if (File.Exists(smallIconPath))
                             File.Delete(smallIconPath);
-                        }
-                        catch { }
+
+                        if (File.Exists(originalArtPath))
+                            File.Delete(originalArtPath);
+
+                        if (File.Exists(mdMiniIconPath))
+                            File.Delete(mdMiniIconPath);
+
+                        if (File.Exists(spinePath))
+                            File.Delete(spinePath);
                     }
+                    catch { }
                 }
                 else
                 {
@@ -147,18 +159,41 @@ namespace com.clusterrr.hakchi_gui
                 return File.Exists(smallIconPath) ? Shared.LoadBitmapCopy(smallIconPath) : null;
             }
         }
+        public virtual Image M2Spine
+        {
+            get
+            {
+                return GetM2Bitmap().Crop(new Rectangle(0, 0, 28, 214)).Bitmap;
+            }
+        }
+        public virtual Image M2Front
+        {
+            get
+            {
+                return GetM2Bitmap().Crop(new Rectangle(28, 0, 150, 214)).Bitmap;
+            }
+        }
 
         protected virtual void SetImage(Image img, bool EightBitCompression = false)
         {
             // full-size image ratio
             int maxX = 228;
             int maxY = 204;
+
+            if (File.Exists(originalArtPath))
+                File.Delete(originalArtPath);
+
+            using (var file = File.OpenWrite(originalArtPath))
+            using (var copy = new Bitmap(img))
+                copy.Save(file, ImageFormat.Png);
+
             ProcessImage(img, iconPath, maxX, maxY, false, true, EightBitCompression);
 
             // thumbnail image ratio
             maxX = 40;
             maxY = 40;
             ProcessImage(img, smallIconPath, maxX, maxY, ConfigIni.Instance.CenterThumbnail, false, EightBitCompression);
+            SetM2Engage(img as Bitmap, M2EngageImageType.Front);
         }
 
         public virtual void SetImageFile(string path, bool EightBitCompression = false)
@@ -166,6 +201,17 @@ namespace com.clusterrr.hakchi_gui
             // full-size image ratio
             int maxX = 228;
             int maxY = 204;
+            Bitmap image;
+            using (var file = File.OpenRead(path))
+                image = new Bitmap(file);
+
+            if (File.Exists(originalArtPath))
+                File.Delete(originalArtPath);
+
+            using (var file = File.OpenWrite(originalArtPath))
+            using (var copy = new Bitmap(image))
+                copy.Save(file, ImageFormat.Png);
+
             ProcessImageFile(path, iconPath, maxX, maxY, false, true, EightBitCompression);
 
             // check if a small image file might have accompanied the source image
@@ -175,6 +221,9 @@ namespace com.clusterrr.hakchi_gui
 
             // set thumbnail as well
             SetThumbnailFile(path, EightBitCompression);
+            SetM2Engage(path, M2EngageImageType.Front);
+
+
         }
 
         public virtual void SetThumbnailFile(string path, bool EightBitCompression = false)
@@ -182,13 +231,81 @@ namespace com.clusterrr.hakchi_gui
             // thumbnail image ratio
             ProcessImageFile(path, smallIconPath, 40, 40, ConfigIni.Instance.CenterThumbnail, false, EightBitCompression);
         }
+        
+        private SystemDrawingBitmap GetM2Bitmap()
+        {
+            if (File.Exists(mdMiniIconPath))
+            {
+                using (var file = File.OpenRead(mdMiniIconPath))
+                    return new SystemDrawingBitmap(new Bitmap(file) as Bitmap);
+            }
+            else
+            {
+                return new SystemDrawingBitmap(new Bitmap(178, 214, PixelFormat.Format32bppArgb) as Bitmap);
+            }
+        }
+
+        public enum M2EngageImageType { Spine, Front }
+        public virtual void SetM2Engage(string path, M2EngageImageType type)
+        {
+            if (!File.Exists(path))
+                throw new FileNotFoundException($"File Not Found: {path}");
+
+            Bitmap image;
+
+            using (var file = File.OpenRead(path))
+                image = new Bitmap(file);
+
+            SetM2Engage(image, type);
+        }
+
+        public virtual void SetM2Engage(Bitmap image, M2EngageImageType type)
+        {
+            if (type == M2EngageImageType.Spine)
+            {
+                if (File.Exists(spinePath))
+                    File.Delete(spinePath);
+
+                using (var file = File.OpenWrite(spinePath))
+                using (var copy = new Bitmap(image))
+                    copy.Save(file, ImageFormat.Png);
+            }
+
+            var template = new SpineGen.Spine.Template<Bitmap>()
+            {
+                Image = GetM2Bitmap(),
+                LogoArea = new Rectangle(type == M2EngageImageType.Front ? 28 : 0, 0, type == M2EngageImageType.Front ? 150 : 28, 214),
+                LogoRotation = SpineGen.Drawing.Rotation.RotateNone,
+                LogoHorizontalAlignment = SpineGen.Drawing.HorizontalAlignment.Middle,
+                LogoVerticalAlignment = SpineGen.Drawing.VerticalAlignment.Middle
+            };
+
+            template.Image.ClearRegion(template.LogoArea);
+
+            var output = template.Process(new SystemDrawingBitmap(image));
+            template.Dispose();
+
+            if (File.Exists(mdMiniIconPath))
+                File.Delete(mdMiniIconPath);
+
+            var bitmap = output.Bitmap;
+
+            Quantize(ref bitmap);
+
+            using (var file = File.OpenWrite(mdMiniIconPath))
+                bitmap.Save(file, ImageFormat.Png);
+
+            output.Dispose();
+        }
 
         protected static void ProcessImage(Image inImage, string outPath, int targetWidth, int targetHeight, bool expandHeight, bool upscale, bool quantize)
         {
             var outImage = Shared.ResizeImage(inImage, null, null, targetWidth, targetHeight, upscale, true, false, expandHeight);
             if (quantize)
                 Quantize(ref outImage);
-            outImage.Save(outPath, ImageFormat.Png);
+            using (var file = File.OpenWrite(outPath))
+                outImage.Save(file, ImageFormat.Png);
+
             outImage.Dispose();
         }
 

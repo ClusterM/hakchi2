@@ -110,6 +110,7 @@
             this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripSeparator();
             this.forceNetworkMembootsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forceClovershellMembootsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downloadLatestHakchiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separateGamesForMultibootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysCopyOriginalGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useLinkedSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -149,8 +150,8 @@
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.joinOurDiscordServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rminisnesmodsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem22 = new System.Windows.Forms.ToolStripSeparator();
             this.technicalInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.messageOfTheDayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -196,21 +197,18 @@
             this.labelID = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
-            this.radioButtonOne = new System.Windows.Forms.RadioButton();
-            this.radioButtonTwo = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelPublisher = new System.Windows.Forms.Label();
             this.textBoxPublisher = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelCommandLine = new System.Windows.Forms.Label();
             this.textBoxArguments = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBoxArt = new System.Windows.Forms.PictureBox();
             this.buttonBrowseImage = new System.Windows.Forms.Button();
             this.buttonGoogle = new System.Windows.Forms.Button();
-            this.radioButtonTwoSim = new System.Windows.Forms.RadioButton();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.labelMaxPlayers = new System.Windows.Forms.Label();
+            this.labelGameGenie = new System.Windows.Forms.Label();
             this.textBoxGameGenie = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelReleaseDate = new System.Windows.Forms.Label();
             this.maskedTextBoxReleaseDate = new System.Windows.Forms.MaskedTextBox();
             this.buttonShowGameGenieDatabase = new System.Windows.Forms.Button();
             this.checkBoxCompressed = new System.Windows.Forms.CheckBox();
@@ -219,9 +217,28 @@
             this.pictureBoxThumbnail = new System.Windows.Forms.PictureBox();
             this.labelSortName = new System.Windows.Forms.Label();
             this.textBoxSortName = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.labelSaveCount = new System.Windows.Forms.Label();
             this.numericUpDownSaveCount = new System.Windows.Forms.NumericUpDown();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanelGameInfo = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.textBoxDescription = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanelSize = new System.Windows.Forms.TableLayoutPanel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.maxPlayersComboBox = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanelGameID = new System.Windows.Forms.TableLayoutPanel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tableLayoutPanelGameGenie = new System.Windows.Forms.TableLayoutPanel();
+            this.labelCompress = new System.Windows.Forms.Label();
+            this.labelDescription = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.pictureBoxM2Spine = new System.Windows.Forms.PictureBox();
+            this.pictureBoxM2Front = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.structureButton = new System.Windows.Forms.Button();
             this.foldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.disablePagefoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -245,7 +262,7 @@
             this.syncStructureForAllGamesCollectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
             this.timerUpdate = new System.Windows.Forms.Timer(this.components);
-            this.downloadLatestHakchiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanelBottomButtons = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -253,7 +270,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxThumbnail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSaveCount)).BeginInit();
             this.groupBoxOptions.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tableLayoutPanelGameInfo.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanelSize.SuspendLayout();
+            this.tableLayoutPanelGameID.SuspendLayout();
+            this.tableLayoutPanelGameGenie.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxM2Spine)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxM2Front)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.foldersContextMenuStrip.SuspendLayout();
+            this.tableLayoutPanelBottomButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -846,6 +877,12 @@
             resources.ApplyResources(this.forceClovershellMembootsToolStripMenuItem, "forceClovershellMembootsToolStripMenuItem");
             this.forceClovershellMembootsToolStripMenuItem.Click += new System.EventHandler(this.forceClovershellMembootsToolStripMenuItem_Click);
             // 
+            // downloadLatestHakchiToolStripMenuItem
+            // 
+            this.downloadLatestHakchiToolStripMenuItem.Name = "downloadLatestHakchiToolStripMenuItem";
+            resources.ApplyResources(this.downloadLatestHakchiToolStripMenuItem, "downloadLatestHakchiToolStripMenuItem");
+            this.downloadLatestHakchiToolStripMenuItem.Click += new System.EventHandler(this.DownloadLatestHakchiToolStripMenuItem_Click);
+            // 
             // separateGamesForMultibootToolStripMenuItem
             // 
             this.separateGamesForMultibootToolStripMenuItem.Checked = true;
@@ -1076,8 +1113,8 @@
             // 
             // formatSDCardToolStripMenuItem
             // 
-            this.formatSDCardToolStripMenuItem.Name = "formatSDCardToolStripMenuItem";
             resources.ApplyResources(this.formatSDCardToolStripMenuItem, "formatSDCardToolStripMenuItem");
+            this.formatSDCardToolStripMenuItem.Name = "formatSDCardToolStripMenuItem";
             this.formatSDCardToolStripMenuItem.Click += new System.EventHandler(this.formatSDCardToolStripMenuItem_Click);
             // 
             // toolStripMenuItem18
@@ -1136,13 +1173,6 @@
             this.rminisnesmodsToolStripMenuItem.Tag = "https://www.reddit.com/r/minisnesmods/";
             this.rminisnesmodsToolStripMenuItem.Click += new System.EventHandler(this.openWebsiteLink);
             // 
-            // fAQToolStripMenuItem
-            // 
-            this.fAQToolStripMenuItem.Name = "fAQToolStripMenuItem";
-            resources.ApplyResources(this.fAQToolStripMenuItem, "fAQToolStripMenuItem");
-            this.fAQToolStripMenuItem.Tag = "https://github.com/TeamShinkansen/hakchi2/wiki/FAQ";
-            this.fAQToolStripMenuItem.Click += new System.EventHandler(this.openWebsiteLink);
-            // 
             // donateToolStripMenuItem
             // 
             this.donateToolStripMenuItem.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.paypal;
@@ -1150,6 +1180,13 @@
             resources.ApplyResources(this.donateToolStripMenuItem, "donateToolStripMenuItem");
             this.donateToolStripMenuItem.Tag = "https://www.paypal.me/clusterm";
             this.donateToolStripMenuItem.Click += new System.EventHandler(this.openWebsiteLink);
+            // 
+            // fAQToolStripMenuItem
+            // 
+            this.fAQToolStripMenuItem.Name = "fAQToolStripMenuItem";
+            resources.ApplyResources(this.fAQToolStripMenuItem, "fAQToolStripMenuItem");
+            this.fAQToolStripMenuItem.Tag = "https://github.com/TeamShinkansen/hakchi2/wiki/FAQ";
+            this.fAQToolStripMenuItem.Click += new System.EventHandler(this.openWebsiteLink);
             // 
             // toolStripMenuItem22
             // 
@@ -1443,53 +1480,41 @@
             // labelName
             // 
             resources.ApplyResources(this.labelName, "labelName");
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelName, 2);
             this.labelName.Name = "labelName";
             // 
             // textBoxName
             // 
             this.textBoxName.BackColor = System.Drawing.SystemColors.Window;
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.textBoxName, 2);
             resources.ApplyResources(this.textBoxName, "textBoxName");
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             this.textBoxName.Leave += new System.EventHandler(this.textBoxName_Leave);
             // 
-            // radioButtonOne
+            // labelPublisher
             // 
-            resources.ApplyResources(this.radioButtonOne, "radioButtonOne");
-            this.radioButtonOne.Checked = true;
-            this.radioButtonOne.Name = "radioButtonOne";
-            this.radioButtonOne.TabStop = true;
-            this.radioButtonOne.UseVisualStyleBackColor = true;
-            this.radioButtonOne.CheckedChanged += new System.EventHandler(this.radioButtonOne_CheckedChanged);
-            // 
-            // radioButtonTwo
-            // 
-            resources.ApplyResources(this.radioButtonTwo, "radioButtonTwo");
-            this.radioButtonTwo.Name = "radioButtonTwo";
-            this.radioButtonTwo.TabStop = true;
-            this.radioButtonTwo.UseVisualStyleBackColor = true;
-            this.radioButtonTwo.CheckedChanged += new System.EventHandler(this.radioButtonOne_CheckedChanged);
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
+            resources.ApplyResources(this.labelPublisher, "labelPublisher");
+            this.labelPublisher.Name = "labelPublisher";
             // 
             // textBoxPublisher
             // 
             this.textBoxPublisher.BackColor = System.Drawing.SystemColors.Window;
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.textBoxPublisher, 2);
             resources.ApplyResources(this.textBoxPublisher, "textBoxPublisher");
             this.textBoxPublisher.Name = "textBoxPublisher";
             this.textBoxPublisher.TextChanged += new System.EventHandler(this.textBoxPublisher_TextChanged);
             // 
-            // label3
+            // labelCommandLine
             // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
+            resources.ApplyResources(this.labelCommandLine, "labelCommandLine");
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelCommandLine, 2);
+            this.labelCommandLine.Name = "labelCommandLine";
             // 
             // textBoxArguments
             // 
             this.textBoxArguments.BackColor = System.Drawing.SystemColors.Window;
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.textBoxArguments, 2);
             resources.ApplyResources(this.textBoxArguments, "textBoxArguments");
             this.textBoxArguments.Name = "textBoxArguments";
             this.textBoxArguments.TextChanged += new System.EventHandler(this.textBoxArguments_TextChanged);
@@ -1501,7 +1526,7 @@
             // 
             // pictureBoxArt
             // 
-            this.pictureBoxArt.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBoxArt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
@@ -1521,23 +1546,17 @@
             this.buttonGoogle.UseVisualStyleBackColor = true;
             this.buttonGoogle.Click += new System.EventHandler(this.buttonGoogle_Click);
             // 
-            // radioButtonTwoSim
+            // labelMaxPlayers
             // 
-            resources.ApplyResources(this.radioButtonTwoSim, "radioButtonTwoSim");
-            this.radioButtonTwoSim.Name = "radioButtonTwoSim";
-            this.radioButtonTwoSim.TabStop = true;
-            this.radioButtonTwoSim.UseVisualStyleBackColor = true;
-            this.radioButtonTwoSim.CheckedChanged += new System.EventHandler(this.radioButtonOne_CheckedChanged);
+            resources.ApplyResources(this.labelMaxPlayers, "labelMaxPlayers");
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelMaxPlayers, 2);
+            this.labelMaxPlayers.Name = "labelMaxPlayers";
             // 
-            // label6
+            // labelGameGenie
             // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
+            resources.ApplyResources(this.labelGameGenie, "labelGameGenie");
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelGameGenie, 2);
+            this.labelGameGenie.Name = "labelGameGenie";
             // 
             // textBoxGameGenie
             // 
@@ -1546,10 +1565,11 @@
             this.textBoxGameGenie.Name = "textBoxGameGenie";
             this.textBoxGameGenie.TextChanged += new System.EventHandler(this.textBoxGameGenie_TextChanged);
             // 
-            // label1
+            // labelReleaseDate
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            resources.ApplyResources(this.labelReleaseDate, "labelReleaseDate");
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelReleaseDate, 2);
+            this.labelReleaseDate.Name = "labelReleaseDate";
             // 
             // maskedTextBoxReleaseDate
             // 
@@ -1595,61 +1615,198 @@
             // labelSortName
             // 
             resources.ApplyResources(this.labelSortName, "labelSortName");
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelSortName, 2);
             this.labelSortName.Name = "labelSortName";
             // 
             // textBoxSortName
             // 
             this.textBoxSortName.BackColor = System.Drawing.SystemColors.Window;
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.textBoxSortName, 2);
             resources.ApplyResources(this.textBoxSortName, "textBoxSortName");
             this.textBoxSortName.Name = "textBoxSortName";
             this.textBoxSortName.TextChanged += new System.EventHandler(this.textBoxSortName_TextChanged);
             this.textBoxSortName.Leave += new System.EventHandler(this.textBoxSortName_Leave);
             // 
-            // label8
+            // labelSaveCount
             // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
+            resources.ApplyResources(this.labelSaveCount, "labelSaveCount");
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelSaveCount, 2);
+            this.labelSaveCount.Name = "labelSaveCount";
             // 
             // numericUpDownSaveCount
             // 
             this.numericUpDownSaveCount.BackColor = System.Drawing.SystemColors.Window;
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.numericUpDownSaveCount, 2);
             resources.ApplyResources(this.numericUpDownSaveCount, "numericUpDownSaveCount");
             this.numericUpDownSaveCount.Name = "numericUpDownSaveCount";
             this.numericUpDownSaveCount.ValueChanged += new System.EventHandler(this.numericUpDownSaveCount_ValueChanged);
             // 
             // groupBoxOptions
             // 
-            this.groupBoxOptions.Controls.Add(this.numericUpDownSaveCount);
-            this.groupBoxOptions.Controls.Add(this.label8);
-            this.groupBoxOptions.Controls.Add(this.textBoxSortName);
-            this.groupBoxOptions.Controls.Add(this.labelSortName);
-            this.groupBoxOptions.Controls.Add(this.pictureBoxThumbnail);
-            this.groupBoxOptions.Controls.Add(this.buttonDefaultCover);
-            this.groupBoxOptions.Controls.Add(this.labelSize);
-            this.groupBoxOptions.Controls.Add(this.checkBoxCompressed);
-            this.groupBoxOptions.Controls.Add(this.buttonShowGameGenieDatabase);
-            this.groupBoxOptions.Controls.Add(this.maskedTextBoxReleaseDate);
-            this.groupBoxOptions.Controls.Add(this.label1);
-            this.groupBoxOptions.Controls.Add(this.textBoxGameGenie);
-            this.groupBoxOptions.Controls.Add(this.label7);
-            this.groupBoxOptions.Controls.Add(this.label6);
-            this.groupBoxOptions.Controls.Add(this.radioButtonTwoSim);
-            this.groupBoxOptions.Controls.Add(this.buttonGoogle);
-            this.groupBoxOptions.Controls.Add(this.buttonBrowseImage);
-            this.groupBoxOptions.Controls.Add(this.pictureBoxArt);
-            this.groupBoxOptions.Controls.Add(this.label4);
-            this.groupBoxOptions.Controls.Add(this.textBoxArguments);
-            this.groupBoxOptions.Controls.Add(this.label3);
-            this.groupBoxOptions.Controls.Add(this.textBoxPublisher);
-            this.groupBoxOptions.Controls.Add(this.label2);
-            this.groupBoxOptions.Controls.Add(this.radioButtonTwo);
-            this.groupBoxOptions.Controls.Add(this.radioButtonOne);
-            this.groupBoxOptions.Controls.Add(this.textBoxName);
-            this.groupBoxOptions.Controls.Add(this.labelName);
-            this.groupBoxOptions.Controls.Add(this.labelID);
             resources.ApplyResources(this.groupBoxOptions, "groupBoxOptions");
+            this.groupBoxOptions.Controls.Add(this.tabControl1);
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
+            this.groupBoxOptions.Enter += new System.EventHandler(this.groupBoxOptions_Enter);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            resources.ApplyResources(this.tabControl1, "tabControl1");
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.tableLayoutPanelGameInfo);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanelGameInfo
+            // 
+            resources.ApplyResources(this.tableLayoutPanelGameInfo, "tableLayoutPanelGameInfo");
+            this.tableLayoutPanelGameInfo.Controls.Add(this.panel1, 0, 20);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.textBoxArguments, 0, 18);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.tableLayoutPanelSize, 1, 0);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelCommandLine, 0, 17);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.numericUpDownSaveCount, 0, 14);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.maxPlayersComboBox, 0, 12);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.tableLayoutPanelGameID, 0, 0);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.tableLayoutPanelGameGenie, 0, 16);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelMaxPlayers, 0, 11);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.textBoxPublisher, 0, 8);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelSaveCount, 0, 13);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelGameGenie, 0, 15);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.textBoxSortName, 0, 6);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.checkBoxCompressed, 0, 2);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.textBoxName, 0, 4);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelCompress, 0, 1);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelPublisher, 0, 7);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.maskedTextBoxReleaseDate, 0, 10);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelName, 0, 3);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelSortName, 0, 5);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelDescription, 0, 19);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelReleaseDate, 0, 9);
+            this.tableLayoutPanelGameInfo.Name = "tableLayoutPanelGameInfo";
+            this.tableLayoutPanelGameInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel4_Paint);
+            // 
+            // panel1
+            // 
+            resources.ApplyResources(this.panel1, "panel1");
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.panel1, 2);
+            this.panel1.Controls.Add(this.textBoxDescription);
+            this.panel1.Name = "panel1";
+            // 
+            // textBoxDescription
+            // 
+            resources.ApplyResources(this.textBoxDescription, "textBoxDescription");
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.TextChanged += new System.EventHandler(this.textBoxDescription_TextChanged);
+            // 
+            // tableLayoutPanelSize
+            // 
+            resources.ApplyResources(this.tableLayoutPanelSize, "tableLayoutPanelSize");
+            this.tableLayoutPanelSize.Controls.Add(this.label10, 0, 0);
+            this.tableLayoutPanelSize.Controls.Add(this.labelSize, 1, 0);
+            this.tableLayoutPanelSize.Name = "tableLayoutPanelSize";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // maxPlayersComboBox
+            // 
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.maxPlayersComboBox, 2);
+            resources.ApplyResources(this.maxPlayersComboBox, "maxPlayersComboBox");
+            this.maxPlayersComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.maxPlayersComboBox.FormattingEnabled = true;
+            this.maxPlayersComboBox.Name = "maxPlayersComboBox";
+            this.maxPlayersComboBox.SelectedIndexChanged += new System.EventHandler(this.maxPlayersComboBox_SelectedIndexChanged);
+            // 
+            // tableLayoutPanelGameID
+            // 
+            resources.ApplyResources(this.tableLayoutPanelGameID, "tableLayoutPanelGameID");
+            this.tableLayoutPanelGameID.Controls.Add(this.labelID, 1, 0);
+            this.tableLayoutPanelGameID.Controls.Add(this.label9, 0, 0);
+            this.tableLayoutPanelGameID.Name = "tableLayoutPanelGameID";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // tableLayoutPanelGameGenie
+            // 
+            resources.ApplyResources(this.tableLayoutPanelGameGenie, "tableLayoutPanelGameGenie");
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.tableLayoutPanelGameGenie, 2);
+            this.tableLayoutPanelGameGenie.Controls.Add(this.buttonShowGameGenieDatabase, 1, 0);
+            this.tableLayoutPanelGameGenie.Controls.Add(this.textBoxGameGenie, 0, 0);
+            this.tableLayoutPanelGameGenie.Name = "tableLayoutPanelGameGenie";
+            // 
+            // labelCompress
+            // 
+            resources.ApplyResources(this.labelCompress, "labelCompress");
+            this.labelCompress.Name = "labelCompress";
+            // 
+            // labelDescription
+            // 
+            resources.ApplyResources(this.labelDescription, "labelDescription");
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelDescription, 2);
+            this.labelDescription.Name = "labelDescription";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.tableLayoutPanel1);
+            this.tabPage2.Controls.Add(this.groupBox2);
+            this.tabPage2.Controls.Add(this.groupBox1);
+            resources.ApplyResources(this.tabPage2, "tabPage2");
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // tableLayoutPanel1
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.buttonGoogle, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.buttonBrowseImage, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.buttonDefaultCover, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.pictureBoxM2Spine);
+            this.groupBox2.Controls.Add(this.pictureBoxM2Front);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // pictureBoxM2Spine
+            // 
+            this.pictureBoxM2Spine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.pictureBoxM2Spine, "pictureBoxM2Spine");
+            this.pictureBoxM2Spine.Name = "pictureBoxM2Spine";
+            this.pictureBoxM2Spine.TabStop = false;
+            this.pictureBoxM2Spine.Click += new System.EventHandler(this.pictureBoxM2Spine_Click);
+            // 
+            // pictureBoxM2Front
+            // 
+            this.pictureBoxM2Front.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.pictureBoxM2Front, "pictureBoxM2Front");
+            this.pictureBoxM2Front.Name = "pictureBoxM2Front";
+            this.pictureBoxM2Front.TabStop = false;
+            this.pictureBoxM2Front.Click += new System.EventHandler(this.pictureBoxM2Front_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.pictureBoxArt);
+            this.groupBox1.Controls.Add(this.pictureBoxThumbnail);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
             // 
             // structureButton
             // 
@@ -1818,23 +1975,23 @@
             // 
             this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
             // 
-            // downloadLatestHakchiToolStripMenuItem
+            // tableLayoutPanelBottomButtons
             // 
-            this.downloadLatestHakchiToolStripMenuItem.Name = "downloadLatestHakchiToolStripMenuItem";
-            resources.ApplyResources(this.downloadLatestHakchiToolStripMenuItem, "downloadLatestHakchiToolStripMenuItem");
-            this.downloadLatestHakchiToolStripMenuItem.Click += new System.EventHandler(this.DownloadLatestHakchiToolStripMenuItem_Click);
+            resources.ApplyResources(this.tableLayoutPanelBottomButtons, "tableLayoutPanelBottomButtons");
+            this.tableLayoutPanelBottomButtons.Controls.Add(this.buttonStart, 2, 0);
+            this.tableLayoutPanelBottomButtons.Controls.Add(this.buttonExport, 1, 0);
+            this.tableLayoutPanelBottomButtons.Controls.Add(this.buttonAddGames, 0, 0);
+            this.tableLayoutPanelBottomButtons.Name = "tableLayoutPanelBottomButtons";
             // 
             // MainForm
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tableLayoutPanelBottomButtons);
             this.Controls.Add(this.gamesConsoleComboBox);
             this.Controls.Add(this.structureButton);
-            this.Controls.Add(this.buttonExport);
-            this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.statusStrip);
-            this.Controls.Add(this.buttonAddGames);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.groupBoxOptions);
@@ -1860,8 +2017,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxThumbnail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSaveCount)).EndInit();
             this.groupBoxOptions.ResumeLayout(false);
-            this.groupBoxOptions.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tableLayoutPanelGameInfo.ResumeLayout(false);
+            this.tableLayoutPanelGameInfo.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.tableLayoutPanelSize.ResumeLayout(false);
+            this.tableLayoutPanelSize.PerformLayout();
+            this.tableLayoutPanelGameID.ResumeLayout(false);
+            this.tableLayoutPanelGameID.PerformLayout();
+            this.tableLayoutPanelGameGenie.ResumeLayout(false);
+            this.tableLayoutPanelGameGenie.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxM2Spine)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxM2Front)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.foldersContextMenuStrip.ResumeLayout(false);
+            this.tableLayoutPanelBottomButtons.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1976,21 +2151,18 @@
         private System.Windows.Forms.Label labelID;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.RadioButton radioButtonOne;
-        private System.Windows.Forms.RadioButton radioButtonTwo;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelPublisher;
         private System.Windows.Forms.TextBox textBoxPublisher;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelCommandLine;
         private System.Windows.Forms.TextBox textBoxArguments;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBoxArt;
         private System.Windows.Forms.Button buttonBrowseImage;
         private System.Windows.Forms.Button buttonGoogle;
-        private System.Windows.Forms.RadioButton radioButtonTwoSim;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labelMaxPlayers;
+        private System.Windows.Forms.Label labelGameGenie;
         private System.Windows.Forms.TextBox textBoxGameGenie;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelReleaseDate;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxReleaseDate;
         private System.Windows.Forms.Button buttonShowGameGenieDatabase;
         private System.Windows.Forms.CheckBox checkBoxCompressed;
@@ -1999,7 +2171,7 @@
         private System.Windows.Forms.PictureBox pictureBoxThumbnail;
         private System.Windows.Forms.Label labelSortName;
         private System.Windows.Forms.TextBox textBoxSortName;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label labelSaveCount;
         private System.Windows.Forms.NumericUpDown numericUpDownSaveCount;
         private System.Windows.Forms.GroupBox groupBoxOptions;
         private System.Windows.Forms.ToolStripMenuItem centerBoxArtThumbnailToolStripMenuItem;
@@ -2084,6 +2256,26 @@
         private System.Windows.Forms.ToolStripMenuItem formatSDCardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downloadLatestHakchiToolStripMenuItem;
         private com.clusterrr.hakchi_gui.Wireless.Bluetooth.BluetoothMenuItem bluetoothToolStripMenuItem;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGameGenie;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelCompress;
+        private System.Windows.Forms.ComboBox maxPlayersComboBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBottomButtons;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.PictureBox pictureBoxM2Spine;
+        private System.Windows.Forms.PictureBox pictureBoxM2Front;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textBoxDescription;
+        private System.Windows.Forms.Label labelDescription;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGameInfo;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelSize;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGameID;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
