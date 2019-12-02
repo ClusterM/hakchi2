@@ -2231,6 +2231,18 @@
       <Project>{8dd1e84b-0b03-4c0b-9b42-1e49f75e7cb1}</Project>
       <Name>ProgressODoom</Name>
     </ProjectReference>
+    <ProjectReference Include="Libraries\SpineGen\SpineGen.Drawing.System.Drawing\SpineGen.Drawing.System.Drawing.csproj">
+      <Project>{72c8caf9-2e7e-41c9-89a8-0bb189b7cde4}</Project>
+      <Name>SpineGen.Drawing.System.Drawing</Name>
+    </ProjectReference>
+    <ProjectReference Include="Libraries\SpineGen\SpineGen.JSON\SpineGen.JSON.csproj">
+      <Project>{516faf96-3e40-44ef-a4ec-b2ea1b5879fa}</Project>
+      <Name>SpineGen.JSON</Name>
+    </ProjectReference>
+    <ProjectReference Include="Libraries\SpineGen\SpineGen\SpineGen.csproj">
+      <Project>{6e55d051-3f0a-42b7-bf32-12785c60eba0}</Project>
+      <Name>SpineGen</Name>
+    </ProjectReference>
     <ProjectReference Include="Libraries\SSH.NET\src\Renci.SshNet\Renci.SshNet.csproj">
       <Project>{2f5f8c90-0bd1-424f-997c-7bc6280919d1}</Project>
       <Name>Renci.SshNet</Name>

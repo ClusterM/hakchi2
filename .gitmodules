@@ -20,3 +20,6 @@
 [submodule "Libraries/CueSharp"]
 	path = Libraries/CueSharp
 	url = https://github.com/TeamShinkansen/CueSharp.git
+[submodule "Libraries/SpineGen"]
+	path = Libraries/SpineGen
+	url = git@github.com:DanTheMan827/SpineGen.git
