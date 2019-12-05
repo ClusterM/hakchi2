@@ -28,44 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageGooglerForm));
-            this.listView = new System.Windows.Forms.ListView();
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
+            this.imageGoogler = new com.clusterrr.hakchi_gui.Controls.ImageGoogler();
             this.SuspendLayout();
             // 
-            // listView
+            // imageGoogler
             // 
-            resources.ApplyResources(this.listView, "listView");
-            this.listView.LargeImageList = this.imageList;
-            this.listView.Name = "listView";
-            this.listView.SmallImageList = this.imageList;
-            this.listView.UseCompatibleStateImageBehavior = false;
-            this.listView.DoubleClick += new System.EventHandler(this.listView_DoubleClick);
-            // 
-            // imageList
-            // 
-            this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            resources.ApplyResources(this.imageList, "imageList");
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageGoogler.AdditionalVariables = "";
+            resources.ApplyResources(this.imageGoogler, "imageGoogler");
+            this.imageGoogler.Name = "imageGoogler";
+            this.imageGoogler.Query = "";
+            this.imageGoogler.OnImageDoubleClicked += new com.clusterrr.hakchi_gui.Controls.ImageGoogler.ImageReceived(this.imageGoogler_OnImageDoubleClicked);
             // 
             // ImageGooglerForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.listView);
+            this.Controls.Add(this.imageGoogler);
             this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.MinimizeBox = false;
             this.Name = "ImageGooglerForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImageGooglerForm_FormClosing);
+            this.Shown += new System.EventHandler(this.ImageGooglerForm_Shown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListView listView;
-        private System.Windows.Forms.ImageList imageList;
-
+        private Controls.ImageGoogler imageGoogler;
     }
 }

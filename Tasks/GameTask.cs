@@ -1,4 +1,5 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
+﻿using com.clusterrr.hakchi_gui.Controls;
+using com.clusterrr.hakchi_gui.Properties;
 using SharpCompress.Archives;
 using SharpCompress.Compressors.Deflate;
 using System;
@@ -168,7 +169,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     try
                     {
-                        var cover = ImageGooglerForm.DownloadImage(urls[tries]);
+                        var cover = ImageGoogler.DownloadImage(urls[tries]);
                         game.Image = cover;
                         break;
                     }

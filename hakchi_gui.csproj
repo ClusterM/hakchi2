@@ -146,6 +146,12 @@
     <Compile Include="Apps\SnesGame.cs" />
     <Compile Include="Apps\SystemCollection.cs" />
     <Compile Include="Apps\UnknownGame.cs" />
+    <Compile Include="Controls\ImageGoogler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImageGoogler.Designer.cs">
+      <DependentUpon>ImageGoogler.cs</DependentUpon>
+    </Compile>
     <Compile Include="Wireless\Bluetooth\BluetoothMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -294,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AboutBox.fr-FR.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImageGoogler.resx">
+      <DependentUpon>ImageGoogler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExportGamesDialog.de-DE.resx">
       <DependentUpon>ExportGamesDialog.cs</DependentUpon>
