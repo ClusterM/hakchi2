@@ -187,13 +187,16 @@ namespace com.clusterrr.hakchi_gui
             using (var copy = new Bitmap(img))
                 copy.Save(file, ImageFormat.Png);
 
+            SetM2Engage(img as Bitmap, M2EngageImageType.Front);
+
             ProcessImage(img, iconPath, maxX, maxY, false, true, EightBitCompression);
+
+            SetM2Engage(img as Bitmap, M2EngageImageType.Front);
 
             // thumbnail image ratio
             maxX = 40;
             maxY = 40;
             ProcessImage(img, smallIconPath, maxX, maxY, ConfigIni.Instance.CenterThumbnail, false, EightBitCompression);
-            SetM2Engage(img as Bitmap, M2EngageImageType.Front);
         }
 
         public virtual void SetImageFile(string path, bool EightBitCompression = false)
@@ -212,6 +215,8 @@ namespace com.clusterrr.hakchi_gui
             using (var copy = new Bitmap(image))
                 copy.Save(file, ImageFormat.Png);
 
+            SetM2Engage(path, M2EngageImageType.Front);
+
             ProcessImageFile(path, iconPath, maxX, maxY, false, true, EightBitCompression);
 
             // check if a small image file might have accompanied the source image
@@ -221,7 +226,6 @@ namespace com.clusterrr.hakchi_gui
 
             // set thumbnail as well
             SetThumbnailFile(path, EightBitCompression);
-            SetM2Engage(path, M2EngageImageType.Front);
 
 
         }
@@ -277,7 +281,8 @@ namespace com.clusterrr.hakchi_gui
                 LogoArea = new Rectangle(type == M2EngageImageType.Front ? 28 : 0, 0, type == M2EngageImageType.Front ? 150 : 28, 214),
                 LogoRotation = SpineGen.Drawing.Rotation.RotateNone,
                 LogoHorizontalAlignment = SpineGen.Drawing.HorizontalAlignment.Middle,
-                LogoVerticalAlignment = SpineGen.Drawing.VerticalAlignment.Middle
+                LogoVerticalAlignment = SpineGen.Drawing.VerticalAlignment.Middle,
+                AspectRange = 0.034
             };
 
             template.Image.ClearRegion(template.LogoArea);
