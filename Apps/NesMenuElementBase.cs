@@ -282,7 +282,7 @@ namespace com.clusterrr.hakchi_gui
                 LogoRotation = SpineGen.Drawing.Rotation.RotateNone,
                 LogoHorizontalAlignment = SpineGen.Drawing.HorizontalAlignment.Middle,
                 LogoVerticalAlignment = SpineGen.Drawing.VerticalAlignment.Middle,
-                AspectRange = 0.034
+                AspectRange = type == M2EngageImageType.Front ? 0.034 : 0.006
             };
 
             template.Image.ClearRegion(template.LogoArea);
