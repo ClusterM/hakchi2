@@ -152,6 +152,12 @@
     <Compile Include="Controls\ImageGoogler.Designer.cs">
       <DependentUpon>ImageGoogler.cs</DependentUpon>
     </Compile>
+    <Compile Include="SpineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpineForm.Designer.cs">
+      <DependentUpon>SpineForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Wireless\Bluetooth\BluetoothMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -291,7 +297,33 @@
     <None Include="images\github.png" />
     <None Include="images\paypal.png" />
     <Content Include="folderlist.css" />
+    <None Include="hakchi.png" />
+    <None Include="hakchi-spine.png" />
     <Content Include="ModHub\snes-dots.png" />
+    <None Include="spine_templates\Custom_Black_Grid\template.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="spine_templates\Custom_Genesis_EA_Sports\template.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="spine_templates\Genesis_Red_USA\template.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="spine_templates\Genesis_USA\template.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="spine_templates\Megadrive_EU1\template.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="spine_templates\Megadrive_EU\template.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="spine_templates\Megadrive_JP\template.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="spine_templates\Megadrive_JP_Wavy\template.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="tools\putty\puttytel.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1585,6 +1617,30 @@
     <None Include="sfrom_tool\README.TXT">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="spine_templates\Custom_Black_Grid\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="spine_templates\Custom_Genesis_EA_Sports\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="spine_templates\Genesis_Red_USA\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="spine_templates\Genesis_USA\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="spine_templates\Megadrive_EU1\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="spine_templates\Megadrive_EU\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="spine_templates\Megadrive_JP\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="spine_templates\Megadrive_JP_Wavy\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="tools\arm\detached-fallback">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1750,6 +1806,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SnesPresetEditor.resx">
       <DependentUpon>SnesPresetEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpineForm.resx">
+      <DependentUpon>SpineForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StringInputForm.de-DE.resx">
       <DependentUpon>StringInputForm.cs</DependentUpon>

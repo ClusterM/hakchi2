@@ -208,7 +208,8 @@ namespace com.clusterrr.hakchi_gui
                         if (line == "[Description]")
                         {
                             hitDescription = true;
-                            continue;
+                            if ((line = reader.ReadLine()) == "Text = ")
+                                continue;
                         }
                             
                         if (hitDescription)
@@ -299,7 +300,7 @@ namespace com.clusterrr.hakchi_gui
                                 case "copyright":
                                     Copyright = value;
                                     break;
-                                case "genre":
+                                case "sortRawGenre":
                                     Genre = value;
                                     break;
                             }
@@ -356,8 +357,8 @@ namespace com.clusterrr.hakchi_gui
                 $"Copyright={this.copyright}\n" +
                 (snesExtraFields ? $"MyPlayDemoTime=45\n\n" : "\n") +
                 "[M2engage]\n" +
-                $"genre={this.genre}\n\n" +
-                "[Description]\n" +
+                $"sortRawGenre={this.genre}\n\n" +
+                "[Description]\nText = \n" +
                 this.description.Replace("\r\n", "\n").Trim());
             return content;
         }

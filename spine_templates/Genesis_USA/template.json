@@ -1,0 +1,15 @@
+{
+  "Name": "Genesis (USA, Grid)",
+  "Category": "USA",
+  "LogoArea": {
+    "Width": 48,
+    "Height": 224,
+    "X": 4,
+    "Y": 50
+  },
+  "LogoRotation": 90,
+  "LogoHorizontalAlignment": 1,
+  "LogoVerticalAlignment": 0,
+  "AspectRange": 0.0,
+  "Enlarge": true
+}

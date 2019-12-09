@@ -1479,4 +1479,10 @@ This will erase all data present on the card!</value>
   <data name="TrustedNotPairedClickToRemove" xml:space="preserve">
     <value>Trusted / Not Paired (Click to Remove)</value>
   </data>
+  <data name="hakchi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\hakchi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hakchi_spine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\hakchi-spine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

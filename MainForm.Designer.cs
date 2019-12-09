@@ -195,7 +195,6 @@
             this.timerShowSelected = new System.Windows.Forms.Timer(this.components);
             this.buttonExport = new System.Windows.Forms.Button();
             this.labelID = new System.Windows.Forms.Label();
-            this.labelName = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.labelPublisher = new System.Windows.Forms.Label();
             this.textBoxPublisher = new System.Windows.Forms.TextBox();
@@ -233,6 +232,7 @@
             this.tableLayoutPanelGameGenie = new System.Windows.Forms.TableLayoutPanel();
             this.labelCompress = new System.Windows.Forms.Label();
             this.labelDescription = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -263,6 +263,7 @@
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
             this.timerUpdate = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanelBottomButtons = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonSpine = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -1477,12 +1478,6 @@
             resources.ApplyResources(this.labelID, "labelID");
             this.labelID.Name = "labelID";
             // 
-            // labelName
-            // 
-            resources.ApplyResources(this.labelName, "labelName");
-            this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelName, 2);
-            this.labelName.Name = "labelName";
-            // 
             // textBoxName
             // 
             this.textBoxName.BackColor = System.Drawing.SystemColors.Window;
@@ -1647,7 +1642,6 @@
             this.groupBoxOptions.Controls.Add(this.tabControl1);
             this.groupBoxOptions.Name = "groupBoxOptions";
             this.groupBoxOptions.TabStop = false;
-            this.groupBoxOptions.Enter += new System.EventHandler(this.groupBoxOptions_Enter);
             // 
             // tabControl1
             // 
@@ -1685,12 +1679,11 @@
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelCompress, 0, 1);
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelPublisher, 0, 7);
             this.tableLayoutPanelGameInfo.Controls.Add(this.maskedTextBoxReleaseDate, 0, 10);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.labelName, 0, 3);
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelSortName, 0, 5);
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelDescription, 0, 19);
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelReleaseDate, 0, 9);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelName, 0, 3);
             this.tableLayoutPanelGameInfo.Name = "tableLayoutPanelGameInfo";
-            this.tableLayoutPanelGameInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel4_Paint);
             // 
             // panel1
             // 
@@ -1757,6 +1750,11 @@
             this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelDescription, 2);
             this.labelDescription.Name = "labelDescription";
             // 
+            // labelName
+            // 
+            resources.ApplyResources(this.labelName, "labelName");
+            this.labelName.Name = "labelName";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.tableLayoutPanel1);
@@ -1765,7 +1763,6 @@
             resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -1774,6 +1771,7 @@
             this.tableLayoutPanel1.Controls.Add(this.buttonBrowseImage, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.buttonDefaultCover, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.buttonSpine, 0, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // groupBox2
@@ -1983,6 +1981,13 @@
             this.tableLayoutPanelBottomButtons.Controls.Add(this.buttonAddGames, 0, 0);
             this.tableLayoutPanelBottomButtons.Name = "tableLayoutPanelBottomButtons";
             // 
+            // buttonSpine
+            // 
+            resources.ApplyResources(this.buttonSpine, "buttonSpine");
+            this.buttonSpine.Name = "buttonSpine";
+            this.buttonSpine.UseVisualStyleBackColor = true;
+            this.buttonSpine.Click += new System.EventHandler(this.buttonSpine_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -2149,7 +2154,6 @@
         private System.Windows.Forms.ToolStripMenuItem resetROMHeaderToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem17;
         private System.Windows.Forms.Label labelID;
-        private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label labelPublisher;
         private System.Windows.Forms.TextBox textBoxPublisher;
@@ -2276,6 +2280,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGameID;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.Button buttonSpine;
     }
 }
 

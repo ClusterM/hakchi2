@@ -1,13 +1,15 @@
 ﻿#pragma warning disable 0618
 using com.clusterrr.hakchi_gui.Properties;
 using Microsoft.Win32.SafeHandles;
+using SpineGen.DrawingBitmaps;
+using SpineGen.JSON;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Text;
@@ -42,6 +44,10 @@ namespace com.clusterrr.hakchi_gui
         public static string BaseDirectoryExternal;
         public static bool isPortable = false;
         public static List<Stream> debugStreams = new List<Stream>();
+        private static Dictionary<string, SpineTemplate<Bitmap>> _SpineTemplates;
+        public static IReadOnlyDictionary<string, SpineTemplate<Bitmap>> SpineTemplates {
+            get => _SpineTemplates;
+        }
         public static MultiFormContext FormContext = new MultiFormContext();
 
         /// <summary>
@@ -137,7 +143,7 @@ namespace com.clusterrr.hakchi_gui
                                 // There are some folders which should be accessed by user
                                 // Moving them to "My documents"
                                 var externalDirs = new string[]
-                                    { "art", "folder_images", "info", "patches", "sfrom_tool", "user_mods" };
+                                    { "art", "folder_images", "info", "patches", "sfrom_tool", "user_mods", "spine_templates" };
                                 foreach (var dir in externalDirs)
                                 {
                                     var sourceDir = Path.Combine(BaseDirectoryInternal, dir);
@@ -174,6 +180,7 @@ namespace com.clusterrr.hakchi_gui
                         // For updates
                         var oldFiles = Directory.GetFiles(Path.GetDirectoryName(Application.ExecutablePath), langFileNames, SearchOption.AllDirectories);
                         foreach (var d in oldFiles)
+                        {
                             if (!d.Contains(Path.DirectorySeparatorChar + "languages" + Path.DirectorySeparatorChar))
                             {
                                 var dir = Path.GetDirectoryName(d);
@@ -190,6 +197,22 @@ namespace com.clusterrr.hakchi_gui
                                 else
                                     Directory.Delete(dir, true);
                             }
+                        }
+
+                        Trace.WriteLine("Loading spine templates");
+                        var templateDir = new DirectoryInfo(Path.Combine(BaseDirectoryExternal, "spine_templates"));
+                        _SpineTemplates = new Dictionary<string, SpineTemplate<Bitmap>>();
+                        if (templateDir.Exists)
+                        {
+                            foreach (var dir in templateDir.GetDirectories())
+                            {
+                                if (dir.GetFiles().Where(file => file.Name == "template.json" || file.Name == "template.png").Count() == 2)
+                                {
+                                    using (var file = File.OpenRead(Path.Combine(dir.FullName, "template.png")))
+                                        _SpineTemplates.Add(dir.Name, SpineTemplate<Bitmap>.FromJsonFile(new SystemDrawingBitmap(new Bitmap(file) as Bitmap), Path.Combine(dir.FullName, "template.json")));
+                                }
+                            }
+                        }
 
                         Trace.WriteLine("Starting, version: " + Shared.AppDisplayVersion);
 

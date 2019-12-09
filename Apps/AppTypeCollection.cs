@@ -1,8 +1,6 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -244,7 +242,7 @@ namespace com.clusterrr.hakchi_gui
                 Extensions = new string[] {".hsqs" },
                 Prefix = 'L',
                 DefaultCover = Resources.blank_dos,
-                GoogleSuffix = "hsqs"
+                GoogleSuffix = ""
             },
             new AppInfo
             {
@@ -255,7 +253,7 @@ namespace com.clusterrr.hakchi_gui
                 Extensions = new string[] {".sh" },
                 Prefix = 'L',
                 DefaultCover = Resources.blank_dos,
-                GoogleSuffix = "bash script"
+                GoogleSuffix = ""
             },
             new AppInfo
             {

@@ -1,5 +1,8 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
-using AutoUpdaterDotNET;
+﻿using AutoUpdaterDotNET;
+using com.clusterrr.hakchi_gui.ModHub;
+using com.clusterrr.hakchi_gui.ModHub.Repository;
+using com.clusterrr.hakchi_gui.Properties;
+using com.clusterrr.hakchi_gui.Tasks;
 using SharpCompress.Archives;
 using System;
 using System.Collections;
@@ -10,15 +13,10 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Resources;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using com.clusterrr.hakchi_gui.Tasks;
-using com.clusterrr.hakchi_gui.ModHub.Repository;
-using com.clusterrr.hakchi_gui.ModHub;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -957,6 +955,7 @@ namespace com.clusterrr.hakchi_gui
                     checkBoxCompressed.Checked = false;
                 }
             }
+            panel1.Size = textBoxDescription.Size = new Size(1, 1);
             showingSelected = false;
         }
 
@@ -1153,6 +1152,7 @@ namespace com.clusterrr.hakchi_gui
             var app = GetSelectedGame();
             if (app != null)
             {
+                app.ClearMdMini();
                 app.Image = null;
                 ShowSelected();
                 timerCalculateGames.Enabled = true;
@@ -1195,7 +1195,7 @@ namespace com.clusterrr.hakchi_gui
             openFileDialogImage.Filter = Resources.Images + "|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tif;*.tiff|" + Resources.AllFiles + "|*.*";
             if (openFileDialogImage.ShowDialog() == DialogResult.OK)
             {
-                app.SetM2Engage(openFileDialogImage.FileName, NesMenuElementBase.M2EngageImageType.Spine);
+                app.SetMdMini(openFileDialogImage.FileName, NesMenuElementBase.MdMiniImageType.Spine);
                 ShowSelected();
                 timerCalculateGames.Enabled = true;
             }
@@ -1209,7 +1209,7 @@ namespace com.clusterrr.hakchi_gui
             openFileDialogImage.Filter = Resources.Images + "|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tif;*.tiff|" + Resources.AllFiles + "|*.*";
             if (openFileDialogImage.ShowDialog() == DialogResult.OK)
             {
-                app.SetM2Engage(openFileDialogImage.FileName, NesMenuElementBase.M2EngageImageType.Front);
+                app.SetMdMini(openFileDialogImage.FileName, NesMenuElementBase.MdMiniImageType.Front);
                 ShowSelected();
                 timerCalculateGames.Enabled = true;
             }
@@ -1222,9 +1222,27 @@ namespace com.clusterrr.hakchi_gui
 
             using (var googler = new ImageGooglerForm(app))
             {
-                if (googler.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                if (googler.ShowDialog() == DialogResult.OK)
                 {
                     app.Image = googler.Result;
+                    ShowSelected();
+                    timerCalculateGames.Enabled = true;
+                }
+            }
+        }
+
+        private void buttonSpine_Click(object sender, EventArgs e)
+        {
+            var app = GetSelectedGame();
+            if (app == null) return;
+
+            using (var spineForm = new SpineForm(app))
+            {
+                if (spineForm.ShowDialog() == DialogResult.OK)
+                {
+                    app.SetMdMini(spineForm.Spine as Bitmap, NesMenuElementBase.MdMiniImageType.Spine);
+                    spineForm.Spine?.Dispose();
+                    spineForm.ClearLogo?.Dispose();
                     ShowSelected();
                     timerCalculateGames.Enabled = true;
                 }
@@ -3309,21 +3327,6 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void groupBoxOptions_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void textBoxDescription_TextChanged(object sender, EventArgs e)
         {
             if (showingSelected) return;
@@ -3332,11 +3335,6 @@ namespace com.clusterrr.hakchi_gui
             if (selected == null || !(selected is NesApplication)) return;
             var game = (selected as NesApplication);
             game.Desktop.Description = textBoxDescription.Text;
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }

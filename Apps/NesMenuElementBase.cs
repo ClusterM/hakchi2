@@ -86,7 +86,27 @@ namespace com.clusterrr.hakchi_gui
                 spinePath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_spine" + Path.GetExtension(desktop.IconFilename));
                 originalArtPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_original" + Path.GetExtension(desktop.IconFilename));
                 mdMiniIconPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_mdmini" + Path.GetExtension(desktop.IconFilename));
-    }
+            }
+
+            if (!File.Exists(originalArtPath) && File.Exists(iconPath))
+            {
+                using (var file = File.OpenRead(iconPath))
+                using (var image = new SystemDrawingBitmap(new Bitmap(file) as Bitmap))
+                using (var fileOut = File.OpenWrite(originalArtPath))
+                {
+                    image.TrimPixels();
+                    image.Bitmap.Save(fileOut, ImageFormat.Png);
+                }
+            }
+
+            if (!File.Exists(mdMiniIconPath))
+            {
+                if (File.Exists(originalArtPath))
+                    SetMdMini(originalArtPath, MdMiniImageType.Front);
+
+                if (File.Exists(spinePath))
+                    SetMdMini(spinePath, MdMiniImageType.Spine);
+            }
         }
 
         public virtual bool Save()
@@ -163,14 +183,14 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                return GetM2Bitmap().Crop(new Rectangle(0, 0, 28, 214)).Bitmap;
+                return GetMdMiniBitmap().Crop(new Rectangle(1, 1, 28, 214)).Bitmap;
             }
         }
         public virtual Image M2Front
         {
             get
             {
-                return GetM2Bitmap().Crop(new Rectangle(28, 0, 150, 214)).Bitmap;
+                return GetMdMiniBitmap().Crop(new Rectangle(31, 1, 150, 214)).Bitmap;
             }
         }
 
@@ -187,11 +207,11 @@ namespace com.clusterrr.hakchi_gui
             using (var copy = new Bitmap(img))
                 copy.Save(file, ImageFormat.Png);
 
-            SetM2Engage(img as Bitmap, M2EngageImageType.Front);
+            SetMdMini(img as Bitmap, MdMiniImageType.Front);
 
             ProcessImage(img, iconPath, maxX, maxY, false, true, EightBitCompression);
 
-            SetM2Engage(img as Bitmap, M2EngageImageType.Front);
+            SetMdMini(img as Bitmap, MdMiniImageType.Front);
 
             // thumbnail image ratio
             maxX = 40;
@@ -215,7 +235,7 @@ namespace com.clusterrr.hakchi_gui
             using (var copy = new Bitmap(image))
                 copy.Save(file, ImageFormat.Png);
 
-            SetM2Engage(path, M2EngageImageType.Front);
+            SetMdMini(path, MdMiniImageType.Front);
 
             ProcessImageFile(path, iconPath, maxX, maxY, false, true, EightBitCompression);
 
@@ -236,7 +256,7 @@ namespace com.clusterrr.hakchi_gui
             ProcessImageFile(path, smallIconPath, 40, 40, ConfigIni.Instance.CenterThumbnail, false, EightBitCompression);
         }
         
-        private SystemDrawingBitmap GetM2Bitmap()
+        private SystemDrawingBitmap GetMdMiniBitmap()
         {
             if (File.Exists(mdMiniIconPath))
             {
@@ -245,12 +265,20 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                return new SystemDrawingBitmap(new Bitmap(178, 214, PixelFormat.Format32bppArgb) as Bitmap);
+                var template = new SystemDrawingBitmap(new Bitmap(182, 216, PixelFormat.Format32bppArgb) as Bitmap);
+                template.DrawImage(Properties.Resources.hakchi_spine, new Point(1, 1));
+
+                return template;
             }
         }
 
-        public enum M2EngageImageType { Spine, Front }
-        public virtual void SetM2Engage(string path, M2EngageImageType type)
+        public enum MdMiniImageType { Spine, Front }
+        public virtual void ClearMdMini()
+        {
+            if (File.Exists(mdMiniIconPath))
+                File.Delete(mdMiniIconPath);
+        }
+        public virtual void SetMdMini(string path, MdMiniImageType type)
         {
             if (!File.Exists(path))
                 throw new FileNotFoundException($"File Not Found: {path}");
@@ -260,12 +288,12 @@ namespace com.clusterrr.hakchi_gui
             using (var file = File.OpenRead(path))
                 image = new Bitmap(file);
 
-            SetM2Engage(image, type);
+            SetMdMini(image, type);
         }
 
-        public virtual void SetM2Engage(Bitmap image, M2EngageImageType type)
+        public virtual void SetMdMini(Bitmap image, MdMiniImageType type)
         {
-            if (type == M2EngageImageType.Spine)
+            if (type == MdMiniImageType.Spine)
             {
                 if (File.Exists(spinePath))
                     File.Delete(spinePath);
@@ -275,32 +303,32 @@ namespace com.clusterrr.hakchi_gui
                     copy.Save(file, ImageFormat.Png);
             }
 
-            var template = new SpineGen.Spine.Template<Bitmap>()
+            using (var template = new SpineGen.Spine.Template<Bitmap>()
             {
-                Image = GetM2Bitmap(),
-                LogoArea = new Rectangle(type == M2EngageImageType.Front ? 28 : 0, 0, type == M2EngageImageType.Front ? 150 : 28, 214),
+                Image = GetMdMiniBitmap(),
+                LogoArea = new Rectangle(type == MdMiniImageType.Front ? 31 : 1, 1, type == MdMiniImageType.Front ? 150 : 28, 214),
                 LogoRotation = SpineGen.Drawing.Rotation.RotateNone,
                 LogoHorizontalAlignment = SpineGen.Drawing.HorizontalAlignment.Middle,
                 LogoVerticalAlignment = SpineGen.Drawing.VerticalAlignment.Middle,
-                AspectRange = type == M2EngageImageType.Front ? 0.034 : 0.006
-            };
+                AspectRange = type == MdMiniImageType.Front ? 0.04 : 0.006
+            }) {
 
-            template.Image.ClearRegion(template.LogoArea);
+                template.Image.ClearRegion(template.LogoArea);
 
-            var output = template.Process(new SystemDrawingBitmap(image));
-            template.Dispose();
+                using (var output = template.Process(new SystemDrawingBitmap(new Bitmap(image))))
+                {
+                    if (File.Exists(mdMiniIconPath))
+                        File.Delete(mdMiniIconPath);
 
-            if (File.Exists(mdMiniIconPath))
-                File.Delete(mdMiniIconPath);
+                    var bitmap = output.Bitmap;
 
-            var bitmap = output.Bitmap;
+                    //Quantize(ref bitmap);
+                    template.Dispose();
 
-            Quantize(ref bitmap);
-
-            using (var file = File.OpenWrite(mdMiniIconPath))
-                bitmap.Save(file, ImageFormat.Png);
-
-            output.Dispose();
+                    using (var file = File.OpenWrite(mdMiniIconPath))
+                        bitmap.Save(file, ImageFormat.Png);
+                }
+            }
         }
 
         protected static void ProcessImage(Image inImage, string outPath, int targetWidth, int targetHeight, bool expandHeight, bool upscale, bool quantize)

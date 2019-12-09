@@ -2128,6 +2128,26 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hakchi {
+            get {
+                object obj = ResourceManager.GetObject("hakchi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hakchi_spine {
+            get {
+                object obj = ResourceManager.GetObject("hakchi_spine", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hakchi2 CE Games - {0}.
         /// </summary>
         internal static string Hakchi2CEGames0 {

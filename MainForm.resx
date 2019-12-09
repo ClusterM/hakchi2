@@ -1320,9 +1320,6 @@
   <data name="&gt;&gt;labelID.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="labelName.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="tableLayoutPanelGameInfo.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
@@ -1332,8 +1329,8 @@
   <data name="panel1.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
-  <data name="textBoxDescription.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="textBoxDescription.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="textBoxDescription.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -1986,30 +1983,6 @@
   <data name="&gt;&gt;checkBoxCompressed.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="textBoxName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="textBoxName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 65</value>
-  </data>
-  <data name="textBoxName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 20</value>
-  </data>
-  <data name="textBoxName.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;textBoxName.Name" xml:space="preserve">
-    <value>textBoxName</value>
-  </data>
-  <data name="&gt;&gt;textBoxName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxName.Parent" xml:space="preserve">
-    <value>tableLayoutPanelGameInfo</value>
-  </data>
-  <data name="&gt;&gt;textBoxName.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
   <data name="labelCompress.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2158,7 +2131,7 @@
     <value>tableLayoutPanelGameInfo</value>
   </data>
   <data name="&gt;&gt;labelSortName.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>18</value>
   </data>
   <data name="labelDescription.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2197,7 +2170,7 @@
     <value>tableLayoutPanelGameInfo</value>
   </data>
   <data name="&gt;&gt;labelDescription.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>19</value>
   </data>
   <data name="labelReleaseDate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2239,6 +2212,45 @@
     <value>tableLayoutPanelGameInfo</value>
   </data>
   <data name="&gt;&gt;labelReleaseDate.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="labelName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="labelName.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="labelName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 49</value>
+  </data>
+  <data name="labelName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="labelName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 13</value>
+  </data>
+  <data name="labelName.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="labelName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="labelName.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;labelName.Name" xml:space="preserve">
+    <value>labelName</value>
+  </data>
+  <data name="&gt;&gt;labelName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelName.Parent" xml:space="preserve">
+    <value>tableLayoutPanelGameInfo</value>
+  </data>
+  <data name="&gt;&gt;labelName.ZOrder" xml:space="preserve">
     <value>21</value>
   </data>
   <data name="tableLayoutPanelGameInfo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -2269,28 +2281,31 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanelGameInfo.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="panel1" Row="20" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="textBoxArguments" Row="18" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="tableLayoutPanelSize" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelCommandLine" Row="17" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="numericUpDownSaveCount" Row="14" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="maxPlayersComboBox" Row="12" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="tableLayoutPanelGameID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanelGameGenie" Row="16" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelMaxPlayers" Row="11" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="textBoxPublisher" Row="8" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelSaveCount" Row="13" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelGameGenie" Row="15" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="textBoxSortName" Row="6" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="checkBoxCompressed" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxName" Row="4" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelCompress" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelPublisher" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="maskedTextBoxReleaseDate" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelName" Row="3" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelSortName" Row="5" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelDescription" Row="19" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelReleaseDate" Row="9" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="panel1" Row="20" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="textBoxArguments" Row="18" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="tableLayoutPanelSize" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelCommandLine" Row="17" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="numericUpDownSaveCount" Row="14" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="maxPlayersComboBox" Row="12" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="tableLayoutPanelGameID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanelGameGenie" Row="16" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelMaxPlayers" Row="11" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="textBoxPublisher" Row="8" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelSaveCount" Row="13" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelGameGenie" Row="15" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="textBoxSortName" Row="6" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="checkBoxCompressed" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxName" Row="4" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelCompress" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelPublisher" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="maskedTextBoxReleaseDate" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelSortName" Row="5" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelDescription" Row="19" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelReleaseDate" Row="9" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelName" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
-  <data name="labelName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 49</value>
+  <data name="textBoxName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
   </data>
-  <data name="labelName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 13</value>
+  <data name="textBoxName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 65</value>
   </data>
-  <data name="labelName.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+  <data name="textBoxName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 20</value>
   </data>
-  <data name="&gt;&gt;labelName.Name" xml:space="preserve">
-    <value>labelName</value>
+  <data name="textBoxName.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
-  <data name="&gt;&gt;labelName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;textBoxName.Name" xml:space="preserve">
+    <value>textBoxName</value>
   </data>
-  <data name="&gt;&gt;labelName.Parent" xml:space="preserve">
+  <data name="&gt;&gt;textBoxName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxName.Parent" xml:space="preserve">
     <value>tableLayoutPanelGameInfo</value>
   </data>
-  <data name="&gt;&gt;labelName.ZOrder" xml:space="preserve">
-    <value>18</value>
+  <data name="&gt;&gt;textBoxName.ZOrder" xml:space="preserve">
+    <value>14</value>
   </data>
   <data name="label4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -2302,7 +2317,7 @@
     <value>3, 0</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 59</value>
+    <value>95, 47</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2359,10 +2374,10 @@
     <value>NoControl</value>
   </data>
   <data name="buttonBrowseImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 121</value>
+    <value>3, 97</value>
   </data>
   <data name="buttonBrowseImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 53</value>
+    <value>95, 41</value>
   </data>
   <data name="buttonBrowseImage.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -2389,10 +2404,10 @@
     <value>NoControl</value>
   </data>
   <data name="buttonGoogle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 180</value>
+    <value>3, 144</value>
   </data>
   <data name="buttonGoogle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 54</value>
+    <value>95, 41</value>
   </data>
   <data name="buttonGoogle.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -2419,10 +2434,10 @@
     <value>NoControl</value>
   </data>
   <data name="buttonDefaultCover.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 62</value>
+    <value>3, 50</value>
   </data>
   <data name="buttonDefaultCover.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 53</value>
+    <value>95, 41</value>
   </data>
   <data name="buttonDefaultCover.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -2502,11 +2517,38 @@
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
+  <data name="buttonSpine.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="buttonSpine.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 191</value>
+  </data>
+  <data name="buttonSpine.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 43</value>
+  </data>
+  <data name="buttonSpine.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="buttonSpine.Text" xml:space="preserve">
+    <value>Spine</value>
+  </data>
+  <data name="&gt;&gt;buttonSpine.Name" xml:space="preserve">
+    <value>buttonSpine</value>
+  </data>
+  <data name="&gt;&gt;buttonSpine.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonSpine.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;buttonSpine.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>214, 241</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 237</value>
@@ -2527,7 +2569,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="buttonGoogle" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="buttonBrowseImage" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="buttonDefaultCover" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="buttonGoogle" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="buttonBrowseImage" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="buttonDefaultCover" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="buttonSpine" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,20,Percent,20,Percent,20,Percent,20,Percent,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="pictureBoxM2Spine.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 17</value>
