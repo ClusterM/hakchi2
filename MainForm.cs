@@ -109,6 +109,13 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
+                timerShowSelected.Enabled = false;
+                maxPlayersComboBox.Items.AddRange(new string[] {
+                    "One player",
+                    "Two players, not simultaneously",
+                    "Two players, simultaneously"
+                });
+
                 // prepare collections
                 LoadLanguages();
                 CoreCollection.Load();
@@ -229,12 +236,6 @@ namespace com.clusterrr.hakchi_gui
 
             this.KeyDown += menuShiftHandler;
             this.KeyUp += menuShiftHandler;
-
-            maxPlayersComboBox.Items.AddRange(new string[] {
-                "One player",
-                "Two players, not simultaneously",
-                "Two players, simultaneously"
-            });
         }
 
         private void menuShiftHandler(object sender, EventArgs e) => menuShiftHandler();
@@ -247,6 +248,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
+
             // centralized upgrade actions system
             new Upgrade(this).Run();
             populateRepos();
@@ -889,7 +891,12 @@ namespace com.clusterrr.hakchi_gui
                 labelSize.Text = String.Empty;
                 textBoxName.Text = "";
                 textBoxSortName.Text = "";
-                maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.OnePlayer;
+
+                if (maxPlayersComboBox.Items.Count > 0)
+                {
+                    maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.OnePlayer;
+                }
+
                 maskedTextBoxReleaseDate.Text = "";
                 textBoxPublisher.Text = "";
                 textBoxArguments.Text = "";
@@ -912,12 +919,17 @@ namespace com.clusterrr.hakchi_gui
                 labelSize.Text = Shared.SizeSuffix(app.Size());
                 textBoxName.Text = app.Name;
                 textBoxSortName.Text = app.SortName;
-                if (app.Desktop.Simultaneous && app.Desktop.Players == 2)
-                    maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.TwoPlayerSimultaneous;
-                else if (app.Desktop.Players == 2)
-                    maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.TwoPlayer;
-                else
-                    maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.OnePlayer;
+
+                if (maxPlayersComboBox.Items.Count > 0)
+                {
+                    if (app.Desktop.Simultaneous && app.Desktop.Players == 2)
+                        maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.TwoPlayerSimultaneous;
+                    else if (app.Desktop.Players == 2)
+                        maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.TwoPlayer;
+                    else
+                        maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.OnePlayer;
+                }
+
                 maskedTextBoxReleaseDate.Text = app.Desktop.ReleaseDate;
                 textBoxPublisher.Text = app.Desktop.Publisher;
                 textBoxArguments.Text = app.Desktop.Exec;
@@ -957,6 +969,7 @@ namespace com.clusterrr.hakchi_gui
             }
             panel1.Size = textBoxDescription.Size = new Size(1, 1);
             showingSelected = false;
+            timerShowSelected.Enabled = false;
         }
 
         private int lastListViewGamesSelectionCount = 0;

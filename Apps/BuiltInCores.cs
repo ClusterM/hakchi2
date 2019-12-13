@@ -21,6 +21,15 @@
                 Systems = new string[] { "Nintendo - Nintendo Entertainment System", "Nintendo - Family Computer Disk System" },
                 Kind = CoreCollection.CoreKind.BuiltIn
             },
+            new CoreCollection.CoreInfo("m2engage") // sega mini emulator
+            {
+                DefaultArgs = "",
+                Name = "M2engage",
+                DisplayName = "Sega - Genesis / Mega Drive (M2engage)",
+                SupportedExtensions = new string[] { ".bin" },
+                Systems = new string[] { "Sega - Genesis", "Sega - Mega Drive" },
+                Kind = CoreCollection.CoreKind.BuiltIn
+            },
             new CoreCollection.CoreInfo("hsqs") // exception core for hsqs image files
             {
                 DefaultArgs = string.Empty,

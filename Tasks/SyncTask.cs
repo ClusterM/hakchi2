@@ -7,7 +7,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui.Tasks
@@ -295,7 +294,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             // clean up previous directories (separate game storage vs not)
             tasker.SetStatus(Resources.CleaningUp);
             hakchi.Shell.ExecuteSimple("find \"" + (ConfigIni.Instance.UploadToTmp ? remoteTempDirectory : hakchi.RemoteGameSyncPath) + "/\" -maxdepth 1 | tail -n +2 " +
-                "| grep -" + (ConfigIni.Instance.SeparateGameStorage ? "v" : "") + "Ee '(/hvcj-jpn?|/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/)$' " +
+                "| grep -" + (ConfigIni.Instance.SeparateGameStorage ? "v" : "") + "Ee '(/hvcj-jpn?|/snes(-usa|-eur|-jpn)?|/nes(-usa|-jpn)?|/md(-jpn|-usa|-eur|-asia)?|/)$' " +
                 "| while read f; do rm -rf \"$f\"; done", 0, true);
 
             // clean up symbolic links (they will be recreated if needed)

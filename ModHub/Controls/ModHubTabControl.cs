@@ -248,7 +248,6 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
                 {
                     tasker.AddTask(ShellTasks.MountBase);
                     tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.ProcessMods, selectedMods.ToArray()).Tasks);
-                    tasker.AddTask(MembootTasks.BootHakchi);
                 }
 
                 tasker.Start();

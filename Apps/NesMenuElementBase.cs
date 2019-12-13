@@ -87,26 +87,6 @@ namespace com.clusterrr.hakchi_gui
                 originalArtPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_original" + Path.GetExtension(desktop.IconFilename));
                 mdMiniIconPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_mdmini" + Path.GetExtension(desktop.IconFilename));
             }
-
-            if (!File.Exists(originalArtPath) && File.Exists(iconPath))
-            {
-                using (var file = File.OpenRead(iconPath))
-                using (var image = new SystemDrawingBitmap(new Bitmap(file) as Bitmap))
-                using (var fileOut = File.OpenWrite(originalArtPath))
-                {
-                    image.TrimPixels();
-                    image.Bitmap.Save(fileOut, ImageFormat.Png);
-                }
-            }
-
-            if (!File.Exists(mdMiniIconPath))
-            {
-                if (File.Exists(originalArtPath))
-                    SetMdMini(originalArtPath, MdMiniImageType.Front);
-
-                if (File.Exists(spinePath))
-                    SetMdMini(spinePath, MdMiniImageType.Spine);
-            }
         }
 
         public virtual bool Save()
@@ -183,6 +163,8 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
+                GenerateMdMiniPng();
+
                 return GetMdMiniBitmap().Crop(new Rectangle(1, 1, 28, 214)).Bitmap;
             }
         }
@@ -190,7 +172,32 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
+                GenerateMdMiniPng();
+
                 return GetMdMiniBitmap().Crop(new Rectangle(31, 1, 150, 214)).Bitmap;
+            }
+        }
+
+        public void GenerateMdMiniPng()
+        {
+            if (!File.Exists(originalArtPath) && File.Exists(iconPath))
+            {
+                using (var file = File.OpenRead(iconPath))
+                using (var bitmap = new SystemDrawingBitmap(new Bitmap(file) as Bitmap))
+                using (var fileOut = File.OpenWrite(originalArtPath))
+                {
+                    bitmap.TrimPixels();
+                    bitmap.Bitmap.Save(fileOut, ImageFormat.Png);
+                }
+            }
+
+            if (!File.Exists(mdMiniIconPath))
+            {
+                if (File.Exists(originalArtPath))
+                    SetMdMini(originalArtPath, MdMiniImageType.Front);
+
+                if (File.Exists(spinePath))
+                    SetMdMini(spinePath, MdMiniImageType.Spine);
             }
         }
 
