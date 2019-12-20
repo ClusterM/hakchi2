@@ -152,6 +152,7 @@
     <Compile Include="Controls\ImageGoogler.Designer.cs">
       <DependentUpon>ImageGoogler.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameGenre.cs" />
     <Compile Include="SpineForm.cs">
       <SubType>Form</SubType>
     </Compile>

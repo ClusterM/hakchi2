@@ -27,8 +27,9 @@
                 Name = "M2engage",
                 DisplayName = "Sega - Genesis / Mega Drive (M2engage)",
                 SupportedExtensions = new string[] { ".bin" },
-                Systems = new string[] { "Sega - Genesis", "Sega - Mega Drive" },
-                Kind = CoreCollection.CoreKind.BuiltIn
+                Systems = new string[] { "Sega - Mega Drive - Genesis" },
+                Kind = CoreCollection.CoreKind.BuiltIn,
+               
             },
             new CoreCollection.CoreInfo("hsqs") // exception core for hsqs image files
             {

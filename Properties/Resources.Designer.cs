@@ -2043,6 +2043,96 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action.
+        /// </summary>
+        internal static string GenreAction {
+            get {
+                return ResourceManager.GetString("GenreAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adventure.
+        /// </summary>
+        internal static string GenreAdventure {
+            get {
+                return ResourceManager.GetString("GenreAdventure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Educational.
+        /// </summary>
+        internal static string GenreEducational {
+            get {
+                return ResourceManager.GetString("GenreEducational", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Puzzle.
+        /// </summary>
+        internal static string GenrePuzzle {
+            get {
+                return ResourceManager.GetString("GenrePuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Racing.
+        /// </summary>
+        internal static string GenreRacing {
+            get {
+                return ResourceManager.GetString("GenreRacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RPG.
+        /// </summary>
+        internal static string GenreRPG {
+            get {
+                return ResourceManager.GetString("GenreRPG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shoot-&apos;em-Up.
+        /// </summary>
+        internal static string GenreShootEmUp {
+            get {
+                return ResourceManager.GetString("GenreShootEmUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simulation.
+        /// </summary>
+        internal static string GenreSimulation {
+            get {
+                return ResourceManager.GetString("GenreSimulation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sports.
+        /// </summary>
+        internal static string GenreSports {
+            get {
+                return ResourceManager.GetString("GenreSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table.
+        /// </summary>
+        internal static string GenreTable {
+            get {
+                return ResourceManager.GetString("GenreTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to delete &quot;{0}&quot; code?.
         /// </summary>
         internal static string GGCodeDelete {

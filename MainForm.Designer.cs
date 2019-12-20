@@ -1,4 +1,6 @@
-﻿namespace com.clusterrr.hakchi_gui
+﻿using static com.clusterrr.hakchi_gui.NesMenuElementBase;
+
+namespace com.clusterrr.hakchi_gui
 {
     partial class MainForm
     {
@@ -233,8 +235,11 @@
             this.labelCompress = new System.Windows.Forms.Label();
             this.labelDescription = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
+            this.labelGenre = new System.Windows.Forms.Label();
+            this.comboBoxGenre = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonSpine = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBoxM2Spine = new System.Windows.Forms.PictureBox();
             this.pictureBoxM2Front = new System.Windows.Forms.PictureBox();
@@ -263,7 +268,6 @@
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
             this.timerUpdate = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanelBottomButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonSpine = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -1625,13 +1629,11 @@
             // labelSaveCount
             // 
             resources.ApplyResources(this.labelSaveCount, "labelSaveCount");
-            this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelSaveCount, 2);
             this.labelSaveCount.Name = "labelSaveCount";
             // 
             // numericUpDownSaveCount
             // 
             this.numericUpDownSaveCount.BackColor = System.Drawing.SystemColors.Window;
-            this.tableLayoutPanelGameInfo.SetColumnSpan(this.numericUpDownSaveCount, 2);
             resources.ApplyResources(this.numericUpDownSaveCount, "numericUpDownSaveCount");
             this.numericUpDownSaveCount.Name = "numericUpDownSaveCount";
             this.numericUpDownSaveCount.ValueChanged += new System.EventHandler(this.numericUpDownSaveCount_ValueChanged);
@@ -1683,6 +1685,8 @@
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelDescription, 0, 19);
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelReleaseDate, 0, 9);
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelName, 0, 3);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelGenre, 1, 13);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.comboBoxGenre, 1, 14);
             this.tableLayoutPanelGameInfo.Name = "tableLayoutPanelGameInfo";
             // 
             // panel1
@@ -1755,6 +1759,19 @@
             resources.ApplyResources(this.labelName, "labelName");
             this.labelName.Name = "labelName";
             // 
+            // labelGenre
+            // 
+            resources.ApplyResources(this.labelGenre, "labelGenre");
+            this.labelGenre.Name = "labelGenre";
+            // 
+            // comboBoxGenre
+            // 
+            resources.ApplyResources(this.comboBoxGenre, "comboBoxGenre");
+            this.comboBoxGenre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxGenre.FormattingEnabled = true;
+            this.comboBoxGenre.Name = "comboBoxGenre";
+            this.comboBoxGenre.SelectedValueChanged += new System.EventHandler(this.comboBoxGenre_SelectedValueChanged);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.tableLayoutPanel1);
@@ -1774,6 +1791,13 @@
             this.tableLayoutPanel1.Controls.Add(this.buttonSpine, 0, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
+            // buttonSpine
+            // 
+            resources.ApplyResources(this.buttonSpine, "buttonSpine");
+            this.buttonSpine.Name = "buttonSpine";
+            this.buttonSpine.UseVisualStyleBackColor = true;
+            this.buttonSpine.Click += new System.EventHandler(this.buttonSpine_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.pictureBoxM2Spine);
@@ -1788,7 +1812,8 @@
             resources.ApplyResources(this.pictureBoxM2Spine, "pictureBoxM2Spine");
             this.pictureBoxM2Spine.Name = "pictureBoxM2Spine";
             this.pictureBoxM2Spine.TabStop = false;
-            this.pictureBoxM2Spine.Click += new System.EventHandler(this.pictureBoxM2Spine_Click);
+            this.pictureBoxM2Spine.Tag = MdMiniImageType.Spine;
+            this.pictureBoxM2Spine.Click += new System.EventHandler(this.pictureBoxM2_Click);
             // 
             // pictureBoxM2Front
             // 
@@ -1796,7 +1821,8 @@
             resources.ApplyResources(this.pictureBoxM2Front, "pictureBoxM2Front");
             this.pictureBoxM2Front.Name = "pictureBoxM2Front";
             this.pictureBoxM2Front.TabStop = false;
-            this.pictureBoxM2Front.Click += new System.EventHandler(this.pictureBoxM2Front_Click);
+            this.pictureBoxM2Front.Tag = MdMiniImageType.Front;
+            this.pictureBoxM2Front.Click += new System.EventHandler(this.pictureBoxM2_Click);
             // 
             // groupBox1
             // 
@@ -1980,13 +2006,6 @@
             this.tableLayoutPanelBottomButtons.Controls.Add(this.buttonExport, 1, 0);
             this.tableLayoutPanelBottomButtons.Controls.Add(this.buttonAddGames, 0, 0);
             this.tableLayoutPanelBottomButtons.Name = "tableLayoutPanelBottomButtons";
-            // 
-            // buttonSpine
-            // 
-            resources.ApplyResources(this.buttonSpine, "buttonSpine");
-            this.buttonSpine.Name = "buttonSpine";
-            this.buttonSpine.UseVisualStyleBackColor = true;
-            this.buttonSpine.Click += new System.EventHandler(this.buttonSpine_Click);
             // 
             // MainForm
             // 
@@ -2282,6 +2301,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Button buttonSpine;
+        private System.Windows.Forms.Label labelGenre;
+        private System.Windows.Forms.ComboBox comboBoxGenre;
     }
 }
 

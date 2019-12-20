@@ -65,8 +65,15 @@ namespace com.clusterrr.hakchi_gui
 
         private void imageGoogler1_OnImageSelected(Image image)
         {
-            ClearLogo = image;
+            ClearLogo?.Dispose();
+            ClearLogo = new Bitmap(image);
             GenerateSpine();
+        }
+
+        private void imageGoogler1_OnImageDeselected()
+        {
+            ClearLogo?.Dispose();
+            ClearLogo = null;
         }
 
         private void listBoxTemplates_SelectedIndexChanged(object sender, EventArgs e) => GenerateSpine();
@@ -77,10 +84,13 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
+                    imageGoogler1.Deselect();
                     using (var file = File.OpenRead(ofd.FileName))
                     {
+                        ClearLogo?.Dispose();
                         ClearLogo = new Bitmap(file);
                     }
+                    GenerateSpine();
                 }
             }
         }

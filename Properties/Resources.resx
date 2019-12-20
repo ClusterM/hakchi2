@@ -1485,4 +1485,34 @@ This will erase all data present on the card!</value>
   <data name="hakchi_spine" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\hakchi-spine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="GenreAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="GenreAdventure" xml:space="preserve">
+    <value>Adventure</value>
+  </data>
+  <data name="GenreEducational" xml:space="preserve">
+    <value>Educational</value>
+  </data>
+  <data name="GenrePuzzle" xml:space="preserve">
+    <value>Puzzle</value>
+  </data>
+  <data name="GenreRacing" xml:space="preserve">
+    <value>Racing</value>
+  </data>
+  <data name="GenreRPG" xml:space="preserve">
+    <value>RPG</value>
+  </data>
+  <data name="GenreShootEmUp" xml:space="preserve">
+    <value>Shoot-'em-Up</value>
+  </data>
+  <data name="GenreSports" xml:space="preserve">
+    <value>Sports</value>
+  </data>
+  <data name="GenreSimulation" xml:space="preserve">
+    <value>Simulation</value>
+  </data>
+  <data name="GenreTable" xml:space="preserve">
+    <value>Table</value>
+  </data>
 </root>

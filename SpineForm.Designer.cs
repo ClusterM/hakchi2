@@ -45,6 +45,7 @@
             this.imageGoogler1.Size = new System.Drawing.Size(583, 454);
             this.imageGoogler1.TabIndex = 0;
             this.imageGoogler1.OnImageSelected += new com.clusterrr.hakchi_gui.Controls.ImageGoogler.ImageReceived(this.imageGoogler1_OnImageSelected);
+            this.imageGoogler1.OnImageDeselected += new com.clusterrr.hakchi_gui.Controls.ImageGoogler.ImageDeselected(this.imageGoogler1_OnImageDeselected);
             // 
             // pictureBoxSpine
             // 
@@ -78,7 +79,6 @@
             // 
             // buttonLoadLogo
             // 
-            this.buttonLoadLogo.Enabled = false;
             this.buttonLoadLogo.Location = new System.Drawing.Point(601, 414);
             this.buttonLoadLogo.Name = "buttonLoadLogo";
             this.buttonLoadLogo.Size = new System.Drawing.Size(187, 23);
@@ -102,9 +102,10 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SpineForm";
-            this.Text = "SpineForm";
+            this.Text = "Spine Generator";
             this.Load += new System.EventHandler(this.SpineForm_Load);
             this.Shown += new System.EventHandler(this.SpineForm_Shown);
+            this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSpine)).EndInit();
             this.ResumeLayout(false);
 

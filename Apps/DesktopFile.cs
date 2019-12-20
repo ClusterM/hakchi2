@@ -300,7 +300,7 @@ namespace com.clusterrr.hakchi_gui
                                 case "copyright":
                                     Copyright = value;
                                     break;
-                                case "sortRawGenre":
+                                case "sortrawgenre":
                                     Genre = value;
                                     break;
                             }
@@ -412,7 +412,9 @@ namespace com.clusterrr.hakchi_gui
                 saveCount = saveCount,
                 sortRawTitle = string.Copy(sortRawTitle),
                 sortRawPublisher = string.Copy(sortRawPublisher),
-                copyright = string.Copy(copyright)
+                copyright = string.Copy(copyright),
+                description = string.Copy(description),
+                genre = string.Copy(genre)
             };
             return newObject;
         }

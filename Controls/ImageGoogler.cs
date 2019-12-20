@@ -3,20 +3,37 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
 using System.Windows.Forms;
+using static System.Windows.Forms.ImageList;
 
 namespace com.clusterrr.hakchi_gui.Controls
 {
     public partial class ImageGoogler : UserControl, IDisposable
     {
         public delegate void ImageReceived(Image image);
+        public delegate void ImageDeselected();
         public event ImageReceived OnImageSelected;
+        public event ImageReceived OnImageDoubleClicked;
+        public event ImageDeselected OnImageDeselected;
+        public string Query { get; set; } = "";
+        public string AdditionalVariables { get; set; } = "";
+        private Thread searchThread;
 
-        internal void RunQuery()
+        public void Deselect()
+        {
+            
+            foreach (var item in listView.Items.Cast<ListViewItem>())
+            {
+                if (item.Selected)
+                    item.Selected = false;
+            }
+        }
+        public void RunQuery()
         {
             imageList.Images.Clear();
             listView.Items.Clear();
@@ -35,12 +52,6 @@ namespace com.clusterrr.hakchi_gui.Controls
             });
             searchThread.Start();
         }
-
-        public event ImageReceived OnImageDoubleClicked;
-        public string Query { get; set; } = "";
-        public string AdditionalVariables { get; set; } = "";
-
-        private Thread searchThread;
 
         public static string[] GetImageUrls(string query, string additionalVariables = "")
         {
@@ -166,7 +177,13 @@ namespace com.clusterrr.hakchi_gui.Controls
         {
             Image selected;
             if ((selected = GetSelectedImage()) != null)
+            {
                 this.OnImageSelected?.Invoke(selected);
+            }
+            else
+            {
+                this.OnImageDeselected?.Invoke();
+            }
         }
     }
 }

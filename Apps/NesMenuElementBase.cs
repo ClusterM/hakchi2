@@ -210,6 +210,21 @@ namespace com.clusterrr.hakchi_gui
             if (File.Exists(originalArtPath))
                 File.Delete(originalArtPath);
 
+            if (img.Size.Width == 182 && img.Size.Height == 216)
+            {
+                using (var bImage = new SystemDrawingBitmap(img.Clone() as Bitmap))
+                {
+                    if (bImage.EmptyRow(0) && bImage.EmptyRow(215) && bImage.EmptyColumn(0) && bImage.EmptyColumn(181) && bImage.EmptyColumn(29) && bImage.EmptyColumn(30))
+                    {
+                        using (var spine = bImage.Bitmap.Clone(new Rectangle(1, 1, 28, 214), PixelFormat.Format32bppArgb))
+                        {
+                            SetMdMini(spine, MdMiniImageType.Spine);
+                        }
+                        img = bImage.Bitmap.Clone(new Rectangle(31, 1, 150, 214), PixelFormat.Format32bppArgb);
+                    }
+                }
+            }
+
             using (var file = File.OpenWrite(originalArtPath))
             using (var copy = new Bitmap(img))
                 copy.Save(file, ImageFormat.Png);
@@ -217,8 +232,6 @@ namespace com.clusterrr.hakchi_gui
             SetMdMini(img as Bitmap, MdMiniImageType.Front);
 
             ProcessImage(img, iconPath, maxX, maxY, false, true, EightBitCompression);
-
-            SetMdMini(img as Bitmap, MdMiniImageType.Front);
 
             // thumbnail image ratio
             maxX = 40;
@@ -228,32 +241,9 @@ namespace com.clusterrr.hakchi_gui
 
         public virtual void SetImageFile(string path, bool EightBitCompression = false)
         {
-            // full-size image ratio
-            int maxX = 228;
-            int maxY = 204;
-            Bitmap image;
             using (var file = File.OpenRead(path))
-                image = new Bitmap(file);
-
-            if (File.Exists(originalArtPath))
-                File.Delete(originalArtPath);
-
-            using (var file = File.OpenWrite(originalArtPath))
-            using (var copy = new Bitmap(image))
-                copy.Save(file, ImageFormat.Png);
-
-            SetMdMini(path, MdMiniImageType.Front);
-
-            ProcessImageFile(path, iconPath, maxX, maxY, false, true, EightBitCompression);
-
-            // check if a small image file might have accompanied the source image
-            string thumbnailPath = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path) + "_small" + Path.GetExtension(path));
-            if (File.Exists(thumbnailPath))
-                path = thumbnailPath;
-
-            // set thumbnail as well
-            SetThumbnailFile(path, EightBitCompression);
-
+            using (var image = new Bitmap(file))
+                SetImage(image, EightBitCompression);
 
         }
 
@@ -273,7 +263,6 @@ namespace com.clusterrr.hakchi_gui
             else
             {
                 var template = new SystemDrawingBitmap(new Bitmap(182, 216, PixelFormat.Format32bppArgb) as Bitmap);
-                template.DrawImage(Properties.Resources.hakchi_spine, new Point(1, 1));
 
                 return template;
             }

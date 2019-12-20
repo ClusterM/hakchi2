@@ -4,6 +4,7 @@ using com.clusterrr.hakchi_gui.ModHub.Repository;
 using com.clusterrr.hakchi_gui.Properties;
 using com.clusterrr.hakchi_gui.Tasks;
 using SharpCompress.Archives;
+using SpineGen.DrawingBitmaps;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ using System.Resources;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using static com.clusterrr.hakchi_gui.NesMenuElementBase;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -114,6 +116,22 @@ namespace com.clusterrr.hakchi_gui
                     "One player",
                     "Two players, not simultaneously",
                     "Two players, simultaneously"
+                });
+
+                comboBoxGenre.Items.Clear();
+                comboBoxGenre.Items.AddRange(new object[]
+                {
+                    new GameGenre("", ""),
+                    new GameGenre(Resources.GenreAction, "Action"),
+                    new GameGenre(Resources.GenreAdventure, "Adventure"),
+                    new GameGenre(Resources.GenreEducational, "Educational"),
+                    new GameGenre(Resources.GenrePuzzle, "Puzzle"),
+                    new GameGenre(Resources.GenreRacing, "Racing"),
+                    new GameGenre(Resources.GenreRPG, "RPG"),
+                    new GameGenre(Resources.GenreShootEmUp, "Shoot-'em-Up"),
+                    new GameGenre(Resources.GenreSports, "Sports"),
+                    new GameGenre(Resources.GenreSimulation, "Simulation"),
+                    new GameGenre(Resources.GenreTable, "Table")
                 });
 
                 // prepare collections
@@ -901,6 +919,7 @@ namespace com.clusterrr.hakchi_gui
                 textBoxPublisher.Text = "";
                 textBoxArguments.Text = "";
                 textBoxDescription.Text = "";
+                comboBoxGenre.SelectedIndex = 0;
                 numericUpDownSaveCount.Value = 0;
                 pictureBoxArt.Image = Resources.noboxart;
                 pictureBoxThumbnail.Image = null;
@@ -934,6 +953,30 @@ namespace com.clusterrr.hakchi_gui
                 textBoxPublisher.Text = app.Desktop.Publisher;
                 textBoxArguments.Text = app.Desktop.Exec;
                 textBoxDescription.Text = app.Desktop.Description;
+
+
+
+                bool setGenre = false;
+                for (var i = 0; i < comboBoxGenre.Items.Count; i++)
+                {
+                    if (comboBoxGenre.Items[i] is GameGenre)
+                    {
+                        var genre = (GameGenre)comboBoxGenre.Items[i];
+
+                        if (genre.Name == app.Desktop.Genre)
+                        {
+                            comboBoxGenre.SelectedIndex = i;
+                            setGenre = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (setGenre == false)
+                {
+                    comboBoxGenre.SelectedIndex = 0;
+                }
+
                 numericUpDownSaveCount.Value = app.Desktop.SaveCount;
                 pictureBoxArt.Image = app.Image ?? Resources.noboxart;
                 pictureBoxThumbnail.Image = app.Thumbnail;
@@ -1200,7 +1243,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void pictureBoxM2Spine_Click(object sender, EventArgs e)
+        private void pictureBoxM2_Click(object sender, EventArgs e)
         {
             var app = GetSelectedGame();
             if (app == null) return;
@@ -1208,21 +1251,34 @@ namespace com.clusterrr.hakchi_gui
             openFileDialogImage.Filter = Resources.Images + "|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tif;*.tiff|" + Resources.AllFiles + "|*.*";
             if (openFileDialogImage.ShowDialog() == DialogResult.OK)
             {
-                app.SetMdMini(openFileDialogImage.FileName, NesMenuElementBase.MdMiniImageType.Spine);
-                ShowSelected();
-                timerCalculateGames.Enabled = true;
-            }
-        }
-
-        private void pictureBoxM2Front_Click(object sender, EventArgs e)
-        {
-            var app = GetSelectedGame();
-            if (app == null) return;
-
-            openFileDialogImage.Filter = Resources.Images + "|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tif;*.tiff|" + Resources.AllFiles + "|*.*";
-            if (openFileDialogImage.ShowDialog() == DialogResult.OK)
-            {
-                app.SetMdMini(openFileDialogImage.FileName, NesMenuElementBase.MdMiniImageType.Front);
+                using (var file = File.OpenRead(openFileDialogImage.FileName))
+                using (var img = new Bitmap(file))
+                {
+                    if (img.Size.Width == 182 && img.Size.Height == 216)
+                    {
+                        using (var bImage = new SystemDrawingBitmap(img.Clone() as Bitmap))
+                        {
+                            if (bImage.EmptyRow(0) && bImage.EmptyRow(215) && bImage.EmptyColumn(0) && bImage.EmptyColumn(181) && bImage.EmptyColumn(29) && bImage.EmptyColumn(30))
+                            {
+                                using (var spine = bImage.Bitmap.Clone(new Rectangle(1, 1, 28, 214), PixelFormat.Format32bppArgb))
+                                using (var front = bImage.Bitmap.Clone(new Rectangle(31, 1, 150, 214), PixelFormat.Format32bppArgb))
+                                {
+                                    app.SetMdMini(spine, MdMiniImageType.Spine);
+                                    app.SetMdMini(front, MdMiniImageType.Front);
+                                }
+                            } 
+                            else
+                            {
+                                app.SetMdMini(img, (MdMiniImageType)((PictureBox)sender).Tag);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        app.SetMdMini(img, (MdMiniImageType)((PictureBox)sender).Tag);
+                    }
+                }
+                
                 ShowSelected();
                 timerCalculateGames.Enabled = true;
             }
@@ -3348,6 +3404,20 @@ namespace com.clusterrr.hakchi_gui
             if (selected == null || !(selected is NesApplication)) return;
             var game = (selected as NesApplication);
             game.Desktop.Description = textBoxDescription.Text;
+        }
+
+        private void comboBoxGenre_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (showingSelected) return;
+            if (listViewGames.SelectedItems.Count != 1) return;
+            var selected = listViewGames.SelectedItems[0].Tag;
+            if (selected == null || !(selected is NesApplication)) return;
+            var game = (selected as NesApplication);
+
+            if (comboBoxGenre.SelectedItem is GameGenre)
+            {
+                game.Desktop.Genre = ((GameGenre)comboBoxGenre.SelectedItem).Name;
+            }
         }
     }
 }
